@@ -13,14 +13,19 @@ class DisplayCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Image.asset(
-                PreluraIcons.Image,
-                height: 160,
-                fit: BoxFit.cover,
-              ),
-              Positioned(
+          // Wrap the Stack inside a ClipRRect to constrain the image
+          ClipRRect(
+            borderRadius:
+                BorderRadius.circular(12), // Optional: rounded corners
+            child: Stack(
+              children: [
+                Image.asset(
+                  PreluraIcons.Image,
+                  height: 160,
+                  width: double.infinity, // Ensure the image fills the width
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
                   bottom: 20,
                   right: 15,
                   child: Container(
@@ -34,21 +39,22 @@ class DisplayCard extends StatelessWidget {
                       children: [
                         Icon(Icons.favorite_border_outlined,
                             size: 14, color: PreluraColors.white),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        SizedBox(width: 5),
                         Text(
                           "14",
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall
                               ?.copyWith(color: PreluraColors.white),
-                        )
+                        ),
                       ],
                     ),
-                  )),
-            ],
+                  ),
+                ),
+              ],
+            ),
           ),
+          SizedBox(height: 8), // Optional: Add space between image and text
           Text(
             "Anthropologie",
             style: Theme.of(context).textTheme.bodyMedium,
@@ -57,9 +63,7 @@ class DisplayCard extends StatelessWidget {
             "Very Good",
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           Text(
             "#5.00",
             style: Theme.of(context).textTheme.bodyMedium,

@@ -15,7 +15,9 @@ class ProfileScreen extends StatelessWidget {
       MenuCard(
           title: "Favourite items",
           icon: Icon(Icons.favorite_border_outlined),
-          onTap: () {}),
+          onTap: () {
+            context.router.push(MyFavouriteRoute());
+          }),
       MenuCard(
           title: "Personalisation",
           icon: Icon(Icons.info_outlined),
@@ -26,7 +28,11 @@ class ProfileScreen extends StatelessWidget {
           icon: Icon(Icons.wallet_outlined),
           onTap: () {}),
       MenuCard(
-          title: "My Orders", icon: Icon(Icons.info_outlined), onTap: () {}),
+          title: "My Orders",
+          icon: Icon(Icons.info_outlined),
+          onTap: () {
+            context.router.push(MyOrderRoute());
+          }),
       MenuCard(
           title: "Balance discounts",
           subtitle: "off",
@@ -54,7 +60,9 @@ class ProfileScreen extends StatelessWidget {
       MenuCard(
           title: "Legal information",
           icon: Icon(Icons.info_outlined),
-          onTap: () {}),
+          onTap: () {
+            context.router.push(const LegalInformationRoute());
+          }),
       MenuCard(
           title: "Our platform", icon: Icon(Icons.info_outlined), onTap: () {}),
       MenuCard(
@@ -122,7 +130,9 @@ class ProfileScreen extends StatelessWidget {
           MenuCard(
               title: "Holiday mode",
               icon: Icon(Icons.info_outlined),
-              onTap: () {}),
+              onTap: () {
+                context.router.push(HolidayModeRoute());
+              }),
           SizedBox(
             height: 20,
           ),

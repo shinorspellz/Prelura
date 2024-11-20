@@ -19,7 +19,7 @@ class MessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(10),
@@ -36,7 +36,7 @@ class MessageCard extends StatelessWidget {
           // User Avatar
           CircleAvatar(
             radius: 25,
-            child: Image.asset(avatarUrl),
+            backgroundImage: AssetImage(avatarUrl),
           ),
           const SizedBox(width: 15),
           Expanded(
@@ -58,6 +58,7 @@ class MessageCard extends StatelessWidget {
                       .bodySmall
                       ?.copyWith(fontWeight: FontWeight.w400),
                 ),
+                const SizedBox(height: 5),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
