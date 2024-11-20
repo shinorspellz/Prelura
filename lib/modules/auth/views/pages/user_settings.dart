@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 
@@ -37,9 +38,10 @@ class SettingScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text(
-          "Settings",
-        ),
+        title: Text("Settings",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
       ),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: SingleChildScrollView(
@@ -96,7 +98,7 @@ class SettingScreen extends StatelessWidget {
           ),
           MenuCard(
               title: "Language",
-              icon: Icon(Icons.web),
+              icon: Icon(CupertinoIcons.globe),
               subtitle: "English (EN)",
               onTap: () {}),
           SizedBox(

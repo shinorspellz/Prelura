@@ -58,7 +58,9 @@ class ProfileScreen extends StatelessWidget {
       MenuCard(
           title: "Our platform", icon: Icon(Icons.info_outlined), onTap: () {}),
       MenuCard(
-          title: "Help Centre", icon: Icon(Icons.info_outlined), onTap: () {}),
+          title: "Help Centre",
+          icon: Icon(Icons.question_mark_rounded),
+          onTap: () {}),
       MenuCard(
           title: "Send your feedback", icon: Icon(Icons.face), onTap: () {}),
     ];
@@ -72,7 +74,12 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(child: Text("Profile", textAlign: TextAlign.center))
+              Expanded(
+                  child: Text("Profile",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontSize: 18,
+                          )))
             ],
           ),
         ),
@@ -88,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
               onTap: () {}),
           LiveCard(),
           MenuCard(
-              title: "Your guide to Vinted",
+              title: "Your guide to Prelura",
               icon: Icon(Icons.info_outlined),
               onTap: () {}),
           SizedBox(

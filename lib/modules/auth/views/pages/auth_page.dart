@@ -24,7 +24,7 @@ class _AuthPageState extends State<AuthPage> {
           HomeRoute(),
           SearchRoute(),
           ProfileRoute(),
-          SettingRoute(),
+          InboxRoute(),
           ProfileNavigationRoute()
         ],
         builder: (context, child) {

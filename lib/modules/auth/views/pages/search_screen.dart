@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/SearchWidget.dart';
 
@@ -79,7 +80,7 @@ class SearchScreen extends StatelessWidget {
             MenuCard(
                 title: "Pet care",
                 icon: const Icon(
-                  Icons.face,
+                  CupertinoIcons.paw,
                   color: PreluraColors.activeColor,
                 ),
                 onTap: () {}),
