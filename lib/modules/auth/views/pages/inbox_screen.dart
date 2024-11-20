@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../res/colors.dart';
+import '../../../../res/images.dart';
+import '../widgets/message_card.dart';
 
 @RoutePage()
 class InboxScreen extends StatelessWidget {
@@ -52,11 +54,38 @@ class InboxScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            Center(
-              child: Text(
-                "Home Tab Content",
-                style: TextStyle(fontSize: 18),
-              ),
+            ListView(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              children: [
+                MessageCard(
+                  username: 'leafcharles',
+                  message: 'Ok thank you',
+                  time: '17 hours ago',
+                  avatarUrl: PreluraIcons.Image,
+                  itemImageUrl: PreluraIcons.Image,
+                ),
+                MessageCard(
+                  username: 'miayapereira',
+                  message: '£17.00',
+                  time: '3 days ago',
+                  avatarUrl: PreluraIcons.Image,
+                  itemImageUrl: PreluraIcons.Image,
+                ),
+                MessageCard(
+                  username: 'mariama1229',
+                  message: '£16.00',
+                  time: '3 days ago',
+                  avatarUrl: PreluraIcons.Image,
+                  itemImageUrl: PreluraIcons.Image,
+                ),
+                MessageCard(
+                  username: 'alex_t_2009',
+                  message: '£15.00',
+                  time: '3 days ago',
+                  avatarUrl: PreluraIcons.Image,
+                  itemImageUrl: PreluraIcons.Image,
+                ),
+              ],
             ),
             Center(
               child: Text(
