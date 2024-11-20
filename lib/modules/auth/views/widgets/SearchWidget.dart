@@ -160,7 +160,8 @@ class _SearchwidgetState extends State<Searchwidget> {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
-            width: 100.0,
+            height: widget.maxLength != null ? 7.h : 5.h,
+            width: widget.minWidth ?? 100.0.w,
             decoration: BoxDecoration(
               color: Theme.of(
                 context,
@@ -239,7 +240,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                     Theme.of(context).textTheme.displayMedium!.copyWith(
                           color: PreluraColors.boldGreyText,
                           fontWeight: FontWeight.w700,
-                          fontSize: 12,
+                          fontSize: 12.sp,
                         ),
                 isDense: true,
                 counterText: "",
@@ -247,7 +248,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                 hintStyle: widget.hintStyle ??
                     Theme.of(context).textTheme.displayMedium!.copyWith(
                         color: Theme.of(context).primaryColor.withOpacity(0.5),
-                        fontSize: 11,
+                        fontSize: 11.sp,
                         overflow: TextOverflow.clip),
                 contentPadding: const EdgeInsets.fromLTRB(10, 13, 14.5, 8),
               ),

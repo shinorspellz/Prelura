@@ -8,7 +8,16 @@ import 'package:prelura_app/core/router/router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: AuthRoute.page, initial: true),
+        AutoRoute(page: AuthRoute.page, initial: true, children: [
+          AutoRoute(page: HomeRoute.page),
+          AutoRoute(page: SearchRoute.page),
+          AutoRoute(page: InboxRoute.page),
+          AutoRoute(page: ProfileNavigationRoute.page, children: [
+            AutoRoute(page: ProfileRoute.page, initial: true),
+            AutoRoute(page: SettingRoute.page),
+          ]),
+          AutoRoute(page: SettingRoute.page),
+        ]),
       ];
 }
 

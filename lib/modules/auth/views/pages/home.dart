@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/widgets/display_live_card.dart';
 
 import '../widgets/SearchWidget.dart';
 import '../widgets/display_section.dart';
 
+@RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -15,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Searchwidget(
-                  obscureText: true,
+                  obscureText: false,
                   shouldReadOnly: false,
                   hintText: "Search for items and members",
                   enabled: true,
@@ -31,6 +35,10 @@ class HomeScreen extends StatelessWidget {
               _buildSectionTitle('Recommended for You',
                   "Items selected by amyleeliu", context),
               DisplaySection(),
+              DisplayLiveCard(),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),
