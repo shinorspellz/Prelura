@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/res/images.dart';
 
 class LiveCard extends StatelessWidget {
-  const LiveCard({super.key});
+  const LiveCard({super.key, this.height});
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: height != null ? EdgeInsets.only(right: 10) : EdgeInsets.all(20),
       width: double.infinity, // Full width of the parent
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-      height: 150,
+      height: height ?? 150,
       child: Stack(children: [
-        Container(
-          width: double.infinity, // Full width of the parent
-          child: Image.asset(
-            PreluraIcons.Image,
-            fit: BoxFit.cover,
+        Positioned.fill(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              PreluraIcons.Image,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Positioned(
@@ -44,12 +44,31 @@ class LiveCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: height != null ? 70 : 20,
                 ),
-                Text(
-                  "#5.00",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                InkWell(
+                  onTap: () {
+                    // Define your onTap logic here
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      "List Now",
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .buttonTheme
+                            .colorScheme
+                            ?.onPrimary,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
