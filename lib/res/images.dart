@@ -41,4 +41,5 @@ class PreluraIcons {
   static const String ussdIcon = "assets/icons/ussd.png";
   static const String cardIcon = "assets/icons/card.png";
   static const String Image = "assets/images/image2.jpeg";
+  static const String van = "assets/svgs/delivery_van.svg";
 }
