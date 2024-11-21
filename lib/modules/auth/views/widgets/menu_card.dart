@@ -8,6 +8,7 @@ class MenuCard extends StatelessWidget {
       {super.key,
       required this.title,
       this.icon,
+      this.widget,
       required this.onTap,
       this.subtitle,
       this.profilePic = false,
@@ -18,6 +19,7 @@ class MenuCard extends StatelessWidget {
   final Icon? icon;
   final Function onTap;
   final bool profilePic;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class MenuCard extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
+                        widget ?? SizedBox.shrink(),
                         if (additionalText != null)
                           Text(
                             additionalText ?? "",

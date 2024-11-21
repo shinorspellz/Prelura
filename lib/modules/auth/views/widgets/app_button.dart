@@ -45,10 +45,15 @@ class AppButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
           border: Border.all(
               width: bgColor != null ? 1 : 0,
-              color: bgColor == null ? Colors.transparent : borderColor),
+              color: bgColor == null
+                  ? borderColor != null
+                      ? borderColor
+                      : Colors.transparent
+                  : borderColor),
           borderRadius: BorderRadius.circular(8),
           color: isDisabled
               ? PreluraColors.disabledButonColor
@@ -56,16 +61,32 @@ class AppButton extends StatelessWidget {
         ),
         height: height ?? 48,
         width: width ?? 150,
-        child: Center(
-          child: textWidget ??
-              Text(
-                text!,
-                style: TextStyle(
-                  fontSize: fontSize ?? 14,
-                  color: textColor ?? PreluraColors.activeColor,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
+        child: Row(
+          mainAxisAlignment: textWidget != null
+              ? MainAxisAlignment.start
+              : MainAxisAlignment.center,
+          children: [
+            textWidget ?? SizedBox.shrink(),
+            textWidget != null
+                ? Text(
+                    text!,
+                    style: TextStyle(
+                      fontSize: fontSize ?? 14,
+                      color: textColor ?? PreluraColors.activeColor,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  )
+                : Center(
+                    child: Text(
+                      text!,
+                      style: TextStyle(
+                        fontSize: fontSize ?? 14,
+                        color: textColor ?? PreluraColors.activeColor,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+          ],
         ),
       ),
     );
