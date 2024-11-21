@@ -100,7 +100,9 @@ class ProfileScreen extends StatelessWidget {
               title: "Vimini",
               additionalText: "View my profile",
               icon: Icon(Icons.info_outlined),
-              onTap: () {}),
+              onTap: () {
+                context.router.push(ProfileDetailsRoute());
+              }),
           LiveCard(),
           MenuCard(
               title: "Your guide to Prelura",

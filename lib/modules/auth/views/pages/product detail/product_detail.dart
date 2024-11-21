@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/main.dart';
+import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/more_product_grid_view.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_top_details.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
@@ -12,6 +13,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
+import '../../widgets/card.dart';
 
 @RoutePage()
 class ProductDetailScreen extends StatefulWidget {
@@ -21,9 +23,23 @@ class ProductDetailScreen extends StatefulWidget {
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
+class _ProductDetailScreenState extends State<ProductDetailScreen>
+    with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   double showAppBar = 0;
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +190,32 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       SizedBox(height: 24.0),
                     ],
                   ),
-                )
+                ),
+                TabBar(
+                  controller: _tabController,
+                  indicatorColor: PreluraColors.activeColor,
+                  unselectedLabelColor: PreluraColors
+                      .greyLightColor, // Text color for inactive tabs
+                  labelStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16, // Font size for the active tab
+                  ),
+                  unselectedLabelStyle: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14, // Font size for inactive tabs
+                  ),
+                  tabs: [
+                    Tab(text: "Member's items"),
+                    Tab(text: "Similar items"),
+                  ],
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: TabBarView(controller: _tabController, children: [
+                    _buildMemberItemsTab(context),
+                    Center(child: Text("Similar items content")),
+                  ]),
+                ),
               ],
             ),
           ),
@@ -234,6 +275,70 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildMemberItemsTab(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Shop Bundles Section
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Shop bundles",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    Text(
+                      "Save on postage",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+                AppButton(
+                  height: 35,
+                  width: 120,
+                  onTap: () {},
+                  text: "Create Bundle",
+                  textColor: Theme.of(context).scaffoldBackgroundColor,
+                ),
+              ],
+            ),
+          ),
+
+          // Grid View Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return GridView.builder(
+                  physics:
+                      const NeverScrollableScrollPhysics(), // Prevent internal scrolling
+                  shrinkWrap:
+                      true, // Ensures the GridView only takes needed space
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16.0,
+                    crossAxisSpacing: 16.0,
+                    childAspectRatio: 0.6, // Adjust to fit your card content
+                  ),
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return DisplayCard(); // Replace with your custom widget
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
