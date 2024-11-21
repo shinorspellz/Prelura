@@ -27,7 +27,7 @@ class HolidayModeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onLongPress: () {},
+                  onLongPress: () { },
                   child: Row(
                     children: [
                       Text(

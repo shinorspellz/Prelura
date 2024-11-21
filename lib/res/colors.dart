@@ -72,6 +72,7 @@ class PreluraColors {
   static Color darkGreyColor = const Color(0xFF696464);
   static Color textColor = const Color(0xFF211D1D);
   static Color black = const Color(0xff1C1B1F);
+  static Color brown = const Color(0xFF5c303b);
 
   static Color surfaceVariantLight = Color(0xFFD9D9D9);
   static Color onSurfaceVariantLight = Color(0xFFF0F1F5);
@@ -81,7 +82,7 @@ class PreluraColors {
   static const Color defaultGradientBegin = Color(0xFFDC3535);
   static const Color defaultGradientEnd = Color(0xFF3140C9);
   static const Color defaultChartGradientBegin = Color(0xFF5C3989);
-  static const Color starColor = Color(0xfff1bd58);
+  static const Color starColor = Color(0xfff9bb42);
   //profile
 
   //Black theme colors
