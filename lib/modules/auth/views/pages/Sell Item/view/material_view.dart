@@ -8,24 +8,42 @@ import '../provider/material_provider.dart';
 class MaterialSelectionScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final materials = ref.watch(materialProvider.notifier).materials;
+    final materialState = ref.watch(materialProvider);
+    final notifier = ref.read(materialProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text("Select Material")),
-      body: ListView.builder(
-        itemCount: materials.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(materials[index]),
-            onTap: () async {
-              ref
-                  .read(materialProvider.notifier)
-                  .selectMaterial(materials[index]);
-              // await SharedPreferencesHelper.saveSelection("selectedMaterial", materials[index]);
-              Navigator.pop(context);
+      body: ListView(
+        children: notifier.materials.map((entry) {
+          final value = entry;
+          final isSelected = notifier.isSelected(value);
+
+          return CheckboxListTile(
+            activeColor: Colors.teal,
+            checkColor: Colors.black,
+            tileColor: Colors.grey[900],
+            title: Text(
+              value,
+              style: TextStyle(color: Colors.white),
+            ),
+            value: isSelected,
+            onChanged: (isChecked) {
+              if (isChecked == true || isSelected) {
+                notifier.toggleMaterial(value);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "You can only select up to 2 colours.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              }
             },
           );
-        },
+        }).toList(),
       ),
     );
   }

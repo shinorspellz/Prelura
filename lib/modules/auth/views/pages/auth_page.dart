@@ -93,7 +93,7 @@ class _AuthPageState extends State<AuthPage> {
                       size: 24,
                     ),
                     activeIcon: Icon(
-                      Icons.person,
+                      Icons.email_outlined,
                       color: PreluraColors.activeColor,
                       size: 24,
                     ),
