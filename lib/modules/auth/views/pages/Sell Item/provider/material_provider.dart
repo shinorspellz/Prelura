@@ -1,27 +1,54 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final materialProvider = StateNotifierProvider<MaterialNotifier, String?>((ref) {
-  return MaterialNotifier();
+final materialProvider =
+    StateNotifierProvider<MaterialSelectorNotifier, MaterialSelectorState>(
+        (ref) {
+  return MaterialSelectorNotifier();
 });
 
 class MaterialSelectorState {
-  final List<String> selectedColors;
+  final List<String> selectedMaterials;
 
-  MaterialSelectorState({this.selectedColors = const []});
+  MaterialSelectorState({this.selectedMaterials = const []});
 
-  MaterialSelectorState copyWith({List<String>? selectedColors}) {
+  MaterialSelectorState copyWith({List<String>? selectedMaterials}) {
     return MaterialSelectorState(
-      selectedColors: selectedColors ?? this.selectedColors,
+      selectedMaterials: selectedMaterials ?? this.selectedMaterials,
     );
   }
 }
 
-class MaterialNotifier extends StateNotifier<String?> {
-  MaterialNotifier() : super(null);
+class MaterialSelectorNotifier extends StateNotifier<MaterialSelectorState> {
+  static const int maxSelections = 3;
+
+  MaterialSelectorNotifier() : super(MaterialSelectorState());
 
   final List<String> materials = ["Material 1", "Material 2", "Material 3"];
 
-  void selectMaterial(String selectedMaterial) {
-    state = selectedMaterial;
+  void toggleMaterial(String material) {
+    if (material is! String) return; // Ensure only strings are processed
+
+    final currentSelections = state.selectedMaterials;
+
+    // Check if the material is already selected
+    final isSelected = currentSelections.contains(material);
+
+    state = state.copyWith(
+      selectedMaterials: isSelected
+          ? currentSelections
+              .where((m) => m != material)
+              .toList() // Remove material
+          : (currentSelections.length < maxSelections
+              ? [...currentSelections, material] // Add material if under limit
+              : currentSelections),
+    );
+  }
+
+  bool isSelected(String material) {
+    return state.selectedMaterials.contains(material);
+  }
+
+  bool canSelectMore() {
+    return state.selectedMaterials.length < maxSelections;
   }
 }
