@@ -125,7 +125,9 @@ class ProfileScreen extends StatelessWidget {
           MenuCard(
               title: "Invite Friend",
               icon: Icon(Icons.person_add_sharp),
-              onTap: () {}),
+              onTap: () {
+                context.router.push(SellItemRoute());
+              }),
           SizedBox(
             height: 20,
           ),

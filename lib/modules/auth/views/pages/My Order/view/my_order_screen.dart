@@ -16,6 +16,7 @@ class MyOrderScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

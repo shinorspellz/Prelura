@@ -3,9 +3,6 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/modules/auth/views/pages/home.dart';
-import 'package:prelura_app/modules/auth/views/pages/user_profile.dart';
-import 'package:prelura_app/modules/auth/views/pages/user_settings.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../../../../res/images.dart';
@@ -21,102 +18,103 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
+    return AutoTabsRouter(
         routes: [
           HomeRoute(),
           SearchRoute(),
-          InboxRoute(),
+          SellItemRoute(),
           InboxRoute(),
           ProfileNavigationRoute()
         ],
-        bottomNavigationBuilder: (context, child) {
+        builder: (context, child) {
           final tabRouter = AutoTabsRouter.of(context);
-          return BottomNavigationBar(
-              currentIndex: tabRouter.activeIndex, // Current active index
-              onTap: (int index) {
-                if (tabRouter.activeIndex == index) {
-                  // Pop to the root of the current stack
-                  if (context.router.canPop()) {
-                    context.back();
+          return Scaffold(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            body: child,
+            bottomNavigationBar: SafeArea(
+              child: BottomNavigationBar(
+                currentIndex: tabRouter.activeIndex,
+                onTap: (int index) {
+                  if (tabRouter.activeIndex == index) {
+                    tabRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                  } else {
+                    tabRouter.setActiveIndex(index);
                   }
-                  tabRouter.setActiveIndex(index);
-                  log(':::this is true');
-                } else {
-                  // Switch to a different tab
-                  tabRouter.setActiveIndex(index);
-                } // Update the current index
-              },
-              iconSize: 24,
-              elevation: 3.0,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              selectedFontSize: 15,
-              unselectedFontSize: 15,
-              selectedItemColor: PreluraColors.activeColor,
-              type: BottomNavigationBarType.fixed,
-              selectedLabelStyle:
-                  TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              unselectedLabelStyle:
-                  TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              items: [
-                BottomNavigationBarItem(
-                  icon: Image.asset(
-                    PreluraIcons.homeIcon,
-                    color: PreluraColors.greyColor,
+                },
+                iconSize: 24,
+                elevation: 3.0,
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                selectedFontSize: 15,
+                unselectedFontSize: 15,
+                selectedItemColor: PreluraColors.activeColor,
+                type: BottomNavigationBarType.fixed,
+                selectedLabelStyle:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                unselectedLabelStyle:
+                    TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Image.asset(
+                      PreluraIcons.homeIcon,
+                      color: PreluraColors.greyColor,
+                    ),
+                    activeIcon: Icon(
+                      Icons.home,
+                      size: 24,
+                      color: PreluraColors.activeColor,
+                      fill: 1,
+                    ),
+                    label: 'Home',
                   ),
-                  activeIcon: Icon(
-                    Icons.home,
-                    size: 24,
-                    color: PreluraColors.activeColor,
-                    fill: 1,
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.search,
+                      size: 24,
+                    ),
+                    activeIcon: Icon(Icons.search,
+                        color: PreluraColors.activeColor, size: 24),
+                    label: 'Search',
                   ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.search,
-                    size: 24,
+                  const BottomNavigationBarItem(
+                    activeIcon: Icon(
+                      Icons.add_circle,
+                      color: PreluraColors.activeColor,
+                      size: 24,
+                    ),
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      size: 24,
+                    ),
+                    label: 'Sell',
                   ),
-                  activeIcon: Icon(Icons.search,
-                      color: PreluraColors.activeColor, size: 24),
-                  label: 'Search',
-                ),
-                const BottomNavigationBarItem(
-                  activeIcon: Icon(
-                    Icons.add_circle,
-                    color: PreluraColors.activeColor,
-                    size: 24,
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.email_outlined,
+                      size: 24,
+                    ),
+                    activeIcon: Icon(
+                      Icons.person,
+                      color: PreluraColors.activeColor,
+                      size: 24,
+                    ),
+                    label: 'Inbox',
                   ),
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    size: 24,
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person_outline,
+                      size: 24,
+                    ),
+                    activeIcon: Icon(
+                      Icons.person,
+                      color: PreluraColors.activeColor,
+                      size: 24,
+                    ),
+                    label: 'Profile',
                   ),
-                  label: 'Sell',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.email_outlined,
-                    size: 24,
-                  ),
-                  activeIcon: Icon(
-                    Icons.person,
-                    color: PreluraColors.activeColor,
-                    size: 24,
-                  ),
-                  label: 'Inbox',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person_outline,
-                    size: 24,
-                  ),
-                  activeIcon: Icon(
-                    Icons.person,
-                    color: PreluraColors.activeColor,
-                    size: 24,
-                  ),
-                  label: 'Profile',
-                ),
-              ]);
+                ],
+              ),
+            ),
+          );
         });
   }
 }
