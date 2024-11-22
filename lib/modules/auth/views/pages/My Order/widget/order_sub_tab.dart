@@ -18,15 +18,15 @@ class _OrderSubTabsState extends State<OrderSubTabs>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this); 
+    _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
-      setState(() {}); 
+      setState(() {});
     });
   }
 
   @override
   void dispose() {
-    _tabController.dispose(); 
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -38,7 +38,7 @@ class _OrderSubTabsState extends State<OrderSubTabs>
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -47,8 +47,7 @@ class _OrderSubTabsState extends State<OrderSubTabs>
                 return Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      _tabController
-                          .animateTo(index);
+                      _tabController.animateTo(index);
                     },
                     child: _buildTab(index),
                   ),

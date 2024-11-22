@@ -21,9 +21,18 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: HolidayModeRoute.page),
           ]),
           AutoRoute(page: SettingRoute.page),
+          AutoRoute(page: SellItemRoute.page),
         ]),
         AutoRoute(page: ProfileDetailsRoute.page),
-        AutoRoute(page: ProductDetailRoute.page)
+        AutoRoute(page: ProductDetailRoute.page),
+        AutoRoute(page: CategoryRoute.page),
+        AutoRoute(page: BrandSelectionRoute.page),
+        AutoRoute(page: SubCategoryRoute.page),
+        AutoRoute(page: SizeSelectionRoute.page),
+        AutoRoute(page: ColorSelectorRoute.page),
+        AutoRoute(page: ParcelRoute.page),
+        AutoRoute(page: ConditionRoute.page),
+        AutoRoute(page: MaterialSelectionRoute.page)
       ];
 }
 
