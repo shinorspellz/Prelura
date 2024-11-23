@@ -20,7 +20,7 @@ class SubCategoryProductNotifier extends StateNotifier<SharedData> {
         return [
           "Jeans",
           "Outerwear",
-          "Tops & T-shirt",
+          "Tops & T-Shirts",
           "Suits & Blazers",
           "Jumpers & Sweaters",
           "Trousers",

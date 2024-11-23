@@ -19,6 +19,11 @@ class CategoryScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
         centerTitle: true,
         title: Text("Category",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(

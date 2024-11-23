@@ -258,6 +258,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 text: "Make an Offer",
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
                 borderColor: Colors.purple,
+                textColor: Colors.purple,
               ),
             ),
             const SizedBox(width: 10),
