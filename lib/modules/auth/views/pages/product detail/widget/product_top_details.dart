@@ -23,11 +23,11 @@ class ProductTopDetails extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Reach more buyers to give items a better chance of selling",
+            "Asos Edited patchwork quilt jacket in red and cherry quilt jacket in red and cherry",
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontWeight: FontWeight.w400,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
           ),
           const SizedBox(height: 24),
