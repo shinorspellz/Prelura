@@ -31,13 +31,27 @@ class SubCategoryNotifier extends StateNotifier<SharedData> {
         relatedStrings = ['Clothings', 'Shoes', 'Accessories', 'Grooming'];
         break;
       case 'Pet Care':
-        relatedStrings = ['Skirts', 'Gowns', 'Flat  Shoes', 'Heels'];
+        relatedStrings = [
+          'Pet Food',
+          'Pet Toys',
+          'Grooming Supplies',
+        ];
         break;
       case 'Home':
-        relatedStrings = ['DSTV', 'GOTV', 'Startimes'];
+        relatedStrings = [
+          'Furniture',
+          'Decor',
+          'Appliances',
+          'Kitchenware',
+        ];
         break;
       case 'Electronics':
-        relatedStrings = ['DSTV', 'GOTV', 'Startimes'];
+        relatedStrings = [
+          'Phones',
+          'Laptops',
+          'Televisions',
+          'Audio Systems',
+        ];
         break;
       default:
         relatedStrings = [];

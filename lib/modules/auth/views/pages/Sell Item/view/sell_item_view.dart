@@ -3,10 +3,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/condition_provider.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
+import 'package:sizer/sizer.dart';
 
+import '../../../../../../res/colors.dart';
 import '../provider/brand_provider.dart';
 import '../provider/parcel_provider.dart';
+import '../provider/price_provider.dart';
 import '../provider/sell_item_provider.dart';
 
 @RoutePage()
@@ -20,56 +25,88 @@ class SellItemScreen extends ConsumerWidget {
     final brandSelected = ref.watch(selectedBrandProvider);
     final sizeSelected = ref.watch(selectedSizeProvider);
     final parcelSizes = ref.watch(parcelProvider);
+    final selectedCondition = ref.watch(conditionProvider);
+    final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
-          icon: Icon(Icons.close, color: Colors.white),
-          onPressed: () => context.back(),
+          icon: Icon(
+            Icons.close,
+            color: Theme.of(context).iconTheme.color,
+          ),
+          onPressed: () => context.router.popUntilRoot(),
         ),
         title: Text(
           'Sell an item',
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 18),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+        child: Container(
+          color: Theme.of(context).appBarTheme.backgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Add up to 20 photos.',
-                style: TextStyle(color: Colors.grey, fontSize: 14),
-              ),
-              GestureDetector(
-                onTap: () => notifier.addImages(),
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 16.0),
-                  height: 120,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[800],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Column(
+              Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+                child: Column(
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add_photo_alternate_outlined,
-                            color: Colors.white),
-                        SizedBox(height: 8),
                         Text(
-                          'Upload photos',
-                          style: TextStyle(color: Colors.white),
+                          'Add up to 20 photos.',
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "See more photo tips",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10.sp,
+                                    color: PreluraColors.activeColor,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: PreluraColors.activeColor,
+                                    decorationThickness: 2,
+                                  ),
                         ),
                       ],
                     ),
-                  ),
+                    SizedBox(
+                      height: 70,
+                    ),
+                    GestureDetector(
+                        onTap: () => notifier.addImages(),
+                        child: Center(
+                          child: AppButton(
+                            onTap: () {
+                              notifier.addImages();
+                            },
+                            text: "upload photos",
+                            bgColor: Theme.of(context).scaffoldBackgroundColor,
+                            textWidget: Row(
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: PreluraColors.activeColor,
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                )
+                              ],
+                            ),
+                          ),
+                        )),
+                  ],
                 ),
               ),
               if (state.images.isNotEmpty)
@@ -119,6 +156,7 @@ class SellItemScreen extends ConsumerWidget {
               SizedBox(height: 16),
               MenuCard(
                 title: "Category",
+                subtitle: state.product,
                 onTap: () {
                   context.router.push(CategoryRoute());
                 },
@@ -130,6 +168,7 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(BrandSelectionRoute());
                 },
               ),
+              SizedBox(height: 16),
               MenuCard(
                 title: 'Size',
                 subtitle: sizeSelected ?? "",
@@ -139,14 +178,13 @@ class SellItemScreen extends ConsumerWidget {
               ),
               MenuCard(
                 title: 'Measurements (Recommended)',
-                subtitle: brandSelected ?? "",
                 onTap: () {
                   context.router.push(MaterialSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Condtion',
-                subtitle: brandSelected ?? "",
+                subtitle: selectedCondition ?? "",
                 onTap: () {
                   context.router.push(ConditionRoute());
                 },
@@ -164,13 +202,15 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(MaterialSelectionRoute());
                 },
               ),
+              SizedBox(height: 16),
               MenuCard(
                 title: 'Price',
-                subtitle: brandSelected ?? "",
+                subtitle: pricePageState.currentPrice,
                 onTap: () {
-                  context.router.push(ColorSelectorRoute());
+                  context.router.push(PriceRoute());
                 },
               ),
+              SizedBox(height: 16),
               MenuCard(
                 title: 'Parcel Size',
                 subtitle: parcelSizes,
@@ -179,17 +219,119 @@ class SellItemScreen extends ConsumerWidget {
                 },
               ),
               SizedBox(height: 16),
-              Text(
-                'The buyer always pays for postage.',
-                style: TextStyle(color: Colors.grey, fontSize: 12),
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Open additional compensation info
-                },
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'See compensation information for sellers',
-                  style: TextStyle(color: Colors.blue, fontSize: 12),
+                  'The buyer always pays for postage.',
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+              ),
+
+              // GestureDetector(
+              //   onTap: () {
+              //     // Open additional compensation info
+              //   },
+              //   child: Text(
+              //     'See compensation information for sellers',
+              //     style: TextStyle(color: Colors.blue, fontSize: 12),
+              //   ),
+              // ),
+              InkWell(
+                onTap: () => {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context)
+                            .dividerColor, // Use the theme's divider color
+                        width: 2.0,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 16),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Bump item",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                    const SizedBox(
+                                        height: 4), // Add spacing between texts
+                                    Text(
+                                      "Reach more buyers to give items a better chance of selling",
+                                      maxLines: 3,
+                                      overflow: TextOverflow
+                                          .ellipsis, // Truncate text
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 30),
+                              Text(
+                                'from #1.00',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                              ),
+                              const SizedBox(width: 10),
+                              Checkbox(value: true, onChanged: (value) {})
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child:
+                            Text("What do you think of our upload process ?")),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    AppButton(
+                      onTap: () {
+                        notifier.addImages();
+                      },
+                      text: "Give feedback",
+                      bgColor: Theme.of(context).scaffoldBackgroundColor,
+                      width: 120,
+                    )
+                  ],
                 ),
               ),
               SizedBox(height: 32),
@@ -221,6 +363,9 @@ class SellItemScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),

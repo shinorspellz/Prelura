@@ -12,10 +12,25 @@ class ParcelScreen extends ConsumerWidget {
     final selectedParcel = ref.watch(parcelProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text("Select Parcel Size")),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
+        centerTitle: true,
+        title: Text("Percel Size",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Divider(),
+          Divider(),
           ListTile(
             title: Text(parcelSizes[0]),
             subtitle:
@@ -32,6 +47,12 @@ class ParcelScreen extends ConsumerWidget {
                 }),
           ),
           Divider(),
+          Divider(
+            color: Theme.of(context).dividerColor,
+            height: 10,
+            thickness: 3,
+          ),
+          Divider(),
           ListTile(
             title: Text(parcelSizes[1]),
             subtitle: Text(
@@ -46,6 +67,12 @@ class ParcelScreen extends ConsumerWidget {
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
                   Navigator.pop(context);
                 }),
+          ),
+          Divider(),
+          Divider(
+            color: Theme.of(context).dividerColor,
+            height: 10,
+            thickness: 3,
           ),
           Divider(),
           ListTile(
@@ -82,12 +109,15 @@ class ParcelScreen extends ConsumerWidget {
           SizedBox(
             height: 16,
           ),
-          Text(
-            "See sizing and compensation details",
-            style: TextStyle(
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.blue),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 16),
+            child: Text(
+              "See sizing and compensation details",
+              style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blue),
+            ),
           ),
         ],
       ),

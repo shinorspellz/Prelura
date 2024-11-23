@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../../res/colors.dart';
 import '../provider/color_selector_provider.dart';
+
 @RoutePage()
 class ColorSelectorScreen extends ConsumerWidget {
   const ColorSelectorScreen({Key? key}) : super(key: key);
@@ -29,21 +31,23 @@ class ColorSelectorScreen extends ConsumerWidget {
     };
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          "Colours",
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
         ),
         centerTitle: true,
+        title: Text("Colours",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
       ),
-      body: Padding(
+      body: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,9 +55,14 @@ class ColorSelectorScreen extends ConsumerWidget {
             SizedBox(height: 16),
             Text(
               "Choose up to 2 colours",
-              style: TextStyle(color: Colors.grey, fontSize: 14),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 32),
+            Text(
+              "All Colours",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            SizedBox(height: 12),
             Expanded(
               child: ListView(
                 children: colorOptions.entries.map((entry) {
@@ -111,7 +120,10 @@ class ColorSelectorScreen extends ConsumerWidget {
               child: Center(
                 child: Text(
                   "Done",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: PreluraColors.white),
                 ),
               ),
             ),
