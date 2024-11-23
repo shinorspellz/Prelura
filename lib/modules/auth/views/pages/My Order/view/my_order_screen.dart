@@ -37,10 +37,10 @@ class MyOrderScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 16, // Font size for the active tab
             ),
-            unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 14, // Font size for inactive tabs
-            ),
+            unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 14,
+                color: Theme.of(context).textTheme.bodyMedium?.color),
             tabs: const [
               Tab(
                 text: "Sold",

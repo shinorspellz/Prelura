@@ -94,7 +94,9 @@ class _OrderSubTabsState extends State<OrderSubTabs>
           labels[index],
           style: TextStyle(
             fontSize: 14,
-            color: isSelected ? PreluraColors.activeColor : PreluraColors.white,
+            color: isSelected
+                ? PreluraColors.activeColor
+                : Theme.of(context).textTheme.bodyMedium?.color,
             fontWeight: FontWeight.normal,
           ),
         ),

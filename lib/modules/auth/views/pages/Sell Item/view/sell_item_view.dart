@@ -314,7 +314,8 @@ class SellItemScreen extends ConsumerWidget {
               ),
               Container(
                 color: Theme.of(context).scaffoldBackgroundColor,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: Row(
                   children: [
                     const Expanded(
@@ -335,31 +336,36 @@ class SellItemScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () async {
-                  if (notifier.validateInputs()) {
-                    await notifier.uploadItem();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Item uploaded successfully!')),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text('Please fill in all required fields')),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (notifier.validateInputs()) {
+                      await notifier.uploadItem();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Item uploaded successfully!')),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('Please fill in all required fields')),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Upload',
-                    style: TextStyle(fontSize: 16),
+                  child: const Center(
+                    child: Text(
+                      'Upload',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ),

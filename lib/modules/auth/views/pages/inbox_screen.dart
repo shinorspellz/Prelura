@@ -16,6 +16,7 @@ class InboxScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
