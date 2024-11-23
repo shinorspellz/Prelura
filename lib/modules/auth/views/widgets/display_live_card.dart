@@ -10,7 +10,7 @@ class DisplayLiveCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> carouselItems = List.generate(
       6,
-      (index) => LiveCard(
+      (index) => const LiveCard(
         height: 200,
       ),
     );

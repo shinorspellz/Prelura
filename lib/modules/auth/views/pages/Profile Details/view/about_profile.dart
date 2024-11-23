@@ -34,16 +34,16 @@ class AboutProfile extends StatelessWidget {
             Row(
               children: [
                 Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: PreluraColors.activeColor.withOpacity(0.2),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person_add,
                       color: PreluraColors.activeColor,
                     )),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Column(
@@ -71,10 +71,10 @@ class AboutProfile extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             // Verified Info Section
-            Divider(),
+            const Divider(),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.check_circle_outline,
                 ),
                 const SizedBox(width: 8),
@@ -86,7 +86,7 @@ class AboutProfile extends StatelessWidget {
             ),
             Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.check_circle_outline,
                 ),
                 const SizedBox(width: 8),
@@ -107,7 +107,7 @@ class AboutProfile extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Row(
@@ -121,7 +121,7 @@ class AboutProfile extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Row(
@@ -133,7 +133,7 @@ class AboutProfile extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text.rich(TextSpan(
                     text: "3",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: PreluraColors.activeColor,
                         decorationColor: PreluraColors.activeColor,
                         decoration: TextDecoration.underline),
@@ -149,7 +149,7 @@ class AboutProfile extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text.rich(TextSpan(
                     text: "3",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: PreluraColors.activeColor,
                         decorationColor: PreluraColors.activeColor,
                         decoration: TextDecoration.underline),

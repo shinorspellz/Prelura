@@ -76,6 +76,7 @@ class _SearchwidgetState extends State<Searchwidget> {
   bool showCancel = false;
   bool showText = false;
 
+  @override
   initState() {
     super.initState();
     mController = widget.controller ?? TextEditingController();
@@ -84,8 +85,8 @@ class _SearchwidgetState extends State<Searchwidget> {
           onTap: () {},
           child: Container(
               color: Colors.amber,
-              padding: EdgeInsets.all(5),
-              child: Icon(Icons.close_rounded)),
+              padding: const EdgeInsets.all(5),
+              child: const Icon(Icons.close_rounded)),
         );
 
     if (widget.focusNode == null) {
@@ -115,7 +116,7 @@ class _SearchwidgetState extends State<Searchwidget> {
 
     setState(() {});
     if (focusNodeZZZ!.hasFocus) {
-      Future.delayed(Duration(milliseconds: 302), () {
+      Future.delayed(const Duration(milliseconds: 302), () {
         showText = true;
         setState(() {});
       });
@@ -134,7 +135,7 @@ class _SearchwidgetState extends State<Searchwidget> {
 
     setState(() {});
     if (widget.focusNode!.hasFocus) {
-      await Future.delayed(Duration(milliseconds: 302), () {
+      await Future.delayed(const Duration(milliseconds: 302), () {
         showText = true;
         setState(() {});
       });
@@ -144,6 +145,7 @@ class _SearchwidgetState extends State<Searchwidget> {
     }
   }
 
+  @override
   dispose() {
     super.dispose();
     widget.focusNode?.removeListener(addListenerToFocusNodeWidget);
@@ -223,19 +225,19 @@ class _SearchwidgetState extends State<Searchwidget> {
                             decoration: BoxDecoration(
                                 color: Colors.black.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(100)),
-                            padding: EdgeInsets.all(3),
-                            child: Icon(
+                            padding: const EdgeInsets.all(3),
+                            child: const Icon(
                               Icons.close_rounded,
                               color: Colors.white,
                               size: 12,
                             )),
                       )
-                    : SizedBox.shrink(),
+                    : const SizedBox.shrink(),
                 // suffixIcon: _hasText ? suffixIconII : null,
                 suffixIconConstraints:
                     const BoxConstraints(maxHeight: 20, maxWidth: 24),
 
-                prefixIcon: Icon(Icons.search), //widget.prefixIcon,
+                prefixIcon: const Icon(Icons.search), //widget.prefixIcon,
                 suffixStyle:
                     Theme.of(context).textTheme.displayMedium!.copyWith(
                           color: PreluraColors.boldGreyText,
@@ -262,9 +264,9 @@ class _SearchwidgetState extends State<Searchwidget> {
           height: showCancel ? 30 : 0,
           color: Colors.transparent,
           alignment: Alignment.centerRight,
-          duration: Duration(milliseconds: 150),
+          duration: const Duration(milliseconds: 150),
           padding:
-              showCancel ? EdgeInsets.fromLTRB(15, 0, 0, 0) : EdgeInsets.zero,
+              showCancel ? const EdgeInsets.fromLTRB(15, 0, 0, 0) : EdgeInsets.zero,
           // margin: const EdgeInsets.only(bottom: 10),
           child: GestureDetector(
             onTap: () {
@@ -293,7 +295,7 @@ class _SearchwidgetState extends State<Searchwidget> {
           ),
         ),
       if (!widget.cancelButton)
-        SizedBox(
+        const SizedBox(
           width: 70,
         )
     ]);

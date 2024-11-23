@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/card.dart';
 
 class MoreProductGridView extends StatefulWidget {
+  const MoreProductGridView({super.key});
+
   @override
   _MoreProductGridViewState createState() => _MoreProductGridViewState();
 }
@@ -32,12 +34,12 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
           labelColor: Colors.black,
           unselectedLabelColor: Colors.grey,
           indicatorColor: Colors.teal,
-          tabs: [
+          tabs: const [
             Tab(text: "Member's items"),
             Tab(text: "Similar items"),
           ],
         ),
-        TabBarView(controller: _tabController, children: [
+        TabBarView(controller: _tabController, children: const [
           Center(child: Text("Similar items content")),
           Center(child: Text("Similar items content")),
         ])
@@ -85,10 +87,10 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: GridView.builder(
               physics:
-                  NeverScrollableScrollPhysics(), // Prevent internal scrolling
+                  const NeverScrollableScrollPhysics(), // Prevent internal scrolling
               shrinkWrap:
                   true, // Makes GridView take only as much height as needed
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
@@ -96,7 +98,7 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
               ),
               itemCount: 4,
               itemBuilder: (context, index) {
-                return DisplayCard(); // Replace with your custom widget
+                return const DisplayCard(); // Replace with your custom widget
               },
             ),
           ),

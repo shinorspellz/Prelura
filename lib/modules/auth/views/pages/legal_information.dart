@@ -31,7 +31,7 @@ class LegalInformationScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: menuItem1.length,
             itemBuilder: (context, index) {
               return menuItem1[index];
@@ -40,6 +40,5 @@ class LegalInformationScreen extends StatelessWidget {
         ]),
       ),
     );
-    ;
   }
 }

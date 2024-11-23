@@ -6,6 +6,8 @@ import '../provider/parcel_provider.dart';
 
 @RoutePage()
 class ParcelScreen extends ConsumerWidget {
+  const ParcelScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parcelSizes = ref.watch(parcelProvider.notifier).parcelSizes;
@@ -29,12 +31,12 @@ class ParcelScreen extends ConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(),
-          Divider(),
+          const Divider(),
+          const Divider(),
           ListTile(
             title: Text(parcelSizes[0]),
             subtitle:
-                Text("Choose this for light T-Shirts and small beauty items"),
+                const Text("Choose this for light T-Shirts and small beauty items"),
             trailing: Radio(
                 value: parcelSizes[0],
                 groupValue: selectedParcel,
@@ -46,16 +48,16 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          Divider(),
+          const Divider(),
           Divider(
             color: Theme.of(context).dividerColor,
             height: 10,
             thickness: 3,
           ),
-          Divider(),
+          const Divider(),
           ListTile(
             title: Text(parcelSizes[1]),
-            subtitle: Text(
+            subtitle: const Text(
                 "Dresses, handbags and ballet flats will fit into the parcel"),
             trailing: Radio(
                 value: parcelSizes[1],
@@ -68,33 +70,33 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          Divider(),
+          const Divider(),
           Divider(
             color: Theme.of(context).dividerColor,
             height: 10,
             thickness: 3,
           ),
-          Divider(),
+          const Divider(),
           ListTile(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  child: Text("Star Wardrobe",
-                      style: Theme.of(context).textTheme.bodySmall),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                       color: Colors.green, // Customize color
                       borderRadius: BorderRadius.circular(12)),
+                  child: Text("Star Wardrobe",
+                      style: Theme.of(context).textTheme.bodySmall),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 Text(parcelSizes[2]),
               ],
             ),
             subtitle:
-                Text("Choose this for light T-Shirts and small beauty items"),
+                const Text("Choose this for light T-Shirts and small beauty items"),
             trailing: Radio(
                 value: parcelSizes[2],
                 groupValue: selectedParcel,
@@ -106,11 +108,11 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 16),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0, top: 16),
             child: Text(
               "See sizing and compensation details",
               style: TextStyle(

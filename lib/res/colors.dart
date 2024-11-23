@@ -74,8 +74,8 @@ class PreluraColors {
   static Color black = const Color(0xff1C1B1F);
   static Color brown = const Color(0xFF5c303b);
 
-  static Color surfaceVariantLight = Color(0xFFD9D9D9);
-  static Color onSurfaceVariantLight = Color(0xFFF0F1F5);
+  static Color surfaceVariantLight = const Color(0xFFD9D9D9);
+  static Color onSurfaceVariantLight = const Color(0xFFF0F1F5);
 
   static const Color textDarkBlue = Color(0xFF618293);
 

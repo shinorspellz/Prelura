@@ -19,7 +19,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
-        routes: [
+        routes: const [
           HomeRoute(),
           SearchRoute(),
           SellItemRoute(),
@@ -49,16 +49,16 @@ class _AuthPageState extends State<AuthPage> {
                 selectedItemColor: PreluraColors.activeColor,
                 type: BottomNavigationBarType.fixed,
                 selectedLabelStyle:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 unselectedLabelStyle:
-                    TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                 items: [
                   BottomNavigationBarItem(
                     icon: Image.asset(
                       PreluraIcons.homeIcon,
                       color: PreluraColors.greyColor,
                     ),
-                    activeIcon: Icon(
+                    activeIcon: const Icon(
                       Icons.home,
                       size: 24,
                       color: PreluraColors.activeColor,
@@ -66,7 +66,7 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     label: 'Home',
                   ),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                     icon: Icon(
                       Icons.search,
                       size: 24,
@@ -87,7 +87,7 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     label: 'Sell',
                   ),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                     icon: Icon(
                       Icons.email_outlined,
                       size: 24,
@@ -99,7 +99,7 @@ class _AuthPageState extends State<AuthPage> {
                     ),
                     label: 'Inbox',
                   ),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                     icon: Icon(
                       Icons.person_outline,
                       size: 24,

@@ -60,7 +60,7 @@ class MenuCard extends StatelessWidget {
                       icon!,
                       const SizedBox(width: 10),
                     ],
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -74,7 +74,7 @@ class MenuCard extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                         ),
-                        widget ?? SizedBox.shrink(),
+                        widget ?? const SizedBox.shrink(),
                         if (additionalText != null)
                           Text(
                             additionalText ?? "",
@@ -87,17 +87,17 @@ class MenuCard extends StatelessWidget {
                           )
                       ],
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       subtitle ?? "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w400,
                           ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_forward_ios_rounded,
                       size: 18,
                     ),

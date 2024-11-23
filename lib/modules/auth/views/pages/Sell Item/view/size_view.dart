@@ -23,6 +23,8 @@ class SizeSelectionPage extends ConsumerWidget {
     '8XL'
   ];
 
+  SizeSelectionPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSize = ref.watch(selectedSizeProvider);
@@ -68,7 +70,7 @@ class SizeSelectionPage extends ConsumerWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Expanded(
             child: ListView(
               children: sizes.map((size) {

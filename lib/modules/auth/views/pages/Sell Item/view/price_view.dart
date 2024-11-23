@@ -7,6 +7,8 @@ import '../provider/price_provider.dart'; // Update this path
 
 @RoutePage()
 class PriceScreen extends ConsumerWidget {
+  const PriceScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pricePageState = ref.watch(pricePageProvider);
@@ -34,7 +36,7 @@ class PriceScreen extends ConsumerWidget {
             // Price Section
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Price",
                 hintText: "Enter price",
                 border: OutlineInputBorder(),
@@ -49,19 +51,19 @@ class PriceScreen extends ConsumerWidget {
                 ref.read(pricePageProvider.notifier).updatePrice(value);
               },
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Text(
               "Tip: ${pricePageState.recommendedRange} is the recommended price range based on similar items sold on Prelura.",
-              style: TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey),
             ),
-            SizedBox(height: 48),
+            const SizedBox(height: 48),
 
             // Similar Sold Items Section
             Text(
               "Similar sold items",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -95,7 +97,7 @@ class PriceScreen extends ConsumerWidget {
                             children: [
                               Text(
                                 item.price,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Text(item.name),
                               Text(item.size),
@@ -110,7 +112,7 @@ class PriceScreen extends ConsumerWidget {
             ),
 
             // Done Button
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: pricePageState.currentPrice.isNotEmpty
                   ? () {
@@ -120,7 +122,7 @@ class PriceScreen extends ConsumerWidget {
                   : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

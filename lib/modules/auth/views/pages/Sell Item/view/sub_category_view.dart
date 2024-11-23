@@ -27,17 +27,17 @@ class SubCategoryScreen extends ConsumerWidget {
                 )),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: sharedData.relatedStrings.length,
                 itemBuilder: (context, index) {
                   return MenuCard(
                       title: sharedData.relatedStrings[index],
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.settings,
                         color: PreluraColors.activeColor,
                       ),
@@ -47,7 +47,7 @@ class SubCategoryScreen extends ConsumerWidget {
                                 .notifier)
                             .updateData(sharedData.relatedStrings[index]);
 
-                        context.router.push(SubCategoryProductRoute());
+                        context.router.push(const SubCategoryProductRoute());
                       });
                 }),
           ],

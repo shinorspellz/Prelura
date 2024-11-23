@@ -26,8 +26,6 @@ class MaterialSelectorNotifier extends StateNotifier<MaterialSelectorState> {
   final List<String> materials = ["Material 1", "Material 2", "Material 3"];
 
   void toggleMaterial(String material) {
-    if (material is! String) return; // Ensure only strings are processed
-
     final currentSelections = state.selectedMaterials;
 
     // Check if the material is already selected

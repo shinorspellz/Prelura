@@ -4,8 +4,7 @@ class OrdersTabView extends StatelessWidget {
   final String type;
   final String status;
 
-  const OrdersTabView({Key? key, required this.type, required this.status})
-      : super(key: key);
+  const OrdersTabView({super.key, required this.type, required this.status});
 
   @override
   Widget build(BuildContext context) {

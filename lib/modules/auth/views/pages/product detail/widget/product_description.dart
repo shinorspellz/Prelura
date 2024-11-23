@@ -9,7 +9,7 @@ import '../provider/product_detail_provider.dart';
 final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
 
 class ProductDescription extends ConsumerWidget {
-  const ProductDescription({Key? key}) : super(key: key);
+  const ProductDescription({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +22,7 @@ class ProductDescription extends ConsumerWidget {
         children: [
           Container(
             color: Theme.of(context).scaffoldBackgroundColor,
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 18),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -33,7 +33,7 @@ class ProductDescription extends ConsumerWidget {
                       .bodyMedium!
                       .copyWith(fontWeight: FontWeight.normal, fontSize: 10.sp),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Text.rich(

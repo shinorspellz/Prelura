@@ -75,7 +75,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       bottom: 20,
                       right: 15,
                       child: Container(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: PreluraColors.blackCardColor,
                           borderRadius:
@@ -85,7 +85,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                           children: [
                             Icon(Icons.favorite_border_outlined,
                                 size: 14, color: PreluraColors.white),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Text(
                               "14",
                               style: Theme.of(context)
@@ -122,7 +122,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                   } else {
                                     if (!context.mounted) return;
                                     showAppBar = 1 - (visiblePercentage / 40);
-                                    ;
                                     setState(() {});
                                   }
                                 },
@@ -158,7 +157,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 ),
                 Container(
                   color: Theme.of(context).appBarTheme.backgroundColor,
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProductTopDetails(),
@@ -199,16 +198,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     fontWeight: FontWeight.normal,
                     fontSize: 14, // Font size for inactive tabs
                   ),
-                  tabs: [
+                  tabs: const [
                     Tab(text: "Member's items"),
                     Tab(text: "Similar items"),
                   ],
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: TabBarView(controller: _tabController, children: [
                     _buildMemberItemsTab(context),
-                    Center(child: Text("Similar items content")),
+                    const Center(child: Text("Similar items content")),
                   ]),
                 ),
               ],
@@ -218,7 +217,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
               ? AnimatedOpacity(
                   opacity: showAppBar,
                   duration: const Duration(milliseconds: 340),
-                  child: Container(
+                  child: SizedBox(
                     height: 90,
                     child: AppBar(
                       backgroundColor:
@@ -246,7 +245,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     ),
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -261,7 +260,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 borderColor: Colors.purple,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: AppButton(
                 onTap: () {},
@@ -330,7 +329,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
-                    return DisplayCard(); // Replace with your custom widget
+                    return const DisplayCard(); // Replace with your custom widget
                   },
                 );
               },
@@ -348,7 +347,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         children: [
           for (int i = 0; i < 6; i++)
             Container(
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
               decoration: BoxDecoration(

@@ -5,7 +5,7 @@ import 'order_tab_view.dart';
 class OrderSubTabs extends StatefulWidget {
   final String type;
 
-  const OrderSubTabs({Key? key, required this.type}) : super(key: key);
+  const OrderSubTabs({super.key, required this.type});
 
   @override
   State<OrderSubTabs> createState() => _OrderSubTabsState();

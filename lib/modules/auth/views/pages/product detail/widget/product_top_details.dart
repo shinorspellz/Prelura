@@ -18,7 +18,7 @@ class ProductTopDetails extends ConsumerWidget {
 
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 18),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +30,7 @@ class ProductTopDetails extends ConsumerWidget {
                   fontWeight: FontWeight.w400,
                 ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,7 @@ class ProductTopDetails extends ConsumerWidget {
               ),
             ],
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -96,7 +96,7 @@ class ProductTopDetails extends ConsumerWidget {
                       fontWeight: FontWeight.w300,
                     ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 "£${(product.price + product.buyerProtectionCost).toStringAsFixed(2)} including Buyer Protection",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -106,7 +106,7 @@ class ProductTopDetails extends ConsumerWidget {
               ),
             ],
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -129,7 +129,7 @@ class ProductTopDetails extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 12,
                   ),
                   Column(
@@ -142,7 +142,7 @@ class ProductTopDetails extends ConsumerWidget {
                             .bodyMedium!
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
-                      Ratings()
+                      const Ratings()
                     ],
                   )
                 ],
@@ -157,7 +157,7 @@ class ProductTopDetails extends ConsumerWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           // Column(

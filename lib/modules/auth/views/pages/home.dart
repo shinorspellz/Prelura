@@ -15,10 +15,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Searchwidget(
+              const Searchwidget(
                   obscureText: false,
                   shouldReadOnly: false,
                   hintText: "Search for items and members",
@@ -28,15 +28,15 @@ class HomeScreen extends StatelessWidget {
                   cancelButton: true),
               _buildSectionTitle('Collection from Seller',
                   "Items selected by amyleeliu", context),
-              DisplaySection(),
+              const DisplaySection(),
               _buildSectionTitle(
                   'Antropologies', "Items selected by amyleeliu", context),
-              DisplaySection(),
+              const DisplaySection(),
               _buildSectionTitle('Recommended for You',
                   "Items selected by amyleeliu", context),
-              DisplaySection(),
-              DisplayLiveCard(),
-              SizedBox(
+              const DisplaySection(),
+              const DisplayLiveCard(),
+              const SizedBox(
                 height: 30,
               )
             ],

@@ -7,6 +7,8 @@ import '../provider/material_provider.dart';
 
 @RoutePage()
 class MaterialSelectionScreen extends ConsumerWidget {
+  const MaterialSelectionScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final materialState = ref.watch(materialProvider);
@@ -43,7 +45,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
                     tileColor: Colors.grey[900],
                     title: Text(
                       value,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     value: isSelected,
                     onChanged: (isChecked) {
@@ -51,7 +53,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
                         notifier.toggleMaterial(value);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                               "You can only select up to 2 colours.",
                               style: TextStyle(color: Colors.white),
@@ -65,7 +67,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
                 }).toList(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: materialState.selectedMaterials.isNotEmpty
                   ? () {
@@ -75,7 +77,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
                   : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

@@ -21,15 +21,15 @@ class SettingScreen extends StatelessWidget {
     List menuItem2 = [
       MenuCard(
           title: "Push notifications",
-          icon: Icon(Icons.settings),
+          icon: const Icon(Icons.settings),
           onTap: () {}),
       MenuCard(
-          title: "Email notifications", icon: Icon(Icons.lock), onTap: () {}),
+          title: "Email notifications", icon: const Icon(Icons.lock), onTap: () {}),
     ];
     List menuItem3 = [
       MenuCard(
           title: "About Prelura",
-          icon: Icon(Icons.info_outlined),
+          icon: const Icon(Icons.info_outlined),
           onTap: () {}),
     ];
     return Scaffold(
@@ -47,24 +47,24 @@ class SettingScreen extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: menuItem1.length,
             itemBuilder: (context, index) {
               return menuItem1[index];
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           MenuCard(
               title: "Invite Friend",
-              icon: Icon(Icons.person_add_sharp),
+              icon: const Icon(Icons.person_add_sharp),
               onTap: () {}),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: double.infinity,
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Text("Notifications",
@@ -75,17 +75,17 @@ class SettingScreen extends StatelessWidget {
           ),
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: menuItem2.length,
             itemBuilder: (context, index) {
               return menuItem2[index];
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: double.infinity,
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Text("Your app's language",
@@ -97,15 +97,15 @@ class SettingScreen extends StatelessWidget {
           ),
           MenuCard(
               title: "Language",
-              icon: Icon(CupertinoIcons.globe),
+              icon: const Icon(CupertinoIcons.globe),
               subtitle: "English (EN)",
               onTap: () {}),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           MenuCard(
               title: "Dark mode", subtitle: "System setting", onTap: () {}),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
         ]),

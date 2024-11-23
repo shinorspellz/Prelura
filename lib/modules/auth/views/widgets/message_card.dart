@@ -84,6 +84,5 @@ class MessageCard extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
