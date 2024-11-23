@@ -2,20 +2,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/shared_notifier.dart';
-import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/sub_category_provider.dart';
 
 import '../../../../../../res/colors.dart';
 import '../../../widgets/menu_card.dart';
+import '../provider/product_list_provider.dart';
 import '../provider/product_sub_category_provider.dart';
 
 @RoutePage()
-class SubCategoryScreen extends ConsumerWidget {
-  const SubCategoryScreen({super.key});
+class SubCategoryProductScreen extends ConsumerWidget {
+  const SubCategoryProductScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sharedData = ref.watch(selectedCategoryNotifierProvider);
+    final sharedData = ref.watch(selectedProductCategoryNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -43,11 +43,9 @@ class SubCategoryScreen extends ConsumerWidget {
                       ),
                       onTap: () {
                         ref
-                            .read(selectedProductCategoryNotifierProvider
-                                .notifier)
+                            .read(selectedProductListNotifierProvider.notifier)
                             .updateData(sharedData.relatedStrings[index]);
-
-                        context.router.push(SubCategoryProductRoute());
+                        context.router.push(ProductListRoute());
                       });
                 }),
           ],

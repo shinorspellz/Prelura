@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
 
 @RoutePage()
@@ -26,19 +27,26 @@ class BrandSelectionPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Brand'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        automaticallyImplyLeading: true,
+        centerTitle: true,
+        title: Text("Brands",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Find a brand',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-            ),
+            child: Searchwidget(
+                hintText: "Find a brand",
+                obscureText: false,
+                shouldReadOnly: false,
+                enabled: true,
+                showInputBorder: true,
+                autofocus: false,
+                cancelButton: true),
           ),
           Expanded(
             child: ListView(

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 
-import '../widgets/live_card.dart';
 
 @RoutePage()
 class SettingScreen extends StatelessWidget {

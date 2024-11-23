@@ -5,23 +5,25 @@ class SellItemState {
   final List<XFile> images;
   final String title;
   final String description;
+  final String product;
 
-  SellItemState({
-    this.images = const [],
-    this.title = '',
-    this.description = '',
-  });
+  SellItemState(
+      {this.images = const [],
+      this.title = '',
+      this.description = '',
+      this.product = ""});
 
   SellItemState copyWith({
     List<XFile>? images,
     String? title,
     String? description,
+    String? product,
   }) {
     return SellItemState(
-      images: images ?? this.images,
-      title: title ?? this.title,
-      description: description ?? this.description,
-    );
+        images: images ?? this.images,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        product: product ?? this.product);
   }
 }
 
@@ -46,6 +48,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   // Update description
   void updateDescription(String description) {
     state = state.copyWith(description: description);
+  }
+
+  void updateProduct(String product) {
+    state = state.copyWith(product: product);
   }
 
   // Validate input

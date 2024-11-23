@@ -15,23 +15,31 @@ class ConditionScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          "Conditions",
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
         ),
         centerTitle: true,
+        title: Text("Condition",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
       ),
       body: SafeArea(
         child: Column(
           children: [
             Divider(),
+            Divider(),
             ListTile(
+              onTap: () {
+                ref
+                    .read(conditionProvider.notifier)
+                    .selectCondition("New with tags");
+                Navigator.pop(context);
+              },
               title: Text("New with Tags"),
               subtitle: Text(
                   "A brand-new unused item with tags attached or in the original pakaging"),
@@ -48,10 +56,22 @@ class ConditionScreen extends ConsumerWidget {
               ),
             ),
             Divider(),
+            Divider(
+              color: Theme.of(context).dividerColor,
+              height: 10,
+              thickness: 3,
+            ),
+            Divider(),
             ListTile(
-              title: Text("New wiyhout tags"),
+              onTap: () {
+                ref
+                    .read(conditionProvider.notifier)
+                    .selectCondition("New without tags");
+                Navigator.pop(context);
+              },
+              title: Text("New without tags"),
               subtitle: Text(
-                  "A brand new , unused item without tags or original packeaging"),
+                  "A brand new , unused item without tags or original packaging"),
               trailing: Radio<String>(
                 value: "New with=hout tags",
                 groupValue: selectedCondition,
@@ -64,7 +84,19 @@ class ConditionScreen extends ConsumerWidget {
               ),
             ),
             Divider(),
+            Divider(
+              color: Theme.of(context).dividerColor,
+              height: 10,
+              thickness: 3,
+            ),
+            Divider(),
             ListTile(
+              onTap: () {
+                ref
+                    .read(conditionProvider.notifier)
+                    .selectCondition("Very Good");
+                Navigator.pop(context);
+              },
               title: Text("Very good "),
               subtitle: Text(
                   "A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing."),
@@ -80,7 +112,17 @@ class ConditionScreen extends ConsumerWidget {
               ),
             ),
             Divider(),
+            Divider(
+              color: Theme.of(context).dividerColor,
+              height: 10,
+              thickness: 3,
+            ),
+            Divider(),
             ListTile(
+              onTap: () {
+                ref.read(conditionProvider.notifier).selectCondition("Good");
+                Navigator.pop(context);
+              },
               title: Text("Good"),
               subtitle: Text(
                   "A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing."),
@@ -96,8 +138,20 @@ class ConditionScreen extends ConsumerWidget {
               ),
             ),
             Divider(),
+            Divider(
+              color: Theme.of(context).dividerColor,
+              height: 10,
+              thickness: 3,
+            ),
+            Divider(),
             ListTile(
               title: Text("Satisfactory"),
+              onTap: () {
+                ref
+                    .read(conditionProvider.notifier)
+                    .selectCondition("Satisfactory");
+                Navigator.pop(context);
+              },
               subtitle: Text(
                   "A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing."),
               trailing: Radio<String>(

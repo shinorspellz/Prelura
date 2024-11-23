@@ -19,21 +19,11 @@ class CategoryScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: true,
-        title: Container(
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                  child: Text("Category",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontSize: 18,
-                          )))
-            ],
-          ),
-        ),
+        centerTitle: true,
+        title: Text("Category",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  fontSize: 18,
+                )),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 20),

@@ -1,17 +1,88 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/res/images.dart';
 
-import 'material_provider.dart';
-import 'parcel_provider.dart';
+class SimilarItem {
+  final String imageUrl;
+  final String price;
+  final String name;
+  final String size;
 
-final priceProvider = StateProvider<double>((ref) {
-  final material = ref.watch(materialProvider);
-  final parcelSize = ref.watch(parcelProvider);
+  SimilarItem({
+    required this.imageUrl,
+    required this.price,
+    required this.name,
+    required this.size,
+  });
+}
 
-  // Add logic to calculate price based on material and parcel size
-  if (material == "Material 1" && parcelSize == "Small") {
-    return 10.0;
-  } else if (material == "Material 2" && parcelSize == "Medium") {
-    return 20.0;
+class PricePageState {
+  final String currentPrice;
+  final String recommendedRange;
+  final List<SimilarItem> similarItems;
+
+  PricePageState({
+    required this.currentPrice,
+    required this.recommendedRange,
+    required this.similarItems,
+  });
+}
+
+class PricePageNotifier extends StateNotifier<PricePageState> {
+  PricePageNotifier()
+      : super(PricePageState(
+          currentPrice: "",
+          recommendedRange: "£6-£15",
+          similarItems: [
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "L",
+            ),
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "M",
+            ),
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "L",
+            ),
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "M",
+            ),
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "L",
+            ),
+            SimilarItem(
+              imageUrl: PreluraIcons.Image,
+              price: "£6.00",
+              name: "Dickies",
+              size: "M",
+            ),
+            // Add more items here
+          ],
+        ));
+
+  void updatePrice(String newPrice) {
+    state = PricePageState(
+      currentPrice: newPrice,
+      recommendedRange: state.recommendedRange,
+      similarItems: state.similarItems,
+    );
   }
-  return 0.0; // Default price
-});
+}
+
+final pricePageProvider =
+    StateNotifierProvider<PricePageNotifier, PricePageState>(
+  (ref) => PricePageNotifier(),
+);

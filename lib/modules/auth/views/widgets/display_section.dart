@@ -19,7 +19,7 @@ class DisplaySection extends StatelessWidget {
         enlargeCenterPage: false,
         padEnds: false,
         disableCenter: true,
-        viewportFraction: 0.4,
+        viewportFraction: 0.5,
       ),
       items: carouselItems,
     );
