@@ -1,14 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:prelura_app/main.dart';
-import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/more_product_grid_view.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_top_details.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
-import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
-import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../../res/colors.dart';
@@ -169,25 +164,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       ProductTopDetails(),
                       SizedBox(height: 16.0),
                       ProductDescription(),
-                      SizedBox(height: 16.0),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 18),
-                        child: Text(
-                          "Consumer protection laws do not apply to your purchases from other consumers. "
-                          "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                          "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                          "For more details, please review the full legal disclaimer."
-                          "Consumer protection laws do not apply to your purchases from other consumers. "
-                          "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                          "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                          "For more details, please review the full legal disclaimer.",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                      SizedBox(height: 24.0),
+                      SizedBox(height: 8.0),
+                      // Container(
+                      //   padding: EdgeInsets.symmetric(horizontal: 18),
+                      //   child: Text(
+                      //     "Consumer protection laws do not apply to your purchases from other consumers. "
+                      //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
+                      //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
+                      //     "For more details, please review the full legal disclaimer."
+                      //     "Consumer protection laws do not apply to your purchases from other consumers. "
+                      //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
+                      //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
+                      //     "For more details, please review the full legal disclaimer.",
+                      //     style: Theme.of(context)
+                      //         .textTheme
+                      //         .bodyMedium
+                      //         ?.copyWith(fontWeight: FontWeight.w300),
+                      //   ),
+                      // // ),
+                      // SizedBox(height: 24.0),
                     ],
                   ),
                 ),
@@ -263,6 +258,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 onTap: () {},
                 text: "Make an Offer",
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
+                borderColor: Colors.purple,
               ),
             ),
             SizedBox(width: 10),
@@ -271,6 +267,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 onTap: () {},
                 text: "Buy now",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
+                bgColor: Colors.purple,
+                borderColor: Colors.purple,
               ),
             ),
           ],

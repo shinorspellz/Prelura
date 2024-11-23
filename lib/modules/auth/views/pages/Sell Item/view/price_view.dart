@@ -51,7 +51,7 @@ class PriceScreen extends ConsumerWidget {
             ),
             SizedBox(height: 32),
             Text(
-              "Tip: ${pricePageState.recommendedRange} is the recommended price range based on similar items sold on Vinted.",
+              "Tip: ${pricePageState.recommendedRange} is the recommended price range based on similar items sold on Prelura.",
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 48),
