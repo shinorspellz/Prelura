@@ -35,10 +35,8 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   // Add an image
   Future<void> addImages() async {
     final pickedImages = await _picker.pickMultiImage();
-    if (pickedImages != null) {
-      state = state.copyWith(images: [...state.images, ...pickedImages]);
+    state = state.copyWith(images: [...state.images, ...pickedImages]);
     }
-  }
 
   // Update title
   void updateTitle(String title) {

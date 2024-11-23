@@ -5,7 +5,7 @@ import 'order_tab_view.dart';
 class OrderSubTabs extends StatefulWidget {
   final String type;
 
-  const OrderSubTabs({Key? key, required this.type}) : super(key: key);
+  const OrderSubTabs({super.key, required this.type});
 
   @override
   State<OrderSubTabs> createState() => _OrderSubTabsState();
@@ -94,7 +94,9 @@ class _OrderSubTabsState extends State<OrderSubTabs>
           labels[index],
           style: TextStyle(
             fontSize: 14,
-            color: isSelected ? PreluraColors.activeColor : PreluraColors.white,
+            color: isSelected
+                ? PreluraColors.activeColor
+                : Theme.of(context).textTheme.bodyMedium?.color,
             fontWeight: FontWeight.normal,
           ),
         ),

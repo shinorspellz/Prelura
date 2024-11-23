@@ -7,7 +7,7 @@ import '../provider/color_selector_provider.dart';
 
 @RoutePage()
 class ColorSelectorScreen extends ConsumerWidget {
-  const ColorSelectorScreen({Key? key}) : super(key: key);
+  const ColorSelectorScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +20,7 @@ class ColorSelectorScreen extends ConsumerWidget {
       "Black": Colors.black,
       "Brown": Colors.brown,
       "Grey": Colors.grey,
-      "Beige": Color(0xFFF5F5DC),
+      "Beige": const Color(0xFFF5F5DC),
       "Pink": Colors.pink,
       "Purple": Colors.purple,
       "Red": Colors.red,
@@ -52,17 +52,17 @@ class ColorSelectorScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               "Choose up to 2 colours",
               style: Theme.of(context).textTheme.bodySmall,
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             Text(
               "All Colours",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Expanded(
               child: ListView(
                 children: colorOptions.entries.map((entry) {
@@ -76,7 +76,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                     tileColor: Colors.grey[900],
                     title: Text(
                       colorName,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     secondary: CircleAvatar(
                       backgroundColor: colorValue,
@@ -88,7 +88,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                         notifier.toggleColor(colorName);
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text(
                               "You can only select up to 2 colours.",
                               style: TextStyle(color: Colors.white),
@@ -102,7 +102,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                 }).toList(),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: state.selectedColors.isNotEmpty
                   ? () {
@@ -112,7 +112,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                   : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

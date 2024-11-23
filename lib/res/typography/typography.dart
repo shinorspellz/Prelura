@@ -137,7 +137,7 @@ final TextStyle textFieldTitleTextStyle = TextStyle(
 
 customWidthOpacityText(opacity, fontWeight) => TextStyle(fontFamily: PreluraTypography1.primaryfontName, color: PreluraColors.mainColor.withOpacity(opacity), fontSize: 16, fontWeight: fontWeight);
 
-final TextStyle descriptionTextStyle = TextStyle(
+final TextStyle descriptionTextStyle = const TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 14,
   fontFamily: 'SF',

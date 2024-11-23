@@ -19,6 +19,11 @@ class CategoryScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         automaticallyImplyLeading: true,
+        leading: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
         centerTitle: true,
         title: Text("Category",
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -26,12 +31,12 @@ class CategoryScreen extends ConsumerWidget {
                 )),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             MenuCard(
                 title: "Women",
-                icon: Icon(
+                icon: const Icon(
                   Icons.settings,
                   color: PreluraColors.activeColor,
                 ),
@@ -39,11 +44,11 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Women');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "Men",
-                icon: Icon(
+                icon: const Icon(
                   Icons.lock,
                   color: PreluraColors.activeColor,
                 ),
@@ -51,11 +56,11 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Men');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "kids",
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outlined,
                   color: PreluraColors.activeColor,
                 ),
@@ -63,11 +68,11 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Kids');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "Home",
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outlined,
                   color: PreluraColors.activeColor,
                 ),
@@ -75,11 +80,11 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Home');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "Electronics",
-                icon: Icon(
+                icon: const Icon(
                   Icons.power_input,
                   color: PreluraColors.activeColor,
                 ),
@@ -87,7 +92,7 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Electronics');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "Entertainment",
@@ -99,7 +104,7 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Entertainment');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
             MenuCard(
                 title: "Pet care",
@@ -111,7 +116,7 @@ class CategoryScreen extends ConsumerWidget {
                   ref
                       .read(selectedCategoryNotifierProvider.notifier)
                       .updateData('Pet Care');
-                  context.router.push(SubCategoryRoute());
+                  context.router.push(const SubCategoryRoute());
                 }),
           ],
         ),

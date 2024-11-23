@@ -9,14 +9,14 @@ class MyFavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List items = [
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
-      DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
+      const DisplayCard(),
     ];
 
     return Scaffold(

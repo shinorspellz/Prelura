@@ -21,6 +21,8 @@ class BrandSelectionPage extends ConsumerWidget {
     'E&F'
   ];
 
+  BrandSelectionPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedBrand = ref.watch(selectedBrandProvider);
@@ -37,8 +39,8 @@ class BrandSelectionPage extends ConsumerWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Searchwidget(
                 hintText: "Find a brand",
                 obscureText: false,
@@ -51,7 +53,7 @@ class BrandSelectionPage extends ConsumerWidget {
           Expanded(
             child: ListView(
               children: [
-                ListTile(
+                const ListTile(
                   title: Text('Suggested'),
                   dense: true,
                 ),
@@ -68,7 +70,7 @@ class BrandSelectionPage extends ConsumerWidget {
                         },
                       ),
                     )),
-                ListTile(
+                const ListTile(
                   title: Text('Popular brands'),
                   dense: true,
                 ),

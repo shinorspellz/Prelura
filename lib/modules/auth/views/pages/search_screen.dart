@@ -15,10 +15,10 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            Searchwidget(
+            const Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
                 shouldReadOnly: false,
@@ -28,7 +28,7 @@ class SearchScreen extends StatelessWidget {
                 cancelButton: true),
             MenuCard(
                 title: "Women",
-                icon: Icon(
+                icon: const Icon(
                   Icons.settings,
                   color: PreluraColors.activeColor,
                 ),
@@ -37,35 +37,35 @@ class SearchScreen extends StatelessWidget {
                 }),
             MenuCard(
                 title: "Men",
-                icon: Icon(
+                icon: const Icon(
                   Icons.lock,
                   color: PreluraColors.activeColor,
                 ),
                 onTap: () {}),
             MenuCard(
                 title: "Designer",
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outlined,
                   color: PreluraColors.activeColor,
                 ),
                 onTap: () {}),
             MenuCard(
                 title: "kids",
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outlined,
                   color: PreluraColors.activeColor,
                 ),
                 onTap: () {}),
             MenuCard(
                 title: "Home",
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outlined,
                   color: PreluraColors.activeColor,
                 ),
                 onTap: () {}),
             MenuCard(
                 title: "Electronics",
-                icon: Icon(
+                icon: const Icon(
                   Icons.power_input,
                   color: PreluraColors.activeColor,
                 ),

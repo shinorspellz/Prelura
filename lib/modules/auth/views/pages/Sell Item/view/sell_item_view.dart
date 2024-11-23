@@ -60,11 +60,11 @@ class SellItemScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Add up to 20 photos.',
                           style: TextStyle(color: Colors.grey, fontSize: 14),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -81,7 +81,7 @@ class SellItemScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 70,
                     ),
                     GestureDetector(
@@ -93,7 +93,7 @@ class SellItemScreen extends ConsumerWidget {
                             },
                             text: "upload photos",
                             bgColor: Theme.of(context).scaffoldBackgroundColor,
-                            textWidget: Row(
+                            textWidget: const Row(
                               children: [
                                 Icon(
                                   Icons.add,
@@ -122,12 +122,12 @@ class SellItemScreen extends ConsumerWidget {
                           ))
                       .toList(),
                 ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 autofocus: false,
                 onChanged: notifier.updateTitle,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
                   labelText: 'Title',
                   labelStyle: TextStyle(color: Colors.grey),
                   hintText: 'e.g. White COS Jumper',
@@ -137,13 +137,13 @@ class SellItemScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 autofocus: false,
                 onChanged: notifier.updateDescription,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 maxLines: 4,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Describe your item',
                   labelStyle: TextStyle(color: Colors.grey),
                   hintText: 'e.g. only worn a few times, true to size',
@@ -153,74 +153,74 @@ class SellItemScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               MenuCard(
                 title: "Category",
                 subtitle: state.product,
                 onTap: () {
-                  context.router.push(CategoryRoute());
+                  context.router.push(const CategoryRoute());
                 },
               ),
               MenuCard(
                 title: 'Brand',
                 subtitle: brandSelected ?? "",
                 onTap: () {
-                  context.router.push(BrandSelectionRoute());
+                  context.router.push(const BrandSelectionRoute());
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               MenuCard(
                 title: 'Size',
                 subtitle: sizeSelected ?? "",
                 onTap: () {
-                  context.router.push(SizeSelectionRoute());
+                  context.router.push(const SizeSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Measurements (Recommended)',
                 onTap: () {
-                  context.router.push(MaterialSelectionRoute());
+                  context.router.push(const MaterialSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Condtion',
                 subtitle: selectedCondition ?? "",
                 onTap: () {
-                  context.router.push(ConditionRoute());
+                  context.router.push(const ConditionRoute());
                 },
               ),
               MenuCard(
                 title: 'Colours',
                 onTap: () {
-                  context.router.push(ColorSelectorRoute());
+                  context.router.push(const ColorSelectorRoute());
                 },
               ),
               MenuCard(
                 title: 'Material (Recommended)',
                 subtitle: brandSelected ?? "",
                 onTap: () {
-                  context.router.push(MaterialSelectionRoute());
+                  context.router.push(const MaterialSelectionRoute());
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               MenuCard(
                 title: 'Price',
                 subtitle: pricePageState.currentPrice,
                 onTap: () {
-                  context.router.push(PriceRoute());
+                  context.router.push(const PriceRoute());
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               MenuCard(
                 title: 'Parcel Size',
                 subtitle: parcelSizes,
                 onTap: () {
-                  context.router.push(ParcelRoute());
+                  context.router.push(const ParcelRoute());
                 },
               ),
-              SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
+              const SizedBox(height: 16),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Text(
                   'The buyer always pays for postage.',
                   style: TextStyle(color: Colors.grey, fontSize: 12),
@@ -309,18 +309,19 @@ class SellItemScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 color: Theme.of(context).scaffoldBackgroundColor,
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                         child:
                             Text("What do you think of our upload process ?")),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     AppButton(
@@ -334,36 +335,41 @@ class SellItemScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () async {
-                  if (notifier.validateInputs()) {
-                    await notifier.uploadItem();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Item uploaded successfully!')),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text('Please fill in all required fields')),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              const SizedBox(height: 32),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (notifier.validateInputs()) {
+                      await notifier.uploadItem();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Item uploaded successfully!')),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('Please fill in all required fields')),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Upload',
-                    style: TextStyle(fontSize: 16),
+                  child: const Center(
+                    child: Text(
+                      'Upload',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               )
             ],

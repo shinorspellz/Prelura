@@ -21,7 +21,7 @@ class UserWardrobe extends StatelessWidget {
             onTap: () {},
             widget: Row(
               children: [
-                Ratings(),
+                const Ratings(),
                 Text("90 reviews",
                     style: Theme.of(context).textTheme.bodyMedium),
               ],
@@ -40,14 +40,14 @@ class UserWardrobe extends StatelessWidget {
                         children: [
                           // Star Wardrobe Badge
                           Container(
-                            child: Text("Star Wardrobe",
-                                style: Theme.of(context).textTheme.bodySmall),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 8),
                             decoration: BoxDecoration(
                                 color: PreluraColors.activeColor
                                     .withOpacity(0.4), // Customize color
                                 borderRadius: BorderRadius.circular(12)),
+                            child: Text("Star Wardrobe",
+                                style: Theme.of(context).textTheme.bodySmall),
                           ),
                           const SizedBox(height: 8),
 
@@ -63,7 +63,7 @@ class UserWardrobe extends StatelessWidget {
                                   style: Theme.of(context).textTheme.bodySmall),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           Row(
@@ -77,7 +77,7 @@ class UserWardrobe extends StatelessWidget {
                                   style: Theme.of(context).textTheme.bodySmall),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           Row(
@@ -89,7 +89,7 @@ class UserWardrobe extends StatelessWidget {
                               const SizedBox(width: 8),
                               Text.rich(TextSpan(
                                   text: "3",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: PreluraColors.activeColor,
                                       decorationColor:
                                           PreluraColors.activeColor,
@@ -111,7 +111,7 @@ class UserWardrobe extends StatelessWidget {
                               const SizedBox(width: 6),
                               Text.rich(TextSpan(
                                   text: "3",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: PreluraColors.activeColor,
                                       decorationColor:
                                           PreluraColors.activeColor,
@@ -137,7 +137,7 @@ class UserWardrobe extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(
+                const Icon(
                   Icons.arrow_forward_ios_rounded,
                   size: 18,
                 ),
@@ -175,7 +175,7 @@ class UserWardrobe extends StatelessWidget {
             ),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Padding(
@@ -209,7 +209,7 @@ class UserWardrobe extends StatelessWidget {
             ),
           ),
           const Divider(),
-          Container(
+          SizedBox(
               height: MediaQuery.of(context).size.height, child: ItemGrid()),
         ],
       ),

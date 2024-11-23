@@ -16,6 +16,7 @@ class InboxScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,7 +28,7 @@ class InboxScreen extends StatelessWidget {
                           fontSize: 18,
                         )),
               ),
-              Icon(CupertinoIcons.envelope_badge)
+              const Icon(CupertinoIcons.envelope_badge)
             ],
           ),
           bottom: TabBar(
@@ -42,7 +43,7 @@ class InboxScreen extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontSize: 14, // Font size for inactive tabs
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: "Messages",
               ),
@@ -56,7 +57,7 @@ class InboxScreen extends StatelessWidget {
           children: [
             ListView(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              children: [
+              children: const [
                 MessageCard(
                   username: 'leafcharles',
                   message: 'Ok thank you',
@@ -87,7 +88,7 @@ class InboxScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Center(
+            const Center(
               child: Text(
                 "Settings Tab Content",
                 style: TextStyle(fontSize: 18),

@@ -9,7 +9,7 @@ class DisplaySection extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> carouselItems = List.generate(
       6,
-      (index) => DisplayCard(),
+      (index) => const DisplayCard(),
     );
 
     return CarouselSlider(

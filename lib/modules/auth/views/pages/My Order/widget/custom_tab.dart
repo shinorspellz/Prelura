@@ -5,7 +5,7 @@ class CustomTab extends StatelessWidget {
   final bool isSelected;
   final Function onTap;
 
-  CustomTab({
+  const CustomTab({super.key, 
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -25,7 +25,7 @@ class CustomTab extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(8), // Rounded corners
         ),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Text(
           label,
           style: TextStyle(

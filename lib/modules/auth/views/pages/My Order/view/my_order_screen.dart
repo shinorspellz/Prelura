@@ -37,11 +37,11 @@ class MyOrderScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 16, // Font size for the active tab
             ),
-            unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 14, // Font size for inactive tabs
-            ),
-            tabs: [
+            unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 14,
+                color: Theme.of(context).textTheme.bodyMedium?.color),
+            tabs: const [
               Tab(
                 text: "Sold",
               ),
@@ -51,10 +51,10 @@ class MyOrderScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const OrderSubTabs(type: 'Sold'), // Sold tab with subtabs
-            const OrderSubTabs(type: 'Bought'), // Bought tab with subtabs
+            OrderSubTabs(type: 'Sold'), // Sold tab with subtabs
+            OrderSubTabs(type: 'Bought'), // Bought tab with subtabs
           ],
         ),
       ),

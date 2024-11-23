@@ -31,8 +31,8 @@ class ConditionScreen extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Divider(),
-            Divider(),
+            const Divider(),
+            const Divider(),
             ListTile(
               onTap: () {
                 ref
@@ -40,8 +40,8 @@ class ConditionScreen extends ConsumerWidget {
                     .selectCondition("New with tags");
                 Navigator.pop(context);
               },
-              title: Text("New with Tags"),
-              subtitle: Text(
+              title: const Text("New with Tags"),
+              subtitle: const Text(
                   "A brand-new unused item with tags attached or in the original pakaging"),
               trailing: Radio<String>(
                 value: "New with tags",
@@ -55,13 +55,13 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            Divider(),
+            const Divider(),
             Divider(
               color: Theme.of(context).dividerColor,
               height: 10,
               thickness: 3,
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               onTap: () {
                 ref
@@ -69,8 +69,8 @@ class ConditionScreen extends ConsumerWidget {
                     .selectCondition("New without tags");
                 Navigator.pop(context);
               },
-              title: Text("New without tags"),
-              subtitle: Text(
+              title: const Text("New without tags"),
+              subtitle: const Text(
                   "A brand new , unused item without tags or original packaging"),
               trailing: Radio<String>(
                 value: "New with=hout tags",
@@ -83,13 +83,13 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            Divider(),
+            const Divider(),
             Divider(
               color: Theme.of(context).dividerColor,
               height: 10,
               thickness: 3,
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               onTap: () {
                 ref
@@ -97,8 +97,8 @@ class ConditionScreen extends ConsumerWidget {
                     .selectCondition("Very Good");
                 Navigator.pop(context);
               },
-              title: Text("Very good "),
-              subtitle: Text(
+              title: const Text("Very good "),
+              subtitle: const Text(
                   "A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing."),
               trailing: Radio<String>(
                 value: "Very good",
@@ -111,20 +111,20 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            Divider(),
+            const Divider(),
             Divider(
               color: Theme.of(context).dividerColor,
               height: 10,
               thickness: 3,
             ),
-            Divider(),
+            const Divider(),
             ListTile(
               onTap: () {
                 ref.read(conditionProvider.notifier).selectCondition("Good");
                 Navigator.pop(context);
               },
-              title: Text("Good"),
-              subtitle: Text(
+              title: const Text("Good"),
+              subtitle: const Text(
                   "A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing."),
               trailing: Radio<String>(
                 value: "Good",
@@ -137,22 +137,22 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            Divider(),
+            const Divider(),
             Divider(
               color: Theme.of(context).dividerColor,
               height: 10,
               thickness: 3,
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-              title: Text("Satisfactory"),
+              title: const Text("Satisfactory"),
               onTap: () {
                 ref
                     .read(conditionProvider.notifier)
                     .selectCondition("Satisfactory");
                 Navigator.pop(context);
               },
-              subtitle: Text(
+              subtitle: const Text(
                   "A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing."),
               trailing: Radio<String>(
                 value: "Very good",

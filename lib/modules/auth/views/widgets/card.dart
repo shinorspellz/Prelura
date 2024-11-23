@@ -11,10 +11,10 @@ class DisplayCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.router.push(ProductDetailRoute());
+        context.router.push(const ProductDetailRoute());
       },
       child: Container(
-        margin: EdgeInsets.all(6),
+        margin: const EdgeInsets.all(6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,7 @@ class DisplayCard extends StatelessWidget {
                     bottom: 20,
                     right: 15,
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         color: PreluraColors.blackCardColor,
                         borderRadius:
@@ -45,7 +45,7 @@ class DisplayCard extends StatelessWidget {
                         children: [
                           Icon(Icons.favorite_border_outlined,
                               size: 14, color: PreluraColors.white),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Text(
                             "14",
                             style: Theme.of(context)
@@ -60,7 +60,7 @@ class DisplayCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 8), // Optional: Add space between image and text
+            const SizedBox(height: 8), // Optional: Add space between image and text
             Text(
               "Anthropologie",
               style: Theme.of(context).textTheme.bodyMedium,
@@ -69,7 +69,7 @@ class DisplayCard extends StatelessWidget {
               "Very Good",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               "#5.00",
               style: Theme.of(context).textTheme.bodyMedium,

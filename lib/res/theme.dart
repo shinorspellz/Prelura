@@ -11,7 +11,7 @@ class PreluraTheme {
         colorScheme: ColorScheme.fromSeed(
           seedColor: PreluraColors.primaryColor,
           primary: PreluraColors.primaryColor,
-          secondary: Color(0xFFD9D9D9),
+          secondary: const Color(0xFFD9D9D9),
           tertiary: PreluraColors.primaryColor,
           surface: PreluraColors.white,
           onSecondary: PreluraColors.white,
@@ -55,7 +55,7 @@ class PreluraTheme {
                 PreluraColors.primaryColorOld, //PreluraColors.primaryColor,
           ),
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black, // PreluraColors.primaryColor,
         ),
         appBarTheme: const AppBarTheme(
@@ -99,7 +99,7 @@ class PreluraTheme {
               ),
           // ?.copyWith(color: Colors.amber),
         ),
-        radioTheme: RadioThemeData(
+        radioTheme: const RadioThemeData(
           fillColor: WidgetStatePropertyAll(PreluraColors.primaryColor),
         ),
         chipTheme: ChipThemeData.fromDefaults(
@@ -141,12 +141,12 @@ class PreluraTheme {
           fillColor: PreluraColors.greyColor.withOpacity(0.2),
           filled: true,
           isDense: true,
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: PreluraColors.primaryColor,
                 width: 1,
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(8))),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5),
@@ -164,11 +164,11 @@ class PreluraTheme {
           focusedErrorBorder: OutlineInputBorder(
               borderSide:
                   BorderSide(color: PreluraColors.buttonBgColor, width: 0),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           errorBorder: OutlineInputBorder(
               borderSide:
                   BorderSide(color: PreluraColors.buttonBgColor, width: 0),
-              borderRadius: BorderRadius.all(Radius.circular(8))),
+              borderRadius: const BorderRadius.all(Radius.circular(8))),
         ),
       );
 
@@ -202,7 +202,7 @@ class PreluraTheme {
           unselectedIconTheme:
               IconThemeData(color: PreluraColors.white.withOpacity(.5)),
           selectedIconTheme:
-              IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
+              const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
         ),
         tabBarTheme: TabBarTheme(
             unselectedLabelColor:
@@ -243,7 +243,7 @@ class PreluraTheme {
             color: PreluraColors.white.withOpacity(.6),
           ),
         )),
-        dialogTheme: DialogTheme(
+        dialogTheme: const DialogTheme(
           backgroundColor: PreluraColors.darkScaffoldBackround,
         ),
         appBarTheme: const AppBarTheme(
@@ -314,12 +314,12 @@ class PreluraTheme {
           fillColor: PreluraColors.greyColor.withOpacity(0.2),
           filled: true,
           isDense: true,
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: PreluraColors.darkButtonColor,
                 width: 1,
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(8))),
+              borderRadius: BorderRadius.all(Radius.circular(8))),
           disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5),
@@ -337,11 +337,11 @@ class PreluraTheme {
           focusedErrorBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: PreluraColors.greyColor.withOpacity(0.2), width: 0),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           errorBorder: OutlineInputBorder(
               borderSide: BorderSide(
                   color: PreluraColors.greyColor.withOpacity(0.2), width: 0),
-              borderRadius: BorderRadius.all(Radius.circular(8))),
+              borderRadius: const BorderRadius.all(Radius.circular(8))),
         ),
       );
 
@@ -369,7 +369,7 @@ class PreluraTheme {
             onSurfaceVariant:
                 PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
           ),
-          dialogTheme: DialogTheme(
+          dialogTheme: const DialogTheme(
             backgroundColor: Color.fromARGB(255, 27, 27, 27),
           ),
           scaffoldBackgroundColor: PreluraColors.darkScaffoldBackround,
@@ -382,7 +382,7 @@ class PreluraTheme {
             unselectedIconTheme:
                 IconThemeData(color: PreluraColors.white.withOpacity(.5)),
             selectedIconTheme:
-                IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
+                const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
           ),
           tabBarTheme: TabBarTheme(
               unselectedLabelColor:
@@ -408,7 +408,7 @@ class PreluraTheme {
               onSurface: PreluraColors.blackButtonColor,
             ),
           ),
-          timePickerTheme: TimePickerThemeData(
+          timePickerTheme: const TimePickerThemeData(
             dialTextColor: Colors.white,
             dayPeriodTextColor: Colors.white,
             hourMinuteTextColor: Colors.white,
@@ -488,29 +488,29 @@ class PreluraTheme {
               value: (dynamic _) => const ZoomPageTransitionsBuilder(),
             ),
           ),
-          progressIndicatorTheme: ProgressIndicatorThemeData(
+          progressIndicatorTheme: const ProgressIndicatorThemeData(
             color: Colors.white,
           ),
           inputDecorationTheme: InputDecorationTheme(
             fillColor: PreluraColors.greyColor.withOpacity(0.2),
             filled: true,
             isDense: true,
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.white,
                   width: 1,
                 ),
-                borderRadius: const BorderRadius.all(Radius.circular(8))),
-            disabledBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            border: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8))),
+            disabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            enabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            focusedErrorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.all(Radius.circular(10))),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.red, width: 0),
                 borderRadius: BorderRadius.all(Radius.circular(8))),
           ));

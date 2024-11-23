@@ -24,7 +24,7 @@ class RecursiveView extends ConsumerWidget {
           context.router.back(); // Exit to the initial route
         } else {
           log('this is true');
-          context.router.replace(SubCategoryProductRoute());
+          context.router.replace(const SubCategoryProductRoute());
         }
         return false; // Prevent default navigation
       },
@@ -44,7 +44,7 @@ class RecursiveView extends ConsumerWidget {
               title: Text(sharedData.relatedStrings[index]),
               onTap: () {
                 notifier.updateData(sharedData.relatedStrings[index]);
-                context.router.push(SubCategoryProductRoute());
+                context.router.push(const SubCategoryProductRoute());
               },
             );
           },

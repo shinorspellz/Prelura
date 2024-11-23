@@ -30,7 +30,7 @@ class ProfileDetailsScreen extends StatelessWidget {
                           fontSize: 18,
                         )),
               ),
-              Icon(CupertinoIcons.envelope_badge)
+              const Icon(CupertinoIcons.envelope_badge)
             ],
           ),
           bottom: TabBar(
@@ -45,7 +45,7 @@ class ProfileDetailsScreen extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontSize: 14, // Font size for inactive tabs
             ),
-            tabs: [
+            tabs: const [
               Tab(
                 text: "Wardrobe",
               ),
@@ -58,7 +58,7 @@ class ProfileDetailsScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             UserWardrobe(),
             ReviewTab(),

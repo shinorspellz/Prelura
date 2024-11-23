@@ -11,7 +11,7 @@ class UIConstants {
     return Theme.of(context)
         .switchTheme
         .trackColor
-        ?.resolve({MaterialState.selected});
+        ?.resolve({WidgetState.selected});
   }
 
   InputDecoration inputDecoration(
@@ -71,18 +71,18 @@ class UIConstants {
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.transparent, //Theme.of(context).primaryColor,
             width: 0,
           ),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 1),
-          borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(8))),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red, width: 1),
-          borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(8))),
+          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(8))),
     );
   }
 }

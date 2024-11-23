@@ -1,14 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:prelura_app/main.dart';
-import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/more_product_grid_view.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_top_details.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
-import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
-import 'package:sizer/sizer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../../res/colors.dart';
@@ -80,7 +75,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       bottom: 20,
                       right: 15,
                       child: Container(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                           color: PreluraColors.blackCardColor,
                           borderRadius:
@@ -90,7 +85,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                           children: [
                             Icon(Icons.favorite_border_outlined,
                                 size: 14, color: PreluraColors.white),
-                            SizedBox(width: 5),
+                            const SizedBox(width: 5),
                             Text(
                               "14",
                               style: Theme.of(context)
@@ -127,7 +122,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                   } else {
                                     if (!context.mounted) return;
                                     showAppBar = 1 - (visiblePercentage / 40);
-                                    ;
                                     setState(() {});
                                   }
                                 },
@@ -163,31 +157,31 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 ),
                 Container(
                   color: Theme.of(context).appBarTheme.backgroundColor,
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProductTopDetails(),
                       SizedBox(height: 16.0),
                       ProductDescription(),
-                      SizedBox(height: 16.0),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 18),
-                        child: Text(
-                          "Consumer protection laws do not apply to your purchases from other consumers. "
-                          "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                          "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                          "For more details, please review the full legal disclaimer."
-                          "Consumer protection laws do not apply to your purchases from other consumers. "
-                          "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                          "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                          "For more details, please review the full legal disclaimer.",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                      SizedBox(height: 24.0),
+                      SizedBox(height: 8.0),
+                      // Container(
+                      //   padding: EdgeInsets.symmetric(horizontal: 18),
+                      //   child: Text(
+                      //     "Consumer protection laws do not apply to your purchases from other consumers. "
+                      //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
+                      //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
+                      //     "For more details, please review the full legal disclaimer."
+                      //     "Consumer protection laws do not apply to your purchases from other consumers. "
+                      //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
+                      //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
+                      //     "For more details, please review the full legal disclaimer.",
+                      //     style: Theme.of(context)
+                      //         .textTheme
+                      //         .bodyMedium
+                      //         ?.copyWith(fontWeight: FontWeight.w300),
+                      //   ),
+                      // // ),
+                      // SizedBox(height: 24.0),
                     ],
                   ),
                 ),
@@ -204,16 +198,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     fontWeight: FontWeight.normal,
                     fontSize: 14, // Font size for inactive tabs
                   ),
-                  tabs: [
+                  tabs: const [
                     Tab(text: "Member's items"),
                     Tab(text: "Similar items"),
                   ],
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: TabBarView(controller: _tabController, children: [
                     _buildMemberItemsTab(context),
-                    Center(child: Text("Similar items content")),
+                    const Center(child: Text("Similar items content")),
                   ]),
                 ),
               ],
@@ -223,7 +217,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
               ? AnimatedOpacity(
                   opacity: showAppBar,
                   duration: const Duration(milliseconds: 340),
-                  child: Container(
+                  child: SizedBox(
                     height: 90,
                     child: AppBar(
                       backgroundColor:
@@ -251,7 +245,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     ),
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -263,14 +257,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                 onTap: () {},
                 text: "Make an Offer",
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
+                borderColor: Colors.purple,
+                textColor: Colors.purple,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: AppButton(
                 onTap: () {},
                 text: "Buy now",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
+                bgColor: Colors.purple,
+                borderColor: Colors.purple,
               ),
             ),
           ],
@@ -332,7 +330,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {
-                    return DisplayCard(); // Replace with your custom widget
+                    return const DisplayCard(); // Replace with your custom widget
                   },
                 );
               },
@@ -350,7 +348,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         children: [
           for (int i = 0; i < 6; i++)
             Container(
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
               decoration: BoxDecoration(

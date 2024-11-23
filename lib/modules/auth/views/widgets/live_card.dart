@@ -8,7 +8,7 @@ class LiveCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: height != null ? EdgeInsets.only(right: 10) : EdgeInsets.all(20),
+      margin: height != null ? const EdgeInsets.only(right: 10) : const EdgeInsets.all(20),
       width: double.infinity, // Full width of the parent
       height: height ?? 150,
       child: Stack(children: [
@@ -24,7 +24,7 @@ class LiveCard extends StatelessWidget {
         Positioned(
           top: 20,
           left: 30,
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +51,7 @@ class LiveCard extends StatelessWidget {
                     // Define your onTap logic here
                   },
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 14),
                     decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(8),

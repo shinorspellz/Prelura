@@ -27,7 +27,7 @@ class ReviewTab extends StatelessWidget {
                     .bodyLarge
                     ?.copyWith(fontSize: 48, fontWeight: FontWeight.bold),
               ),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Ratings(),
@@ -35,13 +35,13 @@ class ReviewTab extends StatelessWidget {
                   Text("(90)", style: TextStyle(color: Colors.grey)),
                 ],
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Member reviews (54)",
                       style: Theme.of(context).textTheme.bodyMedium),
-                  Row(
+                  const Row(
                     children: [
                       Text("5.0"),
                       SizedBox(
@@ -54,13 +54,13 @@ class ReviewTab extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Automatic reviews (54)",
                       style: Theme.of(context).textTheme.bodyMedium),
-                  Row(
+                  const Row(
                     children: [
                       Text("5.0"),
                       SizedBox(
@@ -77,7 +77,7 @@ class ReviewTab extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Text("How reviews work",
               textAlign: TextAlign.left,
               style: Theme.of(context)
@@ -85,7 +85,7 @@ class ReviewTab extends StatelessWidget {
                   .bodyMedium
                   ?.copyWith(color: PreluraColors.activeColor)),
         ),
-        Divider(color: Colors.grey),
+        const Divider(color: Colors.grey),
 
         // Filter Buttons
         Padding(
@@ -93,11 +93,11 @@ class ReviewTab extends StatelessWidget {
           child: Row(
             children: [
               filterButton("All", true, context),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               filterButton("From members", false, context),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               filterButton("Automatic", false, context),
@@ -105,7 +105,7 @@ class ReviewTab extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
 
         // Reviews List
         Expanded(
@@ -124,7 +124,7 @@ class ReviewTab extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
             color: isSelected
                 ? PreluraColors.activeColor.withOpacity(0.4)
@@ -151,7 +151,7 @@ class ReviewTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
@@ -187,7 +187,7 @@ class ReviewTab extends StatelessWidget {
             onTap: () {
               // Add translation functionality
             },
-            textWidget: Icon(
+            textWidget: const Icon(
               CupertinoIcons.globe,
               size: 16,
               color: PreluraColors.activeColor,
