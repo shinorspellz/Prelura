@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 import '../../../widgets/menu_card.dart';
@@ -17,19 +18,15 @@ class SubCategoryProductScreen extends ConsumerWidget {
     final sharedData = ref.watch(selectedProductCategoryNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
+        leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
-        title: Text(sharedData.selectedValue,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
+        appbarTitle: sharedData.selectedValue,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20),

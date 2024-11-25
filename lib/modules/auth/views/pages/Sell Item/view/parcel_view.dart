@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import '../../../../../../res/colors.dart';
 import '../provider/parcel_provider.dart';
 
@@ -14,19 +15,14 @@ class ParcelScreen extends ConsumerWidget {
     final selectedParcel = ref.watch(parcelProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
+      appBar: PreluraAppBar(
+        leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
-        title: Text("Percel Size",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
+        appbarTitle: "Percel Size",
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,8 +31,8 @@ class ParcelScreen extends ConsumerWidget {
           const Divider(),
           ListTile(
             title: Text(parcelSizes[0]),
-            subtitle:
-                const Text("Choose this for light T-Shirts and small beauty items"),
+            subtitle: const Text(
+                "Choose this for light T-Shirts and small beauty items"),
             trailing: Radio(
                 value: parcelSizes[0],
                 groupValue: selectedParcel,
@@ -82,7 +78,8 @@ class ParcelScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                       color: Colors.green, // Customize color
                       borderRadius: BorderRadius.circular(12)),
@@ -95,8 +92,8 @@ class ParcelScreen extends ConsumerWidget {
                 Text(parcelSizes[2]),
               ],
             ),
-            subtitle:
-                const Text("Choose this for light T-Shirts and small beauty items"),
+            subtitle: const Text(
+                "Choose this for light T-Shirts and small beauty items"),
             trailing: Radio(
                 value: parcelSizes[2],
                 groupValue: selectedParcel,

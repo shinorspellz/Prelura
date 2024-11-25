@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../provider/condition_provider.dart';
 
@@ -14,20 +15,14 @@ class ConditionScreen extends ConsumerWidget {
     final selectedCondition = ref.watch(conditionProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
-        ),
-        centerTitle: true,
-        title: Text("Condition",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
-      ),
+      appBar: PreluraAppBar(
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
+          ),
+          centerTitle: true,
+          appbarTitle: "Condition"),
       body: SafeArea(
         child: Column(
           children: [

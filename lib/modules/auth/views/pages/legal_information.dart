@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../widgets/menu_card.dart';
 
@@ -17,19 +18,13 @@ class LegalInformationScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
+      appBar: PreluraAppBar(
+        leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
-        centerTitle: true,
-        title: Text("Legal Information",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
+        appbarTitle: "Legal Information",
       ),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: SingleChildScrollView(

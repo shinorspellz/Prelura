@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_top_details.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -217,32 +218,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
               ? AnimatedOpacity(
                   opacity: showAppBar,
                   duration: const Duration(milliseconds: 340),
-                  child: SizedBox(
-                    height: 90,
-                    child: AppBar(
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
-                      automaticallyImplyLeading: true,
-                      leading: Icon(
+                  child: PreluraAppBar(
+                    appBarHeight: 90,
+                    leadingIcon: IconButton(
+                      icon: Icon(Icons.arrow_back,
+                          color: Theme.of(context).iconTheme.color),
+                      onPressed: () => context.router.back(),
+                    ),
+                    appbarTitle: "AppBar",
+                    trailingIcon: [
+                      Icon(
                         Icons.arrow_back,
                         color: Theme.of(context).iconTheme.color,
                       ),
-                      title: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "AppBar",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.labelLarge,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_back,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ],
-                      ),
-                    ),
+                    ],
                   ),
                 )
               : const SizedBox.shrink(),

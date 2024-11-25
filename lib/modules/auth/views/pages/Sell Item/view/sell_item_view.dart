@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/condition_provider.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
@@ -29,20 +30,16 @@ class SellItemScreen extends ConsumerWidget {
     final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: IconButton(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: PreluraAppBar(
+        leadingIcon: IconButton(
           icon: Icon(
             Icons.close,
             color: Theme.of(context).iconTheme.color,
           ),
           onPressed: () => context.router.popUntilRoot(),
         ),
-        title: Text(
-          'Sell an item',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 18),
-        ),
+        appbarTitle: 'Sell an item',
         centerTitle: true,
       ),
       body: SingleChildScrollView(

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../provider/product_list_provider.dart';
 import '../provider/sell_item_provider.dart';
@@ -14,20 +15,15 @@ class ProductListScreen extends ConsumerWidget {
     final sharedData = ref.watch(selectedProductListNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
-        ),
-        centerTitle: true,
-        title: Text(sharedData.selectedValue,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
-      ),
+      appBar: PreluraAppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
+          ),
+          centerTitle: true,
+          appbarTitle: sharedData.selectedValue),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20),
         child: Column(

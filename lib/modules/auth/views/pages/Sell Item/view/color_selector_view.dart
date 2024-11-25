@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 import '../provider/color_selector_provider.dart';
@@ -32,20 +33,14 @@ class ColorSelectorScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
-        ),
-        centerTitle: true,
-        title: Text("Colours",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
-      ),
+      appBar: PreluraAppBar(
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
+          ),
+          centerTitle: true,
+          appbarTitle: "Colours"),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

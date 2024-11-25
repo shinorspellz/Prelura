@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../res/colors.dart';
@@ -30,14 +31,15 @@ class SizeSelectionPage extends ConsumerWidget {
     final selectedSize = ref.watch(selectedSizeProvider);
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
         centerTitle: true,
-        title: Text("Sizes",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
+        appbarTitle: "Sizes",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
