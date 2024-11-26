@@ -34,6 +34,14 @@ class MyApp extends StatelessWidget {
               AppRouterObserver(),
             ],
           ),
+          builder: (context, child) {
+            return GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus(); // Dismiss the keyboard
+              },
+              child: child,
+            );
+          },
         );
       },
     );

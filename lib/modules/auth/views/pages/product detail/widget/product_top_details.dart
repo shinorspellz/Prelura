@@ -26,11 +26,12 @@ class ProductTopDetails extends ConsumerWidget {
             "Asos Edited patchwork quilt jacket in red and cherry quilt jacket in red and cherry",
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,9 +61,9 @@ class ProductTopDetails extends ConsumerWidget {
                   Text(
                     product.condition,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w300,
-                        ),
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500,
+                        color: PreluraColors.greyColor),
                   ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
@@ -70,14 +71,13 @@ class ProductTopDetails extends ConsumerWidget {
                   Row(
                     children: product.colors
                         .map((color) => Container(
-                              width: 10,
-                              height: 10,
-                              margin: const EdgeInsets.symmetric(horizontal: 1),
+                              width: 16,
+                              height: 16,
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
                               decoration: BoxDecoration(
                                 color:
                                     color, // Assuming `color` is a valid Color object
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.grey.shade300),
                               ),
                             ))
                         .toList(),
@@ -86,14 +86,14 @@ class ProductTopDetails extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "£${product.price.toStringAsFixed(2)}",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w500,
                     ),
               ),
               const SizedBox(height: 4),
@@ -106,27 +106,35 @@ class ProductTopDetails extends ConsumerWidget {
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(17.5)),
-                    child: Center(
-                      child: Text(
-                        "H",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
+                  // Container(
+                  //   height: 35,
+                  //   width: 35,
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.circular(17.5)),
+                  //   child: Center(
+                  //     child: Text(
+                  //       "H",
+                  //       style: Theme.of(context)
+                  //           .textTheme
+                  //           .bodyMedium!
+                  //           .copyWith(fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(17),
+                    child: Image.asset(
+                      PreluraIcons.mugShot,
+                      height: 35,
+                      width: 35,
                     ),
                   ),
                   const SizedBox(
@@ -142,7 +150,18 @@ class ProductTopDetails extends ConsumerWidget {
                             .bodyMedium!
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
-                      const Ratings()
+                      Row(
+                        children: [
+                          const Ratings(),
+                          Text(
+                            "(250)",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      )
                     ],
                   )
                 ],
@@ -150,7 +169,8 @@ class ProductTopDetails extends ConsumerWidget {
               AppButton(
                 onTap: () {},
                 text: "Ask a Question",
-                bgColor: PreluraColors.black,
+                bgColor: Colors.purple,
+                borderColor: Colors.purple,
                 textColor: PreluraColors.white,
                 width: 120,
                 height: 39,

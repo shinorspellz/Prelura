@@ -15,7 +15,7 @@ class PreluraColors {
   static const Color darkButtonColor = Color(0xFF37474F); //background: #37474F;
   static Color blackUpdated = '0C0F12'.fromHex;
   static Color blackButtonColorUpdated = '1A4577'.fromHex;
-  static const Color activeColor = Color(0xFF449da9);
+  static const Color activeColor = Colors.purple;
 
   static const Color darkSecondaryButtonColor = Color(0xFF82909D);
   static const Color appBarShadowColor = Color(0xFFEEEEEE);

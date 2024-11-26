@@ -24,7 +24,7 @@ class ItemGrid extends StatelessWidget {
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
-          childAspectRatio: 0.66,
+          childAspectRatio: 0.6,
         ),
         itemCount: items.length,
         itemBuilder: (context, index) {

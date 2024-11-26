@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../provider/price_provider.dart'; // Update this path
@@ -14,20 +15,14 @@ class PriceScreen extends ConsumerWidget {
     final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
-        ),
-        centerTitle: true,
-        title: Text("Price",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
-      ),
+      appBar: PreluraAppBar(
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
+          ),
+          centerTitle: true,
+          appbarTitle: "Price"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -97,7 +92,8 @@ class PriceScreen extends ConsumerWidget {
                             children: [
                               Text(
                                 item.price,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(item.name),
                               Text(item.size),

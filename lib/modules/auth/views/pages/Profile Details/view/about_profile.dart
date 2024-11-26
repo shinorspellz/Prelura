@@ -168,7 +168,7 @@ class AboutProfile extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
         child: Row(
           children: [
             Expanded(

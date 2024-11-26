@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
@@ -28,15 +29,7 @@ class BrandSelectionPage extends ConsumerWidget {
     final selectedBrand = ref.watch(selectedBrandProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        centerTitle: true,
-        title: Text("Brands",
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
-      ),
+      appBar: PreluraAppBar(centerTitle: true, appbarTitle: "Brands"),
       body: Column(
         children: [
           const Padding(

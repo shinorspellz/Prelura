@@ -14,7 +14,7 @@ class DisplayCard extends StatelessWidget {
         context.router.push(const ProductDetailRoute());
       },
       child: Container(
-        margin: const EdgeInsets.all(6),
+        width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,20 +22,21 @@ class DisplayCard extends StatelessWidget {
             // Wrap the Stack inside a ClipRRect to constrain the image
             ClipRRect(
               borderRadius:
-                  BorderRadius.circular(12), // Optional: rounded corners
+                  BorderRadius.circular(6), // Optional: rounded corners
               child: Stack(
                 children: [
                   Image.asset(
                     PreluraIcons.Image,
-                    height: 160,
+                    height: 180,
                     width: double.infinity, // Ensure the image fills the width
                     fit: BoxFit.cover,
                   ),
                   Positioned(
-                    bottom: 20,
-                    right: 15,
+                    bottom: 12,
+                    right: 12,
                     child: Container(
-                      padding: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.only(
+                          top: 5, bottom: 5, left: 8, right: 8),
                       decoration: BoxDecoration(
                         color: PreluraColors.blackCardColor,
                         borderRadius:
@@ -45,7 +46,7 @@ class DisplayCard extends StatelessWidget {
                         children: [
                           Icon(Icons.favorite_border_outlined,
                               size: 14, color: PreluraColors.white),
-                          const SizedBox(width: 5),
+                          const SizedBox(width: 2),
                           Text(
                             "14",
                             style: Theme.of(context)
@@ -60,7 +61,8 @@ class DisplayCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8), // Optional: Add space between image and text
+            const SizedBox(
+                height: 8), // Optional: Add space between image and text
             Text(
               "Anthropologie",
               style: Theme.of(context).textTheme.bodyMedium,

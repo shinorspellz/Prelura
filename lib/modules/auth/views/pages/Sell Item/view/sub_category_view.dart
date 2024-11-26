@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/shared_notifier.dart';
 import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/sub_category_provider.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 import '../../../widgets/menu_card.dart';
@@ -17,19 +18,15 @@ class SubCategoryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sharedData = ref.watch(selectedCategoryNotifierProvider);
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
+        leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
-        title: Text(sharedData.selectedValue,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 18,
-                )),
+        appbarTitle: sharedData.selectedValue,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20),

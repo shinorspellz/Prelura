@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 
 import '../widgets/live_card.dart';
@@ -52,7 +53,8 @@ class ProfileScreen extends StatelessWidget {
           onTap: () {
             context.router.push(const SettingRoute());
           }),
-      MenuCard(title: "Cookie setting", icon: const Icon(Icons.lock), onTap: () {}),
+      MenuCard(
+          title: "Cookie setting", icon: const Icon(Icons.lock), onTap: () {}),
       MenuCard(
           title: "About Prelura",
           icon: const Icon(Icons.info_outlined),
@@ -64,38 +66,27 @@ class ProfileScreen extends StatelessWidget {
             context.router.push(const LegalInformationRoute());
           }),
       MenuCard(
-          title: "Our platform", icon: const Icon(Icons.info_outlined), onTap: () {}),
+          title: "Our platform",
+          icon: const Icon(Icons.info_outlined),
+          onTap: () {}),
       MenuCard(
           title: "Help Centre",
           icon: const Icon(Icons.question_mark_rounded),
           onTap: () {}),
       MenuCard(
-          title: "Send your feedback", icon: const Icon(Icons.face), onTap: () {}),
+          title: "Send your feedback",
+          icon: const Icon(Icons.face),
+          onTap: () {}),
     ];
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        automaticallyImplyLeading: true,
-        title: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                  child: Text("Profile",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontSize: 18,
-                          )))
-            ],
-          ),
-        ),
+      appBar: PreluraAppBar(
+        appbarTitle: "Profile",
       ),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: SingleChildScrollView(
         child: Column(children: [
           MenuCard(
+              
               profilePic: true,
               title: "Vimini",
               additionalText: "View my profile",

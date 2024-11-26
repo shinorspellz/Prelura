@@ -57,7 +57,7 @@ class AppButton extends StatelessWidget {
               ? PreluraColors.disabledButonColor
               : bgColor ?? PreluraColors.activeColor.withOpacity(0.8),
         ),
-        height: height ?? 48,
+        height: height ?? 40,
         width: width ?? 150,
         child: Row(
           mainAxisAlignment: textWidget != null

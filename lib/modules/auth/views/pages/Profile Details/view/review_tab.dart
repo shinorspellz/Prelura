@@ -4,6 +4,7 @@ import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
 
 import '../../../../../../res/colors.dart';
+import '../../../../../../res/images.dart';
 
 class ReviewTab extends StatelessWidget {
   const ReviewTab({super.key});
@@ -151,12 +152,16 @@ class ReviewTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-                child: Text("S"), // Use user's initials
+              ClipRRect(
+                borderRadius: BorderRadius.circular(17.5),
+                child: Image.asset(
+                  PreluraIcons.mugShot,
+                  height: 35,
+                  width: 35,
+                ), // Use user's initials
               ),
               SizedBox(width: 16),
               Expanded(

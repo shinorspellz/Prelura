@@ -4,36 +4,52 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/about_profile.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/review_tab.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/user_wardrobe.dart';
+import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 
 @RoutePage()
-class ProfileDetailsScreen extends StatelessWidget {
+class ProfileDetailsScreen extends StatefulWidget {
   const ProfileDetailsScreen({super.key});
 
   @override
+  State<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+}
+
+class _ProfileDetailsScreenState extends State<ProfileDetailsScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          automaticallyImplyLeading: true,
-          centerTitle: true,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text("Lonin2999",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontSize: 18,
-                        )),
-              ),
-              const Icon(CupertinoIcons.envelope_badge)
-            ],
-          ),
-          bottom: TabBar(
+    return Scaffold(
+      appBar: PreluraAppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appbarTitle: "Lonin2999",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
+      ),
+      body: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
             indicatorColor: PreluraColors.activeColor,
             unselectedLabelColor:
                 PreluraColors.greyLightColor, // Text color for inactive tabs
@@ -57,14 +73,17 @@ class ProfileDetailsScreen extends StatelessWidget {
               )
             ],
           ),
-        ),
-        body: const TabBarView(
-          children: [
-            UserWardrobe(),
-            ReviewTab(),
-            AboutProfile(),
-          ],
-        ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                UserWardrobe(),
+                ReviewTab(),
+                AboutProfile(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

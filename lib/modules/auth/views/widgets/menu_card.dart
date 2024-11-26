@@ -7,11 +7,13 @@ class MenuCard extends StatelessWidget {
   const MenuCard(
       {super.key,
       required this.title,
+      this.borderbottom = true,
       this.icon,
       this.widget,
       required this.onTap,
       this.subtitle,
       this.profilePic = false,
+      this.rightArrow = true,
       this.additionalText});
   final String title;
   final String? subtitle;
@@ -20,6 +22,8 @@ class MenuCard extends StatelessWidget {
   final Function onTap;
   final bool profilePic;
   final Widget? widget;
+  final bool rightArrow;
+  final bool borderbottom;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +34,9 @@ class MenuCard extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context)
-                  .dividerColor, // Use the theme's divider color
+              color: borderbottom
+                  ? Theme.of(context).dividerColor
+                  : Colors.transparent, // Use the theme's divider color
               width: 2.0,
             ),
           ),
@@ -97,10 +102,11 @@ class MenuCard extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 18,
-                    ),
+                    if (rightArrow)
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 18,
+                      ),
                   ],
                 ),
               ),
