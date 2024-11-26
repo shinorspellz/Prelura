@@ -48,7 +48,7 @@ final productDetailProvider = Provider<ProductDetail>((ref) {
     title: 'Asos Edited patchwork quilt jacket in red and cherry',
     brand: 'Asos Original',
     condition: 'New with tags',
-    colors: [Colors.pink, Colors.red, Colors.deepOrange],
+    colors: [Color(0xFFddb6b7), Color(0xFF6f2225), Color(0xFFd63b3a)],
     description:
         'Item has never been worn, it was initially bought as a gift for my sister but it didn’t fit.',
     price: 300.00,

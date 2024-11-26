@@ -16,6 +16,8 @@ class UserWardrobe extends StatelessWidget {
       child: Column(
         children: [
           MenuCard(
+            rightArrow: false,
+            borderbottom: false,
             title: "Lonin2999",
             profilePic: true,
             onTap: () {},
@@ -28,118 +30,79 @@ class UserWardrobe extends StatelessWidget {
             ),
           ),
           Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
               children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         children: [
-                          // Star Wardrobe Badge
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: BoxDecoration(
-                                color: PreluraColors.activeColor
-                                    .withOpacity(0.4), // Customize color
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Text("Star Wardrobe",
-                                style: Theme.of(context).textTheme.bodySmall),
+                          const Icon(
+                            Icons.location_on_outlined,
+                            size: 14,
                           ),
-                          const SizedBox(height: 8),
-
-                          // Facebook and Email Info
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.check_circle_outline,
-                                size: 14,
-                              ),
-                              const SizedBox(width: 8),
-                              Text("Facebook, Email",
-                                  style: Theme.of(context).textTheme.bodySmall),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.location_on_outlined,
-                                size: 14,
-                              ),
-                              const SizedBox(width: 8),
-                              Text("Exeter, United Kingdom",
-                                  style: Theme.of(context).textTheme.bodySmall),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.wifi,
-                                size: 14,
-                              ),
-                              const SizedBox(width: 8),
-                              Text.rich(TextSpan(
-                                  text: "3",
-                                  style: const TextStyle(
-                                      color: PreluraColors.activeColor,
-                                      decorationColor:
-                                          PreluraColors.activeColor,
-                                      decoration: TextDecoration.underline),
-                                  children: [
-                                    TextSpan(
-                                      text: " followers,",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall
-                                                ?.color,
-                                          ),
-                                    ),
-                                  ])),
-                              const SizedBox(width: 6),
-                              Text.rich(TextSpan(
-                                  text: "3",
-                                  style: const TextStyle(
-                                      color: PreluraColors.activeColor,
-                                      decorationColor:
-                                          PreluraColors.activeColor,
-                                      decoration: TextDecoration.underline),
-                                  children: [
-                                    TextSpan(
-                                      text: " following",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodySmall
-                                                ?.color,
-                                          ),
-                                    ),
-                                  ])),
-                            ],
-                          ),
+                          const SizedBox(width: 8),
+                          Text("Exeter, United Kingdom",
+                              style: Theme.of(context).textTheme.bodySmall),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 18,
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.wifi,
+                            size: 14,
+                          ),
+                          const SizedBox(width: 8),
+                          Text.rich(TextSpan(
+                              text: "3",
+                              style: const TextStyle(
+                                  color: PreluraColors.activeColor,
+                                  decorationColor: PreluraColors.activeColor,
+                                  decoration: TextDecoration.underline),
+                              children: [
+                                TextSpan(
+                                  text: " followers,",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.color,
+                                      ),
+                                ),
+                              ])),
+                          const SizedBox(width: 6),
+                          Text.rich(TextSpan(
+                              text: "3",
+                              style: const TextStyle(
+                                  color: PreluraColors.activeColor,
+                                  decorationColor: PreluraColors.activeColor,
+                                  decoration: TextDecoration.underline),
+                              children: [
+                                TextSpan(
+                                  text: " following",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.color,
+                                      ),
+                                ),
+                              ])),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

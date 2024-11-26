@@ -41,7 +41,22 @@ class HomeScreen extends ConsumerWidget {
               _buildSectionTitle('Recommended for You',
                   "Items selected by amyleeliu", context),
               const DisplaySection(),
+              SizedBox(
+                height: 12,
+              ),
               const DisplayLiveCard(),
+              SizedBox(
+                height: 12,
+              ),
+              _buildSectionTitle(
+                  'Antropologies', "Items selected by amyleeliu", context),
+              const DisplaySection(),
+              _buildSectionTitle('Recommended for You',
+                  "Items selected by amyleeliu", context),
+              const DisplaySection(),
+              _buildSectionTitle('Recommended for You',
+                  "Items selected by amyleeliu", context),
+              const DisplaySection(),
               const SizedBox(
                 height: 30,
               )
@@ -57,7 +72,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
   final tabs = ["All", "Designer", "Electronics"];
 
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: List.generate(tabs.length, (index) {
@@ -66,7 +81,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
             ref.read(selectedTabProvider.notifier).state = index;
           },
           child: Container(
-            padding: const EdgeInsets.only(right: 16.0, left: 16, bottom: 8),
+            padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -97,18 +112,20 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
 Widget _buildSectionTitle(
     String MainTitle, String subtitle, BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(
-      vertical: 10,
-    ),
+    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               MainTitle,
               textAlign: TextAlign.left,
               style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            SizedBox(
+              height: 1,
             ),
             Text(
               subtitle,

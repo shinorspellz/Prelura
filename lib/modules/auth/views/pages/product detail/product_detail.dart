@@ -49,7 +49,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   children: [
                     CarouselSlider(
                       options: CarouselOptions(
-                        height: 400,
+                        height: 550,
                         autoPlay: true,
                         enlargeCenterPage: false,
                         padEnds: false,
@@ -225,20 +225,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                           color: Theme.of(context).iconTheme.color),
                       onPressed: () => context.router.back(),
                     ),
-                    appbarTitle: "AppBar",
-                    trailingIcon: [
-                      Icon(
-                        Icons.arrow_back,
-                        color: Theme.of(context).iconTheme.color,
-                      ),
-                    ],
+                    appbarTitle: "App Bar",
+                    // trailingIcon: [
+                    //   Icon(
+                    //     Icons.arrow_back,
+                    //     color: Theme.of(context).iconTheme.color,
+                    //   ),
+                    // ],
                   ),
                 )
               : const SizedBox.shrink(),
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
         child: Row(
           children: [
             Expanded(

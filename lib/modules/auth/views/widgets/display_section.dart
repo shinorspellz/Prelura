@@ -9,13 +9,15 @@ class DisplaySection extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> carouselItems = List.generate(
       6,
-      (index) => const DisplayCard(),
+      (index) => Container(
+          margin: EdgeInsets.symmetric(horizontal: 6),
+          child: const DisplayCard()),
     );
 
     return CarouselSlider(
       options: CarouselOptions(
         height: 270,
-        autoPlay: true,
+        autoPlay: false,
         enlargeCenterPage: false,
         padEnds: false,
         disableCenter: true,

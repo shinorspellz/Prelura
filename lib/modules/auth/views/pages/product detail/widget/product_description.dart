@@ -28,10 +28,9 @@ class ProductDescription extends ConsumerWidget {
               children: [
                 Text(
                   "Description",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontWeight: FontWeight.normal, fontSize: 10.sp),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                 ),
                 const SizedBox(
                   height: 12,
@@ -54,11 +53,11 @@ class ProductDescription extends ConsumerWidget {
                                 "For more details, please review the full legal disclaimer."
                             : "worn a couple times but left tag in to resell. "
                                 "I have the authentication proof feel free to ask for it...",
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       TextSpan(
                         text: isDescriptionExpanded ? " See less" : " See more",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
                             ),
@@ -75,7 +74,7 @@ class ProductDescription extends ConsumerWidget {
           _buildInfoRow("Views", "${product.views}", context),
           _buildInfoRow("Uploaded", product.uploadTime, context),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
             decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 border: Border(
@@ -199,7 +198,7 @@ class ProductDescription extends ConsumerWidget {
 
   Widget _buildInfoRow(String label, String value, context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(

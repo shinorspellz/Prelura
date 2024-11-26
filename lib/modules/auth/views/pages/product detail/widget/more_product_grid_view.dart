@@ -92,9 +92,9 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
                   true, // Makes GridView take only as much height as needed
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 16.0,
-                crossAxisSpacing: 16.0,
-                childAspectRatio: 0.7,
+                mainAxisSpacing: 6.0,
+                // crossAxisSpacing: 6.0,
+                // childAspectRatio: 0.7,
               ),
               itemCount: 4,
               itemBuilder: (context, index) {

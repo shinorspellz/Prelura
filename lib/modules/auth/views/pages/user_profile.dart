@@ -86,6 +86,7 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           MenuCard(
+              
               profilePic: true,
               title: "Vimini",
               additionalText: "View my profile",
