@@ -37,7 +37,7 @@ class MenuCard extends StatelessWidget {
               color: borderbottom
                   ? Theme.of(context).dividerColor
                   : Colors.transparent, // Use the theme's divider color
-              width: 2.0,
+              width: 1.0,
             ),
           ),
         ),

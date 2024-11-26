@@ -33,17 +33,24 @@ class ProductListScreen extends ConsumerWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: sharedData.relatedStrings.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(sharedData.relatedStrings[index]),
-                    trailing: Radio<String>(
-                        value: sharedData.relatedStrings[index],
-                        groupValue: sharedData.selectedValue,
-                        onChanged: (value) => {
-                              ref
-                                  .read(sellItemProvider.notifier)
-                                  .updateProduct(value!),
-                              context.router.popUntilRoot()
-                            }),
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(sharedData.relatedStrings[index]),
+                        trailing: Radio<String>(
+                            value: sharedData.relatedStrings[index],
+                            groupValue: sharedData.selectedValue,
+                            onChanged: (value) => {
+                                  ref
+                                      .read(sellItemProvider.notifier)
+                                      .updateProduct(value!),
+                                  context.router.popUntilRoot()
+                                }),
+                      ),
+                      const Divider(
+                        thickness: 1,
+                      ),
+                    ],
                   );
                 }),
           ],

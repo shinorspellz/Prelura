@@ -68,31 +68,28 @@ class ProductDescription extends ConsumerWidget {
               ],
             ),
           ),
+
           _buildInfoRow("Category", product.category, context),
           _buildInfoRow("Size", product.size, context),
           _buildInfoRow("Condition", product.condition, context),
           _buildInfoRow("Views", "${product.views}", context),
           _buildInfoRow("Uploaded", product.uploadTime, context),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 border: Border(
-                    top: BorderSide(
-                      width: 1,
-                      color: Theme.of(context).dividerColor,
-                    ),
                     bottom: BorderSide(
-                      width: 1,
-                      color: Theme.of(context).dividerColor,
-                    ))),
+                  width: 1,
+                  color: Theme.of(context).dividerColor,
+                ))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "Postage",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w500,
                       ),
                 ),
                 Text(
@@ -198,30 +195,26 @@ class ProductDescription extends ConsumerWidget {
 
   Widget _buildInfoRow(String label, String value, context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
-              top: BorderSide(
-                width: 1,
-                color: Theme.of(context).dividerColor,
-              ),
               bottom: BorderSide(
-                width: 1,
-                color: Theme.of(context).dividerColor,
-              ))),
+            width: 1,
+            color: Theme.of(context).dividerColor,
+          ))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
           ),
           Text(
             value,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
           ),
         ],
       ),

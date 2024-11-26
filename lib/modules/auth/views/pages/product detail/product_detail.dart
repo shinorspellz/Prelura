@@ -140,18 +140,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                     ),
                                   ),
                                 )),
-                            InkWell(
-                              onTap: () {},
-                              child: CircleAvatar(
-                                backgroundColor:
-                                    PreluraColors.black.withOpacity(0.2),
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: PreluraColors.white,
-                                  weight: 20,
-                                ),
-                              ),
-                            )
+                            // InkWell(
+                            //   onTap: () {},
+                            //   child: CircleAvatar(
+                            //     backgroundColor:
+                            //         PreluraColors.black.withOpacity(0.2),
+                            //     child: Icon(
+                            //       Icons.arrow_back,
+                            //       color: PreluraColors.white,
+                            //       weight: 20,
+                            //     ),
+                            //   ),
+                            // )
                           ],
                         )),
                   ],
@@ -205,10 +205,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   child: TabBarView(controller: _tabController, children: [
                     _buildMemberItemsTab(context),
-                    const Center(child: Text("Similar items content")),
+                    _buildSimilarItemsTab(context),
                   ]),
                 ),
               ],
@@ -219,11 +219,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   opacity: showAppBar,
                   duration: const Duration(milliseconds: 340),
                   child: PreluraAppBar(
-                    appBarHeight: 90,
+                    appBarHeight: 50,
                     leadingIcon: IconButton(
                       icon: Icon(Icons.arrow_back,
                           color: Theme.of(context).iconTheme.color),
-                      onPressed: () => context.router.back(),
+                      onPressed: () => context.router.popForced(),
                     ),
                     appbarTitle: "App Bar",
                     // trailingIcon: [
@@ -238,7 +238,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
         child: Row(
           children: [
             Expanded(
@@ -315,7 +316,41 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     crossAxisCount: 2,
                     mainAxisSpacing: 16.0,
                     crossAxisSpacing: 16.0,
-                    childAspectRatio: 0.6, // Adjust to fit your card content
+                    childAspectRatio: 0.59, // Adjust to fit your card content
+                  ),
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return const DisplayCard(); // Replace with your custom widget
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSimilarItemsTab(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Grid View Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return GridView.builder(
+                  physics:
+                      const NeverScrollableScrollPhysics(), // Prevent internal scrolling
+                  shrinkWrap:
+                      true, // Ensures the GridView only takes needed space
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 16.0,
+                    crossAxisSpacing: 16.0,
+                    childAspectRatio: 0.59, // Adjust to fit your card content
                   ),
                   itemCount: 4,
                   itemBuilder: (context, index) {

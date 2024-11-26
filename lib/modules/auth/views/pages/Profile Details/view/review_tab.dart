@@ -188,20 +188,6 @@ class ReviewTab extends StatelessWidget {
               ),
             ],
           ),
-          AppButton(
-            onTap: () {
-              // Add translation functionality
-            },
-            textWidget: const Icon(
-              CupertinoIcons.globe,
-              size: 16,
-              color: PreluraColors.activeColor,
-            ),
-            text: "Tap to translate",
-            bgColor: Theme.of(context).scaffoldBackgroundColor,
-            borderColor: Colors.transparent,
-            height: 30,
-          ),
         ],
       ),
     );

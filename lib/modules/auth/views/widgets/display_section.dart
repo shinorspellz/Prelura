@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/main.dart';
 import 'package:prelura_app/modules/auth/views/widgets/card.dart';
+import 'package:sizer/sizer.dart';
 
 class DisplaySection extends StatelessWidget {
   const DisplaySection({super.key});
@@ -16,7 +18,7 @@ class DisplaySection extends StatelessWidget {
 
     return CarouselSlider(
       options: CarouselOptions(
-        height: 270,
+        height: 35.h,
         autoPlay: false,
         enlargeCenterPage: false,
         padEnds: false,

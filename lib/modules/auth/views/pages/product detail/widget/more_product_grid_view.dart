@@ -94,7 +94,7 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
                 crossAxisCount: 2,
                 mainAxisSpacing: 6.0,
                 // crossAxisSpacing: 6.0,
-                // childAspectRatio: 0.7,
+                childAspectRatio: 0.59,
               ),
               itemCount: 4,
               itemBuilder: (context, index) {

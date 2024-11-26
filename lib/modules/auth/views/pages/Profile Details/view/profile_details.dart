@@ -5,6 +5,8 @@ import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/abou
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/review_tab.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/user_wardrobe.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 
 import '../../../../../../res/colors.dart';
 
@@ -43,7 +45,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen>
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
+          onPressed: () => AutoRouter.of(context).popForced(),
         ),
       ),
       body: Column(

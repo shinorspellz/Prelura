@@ -26,6 +26,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
           centerTitle: true,
           appbarTitle: "Material (recommended)"),
       body: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: [
             Expanded(
@@ -34,56 +35,66 @@ class MaterialSelectionScreen extends ConsumerWidget {
                   final value = entry;
                   final isSelected = notifier.isSelected(value);
 
-                  return CheckboxListTile(
-                    activeColor: Colors.teal,
-                    checkColor: Colors.black,
-                    tileColor: Colors.grey[900],
-                    title: Text(
-                      value,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    value: isSelected,
-                    onChanged: (isChecked) {
-                      if (isChecked == true || isSelected) {
-                        notifier.toggleMaterial(value);
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              "You can only select up to 2 colours.",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
-                    },
+                  return Column(
+                    children: [
+                      CheckboxListTile(
+                        activeColor: Colors.teal,
+                        checkColor: Colors.black,
+                        tileColor: Theme.of(context).scaffoldBackgroundColor,
+                        title: Text(
+                          value,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        value: isSelected,
+                        onChanged: (isChecked) {
+                          if (isChecked == true || isSelected) {
+                            notifier.toggleMaterial(value);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  "You can only select up to 2 colours.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                      Divider(
+                        thickness: 1,
+                      )
+                    ],
                   );
                 }).toList(),
               ),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: materialState.selectedMaterials.isNotEmpty
-                  ? () {
-                      // Pass the data back or proceed to the next screen
-                      Navigator.pop(context);
-                    }
-                  : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: materialState.selectedMaterials.isNotEmpty
+                    ? () {
+                        // Pass the data back or proceed to the next screen
+                        Navigator.pop(context);
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.teal,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  "Done",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: PreluraColors.white),
+                child: Center(
+                  child: Text(
+                    "Done",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: PreluraColors.white),
+                  ),
                 ),
               ),
             ),
