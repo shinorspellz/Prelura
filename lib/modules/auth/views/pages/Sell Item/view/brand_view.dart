@@ -29,7 +29,14 @@ class BrandSelectionPage extends ConsumerWidget {
     final selectedBrand = ref.watch(selectedBrandProvider);
 
     return Scaffold(
-      appBar: PreluraAppBar(centerTitle: true, appbarTitle: "Brands"),
+      appBar: PreluraAppBar(
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
+          ),
+          centerTitle: true,
+          appbarTitle: "Brand"),
       body: Column(
         children: [
           const Padding(
@@ -50,35 +57,58 @@ class BrandSelectionPage extends ConsumerWidget {
                   title: Text('Suggested'),
                   dense: true,
                 ),
-                ...suggestedBrands.map((brand) => ListTile(
-                      title: Text(brand),
-                      trailing: Radio<String>(
-                        value: brand,
-                        groupValue: selectedBrand,
-                        onChanged: (value) => {
-                          ref
-                              .read(selectedBrandProvider.notifier)
-                              .selectBrand(value),
-                          context.back()
-                        },
-                      ),
+                const Divider(
+                  thickness: 1,
+                ),
+                ...suggestedBrands.map((brand) => Column(
+                      children: [
+                        ListTile(
+                          title: Text(brand),
+                          trailing: Radio<String>(
+                            value: brand,
+                            groupValue: selectedBrand,
+                            onChanged: (value) => {
+                              ref
+                                  .read(selectedBrandProvider.notifier)
+                                  .selectBrand(value),
+                              context.back()
+                            },
+                          ),
+                        ),
+                        const Divider(
+                          thickness: 1,
+                        ),
+                      ],
                     )),
                 const ListTile(
                   title: Text('Popular brands'),
                   dense: true,
                 ),
-                ...popularBrands.map((brand) => ListTile(
-                      title: Text(brand),
-                      trailing: Radio<String>(
-                          value: brand,
-                          groupValue: selectedBrand,
-                          onChanged: (value) => {
-                                ref
-                                    .read(selectedBrandProvider.notifier)
-                                    .selectBrand(value),
-                                context.back()
-                              }),
+                const Divider(
+                  thickness: 1,
+                ),
+                ...popularBrands.map((brand) => Column(
+                      children: [
+                        ListTile(
+                          title: Text(brand),
+                          trailing: Radio<String>(
+                              value: brand,
+                              groupValue: selectedBrand,
+                              onChanged: (value) => {
+                                    ref
+                                        .read(selectedBrandProvider.notifier)
+                                        .selectBrand(value),
+                                    context.back()
+                                  }),
+                        ),
+                        const Divider(
+                          thickness: 1,
+                        ),
+                      ],
                     )),
+                const Divider(
+                  thickness: 1,
+                ),
               ],
             ),
           ),

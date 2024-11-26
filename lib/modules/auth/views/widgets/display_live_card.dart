@@ -16,7 +16,7 @@ class DisplayLiveCard extends StatelessWidget {
       child: CarouselSlider(
         options: CarouselOptions(
           height: 200,
-          autoPlay: true,
+          autoPlay: false,
           enlargeCenterPage: false,
           padEnds: false,
           disableCenter: true,

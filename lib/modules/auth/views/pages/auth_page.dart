@@ -42,7 +42,7 @@ class _AuthPageState extends State<AuthPage> {
                   }
                 },
                 iconSize: 24,
-                elevation: 3.0,
+                elevation: 0,
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 selectedFontSize: 15,
                 unselectedFontSize: 15,

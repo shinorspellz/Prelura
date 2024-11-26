@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
+import 'package:sizer/sizer.dart';
 
 class DisplayCard extends StatelessWidget {
   const DisplayCard({super.key});
@@ -27,7 +29,7 @@ class DisplayCard extends StatelessWidget {
                 children: [
                   Image.asset(
                     PreluraIcons.Image,
-                    height: 180,
+                    height: 25.h,
                     width: double.infinity, // Ensure the image fills the width
                     fit: BoxFit.cover,
                   ),
@@ -69,9 +71,12 @@ class DisplayCard extends StatelessWidget {
             ),
             Text(
               "Very Good",
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Text(
               "#5.00",
               style: Theme.of(context).textTheme.bodyMedium,

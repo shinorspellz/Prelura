@@ -72,7 +72,10 @@ class SizeSelectionPage extends ConsumerWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 6),
+          Divider(
+            thickness: 1,
+          ),
           Expanded(
             child: ListView(
               children: sizes.map((size) {
@@ -91,9 +94,7 @@ class SizeSelectionPage extends ConsumerWidget {
                               }),
                     ),
                     Divider(
-                      color: Theme.of(context).dividerColor,
-                      height: 10,
-                      thickness: 3,
+                      thickness: 1,
                     ),
                   ],
                 );

@@ -26,8 +26,9 @@ class ConditionScreen extends ConsumerWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const Divider(),
-            const Divider(),
+            SizedBox(
+              height: 24,
+            ),
             ListTile(
               onTap: () {
                 ref
@@ -50,13 +51,9 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            const Divider(),
-            Divider(
-              color: Theme.of(context).dividerColor,
-              height: 10,
-              thickness: 3,
+            const Divider(
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
               onTap: () {
                 ref
@@ -78,13 +75,9 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            const Divider(),
-            Divider(
-              color: Theme.of(context).dividerColor,
-              height: 10,
-              thickness: 3,
+            const Divider(
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
               onTap: () {
                 ref
@@ -106,13 +99,9 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            const Divider(),
-            Divider(
-              color: Theme.of(context).dividerColor,
-              height: 10,
-              thickness: 3,
+            const Divider(
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
               onTap: () {
                 ref.read(conditionProvider.notifier).selectCondition("Good");
@@ -132,13 +121,9 @@ class ConditionScreen extends ConsumerWidget {
                 },
               ),
             ),
-            const Divider(),
-            Divider(
-              color: Theme.of(context).dividerColor,
-              height: 10,
-              thickness: 3,
+            const Divider(
+              thickness: 1,
             ),
-            const Divider(),
             ListTile(
               title: const Text("Satisfactory"),
               onTap: () {
@@ -159,6 +144,9 @@ class ConditionScreen extends ConsumerWidget {
                   }
                 },
               ),
+            ),
+            const Divider(
+              thickness: 1,
             ),
           ],
         ),

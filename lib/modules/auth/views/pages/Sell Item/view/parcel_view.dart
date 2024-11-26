@@ -27,8 +27,9 @@ class ParcelScreen extends ConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Divider(),
-          const Divider(),
+          SizedBox(
+            height: 24,
+          ),
           ListTile(
             title: Text(parcelSizes[0]),
             subtitle: const Text(
@@ -44,13 +45,9 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          const Divider(),
-          Divider(
-            color: Theme.of(context).dividerColor,
-            height: 10,
-            thickness: 3,
+          const Divider(
+            thickness: 1,
           ),
-          const Divider(),
           ListTile(
             title: Text(parcelSizes[1]),
             subtitle: const Text(
@@ -66,13 +63,9 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          const Divider(),
-          Divider(
-            color: Theme.of(context).dividerColor,
-            height: 10,
-            thickness: 3,
+          const Divider(
+            thickness: 1,
           ),
-          const Divider(),
           ListTile(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,8 +98,8 @@ class ParcelScreen extends ConsumerWidget {
                   Navigator.pop(context);
                 }),
           ),
-          const SizedBox(
-            height: 16,
+          const Divider(
+            thickness: 1,
           ),
           const Padding(
             padding: EdgeInsets.only(left: 16.0, top: 16),

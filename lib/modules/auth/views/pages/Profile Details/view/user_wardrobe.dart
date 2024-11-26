@@ -41,11 +41,11 @@ class UserWardrobe extends StatelessWidget {
                         children: [
                           const Icon(
                             Icons.location_on_outlined,
-                            size: 14,
+                            size: 16,
                           ),
                           const SizedBox(width: 8),
                           Text("Exeter, United Kingdom",
-                              style: Theme.of(context).textTheme.bodySmall),
+                              style: Theme.of(context).textTheme.bodyMedium),
                         ],
                       ),
                       const SizedBox(
@@ -60,16 +60,20 @@ class UserWardrobe extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text.rich(TextSpan(
                               text: "3",
-                              style: const TextStyle(
-                                  color: PreluraColors.activeColor,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: PreluraColors.activeColor,
+                                      decorationColor:
+                                          PreluraColors.activeColor,
+                                      decoration: TextDecoration.underline),
                               children: [
                                 TextSpan(
                                   text: " followers,",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodySmall
+                                      .bodyMedium
                                       ?.copyWith(
                                         color: Theme.of(context)
                                             .textTheme
@@ -81,16 +85,20 @@ class UserWardrobe extends StatelessWidget {
                           const SizedBox(width: 6),
                           Text.rich(TextSpan(
                               text: "3",
-                              style: const TextStyle(
-                                  color: PreluraColors.activeColor,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: PreluraColors.activeColor,
+                                      decorationColor:
+                                          PreluraColors.activeColor,
+                                      decoration: TextDecoration.underline),
                               children: [
                                 TextSpan(
                                   text: " following",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodySmall
+                                      .bodyMedium
                                       ?.copyWith(
                                         color: Theme.of(context)
                                             .textTheme

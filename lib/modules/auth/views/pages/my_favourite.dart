@@ -26,7 +26,7 @@ class MyFavouriteScreen extends StatelessWidget {
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
+          onPressed: () => context.router.popForced(),
         ),
       ),
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
@@ -37,7 +37,7 @@ class MyFavouriteScreen extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 0.68),
+              childAspectRatio: 0.58),
           itemCount: items.length,
           itemBuilder: (context, index) {
             return items[index];
