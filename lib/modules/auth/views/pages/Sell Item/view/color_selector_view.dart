@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 import '../provider/color_selector_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class ColorSelectorScreen extends ConsumerWidget {
@@ -13,8 +14,8 @@ class ColorSelectorScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Watch provider state
-    final state = ref.watch(colorSelectorProvider);
-    final notifier = ref.read(colorSelectorProvider.notifier);
+    final state = ref.watch(sellItemProvider).selectedColors;
+    final notifier = ref.read(sellItemProvider.notifier);
 
     // Color options
     final colorOptions = {
@@ -37,7 +38,7 @@ class ColorSelectorScreen extends ConsumerWidget {
           leadingIcon: IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.back(),
+            onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
           appbarTitle: "Colours"),
@@ -75,7 +76,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                 children: colorOptions.entries.map((entry) {
                   final colorName = entry.key;
                   final colorValue = entry.value;
-                  final isSelected = notifier.isSelected(colorName);
+                  final isSelected = notifier.isColorSelected(colorName);
 
                   return Column(
                     children: [
@@ -120,10 +121,9 @@ class ColorSelectorScreen extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ElevatedButton(
-                onPressed: state.selectedColors.isNotEmpty
+                onPressed: state.isNotEmpty
                     ? () {
-                        // Pass the data back or proceed to the next screen
-                        Navigator.pop(context, state.selectedColors);
+                        context.router.popForced();
                       }
                     : null,
                 style: ElevatedButton.styleFrom(

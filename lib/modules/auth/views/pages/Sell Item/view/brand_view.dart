@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class BrandSelectionPage extends ConsumerWidget {
@@ -26,14 +27,14 @@ class BrandSelectionPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedBrand = ref.watch(selectedBrandProvider);
+    final selectedBrand = ref.watch(sellItemProvider).brand;
 
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.back(),
+            onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
           appbarTitle: "Brand"),
@@ -96,7 +97,7 @@ class BrandSelectionPage extends ConsumerWidget {
                               groupValue: selectedBrand,
                               onChanged: (value) => {
                                     ref
-                                        .read(selectedBrandProvider.notifier)
+                                        .read(sellItemProvider.notifier)
                                         .selectBrand(value),
                                     context.back()
                                   }),

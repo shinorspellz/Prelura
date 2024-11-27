@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/res/gap.dart';
+import 'package:prelura_app/modules/auth/views/widgets/gap.dart';
 
 class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
   PreluraAppBar({

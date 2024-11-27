@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/res/colors.dart';
 
-import '../provider/price_provider.dart'; // Update this path
+import '../provider/price_provider.dart';
+import '../provider/sell_item_provider.dart'; // Update this path
 
 @RoutePage()
 class PriceScreen extends ConsumerWidget {
@@ -12,6 +13,7 @@ class PriceScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final priceState = ref.watch(sellItemProvider).price;
     final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
@@ -19,7 +21,7 @@ class PriceScreen extends ConsumerWidget {
           leadingIcon: IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.back(),
+            onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
           appbarTitle: "Price"),
@@ -37,13 +39,13 @@ class PriceScreen extends ConsumerWidget {
                 border: OutlineInputBorder(),
               ),
               controller: TextEditingController(
-                text: pricePageState.currentPrice,
+                text: priceState,
               ),
               onChanged: (value) {
-                ref.read(pricePageProvider.notifier).updatePrice(value);
+                ref.read(sellItemProvider.notifier).updatePrice(value);
               },
               onSubmitted: (value) {
-                ref.read(pricePageProvider.notifier).updatePrice(value);
+                ref.read(sellItemProvider.notifier).updatePrice(value);
               },
             ),
             const SizedBox(height: 32),
@@ -110,14 +112,14 @@ class PriceScreen extends ConsumerWidget {
             // Done Button
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: pricePageState.currentPrice.isNotEmpty
+              onPressed: priceState.isNotEmpty
                   ? () {
                       // Pass the data back or proceed to the next screen
                       Navigator.pop(context);
                     }
                   : null,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
+                backgroundColor: PreluraColors.activeColor,
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),

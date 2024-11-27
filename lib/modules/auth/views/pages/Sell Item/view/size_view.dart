@@ -6,6 +6,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../../res/colors.dart';
 import '../provider/brand_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class SizeSelectionPage extends ConsumerWidget {
@@ -88,9 +89,9 @@ class SizeSelectionPage extends ConsumerWidget {
                           groupValue: selectedSize,
                           onChanged: (value) => {
                                 ref
-                                    .read(selectedSizeProvider.notifier)
+                                    .read(sellItemProvider.notifier)
                                     .selectSize(value),
-                                context.back()
+                                context.router.popForced(),
                               }),
                     ),
                     Divider(

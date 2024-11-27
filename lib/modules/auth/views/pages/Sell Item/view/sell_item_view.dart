@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../res/colors.dart';
+import '../../auth_page.dart';
 import '../provider/brand_provider.dart';
 import '../provider/parcel_provider.dart';
 import '../provider/price_provider.dart';
@@ -23,11 +24,6 @@ class SellItemScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(sellItemProvider);
     final notifier = ref.read(sellItemProvider.notifier);
-    final brandSelected = ref.watch(selectedBrandProvider);
-    final sizeSelected = ref.watch(selectedSizeProvider);
-    final parcelSizes = ref.watch(parcelProvider);
-    final selectedCondition = ref.watch(conditionProvider);
-    final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -37,7 +33,56 @@ class SellItemScreen extends ConsumerWidget {
             Icons.close,
             color: Theme.of(context).iconTheme.color,
           ),
-          onPressed: () => context.router.popUntilRoot(),
+          onPressed: () async {
+            FocusScope.of(context).unfocus();
+            print("true");
+
+            final notifier = ref.read(sellItemProvider.notifier);
+
+            if (notifier.hasChanges()) {
+              final shouldDiscard = await showDialog<bool>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Unsaved Changes'),
+                    content: const Text(
+                        'You have unsaved changes. Do you want to save them as a draft or discard them?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => {
+                          notifier.resetState(),
+                          Navigator.of(context).pop(false)
+                        },
+                        child: const Text('Discard'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: const Text('Save Draft'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(null),
+                        child: const Text('Cancel'),
+                      ),
+                    ],
+                  );
+                },
+              );
+
+              if (shouldDiscard == null) return; // User canceled.
+              if (shouldDiscard) {
+                // Save draft logic
+                await notifier.uploadItem(); // Simulate saving the draft
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Draft saved successfully!')),
+                );
+              } else {
+                notifier.resetState();
+              }
+            }
+            final tabRouter = AutoTabsRouter.of(context);
+            tabRouter
+                .setActiveIndex(ref.read(routePathProvider.notifier).state);
+          },
         ),
         appbarTitle: 'Sell an item',
         centerTitle: true,
@@ -123,12 +168,18 @@ class SellItemScreen extends ConsumerWidget {
               TextField(
                 autofocus: false,
                 onChanged: notifier.updateTitle,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
+                style: Theme.of(context).textTheme.bodyMedium,
+                decoration: InputDecoration(
                   labelText: 'Title',
-                  labelStyle: TextStyle(color: Colors.grey),
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w400),
                   hintText: 'e.g. White COS Jumper',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w400),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -138,13 +189,19 @@ class SellItemScreen extends ConsumerWidget {
               TextField(
                 autofocus: false,
                 onChanged: notifier.updateDescription,
-                style: const TextStyle(color: Colors.white),
+                style: Theme.of(context).textTheme.bodyMedium,
                 maxLines: 4,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Describe your item',
-                  labelStyle: TextStyle(color: Colors.grey),
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w400),
                   hintText: 'e.g. only worn a few times, true to size',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w400),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -160,7 +217,7 @@ class SellItemScreen extends ConsumerWidget {
               ),
               MenuCard(
                 title: 'Brand',
-                subtitle: brandSelected ?? "",
+                subtitle: state.brand ?? "",
                 onTap: () {
                   context.router.push(const BrandSelectionRoute());
                 },
@@ -168,7 +225,7 @@ class SellItemScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               MenuCard(
                 title: 'Size',
-                subtitle: sizeSelected ?? "",
+                subtitle: state.size ?? "",
                 onTap: () {
                   context.router.push(const SizeSelectionRoute());
                 },
@@ -181,7 +238,7 @@ class SellItemScreen extends ConsumerWidget {
               ),
               MenuCard(
                 title: 'Condtion',
-                subtitle: selectedCondition ?? "",
+                subtitle: state.selectedCondition ?? "",
                 onTap: () {
                   context.router.push(const ConditionRoute());
                 },
@@ -194,7 +251,6 @@ class SellItemScreen extends ConsumerWidget {
               ),
               MenuCard(
                 title: 'Material (Recommended)',
-                subtitle: brandSelected ?? "",
                 onTap: () {
                   context.router.push(const MaterialSelectionRoute());
                 },
@@ -202,7 +258,7 @@ class SellItemScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               MenuCard(
                 title: 'Price',
-                subtitle: pricePageState.currentPrice,
+                subtitle: state.price,
                 onTap: () {
                   context.router.push(const PriceRoute());
                 },
@@ -210,7 +266,7 @@ class SellItemScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               MenuCard(
                 title: 'Parcel Size',
-                subtitle: parcelSizes,
+                subtitle: state.parcel,
                 onTap: () {
                   context.router.push(const ParcelRoute());
                 },
@@ -352,7 +408,7 @@ class SellItemScreen extends ConsumerWidget {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
+                    backgroundColor: PreluraColors.activeColor,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
