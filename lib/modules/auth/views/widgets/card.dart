@@ -29,7 +29,7 @@ class DisplayCard extends StatelessWidget {
                 children: [
                   Image.asset(
                     PreluraIcons.Image,
-                    height: 25.h,
+                    height: 27.h,
                     width: double.infinity, // Ensure the image fills the width
                     fit: BoxFit.cover,
                   ),

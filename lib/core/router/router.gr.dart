@@ -30,7 +30,7 @@ import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/view/brand_view
     as _i2;
 import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/view/category_view.dart'
     as _i3;
-import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/view/ccondition_view.dart'
+import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/view/condition_view.dart'
     as _i5;
 import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/view/color_selector_view.dart'
     as _i4;

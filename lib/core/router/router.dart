@@ -13,29 +13,106 @@ class AppRouter extends RootStackRouter {
           AutoRoute(page: SearchRoute.page),
           AutoRoute(page: InboxRoute.page),
           AutoRoute(page: ProfileNavigationRoute.page, children: [
-            AutoRoute(page: ProfileRoute.page, initial: true),
-            AutoRoute(page: SettingRoute.page),
-            AutoRoute(page: MyFavouriteRoute.page),
-            AutoRoute(page: MyOrderRoute.page),
-            AutoRoute(page: LegalInformationRoute.page),
-            AutoRoute(page: HolidayModeRoute.page),
+            AutoRoute(
+              page: ProfileRoute.page,
+              initial: true,
+            ),
+            CustomRoute(
+              page: SettingRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideRight,
+              durationInMilliseconds: 300,
+            ),
+            CustomRoute(
+              page: MyFavouriteRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideRight,
+              durationInMilliseconds: 300,
+            ),
+            CustomRoute(
+              page: MyOrderRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideRight,
+              durationInMilliseconds: 300,
+            ),
+            CustomRoute(
+              page: LegalInformationRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideRight,
+              durationInMilliseconds: 300,
+            ),
+            CustomRoute(
+              page: HolidayModeRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideRight,
+              durationInMilliseconds: 300,
+            ),
           ]),
-          AutoRoute(page: SettingRoute.page),
-          AutoRoute(page: SellItemRoute.page),
+          AutoRoute(
+            page: SellItemRoute.page,
+          ),
         ]),
-        AutoRoute(page: ProfileDetailsRoute.page),
-        AutoRoute(page: ProductDetailRoute.page),
-        AutoRoute(page: CategoryRoute.page),
-        AutoRoute(page: BrandSelectionRoute.page),
-        AutoRoute(page: SubCategoryRoute.page),
-        AutoRoute(page: SizeSelectionRoute.page),
-        AutoRoute(page: ColorSelectorRoute.page),
-        AutoRoute(page: ParcelRoute.page),
-        AutoRoute(page: ConditionRoute.page),
-        AutoRoute(page: MaterialSelectionRoute.page),
-        AutoRoute(page: SubCategoryProductRoute.page),
-        AutoRoute(page: ProductListRoute.page),
-        AutoRoute(page: PriceRoute.page)
+        CustomRoute(
+          page: ProfileDetailsRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: ProductDetailRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+          
+        ),
+        CustomRoute(
+          page: CategoryRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: BrandSelectionRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: SubCategoryRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: SizeSelectionRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: ColorSelectorRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: ParcelRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: ConditionRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: MaterialSelectionRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: SubCategoryProductRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: ProductListRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: PriceRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        )
       ];
 }
 
