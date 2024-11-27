@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/res/colors.dart';
 
 class MessageCard extends StatelessWidget {
   const MessageCard({
@@ -22,11 +23,10 @@ class MessageCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(10),
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).dividerColor,
-              width: 2.0,
+              color: PreluraColors.grey,
+              width: 0.5,
             ),
           )),
       child: Row(

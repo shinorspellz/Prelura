@@ -43,7 +43,7 @@ class _InboxScreenState extends State<InboxScreen>
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
           appbarTitle: "inbox",
-          trailingIcon: [const Icon(CupertinoIcons.envelope_badge)],
+          trailingIcon: [],
         ),
         body: Column(
           children: [

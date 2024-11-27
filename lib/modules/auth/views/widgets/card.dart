@@ -78,11 +78,11 @@ class DisplayCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              "#5.00",
+              "£5.00",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              "#5.99 incl",
+              "£5.99 incl",
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!

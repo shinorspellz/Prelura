@@ -147,8 +147,7 @@ class ReviewTab extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
-              bottom: BorderSide(
-                  color: PreluraColors.white.withOpacity(0.3), width: 1))),
+              bottom: BorderSide(color: PreluraColors.grey, width: 0.5))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

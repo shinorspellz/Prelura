@@ -12,7 +12,7 @@ class PreluraColors {
   static const Color darkIconColor = Color(0xFFFFFFFF);
   static const Color darkScaffoldBackround = Color(0xFF1e1e1e);
   static const Color blackScaffoldBackround = Colors.black;
-  static const Color darkButtonColor = Color(0xFF37474F); //background: #37474F;
+  static const Color darkButtonColor = Colors.purple; //background: #37474F;
   static Color blackUpdated = '0C0F12'.fromHex;
   static Color blackButtonColorUpdated = '1A4577'.fromHex;
   static const Color activeColor = Colors.purple;
