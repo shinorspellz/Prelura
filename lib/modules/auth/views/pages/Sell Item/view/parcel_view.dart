@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import '../../../../../../res/colors.dart';
 import '../provider/parcel_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class ParcelScreen extends ConsumerWidget {
@@ -42,7 +43,7 @@ class ParcelScreen extends ConsumerWidget {
                       .read(parcelProvider.notifier)
                       .selectParcel(parcelSizes[0]);
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  Navigator.pop(context);
+                  context.router.popForced();
                 }),
           ),
           const Divider(
@@ -60,7 +61,7 @@ class ParcelScreen extends ConsumerWidget {
                       .read(parcelProvider.notifier)
                       .selectParcel(parcelSizes[1]);
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  Navigator.pop(context);
+                  context.router.popForced();
                 }),
           ),
           const Divider(
@@ -92,10 +93,10 @@ class ParcelScreen extends ConsumerWidget {
                 groupValue: selectedParcel,
                 onChanged: (value) {
                   ref
-                      .read(parcelProvider.notifier)
+                      .read(sellItemProvider.notifier)
                       .selectParcel(parcelSizes[2]);
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  Navigator.pop(context);
+                  context.router.popForced();
                 }),
           ),
           const Divider(

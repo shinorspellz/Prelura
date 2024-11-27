@@ -21,7 +21,7 @@ class CategoryScreen extends ConsumerWidget {
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.back(),
+          onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
         appbarTitle: "Category",

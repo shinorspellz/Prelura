@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../provider/condition_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class ConditionScreen extends ConsumerWidget {
@@ -32,7 +33,7 @@ class ConditionScreen extends ConsumerWidget {
             ListTile(
               onTap: () {
                 ref
-                    .read(conditionProvider.notifier)
+                    .read(sellItemProvider.notifier)
                     .selectCondition("New with tags");
                 Navigator.pop(context);
               },
@@ -45,8 +46,8 @@ class ConditionScreen extends ConsumerWidget {
                 onChanged: (value) {
                   if (value != null) {
                     // Update the selected condition in the provider
-                    ref.read(conditionProvider.notifier).selectCondition(value);
-                    Navigator.pop(context); // Navigate back after selection
+                    ref.read(sellItemProvider.notifier).selectCondition(value);
+                    context.router.popForced();
                   }
                 },
               ),
@@ -57,7 +58,7 @@ class ConditionScreen extends ConsumerWidget {
             ListTile(
               onTap: () {
                 ref
-                    .read(conditionProvider.notifier)
+                    .read(sellItemProvider.notifier)
                     .selectCondition("New without tags");
                 Navigator.pop(context);
               },
@@ -69,8 +70,8 @@ class ConditionScreen extends ConsumerWidget {
                 groupValue: selectedCondition,
                 onChanged: (value) {
                   if (value != null) {
-                    ref.read(conditionProvider.notifier).selectCondition(value);
-                    Navigator.pop(context);
+                    ref.read(sellItemProvider.notifier).selectCondition(value);
+                    context.router.popForced();
                   }
                 },
               ),
@@ -81,7 +82,7 @@ class ConditionScreen extends ConsumerWidget {
             ListTile(
               onTap: () {
                 ref
-                    .read(conditionProvider.notifier)
+                    .read(sellItemProvider.notifier)
                     .selectCondition("Very Good");
                 Navigator.pop(context);
               },
@@ -93,8 +94,8 @@ class ConditionScreen extends ConsumerWidget {
                 groupValue: selectedCondition,
                 onChanged: (value) {
                   if (value != null) {
-                    ref.read(conditionProvider.notifier).selectCondition(value);
-                    Navigator.pop(context);
+                    ref.read(sellItemProvider.notifier).selectCondition(value);
+                    context.router.popForced();
                   }
                 },
               ),
@@ -104,7 +105,7 @@ class ConditionScreen extends ConsumerWidget {
             ),
             ListTile(
               onTap: () {
-                ref.read(conditionProvider.notifier).selectCondition("Good");
+                ref.read(sellItemProvider.notifier).selectCondition("Good");
                 Navigator.pop(context);
               },
               title: const Text("Good"),
@@ -115,8 +116,8 @@ class ConditionScreen extends ConsumerWidget {
                 groupValue: selectedCondition,
                 onChanged: (value) {
                   if (value != null) {
-                    ref.read(conditionProvider.notifier).selectCondition(value);
-                    Navigator.pop(context);
+                    ref.read(sellItemProvider.notifier).selectCondition(value);
+                    context.router.popForced();
                   }
                 },
               ),
@@ -128,7 +129,7 @@ class ConditionScreen extends ConsumerWidget {
               title: const Text("Satisfactory"),
               onTap: () {
                 ref
-                    .read(conditionProvider.notifier)
+                    .read(sellItemProvider.notifier)
                     .selectCondition("Satisfactory");
                 Navigator.pop(context);
               },
@@ -139,8 +140,8 @@ class ConditionScreen extends ConsumerWidget {
                 groupValue: selectedCondition,
                 onChanged: (value) {
                   if (value != null) {
-                    ref.read(conditionProvider.notifier).selectCondition(value);
-                    Navigator.pop(context);
+                    ref.read(sellItemProvider.notifier).selectCondition(value);
+                    context.router.popForced();
                   }
                 },
               ),

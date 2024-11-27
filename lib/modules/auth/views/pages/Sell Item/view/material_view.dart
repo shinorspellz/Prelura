@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
 import '../provider/material_provider.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class MaterialSelectionScreen extends ConsumerWidget {
@@ -12,16 +13,16 @@ class MaterialSelectionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final materialState = ref.watch(materialProvider);
-    final notifier = ref.read(materialProvider.notifier);
-
+    final materialState = ref.watch(sellItemProvider).selectedMaterials;
+    final notifier = ref.read(sellItemProvider.notifier);
+    final List<String> materials = ["Material 1", "Material 2", "Material 3"];
     return Scaffold(
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.back(),
+            onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
           appbarTitle: "Material (recommended)"),
@@ -31,9 +32,9 @@ class MaterialSelectionScreen extends ConsumerWidget {
           children: [
             Expanded(
               child: ListView(
-                children: notifier.materials.map((entry) {
+                children: materials.map((entry) {
                   final value = entry;
-                  final isSelected = notifier.isSelected(value);
+                  final isSelected = notifier.isMaterialSelected(value);
 
                   return Column(
                     children: [
@@ -74,14 +75,14 @@ class MaterialSelectionScreen extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
-                onPressed: materialState.selectedMaterials.isNotEmpty
+                onPressed: materialState.isNotEmpty
                     ? () {
                         // Pass the data back or proceed to the next screen
-                        Navigator.pop(context);
+                        context.router.popForced();
                       }
                     : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
+                  backgroundColor: PreluraColors.activeColor,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
