@@ -154,150 +154,170 @@ class _SearchwidgetState extends State<Searchwidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Expanded(
-        child: Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-          ),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Expanded(
           child: Container(
-            height: widget.maxLength != null ? 7.h : 5.h,
-            width: widget.minWidth ?? 100.0.w,
+            padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
-              color: Theme.of(
-                context,
-              ).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: TextFormField(
-              autofocus: widget.autofocus,
-              autocorrect: false,
-              enableSuggestions: false,
-              minLines: widget.minLines ?? 1,
-              controller: mController,
-              maxLength: widget.maxLength,
-              onSaved: widget.onSaved,
-              enabled: widget.enabled,
-              textCapitalization:
-                  widget.textCapitalization ?? TextCapitalization.none,
-              onTap: widget.onTap,
-              onTapOutside: widget.onTapOutside,
-              focusNode: widget.focusNode ?? focusNodeZZZ,
-              onChanged: (text) {
-                if (widget.onChanged != null) widget.onChanged!(text);
-                _hasText = text.isNotEmpty;
-                setState(() {});
-              },
-              cursorColor: Theme.of(context).primaryColor,
-              keyboardType: widget.keyboardType,
-              obscureText: widget.obscureText,
-              obscuringCharacter: '●',
-              inputFormatters: [
-                widget.formatter ??
-                    FilteringTextInputFormatter.singleLineFormatter
-              ],
-              maxLengthEnforcement: MaxLengthEnforcement.enforced,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: widget.validator,
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Theme.of(context).primaryColor.withOpacity(1),
+            child: Container(
+              height: widget.maxLength != null ? 7.h : 5.h,
+              width: widget.minWidth ?? 100.0.w,
+              decoration: BoxDecoration(
+                color: Theme.of(
+                  context,
+                ).scaffoldBackgroundColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: TextFormField(
+                autofocus: widget.autofocus,
+                autocorrect: false,
+                enableSuggestions: false,
+                minLines: widget.minLines ?? 1,
+                controller: mController,
+                maxLength: widget.maxLength,
+                onSaved: widget.onSaved,
+                enabled: widget.enabled,
+                textCapitalization:
+                    widget.textCapitalization ?? TextCapitalization.none,
+                onTap: widget.onTap,
+                onTapOutside: widget.onTapOutside,
+                focusNode: widget.focusNode ?? focusNodeZZZ,
+                onChanged: (text) {
+                  if (widget.onChanged != null) widget.onChanged!(text);
+                  _hasText = text.isNotEmpty;
+                  setState(() {});
+                },
+                cursorColor: Theme.of(context).primaryColor,
+                keyboardType: widget.keyboardType,
+                obscureText: widget.obscureText,
+                obscuringCharacter: '●',
+                inputFormatters: [
+                  widget.formatter ??
+                      FilteringTextInputFormatter.singleLineFormatter
+                ],
+                maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: widget.validator,
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      color: Theme.of(context).primaryColor.withOpacity(1),
+                    ),
+                readOnly: widget.shouldReadOnly,
+                onFieldSubmitted: (val) {
+                  FocusManager.instance.primaryFocus!.unfocus();
+                },
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: Colors.grey[400]!,
+                      width: 1,
+                    ),
                   ),
-              readOnly: widget.shouldReadOnly,
-              onFieldSubmitted: (val) {
-                FocusManager.instance.primaryFocus!.unfocus();
-              },
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                filled: false,
-                // fillColor: showGradient ? null : Theme.of(context).buttonTheme.colorScheme!.secondary,
-                //Ternary switch is important. It prevents a subtle bug where
-                // sometimes after tapping on cancel and tapping again the
-                // field is not activated
-                suffix: _hasText
-                    ? InkResponse(
-                        onTap: () {
-                          if (showCancel) clearText();
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(100)),
-                            padding: const EdgeInsets.all(3),
-                            child: const Icon(
-                              Icons.close_rounded,
-                              color: Colors.white,
-                              size: 12,
-                            )),
-                      )
-                    : const SizedBox.shrink(),
-                // suffixIcon: _hasText ? suffixIconII : null,
-                suffixIconConstraints:
-                    const BoxConstraints(maxHeight: 20, maxWidth: 24),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: PreluraColors.activeColor,
+                      width: 1.0,
+                    ),
+                  ),
+                  filled: false,
+                  // fillColor: showGradient ? null : Theme.of(context).buttonTheme.colorScheme!.secondary,
+                  //Ternary switch is important. It prevents a subtle bug where
+                  // sometimes after tapping on cancel and tapping again the
+                  // field is not activated
+                  suffix: _hasText
+                      ? InkResponse(
+                          onTap: () {
+                            if (showCancel) clearText();
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(100)),
+                              padding: const EdgeInsets.all(3),
+                              child: const Icon(
+                                Icons.close_rounded,
+                                color: Colors.white,
+                                size: 12,
+                              )),
+                        )
+                      : const SizedBox.shrink(),
+                  // suffixIcon: _hasText ? suffixIconII : null,
+                  suffixIconConstraints:
+                      const BoxConstraints(maxHeight: 20, maxWidth: 24),
 
-                prefixIcon: const Icon(Icons.search), //widget.prefixIcon,
-                suffixStyle:
-                    Theme.of(context).textTheme.displayMedium!.copyWith(
-                          color: PreluraColors.boldGreyText,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp,
-                        ),
-                isDense: true,
-                counterText: "",
-                hintText: widget.hintText,
-                hintStyle: widget.hintStyle ??
-                    Theme.of(context).textTheme.displayMedium!.copyWith(
-                        color: Theme.of(context).primaryColor.withOpacity(0.5),
-                        fontSize: 11.sp,
-                        overflow: TextOverflow.clip),
-                contentPadding: const EdgeInsets.fromLTRB(10, 13, 14.5, 8),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Theme.of(context).iconTheme.color,
+                  ), //widget.prefixIcon,
+                  suffixStyle:
+                      Theme.of(context).textTheme.displayMedium!.copyWith(
+                            color: PreluraColors.boldGreyText,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12.sp,
+                          ),
+                  isDense: true,
+                  counterText: "",
+                  hintText: widget.hintText,
+                  hintStyle: widget.hintStyle ??
+                      Theme.of(context).textTheme.displayMedium!.copyWith(
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.5),
+                          fontSize: 11.sp,
+                          overflow: TextOverflow.clip),
+                  contentPadding: const EdgeInsets.fromLTRB(10, 13, 14.5, 8),
+                ),
               ),
             ),
           ),
         ),
-      ),
-      if (widget.cancelButton)
-        AnimatedContainer(
-          width: showCancel ? 70 : 0,
-          height: showCancel ? 30 : 0,
-          color: Colors.transparent,
-          alignment: Alignment.centerRight,
-          duration: const Duration(milliseconds: 150),
-          padding:
-              showCancel ? const EdgeInsets.fromLTRB(15, 0, 0, 0) : EdgeInsets.zero,
-          // margin: const EdgeInsets.only(bottom: 10),
-          child: GestureDetector(
-            onTap: () {
-              clearText();
-              widget.onCancel?.call();
-              // widget.focusNode?.unfocus();
-              if (widget.focusNode == null) {
-                focusNodeZZZ?.unfocus();
-              }
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if (showText)
-                  Expanded(
-                    child: Text(
-                      "Cancel",
-                      style:
-                          Theme.of(context).textTheme.displayMedium!.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+        if (widget.cancelButton)
+          AnimatedContainer(
+            width: showCancel ? 70 : 0,
+            height: showCancel ? 30 : 0,
+            color: Colors.transparent,
+            alignment: Alignment.centerRight,
+            duration: const Duration(milliseconds: 150),
+            padding: showCancel
+                ? const EdgeInsets.fromLTRB(15, 0, 0, 0)
+                : EdgeInsets.zero,
+            // margin: const EdgeInsets.only(bottom: 10),
+            child: GestureDetector(
+              onTap: () {
+                clearText();
+                widget.onCancel?.call();
+                // widget.focusNode?.unfocus();
+                if (widget.focusNode == null) {
+                  focusNodeZZZ?.unfocus();
+                }
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  if (showText)
+                    Expanded(
+                      child: Text(
+                        "Cancel",
+                        style:
+                            Theme.of(context).textTheme.displayMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      if (!widget.cancelButton)
-        const SizedBox(
-          width: 70,
-        )
-    ]);
+        if (!widget.cancelButton)
+          const SizedBox(
+            width: 70,
+          )
+      ]),
+    );
   }
 }

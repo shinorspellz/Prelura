@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/auth/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
 
@@ -180,8 +181,7 @@ class UserWardrobe extends StatelessWidget {
             ),
           ),
           const Divider(),
-          SizedBox(
-              height: MediaQuery.of(context).size.height, child: ItemGrid()),
+          DisplaySection(),
         ],
       ),
     );

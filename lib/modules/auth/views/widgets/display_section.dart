@@ -1,8 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/modules/auth/views/widgets/card.dart';
-import 'package:sizer/sizer.dart';
 
 class DisplaySection extends StatelessWidget {
   const DisplaySection({super.key});
@@ -11,21 +8,30 @@ class DisplaySection extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> carouselItems = List.generate(
       6,
-      (index) => Container(
-          margin: EdgeInsets.symmetric(horizontal: 6),
-          child: const DisplayCard()),
+      (index) => const DisplayCard(),
     );
 
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 35.h,
-        autoPlay: false,
-        enlargeCenterPage: false,
-        padEnds: false,
-        disableCenter: true,
-        viewportFraction: 0.5,
-      ),
-      items: carouselItems,
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // Dynamically adjust grid column count or aspect ratio based on constraints
+        final crossAxisCount =
+            constraints.maxWidth > 600 ? 3 : 2; // Example breakpoint logic
+
+        return GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.58,
+          ),
+          itemCount: carouselItems.length,
+          itemBuilder: (context, index) {
+            return carouselItems[index];
+          },
+        );
+      },
     );
   }
 }

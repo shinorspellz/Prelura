@@ -29,7 +29,7 @@ class MyFavouriteScreen extends StatelessWidget {
           onPressed: () => context.router.popForced(),
         ),
       ),
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: GridView.builder(
           padding: const EdgeInsets.all(10),
           shrinkWrap: true,

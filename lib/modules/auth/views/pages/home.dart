@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.only(top: 28.0),
           child: Column(
             children: [
               const Searchwidget(
@@ -31,34 +31,41 @@ class HomeScreen extends ConsumerWidget {
                   showInputBorder: true,
                   autofocus: false,
                   cancelButton: true),
-              _buildTabs(ref, selectedTab, context),
-              _buildSectionTitle('Collection from Seller',
-                  "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              _buildSectionTitle(
-                  'Antropologies', "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              _buildSectionTitle('Recommended for You',
-                  "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              SizedBox(
-                height: 12,
-              ),
-              const DisplayLiveCard(),
-              SizedBox(
-                height: 12,
-              ),
-              _buildSectionTitle(
-                  'Antropologies', "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              _buildSectionTitle('Recommended for You',
-                  "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              _buildSectionTitle('Recommended for You',
-                  "Items selected by amyleeliu", context),
-              const DisplaySection(),
-              const SizedBox(
-                height: 30,
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    _buildTabs(ref, selectedTab, context),
+                    _buildSectionTitle('Collection from Seller',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    _buildSectionTitle('Antropologies',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    _buildSectionTitle('Recommended for You',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    const DisplayLiveCard(),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    _buildSectionTitle('Antropologies',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    _buildSectionTitle('Recommended for You',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    _buildSectionTitle('Recommended for You',
+                        "Items selected by amyleeliu", context),
+                    const DisplaySection(),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
+                ),
               )
             ],
           ),
