@@ -67,9 +67,10 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           fontSize: 16, fontWeight: FontWeight.w400),
                       items: [
                         BottomNavigationBarItem(
-                          icon: Image.asset(
-                            PreluraIcons.homeIcon,
-                            color: PreluraColors.greyColor,
+                          icon: Icon(
+                            Icons.home,
+                            size: 24,
+                            fill: 1,
                           ),
                           activeIcon: const Icon(
                             Icons.home,

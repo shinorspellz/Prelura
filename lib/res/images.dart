@@ -8,7 +8,6 @@ class PreluraIcons {
   static const String noAdsIcon = 'assets/icons/noAds.png';
   static const String noSearchResultIcon = 'assets/icons/noSearchResult.png';
   static const String notificationItemIcon = 'assets/icons/not_item_icon.png';
-  static const String googleIcon = 'assets/icons/google.png';
   static const String searchIcon = 'assets/icons/search.png';
   static const String facebookIcon = "assets/icons/facebook.png";
   static const String arrowRightIcon = 'assets/icons/arrow_right.png';
@@ -40,7 +39,16 @@ class PreluraIcons {
   static const String cashOnDeliveryIcon = "assets/icons/cash_delivery.png";
   static const String ussdIcon = "assets/icons/ussd.png";
   static const String cardIcon = "assets/icons/card.png";
+
   static const String Image = "assets/images/image2.jpeg";
   static const String van = "assets/svgs/delivery_van.svg";
   static const String mugShot = "assets/images/mugshot.jpg";
+  static const String arrowLeft = "assets/icons/arrow-left.svg";
+  static const String eyeSlashIcon = "assets/icons/eye-slash.svg";
+  static const String eyeSlashOutline = "assets/icons/eye_slash_outline.svg";
+  static const String eyeIcon = "assets/icons/eye.svg";
+  static const String googleIcon = "assets/icons/google-png.png";
+  static const String appleIcon = "assets/icons/apple.svg";
+  static const String mailIcon = "assets/icons/mail.svg";
+  static const String whiteAppleIcon = "assets/icons/white_apple.svg";
 }

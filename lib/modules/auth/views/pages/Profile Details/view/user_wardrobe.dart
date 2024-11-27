@@ -21,14 +21,14 @@ class UserWardrobe extends StatelessWidget {
             borderbottom: false,
             title: "Lonin2999",
             profilePic: true,
-            onTap: () {},
-            widget: Row(
-              children: [
-                const Ratings(),
-                Text("90 reviews",
-                    style: Theme.of(context).textTheme.bodyMedium),
-              ],
+            widget: Text(
+              "35 listings",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
+            onTap: () {},
           ),
           Container(
             child: Column(
@@ -65,10 +65,11 @@ class UserWardrobe extends StatelessWidget {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      color: PreluraColors.activeColor,
-                                      decorationColor:
-                                          PreluraColors.activeColor,
-                                      decoration: TextDecoration.underline),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.color,
+                                  ),
                               children: [
                                 TextSpan(
                                   text: " followers,",
@@ -76,10 +77,7 @@ class UserWardrobe extends StatelessWidget {
                                       .textTheme
                                       .bodyMedium
                                       ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
+                                        color: PreluraColors.activeColor,
                                       ),
                                 ),
                               ])),
@@ -90,10 +88,11 @@ class UserWardrobe extends StatelessWidget {
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
-                                      color: PreluraColors.activeColor,
-                                      decorationColor:
-                                          PreluraColors.activeColor,
-                                      decoration: TextDecoration.underline),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.color,
+                                  ),
                               children: [
                                 TextSpan(
                                   text: " following",
@@ -101,13 +100,48 @@ class UserWardrobe extends StatelessWidget {
                                       .textTheme
                                       .bodyMedium
                                       ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
+                                        color: PreluraColors.activeColor,
                                       ),
                                 ),
                               ])),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.delivery_dining_outlined,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 8),
+                          Text("Usually ships within 1 day",
+                              style: Theme.of(context).textTheme.bodyMedium),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Ratings(),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "90 ",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            "reviews",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(color: PreluraColors.activeColor),
+                          ),
                         ],
                       ),
                     ],
@@ -130,6 +164,7 @@ class UserWardrobe extends StatelessWidget {
                       // Handle Message button
                     },
                     text: "Message",
+                    textColor: PreluraColors.white,
                     bgColor: Theme.of(context).scaffoldBackgroundColor,
                   ),
                 ),
@@ -140,7 +175,7 @@ class UserWardrobe extends StatelessWidget {
                       // Handle Follow button
                     },
                     text: "Follow",
-                    textColor: Theme.of(context).scaffoldBackgroundColor,
+                    textColor: PreluraColors.white,
                   ),
                 ),
               ],
@@ -150,38 +185,11 @@ class UserWardrobe extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Shop bundles",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    Text(
-                      "Get up to 5% off",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(fontWeight: FontWeight.w300),
-                    ),
-                  ],
-                ),
-                AppButton(
-                    onTap: () {
-                      // Handle Create Bundle button
-                    },
-                    text: "Create bundle",
-                    textColor: Theme.of(context).scaffoldBackgroundColor),
-              ],
-            ),
-          ),
-          const Divider(),
-          DisplaySection(),
+
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: DisplaySection(),
+          )
         ],
       ),
     );

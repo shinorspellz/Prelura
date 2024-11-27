@@ -219,7 +219,7 @@ class SellItemScreen extends ConsumerWidget {
                 title: 'Brand',
                 subtitle: state.brand ?? "",
                 onTap: () {
-                  context.router.push(const BrandSelectionRoute());
+                  context.router.push(BrandSelectionRoute());
                 },
               ),
               const SizedBox(height: 16),
@@ -227,7 +227,7 @@ class SellItemScreen extends ConsumerWidget {
                 title: 'Size',
                 subtitle: state.size ?? "",
                 onTap: () {
-                  context.router.push(const SizeSelectionRoute());
+                  context.router.push(SizeSelectionRoute());
                 },
               ),
               MenuCard(
