@@ -1,21 +1,110 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class GestureNavigator extends StatelessWidget {
-  const GestureNavigator({super.key, required this.child});
-  final Widget child;
+class GestureNavigationWidget extends StatefulWidget {
+  final WidgetBuilder currentScreenBuilder;
+
+  const GestureNavigationWidget({
+    Key? key,
+    required this.currentScreenBuilder,
+  }) : super(key: key);
+
+  @override
+  _GestureNavigationWidgetState createState() =>
+      _GestureNavigationWidgetState();
+}
+
+class _GestureNavigationWidgetState extends State<GestureNavigationWidget> {
+  double _dragOffset = 0.0;
+  Widget? _previousScreen;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _loadPreviousScreen();
+      }
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    context.router.addListener(_onRouterStackChanged);
+  }
+
+  @override
+  void dispose() {
+    context.router.removeListener(_onRouterStackChanged);
+    super.dispose();
+  }
+
+  void _onRouterStackChanged() {
+    _loadPreviousScreen();
+  }
+
+  void _loadPreviousScreen() {
+    final stack = context.router.stack;
+    if (stack.length > 1) {
+      final previousRoute = stack[stack.length - 2]; // Correct route
+      setState(() {
+        print(previousRoute);
+        _previousScreen = Container(
+          color: Colors.red,
+          child: Center(
+            child: Text("previous screen")
+          ),
+        );
+      });
+    } else {
+      setState(() {
+        _previousScreen = null;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final currentScreen = widget.currentScreenBuilder(context);
+
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
-        // Detect swipe direction (right to left or left to right)
-        if (details.primaryDelta! < 0) {
-          // Swipe from right to left (negative delta indicates right to left swipe)
-          context.router.popForced();
+        setState(() {
+          _dragOffset += details.primaryDelta ?? 0;
+          if (_dragOffset < 0) _dragOffset = 0; // Prevent negative drag
+        });
+      },
+      onHorizontalDragEnd: (details) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        if (_dragOffset > screenWidth * 0.4) {
+          context.router.back(); // Navigate back
+        } else {
+          setState(() {
+            _dragOffset = 0.0; // Reset if not far enough
+          });
         }
       },
-      child: child,
+      child: Stack(
+        children: [
+          if (_previousScreen != null)
+            Positioned(
+              left: _dragOffset - MediaQuery.of(context).size.width,
+              top: 0,
+              bottom: 0,
+              right: MediaQuery.of(context).size.width - _dragOffset,
+              child:
+                  IgnorePointer(child: _previousScreen), // Prevent interaction
+            ),
+          Positioned(
+            left: _dragOffset,
+            top: 0,
+            bottom: 0,
+            right: -_dragOffset,
+            child: currentScreen,
+          ),
+        ],
+      ),
     );
   }
 }

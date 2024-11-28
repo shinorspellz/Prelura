@@ -34,8 +34,8 @@ class ColorSelectorScreen extends ConsumerWidget {
       "Orange": Colors.orange,
     };
 
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: PreluraAppBar(
             leadingIcon: IconButton(
@@ -138,7 +138,7 @@ class ColorSelectorScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -42,11 +42,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
+        extendBodyBehindAppBar: true,
         body: Stack(
           children: [
             SingleChildScrollView(
+              padding: EdgeInsets.zero, // Ensure no padding
               child: Column(
                 children: [
                   Stack(
@@ -268,8 +270,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildMemberItemsTab(BuildContext context) {
@@ -307,13 +309,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         ),
 
         // Grid View Section
-        DisplaySection()
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: DisplaySection(),
+        )
       ],
     );
   }
 
   Widget _buildSimilarItemsTab(BuildContext context) {
-    return DisplaySection();
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: DisplaySection(),
+    );
   }
 
   CarouselIndicator() {

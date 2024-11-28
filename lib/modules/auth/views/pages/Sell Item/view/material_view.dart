@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_checkbox.dart';
-import 'package:prelura_app/modules/auth/views/widgets/gesture_navigator.dart';
 
 import '../../../../../../res/colors.dart';
+import '../../../widgets/gesture_navigator.dart';
 import '../provider/material_provider.dart';
 import '../provider/sell_item_provider.dart';
 
@@ -18,8 +18,8 @@ class MaterialSelectionScreen extends ConsumerWidget {
     final materialState = ref.watch(sellItemProvider).selectedMaterials;
     final notifier = ref.read(sellItemProvider.notifier);
     final List<String> materials = ["Material 1", "Material 2", "Material 3"];
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: PreluraAppBar(
             leadingIcon: IconButton(
@@ -38,7 +38,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
                   children: materials.map((entry) {
                     final value = entry;
                     final isSelected = notifier.isMaterialSelected(value);
-      
+
                     return PreluraCheckBox(
                       isChecked: isSelected,
                       onChanged: (isChecked) {
@@ -93,7 +93,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

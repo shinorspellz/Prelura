@@ -47,7 +47,7 @@ class DisplayCard extends StatelessWidget {
                       child: Row(
                         children: [
                           Icon(Icons.favorite_border_outlined,
-                              size: 14, color: PreluraColors.white),
+                              size: 17, color: PreluraColors.white),
                           const SizedBox(width: 2),
                           Text(
                             "14",

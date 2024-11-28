@@ -18,8 +18,8 @@ class SubCategoryProductScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sharedData = ref.watch(selectedProductCategoryNotifierProvider);
 
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
         appBar: PreluraAppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           leadingIcon: IconButton(
@@ -56,7 +56,7 @@ class SubCategoryProductScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

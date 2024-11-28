@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_button.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../../../core/router/router.gr.dart';
 import '../../../../../../res/images.dart';
 
 class AboutProfile extends StatelessWidget {
@@ -63,53 +65,61 @@ class AboutProfile extends StatelessWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text.rich(TextSpan(
-                          text: "3",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  color: PreluraColors.activeColor,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline),
-                          children: [
-                            TextSpan(
-                              text: " followers,",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.color,
-                                  ),
-                            ),
-                          ])),
+                      GestureDetector(
+                        onTap: () {
+                          context.router.push(FollowersRoute());
+                        },
+                        child: Text.rich(TextSpan(
+                            text: "3",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
+                                ),
+                            children: [
+                              TextSpan(
+                                text: " followers,",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: PreluraColors.activeColor,
+                                    ),
+                              ),
+                            ])),
+                      ),
                       const SizedBox(width: 6),
-                      Text.rich(TextSpan(
-                          text: "3",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  color: PreluraColors.activeColor,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline),
-                          children: [
-                            TextSpan(
-                              text: " following",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.color,
-                                  ),
-                            ),
-                          ])),
+                      GestureDetector(
+                        onTap: () {
+                          context.router.push(FollowingRoute());
+                        },
+                        child: Text.rich(TextSpan(
+                            text: "3",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
+                                ),
+                            children: [
+                              TextSpan(
+                                text: " following",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: PreluraColors.activeColor,
+                                    ),
+                              ),
+                            ])),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -131,7 +141,8 @@ class AboutProfile extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
         child: Row(
           children: [
             Expanded(

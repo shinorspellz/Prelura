@@ -1,5 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/auth/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
@@ -8,11 +13,11 @@ import '../../../../../../res/colors.dart';
 import '../../../widgets/app_button.dart';
 import '../widget/item_grid.dart';
 
-class UserWardrobe extends StatelessWidget {
+class UserWardrobe extends ConsumerWidget {
   const UserWardrobe({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -59,51 +64,65 @@ class UserWardrobe extends StatelessWidget {
                             size: 14,
                           ),
                           const SizedBox(width: 8),
-                          Text.rich(TextSpan(
-                              text: "3",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
+                          GestureDetector(
+                            onTap: () {
+                              context.router.push(FollowersRoute());
+                            },
+                            child: Text.rich(TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    context.router.push(FollowersRoute());
+                                  },
+                                text: "3",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.color,
+                                    ),
+                                children: [
+                                  TextSpan(
+                                    text: " followers,",
+                                    style: Theme.of(context)
                                         .textTheme
-                                        .bodySmall
-                                        ?.color,
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: PreluraColors.activeColor,
+                                        ),
                                   ),
-                              children: [
-                                TextSpan(
-                                  text: " followers,",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: PreluraColors.activeColor,
-                                      ),
-                                ),
-                              ])),
+                                ])),
+                          ),
                           const SizedBox(width: 6),
-                          Text.rich(TextSpan(
-                              text: "3",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                    color: Theme.of(context)
+                          GestureDetector(
+                            onTap: () {
+                              context.router.push(FollowingRoute());
+                            },
+                            child: Text.rich(TextSpan(
+                                text: "3",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.color,
+                                    ),
+                                children: [
+                                  TextSpan(
+                                    text: " following",
+                                    style: Theme.of(context)
                                         .textTheme
-                                        .bodySmall
-                                        ?.color,
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: PreluraColors.activeColor,
+                                        ),
                                   ),
-                              children: [
-                                TextSpan(
-                                  text: " following",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: PreluraColors.activeColor,
-                                      ),
-                                ),
-                              ])),
+                                ])),
+                          ),
                         ],
                       ),
                       const SizedBox(
@@ -135,12 +154,19 @@ class UserWardrobe extends StatelessWidget {
                             "90 ",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                          Text(
-                            "reviews",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(color: PreluraColors.activeColor),
+                          InkWell(
+                            onTap: () {
+                              print("here");
+                              ref.read(tabControllerProvider).setTabIndex(1);
+                              // context.router.replace(ProfileDetailsRoute());
+                            },
+                            child: Text(
+                              "reviews",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: PreluraColors.activeColor),
+                            ),
                           ),
                         ],
                       ),

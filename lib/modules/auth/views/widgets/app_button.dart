@@ -42,6 +42,8 @@ class AppButton extends StatelessWidget {
   final bool isDisabled;
   @override
   Widget build(BuildContext context) {
+    final isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -70,7 +72,11 @@ class AppButton extends StatelessWidget {
                     text!,
                     style: TextStyle(
                       fontSize: fontSize ?? 14,
-                      color: textColor ?? PreluraColors.activeColor,
+                      color: isDarkMode
+                          ? PreluraColors.white
+                          : bgColor != null
+                              ? PreluraColors.activeColor
+                              : PreluraColors.white,
                       fontWeight: FontWeight.w800,
                     ),
                   )
@@ -79,7 +85,11 @@ class AppButton extends StatelessWidget {
                       text!,
                       style: TextStyle(
                         fontSize: fontSize ?? 14,
-                        color: textColor ?? PreluraColors.activeColor,
+                        color: isDarkMode
+                            ? PreluraColors.white
+                            : bgColor != null
+                                ? PreluraColors.activeColor
+                                : PreluraColors.white,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
