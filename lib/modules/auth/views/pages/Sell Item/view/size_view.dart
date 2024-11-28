@@ -32,8 +32,8 @@ class SizeSelectionPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSize = ref.watch(selectedSizeProvider);
 
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
         appBar: PreluraAppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
@@ -106,7 +106,7 @@ class SizeSelectionPage extends ConsumerWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 }

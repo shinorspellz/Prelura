@@ -40,7 +40,7 @@ class PreluraTheme {
         buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme(
             brightness: Brightness.light,
-            primary: PreluraColors.primaryColorOld,
+            primary: PreluraColors.activeColor,
             onPrimary: PreluraColors.white,
             secondary: PreluraColors.buttonBgColor,
             tertiary: PreluraColors.white,

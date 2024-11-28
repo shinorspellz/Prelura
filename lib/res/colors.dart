@@ -6,7 +6,7 @@ class PreluraColors {
   static const Color pinkColor = Colors.green;
   static const Color darkPrimaryColorWhite = Color(0xFFF0F3F6);
   static const Color primaryColor = Colors.black; //Color(0xFF543B3A);
-  static const Color primaryColorOld = Color(0xFF543B3A);
+  static const Color primaryColorOld = Colors.purple;
   static const Color bottomNavIndicatiorColor = Color(0xFFFD4A40);
   static const Color appBarBackgroundColor = Color(0xFFF0F3FF);
   static const Color darkIconColor = Color(0xFFFFFFFF);

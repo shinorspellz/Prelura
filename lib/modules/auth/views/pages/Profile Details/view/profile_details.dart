@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/about_profile.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/review_tab.dart';
 import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/user_wardrobe.dart';
@@ -9,24 +10,39 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
 
 import '../../../../../../res/colors.dart';
+import '../provider/tab_controller.dart';
 
 @RoutePage()
-class ProfileDetailsScreen extends StatefulWidget {
-  const ProfileDetailsScreen({super.key});
+class ProfileDetailsScreen extends ConsumerStatefulWidget {
+  const ProfileDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() =>
+      _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends State<ProfileDetailsScreen>
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
+  @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+
+    // Get the initial index from the provider
+    final initialIndex = ref.read(tabControllerProvider).currentIndex;
+
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: initialIndex,
+    );
+
+    // Listen for tab index changes
     _tabController.addListener(() {
-      setState(() {});
+      if (_tabController.indexIsChanging) {
+        ref.read(tabControllerProvider).setTabIndex(_tabController.index);
+      }
     });
   }
 
@@ -38,6 +54,12 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final currentIndex = ref.watch(tabControllerProvider).currentIndex;
+
+    if (_tabController.index != currentIndex) {
+      _tabController.index =
+          currentIndex; // Sync tab index if changed externally
+    }
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

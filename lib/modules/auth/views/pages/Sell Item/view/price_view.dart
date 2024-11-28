@@ -17,8 +17,8 @@ class PriceScreen extends ConsumerWidget {
     final priceState = ref.watch(sellItemProvider).price;
     final pricePageState = ref.watch(pricePageProvider);
 
-    return GestureNavigator(
-      child: Scaffold(
+    return GestureNavigationWidget(
+      currentScreenBuilder: (context) { return Scaffold(
         appBar: PreluraAppBar(
             leadingIcon: IconButton(
               icon: Icon(Icons.arrow_back,
@@ -140,7 +140,7 @@ class PriceScreen extends ConsumerWidget {
             ],
           ),
         ),
-      ),
+      );}
     );
   }
 }

@@ -7,6 +7,8 @@ import 'package:prelura_app/core/router/router.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
   @override
+  RouteType get defaultRouteType => const RouteType.cupertino();
+  @override
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: true),
         AutoRoute(page: AuthRoute.page, children: [
@@ -110,6 +112,16 @@ class AppRouter extends RootStackRouter {
         ),
         CustomRoute(
           page: PriceRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: FollowersRoute.page,
+          transitionsBuilder: TransitionsBuilders.slideRight,
+          durationInMilliseconds: 300,
+        ),
+        CustomRoute(
+          page: FollowingRoute.page,
           transitionsBuilder: TransitionsBuilders.slideRight,
           durationInMilliseconds: 300,
         )

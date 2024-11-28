@@ -60,7 +60,7 @@ class MessageCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(6),
                   child: Image.asset(
                     itemImageUrl,
                     width: 40,

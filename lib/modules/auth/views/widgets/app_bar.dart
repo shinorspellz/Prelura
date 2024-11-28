@@ -31,7 +31,6 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        addVerticalSpacing(10),
         AppBar(
           centerTitle: centerTitle ?? true,
           automaticallyImplyLeading: false,
