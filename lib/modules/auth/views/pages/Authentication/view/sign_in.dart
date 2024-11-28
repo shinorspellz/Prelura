@@ -116,6 +116,7 @@ class LoginScreen extends ConsumerWidget {
                         onPressed: isLoading
                             ? null
                             : () {
+                                
                                 //   if (formKey.currentState?.validate() ?? false) {
                                 //     loginNotifier.signIn(context: context);
                                 //   }
@@ -142,7 +143,8 @@ class LoginScreen extends ConsumerWidget {
                                 // } on Exception {
                                 //   showLoading.value = false;
                                 // }
-                                context.router.popAndPush(AuthRoute());
+                                
+                                context.router.replace(const AuthRoute());
                               },
                         buttonTitle: 'Sign in',
                       );
