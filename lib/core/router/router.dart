@@ -47,10 +47,10 @@ class AppRouter extends RootStackRouter {
             ),
             AutoRoute(
               page: ProductDetailRoute.page,
-            ), 
-                    AutoRoute(
-          page: ProfileDetailsRoute.page,
-        ),
+            ),
+            AutoRoute(
+              page: ProfileDetailsRoute.page,
+            ),
           ]),
           AutoRoute(page: SellNavigationRoute.page, children: [
             AutoRoute(page: SellItemRoute.page, initial: true),
@@ -89,7 +89,6 @@ class AppRouter extends RootStackRouter {
             ),
           ]),
         ]),
-
         AutoRoute(
           page: FollowersRoute.page,
         ),
@@ -101,6 +100,9 @@ class AppRouter extends RootStackRouter {
 
 /// Route Observer for ADrop [AppRouter] to log events for [didPush]
 /// to better debug routing
+///
+final showBottomNavBarProvider = StateProvider<bool>((ref) => true);
+
 class AppRouterObserver extends AutoRouterObserver {
   final WidgetRef ref;
 
@@ -111,11 +113,10 @@ class AppRouterObserver extends AutoRouterObserver {
     if (route.settings.name == null) return;
     log('Pushed ${route.settings.name}', name: 'RouteObserver');
 
-    // Defer state updates to avoid modifying state during build
-    Future(() {
-      ref.read(previousRouteProvider.notifier).state =
-          ref.read(currentRouteProvider);
-      ref.read(currentRouteProvider.notifier).state = route.settings.name;
+    final hiddenRoutes = ['ProfileDetailsRoute', 'ProductDetailRoute'];
+    Future.microtask(() {
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !hiddenRoutes.contains(route.settings.name);
     });
   }
 
@@ -124,11 +125,11 @@ class AppRouterObserver extends AutoRouterObserver {
     if (route.settings.name == null) return;
     log('Popped ${route.settings.name}', name: 'RouteObserver');
 
-    // Defer state updates to avoid modifying state during build
-    Future(() {
-      ref.read(currentRouteProvider.notifier).state =
-          ref.read(previousRouteProvider);
-      ref.read(previousRouteProvider.notifier).state = route.settings.name;
+    final hiddenRoutes = ['ProfileDetailsRoute', 'ProductDetailRoute'];
+    Future.microtask(() {
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !(previousRoute != null &&
+              hiddenRoutes.contains(previousRoute.settings.name));
     });
   }
 
