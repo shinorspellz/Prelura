@@ -48,15 +48,9 @@ class _GestureNavigationWidgetState extends State<GestureNavigationWidget> {
     final stack = context.router.stack;
     if (stack.length > 1) {
       final previousRoute = stack[stack.length - 2]; // Correct route
-      setState(() {
-        print(previousRoute);
-        _previousScreen = Container(
-          color: Colors.red,
-          child: Center(
-            child: Text("previous screen")
-          ),
-        );
-      });
+      print("route name is ${previousRoute.child}");
+      _previousScreen = previousRoute.child;
+      setState(() {});
     } else {
       setState(() {
         _previousScreen = null;
@@ -72,13 +66,16 @@ class _GestureNavigationWidgetState extends State<GestureNavigationWidget> {
       onHorizontalDragUpdate: (details) {
         setState(() {
           _dragOffset += details.primaryDelta ?? 0;
-          if (_dragOffset < 0) _dragOffset = 0; // Prevent negative drag
+          if (_dragOffset < 0) _dragOffset = 0;
         });
       },
       onHorizontalDragEnd: (details) {
         final screenWidth = MediaQuery.of(context).size.width;
         if (_dragOffset > screenWidth * 0.4) {
-          context.router.back(); // Navigate back
+          if (context.router.canPop()) {
+            // Prevent errors by checking if canPop
+            context.router.popForced();
+          }
         } else {
           setState(() {
             _dragOffset = 0.0; // Reset if not far enough

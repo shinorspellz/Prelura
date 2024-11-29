@@ -13,13 +13,13 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
   final router = AppRouter();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Sizer(
       builder: (BuildContext context, Orientation orientation,
           DeviceType deviceType) {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.system,
           routerConfig: router.config(
             navigatorObservers: () => [
-              AppRouterObserver(),
+              AppRouterObserver(ref),
             ],
           ),
           builder: (context, child) {
