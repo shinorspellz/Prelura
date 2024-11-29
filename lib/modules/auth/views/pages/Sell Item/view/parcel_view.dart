@@ -78,7 +78,10 @@ class ParcelScreen extends ConsumerWidget {
                       color: Colors.green, // Customize color
                       borderRadius: BorderRadius.circular(12)),
                   child: Text("Star Wardrobe",
-                      style: Theme.of(context).textTheme.bodySmall),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: PreluraColors.white)),
                 ),
                 const SizedBox(
                   height: 2,

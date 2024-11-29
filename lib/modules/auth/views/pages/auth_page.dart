@@ -28,7 +28,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     print(showBottomNavBar);
     return AutoTabsRouter(
         routes: const [
-          HomeRoute(),
+          HomeNavigationRoute(),
           SearchRoute(),
           SellNavigationRoute(),
           InboxRoute(),
@@ -48,8 +48,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     child: BottomNavigationBar(
                       currentIndex: tabRouter.activeIndex,
                       onTap: (int index) {
-                        if (tabRouter.activeIndex == index) {
-                          tabRouter.stackRouterOfIndex(index)?.popUntilRoot();
+                        if (tabRouter.activeIndex == index && index !=0 ) {
+                          tabRouter.stackRouterOfIndex(index)?.popForced();
                         } else {
                           tabRouter.setActiveIndex(index);
                           if (index != 2) {

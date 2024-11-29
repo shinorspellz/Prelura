@@ -43,7 +43,7 @@ class SettingScreen extends StatelessWidget {
         ),
         appbarTitle: "Settings",
       ),
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ListView.builder(
@@ -54,16 +54,10 @@ class SettingScreen extends StatelessWidget {
               return menuItem1[index];
             },
           ),
-          const SizedBox(
-            height: 20,
-          ),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
               onTap: () {}),
-          const SizedBox(
-            height: 20,
-          ),
           Container(
             padding: const EdgeInsets.all(16),
             width: double.infinity,
@@ -81,9 +75,6 @@ class SettingScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return menuItem2[index];
             },
-          ),
-          const SizedBox(
-            height: 20,
           ),
           Container(
             padding: const EdgeInsets.all(16),

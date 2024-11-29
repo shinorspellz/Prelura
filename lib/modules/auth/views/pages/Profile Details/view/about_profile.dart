@@ -18,7 +18,7 @@ class AboutProfile extends StatelessWidget {
           children: [
             // Profile Image Section
             Image.asset(
-              PreluraIcons.Image,
+              PreluraIcons.mugShot,
               height: MediaQuery.of(context).size.width,
               width: double.infinity,
               fit: BoxFit.cover,

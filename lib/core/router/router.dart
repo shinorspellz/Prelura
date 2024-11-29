@@ -4,10 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/modules/auth/views/pages/home_navigation.dart';
-
-import '../../modules/auth/views/widgets/gesture_navigator.dart';
-import 'route_provider.dart';
+import 'package:prelura_app/modules/auth/views/pages/about_prelura_menu.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -16,7 +13,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: true),
-        AutoRoute(page: AuthRoute.page, children: [
+        AutoRoute(page: AuthRoute.page, path: "/", children: [
           AutoRoute(page: HomeNavigationRoute.page, children: [
             AutoRoute(page: HomeRoute.page, initial: true),
             AutoRoute(
@@ -25,33 +22,40 @@ class AppRouter extends RootStackRouter {
           ]),
           AutoRoute(page: SearchRoute.page),
           AutoRoute(page: InboxRoute.page),
-          AutoRoute(page: ProfileNavigationRoute.page, children: [
-            AutoRoute(
-              page: ProfileRoute.page,
-              initial: true,
-            ),
-            AutoRoute(
-              page: SettingRoute.page,
-            ),
-            AutoRoute(
-              page: MyFavouriteRoute.page,
-            ),
-            AutoRoute(
-              page: MyOrderRoute.page,
-            ),
-            AutoRoute(
-              page: LegalInformationRoute.page,
-            ),
-            AutoRoute(
-              page: HolidayModeRoute.page,
-            ),
-            AutoRoute(
-              page: ProductDetailRoute.page,
-            ),
-            AutoRoute(
-              page: ProfileDetailsRoute.page,
-            ),
-          ]),
+          AutoRoute(
+              page: ProfileNavigationRoute.page,
+              path: "profile",
+              children: [
+                AutoRoute(
+                  page: ProfileRoute.page,
+                  initial: true,
+                ),
+                AutoRoute(
+                  page: AboutPreluraMenuRoute.page,
+                ),
+                AutoRoute(
+                  page: SettingRoute.page,
+                ),
+                AutoRoute(
+                  page: MyFavouriteRoute.page,
+                ),
+                AutoRoute(
+                  page: MyOrderRoute.page,
+                ),
+                AutoRoute(
+                  page: LegalInformationRoute.page,
+                ),
+                AutoRoute(
+                  page: HolidayModeRoute.page,
+                ),
+                AutoRoute(
+                  page: ProductDetailRoute.page,
+                ),
+                AutoRoute(
+                  path: "profile-details",
+                  page: ProfileDetailsRoute.page,
+                ),
+              ]),
           AutoRoute(page: SellNavigationRoute.page, children: [
             AutoRoute(page: SellItemRoute.page, initial: true),
             AutoRoute(
@@ -116,11 +120,28 @@ class AppRouterObserver extends AutoRouterObserver {
     final hiddenRoutes = [
       'ProfileDetailsRoute',
       'ProductDetailRoute',
-      SellNavigationRoute.name
+      SellItemRoute.name,
+      CategoryRoute.name,
+      ProductListRoute.name,
+      SubCategoryRoute.name,
+      BrandSelectionRoute.name,
+      SizeSelectionRoute.name,
+      BrandSelectionRoute.name,
+      PriceRoute.name,
+      ConditionRoute.name,
+      MaterialSelectionRoute.name,
+      ParcelRoute.name,
+      ColorSelectorRoute.name,
+      SubCategoryProductRoute.name
     ];
+    final parentRoutes = [
+      SellNavigationRoute.name,
+      ProfileNavigationRoute.name,
+    ];
+
     Future.microtask(() {
       ref.read(showBottomNavBarProvider.notifier).state =
-          !hiddenRoutes.contains(route.settings.name);
+          !_isHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -132,12 +153,29 @@ class AppRouterObserver extends AutoRouterObserver {
     final hiddenRoutes = [
       'ProfileDetailsRoute',
       'ProductDetailRoute',
-      SellNavigationRoute.name
+      SellItemRoute.name,
+      CategoryRoute.name,
+      ProductListRoute.name,
+      SubCategoryRoute.name,
+      BrandSelectionRoute.name,
+      SizeSelectionRoute.name,
+      BrandSelectionRoute.name,
+      PriceRoute.name,
+      ConditionRoute.name,
+      MaterialSelectionRoute.name,
+      ParcelRoute.name,
+      ColorSelectorRoute.name,
+      SubCategoryProductRoute.name
     ];
+    final parentRoutes = [
+      SellNavigationRoute.name,
+      ProfileNavigationRoute.name,
+    ];
+
     Future.microtask(() {
       ref.read(showBottomNavBarProvider.notifier).state =
-          !(previousRoute != null &&
-              hiddenRoutes.contains(previousRoute.settings.name));
+          previousRoute == null ||
+              !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -147,11 +185,30 @@ class AppRouterObserver extends AutoRouterObserver {
     final hiddenRoutes = [
       'ProfileDetailsRoute',
       'ProductDetailRoute',
-      SellNavigationRoute.name
     ];
+    final parentRoutes = [
+      SellNavigationRoute.name,
+    ];
+
     Future.microtask(() {
       ref.read(showBottomNavBarProvider.notifier).state =
-          !(previousRoute != null && hiddenRoutes.contains(route.name));
+          !_isTabHidden(route, parentRoutes, hiddenRoutes);
     });
+  }
+
+  bool _isHidden(Route<dynamic> route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
+    // Check if the current route or its parent should hide the bottom nav
+    final routeName = route.settings.name;
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
+  }
+
+  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
+    // Check if the current route or its parent should hide the bottom nav
+    final routeName = route.name;
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
   }
 }

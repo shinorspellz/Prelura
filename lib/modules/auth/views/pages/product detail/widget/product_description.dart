@@ -20,6 +20,10 @@ class ProductDescription extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Divider(
+            height: 2,
+            thickness: 1,
+          ),
           Container(
             color: Theme.of(context).scaffoldBackgroundColor,
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 18),
@@ -68,7 +72,10 @@ class ProductDescription extends ConsumerWidget {
               ],
             ),
           ),
-
+          Divider(
+            height: 2,
+            thickness: 1,
+          ),
           _buildInfoRow("Category", product.category, context),
           _buildInfoRow("Size", product.size, context),
           _buildInfoRow("Condition", product.condition, context),

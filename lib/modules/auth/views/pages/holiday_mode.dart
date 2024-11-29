@@ -19,7 +19,7 @@ class HolidayModeScreen extends StatelessWidget {
           onPressed: () => context.router.back(),
         ),
       ),
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(

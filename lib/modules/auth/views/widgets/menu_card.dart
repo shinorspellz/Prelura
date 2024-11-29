@@ -12,6 +12,7 @@ class MenuCard extends StatelessWidget {
       this.widget,
       required this.onTap,
       this.subtitle,
+      this.subtitleColor,
       this.profilePic = false,
       this.rightArrow = true,
       this.additionalText});
@@ -24,6 +25,7 @@ class MenuCard extends StatelessWidget {
   final Widget? widget;
   final bool rightArrow;
   final bool borderbottom;
+  final Color? subtitleColor;
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +99,8 @@ class MenuCard extends StatelessWidget {
                       subtitle ?? "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w400,
+                            color: subtitleColor ??
+                                Theme.of(context).textTheme.bodyMedium?.color,
                           ),
                     ),
                     const SizedBox(

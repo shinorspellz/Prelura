@@ -13,7 +13,7 @@ class DisplayCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.router.push(const ProductDetailRoute());
+        context.router.navigate(const ProductDetailRoute());
       },
       child: Container(
         width: double.infinity,

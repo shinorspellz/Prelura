@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../../res/colors.dart';
 import '../../../../../../res/images.dart';
+import '../../../../../../res/render_svg.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/rating.dart';
 import '../provider/product_detail_provider.dart';
@@ -55,7 +59,10 @@ class ProductTopDetails extends ConsumerWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 10),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   // Product condition text
                   Text(
@@ -67,43 +74,43 @@ class ProductTopDetails extends ConsumerWidget {
                   ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
-                  // Display color circles in a row
-                  Row(
-                    children: product.colors
-                        .map((color) => Container(
-                              width: 16,
-                              height: 16,
-                              margin: const EdgeInsets.symmetric(horizontal: 4),
-                              decoration: BoxDecoration(
-                                color:
-                                    color, // Assuming `color` is a valid Color object
-                                shape: BoxShape.circle,
-                              ),
-                            ))
-                        .toList(),
+                  Text(
+                    "£${product.price.toStringAsFixed(2)}",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ],
               ),
+              const SizedBox(height: 12),
+              // Display color circles in a row
+              Row(
+                children: product.colors
+                    .map((color) => Container(
+                          width: 16,
+                          height: 16,
+                          margin: const EdgeInsets.only(right: 4),
+                          decoration: BoxDecoration(
+                            color:
+                                color, // Assuming `color` is a valid Color object
+                            shape: BoxShape.circle,
+                          ),
+                        ))
+                    .toList(),
+              ),
             ],
           ),
-          const SizedBox(height: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "£${product.price.toStringAsFixed(2)}",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-              ),
               const SizedBox(height: 4),
-              Text(
-                "£${(product.price + product.buyerProtectionCost).toStringAsFixed(2)} including Buyer Protection",
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.purple,
-                      fontWeight: FontWeight.w500,
-                    ),
-              ),
+              // Text(
+              //   "£${(product.price + product.buyerProtectionCost).toStringAsFixed(2)} including Buyer Protection",
+              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              //         color: Colors.purple,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              // ),
             ],
           ),
           const SizedBox(height: 12),
@@ -129,26 +136,39 @@ class ProductTopDetails extends ConsumerWidget {
                   //     ),
                   //   ),
                   // ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(17),
-                    child: Image.asset(
-                      PreluraIcons.mugShot,
-                      height: 35,
-                      width: 35,
+                  InkWell(
+                    onTap: () {
+                      context.router.pushNamed("/profile/profile-details");
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                          35), // Ensure it's high for a circle
+                      child: Image.asset(
+                        PreluraIcons.mugShot,
+                        height: 35,
+                        width: 35,
+                        fit: BoxFit.cover, // Ensures the image fills the circle
+                      ),
                     ),
                   ),
+
                   const SizedBox(
                     width: 12,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Lennon2999",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          context.router.pushNamed("/profile/profile-details");
+                        },
+                        child: Text(
+                          "Lennon2999",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Row(
                         children: [
@@ -166,20 +186,27 @@ class ProductTopDetails extends ConsumerWidget {
                   )
                 ],
               ),
-              AppButton(
-                onTap: () {},
-                text: "Ask a Question",
-                bgColor: Colors.purple,
-                borderColor: Colors.purple,
-                textColor: PreluraColors.white,
-                width: 120,
-                height: 39,
-              )
+
+              RenderSvgWithColor2(
+                color: PreluraColors.activeColor,
+                svgPath: PreluraIcons.AskAQuestion,
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Pass the data back or proceed to the next screen
+              //     Navigator.pop(context);
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: PreluraColors.activeColor,
+              //     padding: const EdgeInsets.symmetric(vertical: 8),
+              //   ),
+              //   child: Center(
+              //     child:
+              //   ),
+              // ),
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
+
           // Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,
           //   children: [
