@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contentsize_tabbarview/contentsize_tabbarview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/pages/auth_page.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/auth/views/pages/product%20detail/widget/product_top_details.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
@@ -15,18 +17,29 @@ import '../../../../../res/images.dart';
 import '../../widgets/card.dart';
 
 @RoutePage()
-class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({super.key});
+class ProductDetailScreen extends ConsumerStatefulWidget {
+  const ProductDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  ConsumerState<ProductDetailScreen> createState() =>
+      _ProductDetailScreenState();
 }
 
-class _ProductDetailScreenState extends State<ProductDetailScreen>
+class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   double showAppBar = 0;
   late TabController _tabController;
+
+  bool _isFavorite = false;
+  int _favoriteCount = 14;
+
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+      _favoriteCount += _isFavorite ? 1 : -1;
+    });
+  }
 
   @override
   void initState() {
@@ -43,6 +56,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
   @override
   Widget build(BuildContext context) {
     return GestureNavigationWidget(currentScreenBuilder: (context) {
+      final tabRouter = AutoTabsRouter.of(context);
       return Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -72,7 +86,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                           6,
                           (index) => ClipRRect(
                             child: Image.asset(
-                              PreluraIcons.Image,
+                              PreluraIcons.productImage,
                               fit: BoxFit.cover,
                               height: 400,
                             ),
@@ -80,33 +94,41 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                         ),
                       ),
                       Positioned(
-                        bottom: 20,
+                        bottom: 15,
                         right: 15,
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: PreluraColors.blackCardColor,
-                            borderRadius:
-                                BorderRadius.circular(12), // Circular radius
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.favorite_border_outlined,
-                                  size: 14, color: PreluraColors.white),
-                              const SizedBox(width: 5),
-                              Text(
-                                "14",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(color: PreluraColors.white),
-                              ),
-                            ],
+                        child: GestureDetector(
+                          onTap: _toggleFavorite,
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                                top: 5, bottom: 5, left: 8, right: 8),
+                            decoration: BoxDecoration(
+                              color: PreluraColors.blackCardColor,
+                              borderRadius:
+                                  BorderRadius.circular(8), // Circular radius
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                    _isFavorite
+                                        ? Icons.favorite
+                                        : Icons.favorite_border_outlined,
+                                    size: 17,
+                                    color: PreluraColors.white),
+                                const SizedBox(width: 5),
+                                Text(
+                                  '$_favoriteCount',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(color: PreluraColors.white),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       Positioned(
-                          bottom: 10,
+                          bottom: 15,
                           right: 0,
                           left: 0,
                           child: CarouselIndicator()),
@@ -138,7 +160,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                       if (context.router.canPop()) {
                                         context.router.popForced();
                                       } else {
-                                        context.router.back();
+                                        tabRouter.setActiveIndex(ref
+                                            .read(routePathProvider.notifier)
+                                            .state);
+                                        context.router.popForced();
                                       }
                                     },
                                     child: CircleAvatar(
@@ -237,7 +262,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                 if (context.router.canPop())
                                   {context.router.popForced()}
                                 else
-                                  {context.router.back()}
+                                  {
+                                    tabRouter.setActiveIndex(ref
+                                        .read(routePathProvider.notifier)
+                                        .state),
+                                    context.router.popForced()
+                                  }
                               }),
                       appbarTitle: "App Bar",
                       // trailingIcon: [
@@ -339,7 +369,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
         children: [
           for (int i = 0; i < 6; i++)
             Container(
-              margin: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(right: 5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
               decoration: BoxDecoration(

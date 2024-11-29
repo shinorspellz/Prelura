@@ -132,7 +132,8 @@ class AppRouterObserver extends AutoRouterObserver {
       MaterialSelectionRoute.name,
       ParcelRoute.name,
       ColorSelectorRoute.name,
-      SubCategoryProductRoute.name
+      SubCategoryProductRoute.name,
+      "/profile/prodile-details"
     ];
     final parentRoutes = [
       SellNavigationRoute.name,
@@ -165,7 +166,8 @@ class AppRouterObserver extends AutoRouterObserver {
       MaterialSelectionRoute.name,
       ParcelRoute.name,
       ColorSelectorRoute.name,
-      SubCategoryProductRoute.name
+      SubCategoryProductRoute.name,
+      "/profile/prodile-details"
     ];
     final parentRoutes = [
       SellNavigationRoute.name,

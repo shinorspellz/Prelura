@@ -189,7 +189,7 @@ class ProductTopDetails extends ConsumerWidget {
 
               RenderSvgWithColor2(
                 color: PreluraColors.activeColor,
-                svgPath: PreluraIcons.AskAQuestion,
+                svgPath: PreluraIcons.askAQuestion,
               ),
               // ElevatedButton(
               //   onPressed: () {

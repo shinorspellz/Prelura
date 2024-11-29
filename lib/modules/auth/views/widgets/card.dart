@@ -6,8 +6,23 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:sizer/sizer.dart';
 
-class DisplayCard extends StatelessWidget {
+class DisplayCard extends StatefulWidget {
   const DisplayCard({super.key});
+
+  @override
+  _DisplayCardState createState() => _DisplayCardState();
+}
+
+class _DisplayCardState extends State<DisplayCard> {
+  bool _isFavorite = false;
+  int _favoriteCount = 14;
+
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+      _favoriteCount += _isFavorite ? 1 : -1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +43,7 @@ class DisplayCard extends StatelessWidget {
               child: Stack(
                 children: [
                   Image.asset(
-                    PreluraIcons.Image,
+                    PreluraIcons.productImage,
                     height: 27.h,
                     width: double.infinity, // Ensure the image fills the width
                     fit: BoxFit.cover,
@@ -36,27 +51,34 @@ class DisplayCard extends StatelessWidget {
                   Positioned(
                     bottom: 12,
                     right: 12,
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                          top: 5, bottom: 5, left: 8, right: 8),
-                      decoration: BoxDecoration(
-                        color: PreluraColors.blackCardColor,
-                        borderRadius:
-                            BorderRadius.circular(12), // Circular radius
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.favorite_border_outlined,
-                              size: 17, color: PreluraColors.white),
-                          const SizedBox(width: 2),
-                          Text(
-                            "14",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: PreluraColors.white),
-                          ),
-                        ],
+                    child: GestureDetector(
+                      onTap: _toggleFavorite,
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                            top: 5, bottom: 5, left: 8, right: 8),
+                        decoration: BoxDecoration(
+                          color: PreluraColors.blackCardColor,
+                          borderRadius:
+                              BorderRadius.circular(8), // Circular radius
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                                _isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                size: 17,
+                                color: PreluraColors.white),
+                            const SizedBox(width: 2),
+                            Text(
+                              '$_favoriteCount',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: PreluraColors.white),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

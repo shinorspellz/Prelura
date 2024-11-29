@@ -28,14 +28,14 @@ class AboutProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "stanley1969",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontSize: 26),
-                  ),
-                  Divider(),
+                  // Text(
+                  //   "stanley1969",
+                  //   style: Theme.of(context)
+                  //       .textTheme
+                  //       .bodyMedium
+                  //       ?.copyWith(fontSize: 26),
+                  // ),
+                  // Divider(),
                   const SizedBox(height: 4),
                   Text(
                     "Passionate about giving clothes a second chance, I specialize in curating quality"

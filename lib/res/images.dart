@@ -51,5 +51,6 @@ class PreluraIcons {
   static const String appleIcon = "assets/icons/apple.svg";
   static const String mailIcon = "assets/icons/mail.svg";
   static const String whiteAppleIcon = "assets/icons/white_apple.svg";
-  static const String AskAQuestion = "assets/svgs/chat-left-text.svg";
+  static const String askAQuestion = "assets/svgs/chat-left-text.svg";
+  static const String productImage = "assets/images/product_image.png";
 }
