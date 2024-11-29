@@ -113,7 +113,11 @@ class AppRouterObserver extends AutoRouterObserver {
     if (route.settings.name == null) return;
     log('Pushed ${route.settings.name}', name: 'RouteObserver');
 
-    final hiddenRoutes = ['ProfileDetailsRoute', 'ProductDetailRoute'];
+    final hiddenRoutes = [
+      'ProfileDetailsRoute',
+      'ProductDetailRoute',
+      SellNavigationRoute.name
+    ];
     Future.microtask(() {
       ref.read(showBottomNavBarProvider.notifier).state =
           !hiddenRoutes.contains(route.settings.name);
@@ -125,7 +129,11 @@ class AppRouterObserver extends AutoRouterObserver {
     if (route.settings.name == null) return;
     log('Popped ${route.settings.name}', name: 'RouteObserver');
 
-    final hiddenRoutes = ['ProfileDetailsRoute', 'ProductDetailRoute'];
+    final hiddenRoutes = [
+      'ProfileDetailsRoute',
+      'ProductDetailRoute',
+      SellNavigationRoute.name
+    ];
     Future.microtask(() {
       ref.read(showBottomNavBarProvider.notifier).state =
           !(previousRoute != null &&
@@ -136,5 +144,14 @@ class AppRouterObserver extends AutoRouterObserver {
   @override
   void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
     log('Switched Tab ${route.name}', name: 'RouteObserver');
+    final hiddenRoutes = [
+      'ProfileDetailsRoute',
+      'ProductDetailRoute',
+      SellNavigationRoute.name
+    ];
+    Future.microtask(() {
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !(previousRoute != null && hiddenRoutes.contains(route.name));
+    });
   }
 }
