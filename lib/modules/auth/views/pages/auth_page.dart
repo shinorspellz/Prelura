@@ -27,14 +27,17 @@ class _AuthPageState extends ConsumerState<AuthPage> {
         routes: const [
           HomeRoute(),
           SearchRoute(),
-          SellItemRoute(),
+          SellNavigationRoute(),
           InboxRoute(),
           ProfileNavigationRoute()
         ],
         builder: (context, child) {
           final tabRouter = AutoTabsRouter.of(context);
-          final isSellItemRoute = tabRouter.current.name == SellItemRoute.name;
-
+          final isSellItemRoute =
+              tabRouter.current.name == SellNavigationRoute.name ||
+                  tabRouter.current.name == ProfileDetailsRoute.name ||
+                  tabRouter.current.name == ProductDetailRoute.name;
+          print(isSellItemRoute);
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: child,

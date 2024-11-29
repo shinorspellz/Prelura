@@ -2,7 +2,12 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/auth/views/pages/home_navigation.dart';
+
+import '../../modules/auth/views/widgets/gesture_navigator.dart';
+import 'route_provider.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -12,7 +17,12 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: true),
         AutoRoute(page: AuthRoute.page, children: [
-          AutoRoute(page: HomeRoute.page),
+          AutoRoute(page: HomeNavigationRoute.page, children: [
+            AutoRoute(page: HomeRoute.page, initial: true),
+            AutoRoute(
+              page: ProductDetailRoute.page,
+            ),
+          ]),
           AutoRoute(page: SearchRoute.page),
           AutoRoute(page: InboxRoute.page),
           AutoRoute(page: ProfileNavigationRoute.page, children: [
@@ -20,127 +30,106 @@ class AppRouter extends RootStackRouter {
               page: ProfileRoute.page,
               initial: true,
             ),
-            CustomRoute(
+            AutoRoute(
               page: SettingRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRight,
-              durationInMilliseconds: 300,
             ),
-            CustomRoute(
+            AutoRoute(
               page: MyFavouriteRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRight,
-              durationInMilliseconds: 300,
             ),
-            CustomRoute(
+            AutoRoute(
               page: MyOrderRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRight,
-              durationInMilliseconds: 300,
             ),
-            CustomRoute(
+            AutoRoute(
               page: LegalInformationRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRight,
-              durationInMilliseconds: 300,
             ),
-            CustomRoute(
+            AutoRoute(
               page: HolidayModeRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRight,
-              durationInMilliseconds: 300,
+            ),
+            AutoRoute(
+              page: ProductDetailRoute.page,
+            ), 
+                    AutoRoute(
+          page: ProfileDetailsRoute.page,
+        ),
+          ]),
+          AutoRoute(page: SellNavigationRoute.page, children: [
+            AutoRoute(page: SellItemRoute.page, initial: true),
+            AutoRoute(
+              page: CategoryRoute.page,
+            ),
+            AutoRoute(
+              page: BrandSelectionRoute.page,
+            ),
+            AutoRoute(
+              page: SubCategoryRoute.page,
+            ),
+            AutoRoute(
+              page: SizeSelectionRoute.page,
+            ),
+            AutoRoute(
+              page: ColorSelectorRoute.page,
+            ),
+            AutoRoute(
+              page: ParcelRoute.page,
+            ),
+            AutoRoute(
+              page: ConditionRoute.page,
+            ),
+            AutoRoute(
+              page: MaterialSelectionRoute.page,
+            ),
+            AutoRoute(
+              page: SubCategoryProductRoute.page,
+            ),
+            AutoRoute(
+              page: ProductListRoute.page,
+            ),
+            AutoRoute(
+              page: PriceRoute.page,
             ),
           ]),
-          AutoRoute(
-            page: SellItemRoute.page,
-          ),
         ]),
-        CustomRoute(
-          page: ProfileDetailsRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: ProductDetailRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: CategoryRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: BrandSelectionRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: SubCategoryRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: SizeSelectionRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: ColorSelectorRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: ParcelRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: ConditionRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: MaterialSelectionRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: SubCategoryProductRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: ProductListRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
-          page: PriceRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        ),
-        CustomRoute(
+
+        AutoRoute(
           page: FollowersRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
         ),
-        CustomRoute(
+        AutoRoute(
           page: FollowingRoute.page,
-          transitionsBuilder: TransitionsBuilders.slideRight,
-          durationInMilliseconds: 300,
-        )
+        ),
       ];
 }
 
 /// Route Observer for ADrop [AppRouter] to log events for [didPush]
 /// to better debug routing
 class AppRouterObserver extends AutoRouterObserver {
+  final WidgetRef ref;
+
+  AppRouterObserver(this.ref);
+
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     if (route.settings.name == null) return;
     log('Pushed ${route.settings.name}', name: 'RouteObserver');
+
+    // Defer state updates to avoid modifying state during build
+    Future(() {
+      ref.read(previousRouteProvider.notifier).state =
+          ref.read(currentRouteProvider);
+      ref.read(currentRouteProvider.notifier).state = route.settings.name;
+    });
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     if (route.settings.name == null) return;
     log('Popped ${route.settings.name}', name: 'RouteObserver');
+
+    // Defer state updates to avoid modifying state during build
+    Future(() {
+      ref.read(currentRouteProvider.notifier).state =
+          ref.read(previousRouteProvider);
+      ref.read(previousRouteProvider.notifier).state = route.settings.name;
+    });
   }
 
   @override

@@ -7,6 +7,7 @@ import 'package:prelura_app/modules/auth/views/pages/Sell%20Item/provider/sub_ca
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 
 import '../../../../../../res/colors.dart';
+import '../../../widgets/gesture_navigator.dart';
 import '../../../widgets/menu_card.dart';
 import '../provider/product_sub_category_provider.dart';
 
@@ -17,44 +18,46 @@ class SubCategoryScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sharedData = ref.watch(selectedCategoryNotifierProvider);
-    return Scaffold(
-      appBar: PreluraAppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
+        appBar: PreluraAppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.popForced(),
+          ),
+          centerTitle: true,
+          appbarTitle: sharedData.selectedValue,
         ),
-        centerTitle: true,
-        appbarTitle: sharedData.selectedValue,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 20),
-        child: Column(
-          children: [
-            ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: sharedData.relatedStrings.length,
-                itemBuilder: (context, index) {
-                  return MenuCard(
-                      title: sharedData.relatedStrings[index],
-                      icon: const Icon(
-                        Icons.settings,
-                        color: PreluraColors.activeColor,
-                      ),
-                      onTap: () {
-                        ref
-                            .read(selectedProductCategoryNotifierProvider
-                                .notifier)
-                            .updateData(sharedData.relatedStrings[index]);
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: sharedData.relatedStrings.length,
+                  itemBuilder: (context, index) {
+                    return MenuCard(
+                        title: sharedData.relatedStrings[index],
+                        icon: const Icon(
+                          Icons.settings,
+                          color: PreluraColors.activeColor,
+                        ),
+                        onTap: () {
+                          ref
+                              .read(selectedProductCategoryNotifierProvider
+                                  .notifier)
+                              .updateData(sharedData.relatedStrings[index]);
 
-                        context.router.push(const SubCategoryProductRoute());
-                      });
-                }),
-          ],
+                          context.router.push(const SubCategoryProductRoute());
+                        });
+                  }),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
