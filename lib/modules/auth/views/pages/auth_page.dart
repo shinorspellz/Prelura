@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../core/router/router.dart';
 import '../../../../res/images.dart';
 
 final routePathProvider = StateProvider<int>(
@@ -23,6 +24,8 @@ class AuthPage extends ConsumerStatefulWidget {
 class _AuthPageState extends ConsumerState<AuthPage> {
   @override
   Widget build(BuildContext context) {
+    final showBottomNavBar = ref.watch(showBottomNavBarProvider);
+    print(showBottomNavBar);
     return AutoTabsRouter(
         routes: const [
           HomeRoute(),
@@ -34,14 +37,12 @@ class _AuthPageState extends ConsumerState<AuthPage> {
         builder: (context, child) {
           final tabRouter = AutoTabsRouter.of(context);
           final isSellItemRoute =
-              tabRouter.current.name == SellNavigationRoute.name ||
-                  tabRouter.current.name == ProfileDetailsRoute.name ||
-                  tabRouter.current.name == ProductDetailRoute.name;
-          print(isSellItemRoute);
+              tabRouter.current.name == SellNavigationRoute.name;
+
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: child,
-            bottomNavigationBar: isSellItemRoute
+            bottomNavigationBar: !showBottomNavBar
                 ? null
                 : SafeArea(
                     child: BottomNavigationBar(
