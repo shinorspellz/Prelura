@@ -89,7 +89,7 @@ class SellItemScreen extends ConsumerWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Theme.of(context).appBarTheme.backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -222,7 +222,6 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(BrandSelectionRoute());
                 },
               ),
-              const SizedBox(height: 16),
               MenuCard(
                 title: 'Size',
                 subtitle: state.size ?? "",
@@ -255,7 +254,6 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(const MaterialSelectionRoute());
                 },
               ),
-              const SizedBox(height: 16),
               MenuCard(
                 title: 'Price',
                 subtitle: state.price,
@@ -263,7 +261,6 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(const PriceRoute());
                 },
               ),
-              const SizedBox(height: 16),
               MenuCard(
                 title: 'Parcel Size',
                 subtitle: state.parcel,
@@ -271,7 +268,6 @@ class SellItemScreen extends ConsumerWidget {
                   context.router.push(const ParcelRoute());
                 },
               ),
-              const SizedBox(height: 16),
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(

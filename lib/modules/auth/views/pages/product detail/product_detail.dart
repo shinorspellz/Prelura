@@ -45,6 +45,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
     return GestureNavigationWidget(currentScreenBuilder: (context) {
       return Scaffold(
         extendBodyBehindAppBar: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Stack(
           children: [
             SingleChildScrollView(
@@ -134,7 +135,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                   },
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      if (context.router.canPop()) {
+                                        context.router.popForced();
+                                      } else {
+                                        context.router.back();
+                                      }
                                     },
                                     child: CircleAvatar(
                                       backgroundColor:
@@ -163,12 +168,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     ],
                   ),
                   Container(
-                    color: Theme.of(context).appBarTheme.backgroundColor,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ProductTopDetails(),
-                        SizedBox(height: 16.0),
                         ProductDescription(),
                         SizedBox(height: 8.0),
                         // Container(
@@ -227,10 +231,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                     child: PreluraAppBar(
                       appBarHeight: 50,
                       leadingIcon: IconButton(
-                        icon: Icon(Icons.arrow_back,
-                            color: Theme.of(context).iconTheme.color),
-                        onPressed: () => context.router.popForced(),
-                      ),
+                          icon: Icon(Icons.arrow_back,
+                              color: Theme.of(context).iconTheme.color),
+                          onPressed: () => {
+                                if (context.router.canPop())
+                                  {context.router.popForced()}
+                                else
+                                  {context.router.back()}
+                              }),
                       appbarTitle: "App Bar",
                       // trailingIcon: [
                       //   Icon(

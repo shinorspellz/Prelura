@@ -26,7 +26,7 @@ class LegalInformationScreen extends StatelessWidget {
         ),
         appbarTitle: "Legal Information",
       ),
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           ListView.builder(

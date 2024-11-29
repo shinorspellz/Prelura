@@ -8,6 +8,7 @@ import 'package:prelura_app/modules/auth/views/pages/Profile%20Details/view/user
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:prelura_app/modules/auth/views/widgets/gesture_navigator.dart';
 
 import '../../../../../../res/colors.dart';
 import '../provider/tab_controller.dart';
@@ -60,55 +61,57 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
       _tabController.index =
           currentIndex; // Sync tab index if changed externally
     }
-    return Scaffold(
-      appBar: PreluraAppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: "Lonin2999",
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => AutoRouter.of(context).popForced(),
-        ),
-      ),
-      body: Column(
-        children: [
-          TabBar(
-            controller: _tabController,
-            indicatorColor: PreluraColors.activeColor,
-            unselectedLabelColor:
-                PreluraColors.greyLightColor, // Text color for inactive tabs
-            labelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16, // Font size for the active tab
-            ),
-            unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 14, // Font size for inactive tabs
-            ),
-            tabs: const [
-              Tab(
-                text: "Wardrobe",
-              ),
-              Tab(
-                text: "Reviews",
-              ),
-              Tab(
-                text: "About",
-              )
-            ],
+    return GestureNavigationWidget(currentScreenBuilder: (context) {
+      return Scaffold(
+        appBar: PreluraAppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          appbarTitle: "Lonin2999",
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.back(),
           ),
-          Expanded(
-            child: TabBarView(
+        ),
+        body: Column(
+          children: [
+            TabBar(
               controller: _tabController,
-              children: [
-                UserWardrobe(),
-                ReviewTab(),
-                AboutProfile(),
+              indicatorColor: PreluraColors.activeColor,
+              unselectedLabelColor:
+                  PreluraColors.greyLightColor, // Text color for inactive tabs
+              labelStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16, // Font size for the active tab
+              ),
+              unselectedLabelStyle: const TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 14, // Font size for inactive tabs
+              ),
+              tabs: const [
+                Tab(
+                  text: "Wardrobe",
+                ),
+                Tab(
+                  text: "Reviews",
+                ),
+                Tab(
+                  text: "About",
+                )
               ],
             ),
-          ),
-        ],
-      ),
-    );
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  UserWardrobe(),
+                  ReviewTab(),
+                  AboutProfile(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

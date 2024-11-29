@@ -35,12 +35,7 @@ class MyApp extends ConsumerWidget {
             ],
           ),
           builder: (context, child) {
-            return GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus(); // Dismiss the keyboard
-              },
-              child: child,
-            );
+            return child!;
           },
         );
       },

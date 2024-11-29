@@ -36,7 +36,7 @@ class ColorSelectorScreen extends ConsumerWidget {
 
     return GestureNavigationWidget(currentScreenBuilder: (context) {
       return Scaffold(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: PreluraAppBar(
             leadingIcon: IconButton(
               icon: Icon(Icons.arrow_back,

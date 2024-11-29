@@ -20,7 +20,7 @@ class MaterialSelectionScreen extends ConsumerWidget {
     final List<String> materials = ["Material 1", "Material 2", "Material 3"];
     return GestureNavigationWidget(currentScreenBuilder: (context) {
       return Scaffold(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: PreluraAppBar(
             leadingIcon: IconButton(
               icon: Icon(Icons.arrow_back,
