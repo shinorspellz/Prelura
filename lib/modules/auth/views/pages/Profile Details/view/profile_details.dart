@@ -25,7 +25,7 @@ class ProfileDetailsScreen extends ConsumerStatefulWidget {
 class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  @override
+ 
   @override
   void initState() {
     super.initState();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
+import 'package:prelura_app/modules/auth/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../widgets/live_card.dart';
@@ -97,10 +98,10 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         child: Column(children: [
+          ProfileStatsCard(),
           MenuCard(
-              profilePic: true,
-              title: "Vimini",
-              additionalText: "View my profile",
+              profilePic: false,
+              title: "My Profile",
               icon: const Icon(Icons.info_outlined),
               rightArrow: false,
               onTap: () {
