@@ -4,10 +4,12 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/shared/card_model.dart';
 import 'package:sizer/sizer.dart';
 
 class DisplayCard extends StatefulWidget {
-  const DisplayCard({super.key});
+  const DisplayCard({super.key, required this.itemData});
+  final PreluraCardModel itemData;
 
   @override
   _DisplayCardState createState() => _DisplayCardState();
@@ -15,7 +17,7 @@ class DisplayCard extends StatefulWidget {
 
 class _DisplayCardState extends State<DisplayCard> {
   bool _isFavorite = false;
-  int _favoriteCount = 14;
+  int _favoriteCount = 0;
 
   void _toggleFavorite() {
     setState(() {
@@ -25,10 +27,19 @@ class _DisplayCardState extends State<DisplayCard> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _favoriteCount = widget.itemData.likes ?? 0;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.router.navigate(const ProductDetailRoute());
+        context.router.push(ProductDetailRoute(product: widget.itemData));
       },
       child: Container(
         width: double.infinity,
@@ -43,7 +54,7 @@ class _DisplayCardState extends State<DisplayCard> {
               child: Stack(
                 children: [
                   Image.asset(
-                    PreluraIcons.productImage,
+                    widget.itemData.image,
                     height: 27.h,
                     width: double.infinity, // Ensure the image fills the width
                     fit: BoxFit.cover,
@@ -71,7 +82,7 @@ class _DisplayCardState extends State<DisplayCard> {
                                 color: PreluraColors.white),
                             const SizedBox(width: 2),
                             Text(
-                              '$_favoriteCount',
+                              _favoriteCount > 0 ? '$_favoriteCount' : "",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -88,11 +99,11 @@ class _DisplayCardState extends State<DisplayCard> {
             const SizedBox(
                 height: 8), // Optional: Add space between image and text
             Text(
-              "Anthropologie",
+              widget.itemData.title,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              "Very Good",
+              widget.itemData.condition,
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium
@@ -100,11 +111,13 @@ class _DisplayCardState extends State<DisplayCard> {
             ),
             const SizedBox(height: 8),
             Text(
-              "£5.00",
+              "£ ${widget.itemData.price}",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              "£5.99 incl",
+              widget.itemData.discount != null
+                  ? "£ ${widget.itemData.discount}"
+                  : "",
               style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
