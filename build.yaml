@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          assetsPath: lib/core/graphql/**
+          outputDirectory: __generated
+          clients:
+            - graphql
+          scalars:
+            ExpectedErrorType:
+              type: Map<String, dynamic>

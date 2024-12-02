@@ -4,108 +4,169 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/modules/auth/views/pages/about_prelura_menu.dart';
+import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
+import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  final Ref _ref;
+
+  AppRouter(this._ref);
+
   @override
   RouteType get defaultRouteType => const RouteType.cupertino();
+
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LoginRoute.page, initial: true),
+        AutoRoute(page: LoginRoute.page, initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
-        AutoRoute(page: AuthRoute.page, path: "/", children: [
-          AutoRoute(page: HomeNavigationRoute.page, children: [
-            AutoRoute(page: HomeRoute.page, initial: true),
-            AutoRoute(
-              page: ProductDetailRoute.page,
-            ),
-          ]),
-          AutoRoute(page: SearchRoute.page),
-          AutoRoute(page: InboxRoute.page),
-          AutoRoute(
-              page: ProfileNavigationRoute.page,
-              path: "profile",
-              children: [
-                AutoRoute(
-                  page: ProfileRoute.page,
-                  initial: true,
-                ),
-                AutoRoute(
-                  page: AboutPreluraMenuRoute.page,
-                ),
-                AutoRoute(
-                  page: SettingRoute.page,
-                ),
-                AutoRoute(page: ProfileSettingRoute.page),
-                AutoRoute(
-                  page: MyFavouriteRoute.page,
-                ),
-                AutoRoute(
-                  page: MyOrderRoute.page,
-                ),
-                AutoRoute(
-                  page: LegalInformationRoute.page,
-                ),
-                AutoRoute(
-                  page: HolidayModeRoute.page,
-                ),
-                AutoRoute(
-                  page: ProductDetailRoute.page,
-                ),
-                AutoRoute(
-                  path: "profile-details",
-                  page: ProfileDetailsRoute.page,
-                ),
-              ]),
-          AutoRoute(page: SellNavigationRoute.page, children: [
-            AutoRoute(page: SellItemRoute.page, initial: true),
-            AutoRoute(
-              page: CategoryRoute.page,
-            ),
-            AutoRoute(
-              page: BrandSelectionRoute.page,
-            ),
-            AutoRoute(
-              page: SubCategoryRoute.page,
-            ),
-            AutoRoute(
-              page: SizeSelectionRoute.page,
-            ),
-            AutoRoute(
-              page: ColorSelectorRoute.page,
-            ),
-            AutoRoute(
-              page: ParcelRoute.page,
-            ),
-            AutoRoute(
-              page: ConditionRoute.page,
-            ),
-            AutoRoute(
-              page: MaterialSelectionRoute.page,
-            ),
-            AutoRoute(
-              page: SubCategoryProductRoute.page,
-            ),
-            AutoRoute(
-              page: ProductListRoute.page,
-            ),
-            AutoRoute(
-              page: PriceRoute.page,
-            ),
-          ]),
-          AutoRoute(
-            path: "product/:id",
-            page: ProductDetailRoute.page,
-          ),
-        ]),
         AutoRoute(
+            guards: [AuthGuard(_ref)],
+            page: AuthRoute.page,
+            path: "/",
+            initial: _ref.read(authStateProvider).requireValue,
+            children: [
+              AutoRoute(
+                  guards: [AuthGuard(_ref)],
+                  page: HomeNavigationRoute.page,
+                  children: [
+                    AutoRoute(guards: [AuthGuard(_ref)], page: HomeRoute.page, initial: true),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ProductDetailRoute.page,
+                    ),
+                  ]),
+              AutoRoute(guards: [AuthGuard(_ref)], page: SearchRoute.page),
+              AutoRoute(guards: [AuthGuard(_ref)], page: InboxRoute.page),
+              AutoRoute(
+                  guards: [AuthGuard(_ref)],
+                  page: ProfileNavigationRoute.page,
+                  path: "profile",
+                  children: [
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ProfileRoute.page,
+                      initial: true,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: AboutPreluraMenuRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: SettingRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: MyFavouriteRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: MyOrderRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: LegalInformationRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: HolidayModeRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ProductDetailRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      path: "profile-details",
+                      page: ProfileDetailsRoute.page,
+                    ),
+                  ]),
+              AutoRoute(
+                  guards: [AuthGuard(_ref)],
+                  page: SellNavigationRoute.page,
+                  children: [
+                    AutoRoute(guards: [AuthGuard(_ref)], page: SellItemRoute.page, initial: true),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: CategoryRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: BrandSelectionRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: SubCategoryRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: SizeSelectionRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ColorSelectorRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ParcelRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ConditionRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: MaterialSelectionRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: SubCategoryProductRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: ProductListRoute.page,
+                    ),
+                    AutoRoute(
+                      guards: [AuthGuard(_ref)],
+                      page: PriceRoute.page,
+                    ),
+                  ]),
+              AutoRoute(
+                guards: [AuthGuard(_ref)],
+                path: "product/:id",
+                page: ProductDetailRoute.page,
+              ),
+            ]),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
           page: FollowersRoute.page,
         ),
         AutoRoute(
+          guards: [AuthGuard(_ref)],
           page: FollowingRoute.page,
         ),
       ];
+}
+
+class AuthGuard extends AutoRouteGuard {
+  final Ref _ref;
+
+  AuthGuard(this._ref);
+
+  @override
+  void onNavigation(NavigationResolver resolver, StackRouter router) {
+    if (_ref.read(authStateProvider).requireValue) {
+      resolver.next(true);
+    } else {
+      resolver.redirect(LoginRoute(
+        // this callbak is only called when using deeplik
+        onLoginResult: (success) {
+          resolver.next(success);
+        },
+      ));
+    }
+  }
 }
 
 /// Route Observer for ADrop [AppRouter] to log events for [didPush]
@@ -147,8 +208,7 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state =
-          !_isHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state = !_isHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -181,9 +241,7 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state =
-          previousRoute == null ||
-              !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state = previousRoute == null || !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -199,24 +257,19 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state =
-          !_isTabHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state = !_isTabHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
-  bool _isHidden(Route<dynamic> route, List<String> parentRoutes,
-      List<String> hiddenRoutes) {
+  bool _isHidden(Route<dynamic> route, List<String> parentRoutes, List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.settings.name;
-    return hiddenRoutes.contains(routeName) ||
-        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
   }
 
-  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes,
-      List<String> hiddenRoutes) {
+  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes, List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.name;
-    return hiddenRoutes.contains(routeName) ||
-        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName.startsWith(parent) == true);
   }
 }

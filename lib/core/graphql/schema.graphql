@@ -1,0 +1,243 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""An enumeration."""
+enum AccountsUserGenderChoices {
+  """Male"""
+  MALE
+
+  """Female"""
+  FEMALE
+
+  """Any"""
+  ANY
+}
+
+"""
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+"""
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+"""
+
+    Errors messages and codes mapped to
+    fields or non fields errors.
+    Example:
+    {
+        field_name: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        other_field: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        nonFieldErrors: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ]
+    }
+    
+"""
+scalar ExpectedErrorType
+
+"""
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+"""
+Allows use of a JSON String for input / output from the GraphQL schema.
+
+Use of this type is *not recommended* as you lose the benefits of having a defined, static
+schema (one of the key benefits of GraphQL).
+"""
+scalar JSONString
+
+type LoginMutation {
+  user: UserType
+  token: String
+  restToken: String
+}
+
+type LogoutMutation {
+  message: String
+}
+
+type Mutation {
+  login(password: String!, username: String): LoginMutation
+  logout: LogoutMutation
+
+  """
+  Register user with fields defined in the settings.
+  
+  If the email field of the user model is part of the
+  registration fields (default), check if there is
+  no user with that email or as a secondary email.
+  
+  If it exists, it does not register the user,
+  even if the email field is not defined as unique
+  (default of the default django user model).
+  
+  When creating the user, it also creates a `UserStatus`
+  related to that user, making it possible to track
+  if the user is archived, verified and has a secondary
+  email.
+  
+  Send account verification email.
+  
+  If allowed to not verified users login, return token.
+  """
+  register(displayName: String, dob: Date, email: String!, username: String!, firstName: String!, lastName: String!, password1: String!, password2: String!): NewRegister
+
+  """
+  Obtain JSON web token for given user.
+  
+  Allow to perform login with different fields,
+  and secondary email if set. The fields are
+  defined on settings.
+  
+  Not verified users can login by default. This
+  can be changes on settings.
+  
+  If user is archived, make it unarchive and
+  return `unarchiving=True` on output.
+  """
+  tokenAuth(password: String!, email: String, username: String): NewObtainJSONWebToken
+}
+
+"""
+Obtain JSON web token for given user.
+
+Allow to perform login with different fields,
+and secondary email if set. The fields are
+defined on settings.
+
+Not verified users can login by default. This
+can be changes on settings.
+
+If user is archived, make it unarchive and
+return `unarchiving=True` on output.
+"""
+type NewObtainJSONWebToken {
+  payload: GenericScalar!
+  refreshExpiresIn: Int!
+  success: Boolean
+  errors: ExpectedErrorType
+  user: UserNode
+  restToken: String
+  use2fa: Boolean
+  useGoogleAuthenticator: Boolean
+  token: String!
+}
+
+"""
+Register user with fields defined in the settings.
+
+If the email field of the user model is part of the
+registration fields (default), check if there is
+no user with that email or as a secondary email.
+
+If it exists, it does not register the user,
+even if the email field is not defined as unique
+(default of the default django user model).
+
+When creating the user, it also creates a `UserStatus`
+related to that user, making it possible to track
+if the user is archived, verified and has a secondary
+email.
+
+Send account verification email.
+
+If allowed to not verified users login, return token.
+"""
+type NewRegister {
+  success: Boolean
+  errors: ExpectedErrorType
+}
+
+"""An object with an ID"""
+interface Node {
+  """The ID of the object"""
+  id: ID!
+}
+
+type Query {
+  hello(name: String = "stranger"): String
+  goodbye: String
+}
+
+type UserNode implements Node {
+  """The ID of the object"""
+  id: ID!
+  firstName: String!
+  lastName: String
+  username: String!
+  email: String
+  bio: String
+  profilePictureUrl: String
+  thumbnailUrl: String
+  gender: AccountsUserGenderChoices
+  phoneNumber: JSONString!
+  country: String
+  postcode: String
+  isActive: Boolean!
+  isStaff: Boolean!
+  isVerified: Boolean!
+  isBanned: Boolean!
+  deleted: Boolean!
+  views: Int!
+  displayName: String
+  blueTickVerified: Boolean!
+  dob: Date
+  dobChangeCount: Int!
+  use2fa: Boolean!
+  dateJoined: DateTime!
+  lastLogin: DateTime
+  inWaitlist: Boolean!
+  useGoogleAuthenticator: Boolean!
+  gASecret: String
+  usernameLastUpdated: DateTime
+  meta: JSONString!
+  pk: Int
+  archived: Boolean
+  verified: Boolean
+  secondaryEmail: String
+}
+
+type UserType {
+  id: Int
+  firstName: String
+  lastName: String
+  username: String
+  email: String
+  bio: String
+  profilePictureUrl: String
+  gender: String
+  displayName: String
+  dob: DateTime
+  dateJoined: DateTime
+  lastLogin: DateTime
+  fullName: String
+}
+
