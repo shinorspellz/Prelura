@@ -13,6 +13,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: true),
+        AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: AuthRoute.page, path: "/", children: [
           AutoRoute(page: HomeNavigationRoute.page, children: [
             AutoRoute(page: HomeRoute.page, initial: true),
@@ -92,6 +93,10 @@ class AppRouter extends RootStackRouter {
               page: PriceRoute.page,
             ),
           ]),
+          AutoRoute(
+            path: "product/:id",
+            page: ProductDetailRoute.page,
+          ),
         ]),
         AutoRoute(
           page: FollowersRoute.page,

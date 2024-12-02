@@ -76,7 +76,7 @@ class HomeScreen extends ConsumerWidget {
 }
 
 Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
-  final tabs = ["All", "Designer", "Electronics"];
+  final tabs = ["All", "Premium Brands", "Electronics", "Books"];
 
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
@@ -119,7 +119,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
 Widget _buildSectionTitle(
     String MainTitle, String subtitle, BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+    padding: const EdgeInsets.symmetric(vertical: 10),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -18,8 +18,8 @@ import '../../../widgets/gap.dart';
 import '../provider/sign_in_provider.dart';
 
 @RoutePage()
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends ConsumerWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,7 +44,7 @@ class LoginScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   Text(
-                    "Sign in",
+                    "Sign up",
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
@@ -54,6 +54,26 @@ class LoginScreen extends ConsumerWidget {
                   addVerticalSpacing(35),
                   PreluraAuthTextField(
                     hintText: "Username",
+                    controller: loginState.emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (val) {},
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return "Username is required";
+                      }
+                      return null;
+                    },
+                    suffixIcon: IconButton(
+                        padding: const EdgeInsets.all(0),
+                        onPressed: loginNotifier.toggleObscureText,
+                        icon: RenderSvg(
+                          svgPath: PreluraIcons.mailIcon,
+                          color: Colors.transparent,
+                        )),
+                  ),
+                  addVerticalSpacing(20),
+                  PreluraAuthTextField(
+                    hintText: "Email address",
                     controller: loginState.emailController,
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (val) {},
@@ -93,20 +113,27 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ),
                   addVerticalSpacing(15),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          "Forgot Password ?",
-                          style: mcontext.textTheme.displayMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                      ),
-                    ],
+                  PreluraAuthTextField(
+                    hintText: "Confirm Password",
+                    controller: loginState.passwordController,
+                    obscureText: loginState.obscureText,
+                    onChanged: (val) {},
+                    validator: (p0) {
+                      if (p0!.isEmpty) {
+                        return "Password is required";
+                      }
+                      return null;
+                    },
+                    suffixIcon: IconButton(
+                      padding: const EdgeInsets.all(0),
+                      onPressed: loginNotifier.toggleObscureText,
+                      icon: loginState.obscureText
+                          ? const RenderSvg(svgPath: PreluraIcons.eyeIcon)
+                          : const RenderSvg(
+                              svgPath: PreluraIcons.eyeSlashOutline),
+                    ),
                   ),
+
                   addVerticalSpacing(40),
                   ValueListenableBuilder<bool>(
                     valueListenable: ValueNotifier(loginState.isLoading),
@@ -145,7 +172,7 @@ class LoginScreen extends ConsumerWidget {
 
                                 context.router.replace(const AuthRoute());
                               },
-                        buttonTitle: 'Sign in',
+                        buttonTitle: 'Sign Up',
                       );
                     },
                   ),
@@ -232,16 +259,16 @@ class LoginScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Don't have an account?",
+              "Already have an account?",
               style: mcontext.textTheme.displayMedium!.copyWith(
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
               ),
             ),
             PreluraTextButton(
-              text: "Sign Up",
+              text: "Sign In",
               onPressed: () {
-                context.router.push(SignUpRoute());
+                context.router.push(LoginRoute());
               },
               textStyle: mcontext.textTheme.displayMedium!.copyWith(
                 fontWeight: FontWeight.w600,

@@ -11,7 +11,6 @@ import 'package:prelura_app/modules/auth/views/widgets/rating.dart';
 
 import '../../../../../../res/colors.dart';
 import '../../../widgets/app_button.dart';
-import '../widget/item_grid.dart';
 
 class UserWardrobe extends ConsumerWidget {
   const UserWardrobe({super.key});

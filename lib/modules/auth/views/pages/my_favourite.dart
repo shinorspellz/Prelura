@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/card.dart';
+import 'package:prelura_app/shared/mock_data.dart';
 
 import '../widgets/gesture_navigator.dart';
 
@@ -11,17 +12,6 @@ class MyFavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List items = [
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-      const DisplayCard(),
-    ];
-
     return GestureNavigationWidget(currentScreenBuilder: (context) {
       return Scaffold(
         appBar: PreluraAppBar(
@@ -41,9 +31,9 @@ class MyFavouriteScreen extends StatelessWidget {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 0.58),
-            itemCount: items.length,
+            itemCount: mockData.length,
             itemBuilder: (context, index) {
-              return items[index];
+              return DisplayCard(itemData: mockData[index]);
             }),
       );
     });

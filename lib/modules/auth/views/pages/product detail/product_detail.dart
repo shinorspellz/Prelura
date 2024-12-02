@@ -14,11 +14,14 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
+import '../../../../../shared/card_model.dart';
 import '../../widgets/card.dart';
+
 
 @RoutePage()
 class ProductDetailScreen extends ConsumerStatefulWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
+  final PreluraCardModel product;
+  const ProductDetailScreen(this.product, {Key? key}) : super(key: key);
 
   @override
   ConsumerState<ProductDetailScreen> createState() =>
@@ -45,6 +48,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    setState(() {
+      _favoriteCount = widget.product.likes ?? 0;
+    });
   }
 
   @override
@@ -86,7 +92,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                           6,
                           (index) => ClipRRect(
                             child: Image.asset(
-                              PreluraIcons.productImage,
+                              widget.product.image,
                               fit: BoxFit.cover,
                               height: 400,
                             ),
@@ -158,12 +164,12 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   child: InkWell(
                                     onTap: () {
                                       if (context.router.canPop()) {
-                                        context.router.popForced();
+                                        context.router.back();
                                       } else {
                                         tabRouter.setActiveIndex(ref
                                             .read(routePathProvider.notifier)
                                             .state);
-                                        context.router.popForced();
+                                        context.router.back();
                                       }
                                     },
                                     child: CircleAvatar(
@@ -260,13 +266,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               color: Theme.of(context).iconTheme.color),
                           onPressed: () => {
                                 if (context.router.canPop())
-                                  {context.router.popForced()}
+                                  {context.router.back()}
                                 else
                                   {
                                     tabRouter.setActiveIndex(ref
                                         .read(routePathProvider.notifier)
                                         .state),
-                                    context.router.popForced()
+                                    context.back()
                                   }
                               }),
                       appbarTitle: "App Bar",

@@ -1,89 +1,232 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/auth/views/pages/Search%20Result/provider/search_provider.dart';
 import 'package:prelura_app/modules/auth/views/widgets/SearchWidget.dart';
+import 'package:prelura_app/modules/auth/views/widgets/gap.dart';
+import 'package:prelura_app/res/images.dart';
 
 import '../../../../core/router/router.gr.dart';
 import '../../../../res/colors.dart';
 import '../widgets/menu_card.dart';
+import 'Search Result/provider/filter_provider.dart';
+import 'Search Result/view/search_result.dart';
+
+final ActiveSearchProvider = StateProvider<bool>((ref) => false);
 
 @RoutePage()
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends ConsumerWidget {
   const SearchScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(ActiveSearchProvider);
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Searchwidget(
+            Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
                 shouldReadOnly: false,
+                onChanged: (value) {
+                  ref.read(ActiveSearchProvider.notifier).state = true;
+                  ref.read(searchQueryProvider.notifier).state = value;
+                },
+                onCancel: () {
+                  ref.read(ActiveSearchProvider.notifier).state = false;
+                  ref.read(searchFilterProvider.notifier).clearAllFilters();
+                },
                 enabled: true,
                 showInputBorder: true,
                 autofocus: false,
                 cancelButton: true),
-            MenuCard(
-                title: "Women",
-                icon: const Icon(
-                  Icons.settings,
-                  color: PreluraColors.activeColor,
+            if (state == false) ...[
+              addVerticalSpacing(12),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  "Categories",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(fontWeight: FontWeight.w800),
                 ),
-                onTap: () {
-                  context.router.push(const SettingRoute());
-                }),
-            MenuCard(
-                title: "Men",
-                icon: const Icon(
-                  Icons.lock,
-                  color: PreluraColors.activeColor,
+              ),
+              SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.women,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Women",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.men,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Men",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.kids,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Kids",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.electronics,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Electronics",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.home,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Home",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.entertainment,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Entertainment",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    ),
+                    addHorizontalSpacing(20),
+                    Container(
+                      width: 100,
+                      height: 120,
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                bottom: Radius.circular(6)),
+                            child: Image.asset(
+                              PreluraIcons.petCare,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          addVerticalSpacing(4),
+                          Text(
+                            "Pet Care",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                onTap: () {}),
-            MenuCard(
-                title: "Designer",
-                icon: const Icon(
-                  Icons.info_outlined,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
-            MenuCard(
-                title: "kids",
-                icon: const Icon(
-                  Icons.info_outlined,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
-            MenuCard(
-                title: "Home",
-                icon: const Icon(
-                  Icons.info_outlined,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
-            MenuCard(
-                title: "Electronics",
-                icon: const Icon(
-                  Icons.power_input,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
-            MenuCard(
-                title: "Entertainment",
-                icon: const Icon(
-                  Icons.face,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
-            MenuCard(
-                title: "Pet care",
-                icon: const Icon(
-                  CupertinoIcons.paw,
-                  color: PreluraColors.activeColor,
-                ),
-                onTap: () {}),
+              )
+            ] else ...[
+              LiveSearchPage()
+            ]
           ],
         ),
       ),

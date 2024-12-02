@@ -53,4 +53,11 @@ class PreluraIcons {
   static const String whiteAppleIcon = "assets/icons/white_apple.svg";
   static const String askAQuestion = "assets/svgs/chat-left-text.svg";
   static const String productImage = "assets/images/product_image.png";
+  static const String home = "assets/images/home.jpg";
+  static const String entertainment = "assets/images/entertainment.jpg";
+  static const String electronics = "assets/images/electronics.jpg";
+  static const String women = "assets/images/women.jpg";
+  static const String men = "assets/images/men.jpg";
+  static const String kids = "assets/images/kids.jpg";
+  static const String petCare = "assets/images/petcare.jpg";
 }

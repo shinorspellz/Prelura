@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/auth/views/widgets/card.dart';
+import 'package:prelura_app/modules/auth/views/widgets/display_section.dart';
 
 class MoreProductGridView extends StatefulWidget {
   const MoreProductGridView({super.key});
@@ -83,25 +84,7 @@ class _MoreProductGridViewState extends State<MoreProductGridView>
           ),
 
           // Grid View Section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: GridView.builder(
-              physics:
-                  const NeverScrollableScrollPhysics(), // Prevent internal scrolling
-              shrinkWrap:
-                  true, // Makes GridView take only as much height as needed
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 6.0,
-                // crossAxisSpacing: 6.0,
-                childAspectRatio: 0.59,
-              ),
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return const DisplayCard(); // Replace with your custom widget
-              },
-            ),
-          ),
+          DisplaySection(),
         ],
       ),
     );
