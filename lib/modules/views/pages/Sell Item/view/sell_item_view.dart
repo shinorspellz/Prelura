@@ -6,6 +6,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
+import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -158,67 +159,63 @@ class SellItemScreen extends ConsumerWidget {
                       .toList(),
                 ),
               const SizedBox(height: 16),
-              TextField(
-                autofocus: false,
-                onChanged: notifier.updateTitle,
-                style: Theme.of(context).textTheme.bodyMedium,
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                  labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                  hintText: 'e.g. White COS Jumper',
-                  hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                autofocus: false,
-                onChanged: notifier.updateDescription,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 4,
-                decoration: InputDecoration(
-                  labelText: 'Describe your item',
-                  labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                  hintText: 'e.g. only worn a few times, true to size',
-                  hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                  enabledBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                ),
-              ),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      PreluraAuthTextField(
+                        label: 'Title',
+                        labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                        hintText: 'e.g. White COS Jumper',
+                        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                        onChanged: notifier.updateTitle,
+                      ),
+                      const SizedBox(height: 16),
+                      PreluraAuthTextField(
+                        label: 'Describe your item',
+                        labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 17),
+                        hintText: 'e.g. only worn a few times, true to size',
+                        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+                        onChanged: notifier.updateDescription,
+                      ),
+                    ],
+                  )),
               const SizedBox(height: 16),
               MenuCard(
                 title: "Category",
                 subtitle: state.product,
+                rightArrow: false,
                 onTap: () {
                   context.router.push(const CategoryRoute());
                 },
               ),
               MenuCard(
                 title: 'Brand',
-                subtitle: state.brand ?? "",
+                rightArrow: false,
+                subtitle: state.brand,
                 onTap: () {
                   context.router.push(BrandSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Size',
-                subtitle: state.size ?? "",
+                rightArrow: false,
+                subtitle: state.size,
                 onTap: () {
                   context.router.push(SizeSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Measurements (Recommended)',
+                rightArrow: false,
                 onTap: () {
                   context.router.push(const MaterialSelectionRoute());
                 },
               ),
               MenuCard(
                 title: 'Condtion',
-                subtitle: state.selectedCondition ?? "",
+                rightArrow: false,
+                subtitle: state.selectedCondition,
                 onTap: () {
                   context.router.push(const ConditionRoute());
                 },
@@ -245,6 +242,7 @@ class SellItemScreen extends ConsumerWidget {
               MenuCard(
                 title: 'Parcel Size',
                 subtitle: state.parcel,
+                rightArrow: false,
                 onTap: () {
                   context.router.push(const ParcelRoute());
                 },
@@ -266,89 +264,7 @@ class SellItemScreen extends ConsumerWidget {
               //     style: TextStyle(color: Colors.blue, fontSize: 12),
               //   ),
               // ),
-              InkWell(
-                onTap: () => {},
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Theme.of(context).dividerColor, // Use the theme's divider color
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Bump item",
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                    const SizedBox(height: 4), // Add spacing between texts
-                                    Text(
-                                      "Reach more buyers to give items a better chance of selling",
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis, // Truncate text
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(width: 30),
-                              Text(
-                                'from #1.00',
-                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                              ),
-                              const SizedBox(width: 10),
-                              Checkbox(value: true, onChanged: (value) {})
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                child: Row(
-                  children: [
-                    const Expanded(child: Text("What do you think of our upload process ?")),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    AppButton(
-                      onTap: () {
-                        notifier.addImages();
-                      },
-                      text: "Give feedback",
-                      bgColor: Theme.of(context).scaffoldBackgroundColor,
-                      width: 120,
-                    )
-                  ],
-                ),
-              ),
+
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.all(16.0),

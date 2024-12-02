@@ -36,8 +36,21 @@ class ProfileScreen extends ConsumerWidget {
       //     title: "Personalisation",
       //     icon: const Icon(Icons.info_outlined),
       //     onTap: () {}),
-      MenuCard(title: "Balance", subtitle: '£0.00', subtitleColor: PreluraColors.activeColor, icon: const Icon(Icons.wallet_outlined), rightArrow: false, onTap: () {}),
-      MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
+      MenuCard(
+        title: "Balance",
+        subtitle: '£0.00',
+        subtitleColor: PreluraColors.activeColor,
+        icon: const Icon(Icons.wallet_outlined),
+        rightArrow: false,
+        onTap: () {},
+      ),
+      MenuCard(
+        title: "Discounts",
+        subtitle: "off",
+        rightArrow: false,
+        icon: const Icon(Icons.info_outlined),
+        onTap: () {},
+      ),
       // MenuCard(
       //     title: "Donations",
       //     subtitle: "off",
@@ -78,44 +91,6 @@ class ProfileScreen extends ConsumerWidget {
           onTap: () {
             context.router.push(const AboutPreluraMenuRoute());
           }),
-      MenuCard(
-          title: "Logout",
-          icon: const Icon(Icons.logout_rounded),
-          rightArrow: false,
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (context) => Consumer(builder: (_, ref, __) {
-                      return AlertDialog.adaptive(
-                        title: const Text('Logout'),
-                        content: const Text('Are you sure you want to logout ?'),
-                        actions: [
-                          if (ref.watch(authProvider).isLoading)
-                            const Padding(
-                              padding: EdgeInsets.only(top: 12),
-                              child: UnconstrainedBox(
-                                  child: SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 1.8,
-                                ),
-                              )),
-                            )
-                          else
-                            TextButton(
-                                onPressed: () async {
-                                  await ref.read(authProvider.notifier).logout();
-                                  ref.read(authProvider).whenOrNull(
-                                        error: (e, _) => context.alert(e.toString()),
-                                      );
-                                },
-                                child: const Text('Logout')),
-                          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Dismiss')),
-                        ],
-                      );
-                    }));
-          }),
     ];
     return Scaffold(
       appBar: const PreluraAppBar(
@@ -125,6 +100,7 @@ class ProfileScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(children: [
           const ProfileStatsCard(),
+          MenuCard(title: "Balance", icon: const Icon(Icons.wallet_outlined), subtitle: '£0.00', subtitleColor: PreluraColors.activeColor, rightArrow: false, onTap: () {}),
           MenuCard(
               profilePic: false,
               title: "My Profile",
@@ -138,14 +114,21 @@ class ProfileScreen extends ConsumerWidget {
           //     title: "Your guide to Prelura",
           //     icon: const Icon(Icons.info_outlined),
           //     onTap: () {}),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: menuItem1.length,
-            itemBuilder: (context, index) {
-              return menuItem1[index];
-            },
-          ),
+          MenuCard(
+              title: "Orders",
+              icon: const Icon(Icons.info_outlined),
+              rightArrow: false,
+              onTap: () {
+                context.router.push(const MyOrderRoute());
+              }),
+          MenuCard(
+              title: "Favourites",
+              icon: const Icon(Icons.favorite_border_outlined),
+              rightArrow: false,
+              onTap: () {
+                context.router.push(const MyFavouriteRoute());
+              }),
+          MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
@@ -159,14 +142,21 @@ class ProfileScreen extends ConsumerWidget {
           //     onTap: () {
           //       context.router.push(const HolidayModeRoute());
           //     }),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: menuItem2.length,
-            itemBuilder: (context, index) {
-              return menuItem2[index];
-            },
-          ),
+          MenuCard(
+              title: "Settings",
+              icon: const Icon(Icons.settings),
+              rightArrow: false,
+              onTap: () {
+                context.router.push(const SettingRoute());
+              }),
+          MenuCard(title: "Help Centre", icon: const Icon(Icons.question_mark_rounded), rightArrow: false, onTap: () {}),
+          MenuCard(
+              title: "About Prelura",
+              icon: const Icon(Icons.info_outlined),
+              rightArrow: false,
+              onTap: () {
+                context.router.push(const AboutPreluraMenuRoute());
+              }),
           const SizedBox(
             height: 20,
           ),

@@ -1,8 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
+import 'package:prelura_app/res/colors.dart';
 
 @RoutePage()
 class SettingScreen extends StatelessWidget {
@@ -11,7 +16,11 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List menuItem1 = [
-      MenuCard(title: "Profile details", onTap: () {}),
+      MenuCard(
+          title: "Profile details",
+          onTap: () {
+            context.router.push(const ProfileSettingRoute());
+          }),
       MenuCard(title: "Account Setting", onTap: () {}),
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
@@ -79,6 +88,49 @@ class SettingScreen extends StatelessWidget {
             height: 20,
           ),
           MenuCard(title: "Dark mode", subtitle: "System setting", onTap: () {}),
+          MenuCard(
+            title: "Log out",
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => Consumer(builder: (_, ref, __) {
+                        return AlertDialog.adaptive(
+                          title: const Text('Logout'),
+                          content: const Text('Are you sure you want to logout ?'),
+                          actions: [
+                            if (ref.watch(authProvider).isLoading)
+                              const Padding(
+                                padding: EdgeInsets.only(top: 12),
+                                child: UnconstrainedBox(
+                                    child: SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 1.8,
+                                  ),
+                                )),
+                              )
+                            else
+                              TextButton(
+                                  onPressed: () async {
+                                    await ref.read(authProvider.notifier).logout();
+                                    ref.read(authProvider).whenOrNull(
+                                          error: (e, _) => context.alert(e.toString()),
+                                        );
+                                  },
+                                  child: const Text('Logout')),
+                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Dismiss')),
+                          ],
+                        );
+                      }));
+            },
+            icon: Icon(
+              Icons.logout,
+              color: PreluraColors.error,
+            ),
+            textColor: PreluraColors.error,
+            iconColor: PreluraColors.error,
+          ),
           const SizedBox(
             height: 30,
           ),

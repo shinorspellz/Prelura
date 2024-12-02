@@ -4,18 +4,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../res/images.dart';
 
 class MenuCard extends StatelessWidget {
-  const MenuCard(
-      {super.key,
-      required this.title,
-      this.borderbottom = true,
-      this.icon,
-      this.widget,
-      required this.onTap,
-      this.subtitle,
-      this.subtitleColor,
-      this.profilePic = false,
-      this.rightArrow = true,
-      this.additionalText});
+  const MenuCard({
+    super.key,
+    required this.title,
+    this.borderbottom = true,
+    this.icon,
+    this.widget,
+    required this.onTap,
+    this.subtitle,
+    this.subtitleColor,
+    this.profilePic = false,
+    this.rightArrow = true,
+    this.additionalText,
+    this.textColor,
+    this.iconColor,
+  });
   final String title;
   final String? subtitle;
   final String? additionalText;
@@ -26,6 +29,8 @@ class MenuCard extends StatelessWidget {
   final bool rightArrow;
   final bool borderbottom;
   final Color? subtitleColor;
+  final Color? textColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +78,7 @@ class MenuCard extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: textColor ?? Theme.of(context).textTheme.bodyMedium?.color),
                         ),
                         widget ?? const SizedBox.shrink(),
                         if (additionalText != null)
@@ -99,9 +102,10 @@ class MenuCard extends StatelessWidget {
                       width: 10,
                     ),
                     if (rightArrow)
-                      const Icon(
+                      Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 18,
+                        color: iconColor ?? Theme.of(context).iconTheme.color,
                       ),
                   ],
                 ),

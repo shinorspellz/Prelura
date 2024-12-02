@@ -56,6 +56,7 @@ class AppRouter extends RootStackRouter {
                       guards: [AuthGuard(_ref)],
                       page: SettingRoute.page,
                     ),
+                    AutoRoute(guards: [AuthGuard(_ref)], page: ProfileSettingRoute.page),
                     AutoRoute(
                       guards: [AuthGuard(_ref)],
                       page: MyFavouriteRoute.page,
