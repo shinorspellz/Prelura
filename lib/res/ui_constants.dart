@@ -20,10 +20,12 @@ class UIConstants {
     Widget? suffixIcon,
     Widget? suffixWidget,
     String? hintText,
+    String? labelText = "",
     String? prefixText,
     String? helperText,
     String? counterText = '',
     TextStyle? hintStyle,
+    TextStyle? labelStyle,
     EdgeInsets? contentPadding,
     bool isCollapsed = false,
     bool showCounter = false,
@@ -32,6 +34,13 @@ class UIConstants {
     BorderRadius? borderRadius,
   }) {
     return InputDecoration(
+      label: Text(labelText ?? "",
+          style: labelStyle ??
+              Theme.of(context).textTheme.displayMedium!.copyWith(
+                    color: Theme.of(context).primaryColor.withOpacity(0.5),
+                    fontSize: 14.sp,
+                    height: 1.7,
+                  )),
       enabled: enabled,
       fillColor: Theme.of(context).buttonTheme.colorScheme!.secondary,
       filled: true,
@@ -57,7 +66,7 @@ class UIConstants {
       hintStyle: hintStyle ??
           Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
-                fontSize: 12.sp,
+                fontSize: 14.sp,
                 height: 1.7,
               ),
       contentPadding:
@@ -79,10 +88,12 @@ class UIConstants {
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red, width: 1),
-          borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(8))),
+          borderRadius:
+              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.red, width: 1),
-          borderRadius: borderRadius ?? const BorderRadius.all(Radius.circular(8))),
+          borderRadius:
+              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
     );
   }
 }

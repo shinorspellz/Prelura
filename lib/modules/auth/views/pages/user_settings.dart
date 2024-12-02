@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/auth/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/auth/views/widgets/menu_card.dart';
+
+import '../../../../res/colors.dart';
 
 @RoutePage()
 class SettingScreen extends StatelessWidget {
@@ -11,7 +14,11 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List menuItem1 = [
-      MenuCard(title: "Profile details", onTap: () {}),
+      MenuCard(
+          title: "Profile details",
+          onTap: () {
+            context.router.push(ProfileSettingRoute());
+          }),
       MenuCard(title: "Account Setting", onTap: () {}),
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
@@ -97,6 +104,16 @@ class SettingScreen extends StatelessWidget {
           ),
           MenuCard(
               title: "Dark mode", subtitle: "System setting", onTap: () {}),
+          MenuCard(
+            title: "Log out",
+            onTap: () {},
+            icon: Icon(
+              Icons.logout,
+              color: PreluraColors.error,
+            ),
+            textColor: PreluraColors.error,
+            iconColor: PreluraColors.error,
+          ),
           const SizedBox(
             height: 30,
           ),
