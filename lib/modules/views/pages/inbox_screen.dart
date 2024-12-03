@@ -6,6 +6,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import '../../../res/colors.dart';
 import '../../../res/images.dart';
 import '../widgets/message_card.dart';
+import 'Notifications/view/notification_view.dart';
 
 @RoutePage()
 class InboxScreen extends StatefulWidget {
@@ -15,7 +16,8 @@ class InboxScreen extends StatefulWidget {
   State<InboxScreen> createState() => _InboxScreenState();
 }
 
-class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStateMixin {
+class _InboxScreenState extends State<InboxScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -49,7 +51,8 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
             TabBar(
               controller: _tabController,
               indicatorColor: PreluraColors.activeColor,
-              unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
+              unselectedLabelColor:
+                  PreluraColors.greyLightColor, // Text color for inactive tabs
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16, // Font size for the active tab
@@ -104,12 +107,7 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
                       ),
                     ],
                   ),
-                  const Center(
-                    child: Text(
-                      "Settings Tab Content",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
+                  NotificationsTab( )
                 ],
               ),
             ),
