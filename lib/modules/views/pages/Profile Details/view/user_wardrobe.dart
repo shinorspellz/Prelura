@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
@@ -17,13 +18,15 @@ class UserWardrobe extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider).valueOrNull;
+
     return SingleChildScrollView(
       child: Column(
         children: [
           MenuCard(
             rightArrow: false,
             borderbottom: false,
-            title: "Lonin2999",
+            title: user?.username ?? '--',
             profilePic: true,
             widget: Text(
               "35 listings",

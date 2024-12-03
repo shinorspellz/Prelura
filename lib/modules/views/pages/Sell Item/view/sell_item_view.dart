@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
@@ -183,7 +184,7 @@ class SellItemScreen extends ConsumerWidget {
               const SizedBox(height: 16),
               MenuCard(
                 title: "Category",
-                subtitle: state.product,
+                subtitle: state.category?.name,
                 rightArrow: false,
                 onTap: () {
                   context.router.push(const CategoryRoute());
@@ -200,7 +201,7 @@ class SellItemScreen extends ConsumerWidget {
               MenuCard(
                 title: 'Size',
                 rightArrow: false,
-                subtitle: state.size,
+                subtitle: state.size?.sizeValue,
                 onTap: () {
                   context.router.push(SizeSelectionRoute());
                 },
@@ -270,16 +271,18 @@ class SellItemScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (notifier.validateInputs()) {
-                      await notifier.uploadItem();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Item uploaded successfully!')),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please fill in all required fields')),
-                      );
-                    }
+                    // final files = state.images.map((x) => File(x.path)).toList();
+                    // ref.read(productProvider.notifier).uploadMedia(files);
+                    // if (notifier.validateInputs()) {
+                    //   await notifier.uploadItem();
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Item uploaded successfully!')),
+                    //   );
+                    // } else {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Please fill in all required fields')),
+                    //   );
+                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: PreluraColors.activeColor,

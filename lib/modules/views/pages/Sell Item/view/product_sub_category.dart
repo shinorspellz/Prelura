@@ -18,41 +18,39 @@ class SubCategoryProductScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sharedData = ref.watch(selectedProductCategoryNotifierProvider);
 
-    return GestureNavigationWidget(currentScreenBuilder: (context) {
-      return Scaffold(
-        appBar: PreluraAppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.popForced(),
-          ),
-          centerTitle: true,
-          appbarTitle: sharedData.selectedValue,
+    return Scaffold(
+      appBar: PreluraAppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leadingIcon: IconButton(
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 20),
-          child: Column(
-            children: [
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: sharedData.relatedStrings.length,
-                  itemBuilder: (context, index) {
-                    return MenuCard(
-                        title: sharedData.relatedStrings[index],
-                        icon: const Icon(
-                          Icons.settings,
-                          color: PreluraColors.activeColor,
-                        ),
-                        onTap: () {
-                          ref.read(selectedProductListNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
-                          context.router.push(const ProductListRoute());
-                        });
-                  }),
-            ],
-          ),
+        centerTitle: true,
+        appbarTitle: sharedData.selectedValue,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          children: [
+            ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: sharedData.relatedStrings.length,
+                itemBuilder: (context, index) {
+                  return MenuCard(
+                      title: sharedData.relatedStrings[index],
+                      icon: const Icon(
+                        Icons.settings,
+                        color: PreluraColors.activeColor,
+                      ),
+                      onTap: () {
+                        ref.read(selectedProductListNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
+                        context.router.push(const ProductListRoute());
+                      });
+                }),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

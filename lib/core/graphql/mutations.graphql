@@ -43,3 +43,55 @@ mutation TokenAuth($email: String, $password: String!, $username: String!) {
     refreshExpiresIn
   }
 }
+
+mutation CreateProduct(
+  $category: Int
+  $condition: String
+  $description: String!
+  $imageUrl: [ImagesInputType]
+  $postagePrice: Float
+  $price: Float!
+  $size: [Int]!
+  $subCategory: Int
+  $title: String!
+) {
+  createProduct(
+    category: $category
+    condition: $condition
+    description: $description
+    imagesUrl: $imageUrl
+    postagePrice: $postagePrice
+    price: $price
+    size: $size
+    subCategory: $subCategory
+    title: $title
+  ) {
+    success
+    product {
+      id
+      name
+      description
+      category {
+        id
+        name
+      }
+      subCategory {
+        id
+        name
+      }
+      sizes {
+        id
+        sizeValue
+        sizeSystem
+      }
+      condition
+      price
+      postagePrice
+      views
+      likes
+      imagesUrl
+      createdAt
+      updatedAt
+    }
+  }
+}

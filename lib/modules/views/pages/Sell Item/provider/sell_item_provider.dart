@@ -1,16 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/size/size_model.dart';
 
 class SellItemState {
   final List<XFile> images;
   final String title;
   final String description;
-  final String product;
+  final CategoryModel? category;
+  final CategoryModel? subCategory;
   final String parcel;
   final List<String> selectedColors;
   final List<String> selectedMaterials;
   final String brand;
-  final String size;
+  final SizeModel? size;
   final String price;
   final String selectedCondition;
 
@@ -18,10 +21,11 @@ class SellItemState {
     this.images = const [],
     this.title = '',
     this.description = '',
-    this.product = "",
+    this.category,
+    this.subCategory,
     this.parcel = "",
     this.brand = "",
-    this.size = "",
+    this.size,
     this.selectedCondition = "",
     this.price = "",
     this.selectedColors = const [],
@@ -32,19 +36,21 @@ class SellItemState {
       {List<XFile>? images,
       String? title,
       String? description,
-      String? product,
+      CategoryModel? category,
+      CategoryModel? subCategory,
       String? parcel,
       List<String>? selectedColors,
       List<String>? selectedMaterials,
       String? brand,
-      String? size,
+      SizeModel? size,
       String? price,
       String? selectedCondition}) {
     return SellItemState(
         images: images ?? this.images,
         title: title ?? this.title,
         description: description ?? this.description,
-        product: product ?? this.product,
+        category: category ?? this.category,
+        subCategory: subCategory ?? this.subCategory,
         parcel: parcel ?? this.parcel,
         size: size ?? this.size,
         brand: brand ?? this.brand,
@@ -61,7 +67,7 @@ class SellItemState {
     return images.length == other.images.length &&
         title == other.title &&
         description == other.description &&
-        product == other.product &&
+        category == other.category &&
         price == other.price &&
         parcel == other.parcel &&
         brand == other.brand &&
@@ -72,18 +78,7 @@ class SellItemState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      title,
-      description,
-      product,
-      images.length,
-      selectedColors.length,
-      selectedCondition,
-      selectedMaterials.length,
-      parcel,
-      price,
-      size,
-      brand);
+  int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -122,14 +117,17 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   void selectParcel(String selectedParcel) {
     state = state.copyWith(parcel: selectedParcel);
-    ;
   }
 
-  void updateProduct(String product) {
-    state = state.copyWith(product: product);
+  void updateCategory(CategoryModel category) {
+    state = state.copyWith(category: category);
   }
 
-  void selectSize(String? size) {
+  void updateSubCategory(CategoryModel subCategory) {
+    state = state.copyWith(subCategory: subCategory);
+  }
+
+  void selectSize(SizeModel? size) {
     state = state.copyWith(size: size);
   }
 
@@ -181,9 +179,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections
-              .where((m) => m != material)
-              .toList() // Remove material
+          ? currentSelections.where((m) => m != material).toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),

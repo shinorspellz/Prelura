@@ -1,0 +1,246 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:hive/hive.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as fileUtil;
+import "package:http_parser/http_parser.dart" show MediaType;
+import 'package:prelura_app/core/errors/failures.dart';
+
+typedef OnDownloadProgressCallback = void Function(int receivedBytes, int totalBytes);
+typedef OnUploadProgressCallback = void Function(int sentBytes, int totalBytes);
+
+class FileUploadRepo {
+  final Box _cacheBox;
+
+  FileUploadRepo(this._cacheBox);
+
+  String get _uploadUrl => 'https://uat-api.vmodel.app/upload/prelura/';
+
+  Future<Map<String, dynamic>?> uploadFiles(List<File> files, {OnUploadProgressCallback? onUploadProgress}) async {
+    final fps = files.map((e) => e.path).toList();
+
+    final restToken = _getToken;
+
+    if (restToken == null) throw const CacheFailure();
+
+    final res = await _FileService.fileUploadMultipart(
+      url: _uploadUrl,
+      restToken: restToken,
+      files: fps,
+      onUploadProgress: onUploadProgress,
+    );
+    // return res;
+    return jsonDecode(res);
+  }
+
+  Future<Map<String, dynamic>?> uploadRawBytesList(List<Uint8List> rawData, {OnUploadProgressCallback? onUploadProgress}) async {
+    // final fps = files.map((e) => e.path).toList();
+
+    final restToken = _getToken;
+
+    if (restToken == null) throw const CacheFailure();
+
+    final res = await _FileService.rawBytesDataUploadMultipart(
+      url: _uploadUrl,
+      restToken: restToken,
+      rawDataList: rawData,
+      onUploadProgress: onUploadProgress,
+    );
+    // return res;
+    return jsonDecode(res);
+  }
+
+  String? get _getToken => _cacheBox.get('REST_TOKEN');
+  String? get __getToken => _cacheBox.get('AUTH_TOKEN');
+}
+
+/// File REST upload service
+class _FileService {
+  static bool trustSelfSigned = true;
+
+  static HttpClient getHttpClient() {
+    HttpClient httpClient = HttpClient()..connectionTimeout = const Duration(seconds: 10);
+
+    return httpClient;
+  }
+
+  static Future<String> fileUploadMultipart({
+    required String url,
+    required String restToken,
+    List<String>? files,
+    OnUploadProgressCallback? onUploadProgress,
+    List<int>? dimension,
+  }) async {
+    // assert(filePath == null || files == null);
+
+    // final url = ;
+
+    final httpClient = getHttpClient();
+
+    final request = await httpClient.postUrl(Uri.parse(url));
+
+    int byteCount = 0;
+
+    List<http.MultipartFile> mpList = [];
+
+    if (files == null) {
+      return Future.value('');
+    }
+
+    for (String item in files) {
+      final fileName = fileUtil.basename(item);
+      final ext = fileUtil.extension(fileName);
+      String mimeType = ext == 'mp4' ? 'video/mp4' : 'image/$ext';
+      final file = await http.MultipartFile.fromPath(
+        "file${mpList.length}",
+        item,
+        filename: fileName,
+        contentType: MediaType.parse(mimeType),
+      );
+      mpList.add(file);
+    }
+
+    var requestMultipart = http.MultipartRequest("POST", request.uri);
+
+    requestMultipart.files.addAll(mpList);
+
+    var msStream = requestMultipart.finalize();
+
+    var totalByteLength = requestMultipart.contentLength;
+
+    request.contentLength = totalByteLength;
+
+    print(" ========== totalByteLength $totalByteLength");
+
+    request.headers.set(HttpHeaders.contentTypeHeader, requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
+    request.headers.set(HttpHeaders.authorizationHeader, 'Token $restToken');
+
+    Stream<List<int>> streamUpload = msStream.transform(
+      StreamTransformer.fromHandlers(
+        handleData: (data, sink) {
+          sink.add(data);
+
+          byteCount += data.length;
+
+          if (onUploadProgress != null) {
+            onUploadProgress(byteCount, totalByteLength);
+            // CALL STATUS CALLBACK;
+          }
+        },
+        handleError: (error, stack, sink) {
+          throw error;
+        },
+        handleDone: (sink) {
+          sink.close();
+          // UPLOAD DONE;
+        },
+      ),
+    );
+
+    await request.addStream(streamUpload);
+
+    final httpResponse = await request.close();
+
+    var statusCode = httpResponse.statusCode;
+
+    if (statusCode ~/ 100 != 2) {
+      throw Exception('Error uploading file, Status code: ${httpResponse.statusCode}');
+    } else {
+      final res = await readResponseAsString(httpResponse);
+      return res;
+    }
+  }
+
+  static Future<String> rawBytesDataUploadMultipart({
+    required String url,
+    required String restToken,
+    List<Uint8List>? rawDataList,
+    OnUploadProgressCallback? onUploadProgress,
+  }) async {
+    final httpClient = getHttpClient();
+
+    final request = await httpClient.postUrl(Uri.parse(url));
+
+    int byteCount = 0;
+
+    List<http.MultipartFile> mpList = [];
+
+    if (rawDataList == null) {
+      //Todo throw an exception
+      return Future.value('');
+    }
+
+    int count = 0;
+    for (Uint8List item in rawDataList) {
+      var image = http.MultipartFile.fromBytes(
+        'image$count',
+        item,
+        filename: 'postImage$count.jpg',
+        contentType: MediaType('image', '.jpg'),
+      );
+      mpList.add(image);
+      ++count;
+    }
+
+    var requestMultipart = http.MultipartRequest("POST", request.uri);
+
+    requestMultipart.files.addAll(mpList);
+
+    var msStream = requestMultipart.finalize();
+
+    var totalByteLength = requestMultipart.contentLength;
+
+    request.contentLength = totalByteLength;
+
+    request.headers.set(HttpHeaders.contentTypeHeader, requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
+    request.headers.set(HttpHeaders.authorizationHeader, 'Token $restToken');
+
+    Stream<List<int>> streamUpload = msStream.transform(
+      StreamTransformer.fromHandlers(
+        handleData: (data, sink) {
+          sink.add(data);
+
+          byteCount += data.length;
+
+          if (onUploadProgress != null) {
+            onUploadProgress(byteCount, totalByteLength);
+            // CALL STATUS CALLBACK;
+          }
+        },
+        handleError: (error, stack, sink) {
+          throw error;
+        },
+        handleDone: (sink) {
+          sink.close();
+          // UPLOAD DONE;
+        },
+      ),
+    );
+
+    await request.addStream(streamUpload);
+
+    final httpResponse = await request.close();
+//
+    var statusCode = httpResponse.statusCode;
+
+    if (statusCode ~/ 100 != 2) {
+      throw Exception('Error uploading file, Status code: ${httpResponse.statusCode}');
+    } else {
+      final res = await readResponseAsString(httpResponse);
+      return res;
+    }
+  }
+
+  static Future<String> readResponseAsString(HttpClientResponse response) {
+    var completer = Completer<String>();
+    var contents = StringBuffer();
+    response.transform(utf8.decoder).listen((String data) {
+      contents.write(data);
+    }, onDone: () => completer.complete(contents.toString()));
+    return completer.future;
+  }
+}

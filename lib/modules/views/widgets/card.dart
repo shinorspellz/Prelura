@@ -41,7 +41,7 @@ class _DisplayCardState extends State<DisplayCard> {
       onTap: () {
         context.router.push(ProductDetailRoute(product: widget.itemData));
       },
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -49,8 +49,7 @@ class _DisplayCardState extends State<DisplayCard> {
           children: [
             // Wrap the Stack inside a ClipRRect to constrain the image
             ClipRRect(
-              borderRadius:
-                  BorderRadius.circular(6), // Optional: rounded corners
+              borderRadius: BorderRadius.circular(6), // Optional: rounded corners
               child: Stack(
                 children: [
                   Image.asset(
@@ -65,28 +64,18 @@ class _DisplayCardState extends State<DisplayCard> {
                     child: GestureDetector(
                       onTap: _toggleFavorite,
                       child: Container(
-                        padding: const EdgeInsets.only(
-                            top: 5, bottom: 5, left: 8, right: 8),
+                        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
                         decoration: BoxDecoration(
                           color: PreluraColors.blackCardColor,
-                          borderRadius:
-                              BorderRadius.circular(8), // Circular radius
+                          borderRadius: BorderRadius.circular(8), // Circular radius
                         ),
                         child: Row(
                           children: [
-                            Icon(
-                                _isFavorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border_outlined,
-                                size: 17,
-                                color: PreluraColors.white),
+                            Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
                             const SizedBox(width: 2),
                             Text(
                               _favoriteCount > 0 ? '$_favoriteCount' : "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(color: PreluraColors.white),
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
                             ),
                           ],
                         ),
@@ -96,18 +85,14 @@ class _DisplayCardState extends State<DisplayCard> {
                 ],
               ),
             ),
-            const SizedBox(
-                height: 8), // Optional: Add space between image and text
+            const SizedBox(height: 8), // Optional: Add space between image and text
             Text(
               widget.itemData.title,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
               widget.itemData.condition,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
             ),
             const SizedBox(height: 8),
             Text(
@@ -115,13 +100,8 @@ class _DisplayCardState extends State<DisplayCard> {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              widget.itemData.discount != null
-                  ? "£ ${widget.itemData.discount}"
-                  : "",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: PreluraColors.activeColor),
+              widget.itemData.discount != null ? "£ ${widget.itemData.discount}" : "",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.activeColor),
             ),
           ],
         ),

@@ -16,6 +16,23 @@ enum AccountsUserGenderChoices {
   ANY
 }
 
+type CategoryType {
+  id: Int
+  name: String
+}
+
+type CategoryTypes {
+  id: ID!
+  name: String!
+  subCategory: [SubCategoryType]
+}
+
+type CreateProduct {
+  success: Boolean
+  message: String
+  product: ProductType
+}
+
 """
 The `Date` scalar type represents a Date
 value as specified by
@@ -29,6 +46,9 @@ value as specified by
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
 """
 scalar DateTime
+
+"""The `Decimal` scalar type represents a python Decimal."""
+scalar Decimal
 
 """
 
@@ -66,6 +86,11 @@ String, Boolean, Int, Float, List or Object.
 """
 scalar GenericScalar
 
+input ImagesInputType {
+  url: String!
+  thumbnail: String!
+}
+
 """
 Allows use of a JSON String for input / output from the GraphQL schema.
 
@@ -85,6 +110,7 @@ type LogoutMutation {
 }
 
 type Mutation {
+  createProduct(category: Int, condition: String, description: String!, imagesUrl: [ImagesInputType], postagePrice: Float, price: Float!, size: [Int]!, subCategory: Int, title: String!): CreateProduct
   login(password: String!, username: String): LoginMutation
   logout: LogoutMutation
 
@@ -145,6 +171,7 @@ type NewObtainJSONWebToken {
   success: Boolean
   errors: ExpectedErrorType
   user: UserNode
+  unarchiving: Boolean
   restToken: String
   use2fa: Boolean
   useGoogleAuthenticator: Boolean
@@ -182,9 +209,78 @@ interface Node {
   id: ID!
 }
 
+"""An enumeration."""
+enum ProductsProductConditionChoices {
+  """New with tags"""
+  NEW_WITH_TAGS
+
+  """Like new"""
+  LIKE_NEW
+
+  """Used"""
+  USED
+
+  """Heavily used"""
+  HEAVILY_USED
+}
+
+"""An enumeration."""
+enum ProductsSizeSizeSystemChoices {
+  """US"""
+  US
+
+  """EU"""
+  EU
+
+  """UK"""
+  UK
+
+  """Generic (S, M, L)"""
+  GENERIC
+}
+
+type ProductType {
+  id: ID!
+  name: String!
+  description: String!
+  category: CategoryType
+  subCategory: SubCategoryType
+  sizes: [SizeType]
+  condition: ProductsProductConditionChoices
+  price: Decimal!
+  postagePrice: Decimal
+  views: Int!
+  likes: Int!
+  imagesUrl: [JSONString!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
-  hello(name: String = "stranger"): String
-  goodbye: String
+  allProducts(search: String, pageCount: Int, pageNumber: Int): [ProductType]
+  userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
+  product(id: Int!): ProductType
+  categories: [CategoryTypes]
+  sizes: [SizesType]
+  viewMe: UserType
+  getUser(username: String!): UserType
+}
+
+type SizesType {
+  id: ID!
+  sizeValue: String!
+  sizeSystem: ProductsSizeSizeSystemChoices!
+}
+
+type SizeType {
+  id: Int
+  sizeValue: String
+  sizeSystem: String
+}
+
+type SubCategoryType {
+  id: Int
+  name: String
 }
 
 type UserNode implements Node {
@@ -219,6 +315,7 @@ type UserNode implements Node {
   gASecret: String
   usernameLastUpdated: DateTime
   meta: JSONString!
+  products: [ProductType!]!
   pk: Int
   archived: Boolean
   verified: Boolean

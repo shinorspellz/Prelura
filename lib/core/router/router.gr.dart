@@ -10,37 +10,61 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i34;
 import 'package:flutter/material.dart' as _i35;
-import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart' as _i25;
+import 'package:prelura_app/modules/model/product/categories/category_model.dart'
+    as _i37;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i2;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart' as _i14;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart' as _i30;
-import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart' as _i7;
-import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart' as _i8;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
+    as _i14;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart'
+    as _i30;
+import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart'
+    as _i7;
+import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart'
+    as _i8;
 import 'package:prelura_app/modules/views/pages/holiday_mode.dart' as _i9;
 import 'package:prelura_app/modules/views/pages/home.dart' as _i11;
 import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i10;
 import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i12;
 import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i13;
-import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart' as _i17;
+import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart'
+    as _i17;
 import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i16;
-import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart' as _i20;
-import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart' as _i22;
-import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart' as _i23;
+import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart'
+    as _i20;
+import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart'
+    as _i22;
+import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
+    as _i23;
 import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i26;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart' as _i3;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart' as _i4;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart' as _i5;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart' as _i6;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart' as _i15;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart' as _i18;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart' as _i19;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart' as _i21;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart' as _i32;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart' as _i27;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart' as _i31;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart' as _i33;
-import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart' as _i28;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart'
+    as _i3;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart'
+    as _i4;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart'
+    as _i5;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart'
+    as _i6;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart'
+    as _i15;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart'
+    as _i18;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart'
+    as _i19;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart'
+    as _i21;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart'
+    as _i32;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart'
+    as _i27;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart'
+    as _i31;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart'
+    as _i33;
+import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart'
+    as _i28;
+import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart'
+    as _i25;
 import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i24;
 import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i29;
 import 'package:prelura_app/shared/card_model.dart' as _i36;
@@ -100,7 +124,8 @@ class BrandSelectionRoute extends _i34.PageRouteInfo<BrandSelectionRouteArgs> {
   static _i34.PageInfo page = _i34.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BrandSelectionRouteArgs>(orElse: () => const BrandSelectionRouteArgs());
+      final args = data.argsAs<BrandSelectionRouteArgs>(
+          orElse: () => const BrandSelectionRouteArgs());
       return _i3.BrandSelectionPage(key: args.key);
     },
   );
@@ -328,7 +353,8 @@ class LoginRoute extends _i34.PageRouteInfo<LoginRouteArgs> {
   static _i34.PageInfo page = _i34.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
       return _i14.LoginScreen(
         key: args.key,
         onLoginResult: args.onLoginResult,
@@ -686,13 +712,10 @@ class SignUpRoute extends _i34.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i31.SizeSelectionPage]
-class SizeSelectionRoute extends _i34.PageRouteInfo<SizeSelectionRouteArgs> {
-  SizeSelectionRoute({
-    _i35.Key? key,
-    List<_i34.PageRouteInfo>? children,
-  }) : super(
+class SizeSelectionRoute extends _i34.PageRouteInfo<void> {
+  const SizeSelectionRoute({List<_i34.PageRouteInfo>? children})
+      : super(
           SizeSelectionRoute.name,
-          args: SizeSelectionRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -701,21 +724,9 @@ class SizeSelectionRoute extends _i34.PageRouteInfo<SizeSelectionRouteArgs> {
   static _i34.PageInfo page = _i34.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SizeSelectionRouteArgs>(orElse: () => const SizeSelectionRouteArgs());
-      return _i31.SizeSelectionPage(key: args.key);
+      return const _i31.SizeSelectionPage();
     },
   );
-}
-
-class SizeSelectionRouteArgs {
-  const SizeSelectionRouteArgs({this.key});
-
-  final _i35.Key? key;
-
-  @override
-  String toString() {
-    return 'SizeSelectionRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
@@ -739,10 +750,17 @@ class SubCategoryProductRoute extends _i34.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i33.SubCategoryScreen]
-class SubCategoryRoute extends _i34.PageRouteInfo<void> {
-  const SubCategoryRoute({List<_i34.PageRouteInfo>? children})
-      : super(
+class SubCategoryRoute extends _i34.PageRouteInfo<SubCategoryRouteArgs> {
+  SubCategoryRoute({
+    _i35.Key? key,
+    required List<_i37.CategoryModel> subCategories,
+    List<_i34.PageRouteInfo>? children,
+  }) : super(
           SubCategoryRoute.name,
+          args: SubCategoryRouteArgs(
+            key: key,
+            subCategories: subCategories,
+          ),
           initialChildren: children,
         );
 
@@ -751,7 +769,27 @@ class SubCategoryRoute extends _i34.PageRouteInfo<void> {
   static _i34.PageInfo page = _i34.PageInfo(
     name,
     builder: (data) {
-      return const _i33.SubCategoryScreen();
+      final args = data.argsAs<SubCategoryRouteArgs>();
+      return _i33.SubCategoryScreen(
+        key: args.key,
+        subCategories: args.subCategories,
+      );
     },
   );
+}
+
+class SubCategoryRouteArgs {
+  const SubCategoryRouteArgs({
+    this.key,
+    required this.subCategories,
+  });
+
+  final _i35.Key? key;
+
+  final List<_i37.CategoryModel> subCategories;
+
+  @override
+  String toString() {
+    return 'SubCategoryRouteArgs{key: $key, subCategories: $subCategories}';
+  }
 }

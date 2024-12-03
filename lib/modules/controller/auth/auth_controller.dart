@@ -16,6 +16,7 @@ final authStateProvider = StreamProvider((ref) async* {
     final mappedStream = stream.map((x) => x.value != null);
     await for (final value in mappedStream) {
       log('Auth State Changed: $value', name: 'AuthController');
+
       yield value;
     }
   } catch (_, st) {

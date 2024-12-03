@@ -19,7 +19,7 @@ class DisplaySection extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
-            childAspectRatio: 0.58,
+            childAspectRatio: 0.572,
           ),
           itemCount: mockData.length,
           itemBuilder: (context, index) {
