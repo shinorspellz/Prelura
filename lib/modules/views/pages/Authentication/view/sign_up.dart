@@ -8,11 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/main.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_text_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/res/context_entension.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../res/images.dart';
 import '../../../../../res/render_svg.dart';
@@ -46,17 +48,14 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     final mcontext = Theme.of(context);
 
     return Scaffold(
-      appBar: const PreluraAppBar(
-        // leadingIcon: VWidgetsBackButton(),
-        appbarTitle: "",
-      ),
       body: GestureDetector(
         onTap: () => dismissKeyboard(),
         child: SafeArea(
           child: Form(
             key: formKey,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 0, right: 25, left: 25, bottom: 10),
+              padding: const EdgeInsets.only(
+                  top: 40, right: 25, left: 25, bottom: 10),
               child: Column(
                 children: [
                   Text(
@@ -70,6 +69,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   addVerticalSpacing(35),
                   PreluraAuthTextField(
                     hintText: "First Name",
+                    label: "First Name",
                     // controller: loginState.usernameController,
                     onSaved: (value) => firstName = value,
                     keyboardType: TextInputType.name,
@@ -84,6 +84,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   20.verticalSpacing,
                   PreluraAuthTextField(
                     hintText: "Last Name",
+                    label: "Last Name",
                     // controller: loginState.usernameController,
                     onSaved: (value) => lastName = value,
                     keyboardType: TextInputType.name,
@@ -98,6 +99,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   20.verticalSpacing,
                   PreluraAuthTextField(
                     hintText: "Username",
+                    label: "Username",
                     // controller: loginState.usernameController,
                     onSaved: (value) => username = value,
                     keyboardType: TextInputType.name,
@@ -112,6 +114,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   addVerticalSpacing(20),
                   PreluraAuthTextField(
                     hintText: "Email address",
+                    label: "Email address",
                     // controller: loginState.usernameController,
                     keyboardType: TextInputType.emailAddress,
                     onSaved: (value) => email = value,
@@ -132,6 +135,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   addVerticalSpacing(20),
                   PreluraAuthTextField(
                     hintText: "Password",
+                    label: "Password",
                     // controller: loginState.passwordController,
                     obscureText: loginState.obscureText,
                     onSaved: (value) => password = value,
@@ -146,6 +150,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   addVerticalSpacing(15),
                   PreluraAuthTextField(
                     hintText: "Confirm Password",
+                    label: "Confirm Password",
                     // controller: loginState.passwordController,
                     obscureText: loginState.obscureText,
                     onSaved: (value) => confirmPassword = value,
@@ -173,7 +178,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       formKey.currentState!.save();
 
                       assert(
-                        username != null || firstName != null || lastName != null || email != null || password != null || confirmPassword != null,
+                        username != null ||
+                            firstName != null ||
+                            lastName != null ||
+                            email != null ||
+                            password != null ||
+                            confirmPassword != null,
                         'All registration feilds should not be null',
                       );
                       await ref.read(authProvider.notifier).register(
@@ -186,7 +196,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           );
                       ref.read(authProvider).whenOrNull(
                             error: (e, _) => context.alert(e.toString()),
-                            data: (_) => context.router.replaceAll([const AuthRoute()]),
+                            data: (_) =>
+                                context.router.replaceAll([const AuthRoute()]),
                           );
                     },
                     buttonTitle: 'Sign Up',

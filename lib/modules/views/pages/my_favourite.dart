@@ -12,25 +12,28 @@ class MyFavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureNavigationWidget(currentScreenBuilder: (context) {
-      return Scaffold(
-        appBar: PreluraAppBar(
-          appbarTitle: "Favourite items",
-          leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.popForced(),
-          ),
+    return Scaffold(
+      appBar: PreluraAppBar(
+        appbarTitle: "Favourite items",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
         ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: GridView.builder(
-            padding: const EdgeInsets.all(10),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.58),
-            itemCount: mockData.length,
-            itemBuilder: (context, index) {
-              return DisplayCard(itemData: mockData[index]);
-            }),
-      );
-    });
+      ),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: GridView.builder(
+          padding: const EdgeInsets.all(10),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.58),
+          itemCount: mockData.length,
+          itemBuilder: (context, index) {
+            return DisplayCard(itemData: mockData[index]);
+          }),
+    );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/main.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:sizer/sizer.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
@@ -52,11 +54,15 @@ class AppButton extends StatelessWidget {
           border: Border.all(
               width: bgColor != null ? 1 : 0,
               color: bgColor == null
-                  ? borderColor ?? Colors.transparent
-                  : borderColor),
+                  ? isDisabled
+                      ? borderColor.withOpacity(0.5)
+                      : borderColor ?? Colors.transparent
+                  : isDisabled
+                      ? borderColor.withOpacity(0.5)
+                      : borderColor),
           borderRadius: BorderRadius.circular(8),
           color: isDisabled
-              ? PreluraColors.disabledButonColor
+              ? PreluraColors.activeColor.withOpacity(0.2)
               : bgColor ?? PreluraColors.activeColor.withOpacity(0.8),
         ),
         height: height ?? 40,
@@ -71,9 +77,11 @@ class AppButton extends StatelessWidget {
                 ? Text(
                     text!,
                     style: TextStyle(
-                      fontSize: fontSize ?? 14,
+                      fontSize: fontSize ?? 10.sp,
                       color: isDarkMode
-                          ? PreluraColors.white
+                          ? isDisabled
+                              ? PreluraColors.white.withOpacity(0.5)
+                              : PreluraColors.white
                           : bgColor != null
                               ? PreluraColors.activeColor
                               : PreluraColors.white,
@@ -84,9 +92,11 @@ class AppButton extends StatelessWidget {
                     child: Text(
                       text!,
                       style: TextStyle(
-                        fontSize: fontSize ?? 14,
+                        fontSize: fontSize ?? 10.sp,
                         color: isDarkMode
-                            ? PreluraColors.white
+                            ? isDisabled
+                                ? PreluraColors.white.withOpacity(0.5)
+                                : PreluraColors.white
                             : bgColor != null
                                 ? PreluraColors.activeColor
                                 : PreluraColors.white,
