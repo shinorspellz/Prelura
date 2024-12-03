@@ -34,106 +34,109 @@ class ColorSelectorScreen extends ConsumerWidget {
       "Orange": Colors.orange,
     };
 
-    return GestureNavigationWidget(currentScreenBuilder: (context) {
-      return Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appBar: PreluraAppBar(
-            leadingIcon: IconButton(
-              icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-              onPressed: () => context.router.popForced(),
-            ),
-            centerTitle: true,
-            appbarTitle: "Colours"),
-        body: Container(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Choose up to 2 colours",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    const SizedBox(height: 32),
-                    Text(
-                      "All Colours",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Divider(
-                      thickness: 2,
-                    )
-                  ],
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  children: colorOptions.entries.map((entry) {
-                    final colorName = entry.key;
-                    final colorValue = entry.value;
-                    final isSelected = notifier.isColorSelected(colorName);
-
-                    return Column(
-                      children: [
-                        PreluraCheckBox(
-                            colorName: colorValue,
-                            title: colorName,
-                            isChecked: isSelected,
-                            onChanged: (isChecked) {
-                              if (isChecked == true || isSelected) {
-                                notifier.toggleColor(colorName);
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      "You can only select up to 2 colours.",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    backgroundColor: Colors.red,
-                                  ),
-                                );
-                              }
-                            }),
-                      ],
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0, right: 16, top: 16, bottom: 46),
-                child: ElevatedButton(
-                  onPressed: state.isNotEmpty
-                      ? () {
-                          context.router.popForced();
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: PreluraColors.activeColor,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Done",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: PreluraAppBar(
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.popForced(),
           ),
+          centerTitle: true,
+          appbarTitle: "Colours"),
+      body: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Choose up to 2 colours",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 32),
+                  Text(
+                    "All Colours",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const Divider(
+                    thickness: 2,
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                children: colorOptions.entries.map((entry) {
+                  final colorName = entry.key;
+                  final colorValue = entry.value;
+                  final isSelected = notifier.isColorSelected(colorName);
+
+                  return Column(
+                    children: [
+                      PreluraCheckBox(
+                          colorName: colorValue,
+                          title: colorName,
+                          isChecked: isSelected,
+                          onChanged: (isChecked) {
+                            if (isChecked == true || isSelected) {
+                              notifier.toggleColor(colorName);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "You can only select up to 2 colours.",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            }
+                          }),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16, top: 16, bottom: 46),
+              child: ElevatedButton(
+                onPressed: state.isNotEmpty
+                    ? () {
+                        context.router.popForced();
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: PreluraColors.activeColor,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    "Done",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: PreluraColors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

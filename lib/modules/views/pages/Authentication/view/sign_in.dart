@@ -7,11 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/main.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_text_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/res/context_entension.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../res/images.dart';
 import '../../../../../res/render_svg.dart';
@@ -45,17 +47,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final mcontext = Theme.of(context);
 
     return Scaffold(
-      appBar: const PreluraAppBar(
-        // leadingIcon: VWidgetsBackButton(),
-        appbarTitle: "",
-      ),
       body: GestureDetector(
         onTap: () => dismissKeyboard(),
         child: SafeArea(
           child: Form(
             key: formKey,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 0, right: 25, left: 25, bottom: 10),
+              padding: const EdgeInsets.only(
+                  top: 40, right: 25, left: 25, bottom: 10),
               child: Column(
                 children: [
                   Text(
@@ -69,6 +68,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   addVerticalSpacing(35),
                   PreluraAuthTextField(
                     hintText: "Username",
+                    label: "Username",
                     // controller: loginState.usernameController,
                     // controller: username,
                     keyboardType: TextInputType.emailAddress,
@@ -84,6 +84,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   addVerticalSpacing(20),
                   PreluraAuthTextField(
                     hintText: "Password",
+                    label: "Password",
                     // controller: loginState.passwordController,
                     onSaved: (value) => password = value,
                     // controller: password,
@@ -127,7 +128,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       );
 
                       await ref.read(authProvider.notifier).login(
-                            username!,
+                            username!.trim(),
                             password!,
                           );
                       ref.read(authProvider).whenOrNull(

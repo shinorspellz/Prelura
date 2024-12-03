@@ -27,10 +27,17 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     final showBottomNavBar = ref.watch(showBottomNavBarProvider);
     print(showBottomNavBar);
     return AutoTabsRouter(
-        routes: const [HomeRoute(), SearchRoute(), SellNavigationRoute(), InboxRoute(), ProfileNavigationRoute()],
+        routes: const [
+          HomeRoute(),
+          SearchRoute(),
+          SellNavigationRoute(),
+          InboxRoute(),
+          ProfileNavigationRoute()
+        ],
         builder: (context, child) {
           final tabRouter = AutoTabsRouter.of(context);
-          final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
+          final isSellItemRoute =
+              tabRouter.current.name == SellNavigationRoute.name;
 
           return Scaffold(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -42,6 +49,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                       currentIndex: tabRouter.activeIndex,
                       onTap: (int index) {
                         if (tabRouter.activeIndex == index && index != 0) {
+                          print("here");
                           tabRouter.stackRouterOfIndex(index)?.popUntilRoot();
                         } else {
                           tabRouter.setActiveIndex(index);
@@ -52,13 +60,16 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                       },
                       iconSize: 24,
                       elevation: 0,
-                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
                       selectedFontSize: 15,
                       unselectedFontSize: 15,
                       selectedItemColor: PreluraColors.activeColor,
                       type: BottomNavigationBarType.fixed,
-                      selectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                      unselectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                      selectedLabelStyle: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w400),
+                      unselectedLabelStyle: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w400),
                       items: const [
                         BottomNavigationBarItem(
                           icon: Icon(
@@ -79,7 +90,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                             Icons.search,
                             size: 24,
                           ),
-                          activeIcon: Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
+                          activeIcon: Icon(Icons.search,
+                              color: PreluraColors.activeColor, size: 24),
                           label: 'Search',
                         ),
                         BottomNavigationBarItem(

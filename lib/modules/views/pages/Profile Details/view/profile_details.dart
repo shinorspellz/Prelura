@@ -18,10 +18,12 @@ class ProfileDetailsScreen extends ConsumerStatefulWidget {
   const ProfileDetailsScreen({super.key});
 
   @override
-  ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() =>
+      _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -56,57 +58,58 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index = currentIndex; // Sync tab index if changed externally
+      _tabController.index =
+          currentIndex; // Sync tab index if changed externally
     }
-    return GestureNavigationWidget(currentScreenBuilder: (context) {
-      return Scaffold(
-        appBar: PreluraAppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          appbarTitle: "Lonin2999",
-          leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-            onPressed: () => context.router.back(),
-          ),
+    return Scaffold(
+      appBar: PreluraAppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appbarTitle: "Lonin2999",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
         ),
-        body: Column(
-          children: [
-            TabBar(
+      ),
+      body: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            indicatorColor: PreluraColors.activeColor,
+            unselectedLabelColor:
+                PreluraColors.greyLightColor, // Text color for inactive tabs
+            labelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16, // Font size for the active tab
+            ),
+            unselectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: 14, // Font size for inactive tabs
+            ),
+            tabs: const [
+              Tab(
+                text: "Wardrobe",
+              ),
+              Tab(
+                text: "Reviews",
+              ),
+              Tab(
+                text: "About",
+              )
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
               controller: _tabController,
-              indicatorColor: PreluraColors.activeColor,
-              unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
-              labelStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16, // Font size for the active tab
-              ),
-              unselectedLabelStyle: const TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 14, // Font size for inactive tabs
-              ),
-              tabs: const [
-                Tab(
-                  text: "Wardrobe",
-                ),
-                Tab(
-                  text: "Reviews",
-                ),
-                Tab(
-                  text: "About",
-                )
+              children: const [
+                UserWardrobe(),
+                ReviewTab(),
+                AboutProfile(),
               ],
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: const [
-                  UserWardrobe(),
-                  ReviewTab(),
-                  AboutProfile(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    });
+          ),
+        ],
+      ),
+    );
   }
 }

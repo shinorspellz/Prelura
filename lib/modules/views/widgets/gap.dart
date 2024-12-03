@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-@Deprecated("Use Spacing extension")
 addVerticalSpacing(double height) {
   return SizedBox(
     height: height,
   );
 }
 
-@Deprecated("Use Spacing extension")
 addHorizontalSpacing(double width) {
   return SizedBox(
     width: width,

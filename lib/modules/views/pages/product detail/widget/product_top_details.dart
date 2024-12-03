@@ -30,7 +30,10 @@ class ProductTopDetails extends ConsumerWidget {
             "Asos Edited patchwork quilt jacket in red and cherry quilt jacket in red and cherry",
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           const SizedBox(height: 12),
           Column(
@@ -64,7 +67,10 @@ class ProductTopDetails extends ConsumerWidget {
                   // Product condition text
                   Text(
                     product.condition,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500,
+                        color: PreluraColors.greyColor),
                   ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
@@ -85,7 +91,8 @@ class ProductTopDetails extends ConsumerWidget {
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: color, // Assuming `color` is a valid Color object
+                            color:
+                                color, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
                         ))
@@ -131,10 +138,11 @@ class ProductTopDetails extends ConsumerWidget {
                   // ),
                   InkWell(
                     onTap: () {
-                      context.router.pushNamed("/profile/profile-details");
+                      context.router.push(ProfileDetailsRoute());
                     },
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(35), // Ensure it's high for a circle
+                      borderRadius: BorderRadius.circular(
+                          35), // Ensure it's high for a circle
                       child: Image.asset(
                         PreluraIcons.mugShot,
                         height: 35,
@@ -152,11 +160,14 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.pushNamed("/profile/profile-details");
+                          context.router.push(ProfileDetailsRoute());
                         },
                         child: Text(
                           "Lennon2999",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Row(
@@ -164,7 +175,10 @@ class ProductTopDetails extends ConsumerWidget {
                           const Ratings(),
                           Text(
                             "(250)",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.w400),
                           ),
                         ],
                       )
