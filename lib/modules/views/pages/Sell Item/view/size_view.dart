@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,15 +74,27 @@ class SizeSelectionPage extends ConsumerWidget {
                       thickness: 1,
                     ),
                     itemBuilder: (_, index) => ListTile(
-                      title: Text(data[index].sizeValue),
-                      trailing: Radio<String>(
-                          value: data[index].sizeValue,
-                          groupValue: selectedSize,
-                          onChanged: (value) => {
-                                ref.read(sellItemProvider.notifier).selectSize(data[index]),
-                                context.router.popForced(),
-                              }),
-                    ),
+                        title: Text(data[index].sizeValue),
+                        trailing: CustomRadioButton(
+                          isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
+                          onChanged: () {
+                            if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
+                              ref.read(sellItemProvider.notifier).removeSize(data[index]);
+                            } else {
+                              ref.read(sellItemProvider.notifier).addSize(data[index]);
+                            }
+
+                            log('${ref.read(sellItemProvider).size}');
+                          },
+                        )
+                        // Radio<String>(
+                        //     value: data[index].sizeValue,
+                        //     groupValue: selectedSize,
+                        //     onChanged: (value) => {
+                        //           ref.read(sellItemProvider.notifier).addSize(data[index]),
+                        //           // context.router.popForced(),
+                        //         }),
+                        ),
                   ),
                   error: (e, _) => Center(
                     child: Column(
@@ -104,6 +118,39 @@ class SizeSelectionPage extends ConsumerWidget {
                 ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomRadioButton extends StatelessWidget {
+  const CustomRadioButton({super.key, required this.isSelected, required this.onChanged});
+  final bool isSelected;
+  final VoidCallback onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onChanged(),
+      child: Container(
+        height: 20,
+        width: 20,
+        padding: const EdgeInsets.all(3),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            width: 2,
+            color: isSelected ? Theme.of(context).primaryColor : Colors.grey,
+          ),
+        ),
+        child: Container(
+          height: 20,
+          width: 20,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+          ),
+        ),
       ),
     );
   }

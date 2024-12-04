@@ -12,6 +12,7 @@ import 'package:auto_route/auto_route.dart' as _i34;
 import 'package:flutter/material.dart' as _i35;
 import 'package:prelura_app/modules/model/product/categories/category_model.dart'
     as _i37;
+import 'package:prelura_app/modules/model/product/product_model.dart' as _i36;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i2;
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
@@ -67,7 +68,6 @@ import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_vi
     as _i25;
 import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i24;
 import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i29;
-import 'package:prelura_app/shared/card_model.dart' as _i36;
 
 /// generated route for
 /// [_i1.AboutPreluraMenuScreen]
@@ -478,14 +478,14 @@ class PriceRoute extends _i34.PageRouteInfo<void> {
 /// [_i20.ProductDetailScreen]
 class ProductDetailRoute extends _i34.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
-    required _i36.PreluraCardModel product,
     _i35.Key? key,
+    required _i36.Product product,
     List<_i34.PageRouteInfo>? children,
   }) : super(
           ProductDetailRoute.name,
           args: ProductDetailRouteArgs(
-            product: product,
             key: key,
+            product: product,
           ),
           initialChildren: children,
         );
@@ -497,8 +497,8 @@ class ProductDetailRoute extends _i34.PageRouteInfo<ProductDetailRouteArgs> {
     builder: (data) {
       final args = data.argsAs<ProductDetailRouteArgs>();
       return _i20.ProductDetailScreen(
-        args.product,
         key: args.key,
+        product: args.product,
       );
     },
   );
@@ -506,17 +506,17 @@ class ProductDetailRoute extends _i34.PageRouteInfo<ProductDetailRouteArgs> {
 
 class ProductDetailRouteArgs {
   const ProductDetailRouteArgs({
-    required this.product,
     this.key,
+    required this.product,
   });
-
-  final _i36.PreluraCardModel product;
 
   final _i35.Key? key;
 
+  final _i36.Product product;
+
   @override
   String toString() {
-    return 'ProductDetailRouteArgs{product: $product, key: $key}';
+    return 'ProductDetailRouteArgs{key: $key, product: $product}';
   }
 }
 

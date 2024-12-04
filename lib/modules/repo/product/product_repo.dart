@@ -13,7 +13,7 @@ class ProductRepo {
 
   ProductRepo(this._client);
 
-  Future<Product> createProduct(Variables$Mutation$CreateProduct params) async {
+  Future<void> createProduct(Variables$Mutation$CreateProduct params) async {
     final response = await _client.mutate$CreateProduct(
       Options$Mutation$CreateProduct(
         variables: params,
@@ -23,18 +23,17 @@ class ProductRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
         throw error;
       }
       log(response.exception.toString(), name: 'ProductRepo');
       throw 'An error occured';
     }
 
-    if (response.parsedData?.createProduct?.product == null) {
-      log('Mising response', name: 'ProductRepo');
-      throw 'An error occured';
-    }
-
-    return Product.fromJson(response.parsedData!.createProduct!.product!.toJson());
+    // if (response.parsedData?.createProduct == null) {
+    //   log('Mising response', name: 'ProductRepo');
+    //   throw 'An error occured';
+    // }
   }
 
   Future<Product> getProduct(int id) async {

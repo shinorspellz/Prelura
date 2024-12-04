@@ -2217,8 +2217,8 @@ class Query$Product$product {
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
-      price: (l$price as num).toDouble(),
-      postagePrice: (l$postagePrice as num?)?.toDouble(),
+      price: (l$price as String),
+      postagePrice: (l$postagePrice as String?),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -2243,9 +2243,9 @@ class Query$Product$product {
 
   final Enum$ProductsProductConditionChoices? condition;
 
-  final double price;
+  final String price;
 
-  final double? postagePrice;
+  final String? postagePrice;
 
   final int views;
 
@@ -2462,8 +2462,8 @@ abstract class CopyWith$Query$Product$product<TRes> {
     Query$Product$product$subCategory? subCategory,
     List<Query$Product$product$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -2533,10 +2533,10 @@ class _CopyWithImpl$Query$Product$product<TRes>
             : (condition as Enum$ProductsProductConditionChoices?),
         price: price == _undefined || price == null
             ? _instance.price
-            : (price as double),
+            : (price as String),
         postagePrice: postagePrice == _undefined
             ? _instance.postagePrice
-            : (postagePrice as double?),
+            : (postagePrice as String?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -2602,8 +2602,8 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     Query$Product$product$subCategory? subCategory,
     List<Query$Product$product$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -3873,8 +3873,8 @@ class Query$UserProducts$userProducts {
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
-      price: (l$price as num).toDouble(),
-      postagePrice: (l$postagePrice as num?)?.toDouble(),
+      price: (l$price as String),
+      postagePrice: (l$postagePrice as String?),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -3899,9 +3899,9 @@ class Query$UserProducts$userProducts {
 
   final Enum$ProductsProductConditionChoices? condition;
 
-  final double price;
+  final String price;
 
-  final double? postagePrice;
+  final String? postagePrice;
 
   final int views;
 
@@ -4120,8 +4120,8 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     Query$UserProducts$userProducts$subCategory? subCategory,
     List<Query$UserProducts$userProducts$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -4191,10 +4191,10 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
             : (condition as Enum$ProductsProductConditionChoices?),
         price: price == _undefined || price == null
             ? _instance.price
-            : (price as double),
+            : (price as String),
         postagePrice: postagePrice == _undefined
             ? _instance.postagePrice
-            : (postagePrice as double?),
+            : (postagePrice as String?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -4262,8 +4262,8 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     Query$UserProducts$userProducts$subCategory? subCategory,
     List<Query$UserProducts$userProducts$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -5498,8 +5498,8 @@ class Query$AllProducts$allProducts {
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
-      price: (l$price as num).toDouble(),
-      postagePrice: (l$postagePrice as num?)?.toDouble(),
+      price: (l$price as String),
+      postagePrice: (l$postagePrice as String?),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -5524,9 +5524,9 @@ class Query$AllProducts$allProducts {
 
   final Enum$ProductsProductConditionChoices? condition;
 
-  final double price;
+  final String price;
 
-  final double? postagePrice;
+  final String? postagePrice;
 
   final int views;
 
@@ -5745,8 +5745,8 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     Query$AllProducts$allProducts$subCategory? subCategory,
     List<Query$AllProducts$allProducts$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -5816,10 +5816,10 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
             : (condition as Enum$ProductsProductConditionChoices?),
         price: price == _undefined || price == null
             ? _instance.price
-            : (price as double),
+            : (price as String),
         postagePrice: postagePrice == _undefined
             ? _instance.postagePrice
-            : (postagePrice as double?),
+            : (postagePrice as String?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -5886,8 +5886,8 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     Query$AllProducts$allProducts$subCategory? subCategory,
     List<Query$AllProducts$allProducts$sizes?>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
+    String? price,
+    String? postagePrice,
     int? views,
     int? likes,
     List<String>? imagesUrl,

@@ -331,6 +331,35 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -446,16 +475,22 @@ class Mutation$Login$login {
   Mutation$Login$login({
     this.restToken,
     this.token,
+    this.user,
     this.$__typename = 'LoginMutation',
   });
 
   factory Mutation$Login$login.fromJson(Map<String, dynamic> json) {
     final l$restToken = json['restToken'];
     final l$token = json['token'];
+    final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$Login$login(
       restToken: (l$restToken as String?),
       token: (l$token as String?),
+      user: l$user == null
+          ? null
+          : Mutation$Login$login$user.fromJson(
+              (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -463,6 +498,8 @@ class Mutation$Login$login {
   final String? restToken;
 
   final String? token;
+
+  final Mutation$Login$login$user? user;
 
   final String $__typename;
 
@@ -472,6 +509,8 @@ class Mutation$Login$login {
     _resultData['restToken'] = l$restToken;
     final l$token = token;
     _resultData['token'] = l$token;
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -481,10 +520,12 @@ class Mutation$Login$login {
   int get hashCode {
     final l$restToken = restToken;
     final l$token = token;
+    final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$restToken,
       l$token,
+      l$user,
       l$$__typename,
     ]);
   }
@@ -505,6 +546,11 @@ class Mutation$Login$login {
     final l$token = token;
     final lOther$token = other.token;
     if (l$token != lOther$token) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -536,8 +582,10 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
   TRes call({
     String? restToken,
     String? token,
+    Mutation$Login$login$user? user,
     String? $__typename,
   });
+  CopyWith$Mutation$Login$login$user<TRes> get user;
 }
 
 class _CopyWithImpl$Mutation$Login$login<TRes>
@@ -556,6 +604,7 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
   TRes call({
     Object? restToken = _undefined,
     Object? token = _undefined,
+    Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login$login(
@@ -563,10 +612,20 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
             ? _instance.restToken
             : (restToken as String?),
         token: token == _undefined ? _instance.token : (token as String?),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Mutation$Login$login$user?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Mutation$Login$login$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Mutation$Login$login$user.stub(_then(_instance))
+        : CopyWith$Mutation$Login$login$user(local$user, (e) => call(user: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$Login$login<TRes>
@@ -578,6 +637,152 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
   call({
     String? restToken,
     String? token,
+    Mutation$Login$login$user? user,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$Login$login$user<TRes> get user =>
+      CopyWith$Mutation$Login$login$user.stub(_res);
+}
+
+class Mutation$Login$login$user {
+  Mutation$Login$login$user({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Mutation$Login$login$user.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Mutation$Login$login$user(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$Login$login$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$Login$login$user
+    on Mutation$Login$login$user {
+  CopyWith$Mutation$Login$login$user<Mutation$Login$login$user> get copyWith =>
+      CopyWith$Mutation$Login$login$user(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$Login$login$user<TRes> {
+  factory CopyWith$Mutation$Login$login$user(
+    Mutation$Login$login$user instance,
+    TRes Function(Mutation$Login$login$user) then,
+  ) = _CopyWithImpl$Mutation$Login$login$user;
+
+  factory CopyWith$Mutation$Login$login$user.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Login$login$user;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$Login$login$user<TRes>
+    implements CopyWith$Mutation$Login$login$user<TRes> {
+  _CopyWithImpl$Mutation$Login$login$user(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$Login$login$user _instance;
+
+  final TRes Function(Mutation$Login$login$user) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$Login$login$user(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$Login$login$user<TRes>
+    implements CopyWith$Mutation$Login$login$user<TRes> {
+  _CopyWithStubImpl$Mutation$Login$login$user(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
     String? $__typename,
   }) =>
       _res;
@@ -3020,190 +3225,11 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'product'),
+            name: NameNode(value: 'message'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'description'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'category'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'subCategory'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'sizes'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'sizeValue'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'sizeSystem'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'condition'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'price'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'postagePrice'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'views'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'likes'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'imagesUrl'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'createdAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'updatedAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -3324,28 +3350,25 @@ extension ClientExtension$Mutation$CreateProduct on graphql.GraphQLClient {
 class Mutation$CreateProduct$createProduct {
   Mutation$CreateProduct$createProduct({
     this.success,
-    this.product,
+    this.message,
     this.$__typename = 'CreateProduct',
   });
 
   factory Mutation$CreateProduct$createProduct.fromJson(
       Map<String, dynamic> json) {
     final l$success = json['success'];
-    final l$product = json['product'];
+    final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateProduct$createProduct(
       success: (l$success as bool?),
-      product: l$product == null
-          ? null
-          : Mutation$CreateProduct$createProduct$product.fromJson(
-              (l$product as Map<String, dynamic>)),
+      message: (l$message as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final bool? success;
 
-  final Mutation$CreateProduct$createProduct$product? product;
+  final String? message;
 
   final String $__typename;
 
@@ -3353,8 +3376,8 @@ class Mutation$CreateProduct$createProduct {
     final _resultData = <String, dynamic>{};
     final l$success = success;
     _resultData['success'] = l$success;
-    final l$product = product;
-    _resultData['product'] = l$product?.toJson();
+    final l$message = message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3363,11 +3386,11 @@ class Mutation$CreateProduct$createProduct {
   @override
   int get hashCode {
     final l$success = success;
-    final l$product = product;
+    final l$message = message;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$success,
-      l$product,
+      l$message,
       l$$__typename,
     ]);
   }
@@ -3386,9 +3409,9 @@ class Mutation$CreateProduct$createProduct {
     if (l$success != lOther$success) {
       return false;
     }
-    final l$product = product;
-    final lOther$product = other.product;
-    if (l$product != lOther$product) {
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -3421,10 +3444,9 @@ abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
 
   TRes call({
     bool? success,
-    Mutation$CreateProduct$createProduct$product? product,
+    String? message,
     String? $__typename,
   });
-  CopyWith$Mutation$CreateProduct$createProduct$product<TRes> get product;
 }
 
 class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes>
@@ -3442,27 +3464,17 @@ class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes>
 
   TRes call({
     Object? success = _undefined,
-    Object? product = _undefined,
+    Object? message = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateProduct$createProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        product: product == _undefined
-            ? _instance.product
-            : (product as Mutation$CreateProduct$createProduct$product?),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Mutation$CreateProduct$createProduct$product<TRes> get product {
-    final local$product = _instance.product;
-    return local$product == null
-        ? CopyWith$Mutation$CreateProduct$createProduct$product.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreateProduct$createProduct$product(
-            local$product, (e) => call(product: e));
-  }
 }
 
 class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
@@ -3473,966 +3485,7 @@ class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
 
   call({
     bool? success,
-    Mutation$CreateProduct$createProduct$product? product,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$CreateProduct$createProduct$product<TRes> get product =>
-      CopyWith$Mutation$CreateProduct$createProduct$product.stub(_res);
-}
-
-class Mutation$CreateProduct$createProduct$product {
-  Mutation$CreateProduct$createProduct$product({
-    required this.id,
-    required this.name,
-    required this.description,
-    this.category,
-    this.subCategory,
-    this.sizes,
-    this.condition,
-    required this.price,
-    this.postagePrice,
-    required this.views,
-    required this.likes,
-    required this.imagesUrl,
-    required this.createdAt,
-    required this.updatedAt,
-    this.$__typename = 'ProductType',
-  });
-
-  factory Mutation$CreateProduct$createProduct$product.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$description = json['description'];
-    final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
-    final l$sizes = json['sizes'];
-    final l$condition = json['condition'];
-    final l$price = json['price'];
-    final l$postagePrice = json['postagePrice'];
-    final l$views = json['views'];
-    final l$likes = json['likes'];
-    final l$imagesUrl = json['imagesUrl'];
-    final l$createdAt = json['createdAt'];
-    final l$updatedAt = json['updatedAt'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateProduct$createProduct$product(
-      id: (l$id as String),
-      name: (l$name as String),
-      description: (l$description as String),
-      category: l$category == null
-          ? null
-          : Mutation$CreateProduct$createProduct$product$category.fromJson(
-              (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Mutation$CreateProduct$createProduct$product$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
-      sizes: (l$sizes as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Mutation$CreateProduct$createProduct$product$sizes.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
-      condition: l$condition == null
-          ? null
-          : fromJson$Enum$ProductsProductConditionChoices(
-              (l$condition as String)),
-      price: (l$price as num).toDouble(),
-      postagePrice: (l$postagePrice as num?)?.toDouble(),
-      views: (l$views as int),
-      likes: (l$likes as int),
-      imagesUrl:
-          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      updatedAt: DateTime.parse((l$updatedAt as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String name;
-
-  final String description;
-
-  final Mutation$CreateProduct$createProduct$product$category? category;
-
-  final Mutation$CreateProduct$createProduct$product$subCategory? subCategory;
-
-  final List<Mutation$CreateProduct$createProduct$product$sizes?>? sizes;
-
-  final Enum$ProductsProductConditionChoices? condition;
-
-  final double price;
-
-  final double? postagePrice;
-
-  final int views;
-
-  final int likes;
-
-  final List<String> imagesUrl;
-
-  final DateTime createdAt;
-
-  final DateTime updatedAt;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$description = description;
-    _resultData['description'] = l$description;
-    final l$category = category;
-    _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
-    final l$sizes = sizes;
-    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
-    final l$condition = condition;
-    _resultData['condition'] = l$condition == null
-        ? null
-        : toJson$Enum$ProductsProductConditionChoices(l$condition);
-    final l$price = price;
-    _resultData['price'] = l$price;
-    final l$postagePrice = postagePrice;
-    _resultData['postagePrice'] = l$postagePrice;
-    final l$views = views;
-    _resultData['views'] = l$views;
-    final l$likes = likes;
-    _resultData['likes'] = l$likes;
-    final l$imagesUrl = imagesUrl;
-    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$updatedAt = updatedAt;
-    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$description = description;
-    final l$category = category;
-    final l$subCategory = subCategory;
-    final l$sizes = sizes;
-    final l$condition = condition;
-    final l$price = price;
-    final l$postagePrice = postagePrice;
-    final l$views = views;
-    final l$likes = likes;
-    final l$imagesUrl = imagesUrl;
-    final l$createdAt = createdAt;
-    final l$updatedAt = updatedAt;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$description,
-      l$category,
-      l$subCategory,
-      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
-      l$condition,
-      l$price,
-      l$postagePrice,
-      l$views,
-      l$likes,
-      Object.hashAll(l$imagesUrl.map((v) => v)),
-      l$createdAt,
-      l$updatedAt,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateProduct$createProduct$product ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
-      return false;
-    }
-    final l$category = category;
-    final lOther$category = other.category;
-    if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
-      return false;
-    }
-    final l$sizes = sizes;
-    final lOther$sizes = other.sizes;
-    if (l$sizes != null && lOther$sizes != null) {
-      if (l$sizes.length != lOther$sizes.length) {
-        return false;
-      }
-      for (int i = 0; i < l$sizes.length; i++) {
-        final l$sizes$entry = l$sizes[i];
-        final lOther$sizes$entry = lOther$sizes[i];
-        if (l$sizes$entry != lOther$sizes$entry) {
-          return false;
-        }
-      }
-    } else if (l$sizes != lOther$sizes) {
-      return false;
-    }
-    final l$condition = condition;
-    final lOther$condition = other.condition;
-    if (l$condition != lOther$condition) {
-      return false;
-    }
-    final l$price = price;
-    final lOther$price = other.price;
-    if (l$price != lOther$price) {
-      return false;
-    }
-    final l$postagePrice = postagePrice;
-    final lOther$postagePrice = other.postagePrice;
-    if (l$postagePrice != lOther$postagePrice) {
-      return false;
-    }
-    final l$views = views;
-    final lOther$views = other.views;
-    if (l$views != lOther$views) {
-      return false;
-    }
-    final l$likes = likes;
-    final lOther$likes = other.likes;
-    if (l$likes != lOther$likes) {
-      return false;
-    }
-    final l$imagesUrl = imagesUrl;
-    final lOther$imagesUrl = other.imagesUrl;
-    if (l$imagesUrl.length != lOther$imagesUrl.length) {
-      return false;
-    }
-    for (int i = 0; i < l$imagesUrl.length; i++) {
-      final l$imagesUrl$entry = l$imagesUrl[i];
-      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
-      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
-        return false;
-      }
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateProduct$createProduct$product
-    on Mutation$CreateProduct$createProduct$product {
-  CopyWith$Mutation$CreateProduct$createProduct$product<
-          Mutation$CreateProduct$createProduct$product>
-      get copyWith => CopyWith$Mutation$CreateProduct$createProduct$product(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CreateProduct$createProduct$product<TRes> {
-  factory CopyWith$Mutation$CreateProduct$createProduct$product(
-    Mutation$CreateProduct$createProduct$product instance,
-    TRes Function(Mutation$CreateProduct$createProduct$product) then,
-  ) = _CopyWithImpl$Mutation$CreateProduct$createProduct$product;
-
-  factory CopyWith$Mutation$CreateProduct$createProduct$product.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product;
-
-  TRes call({
-    String? id,
-    String? name,
-    String? description,
-    Mutation$CreateProduct$createProduct$product$category? category,
-    Mutation$CreateProduct$createProduct$product$subCategory? subCategory,
-    List<Mutation$CreateProduct$createProduct$product$sizes?>? sizes,
-    Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
-    int? views,
-    int? likes,
-    List<String>? imagesUrl,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    String? $__typename,
-  });
-  CopyWith$Mutation$CreateProduct$createProduct$product$category<TRes>
-      get category;
-  CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<TRes>
-      get subCategory;
-  TRes sizes(
-      Iterable<Mutation$CreateProduct$createProduct$product$sizes?>? Function(
-              Iterable<
-                  CopyWith$Mutation$CreateProduct$createProduct$product$sizes<
-                      Mutation$CreateProduct$createProduct$product$sizes>?>?)
-          _fn);
-}
-
-class _CopyWithImpl$Mutation$CreateProduct$createProduct$product<TRes>
-    implements CopyWith$Mutation$CreateProduct$createProduct$product<TRes> {
-  _CopyWithImpl$Mutation$CreateProduct$createProduct$product(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateProduct$createProduct$product _instance;
-
-  final TRes Function(Mutation$CreateProduct$createProduct$product) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? description = _undefined,
-    Object? category = _undefined,
-    Object? subCategory = _undefined,
-    Object? sizes = _undefined,
-    Object? condition = _undefined,
-    Object? price = _undefined,
-    Object? postagePrice = _undefined,
-    Object? views = _undefined,
-    Object? likes = _undefined,
-    Object? imagesUrl = _undefined,
-    Object? createdAt = _undefined,
-    Object? updatedAt = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateProduct$createProduct$product(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        description: description == _undefined || description == null
-            ? _instance.description
-            : (description as String),
-        category: category == _undefined
-            ? _instance.category
-            : (category
-                as Mutation$CreateProduct$createProduct$product$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory
-                as Mutation$CreateProduct$createProduct$product$subCategory?),
-        sizes: sizes == _undefined
-            ? _instance.sizes
-            : (sizes
-                as List<Mutation$CreateProduct$createProduct$product$sizes?>?),
-        condition: condition == _undefined
-            ? _instance.condition
-            : (condition as Enum$ProductsProductConditionChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as double),
-        postagePrice: postagePrice == _undefined
-            ? _instance.postagePrice
-            : (postagePrice as double?),
-        views: views == _undefined || views == null
-            ? _instance.views
-            : (views as int),
-        likes: likes == _undefined || likes == null
-            ? _instance.likes
-            : (likes as int),
-        imagesUrl: imagesUrl == _undefined || imagesUrl == null
-            ? _instance.imagesUrl
-            : (imagesUrl as List<String>),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        updatedAt: updatedAt == _undefined || updatedAt == null
-            ? _instance.updatedAt
-            : (updatedAt as DateTime),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Mutation$CreateProduct$createProduct$product$category<TRes>
-      get category {
-    final local$category = _instance.category;
-    return local$category == null
-        ? CopyWith$Mutation$CreateProduct$createProduct$product$category.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreateProduct$createProduct$product$category(
-            local$category, (e) => call(category: e));
-  }
-
-  CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<TRes>
-      get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Mutation$CreateProduct$createProduct$product$subCategory
-            .stub(_then(_instance))
-        : CopyWith$Mutation$CreateProduct$createProduct$product$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
-  TRes sizes(
-          Iterable<Mutation$CreateProduct$createProduct$product$sizes?>? Function(
-                  Iterable<
-                      CopyWith$Mutation$CreateProduct$createProduct$product$sizes<
-                          Mutation$CreateProduct$createProduct$product$sizes>?>?)
-              _fn) =>
-      call(
-          sizes: _fn(_instance.sizes?.map((e) => e == null
-              ? null
-              : CopyWith$Mutation$CreateProduct$createProduct$product$sizes(
-                  e,
-                  (i) => i,
-                )))?.toList());
-}
-
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product<TRes>
-    implements CopyWith$Mutation$CreateProduct$createProduct$product<TRes> {
-  _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? name,
-    String? description,
-    Mutation$CreateProduct$createProduct$product$category? category,
-    Mutation$CreateProduct$createProduct$product$subCategory? subCategory,
-    List<Mutation$CreateProduct$createProduct$product$sizes?>? sizes,
-    Enum$ProductsProductConditionChoices? condition,
-    double? price,
-    double? postagePrice,
-    int? views,
-    int? likes,
-    List<String>? imagesUrl,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$CreateProduct$createProduct$product$category<TRes>
-      get category =>
-          CopyWith$Mutation$CreateProduct$createProduct$product$category.stub(
-              _res);
-
-  CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<TRes>
-      get subCategory =>
-          CopyWith$Mutation$CreateProduct$createProduct$product$subCategory
-              .stub(_res);
-
-  sizes(_fn) => _res;
-}
-
-class Mutation$CreateProduct$createProduct$product$category {
-  Mutation$CreateProduct$createProduct$product$category({
-    this.id,
-    this.name,
-    this.$__typename = 'CategoryType',
-  });
-
-  factory Mutation$CreateProduct$createProduct$product$category.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateProduct$createProduct$product$category(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateProduct$createProduct$product$category ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateProduct$createProduct$product$category
-    on Mutation$CreateProduct$createProduct$product$category {
-  CopyWith$Mutation$CreateProduct$createProduct$product$category<
-          Mutation$CreateProduct$createProduct$product$category>
-      get copyWith =>
-          CopyWith$Mutation$CreateProduct$createProduct$product$category(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CreateProduct$createProduct$product$category<
-    TRes> {
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$category(
-    Mutation$CreateProduct$createProduct$product$category instance,
-    TRes Function(Mutation$CreateProduct$createProduct$product$category) then,
-  ) = _CopyWithImpl$Mutation$CreateProduct$createProduct$product$category;
-
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$category.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$category;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$CreateProduct$createProduct$product$category<TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$category<TRes> {
-  _CopyWithImpl$Mutation$CreateProduct$createProduct$product$category(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateProduct$createProduct$product$category _instance;
-
-  final TRes Function(Mutation$CreateProduct$createProduct$product$category)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateProduct$createProduct$product$category(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$category<
-        TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$category<TRes> {
-  _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$category(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Mutation$CreateProduct$createProduct$product$subCategory {
-  Mutation$CreateProduct$createProduct$product$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Mutation$CreateProduct$createProduct$product$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateProduct$createProduct$product$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateProduct$createProduct$product$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateProduct$createProduct$product$subCategory
-    on Mutation$CreateProduct$createProduct$product$subCategory {
-  CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<
-          Mutation$CreateProduct$createProduct$product$subCategory>
-      get copyWith =>
-          CopyWith$Mutation$CreateProduct$createProduct$product$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<
-    TRes> {
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$subCategory(
-    Mutation$CreateProduct$createProduct$product$subCategory instance,
-    TRes Function(Mutation$CreateProduct$createProduct$product$subCategory)
-        then,
-  ) = _CopyWithImpl$Mutation$CreateProduct$createProduct$product$subCategory;
-
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$subCategory.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$CreateProduct$createProduct$product$subCategory<
-        TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<
-            TRes> {
-  _CopyWithImpl$Mutation$CreateProduct$createProduct$product$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateProduct$createProduct$product$subCategory _instance;
-
-  final TRes Function(Mutation$CreateProduct$createProduct$product$subCategory)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateProduct$createProduct$product$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$subCategory<
-        TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$subCategory<
-            TRes> {
-  _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$subCategory(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Mutation$CreateProduct$createProduct$product$sizes {
-  Mutation$CreateProduct$createProduct$product$sizes({
-    this.id,
-    this.sizeValue,
-    this.sizeSystem,
-    this.$__typename = 'SizeType',
-  });
-
-  factory Mutation$CreateProduct$createProduct$product$sizes.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$sizeValue = json['sizeValue'];
-    final l$sizeSystem = json['sizeSystem'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateProduct$createProduct$product$sizes(
-      id: (l$id as int?),
-      sizeValue: (l$sizeValue as String?),
-      sizeSystem: (l$sizeSystem as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? sizeValue;
-
-  final String? sizeSystem;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$sizeValue = sizeValue;
-    _resultData['sizeValue'] = l$sizeValue;
-    final l$sizeSystem = sizeSystem;
-    _resultData['sizeSystem'] = l$sizeSystem;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$sizeValue = sizeValue;
-    final l$sizeSystem = sizeSystem;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$sizeValue,
-      l$sizeSystem,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateProduct$createProduct$product$sizes ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$sizeValue = sizeValue;
-    final lOther$sizeValue = other.sizeValue;
-    if (l$sizeValue != lOther$sizeValue) {
-      return false;
-    }
-    final l$sizeSystem = sizeSystem;
-    final lOther$sizeSystem = other.sizeSystem;
-    if (l$sizeSystem != lOther$sizeSystem) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateProduct$createProduct$product$sizes
-    on Mutation$CreateProduct$createProduct$product$sizes {
-  CopyWith$Mutation$CreateProduct$createProduct$product$sizes<
-          Mutation$CreateProduct$createProduct$product$sizes>
-      get copyWith =>
-          CopyWith$Mutation$CreateProduct$createProduct$product$sizes(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CreateProduct$createProduct$product$sizes<
-    TRes> {
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$sizes(
-    Mutation$CreateProduct$createProduct$product$sizes instance,
-    TRes Function(Mutation$CreateProduct$createProduct$product$sizes) then,
-  ) = _CopyWithImpl$Mutation$CreateProduct$createProduct$product$sizes;
-
-  factory CopyWith$Mutation$CreateProduct$createProduct$product$sizes.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$sizes;
-
-  TRes call({
-    int? id,
-    String? sizeValue,
-    String? sizeSystem,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$CreateProduct$createProduct$product$sizes<TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$sizes<TRes> {
-  _CopyWithImpl$Mutation$CreateProduct$createProduct$product$sizes(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateProduct$createProduct$product$sizes _instance;
-
-  final TRes Function(Mutation$CreateProduct$createProduct$product$sizes) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? sizeValue = _undefined,
-    Object? sizeSystem = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateProduct$createProduct$product$sizes(
-        id: id == _undefined ? _instance.id : (id as int?),
-        sizeValue: sizeValue == _undefined
-            ? _instance.sizeValue
-            : (sizeValue as String?),
-        sizeSystem: sizeSystem == _undefined
-            ? _instance.sizeSystem
-            : (sizeSystem as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$sizes<TRes>
-    implements
-        CopyWith$Mutation$CreateProduct$createProduct$product$sizes<TRes> {
-  _CopyWithStubImpl$Mutation$CreateProduct$createProduct$product$sizes(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? message,
     String? $__typename,
   }) =>
       _res;

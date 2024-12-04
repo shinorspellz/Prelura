@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contentsize_tabbarview/contentsize_tabbarview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/auth_page.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_top_details.dart';
@@ -19,8 +21,8 @@ import '../../widgets/card.dart';
 
 @RoutePage()
 class ProductDetailScreen extends ConsumerStatefulWidget {
-  final PreluraCardModel product;
-  const ProductDetailScreen(this.product, {super.key});
+  final Product product;
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   ConsumerState<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -85,16 +87,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                             });
                           },
                         ),
-                        items: List.generate(
-                          6,
-                          (index) => ClipRRect(
-                            child: Image.asset(
-                              widget.product.image,
-                              fit: BoxFit.cover,
-                              height: 400,
-                            ),
-                          ),
-                        ),
+                        items: widget.product.imagesUrl.map((e) => CachedNetworkImage(imageUrl: e.url)).toList(),
                       ),
                       Positioned(
                         bottom: 15,
@@ -112,7 +105,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                 Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
                                 const SizedBox(width: 5),
                                 Text(
-                                  '$_favoriteCount',
+                                  '${widget.product.likes}',
                                   style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
                                 ),
                               ],
@@ -120,7 +113,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                           ),
                         ),
                       ),
-                      Positioned(bottom: 15, right: 0, left: 0, child: CarouselIndicator()),
+                      Positioned(bottom: 15, right: 0, left: 0, child: carouselIndicator(widget.product.imagesUrl.length)),
                       Positioned(
                           top: showAppBar == 1 ? 40 : 60,
                           left: 15,
@@ -179,12 +172,16 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                   ),
                   Container(
                     color: Theme.of(context).scaffoldBackgroundColor,
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ProductTopDetails(),
-                        ProductDescription(),
-                        SizedBox(height: 8.0),
+                        ProductTopDetails(
+                          product: widget.product,
+                        ),
+                        ProductDescription(
+                          product: widget.product,
+                        ),
+                        const SizedBox(height: 8.0),
                         // Container(
                         //   padding: EdgeInsets.symmetric(horizontal: 18),
                         //   child: Text(
@@ -241,7 +238,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                           onPressed: () => {
                                 if (context.router.canPop()) {context.router.back()} else {tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state), context.back()}
                               }),
-                      appbarTitle: "App Bar",
+                      appbarTitle: widget.product.name,
                       // trailingIcon: [
                       //   Icon(
                       //     Icons.arrow_back,
@@ -333,12 +330,12 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
     );
   }
 
-  CarouselIndicator() {
+  carouselIndicator(int length) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (int i = 0; i < 6; i++)
+          for (int i = 0; i < length; i++)
             Container(
               margin: const EdgeInsets.only(right: 5),
               height: _currentPage == i ? 7 : 5,

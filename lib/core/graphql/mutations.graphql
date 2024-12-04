@@ -2,6 +2,10 @@ mutation Login($password: String!, $username: String) {
   login(password: $password, username: $username) {
     restToken
     token
+    user {
+      id
+      username
+    }
   }
 }
 
@@ -67,31 +71,6 @@ mutation CreateProduct(
     title: $title
   ) {
     success
-    product {
-      id
-      name
-      description
-      category {
-        id
-        name
-      }
-      subCategory {
-        id
-        name
-      }
-      sizes {
-        id
-        sizeValue
-        sizeSystem
-      }
-      condition
-      price
-      postagePrice
-      views
-      likes
-      imagesUrl
-      createdAt
-      updatedAt
-    }
+    message
   }
 }

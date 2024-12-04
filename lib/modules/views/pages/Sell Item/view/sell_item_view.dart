@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
@@ -178,13 +179,14 @@ class SellItemScreen extends ConsumerWidget {
                         hintText: 'e.g. only worn a few times, true to size',
                         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
+                        // maxLines: null,
                       ),
                     ],
                   )),
               const SizedBox(height: 16),
               MenuCard(
                 title: "Category",
-                subtitle: state.category?.name,
+                subtitle: state.subCategory?.name ?? state.category?.name,
                 rightArrow: false,
                 onTap: () {
                   context.router.push(const CategoryRoute());
@@ -201,9 +203,9 @@ class SellItemScreen extends ConsumerWidget {
               MenuCard(
                 title: 'Size',
                 rightArrow: false,
-                subtitle: state.size?.sizeValue,
+                subtitle: state.size?.map((e) => e.sizeValue).join(', '),
                 onTap: () {
-                  context.router.push(SizeSelectionRoute());
+                  context.router.push(const SizeSelectionRoute());
                 },
               ),
               MenuCard(
@@ -271,9 +273,48 @@ class SellItemScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    // final files = state.images.map((x) => File(x.path)).toList();
-                    // ref.read(productProvider.notifier).uploadMedia(files);
-                    // if (notifier.validateInputs()) {
+                    final files = state.images.map((x) => File(x.path)).toList();
+                    if (files.isEmpty) {
+                      context.alert('Images are required to sell product');
+                      return;
+                    }
+
+                    if (state.category == null) {
+                      context.alert('Select an item category to proceed.');
+                      return;
+                    }
+                    if (state.size == null || (state.size?.isEmpty ?? true)) {
+                      context.alert('Select an size category to proceed.');
+                      return;
+                    }
+                    if (state.price == null) {
+                      context.alert('Price is required for product.');
+                      return;
+                    }
+
+                    if (!notifier.validateInputs()) {
+                      context.alert('Both title and description of product are requuired');
+                      return;
+                    }
+
+                    await ref.read(productProvider.notifier).createProduct(
+                          title: state.title,
+                          desc: state.description,
+                          price: 100.0, //double.parse(state.price!),
+                          images: files,
+                          size: state.size!.map((e) => int.parse(e.id)).toList(),
+                          category: int.parse(state.category!.id.toString()),
+                          subCategory: int.parse(state.subCategory!.id.toString()),
+                        );
+                    ref.read(productProvider).whenOrNull(
+                          error: (e, _) => context.alert(e.toString()),
+                          data: (_) {
+                            context.alert('Product created successfully');
+                            final tabRouter = AutoTabsRouter.of(context);
+                            tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                          },
+                        );
+
                     //   await notifier.uploadItem();
                     //   ScaffoldMessenger.of(context).showSnackBar(
                     //     const SnackBar(content: Text('Item uploaded successfully!')),
@@ -282,7 +323,6 @@ class SellItemScreen extends ConsumerWidget {
                     //   ScaffoldMessenger.of(context).showSnackBar(
                     //     const SnackBar(content: Text('Please fill in all required fields')),
                     //   );
-                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: PreluraColors.activeColor,
@@ -291,11 +331,20 @@ class SellItemScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Upload',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                  child: Center(
+                    child: ref.watch(productProvider).isLoading
+                        ? const SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 1.8,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'Upload',
+                            style: TextStyle(fontSize: 16),
+                          ),
                   ),
                 ),
               ),

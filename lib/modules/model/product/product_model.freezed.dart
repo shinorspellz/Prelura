@@ -28,11 +28,12 @@ mixin _$Product {
   List<SizeModel>? get sizes => throw _privateConstructorUsedError;
   Enum$ProductsProductConditionChoices? get condition =>
       throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  String get price => throw _privateConstructorUsedError;
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
-  List<String> get imagesUrl => throw _privateConstructorUsedError;
+  @BannerConverter()
+  List<ProductBanners> get imagesUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -58,11 +59,11 @@ abstract class $ProductCopyWith<$Res> {
       CategoryModel? subCategory,
       List<SizeModel>? sizes,
       Enum$ProductsProductConditionChoices? condition,
-      double price,
+      String price,
       double? postagePrice,
       int views,
       int likes,
-      List<String> imagesUrl,
+      @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -132,7 +133,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -148,7 +149,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       imagesUrl: null == imagesUrl
           ? _value.imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProductBanners>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -204,11 +205,11 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       CategoryModel? subCategory,
       List<SizeModel>? sizes,
       Enum$ProductsProductConditionChoices? condition,
-      double price,
+      String price,
       double? postagePrice,
       int views,
       int likes,
-      List<String> imagesUrl,
+      @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
       DateTime updatedAt});
 
@@ -278,7 +279,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -294,7 +295,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       imagesUrl: null == imagesUrl
           ? _value._imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProductBanners>,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -322,7 +323,7 @@ class _$ProductImpl implements _Product {
       this.postagePrice,
       required this.views,
       required this.likes,
-      required final List<String> imagesUrl,
+      @BannerConverter() required final List<ProductBanners> imagesUrl,
       required this.createdAt,
       required this.updatedAt})
       : _sizes = sizes,
@@ -354,16 +355,17 @@ class _$ProductImpl implements _Product {
   @override
   final Enum$ProductsProductConditionChoices? condition;
   @override
-  final double price;
+  final String price;
   @override
   final double? postagePrice;
   @override
   final int views;
   @override
   final int likes;
-  final List<String> _imagesUrl;
+  final List<ProductBanners> _imagesUrl;
   @override
-  List<String> get imagesUrl {
+  @BannerConverter()
+  List<ProductBanners> get imagesUrl {
     if (_imagesUrl is EqualUnmodifiableListView) return _imagesUrl;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_imagesUrl);
@@ -452,11 +454,11 @@ abstract class _Product implements Product {
       final CategoryModel? subCategory,
       final List<SizeModel>? sizes,
       final Enum$ProductsProductConditionChoices? condition,
-      required final double price,
+      required final String price,
       final double? postagePrice,
       required final int views,
       required final int likes,
-      required final List<String> imagesUrl,
+      @BannerConverter() required final List<ProductBanners> imagesUrl,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$ProductImpl;
 
@@ -477,7 +479,7 @@ abstract class _Product implements Product {
   @override
   Enum$ProductsProductConditionChoices? get condition;
   @override
-  double get price;
+  String get price;
   @override
   double? get postagePrice;
   @override
@@ -485,7 +487,8 @@ abstract class _Product implements Product {
   @override
   int get likes;
   @override
-  List<String> get imagesUrl;
+  @BannerConverter()
+  List<ProductBanners> get imagesUrl;
   @override
   DateTime get createdAt;
   @override
@@ -496,5 +499,174 @@ abstract class _Product implements Product {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ProductBanners _$ProductBannersFromJson(Map<String, dynamic> json) {
+  return _ProductBanners.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProductBanners {
+  String get url => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
+
+  /// Serializes this ProductBanners to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProductBanners
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProductBannersCopyWith<ProductBanners> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductBannersCopyWith<$Res> {
+  factory $ProductBannersCopyWith(
+          ProductBanners value, $Res Function(ProductBanners) then) =
+      _$ProductBannersCopyWithImpl<$Res, ProductBanners>;
+  @useResult
+  $Res call({String url, String thumbnail});
+}
+
+/// @nodoc
+class _$ProductBannersCopyWithImpl<$Res, $Val extends ProductBanners>
+    implements $ProductBannersCopyWith<$Res> {
+  _$ProductBannersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ProductBanners
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? thumbnail = null,
+  }) {
+    return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProductBannersImplCopyWith<$Res>
+    implements $ProductBannersCopyWith<$Res> {
+  factory _$$ProductBannersImplCopyWith(_$ProductBannersImpl value,
+          $Res Function(_$ProductBannersImpl) then) =
+      __$$ProductBannersImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String url, String thumbnail});
+}
+
+/// @nodoc
+class __$$ProductBannersImplCopyWithImpl<$Res>
+    extends _$ProductBannersCopyWithImpl<$Res, _$ProductBannersImpl>
+    implements _$$ProductBannersImplCopyWith<$Res> {
+  __$$ProductBannersImplCopyWithImpl(
+      _$ProductBannersImpl _value, $Res Function(_$ProductBannersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProductBanners
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? thumbnail = null,
+  }) {
+    return _then(_$ProductBannersImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProductBannersImpl implements _ProductBanners {
+  const _$ProductBannersImpl({required this.url, required this.thumbnail});
+
+  factory _$ProductBannersImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductBannersImplFromJson(json);
+
+  @override
+  final String url;
+  @override
+  final String thumbnail;
+
+  @override
+  String toString() {
+    return 'ProductBanners(url: $url, thumbnail: $thumbnail)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductBannersImpl &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, thumbnail);
+
+  /// Create a copy of ProductBanners
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProductBannersImplCopyWith<_$ProductBannersImpl> get copyWith =>
+      __$$ProductBannersImplCopyWithImpl<_$ProductBannersImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductBannersImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProductBanners implements ProductBanners {
+  const factory _ProductBanners(
+      {required final String url,
+      required final String thumbnail}) = _$ProductBannersImpl;
+
+  factory _ProductBanners.fromJson(Map<String, dynamic> json) =
+      _$ProductBannersImpl.fromJson;
+
+  @override
+  String get url;
+  @override
+  String get thumbnail;
+
+  /// Create a copy of ProductBanners
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProductBannersImplCopyWith<_$ProductBannersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

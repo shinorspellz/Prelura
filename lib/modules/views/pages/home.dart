@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
@@ -19,42 +22,81 @@ class HomeScreen extends ConsumerWidget {
     final selectedTab = ref.watch(selectedTabProvider);
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.only(top: 28.0),
-          child: Column(
-            children: [
-              const Searchwidget(obscureText: false, shouldReadOnly: false, hintText: "Search for items and members", enabled: true, showInputBorder: true, autofocus: false, cancelButton: true),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    _buildTabs(ref, selectedTab, context),
-                    _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const DisplayLiveCard(),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                    const DisplaySection(),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
-                ),
-              )
-            ],
+        child: RefreshIndicator(
+          onRefresh: () => ref.refresh(allProductProvider.future),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 28.0),
+            child: Column(
+              children: [
+                const Searchwidget(obscureText: false, shouldReadOnly: false, hintText: "Search for items and members", enabled: true, showInputBorder: true, autofocus: false, cancelButton: true),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      _buildTabs(ref, selectedTab, context),
+
+                      ...ref.watch(allProductProvider).when(
+                            skipLoadingOnRefresh: false,
+                            data: (products) => [
+                              _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                              DisplaySection(
+                                products: products,
+                              ),
+                            ],
+                            error: (e, _) => [
+                              Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(e.toString()),
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        // log(e.toString(), stackTrace: _);
+                                        ref.invalidate(allProductProvider);
+                                      },
+                                      label: const Text('Retry'),
+                                      icon: const Icon(Icons.refresh_rounded),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            loading: () => [
+                              const Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2.5,
+                                ),
+                              )
+                            ],
+                          ),
+                      // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // const SizedBox(
+                      //   height: 12,
+                      // ),
+                      // const DisplayLiveCard(),
+                      // const SizedBox(
+                      //   height: 12,
+                      // ),
+                      // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                      // const DisplaySection(),
+                      // const SizedBox(
+                      //   height: 30,
+                      // )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

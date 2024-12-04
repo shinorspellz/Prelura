@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
@@ -16,14 +18,37 @@ class Product with _$Product {
     CategoryModel? subCategory,
     List<SizeModel>? sizes,
     Enum$ProductsProductConditionChoices? condition,
-    required double price,
+    required String price,
     double? postagePrice,
     required int views,
     required int likes,
-    required List<String> imagesUrl,
+    @BannerConverter() required List<ProductBanners> imagesUrl,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+}
+
+@freezed
+class ProductBanners with _$ProductBanners {
+  const factory ProductBanners({
+    required String url,
+    required String thumbnail,
+  }) = _ProductBanners;
+
+  factory ProductBanners.fromJson(Map<String, dynamic> json) => _$ProductBannersFromJson(json);
+}
+
+class BannerConverter implements JsonConverter<List<ProductBanners>, List<String>> {
+  const BannerConverter();
+
+  @override
+  List<ProductBanners> fromJson(List<String> items) {
+    final banners = items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
+    return banners;
+  }
+
+  @override
+  List<String> toJson(List<ProductBanners> banner) => [];
 }

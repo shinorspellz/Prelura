@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
@@ -13,8 +15,8 @@ class SellItemState {
   final List<String> selectedColors;
   final List<String> selectedMaterials;
   final String brand;
-  final SizeModel? size;
-  final String price;
+  final List<SizeModel>? size;
+  final String? price;
   final String selectedCondition;
 
   SellItemState({
@@ -27,7 +29,7 @@ class SellItemState {
     this.brand = "",
     this.size,
     this.selectedCondition = "",
-    this.price = "",
+    this.price,
     this.selectedColors = const [],
     this.selectedMaterials = const [],
   });
@@ -42,7 +44,7 @@ class SellItemState {
       List<String>? selectedColors,
       List<String>? selectedMaterials,
       String? brand,
-      SizeModel? size,
+      List<SizeModel>? size,
       String? price,
       String? selectedCondition}) {
     return SellItemState(
@@ -104,6 +106,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   // Update title
   void updateTitle(String title) {
     state = state.copyWith(title: title);
+    log(state.title);
   }
 
   void resetState() {
@@ -127,8 +130,16 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(subCategory: subCategory);
   }
 
-  void selectSize(SizeModel? size) {
-    state = state.copyWith(size: size);
+  void addSize(SizeModel size) {
+    final prev = state.size ?? [];
+    state = state.copyWith(size: [
+      ...prev,
+      ...[size]
+    ]);
+  }
+
+  void removeSize(SizeModel size) {
+    state = state.copyWith(size: state.size?..removeWhere((x) => x.id == size.id));
   }
 
   void updatePrice(String? price) {
@@ -196,7 +207,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   // Validate input
   bool validateInputs() {
-    return state.title.isNotEmpty && state.description.isNotEmpty;
+    return state.title.isNotEmpty || state.description.isNotEmpty;
   }
 
   // Simulate Upload

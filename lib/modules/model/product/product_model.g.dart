@@ -24,12 +24,12 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Enum$ProductsProductConditionChoices.fromJson(
               json['condition'] as String),
-      price: (json['price'] as num).toDouble(),
+      price: json['price'] as String,
       postagePrice: (json['postagePrice'] as num?)?.toDouble(),
       views: (json['views'] as num).toInt(),
       likes: (json['likes'] as num).toInt(),
       imagesUrl:
-          (json['imagesUrl'] as List<dynamic>).map((e) => e as String).toList(),
+          const BannerConverter().fromJson(json['imagesUrl'] as List<String>),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -47,7 +47,20 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'postagePrice': instance.postagePrice,
       'views': instance.views,
       'likes': instance.likes,
-      'imagesUrl': instance.imagesUrl,
+      'imagesUrl': const BannerConverter().toJson(instance.imagesUrl),
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+    };
+
+_$ProductBannersImpl _$$ProductBannersImplFromJson(Map<String, dynamic> json) =>
+    _$ProductBannersImpl(
+      url: json['url'] as String,
+      thumbnail: json['thumbnail'] as String,
+    );
+
+Map<String, dynamic> _$$ProductBannersImplToJson(
+        _$ProductBannersImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'thumbnail': instance.thumbnail,
     };

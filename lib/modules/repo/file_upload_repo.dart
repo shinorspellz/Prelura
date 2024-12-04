@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as fileUtil;
 import "package:http_parser/http_parser.dart" show MediaType;
 import 'package:prelura_app/core/errors/failures.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/modules/model/image_upload_response_model.dart';
 
 typedef OnDownloadProgressCallback = void Function(int receivedBytes, int totalBytes);
 typedef OnUploadProgressCallback = void Function(int sentBytes, int totalBytes);
@@ -18,14 +20,16 @@ class FileUploadRepo {
 
   FileUploadRepo(this._cacheBox);
 
-  String get _uploadUrl => 'https://uat-api.vmodel.app/upload/prelura/';
+  String get _uploadUrl => 'https://uat-api.vmodel.app/images/prelura/$_getUsername/';
 
-  Future<Map<String, dynamic>?> uploadFiles(List<File> files, {OnUploadProgressCallback? onUploadProgress}) async {
+  Future<List<Input$ImagesInputType>?> uploadFiles(List<File> files, {OnUploadProgressCallback? onUploadProgress}) async {
     final fps = files.map((e) => e.path).toList();
 
     final restToken = _getToken;
 
     if (restToken == null) throw const CacheFailure();
+
+    log(_uploadUrl);
 
     final res = await _FileService.fileUploadMultipart(
       url: _uploadUrl,
@@ -34,7 +38,21 @@ class FileUploadRepo {
       onUploadProgress: onUploadProgress,
     );
     // return res;
-    return jsonDecode(res);
+    final response = jsonDecode(res);
+    final uploadedFilesMap = response["data"] as List<dynamic>;
+    String baseUrl = response['base_url'] ?? '';
+    if (uploadedFilesMap.isNotEmpty) {
+      final images = uploadedFilesMap.map((e) => ImageUploadResponseModel.fromMap(baseUrl, e)).toList();
+
+      final filesToPost = images
+          .map(
+            (e) => Input$ImagesInputType(url: '${e.baseUrl}${e.file_url}', thumbnail: '${e.baseUrl}${e.sd_url}'),
+          )
+          .toList();
+      return filesToPost;
+    }
+
+    return null;
   }
 
   Future<Map<String, dynamic>?> uploadRawBytesList(List<Uint8List> rawData, {OnUploadProgressCallback? onUploadProgress}) async {
@@ -55,7 +73,7 @@ class FileUploadRepo {
   }
 
   String? get _getToken => _cacheBox.get('REST_TOKEN');
-  String? get __getToken => _cacheBox.get('AUTH_TOKEN');
+  String? get _getUsername => _cacheBox.get('USERNAME');
 }
 
 /// File REST upload service
@@ -114,10 +132,8 @@ class _FileService {
 
     request.contentLength = totalByteLength;
 
-    print(" ========== totalByteLength $totalByteLength");
-
     request.headers.set(HttpHeaders.contentTypeHeader, requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
-    request.headers.set(HttpHeaders.authorizationHeader, 'Token $restToken');
+    request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $restToken');
 
     Stream<List<int>> streamUpload = msStream.transform(
       StreamTransformer.fromHandlers(

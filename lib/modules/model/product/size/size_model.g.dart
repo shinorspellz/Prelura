@@ -8,7 +8,7 @@ part of 'size_model.dart';
 
 _$SizeModelImpl _$$SizeModelImplFromJson(Map<String, dynamic> json) =>
     _$SizeModelImpl(
-      id: json['id'] as String,
+      id: json['id'],
       sizeValue: json['sizeValue'] as String,
       sizeSystem: Enum$ProductsSizeSizeSystemChoices.fromJson(
           json['sizeSystem'] as String),

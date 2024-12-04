@@ -20,7 +20,7 @@ SizeModel _$SizeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SizeModel {
-  String get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String get sizeValue => throw _privateConstructorUsedError;
   Enum$ProductsSizeSizeSystemChoices get sizeSystem =>
       throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $SizeModelCopyWith<$Res> {
       _$SizeModelCopyWithImpl<$Res, SizeModel>;
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String sizeValue,
       Enum$ProductsSizeSizeSystemChoices sizeSystem});
 }
@@ -61,15 +61,15 @@ class _$SizeModelCopyWithImpl<$Res, $Val extends SizeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? sizeValue = null,
     Object? sizeSystem = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       sizeValue: null == sizeValue
           ? _value.sizeValue
           : sizeValue // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$$SizeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String sizeValue,
       Enum$ProductsSizeSizeSystemChoices sizeSystem});
 }
@@ -109,15 +109,15 @@ class __$$SizeModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? sizeValue = null,
     Object? sizeSystem = null,
   }) {
     return _then(_$SizeModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       sizeValue: null == sizeValue
           ? _value.sizeValue
           : sizeValue // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ class _$SizeModelImpl implements _SizeModel {
       _$$SizeModelImplFromJson(json);
 
   @override
-  final String id;
+  final dynamic id;
   @override
   final String sizeValue;
   @override
@@ -156,7 +156,7 @@ class _$SizeModelImpl implements _SizeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SizeModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.sizeValue, sizeValue) ||
                 other.sizeValue == sizeValue) &&
             (identical(other.sizeSystem, sizeSystem) ||
@@ -165,7 +165,8 @@ class _$SizeModelImpl implements _SizeModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, sizeValue, sizeSystem);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(id), sizeValue, sizeSystem);
 
   /// Create a copy of SizeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -185,7 +186,7 @@ class _$SizeModelImpl implements _SizeModel {
 
 abstract class _SizeModel implements SizeModel {
   const factory _SizeModel(
-          {required final String id,
+          {required final dynamic id,
           required final String sizeValue,
           required final Enum$ProductsSizeSizeSystemChoices sizeSystem}) =
       _$SizeModelImpl;
@@ -194,7 +195,7 @@ abstract class _SizeModel implements SizeModel {
       _$SizeModelImpl.fromJson;
 
   @override
-  String get id;
+  dynamic get id;
   @override
   String get sizeValue;
   @override

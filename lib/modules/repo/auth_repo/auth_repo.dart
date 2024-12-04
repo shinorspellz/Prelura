@@ -45,10 +45,15 @@ class AuthRepo {
     if (mutation.parsedData?.login?.token == null || mutation.parsedData?.login?.restToken == null) {
       throw const CacheFailure();
     }
-    await _store(mutation.parsedData!.login!.token!, mutation.parsedData!.login!.restToken!);
+    await _store(
+      mutation.parsedData!.login!.token!,
+      mutation.parsedData!.login!.restToken!,
+      mutation.parsedData!.login!.user!.username!,
+    );
 
     log('Bearer ${mutation.parsedData?.login?.token}', name: 'AuthMutation');
     log('Rest ${mutation.parsedData!.login!.restToken}', name: 'AuthMutation');
+    log('Username ${mutation.parsedData!.login!.user!.username}', name: 'AuthMutation');
 
     // invalidate graphql client to use the version with with a beare token
     _ref.invalidate(graphqlClient);
@@ -118,14 +123,18 @@ class AuthRepo {
   Future<void> _remove() async {
     try {
       await _cacheBox.delete('AUTH_TOKEN');
+      await _cacheBox.delete('REST_TOKEN');
+      await _cacheBox.delete('USERNAME');
     } catch (_) {
       throw const CacheFailure(message: 'An error occured removing user data');
     }
   }
 
-  Future<void> _store(String token, String restToken) async {
+  /// Cache all required data neccesary for user session like [token], [restToken] & [username]
+  Future<void> _store(String token, String restToken, String username) async {
     await _cacheBox.put('AUTH_TOKEN', token);
     await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('USERNAME', username);
   }
 
   Stream<BoxEvent> authState() {

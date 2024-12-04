@@ -7,7 +7,7 @@ part 'size_model.g.dart';
 @freezed
 class SizeModel with _$SizeModel {
   const factory SizeModel({
-    required String id,
+    required dynamic id,
     required String sizeValue,
     required Enum$ProductsSizeSizeSystemChoices sizeSystem,
   }) = _SizeModel;

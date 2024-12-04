@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
@@ -14,11 +15,12 @@ import '../../../widgets/rating.dart';
 import '../provider/product_detail_provider.dart';
 
 class ProductTopDetails extends ConsumerWidget {
-  const ProductTopDetails({super.key});
+  const ProductTopDetails({super.key, required this.product});
+  final Product product;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final product = ref.watch(productDetailProvider);
+    final dummy = ref.watch(productDetailProvider);
 
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
@@ -27,7 +29,7 @@ class ProductTopDetails extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Asos Edited patchwork quilt jacket in red and cherry quilt jacket in red and cherry",
+            product.name,
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
@@ -41,14 +43,14 @@ class ProductTopDetails extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    product.brand,
+                    '',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.purple,
                           fontWeight: FontWeight.w500,
                         ),
                   ),
                   Text(
-                    "Size ${product.size}",
+                    "Size ${product.sizes?.map((x) => x.sizeValue).join(', ') ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.purple,
                           fontWeight: FontWeight.w400,
@@ -63,13 +65,13 @@ class ProductTopDetails extends ConsumerWidget {
                 children: [
                   // Product condition text
                   Text(
-                    product.condition,
+                    dummy.condition,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
                   ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
                   Text(
-                    "£${product.price.toStringAsFixed(2)}",
+                    "£${product.price}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
@@ -79,7 +81,7 @@ class ProductTopDetails extends ConsumerWidget {
               const SizedBox(height: 12),
               // Display color circles in a row
               Row(
-                children: product.colors
+                children: dummy.colors
                     .map((color) => Container(
                           width: 16,
                           height: 16,
