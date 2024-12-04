@@ -2,6 +2,10 @@ mutation Login($password: String!, $username: String) {
   login(password: $password, username: $username) {
     restToken
     token
+    user {
+      id
+      username
+    }
   }
 }
 
@@ -41,5 +45,32 @@ mutation TokenAuth($email: String, $password: String!, $username: String!) {
     token
     payload
     refreshExpiresIn
+  }
+}
+
+mutation CreateProduct(
+  $category: Int
+  $condition: String
+  $description: String!
+  $imageUrl: [ImagesInputType]
+  $postagePrice: Float
+  $price: Float!
+  $size: [Int]!
+  $subCategory: Int
+  $title: String!
+) {
+  createProduct(
+    category: $category
+    condition: $condition
+    description: $description
+    imagesUrl: $imageUrl
+    postagePrice: $postagePrice
+    price: $price
+    size: $size
+    subCategory: $subCategory
+    title: $title
+  ) {
+    success
+    message
   }
 }

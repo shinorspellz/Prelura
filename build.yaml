@@ -10,3 +10,13 @@ targets:
           scalars:
             ExpectedErrorType:
               type: Map<String, dynamic>
+            Date:
+              type: DateTime
+            DateTime:
+              type: DateTime
+            Decimal:
+              type: String
+            JSONString:
+              type: String
+            GenericScalar:
+              type: dynamic

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/about_profile.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/review_tab.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/user_wardrobe.dart';
@@ -18,12 +19,10 @@ class ProfileDetailsScreen extends ConsumerStatefulWidget {
   const ProfileDetailsScreen({super.key});
 
   @override
-  ConsumerState<ProfileDetailsScreen> createState() =>
-      _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -56,19 +55,19 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
+    final user = ref.watch(userProvider).valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index =
-          currentIndex; // Sync tab index if changed externally
+      _tabController.index = currentIndex; // Sync tab index if changed externally
     }
+
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: "Lonin2999",
+        appbarTitle: user?.username ?? "--",
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
         ),
       ),
       body: Column(
@@ -76,8 +75,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
           TabBar(
             controller: _tabController,
             indicatorColor: PreluraColors.activeColor,
-            unselectedLabelColor:
-                PreluraColors.greyLightColor, // Text color for inactive tabs
+            unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
             labelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16, // Font size for the active tab
@@ -101,10 +99,30 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                UserWardrobe(),
-                ReviewTab(),
-                AboutProfile(),
+              children: [
+                ref.watch(userProvider).when(
+                      data: (_) => const UserWardrobe(),
+                      error: (e, _) => Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('An error occured!'),
+                          TextButton.icon(
+                            onPressed: () => ref.invalidate(userProvider),
+                            label: const Text('Retry'),
+                            icon: const Icon(Icons.refresh_rounded),
+                          ),
+                        ],
+                      ),
+                      loading: () => const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.5,
+                        ),
+                      ),
+                    ),
+
+                // const UserWardrobe(),
+                const ReviewTab(),
+                const AboutProfile(),
               ],
             ),
           ),

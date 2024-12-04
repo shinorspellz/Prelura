@@ -1,0 +1,150 @@
+query ViewMe {
+  viewMe {
+    id
+    firstName
+    lastName
+    username
+    email
+    bio
+    profilePictureUrl
+    gender
+    displayName
+    dob
+    dateJoined
+    lastLogin
+    fullName
+  }
+}
+
+query GetUser($username: String!) {
+  getUser(username: $username) {
+    id
+    firstName
+    lastName
+    username
+    email
+    bio
+    profilePictureUrl
+    gender
+    displayName
+    dob
+    dateJoined
+    lastLogin
+    fullName
+  }
+}
+
+query Product($id: Int!) {
+  product(id: $id) {
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    sizes {
+      id
+      sizeValue
+      sizeSystem
+    }
+    condition
+    price
+    postagePrice
+    views
+    likes
+    imagesUrl
+    createdAt
+    updatedAt
+  }
+}
+
+query UserProducts(
+  $search: String
+  $username: String
+  $pageCount: Int
+  $pageNumber: Int
+) {
+  userProducts(
+    search: $search
+    username: $username
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+  ) {
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    sizes {
+      id
+      sizeValue
+      sizeSystem
+    }
+    condition
+    price
+    postagePrice
+    views
+    likes
+    imagesUrl
+    createdAt
+    updatedAt
+  }
+}
+query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
+  allProducts(search: $search, pageCount: $pageCount, pageNumber: $pageNumber) {
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    sizes {
+      id
+      sizeValue
+      sizeSystem
+    }
+    condition
+    price
+    postagePrice
+    views
+    likes
+    imagesUrl
+    createdAt
+    updatedAt
+  }
+}
+
+query Categories {
+  categories {
+    id
+    name
+    subCategory {
+      id
+      name
+    }
+  }
+}
+
+query Sizes {
+  sizes {
+    id
+    sizeValue
+    sizeSystem
+  }
+}

@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/errors/failures.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:graphql/client.dart';
@@ -15,8 +17,9 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 class AuthRepo {
   final GraphQLClient _client;
   final Box _cacheBox;
+  final Ref _ref;
 
-  AuthRepo(this._client, this._cacheBox);
+  AuthRepo(this._client, this._cacheBox, this._ref);
 
   /// login operation requires [username] & [password]
   Future<void> login(String username, String password) async {
@@ -27,23 +30,33 @@ class AuthRepo {
       ),
     ));
 
-    // checks if any data is available in the mutation
-    if (mutation.parsedData?.login?.token != null) {
-      //cache user token
-      await _store(mutation.parsedData!.login!.token!);
-
-      log('${mutation.parsedData?.login?.token}', name: 'AuthMutation');
-    }
-
     // check if there's an exception in the mutation and throw graphql error if available
     if (mutation.hasException) {
       if (mutation.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = mutation.exception!.graphqlErrors.first.message;
+        log(mutation.exception.toString(), name: 'AuthMutation');
         throw error;
       }
       log(mutation.exception.toString(), name: 'AuthMutation');
       throw 'An error occured';
     }
+
+    // checks if any data is available in the mutation
+    if (mutation.parsedData?.login?.token == null || mutation.parsedData?.login?.restToken == null) {
+      throw const CacheFailure();
+    }
+    await _store(
+      mutation.parsedData!.login!.token!,
+      mutation.parsedData!.login!.restToken!,
+      mutation.parsedData!.login!.user!.username!,
+    );
+
+    log('Bearer ${mutation.parsedData?.login?.token}', name: 'AuthMutation');
+    log('Rest ${mutation.parsedData!.login!.restToken}', name: 'AuthMutation');
+    log('Username ${mutation.parsedData!.login!.user!.username}', name: 'AuthMutation');
+
+    // invalidate graphql client to use the version with with a beare token
+    _ref.invalidate(graphqlClient);
   }
 
   /// Registration operation using generated [Variables$Mutation$Register] class as param for required
@@ -87,19 +100,7 @@ class AuthRepo {
 
   /// Logout action
   Future<void> logout() async {
-    AuthLink authLink = AuthLink(getToken: () => 'Bearer $getToken');
-
-    HttpLink httpLink = HttpLink('https://prelura-app.vercel.app/graphql/', defaultHeaders: {
-      HttpHeaders.acceptHeader: 'application/json',
-    });
-
-    Link link = authLink.concat(httpLink);
-
-    final authClient = _client.copyWith(
-      link: link,
-    );
-
-    final response = await authClient.mutate$Logout(Options$Mutation$Logout());
+    final response = await _client.mutate$Logout(Options$Mutation$Logout());
 
     if (response.parsedData != null) {
       await _remove();
@@ -117,16 +118,24 @@ class AuthRepo {
   }
 
   String? get getToken => _cacheBox.get('AUTH_TOKEN');
+  String? get getRestToken => _cacheBox.get('REST_TOKEN');
 
   Future<void> _remove() async {
     try {
       await _cacheBox.delete('AUTH_TOKEN');
+      await _cacheBox.delete('REST_TOKEN');
+      await _cacheBox.delete('USERNAME');
     } catch (_) {
       throw const CacheFailure(message: 'An error occured removing user data');
     }
   }
 
-  Future<void> _store(String token) => _cacheBox.put('AUTH_TOKEN', token);
+  /// Cache all required data neccesary for user session like [token], [restToken] & [username]
+  Future<void> _store(String token, String restToken, String username) async {
+    await _cacheBox.put('AUTH_TOKEN', token);
+    await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('USERNAME', username);
+  }
 
   Stream<BoxEvent> authState() {
     final stream = _cacheBox.watch(key: 'AUTH_TOKEN').startWith(

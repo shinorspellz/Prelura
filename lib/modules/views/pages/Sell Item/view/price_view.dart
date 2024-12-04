@@ -10,19 +10,26 @@ import '../provider/price_provider.dart';
 import '../provider/sell_item_provider.dart'; // Update this path
 
 @RoutePage()
-class PriceScreen extends ConsumerWidget {
+class PriceScreen extends ConsumerStatefulWidget {
   const PriceScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PriceScreen> createState() => _PriceScreenState();
+}
+
+class _PriceScreenState extends ConsumerState<PriceScreen> {
+  late final controller = TextEditingController(
+    text: ref.read(sellItemProvider).price,
+  );
+  @override
+  Widget build(BuildContext context) {
     final priceState = ref.watch(sellItemProvider).price;
     final pricePageState = ref.watch(pricePageProvider);
 
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -41,9 +48,7 @@ class PriceScreen extends ConsumerWidget {
                   hintText: "Enter price",
                   border: OutlineInputBorder(),
                 ),
-                controller: TextEditingController(
-                  text: priceState,
-                ),
+                controller: controller,
                 onChanged: (value) {
                   ref.read(sellItemProvider.notifier).updatePrice(value);
                 },
@@ -65,13 +70,20 @@ class PriceScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               const DisplaySection(),
+              // Similar Sold Items Section
+              Text(
+                "Similar sold items",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              const DisplaySection(),
 
               // Done Button
               const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 46),
                 child: ElevatedButton(
-                  onPressed: priceState.isNotEmpty
+                  onPressed: priceState != null
                       ? () {
                           // Pass the data back or proceed to the next screen
                           Navigator.pop(context);
@@ -87,10 +99,7 @@ class PriceScreen extends ConsumerWidget {
                   child: Center(
                     child: Text(
                       "Done",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: PreluraColors.white),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
                     ),
                   ),
                 ),

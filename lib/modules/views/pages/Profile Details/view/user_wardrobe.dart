@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
@@ -17,13 +19,15 @@ class UserWardrobe extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userProvider).valueOrNull;
+
     return SingleChildScrollView(
       child: Column(
         children: [
           MenuCard(
             rightArrow: false,
             borderbottom: false,
-            title: "Lonin2999",
+            title: user?.username ?? '--',
             profilePic: true,
             widget: Text(
               "35 listings",
@@ -187,7 +191,34 @@ class UserWardrobe extends ConsumerWidget {
 
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: const DisplaySection(),
+            child: ref.watch(userProduct(user?.username)).when(
+                  skipLoadingOnRefresh: false,
+                  data: (products) => DisplaySection(
+                    products: products,
+                  ),
+                  error: (e, _) => Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(e.toString()),
+                        TextButton.icon(
+                          onPressed: () {
+                            // log(e.toString(), stackTrace: _);
+                            ref.invalidate(userProduct);
+                          },
+                          label: const Text('Retry'),
+                          icon: const Icon(Icons.refresh_rounded),
+                        ),
+                      ],
+                    ),
+                  ),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.5,
+                    ),
+                  ),
+                ),
           )
         ],
       ),
