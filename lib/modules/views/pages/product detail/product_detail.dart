@@ -287,7 +287,6 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 onTap: () {},
                 text: "Buy now",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
-                bgColor: Colors.purple,
                 borderColor: Colors.purple,
               ),
             ),
