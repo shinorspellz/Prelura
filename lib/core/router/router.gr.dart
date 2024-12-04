@@ -8,43 +8,70 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i34;
-import 'package:flutter/material.dart' as _i35;
-import 'package:prelura_app/modules/model/product/categories/category_model.dart' as _i37;
-import 'package:prelura_app/modules/model/product/product_model.dart' as _i36;
+import 'package:auto_route/auto_route.dart' as _i36;
+import 'package:flutter/material.dart' as _i37;
+import 'package:prelura_app/modules/model/product/categories/category_model.dart'
+    as _i39;
+import 'package:prelura_app/modules/model/product/product_model.dart' as _i38;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
-import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i2;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart' as _i14;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart' as _i30;
-import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart' as _i7;
-import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart' as _i8;
-import 'package:prelura_app/modules/views/pages/holiday_mode.dart' as _i9;
-import 'package:prelura_app/modules/views/pages/home.dart' as _i11;
-import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i10;
-import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i12;
-import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i13;
-import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart' as _i17;
-import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i16;
-import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart' as _i20;
-import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart' as _i22;
-import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart' as _i23;
-import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i26;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart' as _i3;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart' as _i4;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart' as _i5;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart' as _i6;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart' as _i15;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart' as _i18;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart' as _i19;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart' as _i21;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart' as _i32;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart' as _i27;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart' as _i31;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart' as _i33;
-import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart' as _i28;
-import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart' as _i25;
-import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i24;
-import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i29;
+import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i3;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
+    as _i16;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart'
+    as _i32;
+import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart'
+    as _i6;
+import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart'
+    as _i9;
+import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart'
+    as _i10;
+import 'package:prelura_app/modules/views/pages/holiday_mode.dart' as _i11;
+import 'package:prelura_app/modules/views/pages/home.dart' as _i13;
+import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i12;
+import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i14;
+import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i15;
+import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart'
+    as _i19;
+import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i18;
+import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart'
+    as _i22;
+import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart'
+    as _i24;
+import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
+    as _i25;
+import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i28;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart'
+    as _i4;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart'
+    as _i5;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart'
+    as _i7;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart'
+    as _i8;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart'
+    as _i17;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart'
+    as _i20;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart'
+    as _i21;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart'
+    as _i23;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart'
+    as _i34;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart'
+    as _i29;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart'
+    as _i33;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart'
+    as _i35;
+import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart'
+    as _i30;
+import 'package:prelura_app/modules/views/pages/Settings/view/account_setting_view.dart'
+    as _i2;
+import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart'
+    as _i27;
+import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i26;
+import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i31;
 
 /// generated route for
 /// [_i1.AboutPreluraMenuScreen]
@@ -120,8 +147,9 @@ class BrandSelectionRoute extends _i36.PageRouteInfo<BrandSelectionRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BrandSelectionRouteArgs>(orElse: () => const BrandSelectionRouteArgs());
-      return _i3.BrandSelectionPage(key: args.key);
+      final args = data.argsAs<BrandSelectionRouteArgs>(
+          orElse: () => const BrandSelectionRouteArgs());
+      return _i4.BrandSelectionPage(key: args.key);
     },
   );
 }
@@ -412,8 +440,9 @@ class LoginRoute extends _i36.PageRouteInfo<LoginRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
-      return _i14.LoginScreen(
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      return _i16.LoginScreen(
         key: args.key,
         onLoginResult: args.onLoginResult,
       );
@@ -536,9 +565,9 @@ class PriceRoute extends _i36.PageRouteInfo<void> {
 /// [_i22.ProductDetailScreen]
 class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
-    _i35.Key? key,
-    required _i36.Product product,
-    List<_i34.PageRouteInfo>? children,
+    _i37.Key? key,
+    required _i38.Product product,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
           ProductDetailRoute.name,
           args: ProductDetailRouteArgs(
@@ -554,7 +583,7 @@ class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ProductDetailRouteArgs>();
-      return _i20.ProductDetailScreen(
+      return _i22.ProductDetailScreen(
         key: args.key,
         product: args.product,
       );
@@ -568,9 +597,9 @@ class ProductDetailRouteArgs {
     required this.product,
   });
 
-  final _i35.Key? key;
+  final _i37.Key? key;
 
-  final _i36.Product product;
+  final _i38.Product product;
 
   @override
   String toString() {
@@ -769,9 +798,9 @@ class SignUpRoute extends _i36.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i31.SizeSelectionPage]
-class SizeSelectionRoute extends _i34.PageRouteInfo<void> {
-  const SizeSelectionRoute({List<_i34.PageRouteInfo>? children})
+/// [_i33.SizeSelectionPage]
+class SizeSelectionRoute extends _i36.PageRouteInfo<void> {
+  const SizeSelectionRoute({List<_i36.PageRouteInfo>? children})
       : super(
           SizeSelectionRoute.name,
           initialChildren: children,
@@ -782,7 +811,7 @@ class SizeSelectionRoute extends _i34.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i31.SizeSelectionPage();
+      return const _i33.SizeSelectionPage();
     },
   );
 }
@@ -807,12 +836,12 @@ class SubCategoryProductRoute extends _i36.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i33.SubCategoryScreen]
-class SubCategoryRoute extends _i34.PageRouteInfo<SubCategoryRouteArgs> {
+/// [_i35.SubCategoryScreen]
+class SubCategoryRoute extends _i36.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
-    _i35.Key? key,
-    required List<_i37.CategoryModel> subCategories,
-    List<_i34.PageRouteInfo>? children,
+    _i37.Key? key,
+    required List<_i39.CategoryModel> subCategories,
+    List<_i36.PageRouteInfo>? children,
   }) : super(
           SubCategoryRoute.name,
           args: SubCategoryRouteArgs(
@@ -828,7 +857,7 @@ class SubCategoryRoute extends _i34.PageRouteInfo<SubCategoryRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<SubCategoryRouteArgs>();
-      return _i33.SubCategoryScreen(
+      return _i35.SubCategoryScreen(
         key: args.key,
         subCategories: args.subCategories,
       );
@@ -842,9 +871,9 @@ class SubCategoryRouteArgs {
     required this.subCategories,
   });
 
-  final _i35.Key? key;
+  final _i37.Key? key;
 
-  final List<_i37.CategoryModel> subCategories;
+  final List<_i39.CategoryModel> subCategories;
 
   @override
   String toString() {
