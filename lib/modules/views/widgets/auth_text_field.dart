@@ -29,35 +29,38 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final bool enabled;
   final TextStyle? hintStyle;
   final FocusNode? focusNode;
+  final int? maxLines;
 
   /// formats the textfeild to a password version
   final bool isPassword;
 
-  const PreluraAuthTextField(
-      {super.key,
-      this.label,
-      this.minLines,
-      this.onChanged,
-      this.onTap,
-      this.keyboardType,
-      this.formatter,
-      this.onSaved,
-      this.obscureText = false,
-      this.hintText,
-      this.maxLength,
-      this.controller,
-      this.validator,
-      this.textCapitalization,
-      this.shouldReadOnly = false,
-      trailing,
-      this.suffixIcon,
-      this.enabled = true,
-      this.minWidth,
-      this.prefixIcon,
-      this.labelStyle,
-      this.hintStyle,
-      this.focusNode,
-      this.isPassword = false});
+  const PreluraAuthTextField({
+    super.key,
+    this.label,
+    this.minLines,
+    this.onChanged,
+    this.onTap,
+    this.keyboardType,
+    this.formatter,
+    this.onSaved,
+    this.obscureText = false,
+    this.hintText,
+    this.maxLength,
+    this.controller,
+    this.validator,
+    this.textCapitalization,
+    this.shouldReadOnly = false,
+    trailing,
+    this.suffixIcon,
+    this.enabled = true,
+    this.minWidth,
+    this.prefixIcon,
+    this.labelStyle,
+    this.hintStyle,
+    this.focusNode,
+    this.isPassword = false,
+    this.maxLines = 1,
+  });
 
   @override
   ConsumerState<PreluraAuthTextField> createState() => _VWidgetsLoginTextFieldState();
@@ -110,6 +113,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
             minLines: widget.minLines ?? 1,
             controller: widget.controller,
             maxLength: widget.maxLength,
+            maxLines: widget.maxLines,
             onSaved: widget.onSaved,
             enabled: widget.enabled,
             cursorHeight: 15,
@@ -140,9 +144,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
             //   });
             //   return null;
             // },
-            style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                color: Theme.of(context).primaryColor.withOpacity(1),
-                fontSize: 14),
+            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
             readOnly: widget.shouldReadOnly,
             decoration: UIConstants.instance
                 .inputDecoration(

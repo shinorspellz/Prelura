@@ -1,3 +1,130 @@
+class Input$ImagesInputType {
+  factory Input$ImagesInputType({
+    required String url,
+    required String thumbnail,
+  }) =>
+      Input$ImagesInputType._({
+        r'url': url,
+        r'thumbnail': thumbnail,
+      });
+
+  Input$ImagesInputType._(this._$data);
+
+  factory Input$ImagesInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$url = data['url'];
+    result$data['url'] = (l$url as String);
+    final l$thumbnail = data['thumbnail'];
+    result$data['thumbnail'] = (l$thumbnail as String);
+    return Input$ImagesInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get url => (_$data['url'] as String);
+
+  String get thumbnail => (_$data['thumbnail'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$url = url;
+    result$data['url'] = l$url;
+    final l$thumbnail = thumbnail;
+    result$data['thumbnail'] = l$thumbnail;
+    return result$data;
+  }
+
+  CopyWith$Input$ImagesInputType<Input$ImagesInputType> get copyWith =>
+      CopyWith$Input$ImagesInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ImagesInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$thumbnail = thumbnail;
+    final lOther$thumbnail = other.thumbnail;
+    if (l$thumbnail != lOther$thumbnail) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$url = url;
+    final l$thumbnail = thumbnail;
+    return Object.hashAll([
+      l$url,
+      l$thumbnail,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ImagesInputType<TRes> {
+  factory CopyWith$Input$ImagesInputType(
+    Input$ImagesInputType instance,
+    TRes Function(Input$ImagesInputType) then,
+  ) = _CopyWithImpl$Input$ImagesInputType;
+
+  factory CopyWith$Input$ImagesInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$ImagesInputType;
+
+  TRes call({
+    String? url,
+    String? thumbnail,
+  });
+}
+
+class _CopyWithImpl$Input$ImagesInputType<TRes>
+    implements CopyWith$Input$ImagesInputType<TRes> {
+  _CopyWithImpl$Input$ImagesInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ImagesInputType _instance;
+
+  final TRes Function(Input$ImagesInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? url = _undefined,
+    Object? thumbnail = _undefined,
+  }) =>
+      _then(Input$ImagesInputType._({
+        ..._instance._$data,
+        if (url != _undefined && url != null) 'url': (url as String),
+        if (thumbnail != _undefined && thumbnail != null)
+          'thumbnail': (thumbnail as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ImagesInputType<TRes>
+    implements CopyWith$Input$ImagesInputType<TRes> {
+  _CopyWithStubImpl$Input$ImagesInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? url,
+    String? thumbnail,
+  }) =>
+      _res;
+}
+
 enum Enum$AccountsUserGenderChoices {
   MALE,
   FEMALE,
@@ -34,6 +161,96 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
       return Enum$AccountsUserGenderChoices.ANY;
     default:
       return Enum$AccountsUserGenderChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsProductConditionChoices {
+  NEW_WITH_TAGS,
+  LIKE_NEW,
+  USED,
+  HEAVILY_USED,
+  $unknown;
+
+  factory Enum$ProductsProductConditionChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductConditionChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductConditionChoices(this);
+}
+
+String toJson$Enum$ProductsProductConditionChoices(
+    Enum$ProductsProductConditionChoices e) {
+  switch (e) {
+    case Enum$ProductsProductConditionChoices.NEW_WITH_TAGS:
+      return r'NEW_WITH_TAGS';
+    case Enum$ProductsProductConditionChoices.LIKE_NEW:
+      return r'LIKE_NEW';
+    case Enum$ProductsProductConditionChoices.USED:
+      return r'USED';
+    case Enum$ProductsProductConditionChoices.HEAVILY_USED:
+      return r'HEAVILY_USED';
+    case Enum$ProductsProductConditionChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductConditionChoices
+    fromJson$Enum$ProductsProductConditionChoices(String value) {
+  switch (value) {
+    case r'NEW_WITH_TAGS':
+      return Enum$ProductsProductConditionChoices.NEW_WITH_TAGS;
+    case r'LIKE_NEW':
+      return Enum$ProductsProductConditionChoices.LIKE_NEW;
+    case r'USED':
+      return Enum$ProductsProductConditionChoices.USED;
+    case r'HEAVILY_USED':
+      return Enum$ProductsProductConditionChoices.HEAVILY_USED;
+    default:
+      return Enum$ProductsProductConditionChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsSizeSizeSystemChoices {
+  US,
+  EU,
+  UK,
+  GENERIC,
+  $unknown;
+
+  factory Enum$ProductsSizeSizeSystemChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsSizeSizeSystemChoices(value);
+
+  String toJson() => toJson$Enum$ProductsSizeSizeSystemChoices(this);
+}
+
+String toJson$Enum$ProductsSizeSizeSystemChoices(
+    Enum$ProductsSizeSizeSystemChoices e) {
+  switch (e) {
+    case Enum$ProductsSizeSizeSystemChoices.US:
+      return r'US';
+    case Enum$ProductsSizeSizeSystemChoices.EU:
+      return r'EU';
+    case Enum$ProductsSizeSizeSystemChoices.UK:
+      return r'UK';
+    case Enum$ProductsSizeSizeSystemChoices.GENERIC:
+      return r'GENERIC';
+    case Enum$ProductsSizeSizeSystemChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsSizeSizeSystemChoices fromJson$Enum$ProductsSizeSizeSystemChoices(
+    String value) {
+  switch (value) {
+    case r'US':
+      return Enum$ProductsSizeSizeSystemChoices.US;
+    case r'EU':
+      return Enum$ProductsSizeSizeSystemChoices.EU;
+    case r'UK':
+      return Enum$ProductsSizeSizeSystemChoices.UK;
+    case r'GENERIC':
+      return Enum$ProductsSizeSizeSystemChoices.GENERIC;
+    default:
+      return Enum$ProductsSizeSizeSystemChoices.$unknown;
   }
 }
 

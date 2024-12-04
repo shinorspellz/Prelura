@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
@@ -9,11 +10,12 @@ import '../provider/product_detail_provider.dart';
 final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
 
 class ProductDescription extends ConsumerWidget {
-  const ProductDescription({super.key});
+  const ProductDescription({super.key, required this.product});
+  final Product product;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final product = ref.watch(productDetailProvider);
+    final dummy = ref.watch(productDetailProvider);
     final isDescriptionExpanded = ref.watch(isDescriptionExpandedProvider);
 
     return Container(
@@ -47,15 +49,7 @@ class ProductDescription extends ConsumerWidget {
                       },
                     children: [
                       TextSpan(
-                        text: isDescriptionExpanded
-                            ? "worn a couple times but left tag in to resell. "
-                                "I have the authentication proof feel free to ask for it. "
-                                "Consumer protection laws do not apply to your purchases from other consumers. "
-                                "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                                "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                                "For more details, please review the full legal disclaimer."
-                            : "worn a couple times but left tag in to resell. "
-                                "I have the authentication proof feel free to ask for it...",
+                        text: isDescriptionExpanded ? product.description : product.description,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       TextSpan(
@@ -75,11 +69,12 @@ class ProductDescription extends ConsumerWidget {
             height: 2,
             thickness: 1,
           ),
-          _buildInfoRow("Category", product.category, context),
-          _buildInfoRow("Size", product.size, context),
-          _buildInfoRow("Condition", product.condition, context),
-          _buildInfoRow("Views", "${product.views}", context),
-          _buildInfoRow("Uploaded", product.uploadTime, context),
+          if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
+
+          if (product.sizes != null) _buildInfoRow("Size", product.sizes!.map((e) => e.sizeValue).join(', '), context),
+          _buildInfoRow("Condition", dummy.condition, context),
+          _buildInfoRow("Views", "${dummy.views}", context),
+          _buildInfoRow("Uploaded", dummy.uploadTime, context),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
@@ -99,7 +94,7 @@ class ProductDescription extends ConsumerWidget {
                       ),
                 ),
                 Text(
-                  "Postage: From £${product.postageCost.toStringAsFixed(2)}",
+                  "Postage: From £${dummy.postageCost.toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),
                 ),
               ],

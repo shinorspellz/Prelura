@@ -10,6 +10,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i36;
 import 'package:flutter/material.dart' as _i37;
+import 'package:prelura_app/modules/model/product/categories/category_model.dart'
+    as _i39;
+import 'package:prelura_app/modules/model/product/product_model.dart' as _i38;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i3;
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
@@ -69,7 +72,6 @@ import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_vi
     as _i27;
 import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i26;
 import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i31;
-import 'package:prelura_app/shared/card_model.dart' as _i38;
 
 /// generated route for
 /// [_i1.AboutPreluraMenuScreen]
@@ -563,14 +565,14 @@ class PriceRoute extends _i36.PageRouteInfo<void> {
 /// [_i22.ProductDetailScreen]
 class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
-    required _i38.PreluraCardModel product,
     _i37.Key? key,
+    required _i38.Product product,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           ProductDetailRoute.name,
           args: ProductDetailRouteArgs(
-            product: product,
             key: key,
+            product: product,
           ),
           initialChildren: children,
         );
@@ -582,8 +584,8 @@ class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
     builder: (data) {
       final args = data.argsAs<ProductDetailRouteArgs>();
       return _i22.ProductDetailScreen(
-        args.product,
         key: args.key,
+        product: args.product,
       );
     },
   );
@@ -591,17 +593,17 @@ class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
 
 class ProductDetailRouteArgs {
   const ProductDetailRouteArgs({
-    required this.product,
     this.key,
+    required this.product,
   });
-
-  final _i38.PreluraCardModel product;
 
   final _i37.Key? key;
 
+  final _i38.Product product;
+
   @override
   String toString() {
-    return 'ProductDetailRouteArgs{product: $product, key: $key}';
+    return 'ProductDetailRouteArgs{key: $key, product: $product}';
   }
 }
 
@@ -797,13 +799,10 @@ class SignUpRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i33.SizeSelectionPage]
-class SizeSelectionRoute extends _i36.PageRouteInfo<SizeSelectionRouteArgs> {
-  SizeSelectionRoute({
-    _i37.Key? key,
-    List<_i36.PageRouteInfo>? children,
-  }) : super(
+class SizeSelectionRoute extends _i36.PageRouteInfo<void> {
+  const SizeSelectionRoute({List<_i36.PageRouteInfo>? children})
+      : super(
           SizeSelectionRoute.name,
-          args: SizeSelectionRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -812,22 +811,9 @@ class SizeSelectionRoute extends _i36.PageRouteInfo<SizeSelectionRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SizeSelectionRouteArgs>(
-          orElse: () => const SizeSelectionRouteArgs());
-      return _i33.SizeSelectionPage(key: args.key);
+      return const _i33.SizeSelectionPage();
     },
   );
-}
-
-class SizeSelectionRouteArgs {
-  const SizeSelectionRouteArgs({this.key});
-
-  final _i37.Key? key;
-
-  @override
-  String toString() {
-    return 'SizeSelectionRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
@@ -851,10 +837,17 @@ class SubCategoryProductRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i35.SubCategoryScreen]
-class SubCategoryRoute extends _i36.PageRouteInfo<void> {
-  const SubCategoryRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class SubCategoryRoute extends _i36.PageRouteInfo<SubCategoryRouteArgs> {
+  SubCategoryRoute({
+    _i37.Key? key,
+    required List<_i39.CategoryModel> subCategories,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           SubCategoryRoute.name,
+          args: SubCategoryRouteArgs(
+            key: key,
+            subCategories: subCategories,
+          ),
           initialChildren: children,
         );
 
@@ -863,7 +856,27 @@ class SubCategoryRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i35.SubCategoryScreen();
+      final args = data.argsAs<SubCategoryRouteArgs>();
+      return _i35.SubCategoryScreen(
+        key: args.key,
+        subCategories: args.subCategories,
+      );
     },
   );
+}
+
+class SubCategoryRouteArgs {
+  const SubCategoryRouteArgs({
+    this.key,
+    required this.subCategories,
+  });
+
+  final _i37.Key? key;
+
+  final List<_i39.CategoryModel> subCategories;
+
+  @override
+  String toString() {
+    return 'SubCategoryRouteArgs{key: $key, subCategories: $subCategories}';
+  }
 }

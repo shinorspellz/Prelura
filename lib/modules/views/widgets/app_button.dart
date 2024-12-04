@@ -44,33 +44,21 @@ class AppButton extends StatelessWidget {
   final bool isDisabled;
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          border: Border.all(
-              width: bgColor != null ? 1 : 0,
-              color: bgColor == null
-                  ? isDisabled
-                      ? borderColor.withOpacity(0.5)
-                      : borderColor ?? Colors.transparent
-                  : isDisabled
-                      ? borderColor.withOpacity(0.5)
-                      : borderColor),
+          border: Border.all(width: bgColor != null ? 1 : 0, color: bgColor == null ? borderColor ?? Colors.transparent : borderColor),
           borderRadius: BorderRadius.circular(8),
-          color: isDisabled
-              ? PreluraColors.activeColor.withOpacity(0.2)
-              : bgColor ?? PreluraColors.activeColor.withOpacity(0.8),
+          color: isDisabled ? PreluraColors.activeColor.withOpacity(0.2) : bgColor ?? PreluraColors.activeColor.withOpacity(0.8),
         ),
         height: height ?? 40,
-        width: width ?? 150,
+        width: width,
         child: Row(
-          mainAxisAlignment: textWidget != null
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: textWidget != null ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
             textWidget ?? const SizedBox.shrink(),
             textWidget != null

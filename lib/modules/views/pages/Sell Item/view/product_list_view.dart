@@ -19,8 +19,7 @@ class ProductListScreen extends ConsumerWidget {
       appBar: PreluraAppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           centerTitle: true,
@@ -39,14 +38,13 @@ class ProductListScreen extends ConsumerWidget {
                       ListTile(
                         title: Text(sharedData.relatedStrings[index]),
                         trailing: Radio<String>(
-                            value: sharedData.relatedStrings[index],
-                            groupValue: sharedData.selectedValue,
-                            onChanged: (value) => {
-                                  ref
-                                      .read(sellItemProvider.notifier)
-                                      .updateProduct(value!),
-                                  context.router.popUntilRoot()
-                                }),
+                          value: sharedData.relatedStrings[index],
+                          groupValue: sharedData.selectedValue,
+                          onChanged: (value) => {
+                            // ref.read(sellItemProvider.notifier).updateCategory(value!),
+                            context.router.popUntilRoot(),
+                          },
+                        ),
                       ),
                       const Divider(
                         thickness: 1,

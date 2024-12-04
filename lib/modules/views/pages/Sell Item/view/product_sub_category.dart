@@ -22,8 +22,7 @@ class SubCategoryProductScreen extends ConsumerWidget {
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -45,9 +44,7 @@ class SubCategoryProductScreen extends ConsumerWidget {
                         color: PreluraColors.activeColor,
                       ),
                       onTap: () {
-                        ref
-                            .read(selectedProductListNotifierProvider.notifier)
-                            .updateData(sharedData.relatedStrings[index]);
+                        ref.read(selectedProductListNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
                         context.router.push(const ProductListRoute());
                       });
                 }),

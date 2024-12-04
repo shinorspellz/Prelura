@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,22 +14,7 @@ import '../provider/sell_item_provider.dart';
 
 @RoutePage()
 class SizeSelectionPage extends ConsumerWidget {
-  final List<String> sizes = [
-    'XS',
-    'S',
-    'M',
-    'L',
-    'XL',
-    'XXL',
-    'XXXL',
-    '4XL',
-    '5XL',
-    '6XL',
-    '7XL',
-    '8XL'
-  ];
-
-  SizeSelectionPage({super.key});
+  const SizeSelectionPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -38,8 +26,7 @@ class SizeSelectionPage extends ConsumerWidget {
         centerTitle: true,
         appbarTitle: "Sizes",
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
       ),
@@ -79,31 +66,91 @@ class SizeSelectionPage extends ConsumerWidget {
             thickness: 1,
           ),
           Expanded(
-            child: ListView(
-              children: sizes.map((size) {
-                return Column(
-                  children: [
-                    ListTile(
-                      title: Text(size),
-                      trailing: Radio<String>(
-                          value: size,
-                          groupValue: selectedSize,
-                          onChanged: (value) => {
-                                ref
-                                    .read(sellItemProvider.notifier)
-                                    .selectSize(value),
-                                context.router.popForced(),
-                              }),
-                    ),
-                    const Divider(
+            child: ref.watch(sizeProvider).when(
+                  skipLoadingOnRefresh: false,
+                  data: (data) => ListView.separated(
+                    itemCount: data.length,
+                    separatorBuilder: (_, index) => const Divider(
                       thickness: 1,
                     ),
-                  ],
-                );
-              }).toList(),
-            ),
+                    itemBuilder: (_, index) => ListTile(
+                        title: Text(data[index].sizeValue),
+                        trailing: CustomRadioButton(
+                          isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
+                          onChanged: () {
+                            if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
+                              ref.read(sellItemProvider.notifier).removeSize(data[index]);
+                            } else {
+                              ref.read(sellItemProvider.notifier).addSize(data[index]);
+                            }
+
+                            log('${ref.read(sellItemProvider).size}');
+                          },
+                        )
+                        // Radio<String>(
+                        //     value: data[index].sizeValue,
+                        //     groupValue: selectedSize,
+                        //     onChanged: (value) => {
+                        //           ref.read(sellItemProvider.notifier).addSize(data[index]),
+                        //           // context.router.popForced(),
+                        //         }),
+                        ),
+                  ),
+                  error: (e, _) => Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(e.toString()),
+                        TextButton.icon(
+                          onPressed: () => ref.invalidate(categoryProvider),
+                          label: const Text('Retry'),
+                          icon: const Icon(Icons.refresh_rounded),
+                        ),
+                      ],
+                    ),
+                  ),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.5,
+                    ),
+                  ),
+                ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomRadioButton extends StatelessWidget {
+  const CustomRadioButton({super.key, required this.isSelected, required this.onChanged});
+  final bool isSelected;
+  final VoidCallback onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => onChanged(),
+      child: Container(
+        height: 20,
+        width: 20,
+        padding: const EdgeInsets.all(3),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            width: 2,
+            color: isSelected ? Theme.of(context).primaryColor : Colors.grey,
+          ),
+        ),
+        child: Container(
+          height: 20,
+          width: 20,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+          ),
+        ),
       ),
     );
   }
