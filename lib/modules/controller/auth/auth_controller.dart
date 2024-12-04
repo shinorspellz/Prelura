@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
-final authProvider = AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
+final authProvider =
+    AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
 
 /// this exposes a stream of auth events so any listener watching this
 /// provider gets notified on new events.
@@ -41,7 +42,8 @@ class _AuthController extends AsyncNotifier<void> {
     });
   }
 
-  Future<void> register(String email, String firstName, String lastName, String password, String confirmPassword, String username) async {
+  Future<void> register(String email, String firstName, String lastName,
+      String password, String confirmPassword, String username) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async => await _repo.register(

@@ -20,7 +20,7 @@ class UIConstants {
     Widget? suffixIcon,
     Widget? suffixWidget,
     String? hintText,
-    String? labelText = "",
+    String? labelText,
     String? prefixText,
     String? helperText,
     String? counterText = '',
@@ -34,13 +34,13 @@ class UIConstants {
     BorderRadius? borderRadius,
   }) {
     return InputDecoration(
-      label: Text(labelText ?? "",
-          style: labelStyle ??
-              Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Theme.of(context).primaryColor.withOpacity(0.5),
-                    fontSize: 14.sp,
+      label: labelText != null
+          ? Text(labelText,
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                    fontSize: 13.sp,
                     height: 1.7,
-                  )),
+                  ))
+          : null,
       enabled: enabled,
       fillColor: Theme.of(context).buttonTheme.colorScheme!.secondary,
       filled: true,
@@ -66,7 +66,7 @@ class UIConstants {
       hintStyle: hintStyle ??
           Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
-                fontSize: 14.sp,
+                fontSize: 12.sp,
                 height: 1.7,
               ),
       contentPadding:

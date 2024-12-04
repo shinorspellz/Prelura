@@ -70,6 +70,13 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
               ),
               const SizedBox(height: 8),
               const DisplaySection(),
+              // Similar Sold Items Section
+              Text(
+                "Similar sold items",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              const DisplaySection(),
 
               // Done Button
               const SizedBox(height: 16),
