@@ -52,11 +52,11 @@ mutation CreateProduct(
   $category: Int
   $condition: ConditionEnum
   $description: String!
-  $imageUrl: [ImagesInputType]
+  $imageUrl: [ImagesInputType]!
   $price: Float!
   $size: SizeEnum
   $subCategory: Int
-  $title: String!
+  $name: String!
   $parcelSize: ParcelSizeEnum
   $discount: Float
 ) {
@@ -68,7 +68,7 @@ mutation CreateProduct(
     price: $price
     size: $size
     subCategory: $subCategory
-    title: $title
+    name: $name
     parcelSize: $parcelSize
     discount: $discount
   ) {

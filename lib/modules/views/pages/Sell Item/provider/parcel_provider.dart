@@ -1,15 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 
-final parcelProvider = StateNotifierProvider<ParcelNotifier, String?>((ref) {
+final parcelProvider = StateNotifierProvider<ParcelNotifier, Enum$ParcelSizeEnum?>((ref) {
   return ParcelNotifier();
 });
 
-class ParcelNotifier extends StateNotifier<String?> {
+class ParcelNotifier extends StateNotifier<Enum$ParcelSizeEnum?> {
   ParcelNotifier() : super(null);
 
-  final List<String> parcelSizes = ["Small", "Medium", "Large"];
+  final parcelSizes = Enum$ParcelSizeEnum.values;
 
-  void selectParcel(String selectedParcel) {
-    state = selectedParcel;
+  void selectParcel(Enum$ParcelSizeEnum size) {
+    state = size;
   }
 }

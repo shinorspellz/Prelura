@@ -57,6 +57,11 @@ scalar DateTime
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
 
+type DeleteProduct {
+  success: Boolean
+  message: String
+}
+
 """
 
     Errors messages and codes mapped to
@@ -106,6 +111,16 @@ schema (one of the key benefits of GraphQL).
 """
 scalar JSONString
 
+type LikedProductType {
+  id: ID!
+  product: ProductType!
+  createdAt: DateTime!
+}
+
+type LikeProduct {
+  success: Boolean
+}
+
 type LoginMutation {
   user: UserType
   token: String
@@ -117,7 +132,10 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(category: Int, condition: ConditionEnum, description: String!, discount: Float, imagesUrl: [ImagesInputType], parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int, title: String!): CreateProduct
+  createProduct(category: Int, condition: ConditionEnum, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
+  updateProduct(category: Int, condition: ConditionEnum, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
+  deleteProduct(productId: Int!): DeleteProduct
+  likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
   logout: LogoutMutation
   updateProfile(
@@ -427,13 +445,16 @@ type ProductType {
   imagesUrl: [JSONString!]!
   createdAt: DateTime!
   updatedAt: DateTime!
+  productlikeSet: [LikedProductType!]!
 }
 
 type Query {
   allProducts(search: String, pageCount: Int, pageNumber: Int): [ProductType]
   userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
   product(id: Int!): ProductType
+  likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
+  likedProductsTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]
@@ -499,6 +520,12 @@ type UpdateAccount {
   errors: ExpectedErrorType
 }
 
+type UpdateProduct {
+  success: Boolean
+  message: String
+  product: ProductType
+}
+
 type UpdateUserMutation {
   message: String
   user: UserType
@@ -539,6 +566,7 @@ type UserNode implements Node {
   usernameLastUpdated: DateTime
   meta: JSONString!
   products: [ProductType!]!
+  productlikeSet: [LikedProductType!]!
   pk: Int
   archived: Boolean
   verified: Boolean

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 
 class SellItemState {
   final List<XFile> images;
@@ -11,13 +12,13 @@ class SellItemState {
   final String description;
   final CategoryModel? category;
   final CategoryModel? subCategory;
-  final String parcel;
+  final Enum$ParcelSizeEnum? parcel;
   final List<String> selectedColors;
   final List<String> selectedMaterials;
   final String brand;
   final Enum$SizeEnum? size;
   final String? price;
-  final String selectedCondition;
+  final ConditionsEnum? selectedCondition;
 
   SellItemState({
     this.images = const [],
@@ -25,10 +26,10 @@ class SellItemState {
     this.description = '',
     this.category,
     this.subCategory,
-    this.parcel = "",
+    this.parcel,
     this.brand = "",
     this.size,
-    this.selectedCondition = "",
+    this.selectedCondition,
     this.price,
     this.selectedColors = const [],
     this.selectedMaterials = const [],
@@ -40,13 +41,13 @@ class SellItemState {
       String? description,
       CategoryModel? category,
       CategoryModel? subCategory,
-      String? parcel,
+      Enum$ParcelSizeEnum? parcel,
       List<String>? selectedColors,
       List<String>? selectedMaterials,
       String? brand,
       Enum$SizeEnum? size,
       String? price,
-      String? selectedCondition}) {
+      ConditionsEnum? selectedCondition}) {
     return SellItemState(
         images: images ?? this.images,
         title: title ?? this.title,
@@ -118,7 +119,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(description: description);
   }
 
-  void selectParcel(String selectedParcel) {
+  void selectParcel(Enum$ParcelSizeEnum selectedParcel) {
     state = state.copyWith(parcel: selectedParcel);
   }
 
@@ -142,7 +143,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(brand: brand);
   }
 
-  void selectCondition(String selectedCondition) {
+  void selectCondition(ConditionsEnum selectedCondition) {
     state = state.copyWith(selectedCondition: selectedCondition);
   }
 

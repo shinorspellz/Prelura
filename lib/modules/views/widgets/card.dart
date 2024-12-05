@@ -195,11 +195,14 @@ class _ProductCardState extends State<ProductCard> {
               widget.product.name,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Text(
-              'New', //widget.itemData.condition,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
-            ),
-            const SizedBox(height: 8),
+            if (widget.product.condition != null) ...[
+              Text(
+                widget.product.condition!.simpleName, //widget.itemData.condition,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
+              ),
+              const SizedBox(height: 8),
+            ],
+
             Text(
               "£ ${widget.product.price}",
               style: Theme.of(context).textTheme.bodyMedium,

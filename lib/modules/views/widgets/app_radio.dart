@@ -14,7 +14,7 @@ class PreluraRadio extends StatelessWidget {
   final double borderWidth;
   final Color borderColor;
   final String title;
-  final String subtitle;
+  final String? subtitle;
 
   // Constructor
   const PreluraRadio({
@@ -28,7 +28,7 @@ class PreluraRadio extends StatelessWidget {
     this.borderWidth = 2.0,
     this.borderColor = Colors.grey,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
   });
 
   @override
@@ -55,7 +55,7 @@ class PreluraRadio extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Flexible(
+            SizedBox(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,17 +65,19 @@ class PreluraRadio extends StatelessWidget {
                     overflow: TextOverflow.ellipsis, // Handle overflow
                     maxLines: 1, // Limit the number of lines
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    subtitle,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
-                    overflow: TextOverflow.ellipsis, // Handle overflow
-                    maxLines: 3, // Limit the number of lines for the subtitle
-                  ),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 6),
+                    Text(
+                      subtitle!,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
+                      overflow: TextOverflow.ellipsis, // Handle overflow
+                      maxLines: 3, // Limit the number of lines for the subtitle
+                    ),
+                  ]
                 ],
               ),
             ),
-            const SizedBox(width: 12),
+            const Spacer(),
             Container(
               width: size,
               height: size,

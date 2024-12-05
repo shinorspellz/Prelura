@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
+import 'package:prelura_app/modules/model/product/product_model.dart'
+    as EnumImport$ConditionEnum;
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -2613,13 +2615,13 @@ class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
 class Variables$Mutation$CreateProduct {
   factory Variables$Mutation$CreateProduct({
     int? category,
-    Enum$ConditionEnum? condition,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
     required String description,
-    List<Input$ImagesInputType?>? imageUrl,
+    required List<Input$ImagesInputType?> imageUrl,
     required double price,
     Enum$SizeEnum? size,
     int? subCategory,
-    required String title,
+    required String name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
   }) =>
@@ -2627,11 +2629,11 @@ class Variables$Mutation$CreateProduct {
         if (category != null) r'category': category,
         if (condition != null) r'condition': condition,
         r'description': description,
-        if (imageUrl != null) r'imageUrl': imageUrl,
+        r'imageUrl': imageUrl,
         r'price': price,
         if (size != null) r'size': size,
         if (subCategory != null) r'subCategory': subCategory,
-        r'title': title,
+        r'name': name,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (discount != null) r'discount': discount,
       });
@@ -2648,18 +2650,17 @@ class Variables$Mutation$CreateProduct {
       final l$condition = data['condition'];
       result$data['condition'] = l$condition == null
           ? null
-          : fromJson$Enum$ConditionEnum((l$condition as String));
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
+              (l$condition as String));
     }
     final l$description = data['description'];
     result$data['description'] = (l$description as String);
-    if (data.containsKey('imageUrl')) {
-      final l$imageUrl = data['imageUrl'];
-      result$data['imageUrl'] = (l$imageUrl as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
-          .toList();
-    }
+    final l$imageUrl = data['imageUrl'];
+    result$data['imageUrl'] = (l$imageUrl as List<dynamic>)
+        .map((e) => e == null
+            ? null
+            : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
+        .toList();
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
     if (data.containsKey('size')) {
@@ -2671,8 +2672,8 @@ class Variables$Mutation$CreateProduct {
       final l$subCategory = data['subCategory'];
       result$data['subCategory'] = (l$subCategory as int?);
     }
-    final l$title = data['title'];
-    result$data['title'] = (l$title as String);
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
       result$data['parcelSize'] = l$parcelSize == null
@@ -2690,13 +2691,13 @@ class Variables$Mutation$CreateProduct {
 
   int? get category => (_$data['category'] as int?);
 
-  Enum$ConditionEnum? get condition =>
-      (_$data['condition'] as Enum$ConditionEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
+      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   String get description => (_$data['description'] as String);
 
-  List<Input$ImagesInputType?>? get imageUrl =>
-      (_$data['imageUrl'] as List<Input$ImagesInputType?>?);
+  List<Input$ImagesInputType?> get imageUrl =>
+      (_$data['imageUrl'] as List<Input$ImagesInputType?>);
 
   double get price => (_$data['price'] as double);
 
@@ -2704,7 +2705,7 @@ class Variables$Mutation$CreateProduct {
 
   int? get subCategory => (_$data['subCategory'] as int?);
 
-  String get title => (_$data['title'] as String);
+  String get name => (_$data['name'] as String);
 
   Enum$ParcelSizeEnum? get parcelSize =>
       (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
@@ -2719,15 +2720,15 @@ class Variables$Mutation$CreateProduct {
     }
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] =
-          l$condition == null ? null : toJson$Enum$ConditionEnum(l$condition);
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
+              l$condition);
     }
     final l$description = description;
     result$data['description'] = l$description;
-    if (_$data.containsKey('imageUrl')) {
-      final l$imageUrl = imageUrl;
-      result$data['imageUrl'] = l$imageUrl?.map((e) => e?.toJson()).toList();
-    }
+    final l$imageUrl = imageUrl;
+    result$data['imageUrl'] = l$imageUrl.map((e) => e?.toJson()).toList();
     final l$price = price;
     result$data['price'] = l$price;
     if (_$data.containsKey('size')) {
@@ -2739,8 +2740,8 @@ class Variables$Mutation$CreateProduct {
       final l$subCategory = subCategory;
       result$data['subCategory'] = l$subCategory;
     }
-    final l$title = title;
-    result$data['title'] = l$title;
+    final l$name = name;
+    result$data['name'] = l$name;
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
       result$data['parcelSize'] = l$parcelSize == null
@@ -2794,23 +2795,15 @@ class Variables$Mutation$CreateProduct {
     }
     final l$imageUrl = imageUrl;
     final lOther$imageUrl = other.imageUrl;
-    if (_$data.containsKey('imageUrl') !=
-        other._$data.containsKey('imageUrl')) {
+    if (l$imageUrl.length != lOther$imageUrl.length) {
       return false;
     }
-    if (l$imageUrl != null && lOther$imageUrl != null) {
-      if (l$imageUrl.length != lOther$imageUrl.length) {
+    for (int i = 0; i < l$imageUrl.length; i++) {
+      final l$imageUrl$entry = l$imageUrl[i];
+      final lOther$imageUrl$entry = lOther$imageUrl[i];
+      if (l$imageUrl$entry != lOther$imageUrl$entry) {
         return false;
       }
-      for (int i = 0; i < l$imageUrl.length; i++) {
-        final l$imageUrl$entry = l$imageUrl[i];
-        final lOther$imageUrl$entry = lOther$imageUrl[i];
-        if (l$imageUrl$entry != lOther$imageUrl$entry) {
-          return false;
-        }
-      }
-    } else if (l$imageUrl != lOther$imageUrl) {
-      return false;
     }
     final l$price = price;
     final lOther$price = other.price;
@@ -2834,9 +2827,9 @@ class Variables$Mutation$CreateProduct {
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
       return false;
     }
     final l$parcelSize = parcelSize;
@@ -2869,22 +2862,18 @@ class Variables$Mutation$CreateProduct {
     final l$price = price;
     final l$size = size;
     final l$subCategory = subCategory;
-    final l$title = title;
+    final l$name = name;
     final l$parcelSize = parcelSize;
     final l$discount = discount;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
       l$description,
-      _$data.containsKey('imageUrl')
-          ? l$imageUrl == null
-              ? null
-              : Object.hashAll(l$imageUrl.map((v) => v))
-          : const {},
+      Object.hashAll(l$imageUrl.map((v) => v)),
       l$price,
       _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('subCategory') ? l$subCategory : const {},
-      l$title,
+      l$name,
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('discount') ? l$discount : const {},
     ]);
@@ -2902,13 +2891,13 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
 
   TRes call({
     int? category,
-    Enum$ConditionEnum? condition,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
     double? price,
     Enum$SizeEnum? size,
     int? subCategory,
-    String? title,
+    String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
   });
@@ -2935,7 +2924,7 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? price = _undefined,
     Object? size = _undefined,
     Object? subCategory = _undefined,
-    Object? title = _undefined,
+    Object? name = _undefined,
     Object? parcelSize = _undefined,
     Object? discount = _undefined,
   }) =>
@@ -2943,15 +2932,15 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
         ..._instance._$data,
         if (category != _undefined) 'category': (category as int?),
         if (condition != _undefined)
-          'condition': (condition as Enum$ConditionEnum?),
+          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
         if (description != _undefined && description != null)
           'description': (description as String),
-        if (imageUrl != _undefined)
-          'imageUrl': (imageUrl as List<Input$ImagesInputType?>?),
+        if (imageUrl != _undefined && imageUrl != null)
+          'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
         if (price != _undefined && price != null) 'price': (price as double),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
-        if (title != _undefined && title != null) 'title': (title as String),
+        if (name != _undefined && name != null) 'name': (name as String),
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (discount != _undefined) 'discount': (discount as double?),
@@ -2966,13 +2955,13 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
 
   call({
     int? category,
-    Enum$ConditionEnum? condition,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
     double? price,
     Enum$SizeEnum? size,
     int? subCategory,
-    String? title,
+    String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
   }) =>
@@ -3156,7 +3145,7 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
             name: NameNode(value: 'ImagesInputType'),
             isNonNull: false,
           ),
-          isNonNull: false,
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3189,7 +3178,7 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'title')),
+        variable: VariableNode(name: NameNode(value: 'name')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
@@ -3251,8 +3240,8 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'subCategory')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'title'),
-            value: VariableNode(name: NameNode(value: 'title')),
+            name: NameNode(value: 'name'),
+            value: VariableNode(name: NameNode(value: 'name')),
           ),
           ArgumentNode(
             name: NameNode(value: 'parcelSize'),

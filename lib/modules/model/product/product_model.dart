@@ -20,7 +20,7 @@ class Product with _$Product {
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
-    Enum$ProductsProductConditionChoices? condition,
+    ConditionsEnum? condition,
     required String price,
     double? postagePrice,
     required int views,
@@ -55,3 +55,47 @@ class BannerConverter implements JsonConverter<List<ProductBanners>, List<String
   @override
   List<String> toJson(List<ProductBanners> banner) => [];
 }
+
+enum ConditionsEnum {
+  NEW_WITH_TAGS(simpleName: 'New with tags'),
+  LIKE_NEW(simpleName: 'Like New'),
+  USED(simpleName: 'Used'),
+  HEAVILY_USED(simpleName: 'Heavily Used');
+
+  const ConditionsEnum({required this.simpleName});
+  final String simpleName;
+
+  static ConditionsEnum conditionByApiValue(String apiValue) {
+    return ConditionsEnum.values.firstWhere((value) => value.name.toLowerCase() == apiValue.toLowerCase(), orElse: () => ConditionsEnum.USED);
+  }
+
+  static String conditionToApiValue(ConditionsEnum condition) {
+    switch (condition) {
+      case ConditionsEnum.NEW_WITH_TAGS:
+        return r'NEW_WITH_TAGS';
+      case ConditionsEnum.LIKE_NEW:
+        return r'LIKE_NEW';
+      case ConditionsEnum.USED:
+        return r'USED';
+      case ConditionsEnum.HEAVILY_USED:
+        return r'HEAVILY_USED';
+      default:
+        return r'USED';
+    }
+  }
+}
+
+// ConditionsEnum fromJson(String v) {
+//   switch (v) {
+//     case r'NEW_WITH_TAGS':
+//       return ConditionsEnum.NEW_WITH_TAGS;
+//     case r'LIKE_NEW':
+//       return ConditionsEnum.LIKE_NEW;
+//     case r'USED':
+//       return ConditionsEnum.USED;
+//     case r'HEAVILY_USED':
+//       return ConditionsEnum.HEAVILY_USED;
+//     default:
+//       return ConditionsEnum.NEW_WITH_TAGS;
+//   }
+// }

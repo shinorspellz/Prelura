@@ -74,6 +74,7 @@ class SizeSelectionPage extends ConsumerWidget {
               ),
               itemBuilder: (_, index) {
                 final value = Enum$SizeEnum.values[index];
+                if (value == Enum$SizeEnum.$unknown) return Container();
                 return ListTile(
                   title: Text(value.name),
                   trailing:
@@ -94,7 +95,7 @@ class SizeSelectionPage extends ConsumerWidget {
                           groupValue: ref.watch(sellItemProvider).size,
                           onChanged: (value) => {
                                 ref.read(sellItemProvider.notifier).selectSize(value!),
-                                // context.router.popForced(),
+                                context.router.popForced(),
                               }),
                 );
               },

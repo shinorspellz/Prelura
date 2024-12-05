@@ -26,10 +26,8 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Enum$ProductsProductParcelSizeChoices.fromJson(
               json['parcelSize'] as String),
-      condition: json['condition'] == null
-          ? null
-          : Enum$ProductsProductConditionChoices.fromJson(
-              json['condition'] as String),
+      condition:
+          $enumDecodeNullable(_$ConditionsEnumEnumMap, json['condition']),
       price: json['price'] as String,
       postagePrice: (json['postagePrice'] as num?)?.toDouble(),
       views: (json['views'] as num).toInt(),
@@ -51,7 +49,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'discountPrice': instance.discountPrice,
       'size': instance.size,
       'parcelSize': instance.parcelSize,
-      'condition': instance.condition,
+      'condition': _$ConditionsEnumEnumMap[instance.condition],
       'price': instance.price,
       'postagePrice': instance.postagePrice,
       'views': instance.views,
@@ -60,6 +58,13 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
+
+const _$ConditionsEnumEnumMap = {
+  ConditionsEnum.NEW_WITH_TAGS: 'NEW_WITH_TAGS',
+  ConditionsEnum.LIKE_NEW: 'LIKE_NEW',
+  ConditionsEnum.USED: 'USED',
+  ConditionsEnum.HEAVILY_USED: 'HEAVILY_USED',
+};
 
 _$ProductBannersImpl _$$ProductBannersImplFromJson(Map<String, dynamic> json) =>
     _$ProductBannersImpl(
