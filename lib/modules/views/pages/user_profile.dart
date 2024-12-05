@@ -107,7 +107,7 @@ class ProfileScreen extends ConsumerWidget {
               icon: const Icon(Icons.info_outlined),
               rightArrow: false,
               onTap: () {
-                context.router.push(const ProfileDetailsRoute());
+                context.router.push(ProfileDetailsRoute());
               }),
           // const LiveCard(),
           // MenuCard(

@@ -36,6 +36,7 @@ mixin _$Product {
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
+  bool get userLiked => throw _privateConstructorUsedError;
   @BannerConverter()
   List<ProductBanners> get imagesUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -70,6 +71,7 @@ abstract class $ProductCopyWith<$Res> {
       double? postagePrice,
       int views,
       int likes,
+      bool userLiked,
       @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
       DateTime updatedAt});
@@ -108,6 +110,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? postagePrice = freezed,
     Object? views = null,
     Object? likes = null,
+    Object? userLiked = null,
     Object? imagesUrl = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -169,6 +172,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
               as int,
+      userLiked: null == userLiked
+          ? _value.userLiked
+          : userLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
       imagesUrl: null == imagesUrl
           ? _value.imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
@@ -245,6 +252,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       double? postagePrice,
       int views,
       int likes,
+      bool userLiked,
       @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
       DateTime updatedAt});
@@ -284,6 +292,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? postagePrice = freezed,
     Object? views = null,
     Object? likes = null,
+    Object? userLiked = null,
     Object? imagesUrl = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -345,6 +354,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.likes
           : likes // ignore: cast_nullable_to_non_nullable
               as int,
+      userLiked: null == userLiked
+          ? _value.userLiked
+          : userLiked // ignore: cast_nullable_to_non_nullable
+              as bool,
       imagesUrl: null == imagesUrl
           ? _value._imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
@@ -379,6 +392,7 @@ class _$ProductImpl implements _Product {
       this.postagePrice,
       required this.views,
       required this.likes,
+      required this.userLiked,
       @BannerConverter() required final List<ProductBanners> imagesUrl,
       required this.createdAt,
       required this.updatedAt})
@@ -415,6 +429,8 @@ class _$ProductImpl implements _Product {
   final int views;
   @override
   final int likes;
+  @override
+  final bool userLiked;
   final List<ProductBanners> _imagesUrl;
   @override
   @BannerConverter()
@@ -431,7 +447,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -460,6 +476,8 @@ class _$ProductImpl implements _Product {
                 other.postagePrice == postagePrice) &&
             (identical(other.views, views) || other.views == views) &&
             (identical(other.likes, likes) || other.likes == likes) &&
+            (identical(other.userLiked, userLiked) ||
+                other.userLiked == userLiked) &&
             const DeepCollectionEquality()
                 .equals(other._imagesUrl, _imagesUrl) &&
             (identical(other.createdAt, createdAt) ||
@@ -486,6 +504,7 @@ class _$ProductImpl implements _Product {
       postagePrice,
       views,
       likes,
+      userLiked,
       const DeepCollectionEquality().hash(_imagesUrl),
       createdAt,
       updatedAt);
@@ -522,6 +541,7 @@ abstract class _Product implements Product {
       final double? postagePrice,
       required final int views,
       required final int likes,
+      required final bool userLiked,
       @BannerConverter() required final List<ProductBanners> imagesUrl,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$ProductImpl;
@@ -556,6 +576,8 @@ abstract class _Product implements Product {
   int get views;
   @override
   int get likes;
+  @override
+  bool get userLiked;
   @override
   @BannerConverter()
   List<ProductBanners> get imagesUrl;

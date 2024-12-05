@@ -144,7 +144,7 @@ class _ProductCardState extends State<ProductCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.router.push(ProductDetailRoute(product: widget.product));
+        context.router.push(ProductDetailRoute(productId: int.parse(widget.product.id)));
       },
       child: SizedBox(
         width: double.infinity,

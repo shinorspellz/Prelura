@@ -9,10 +9,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i36;
+import 'package:flutter/cupertino.dart' as _i38;
 import 'package:flutter/material.dart' as _i37;
 import 'package:prelura_app/modules/model/product/categories/category_model.dart'
-    as _i39;
-import 'package:prelura_app/modules/model/product/product_model.dart' as _i38;
+    as _i40;
+import 'package:prelura_app/modules/model/product/product_model.dart' as _i39;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i3;
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
@@ -566,13 +567,13 @@ class PriceRoute extends _i36.PageRouteInfo<void> {
 class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
     _i37.Key? key,
-    required _i38.Product product,
+    required int productId,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           ProductDetailRoute.name,
           args: ProductDetailRouteArgs(
             key: key,
-            product: product,
+            productId: productId,
           ),
           initialChildren: children,
         );
@@ -585,7 +586,7 @@ class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
       final args = data.argsAs<ProductDetailRouteArgs>();
       return _i22.ProductDetailScreen(
         key: args.key,
-        product: args.product,
+        productId: args.productId,
       );
     },
   );
@@ -594,16 +595,16 @@ class ProductDetailRoute extends _i36.PageRouteInfo<ProductDetailRouteArgs> {
 class ProductDetailRouteArgs {
   const ProductDetailRouteArgs({
     this.key,
-    required this.product,
+    required this.productId,
   });
 
   final _i37.Key? key;
 
-  final _i38.Product product;
+  final int productId;
 
   @override
   String toString() {
-    return 'ProductDetailRouteArgs{key: $key, product: $product}';
+    return 'ProductDetailRouteArgs{key: $key, productId: $productId}';
   }
 }
 
@@ -628,10 +629,17 @@ class ProductListRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i24.ProfileDetailsScreen]
-class ProfileDetailsRoute extends _i36.PageRouteInfo<void> {
-  const ProfileDetailsRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class ProfileDetailsRoute extends _i36.PageRouteInfo<ProfileDetailsRouteArgs> {
+  ProfileDetailsRoute({
+    _i38.Key? key,
+    String? username,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           ProfileDetailsRoute.name,
+          args: ProfileDetailsRouteArgs(
+            key: key,
+            username: username,
+          ),
           initialChildren: children,
         );
 
@@ -640,9 +648,30 @@ class ProfileDetailsRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i24.ProfileDetailsScreen();
+      final args = data.argsAs<ProfileDetailsRouteArgs>(
+          orElse: () => const ProfileDetailsRouteArgs());
+      return _i24.ProfileDetailsScreen(
+        key: args.key,
+        username: args.username,
+      );
     },
   );
+}
+
+class ProfileDetailsRouteArgs {
+  const ProfileDetailsRouteArgs({
+    this.key,
+    this.username,
+  });
+
+  final _i38.Key? key;
+
+  final String? username;
+
+  @override
+  String toString() {
+    return 'ProfileDetailsRouteArgs{key: $key, username: $username}';
+  }
 }
 
 /// generated route for
@@ -723,10 +752,17 @@ class SearchRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i29.SellItemScreen]
-class SellItemRoute extends _i36.PageRouteInfo<void> {
-  const SellItemRoute({List<_i36.PageRouteInfo>? children})
-      : super(
+class SellItemRoute extends _i36.PageRouteInfo<SellItemRouteArgs> {
+  SellItemRoute({
+    _i37.Key? key,
+    _i39.Product? product,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
           SellItemRoute.name,
+          args: SellItemRouteArgs(
+            key: key,
+            product: product,
+          ),
           initialChildren: children,
         );
 
@@ -735,9 +771,30 @@ class SellItemRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return const _i29.SellItemScreen();
+      final args = data.argsAs<SellItemRouteArgs>(
+          orElse: () => const SellItemRouteArgs());
+      return _i29.SellItemScreen(
+        key: args.key,
+        product: args.product,
+      );
     },
   );
+}
+
+class SellItemRouteArgs {
+  const SellItemRouteArgs({
+    this.key,
+    this.product,
+  });
+
+  final _i37.Key? key;
+
+  final _i39.Product? product;
+
+  @override
+  String toString() {
+    return 'SellItemRouteArgs{key: $key, product: $product}';
+  }
 }
 
 /// generated route for
@@ -840,7 +897,7 @@ class SubCategoryProductRoute extends _i36.PageRouteInfo<void> {
 class SubCategoryRoute extends _i36.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
     _i37.Key? key,
-    required List<_i39.CategoryModel> subCategories,
+    required List<_i40.CategoryModel> subCategories,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           SubCategoryRoute.name,
@@ -873,7 +930,7 @@ class SubCategoryRouteArgs {
 
   final _i37.Key? key;
 
-  final List<_i39.CategoryModel> subCategories;
+  final List<_i40.CategoryModel> subCategories;
 
   @override
   String toString() {

@@ -3527,3 +3527,1463 @@ class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$UpdateProduct {
+  factory Variables$Mutation$UpdateProduct({
+    int? category,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+    String? description,
+    double? discount,
+    String? name,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? price,
+    required int productId,
+    Enum$SizeEnum? size,
+    int? subCategory,
+  }) =>
+      Variables$Mutation$UpdateProduct._({
+        if (category != null) r'category': category,
+        if (condition != null) r'condition': condition,
+        if (description != null) r'description': description,
+        if (discount != null) r'discount': discount,
+        if (name != null) r'name': name,
+        if (parcelSize != null) r'parcelSize': parcelSize,
+        if (price != null) r'price': price,
+        r'productId': productId,
+        if (size != null) r'size': size,
+        if (subCategory != null) r'subCategory': subCategory,
+      });
+
+  Variables$Mutation$UpdateProduct._(this._$data);
+
+  factory Variables$Mutation$UpdateProduct.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('category')) {
+      final l$category = data['category'];
+      result$data['category'] = (l$category as int?);
+    }
+    if (data.containsKey('condition')) {
+      final l$condition = data['condition'];
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
+              (l$condition as String));
+    }
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('discount')) {
+      final l$discount = data['discount'];
+      result$data['discount'] = (l$discount as num?)?.toDouble();
+    }
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('parcelSize')) {
+      final l$parcelSize = data['parcelSize'];
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+    }
+    if (data.containsKey('price')) {
+      final l$price = data['price'];
+      result$data['price'] = (l$price as num?)?.toDouble();
+    }
+    final l$productId = data['productId'];
+    result$data['productId'] = (l$productId as int);
+    if (data.containsKey('size')) {
+      final l$size = data['size'];
+      result$data['size'] =
+          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+    }
+    if (data.containsKey('subCategory')) {
+      final l$subCategory = data['subCategory'];
+      result$data['subCategory'] = (l$subCategory as int?);
+    }
+    return Variables$Mutation$UpdateProduct._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get category => (_$data['category'] as int?);
+
+  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
+      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+
+  String? get description => (_$data['description'] as String?);
+
+  double? get discount => (_$data['discount'] as double?);
+
+  String? get name => (_$data['name'] as String?);
+
+  Enum$ParcelSizeEnum? get parcelSize =>
+      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+
+  double? get price => (_$data['price'] as double?);
+
+  int get productId => (_$data['productId'] as int);
+
+  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
+
+  int? get subCategory => (_$data['subCategory'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('category')) {
+      final l$category = category;
+      result$data['category'] = l$category;
+    }
+    if (_$data.containsKey('condition')) {
+      final l$condition = condition;
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
+              l$condition);
+    }
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('discount')) {
+      final l$discount = discount;
+      result$data['discount'] = l$discount;
+    }
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('parcelSize')) {
+      final l$parcelSize = parcelSize;
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+    }
+    if (_$data.containsKey('price')) {
+      final l$price = price;
+      result$data['price'] = l$price;
+    }
+    final l$productId = productId;
+    result$data['productId'] = l$productId;
+    if (_$data.containsKey('size')) {
+      final l$size = size;
+      result$data['size'] =
+          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+    }
+    if (_$data.containsKey('subCategory')) {
+      final l$subCategory = subCategory;
+      result$data['subCategory'] = l$subCategory;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UpdateProduct<Variables$Mutation$UpdateProduct>
+      get copyWith => CopyWith$Variables$Mutation$UpdateProduct(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UpdateProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (_$data.containsKey('category') !=
+        other._$data.containsKey('category')) {
+      return false;
+    }
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (_$data.containsKey('condition') !=
+        other._$data.containsKey('condition')) {
+      return false;
+    }
+    if (l$condition != lOther$condition) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$discount = discount;
+    final lOther$discount = other.discount;
+    if (_$data.containsKey('discount') !=
+        other._$data.containsKey('discount')) {
+      return false;
+    }
+    if (l$discount != lOther$discount) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (_$data.containsKey('parcelSize') !=
+        other._$data.containsKey('parcelSize')) {
+      return false;
+    }
+    if (l$parcelSize != lOther$parcelSize) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (_$data.containsKey('price') != other._$data.containsKey('price')) {
+      return false;
+    }
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (_$data.containsKey('size') != other._$data.containsKey('size')) {
+      return false;
+    }
+    if (l$size != lOther$size) {
+      return false;
+    }
+    final l$subCategory = subCategory;
+    final lOther$subCategory = other.subCategory;
+    if (_$data.containsKey('subCategory') !=
+        other._$data.containsKey('subCategory')) {
+      return false;
+    }
+    if (l$subCategory != lOther$subCategory) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$category = category;
+    final l$condition = condition;
+    final l$description = description;
+    final l$discount = discount;
+    final l$name = name;
+    final l$parcelSize = parcelSize;
+    final l$price = price;
+    final l$productId = productId;
+    final l$size = size;
+    final l$subCategory = subCategory;
+    return Object.hashAll([
+      _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('condition') ? l$condition : const {},
+      _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('discount') ? l$discount : const {},
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('parcelSize') ? l$parcelSize : const {},
+      _$data.containsKey('price') ? l$price : const {},
+      l$productId,
+      _$data.containsKey('size') ? l$size : const {},
+      _$data.containsKey('subCategory') ? l$subCategory : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+  factory CopyWith$Variables$Mutation$UpdateProduct(
+    Variables$Mutation$UpdateProduct instance,
+    TRes Function(Variables$Mutation$UpdateProduct) then,
+  ) = _CopyWithImpl$Variables$Mutation$UpdateProduct;
+
+  factory CopyWith$Variables$Mutation$UpdateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateProduct;
+
+  TRes call({
+    int? category,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+    String? description,
+    double? discount,
+    String? name,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? price,
+    int? productId,
+    Enum$SizeEnum? size,
+    int? subCategory,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+  _CopyWithImpl$Variables$Mutation$UpdateProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UpdateProduct _instance;
+
+  final TRes Function(Variables$Mutation$UpdateProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? category = _undefined,
+    Object? condition = _undefined,
+    Object? description = _undefined,
+    Object? discount = _undefined,
+    Object? name = _undefined,
+    Object? parcelSize = _undefined,
+    Object? price = _undefined,
+    Object? productId = _undefined,
+    Object? size = _undefined,
+    Object? subCategory = _undefined,
+  }) =>
+      _then(Variables$Mutation$UpdateProduct._({
+        ..._instance._$data,
+        if (category != _undefined) 'category': (category as int?),
+        if (condition != _undefined)
+          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (description != _undefined) 'description': (description as String?),
+        if (discount != _undefined) 'discount': (discount as double?),
+        if (name != _undefined) 'name': (name as String?),
+        if (parcelSize != _undefined)
+          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (price != _undefined) 'price': (price as double?),
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
+        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
+        if (subCategory != _undefined) 'subCategory': (subCategory as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UpdateProduct(this._res);
+
+  TRes _res;
+
+  call({
+    int? category,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+    String? description,
+    double? discount,
+    String? name,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? price,
+    int? productId,
+    Enum$SizeEnum? size,
+    int? subCategory,
+  }) =>
+      _res;
+}
+
+class Mutation$UpdateProduct {
+  Mutation$UpdateProduct({
+    this.updateProduct,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UpdateProduct.fromJson(Map<String, dynamic> json) {
+    final l$updateProduct = json['updateProduct'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateProduct(
+      updateProduct: l$updateProduct == null
+          ? null
+          : Mutation$UpdateProduct$updateProduct.fromJson(
+              (l$updateProduct as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UpdateProduct$updateProduct? updateProduct;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$updateProduct = updateProduct;
+    _resultData['updateProduct'] = l$updateProduct?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$updateProduct = updateProduct;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$updateProduct,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateProduct || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$updateProduct = updateProduct;
+    final lOther$updateProduct = other.updateProduct;
+    if (l$updateProduct != lOther$updateProduct) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateProduct on Mutation$UpdateProduct {
+  CopyWith$Mutation$UpdateProduct<Mutation$UpdateProduct> get copyWith =>
+      CopyWith$Mutation$UpdateProduct(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$UpdateProduct<TRes> {
+  factory CopyWith$Mutation$UpdateProduct(
+    Mutation$UpdateProduct instance,
+    TRes Function(Mutation$UpdateProduct) then,
+  ) = _CopyWithImpl$Mutation$UpdateProduct;
+
+  factory CopyWith$Mutation$UpdateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProduct;
+
+  TRes call({
+    Mutation$UpdateProduct$updateProduct? updateProduct,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct;
+}
+
+class _CopyWithImpl$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct<TRes> {
+  _CopyWithImpl$Mutation$UpdateProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateProduct _instance;
+
+  final TRes Function(Mutation$UpdateProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? updateProduct = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateProduct(
+        updateProduct: updateProduct == _undefined
+            ? _instance.updateProduct
+            : (updateProduct as Mutation$UpdateProduct$updateProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct {
+    final local$updateProduct = _instance.updateProduct;
+    return local$updateProduct == null
+        ? CopyWith$Mutation$UpdateProduct$updateProduct.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateProduct$updateProduct(
+            local$updateProduct, (e) => call(updateProduct: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateProduct(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UpdateProduct$updateProduct? updateProduct,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct =>
+      CopyWith$Mutation$UpdateProduct$updateProduct.stub(_res);
+}
+
+const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UpdateProduct'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'category')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'condition')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ConditionEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'description')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'discount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'name')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'parcelSize')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ParcelSizeEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'price')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'productId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'size')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SizeEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'subCategory')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'updateProduct'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'category'),
+            value: VariableNode(name: NameNode(value: 'category')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'condition'),
+            value: VariableNode(name: NameNode(value: 'condition')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'description'),
+            value: VariableNode(name: NameNode(value: 'description')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'discount'),
+            value: VariableNode(name: NameNode(value: 'discount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'name'),
+            value: VariableNode(name: NameNode(value: 'name')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'parcelSize'),
+            value: VariableNode(name: NameNode(value: 'parcelSize')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'price'),
+            value: VariableNode(name: NameNode(value: 'price')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'productId'),
+            value: VariableNode(name: NameNode(value: 'productId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'size'),
+            value: VariableNode(name: NameNode(value: 'size')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'subCategory'),
+            value: VariableNode(name: NameNode(value: 'subCategory')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UpdateProduct _parserFn$Mutation$UpdateProduct(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateProduct.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateProduct = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$UpdateProduct?,
+);
+
+class Options$Mutation$UpdateProduct
+    extends graphql.MutationOptions<Mutation$UpdateProduct> {
+  Options$Mutation$UpdateProduct({
+    String? operationName,
+    required Variables$Mutation$UpdateProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateProduct? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UpdateProduct? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UpdateProduct>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateProduct(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUpdateProduct,
+          parserFn: _parserFn$Mutation$UpdateProduct,
+        );
+
+  final OnMutationCompleted$Mutation$UpdateProduct? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UpdateProduct
+    extends graphql.WatchQueryOptions<Mutation$UpdateProduct> {
+  WatchOptions$Mutation$UpdateProduct({
+    String? operationName,
+    required Variables$Mutation$UpdateProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateProduct? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUpdateProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UpdateProduct,
+        );
+}
+
+extension ClientExtension$Mutation$UpdateProduct on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateProduct>> mutate$UpdateProduct(
+          Options$Mutation$UpdateProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateProduct> watchMutation$UpdateProduct(
+          WatchOptions$Mutation$UpdateProduct options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$UpdateProduct$updateProduct {
+  Mutation$UpdateProduct$updateProduct({
+    this.success,
+    this.message,
+    this.$__typename = 'UpdateProduct',
+  });
+
+  factory Mutation$UpdateProduct$updateProduct.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateProduct$updateProduct(
+      success: (l$success as bool?),
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateProduct$updateProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateProduct$updateProduct
+    on Mutation$UpdateProduct$updateProduct {
+  CopyWith$Mutation$UpdateProduct$updateProduct<
+          Mutation$UpdateProduct$updateProduct>
+      get copyWith => CopyWith$Mutation$UpdateProduct$updateProduct(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+  factory CopyWith$Mutation$UpdateProduct$updateProduct(
+    Mutation$UpdateProduct$updateProduct instance,
+    TRes Function(Mutation$UpdateProduct$updateProduct) then,
+  ) = _CopyWithImpl$Mutation$UpdateProduct$updateProduct;
+
+  factory CopyWith$Mutation$UpdateProduct$updateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct;
+
+  TRes call({
+    bool? success,
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+  _CopyWithImpl$Mutation$UpdateProduct$updateProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateProduct$updateProduct _instance;
+
+  final TRes Function(Mutation$UpdateProduct$updateProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateProduct$updateProduct(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeleteProduct {
+  factory Variables$Mutation$DeleteProduct({required int productId}) =>
+      Variables$Mutation$DeleteProduct._({
+        r'productId': productId,
+      });
+
+  Variables$Mutation$DeleteProduct._(this._$data);
+
+  factory Variables$Mutation$DeleteProduct.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$productId = data['productId'];
+    result$data['productId'] = (l$productId as int);
+    return Variables$Mutation$DeleteProduct._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get productId => (_$data['productId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$productId = productId;
+    result$data['productId'] = l$productId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteProduct<Variables$Mutation$DeleteProduct>
+      get copyWith => CopyWith$Variables$Mutation$DeleteProduct(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeleteProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$productId = productId;
+    return Object.hashAll([l$productId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteProduct(
+    Variables$Mutation$DeleteProduct instance,
+    TRes Function(Variables$Mutation$DeleteProduct) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteProduct;
+
+  factory CopyWith$Variables$Mutation$DeleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteProduct;
+
+  TRes call({int? productId});
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteProduct _instance;
+
+  final TRes Function(Variables$Mutation$DeleteProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? productId = _undefined}) =>
+      _then(Variables$Mutation$DeleteProduct._({
+        ..._instance._$data,
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteProduct(this._res);
+
+  TRes _res;
+
+  call({int? productId}) => _res;
+}
+
+class Mutation$DeleteProduct {
+  Mutation$DeleteProduct({
+    this.deleteProduct,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteProduct.fromJson(Map<String, dynamic> json) {
+    final l$deleteProduct = json['deleteProduct'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteProduct(
+      deleteProduct: l$deleteProduct == null
+          ? null
+          : Mutation$DeleteProduct$deleteProduct.fromJson(
+              (l$deleteProduct as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteProduct$deleteProduct? deleteProduct;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deleteProduct = deleteProduct;
+    _resultData['deleteProduct'] = l$deleteProduct?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deleteProduct = deleteProduct;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deleteProduct,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteProduct || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deleteProduct = deleteProduct;
+    final lOther$deleteProduct = other.deleteProduct;
+    if (l$deleteProduct != lOther$deleteProduct) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteProduct on Mutation$DeleteProduct {
+  CopyWith$Mutation$DeleteProduct<Mutation$DeleteProduct> get copyWith =>
+      CopyWith$Mutation$DeleteProduct(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$DeleteProduct<TRes> {
+  factory CopyWith$Mutation$DeleteProduct(
+    Mutation$DeleteProduct instance,
+    TRes Function(Mutation$DeleteProduct) then,
+  ) = _CopyWithImpl$Mutation$DeleteProduct;
+
+  factory CopyWith$Mutation$DeleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteProduct;
+
+  TRes call({
+    Mutation$DeleteProduct$deleteProduct? deleteProduct,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct;
+}
+
+class _CopyWithImpl$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct<TRes> {
+  _CopyWithImpl$Mutation$DeleteProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteProduct _instance;
+
+  final TRes Function(Mutation$DeleteProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deleteProduct = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteProduct(
+        deleteProduct: deleteProduct == _undefined
+            ? _instance.deleteProduct
+            : (deleteProduct as Mutation$DeleteProduct$deleteProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct {
+    final local$deleteProduct = _instance.deleteProduct;
+    return local$deleteProduct == null
+        ? CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_then(_instance))
+        : CopyWith$Mutation$DeleteProduct$deleteProduct(
+            local$deleteProduct, (e) => call(deleteProduct: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteProduct(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteProduct$deleteProduct? deleteProduct,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct =>
+      CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_res);
+}
+
+const documentNodeMutationDeleteProduct = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteProduct'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'productId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deleteProduct'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'productId'),
+            value: VariableNode(name: NameNode(value: 'productId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteProduct _parserFn$Mutation$DeleteProduct(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteProduct.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteProduct = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteProduct?,
+);
+
+class Options$Mutation$DeleteProduct
+    extends graphql.MutationOptions<Mutation$DeleteProduct> {
+  Options$Mutation$DeleteProduct({
+    String? operationName,
+    required Variables$Mutation$DeleteProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteProduct? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteProduct? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteProduct>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteProduct(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteProduct,
+          parserFn: _parserFn$Mutation$DeleteProduct,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteProduct? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteProduct
+    extends graphql.WatchQueryOptions<Mutation$DeleteProduct> {
+  WatchOptions$Mutation$DeleteProduct({
+    String? operationName,
+    required Variables$Mutation$DeleteProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteProduct? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteProduct,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteProduct on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteProduct>> mutate$DeleteProduct(
+          Options$Mutation$DeleteProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteProduct> watchMutation$DeleteProduct(
+          WatchOptions$Mutation$DeleteProduct options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$DeleteProduct$deleteProduct {
+  Mutation$DeleteProduct$deleteProduct({
+    this.success,
+    this.message,
+    this.$__typename = 'DeleteProduct',
+  });
+
+  factory Mutation$DeleteProduct$deleteProduct.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteProduct$deleteProduct(
+      success: (l$success as bool?),
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteProduct$deleteProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteProduct$deleteProduct
+    on Mutation$DeleteProduct$deleteProduct {
+  CopyWith$Mutation$DeleteProduct$deleteProduct<
+          Mutation$DeleteProduct$deleteProduct>
+      get copyWith => CopyWith$Mutation$DeleteProduct$deleteProduct(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+  factory CopyWith$Mutation$DeleteProduct$deleteProduct(
+    Mutation$DeleteProduct$deleteProduct instance,
+    TRes Function(Mutation$DeleteProduct$deleteProduct) then,
+  ) = _CopyWithImpl$Mutation$DeleteProduct$deleteProduct;
+
+  factory CopyWith$Mutation$DeleteProduct$deleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct;
+
+  TRes call({
+    bool? success,
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+  _CopyWithImpl$Mutation$DeleteProduct$deleteProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteProduct$deleteProduct _instance;
+
+  final TRes Function(Mutation$DeleteProduct$deleteProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteProduct$deleteProduct(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}

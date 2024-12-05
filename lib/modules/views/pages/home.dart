@@ -22,79 +22,82 @@ class HomeScreen extends ConsumerWidget {
     final selectedTab = ref.watch(selectedTabProvider);
     return Scaffold(
       body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () => ref.refresh(allProductProvider.future),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 28.0),
-            child: Column(
-              children: [
-                const Searchwidget(obscureText: false, shouldReadOnly: false, hintText: "Search for items and members", enabled: true, showInputBorder: true, autofocus: false, cancelButton: true),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      _buildTabs(ref, selectedTab, context),
-
-                      ...ref.watch(allProductProvider).when(
-                            skipLoadingOnRefresh: false,
-                            data: (products) => [
-                              _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
-                              DisplaySection(
-                                products: products,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: RefreshIndicator(
+            onRefresh: () => ref.refresh(allProductProvider.future),
+            child: CustomScrollView(
+              slivers: [
+                const SliverPadding(
+                  padding: EdgeInsets.only(top: 50),
+                  sliver: SliverToBoxAdapter(
+                      child: Searchwidget(
+                          obscureText: false, shouldReadOnly: false, hintText: "Search for items and members", enabled: true, showInputBorder: true, autofocus: false, cancelButton: true)),
+                ),
+                SliverToBoxAdapter(
+                  child: _buildTabs(ref, selectedTab, context),
+                ),
+                SliverToBoxAdapter(
+                  child: _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                ),
+                SliverFillRemaining(
+                  child: ref.watch(allProductProvider).when(
+                        data: (products) => DisplaySection(
+                          products: products,
+                        ),
+                        error: (e, _) => Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(e.toString()),
+                              TextButton.icon(
+                                onPressed: () {
+                                  // log(e.toString(), stackTrace: _);
+                                  ref.invalidate(allProductProvider);
+                                },
+                                label: const Text('Retry'),
+                                icon: const Icon(Icons.refresh_rounded),
                               ),
-                            ],
-                            error: (e, _) => [
-                              Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(e.toString()),
-                                    TextButton.icon(
-                                      onPressed: () {
-                                        // log(e.toString(), stackTrace: _);
-                                        ref.invalidate(allProductProvider);
-                                      },
-                                      label: const Text('Retry'),
-                                      icon: const Icon(Icons.refresh_rounded),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                            loading: () => [
-                              const Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2.5,
-                                ),
-                              )
                             ],
                           ),
-                      // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // const SizedBox(
-                      //   height: 12,
-                      // ),
-                      // const DisplayLiveCard(),
-                      // const SizedBox(
-                      //   height: 12,
-                      // ),
-                      // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                      // const DisplaySection(),
-                      // const SizedBox(
-                      //   height: 30,
-                      // )
-                    ],
-                  ),
-                )
+                        ),
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                          ),
+                        ),
+                      ),
+                ),
+                // Container(
+                //   padding: const EdgeInsets.all(10),
+                //   child: const Column(
+                //     children: [
+                //       // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // const SizedBox(
+                //       //   height: 12,
+                //       // ),
+                //       // const DisplayLiveCard(),
+                //       // const SizedBox(
+                //       //   height: 12,
+                //       // ),
+                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // const SizedBox(
+                //       //   height: 30,
+                //       // )
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ),
