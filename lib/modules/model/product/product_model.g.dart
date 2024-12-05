@@ -32,6 +32,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       postagePrice: (json['postagePrice'] as num?)?.toDouble(),
       views: (json['views'] as num).toInt(),
       likes: (json['likes'] as num).toInt(),
+      userLiked: json['userLiked'] as bool,
       imagesUrl:
           const BannerConverter().fromJson(json['imagesUrl'] as List<String>),
       createdAt: DateTime.parse(json['createdAt'] as String),
@@ -54,6 +55,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'postagePrice': instance.postagePrice,
       'views': instance.views,
       'likes': instance.likes,
+      'userLiked': instance.userLiked,
       'imagesUrl': const BannerConverter().toJson(instance.imagesUrl),
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),

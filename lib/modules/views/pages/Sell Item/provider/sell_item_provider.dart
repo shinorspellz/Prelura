@@ -147,6 +147,19 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(selectedCondition: selectedCondition);
   }
 
+  void productToItem(Product product) {
+    state = state.copyWith(
+      title: product.name,
+      description: product.description,
+      category: product.category,
+      subCategory: product.subCategory,
+      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
+      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+      price: product.price,
+      selectedCondition: product.condition,
+    );
+  }
+
   // Add or remove a color
   void toggleColor(String color) {
     final currentSelections = state.selectedColors;

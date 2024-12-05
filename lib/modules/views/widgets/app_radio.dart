@@ -56,6 +56,7 @@ class PreluraRadio extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
+              width: MediaQuery.sizeOf(context).width / 1.25,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,7 +72,7 @@ class PreluraRadio extends StatelessWidget {
                       subtitle!,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
                       overflow: TextOverflow.ellipsis, // Handle overflow
-                      maxLines: 3, // Limit the number of lines for the subtitle
+                      maxLines: 4, // Limit the number of lines for the subtitle
                     ),
                   ]
                 ],

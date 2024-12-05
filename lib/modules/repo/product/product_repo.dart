@@ -28,11 +28,42 @@ class ProductRepo {
       log(response.exception.toString(), name: 'ProductRepo');
       throw 'An error occured';
     }
+  }
 
-    // if (response.parsedData?.createProduct == null) {
-    //   log('Mising response', name: 'ProductRepo');
-    //   throw 'An error occured';
-    // }
+  Future<void> updateProduct(Variables$Mutation$UpdateProduct params) async {
+    final response = await _client.mutate$UpdateProduct(
+      Options$Mutation$UpdateProduct(
+        variables: params,
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<void> deleteProduct(int id) async {
+    final response = await _client.mutate$DeleteProduct(
+      Options$Mutation$DeleteProduct(
+        variables: Variables$Mutation$DeleteProduct(productId: id),
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
   }
 
   Future<Product> getProduct(int id) async {

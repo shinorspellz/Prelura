@@ -51,6 +51,12 @@ final graphqlClient = Provider((ref) {
   Link link = authLink.concat(httpLink);
 
   GraphQLClient client = GraphQLClient(
+    defaultPolicies: DefaultPolicies(
+      query: Policies(
+        cacheReread: CacheRereadPolicy.ignoreAll,
+        fetch: FetchPolicy.noCache,
+      ),
+    ),
     queryRequestTimeout: const Duration(minutes: 1),
     cache: GraphQLCache(store: InMemoryStore()),
     link: link,
