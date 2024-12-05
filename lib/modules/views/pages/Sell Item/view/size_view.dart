@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:sizer/sizer.dart';
@@ -66,56 +67,38 @@ class SizeSelectionPage extends ConsumerWidget {
             thickness: 1,
           ),
           Expanded(
-            child: ref.watch(sizeProvider).when(
-                  skipLoadingOnRefresh: false,
-                  data: (data) => ListView.separated(
-                    itemCount: data.length,
-                    separatorBuilder: (_, index) => const Divider(
-                      thickness: 1,
-                    ),
-                    itemBuilder: (_, index) => ListTile(
-                        title: Text(data[index].sizeValue),
-                        trailing: CustomRadioButton(
-                          isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
-                          onChanged: () {
-                            if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
-                              ref.read(sellItemProvider.notifier).removeSize(data[index]);
-                            } else {
-                              ref.read(sellItemProvider.notifier).addSize(data[index]);
-                            }
+            child: ListView.separated(
+              itemCount: Enum$SizeEnum.values.length,
+              separatorBuilder: (_, index) => const Divider(
+                thickness: 1,
+              ),
+              itemBuilder: (_, index) {
+                final value = Enum$SizeEnum.values[index];
+                return ListTile(
+                  title: Text(value.name),
+                  trailing:
+                      // CustomRadioButton(
+                      //   isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
+                      //   onChanged: () {
+                      //     if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
+                      //       ref.read(sellItemProvider.notifier).removeSize(data[index]);
+                      //     } else {
+                      //       ref.read(sellItemProvider.notifier).selectSize(data[index]);
+                      //     }
 
-                            log('${ref.read(sellItemProvider).size}');
-                          },
-                        )
-                        // Radio<String>(
-                        //     value: data[index].sizeValue,
-                        //     groupValue: selectedSize,
-                        //     onChanged: (value) => {
-                        //           ref.read(sellItemProvider.notifier).addSize(data[index]),
-                        //           // context.router.popForced(),
-                        //         }),
-                        ),
-                  ),
-                  error: (e, _) => Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(e.toString()),
-                        TextButton.icon(
-                          onPressed: () => ref.invalidate(categoryProvider),
-                          label: const Text('Retry'),
-                          icon: const Icon(Icons.refresh_rounded),
-                        ),
-                      ],
-                    ),
-                  ),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.5,
-                    ),
-                  ),
-                ),
+                      //     log('${ref.read(sellItemProvider).size}');
+                      //   },
+                      // )
+                      Radio<Enum$SizeEnum>(
+                          value: value,
+                          groupValue: ref.watch(sellItemProvider).size,
+                          onChanged: (value) => {
+                                ref.read(sellItemProvider.notifier).selectSize(value!),
+                                // context.router.popForced(),
+                              }),
+                );
+              },
+            ),
           ),
         ],
       ),

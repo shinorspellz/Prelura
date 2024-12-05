@@ -71,7 +71,7 @@ class ProductDescription extends ConsumerWidget {
           ),
           if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
 
-          if (product.sizes != null) _buildInfoRow("Size", product.sizes!.map((e) => e.sizeValue).join(', '), context),
+          if (product.size != null) _buildInfoRow("Size", product.size!.name, context),
           _buildInfoRow("Condition", dummy.condition, context),
           _buildInfoRow("Views", "${dummy.views}", context),
           _buildInfoRow("Uploaded", dummy.uploadTime, context),

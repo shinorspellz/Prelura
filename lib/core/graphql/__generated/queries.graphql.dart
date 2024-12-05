@@ -727,6 +727,891 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
       _res;
 }
 
+class Variables$Query$SearchUser {
+  factory Variables$Query$SearchUser({required String search}) =>
+      Variables$Query$SearchUser._({
+        r'search': search,
+      });
+
+  Variables$Query$SearchUser._(this._$data);
+
+  factory Variables$Query$SearchUser.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$search = data['search'];
+    result$data['search'] = (l$search as String);
+    return Variables$Query$SearchUser._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get search => (_$data['search'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$search = search;
+    result$data['search'] = l$search;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$SearchUser<Variables$Query$SearchUser>
+      get copyWith => CopyWith$Variables$Query$SearchUser(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$SearchUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (l$search != lOther$search) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$search = search;
+    return Object.hashAll([l$search]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$SearchUser<TRes> {
+  factory CopyWith$Variables$Query$SearchUser(
+    Variables$Query$SearchUser instance,
+    TRes Function(Variables$Query$SearchUser) then,
+  ) = _CopyWithImpl$Variables$Query$SearchUser;
+
+  factory CopyWith$Variables$Query$SearchUser.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$SearchUser;
+
+  TRes call({String? search});
+}
+
+class _CopyWithImpl$Variables$Query$SearchUser<TRes>
+    implements CopyWith$Variables$Query$SearchUser<TRes> {
+  _CopyWithImpl$Variables$Query$SearchUser(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$SearchUser _instance;
+
+  final TRes Function(Variables$Query$SearchUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? search = _undefined}) =>
+      _then(Variables$Query$SearchUser._({
+        ..._instance._$data,
+        if (search != _undefined && search != null)
+          'search': (search as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$SearchUser<TRes>
+    implements CopyWith$Variables$Query$SearchUser<TRes> {
+  _CopyWithStubImpl$Variables$Query$SearchUser(this._res);
+
+  TRes _res;
+
+  call({String? search}) => _res;
+}
+
+class Query$SearchUser {
+  Query$SearchUser({
+    this.searchUsers,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$SearchUser.fromJson(Map<String, dynamic> json) {
+    final l$searchUsers = json['searchUsers'];
+    final l$$__typename = json['__typename'];
+    return Query$SearchUser(
+      searchUsers: (l$searchUsers as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$SearchUser$searchUsers.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$SearchUser$searchUsers?>? searchUsers;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$searchUsers = searchUsers;
+    _resultData['searchUsers'] =
+        l$searchUsers?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchUsers = searchUsers;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$searchUsers == null
+          ? null
+          : Object.hashAll(l$searchUsers.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SearchUser || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchUsers = searchUsers;
+    final lOther$searchUsers = other.searchUsers;
+    if (l$searchUsers != null && lOther$searchUsers != null) {
+      if (l$searchUsers.length != lOther$searchUsers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$searchUsers.length; i++) {
+        final l$searchUsers$entry = l$searchUsers[i];
+        final lOther$searchUsers$entry = lOther$searchUsers[i];
+        if (l$searchUsers$entry != lOther$searchUsers$entry) {
+          return false;
+        }
+      }
+    } else if (l$searchUsers != lOther$searchUsers) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SearchUser on Query$SearchUser {
+  CopyWith$Query$SearchUser<Query$SearchUser> get copyWith =>
+      CopyWith$Query$SearchUser(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$SearchUser<TRes> {
+  factory CopyWith$Query$SearchUser(
+    Query$SearchUser instance,
+    TRes Function(Query$SearchUser) then,
+  ) = _CopyWithImpl$Query$SearchUser;
+
+  factory CopyWith$Query$SearchUser.stub(TRes res) =
+      _CopyWithStubImpl$Query$SearchUser;
+
+  TRes call({
+    List<Query$SearchUser$searchUsers?>? searchUsers,
+    String? $__typename,
+  });
+  TRes searchUsers(
+      Iterable<Query$SearchUser$searchUsers?>? Function(
+              Iterable<
+                  CopyWith$Query$SearchUser$searchUsers<
+                      Query$SearchUser$searchUsers>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$SearchUser<TRes>
+    implements CopyWith$Query$SearchUser<TRes> {
+  _CopyWithImpl$Query$SearchUser(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SearchUser _instance;
+
+  final TRes Function(Query$SearchUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchUsers = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$SearchUser(
+        searchUsers: searchUsers == _undefined
+            ? _instance.searchUsers
+            : (searchUsers as List<Query$SearchUser$searchUsers?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes searchUsers(
+          Iterable<Query$SearchUser$searchUsers?>? Function(
+                  Iterable<
+                      CopyWith$Query$SearchUser$searchUsers<
+                          Query$SearchUser$searchUsers>?>?)
+              _fn) =>
+      call(
+          searchUsers: _fn(_instance.searchUsers?.map((e) => e == null
+              ? null
+              : CopyWith$Query$SearchUser$searchUsers(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$SearchUser<TRes>
+    implements CopyWith$Query$SearchUser<TRes> {
+  _CopyWithStubImpl$Query$SearchUser(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$SearchUser$searchUsers?>? searchUsers,
+    String? $__typename,
+  }) =>
+      _res;
+
+  searchUsers(_fn) => _res;
+}
+
+const documentNodeQuerySearchUser = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'SearchUser'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'searchUsers'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'firstName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'username'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'email'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'bio'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'profilePictureUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'gender'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'displayName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'dob'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'dateJoined'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastLogin'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'fullName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$SearchUser _parserFn$Query$SearchUser(Map<String, dynamic> data) =>
+    Query$SearchUser.fromJson(data);
+typedef OnQueryComplete$Query$SearchUser = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$SearchUser?,
+);
+
+class Options$Query$SearchUser extends graphql.QueryOptions<Query$SearchUser> {
+  Options$Query$SearchUser({
+    String? operationName,
+    required Variables$Query$SearchUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$SearchUser? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$SearchUser? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$SearchUser(data),
+                  ),
+          onError: onError,
+          document: documentNodeQuerySearchUser,
+          parserFn: _parserFn$Query$SearchUser,
+        );
+
+  final OnQueryComplete$Query$SearchUser? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$SearchUser
+    extends graphql.WatchQueryOptions<Query$SearchUser> {
+  WatchOptions$Query$SearchUser({
+    String? operationName,
+    required Variables$Query$SearchUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$SearchUser? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQuerySearchUser,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$SearchUser,
+        );
+}
+
+class FetchMoreOptions$Query$SearchUser extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$SearchUser({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$SearchUser variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerySearchUser,
+        );
+}
+
+extension ClientExtension$Query$SearchUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$SearchUser>> query$SearchUser(
+          Options$Query$SearchUser options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$SearchUser> watchQuery$SearchUser(
+          WatchOptions$Query$SearchUser options) =>
+      this.watchQuery(options);
+  void writeQuery$SearchUser({
+    required Query$SearchUser data,
+    required Variables$Query$SearchUser variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQuerySearchUser),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$SearchUser? readQuery$SearchUser({
+    required Variables$Query$SearchUser variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerySearchUser),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$SearchUser.fromJson(result);
+  }
+}
+
+class Query$SearchUser$searchUsers {
+  Query$SearchUser$searchUsers({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.email,
+    this.bio,
+    this.profilePictureUrl,
+    this.gender,
+    this.displayName,
+    this.dob,
+    this.dateJoined,
+    this.lastLogin,
+    this.fullName,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$SearchUser$searchUsers.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$firstName = json['firstName'];
+    final l$lastName = json['lastName'];
+    final l$username = json['username'];
+    final l$email = json['email'];
+    final l$bio = json['bio'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$gender = json['gender'];
+    final l$displayName = json['displayName'];
+    final l$dob = json['dob'];
+    final l$dateJoined = json['dateJoined'];
+    final l$lastLogin = json['lastLogin'];
+    final l$fullName = json['fullName'];
+    final l$$__typename = json['__typename'];
+    return Query$SearchUser$searchUsers(
+      id: (l$id as int?),
+      firstName: (l$firstName as String?),
+      lastName: (l$lastName as String?),
+      username: (l$username as String?),
+      email: (l$email as String?),
+      bio: (l$bio as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      gender: (l$gender as String?),
+      displayName: (l$displayName as String?),
+      dob: l$dob == null ? null : DateTime.parse((l$dob as String)),
+      dateJoined: l$dateJoined == null
+          ? null
+          : DateTime.parse((l$dateJoined as String)),
+      lastLogin:
+          l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
+      fullName: (l$fullName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? firstName;
+
+  final String? lastName;
+
+  final String? username;
+
+  final String? email;
+
+  final String? bio;
+
+  final String? profilePictureUrl;
+
+  final String? gender;
+
+  final String? displayName;
+
+  final DateTime? dob;
+
+  final DateTime? dateJoined;
+
+  final DateTime? lastLogin;
+
+  final String? fullName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$firstName = firstName;
+    _resultData['firstName'] = l$firstName;
+    final l$lastName = lastName;
+    _resultData['lastName'] = l$lastName;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$bio = bio;
+    _resultData['bio'] = l$bio;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$gender = gender;
+    _resultData['gender'] = l$gender;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$dob = dob;
+    _resultData['dob'] = l$dob?.toIso8601String();
+    final l$dateJoined = dateJoined;
+    _resultData['dateJoined'] = l$dateJoined?.toIso8601String();
+    final l$lastLogin = lastLogin;
+    _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$firstName = firstName;
+    final l$lastName = lastName;
+    final l$username = username;
+    final l$email = email;
+    final l$bio = bio;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$gender = gender;
+    final l$displayName = displayName;
+    final l$dob = dob;
+    final l$dateJoined = dateJoined;
+    final l$lastLogin = lastLogin;
+    final l$fullName = fullName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$firstName,
+      l$lastName,
+      l$username,
+      l$email,
+      l$bio,
+      l$profilePictureUrl,
+      l$gender,
+      l$displayName,
+      l$dob,
+      l$dateJoined,
+      l$lastLogin,
+      l$fullName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SearchUser$searchUsers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) {
+      return false;
+    }
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$bio = bio;
+    final lOther$bio = other.bio;
+    if (l$bio != lOther$bio) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$dob = dob;
+    final lOther$dob = other.dob;
+    if (l$dob != lOther$dob) {
+      return false;
+    }
+    final l$dateJoined = dateJoined;
+    final lOther$dateJoined = other.dateJoined;
+    if (l$dateJoined != lOther$dateJoined) {
+      return false;
+    }
+    final l$lastLogin = lastLogin;
+    final lOther$lastLogin = other.lastLogin;
+    if (l$lastLogin != lOther$lastLogin) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SearchUser$searchUsers
+    on Query$SearchUser$searchUsers {
+  CopyWith$Query$SearchUser$searchUsers<Query$SearchUser$searchUsers>
+      get copyWith => CopyWith$Query$SearchUser$searchUsers(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$SearchUser$searchUsers<TRes> {
+  factory CopyWith$Query$SearchUser$searchUsers(
+    Query$SearchUser$searchUsers instance,
+    TRes Function(Query$SearchUser$searchUsers) then,
+  ) = _CopyWithImpl$Query$SearchUser$searchUsers;
+
+  factory CopyWith$Query$SearchUser$searchUsers.stub(TRes res) =
+      _CopyWithStubImpl$Query$SearchUser$searchUsers;
+
+  TRes call({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? bio,
+    String? profilePictureUrl,
+    String? gender,
+    String? displayName,
+    DateTime? dob,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
+    String? fullName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
+    implements CopyWith$Query$SearchUser$searchUsers<TRes> {
+  _CopyWithImpl$Query$SearchUser$searchUsers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SearchUser$searchUsers _instance;
+
+  final TRes Function(Query$SearchUser$searchUsers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? firstName = _undefined,
+    Object? lastName = _undefined,
+    Object? username = _undefined,
+    Object? email = _undefined,
+    Object? bio = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? gender = _undefined,
+    Object? displayName = _undefined,
+    Object? dob = _undefined,
+    Object? dateJoined = _undefined,
+    Object? lastLogin = _undefined,
+    Object? fullName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$SearchUser$searchUsers(
+        id: id == _undefined ? _instance.id : (id as int?),
+        firstName: firstName == _undefined
+            ? _instance.firstName
+            : (firstName as String?),
+        lastName:
+            lastName == _undefined ? _instance.lastName : (lastName as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        email: email == _undefined ? _instance.email : (email as String?),
+        bio: bio == _undefined ? _instance.bio : (bio as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        gender: gender == _undefined ? _instance.gender : (gender as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        dob: dob == _undefined ? _instance.dob : (dob as DateTime?),
+        dateJoined: dateJoined == _undefined
+            ? _instance.dateJoined
+            : (dateJoined as DateTime?),
+        lastLogin: lastLogin == _undefined
+            ? _instance.lastLogin
+            : (lastLogin as DateTime?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$SearchUser$searchUsers<TRes>
+    implements CopyWith$Query$SearchUser$searchUsers<TRes> {
+  _CopyWithStubImpl$Query$SearchUser$searchUsers(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? bio,
+    String? profilePictureUrl,
+    String? gender,
+    String? displayName,
+    DateTime? dob,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
+    String? fullName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$GetUser {
   factory Variables$Query$GetUser({required String username}) =>
       Variables$Query$GetUser._({
@@ -1920,7 +2805,7 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'sizes'),
+            name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
             directives: [],
@@ -1933,14 +2818,7 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'sizeValue'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'sizeSystem'),
+                name: NameNode(value: 'username'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -1963,6 +2841,27 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'size'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'price'),
             alias: null,
             arguments: [],
@@ -1970,7 +2869,7 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'postagePrice'),
+            name: NameNode(value: 'parcelSize'),
             alias: null,
             arguments: [],
             directives: [],
@@ -2167,10 +3066,12 @@ class Query$Product$product {
     required this.description,
     this.category,
     this.subCategory,
-    this.sizes,
+    this.seller,
     this.condition,
+    this.discountPrice,
+    this.size,
     required this.price,
-    this.postagePrice,
+    this.parcelSize,
     required this.views,
     required this.likes,
     required this.imagesUrl,
@@ -2185,10 +3086,12 @@ class Query$Product$product {
     final l$description = json['description'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
-    final l$sizes = json['sizes'];
+    final l$seller = json['seller'];
     final l$condition = json['condition'];
+    final l$discountPrice = json['discountPrice'];
+    final l$size = json['size'];
     final l$price = json['price'];
-    final l$postagePrice = json['postagePrice'];
+    final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
     final l$imagesUrl = json['imagesUrl'];
@@ -2207,18 +3110,23 @@ class Query$Product$product {
           ? null
           : Query$Product$product$subCategory.fromJson(
               (l$subCategory as Map<String, dynamic>)),
-      sizes: (l$sizes as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$Product$product$sizes.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
+      seller: l$seller == null
+          ? null
+          : Query$Product$product$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
       condition: l$condition == null
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
+      discountPrice: (l$discountPrice as String?),
+      size: l$size == null
+          ? null
+          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
       price: (l$price as String),
-      postagePrice: (l$postagePrice as String?),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -2239,13 +3147,17 @@ class Query$Product$product {
 
   final Query$Product$product$subCategory? subCategory;
 
-  final List<Query$Product$product$sizes?>? sizes;
+  final Query$Product$product$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
+  final String? discountPrice;
+
+  final Enum$ProductsProductSizeChoices? size;
+
   final String price;
 
-  final String? postagePrice;
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
   final int views;
 
@@ -2271,16 +3183,23 @@ class Query$Product$product {
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
     _resultData['subCategory'] = l$subCategory?.toJson();
-    final l$sizes = sizes;
-    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
     _resultData['condition'] = l$condition == null
         ? null
         : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$size = size;
+    _resultData['size'] =
+        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
     final l$price = price;
     _resultData['price'] = l$price;
-    final l$postagePrice = postagePrice;
-    _resultData['postagePrice'] = l$postagePrice;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
     final l$views = views;
     _resultData['views'] = l$views;
     final l$likes = likes;
@@ -2303,10 +3222,12 @@ class Query$Product$product {
     final l$description = description;
     final l$category = category;
     final l$subCategory = subCategory;
-    final l$sizes = sizes;
+    final l$seller = seller;
     final l$condition = condition;
+    final l$discountPrice = discountPrice;
+    final l$size = size;
     final l$price = price;
-    final l$postagePrice = postagePrice;
+    final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
     final l$imagesUrl = imagesUrl;
@@ -2319,10 +3240,12 @@ class Query$Product$product {
       l$description,
       l$category,
       l$subCategory,
-      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
+      l$seller,
       l$condition,
+      l$discountPrice,
+      l$size,
       l$price,
-      l$postagePrice,
+      l$parcelSize,
       l$views,
       l$likes,
       Object.hashAll(l$imagesUrl.map((v) => v)),
@@ -2365,20 +3288,9 @@ class Query$Product$product {
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
-    final l$sizes = sizes;
-    final lOther$sizes = other.sizes;
-    if (l$sizes != null && lOther$sizes != null) {
-      if (l$sizes.length != lOther$sizes.length) {
-        return false;
-      }
-      for (int i = 0; i < l$sizes.length; i++) {
-        final l$sizes$entry = l$sizes[i];
-        final lOther$sizes$entry = lOther$sizes[i];
-        if (l$sizes$entry != lOther$sizes$entry) {
-          return false;
-        }
-      }
-    } else if (l$sizes != lOther$sizes) {
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
       return false;
     }
     final l$condition = condition;
@@ -2386,14 +3298,24 @@ class Query$Product$product {
     if (l$condition != lOther$condition) {
       return false;
     }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) {
       return false;
     }
-    final l$postagePrice = postagePrice;
-    final lOther$postagePrice = other.postagePrice;
-    if (l$postagePrice != lOther$postagePrice) {
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
       return false;
     }
     final l$views = views;
@@ -2460,10 +3382,12 @@ abstract class CopyWith$Query$Product$product<TRes> {
     String? description,
     Query$Product$product$category? category,
     Query$Product$product$subCategory? subCategory,
-    List<Query$Product$product$sizes?>? sizes,
+    Query$Product$product$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -2473,12 +3397,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
   });
   CopyWith$Query$Product$product$category<TRes> get category;
   CopyWith$Query$Product$product$subCategory<TRes> get subCategory;
-  TRes sizes(
-      Iterable<Query$Product$product$sizes?>? Function(
-              Iterable<
-                  CopyWith$Query$Product$product$sizes<
-                      Query$Product$product$sizes>?>?)
-          _fn);
+  CopyWith$Query$Product$product$seller<TRes> get seller;
 }
 
 class _CopyWithImpl$Query$Product$product<TRes>
@@ -2500,10 +3419,12 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? description = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
-    Object? sizes = _undefined,
+    Object? seller = _undefined,
     Object? condition = _undefined,
+    Object? discountPrice = _undefined,
+    Object? size = _undefined,
     Object? price = _undefined,
-    Object? postagePrice = _undefined,
+    Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
     Object? imagesUrl = _undefined,
@@ -2525,18 +3446,24 @@ class _CopyWithImpl$Query$Product$product<TRes>
         subCategory: subCategory == _undefined
             ? _instance.subCategory
             : (subCategory as Query$Product$product$subCategory?),
-        sizes: sizes == _undefined
-            ? _instance.sizes
-            : (sizes as List<Query$Product$product$sizes?>?),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$Product$product$seller?),
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Enum$ProductsProductSizeChoices?),
         price: price == _undefined || price == null
             ? _instance.price
             : (price as String),
-        postagePrice: postagePrice == _undefined
-            ? _instance.postagePrice
-            : (postagePrice as String?),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -2573,19 +3500,13 @@ class _CopyWithImpl$Query$Product$product<TRes>
             local$subCategory, (e) => call(subCategory: e));
   }
 
-  TRes sizes(
-          Iterable<Query$Product$product$sizes?>? Function(
-                  Iterable<
-                      CopyWith$Query$Product$product$sizes<
-                          Query$Product$product$sizes>?>?)
-              _fn) =>
-      call(
-          sizes: _fn(_instance.sizes?.map((e) => e == null
-              ? null
-              : CopyWith$Query$Product$product$sizes(
-                  e,
-                  (i) => i,
-                )))?.toList());
+  CopyWith$Query$Product$product$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$Product$product$seller.stub(_then(_instance))
+        : CopyWith$Query$Product$product$seller(
+            local$seller, (e) => call(seller: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$Product$product<TRes>
@@ -2600,10 +3521,12 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     String? description,
     Query$Product$product$category? category,
     Query$Product$product$subCategory? subCategory,
-    List<Query$Product$product$sizes?>? sizes,
+    Query$Product$product$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -2619,7 +3542,8 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
   CopyWith$Query$Product$product$subCategory<TRes> get subCategory =>
       CopyWith$Query$Product$product$subCategory.stub(_res);
 
-  sizes(_fn) => _res;
+  CopyWith$Query$Product$product$seller<TRes> get seller =>
+      CopyWith$Query$Product$product$seller.stub(_res);
 }
 
 class Query$Product$product$category {
@@ -2905,32 +3829,27 @@ class _CopyWithStubImpl$Query$Product$product$subCategory<TRes>
       _res;
 }
 
-class Query$Product$product$sizes {
-  Query$Product$product$sizes({
+class Query$Product$product$seller {
+  Query$Product$product$seller({
     this.id,
-    this.sizeValue,
-    this.sizeSystem,
-    this.$__typename = 'SizeType',
+    this.username,
+    this.$__typename = 'UserType',
   });
 
-  factory Query$Product$product$sizes.fromJson(Map<String, dynamic> json) {
+  factory Query$Product$product$seller.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$sizeValue = json['sizeValue'];
-    final l$sizeSystem = json['sizeSystem'];
+    final l$username = json['username'];
     final l$$__typename = json['__typename'];
-    return Query$Product$product$sizes(
+    return Query$Product$product$seller(
       id: (l$id as int?),
-      sizeValue: (l$sizeValue as String?),
-      sizeSystem: (l$sizeSystem as String?),
+      username: (l$username as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? id;
 
-  final String? sizeValue;
-
-  final String? sizeSystem;
+  final String? username;
 
   final String $__typename;
 
@@ -2938,10 +3857,8 @@ class Query$Product$product$sizes {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$sizeValue = sizeValue;
-    _resultData['sizeValue'] = l$sizeValue;
-    final l$sizeSystem = sizeSystem;
-    _resultData['sizeSystem'] = l$sizeSystem;
+    final l$username = username;
+    _resultData['username'] = l$username;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2950,13 +3867,11 @@ class Query$Product$product$sizes {
   @override
   int get hashCode {
     final l$id = id;
-    final l$sizeValue = sizeValue;
-    final l$sizeSystem = sizeSystem;
+    final l$username = username;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$sizeValue,
-      l$sizeSystem,
+      l$username,
       l$$__typename,
     ]);
   }
@@ -2966,7 +3881,7 @@ class Query$Product$product$sizes {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$Product$product$sizes ||
+    if (other is! Query$Product$product$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2975,14 +3890,9 @@ class Query$Product$product$sizes {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$sizeValue = sizeValue;
-    final lOther$sizeValue = other.sizeValue;
-    if (l$sizeValue != lOther$sizeValue) {
-      return false;
-    }
-    final l$sizeSystem = sizeSystem;
-    final lOther$sizeSystem = other.sizeSystem;
-    if (l$sizeSystem != lOther$sizeSystem) {
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2994,75 +3904,68 @@ class Query$Product$product$sizes {
   }
 }
 
-extension UtilityExtension$Query$Product$product$sizes
-    on Query$Product$product$sizes {
-  CopyWith$Query$Product$product$sizes<Query$Product$product$sizes>
-      get copyWith => CopyWith$Query$Product$product$sizes(
+extension UtilityExtension$Query$Product$product$seller
+    on Query$Product$product$seller {
+  CopyWith$Query$Product$product$seller<Query$Product$product$seller>
+      get copyWith => CopyWith$Query$Product$product$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$Product$product$sizes<TRes> {
-  factory CopyWith$Query$Product$product$sizes(
-    Query$Product$product$sizes instance,
-    TRes Function(Query$Product$product$sizes) then,
-  ) = _CopyWithImpl$Query$Product$product$sizes;
+abstract class CopyWith$Query$Product$product$seller<TRes> {
+  factory CopyWith$Query$Product$product$seller(
+    Query$Product$product$seller instance,
+    TRes Function(Query$Product$product$seller) then,
+  ) = _CopyWithImpl$Query$Product$product$seller;
 
-  factory CopyWith$Query$Product$product$sizes.stub(TRes res) =
-      _CopyWithStubImpl$Query$Product$product$sizes;
+  factory CopyWith$Query$Product$product$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$Product$product$seller;
 
   TRes call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$Product$product$sizes<TRes>
-    implements CopyWith$Query$Product$product$sizes<TRes> {
-  _CopyWithImpl$Query$Product$product$sizes(
+class _CopyWithImpl$Query$Product$product$seller<TRes>
+    implements CopyWith$Query$Product$product$seller<TRes> {
+  _CopyWithImpl$Query$Product$product$seller(
     this._instance,
     this._then,
   );
 
-  final Query$Product$product$sizes _instance;
+  final Query$Product$product$seller _instance;
 
-  final TRes Function(Query$Product$product$sizes) _then;
+  final TRes Function(Query$Product$product$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
-    Object? sizeValue = _undefined,
-    Object? sizeSystem = _undefined,
+    Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$Product$product$sizes(
+      _then(Query$Product$product$seller(
         id: id == _undefined ? _instance.id : (id as int?),
-        sizeValue: sizeValue == _undefined
-            ? _instance.sizeValue
-            : (sizeValue as String?),
-        sizeSystem: sizeSystem == _undefined
-            ? _instance.sizeSystem
-            : (sizeSystem as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$Product$product$sizes<TRes>
-    implements CopyWith$Query$Product$product$sizes<TRes> {
-  _CopyWithStubImpl$Query$Product$product$sizes(this._res);
+class _CopyWithStubImpl$Query$Product$product$seller<TRes>
+    implements CopyWith$Query$Product$product$seller<TRes> {
+  _CopyWithStubImpl$Query$Product$product$seller(this._res);
 
   TRes _res;
 
   call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   }) =>
       _res;
@@ -3575,7 +4478,7 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'sizes'),
+            name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
             directives: [],
@@ -3588,14 +4491,7 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'sizeValue'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'sizeSystem'),
+                name: NameNode(value: 'username'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -3618,6 +4514,27 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'size'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'price'),
             alias: null,
             arguments: [],
@@ -3625,7 +4542,7 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'postagePrice'),
+            name: NameNode(value: 'parcelSize'),
             alias: null,
             arguments: [],
             directives: [],
@@ -3823,10 +4740,12 @@ class Query$UserProducts$userProducts {
     required this.description,
     this.category,
     this.subCategory,
-    this.sizes,
+    this.seller,
     this.condition,
+    this.discountPrice,
+    this.size,
     required this.price,
-    this.postagePrice,
+    this.parcelSize,
     required this.views,
     required this.likes,
     required this.imagesUrl,
@@ -3841,10 +4760,12 @@ class Query$UserProducts$userProducts {
     final l$description = json['description'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
-    final l$sizes = json['sizes'];
+    final l$seller = json['seller'];
     final l$condition = json['condition'];
+    final l$discountPrice = json['discountPrice'];
+    final l$size = json['size'];
     final l$price = json['price'];
-    final l$postagePrice = json['postagePrice'];
+    final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
     final l$imagesUrl = json['imagesUrl'];
@@ -3863,18 +4784,23 @@ class Query$UserProducts$userProducts {
           ? null
           : Query$UserProducts$userProducts$subCategory.fromJson(
               (l$subCategory as Map<String, dynamic>)),
-      sizes: (l$sizes as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$UserProducts$userProducts$sizes.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
+      seller: l$seller == null
+          ? null
+          : Query$UserProducts$userProducts$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
       condition: l$condition == null
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
+      discountPrice: (l$discountPrice as String?),
+      size: l$size == null
+          ? null
+          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
       price: (l$price as String),
-      postagePrice: (l$postagePrice as String?),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -3895,13 +4821,17 @@ class Query$UserProducts$userProducts {
 
   final Query$UserProducts$userProducts$subCategory? subCategory;
 
-  final List<Query$UserProducts$userProducts$sizes?>? sizes;
+  final Query$UserProducts$userProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
+  final String? discountPrice;
+
+  final Enum$ProductsProductSizeChoices? size;
+
   final String price;
 
-  final String? postagePrice;
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
   final int views;
 
@@ -3927,16 +4857,23 @@ class Query$UserProducts$userProducts {
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
     _resultData['subCategory'] = l$subCategory?.toJson();
-    final l$sizes = sizes;
-    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
     _resultData['condition'] = l$condition == null
         ? null
         : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$size = size;
+    _resultData['size'] =
+        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
     final l$price = price;
     _resultData['price'] = l$price;
-    final l$postagePrice = postagePrice;
-    _resultData['postagePrice'] = l$postagePrice;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
     final l$views = views;
     _resultData['views'] = l$views;
     final l$likes = likes;
@@ -3959,10 +4896,12 @@ class Query$UserProducts$userProducts {
     final l$description = description;
     final l$category = category;
     final l$subCategory = subCategory;
-    final l$sizes = sizes;
+    final l$seller = seller;
     final l$condition = condition;
+    final l$discountPrice = discountPrice;
+    final l$size = size;
     final l$price = price;
-    final l$postagePrice = postagePrice;
+    final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
     final l$imagesUrl = imagesUrl;
@@ -3975,10 +4914,12 @@ class Query$UserProducts$userProducts {
       l$description,
       l$category,
       l$subCategory,
-      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
+      l$seller,
       l$condition,
+      l$discountPrice,
+      l$size,
       l$price,
-      l$postagePrice,
+      l$parcelSize,
       l$views,
       l$likes,
       Object.hashAll(l$imagesUrl.map((v) => v)),
@@ -4022,20 +4963,9 @@ class Query$UserProducts$userProducts {
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
-    final l$sizes = sizes;
-    final lOther$sizes = other.sizes;
-    if (l$sizes != null && lOther$sizes != null) {
-      if (l$sizes.length != lOther$sizes.length) {
-        return false;
-      }
-      for (int i = 0; i < l$sizes.length; i++) {
-        final l$sizes$entry = l$sizes[i];
-        final lOther$sizes$entry = lOther$sizes[i];
-        if (l$sizes$entry != lOther$sizes$entry) {
-          return false;
-        }
-      }
-    } else if (l$sizes != lOther$sizes) {
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
       return false;
     }
     final l$condition = condition;
@@ -4043,14 +4973,24 @@ class Query$UserProducts$userProducts {
     if (l$condition != lOther$condition) {
       return false;
     }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) {
       return false;
     }
-    final l$postagePrice = postagePrice;
-    final lOther$postagePrice = other.postagePrice;
-    if (l$postagePrice != lOther$postagePrice) {
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
       return false;
     }
     final l$views = views;
@@ -4118,10 +5058,12 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     String? description,
     Query$UserProducts$userProducts$category? category,
     Query$UserProducts$userProducts$subCategory? subCategory,
-    List<Query$UserProducts$userProducts$sizes?>? sizes,
+    Query$UserProducts$userProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -4131,12 +5073,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
   });
   CopyWith$Query$UserProducts$userProducts$category<TRes> get category;
   CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory;
-  TRes sizes(
-      Iterable<Query$UserProducts$userProducts$sizes?>? Function(
-              Iterable<
-                  CopyWith$Query$UserProducts$userProducts$sizes<
-                      Query$UserProducts$userProducts$sizes>?>?)
-          _fn);
+  CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller;
 }
 
 class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
@@ -4158,10 +5095,12 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? description = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
-    Object? sizes = _undefined,
+    Object? seller = _undefined,
     Object? condition = _undefined,
+    Object? discountPrice = _undefined,
+    Object? size = _undefined,
     Object? price = _undefined,
-    Object? postagePrice = _undefined,
+    Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
     Object? imagesUrl = _undefined,
@@ -4183,18 +5122,24 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         subCategory: subCategory == _undefined
             ? _instance.subCategory
             : (subCategory as Query$UserProducts$userProducts$subCategory?),
-        sizes: sizes == _undefined
-            ? _instance.sizes
-            : (sizes as List<Query$UserProducts$userProducts$sizes?>?),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$UserProducts$userProducts$seller?),
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Enum$ProductsProductSizeChoices?),
         price: price == _undefined || price == null
             ? _instance.price
             : (price as String),
-        postagePrice: postagePrice == _undefined
-            ? _instance.postagePrice
-            : (postagePrice as String?),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -4233,19 +5178,13 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
             local$subCategory, (e) => call(subCategory: e));
   }
 
-  TRes sizes(
-          Iterable<Query$UserProducts$userProducts$sizes?>? Function(
-                  Iterable<
-                      CopyWith$Query$UserProducts$userProducts$sizes<
-                          Query$UserProducts$userProducts$sizes>?>?)
-              _fn) =>
-      call(
-          sizes: _fn(_instance.sizes?.map((e) => e == null
-              ? null
-              : CopyWith$Query$UserProducts$userProducts$sizes(
-                  e,
-                  (i) => i,
-                )))?.toList());
+  CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$UserProducts$userProducts$seller.stub(_then(_instance))
+        : CopyWith$Query$UserProducts$userProducts$seller(
+            local$seller, (e) => call(seller: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
@@ -4260,10 +5199,12 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     String? description,
     Query$UserProducts$userProducts$category? category,
     Query$UserProducts$userProducts$subCategory? subCategory,
-    List<Query$UserProducts$userProducts$sizes?>? sizes,
+    Query$UserProducts$userProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -4279,7 +5220,8 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
   CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory =>
       CopyWith$Query$UserProducts$userProducts$subCategory.stub(_res);
 
-  sizes(_fn) => _res;
+  CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller =>
+      CopyWith$Query$UserProducts$userProducts$seller.stub(_res);
 }
 
 class Query$UserProducts$userProducts$category {
@@ -4568,33 +5510,28 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts$subCategory<TRes>
       _res;
 }
 
-class Query$UserProducts$userProducts$sizes {
-  Query$UserProducts$userProducts$sizes({
+class Query$UserProducts$userProducts$seller {
+  Query$UserProducts$userProducts$seller({
     this.id,
-    this.sizeValue,
-    this.sizeSystem,
-    this.$__typename = 'SizeType',
+    this.username,
+    this.$__typename = 'UserType',
   });
 
-  factory Query$UserProducts$userProducts$sizes.fromJson(
+  factory Query$UserProducts$userProducts$seller.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$sizeValue = json['sizeValue'];
-    final l$sizeSystem = json['sizeSystem'];
+    final l$username = json['username'];
     final l$$__typename = json['__typename'];
-    return Query$UserProducts$userProducts$sizes(
+    return Query$UserProducts$userProducts$seller(
       id: (l$id as int?),
-      sizeValue: (l$sizeValue as String?),
-      sizeSystem: (l$sizeSystem as String?),
+      username: (l$username as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? id;
 
-  final String? sizeValue;
-
-  final String? sizeSystem;
+  final String? username;
 
   final String $__typename;
 
@@ -4602,10 +5539,8 @@ class Query$UserProducts$userProducts$sizes {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$sizeValue = sizeValue;
-    _resultData['sizeValue'] = l$sizeValue;
-    final l$sizeSystem = sizeSystem;
-    _resultData['sizeSystem'] = l$sizeSystem;
+    final l$username = username;
+    _resultData['username'] = l$username;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4614,13 +5549,11 @@ class Query$UserProducts$userProducts$sizes {
   @override
   int get hashCode {
     final l$id = id;
-    final l$sizeValue = sizeValue;
-    final l$sizeSystem = sizeSystem;
+    final l$username = username;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$sizeValue,
-      l$sizeSystem,
+      l$username,
       l$$__typename,
     ]);
   }
@@ -4630,7 +5563,7 @@ class Query$UserProducts$userProducts$sizes {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$UserProducts$userProducts$sizes ||
+    if (other is! Query$UserProducts$userProducts$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4639,14 +5572,9 @@ class Query$UserProducts$userProducts$sizes {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$sizeValue = sizeValue;
-    final lOther$sizeValue = other.sizeValue;
-    if (l$sizeValue != lOther$sizeValue) {
-      return false;
-    }
-    final l$sizeSystem = sizeSystem;
-    final lOther$sizeSystem = other.sizeSystem;
-    if (l$sizeSystem != lOther$sizeSystem) {
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4658,76 +5586,69 @@ class Query$UserProducts$userProducts$sizes {
   }
 }
 
-extension UtilityExtension$Query$UserProducts$userProducts$sizes
-    on Query$UserProducts$userProducts$sizes {
-  CopyWith$Query$UserProducts$userProducts$sizes<
-          Query$UserProducts$userProducts$sizes>
-      get copyWith => CopyWith$Query$UserProducts$userProducts$sizes(
+extension UtilityExtension$Query$UserProducts$userProducts$seller
+    on Query$UserProducts$userProducts$seller {
+  CopyWith$Query$UserProducts$userProducts$seller<
+          Query$UserProducts$userProducts$seller>
+      get copyWith => CopyWith$Query$UserProducts$userProducts$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$UserProducts$userProducts$sizes<TRes> {
-  factory CopyWith$Query$UserProducts$userProducts$sizes(
-    Query$UserProducts$userProducts$sizes instance,
-    TRes Function(Query$UserProducts$userProducts$sizes) then,
-  ) = _CopyWithImpl$Query$UserProducts$userProducts$sizes;
+abstract class CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  factory CopyWith$Query$UserProducts$userProducts$seller(
+    Query$UserProducts$userProducts$seller instance,
+    TRes Function(Query$UserProducts$userProducts$seller) then,
+  ) = _CopyWithImpl$Query$UserProducts$userProducts$seller;
 
-  factory CopyWith$Query$UserProducts$userProducts$sizes.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserProducts$userProducts$sizes;
+  factory CopyWith$Query$UserProducts$userProducts$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProducts$userProducts$seller;
 
   TRes call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$UserProducts$userProducts$sizes<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$sizes<TRes> {
-  _CopyWithImpl$Query$UserProducts$userProducts$sizes(
+class _CopyWithImpl$Query$UserProducts$userProducts$seller<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  _CopyWithImpl$Query$UserProducts$userProducts$seller(
     this._instance,
     this._then,
   );
 
-  final Query$UserProducts$userProducts$sizes _instance;
+  final Query$UserProducts$userProducts$seller _instance;
 
-  final TRes Function(Query$UserProducts$userProducts$sizes) _then;
+  final TRes Function(Query$UserProducts$userProducts$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
-    Object? sizeValue = _undefined,
-    Object? sizeSystem = _undefined,
+    Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$UserProducts$userProducts$sizes(
+      _then(Query$UserProducts$userProducts$seller(
         id: id == _undefined ? _instance.id : (id as int?),
-        sizeValue: sizeValue == _undefined
-            ? _instance.sizeValue
-            : (sizeValue as String?),
-        sizeSystem: sizeSystem == _undefined
-            ? _instance.sizeSystem
-            : (sizeSystem as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$UserProducts$userProducts$sizes<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$sizes<TRes> {
-  _CopyWithStubImpl$Query$UserProducts$userProducts$sizes(this._res);
+class _CopyWithStubImpl$Query$UserProducts$userProducts$seller<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  _CopyWithStubImpl$Query$UserProducts$userProducts$seller(this._res);
 
   TRes _res;
 
   call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   }) =>
       _res;
@@ -5200,7 +6121,7 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'sizes'),
+            name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
             directives: [],
@@ -5213,14 +6134,7 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'sizeValue'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'sizeSystem'),
+                name: NameNode(value: 'username'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -5243,6 +6157,27 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'size'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'price'),
             alias: null,
             arguments: [],
@@ -5250,7 +6185,7 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'postagePrice'),
+            name: NameNode(value: 'parcelSize'),
             alias: null,
             arguments: [],
             directives: [],
@@ -5448,10 +6383,12 @@ class Query$AllProducts$allProducts {
     required this.description,
     this.category,
     this.subCategory,
-    this.sizes,
+    this.seller,
     this.condition,
+    this.discountPrice,
+    this.size,
     required this.price,
-    this.postagePrice,
+    this.parcelSize,
     required this.views,
     required this.likes,
     required this.imagesUrl,
@@ -5466,10 +6403,12 @@ class Query$AllProducts$allProducts {
     final l$description = json['description'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
-    final l$sizes = json['sizes'];
+    final l$seller = json['seller'];
     final l$condition = json['condition'];
+    final l$discountPrice = json['discountPrice'];
+    final l$size = json['size'];
     final l$price = json['price'];
-    final l$postagePrice = json['postagePrice'];
+    final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
     final l$imagesUrl = json['imagesUrl'];
@@ -5488,18 +6427,23 @@ class Query$AllProducts$allProducts {
           ? null
           : Query$AllProducts$allProducts$subCategory.fromJson(
               (l$subCategory as Map<String, dynamic>)),
-      sizes: (l$sizes as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$AllProducts$allProducts$sizes.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
+      seller: l$seller == null
+          ? null
+          : Query$AllProducts$allProducts$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
       condition: l$condition == null
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
+      discountPrice: (l$discountPrice as String?),
+      size: l$size == null
+          ? null
+          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
       price: (l$price as String),
-      postagePrice: (l$postagePrice as String?),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
       imagesUrl:
@@ -5520,13 +6464,17 @@ class Query$AllProducts$allProducts {
 
   final Query$AllProducts$allProducts$subCategory? subCategory;
 
-  final List<Query$AllProducts$allProducts$sizes?>? sizes;
+  final Query$AllProducts$allProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
+  final String? discountPrice;
+
+  final Enum$ProductsProductSizeChoices? size;
+
   final String price;
 
-  final String? postagePrice;
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
   final int views;
 
@@ -5552,16 +6500,23 @@ class Query$AllProducts$allProducts {
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
     _resultData['subCategory'] = l$subCategory?.toJson();
-    final l$sizes = sizes;
-    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
     _resultData['condition'] = l$condition == null
         ? null
         : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$size = size;
+    _resultData['size'] =
+        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
     final l$price = price;
     _resultData['price'] = l$price;
-    final l$postagePrice = postagePrice;
-    _resultData['postagePrice'] = l$postagePrice;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
     final l$views = views;
     _resultData['views'] = l$views;
     final l$likes = likes;
@@ -5584,10 +6539,12 @@ class Query$AllProducts$allProducts {
     final l$description = description;
     final l$category = category;
     final l$subCategory = subCategory;
-    final l$sizes = sizes;
+    final l$seller = seller;
     final l$condition = condition;
+    final l$discountPrice = discountPrice;
+    final l$size = size;
     final l$price = price;
-    final l$postagePrice = postagePrice;
+    final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
     final l$imagesUrl = imagesUrl;
@@ -5600,10 +6557,12 @@ class Query$AllProducts$allProducts {
       l$description,
       l$category,
       l$subCategory,
-      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
+      l$seller,
       l$condition,
+      l$discountPrice,
+      l$size,
       l$price,
-      l$postagePrice,
+      l$parcelSize,
       l$views,
       l$likes,
       Object.hashAll(l$imagesUrl.map((v) => v)),
@@ -5647,20 +6606,9 @@ class Query$AllProducts$allProducts {
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
-    final l$sizes = sizes;
-    final lOther$sizes = other.sizes;
-    if (l$sizes != null && lOther$sizes != null) {
-      if (l$sizes.length != lOther$sizes.length) {
-        return false;
-      }
-      for (int i = 0; i < l$sizes.length; i++) {
-        final l$sizes$entry = l$sizes[i];
-        final lOther$sizes$entry = lOther$sizes[i];
-        if (l$sizes$entry != lOther$sizes$entry) {
-          return false;
-        }
-      }
-    } else if (l$sizes != lOther$sizes) {
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
       return false;
     }
     final l$condition = condition;
@@ -5668,14 +6616,24 @@ class Query$AllProducts$allProducts {
     if (l$condition != lOther$condition) {
       return false;
     }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) {
       return false;
     }
-    final l$postagePrice = postagePrice;
-    final lOther$postagePrice = other.postagePrice;
-    if (l$postagePrice != lOther$postagePrice) {
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
       return false;
     }
     final l$views = views;
@@ -5743,10 +6701,12 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     String? description,
     Query$AllProducts$allProducts$category? category,
     Query$AllProducts$allProducts$subCategory? subCategory,
-    List<Query$AllProducts$allProducts$sizes?>? sizes,
+    Query$AllProducts$allProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -5756,12 +6716,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
   });
   CopyWith$Query$AllProducts$allProducts$category<TRes> get category;
   CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory;
-  TRes sizes(
-      Iterable<Query$AllProducts$allProducts$sizes?>? Function(
-              Iterable<
-                  CopyWith$Query$AllProducts$allProducts$sizes<
-                      Query$AllProducts$allProducts$sizes>?>?)
-          _fn);
+  CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller;
 }
 
 class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
@@ -5783,10 +6738,12 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? description = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
-    Object? sizes = _undefined,
+    Object? seller = _undefined,
     Object? condition = _undefined,
+    Object? discountPrice = _undefined,
+    Object? size = _undefined,
     Object? price = _undefined,
-    Object? postagePrice = _undefined,
+    Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
     Object? imagesUrl = _undefined,
@@ -5808,18 +6765,24 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         subCategory: subCategory == _undefined
             ? _instance.subCategory
             : (subCategory as Query$AllProducts$allProducts$subCategory?),
-        sizes: sizes == _undefined
-            ? _instance.sizes
-            : (sizes as List<Query$AllProducts$allProducts$sizes?>?),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$AllProducts$allProducts$seller?),
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Enum$ProductsProductSizeChoices?),
         price: price == _undefined || price == null
             ? _instance.price
             : (price as String),
-        postagePrice: postagePrice == _undefined
-            ? _instance.postagePrice
-            : (postagePrice as String?),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
         views: views == _undefined || views == null
             ? _instance.views
             : (views as int),
@@ -5857,19 +6820,13 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
             local$subCategory, (e) => call(subCategory: e));
   }
 
-  TRes sizes(
-          Iterable<Query$AllProducts$allProducts$sizes?>? Function(
-                  Iterable<
-                      CopyWith$Query$AllProducts$allProducts$sizes<
-                          Query$AllProducts$allProducts$sizes>?>?)
-              _fn) =>
-      call(
-          sizes: _fn(_instance.sizes?.map((e) => e == null
-              ? null
-              : CopyWith$Query$AllProducts$allProducts$sizes(
-                  e,
-                  (i) => i,
-                )))?.toList());
+  CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$AllProducts$allProducts$seller.stub(_then(_instance))
+        : CopyWith$Query$AllProducts$allProducts$seller(
+            local$seller, (e) => call(seller: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
@@ -5884,10 +6841,12 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     String? description,
     Query$AllProducts$allProducts$category? category,
     Query$AllProducts$allProducts$subCategory? subCategory,
-    List<Query$AllProducts$allProducts$sizes?>? sizes,
+    Query$AllProducts$allProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
     String? price,
-    String? postagePrice,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
     List<String>? imagesUrl,
@@ -5903,7 +6862,8 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
   CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory =>
       CopyWith$Query$AllProducts$allProducts$subCategory.stub(_res);
 
-  sizes(_fn) => _res;
+  CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller =>
+      CopyWith$Query$AllProducts$allProducts$seller.stub(_res);
 }
 
 class Query$AllProducts$allProducts$category {
@@ -6192,33 +7152,28 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts$subCategory<TRes>
       _res;
 }
 
-class Query$AllProducts$allProducts$sizes {
-  Query$AllProducts$allProducts$sizes({
+class Query$AllProducts$allProducts$seller {
+  Query$AllProducts$allProducts$seller({
     this.id,
-    this.sizeValue,
-    this.sizeSystem,
-    this.$__typename = 'SizeType',
+    this.username,
+    this.$__typename = 'UserType',
   });
 
-  factory Query$AllProducts$allProducts$sizes.fromJson(
+  factory Query$AllProducts$allProducts$seller.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$sizeValue = json['sizeValue'];
-    final l$sizeSystem = json['sizeSystem'];
+    final l$username = json['username'];
     final l$$__typename = json['__typename'];
-    return Query$AllProducts$allProducts$sizes(
+    return Query$AllProducts$allProducts$seller(
       id: (l$id as int?),
-      sizeValue: (l$sizeValue as String?),
-      sizeSystem: (l$sizeSystem as String?),
+      username: (l$username as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? id;
 
-  final String? sizeValue;
-
-  final String? sizeSystem;
+  final String? username;
 
   final String $__typename;
 
@@ -6226,10 +7181,8 @@ class Query$AllProducts$allProducts$sizes {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$sizeValue = sizeValue;
-    _resultData['sizeValue'] = l$sizeValue;
-    final l$sizeSystem = sizeSystem;
-    _resultData['sizeSystem'] = l$sizeSystem;
+    final l$username = username;
+    _resultData['username'] = l$username;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -6238,13 +7191,11 @@ class Query$AllProducts$allProducts$sizes {
   @override
   int get hashCode {
     final l$id = id;
-    final l$sizeValue = sizeValue;
-    final l$sizeSystem = sizeSystem;
+    final l$username = username;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$sizeValue,
-      l$sizeSystem,
+      l$username,
       l$$__typename,
     ]);
   }
@@ -6254,7 +7205,7 @@ class Query$AllProducts$allProducts$sizes {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$AllProducts$allProducts$sizes ||
+    if (other is! Query$AllProducts$allProducts$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -6263,14 +7214,9 @@ class Query$AllProducts$allProducts$sizes {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$sizeValue = sizeValue;
-    final lOther$sizeValue = other.sizeValue;
-    if (l$sizeValue != lOther$sizeValue) {
-      return false;
-    }
-    final l$sizeSystem = sizeSystem;
-    final lOther$sizeSystem = other.sizeSystem;
-    if (l$sizeSystem != lOther$sizeSystem) {
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -6282,76 +7228,69 @@ class Query$AllProducts$allProducts$sizes {
   }
 }
 
-extension UtilityExtension$Query$AllProducts$allProducts$sizes
-    on Query$AllProducts$allProducts$sizes {
-  CopyWith$Query$AllProducts$allProducts$sizes<
-          Query$AllProducts$allProducts$sizes>
-      get copyWith => CopyWith$Query$AllProducts$allProducts$sizes(
+extension UtilityExtension$Query$AllProducts$allProducts$seller
+    on Query$AllProducts$allProducts$seller {
+  CopyWith$Query$AllProducts$allProducts$seller<
+          Query$AllProducts$allProducts$seller>
+      get copyWith => CopyWith$Query$AllProducts$allProducts$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$AllProducts$allProducts$sizes<TRes> {
-  factory CopyWith$Query$AllProducts$allProducts$sizes(
-    Query$AllProducts$allProducts$sizes instance,
-    TRes Function(Query$AllProducts$allProducts$sizes) then,
-  ) = _CopyWithImpl$Query$AllProducts$allProducts$sizes;
+abstract class CopyWith$Query$AllProducts$allProducts$seller<TRes> {
+  factory CopyWith$Query$AllProducts$allProducts$seller(
+    Query$AllProducts$allProducts$seller instance,
+    TRes Function(Query$AllProducts$allProducts$seller) then,
+  ) = _CopyWithImpl$Query$AllProducts$allProducts$seller;
 
-  factory CopyWith$Query$AllProducts$allProducts$sizes.stub(TRes res) =
-      _CopyWithStubImpl$Query$AllProducts$allProducts$sizes;
+  factory CopyWith$Query$AllProducts$allProducts$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllProducts$allProducts$seller;
 
   TRes call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$AllProducts$allProducts$sizes<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$sizes<TRes> {
-  _CopyWithImpl$Query$AllProducts$allProducts$sizes(
+class _CopyWithImpl$Query$AllProducts$allProducts$seller<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$seller<TRes> {
+  _CopyWithImpl$Query$AllProducts$allProducts$seller(
     this._instance,
     this._then,
   );
 
-  final Query$AllProducts$allProducts$sizes _instance;
+  final Query$AllProducts$allProducts$seller _instance;
 
-  final TRes Function(Query$AllProducts$allProducts$sizes) _then;
+  final TRes Function(Query$AllProducts$allProducts$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
-    Object? sizeValue = _undefined,
-    Object? sizeSystem = _undefined,
+    Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$AllProducts$allProducts$sizes(
+      _then(Query$AllProducts$allProducts$seller(
         id: id == _undefined ? _instance.id : (id as int?),
-        sizeValue: sizeValue == _undefined
-            ? _instance.sizeValue
-            : (sizeValue as String?),
-        sizeSystem: sizeSystem == _undefined
-            ? _instance.sizeSystem
-            : (sizeSystem as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$AllProducts$allProducts$sizes<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$sizes<TRes> {
-  _CopyWithStubImpl$Query$AllProducts$allProducts$sizes(this._res);
+class _CopyWithStubImpl$Query$AllProducts$allProducts$seller<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$seller<TRes> {
+  _CopyWithStubImpl$Query$AllProducts$allProducts$seller(this._res);
 
   TRes _res;
 
   call({
     int? id,
-    String? sizeValue,
-    String? sizeSystem,
+    String? username,
     String? $__typename,
   }) =>
       _res;
@@ -7051,489 +7990,6 @@ class _CopyWithStubImpl$Query$Categories$categories$subCategory<TRes>
   call({
     int? id,
     String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Sizes {
-  Query$Sizes({
-    this.sizes,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$Sizes.fromJson(Map<String, dynamic> json) {
-    final l$sizes = json['sizes'];
-    final l$$__typename = json['__typename'];
-    return Query$Sizes(
-      sizes: (l$sizes as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$Sizes$sizes.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$Sizes$sizes?>? sizes;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$sizes = sizes;
-    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$sizes = sizes;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Sizes || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$sizes = sizes;
-    final lOther$sizes = other.sizes;
-    if (l$sizes != null && lOther$sizes != null) {
-      if (l$sizes.length != lOther$sizes.length) {
-        return false;
-      }
-      for (int i = 0; i < l$sizes.length; i++) {
-        final l$sizes$entry = l$sizes[i];
-        final lOther$sizes$entry = lOther$sizes[i];
-        if (l$sizes$entry != lOther$sizes$entry) {
-          return false;
-        }
-      }
-    } else if (l$sizes != lOther$sizes) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Sizes on Query$Sizes {
-  CopyWith$Query$Sizes<Query$Sizes> get copyWith => CopyWith$Query$Sizes(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Query$Sizes<TRes> {
-  factory CopyWith$Query$Sizes(
-    Query$Sizes instance,
-    TRes Function(Query$Sizes) then,
-  ) = _CopyWithImpl$Query$Sizes;
-
-  factory CopyWith$Query$Sizes.stub(TRes res) = _CopyWithStubImpl$Query$Sizes;
-
-  TRes call({
-    List<Query$Sizes$sizes?>? sizes,
-    String? $__typename,
-  });
-  TRes sizes(
-      Iterable<Query$Sizes$sizes?>? Function(
-              Iterable<CopyWith$Query$Sizes$sizes<Query$Sizes$sizes>?>?)
-          _fn);
-}
-
-class _CopyWithImpl$Query$Sizes<TRes> implements CopyWith$Query$Sizes<TRes> {
-  _CopyWithImpl$Query$Sizes(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Sizes _instance;
-
-  final TRes Function(Query$Sizes) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? sizes = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Sizes(
-        sizes: sizes == _undefined
-            ? _instance.sizes
-            : (sizes as List<Query$Sizes$sizes?>?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  TRes sizes(
-          Iterable<Query$Sizes$sizes?>? Function(
-                  Iterable<CopyWith$Query$Sizes$sizes<Query$Sizes$sizes>?>?)
-              _fn) =>
-      call(
-          sizes: _fn(_instance.sizes?.map((e) => e == null
-              ? null
-              : CopyWith$Query$Sizes$sizes(
-                  e,
-                  (i) => i,
-                )))?.toList());
-}
-
-class _CopyWithStubImpl$Query$Sizes<TRes>
-    implements CopyWith$Query$Sizes<TRes> {
-  _CopyWithStubImpl$Query$Sizes(this._res);
-
-  TRes _res;
-
-  call({
-    List<Query$Sizes$sizes?>? sizes,
-    String? $__typename,
-  }) =>
-      _res;
-
-  sizes(_fn) => _res;
-}
-
-const documentNodeQuerySizes = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'Sizes'),
-    variableDefinitions: [],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'sizes'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'sizeValue'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'sizeSystem'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$Sizes _parserFn$Query$Sizes(Map<String, dynamic> data) =>
-    Query$Sizes.fromJson(data);
-typedef OnQueryComplete$Query$Sizes = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$Sizes?,
-);
-
-class Options$Query$Sizes extends graphql.QueryOptions<Query$Sizes> {
-  Options$Query$Sizes({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$Sizes? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$Sizes? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$Sizes(data),
-                  ),
-          onError: onError,
-          document: documentNodeQuerySizes,
-          parserFn: _parserFn$Query$Sizes,
-        );
-
-  final OnQueryComplete$Query$Sizes? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$Sizes extends graphql.WatchQueryOptions<Query$Sizes> {
-  WatchOptions$Query$Sizes({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$Sizes? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQuerySizes,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$Sizes,
-        );
-}
-
-class FetchMoreOptions$Query$Sizes extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$Sizes({required graphql.UpdateQuery updateQuery})
-      : super(
-          updateQuery: updateQuery,
-          document: documentNodeQuerySizes,
-        );
-}
-
-extension ClientExtension$Query$Sizes on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$Sizes>> query$Sizes(
-          [Options$Query$Sizes? options]) async =>
-      await this.query(options ?? Options$Query$Sizes());
-  graphql.ObservableQuery<Query$Sizes> watchQuery$Sizes(
-          [WatchOptions$Query$Sizes? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$Sizes());
-  void writeQuery$Sizes({
-    required Query$Sizes data,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-            operation: graphql.Operation(document: documentNodeQuerySizes)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$Sizes? readQuery$Sizes({bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
-          operation: graphql.Operation(document: documentNodeQuerySizes)),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$Sizes.fromJson(result);
-  }
-}
-
-class Query$Sizes$sizes {
-  Query$Sizes$sizes({
-    required this.id,
-    required this.sizeValue,
-    required this.sizeSystem,
-    this.$__typename = 'SizesType',
-  });
-
-  factory Query$Sizes$sizes.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$sizeValue = json['sizeValue'];
-    final l$sizeSystem = json['sizeSystem'];
-    final l$$__typename = json['__typename'];
-    return Query$Sizes$sizes(
-      id: (l$id as String),
-      sizeValue: (l$sizeValue as String),
-      sizeSystem:
-          fromJson$Enum$ProductsSizeSizeSystemChoices((l$sizeSystem as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String sizeValue;
-
-  final Enum$ProductsSizeSizeSystemChoices sizeSystem;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$sizeValue = sizeValue;
-    _resultData['sizeValue'] = l$sizeValue;
-    final l$sizeSystem = sizeSystem;
-    _resultData['sizeSystem'] =
-        toJson$Enum$ProductsSizeSizeSystemChoices(l$sizeSystem);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$sizeValue = sizeValue;
-    final l$sizeSystem = sizeSystem;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$sizeValue,
-      l$sizeSystem,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Sizes$sizes || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$sizeValue = sizeValue;
-    final lOther$sizeValue = other.sizeValue;
-    if (l$sizeValue != lOther$sizeValue) {
-      return false;
-    }
-    final l$sizeSystem = sizeSystem;
-    final lOther$sizeSystem = other.sizeSystem;
-    if (l$sizeSystem != lOther$sizeSystem) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Sizes$sizes on Query$Sizes$sizes {
-  CopyWith$Query$Sizes$sizes<Query$Sizes$sizes> get copyWith =>
-      CopyWith$Query$Sizes$sizes(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Query$Sizes$sizes<TRes> {
-  factory CopyWith$Query$Sizes$sizes(
-    Query$Sizes$sizes instance,
-    TRes Function(Query$Sizes$sizes) then,
-  ) = _CopyWithImpl$Query$Sizes$sizes;
-
-  factory CopyWith$Query$Sizes$sizes.stub(TRes res) =
-      _CopyWithStubImpl$Query$Sizes$sizes;
-
-  TRes call({
-    String? id,
-    String? sizeValue,
-    Enum$ProductsSizeSizeSystemChoices? sizeSystem,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Sizes$sizes<TRes>
-    implements CopyWith$Query$Sizes$sizes<TRes> {
-  _CopyWithImpl$Query$Sizes$sizes(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Sizes$sizes _instance;
-
-  final TRes Function(Query$Sizes$sizes) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? sizeValue = _undefined,
-    Object? sizeSystem = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Sizes$sizes(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        sizeValue: sizeValue == _undefined || sizeValue == null
-            ? _instance.sizeValue
-            : (sizeValue as String),
-        sizeSystem: sizeSystem == _undefined || sizeSystem == null
-            ? _instance.sizeSystem
-            : (sizeSystem as Enum$ProductsSizeSizeSystemChoices),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Sizes$sizes<TRes>
-    implements CopyWith$Query$Sizes$sizes<TRes> {
-  _CopyWithStubImpl$Query$Sizes$sizes(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? sizeValue,
-    Enum$ProductsSizeSizeSystemChoices? sizeSystem,
     String? $__typename,
   }) =>
       _res;

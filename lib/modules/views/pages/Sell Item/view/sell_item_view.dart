@@ -203,7 +203,7 @@ class SellItemScreen extends ConsumerWidget {
               MenuCard(
                 title: 'Size',
                 rightArrow: false,
-                subtitle: state.size?.map((e) => e.sizeValue).join(', '),
+                subtitle: state.size?.name,
                 onTap: () {
                   context.router.push(const SizeSelectionRoute());
                 },
@@ -283,7 +283,7 @@ class SellItemScreen extends ConsumerWidget {
                       context.alert('Select an item category to proceed.');
                       return;
                     }
-                    if (state.size == null || (state.size?.isEmpty ?? true)) {
+                    if (state.size == null) {
                       context.alert('Select an size category to proceed.');
                       return;
                     }
@@ -302,7 +302,7 @@ class SellItemScreen extends ConsumerWidget {
                           desc: state.description,
                           price: 100.0, //double.parse(state.price!),
                           images: files,
-                          size: state.size!.map((e) => int.parse(e.id)).toList(),
+                          size: state.size!,
                           category: int.parse(state.category!.id.toString()),
                           subCategory: int.parse(state.subCategory!.id.toString()),
                         );

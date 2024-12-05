@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/size/size_model.dart';
 
 class SellItemState {
   final List<XFile> images;
@@ -15,7 +15,7 @@ class SellItemState {
   final List<String> selectedColors;
   final List<String> selectedMaterials;
   final String brand;
-  final List<SizeModel>? size;
+  final Enum$SizeEnum? size;
   final String? price;
   final String selectedCondition;
 
@@ -44,7 +44,7 @@ class SellItemState {
       List<String>? selectedColors,
       List<String>? selectedMaterials,
       String? brand,
-      List<SizeModel>? size,
+      Enum$SizeEnum? size,
       String? price,
       String? selectedCondition}) {
     return SellItemState(
@@ -130,16 +130,8 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(subCategory: subCategory);
   }
 
-  void addSize(SizeModel size) {
-    final prev = state.size ?? [];
-    state = state.copyWith(size: [
-      ...prev,
-      ...[size]
-    ]);
-  }
-
-  void removeSize(SizeModel size) {
-    state = state.copyWith(size: state.size?..removeWhere((x) => x.id == size.id));
+  void selectSize(Enum$SizeEnum size) {
+    state = state.copyWith(size: size);
   }
 
   void updatePrice(String? price) {

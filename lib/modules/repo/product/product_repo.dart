@@ -5,7 +5,6 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
-import 'package:prelura_app/modules/model/product/size/size_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
 class ProductRepo {
@@ -138,25 +137,25 @@ class ProductRepo {
     return response.parsedData!.categories!.map((x) => CategoryModel.fromJson(x!.toJson())).toList();
   }
 
-  Future<List<SizeModel>> getSize() async {
-    final response = await _client.query$Sizes(
-      Options$Query$Sizes(),
-    );
+  // Future<List<SizeModel>> getSize() async {
+  //   final response = await _client.query$Sizes(
+  //     Options$Query$Sizes(),
+  //   );
 
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        throw error;
-      }
-      log(response.exception.toString(), name: 'ProductRepo');
-      throw 'An error occured';
-    }
+  //   if (response.hasException) {
+  //     if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+  //       final error = response.exception!.graphqlErrors.first.message;
+  //       throw error;
+  //     }
+  //     log(response.exception.toString(), name: 'ProductRepo');
+  //     throw 'An error occured';
+  //   }
 
-    if (response.parsedData == null) {
-      log('Mising response', name: 'ProductRepo');
-      throw 'An error occured';
-    }
+  //   if (response.parsedData == null) {
+  //     log('Mising response', name: 'ProductRepo');
+  //     throw 'An error occured';
+  //   }
 
-    return response.parsedData!.sizes!.map((x) => SizeModel.fromJson(x!.toJson())).toList();
-  }
+  //   return response.parsedData!.sizes!.map((x) => SizeModel.fromJson(x!.toJson())).toList();
+  // }
 }

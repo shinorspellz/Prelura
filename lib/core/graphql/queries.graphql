@@ -15,6 +15,23 @@ query ViewMe {
     fullName
   }
 }
+query SearchUser($search: String!) {
+  searchUsers(search: $search) {
+    id
+    firstName
+    lastName
+    username
+    email
+    bio
+    profilePictureUrl
+    gender
+    displayName
+    dob
+    dateJoined
+    lastLogin
+    fullName
+  }
+}
 
 query GetUser($username: String!) {
   getUser(username: $username) {
@@ -47,14 +64,16 @@ query Product($id: Int!) {
       id
       name
     }
-    sizes {
+    seller {
       id
-      sizeValue
-      sizeSystem
+      username
     }
     condition
+    discountPrice
+    size
+    condition
     price
-    postagePrice
+    parcelSize
     views
     likes
     imagesUrl
@@ -86,14 +105,16 @@ query UserProducts(
       id
       name
     }
-    sizes {
+    seller {
       id
-      sizeValue
-      sizeSystem
+      username
     }
     condition
+    discountPrice
+    size
+    condition
     price
-    postagePrice
+    parcelSize
     views
     likes
     imagesUrl
@@ -114,14 +135,16 @@ query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
       id
       name
     }
-    sizes {
+    seller {
       id
-      sizeValue
-      sizeSystem
+      username
     }
     condition
+    discountPrice
+    size
+    condition
     price
-    postagePrice
+    parcelSize
     views
     likes
     imagesUrl
@@ -141,10 +164,10 @@ query Categories {
   }
 }
 
-query Sizes {
-  sizes {
-    id
-    sizeValue
-    sizeSystem
-  }
-}
+# query Sizes {
+#   sizes {
+#     id
+#     sizeValue
+#     sizeSystem
+#   }
+# }

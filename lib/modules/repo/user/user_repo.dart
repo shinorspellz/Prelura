@@ -9,7 +9,7 @@ class UserRepo {
 
   UserRepo(this._client);
 
-  Future<User> getMe() async {
+  Future<UserModel> getMe() async {
     final response = await _client.query$ViewMe(
       Options$Query$ViewMe(),
     );
@@ -28,10 +28,10 @@ class UserRepo {
       throw 'An error occured';
     }
 
-    return User.fromJson(response.parsedData!.viewMe!.toJson());
+    return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
   }
 
-  Future<User> getUser(String username) async {
+  Future<UserModel> getUser(String username) async {
     final response = await _client.query$GetUser(
       Options$Query$GetUser(
         variables: Variables$Query$GetUser(username: username),
@@ -52,6 +52,6 @@ class UserRepo {
       throw 'An error occured';
     }
 
-    return User.fromJson(response.parsedData!.getUser!.toJson());
+    return UserModel.fromJson(response.parsedData!.getUser!.toJson());
   }
 }
