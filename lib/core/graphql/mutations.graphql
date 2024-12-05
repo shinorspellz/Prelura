@@ -76,3 +76,10 @@ mutation CreateProduct(
     message
   }
 }
+
+
+mutation likeProduct($productId: Int!) {
+  likeProduct(productId: $productId) {
+    success
+  }
+}

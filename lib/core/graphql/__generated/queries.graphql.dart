@@ -6227,6 +6227,13 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'likes'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -7990,6 +7997,1281 @@ class _CopyWithStubImpl$Query$Categories$categories$subCategory<TRes>
   call({
     int? id,
     String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$likedProducts {
+  factory Variables$Query$likedProducts({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$likedProducts._({
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$likedProducts._(this._$data);
+
+  factory Variables$Query$likedProducts.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$likedProducts._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$likedProducts<Variables$Query$likedProducts>
+      get copyWith => CopyWith$Variables$Query$likedProducts(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$likedProducts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$likedProducts<TRes> {
+  factory CopyWith$Variables$Query$likedProducts(
+    Variables$Query$likedProducts instance,
+    TRes Function(Variables$Query$likedProducts) then,
+  ) = _CopyWithImpl$Variables$Query$likedProducts;
+
+  factory CopyWith$Variables$Query$likedProducts.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$likedProducts;
+
+  TRes call({
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$likedProducts<TRes>
+    implements CopyWith$Variables$Query$likedProducts<TRes> {
+  _CopyWithImpl$Variables$Query$likedProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$likedProducts _instance;
+
+  final TRes Function(Variables$Query$likedProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$likedProducts._({
+        ..._instance._$data,
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$likedProducts<TRes>
+    implements CopyWith$Variables$Query$likedProducts<TRes> {
+  _CopyWithStubImpl$Variables$Query$likedProducts(this._res);
+
+  TRes _res;
+
+  call({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$likedProducts {
+  Query$likedProducts({
+    this.likedProducts,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$likedProducts.fromJson(Map<String, dynamic> json) {
+    final l$likedProducts = json['likedProducts'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts(
+      likedProducts: (l$likedProducts as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$likedProducts$likedProducts.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$likedProducts$likedProducts?>? likedProducts;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$likedProducts = likedProducts;
+    _resultData['likedProducts'] =
+        l$likedProducts?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$likedProducts = likedProducts;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$likedProducts == null
+          ? null
+          : Object.hashAll(l$likedProducts.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$likedProducts = likedProducts;
+    final lOther$likedProducts = other.likedProducts;
+    if (l$likedProducts != null && lOther$likedProducts != null) {
+      if (l$likedProducts.length != lOther$likedProducts.length) {
+        return false;
+      }
+      for (int i = 0; i < l$likedProducts.length; i++) {
+        final l$likedProducts$entry = l$likedProducts[i];
+        final lOther$likedProducts$entry = lOther$likedProducts[i];
+        if (l$likedProducts$entry != lOther$likedProducts$entry) {
+          return false;
+        }
+      }
+    } else if (l$likedProducts != lOther$likedProducts) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts on Query$likedProducts {
+  CopyWith$Query$likedProducts<Query$likedProducts> get copyWith =>
+      CopyWith$Query$likedProducts(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$likedProducts<TRes> {
+  factory CopyWith$Query$likedProducts(
+    Query$likedProducts instance,
+    TRes Function(Query$likedProducts) then,
+  ) = _CopyWithImpl$Query$likedProducts;
+
+  factory CopyWith$Query$likedProducts.stub(TRes res) =
+      _CopyWithStubImpl$Query$likedProducts;
+
+  TRes call({
+    List<Query$likedProducts$likedProducts?>? likedProducts,
+    String? $__typename,
+  });
+  TRes likedProducts(
+      Iterable<Query$likedProducts$likedProducts?>? Function(
+              Iterable<
+                  CopyWith$Query$likedProducts$likedProducts<
+                      Query$likedProducts$likedProducts>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$likedProducts<TRes>
+    implements CopyWith$Query$likedProducts<TRes> {
+  _CopyWithImpl$Query$likedProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts _instance;
+
+  final TRes Function(Query$likedProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? likedProducts = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts(
+        likedProducts: likedProducts == _undefined
+            ? _instance.likedProducts
+            : (likedProducts as List<Query$likedProducts$likedProducts?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes likedProducts(
+          Iterable<Query$likedProducts$likedProducts?>? Function(
+                  Iterable<
+                      CopyWith$Query$likedProducts$likedProducts<
+                          Query$likedProducts$likedProducts>?>?)
+              _fn) =>
+      call(
+          likedProducts: _fn(_instance.likedProducts?.map((e) => e == null
+              ? null
+              : CopyWith$Query$likedProducts$likedProducts(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$likedProducts<TRes>
+    implements CopyWith$Query$likedProducts<TRes> {
+  _CopyWithStubImpl$Query$likedProducts(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$likedProducts$likedProducts?>? likedProducts,
+    String? $__typename,
+  }) =>
+      _res;
+
+  likedProducts(_fn) => _res;
+}
+
+const documentNodeQuerylikedProducts = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'likedProducts'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'likedProducts'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'product'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'views'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'likes'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'discountPrice'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'imagesUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updatedAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'seller'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'description'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'condition'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'price'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$likedProducts _parserFn$Query$likedProducts(Map<String, dynamic> data) =>
+    Query$likedProducts.fromJson(data);
+typedef OnQueryComplete$Query$likedProducts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$likedProducts?,
+);
+
+class Options$Query$likedProducts
+    extends graphql.QueryOptions<Query$likedProducts> {
+  Options$Query$likedProducts({
+    String? operationName,
+    Variables$Query$likedProducts? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$likedProducts? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$likedProducts? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$likedProducts(data),
+                  ),
+          onError: onError,
+          document: documentNodeQuerylikedProducts,
+          parserFn: _parserFn$Query$likedProducts,
+        );
+
+  final OnQueryComplete$Query$likedProducts? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$likedProducts
+    extends graphql.WatchQueryOptions<Query$likedProducts> {
+  WatchOptions$Query$likedProducts({
+    String? operationName,
+    Variables$Query$likedProducts? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$likedProducts? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQuerylikedProducts,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$likedProducts,
+        );
+}
+
+class FetchMoreOptions$Query$likedProducts extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$likedProducts({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$likedProducts? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQuerylikedProducts,
+        );
+}
+
+extension ClientExtension$Query$likedProducts on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$likedProducts>> query$likedProducts(
+          [Options$Query$likedProducts? options]) async =>
+      await this.query(options ?? Options$Query$likedProducts());
+  graphql.ObservableQuery<Query$likedProducts> watchQuery$likedProducts(
+          [WatchOptions$Query$likedProducts? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$likedProducts());
+  void writeQuery$likedProducts({
+    required Query$likedProducts data,
+    Variables$Query$likedProducts? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQuerylikedProducts),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$likedProducts? readQuery$likedProducts({
+    Variables$Query$likedProducts? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerylikedProducts),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$likedProducts.fromJson(result);
+  }
+}
+
+class Query$likedProducts$likedProducts {
+  Query$likedProducts$likedProducts({
+    required this.id,
+    required this.product,
+    this.$__typename = 'LikedProductType',
+  });
+
+  factory Query$likedProducts$likedProducts.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$product = json['product'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts$likedProducts(
+      id: (l$id as String),
+      product: Query$likedProducts$likedProducts$product.fromJson(
+          (l$product as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final Query$likedProducts$likedProducts$product product;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$product = product;
+    _resultData['product'] = l$product.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$product = product;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$product,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$product = product;
+    final lOther$product = other.product;
+    if (l$product != lOther$product) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts
+    on Query$likedProducts$likedProducts {
+  CopyWith$Query$likedProducts$likedProducts<Query$likedProducts$likedProducts>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts(
+    Query$likedProducts$likedProducts instance,
+    TRes Function(Query$likedProducts$likedProducts) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts;
+
+  factory CopyWith$Query$likedProducts$likedProducts.stub(TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts;
+
+  TRes call({
+    String? id,
+    Query$likedProducts$likedProducts$product? product,
+    String? $__typename,
+  });
+  CopyWith$Query$likedProducts$likedProducts$product<TRes> get product;
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? product = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts$likedProducts(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        product: product == _undefined || product == null
+            ? _instance.product
+            : (product as Query$likedProducts$likedProducts$product),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$likedProducts$likedProducts$product<TRes> get product {
+    final local$product = _instance.product;
+    return CopyWith$Query$likedProducts$likedProducts$product(
+        local$product, (e) => call(product: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    Query$likedProducts$likedProducts$product? product,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$likedProducts$likedProducts$product<TRes> get product =>
+      CopyWith$Query$likedProducts$likedProducts$product.stub(_res);
+}
+
+class Query$likedProducts$likedProducts$product {
+  Query$likedProducts$likedProducts$product({
+    required this.id,
+    required this.views,
+    required this.likes,
+    this.discountPrice,
+    required this.imagesUrl,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.name,
+    this.seller,
+    required this.description,
+    this.condition,
+    required this.price,
+    this.$__typename = 'ProductType',
+  });
+
+  factory Query$likedProducts$likedProducts$product.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$views = json['views'];
+    final l$likes = json['likes'];
+    final l$discountPrice = json['discountPrice'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$createdAt = json['createdAt'];
+    final l$updatedAt = json['updatedAt'];
+    final l$name = json['name'];
+    final l$seller = json['seller'];
+    final l$description = json['description'];
+    final l$condition = json['condition'];
+    final l$price = json['price'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts$likedProducts$product(
+      id: (l$id as String),
+      views: (l$views as int),
+      likes: (l$likes as int),
+      discountPrice: (l$discountPrice as String?),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      name: (l$name as String),
+      seller: l$seller == null
+          ? null
+          : Query$likedProducts$likedProducts$product$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      description: (l$description as String),
+      condition: l$condition == null
+          ? null
+          : fromJson$Enum$ProductsProductConditionChoices(
+              (l$condition as String)),
+      price: (l$price as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final int views;
+
+  final int likes;
+
+  final String? discountPrice;
+
+  final List<String> imagesUrl;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
+  final String name;
+
+  final Query$likedProducts$likedProducts$product$seller? seller;
+
+  final String description;
+
+  final Enum$ProductsProductConditionChoices? condition;
+
+  final String price;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$views = views;
+    _resultData['views'] = l$views;
+    final l$likes = likes;
+    _resultData['likes'] = l$likes;
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$condition = condition;
+    _resultData['condition'] = l$condition == null
+        ? null
+        : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$views = views;
+    final l$likes = likes;
+    final l$discountPrice = discountPrice;
+    final l$imagesUrl = imagesUrl;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$name = name;
+    final l$seller = seller;
+    final l$description = description;
+    final l$condition = condition;
+    final l$price = price;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$views,
+      l$likes,
+      l$discountPrice,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$createdAt,
+      l$updatedAt,
+      l$name,
+      l$seller,
+      l$description,
+      l$condition,
+      l$price,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts$product ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$views = views;
+    final lOther$views = other.views;
+    if (l$views != lOther$views) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (l$condition != lOther$condition) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts$product
+    on Query$likedProducts$likedProducts$product {
+  CopyWith$Query$likedProducts$likedProducts$product<
+          Query$likedProducts$likedProducts$product>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product(
+    Query$likedProducts$likedProducts$product instance,
+    TRes Function(Query$likedProducts$likedProducts$product) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product;
+
+  factory CopyWith$Query$likedProducts$likedProducts$product.stub(TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product;
+
+  TRes call({
+    String? id,
+    int? views,
+    int? likes,
+    String? discountPrice,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? name,
+    Query$likedProducts$likedProducts$product$seller? seller,
+    String? description,
+    Enum$ProductsProductConditionChoices? condition,
+    String? price,
+    String? $__typename,
+  });
+  CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller;
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts$product _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts$product) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? views = _undefined,
+    Object? likes = _undefined,
+    Object? discountPrice = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+    Object? name = _undefined,
+    Object? seller = _undefined,
+    Object? description = _undefined,
+    Object? condition = _undefined,
+    Object? price = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts$likedProducts$product(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        views: views == _undefined || views == null
+            ? _instance.views
+            : (views as int),
+        likes: likes == _undefined || likes == null
+            ? _instance.likes
+            : (likes as int),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$likedProducts$likedProducts$product$seller?),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        condition: condition == _undefined
+            ? _instance.condition
+            : (condition as Enum$ProductsProductConditionChoices?),
+        price: price == _undefined || price == null
+            ? _instance.price
+            : (price as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$likedProducts$likedProducts$product$seller.stub(
+            _then(_instance))
+        : CopyWith$Query$likedProducts$likedProducts$product$seller(
+            local$seller, (e) => call(seller: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    int? views,
+    int? likes,
+    String? discountPrice,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? name,
+    Query$likedProducts$likedProducts$product$seller? seller,
+    String? description,
+    Enum$ProductsProductConditionChoices? condition,
+    String? price,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller =>
+      CopyWith$Query$likedProducts$likedProducts$product$seller.stub(_res);
+}
+
+class Query$likedProducts$likedProducts$product$seller {
+  Query$likedProducts$likedProducts$product$seller({
+    this.id,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$likedProducts$likedProducts$product$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts$likedProducts$product$seller(
+      id: (l$id as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts$product$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts$product$seller
+    on Query$likedProducts$likedProducts$product$seller {
+  CopyWith$Query$likedProducts$likedProducts$product$seller<
+          Query$likedProducts$likedProducts$product$seller>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product$seller(
+    Query$likedProducts$likedProducts$product$seller instance,
+    TRes Function(Query$likedProducts$likedProducts$product$seller) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$seller;
+
+  factory CopyWith$Query$likedProducts$likedProducts$product$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller;
+
+  TRes call({
+    int? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts$product$seller<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts$product$seller _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts$product$seller) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts$likedProducts$product$seller(
+        id: id == _undefined ? _instance.id : (id as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
     String? $__typename,
   }) =>
       _res;

@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../controller/product/product_provider.dart';
+import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/card.dart';
 import '../provider/filter_provider.dart';
@@ -16,7 +20,9 @@ class LiveSearchPage extends ConsumerWidget {
     final searchResults = ref.watch(filteredResultsProvider);
     final filters = ref.watch(searchFilterProvider);
     final state = ref.watch(searchFilterProvider.notifier);
-
+    final query = ref.watch(searchQueryProvider).toLowerCase();
+    final userAsyncValue = ref.watch(searchProductProvider(query));
+    print(query);
     return Column(
       children: [
         SingleChildScrollView(
@@ -80,35 +86,40 @@ class LiveSearchPage extends ConsumerWidget {
             ],
           ),
         ),
-        Container(
-          child: searchResults.isEmpty
-              ? SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.7,
-                  child: Center(child: Text('No results found')))
-              : LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                  // Dynamically adjust grid column count or aspect ratio based on constraints
-                  final crossAxisCount = constraints.maxWidth > 600 ? 3 : 2;
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.all(8.0),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.58,
-                    ),
-                    itemCount: searchResults.length,
-                    itemBuilder: (context, index) {
-                      final item = searchResults[index];
-                      return DisplayCard(
-                        itemData: searchResults[index],
-                      );
-                    },
-                  );
-                }),
-        ),
+        userAsyncValue.when(
+            data: (data) => Container(
+                  child: data.isEmpty
+                      ? SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: Center(child: Text('No results found')))
+                      : LayoutBuilder(builder:
+                          (BuildContext context, BoxConstraints constraints) {
+                          // Dynamically adjust grid column count or aspect ratio based on constraints
+                          final crossAxisCount =
+                              constraints.maxWidth > 600 ? 3 : 2;
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.all(8.0),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.58,
+                            ),
+                            itemCount: data.length,
+                            itemBuilder: (context, index) {
+                              final item = data[index];
+                              return ProductCard(
+                                product: data[index],
+                              );
+                            },
+                          );
+                        }),
+                ),
+            loading: () => Center(child: CircularProgressIndicator()),
+            error: (error, stack) => Center(child: Text('Error: $error'))),
       ],
     );
   }

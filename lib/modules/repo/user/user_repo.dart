@@ -54,4 +54,44 @@ class UserRepo {
 
     return UserModel.fromJson(response.parsedData!.getUser!.toJson());
   }
+
+  Future<List<UserModel>> searchUser(String query) async {
+    final response = await _client.query$SearchUser(
+      Options$Query$SearchUser(
+        variables: Variables$Query$SearchUser(search: query),
+      ),
+    );
+
+    // Handle GraphQL exceptions
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw Exception(error); // Wrap the error in an Exception
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw Exception('An error occurred while performing the search.');
+    }
+
+    // Handle missing parsed data
+    if (response.parsedData == null ||
+        response.parsedData!.searchUsers == null) {
+      log('Missing response data', name: 'UserRepo');
+      throw Exception('No users found.');
+    }
+
+    try {
+      // Assuming `searchUsers` is a list in the GraphQL response
+      final usersJsonList = response.parsedData!.searchUsers!;
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
+    } catch (e, stackTrace) {
+      log(
+        'Error parsing user data: $e',
+        name: 'UserRepo',
+        stackTrace: stackTrace,
+      );
+      throw Exception('Failed to parse user data.');
+    }
+  }
 }

@@ -8,3 +8,9 @@ final userProvider = FutureProvider((ref) async {
 
   return result;
 });
+
+final searchUserProvider = FutureProvider.family((ref, String query) async {
+  final repo = ref.watch(userRepo);
+  final result = await repo.searchUser(query);
+  return result;
+});

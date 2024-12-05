@@ -28,6 +28,7 @@ dependencies:
   contentsize_tabbarview: ^0.0.2
   freezed_annotation:
   json_annotation:
+  pull_to_refresh: ^2.0.0
 
   graphql:
   rxdart:
