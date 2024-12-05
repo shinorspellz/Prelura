@@ -31,8 +31,7 @@ mixin _$Product {
       throw _privateConstructorUsedError;
   Enum$ProductsProductParcelSizeChoices? get parcelSize =>
       throw _privateConstructorUsedError;
-  Enum$ProductsProductConditionChoices? get condition =>
-      throw _privateConstructorUsedError;
+  ConditionsEnum? get condition => throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
@@ -66,7 +65,7 @@ abstract class $ProductCopyWith<$Res> {
       String? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
-      Enum$ProductsProductConditionChoices? condition,
+      ConditionsEnum? condition,
       String price,
       double? postagePrice,
       int views,
@@ -153,7 +152,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsProductConditionChoices?,
+              as ConditionsEnum?,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -241,7 +240,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
-      Enum$ProductsProductConditionChoices? condition,
+      ConditionsEnum? condition,
       String price,
       double? postagePrice,
       int views,
@@ -329,7 +328,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsProductConditionChoices?,
+              as ConditionsEnum?,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -407,7 +406,7 @@ class _$ProductImpl implements _Product {
   @override
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
   @override
-  final Enum$ProductsProductConditionChoices? condition;
+  final ConditionsEnum? condition;
   @override
   final String price;
   @override
@@ -518,7 +517,7 @@ abstract class _Product implements Product {
       final String? discountPrice,
       final Enum$ProductsProductSizeChoices? size,
       final Enum$ProductsProductParcelSizeChoices? parcelSize,
-      final Enum$ProductsProductConditionChoices? condition,
+      final ConditionsEnum? condition,
       required final String price,
       final double? postagePrice,
       required final int views,
@@ -548,7 +547,7 @@ abstract class _Product implements Product {
   @override
   Enum$ProductsProductParcelSizeChoices? get parcelSize;
   @override
-  Enum$ProductsProductConditionChoices? get condition;
+  ConditionsEnum? get condition;
   @override
   String get price;
   @override

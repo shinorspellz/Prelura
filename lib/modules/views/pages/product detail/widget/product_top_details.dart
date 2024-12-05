@@ -157,7 +157,7 @@ class ProductTopDetails extends ConsumerWidget {
                           context.router.push(const ProfileDetailsRoute());
                         },
                         child: Text(
-                          "Lennon2999",
+                          product.seller.username,
                           style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),

@@ -13,7 +13,7 @@ class ParcelScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parcelSizes = ref.watch(parcelProvider.notifier).parcelSizes;
-    final selectedParcel = ref.watch(parcelProvider);
+    final selectedParcel = ref.watch(sellItemProvider).parcel;
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -31,13 +31,13 @@ class ParcelScreen extends ConsumerWidget {
             height: 24,
           ),
           ListTile(
-            title: Text(parcelSizes[0]),
+            title: Text(parcelSizes[0].name),
             subtitle: const Text("Choose this for light T-Shirts and small beauty items"),
             trailing: Radio(
                 value: parcelSizes[0],
                 groupValue: selectedParcel,
                 onChanged: (value) {
-                  ref.read(parcelProvider.notifier).selectParcel(parcelSizes[0]);
+                  ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[0]);
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
                   context.router.popForced();
                 }),
@@ -46,13 +46,13 @@ class ParcelScreen extends ConsumerWidget {
             thickness: 1,
           ),
           ListTile(
-            title: Text(parcelSizes[1]),
+            title: Text(parcelSizes[1].name),
             subtitle: const Text("Dresses, handbags and ballet flats will fit into the parcel"),
             trailing: Radio(
                 value: parcelSizes[1],
                 groupValue: selectedParcel,
                 onChanged: (value) {
-                  ref.read(parcelProvider.notifier).selectParcel(parcelSizes[1]);
+                  ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[1]);
                   // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
                   context.router.popForced();
                 }),
@@ -74,7 +74,7 @@ class ParcelScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 2,
                 ),
-                Text(parcelSizes[2]),
+                Text(parcelSizes[2].name),
               ],
             ),
             subtitle: const Text("Choose this for light T-Shirts and small beauty items"),

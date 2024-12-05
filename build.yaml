@@ -7,6 +7,12 @@ targets:
           outputDirectory: __generated
           clients:
             - graphql
+          enums:
+            ConditionEnum:
+              type: ConditionsEnum
+              fromJsonFunctionName: ConditionsEnum.conditionByApiValue
+              toJsonFunctionName: ConditionsEnum.conditionToApiValue
+              import: package:prelura_app/modules/model/product/product_model.dart
           scalars:
             ExpectedErrorType:
               type: Map<String, dynamic>

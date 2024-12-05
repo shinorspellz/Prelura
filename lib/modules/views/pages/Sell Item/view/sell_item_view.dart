@@ -218,7 +218,7 @@ class SellItemScreen extends ConsumerWidget {
               MenuCard(
                 title: 'Condtion',
                 rightArrow: false,
-                subtitle: state.selectedCondition,
+                subtitle: state.selectedCondition?.simpleName,
                 onTap: () {
                   context.router.push(const ConditionRoute());
                 },
@@ -244,7 +244,7 @@ class SellItemScreen extends ConsumerWidget {
               ),
               MenuCard(
                 title: 'Parcel Size',
-                subtitle: state.parcel,
+                subtitle: state.parcel?.name,
                 rightArrow: false,
                 onTap: () {
                   context.router.push(const ParcelRoute());
@@ -283,12 +283,24 @@ class SellItemScreen extends ConsumerWidget {
                       context.alert('Select an item category to proceed.');
                       return;
                     }
+                    if (state.subCategory == null) {
+                      context.alert('Select an item sub category to proceed.');
+                      return;
+                    }
                     if (state.size == null) {
                       context.alert('Select an size category to proceed.');
                       return;
                     }
                     if (state.price == null) {
                       context.alert('Price is required for product.');
+                      return;
+                    }
+                    if (state.selectedCondition == null) {
+                      context.alert('Condition is required for product.');
+                      return;
+                    }
+                    if (state.parcel == null) {
+                      context.alert('Parcel size is required for product.');
                       return;
                     }
 
@@ -300,7 +312,9 @@ class SellItemScreen extends ConsumerWidget {
                     await ref.read(productProvider.notifier).createProduct(
                           title: state.title,
                           desc: state.description,
-                          price: 100.0, //double.parse(state.price!),
+                          price: double.parse(state.price!),
+                          condition: state.selectedCondition!,
+                          parcelSize: state.parcel,
                           images: files,
                           size: state.size!,
                           category: int.parse(state.category!.id.toString()),

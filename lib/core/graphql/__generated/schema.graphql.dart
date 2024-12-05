@@ -319,49 +319,6 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
   }
 }
 
-enum Enum$ConditionEnum {
-  NEW_WITH_TAGS,
-  LIKE_NEW,
-  USED,
-  HEAVILY_USED,
-  $unknown;
-
-  factory Enum$ConditionEnum.fromJson(String value) =>
-      fromJson$Enum$ConditionEnum(value);
-
-  String toJson() => toJson$Enum$ConditionEnum(this);
-}
-
-String toJson$Enum$ConditionEnum(Enum$ConditionEnum e) {
-  switch (e) {
-    case Enum$ConditionEnum.NEW_WITH_TAGS:
-      return r'NEW_WITH_TAGS';
-    case Enum$ConditionEnum.LIKE_NEW:
-      return r'LIKE_NEW';
-    case Enum$ConditionEnum.USED:
-      return r'USED';
-    case Enum$ConditionEnum.HEAVILY_USED:
-      return r'HEAVILY_USED';
-    case Enum$ConditionEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ConditionEnum fromJson$Enum$ConditionEnum(String value) {
-  switch (value) {
-    case r'NEW_WITH_TAGS':
-      return Enum$ConditionEnum.NEW_WITH_TAGS;
-    case r'LIKE_NEW':
-      return Enum$ConditionEnum.LIKE_NEW;
-    case r'USED':
-      return Enum$ConditionEnum.USED;
-    case r'HEAVILY_USED':
-      return Enum$ConditionEnum.HEAVILY_USED;
-    default:
-      return Enum$ConditionEnum.$unknown;
-  }
-}
-
 enum Enum$ParcelSizeEnum {
   SMALL,
   MEDIUM,

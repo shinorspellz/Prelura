@@ -58,7 +58,7 @@ class _ProductProvider extends AsyncNotifier<void> {
       required double price,
       required List<File> images,
       required Enum$SizeEnum size,
-      Enum$ConditionEnum? condition,
+      ConditionsEnum? condition,
       int? category,
       int? subCategory,
       Enum$ParcelSizeEnum? parcelSize,
@@ -67,6 +67,8 @@ class _ProductProvider extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       final files = await _uploadMedia(images);
+
+      log('${files.map((e) => e.url)}');
 
       await _productRepo.createProduct(
         Variables$Mutation$CreateProduct(
@@ -77,7 +79,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           imageUrl: files,
           price: price,
           size: size,
-          title: title,
+          name: title,
           parcelSize: parcelSize,
           discount: discount,
         ),

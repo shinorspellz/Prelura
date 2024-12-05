@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:sizer/sizer.dart';
 
@@ -70,11 +71,12 @@ class ProductDescription extends ConsumerWidget {
             thickness: 1,
           ),
           if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
+          if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
 
           if (product.size != null) _buildInfoRow("Size", product.size!.name, context),
-          _buildInfoRow("Condition", dummy.condition, context),
-          _buildInfoRow("Views", "${dummy.views}", context),
-          _buildInfoRow("Uploaded", dummy.uploadTime, context),
+          if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
+          _buildInfoRow("Views", product.views.toString(), context),
+          _buildInfoRow("Uploaded", DateFormat.yMMMMEEEEd().format(product.createdAt), context),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
