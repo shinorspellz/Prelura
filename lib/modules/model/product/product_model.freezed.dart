@@ -25,7 +25,12 @@ mixin _$Product {
   String get description => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
   CategoryModel? get subCategory => throw _privateConstructorUsedError;
-  List<SizeModel>? get sizes => throw _privateConstructorUsedError;
+  UserModel get seller => throw _privateConstructorUsedError;
+  String? get discountPrice => throw _privateConstructorUsedError;
+  Enum$ProductsProductSizeChoices? get size =>
+      throw _privateConstructorUsedError;
+  Enum$ProductsProductParcelSizeChoices? get parcelSize =>
+      throw _privateConstructorUsedError;
   Enum$ProductsProductConditionChoices? get condition =>
       throw _privateConstructorUsedError;
   String get price => throw _privateConstructorUsedError;
@@ -57,7 +62,10 @@ abstract class $ProductCopyWith<$Res> {
       String description,
       CategoryModel? category,
       CategoryModel? subCategory,
-      List<SizeModel>? sizes,
+      UserModel seller,
+      String? discountPrice,
+      Enum$ProductsProductSizeChoices? size,
+      Enum$ProductsProductParcelSizeChoices? parcelSize,
       Enum$ProductsProductConditionChoices? condition,
       String price,
       double? postagePrice,
@@ -69,6 +77,7 @@ abstract class $ProductCopyWith<$Res> {
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
+  $UserModelCopyWith<$Res> get seller;
 }
 
 /// @nodoc
@@ -91,7 +100,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? description = null,
     Object? category = freezed,
     Object? subCategory = freezed,
-    Object? sizes = freezed,
+    Object? seller = null,
+    Object? discountPrice = freezed,
+    Object? size = freezed,
+    Object? parcelSize = freezed,
     Object? condition = freezed,
     Object? price = null,
     Object? postagePrice = freezed,
@@ -122,10 +134,22 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.subCategory
           : subCategory // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      sizes: freezed == sizes
-          ? _value.sizes
-          : sizes // ignore: cast_nullable_to_non_nullable
-              as List<SizeModel>?,
+      seller: null == seller
+          ? _value.seller
+          : seller // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      discountPrice: freezed == discountPrice
+          ? _value.discountPrice
+          : discountPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as Enum$ProductsProductSizeChoices?,
+      parcelSize: freezed == parcelSize
+          ? _value.parcelSize
+          : parcelSize // ignore: cast_nullable_to_non_nullable
+              as Enum$ProductsProductParcelSizeChoices?,
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -188,6 +212,16 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       return _then(_value.copyWith(subCategory: value) as $Val);
     });
   }
+
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get seller {
+    return $UserModelCopyWith<$Res>(_value.seller, (value) {
+      return _then(_value.copyWith(seller: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -203,7 +237,10 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String description,
       CategoryModel? category,
       CategoryModel? subCategory,
-      List<SizeModel>? sizes,
+      UserModel seller,
+      String? discountPrice,
+      Enum$ProductsProductSizeChoices? size,
+      Enum$ProductsProductParcelSizeChoices? parcelSize,
       Enum$ProductsProductConditionChoices? condition,
       String price,
       double? postagePrice,
@@ -217,6 +254,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   $CategoryModelCopyWith<$Res>? get category;
   @override
   $CategoryModelCopyWith<$Res>? get subCategory;
+  @override
+  $UserModelCopyWith<$Res> get seller;
 }
 
 /// @nodoc
@@ -237,7 +276,10 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? description = null,
     Object? category = freezed,
     Object? subCategory = freezed,
-    Object? sizes = freezed,
+    Object? seller = null,
+    Object? discountPrice = freezed,
+    Object? size = freezed,
+    Object? parcelSize = freezed,
     Object? condition = freezed,
     Object? price = null,
     Object? postagePrice = freezed,
@@ -268,10 +310,22 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.subCategory
           : subCategory // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      sizes: freezed == sizes
-          ? _value._sizes
-          : sizes // ignore: cast_nullable_to_non_nullable
-              as List<SizeModel>?,
+      seller: null == seller
+          ? _value.seller
+          : seller // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      discountPrice: freezed == discountPrice
+          ? _value.discountPrice
+          : discountPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      size: freezed == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as Enum$ProductsProductSizeChoices?,
+      parcelSize: freezed == parcelSize
+          ? _value.parcelSize
+          : parcelSize // ignore: cast_nullable_to_non_nullable
+              as Enum$ProductsProductParcelSizeChoices?,
       condition: freezed == condition
           ? _value.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -317,7 +371,10 @@ class _$ProductImpl implements _Product {
       required this.description,
       this.category,
       this.subCategory,
-      final List<SizeModel>? sizes,
+      required this.seller,
+      this.discountPrice,
+      this.size,
+      this.parcelSize,
       this.condition,
       required this.price,
       this.postagePrice,
@@ -326,8 +383,7 @@ class _$ProductImpl implements _Product {
       @BannerConverter() required final List<ProductBanners> imagesUrl,
       required this.createdAt,
       required this.updatedAt})
-      : _sizes = sizes,
-        _imagesUrl = imagesUrl;
+      : _imagesUrl = imagesUrl;
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -342,16 +398,14 @@ class _$ProductImpl implements _Product {
   final CategoryModel? category;
   @override
   final CategoryModel? subCategory;
-  final List<SizeModel>? _sizes;
   @override
-  List<SizeModel>? get sizes {
-    final value = _sizes;
-    if (value == null) return null;
-    if (_sizes is EqualUnmodifiableListView) return _sizes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final UserModel seller;
+  @override
+  final String? discountPrice;
+  @override
+  final Enum$ProductsProductSizeChoices? size;
+  @override
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
   @override
   final Enum$ProductsProductConditionChoices? condition;
   @override
@@ -378,7 +432,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, sizes: $sizes, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -394,7 +448,12 @@ class _$ProductImpl implements _Product {
                 other.category == category) &&
             (identical(other.subCategory, subCategory) ||
                 other.subCategory == subCategory) &&
-            const DeepCollectionEquality().equals(other._sizes, _sizes) &&
+            (identical(other.seller, seller) || other.seller == seller) &&
+            (identical(other.discountPrice, discountPrice) ||
+                other.discountPrice == discountPrice) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.parcelSize, parcelSize) ||
+                other.parcelSize == parcelSize) &&
             (identical(other.condition, condition) ||
                 other.condition == condition) &&
             (identical(other.price, price) || other.price == price) &&
@@ -419,7 +478,10 @@ class _$ProductImpl implements _Product {
       description,
       category,
       subCategory,
-      const DeepCollectionEquality().hash(_sizes),
+      seller,
+      discountPrice,
+      size,
+      parcelSize,
       condition,
       price,
       postagePrice,
@@ -452,7 +514,10 @@ abstract class _Product implements Product {
       required final String description,
       final CategoryModel? category,
       final CategoryModel? subCategory,
-      final List<SizeModel>? sizes,
+      required final UserModel seller,
+      final String? discountPrice,
+      final Enum$ProductsProductSizeChoices? size,
+      final Enum$ProductsProductParcelSizeChoices? parcelSize,
       final Enum$ProductsProductConditionChoices? condition,
       required final String price,
       final double? postagePrice,
@@ -475,7 +540,13 @@ abstract class _Product implements Product {
   @override
   CategoryModel? get subCategory;
   @override
-  List<SizeModel>? get sizes;
+  UserModel get seller;
+  @override
+  String? get discountPrice;
+  @override
+  Enum$ProductsProductSizeChoices? get size;
+  @override
+  Enum$ProductsProductParcelSizeChoices? get parcelSize;
   @override
   Enum$ProductsProductConditionChoices? get condition;
   @override

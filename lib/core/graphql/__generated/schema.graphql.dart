@@ -125,6 +125,161 @@ class _CopyWithStubImpl$Input$ImagesInputType<TRes>
       _res;
 }
 
+class Input$PhoneInputType {
+  factory Input$PhoneInputType({
+    required String countryCode,
+    required String number,
+    String? completed,
+  }) =>
+      Input$PhoneInputType._({
+        r'countryCode': countryCode,
+        r'number': number,
+        if (completed != null) r'completed': completed,
+      });
+
+  Input$PhoneInputType._(this._$data);
+
+  factory Input$PhoneInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$countryCode = data['countryCode'];
+    result$data['countryCode'] = (l$countryCode as String);
+    final l$number = data['number'];
+    result$data['number'] = (l$number as String);
+    if (data.containsKey('completed')) {
+      final l$completed = data['completed'];
+      result$data['completed'] = (l$completed as String?);
+    }
+    return Input$PhoneInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get countryCode => (_$data['countryCode'] as String);
+
+  String get number => (_$data['number'] as String);
+
+  String? get completed => (_$data['completed'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$countryCode = countryCode;
+    result$data['countryCode'] = l$countryCode;
+    final l$number = number;
+    result$data['number'] = l$number;
+    if (_$data.containsKey('completed')) {
+      final l$completed = completed;
+      result$data['completed'] = l$completed;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$PhoneInputType<Input$PhoneInputType> get copyWith =>
+      CopyWith$Input$PhoneInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$PhoneInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$completed = completed;
+    final lOther$completed = other.completed;
+    if (_$data.containsKey('completed') !=
+        other._$data.containsKey('completed')) {
+      return false;
+    }
+    if (l$completed != lOther$completed) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$countryCode = countryCode;
+    final l$number = number;
+    final l$completed = completed;
+    return Object.hashAll([
+      l$countryCode,
+      l$number,
+      _$data.containsKey('completed') ? l$completed : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$PhoneInputType<TRes> {
+  factory CopyWith$Input$PhoneInputType(
+    Input$PhoneInputType instance,
+    TRes Function(Input$PhoneInputType) then,
+  ) = _CopyWithImpl$Input$PhoneInputType;
+
+  factory CopyWith$Input$PhoneInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$PhoneInputType;
+
+  TRes call({
+    String? countryCode,
+    String? number,
+    String? completed,
+  });
+}
+
+class _CopyWithImpl$Input$PhoneInputType<TRes>
+    implements CopyWith$Input$PhoneInputType<TRes> {
+  _CopyWithImpl$Input$PhoneInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$PhoneInputType _instance;
+
+  final TRes Function(Input$PhoneInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? countryCode = _undefined,
+    Object? number = _undefined,
+    Object? completed = _undefined,
+  }) =>
+      _then(Input$PhoneInputType._({
+        ..._instance._$data,
+        if (countryCode != _undefined && countryCode != null)
+          'countryCode': (countryCode as String),
+        if (number != _undefined && number != null)
+          'number': (number as String),
+        if (completed != _undefined) 'completed': (completed as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$PhoneInputType<TRes>
+    implements CopyWith$Input$PhoneInputType<TRes> {
+  _CopyWithStubImpl$Input$PhoneInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? countryCode,
+    String? number,
+    String? completed,
+  }) =>
+      _res;
+}
+
 enum Enum$AccountsUserGenderChoices {
   MALE,
   FEMALE,
@@ -161,6 +316,87 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
       return Enum$AccountsUserGenderChoices.ANY;
     default:
       return Enum$AccountsUserGenderChoices.$unknown;
+  }
+}
+
+enum Enum$ConditionEnum {
+  NEW_WITH_TAGS,
+  LIKE_NEW,
+  USED,
+  HEAVILY_USED,
+  $unknown;
+
+  factory Enum$ConditionEnum.fromJson(String value) =>
+      fromJson$Enum$ConditionEnum(value);
+
+  String toJson() => toJson$Enum$ConditionEnum(this);
+}
+
+String toJson$Enum$ConditionEnum(Enum$ConditionEnum e) {
+  switch (e) {
+    case Enum$ConditionEnum.NEW_WITH_TAGS:
+      return r'NEW_WITH_TAGS';
+    case Enum$ConditionEnum.LIKE_NEW:
+      return r'LIKE_NEW';
+    case Enum$ConditionEnum.USED:
+      return r'USED';
+    case Enum$ConditionEnum.HEAVILY_USED:
+      return r'HEAVILY_USED';
+    case Enum$ConditionEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ConditionEnum fromJson$Enum$ConditionEnum(String value) {
+  switch (value) {
+    case r'NEW_WITH_TAGS':
+      return Enum$ConditionEnum.NEW_WITH_TAGS;
+    case r'LIKE_NEW':
+      return Enum$ConditionEnum.LIKE_NEW;
+    case r'USED':
+      return Enum$ConditionEnum.USED;
+    case r'HEAVILY_USED':
+      return Enum$ConditionEnum.HEAVILY_USED;
+    default:
+      return Enum$ConditionEnum.$unknown;
+  }
+}
+
+enum Enum$ParcelSizeEnum {
+  SMALL,
+  MEDIUM,
+  LARGE,
+  $unknown;
+
+  factory Enum$ParcelSizeEnum.fromJson(String value) =>
+      fromJson$Enum$ParcelSizeEnum(value);
+
+  String toJson() => toJson$Enum$ParcelSizeEnum(this);
+}
+
+String toJson$Enum$ParcelSizeEnum(Enum$ParcelSizeEnum e) {
+  switch (e) {
+    case Enum$ParcelSizeEnum.SMALL:
+      return r'SMALL';
+    case Enum$ParcelSizeEnum.MEDIUM:
+      return r'MEDIUM';
+    case Enum$ParcelSizeEnum.LARGE:
+      return r'LARGE';
+    case Enum$ParcelSizeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ParcelSizeEnum fromJson$Enum$ParcelSizeEnum(String value) {
+  switch (value) {
+    case r'SMALL':
+      return Enum$ParcelSizeEnum.SMALL;
+    case r'MEDIUM':
+      return Enum$ParcelSizeEnum.MEDIUM;
+    case r'LARGE':
+      return Enum$ParcelSizeEnum.LARGE;
+    default:
+      return Enum$ParcelSizeEnum.$unknown;
   }
 }
 
@@ -209,48 +445,360 @@ Enum$ProductsProductConditionChoices
   }
 }
 
-enum Enum$ProductsSizeSizeSystemChoices {
-  US,
-  EU,
-  UK,
-  GENERIC,
+enum Enum$ProductsProductParcelSizeChoices {
+  SMALL,
+  MEDIUM,
+  LARGE,
   $unknown;
 
-  factory Enum$ProductsSizeSizeSystemChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsSizeSizeSystemChoices(value);
+  factory Enum$ProductsProductParcelSizeChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductParcelSizeChoices(value);
 
-  String toJson() => toJson$Enum$ProductsSizeSizeSystemChoices(this);
+  String toJson() => toJson$Enum$ProductsProductParcelSizeChoices(this);
 }
 
-String toJson$Enum$ProductsSizeSizeSystemChoices(
-    Enum$ProductsSizeSizeSystemChoices e) {
+String toJson$Enum$ProductsProductParcelSizeChoices(
+    Enum$ProductsProductParcelSizeChoices e) {
   switch (e) {
-    case Enum$ProductsSizeSizeSystemChoices.US:
-      return r'US';
-    case Enum$ProductsSizeSizeSystemChoices.EU:
-      return r'EU';
-    case Enum$ProductsSizeSizeSystemChoices.UK:
-      return r'UK';
-    case Enum$ProductsSizeSizeSystemChoices.GENERIC:
-      return r'GENERIC';
-    case Enum$ProductsSizeSizeSystemChoices.$unknown:
+    case Enum$ProductsProductParcelSizeChoices.SMALL:
+      return r'SMALL';
+    case Enum$ProductsProductParcelSizeChoices.MEDIUM:
+      return r'MEDIUM';
+    case Enum$ProductsProductParcelSizeChoices.LARGE:
+      return r'LARGE';
+    case Enum$ProductsProductParcelSizeChoices.$unknown:
       return r'$unknown';
   }
 }
 
-Enum$ProductsSizeSizeSystemChoices fromJson$Enum$ProductsSizeSizeSystemChoices(
+Enum$ProductsProductParcelSizeChoices
+    fromJson$Enum$ProductsProductParcelSizeChoices(String value) {
+  switch (value) {
+    case r'SMALL':
+      return Enum$ProductsProductParcelSizeChoices.SMALL;
+    case r'MEDIUM':
+      return Enum$ProductsProductParcelSizeChoices.MEDIUM;
+    case r'LARGE':
+      return Enum$ProductsProductParcelSizeChoices.LARGE;
+    default:
+      return Enum$ProductsProductParcelSizeChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsProductSizeChoices {
+  XS,
+  S,
+  M,
+  L,
+  XL,
+  XXL,
+  UK4,
+  UK6,
+  UK8,
+  UK10,
+  UK12,
+  UK14,
+  UK16,
+  US4,
+  US6,
+  US8,
+  US10,
+  US12,
+  US14,
+  US16,
+  EU34,
+  EU36,
+  EU38,
+  EU40,
+  EU42,
+  EU44,
+  EU46,
+  $unknown;
+
+  factory Enum$ProductsProductSizeChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductSizeChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductSizeChoices(this);
+}
+
+String toJson$Enum$ProductsProductSizeChoices(
+    Enum$ProductsProductSizeChoices e) {
+  switch (e) {
+    case Enum$ProductsProductSizeChoices.XS:
+      return r'XS';
+    case Enum$ProductsProductSizeChoices.S:
+      return r'S';
+    case Enum$ProductsProductSizeChoices.M:
+      return r'M';
+    case Enum$ProductsProductSizeChoices.L:
+      return r'L';
+    case Enum$ProductsProductSizeChoices.XL:
+      return r'XL';
+    case Enum$ProductsProductSizeChoices.XXL:
+      return r'XXL';
+    case Enum$ProductsProductSizeChoices.UK4:
+      return r'UK4';
+    case Enum$ProductsProductSizeChoices.UK6:
+      return r'UK6';
+    case Enum$ProductsProductSizeChoices.UK8:
+      return r'UK8';
+    case Enum$ProductsProductSizeChoices.UK10:
+      return r'UK10';
+    case Enum$ProductsProductSizeChoices.UK12:
+      return r'UK12';
+    case Enum$ProductsProductSizeChoices.UK14:
+      return r'UK14';
+    case Enum$ProductsProductSizeChoices.UK16:
+      return r'UK16';
+    case Enum$ProductsProductSizeChoices.US4:
+      return r'US4';
+    case Enum$ProductsProductSizeChoices.US6:
+      return r'US6';
+    case Enum$ProductsProductSizeChoices.US8:
+      return r'US8';
+    case Enum$ProductsProductSizeChoices.US10:
+      return r'US10';
+    case Enum$ProductsProductSizeChoices.US12:
+      return r'US12';
+    case Enum$ProductsProductSizeChoices.US14:
+      return r'US14';
+    case Enum$ProductsProductSizeChoices.US16:
+      return r'US16';
+    case Enum$ProductsProductSizeChoices.EU34:
+      return r'EU34';
+    case Enum$ProductsProductSizeChoices.EU36:
+      return r'EU36';
+    case Enum$ProductsProductSizeChoices.EU38:
+      return r'EU38';
+    case Enum$ProductsProductSizeChoices.EU40:
+      return r'EU40';
+    case Enum$ProductsProductSizeChoices.EU42:
+      return r'EU42';
+    case Enum$ProductsProductSizeChoices.EU44:
+      return r'EU44';
+    case Enum$ProductsProductSizeChoices.EU46:
+      return r'EU46';
+    case Enum$ProductsProductSizeChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
     String value) {
   switch (value) {
-    case r'US':
-      return Enum$ProductsSizeSizeSystemChoices.US;
-    case r'EU':
-      return Enum$ProductsSizeSizeSystemChoices.EU;
-    case r'UK':
-      return Enum$ProductsSizeSizeSystemChoices.UK;
-    case r'GENERIC':
-      return Enum$ProductsSizeSizeSystemChoices.GENERIC;
+    case r'XS':
+      return Enum$ProductsProductSizeChoices.XS;
+    case r'S':
+      return Enum$ProductsProductSizeChoices.S;
+    case r'M':
+      return Enum$ProductsProductSizeChoices.M;
+    case r'L':
+      return Enum$ProductsProductSizeChoices.L;
+    case r'XL':
+      return Enum$ProductsProductSizeChoices.XL;
+    case r'XXL':
+      return Enum$ProductsProductSizeChoices.XXL;
+    case r'UK4':
+      return Enum$ProductsProductSizeChoices.UK4;
+    case r'UK6':
+      return Enum$ProductsProductSizeChoices.UK6;
+    case r'UK8':
+      return Enum$ProductsProductSizeChoices.UK8;
+    case r'UK10':
+      return Enum$ProductsProductSizeChoices.UK10;
+    case r'UK12':
+      return Enum$ProductsProductSizeChoices.UK12;
+    case r'UK14':
+      return Enum$ProductsProductSizeChoices.UK14;
+    case r'UK16':
+      return Enum$ProductsProductSizeChoices.UK16;
+    case r'US4':
+      return Enum$ProductsProductSizeChoices.US4;
+    case r'US6':
+      return Enum$ProductsProductSizeChoices.US6;
+    case r'US8':
+      return Enum$ProductsProductSizeChoices.US8;
+    case r'US10':
+      return Enum$ProductsProductSizeChoices.US10;
+    case r'US12':
+      return Enum$ProductsProductSizeChoices.US12;
+    case r'US14':
+      return Enum$ProductsProductSizeChoices.US14;
+    case r'US16':
+      return Enum$ProductsProductSizeChoices.US16;
+    case r'EU34':
+      return Enum$ProductsProductSizeChoices.EU34;
+    case r'EU36':
+      return Enum$ProductsProductSizeChoices.EU36;
+    case r'EU38':
+      return Enum$ProductsProductSizeChoices.EU38;
+    case r'EU40':
+      return Enum$ProductsProductSizeChoices.EU40;
+    case r'EU42':
+      return Enum$ProductsProductSizeChoices.EU42;
+    case r'EU44':
+      return Enum$ProductsProductSizeChoices.EU44;
+    case r'EU46':
+      return Enum$ProductsProductSizeChoices.EU46;
     default:
-      return Enum$ProductsSizeSizeSystemChoices.$unknown;
+      return Enum$ProductsProductSizeChoices.$unknown;
+  }
+}
+
+enum Enum$SizeEnum {
+  XS,
+  S,
+  M,
+  L,
+  XL,
+  XXL,
+  UK4,
+  UK6,
+  UK8,
+  UK10,
+  UK12,
+  UK14,
+  UK16,
+  US4,
+  US6,
+  US8,
+  US10,
+  US12,
+  US14,
+  US16,
+  EU34,
+  EU36,
+  EU38,
+  EU40,
+  EU42,
+  EU44,
+  EU46,
+  $unknown;
+
+  factory Enum$SizeEnum.fromJson(String value) => fromJson$Enum$SizeEnum(value);
+
+  String toJson() => toJson$Enum$SizeEnum(this);
+}
+
+String toJson$Enum$SizeEnum(Enum$SizeEnum e) {
+  switch (e) {
+    case Enum$SizeEnum.XS:
+      return r'XS';
+    case Enum$SizeEnum.S:
+      return r'S';
+    case Enum$SizeEnum.M:
+      return r'M';
+    case Enum$SizeEnum.L:
+      return r'L';
+    case Enum$SizeEnum.XL:
+      return r'XL';
+    case Enum$SizeEnum.XXL:
+      return r'XXL';
+    case Enum$SizeEnum.UK4:
+      return r'UK4';
+    case Enum$SizeEnum.UK6:
+      return r'UK6';
+    case Enum$SizeEnum.UK8:
+      return r'UK8';
+    case Enum$SizeEnum.UK10:
+      return r'UK10';
+    case Enum$SizeEnum.UK12:
+      return r'UK12';
+    case Enum$SizeEnum.UK14:
+      return r'UK14';
+    case Enum$SizeEnum.UK16:
+      return r'UK16';
+    case Enum$SizeEnum.US4:
+      return r'US4';
+    case Enum$SizeEnum.US6:
+      return r'US6';
+    case Enum$SizeEnum.US8:
+      return r'US8';
+    case Enum$SizeEnum.US10:
+      return r'US10';
+    case Enum$SizeEnum.US12:
+      return r'US12';
+    case Enum$SizeEnum.US14:
+      return r'US14';
+    case Enum$SizeEnum.US16:
+      return r'US16';
+    case Enum$SizeEnum.EU34:
+      return r'EU34';
+    case Enum$SizeEnum.EU36:
+      return r'EU36';
+    case Enum$SizeEnum.EU38:
+      return r'EU38';
+    case Enum$SizeEnum.EU40:
+      return r'EU40';
+    case Enum$SizeEnum.EU42:
+      return r'EU42';
+    case Enum$SizeEnum.EU44:
+      return r'EU44';
+    case Enum$SizeEnum.EU46:
+      return r'EU46';
+    case Enum$SizeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SizeEnum fromJson$Enum$SizeEnum(String value) {
+  switch (value) {
+    case r'XS':
+      return Enum$SizeEnum.XS;
+    case r'S':
+      return Enum$SizeEnum.S;
+    case r'M':
+      return Enum$SizeEnum.M;
+    case r'L':
+      return Enum$SizeEnum.L;
+    case r'XL':
+      return Enum$SizeEnum.XL;
+    case r'XXL':
+      return Enum$SizeEnum.XXL;
+    case r'UK4':
+      return Enum$SizeEnum.UK4;
+    case r'UK6':
+      return Enum$SizeEnum.UK6;
+    case r'UK8':
+      return Enum$SizeEnum.UK8;
+    case r'UK10':
+      return Enum$SizeEnum.UK10;
+    case r'UK12':
+      return Enum$SizeEnum.UK12;
+    case r'UK14':
+      return Enum$SizeEnum.UK14;
+    case r'UK16':
+      return Enum$SizeEnum.UK16;
+    case r'US4':
+      return Enum$SizeEnum.US4;
+    case r'US6':
+      return Enum$SizeEnum.US6;
+    case r'US8':
+      return Enum$SizeEnum.US8;
+    case r'US10':
+      return Enum$SizeEnum.US10;
+    case r'US12':
+      return Enum$SizeEnum.US12;
+    case r'US14':
+      return Enum$SizeEnum.US14;
+    case r'US16':
+      return Enum$SizeEnum.US16;
+    case r'EU34':
+      return Enum$SizeEnum.EU34;
+    case r'EU36':
+      return Enum$SizeEnum.EU36;
+    case r'EU38':
+      return Enum$SizeEnum.EU38;
+    case r'EU40':
+      return Enum$SizeEnum.EU40;
+    case r'EU42':
+      return Enum$SizeEnum.EU42;
+    case r'EU44':
+      return Enum$SizeEnum.EU44;
+    case r'EU46':
+      return Enum$SizeEnum.EU46;
+    default:
+      return Enum$SizeEnum.$unknown;
   }
 }
 

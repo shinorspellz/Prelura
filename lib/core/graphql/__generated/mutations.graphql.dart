@@ -2613,25 +2613,27 @@ class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
 class Variables$Mutation$CreateProduct {
   factory Variables$Mutation$CreateProduct({
     int? category,
-    String? condition,
+    Enum$ConditionEnum? condition,
     required String description,
     List<Input$ImagesInputType?>? imageUrl,
-    double? postagePrice,
     required double price,
-    required List<int?> size,
+    Enum$SizeEnum? size,
     int? subCategory,
     required String title,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? discount,
   }) =>
       Variables$Mutation$CreateProduct._({
         if (category != null) r'category': category,
         if (condition != null) r'condition': condition,
         r'description': description,
         if (imageUrl != null) r'imageUrl': imageUrl,
-        if (postagePrice != null) r'postagePrice': postagePrice,
         r'price': price,
-        r'size': size,
+        if (size != null) r'size': size,
         if (subCategory != null) r'subCategory': subCategory,
         r'title': title,
+        if (parcelSize != null) r'parcelSize': parcelSize,
+        if (discount != null) r'discount': discount,
       });
 
   Variables$Mutation$CreateProduct._(this._$data);
@@ -2644,7 +2646,9 @@ class Variables$Mutation$CreateProduct {
     }
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = (l$condition as String?);
+      result$data['condition'] = l$condition == null
+          ? null
+          : fromJson$Enum$ConditionEnum((l$condition as String));
     }
     final l$description = data['description'];
     result$data['description'] = (l$description as String);
@@ -2656,21 +2660,29 @@ class Variables$Mutation$CreateProduct {
               : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
           .toList();
     }
-    if (data.containsKey('postagePrice')) {
-      final l$postagePrice = data['postagePrice'];
-      result$data['postagePrice'] = (l$postagePrice as num?)?.toDouble();
-    }
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
-    final l$size = data['size'];
-    result$data['size'] =
-        (l$size as List<dynamic>).map((e) => (e as int?)).toList();
+    if (data.containsKey('size')) {
+      final l$size = data['size'];
+      result$data['size'] =
+          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+    }
     if (data.containsKey('subCategory')) {
       final l$subCategory = data['subCategory'];
       result$data['subCategory'] = (l$subCategory as int?);
     }
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
+    if (data.containsKey('parcelSize')) {
+      final l$parcelSize = data['parcelSize'];
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+    }
+    if (data.containsKey('discount')) {
+      final l$discount = data['discount'];
+      result$data['discount'] = (l$discount as num?)?.toDouble();
+    }
     return Variables$Mutation$CreateProduct._(result$data);
   }
 
@@ -2678,22 +2690,26 @@ class Variables$Mutation$CreateProduct {
 
   int? get category => (_$data['category'] as int?);
 
-  String? get condition => (_$data['condition'] as String?);
+  Enum$ConditionEnum? get condition =>
+      (_$data['condition'] as Enum$ConditionEnum?);
 
   String get description => (_$data['description'] as String);
 
   List<Input$ImagesInputType?>? get imageUrl =>
       (_$data['imageUrl'] as List<Input$ImagesInputType?>?);
 
-  double? get postagePrice => (_$data['postagePrice'] as double?);
-
   double get price => (_$data['price'] as double);
 
-  List<int?> get size => (_$data['size'] as List<int?>);
+  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
 
   int? get subCategory => (_$data['subCategory'] as int?);
 
   String get title => (_$data['title'] as String);
+
+  Enum$ParcelSizeEnum? get parcelSize =>
+      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+
+  double? get discount => (_$data['discount'] as double?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -2703,7 +2719,8 @@ class Variables$Mutation$CreateProduct {
     }
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition;
+      result$data['condition'] =
+          l$condition == null ? null : toJson$Enum$ConditionEnum(l$condition);
     }
     final l$description = description;
     result$data['description'] = l$description;
@@ -2711,20 +2728,29 @@ class Variables$Mutation$CreateProduct {
       final l$imageUrl = imageUrl;
       result$data['imageUrl'] = l$imageUrl?.map((e) => e?.toJson()).toList();
     }
-    if (_$data.containsKey('postagePrice')) {
-      final l$postagePrice = postagePrice;
-      result$data['postagePrice'] = l$postagePrice;
-    }
     final l$price = price;
     result$data['price'] = l$price;
-    final l$size = size;
-    result$data['size'] = l$size.map((e) => e).toList();
+    if (_$data.containsKey('size')) {
+      final l$size = size;
+      result$data['size'] =
+          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+    }
     if (_$data.containsKey('subCategory')) {
       final l$subCategory = subCategory;
       result$data['subCategory'] = l$subCategory;
     }
     final l$title = title;
     result$data['title'] = l$title;
+    if (_$data.containsKey('parcelSize')) {
+      final l$parcelSize = parcelSize;
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+    }
+    if (_$data.containsKey('discount')) {
+      final l$discount = discount;
+      result$data['discount'] = l$discount;
+    }
     return result$data;
   }
 
@@ -2786,15 +2812,6 @@ class Variables$Mutation$CreateProduct {
     } else if (l$imageUrl != lOther$imageUrl) {
       return false;
     }
-    final l$postagePrice = postagePrice;
-    final lOther$postagePrice = other.postagePrice;
-    if (_$data.containsKey('postagePrice') !=
-        other._$data.containsKey('postagePrice')) {
-      return false;
-    }
-    if (l$postagePrice != lOther$postagePrice) {
-      return false;
-    }
     final l$price = price;
     final lOther$price = other.price;
     if (l$price != lOther$price) {
@@ -2802,15 +2819,11 @@ class Variables$Mutation$CreateProduct {
     }
     final l$size = size;
     final lOther$size = other.size;
-    if (l$size.length != lOther$size.length) {
+    if (_$data.containsKey('size') != other._$data.containsKey('size')) {
       return false;
     }
-    for (int i = 0; i < l$size.length; i++) {
-      final l$size$entry = l$size[i];
-      final lOther$size$entry = lOther$size[i];
-      if (l$size$entry != lOther$size$entry) {
-        return false;
-      }
+    if (l$size != lOther$size) {
+      return false;
     }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
@@ -2826,6 +2839,24 @@ class Variables$Mutation$CreateProduct {
     if (l$title != lOther$title) {
       return false;
     }
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (_$data.containsKey('parcelSize') !=
+        other._$data.containsKey('parcelSize')) {
+      return false;
+    }
+    if (l$parcelSize != lOther$parcelSize) {
+      return false;
+    }
+    final l$discount = discount;
+    final lOther$discount = other.discount;
+    if (_$data.containsKey('discount') !=
+        other._$data.containsKey('discount')) {
+      return false;
+    }
+    if (l$discount != lOther$discount) {
+      return false;
+    }
     return true;
   }
 
@@ -2835,11 +2866,12 @@ class Variables$Mutation$CreateProduct {
     final l$condition = condition;
     final l$description = description;
     final l$imageUrl = imageUrl;
-    final l$postagePrice = postagePrice;
     final l$price = price;
     final l$size = size;
     final l$subCategory = subCategory;
     final l$title = title;
+    final l$parcelSize = parcelSize;
+    final l$discount = discount;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -2849,11 +2881,12 @@ class Variables$Mutation$CreateProduct {
               ? null
               : Object.hashAll(l$imageUrl.map((v) => v))
           : const {},
-      _$data.containsKey('postagePrice') ? l$postagePrice : const {},
       l$price,
-      Object.hashAll(l$size.map((v) => v)),
+      _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('subCategory') ? l$subCategory : const {},
       l$title,
+      _$data.containsKey('parcelSize') ? l$parcelSize : const {},
+      _$data.containsKey('discount') ? l$discount : const {},
     ]);
   }
 }
@@ -2869,14 +2902,15 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
 
   TRes call({
     int? category,
-    String? condition,
+    Enum$ConditionEnum? condition,
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
-    double? postagePrice,
     double? price,
-    List<int?>? size,
+    Enum$SizeEnum? size,
     int? subCategory,
     String? title,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? discount,
   });
 }
 
@@ -2898,26 +2932,29 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? condition = _undefined,
     Object? description = _undefined,
     Object? imageUrl = _undefined,
-    Object? postagePrice = _undefined,
     Object? price = _undefined,
     Object? size = _undefined,
     Object? subCategory = _undefined,
     Object? title = _undefined,
+    Object? parcelSize = _undefined,
+    Object? discount = _undefined,
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
         if (category != _undefined) 'category': (category as int?),
-        if (condition != _undefined) 'condition': (condition as String?),
+        if (condition != _undefined)
+          'condition': (condition as Enum$ConditionEnum?),
         if (description != _undefined && description != null)
           'description': (description as String),
         if (imageUrl != _undefined)
           'imageUrl': (imageUrl as List<Input$ImagesInputType?>?),
-        if (postagePrice != _undefined)
-          'postagePrice': (postagePrice as double?),
         if (price != _undefined && price != null) 'price': (price as double),
-        if (size != _undefined && size != null) 'size': (size as List<int?>),
+        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (title != _undefined && title != null) 'title': (title as String),
+        if (parcelSize != _undefined)
+          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (discount != _undefined) 'discount': (discount as double?),
       }));
 }
 
@@ -2929,14 +2966,15 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
 
   call({
     int? category,
-    String? condition,
+    Enum$ConditionEnum? condition,
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
-    double? postagePrice,
     double? price,
-    List<int?>? size,
+    Enum$SizeEnum? size,
     int? subCategory,
     String? title,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? discount,
   }) =>
       _res;
 }
@@ -3096,7 +3134,7 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'condition')),
         type: NamedTypeNode(
-          name: NameNode(value: 'String'),
+          name: NameNode(value: 'ConditionEnum'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -3124,15 +3162,6 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'postagePrice')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Float'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'price')),
         type: NamedTypeNode(
           name: NameNode(value: 'Float'),
@@ -3143,12 +3172,9 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
       ),
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'size')),
-        type: ListTypeNode(
-          type: NamedTypeNode(
-            name: NameNode(value: 'Int'),
-            isNonNull: false,
-          ),
-          isNonNull: true,
+        type: NamedTypeNode(
+          name: NameNode(value: 'SizeEnum'),
+          isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3167,6 +3193,24 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'parcelSize')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ParcelSizeEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'discount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3195,10 +3239,6 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'imageUrl')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'postagePrice'),
-            value: VariableNode(name: NameNode(value: 'postagePrice')),
-          ),
-          ArgumentNode(
             name: NameNode(value: 'price'),
             value: VariableNode(name: NameNode(value: 'price')),
           ),
@@ -3213,6 +3253,14 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'title'),
             value: VariableNode(name: NameNode(value: 'title')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'parcelSize'),
+            value: VariableNode(name: NameNode(value: 'parcelSize')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'discount'),
+            value: VariableNode(name: NameNode(value: 'discount')),
           ),
         ],
         directives: [],

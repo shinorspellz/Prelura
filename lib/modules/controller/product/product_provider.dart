@@ -31,13 +31,6 @@ final categoryProvider = FutureProvider((ref) async {
 
   return result;
 });
-final sizeProvider = FutureProvider((ref) async {
-  final repo = ref.watch(productRepo);
-
-  final result = await repo.getSize();
-
-  return result;
-});
 
 final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
@@ -59,17 +52,17 @@ class _ProductProvider extends AsyncNotifier<void> {
     return upload;
   }
 
-  Future<void> createProduct({
-    required String title,
-    required String desc,
-    required double price,
-    required List<File> images,
-    required List<int> size,
-    String? condition,
-    int? category,
-    int? subCategory,
-    double? postagePrice,
-  }) async {
+  Future<void> createProduct(
+      {required String title,
+      required String desc,
+      required double price,
+      required List<File> images,
+      required Enum$SizeEnum size,
+      Enum$ConditionEnum? condition,
+      int? category,
+      int? subCategory,
+      Enum$ParcelSizeEnum? parcelSize,
+      double? discount}) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
@@ -85,7 +78,8 @@ class _ProductProvider extends AsyncNotifier<void> {
           price: price,
           size: size,
           title: title,
-          postagePrice: postagePrice,
+          parcelSize: parcelSize,
+          discount: discount,
         ),
       );
       ref.invalidate(userProduct);

@@ -50,7 +50,7 @@ class ProductTopDetails extends ConsumerWidget {
                         ),
                   ),
                   Text(
-                    "Size ${product.sizes?.map((x) => x.sizeValue).join(', ') ?? ''}",
+                    "Size ${product.size?.name ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.purple,
                           fontWeight: FontWeight.w400,

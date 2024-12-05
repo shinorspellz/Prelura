@@ -50,25 +50,27 @@ mutation TokenAuth($email: String, $password: String!, $username: String!) {
 
 mutation CreateProduct(
   $category: Int
-  $condition: String
+  $condition: ConditionEnum
   $description: String!
   $imageUrl: [ImagesInputType]
-  $postagePrice: Float
   $price: Float!
-  $size: [Int]!
+  $size: SizeEnum
   $subCategory: Int
   $title: String!
+  $parcelSize: ParcelSizeEnum
+  $discount: Float
 ) {
   createProduct(
     category: $category
     condition: $condition
     description: $description
     imagesUrl: $imageUrl
-    postagePrice: $postagePrice
     price: $price
     size: $size
     subCategory: $subCategory
     title: $title
+    parcelSize: $parcelSize
+    discount: $discount
   ) {
     success
     message

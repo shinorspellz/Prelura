@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/size/size_model.dart';
+import 'package:prelura_app/modules/model/user/user_model.dart';
 
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
@@ -16,7 +16,10 @@ class Product with _$Product {
     required String description,
     CategoryModel? category,
     CategoryModel? subCategory,
-    List<SizeModel>? sizes,
+    required UserModel seller,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
     Enum$ProductsProductConditionChoices? condition,
     required String price,
     double? postagePrice,
