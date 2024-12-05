@@ -59,18 +59,23 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     onTap: (index) {
                       switch (index) {
                         case 0:
+                          tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(index);
                           break;
                         case 1:
+                          tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(index);
                           break;
                         case 2:
+                          tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           context.pushRoute(SellItemRoute());
                           break;
                         case 3:
+                          tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(2);
                           break;
                         case 4:
+                          tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(3);
                           break;
                         default:
