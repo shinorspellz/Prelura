@@ -131,76 +131,78 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Add up to 20 photos.',
-                          style: TextStyle(color: Colors.grey, fontSize: 14),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "See more photo tips",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10.sp,
-                                color: PreluraColors.activeColor,
-                                decoration: TextDecoration.underline,
-                                decorationColor: PreluraColors.activeColor,
-                                decorationThickness: 2,
-                              ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    GestureDetector(
-                        onTap: () => notifier.addImages(),
-                        child: Center(
-                          child: AppButton(
-                            onTap: () {
-                              notifier.addImages();
-                            },
-                            text: "upload photos",
-                            bgColor: Theme.of(context).scaffoldBackgroundColor,
-                            textWidget: const Row(
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  color: PreluraColors.activeColor,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                )
-                              ],
-                            ),
+              if (widget.product == null) ...[
+                Container(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Add up to 20 photos.',
+                            style: TextStyle(color: Colors.grey, fontSize: 14),
                           ),
-                        )),
-                  ],
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "See more photo tips",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10.sp,
+                                  color: PreluraColors.activeColor,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: PreluraColors.activeColor,
+                                  decorationThickness: 2,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      GestureDetector(
+                          onTap: () => notifier.addImages(),
+                          child: Center(
+                            child: AppButton(
+                              onTap: () {
+                                notifier.addImages();
+                              },
+                              text: "upload photos",
+                              bgColor: Theme.of(context).scaffoldBackgroundColor,
+                              textWidget: const Row(
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: PreluraColors.activeColor,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
                 ),
-              ),
-              if (state.images.isNotEmpty)
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: state.images
-                      .map((image) => Image.file(
-                            File(image.path),
-                            height: 80,
-                            width: 80,
-                            fit: BoxFit.cover,
-                          ))
-                      .toList(),
-                ),
-              const SizedBox(height: 16),
+                if (state.images.isNotEmpty)
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: state.images
+                        .map((image) => Image.file(
+                              File(image.path),
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.cover,
+                            ))
+                        .toList(),
+                  ),
+                const SizedBox(height: 16),
+              ],
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
