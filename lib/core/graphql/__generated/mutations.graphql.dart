@@ -3528,6 +3528,514 @@ class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
       _res;
 }
 
+class Variables$Mutation$likeProduct {
+  factory Variables$Mutation$likeProduct({required int productId}) =>
+      Variables$Mutation$likeProduct._({
+        r'productId': productId,
+      });
+
+  Variables$Mutation$likeProduct._(this._$data);
+
+  factory Variables$Mutation$likeProduct.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$productId = data['productId'];
+    result$data['productId'] = (l$productId as int);
+    return Variables$Mutation$likeProduct._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get productId => (_$data['productId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$productId = productId;
+    result$data['productId'] = l$productId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$likeProduct<Variables$Mutation$likeProduct>
+      get copyWith => CopyWith$Variables$Mutation$likeProduct(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$likeProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$productId = productId;
+    return Object.hashAll([l$productId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$likeProduct<TRes> {
+  factory CopyWith$Variables$Mutation$likeProduct(
+    Variables$Mutation$likeProduct instance,
+    TRes Function(Variables$Mutation$likeProduct) then,
+  ) = _CopyWithImpl$Variables$Mutation$likeProduct;
+
+  factory CopyWith$Variables$Mutation$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$likeProduct;
+
+  TRes call({int? productId});
+}
+
+class _CopyWithImpl$Variables$Mutation$likeProduct<TRes>
+    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+  _CopyWithImpl$Variables$Mutation$likeProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$likeProduct _instance;
+
+  final TRes Function(Variables$Mutation$likeProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? productId = _undefined}) =>
+      _then(Variables$Mutation$likeProduct._({
+        ..._instance._$data,
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$likeProduct<TRes>
+    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$likeProduct(this._res);
+
+  TRes _res;
+
+  call({int? productId}) => _res;
+}
+
+class Mutation$likeProduct {
+  Mutation$likeProduct({
+    this.likeProduct,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$likeProduct.fromJson(Map<String, dynamic> json) {
+    final l$likeProduct = json['likeProduct'];
+    final l$$__typename = json['__typename'];
+    return Mutation$likeProduct(
+      likeProduct: l$likeProduct == null
+          ? null
+          : Mutation$likeProduct$likeProduct.fromJson(
+              (l$likeProduct as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$likeProduct$likeProduct? likeProduct;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$likeProduct = likeProduct;
+    _resultData['likeProduct'] = l$likeProduct?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$likeProduct = likeProduct;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$likeProduct,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$likeProduct || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$likeProduct = likeProduct;
+    final lOther$likeProduct = other.likeProduct;
+    if (l$likeProduct != lOther$likeProduct) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$likeProduct on Mutation$likeProduct {
+  CopyWith$Mutation$likeProduct<Mutation$likeProduct> get copyWith =>
+      CopyWith$Mutation$likeProduct(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$likeProduct<TRes> {
+  factory CopyWith$Mutation$likeProduct(
+    Mutation$likeProduct instance,
+    TRes Function(Mutation$likeProduct) then,
+  ) = _CopyWithImpl$Mutation$likeProduct;
+
+  factory CopyWith$Mutation$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$likeProduct;
+
+  TRes call({
+    Mutation$likeProduct$likeProduct? likeProduct,
+    String? $__typename,
+  });
+  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct;
+}
+
+class _CopyWithImpl$Mutation$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct<TRes> {
+  _CopyWithImpl$Mutation$likeProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$likeProduct _instance;
+
+  final TRes Function(Mutation$likeProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? likeProduct = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$likeProduct(
+        likeProduct: likeProduct == _undefined
+            ? _instance.likeProduct
+            : (likeProduct as Mutation$likeProduct$likeProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct {
+    final local$likeProduct = _instance.likeProduct;
+    return local$likeProduct == null
+        ? CopyWith$Mutation$likeProduct$likeProduct.stub(_then(_instance))
+        : CopyWith$Mutation$likeProduct$likeProduct(
+            local$likeProduct, (e) => call(likeProduct: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct<TRes> {
+  _CopyWithStubImpl$Mutation$likeProduct(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$likeProduct$likeProduct? likeProduct,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct =>
+      CopyWith$Mutation$likeProduct$likeProduct.stub(_res);
+}
+
+const documentNodeMutationlikeProduct = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'likeProduct'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'productId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'likeProduct'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'productId'),
+            value: VariableNode(name: NameNode(value: 'productId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$likeProduct _parserFn$Mutation$likeProduct(
+        Map<String, dynamic> data) =>
+    Mutation$likeProduct.fromJson(data);
+typedef OnMutationCompleted$Mutation$likeProduct = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$likeProduct?,
+);
+
+class Options$Mutation$likeProduct
+    extends graphql.MutationOptions<Mutation$likeProduct> {
+  Options$Mutation$likeProduct({
+    String? operationName,
+    required Variables$Mutation$likeProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$likeProduct? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$likeProduct? onCompleted,
+    graphql.OnMutationUpdate<Mutation$likeProduct>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$likeProduct(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationlikeProduct,
+          parserFn: _parserFn$Mutation$likeProduct,
+        );
+
+  final OnMutationCompleted$Mutation$likeProduct? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$likeProduct
+    extends graphql.WatchQueryOptions<Mutation$likeProduct> {
+  WatchOptions$Mutation$likeProduct({
+    String? operationName,
+    required Variables$Mutation$likeProduct variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$likeProduct? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationlikeProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$likeProduct,
+        );
+}
+
+extension ClientExtension$Mutation$likeProduct on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$likeProduct>> mutate$likeProduct(
+          Options$Mutation$likeProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$likeProduct> watchMutation$likeProduct(
+          WatchOptions$Mutation$likeProduct options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$likeProduct$likeProduct {
+  Mutation$likeProduct$likeProduct({
+    this.success,
+    this.$__typename = 'LikeProduct',
+  });
+
+  factory Mutation$likeProduct$likeProduct.fromJson(Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$likeProduct$likeProduct(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$likeProduct$likeProduct ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$likeProduct$likeProduct
+    on Mutation$likeProduct$likeProduct {
+  CopyWith$Mutation$likeProduct$likeProduct<Mutation$likeProduct$likeProduct>
+      get copyWith => CopyWith$Mutation$likeProduct$likeProduct(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+  factory CopyWith$Mutation$likeProduct$likeProduct(
+    Mutation$likeProduct$likeProduct instance,
+    TRes Function(Mutation$likeProduct$likeProduct) then,
+  ) = _CopyWithImpl$Mutation$likeProduct$likeProduct;
+
+  factory CopyWith$Mutation$likeProduct$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$likeProduct$likeProduct;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+  _CopyWithImpl$Mutation$likeProduct$likeProduct(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$likeProduct$likeProduct _instance;
+
+  final TRes Function(Mutation$likeProduct$likeProduct) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$likeProduct$likeProduct(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$likeProduct$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+  _CopyWithStubImpl$Mutation$likeProduct$likeProduct(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Mutation$UpdateProduct {
   factory Variables$Mutation$UpdateProduct({
     int? category,

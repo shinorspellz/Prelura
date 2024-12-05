@@ -180,14 +180,11 @@ class ProductRepo {
 
     if (response.parsedData == null) {
       log('Mising response', name: 'ProductRepo');
-      throw 'An error occured';
+      throw 'An error occured here';
     }
-    print(response.parsedData!.likedProducts!
-        .map((x) => Product.fromJson(x!.toJson()))
-        .toList());
 
     return response.parsedData!.likedProducts!
-        .map((x) => Product.fromJson(x!.toJson()))
+        .map((x) => Product.fromJson((x!.product)!.toJson()))
         .toList();
   }
 

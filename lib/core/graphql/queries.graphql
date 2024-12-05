@@ -170,9 +170,8 @@ query Categories {
 
 query likedProducts ($pageCount: Int, $pageNumber: Int){
   likedProducts(pageCount: $pageCount, pageNumber:$pageNumber){
-    id
     product{
-        id
+    id
     name
     description
     category {
@@ -199,6 +198,7 @@ query likedProducts ($pageCount: Int, $pageNumber: Int){
     createdAt
     updatedAt
     likes
+    userLiked
     }
   }
 }

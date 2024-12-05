@@ -31,14 +31,13 @@ final searchProductProvider =
 
 final toggleLikeProductProvider =
     FutureProvider.family<bool, int>((ref, query) async {
-  final repo = ref.watch(productRepo);
+  final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
   print("like result is $result");
 
   return result!;
 });
-
 
 final userProduct =
     FutureProvider.family<List<Product>, String?>((ref, username) async {
@@ -64,7 +63,6 @@ final userFavouriteProduct = FutureProvider((ref) async {
   return result.reversed.toList();
 });
 
-
 final categoryProvider = FutureProvider((ref) async {
   final repo = ref.watch(productRepo);
 
@@ -72,7 +70,6 @@ final categoryProvider = FutureProvider((ref) async {
 
   return result;
 });
-
 
 final productProvider =
     AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
