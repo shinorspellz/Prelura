@@ -25,6 +25,7 @@ class Product with _$Product {
     double? postagePrice,
     required int views,
     required int likes,
+    required bool userLiked,
     @BannerConverter() required List<ProductBanners> imagesUrl,
     required DateTime createdAt,
     required DateTime updatedAt,
@@ -61,13 +62,29 @@ class BannerConverter
 }
 
 enum ConditionsEnum {
-  NEW_WITH_TAGS(simpleName: 'New with tags'),
-  LIKE_NEW(simpleName: 'Like New'),
-  USED(simpleName: 'Used'),
-  HEAVILY_USED(simpleName: 'Heavily Used');
+  NEW_WITH_TAGS(
+    simpleName: 'New with tags',
+    subtitle: 'A brand new , unused item with tags or original packaging',
+  ),
+  LIKE_NEW(
+    simpleName: 'Like New',
+    subtitle: 'A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+  ),
+  USED(
+    simpleName: 'Used',
+    subtitle: 'A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing.',
+  ),
+  HEAVILY_USED(
+    simpleName: 'Heavily Used',
+    subtitle: 'A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+  );
 
-  const ConditionsEnum({required this.simpleName});
+  const ConditionsEnum({
+    required this.simpleName,
+    required this.subtitle,
+  });
   final String simpleName;
+  final String subtitle;
 
   static ConditionsEnum conditionByApiValue(String apiValue) {
     return ConditionsEnum.values.firstWhere(

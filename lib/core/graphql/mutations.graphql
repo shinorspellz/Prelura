@@ -77,9 +77,44 @@ mutation CreateProduct(
   }
 }
 
-
 mutation likeProduct($productId: Int!) {
   likeProduct(productId: $productId) {
     success
+  }
+}
+
+mutation UpdateProduct(
+  $category: Int
+  $condition: ConditionEnum
+  $description: String
+  $discount: Float
+  $name: String
+  $parcelSize: ParcelSizeEnum
+  $price: Float
+  $productId: Int!
+  $size: SizeEnum
+  $subCategory: Int
+) {
+  updateProduct(
+    category: $category
+    condition: $condition
+    description: $description
+    discount: $discount
+    name: $name
+    parcelSize: $parcelSize
+    price: $price
+    productId: $productId
+    size: $size
+    subCategory: $subCategory
+  ) {
+    success
+    message
+  }
+}
+
+mutation DeleteProduct($productId: Int!) {
+  deleteProduct(productId: $productId) {
+    success
+    message
   }
 }

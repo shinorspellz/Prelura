@@ -16,7 +16,8 @@ import '../provider/tab_controller.dart';
 
 @RoutePage()
 class ProfileDetailsScreen extends ConsumerStatefulWidget {
-  const ProfileDetailsScreen({super.key});
+  const ProfileDetailsScreen({super.key, this.username});
+  final String? username;
 
   @override
   ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
@@ -55,7 +56,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref.watch(userProvider).valueOrNull;
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
 
     if (_tabController.index != currentIndex) {
       _tabController.index = currentIndex; // Sync tab index if changed externally
@@ -100,8 +101,10 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
             child: TabBarView(
               controller: _tabController,
               children: [
-                ref.watch(userProvider).when(
-                      data: (_) => const UserWardrobe(),
+                ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).when(
+                      data: (_) => UserWardrobe(
+                        username: _.username,
+                      ),
                       error: (e, _) => Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

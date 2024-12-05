@@ -162,7 +162,8 @@ class ProductCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        context.router.push(ProductDetailRoute(product: product));
+        context.router.push(ProductDetailRoute(productId: int.parse(product.id)));
+
       },
       child: SizedBox(
         width: double.infinity,

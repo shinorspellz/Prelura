@@ -15,11 +15,12 @@ import '../../../../../res/colors.dart';
 import '../../../widgets/app_button.dart';
 
 class UserWardrobe extends ConsumerWidget {
-  const UserWardrobe({super.key});
+  const UserWardrobe({super.key, this.username});
+  final String? username;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider).valueOrNull;
+    final user = ref.watch((username != null ? otherUserProfile(username!) : userProvider)).valueOrNull;
 
     return SingleChildScrollView(
       child: Column(

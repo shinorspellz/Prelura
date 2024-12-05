@@ -133,7 +133,7 @@ class ProductTopDetails extends ConsumerWidget {
                   // ),
                   InkWell(
                     onTap: () {
-                      context.router.push(const ProfileDetailsRoute());
+                      context.router.push(ProfileDetailsRoute(username: product.seller.username));
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(35), // Ensure it's high for a circle
@@ -154,7 +154,7 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.push(const ProfileDetailsRoute());
+                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         },
                         child: Text(
                           product.seller.username,

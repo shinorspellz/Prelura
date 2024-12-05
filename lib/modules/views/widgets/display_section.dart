@@ -3,9 +3,12 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 import 'package:prelura_app/shared/mock_data.dart';
 
+typedef RefreshCallback = Future<void> Function();
+
 class DisplaySection extends StatelessWidget {
-  const DisplaySection({super.key, this.products});
+  const DisplaySection({super.key, this.products, this.onRefresh});
   final List<Product>? products;
+  final RefreshCallback? onRefresh;
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +27,22 @@ class DisplaySection extends StatelessWidget {
                 return DisplayCard(itemData: mockData[index]);
               });
         }
-        return GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            childAspectRatio: 0.572,
+        return RefreshIndicator(
+          onRefresh: onRefresh ?? () async {},
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 0.572,
+            ),
+            itemCount: products!.length,
+            itemBuilder: (context, index) {
+              return ProductCard(product: products![index]);
+            },
           ),
-          itemCount: products!.length,
-          itemBuilder: (context, index) {
-            return ProductCard(product: products![index]);
-          },
         );
       },
     );

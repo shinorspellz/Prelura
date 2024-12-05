@@ -39,7 +39,7 @@ class ConditionScreen extends ConsumerWidget {
                 title: e.simpleName,
                 value: e.simpleName,
                 groupValue: selectedCondition,
-                subtitle: "",
+                subtitle: e.subtitle,
                 onChanged: (value) {
                   if (value != null) {
                     // Update the selected condition in the provider

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
@@ -20,11 +21,42 @@ import '../provider/price_provider.dart';
 import '../provider/sell_item_provider.dart';
 
 @RoutePage()
-class SellItemScreen extends ConsumerWidget {
-  const SellItemScreen({super.key});
+class SellItemScreen extends ConsumerStatefulWidget {
+  const SellItemScreen({super.key, this.product});
+  final Product? product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SellItemScreen> createState() => _SellItemScreenState();
+}
+
+class _SellItemScreenState extends ConsumerState<SellItemScreen> {
+  @override
+  void initState() {
+    if (widget.product != null) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) {
+          ref.read(sellItemProvider.notifier).productToItem(widget.product!);
+          titleController.text = widget.product!.name;
+          descController.text = widget.product!.description;
+        },
+      );
+    }
+
+    super.initState();
+  }
+
+  final titleController = TextEditingController();
+  final descController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(sellItemProvider);
     final notifier = ref.read(sellItemProvider.notifier);
 
@@ -51,7 +83,12 @@ class SellItemScreen extends ConsumerWidget {
                     content: const Text('You have unsaved changes. Do you want to save them as a draft or discard them?'),
                     actions: [
                       TextButton(
-                        onPressed: () => {notifier.resetState(), Navigator.of(context).pop(false)},
+                        onPressed: () {
+                          notifier.resetState();
+                          titleController.clear();
+                          descController.clear();
+                          Navigator.of(context).pop(false);
+                        },
                         child: const Text('Discard'),
                       ),
                       TextButton(
@@ -75,11 +112,14 @@ class SellItemScreen extends ConsumerWidget {
                   const SnackBar(content: Text('Draft saved successfully!')),
                 );
               } else {
+                titleController.clear();
+                descController.clear();
                 notifier.resetState();
               }
             }
-            final tabRouter = AutoTabsRouter.of(context);
-            tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+            Navigator.pop(context);
+            // final tabRouter = AutoTabsRouter.of(context);
+            // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
           },
         ),
         appbarTitle: 'Sell an item',
@@ -171,6 +211,7 @@ class SellItemScreen extends ConsumerWidget {
                         hintText: 'e.g. White COS Jumper',
                         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
                         onChanged: notifier.updateTitle,
+                        controller: titleController,
                       ),
                       const SizedBox(height: 16),
                       PreluraAuthTextField(
@@ -179,6 +220,7 @@ class SellItemScreen extends ConsumerWidget {
                         hintText: 'e.g. only worn a few times, true to size',
                         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
+                        controller: descController,
                         // maxLines: null,
                       ),
                     ],
@@ -274,7 +316,7 @@ class SellItemScreen extends ConsumerWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     final files = state.images.map((x) => File(x.path)).toList();
-                    if (files.isEmpty) {
+                    if (files.isEmpty && widget.product == null) {
                       context.alert('Images are required to sell product');
                       return;
                     }
@@ -308,6 +350,30 @@ class SellItemScreen extends ConsumerWidget {
                       context.alert('Both title and description of product are requuired');
                       return;
                     }
+                    if (widget.product != null) {
+                      await ref.read(productProvider.notifier).updateProduct(
+                            productId: int.parse(widget.product!.id),
+                            title: state.title,
+                            desc: state.description,
+                            price: double.parse(state.price!),
+                            condition: state.selectedCondition!,
+                            parcelSize: state.parcel,
+                            size: state.size!,
+                            category: int.parse(state.category!.id.toString()),
+                            subCategory: int.parse(state.subCategory!.id.toString()),
+                          );
+                      ref.read(productProvider).whenOrNull(
+                            error: (e, _) => context.alert(e.toString()),
+                            data: (_) {
+                              context.alert('Product updated successfully');
+                              Navigator.pop(context);
+                              // final tabRouter = AutoTabsRouter.of(context);
+                              // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                            },
+                          );
+
+                      return;
+                    }
 
                     await ref.read(productProvider.notifier).createProduct(
                           title: state.title,
@@ -324,8 +390,9 @@ class SellItemScreen extends ConsumerWidget {
                           error: (e, _) => context.alert(e.toString()),
                           data: (_) {
                             context.alert('Product created successfully');
-                            final tabRouter = AutoTabsRouter.of(context);
-                            tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                            Navigator.pop(context);
+                            // final tabRouter = AutoTabsRouter.of(context);
+                            // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
                           },
                         );
 

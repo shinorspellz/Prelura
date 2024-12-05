@@ -2890,6 +2890,13 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'userLiked'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'imagesUrl'),
             alias: null,
             arguments: [],
@@ -3074,6 +3081,7 @@ class Query$Product$product {
     this.parcelSize,
     required this.views,
     required this.likes,
+    this.userLiked,
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
@@ -3094,6 +3102,7 @@ class Query$Product$product {
     final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
+    final l$userLiked = json['userLiked'];
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
@@ -3129,6 +3138,7 @@ class Query$Product$product {
               (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
+      userLiked: (l$userLiked as bool?),
       imagesUrl:
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -3162,6 +3172,8 @@ class Query$Product$product {
   final int views;
 
   final int likes;
+
+  final bool? userLiked;
 
   final List<String> imagesUrl;
 
@@ -3204,6 +3216,8 @@ class Query$Product$product {
     _resultData['views'] = l$views;
     final l$likes = likes;
     _resultData['likes'] = l$likes;
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
     final l$imagesUrl = imagesUrl;
     _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
     final l$createdAt = createdAt;
@@ -3230,6 +3244,7 @@ class Query$Product$product {
     final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
+    final l$userLiked = userLiked;
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
@@ -3248,6 +3263,7 @@ class Query$Product$product {
       l$parcelSize,
       l$views,
       l$likes,
+      l$userLiked,
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
@@ -3328,6 +3344,11 @@ class Query$Product$product {
     if (l$likes != lOther$likes) {
       return false;
     }
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
+      return false;
+    }
     final l$imagesUrl = imagesUrl;
     final lOther$imagesUrl = other.imagesUrl;
     if (l$imagesUrl.length != lOther$imagesUrl.length) {
@@ -3390,6 +3411,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -3427,6 +3449,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
+    Object? userLiked = _undefined,
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
@@ -3470,6 +3493,9 @@ class _CopyWithImpl$Query$Product$product<TRes>
         likes: likes == _undefined || likes == null
             ? _instance.likes
             : (likes as int),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
         imagesUrl: imagesUrl == _undefined || imagesUrl == null
             ? _instance.imagesUrl
             : (imagesUrl as List<String>),
@@ -3529,6 +3555,7 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -4563,6 +4590,13 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'userLiked'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'imagesUrl'),
             alias: null,
             arguments: [],
@@ -4748,6 +4782,7 @@ class Query$UserProducts$userProducts {
     this.parcelSize,
     required this.views,
     required this.likes,
+    this.userLiked,
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
@@ -4768,6 +4803,7 @@ class Query$UserProducts$userProducts {
     final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
+    final l$userLiked = json['userLiked'];
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
@@ -4803,6 +4839,7 @@ class Query$UserProducts$userProducts {
               (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
+      userLiked: (l$userLiked as bool?),
       imagesUrl:
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -4836,6 +4873,8 @@ class Query$UserProducts$userProducts {
   final int views;
 
   final int likes;
+
+  final bool? userLiked;
 
   final List<String> imagesUrl;
 
@@ -4878,6 +4917,8 @@ class Query$UserProducts$userProducts {
     _resultData['views'] = l$views;
     final l$likes = likes;
     _resultData['likes'] = l$likes;
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
     final l$imagesUrl = imagesUrl;
     _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
     final l$createdAt = createdAt;
@@ -4904,6 +4945,7 @@ class Query$UserProducts$userProducts {
     final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
+    final l$userLiked = userLiked;
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
@@ -4922,6 +4964,7 @@ class Query$UserProducts$userProducts {
       l$parcelSize,
       l$views,
       l$likes,
+      l$userLiked,
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
@@ -5003,6 +5046,11 @@ class Query$UserProducts$userProducts {
     if (l$likes != lOther$likes) {
       return false;
     }
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
+      return false;
+    }
     final l$imagesUrl = imagesUrl;
     final lOther$imagesUrl = other.imagesUrl;
     if (l$imagesUrl.length != lOther$imagesUrl.length) {
@@ -5066,6 +5114,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -5103,6 +5152,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
+    Object? userLiked = _undefined,
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
@@ -5146,6 +5196,9 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         likes: likes == _undefined || likes == null
             ? _instance.likes
             : (likes as int),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
         imagesUrl: imagesUrl == _undefined || imagesUrl == null
             ? _instance.imagesUrl
             : (imagesUrl as List<String>),
@@ -5207,6 +5260,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -6206,6 +6260,13 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'userLiked'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'imagesUrl'),
             alias: null,
             arguments: [],
@@ -6398,6 +6459,7 @@ class Query$AllProducts$allProducts {
     this.parcelSize,
     required this.views,
     required this.likes,
+    this.userLiked,
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
@@ -6418,6 +6480,7 @@ class Query$AllProducts$allProducts {
     final l$parcelSize = json['parcelSize'];
     final l$views = json['views'];
     final l$likes = json['likes'];
+    final l$userLiked = json['userLiked'];
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
@@ -6453,6 +6516,7 @@ class Query$AllProducts$allProducts {
               (l$parcelSize as String)),
       views: (l$views as int),
       likes: (l$likes as int),
+      userLiked: (l$userLiked as bool?),
       imagesUrl:
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
@@ -6486,6 +6550,8 @@ class Query$AllProducts$allProducts {
   final int views;
 
   final int likes;
+
+  final bool? userLiked;
 
   final List<String> imagesUrl;
 
@@ -6528,6 +6594,8 @@ class Query$AllProducts$allProducts {
     _resultData['views'] = l$views;
     final l$likes = likes;
     _resultData['likes'] = l$likes;
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
     final l$imagesUrl = imagesUrl;
     _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
     final l$createdAt = createdAt;
@@ -6554,6 +6622,7 @@ class Query$AllProducts$allProducts {
     final l$parcelSize = parcelSize;
     final l$views = views;
     final l$likes = likes;
+    final l$userLiked = userLiked;
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
@@ -6572,6 +6641,7 @@ class Query$AllProducts$allProducts {
       l$parcelSize,
       l$views,
       l$likes,
+      l$userLiked,
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
@@ -6653,6 +6723,11 @@ class Query$AllProducts$allProducts {
     if (l$likes != lOther$likes) {
       return false;
     }
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
+      return false;
+    }
     final l$imagesUrl = imagesUrl;
     final lOther$imagesUrl = other.imagesUrl;
     if (l$imagesUrl.length != lOther$imagesUrl.length) {
@@ -6716,6 +6791,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -6753,6 +6829,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? parcelSize = _undefined,
     Object? views = _undefined,
     Object? likes = _undefined,
+    Object? userLiked = _undefined,
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
@@ -6796,6 +6873,9 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         likes: likes == _undefined || likes == null
             ? _instance.likes
             : (likes as int),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
         imagesUrl: imagesUrl == _undefined || imagesUrl == null
             ? _instance.imagesUrl
             : (imagesUrl as List<String>),
@@ -6856,6 +6936,7 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
+    bool? userLiked,
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
