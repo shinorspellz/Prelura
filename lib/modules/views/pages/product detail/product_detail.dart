@@ -25,10 +25,12 @@ class ProductDetailScreen extends ConsumerStatefulWidget {
   const ProductDetailScreen({super.key, required this.product});
 
   @override
-  ConsumerState<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  ConsumerState<ProductDetailScreen> createState() =>
+      _ProductDetailScreenState();
 }
 
-class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with SingleTickerProviderStateMixin {
+class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
+    with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   double showAppBar = 0;
   late TabController _tabController;
@@ -60,7 +62,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
 
   @override
   Widget build(BuildContext context) {
-    final tabRouter = AutoTabsRouter.of(context);
+    // final tabRouter = AutoTabsRouter.of(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -86,7 +88,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                           });
                         },
                       ),
-                      items: widget.product.imagesUrl.map((e) => CachedNetworkImage(imageUrl: e.url)).toList(),
+                      items: widget.product.imagesUrl
+                          .map((e) => CachedNetworkImage(imageUrl: e.url))
+                          .toList(),
                     ),
                     Positioned(
                       bottom: 15,
@@ -94,25 +98,40 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                       child: GestureDetector(
                         onTap: _toggleFavorite,
                         child: Container(
-                          padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
+                          padding: const EdgeInsets.only(
+                              top: 5, bottom: 5, left: 8, right: 8),
                           decoration: BoxDecoration(
                             color: PreluraColors.blackCardColor,
-                            borderRadius: BorderRadius.circular(8), // Circular radius
+                            borderRadius:
+                                BorderRadius.circular(8), // Circular radius
                           ),
                           child: Row(
                             children: [
-                              Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
+                              Icon(
+                                  _isFavorite
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  size: 17,
+                                  color: PreluraColors.white),
                               const SizedBox(width: 5),
                               Text(
                                 '${widget.product.likes}',
-                                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(color: PreluraColors.white),
                               ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    Positioned(bottom: 15, right: 0, left: 0, child: carouselIndicator(widget.product.imagesUrl.length)),
+                    Positioned(
+                        bottom: 15,
+                        right: 0,
+                        left: 0,
+                        child:
+                            carouselIndicator(widget.product.imagesUrl.length)),
                     Positioned(
                         top: showAppBar == 1 ? 40 : 60,
                         left: 15,
@@ -123,7 +142,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                             VisibilityDetector(
                                 key: UniqueKey(),
                                 onVisibilityChanged: (visibilityInfo) {
-                                  var visiblePercentage = visibilityInfo.visibleFraction * 100;
+                                  var visiblePercentage =
+                                      visibilityInfo.visibleFraction * 100;
                                   if (visiblePercentage > 40) {
                                     if (!context.mounted) return;
                                     // 1 =
@@ -140,12 +160,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                     if (context.router.canPop()) {
                                       context.router.back();
                                     } else {
-                                      tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                                      // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
                                       context.router.back();
                                     }
                                   },
                                   child: CircleAvatar(
-                                    backgroundColor: PreluraColors.black.withOpacity(0.2),
+                                    backgroundColor:
+                                        PreluraColors.black.withOpacity(0.2),
                                     child: Icon(
                                       Icons.arrow_back,
                                       color: PreluraColors.white,
@@ -205,7 +226,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                 TabBar(
                   controller: _tabController,
                   indicatorColor: PreluraColors.activeColor,
-                  unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
+                  unselectedLabelColor: PreluraColors
+                      .greyLightColor, // Text color for inactive tabs
                   labelStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16, // Font size for the active tab
@@ -219,10 +241,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                     Tab(text: "Similar items"),
                   ],
                 ),
-                ContentSizeTabBarView(physics: const ClampingScrollPhysics(), controller: _tabController, children: [
-                  _buildMemberItemsTab(context),
-                  _buildSimilarItemsTab(context),
-                ]),
+                ContentSizeTabBarView(
+                    physics: const ClampingScrollPhysics(),
+                    controller: _tabController,
+                    children: [
+                      _buildMemberItemsTab(context),
+                      _buildSimilarItemsTab(context),
+                    ]),
               ],
             ),
           ),
@@ -233,9 +258,18 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                   child: PreluraAppBar(
                     appBarHeight: 50,
                     leadingIcon: IconButton(
-                        icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+                        icon: Icon(Icons.arrow_back,
+                            color: Theme.of(context).iconTheme.color),
                         onPressed: () => {
-                              if (context.router.canPop()) {context.router.back()} else {tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state), context.back()}
+                              if (context.router.canPop())
+                                {context.router.back()}
+                              else
+                                {
+                                  // tabRouter.setActiveIndex(ref
+                                  //     .read(routePathProvider.notifier)
+                                  //     .state),
+                                  context.back()
+                                }
                             }),
                     appbarTitle: widget.product.name,
                     // trailingIcon: [
@@ -250,7 +284,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
         child: Row(
           children: [
             Expanded(
@@ -268,7 +303,6 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                 onTap: () {},
                 text: "Buy now",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
-                bgColor: Colors.purple,
                 borderColor: Colors.purple,
               ),
             ),
@@ -338,7 +372,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
               margin: const EdgeInsets.only(right: 5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: _currentPage == i ? PreluraColors.activeColor : PreluraColors.black),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _currentPage == i
+                      ? PreluraColors.activeColor
+                      : PreluraColors.black),
             )
         ],
       ),

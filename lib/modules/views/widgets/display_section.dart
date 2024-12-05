@@ -17,7 +17,11 @@ class DisplaySection extends StatelessWidget {
           return GridView.builder(
               padding: const EdgeInsets.all(10),
               shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.58),
+              physics: const NeverScrollableScrollPhysics(),              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.58),
               itemCount: mockData.length,
               itemBuilder: (context, index) {
                 return DisplayCard(itemData: mockData[index]);
