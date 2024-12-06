@@ -77,6 +77,12 @@ mutation CreateProduct(
   }
 }
 
+mutation likeProduct($productId: Int!) {
+  likeProduct(productId: $productId) {
+    success
+  }
+}
+
 mutation UpdateProduct(
   $category: Int
   $condition: ConditionEnum

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:graphql/client.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
@@ -91,7 +92,11 @@ class ProductRepo {
     return Product.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<Product>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<List<Product>> getUserProduct(
+      {String? username,
+      String? search,
+      int? pageCount,
+      int? pageNumber}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -116,10 +121,16 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
+    return response.parsedData!.userProducts!
+        .map((x) => Product.fromJson(x!.toJson()))
+        .toList();
   }
 
-  Future<List<Product>> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<List<Product>> getAllProducts(
+      {String? username,
+      String? search,
+      int? pageCount,
+      int? pageNumber}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(
           variables: Variables$Query$AllProducts(
@@ -143,7 +154,63 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.allProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
+    print(response.parsedData!.allProducts);
+    return response.parsedData!.allProducts!
+        .map((x) => Product.fromJson(x!.toJson()))
+        .toList();
+  }
+
+  Future<List<Product>> getMyFavouriteProduct(int? pageCount) async {
+    final response = await _client.query$likedProducts(
+      Options$Query$likedProducts(
+          variables: Variables$Query$likedProducts(
+        pageCount: 100 + pageCount!,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        print(error);
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured here';
+    }
+
+    return response.parsedData!.likedProducts!
+        .map((x) => Product.fromJson((x!.product)!.toJson()))
+        .toList();
+  }
+
+  Future<bool?> toggleLikeProduct(int productId) async {
+    final response = await _client.mutate$likeProduct(
+      Options$Mutation$likeProduct(
+          variables: Variables$Mutation$likeProduct(
+        productId: productId,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.likeProduct?.success!;
   }
 
   Future<List<CategoryModel>> getCategories() async {
@@ -165,7 +232,9 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.categories!.map((x) => CategoryModel.fromJson(x!.toJson())).toList();
+    return response.parsedData!.categories!
+        .map((x) => CategoryModel.fromJson(x!.toJson()))
+        .toList();
   }
 
   // Future<List<SizeModel>> getSize() async {

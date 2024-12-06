@@ -31,7 +31,8 @@ class Product with _$Product {
     required DateTime updatedAt,
   }) = _Product;
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
 }
 
 @freezed
@@ -41,15 +42,18 @@ class ProductBanners with _$ProductBanners {
     required String thumbnail,
   }) = _ProductBanners;
 
-  factory ProductBanners.fromJson(Map<String, dynamic> json) => _$ProductBannersFromJson(json);
+  factory ProductBanners.fromJson(Map<String, dynamic> json) =>
+      _$ProductBannersFromJson(json);
 }
 
-class BannerConverter implements JsonConverter<List<ProductBanners>, List<String>> {
+class BannerConverter
+    implements JsonConverter<List<ProductBanners>, List<String>> {
   const BannerConverter();
 
   @override
   List<ProductBanners> fromJson(List<String> items) {
-    final banners = items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
+    final banners =
+        items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
     return banners;
   }
 
@@ -83,7 +87,9 @@ enum ConditionsEnum {
   final String subtitle;
 
   static ConditionsEnum conditionByApiValue(String apiValue) {
-    return ConditionsEnum.values.firstWhere((value) => value.name.toLowerCase() == apiValue.toLowerCase(), orElse: () => ConditionsEnum.USED);
+    return ConditionsEnum.values.firstWhere(
+        (value) => value.name.toLowerCase() == apiValue.toLowerCase(),
+        orElse: () => ConditionsEnum.USED);
   }
 
   static String conditionToApiValue(ConditionsEnum condition) {

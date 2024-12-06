@@ -165,6 +165,7 @@ query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
     imagesUrl
     createdAt
     updatedAt
+    likes
   }
 }
 
@@ -175,6 +176,41 @@ query Categories {
     subCategory {
       id
       name
+    }
+  }
+}
+
+query likedProducts ($pageCount: Int, $pageNumber: Int){
+  likedProducts(pageCount: $pageCount, pageNumber:$pageNumber){
+    product{
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    seller {
+      id
+      username
+    }
+    condition
+    discountPrice
+    size
+    condition
+    price
+    parcelSize
+    views
+    likes
+    imagesUrl
+    createdAt
+    updatedAt
+    likes
+    userLiked
     }
   }
 }
