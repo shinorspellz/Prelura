@@ -112,9 +112,7 @@ schema (one of the key benefits of GraphQL).
 scalar JSONString
 
 type LikedProductType {
-  id: ID!
-  product: ProductType!
-  createdAt: DateTime!
+  product: ProductType
 }
 
 type LikeProduct {
@@ -317,6 +315,12 @@ input PhoneInputType {
   completed: String
 }
 
+type PhoneType {
+  countryCode: String
+  number: String
+  completed: String
+}
+
 """An enumeration."""
 enum ProductsProductConditionChoices {
   """New with tags"""
@@ -445,7 +449,6 @@ type ProductType {
   imagesUrl: [JSONString!]!
   createdAt: DateTime!
   updatedAt: DateTime!
-  productlikeSet: [LikedProductType!]!
   userLiked: Boolean
 }
 
@@ -567,7 +570,6 @@ type UserNode implements Node {
   usernameLastUpdated: DateTime
   meta: JSONString!
   products: [ProductType!]!
-  productlikeSet: [LikedProductType!]!
   pk: Int
   archived: Boolean
   verified: Boolean
@@ -588,5 +590,6 @@ type UserType {
   dateJoined: DateTime
   lastLogin: DateTime
   fullName: String
+  phone: PhoneType
 }
 

@@ -100,77 +100,80 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
-        child: Container(
-          // height: maxLength != null ? 6.h : 6.h,
-          width: widget.minWidth ?? 100.0.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Theme.of(context).scaffoldBackgroundColor,
-          ),
-          child: TextFormField(
-            autocorrect: false,
-            enableSuggestions: false,
-            minLines: widget.minLines ?? 1,
-            controller: widget.controller,
-            maxLength: widget.maxLength,
-            maxLines: widget.maxLines,
-            onSaved: widget.onSaved,
-            enabled: widget.enabled,
-            cursorHeight: 15,
-            textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
-            onTap: widget.onTap,
-            focusNode: widget.focusNode ?? focusNodeZZZ,
-            onChanged: (text) {
-              if (widget.onChanged != null) widget.onChanged!(text);
-            },
-            cursorColor: Theme.of(context).primaryColor,
-            keyboardType: widget.keyboardType,
-            obscureText: obscureText,
-            obscuringCharacter: '*',
-            inputFormatters: [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
-            maxLengthEnforcement: MaxLengthEnforcement.enforced,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: widget.validator,
-            // validator: (val) {
-            //   if (widget.validator == null) return;
-            //   if (val == null || val.isEmpty) {
-            //     // errorMessage = 'Enter text';
-            //   } else {
-            //     errorMessage = widget.validator != null ? widget.validator!(val) : 'Enter text';
-            //   }
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: Container(
+            // height: maxLength != null ? 6.h : 6.h,
+            width: widget.minWidth ?? 100.0.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+            child: TextFormField(
+              autocorrect: false,
+              enableSuggestions: false,
+              minLines: widget.minLines ?? 1,
+              controller: widget.controller,
+              maxLength: widget.maxLength,
+              maxLines: widget.maxLines,
+              onSaved: widget.onSaved,
+              enabled: widget.enabled,
+              cursorHeight: 15,
+              textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+              // onTap: widget.onTap,
+              focusNode: widget.focusNode ?? focusNodeZZZ,
+              onChanged: (text) {
+                if (widget.onChanged != null) widget.onChanged!(text);
+              },
+              cursorColor: Theme.of(context).primaryColor,
+              keyboardType: widget.keyboardType,
+              obscureText: obscureText,
+              obscuringCharacter: '*',
+              inputFormatters: [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: widget.validator,
+              // validator: (val) {
+              //   if (widget.validator == null) return;
+              //   if (val == null || val.isEmpty) {
+              //     // errorMessage = 'Enter text';
+              //   } else {
+              //     errorMessage = widget.validator != null ? widget.validator!(val) : 'Enter text';
+              //   }
 
-            //   WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-            //     setState(() {});
-            //   });
-            //   return null;
-            // },
-            style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
-            readOnly: widget.shouldReadOnly,
-            decoration: UIConstants.instance
-                .inputDecoration(
-                  labelText: widget.label,
-                  labelStyle: widget.labelStyle,
-                  context,
-                  hintText: widget.hintText,
-                  suffixIcon: widget.suffixIcon,
-                  contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),
-                )
-                .copyWith(
-                  focusedBorder: showGradient
-                      ? OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
+              //   WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+              //     setState(() {});
+              //   });
+              //   return null;
+              // },
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
+              readOnly: widget.shouldReadOnly,
+              decoration: UIConstants.instance
+                  .inputDecoration(
+                    labelText: widget.label,
+                    labelStyle: widget.labelStyle,
+                    context,
+                    hintText: widget.hintText,
+                    suffixIcon: widget.suffixIcon,
+                    contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),
+                  )
+                  .copyWith(
+                    focusedBorder: showGradient
+                        ? OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                            ),
+                          )
+                        : null,
+                    suffixIcon: !widget.isPassword
+                        ? widget.suffixIcon
+                        : IconButton(
+                            onPressed: () => setState(() => obscureText = !obscureText),
+                            icon: obscureText ? const RenderSvg(svgPath: PreluraIcons.eyeIcon) : const RenderSvg(svgPath: PreluraIcons.eyeSlashOutline),
                           ),
-                        )
-                      : null,
-                  suffixIcon: !widget.isPassword
-                      ? widget.suffixIcon
-                      : IconButton(
-                          onPressed: () => setState(() => obscureText = !obscureText),
-                          icon: obscureText ? const RenderSvg(svgPath: PreluraIcons.eyeIcon) : const RenderSvg(svgPath: PreluraIcons.eyeSlashOutline),
-                        ),
-                ),
+                  ),
+            ),
           ),
         ),
       ),
