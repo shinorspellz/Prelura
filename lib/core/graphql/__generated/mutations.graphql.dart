@@ -4987,3 +4987,1056 @@ class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$UpdateProfile {
+  factory Variables$Mutation$UpdateProfile({
+    String? bio,
+    String? country,
+    String? displayName,
+    DateTime? dob,
+    String? firstName,
+    String? gender,
+    String? lastName,
+    String? otp,
+    Input$PhoneInputType? phoneNumber,
+    String? postCode,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    bool? use2fa,
+    String? username,
+  }) =>
+      Variables$Mutation$UpdateProfile._({
+        if (bio != null) r'bio': bio,
+        if (country != null) r'country': country,
+        if (displayName != null) r'displayName': displayName,
+        if (dob != null) r'dob': dob,
+        if (firstName != null) r'firstName': firstName,
+        if (gender != null) r'gender': gender,
+        if (lastName != null) r'lastName': lastName,
+        if (otp != null) r'otp': otp,
+        if (phoneNumber != null) r'phoneNumber': phoneNumber,
+        if (postCode != null) r'postCode': postCode,
+        if (profilePictureUrl != null) r'profilePictureUrl': profilePictureUrl,
+        if (thumbnailUrl != null) r'thumbnailUrl': thumbnailUrl,
+        if (use2fa != null) r'use2fa': use2fa,
+        if (username != null) r'username': username,
+      });
+
+  Variables$Mutation$UpdateProfile._(this._$data);
+
+  factory Variables$Mutation$UpdateProfile.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('bio')) {
+      final l$bio = data['bio'];
+      result$data['bio'] = (l$bio as String?);
+    }
+    if (data.containsKey('country')) {
+      final l$country = data['country'];
+      result$data['country'] = (l$country as String?);
+    }
+    if (data.containsKey('displayName')) {
+      final l$displayName = data['displayName'];
+      result$data['displayName'] = (l$displayName as String?);
+    }
+    if (data.containsKey('dob')) {
+      final l$dob = data['dob'];
+      result$data['dob'] =
+          l$dob == null ? null : DateTime.parse((l$dob as String));
+    }
+    if (data.containsKey('firstName')) {
+      final l$firstName = data['firstName'];
+      result$data['firstName'] = (l$firstName as String?);
+    }
+    if (data.containsKey('gender')) {
+      final l$gender = data['gender'];
+      result$data['gender'] = (l$gender as String?);
+    }
+    if (data.containsKey('lastName')) {
+      final l$lastName = data['lastName'];
+      result$data['lastName'] = (l$lastName as String?);
+    }
+    if (data.containsKey('otp')) {
+      final l$otp = data['otp'];
+      result$data['otp'] = (l$otp as String?);
+    }
+    if (data.containsKey('phoneNumber')) {
+      final l$phoneNumber = data['phoneNumber'];
+      result$data['phoneNumber'] = l$phoneNumber == null
+          ? null
+          : Input$PhoneInputType.fromJson(
+              (l$phoneNumber as Map<String, dynamic>));
+    }
+    if (data.containsKey('postCode')) {
+      final l$postCode = data['postCode'];
+      result$data['postCode'] = (l$postCode as String?);
+    }
+    if (data.containsKey('profilePictureUrl')) {
+      final l$profilePictureUrl = data['profilePictureUrl'];
+      result$data['profilePictureUrl'] = (l$profilePictureUrl as String?);
+    }
+    if (data.containsKey('thumbnailUrl')) {
+      final l$thumbnailUrl = data['thumbnailUrl'];
+      result$data['thumbnailUrl'] = (l$thumbnailUrl as String?);
+    }
+    if (data.containsKey('use2fa')) {
+      final l$use2fa = data['use2fa'];
+      result$data['use2fa'] = (l$use2fa as bool?);
+    }
+    if (data.containsKey('username')) {
+      final l$username = data['username'];
+      result$data['username'] = (l$username as String?);
+    }
+    return Variables$Mutation$UpdateProfile._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get bio => (_$data['bio'] as String?);
+
+  String? get country => (_$data['country'] as String?);
+
+  String? get displayName => (_$data['displayName'] as String?);
+
+  DateTime? get dob => (_$data['dob'] as DateTime?);
+
+  String? get firstName => (_$data['firstName'] as String?);
+
+  String? get gender => (_$data['gender'] as String?);
+
+  String? get lastName => (_$data['lastName'] as String?);
+
+  String? get otp => (_$data['otp'] as String?);
+
+  Input$PhoneInputType? get phoneNumber =>
+      (_$data['phoneNumber'] as Input$PhoneInputType?);
+
+  String? get postCode => (_$data['postCode'] as String?);
+
+  String? get profilePictureUrl => (_$data['profilePictureUrl'] as String?);
+
+  String? get thumbnailUrl => (_$data['thumbnailUrl'] as String?);
+
+  bool? get use2fa => (_$data['use2fa'] as bool?);
+
+  String? get username => (_$data['username'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('bio')) {
+      final l$bio = bio;
+      result$data['bio'] = l$bio;
+    }
+    if (_$data.containsKey('country')) {
+      final l$country = country;
+      result$data['country'] = l$country;
+    }
+    if (_$data.containsKey('displayName')) {
+      final l$displayName = displayName;
+      result$data['displayName'] = l$displayName;
+    }
+    if (_$data.containsKey('dob')) {
+      final l$dob = dob;
+      result$data['dob'] = l$dob?.toIso8601String();
+    }
+    if (_$data.containsKey('firstName')) {
+      final l$firstName = firstName;
+      result$data['firstName'] = l$firstName;
+    }
+    if (_$data.containsKey('gender')) {
+      final l$gender = gender;
+      result$data['gender'] = l$gender;
+    }
+    if (_$data.containsKey('lastName')) {
+      final l$lastName = lastName;
+      result$data['lastName'] = l$lastName;
+    }
+    if (_$data.containsKey('otp')) {
+      final l$otp = otp;
+      result$data['otp'] = l$otp;
+    }
+    if (_$data.containsKey('phoneNumber')) {
+      final l$phoneNumber = phoneNumber;
+      result$data['phoneNumber'] = l$phoneNumber?.toJson();
+    }
+    if (_$data.containsKey('postCode')) {
+      final l$postCode = postCode;
+      result$data['postCode'] = l$postCode;
+    }
+    if (_$data.containsKey('profilePictureUrl')) {
+      final l$profilePictureUrl = profilePictureUrl;
+      result$data['profilePictureUrl'] = l$profilePictureUrl;
+    }
+    if (_$data.containsKey('thumbnailUrl')) {
+      final l$thumbnailUrl = thumbnailUrl;
+      result$data['thumbnailUrl'] = l$thumbnailUrl;
+    }
+    if (_$data.containsKey('use2fa')) {
+      final l$use2fa = use2fa;
+      result$data['use2fa'] = l$use2fa;
+    }
+    if (_$data.containsKey('username')) {
+      final l$username = username;
+      result$data['username'] = l$username;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UpdateProfile<Variables$Mutation$UpdateProfile>
+      get copyWith => CopyWith$Variables$Mutation$UpdateProfile(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UpdateProfile ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$bio = bio;
+    final lOther$bio = other.bio;
+    if (_$data.containsKey('bio') != other._$data.containsKey('bio')) {
+      return false;
+    }
+    if (l$bio != lOther$bio) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (_$data.containsKey('country') != other._$data.containsKey('country')) {
+      return false;
+    }
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (_$data.containsKey('displayName') !=
+        other._$data.containsKey('displayName')) {
+      return false;
+    }
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$dob = dob;
+    final lOther$dob = other.dob;
+    if (_$data.containsKey('dob') != other._$data.containsKey('dob')) {
+      return false;
+    }
+    if (l$dob != lOther$dob) {
+      return false;
+    }
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (_$data.containsKey('firstName') !=
+        other._$data.containsKey('firstName')) {
+      return false;
+    }
+    if (l$firstName != lOther$firstName) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (_$data.containsKey('gender') != other._$data.containsKey('gender')) {
+      return false;
+    }
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (_$data.containsKey('lastName') !=
+        other._$data.containsKey('lastName')) {
+      return false;
+    }
+    if (l$lastName != lOther$lastName) {
+      return false;
+    }
+    final l$otp = otp;
+    final lOther$otp = other.otp;
+    if (_$data.containsKey('otp') != other._$data.containsKey('otp')) {
+      return false;
+    }
+    if (l$otp != lOther$otp) {
+      return false;
+    }
+    final l$phoneNumber = phoneNumber;
+    final lOther$phoneNumber = other.phoneNumber;
+    if (_$data.containsKey('phoneNumber') !=
+        other._$data.containsKey('phoneNumber')) {
+      return false;
+    }
+    if (l$phoneNumber != lOther$phoneNumber) {
+      return false;
+    }
+    final l$postCode = postCode;
+    final lOther$postCode = other.postCode;
+    if (_$data.containsKey('postCode') !=
+        other._$data.containsKey('postCode')) {
+      return false;
+    }
+    if (l$postCode != lOther$postCode) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (_$data.containsKey('profilePictureUrl') !=
+        other._$data.containsKey('profilePictureUrl')) {
+      return false;
+    }
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (_$data.containsKey('thumbnailUrl') !=
+        other._$data.containsKey('thumbnailUrl')) {
+      return false;
+    }
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$use2fa = use2fa;
+    final lOther$use2fa = other.use2fa;
+    if (_$data.containsKey('use2fa') != other._$data.containsKey('use2fa')) {
+      return false;
+    }
+    if (l$use2fa != lOther$use2fa) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (_$data.containsKey('username') !=
+        other._$data.containsKey('username')) {
+      return false;
+    }
+    if (l$username != lOther$username) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$bio = bio;
+    final l$country = country;
+    final l$displayName = displayName;
+    final l$dob = dob;
+    final l$firstName = firstName;
+    final l$gender = gender;
+    final l$lastName = lastName;
+    final l$otp = otp;
+    final l$phoneNumber = phoneNumber;
+    final l$postCode = postCode;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$use2fa = use2fa;
+    final l$username = username;
+    return Object.hashAll([
+      _$data.containsKey('bio') ? l$bio : const {},
+      _$data.containsKey('country') ? l$country : const {},
+      _$data.containsKey('displayName') ? l$displayName : const {},
+      _$data.containsKey('dob') ? l$dob : const {},
+      _$data.containsKey('firstName') ? l$firstName : const {},
+      _$data.containsKey('gender') ? l$gender : const {},
+      _$data.containsKey('lastName') ? l$lastName : const {},
+      _$data.containsKey('otp') ? l$otp : const {},
+      _$data.containsKey('phoneNumber') ? l$phoneNumber : const {},
+      _$data.containsKey('postCode') ? l$postCode : const {},
+      _$data.containsKey('profilePictureUrl') ? l$profilePictureUrl : const {},
+      _$data.containsKey('thumbnailUrl') ? l$thumbnailUrl : const {},
+      _$data.containsKey('use2fa') ? l$use2fa : const {},
+      _$data.containsKey('username') ? l$username : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+  factory CopyWith$Variables$Mutation$UpdateProfile(
+    Variables$Mutation$UpdateProfile instance,
+    TRes Function(Variables$Mutation$UpdateProfile) then,
+  ) = _CopyWithImpl$Variables$Mutation$UpdateProfile;
+
+  factory CopyWith$Variables$Mutation$UpdateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateProfile;
+
+  TRes call({
+    String? bio,
+    String? country,
+    String? displayName,
+    DateTime? dob,
+    String? firstName,
+    String? gender,
+    String? lastName,
+    String? otp,
+    Input$PhoneInputType? phoneNumber,
+    String? postCode,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    bool? use2fa,
+    String? username,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+  _CopyWithImpl$Variables$Mutation$UpdateProfile(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UpdateProfile _instance;
+
+  final TRes Function(Variables$Mutation$UpdateProfile) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? bio = _undefined,
+    Object? country = _undefined,
+    Object? displayName = _undefined,
+    Object? dob = _undefined,
+    Object? firstName = _undefined,
+    Object? gender = _undefined,
+    Object? lastName = _undefined,
+    Object? otp = _undefined,
+    Object? phoneNumber = _undefined,
+    Object? postCode = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? use2fa = _undefined,
+    Object? username = _undefined,
+  }) =>
+      _then(Variables$Mutation$UpdateProfile._({
+        ..._instance._$data,
+        if (bio != _undefined) 'bio': (bio as String?),
+        if (country != _undefined) 'country': (country as String?),
+        if (displayName != _undefined) 'displayName': (displayName as String?),
+        if (dob != _undefined) 'dob': (dob as DateTime?),
+        if (firstName != _undefined) 'firstName': (firstName as String?),
+        if (gender != _undefined) 'gender': (gender as String?),
+        if (lastName != _undefined) 'lastName': (lastName as String?),
+        if (otp != _undefined) 'otp': (otp as String?),
+        if (phoneNumber != _undefined)
+          'phoneNumber': (phoneNumber as Input$PhoneInputType?),
+        if (postCode != _undefined) 'postCode': (postCode as String?),
+        if (profilePictureUrl != _undefined)
+          'profilePictureUrl': (profilePictureUrl as String?),
+        if (thumbnailUrl != _undefined)
+          'thumbnailUrl': (thumbnailUrl as String?),
+        if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
+        if (username != _undefined) 'username': (username as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UpdateProfile(this._res);
+
+  TRes _res;
+
+  call({
+    String? bio,
+    String? country,
+    String? displayName,
+    DateTime? dob,
+    String? firstName,
+    String? gender,
+    String? lastName,
+    String? otp,
+    Input$PhoneInputType? phoneNumber,
+    String? postCode,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    bool? use2fa,
+    String? username,
+  }) =>
+      _res;
+}
+
+class Mutation$UpdateProfile {
+  Mutation$UpdateProfile({
+    this.updateProfile,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UpdateProfile.fromJson(Map<String, dynamic> json) {
+    final l$updateProfile = json['updateProfile'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateProfile(
+      updateProfile: l$updateProfile == null
+          ? null
+          : Mutation$UpdateProfile$updateProfile.fromJson(
+              (l$updateProfile as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UpdateProfile$updateProfile? updateProfile;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$updateProfile = updateProfile;
+    _resultData['updateProfile'] = l$updateProfile?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$updateProfile = updateProfile;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$updateProfile,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateProfile || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$updateProfile = updateProfile;
+    final lOther$updateProfile = other.updateProfile;
+    if (l$updateProfile != lOther$updateProfile) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateProfile on Mutation$UpdateProfile {
+  CopyWith$Mutation$UpdateProfile<Mutation$UpdateProfile> get copyWith =>
+      CopyWith$Mutation$UpdateProfile(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$UpdateProfile<TRes> {
+  factory CopyWith$Mutation$UpdateProfile(
+    Mutation$UpdateProfile instance,
+    TRes Function(Mutation$UpdateProfile) then,
+  ) = _CopyWithImpl$Mutation$UpdateProfile;
+
+  factory CopyWith$Mutation$UpdateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProfile;
+
+  TRes call({
+    Mutation$UpdateProfile$updateProfile? updateProfile,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile;
+}
+
+class _CopyWithImpl$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile<TRes> {
+  _CopyWithImpl$Mutation$UpdateProfile(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateProfile _instance;
+
+  final TRes Function(Mutation$UpdateProfile) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? updateProfile = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateProfile(
+        updateProfile: updateProfile == _undefined
+            ? _instance.updateProfile
+            : (updateProfile as Mutation$UpdateProfile$updateProfile?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile {
+    final local$updateProfile = _instance.updateProfile;
+    return local$updateProfile == null
+        ? CopyWith$Mutation$UpdateProfile$updateProfile.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateProfile$updateProfile(
+            local$updateProfile, (e) => call(updateProfile: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateProfile(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UpdateProfile$updateProfile? updateProfile,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile =>
+      CopyWith$Mutation$UpdateProfile$updateProfile.stub(_res);
+}
+
+const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UpdateProfile'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'bio')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'country')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'displayName')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'dob')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Date'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'firstName')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'gender')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'lastName')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'otp')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'phoneNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'PhoneInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'postCode')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'profilePictureUrl')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'thumbnailUrl')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'use2fa')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'username')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'updateProfile'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'bio'),
+            value: VariableNode(name: NameNode(value: 'bio')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'country'),
+            value: VariableNode(name: NameNode(value: 'country')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'displayName'),
+            value: VariableNode(name: NameNode(value: 'displayName')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'dob'),
+            value: VariableNode(name: NameNode(value: 'dob')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'firstName'),
+            value: VariableNode(name: NameNode(value: 'firstName')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'gender'),
+            value: VariableNode(name: NameNode(value: 'gender')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'lastName'),
+            value: VariableNode(name: NameNode(value: 'lastName')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'otp'),
+            value: VariableNode(name: NameNode(value: 'otp')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'phoneNumber'),
+            value: VariableNode(name: NameNode(value: 'phoneNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'postcode'),
+            value: VariableNode(name: NameNode(value: 'postCode')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'profilePictureUrl'),
+            value: VariableNode(name: NameNode(value: 'profilePictureUrl')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'thumbnailUrl'),
+            value: VariableNode(name: NameNode(value: 'thumbnailUrl')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'use2fa'),
+            value: VariableNode(name: NameNode(value: 'use2fa')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'username'),
+            value: VariableNode(name: NameNode(value: 'username')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UpdateProfile _parserFn$Mutation$UpdateProfile(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateProfile.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateProfile = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$UpdateProfile?,
+);
+
+class Options$Mutation$UpdateProfile
+    extends graphql.MutationOptions<Mutation$UpdateProfile> {
+  Options$Mutation$UpdateProfile({
+    String? operationName,
+    Variables$Mutation$UpdateProfile? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateProfile? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UpdateProfile? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UpdateProfile>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateProfile(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUpdateProfile,
+          parserFn: _parserFn$Mutation$UpdateProfile,
+        );
+
+  final OnMutationCompleted$Mutation$UpdateProfile? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UpdateProfile
+    extends graphql.WatchQueryOptions<Mutation$UpdateProfile> {
+  WatchOptions$Mutation$UpdateProfile({
+    String? operationName,
+    Variables$Mutation$UpdateProfile? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateProfile? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUpdateProfile,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UpdateProfile,
+        );
+}
+
+extension ClientExtension$Mutation$UpdateProfile on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateProfile>> mutate$UpdateProfile(
+          [Options$Mutation$UpdateProfile? options]) async =>
+      await this.mutate(options ?? Options$Mutation$UpdateProfile());
+  graphql.ObservableQuery<Mutation$UpdateProfile> watchMutation$UpdateProfile(
+          [WatchOptions$Mutation$UpdateProfile? options]) =>
+      this.watchMutation(options ?? WatchOptions$Mutation$UpdateProfile());
+}
+
+class Mutation$UpdateProfile$updateProfile {
+  Mutation$UpdateProfile$updateProfile({
+    this.message,
+    this.$__typename = 'UpdateUserMutation',
+  });
+
+  factory Mutation$UpdateProfile$updateProfile.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateProfile$updateProfile(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateProfile$updateProfile ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateProfile$updateProfile
+    on Mutation$UpdateProfile$updateProfile {
+  CopyWith$Mutation$UpdateProfile$updateProfile<
+          Mutation$UpdateProfile$updateProfile>
+      get copyWith => CopyWith$Mutation$UpdateProfile$updateProfile(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+  factory CopyWith$Mutation$UpdateProfile$updateProfile(
+    Mutation$UpdateProfile$updateProfile instance,
+    TRes Function(Mutation$UpdateProfile$updateProfile) then,
+  ) = _CopyWithImpl$Mutation$UpdateProfile$updateProfile;
+
+  factory CopyWith$Mutation$UpdateProfile$updateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+  _CopyWithImpl$Mutation$UpdateProfile$updateProfile(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateProfile$updateProfile _instance;
+
+  final TRes Function(Mutation$UpdateProfile$updateProfile) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateProfile$updateProfile(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}

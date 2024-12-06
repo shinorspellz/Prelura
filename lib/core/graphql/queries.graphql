@@ -13,6 +13,10 @@ query ViewMe {
     dateJoined
     lastLogin
     fullName
+    phone {
+      number
+      countryCode
+    }
   }
 }
 query SearchUser($search: String!) {
@@ -30,6 +34,10 @@ query SearchUser($search: String!) {
     dateJoined
     lastLogin
     fullName
+    phone {
+      number
+      countryCode
+    }
   }
 }
 
@@ -48,6 +56,10 @@ query GetUser($username: String!) {
     dateJoined
     lastLogin
     fullName
+    phone {
+      number
+      countryCode
+    }
   }
 }
 
