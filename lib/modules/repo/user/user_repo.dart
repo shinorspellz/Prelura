@@ -57,7 +57,6 @@ class UserRepo {
     return UserModel.fromJson(response.parsedData!.getUser!.toJson());
   }
 
-
   Future<List<UserModel>> searchUser(String query) async {
     final response = await _client.query$SearchUser(
       Options$Query$SearchUser(
@@ -76,8 +75,7 @@ class UserRepo {
     }
 
     // Handle missing parsed data
-    if (response.parsedData == null ||
-        response.parsedData!.searchUsers == null) {
+    if (response.parsedData == null || response.parsedData!.searchUsers == null) {
       log('Missing response data', name: 'UserRepo');
       throw Exception('No users found.');
     }
@@ -85,9 +83,7 @@ class UserRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.searchUsers!;
-      return usersJsonList
-          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
-          .toList();
+      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',
@@ -95,6 +91,8 @@ class UserRepo {
         stackTrace: stackTrace,
       );
       throw Exception('Failed to parse user data.');
+    }
+  }
 
   Future<void> updateProfile(Variables$Mutation$UpdateProfile params) async {
     final response = await _client.mutate$UpdateProfile(
@@ -110,7 +108,6 @@ class UserRepo {
       }
       log(response.exception.toString(), name: 'UserRepo');
       throw 'An error occured';
-
     }
   }
 }
