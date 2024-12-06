@@ -118,3 +118,39 @@ mutation DeleteProduct($productId: Int!) {
     message
   }
 }
+
+mutation UpdateProfile(
+  $bio: String
+  $country: String
+  $displayName: String
+  $dob: Date
+  $firstName: String
+  $gender: String
+  $lastName: String
+  $otp: String
+  $phoneNumber: PhoneInputType
+  $postCode: String
+  $profilePictureUrl: String
+  $thumbnailUrl: String
+  $use2fa: Boolean
+  $username: String
+) {
+  updateProfile(
+    bio: $bio
+    country: $country
+    displayName: $displayName
+    dob: $dob
+    firstName: $firstName
+    gender: $gender
+    lastName: $lastName
+    otp: $otp
+    phoneNumber: $phoneNumber
+    postcode: $postCode
+    profilePictureUrl: $profilePictureUrl
+    thumbnailUrl: $thumbnailUrl
+    use2fa: $use2fa
+    username: $username
+  ) {
+    message
+  }
+}

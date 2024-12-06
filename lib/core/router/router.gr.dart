@@ -107,7 +107,7 @@ class AccountSettingRoute extends _i36.PageRouteInfo<void> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      return _i2.AccountSettingScreen();
+      return const _i2.AccountSettingScreen();
     },
   );
 }

@@ -33,6 +33,7 @@ mixin _$UserModel {
   DateTime? get dateJoined => throw _privateConstructorUsedError;
   DateTime? get lastLogin => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
+  PhoneModel? get phone => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,7 +63,10 @@ abstract class $UserModelCopyWith<$Res> {
       DateTime? dob,
       DateTime? dateJoined,
       DateTime? lastLogin,
-      String? fullName});
+      String? fullName,
+      PhoneModel? phone});
+
+  $PhoneModelCopyWith<$Res>? get phone;
 }
 
 /// @nodoc
@@ -93,6 +97,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? dateJoined = freezed,
     Object? lastLogin = freezed,
     Object? fullName = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -147,7 +152,25 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as PhoneModel?,
     ) as $Val);
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PhoneModelCopyWith<$Res>? get phone {
+    if (_value.phone == null) {
+      return null;
+    }
+
+    return $PhoneModelCopyWith<$Res>(_value.phone!, (value) {
+      return _then(_value.copyWith(phone: value) as $Val);
+    });
   }
 }
 
@@ -172,7 +195,11 @@ abstract class _$$UserModelImplCopyWith<$Res>
       DateTime? dob,
       DateTime? dateJoined,
       DateTime? lastLogin,
-      String? fullName});
+      String? fullName,
+      PhoneModel? phone});
+
+  @override
+  $PhoneModelCopyWith<$Res>? get phone;
 }
 
 /// @nodoc
@@ -201,6 +228,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? dateJoined = freezed,
     Object? lastLogin = freezed,
     Object? fullName = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -255,6 +283,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as PhoneModel?,
     ));
   }
 }
@@ -275,7 +307,8 @@ class _$UserModelImpl implements _UserModel {
       this.dob,
       this.dateJoined,
       this.lastLogin,
-      this.fullName});
+      this.fullName,
+      this.phone});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -306,10 +339,12 @@ class _$UserModelImpl implements _UserModel {
   final DateTime? lastLogin;
   @override
   final String? fullName;
+  @override
+  final PhoneModel? phone;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, phone: $phone)';
   }
 
   @override
@@ -337,7 +372,8 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.lastLogin, lastLogin) ||
                 other.lastLogin == lastLogin) &&
             (identical(other.fullName, fullName) ||
-                other.fullName == fullName));
+                other.fullName == fullName) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -356,7 +392,8 @@ class _$UserModelImpl implements _UserModel {
       dob,
       dateJoined,
       lastLogin,
-      fullName);
+      fullName,
+      phone);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -388,7 +425,8 @@ abstract class _UserModel implements UserModel {
       final DateTime? dob,
       final DateTime? dateJoined,
       final DateTime? lastLogin,
-      final String? fullName}) = _$UserModelImpl;
+      final String? fullName,
+      final PhoneModel? phone}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -419,11 +457,181 @@ abstract class _UserModel implements UserModel {
   DateTime? get lastLogin;
   @override
   String? get fullName;
+  @override
+  PhoneModel? get phone;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PhoneModel _$PhoneModelFromJson(Map<String, dynamic> json) {
+  return _PhoneModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PhoneModel {
+  String get number => throw _privateConstructorUsedError;
+  String get countryCode => throw _privateConstructorUsedError;
+
+  /// Serializes this PhoneModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of PhoneModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PhoneModelCopyWith<PhoneModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PhoneModelCopyWith<$Res> {
+  factory $PhoneModelCopyWith(
+          PhoneModel value, $Res Function(PhoneModel) then) =
+      _$PhoneModelCopyWithImpl<$Res, PhoneModel>;
+  @useResult
+  $Res call({String number, String countryCode});
+}
+
+/// @nodoc
+class _$PhoneModelCopyWithImpl<$Res, $Val extends PhoneModel>
+    implements $PhoneModelCopyWith<$Res> {
+  _$PhoneModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PhoneModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? number = null,
+    Object? countryCode = null,
+  }) {
+    return _then(_value.copyWith(
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PhoneModelImplCopyWith<$Res>
+    implements $PhoneModelCopyWith<$Res> {
+  factory _$$PhoneModelImplCopyWith(
+          _$PhoneModelImpl value, $Res Function(_$PhoneModelImpl) then) =
+      __$$PhoneModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String number, String countryCode});
+}
+
+/// @nodoc
+class __$$PhoneModelImplCopyWithImpl<$Res>
+    extends _$PhoneModelCopyWithImpl<$Res, _$PhoneModelImpl>
+    implements _$$PhoneModelImplCopyWith<$Res> {
+  __$$PhoneModelImplCopyWithImpl(
+      _$PhoneModelImpl _value, $Res Function(_$PhoneModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PhoneModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? number = null,
+    Object? countryCode = null,
+  }) {
+    return _then(_$PhoneModelImpl(
+      number: null == number
+          ? _value.number
+          : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      countryCode: null == countryCode
+          ? _value.countryCode
+          : countryCode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PhoneModelImpl implements _PhoneModel {
+  const _$PhoneModelImpl({required this.number, required this.countryCode});
+
+  factory _$PhoneModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PhoneModelImplFromJson(json);
+
+  @override
+  final String number;
+  @override
+  final String countryCode;
+
+  @override
+  String toString() {
+    return 'PhoneModel(number: $number, countryCode: $countryCode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PhoneModelImpl &&
+            (identical(other.number, number) || other.number == number) &&
+            (identical(other.countryCode, countryCode) ||
+                other.countryCode == countryCode));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, number, countryCode);
+
+  /// Create a copy of PhoneModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PhoneModelImplCopyWith<_$PhoneModelImpl> get copyWith =>
+      __$$PhoneModelImplCopyWithImpl<_$PhoneModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PhoneModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PhoneModel implements PhoneModel {
+  const factory _PhoneModel(
+      {required final String number,
+      required final String countryCode}) = _$PhoneModelImpl;
+
+  factory _PhoneModel.fromJson(Map<String, dynamic> json) =
+      _$PhoneModelImpl.fromJson;
+
+  @override
+  String get number;
+  @override
+  String get countryCode;
+
+  /// Create a copy of PhoneModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PhoneModelImplCopyWith<_$PhoneModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

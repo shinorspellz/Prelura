@@ -241,6 +241,35 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'phone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'number'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'countryCode'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -389,6 +418,7 @@ class Query$ViewMe$viewMe {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.phone,
     this.$__typename = 'UserType',
   });
 
@@ -406,6 +436,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$ViewMe$viewMe(
       id: (l$id as int?),
@@ -424,6 +455,10 @@ class Query$ViewMe$viewMe {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      phone: l$phone == null
+          ? null
+          : Query$ViewMe$viewMe$phone.fromJson(
+              (l$phone as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -453,6 +488,8 @@ class Query$ViewMe$viewMe {
   final DateTime? lastLogin;
 
   final String? fullName;
+
+  final Query$ViewMe$viewMe$phone? phone;
 
   final String $__typename;
 
@@ -484,6 +521,8 @@ class Query$ViewMe$viewMe {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -504,6 +543,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -519,6 +559,7 @@ class Query$ViewMe$viewMe {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$phone,
       l$$__typename,
     ]);
   }
@@ -596,6 +637,11 @@ class Query$ViewMe$viewMe {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -636,8 +682,10 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$ViewMe$viewMe$phone? phone,
     String? $__typename,
   });
+  CopyWith$Query$ViewMe$viewMe$phone<TRes> get phone;
 }
 
 class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
@@ -667,6 +715,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$ViewMe$viewMe(
@@ -696,10 +745,21 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        phone: phone == _undefined
+            ? _instance.phone
+            : (phone as Query$ViewMe$viewMe$phone?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$ViewMe$viewMe$phone<TRes> get phone {
+    final local$phone = _instance.phone;
+    return local$phone == null
+        ? CopyWith$Query$ViewMe$viewMe$phone.stub(_then(_instance))
+        : CopyWith$Query$ViewMe$viewMe$phone(
+            local$phone, (e) => call(phone: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
@@ -722,6 +782,153 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$ViewMe$viewMe$phone? phone,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$ViewMe$viewMe$phone<TRes> get phone =>
+      CopyWith$Query$ViewMe$viewMe$phone.stub(_res);
+}
+
+class Query$ViewMe$viewMe$phone {
+  Query$ViewMe$viewMe$phone({
+    this.number,
+    this.countryCode,
+    this.$__typename = 'PhoneType',
+  });
+
+  factory Query$ViewMe$viewMe$phone.fromJson(Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$countryCode = json['countryCode'];
+    final l$$__typename = json['__typename'];
+    return Query$ViewMe$viewMe$phone(
+      number: (l$number as String?),
+      countryCode: (l$countryCode as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? number;
+
+  final String? countryCode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$countryCode = countryCode;
+    _resultData['countryCode'] = l$countryCode;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$countryCode = countryCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$countryCode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ViewMe$viewMe$phone ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ViewMe$viewMe$phone
+    on Query$ViewMe$viewMe$phone {
+  CopyWith$Query$ViewMe$viewMe$phone<Query$ViewMe$viewMe$phone> get copyWith =>
+      CopyWith$Query$ViewMe$viewMe$phone(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$ViewMe$viewMe$phone<TRes> {
+  factory CopyWith$Query$ViewMe$viewMe$phone(
+    Query$ViewMe$viewMe$phone instance,
+    TRes Function(Query$ViewMe$viewMe$phone) then,
+  ) = _CopyWithImpl$Query$ViewMe$viewMe$phone;
+
+  factory CopyWith$Query$ViewMe$viewMe$phone.stub(TRes res) =
+      _CopyWithStubImpl$Query$ViewMe$viewMe$phone;
+
+  TRes call({
+    String? number,
+    String? countryCode,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$ViewMe$viewMe$phone<TRes>
+    implements CopyWith$Query$ViewMe$viewMe$phone<TRes> {
+  _CopyWithImpl$Query$ViewMe$viewMe$phone(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ViewMe$viewMe$phone _instance;
+
+  final TRes Function(Query$ViewMe$viewMe$phone) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? countryCode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$ViewMe$viewMe$phone(
+        number: number == _undefined ? _instance.number : (number as String?),
+        countryCode: countryCode == _undefined
+            ? _instance.countryCode
+            : (countryCode as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$ViewMe$viewMe$phone<TRes>
+    implements CopyWith$Query$ViewMe$viewMe$phone<TRes> {
+  _CopyWithStubImpl$Query$ViewMe$viewMe$phone(this._res);
+
+  TRes _res;
+
+  call({
+    String? number,
+    String? countryCode,
     String? $__typename,
   }) =>
       _res;
@@ -1109,6 +1316,35 @@ const documentNodeQuerySearchUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'phone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'number'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'countryCode'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -1272,6 +1508,7 @@ class Query$SearchUser$searchUsers {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.phone,
     this.$__typename = 'UserType',
   });
 
@@ -1289,6 +1526,7 @@ class Query$SearchUser$searchUsers {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$SearchUser$searchUsers(
       id: (l$id as int?),
@@ -1307,6 +1545,10 @@ class Query$SearchUser$searchUsers {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      phone: l$phone == null
+          ? null
+          : Query$SearchUser$searchUsers$phone.fromJson(
+              (l$phone as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1336,6 +1578,8 @@ class Query$SearchUser$searchUsers {
   final DateTime? lastLogin;
 
   final String? fullName;
+
+  final Query$SearchUser$searchUsers$phone? phone;
 
   final String $__typename;
 
@@ -1367,6 +1611,8 @@ class Query$SearchUser$searchUsers {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1387,6 +1633,7 @@ class Query$SearchUser$searchUsers {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -1402,6 +1649,7 @@ class Query$SearchUser$searchUsers {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$phone,
       l$$__typename,
     ]);
   }
@@ -1480,6 +1728,11 @@ class Query$SearchUser$searchUsers {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -1521,8 +1774,10 @@ abstract class CopyWith$Query$SearchUser$searchUsers<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$SearchUser$searchUsers$phone? phone,
     String? $__typename,
   });
+  CopyWith$Query$SearchUser$searchUsers$phone<TRes> get phone;
 }
 
 class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
@@ -1552,6 +1807,7 @@ class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$SearchUser$searchUsers(
@@ -1581,10 +1837,21 @@ class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        phone: phone == _undefined
+            ? _instance.phone
+            : (phone as Query$SearchUser$searchUsers$phone?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$SearchUser$searchUsers$phone<TRes> get phone {
+    final local$phone = _instance.phone;
+    return local$phone == null
+        ? CopyWith$Query$SearchUser$searchUsers$phone.stub(_then(_instance))
+        : CopyWith$Query$SearchUser$searchUsers$phone(
+            local$phone, (e) => call(phone: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$SearchUser$searchUsers<TRes>
@@ -1607,6 +1874,155 @@ class _CopyWithStubImpl$Query$SearchUser$searchUsers<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$SearchUser$searchUsers$phone? phone,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$SearchUser$searchUsers$phone<TRes> get phone =>
+      CopyWith$Query$SearchUser$searchUsers$phone.stub(_res);
+}
+
+class Query$SearchUser$searchUsers$phone {
+  Query$SearchUser$searchUsers$phone({
+    this.number,
+    this.countryCode,
+    this.$__typename = 'PhoneType',
+  });
+
+  factory Query$SearchUser$searchUsers$phone.fromJson(
+      Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$countryCode = json['countryCode'];
+    final l$$__typename = json['__typename'];
+    return Query$SearchUser$searchUsers$phone(
+      number: (l$number as String?),
+      countryCode: (l$countryCode as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? number;
+
+  final String? countryCode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$countryCode = countryCode;
+    _resultData['countryCode'] = l$countryCode;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$countryCode = countryCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$countryCode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SearchUser$searchUsers$phone ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SearchUser$searchUsers$phone
+    on Query$SearchUser$searchUsers$phone {
+  CopyWith$Query$SearchUser$searchUsers$phone<
+          Query$SearchUser$searchUsers$phone>
+      get copyWith => CopyWith$Query$SearchUser$searchUsers$phone(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$SearchUser$searchUsers$phone<TRes> {
+  factory CopyWith$Query$SearchUser$searchUsers$phone(
+    Query$SearchUser$searchUsers$phone instance,
+    TRes Function(Query$SearchUser$searchUsers$phone) then,
+  ) = _CopyWithImpl$Query$SearchUser$searchUsers$phone;
+
+  factory CopyWith$Query$SearchUser$searchUsers$phone.stub(TRes res) =
+      _CopyWithStubImpl$Query$SearchUser$searchUsers$phone;
+
+  TRes call({
+    String? number,
+    String? countryCode,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$SearchUser$searchUsers$phone<TRes>
+    implements CopyWith$Query$SearchUser$searchUsers$phone<TRes> {
+  _CopyWithImpl$Query$SearchUser$searchUsers$phone(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SearchUser$searchUsers$phone _instance;
+
+  final TRes Function(Query$SearchUser$searchUsers$phone) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? countryCode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$SearchUser$searchUsers$phone(
+        number: number == _undefined ? _instance.number : (number as String?),
+        countryCode: countryCode == _undefined
+            ? _instance.countryCode
+            : (countryCode as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$SearchUser$searchUsers$phone<TRes>
+    implements CopyWith$Query$SearchUser$searchUsers$phone<TRes> {
+  _CopyWithStubImpl$Query$SearchUser$searchUsers$phone(this._res);
+
+  TRes _res;
+
+  call({
+    String? number,
+    String? countryCode,
     String? $__typename,
   }) =>
       _res;
@@ -1965,6 +2381,35 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'phone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'number'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'countryCode'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -2128,6 +2573,7 @@ class Query$GetUser$getUser {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.phone,
     this.$__typename = 'UserType',
   });
 
@@ -2145,6 +2591,7 @@ class Query$GetUser$getUser {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
       id: (l$id as int?),
@@ -2163,6 +2610,10 @@ class Query$GetUser$getUser {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      phone: l$phone == null
+          ? null
+          : Query$GetUser$getUser$phone.fromJson(
+              (l$phone as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2192,6 +2643,8 @@ class Query$GetUser$getUser {
   final DateTime? lastLogin;
 
   final String? fullName;
+
+  final Query$GetUser$getUser$phone? phone;
 
   final String $__typename;
 
@@ -2223,6 +2676,8 @@ class Query$GetUser$getUser {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2243,6 +2698,7 @@ class Query$GetUser$getUser {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -2258,6 +2714,7 @@ class Query$GetUser$getUser {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$phone,
       l$$__typename,
     ]);
   }
@@ -2335,6 +2792,11 @@ class Query$GetUser$getUser {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -2375,8 +2837,10 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
+  CopyWith$Query$GetUser$getUser$phone<TRes> get phone;
 }
 
 class _CopyWithImpl$Query$GetUser$getUser<TRes>
@@ -2406,6 +2870,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetUser$getUser(
@@ -2435,10 +2900,21 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        phone: phone == _undefined
+            ? _instance.phone
+            : (phone as Query$GetUser$getUser$phone?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$GetUser$getUser$phone<TRes> get phone {
+    final local$phone = _instance.phone;
+    return local$phone == null
+        ? CopyWith$Query$GetUser$getUser$phone.stub(_then(_instance))
+        : CopyWith$Query$GetUser$getUser$phone(
+            local$phone, (e) => call(phone: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
@@ -2461,6 +2937,153 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    Query$GetUser$getUser$phone? phone,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$GetUser$getUser$phone<TRes> get phone =>
+      CopyWith$Query$GetUser$getUser$phone.stub(_res);
+}
+
+class Query$GetUser$getUser$phone {
+  Query$GetUser$getUser$phone({
+    this.number,
+    this.countryCode,
+    this.$__typename = 'PhoneType',
+  });
+
+  factory Query$GetUser$getUser$phone.fromJson(Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$countryCode = json['countryCode'];
+    final l$$__typename = json['__typename'];
+    return Query$GetUser$getUser$phone(
+      number: (l$number as String?),
+      countryCode: (l$countryCode as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? number;
+
+  final String? countryCode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$countryCode = countryCode;
+    _resultData['countryCode'] = l$countryCode;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$countryCode = countryCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$countryCode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetUser$getUser$phone ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetUser$getUser$phone
+    on Query$GetUser$getUser$phone {
+  CopyWith$Query$GetUser$getUser$phone<Query$GetUser$getUser$phone>
+      get copyWith => CopyWith$Query$GetUser$getUser$phone(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetUser$getUser$phone<TRes> {
+  factory CopyWith$Query$GetUser$getUser$phone(
+    Query$GetUser$getUser$phone instance,
+    TRes Function(Query$GetUser$getUser$phone) then,
+  ) = _CopyWithImpl$Query$GetUser$getUser$phone;
+
+  factory CopyWith$Query$GetUser$getUser$phone.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetUser$getUser$phone;
+
+  TRes call({
+    String? number,
+    String? countryCode,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetUser$getUser$phone<TRes>
+    implements CopyWith$Query$GetUser$getUser$phone<TRes> {
+  _CopyWithImpl$Query$GetUser$getUser$phone(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetUser$getUser$phone _instance;
+
+  final TRes Function(Query$GetUser$getUser$phone) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? countryCode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetUser$getUser$phone(
+        number: number == _undefined ? _instance.number : (number as String?),
+        countryCode: countryCode == _undefined
+            ? _instance.countryCode
+            : (countryCode as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetUser$getUser$phone<TRes>
+    implements CopyWith$Query$GetUser$getUser$phone<TRes> {
+  _CopyWithStubImpl$Query$GetUser$getUser$phone(this._res);
+
+  TRes _res;
+
+  call({
+    String? number,
+    String? countryCode,
     String? $__typename,
   }) =>
       _res;

@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
+import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
 
 class UserRepo {
@@ -55,6 +57,7 @@ class UserRepo {
     return UserModel.fromJson(response.parsedData!.getUser!.toJson());
   }
 
+
   Future<List<UserModel>> searchUser(String query) async {
     final response = await _client.query$SearchUser(
       Options$Query$SearchUser(
@@ -92,6 +95,22 @@ class UserRepo {
         stackTrace: stackTrace,
       );
       throw Exception('Failed to parse user data.');
+
+  Future<void> updateProfile(Variables$Mutation$UpdateProfile params) async {
+    final response = await _client.mutate$UpdateProfile(
+      Options$Mutation$UpdateProfile(
+        variables: params,
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+
     }
   }
 }

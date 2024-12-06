@@ -315,6 +315,12 @@ input PhoneInputType {
   completed: String
 }
 
+type PhoneType {
+  countryCode: String
+  number: String
+  completed: String
+}
+
 """An enumeration."""
 enum ProductsProductConditionChoices {
   """New with tags"""
@@ -584,5 +590,6 @@ type UserType {
   dateJoined: DateTime
   lastLogin: DateTime
   fullName: String
+  phone: PhoneType
 }
 
