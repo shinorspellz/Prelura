@@ -133,59 +133,53 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
             children: [
               if (widget.product == null) ...[
                 Container(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Add up to 20 photos.',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "See more photo tips",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10.sp,
-                                  color: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decorationThickness: 2,
-                                ),
-                          ),
-                        ],
+                  margin: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      border: Border.all(
+                        width: 12,
+                        color: Theme.of(context).dividerColor,
                       ),
-                      const SizedBox(
-                        height: 70,
-                      ),
-                      GestureDetector(
-                          onTap: () => notifier.addImages(),
-                          child: Center(
-                            child: AppButton(
-                              onTap: () {
-                                notifier.addImages();
-                              },
-                              text: "upload photos",
-                              bgColor: Theme.of(context).scaffoldBackgroundColor,
-                              textWidget: const Row(
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: PreluraColors.activeColor,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  )
-                                ],
-                              ),
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                  child: GestureDetector(
+                    onTap: () => notifier.addImages(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Icon(Icons.add_circle, size: 48.sp),
+                            const SizedBox(
+                              height: 10,
                             ),
-                          )),
-                    ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Add up to 20 photos.',
+                                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "See more photo tips",
+                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.sp,
+                                        color: PreluraColors.activeColor,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: PreluraColors.activeColor,
+                                        decorationThickness: 2,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 if (state.images.isNotEmpty)
@@ -220,6 +214,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         label: 'Describe your item',
                         labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 17),
                         hintText: 'e.g. only worn a few times, true to size',
+                        minLines: 6,
+                        maxLines: null,
                         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
                         controller: descController,

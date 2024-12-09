@@ -18,6 +18,9 @@ class ProductDescription extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dummy = ref.watch(productDetailProvider);
     final isDescriptionExpanded = ref.watch(isDescriptionExpandedProvider);
+    bool shouldShowSeeMore = _shouldShowSeeMore(product.description);
+    print(product.description);
+    String truncatedDescription = _getTruncatedDescription(product.description);
 
     return Container(
       child: Column(
@@ -42,26 +45,27 @@ class ProductDescription extends ConsumerWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                Text.rich(
-                  TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        ref.read(isDescriptionExpandedProvider.notifier).state = !isDescriptionExpanded;
-                      },
-                    children: [
-                      TextSpan(
-                        text: isDescriptionExpanded ? product.description : product.description,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      // if(!isDescriptionExpanded)
-                      // TextSpan(
-                      //   text: '', //isDescriptionExpanded ? " See less" : " See more",
-                      //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      //         color: Colors.blue,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      // ),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    ref.read(isDescriptionExpandedProvider.notifier).state = !isDescriptionExpanded;
+                  },
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: isDescriptionExpanded ? product.description : truncatedDescription,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        if (shouldShowSeeMore)
+                          TextSpan(
+                            text: isDescriptionExpanded ? " See less" : " See more",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                      ],
+                    ),
                   ),
                   // maxLines: !isDescriptionExpanded ? 3 : null,
                   // overflow: TextOverflow.ellipsis,
@@ -196,6 +200,21 @@ class ProductDescription extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  bool _shouldShowSeeMore(String description) {
+    List<String> words = description.split(' ');
+    return words.length > 50;
+  }
+
+  // Truncate the description to fit within 100 words or 5 lines
+  String _getTruncatedDescription(String description) {
+    List<String> words = description.split(' ');
+    print(words.length);
+    if (words.length > 50) {
+      return '${words.sublist(0, 40).join(' ')}...';
+    }
+    return description;
   }
 
   Widget _buildInfoRow(String label, String value, context) {

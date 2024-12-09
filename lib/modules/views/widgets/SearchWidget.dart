@@ -32,6 +32,7 @@ class Searchwidget extends StatefulWidget {
   final bool cancelButton;
   final VoidCallback? onCancel;
   final ValueChanged<bool>? onFocused;
+  final EdgeInsets? padding;
 
   const Searchwidget(
       {super.key,
@@ -62,6 +63,7 @@ class Searchwidget extends StatefulWidget {
       required this.autofocus,
       required this.cancelButton,
       this.onCancel,
+      this.padding,
       this.onFocused});
 
   @override
@@ -152,7 +154,7 @@ class _SearchwidgetState extends State<Searchwidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
+      margin: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Expanded(
           child: Container(
@@ -285,9 +287,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                     Expanded(
                       child: Text(
                         "Cancel",
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style: Theme.of(context).textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold, color: PreluraColors.primaryColor),
                       ),
                     ),
                 ],

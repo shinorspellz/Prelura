@@ -8,6 +8,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/provider/filter_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../widgets/SearchWidget.dart';
@@ -18,6 +19,7 @@ final selectedTabProvider = StateProvider<int>((ref) => 0);
 @RoutePage()
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+  static final ScrollController homeScrollController = ScrollController();
 
   @override
   ConsumerState<HomeScreen> createState() => _HomeScreenState();
@@ -143,11 +145,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
+class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+
+  StaticSliverDelegate({required this.child});
+
+  @override
+  double get minExtent => 110.8;
+
+  @override
+  double get maxExtent => 122.8;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
+  }
+}
+
 Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
   final tabs = ["All", "Premium Brands", "Electronics", "Books"];
 
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: List.generate(tabs.length, (index) {

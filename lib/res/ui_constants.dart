@@ -16,6 +16,7 @@ class UIConstants {
 
   InputDecoration inputDecoration(
     BuildContext context, {
+    bool hasFocus = false,
     Widget? prefixIcon,
     Widget? suffixIcon,
     Widget? suffixWidget,
@@ -37,15 +38,18 @@ class UIConstants {
       label: labelText != null
           ? Text(labelText,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    fontSize: 13.sp,
-                    height: 1.7,
-                  ))
+                  fontSize: 13.sp,
+                  height: 1.7,
+                  color: hasFocus
+                      ? PreluraColors.activeColor
+                      : Theme.of(context).textTheme.displayMedium?.color))
           : null,
       enabled: enabled,
       fillColor: Theme.of(context).buttonTheme.colorScheme!.secondary,
       filled: true,
       isDense: true,
       isCollapsed: isCollapsed,
+      alignLabelWithHint: true,
       suffixIcon: suffixIcon,
       suffix: suffixWidget,
       counterText: '',

@@ -259,7 +259,7 @@ class AboutProfile extends ConsumerWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text("Last seen 2 hours ago", style: Theme.of(context).textTheme.bodySmall),
+                      Text("last seen  2 hours ago", style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ],

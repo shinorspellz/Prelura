@@ -24,6 +24,14 @@ class ProfileScreen extends ConsumerWidget {
         child: Column(children: [
           const ProfileStatsCard(),
           MenuCard(
+              title: "Wardrobe",
+              icon: const Icon(Icons.wallet),
+              rightArrow: false,
+              onTap: () {
+                ref.read(tabControllerProvider).setTabIndex(0);
+                context.router.push(ProfileDetailsRoute());
+              }),
+          MenuCard(
               title: "Balance",
               icon: const Icon(Icons.wallet_outlined),
               subtitle: '£0.00',
@@ -39,14 +47,6 @@ class ProfileScreen extends ConsumerWidget {
                 context.router.push(ProfileDetailsRoute());
               }),
           // const LiveCard(),
-          MenuCard(
-              title: "Wardrobe",
-              icon: const Icon(Icons.wallet),
-              rightArrow: false,
-              onTap: () {
-                ref.read(tabControllerProvider).setTabIndex(0);
-                context.router.push(ProfileDetailsRoute());
-              }),
           MenuCard(
               title: "Orders",
               icon: const Icon(Icons.info_outlined),
