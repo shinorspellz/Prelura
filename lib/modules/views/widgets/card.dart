@@ -154,16 +154,17 @@ class _ProductCardState extends ConsumerState<ProductCard> {
 
   void _toggleFavourite() async {
     // Update state using providers
-    await ref.read(toggleLikeProductProvider(int.parse(widget.product.id)));
+    final isLiked = await ref
+        .read(toggleLikeProductProvider(int.parse(widget.product.id)).future);
+    print(isLiked);
     widget.product = widget.product.copyWith(
-        userLiked: !widget.product.userLiked,
-        likes: !widget.product.userLiked
-            ? widget.product.likes + 1
-            : widget.product.likes - 1);
+        userLiked: isLiked,
+        likes: isLiked ? widget.product.likes + 1 : widget.product.likes - 1);
     // ref.refresh(allProductProvider);
     setState(() {});
-    ref.refresh(userFavouriteProduct.future);
-    // ref.refresh(allProductProvider.future);
+    ref.invalidate(allProductProvider);
+    ref.invalidate(userFavouriteProduct);
+    ref.invalidate(getProductProvider);
   }
 
   @override

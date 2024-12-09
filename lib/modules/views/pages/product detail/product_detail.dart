@@ -30,10 +30,12 @@ class ProductDetailScreen extends ConsumerStatefulWidget {
   const ProductDetailScreen({super.key, required this.productId});
 
   @override
-  ConsumerState<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  ConsumerState<ProductDetailScreen> createState() =>
+      _ProductDetailScreenState();
 }
 
-class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with SingleTickerProviderStateMixin {
+class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
+    with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   double showAppBar = 0;
   late TabController _tabController;
@@ -68,12 +70,14 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
   @override
   Widget build(BuildContext context) {
     // final tabRouter = AutoTabsRouter.of(context);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
-              bool showOption = product.seller.username == ref.read(userProvider).valueOrNull?.username;
+              bool showOption = product.seller.username ==
+                  ref.read(userProvider).valueOrNull?.username;
 
               void showOptionModal() => VBottomSheetComponent.actionBottomSheet(
                     context: context,
@@ -89,19 +93,24 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                             Navigator.pop(context);
                             showDialog(
                                 context: context,
-                                builder: (context) => Consumer(builder: (context, ref, _) {
+                                builder: (context) =>
+                                    Consumer(builder: (context, ref, _) {
                                       return AlertDialog.adaptive(
                                         title: const Text('Delete Product'),
-                                        content: const Text('This product would be deleted parmanently, are you sure you want to delete ?'),
+                                        content: const Text(
+                                            'This product would be deleted parmanently, are you sure you want to delete ?'),
                                         actions: [
-                                          if (ref.watch(productProvider).isLoading)
+                                          if (ref
+                                              .watch(productProvider)
+                                              .isLoading)
                                             const Padding(
                                               padding: EdgeInsets.only(top: 12),
                                               child: UnconstrainedBox(
                                                   child: SizedBox(
                                                 height: 20,
                                                 width: 20,
-                                                child: CircularProgressIndicator(
+                                                child:
+                                                    CircularProgressIndicator(
                                                   strokeWidth: 1.8,
                                                 ),
                                               )),
@@ -109,16 +118,29 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                           else
                                             TextButton(
                                                 onPressed: () async {
-                                                  await ref.read(productProvider.notifier).deleteProduct(widget.productId);
-                                                  ref.read(productProvider).whenOrNull(
-                                                        error: (e, _) => context.alert('An error occured deleting product'),
-                                                        data: (_) => Navigator.of(context)
-                                                          ..pop()
-                                                          ..pop(),
+                                                  await ref
+                                                      .read(productProvider
+                                                          .notifier)
+                                                      .deleteProduct(
+                                                          widget.productId);
+                                                  ref
+                                                      .read(productProvider)
+                                                      .whenOrNull(
+                                                        error: (e, _) =>
+                                                            context.alert(
+                                                                'An error occured deleting product'),
+                                                        data: (_) =>
+                                                            Navigator.of(
+                                                                context)
+                                                              ..pop()
+                                                              ..pop(),
                                                       );
                                                 },
                                                 child: const Text('Delete')),
-                                          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Dismiss')),
+                                          TextButton(
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                              child: const Text('Dismiss')),
                                         ],
                                       );
                                     }));
@@ -160,27 +182,61 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                               bottom: 15,
                               right: 15,
                               child: GestureDetector(
-                                onTap: _toggleFavorite,
+                                onTap: () async {
+                                  // Update state using providers
+                                  final isLiked = await ref.read(
+                                      toggleLikeProductProvider(
+                                              int.parse(product.id))
+                                          .future);
+                                  print(isLiked);
+                                  product = product.copyWith(
+                                      userLiked: isLiked,
+                                      likes: isLiked
+                                          ? product.likes + 1
+                                          : product.likes - 1);
+                                  // ref.refresh(allProductProvider);
+                                  setState(() {});
+                                  ref.refresh(allProductProvider.future);
+                                  ref.refresh(userFavouriteProduct.future);
+                                  ref.refresh(
+                                      getProductProvider(widget.productId));
+                                },
                                 child: Container(
-                                  padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
+                                  padding: const EdgeInsets.only(
+                                      top: 5, bottom: 5, left: 8, right: 8),
                                   decoration: BoxDecoration(
                                     color: PreluraColors.blackCardColor,
-                                    borderRadius: BorderRadius.circular(8), // Circular radius
+                                    borderRadius: BorderRadius.circular(
+                                        8), // Circular radius
                                   ),
                                   child: Row(
                                     children: [
-                                      Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
+                                      Icon(
+                                          product.userLiked
+                                              ? Icons.favorite
+                                              : Icons.favorite_border_outlined,
+                                          size: 17,
+                                          color: PreluraColors.white),
                                       const SizedBox(width: 5),
                                       Text(
                                         '${product.likes}',
-                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(
+                                                color: PreluraColors.white),
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            Positioned(bottom: 15, right: 0, left: 0, child: carouselIndicator(product.imagesUrl.length)),
+                            Positioned(
+                                bottom: 15,
+                                right: 0,
+                                left: 0,
+                                child: carouselIndicator(
+                                    product.imagesUrl.length)),
                             Positioned(
                                 top: showAppBar == 1 ? 40 : 60,
                                 left: 15,
@@ -188,7 +244,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                 child: VisibilityDetector(
                                   key: UniqueKey(),
                                   onVisibilityChanged: (visibilityInfo) {
-                                    var visiblePercentage = visibilityInfo.visibleFraction * 100;
+                                    var visiblePercentage =
+                                        visibilityInfo.visibleFraction * 100;
                                     if (visiblePercentage > 40) {
                                       if (!context.mounted) return;
                                       // 1 =
@@ -201,14 +258,16 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                     }
                                   },
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
                                           Navigator.pop(context);
                                         },
                                         child: CircleAvatar(
-                                          backgroundColor: PreluraColors.black.withOpacity(0.2),
+                                          backgroundColor: PreluraColors.black
+                                              .withOpacity(0.2),
                                           child: Icon(
                                             Icons.arrow_back,
                                             color: PreluraColors.white,
@@ -220,10 +279,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                         InkWell(
                                           onTap: () => showOptionModal(),
                                           child: CircleAvatar(
-                                            backgroundColor: PreluraColors.black.withOpacity(0.2),
+                                            backgroundColor: PreluraColors.black
+                                                .withOpacity(0.2),
                                             child: Icon(
                                               Icons.more_vert_rounded,
-                                              color: Theme.of(context).iconTheme.color,
+                                              color: Theme.of(context)
+                                                  .iconTheme
+                                                  .color,
                                             ),
                                           ),
                                         )
@@ -268,7 +330,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                         TabBar(
                           controller: _tabController,
                           indicatorColor: PreluraColors.activeColor,
-                          unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
+                          unselectedLabelColor: PreluraColors
+                              .greyLightColor, // Text color for inactive tabs
                           labelStyle: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16, // Font size for the active tab
@@ -282,10 +345,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                             Tab(text: "Similar items"),
                           ],
                         ),
-                        ContentSizeTabBarView(physics: const ClampingScrollPhysics(), controller: _tabController, children: [
-                          _buildMemberItemsTab(context),
-                          _buildSimilarItemsTab(context),
-                        ]),
+                        ContentSizeTabBarView(
+                            physics: const ClampingScrollPhysics(),
+                            controller: _tabController,
+                            children: [
+                              _buildMemberItemsTab(context),
+                              _buildSimilarItemsTab(context),
+                            ]),
                       ],
                     ),
                   ),
@@ -295,7 +361,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                           duration: const Duration(milliseconds: 340),
                           child: PreluraAppBar(
                             appBarHeight: 50,
-                            leadingIcon: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color), onPressed: () => Navigator.pop(context)),
+                            leadingIcon: IconButton(
+                                icon: Icon(Icons.arrow_back,
+                                    color: Theme.of(context).iconTheme.color),
+                                onPressed: () => Navigator.pop(context)),
                             appbarTitle: product.name,
                             trailingIcon: [
                               if (showOption)
@@ -336,7 +405,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
             ),
           ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
         child: Row(
           children: [
             Expanded(
@@ -423,7 +493,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
               margin: const EdgeInsets.only(right: 5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: _currentPage == i ? PreluraColors.activeColor : PreluraColors.black),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _currentPage == i
+                      ? PreluraColors.activeColor
+                      : PreluraColors.black),
             )
         ],
       ),
