@@ -452,8 +452,9 @@ type ProductType {
   likes: Int!
   discountPrice: Decimal
   imagesUrl: [JSONString!]!
-  color: String
-  brand: String
+  color: [String!]!
+  brand: BrandType
+  customBrand: String
   createdAt: DateTime!
   updatedAt: DateTime!
   userLiked: Boolean

@@ -105,7 +105,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         onTap: () {},
                         child: Text(
                           "Forgot Password ?",
-                          style: mcontext.textTheme.displayMedium!.copyWith(
+                          style: mcontext.textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryColor,
                           ),
@@ -235,7 +235,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           children: [
             Text(
               "Don't have an account?",
-              style: mcontext.textTheme.displayMedium!.copyWith(
+              style: mcontext.textTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
               ),
@@ -245,7 +245,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               onPressed: () {
                 context.router.push(const SignUpRoute());
               },
-              textStyle: mcontext.textTheme.displayMedium!.copyWith(
+              textStyle: mcontext.textTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: Colors.blue,
               ),

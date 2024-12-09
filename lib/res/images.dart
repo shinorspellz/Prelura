@@ -60,4 +60,10 @@ class PreluraIcons {
   static const String men = "assets/images/men.jpg";
   static const String kids = "assets/images/kids.jpg";
   static const String petCare = "assets/images/petcare.jpg";
+  static const String webp_women = "assets/images/women.webp";
+  static const String webp_men = "assets/images/men.webp";
+  static const String webp_vintage = "assets/images/vintage.webp";
+  static const String webp_xmas = "assets/images/xmas.webp";
+  static const String webp_season = "assets/images/season.webp";
+  static const String webp_jumpers = "assets/images/jumpers.webp";
 }
