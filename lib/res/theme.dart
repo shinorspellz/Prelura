@@ -57,44 +57,49 @@ class PreluraTheme {
           color: Colors.black, // PreluraColors.primaryColor,
         ),
         appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.appBarBackgroundColor, elevation: 0),
-        textTheme: TextTheme(
-          displayLarge: PreluraTypography1.normalTextStyle,
-          displayMedium: PreluraTypography1.mediumTextStyle,
-          displaySmall: PreluraTypography1.smallTextStyle,
-          titleLarge: PreluraTypography1.normalTextStyle,
-          titleMedium: PreluraTypography1.normalTextStyle,
-          titleSmall: PreluraTypography1.normalTextStyle,
-          labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // bodyLarge: PreluraTypography1.normalTextStyle,
-          // bodyMedium: PreluraTypography1.mediumTextStyle,
-          // bodySmall: PreluraTypography1.smallTextStyle,
-          bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
-          bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
-          bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontSize: 10.sp,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
+        textTheme: const TextTheme(
+                // displayLarge: PreluraTypography1.normalTextStyle,
+                // displayMedium: PreluraTypography1.mediumTextStyle,
+                // displaySmall: PreluraTypography1.smallTextStyle,
+                // titleLarge: PreluraTypography1.normalTextStyle,
+                // titleMedium: PreluraTypography1.normalTextStyle,
+                // titleSmall: PreluraTypography1.normalTextStyle,
+                // labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // bodyLarge: PreluraTypography1.normalTextStyle,
+                // // bodyMedium: PreluraTypography1.mediumTextStyle,
+                // // bodySmall: PreluraTypography1.smallTextStyle,
+                // bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontSize: 10.sp,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // ?.copyWith(color: Colors.amber),
+                )
+            .apply(
+          fontFamily: PreluraTypography1.primaryfontName,
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
         ),
         radioTheme: const RadioThemeData(
           fillColor: WidgetStatePropertyAll(PreluraColors.primaryColor),
@@ -230,28 +235,33 @@ class PreluraTheme {
         ),
         appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.blackScaffoldBackround, elevation: 0),
         iconTheme: const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
-        textTheme: TextTheme(
-          displayLarge: PreluraDarkTheme.normalTextStyle,
-          displayMedium: PreluraDarkTheme.mediumTextStyle,
-          displaySmall: PreluraDarkTheme.smallTextStyle,
-          titleLarge: PreluraDarkTheme.normalTextStyle,
-          titleMedium: PreluraDarkTheme.normalTextStyle,
-          titleSmall: PreluraDarkTheme.normalTextStyle,
-          // bodyLarge: PreluraTypography1.normalTextStyle,
-          // bodyMedium: PreluraDarkTheme.mediumTextStyle,
-          // bodySmall: PreluraDarkTheme.smallTextStyle,
-          bodyLarge: ThemeData.dark().textTheme.bodyLarge?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
-          bodyMedium: ThemeData.dark().textTheme.bodyMedium?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
-          bodySmall: ThemeData.dark().textTheme.bodySmall?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
+        textTheme: const TextTheme(
+                // displayLarge: PreluraDarkTheme.normalTextStyle,
+                // displayMedium: PreluraDarkTheme.mediumTextStyle,
+                // displaySmall: PreluraDarkTheme.smallTextStyle,
+                // titleLarge: PreluraDarkTheme.normalTextStyle,
+                // titleMedium: PreluraDarkTheme.normalTextStyle,
+                // titleSmall: PreluraDarkTheme.normalTextStyle,
+                // bodyLarge: PreluraTypography1.normalTextStyle,
+                // bodyMedium: PreluraDarkTheme.mediumTextStyle,
+                // bodySmall: PreluraDarkTheme.smallTextStyle,
+                // bodyLarge: ThemeData.dark().textTheme.bodyLarge?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                // bodyMedium: ThemeData.dark().textTheme.bodyMedium?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                // bodySmall: ThemeData.dark().textTheme.bodySmall?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                )
+            .apply(
+          fontFamily: PreluraTypography1.primaryfontName,
+          bodyColor: PreluraColors.darkOnPrimaryColor,
+          displayColor: PreluraColors.darkOnPrimaryColor,
         ),
         cardTheme: ThemeData.dark().cardTheme.copyWith(
               // color: PreluraColors.darkPrimaryColor,

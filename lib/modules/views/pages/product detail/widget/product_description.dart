@@ -53,15 +53,18 @@ class ProductDescription extends ConsumerWidget {
                         text: isDescriptionExpanded ? product.description : product.description,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      TextSpan(
-                        text: isDescriptionExpanded ? " See less" : " See more",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
+                      // if(!isDescriptionExpanded)
+                      // TextSpan(
+                      //   text: '', //isDescriptionExpanded ? " See less" : " See more",
+                      //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      //         color: Colors.blue,
+                      //         fontWeight: FontWeight.bold,
+                      //       ),
+                      // ),
                     ],
                   ),
+                  // maxLines: !isDescriptionExpanded ? 3 : null,
+                  // overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),

@@ -15,7 +15,7 @@ class SellItemState {
   final Enum$ParcelSizeEnum? parcel;
   final List<String> selectedColors;
   final List<String> selectedMaterials;
-  final String brand;
+  final Brand? brand;
   final Enum$SizeEnum? size;
   final String? price;
   final ConditionsEnum? selectedCondition;
@@ -27,7 +27,7 @@ class SellItemState {
     this.category,
     this.subCategory,
     this.parcel,
-    this.brand = "",
+    this.brand,
     this.size,
     this.selectedCondition,
     this.price,
@@ -44,7 +44,7 @@ class SellItemState {
       Enum$ParcelSizeEnum? parcel,
       List<String>? selectedColors,
       List<String>? selectedMaterials,
-      String? brand,
+      Brand? brand,
       Enum$SizeEnum? size,
       String? price,
       ConditionsEnum? selectedCondition}) {
@@ -91,7 +91,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   final ImagePicker _picker = ImagePicker();
   late final SellItemState _initialState;
-  static const int maxColorSelections = 2;
+  static const int maxColorSelections = 3;
   static const int maxMaterialSelections = 3;
 
   bool hasChanges() {
@@ -139,7 +139,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(price: price);
   }
 
-  void selectBrand(String? brand) {
+  void selectBrand(Brand? brand) {
     state = state.copyWith(brand: brand);
   }
 

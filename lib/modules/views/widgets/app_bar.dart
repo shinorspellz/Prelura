@@ -42,7 +42,7 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
           title: titleWidget ??
               Text(
                 appbarTitle!,
-                style: style ?? Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.w600),
+                style: style ?? Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600),
               ),
           actions: [...?trailingIcon],
         ),

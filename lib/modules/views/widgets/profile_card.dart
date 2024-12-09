@@ -23,7 +23,7 @@ class ProfileCardWidget extends ConsumerWidget {
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           GestureDetector(
             onTap: () {
-              if (user != null) return;
+              if (user == null) return;
               VBottomSheetComponent.actionBottomSheet(
                 context: context,
                 actions: [
@@ -83,12 +83,13 @@ class ProfileCardWidget extends ConsumerWidget {
                 user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
-              Text(
-                '35 listing',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
-                    ),
-              )
+              if (user != null || ref.watch(userProvider).valueOrNull != null)
+                Text(
+                  '${(user != null ? user?.listing ?? '--' : ref.watch(userProvider).valueOrNull?.listing).toString()} listing',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: FontWeight.w400,
+                      ),
+                )
             ],
           ),
         ]));

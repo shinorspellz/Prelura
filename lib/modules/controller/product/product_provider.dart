@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
@@ -19,28 +20,23 @@ final allProductProvider = FutureProvider((ref) async {
   return result.reversed.toList();
 });
 
-final searchProductProvider =
-    FutureProvider.family<List<Product>, String?>((ref, query) async {
+final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getAllProducts(search: query);
-  print(result);
 
   return result.reversed.toList();
 });
 
-final toggleLikeProductProvider =
-    FutureProvider.family<bool, int>((ref, query) async {
+final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
   final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
-  print("like result is $result");
 
   return result!;
 });
 
-final userProduct =
-    FutureProvider.family<List<Product>, String?>((ref, username) async {
+final userProduct = FutureProvider.family<List<Product>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getUserProduct(username: username, pageCount: 100);
@@ -55,7 +51,7 @@ final getProductProvider = FutureProvider.family<Product, int>((ref, id) async {
   return result;
 });
 
-final userFavouriteProduct = FutureProvider((ref) async {
+final userFavouriteProduct = FutureProvider.autoDispose((ref) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getMyFavouriteProduct(0);
@@ -71,8 +67,7 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
-final productProvider =
-    AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
+final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
 class _ProductProvider extends AsyncNotifier<void> {
   late final _productRepo = ref.read(productRepo);
@@ -84,8 +79,7 @@ class _ProductProvider extends AsyncNotifier<void> {
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
-      onUploadProgress: (sent, total) =>
-          log('${sent / total}%', name: 'FileUpload'),
+      onUploadProgress: (sent, total) => log('${sent / total}%', name: 'FileUpload'),
     );
 
     if (upload == null) throw 'Failed to upload images.';
@@ -93,17 +87,20 @@ class _ProductProvider extends AsyncNotifier<void> {
     return upload;
   }
 
-  Future<void> createProduct(
-      {required String title,
-      required String desc,
-      required double price,
-      required List<File> images,
-      required Enum$SizeEnum size,
-      ConditionsEnum? condition,
-      int? category,
-      int? subCategory,
-      Enum$ParcelSizeEnum? parcelSize,
-      double? discount}) async {
+  Future<void> createProduct({
+    required String title,
+    required String desc,
+    required double price,
+    required List<File> images,
+    required Enum$SizeEnum size,
+    ConditionsEnum? condition,
+    int? category,
+    int? subCategory,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? discount,
+    int? brandId,
+    List<String>? color,
+  }) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
@@ -120,6 +117,8 @@ class _ProductProvider extends AsyncNotifier<void> {
           name: title,
           parcelSize: parcelSize,
           discount: discount,
+          brand: brandId,
+          color: color,
         ),
       );
       ref.invalidate(userProduct);
@@ -172,4 +171,34 @@ class _ProductProvider extends AsyncNotifier<void> {
       ref.invalidate(allProductProvider);
     });
   }
+
+  Future<void> likeProduct(int productId, bool isLiked, likeCount) async {
+    if (ref.read(getProductProvider(productId)).hasValue) {
+      // ref.read(getProductProvider(productId)).value?.userLiked = isLiked;
+      // ref.read(getProductProvider(productId)).value?.likes = likeCount;
+    }
+    await _productRepo.toggleLikeProduct(productId);
+
+    ref.invalidate(getProductProvider(productId));
+    ref.invalidate(allProductProvider);
+    ref.invalidate(userFavouriteProduct);
+  }
 }
+
+final colorsProvider = Provider((ref) {
+  final colorOptions = {
+    "Black": Colors.black,
+    "Brown": Colors.brown,
+    "Grey": Colors.grey,
+    "Beige": const Color(0xFFF5F5DC),
+    "Pink": Colors.pink,
+    "Purple": Colors.purple,
+    "Red": Colors.red,
+    "Yellow": Colors.yellow,
+    "Blue": Colors.blue,
+    "Green": Colors.green,
+    "Orange": Colors.orange,
+  };
+
+  return colorOptions;
+});

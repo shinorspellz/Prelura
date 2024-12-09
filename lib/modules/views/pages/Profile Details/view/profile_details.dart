@@ -103,7 +103,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
               children: [
                 ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).when(
                       data: (_) => UserWardrobe(
-                        username: _.username,
+                        username: widget.username,
                       ),
                       error: (e, _) => Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +125,9 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
 
                 // const UserWardrobe(),
                 const ReviewTab(),
-                const AboutProfile(),
+                AboutProfile(
+                  username: widget.username,
+                ),
               ],
             ),
           ),

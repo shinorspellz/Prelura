@@ -2624,6 +2624,8 @@ class Variables$Mutation$CreateProduct {
     required String name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
+    List<String?>? color,
+    int? brand,
   }) =>
       Variables$Mutation$CreateProduct._({
         if (category != null) r'category': category,
@@ -2636,6 +2638,8 @@ class Variables$Mutation$CreateProduct {
         r'name': name,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (discount != null) r'discount': discount,
+        if (color != null) r'color': color,
+        if (brand != null) r'brand': brand,
       });
 
   Variables$Mutation$CreateProduct._(this._$data);
@@ -2684,6 +2688,15 @@ class Variables$Mutation$CreateProduct {
       final l$discount = data['discount'];
       result$data['discount'] = (l$discount as num?)?.toDouble();
     }
+    if (data.containsKey('color')) {
+      final l$color = data['color'];
+      result$data['color'] =
+          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+    }
+    if (data.containsKey('brand')) {
+      final l$brand = data['brand'];
+      result$data['brand'] = (l$brand as int?);
+    }
     return Variables$Mutation$CreateProduct._(result$data);
   }
 
@@ -2711,6 +2724,10 @@ class Variables$Mutation$CreateProduct {
       (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
   double? get discount => (_$data['discount'] as double?);
+
+  List<String?>? get color => (_$data['color'] as List<String?>?);
+
+  int? get brand => (_$data['brand'] as int?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -2751,6 +2768,14 @@ class Variables$Mutation$CreateProduct {
     if (_$data.containsKey('discount')) {
       final l$discount = discount;
       result$data['discount'] = l$discount;
+    }
+    if (_$data.containsKey('color')) {
+      final l$color = color;
+      result$data['color'] = l$color?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('brand')) {
+      final l$brand = brand;
+      result$data['brand'] = l$brand;
     }
     return result$data;
   }
@@ -2850,6 +2875,33 @@ class Variables$Mutation$CreateProduct {
     if (l$discount != lOther$discount) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (_$data.containsKey('color') != other._$data.containsKey('color')) {
+      return false;
+    }
+    if (l$color != null && lOther$color != null) {
+      if (l$color.length != lOther$color.length) {
+        return false;
+      }
+      for (int i = 0; i < l$color.length; i++) {
+        final l$color$entry = l$color[i];
+        final lOther$color$entry = lOther$color[i];
+        if (l$color$entry != lOther$color$entry) {
+          return false;
+        }
+      }
+    } else if (l$color != lOther$color) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (_$data.containsKey('brand') != other._$data.containsKey('brand')) {
+      return false;
+    }
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     return true;
   }
 
@@ -2865,6 +2917,8 @@ class Variables$Mutation$CreateProduct {
     final l$name = name;
     final l$parcelSize = parcelSize;
     final l$discount = discount;
+    final l$color = color;
+    final l$brand = brand;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -2876,6 +2930,12 @@ class Variables$Mutation$CreateProduct {
       l$name,
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('discount') ? l$discount : const {},
+      _$data.containsKey('color')
+          ? l$color == null
+              ? null
+              : Object.hashAll(l$color.map((v) => v))
+          : const {},
+      _$data.containsKey('brand') ? l$brand : const {},
     ]);
   }
 }
@@ -2900,6 +2960,8 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
+    List<String?>? color,
+    int? brand,
   });
 }
 
@@ -2927,6 +2989,8 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? name = _undefined,
     Object? parcelSize = _undefined,
     Object? discount = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
@@ -2944,6 +3008,8 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (discount != _undefined) 'discount': (discount as double?),
+        if (color != _undefined) 'color': (color as List<String?>?),
+        if (brand != _undefined) 'brand': (brand as int?),
       }));
 }
 
@@ -2964,6 +3030,8 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
+    List<String?>? color,
+    int? brand,
   }) =>
       _res;
 }
@@ -3204,6 +3272,27 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'color')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'brand')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -3250,6 +3339,14 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'discount'),
             value: VariableNode(name: NameNode(value: 'discount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'color'),
+            value: VariableNode(name: NameNode(value: 'color')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'brand'),
+            value: VariableNode(name: NameNode(value: 'brand')),
           ),
         ],
         directives: [],

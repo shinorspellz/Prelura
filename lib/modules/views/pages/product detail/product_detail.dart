@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -68,6 +70,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
   @override
   Widget build(BuildContext context) {
     // final tabRouter = AutoTabsRouter.of(context);
+
     return Scaffold(
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
@@ -126,33 +129,33 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                   );
 
               return Scaffold(
-                extendBodyBehindAppBar: true,
-                backgroundColor: isCurrentUser ? null : Theme.of(context).scaffoldBackgroundColor,
-                bottomNavigationBar: Padding(
-                  padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: AppButton(
-                          onTap: () {},
-                          text: "Make an Offer",
-                          bgColor: Theme.of(context).scaffoldBackgroundColor,
-                          borderColor: Colors.purple,
-                          textColor: Colors.purple,
+                bottomNavigationBar: isCurrentUser
+                    ? null
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: AppButton(
+                                onTap: () {},
+                                text: "Make an Offer",
+                                bgColor: Theme.of(context).scaffoldBackgroundColor,
+                                borderColor: Colors.purple,
+                                textColor: Colors.purple,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: AppButton(
+                                onTap: () {},
+                                text: "Buy now",
+                                textColor: Theme.of(context).scaffoldBackgroundColor,
+                                borderColor: Colors.purple,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: AppButton(
-                          onTap: () {},
-                          text: "Buy now",
-                          textColor: Theme.of(context).scaffoldBackgroundColor,
-                          borderColor: Colors.purple,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 body: Stack(
                   children: [
                     SingleChildScrollView(
@@ -186,7 +189,24 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                 bottom: 15,
                                 right: 15,
                                 child: GestureDetector(
-                                  onTap: _toggleFavorite,
+                                  onTap: () async {
+                                    final userLiked = !product.userLiked;
+
+                                    ref.read(productProvider.notifier).likeProduct(
+                                          int.parse(product.id),
+                                          userLiked,
+                                          userLiked ? product.likes + 1 : product.likes - 1,
+                                        );
+                                    // Update state using providers
+                                    // final isLiked = await ref.read(toggleLikeProductProvider(int.parse(product.id)).future);
+
+                                    // product = product.copyWith(userLiked: isLiked, likes: isLiked ? product.likes + 1 : product.likes - 1);
+                                    // ref.refresh(allProductProvider);
+                                    // setState(() {});
+                                    // ref.refresh(allProductProvider.future);
+                                    // ref.refresh(userFavouriteProduct.future);
+                                    // ref.refresh(getProductProvider(widget.productId));
+                                  },
                                   child: Container(
                                     padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
                                     decoration: BoxDecoration(
@@ -195,7 +215,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                     ),
                                     child: Row(
                                       children: [
-                                        Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
+                                        Icon(product.userLiked ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
                                         const SizedBox(width: 5),
                                         Text(
                                           '${product.likes}',

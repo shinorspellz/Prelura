@@ -28,12 +28,17 @@ class UserWardrobe extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          if (user != null)
+          if (username != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: ProfileCardWidget(
                 user: user,
               ),
+            )
+          else
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: ProfileCardWidget(),
             ),
           Container(
             child: Column(

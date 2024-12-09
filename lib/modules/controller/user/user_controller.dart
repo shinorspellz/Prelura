@@ -108,6 +108,8 @@ class _UserController extends AsyncNotifier<void> {
             username: username,
           ),
         );
+
+        await ref.refresh(userProvider.future);
       },
     );
   }

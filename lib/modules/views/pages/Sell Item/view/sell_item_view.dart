@@ -239,9 +239,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
               MenuCard(
                 title: 'Brand',
                 rightArrow: false,
-                subtitle: state.brand,
+                subtitle: state.brand?.name,
                 onTap: () {
-                  context.router.push(BrandSelectionRoute());
+                  context.router.push(const BrandSelectionRoute());
                 },
               ),
               MenuCard(
@@ -269,6 +269,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
               ),
               MenuCard(
                 title: 'Colours',
+                subtitle: state.selectedColors.join(', '),
                 onTap: () {
                   context.router.push(const ColorSelectorRoute());
                 },
@@ -347,6 +348,18 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       context.alert('Parcel size is required for product.');
                       return;
                     }
+                    if (state.selectedColors.isEmpty) {
+                      context.alert('Colors are required for product.');
+                      return;
+                    }
+                    if (state.brand == null) {
+                      context.alert('A `brand` is required for product.');
+                      return;
+                    }
+                    // if (state.selectedColors.) {
+                    //   context.alert('Parcel size is required for product.');
+                    //   return;
+                    // }
 
                     if (!notifier.validateInputs()) {
                       context.alert('Both title and description of product are requuired');
@@ -387,6 +400,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           size: state.size!,
                           category: int.parse(state.category!.id.toString()),
                           subCategory: int.parse(state.subCategory!.id.toString()),
+                          brandId: state.brand!.id,
+                          color: state.selectedColors,
                         );
                     ref.read(productProvider).whenOrNull(
                           error: (e, _) => context.alert(e.toString()),

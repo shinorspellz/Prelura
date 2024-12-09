@@ -8,31 +8,32 @@ import 'package:prelura_app/modules/model/user/user_model.dart';
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
-@freezed
+@unfreezed
 class Product with _$Product {
-  const factory Product({
-    required String id,
-    required String name,
-    required String description,
-    CategoryModel? category,
-    CategoryModel? subCategory,
-    required UserModel seller,
-    String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
-    Enum$ProductsProductParcelSizeChoices? parcelSize,
-    ConditionsEnum? condition,
-    required String price,
-    double? postagePrice,
-    required int views,
+  factory Product({
+    required final String id,
+    required final String name,
+    required final String description,
+    final CategoryModel? category,
+    final CategoryModel? subCategory,
+    required final UserModel seller,
+    final String? discountPrice,
+    final Enum$ProductsProductSizeChoices? size,
+    final Enum$ProductsProductParcelSizeChoices? parcelSize,
+    final ConditionsEnum? condition,
+    required final String price,
+    final double? postagePrice,
+    required final int views,
     required int likes,
     required bool userLiked,
-    @BannerConverter() required List<ProductBanners> imagesUrl,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @BannerConverter() required final List<ProductBanners> imagesUrl,
+    required final DateTime createdAt,
+    required final DateTime updatedAt,
+    required List<String>? color,
+    required Brand? brand,
   }) = _Product;
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 }
 
 @freezed
@@ -42,18 +43,15 @@ class ProductBanners with _$ProductBanners {
     required String thumbnail,
   }) = _ProductBanners;
 
-  factory ProductBanners.fromJson(Map<String, dynamic> json) =>
-      _$ProductBannersFromJson(json);
+  factory ProductBanners.fromJson(Map<String, dynamic> json) => _$ProductBannersFromJson(json);
 }
 
-class BannerConverter
-    implements JsonConverter<List<ProductBanners>, List<String>> {
+class BannerConverter implements JsonConverter<List<ProductBanners>, List<String>> {
   const BannerConverter();
 
   @override
   List<ProductBanners> fromJson(List<String> items) {
-    final banners =
-        items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
+    final banners = items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
     return banners;
   }
 
@@ -87,9 +85,7 @@ enum ConditionsEnum {
   final String subtitle;
 
   static ConditionsEnum conditionByApiValue(String apiValue) {
-    return ConditionsEnum.values.firstWhere(
-        (value) => value.name.toLowerCase() == apiValue.toLowerCase(),
-        orElse: () => ConditionsEnum.USED);
+    return ConditionsEnum.values.firstWhere((value) => value.name.toLowerCase() == apiValue.toLowerCase(), orElse: () => ConditionsEnum.USED);
   }
 
   static String conditionToApiValue(ConditionsEnum condition) {
@@ -108,17 +104,12 @@ enum ConditionsEnum {
   }
 }
 
-// ConditionsEnum fromJson(String v) {
-//   switch (v) {
-//     case r'NEW_WITH_TAGS':
-//       return ConditionsEnum.NEW_WITH_TAGS;
-//     case r'LIKE_NEW':
-//       return ConditionsEnum.LIKE_NEW;
-//     case r'USED':
-//       return ConditionsEnum.USED;
-//     case r'HEAVILY_USED':
-//       return ConditionsEnum.HEAVILY_USED;
-//     default:
-//       return ConditionsEnum.NEW_WITH_TAGS;
-//   }
-// }
+@freezed
+class Brand with _$Brand {
+  const factory Brand({
+    required int id,
+    required String name,
+  }) = _Brand;
+
+  factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
+}

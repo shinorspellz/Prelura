@@ -36,11 +36,17 @@ mixin _$Product {
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
+  set likes(int value) => throw _privateConstructorUsedError;
   bool get userLiked => throw _privateConstructorUsedError;
+  set userLiked(bool value) => throw _privateConstructorUsedError;
   @BannerConverter()
   List<ProductBanners> get imagesUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
+  List<String>? get color => throw _privateConstructorUsedError;
+  set color(List<String>? value) => throw _privateConstructorUsedError;
+  Brand? get brand => throw _privateConstructorUsedError;
+  set brand(Brand? value) => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -74,11 +80,14 @@ abstract class $ProductCopyWith<$Res> {
       bool userLiked,
       @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      List<String>? color,
+      Brand? brand});
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
   $UserModelCopyWith<$Res> get seller;
+  $BrandCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -114,6 +123,8 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? imagesUrl = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? color = freezed,
+    Object? brand = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -188,6 +199,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as Brand?,
     ) as $Val);
   }
 
@@ -228,6 +247,20 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       return _then(_value.copyWith(seller: value) as $Val);
     });
   }
+
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BrandCopyWith<$Res>? get brand {
+    if (_value.brand == null) {
+      return null;
+    }
+
+    return $BrandCopyWith<$Res>(_value.brand!, (value) {
+      return _then(_value.copyWith(brand: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -255,7 +288,9 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       bool userLiked,
       @BannerConverter() List<ProductBanners> imagesUrl,
       DateTime createdAt,
-      DateTime updatedAt});
+      DateTime updatedAt,
+      List<String>? color,
+      Brand? brand});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -263,6 +298,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   $CategoryModelCopyWith<$Res>? get subCategory;
   @override
   $UserModelCopyWith<$Res> get seller;
+  @override
+  $BrandCopyWith<$Res>? get brand;
 }
 
 /// @nodoc
@@ -296,6 +333,8 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? imagesUrl = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? color = freezed,
+    Object? brand = freezed,
   }) {
     return _then(_$ProductImpl(
       id: null == id
@@ -359,7 +398,7 @@ class __$$ProductImplCopyWithImpl<$Res>
           : userLiked // ignore: cast_nullable_to_non_nullable
               as bool,
       imagesUrl: null == imagesUrl
-          ? _value._imagesUrl
+          ? _value.imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
               as List<ProductBanners>,
       createdAt: null == createdAt
@@ -370,6 +409,14 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      color: freezed == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      brand: freezed == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as Brand?,
     ));
   }
 }
@@ -377,7 +424,7 @@ class __$$ProductImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProductImpl implements _Product {
-  const _$ProductImpl(
+  _$ProductImpl(
       {required this.id,
       required this.name,
       required this.description,
@@ -393,10 +440,11 @@ class _$ProductImpl implements _Product {
       required this.views,
       required this.likes,
       required this.userLiked,
-      @BannerConverter() required final List<ProductBanners> imagesUrl,
+      @BannerConverter() required this.imagesUrl,
       required this.createdAt,
-      required this.updatedAt})
-      : _imagesUrl = imagesUrl;
+      required this.updatedAt,
+      required this.color,
+      required this.brand});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -428,86 +476,25 @@ class _$ProductImpl implements _Product {
   @override
   final int views;
   @override
-  final int likes;
+  int likes;
   @override
-  final bool userLiked;
-  final List<ProductBanners> _imagesUrl;
+  bool userLiked;
   @override
   @BannerConverter()
-  List<ProductBanners> get imagesUrl {
-    if (_imagesUrl is EqualUnmodifiableListView) return _imagesUrl;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_imagesUrl);
-  }
-
+  final List<ProductBanners> imagesUrl;
   @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
+  @override
+  List<String>? color;
+  @override
+  Brand? brand;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.subCategory, subCategory) ||
-                other.subCategory == subCategory) &&
-            (identical(other.seller, seller) || other.seller == seller) &&
-            (identical(other.discountPrice, discountPrice) ||
-                other.discountPrice == discountPrice) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.parcelSize, parcelSize) ||
-                other.parcelSize == parcelSize) &&
-            (identical(other.condition, condition) ||
-                other.condition == condition) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.postagePrice, postagePrice) ||
-                other.postagePrice == postagePrice) &&
-            (identical(other.views, views) || other.views == views) &&
-            (identical(other.likes, likes) || other.likes == likes) &&
-            (identical(other.userLiked, userLiked) ||
-                other.userLiked == userLiked) &&
-            const DeepCollectionEquality()
-                .equals(other._imagesUrl, _imagesUrl) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      description,
-      category,
-      subCategory,
-      seller,
-      discountPrice,
-      size,
-      parcelSize,
-      condition,
-      price,
-      postagePrice,
-      views,
-      likes,
-      userLiked,
-      const DeepCollectionEquality().hash(_imagesUrl),
-      createdAt,
-      updatedAt);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -526,7 +513,7 @@ class _$ProductImpl implements _Product {
 }
 
 abstract class _Product implements Product {
-  const factory _Product(
+  factory _Product(
       {required final String id,
       required final String name,
       required final String description,
@@ -540,11 +527,13 @@ abstract class _Product implements Product {
       required final String price,
       final double? postagePrice,
       required final int views,
-      required final int likes,
-      required final bool userLiked,
+      required int likes,
+      required bool userLiked,
       @BannerConverter() required final List<ProductBanners> imagesUrl,
       required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$ProductImpl;
+      required final DateTime updatedAt,
+      required List<String>? color,
+      required Brand? brand}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -576,8 +565,10 @@ abstract class _Product implements Product {
   int get views;
   @override
   int get likes;
+  set likes(int value);
   @override
   bool get userLiked;
+  set userLiked(bool value);
   @override
   @BannerConverter()
   List<ProductBanners> get imagesUrl;
@@ -585,6 +576,12 @@ abstract class _Product implements Product {
   DateTime get createdAt;
   @override
   DateTime get updatedAt;
+  @override
+  List<String>? get color;
+  set color(List<String>? value);
+  @override
+  Brand? get brand;
+  set brand(Brand? value);
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.
@@ -760,5 +757,167 @@ abstract class _ProductBanners implements ProductBanners {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductBannersImplCopyWith<_$ProductBannersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Brand _$BrandFromJson(Map<String, dynamic> json) {
+  return _Brand.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Brand {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this Brand to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of Brand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BrandCopyWith<Brand> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BrandCopyWith<$Res> {
+  factory $BrandCopyWith(Brand value, $Res Function(Brand) then) =
+      _$BrandCopyWithImpl<$Res, Brand>;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$BrandCopyWithImpl<$Res, $Val extends Brand>
+    implements $BrandCopyWith<$Res> {
+  _$BrandCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Brand
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
+  factory _$$BrandImplCopyWith(
+          _$BrandImpl value, $Res Function(_$BrandImpl) then) =
+      __$$BrandImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class __$$BrandImplCopyWithImpl<$Res>
+    extends _$BrandCopyWithImpl<$Res, _$BrandImpl>
+    implements _$$BrandImplCopyWith<$Res> {
+  __$$BrandImplCopyWithImpl(
+      _$BrandImpl _value, $Res Function(_$BrandImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Brand
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_$BrandImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BrandImpl implements _Brand {
+  const _$BrandImpl({required this.id, required this.name});
+
+  factory _$BrandImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BrandImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'Brand(id: $id, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BrandImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name);
+
+  /// Create a copy of Brand
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
+      __$$BrandImplCopyWithImpl<_$BrandImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BrandImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Brand implements Brand {
+  const factory _Brand({required final int id, required final String name}) =
+      _$BrandImpl;
+
+  factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+
+  /// Create a copy of Brand
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

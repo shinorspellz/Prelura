@@ -30,6 +30,8 @@ class UserRepo {
       throw 'An error occured';
     }
 
+    log('${response.parsedData!.viewMe!.toJson()}');
+
     return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
   }
 
