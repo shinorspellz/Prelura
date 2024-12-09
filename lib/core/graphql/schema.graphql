@@ -1,30 +1,18 @@
-"""
-Exposes a URL that specifies the behavior of this scalar.
-"""
+"""Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
-  """
-  The URL that specifies the behavior of this scalar.
-  """
+  """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
 
-"""
-An enumeration.
-"""
+"""An enumeration."""
 enum AccountsUserGenderChoices {
-  """
-  Male
-  """
+  """Male"""
   MALE
 
-  """
-  Female
-  """
+  """Female"""
   FEMALE
 
-  """
-  Any
-  """
+  """Any"""
   ANY
 }
 
@@ -71,9 +59,7 @@ value as specified by
 """
 scalar DateTime
 
-"""
-The `Decimal` scalar type represents a python Decimal.
-"""
+"""The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
 
 type DeleteProduct {
@@ -82,29 +68,31 @@ type DeleteProduct {
 }
 
 """
-Errors messages and codes mapped to
-fields or non fields errors.
-Example:
-{
-    field_name: [
-        {
-            "message": "error message",
-            "code": "error_code"
-        }
-    ],
-    other_field: [
-        {
-            "message": "error message",
-            "code": "error_code"
-        }
-    ],
-    nonFieldErrors: [
-        {
-            "message": "error message",
-            "code": "error_code"
-        }
-    ]
-}
+
+    Errors messages and codes mapped to
+    fields or non fields errors.
+    Example:
+    {
+        field_name: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        other_field: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        nonFieldErrors: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ]
+    }
+    
 """
 scalar ExpectedErrorType
 
@@ -147,36 +135,8 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(
-    brand: Int
-    category: Int
-    color: [String]
-    condition: ConditionEnum
-    customBrand: String
-    description: String!
-    discount: Float
-    imagesUrl: [ImagesInputType]!
-    name: String!
-    parcelSize: ParcelSizeEnum
-    price: Float!
-    size: SizeEnum
-    subCategory: Int
-  ): CreateProduct
-  updateProduct(
-    brand: Int
-    category: Int
-    color: [String]
-    condition: ConditionEnum
-    customBrand: String
-    description: String
-    discount: Float
-    name: String
-    parcelSize: ParcelSizeEnum
-    price: Float
-    productId: Int!
-    size: SizeEnum
-    subCategory: Int
-  ): UpdateProduct
+  createProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
@@ -207,68 +167,55 @@ type Mutation {
 
   """
   Register user with fields defined in the settings.
-
+  
   If the email field of the user model is part of the
   registration fields (default), check if there is
   no user with that email or as a secondary email.
-
+  
   If it exists, it does not register the user,
   even if the email field is not defined as unique
   (default of the default django user model).
-
+  
   When creating the user, it also creates a `UserStatus`
   related to that user, making it possible to track
   if the user is archived, verified and has a secondary
   email.
-
+  
   Send account verification email.
-
+  
   If allowed to not verified users login, return token.
   """
-  register(
-    displayName: String
-    dob: Date
-    email: String!
-    username: String!
-    firstName: String!
-    lastName: String!
-    password1: String!
-    password2: String!
-  ): NewRegister
+  register(displayName: String, dob: Date, email: String!, username: String!, firstName: String!, lastName: String!, password1: String!, password2: String!): NewRegister
 
   """
   Obtain JSON web token for given user.
-
+  
   Allow to perform login with different fields,
   and secondary email if set. The fields are
   defined on settings.
-
+  
   Not verified users can login by default. This
   can be changes on settings.
-
+  
   If user is archived, make it unarchive and
   return `unarchiving=True` on output.
   """
-  tokenAuth(
-    password: String!
-    email: String
-    username: String
-  ): NewObtainJSONWebToken
+  tokenAuth(password: String!, email: String, username: String): NewObtainJSONWebToken
 
   """
   Update user model fields, defined on settings.
-
+  
   User must be verified.
   """
   updateAccount(firstName: String, lastName: String): UpdateAccount
 
   """
   Sends activation email.
-
+  
   It is called resend because theoretically
   the first activation email was sent when
   the user registered.
-
+  
   If there is no user with the requested email,
   a successful response is returned.
   """
@@ -276,20 +223,16 @@ type Mutation {
 
   """
   Change user password without old password.
-
+  
   Receive the token that was sent by email.
-
+  
   If token and new passwords are valid, update
   user password and in case of using refresh
   tokens, revoke all of them.
-
+  
   Also, if user has not been verified yet, verify it.
   """
-  passwordReset(
-    token: String!
-    newPassword1: String!
-    newPassword2: String!
-  ): PasswordReset
+  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
 }
 
 """
@@ -343,13 +286,9 @@ type NewRegister {
   errors: ExpectedErrorType
 }
 
-"""
-An object with an ID
-"""
+"""An object with an ID"""
 interface Node {
-  """
-  The ID of the object
-  """
+  """The ID of the object"""
   id: ID!
 }
 
@@ -387,188 +326,114 @@ type PhoneType {
   completed: String
 }
 
-"""
-An enumeration.
-"""
+"""An enumeration."""
 enum ProductsProductConditionChoices {
-  """
-  New with tags
-  """
+  """New with tags"""
   NEW_WITH_TAGS
 
-  """
-  Like new
-  """
+  """Like new"""
   LIKE_NEW
 
-  """
-  Used
-  """
+  """Used"""
   USED
 
-  """
-  Heavily used
-  """
+  """Heavily used"""
   HEAVILY_USED
 }
 
-"""
-An enumeration.
-"""
+"""An enumeration."""
 enum ProductsProductParcelSizeChoices {
-  """
-  Small
-  """
+  """Small"""
   SMALL
 
-  """
-  Medium
-  """
+  """Medium"""
   MEDIUM
 
-  """
-  Large
-  """
+  """Large"""
   LARGE
 }
 
-"""
-An enumeration.
-"""
+"""An enumeration."""
 enum ProductsProductSizeChoices {
-  """
-  XS
-  """
+  """XS"""
   XS
 
-  """
-  S
-  """
+  """S"""
   S
 
-  """
-  M
-  """
+  """M"""
   M
 
-  """
-  L
-  """
+  """L"""
   L
 
-  """
-  XL
-  """
+  """XL"""
   XL
 
-  """
-  XXL
-  """
+  """XXL"""
   XXL
 
-  """
-  UK4
-  """
+  """UK4"""
   UK4
 
-  """
-  UK6
-  """
+  """UK6"""
   UK6
 
-  """
-  UK8
-  """
+  """UK8"""
   UK8
 
-  """
-  UK10
-  """
+  """UK10"""
   UK10
 
-  """
-  UK12
-  """
+  """UK12"""
   UK12
 
-  """
-  UK14
-  """
+  """UK14"""
   UK14
 
-  """
-  UK16
-  """
+  """UK16"""
   UK16
 
-  """
-  US4
-  """
+  """US4"""
   US4
 
-  """
-  US6
-  """
+  """US6"""
   US6
 
-  """
-  US8
-  """
+  """US8"""
   US8
 
-  """
-  US10
-  """
+  """US10"""
   US10
 
-  """
-  US12
-  """
+  """US12"""
   US12
 
-  """
-  US14
-  """
+  """US14"""
   US14
 
-  """
-  US16
-  """
+  """US16"""
   US16
 
-  """
-  EU34
-  """
+  """EU34"""
   EU34
 
-  """
-  EU36
-  """
+  """EU36"""
   EU36
 
-  """
-  EU38
-  """
+  """EU38"""
   EU38
 
-  """
-  EU40
-  """
+  """EU40"""
   EU40
 
-  """
-  EU42
-  """
+  """EU42"""
   EU42
 
-  """
-  EU44
-  """
+  """EU44"""
   EU44
 
-  """
-  EU46
-  """
+  """EU46"""
   EU46
 }
 
@@ -597,12 +462,7 @@ type ProductType {
 
 type Query {
   allProducts(search: String, pageCount: Int, pageNumber: Int): [ProductType]
-  userProducts(
-    search: String
-    username: String
-    pageCount: Int
-    pageNumber: Int
-  ): [ProductType]
+  userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
@@ -688,9 +548,7 @@ type UpdateUserMutation {
 }
 
 type UserNode implements Node {
-  """
-  The ID of the object
-  """
+  """The ID of the object"""
   id: ID!
   firstName: String!
   lastName: String
@@ -745,3 +603,4 @@ type UserType {
   phone: PhoneType
   listing: Int
 }
+
