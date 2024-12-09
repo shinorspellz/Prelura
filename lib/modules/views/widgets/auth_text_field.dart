@@ -153,6 +153,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     labelText: widget.label,
                     labelStyle: widget.labelStyle,
                     context,
+                    hasFocus: widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false,
                     hintText: widget.hintText,
                     suffixIcon: widget.suffixIcon,
                     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),

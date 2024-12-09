@@ -80,7 +80,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text('Unsaved Changes'),
-                    content: const Text('You have unsaved changes. Do you want to save them as a draft or discard them?'),
+                    content: const Text(
+                        'You have unsaved changes. Do you want to save them as a draft or discard them?'),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -133,59 +134,59 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
             children: [
               if (widget.product == null) ...[
                 Container(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Add up to 20 photos.',
-                            style: TextStyle(color: Colors.grey, fontSize: 14),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "See more photo tips",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10.sp,
-                                  color: PreluraColors.activeColor,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: PreluraColors.activeColor,
-                                  decorationThickness: 2,
-                                ),
-                          ),
-                        ],
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      border: Border.all(
+                        width: 12,
+                        color: Theme.of(context).dividerColor,
                       ),
-                      const SizedBox(
-                        height: 70,
-                      ),
-                      GestureDetector(
-                          onTap: () => notifier.addImages(),
-                          child: Center(
-                            child: AppButton(
-                              onTap: () {
-                                notifier.addImages();
-                              },
-                              text: "upload photos",
-                              bgColor: Theme.of(context).scaffoldBackgroundColor,
-                              textWidget: const Row(
-                                children: [
-                                  Icon(
-                                    Icons.add,
-                                    color: PreluraColors.activeColor,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  )
-                                ],
-                              ),
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 16),
+                  child: GestureDetector(
+                    onTap: () => notifier.addImages(),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Icon(Icons.add_circle, size: 48.sp),
+                            const SizedBox(
+                              height: 10,
                             ),
-                          )),
-                    ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Add up to 20 photos.',
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 14),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "See more photo tips",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 10.sp,
+                                        color: PreluraColors.activeColor,
+                                        decoration: TextDecoration.underline,
+                                        decorationColor:
+                                            PreluraColors.activeColor,
+                                        decorationThickness: 2,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
                 if (state.images.isNotEmpty)
@@ -209,18 +210,34 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     children: [
                       PreluraAuthTextField(
                         label: 'Title',
-                        labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w400),
                         hintText: 'e.g. White COS Jumper',
-                        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w400),
                         onChanged: notifier.updateTitle,
                         controller: titleController,
                       ),
                       const SizedBox(height: 16),
                       PreluraAuthTextField(
                         label: 'Describe your item',
-                        labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 17),
+                        labelStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(
+                                fontWeight: FontWeight.w400, fontSize: 17),
                         hintText: 'e.g. only worn a few times, true to size',
-                        hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+                        minLines: 6,
+                        maxLines: null,
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(
+                                fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
                         controller: descController,
                         // maxLines: null,
@@ -317,7 +334,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    final files = state.images.map((x) => File(x.path)).toList();
+                    final files =
+                        state.images.map((x) => File(x.path)).toList();
                     if (files.isEmpty && widget.product == null) {
                       context.alert('Images are required to sell product');
                       return;
@@ -349,7 +367,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     }
 
                     if (!notifier.validateInputs()) {
-                      context.alert('Both title and description of product are requuired');
+                      context.alert(
+                          'Both title and description of product are requuired');
                       return;
                     }
                     if (widget.product != null) {
@@ -362,7 +381,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             parcelSize: state.parcel,
                             size: state.size!,
                             category: int.parse(state.category!.id.toString()),
-                            subCategory: int.parse(state.subCategory!.id.toString()),
+                            subCategory:
+                                int.parse(state.subCategory!.id.toString()),
                           );
                       ref.read(productProvider).whenOrNull(
                             error: (e, _) => context.alert(e.toString()),
@@ -386,7 +406,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           images: files,
                           size: state.size!,
                           category: int.parse(state.category!.id.toString()),
-                          subCategory: int.parse(state.subCategory!.id.toString()),
+                          subCategory:
+                              int.parse(state.subCategory!.id.toString()),
                         );
                     ref.read(productProvider).whenOrNull(
                           error: (e, _) => context.alert(e.toString()),
