@@ -59,14 +59,12 @@ class _AuthPageState extends ConsumerState<AuthPage> {
               bottomNavigationBar: SizedBox(
                 height: 70,
                 child: TabBar(
-                    padding: EdgeInsets.only(top: 10),
+                    padding: EdgeInsets.only(top: 10, bottom: 10),
                     onTap: (index) {
                       switch (index) {
                         case 0:
                           tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(index);
-
-                          // Scroll to the top
                           HomeScreen.homeScrollController.animateTo(
                             0.0,
                             duration: Duration(milliseconds: 300),

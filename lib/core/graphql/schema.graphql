@@ -130,7 +130,7 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(category: Int, condition: ConditionEnum, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
+  createProduct(brand: String, category: Int, color: String, condition: ConditionEnum, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
   updateProduct(category: Int, condition: ConditionEnum, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
@@ -447,6 +447,8 @@ type ProductType {
   likes: Int!
   discountPrice: Decimal
   imagesUrl: [JSONString!]!
+  color: String
+  brand: String
   createdAt: DateTime!
   updatedAt: DateTime!
   userLiked: Boolean
@@ -591,5 +593,6 @@ type UserType {
   lastLogin: DateTime
   fullName: String
   phone: PhoneType
+  listing: Int
 }
 

@@ -65,34 +65,37 @@ class HomeScreen extends ConsumerWidget {
                     child: _buildSectionTitle('Collection from Seller',
                         "Items selected by amyleeliu", context),
                   ),
-                  SliverFillRemaining(
-                    child: ref.watch(allProductProvider).when(
-                          data: (products) => DisplaySection(
-                            products: products,
-                          ),
-                          error: (e, _) => Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(allProductProvider);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
+                  SliverPadding(
+                    padding: const EdgeInsets.only(bottom: 24),
+                    sliver: SliverFillRemaining(
+                      child: ref.watch(allProductProvider).when(
+                            data: (products) => DisplaySection(
+                              products: products,
+                            ),
+                            error: (e, _) => Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(e.toString()),
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      // log(e.toString(), stackTrace: _);
+                                      ref.invalidate(allProductProvider);
+                                    },
+                                    label: const Text('Retry'),
+                                    icon: const Icon(Icons.refresh_rounded),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            loading: () => const Center(
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                              ),
                             ),
                           ),
-                          loading: () => const Center(
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2.5,
-                            ),
-                          ),
-                        ),
+                    ),
                   ),
                   // Container(
                   //   padding: const EdgeInsets.all(10),

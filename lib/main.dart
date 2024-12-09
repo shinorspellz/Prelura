@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.dart';
@@ -8,7 +9,8 @@ import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     UncontrolledProviderScope(
       container: await initializeDependencies(),
@@ -22,8 +24,15 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authStateProvider);
+
+    // Remove splash screen after determining auth state
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FlutterNativeSplash.remove();
+    });
     return Sizer(
-      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation,
+          DeviceType deviceType) {
         return MaterialApp.router(
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,
