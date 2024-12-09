@@ -135,8 +135,8 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(brand: String, category: Int, color: String, condition: ConditionEnum, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
-  updateProduct(category: Int, condition: ConditionEnum, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
+  createProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
