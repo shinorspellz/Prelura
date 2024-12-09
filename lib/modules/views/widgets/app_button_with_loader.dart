@@ -45,33 +45,21 @@ class PreluraButtonWithLoader extends StatelessWidget {
       elevation: elevation,
       minWidth: butttonWidth ?? (MediaQuery.of(context).size.width),
       height: newButtonHeight ?? 40, //buttonHeight ?? 50,
-      textColor: enableButton == true
-          ? Theme.of(context).buttonTheme.colorScheme!.onPrimary
-          : Theme.of(context).primaryColor.withOpacity(0.2),
+      textColor: enableButton == true ? Theme.of(context).buttonTheme.colorScheme!.onPrimary : Theme.of(context).primaryColor.withOpacity(0.2),
       color: isOutline
           ? Colors.transparent
           : enableButton == true
-              ? buttonColor ??
-                  Theme.of(context).buttonTheme.colorScheme?.surface
-              : Theme.of(context)
-                  .buttonTheme
-                  .colorScheme
-                  ?.surface
-                  .withOpacity(.5),
+              ? buttonColor ?? Theme.of(context).buttonTheme.colorScheme?.surface
+              : Theme.of(context).buttonTheme.colorScheme?.surface.withOpacity(.5),
       shape: isOutline
           ? RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(5), // Rounded corners (optional)
+              borderRadius: BorderRadius.circular(5), // Rounded corners (optional)
               side: BorderSide(
-                color: buttonColor ??
-                    Theme.of(context)
-                        .buttonTheme
-                        .colorScheme!
-                        .surface, // Outline color
+                color: buttonColor ?? Theme.of(context).buttonTheme.colorScheme!.surface, // Outline color
                 width: 1.4, // Outline width
               ),
             )
-          : RoundedRectangleBorder(
+          : const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 // Radius.circular(borderRadius ?? 8),
                 Radius.circular(5),
@@ -81,9 +69,7 @@ class PreluraButtonWithLoader extends StatelessWidget {
       child: showLoadingIndicator
           ? SizedBox(
               // width: butttonWidth ?? MediaQuery.of(context).size.width,
-              width: (butttonWidth != null)
-                  ? (butttonWidth! * 0.7)
-                  : MediaQuery.of(context).size.width,
+              width: (butttonWidth != null) ? (butttonWidth! * 0.7) : MediaQuery.of(context).size.width,
               // child: Center(
               //     child: Container(
               //       height: 36,
@@ -105,7 +91,7 @@ class PreluraButtonWithLoader extends StatelessWidget {
                 buttonTitle ?? "",
                 style: isOutline
                     ? buttonTitleTextStyle ??
-                        Theme.of(context).textTheme.displayLarge!.copyWith(
+                        Theme.of(context).textTheme.bodyLarge!.copyWith(
                               color: Theme.of(context).primaryColor,
 
                               fontWeight: FontWeight.w600,
@@ -113,19 +99,12 @@ class PreluraButtonWithLoader extends StatelessWidget {
                             )
                     : enableButton
                         ? buttonTitleTextStyle ??
-                            Theme.of(context).textTheme.displayLarge!.copyWith(
-                                  color: enableButton
-                                      ? Theme.of(context)
-                                          .buttonTheme
-                                          .colorScheme!
-                                          .onPrimary
-                                      : Theme.of(context)
-                                          .primaryColor
-                                          .withOpacity(0.2),
+                            Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                  color: enableButton ? Theme.of(context).buttonTheme.colorScheme!.onPrimary : Theme.of(context).primaryColor.withOpacity(0.2),
                                   fontWeight: FontWeight.w600,
                                   // fontSize: 12.sp,
                                 )
-                        : Theme.of(context).textTheme.displayLarge!.copyWith(
+                        : Theme.of(context).textTheme.bodyLarge!.copyWith(
                               color: Theme.of(context).disabledColor,
                               fontWeight: FontWeight.w600,
                               // fontSize: 12.sp,

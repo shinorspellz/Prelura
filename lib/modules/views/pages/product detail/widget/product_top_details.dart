@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
@@ -80,19 +84,32 @@ class ProductTopDetails extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               // Display color circles in a row
-              Row(
-                children: dummy.colors
-                    .map((color) => Container(
+              if (product.color != null)
+                Row(
+                  children: product.color!.map((color) {
+                    final value = ref.watch(colorsProvider).entries.where((e) => e.key == color).first;
+                    return Row(
+                      children: [
+                        Container(
                           width: 16,
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: color, // Assuming `color` is a valid Color object
+                            color: value.value, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
-                        ))
-                    .toList(),
-              ),
+                        ),
+                        Text(
+                          value.key,
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        8.horizontalSpacing
+                      ],
+                    );
+                  }).toList(),
+                ),
             ],
           ),
           const Column(
@@ -113,7 +130,7 @@ class ProductTopDetails extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Container(
                   //   height: 35,
@@ -132,22 +149,16 @@ class ProductTopDetails extends ConsumerWidget {
                   //   ),
                   // ),
                   InkWell(
-                    onTap: () {
-                      context.router.push(ProfileDetailsRoute(username: product.seller.username));
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(35), // Ensure it's high for a circle
-                      child: Image.asset(
-                        PreluraIcons.mugShot,
-                        height: 35,
-                        width: 35,
-                        fit: BoxFit.cover, // Ensures the image fills the circle
-                      ),
-                    ),
-                  ),
+                      onTap: () {
+                        context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                      },
+                      child: ProfilePictureWidget(
+                        username: product.seller.username,
+                        profilePicture: product.seller.profilePictureUrl,
+                      )),
 
                   const SizedBox(
-                    width: 12,
+                    width: 10,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

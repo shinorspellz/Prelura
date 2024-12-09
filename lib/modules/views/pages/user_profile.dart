@@ -39,7 +39,7 @@ class ProfileScreen extends ConsumerWidget {
               rightArrow: false,
               onTap: () {}),
           MenuCard(
-              profilePic: false,
+              // profilePic: false,
               title: "My Profile",
               icon: const Icon(Icons.info_outlined),
               rightArrow: false,

@@ -31,6 +31,13 @@ class SearchScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: Text(
+                "Categories",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w800, fontSize: 20),
+              ),
+            ),
             Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
@@ -54,26 +61,21 @@ class SearchScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   "Categories",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.w800),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w800),
                 ),
               ),
               SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.women,
                               height: 100,
@@ -91,12 +93,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.men,
                               height: 100,
@@ -114,12 +115,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.kids,
                               height: 100,
@@ -137,12 +137,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.electronics,
                               height: 100,
@@ -160,12 +159,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.home,
                               height: 100,
@@ -183,12 +181,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.entertainment,
                               height: 100,
@@ -206,12 +203,11 @@ class SearchScreen extends ConsumerWidget {
                     addHorizontalSpacing(20),
                     SizedBox(
                       width: 100,
-                      height: 120,
+                      height: 150,
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(6)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(6)),
                             child: Image.asset(
                               PreluraIcons.petCare,
                               height: 100,
@@ -230,7 +226,7 @@ class SearchScreen extends ConsumerWidget {
                 ),
               )
             ] else ...[
-              LiveSearchPage()
+              const LiveSearchPage()
             ]
           ],
         ),

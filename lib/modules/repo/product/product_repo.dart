@@ -92,11 +92,7 @@ class ProductRepo {
     return Product.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<Product>> getUserProduct(
-      {String? username,
-      String? search,
-      int? pageCount,
-      int? pageNumber}) async {
+  Future<List<Product>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -121,16 +117,10 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProducts!
-        .map((x) => Product.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.userProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
   }
 
-  Future<List<Product>> getAllProducts(
-      {String? username,
-      String? search,
-      int? pageCount,
-      int? pageNumber}) async {
+  Future<List<Product>> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(
           variables: Variables$Query$AllProducts(
@@ -155,9 +145,7 @@ class ProductRepo {
     }
 
     print(response.parsedData!.allProducts);
-    return response.parsedData!.allProducts!
-        .map((x) => Product.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.allProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
   }
 
   Future<List<Product>> getMyFavouriteProduct(int? pageCount) async {
@@ -183,9 +171,7 @@ class ProductRepo {
       throw 'An error occured here';
     }
 
-    return response.parsedData!.likedProducts!
-        .map((x) => Product.fromJson((x!.product)!.toJson()))
-        .toList();
+    return response.parsedData!.likedProducts!.map((x) => Product.fromJson((x!.product)!.toJson())).toList();
   }
 
   Future<bool?> toggleLikeProduct(int productId) async {
@@ -232,9 +218,34 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.categories!
-        .map((x) => CategoryModel.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.categories!.map((x) => CategoryModel.fromJson(x!.toJson())).toList();
+  }
+
+  Future<Query$Brands> getBrands({String? search, int? pageNumber, int? pageCount}) async {
+    final response = await _client.query$Brands(
+      Options$Query$Brands(
+          variables: Variables$Query$Brands(
+        search: search,
+        pageNumber: pageNumber,
+        pageCount: pageCount,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!;
   }
 
   // Future<List<SizeModel>> getSize() async {

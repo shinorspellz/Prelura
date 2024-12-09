@@ -37,6 +37,11 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           const BannerConverter().fromJson(json['imagesUrl'] as List<String>),
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      color:
+          (json['color'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      brand: json['brand'] == null
+          ? null
+          : Brand.fromJson(json['brand'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
@@ -59,6 +64,8 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'imagesUrl': const BannerConverter().toJson(instance.imagesUrl),
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'color': instance.color,
+      'brand': instance.brand,
     };
 
 const _$ConditionsEnumEnumMap = {
@@ -79,4 +86,15 @@ Map<String, dynamic> _$$ProductBannersImplToJson(
     <String, dynamic>{
       'url': instance.url,
       'thumbnail': instance.thumbnail,
+    };
+
+_$BrandImpl _$$BrandImplFromJson(Map<String, dynamic> json) => _$BrandImpl(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };

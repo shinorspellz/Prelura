@@ -33,6 +33,7 @@ mixin _$UserModel {
   DateTime? get dateJoined => throw _privateConstructorUsedError;
   DateTime? get lastLogin => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
+  int? get listing => throw _privateConstructorUsedError;
   PhoneModel? get phone => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
@@ -64,6 +65,7 @@ abstract class $UserModelCopyWith<$Res> {
       DateTime? dateJoined,
       DateTime? lastLogin,
       String? fullName,
+      int? listing,
       PhoneModel? phone});
 
   $PhoneModelCopyWith<$Res>? get phone;
@@ -97,6 +99,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? dateJoined = freezed,
     Object? lastLogin = freezed,
     Object? fullName = freezed,
+    Object? listing = freezed,
     Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
@@ -152,6 +155,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      listing: freezed == listing
+          ? _value.listing
+          : listing // ignore: cast_nullable_to_non_nullable
+              as int?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -196,6 +203,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       DateTime? dateJoined,
       DateTime? lastLogin,
       String? fullName,
+      int? listing,
       PhoneModel? phone});
 
   @override
@@ -228,6 +236,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? dateJoined = freezed,
     Object? lastLogin = freezed,
     Object? fullName = freezed,
+    Object? listing = freezed,
     Object? phone = freezed,
   }) {
     return _then(_$UserModelImpl(
@@ -283,6 +292,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String?,
+      listing: freezed == listing
+          ? _value.listing
+          : listing // ignore: cast_nullable_to_non_nullable
+              as int?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -308,6 +321,7 @@ class _$UserModelImpl implements _UserModel {
       this.dateJoined,
       this.lastLogin,
       this.fullName,
+      this.listing,
       this.phone});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -340,11 +354,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   final String? fullName;
   @override
+  final int? listing;
+  @override
   final PhoneModel? phone;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, phone: $phone)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone)';
   }
 
   @override
@@ -373,6 +389,7 @@ class _$UserModelImpl implements _UserModel {
                 other.lastLogin == lastLogin) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
+            (identical(other.listing, listing) || other.listing == listing) &&
             (identical(other.phone, phone) || other.phone == phone));
   }
 
@@ -393,6 +410,7 @@ class _$UserModelImpl implements _UserModel {
       dateJoined,
       lastLogin,
       fullName,
+      listing,
       phone);
 
   /// Create a copy of UserModel
@@ -426,6 +444,7 @@ abstract class _UserModel implements UserModel {
       final DateTime? dateJoined,
       final DateTime? lastLogin,
       final String? fullName,
+      final int? listing,
       final PhoneModel? phone}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -457,6 +476,8 @@ abstract class _UserModel implements UserModel {
   DateTime? get lastLogin;
   @override
   String? get fullName;
+  @override
+  int? get listing;
   @override
   PhoneModel? get phone;
 

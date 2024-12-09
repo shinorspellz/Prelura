@@ -241,6 +241,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'listing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -418,6 +425,7 @@ class Query$ViewMe$viewMe {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.listing,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -436,6 +444,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$ViewMe$viewMe(
@@ -455,6 +464,7 @@ class Query$ViewMe$viewMe {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
       phone: l$phone == null
           ? null
           : Query$ViewMe$viewMe$phone.fromJson(
@@ -489,6 +499,8 @@ class Query$ViewMe$viewMe {
 
   final String? fullName;
 
+  final int? listing;
+
   final Query$ViewMe$viewMe$phone? phone;
 
   final String $__typename;
@@ -521,6 +533,8 @@ class Query$ViewMe$viewMe {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -543,6 +557,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$listing = listing;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -559,6 +574,7 @@ class Query$ViewMe$viewMe {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$listing,
       l$phone,
       l$$__typename,
     ]);
@@ -637,6 +653,11 @@ class Query$ViewMe$viewMe {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -682,6 +703,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$ViewMe$viewMe$phone? phone,
     String? $__typename,
   });
@@ -715,6 +737,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? listing = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -745,6 +768,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$ViewMe$viewMe$phone?),
@@ -782,6 +806,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$ViewMe$viewMe$phone? phone,
     String? $__typename,
   }) =>
@@ -1316,6 +1341,13 @@ const documentNodeQuerySearchUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'listing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -1508,6 +1540,7 @@ class Query$SearchUser$searchUsers {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.listing,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -1526,6 +1559,7 @@ class Query$SearchUser$searchUsers {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$SearchUser$searchUsers(
@@ -1545,6 +1579,7 @@ class Query$SearchUser$searchUsers {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
       phone: l$phone == null
           ? null
           : Query$SearchUser$searchUsers$phone.fromJson(
@@ -1579,6 +1614,8 @@ class Query$SearchUser$searchUsers {
 
   final String? fullName;
 
+  final int? listing;
+
   final Query$SearchUser$searchUsers$phone? phone;
 
   final String $__typename;
@@ -1611,6 +1648,8 @@ class Query$SearchUser$searchUsers {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -1633,6 +1672,7 @@ class Query$SearchUser$searchUsers {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$listing = listing;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -1649,6 +1689,7 @@ class Query$SearchUser$searchUsers {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$listing,
       l$phone,
       l$$__typename,
     ]);
@@ -1728,6 +1769,11 @@ class Query$SearchUser$searchUsers {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -1774,6 +1820,7 @@ abstract class CopyWith$Query$SearchUser$searchUsers<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$SearchUser$searchUsers$phone? phone,
     String? $__typename,
   });
@@ -1807,6 +1854,7 @@ class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? listing = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -1837,6 +1885,7 @@ class _CopyWithImpl$Query$SearchUser$searchUsers<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$SearchUser$searchUsers$phone?),
@@ -1874,6 +1923,7 @@ class _CopyWithStubImpl$Query$SearchUser$searchUsers<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$SearchUser$searchUsers$phone? phone,
     String? $__typename,
   }) =>
@@ -2381,6 +2431,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'listing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -2573,6 +2630,7 @@ class Query$GetUser$getUser {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.listing,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -2591,6 +2649,7 @@ class Query$GetUser$getUser {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
@@ -2610,6 +2669,7 @@ class Query$GetUser$getUser {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
       phone: l$phone == null
           ? null
           : Query$GetUser$getUser$phone.fromJson(
@@ -2644,6 +2704,8 @@ class Query$GetUser$getUser {
 
   final String? fullName;
 
+  final int? listing;
+
   final Query$GetUser$getUser$phone? phone;
 
   final String $__typename;
@@ -2676,6 +2738,8 @@ class Query$GetUser$getUser {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -2698,6 +2762,7 @@ class Query$GetUser$getUser {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$listing = listing;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -2714,6 +2779,7 @@ class Query$GetUser$getUser {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$listing,
       l$phone,
       l$$__typename,
     ]);
@@ -2792,6 +2858,11 @@ class Query$GetUser$getUser {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -2837,6 +2908,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
@@ -2870,6 +2942,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? listing = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -2900,6 +2973,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$GetUser$getUser$phone?),
@@ -2937,6 +3011,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    int? listing,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   }) =>
@@ -3448,6 +3523,13 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -3539,6 +3621,42 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'brand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -3708,6 +3826,8 @@ class Query$Product$product {
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
+    required this.color,
+    this.brand,
     this.$__typename = 'ProductType',
   });
 
@@ -3729,6 +3849,8 @@ class Query$Product$product {
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
+    final l$color = json['color'];
+    final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
     return Query$Product$product(
       id: (l$id as String),
@@ -3766,6 +3888,11 @@ class Query$Product$product {
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      brand: l$brand == null
+          ? null
+          : Query$Product$product$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3803,6 +3930,10 @@ class Query$Product$product {
   final DateTime createdAt;
 
   final DateTime updatedAt;
+
+  final List<String> color;
+
+  final Query$Product$product$brand? brand;
 
   final String $__typename;
 
@@ -3847,6 +3978,10 @@ class Query$Product$product {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3871,6 +4006,8 @@ class Query$Product$product {
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$color = color;
+    final l$brand = brand;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -3890,6 +4027,8 @@ class Query$Product$product {
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
+      Object.hashAll(l$color.map((v) => v)),
+      l$brand,
       l$$__typename,
     ]);
   }
@@ -3994,6 +4133,23 @@ class Query$Product$product {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -4038,11 +4194,14 @@ abstract class CopyWith$Query$Product$product<TRes> {
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$Product$product$brand? brand,
     String? $__typename,
   });
   CopyWith$Query$Product$product$category<TRes> get category;
   CopyWith$Query$Product$product$subCategory<TRes> get subCategory;
   CopyWith$Query$Product$product$seller<TRes> get seller;
+  CopyWith$Query$Product$product$brand<TRes> get brand;
 }
 
 class _CopyWithImpl$Query$Product$product<TRes>
@@ -4076,6 +4235,8 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Product$product(
@@ -4128,6 +4289,12 @@ class _CopyWithImpl$Query$Product$product<TRes>
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand as Query$Product$product$brand?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -4156,6 +4323,14 @@ class _CopyWithImpl$Query$Product$product<TRes>
         : CopyWith$Query$Product$product$seller(
             local$seller, (e) => call(seller: e));
   }
+
+  CopyWith$Query$Product$product$brand<TRes> get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$Product$product$brand.stub(_then(_instance))
+        : CopyWith$Query$Product$product$brand(
+            local$brand, (e) => call(brand: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$Product$product<TRes>
@@ -4182,6 +4357,8 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$Product$product$brand? brand,
     String? $__typename,
   }) =>
       _res;
@@ -4194,6 +4371,9 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
 
   CopyWith$Query$Product$product$seller<TRes> get seller =>
       CopyWith$Query$Product$product$seller.stub(_res);
+
+  CopyWith$Query$Product$product$brand<TRes> get brand =>
+      CopyWith$Query$Product$product$brand.stub(_res);
 }
 
 class Query$Product$product$category {
@@ -4483,16 +4663,19 @@ class Query$Product$product$seller {
   Query$Product$product$seller({
     this.id,
     this.username,
+    this.profilePictureUrl,
     this.$__typename = 'UserType',
   });
 
   factory Query$Product$product$seller.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
     final l$$__typename = json['__typename'];
     return Query$Product$product$seller(
       id: (l$id as int?),
       username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -4500,6 +4683,8 @@ class Query$Product$product$seller {
   final int? id;
 
   final String? username;
+
+  final String? profilePictureUrl;
 
   final String $__typename;
 
@@ -4509,6 +4694,8 @@ class Query$Product$product$seller {
     _resultData['id'] = l$id;
     final l$username = username;
     _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4518,10 +4705,12 @@ class Query$Product$product$seller {
   int get hashCode {
     final l$id = id;
     final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$username,
+      l$profilePictureUrl,
       l$$__typename,
     ]);
   }
@@ -4543,6 +4732,11 @@ class Query$Product$product$seller {
     final l$username = username;
     final lOther$username = other.username;
     if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4575,6 +4769,7 @@ abstract class CopyWith$Query$Product$product$seller<TRes> {
   TRes call({
     int? id,
     String? username,
+    String? profilePictureUrl,
     String? $__typename,
   });
 }
@@ -4595,12 +4790,16 @@ class _CopyWithImpl$Query$Product$product$seller<TRes>
   TRes call({
     Object? id = _undefined,
     Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Product$product$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -4616,6 +4815,148 @@ class _CopyWithStubImpl$Query$Product$product$seller<TRes>
   call({
     int? id,
     String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Product$product$brand {
+  Query$Product$product$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$Product$product$brand.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Product$product$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Product$product$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Product$product$brand
+    on Query$Product$product$brand {
+  CopyWith$Query$Product$product$brand<Query$Product$product$brand>
+      get copyWith => CopyWith$Query$Product$product$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Product$product$brand<TRes> {
+  factory CopyWith$Query$Product$product$brand(
+    Query$Product$product$brand instance,
+    TRes Function(Query$Product$product$brand) then,
+  ) = _CopyWithImpl$Query$Product$product$brand;
+
+  factory CopyWith$Query$Product$product$brand.stub(TRes res) =
+      _CopyWithStubImpl$Query$Product$product$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Product$product$brand<TRes>
+    implements CopyWith$Query$Product$product$brand<TRes> {
+  _CopyWithImpl$Query$Product$product$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Product$product$brand _instance;
+
+  final TRes Function(Query$Product$product$brand) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Product$product$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Product$product$brand<TRes>
+    implements CopyWith$Query$Product$product$brand<TRes> {
+  _CopyWithStubImpl$Query$Product$product$brand(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;
@@ -5241,6 +5582,42 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'brand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -5409,6 +5786,8 @@ class Query$UserProducts$userProducts {
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
+    required this.color,
+    this.brand,
     this.$__typename = 'ProductType',
   });
 
@@ -5430,6 +5809,8 @@ class Query$UserProducts$userProducts {
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
+    final l$color = json['color'];
+    final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
     return Query$UserProducts$userProducts(
       id: (l$id as String),
@@ -5467,6 +5848,11 @@ class Query$UserProducts$userProducts {
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      brand: l$brand == null
+          ? null
+          : Query$UserProducts$userProducts$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5504,6 +5890,10 @@ class Query$UserProducts$userProducts {
   final DateTime createdAt;
 
   final DateTime updatedAt;
+
+  final List<String> color;
+
+  final Query$UserProducts$userProducts$brand? brand;
 
   final String $__typename;
 
@@ -5548,6 +5938,10 @@ class Query$UserProducts$userProducts {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -5572,6 +5966,8 @@ class Query$UserProducts$userProducts {
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$color = color;
+    final l$brand = brand;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -5591,6 +5987,8 @@ class Query$UserProducts$userProducts {
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
+      Object.hashAll(l$color.map((v) => v)),
+      l$brand,
       l$$__typename,
     ]);
   }
@@ -5696,6 +6094,23 @@ class Query$UserProducts$userProducts {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -5741,11 +6156,14 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$UserProducts$userProducts$brand? brand,
     String? $__typename,
   });
   CopyWith$Query$UserProducts$userProducts$category<TRes> get category;
   CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory;
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller;
+  CopyWith$Query$UserProducts$userProducts$brand<TRes> get brand;
 }
 
 class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
@@ -5779,6 +6197,8 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserProducts$userProducts(
@@ -5831,6 +6251,12 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand as Query$UserProducts$userProducts$brand?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -5861,6 +6287,14 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         : CopyWith$Query$UserProducts$userProducts$seller(
             local$seller, (e) => call(seller: e));
   }
+
+  CopyWith$Query$UserProducts$userProducts$brand<TRes> get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$UserProducts$userProducts$brand.stub(_then(_instance))
+        : CopyWith$Query$UserProducts$userProducts$brand(
+            local$brand, (e) => call(brand: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
@@ -5887,6 +6321,8 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$UserProducts$userProducts$brand? brand,
     String? $__typename,
   }) =>
       _res;
@@ -5899,6 +6335,9 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
 
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller =>
       CopyWith$Query$UserProducts$userProducts$seller.stub(_res);
+
+  CopyWith$Query$UserProducts$userProducts$brand<TRes> get brand =>
+      CopyWith$Query$UserProducts$userProducts$brand.stub(_res);
 }
 
 class Query$UserProducts$userProducts$category {
@@ -6326,6 +6765,149 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts$seller<TRes>
   call({
     int? id,
     String? username,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserProducts$userProducts$brand {
+  Query$UserProducts$userProducts$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$UserProducts$userProducts$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$UserProducts$userProducts$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserProducts$userProducts$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserProducts$userProducts$brand
+    on Query$UserProducts$userProducts$brand {
+  CopyWith$Query$UserProducts$userProducts$brand<
+          Query$UserProducts$userProducts$brand>
+      get copyWith => CopyWith$Query$UserProducts$userProducts$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserProducts$userProducts$brand<TRes> {
+  factory CopyWith$Query$UserProducts$userProducts$brand(
+    Query$UserProducts$userProducts$brand instance,
+    TRes Function(Query$UserProducts$userProducts$brand) then,
+  ) = _CopyWithImpl$Query$UserProducts$userProducts$brand;
+
+  factory CopyWith$Query$UserProducts$userProducts$brand.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProducts$userProducts$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserProducts$userProducts$brand<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$brand<TRes> {
+  _CopyWithImpl$Query$UserProducts$userProducts$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserProducts$userProducts$brand _instance;
+
+  final TRes Function(Query$UserProducts$userProducts$brand) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserProducts$userProducts$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserProducts$userProducts$brand<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$brand<TRes> {
+  _CopyWithStubImpl$Query$UserProducts$userProducts$brand(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;
@@ -6918,6 +7500,42 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'brand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -7086,6 +7704,8 @@ class Query$AllProducts$allProducts {
     required this.imagesUrl,
     required this.createdAt,
     required this.updatedAt,
+    required this.color,
+    this.brand,
     this.$__typename = 'ProductType',
   });
 
@@ -7107,6 +7727,8 @@ class Query$AllProducts$allProducts {
     final l$imagesUrl = json['imagesUrl'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
+    final l$color = json['color'];
+    final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
     return Query$AllProducts$allProducts(
       id: (l$id as String),
@@ -7144,6 +7766,11 @@ class Query$AllProducts$allProducts {
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      brand: l$brand == null
+          ? null
+          : Query$AllProducts$allProducts$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -7181,6 +7808,10 @@ class Query$AllProducts$allProducts {
   final DateTime createdAt;
 
   final DateTime updatedAt;
+
+  final List<String> color;
+
+  final Query$AllProducts$allProducts$brand? brand;
 
   final String $__typename;
 
@@ -7225,6 +7856,10 @@ class Query$AllProducts$allProducts {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -7249,6 +7884,8 @@ class Query$AllProducts$allProducts {
     final l$imagesUrl = imagesUrl;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$color = color;
+    final l$brand = brand;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -7268,6 +7905,8 @@ class Query$AllProducts$allProducts {
       Object.hashAll(l$imagesUrl.map((v) => v)),
       l$createdAt,
       l$updatedAt,
+      Object.hashAll(l$color.map((v) => v)),
+      l$brand,
       l$$__typename,
     ]);
   }
@@ -7373,6 +8012,23 @@ class Query$AllProducts$allProducts {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -7418,11 +8074,14 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$AllProducts$allProducts$brand? brand,
     String? $__typename,
   });
   CopyWith$Query$AllProducts$allProducts$category<TRes> get category;
   CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory;
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller;
+  CopyWith$Query$AllProducts$allProducts$brand<TRes> get brand;
 }
 
 class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
@@ -7456,6 +8115,8 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? imagesUrl = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$AllProducts$allProducts(
@@ -7508,6 +8169,12 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand as Query$AllProducts$allProducts$brand?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -7537,6 +8204,14 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         : CopyWith$Query$AllProducts$allProducts$seller(
             local$seller, (e) => call(seller: e));
   }
+
+  CopyWith$Query$AllProducts$allProducts$brand<TRes> get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$AllProducts$allProducts$brand.stub(_then(_instance))
+        : CopyWith$Query$AllProducts$allProducts$brand(
+            local$brand, (e) => call(brand: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
@@ -7563,6 +8238,8 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     List<String>? imagesUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<String>? color,
+    Query$AllProducts$allProducts$brand? brand,
     String? $__typename,
   }) =>
       _res;
@@ -7575,6 +8252,9 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
 
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller =>
       CopyWith$Query$AllProducts$allProducts$seller.stub(_res);
+
+  CopyWith$Query$AllProducts$allProducts$brand<TRes> get brand =>
+      CopyWith$Query$AllProducts$allProducts$brand.stub(_res);
 }
 
 class Query$AllProducts$allProducts$category {
@@ -8002,6 +8682,149 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts$seller<TRes>
   call({
     int? id,
     String? username,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$AllProducts$allProducts$brand {
+  Query$AllProducts$allProducts$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$AllProducts$allProducts$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$AllProducts$allProducts$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$AllProducts$allProducts$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllProducts$allProducts$brand
+    on Query$AllProducts$allProducts$brand {
+  CopyWith$Query$AllProducts$allProducts$brand<
+          Query$AllProducts$allProducts$brand>
+      get copyWith => CopyWith$Query$AllProducts$allProducts$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$AllProducts$allProducts$brand<TRes> {
+  factory CopyWith$Query$AllProducts$allProducts$brand(
+    Query$AllProducts$allProducts$brand instance,
+    TRes Function(Query$AllProducts$allProducts$brand) then,
+  ) = _CopyWithImpl$Query$AllProducts$allProducts$brand;
+
+  factory CopyWith$Query$AllProducts$allProducts$brand.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllProducts$allProducts$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$AllProducts$allProducts$brand<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$brand<TRes> {
+  _CopyWithImpl$Query$AllProducts$allProducts$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllProducts$allProducts$brand _instance;
+
+  final TRes Function(Query$AllProducts$allProducts$brand) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$AllProducts$allProducts$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$AllProducts$allProducts$brand<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$brand<TRes> {
+  _CopyWithStubImpl$Query$AllProducts$allProducts$brand(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;
@@ -9260,6 +10083,42 @@ const documentNodeQuerylikedProducts = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'color'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'brand'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -9580,6 +10439,8 @@ class Query$likedProducts$likedProducts$product {
     required this.createdAt,
     required this.updatedAt,
     this.userLiked,
+    required this.color,
+    this.brand,
     this.$__typename = 'ProductType',
   });
 
@@ -9602,6 +10463,8 @@ class Query$likedProducts$likedProducts$product {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$userLiked = json['userLiked'];
+    final l$color = json['color'];
+    final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
     return Query$likedProducts$likedProducts$product(
       id: (l$id as String),
@@ -9639,6 +10502,11 @@ class Query$likedProducts$likedProducts$product {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       userLiked: (l$userLiked as bool?),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      brand: l$brand == null
+          ? null
+          : Query$likedProducts$likedProducts$product$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -9676,6 +10544,10 @@ class Query$likedProducts$likedProducts$product {
   final DateTime updatedAt;
 
   final bool? userLiked;
+
+  final List<String> color;
+
+  final Query$likedProducts$likedProducts$product$brand? brand;
 
   final String $__typename;
 
@@ -9720,6 +10592,10 @@ class Query$likedProducts$likedProducts$product {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$userLiked = userLiked;
     _resultData['userLiked'] = l$userLiked;
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -9744,6 +10620,8 @@ class Query$likedProducts$likedProducts$product {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$userLiked = userLiked;
+    final l$color = color;
+    final l$brand = brand;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -9763,6 +10641,8 @@ class Query$likedProducts$likedProducts$product {
       l$createdAt,
       l$updatedAt,
       l$userLiked,
+      Object.hashAll(l$color.map((v) => v)),
+      l$brand,
       l$$__typename,
     ]);
   }
@@ -9868,6 +10748,23 @@ class Query$likedProducts$likedProducts$product {
     if (l$userLiked != lOther$userLiked) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -9914,6 +10811,8 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? userLiked,
+    List<String>? color,
+    Query$likedProducts$likedProducts$product$brand? brand,
     String? $__typename,
   });
   CopyWith$Query$likedProducts$likedProducts$product$category<TRes>
@@ -9921,6 +10820,7 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
   CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes>
       get subCategory;
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller;
+  CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> get brand;
 }
 
 class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
@@ -9954,6 +10854,8 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? userLiked = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$likedProducts$likedProducts$product(
@@ -10007,6 +10909,12 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         userLiked: userLiked == _undefined
             ? _instance.userLiked
             : (userLiked as bool?),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand as Query$likedProducts$likedProducts$product$brand?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -10040,6 +10948,15 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         : CopyWith$Query$likedProducts$likedProducts$product$seller(
             local$seller, (e) => call(seller: e));
   }
+
+  CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$likedProducts$likedProducts$product$brand.stub(
+            _then(_instance))
+        : CopyWith$Query$likedProducts$likedProducts$product$brand(
+            local$brand, (e) => call(brand: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
@@ -10066,6 +10983,8 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? userLiked,
+    List<String>? color,
+    Query$likedProducts$likedProducts$product$brand? brand,
     String? $__typename,
   }) =>
       _res;
@@ -10082,6 +11001,9 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
 
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller =>
       CopyWith$Query$likedProducts$likedProducts$product$seller.stub(_res);
+
+  CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> get brand =>
+      CopyWith$Query$likedProducts$likedProducts$product$brand.stub(_res);
 }
 
 class Query$likedProducts$likedProducts$product$category {
@@ -10524,6 +11446,854 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller<TRes>
   call({
     int? id,
     String? username,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$likedProducts$likedProducts$product$brand {
+  Query$likedProducts$likedProducts$product$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$likedProducts$likedProducts$product$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts$likedProducts$product$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts$product$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts$product$brand
+    on Query$likedProducts$likedProducts$product$brand {
+  CopyWith$Query$likedProducts$likedProducts$product$brand<
+          Query$likedProducts$likedProducts$product$brand>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product$brand(
+    Query$likedProducts$likedProducts$product$brand instance,
+    TRes Function(Query$likedProducts$likedProducts$product$brand) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$brand;
+
+  factory CopyWith$Query$likedProducts$likedProducts$product$brand.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts$product$brand<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts$product$brand _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts$product$brand) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts$likedProducts$product$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$brand<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$brand<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$brand(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$Brands {
+  factory Variables$Query$Brands({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$Brands._({
+        if (search != null) r'search': search,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$Brands._(this._$data);
+
+  factory Variables$Query$Brands.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('search')) {
+      final l$search = data['search'];
+      result$data['search'] = (l$search as String?);
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$Brands._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get search => (_$data['search'] as String?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('search')) {
+      final l$search = search;
+      result$data['search'] = l$search;
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Brands<Variables$Query$Brands> get copyWith =>
+      CopyWith$Variables$Query$Brands(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Brands || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
+      return false;
+    }
+    if (l$search != lOther$search) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$search = search;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('search') ? l$search : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Brands<TRes> {
+  factory CopyWith$Variables$Query$Brands(
+    Variables$Query$Brands instance,
+    TRes Function(Variables$Query$Brands) then,
+  ) = _CopyWithImpl$Variables$Query$Brands;
+
+  factory CopyWith$Variables$Query$Brands.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Brands;
+
+  TRes call({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$Brands<TRes>
+    implements CopyWith$Variables$Query$Brands<TRes> {
+  _CopyWithImpl$Variables$Query$Brands(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Brands _instance;
+
+  final TRes Function(Variables$Query$Brands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? search = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$Brands._({
+        ..._instance._$data,
+        if (search != _undefined) 'search': (search as String?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Brands<TRes>
+    implements CopyWith$Variables$Query$Brands<TRes> {
+  _CopyWithStubImpl$Variables$Query$Brands(this._res);
+
+  TRes _res;
+
+  call({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$Brands {
+  Query$Brands({
+    this.brands,
+    this.brandsTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Brands.fromJson(Map<String, dynamic> json) {
+    final l$brands = json['brands'];
+    final l$brandsTotalNumber = json['brandsTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$Brands(
+      brands: (l$brands as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Brands$brands.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      brandsTotalNumber: (l$brandsTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Brands$brands?>? brands;
+
+  final int? brandsTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$brands = brands;
+    _resultData['brands'] = l$brands?.map((e) => e?.toJson()).toList();
+    final l$brandsTotalNumber = brandsTotalNumber;
+    _resultData['brandsTotalNumber'] = l$brandsTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$brands = brands;
+    final l$brandsTotalNumber = brandsTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$brands == null ? null : Object.hashAll(l$brands.map((v) => v)),
+      l$brandsTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Brands || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$brands = brands;
+    final lOther$brands = other.brands;
+    if (l$brands != null && lOther$brands != null) {
+      if (l$brands.length != lOther$brands.length) {
+        return false;
+      }
+      for (int i = 0; i < l$brands.length; i++) {
+        final l$brands$entry = l$brands[i];
+        final lOther$brands$entry = lOther$brands[i];
+        if (l$brands$entry != lOther$brands$entry) {
+          return false;
+        }
+      }
+    } else if (l$brands != lOther$brands) {
+      return false;
+    }
+    final l$brandsTotalNumber = brandsTotalNumber;
+    final lOther$brandsTotalNumber = other.brandsTotalNumber;
+    if (l$brandsTotalNumber != lOther$brandsTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Brands on Query$Brands {
+  CopyWith$Query$Brands<Query$Brands> get copyWith => CopyWith$Query$Brands(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Brands<TRes> {
+  factory CopyWith$Query$Brands(
+    Query$Brands instance,
+    TRes Function(Query$Brands) then,
+  ) = _CopyWithImpl$Query$Brands;
+
+  factory CopyWith$Query$Brands.stub(TRes res) = _CopyWithStubImpl$Query$Brands;
+
+  TRes call({
+    List<Query$Brands$brands?>? brands,
+    int? brandsTotalNumber,
+    String? $__typename,
+  });
+  TRes brands(
+      Iterable<Query$Brands$brands?>? Function(
+              Iterable<CopyWith$Query$Brands$brands<Query$Brands$brands>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Brands<TRes> implements CopyWith$Query$Brands<TRes> {
+  _CopyWithImpl$Query$Brands(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Brands _instance;
+
+  final TRes Function(Query$Brands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? brands = _undefined,
+    Object? brandsTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Brands(
+        brands: brands == _undefined
+            ? _instance.brands
+            : (brands as List<Query$Brands$brands?>?),
+        brandsTotalNumber: brandsTotalNumber == _undefined
+            ? _instance.brandsTotalNumber
+            : (brandsTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes brands(
+          Iterable<Query$Brands$brands?>? Function(
+                  Iterable<CopyWith$Query$Brands$brands<Query$Brands$brands>?>?)
+              _fn) =>
+      call(
+          brands: _fn(_instance.brands?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Brands$brands(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Brands<TRes>
+    implements CopyWith$Query$Brands<TRes> {
+  _CopyWithStubImpl$Query$Brands(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Brands$brands?>? brands,
+    int? brandsTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+
+  brands(_fn) => _res;
+}
+
+const documentNodeQueryBrands = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Brands'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'brands'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'brandsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Brands _parserFn$Query$Brands(Map<String, dynamic> data) =>
+    Query$Brands.fromJson(data);
+typedef OnQueryComplete$Query$Brands = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Brands?,
+);
+
+class Options$Query$Brands extends graphql.QueryOptions<Query$Brands> {
+  Options$Query$Brands({
+    String? operationName,
+    Variables$Query$Brands? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Brands? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Brands? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Brands(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryBrands,
+          parserFn: _parserFn$Query$Brands,
+        );
+
+  final OnQueryComplete$Query$Brands? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Brands
+    extends graphql.WatchQueryOptions<Query$Brands> {
+  WatchOptions$Query$Brands({
+    String? operationName,
+    Variables$Query$Brands? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Brands? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryBrands,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Brands,
+        );
+}
+
+class FetchMoreOptions$Query$Brands extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Brands({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$Brands? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryBrands,
+        );
+}
+
+extension ClientExtension$Query$Brands on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Brands>> query$Brands(
+          [Options$Query$Brands? options]) async =>
+      await this.query(options ?? Options$Query$Brands());
+  graphql.ObservableQuery<Query$Brands> watchQuery$Brands(
+          [WatchOptions$Query$Brands? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$Brands());
+  void writeQuery$Brands({
+    required Query$Brands data,
+    Variables$Query$Brands? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryBrands),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Brands? readQuery$Brands({
+    Variables$Query$Brands? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryBrands),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Brands.fromJson(result);
+  }
+}
+
+class Query$Brands$brands {
+  Query$Brands$brands({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$Brands$brands.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Brands$brands(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Brands$brands || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Brands$brands on Query$Brands$brands {
+  CopyWith$Query$Brands$brands<Query$Brands$brands> get copyWith =>
+      CopyWith$Query$Brands$brands(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Brands$brands<TRes> {
+  factory CopyWith$Query$Brands$brands(
+    Query$Brands$brands instance,
+    TRes Function(Query$Brands$brands) then,
+  ) = _CopyWithImpl$Query$Brands$brands;
+
+  factory CopyWith$Query$Brands$brands.stub(TRes res) =
+      _CopyWithStubImpl$Query$Brands$brands;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Brands$brands<TRes>
+    implements CopyWith$Query$Brands$brands<TRes> {
+  _CopyWithImpl$Query$Brands$brands(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Brands$brands _instance;
+
+  final TRes Function(Query$Brands$brands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Brands$brands(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Brands$brands<TRes>
+    implements CopyWith$Query$Brands$brands<TRes> {
+  _CopyWithStubImpl$Query$Brands$brands(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;

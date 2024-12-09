@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
@@ -20,26 +21,13 @@ class ColorSelectorScreen extends ConsumerWidget {
     final notifier = ref.read(sellItemProvider.notifier);
 
     // Color options
-    final colorOptions = {
-      "Black": Colors.black,
-      "Brown": Colors.brown,
-      "Grey": Colors.grey,
-      "Beige": const Color(0xFFF5F5DC),
-      "Pink": Colors.pink,
-      "Purple": Colors.purple,
-      "Red": Colors.red,
-      "Yellow": Colors.yellow,
-      "Blue": Colors.blue,
-      "Green": Colors.green,
-      "Orange": Colors.orange,
-    };
+    final colorOptions = ref.read(colorsProvider);
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -56,7 +44,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Choose up to 2 colours",
+                    "Choose up to 3 colours",
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 32),
@@ -108,8 +96,7 @@ class ColorSelectorScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 16.0, right: 16, top: 16, bottom: 46),
+              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 16, bottom: 46),
               child: ElevatedButton(
                 onPressed: state.isNotEmpty
                     ? () {
@@ -126,10 +113,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     "Done",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: PreluraColors.white),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
                   ),
                 ),
               ),
