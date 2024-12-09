@@ -30,7 +30,7 @@ final searchProductProvider =
 });
 
 final toggleLikeProductProvider =
-    FutureProvider.family<bool, int>((ref, query) async {
+    FutureProvider.autoDispose.family<bool, int>((ref, query) async {
   final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
@@ -55,7 +55,7 @@ final getProductProvider = FutureProvider.family<Product, int>((ref, id) async {
   return result;
 });
 
-final userFavouriteProduct = FutureProvider((ref) async {
+final userFavouriteProduct = FutureProvider.autoDispose((ref) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getMyFavouriteProduct(0);
