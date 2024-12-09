@@ -53,7 +53,8 @@ class AboutProfile extends StatelessWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text("Exeter, United Kingdom", style: Theme.of(context).textTheme.bodyMedium),
+                      Text("Exeter, United Kingdom",
+                          style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
                   const SizedBox(height: 4),
@@ -70,13 +71,22 @@ class AboutProfile extends StatelessWidget {
                         },
                         child: Text.rich(TextSpan(
                             text: "3",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context).textTheme.bodySmall?.color,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
                                 ),
                             children: [
                               TextSpan(
                                 text: " followers,",
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
                                       color: PreluraColors.activeColor,
                                     ),
                               ),
@@ -89,13 +99,22 @@ class AboutProfile extends StatelessWidget {
                         },
                         child: Text.rich(TextSpan(
                             text: "3",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context).textTheme.bodySmall?.color,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
                                 ),
                             children: [
                               TextSpan(
                                 text: " following",
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
                                       color: PreluraColors.activeColor,
                                     ),
                               ),
@@ -111,7 +130,8 @@ class AboutProfile extends StatelessWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text("Last Seen, 2 hours ago", style: Theme.of(context).textTheme.bodySmall),
+                      Text("last seen  2 hours ago",
+                          style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ],
@@ -121,7 +141,8 @@ class AboutProfile extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
+        padding:
+            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
         child: Row(
           children: [
             Expanded(

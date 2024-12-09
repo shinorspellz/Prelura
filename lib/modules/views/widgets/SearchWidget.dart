@@ -308,6 +308,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                         style:
                             Theme.of(context).textTheme.displayMedium!.copyWith(
                                   fontWeight: FontWeight.bold,
+                                  color:PreluraColors.primaryColor
                                 ),
                       ),
                     ),

@@ -31,16 +31,6 @@ class SearchScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Text(
-                "Categories",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.w800, fontSize: 20),
-              ),
-            ),
             Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
