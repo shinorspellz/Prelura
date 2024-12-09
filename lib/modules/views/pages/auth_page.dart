@@ -261,8 +261,9 @@ class TabItem extends StatelessWidget {
       onTap: onChanged,
       child: Column(
         children: [
-          if (activeIcon != null && isActive) activeIcon ?? icon else icon,
           8.verticalSpacing,
+          if (activeIcon != null && isActive) activeIcon ?? icon else icon,
+          2.verticalSpacing,
           Text(
             label,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(

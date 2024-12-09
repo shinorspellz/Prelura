@@ -79,6 +79,7 @@ query Product($id: Int!) {
     seller {
       id
       username
+      profilePictureUrl
     }
     condition
     discountPrice
@@ -180,37 +181,37 @@ query Categories {
   }
 }
 
-query likedProducts ($pageCount: Int, $pageNumber: Int){
-  likedProducts(pageCount: $pageCount, pageNumber:$pageNumber){
-    product{
-    id
-    name
-    description
-    category {
+query likedProducts($pageCount: Int, $pageNumber: Int) {
+  likedProducts(pageCount: $pageCount, pageNumber: $pageNumber) {
+    product {
       id
       name
-    }
-    subCategory {
-      id
-      name
-    }
-    seller {
-      id
-      username
-    }
-    condition
-    discountPrice
-    size
-    condition
-    price
-    parcelSize
-    views
-    likes
-    imagesUrl
-    createdAt
-    updatedAt
-    likes
-    userLiked
+      description
+      category {
+        id
+        name
+      }
+      subCategory {
+        id
+        name
+      }
+      seller {
+        id
+        username
+      }
+      condition
+      discountPrice
+      size
+      condition
+      price
+      parcelSize
+      views
+      likes
+      imagesUrl
+      createdAt
+      updatedAt
+      likes
+      userLiked
     }
   }
 }

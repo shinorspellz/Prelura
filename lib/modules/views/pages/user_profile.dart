@@ -102,7 +102,7 @@ class ProfileScreen extends ConsumerWidget {
           const ProfileStatsCard(),
           MenuCard(title: "Balance", icon: const Icon(Icons.wallet_outlined), subtitle: '£0.00', subtitleColor: PreluraColors.activeColor, rightArrow: false, onTap: () {}),
           MenuCard(
-              profilePic: false,
+              // profilePic: false,
               title: "My Profile",
               icon: const Icon(Icons.info_outlined),
               rightArrow: false,
