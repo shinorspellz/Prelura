@@ -25,6 +25,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['lastLogin'] as String),
       fullName: json['fullName'] as String?,
+      listing: (json['listing'] as num?)?.toInt(),
       phone: json['phone'] == null
           ? null
           : PhoneModel.fromJson(json['phone'] as Map<String, dynamic>),
@@ -45,6 +46,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'dateJoined': instance.dateJoined?.toIso8601String(),
       'lastLogin': instance.lastLogin?.toIso8601String(),
       'fullName': instance.fullName,
+      'listing': instance.listing,
       'phone': instance.phone,
     };
 

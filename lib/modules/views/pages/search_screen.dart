@@ -32,6 +32,13 @@ class SearchScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: Text(
+                "Categories",
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w800, fontSize: 20),
+              ),
+            ),
             Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
@@ -55,15 +62,11 @@ class SearchScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   "Categories",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.w800),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w800),
                 ),
               ),
               SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
@@ -220,7 +223,7 @@ class SearchScreen extends ConsumerWidget {
                 ],
               ),
             ] else ...[
-              LiveSearchPage()
+              const LiveSearchPage()
             ]
           ],
         ),

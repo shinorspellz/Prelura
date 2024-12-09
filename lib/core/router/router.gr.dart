@@ -133,13 +133,10 @@ class AuthRoute extends _i36.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.BrandSelectionPage]
-class BrandSelectionRoute extends _i36.PageRouteInfo<BrandSelectionRouteArgs> {
-  BrandSelectionRoute({
-    _i37.Key? key,
-    List<_i36.PageRouteInfo>? children,
-  }) : super(
+class BrandSelectionRoute extends _i36.PageRouteInfo<void> {
+  const BrandSelectionRoute({List<_i36.PageRouteInfo>? children})
+      : super(
           BrandSelectionRoute.name,
-          args: BrandSelectionRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -148,22 +145,9 @@ class BrandSelectionRoute extends _i36.PageRouteInfo<BrandSelectionRouteArgs> {
   static _i36.PageInfo page = _i36.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<BrandSelectionRouteArgs>(
-          orElse: () => const BrandSelectionRouteArgs());
-      return _i4.BrandSelectionPage(key: args.key);
+      return const _i4.BrandSelectionPage();
     },
   );
-}
-
-class BrandSelectionRouteArgs {
-  const BrandSelectionRouteArgs({this.key});
-
-  final _i37.Key? key;
-
-  @override
-  String toString() {
-    return 'BrandSelectionRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

@@ -34,10 +34,12 @@ class PreluraTheme {
           backgroundColor: PreluraColors.primaryColor,
           selectedItemColor: PreluraColors.primaryColor,
         ),
+        splashFactory: NoSplash.splashFactory,
         tabBarTheme: TabBarTheme(
           unselectedLabelColor: PreluraColors.primaryColor.withOpacity(0.4),
           labelColor: Colors.black, //PreluraColors.primaryColor,
           indicatorColor: PreluraColors.primaryColor,
+          splashFactory: NoSplash.splashFactory,
         ),
         buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme(
@@ -46,60 +48,60 @@ class PreluraTheme {
             onPrimary: PreluraColors.white,
             secondary: PreluraColors.buttonBgColor,
             tertiary: PreluraColors.white,
-            onSecondary:
-                PreluraColors.primaryColorOld, //PreluraColors.primaryColor,
+            onSecondary: PreluraColors.primaryColorOld, //PreluraColors.primaryColor,
             error: PreluraColors.primaryColorOld, // PreluraColors.primaryColor,
-            onError:
-                PreluraColors.primaryColorOld, // PreluraColors.primaryColor,
-            surface:
-                PreluraColors.primaryColorOld, // PreluraColors.primaryColor,
-            onSurface:
-                PreluraColors.primaryColorOld, //PreluraColors.primaryColor,
+            onError: PreluraColors.primaryColorOld, // PreluraColors.primaryColor,
+            surface: PreluraColors.primaryColorOld, // PreluraColors.primaryColor,
+            onSurface: PreluraColors.primaryColorOld, //PreluraColors.primaryColor,
           ),
         ),
         iconTheme: const IconThemeData(
           color: Colors.black, // PreluraColors.primaryColor,
         ),
-        appBarTheme: const AppBarTheme(
-            backgroundColor: PreluraColors.appBarBackgroundColor, elevation: 0),
-        textTheme: TextTheme(
-          displayLarge: PreluraTypography1.normalTextStyle,
-          displayMedium: PreluraTypography1.mediumTextStyle,
-          displaySmall: PreluraTypography1.smallTextStyle,
-          titleLarge: PreluraTypography1.normalTextStyle,
-          titleMedium: PreluraTypography1.normalTextStyle,
-          titleSmall: PreluraTypography1.normalTextStyle,
-          labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // bodyLarge: PreluraTypography1.normalTextStyle,
-          // bodyMedium: PreluraTypography1.mediumTextStyle,
-          // bodySmall: PreluraTypography1.smallTextStyle,
-          bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
-          bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
-          bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
-                color: Colors.black, // PreluraColors.primaryColor,
-                fontSize: 10.sp,
-                fontFamily: PreluraTypography1.primaryfontName,
-              ),
-          // ?.copyWith(color: Colors.amber),
+        appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.appBarBackgroundColor, elevation: 0),
+        textTheme: const TextTheme(
+                // displayLarge: PreluraTypography1.normalTextStyle,
+                // displayMedium: PreluraTypography1.mediumTextStyle,
+                // displaySmall: PreluraTypography1.smallTextStyle,
+                // titleLarge: PreluraTypography1.normalTextStyle,
+                // titleMedium: PreluraTypography1.normalTextStyle,
+                // titleSmall: PreluraTypography1.normalTextStyle,
+                // labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // bodyLarge: PreluraTypography1.normalTextStyle,
+                // // bodyMedium: PreluraTypography1.mediumTextStyle,
+                // // bodySmall: PreluraTypography1.smallTextStyle,
+                // bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontSize: 10.sp,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // ?.copyWith(color: Colors.amber),
+                )
+            .apply(
+          fontFamily: PreluraTypography1.primaryfontName,
+          bodyColor: Colors.black,
+          displayColor: Colors.black,
         ),
         radioTheme: const RadioThemeData(
           fillColor: WidgetStatePropertyAll(PreluraColors.primaryColor),
@@ -118,8 +120,7 @@ class PreluraTheme {
               backgroundColor: PreluraColors.white,
             ),
         switchTheme: ThemeData.light().switchTheme.copyWith(
-          trackColor:
-              WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+          trackColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
             if (states.contains(WidgetState.selected)) {
               return PreluraColors.primaryColor;
             }
@@ -149,28 +150,16 @@ class PreluraTheme {
                 width: 1,
               ),
               borderRadius: BorderRadius.all(Radius.circular(8))),
-          disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5), borderRadius: const BorderRadius.all(Radius.circular(10))),
           border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: PreluraColors.buttonBgColor,
                 width: 1.5,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(10))),
-          enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: PreluraColors.buttonBgColor, width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
-          focusedErrorBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: PreluraColors.buttonBgColor, width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
-          errorBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: PreluraColors.buttonBgColor, width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(8))),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.buttonBgColor, width: 0), borderRadius: const BorderRadius.all(Radius.circular(10))),
+          focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.buttonBgColor, width: 0), borderRadius: const BorderRadius.all(Radius.circular(10))),
+          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.buttonBgColor, width: 0), borderRadius: const BorderRadius.all(Radius.circular(8))),
         ),
       );
 
@@ -190,10 +179,8 @@ class PreluraTheme {
           surface: PreluraColors.darkScaffoldBackround,
           onSurface: PreluraColors.darkOnSurfaceColor,
           surfaceVariant: PreluraColors.surfaceVariantLight.withOpacity(0.2),
-          surfaceContainerHighest:
-              PreluraColors.surfaceVariantLight.withOpacity(0.2),
-          onSurfaceVariant:
-              PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
+          surfaceContainerHighest: PreluraColors.surfaceVariantLight.withOpacity(0.2),
+          onSurfaceVariant: PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
         ),
         scaffoldBackgroundColor: PreluraColors.darkScaffoldBackround,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -203,17 +190,17 @@ class PreluraTheme {
           backgroundColor: PreluraColors.white.withOpacity(.8),
           selectedItemColor: PreluraColors.darkSecondaryButtonColor,
           unselectedItemColor: PreluraColors.white.withOpacity(.5),
-          unselectedIconTheme:
-              IconThemeData(color: PreluraColors.white.withOpacity(.5)),
-          selectedIconTheme: const IconThemeData(
-              color: PreluraColors.darkSecondaryButtonColor),
+          unselectedIconTheme: IconThemeData(color: PreluraColors.white.withOpacity(.5)),
+          selectedIconTheme: const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
         ),
+        splashFactory: NoSplash.splashFactory,
         tabBarTheme: TabBarTheme(
-            unselectedLabelColor:
-                PreluraColors.darkPrimaryColorWhite.withOpacity(.5),
-            labelColor: PreluraColors.white,
-            // indicatorColor: PreluraColors.darkSecondaryButtonColor,
-            indicatorColor: PreluraColors.white),
+          unselectedLabelColor: PreluraColors.darkPrimaryColorWhite.withOpacity(.5),
+          labelColor: PreluraColors.white,
+          // indicatorColor: PreluraColors.darkSecondaryButtonColor,
+          indicatorColor: PreluraColors.white,
+          splashFactory: NoSplash.splashFactory,
+        ),
         primaryColor: PreluraColors.darkPrimaryColorWhite,
         // primarySwatch: PreluraColors.vModelprimarySwatch,
         indicatorColor: PreluraColors.white,
@@ -250,33 +237,35 @@ class PreluraTheme {
         dialogTheme: const DialogTheme(
           backgroundColor: PreluraColors.darkScaffoldBackround,
         ),
-        appBarTheme: const AppBarTheme(
-            backgroundColor: PreluraColors.blackScaffoldBackround,
-            elevation: 0),
-        iconTheme:
-            const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
-        textTheme: TextTheme(
-          displayLarge: PreluraDarkTheme.normalTextStyle,
-          displayMedium: PreluraDarkTheme.mediumTextStyle,
-          displaySmall: PreluraDarkTheme.smallTextStyle,
-          titleLarge: PreluraDarkTheme.normalTextStyle,
-          titleMedium: PreluraDarkTheme.normalTextStyle,
-          titleSmall: PreluraDarkTheme.normalTextStyle,
-          // bodyLarge: PreluraTypography1.normalTextStyle,
-          // bodyMedium: PreluraDarkTheme.mediumTextStyle,
-          // bodySmall: PreluraDarkTheme.smallTextStyle,
-          bodyLarge: ThemeData.dark().textTheme.bodyLarge?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
-          bodyMedium: ThemeData.dark().textTheme.bodyMedium?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
-          bodySmall: ThemeData.dark().textTheme.bodySmall?.copyWith(
-                color: PreluraColors.darkOnPrimaryColor,
-                fontFamily: PreluraDarkTheme.primaryfontName,
-              ),
+        appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.blackScaffoldBackround, elevation: 0),
+        iconTheme: const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
+        textTheme: const TextTheme(
+                // displayLarge: PreluraDarkTheme.normalTextStyle,
+                // displayMedium: PreluraDarkTheme.mediumTextStyle,
+                // displaySmall: PreluraDarkTheme.smallTextStyle,
+                // titleLarge: PreluraDarkTheme.normalTextStyle,
+                // titleMedium: PreluraDarkTheme.normalTextStyle,
+                // titleSmall: PreluraDarkTheme.normalTextStyle,
+                // bodyLarge: PreluraTypography1.normalTextStyle,
+                // bodyMedium: PreluraDarkTheme.mediumTextStyle,
+                // bodySmall: PreluraDarkTheme.smallTextStyle,
+                // bodyLarge: ThemeData.dark().textTheme.bodyLarge?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                // bodyMedium: ThemeData.dark().textTheme.bodyMedium?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                // bodySmall: ThemeData.dark().textTheme.bodySmall?.copyWith(
+                //       color: PreluraColors.darkOnPrimaryColor,
+                //       fontFamily: PreluraDarkTheme.primaryfontName,
+                //     ),
+                )
+            .apply(
+          fontFamily: PreluraTypography1.primaryfontName,
+          bodyColor: PreluraColors.darkOnPrimaryColor,
+          displayColor: PreluraColors.darkOnPrimaryColor,
         ),
         cardTheme: ThemeData.dark().cardTheme.copyWith(
               // color: PreluraColors.darkPrimaryColor,
@@ -297,8 +286,7 @@ class PreluraTheme {
           ),
         ),
         switchTheme: ThemeData.dark().switchTheme.copyWith(
-          trackColor:
-              WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
+          trackColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
             if (states.contains(WidgetState.selected)) {
               return PreluraColors.darkSecondaryButtonColor;
             }
@@ -324,28 +312,16 @@ class PreluraTheme {
                 width: 1,
               ),
               borderRadius: BorderRadius.all(Radius.circular(8))),
-          disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          disabledBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.greyColor.withOpacity(0.4), width: 1.5), borderRadius: const BorderRadius.all(Radius.circular(10))),
           border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: PreluraColors.greyColor.withOpacity(0.2),
                 width: 1.5,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(10))),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: PreluraColors.greyColor.withOpacity(0.2), width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
-          focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: PreluraColors.greyColor.withOpacity(0.2), width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
-          errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: PreluraColors.greyColor.withOpacity(0.2), width: 0),
-              borderRadius: const BorderRadius.all(Radius.circular(8))),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.greyColor.withOpacity(0.2), width: 0), borderRadius: const BorderRadius.all(Radius.circular(10))),
+          focusedErrorBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.greyColor.withOpacity(0.2), width: 0), borderRadius: const BorderRadius.all(Radius.circular(10))),
+          errorBorder: OutlineInputBorder(borderSide: BorderSide(color: PreluraColors.greyColor.withOpacity(0.2), width: 0), borderRadius: const BorderRadius.all(Radius.circular(8))),
         ),
       );
 
@@ -368,10 +344,8 @@ class PreluraTheme {
             surface: PreluraColors.modalBgColorBlackMode,
             onSurface: PreluraColors.darkOnSurfaceColor,
             surfaceVariant: PreluraColors.surfaceVariantLight.withOpacity(0.2),
-            surfaceContainerHighest:
-                PreluraColors.surfaceVariantLight.withOpacity(0.2),
-            onSurfaceVariant:
-                PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
+            surfaceContainerHighest: PreluraColors.surfaceVariantLight.withOpacity(0.2),
+            onSurfaceVariant: PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
           ),
           dialogTheme: const DialogTheme(
             backgroundColor: Color.fromARGB(255, 27, 27, 27),
@@ -383,16 +357,10 @@ class PreluraTheme {
             backgroundColor: PreluraColors.white.withOpacity(.8),
             selectedItemColor: PreluraColors.white,
             unselectedItemColor: PreluraColors.white.withOpacity(.5),
-            unselectedIconTheme:
-                IconThemeData(color: PreluraColors.white.withOpacity(.5)),
-            selectedIconTheme: const IconThemeData(
-                color: PreluraColors.darkSecondaryButtonColor),
+            unselectedIconTheme: IconThemeData(color: PreluraColors.white.withOpacity(.5)),
+            selectedIconTheme: const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
           ),
-          tabBarTheme: TabBarTheme(
-              unselectedLabelColor:
-                  PreluraColors.darkPrimaryColorWhite.withOpacity(.5),
-              labelColor: PreluraColors.grey,
-              indicatorColor: PreluraColors.white),
+          tabBarTheme: TabBarTheme(unselectedLabelColor: PreluraColors.darkPrimaryColorWhite.withOpacity(.5), labelColor: PreluraColors.grey, indicatorColor: PreluraColors.white),
           primaryColor: PreluraColors.darkPrimaryColorWhite,
           indicatorColor: PreluraColors.white,
           buttonTheme: ButtonThemeData(
@@ -416,10 +384,8 @@ class PreluraTheme {
             dialTextColor: Colors.white,
             dayPeriodTextColor: Colors.white,
             hourMinuteTextColor: Colors.white,
-            cancelButtonStyle: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(Colors.white)),
-            confirmButtonStyle: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(Colors.white)),
+            cancelButtonStyle: ButtonStyle(foregroundColor: WidgetStatePropertyAll(Colors.white)),
+            confirmButtonStyle: ButtonStyle(foregroundColor: WidgetStatePropertyAll(Colors.white)),
           ),
           textSelectionTheme: const TextSelectionThemeData(
             // cursorColor: Colors.yellow,
@@ -436,8 +402,7 @@ class PreluraTheme {
             backgroundColor: PreluraColors.blackUpdated,
             elevation: 0,
           ),
-          iconTheme:
-              const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
+          iconTheme: const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
           textTheme: TextTheme(
             displayLarge: PreluraDarkTheme.normalTextStyle,
             displayMedium: PreluraDarkTheme.mediumTextStyle,
@@ -475,8 +440,7 @@ class PreluraTheme {
             ),
           ),
           switchTheme: ThemeData.dark().switchTheme.copyWith(
-            trackColor: WidgetStateProperty.resolveWith<Color>(
-                (Set<WidgetState> states) {
+            trackColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
               if (states.contains(WidgetState.selected)) {
                 return PreluraColors.darkSecondaryButtonColor;
               }
@@ -505,17 +469,10 @@ class PreluraTheme {
                   width: 1,
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(8))),
-            disabledBorder: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            enabledBorder: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            focusedErrorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white, width: 1),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 0),
-                borderRadius: BorderRadius.all(Radius.circular(8))),
+            disabledBorder: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+            enabledBorder: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+            focusedErrorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.white, width: 1), borderRadius: BorderRadius.all(Radius.circular(10))),
+            errorBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.red, width: 0), borderRadius: BorderRadius.all(Radius.circular(8))),
           ));
 }

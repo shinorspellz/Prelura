@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -9,6 +11,7 @@ import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
+import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/modules/views/widgets/rating.dart';
 
 import '../../../../../res/colors.dart';
@@ -25,17 +28,18 @@ class UserWardrobe extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          MenuCard(
-            rightArrow: false,
-            borderbottom: false,
-            title: user?.username ?? '--',
-            profilePic: true,
-            widget: Text(
-              "35 listings",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
+          if (username != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: ProfileCardWidget(
+                user: user,
+              ),
+            )
+          else
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: ProfileCardWidget(),
             ),
-            onTap: () {},
-          ),
           Container(
             child: Column(
               children: [

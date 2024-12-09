@@ -59,6 +59,8 @@ mutation CreateProduct(
   $name: String!
   $parcelSize: ParcelSizeEnum
   $discount: Float
+  $color: [String]
+  $brand: Int
 ) {
   createProduct(
     category: $category
@@ -71,6 +73,8 @@ mutation CreateProduct(
     name: $name
     parcelSize: $parcelSize
     discount: $discount
+    color: $color
+    brand: $brand
   ) {
     success
     message

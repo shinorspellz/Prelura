@@ -19,7 +19,7 @@ class ProductDescription extends ConsumerWidget {
     final dummy = ref.watch(productDetailProvider);
     final isDescriptionExpanded = ref.watch(isDescriptionExpandedProvider);
     bool shouldShowSeeMore = _shouldShowSeeMore(product.description);
-print(product.description);
+    print(product.description);
     String truncatedDescription = _getTruncatedDescription(product.description);
 
     return Container(
@@ -47,27 +47,19 @@ print(product.description);
                 ),
                 GestureDetector(
                   onTap: () {
-                    ref.read(isDescriptionExpandedProvider.notifier).state =
-                        !isDescriptionExpanded;
+                    ref.read(isDescriptionExpandedProvider.notifier).state = !isDescriptionExpanded;
                   },
                   child: Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: isDescriptionExpanded
-                              ? product.description
-                              : truncatedDescription,
+                          text: isDescriptionExpanded ? product.description : truncatedDescription,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         if (shouldShowSeeMore)
                           TextSpan(
-                            text: isDescriptionExpanded
-                                ? " See less"
-                                : " See more",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
+                            text: isDescriptionExpanded ? " See less" : " See more",
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -75,6 +67,8 @@ print(product.description);
                       ],
                     ),
                   ),
+                  // maxLines: !isDescriptionExpanded ? 3 : null,
+                  // overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -83,18 +77,13 @@ print(product.description);
             height: 2,
             thickness: 1,
           ),
-          if (product.category != null)
-            _buildInfoRow("Category", product.category!.name, context),
-          if (product.subCategory != null)
-            _buildInfoRow("Sub Category", product.subCategory!.name, context),
+          if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
+          if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
 
-          if (product.size != null)
-            _buildInfoRow("Size", product.size!.name, context),
-          if (product.condition != null)
-            _buildInfoRow("Condition", product.condition!.simpleName, context),
+          if (product.size != null) _buildInfoRow("Size", product.size!.name, context),
+          if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
           _buildInfoRow("Views", product.views.toString(), context),
-          _buildInfoRow("Uploaded",
-              DateFormat.yMMMMEEEEd().format(product.createdAt), context),
+          _buildInfoRow("Uploaded", DateFormat.yMMMMEEEEd().format(product.createdAt), context),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
@@ -115,8 +104,7 @@ print(product.description);
                 ),
                 Text(
                   "Postage: From £${dummy.postageCost.toStringAsFixed(2)}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500, color: Colors.purple),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),
                 ),
               ],
             ),
@@ -224,7 +212,7 @@ print(product.description);
     List<String> words = description.split(' ');
     print(words.length);
     if (words.length > 50) {
-      return words.sublist(0, 40).join(' ') + '...';
+      return '${words.sublist(0, 40).join(' ')}...';
     }
     return description;
   }
