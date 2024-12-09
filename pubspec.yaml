@@ -47,11 +47,11 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
 
 flutter_icons:
-  android: "ic_launcher"
+  android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logo.jpg"
+  image_path: "assets/images/logo.png"
   min_sdk_android: 21
-  adaptive_icon_foreground: "assets/images/logo.jpg"
+  adaptive_icon_foreground: "assets/images/logo.png"
   adaptive_icon_background: "#ffffff"
   remove_alpha_ios: true
 
@@ -85,6 +85,7 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/images/splash.png
+    - assets/images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
