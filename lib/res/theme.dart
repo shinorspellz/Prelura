@@ -8,9 +8,11 @@ class PreluraTheme {
   static ThemeData get lightMode => ThemeData(
         useMaterial3: false,
         brightness: Brightness.light,
+        highlightColor: Colors.transparent,
+        // splashFactory: Colors.transparent,
         colorScheme: ColorScheme.fromSeed(
           seedColor: PreluraColors.primaryColor,
-          primary: PreluraColors.primaryColor,
+          primary: PreluraColors.activeColor,
           secondary: const Color(0xFFD9D9D9),
           tertiary: PreluraColors.primaryColor,
           surface: PreluraColors.white,
@@ -177,9 +179,11 @@ class PreluraTheme {
       ).copyWith(
         brightness: Brightness.dark,
         splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        // splashFactory: Colors.transparent,
         colorScheme: ColorScheme.fromSeed(
           seedColor: PreluraColors.darkPrimaryColor,
-          primary: PreluraColors.darkPrimaryColor,
+          primary: PreluraColors.activeColor,
           secondary: PreluraColors.darkPrimaryColor,
           tertiary: PreluraColors.blueColor9D,
           onSecondary: PreluraColors.darkPrimaryColor,
@@ -201,8 +205,8 @@ class PreluraTheme {
           unselectedItemColor: PreluraColors.white.withOpacity(.5),
           unselectedIconTheme:
               IconThemeData(color: PreluraColors.white.withOpacity(.5)),
-          selectedIconTheme:
-              const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
+          selectedIconTheme: const IconThemeData(
+              color: PreluraColors.darkSecondaryButtonColor),
         ),
         tabBarTheme: TabBarTheme(
             unselectedLabelColor:
@@ -355,7 +359,7 @@ class PreluraTheme {
           colorScheme: ColorScheme.fromSeed(
             // seedColor: const Color.fromRGBO(55, 71, 79, 1),
             seedColor: PreluraColors.darkPrimaryColor,
-            primary: PreluraColors.blackUpdated,
+            primary: PreluraColors.activeColor,
             onPrimary: PreluraColors.primaryColor,
 
             secondary: PreluraColors.white,
@@ -381,8 +385,8 @@ class PreluraTheme {
             unselectedItemColor: PreluraColors.white.withOpacity(.5),
             unselectedIconTheme:
                 IconThemeData(color: PreluraColors.white.withOpacity(.5)),
-            selectedIconTheme:
-                const IconThemeData(color: PreluraColors.darkSecondaryButtonColor),
+            selectedIconTheme: const IconThemeData(
+                color: PreluraColors.darkSecondaryButtonColor),
           ),
           tabBarTheme: TabBarTheme(
               unselectedLabelColor:
