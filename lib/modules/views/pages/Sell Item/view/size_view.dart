@@ -76,7 +76,7 @@ class SizeSelectionPage extends ConsumerWidget {
                 final value = Enum$SizeEnum.values[index];
                 if (value == Enum$SizeEnum.$unknown) return Container();
                 return ListTile(
-                  title: Text(value.name),
+                  title: Text(value.name.replaceAll('_', ' ')),
                   trailing:
                       // CustomRadioButton(
                       //   isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,

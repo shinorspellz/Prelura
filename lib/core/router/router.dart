@@ -26,7 +26,11 @@ class AppRouter extends RootStackRouter {
             path: "/",
             initial: _ref.read(authStateProvider).requireValue,
             children: [
-              AutoRoute(guards: [AuthGuard(_ref)], page: HomeRoute.page, initial: true),
+              AutoRoute(
+                guards: [AuthGuard(_ref)],
+                page: HomeRoute.page,
+                initial: true,
+              ),
               AutoRoute(guards: [AuthGuard(_ref)], page: SearchRoute.page),
               AutoRoute(guards: [AuthGuard(_ref)], page: InboxRoute.page),
               AutoRoute(
@@ -48,10 +52,6 @@ class AppRouter extends RootStackRouter {
                       page: SettingRoute.page,
                     ),
                     AutoRoute(guards: [AuthGuard(_ref)], page: ProfileSettingRoute.page),
-                    AutoRoute(
-                      guards: [AuthGuard(_ref)],
-                      page: MyFavouriteRoute.page,
-                    ),
                     AutoRoute(
                       guards: [AuthGuard(_ref)],
                       page: MyOrderRoute.page,
@@ -76,6 +76,10 @@ class AppRouter extends RootStackRouter {
 
               //     ]),
             ]),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
+          page: MyFavouriteRoute.page,
+        ),
         AutoRoute(
           guards: [AuthGuard(_ref)],
           page: SellItemRoute.page,

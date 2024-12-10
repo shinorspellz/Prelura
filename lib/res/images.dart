@@ -62,6 +62,7 @@ class PreluraIcons {
   static const String women = "assets/images/women.jpg";
   static const String men = "assets/images/men.jpg";
   static const String kids = "assets/images/kids.jpg";
+  static const String splash = "assets/images/splash.png";
   static const String petCare = "assets/images/petcare.jpg";
   static const String webp_women = "assets/images/women.webp";
   static const String webp_men = "assets/images/men.webp";
@@ -91,7 +92,7 @@ class PreluraIcons {
     return constants.entries
         .firstWhere(
           (entry) => entry.key.toLowerCase().contains(keyword.toLowerCase()),
-          orElse: () => MapEntry('', ''),
+          orElse: () => const MapEntry('', ''),
         )
         .value;
   }

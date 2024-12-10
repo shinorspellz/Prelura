@@ -10,22 +10,22 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 
-final allProductProvider = FutureProvider((ref) async {
-  log('Triggered All Product Provider Getting Product.....');
-  final repo = ref.watch(productRepo);
+// final allProductProvider = FutureProvider((ref) async {
+//   log('Triggered All Product Provider Getting Product.....');
+//   final repo = ref.watch(productRepo);
 
-  final result = await repo.getAllProducts(pageCount: 100);
-  log('Got All Product....');
+//   final result = await repo.getAllProducts(pageCount: 100);
+//   log('Got All Product....');
 
-  return result.reversed.toList();
-});
+//   return result.reversed.toList();
+// });
 
 final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getAllProducts(search: query);
 
-  return result.reversed.toList();
+  return result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
 });
 
 final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
@@ -215,3 +215,75 @@ final colorsProvider = Provider((ref) {
 
   return colorOptions;
 });
+
+final allProductProvider = AsyncNotifierProvider<_AllProductController, List<Product>>(_AllProductController.new);
+
+class _AllProductController extends AsyncNotifier<List<Product>> {
+  late final _repository = ref.read(productRepo);
+  // List<ServicePackageModel>? services;
+  final int _pageCount = 15;
+  int _currentPage = 1;
+  int _brandTotalItems = 0;
+
+  @override
+  Future<List<Product>> build() async {
+    state = const AsyncLoading();
+    _currentPage = 1;
+    await _getProducts(pageNumber: _currentPage);
+    return state.value!;
+  }
+
+  Future<void> _getProducts({int? pageNumber}) async {
+    // final sort = ref.watch(sortAllServiceProvider);
+    final result = await _repository.getAllProducts(
+      pageCount: _pageCount,
+      pageNumber: pageNumber,
+    );
+
+    _brandTotalItems = result.allProductsTotalNumber!;
+
+    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+    final currentState = state.valueOrNull ?? [];
+    if (pageNumber == 1) {
+      state = AsyncData(newState.toList());
+    } else {
+      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+        return;
+      }
+
+      state = AsyncData([...currentState, ...newState]);
+    }
+    _currentPage = pageNumber!;
+  }
+
+  Future<void> fetchMoreData() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+
+    if (canLoadMore) {
+      await _getProducts(
+        pageNumber: _currentPage + 1,
+      );
+    }
+  }
+
+  Future<void> fetchMoreHandler() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (canLoadMore) {
+      await fetchMoreData();
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
+
+final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
+  (ref, query) async {
+    final repo = ref.watch(productRepo);
+
+    final result = await repo.getBrands(search: query);
+
+    return result.brands!.map((e) => Brand.fromJson(e!.toJson())).toList();
+  },
+);

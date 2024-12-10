@@ -470,6 +470,7 @@ enum Enum$ProductsProductSizeChoices {
   EU42,
   EU44,
   EU46,
+  ONE_SIZE,
   $unknown;
 
   factory Enum$ProductsProductSizeChoices.fromJson(String value) =>
@@ -535,6 +536,8 @@ String toJson$Enum$ProductsProductSizeChoices(
       return r'EU44';
     case Enum$ProductsProductSizeChoices.EU46:
       return r'EU46';
+    case Enum$ProductsProductSizeChoices.ONE_SIZE:
+      return r'ONE_SIZE';
     case Enum$ProductsProductSizeChoices.$unknown:
       return r'$unknown';
   }
@@ -597,6 +600,8 @@ Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
       return Enum$ProductsProductSizeChoices.EU44;
     case r'EU46':
       return Enum$ProductsProductSizeChoices.EU46;
+    case r'ONE_SIZE':
+      return Enum$ProductsProductSizeChoices.ONE_SIZE;
     default:
       return Enum$ProductsProductSizeChoices.$unknown;
   }
@@ -630,6 +635,7 @@ enum Enum$SizeEnum {
   EU42,
   EU44,
   EU46,
+  ONE_SIZE,
   $unknown;
 
   factory Enum$SizeEnum.fromJson(String value) => fromJson$Enum$SizeEnum(value);
@@ -693,6 +699,8 @@ String toJson$Enum$SizeEnum(Enum$SizeEnum e) {
       return r'EU44';
     case Enum$SizeEnum.EU46:
       return r'EU46';
+    case Enum$SizeEnum.ONE_SIZE:
+      return r'ONE_SIZE';
     case Enum$SizeEnum.$unknown:
       return r'$unknown';
   }
@@ -754,6 +762,8 @@ Enum$SizeEnum fromJson$Enum$SizeEnum(String value) {
       return Enum$SizeEnum.EU44;
     case r'EU46':
       return Enum$SizeEnum.EU46;
+    case r'ONE_SIZE':
+      return Enum$SizeEnum.ONE_SIZE;
     default:
       return Enum$SizeEnum.$unknown;
   }

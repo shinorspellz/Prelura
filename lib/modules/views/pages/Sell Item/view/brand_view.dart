@@ -139,22 +139,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                   ),
                 if (ref.watch(brandsProvider.notifier).canLoadMore())
                   if (searchQuery.isEmpty)
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 25),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              height: 25,
-                              width: 25,
-                              child: LoadingWidget(),
-                            ),
-                            10.horizontalSpacing,
-                            const Text('Loading more...')
-                          ],
-                        ),
-                      ),
+                    const SliverToBoxAdapter(
+                      child: PaginationLoadingIndicator(),
                     )
               ],
             ),
@@ -176,6 +162,31 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
               child: LoadingWidget(),
             ),
           ),
+    );
+  }
+}
+
+class PaginationLoadingIndicator extends StatelessWidget {
+  const PaginationLoadingIndicator({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 25,
+            width: 25,
+            child: LoadingWidget(),
+          ),
+          10.horizontalSpacing,
+          const Text('Loading more...')
+        ],
+      ),
     );
   }
 }
