@@ -13,7 +13,6 @@ class DisplaySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("product is ${products!.length}");
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // Dynamically adjust grid column count or aspect ratio based on constraints

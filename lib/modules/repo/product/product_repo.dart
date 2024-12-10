@@ -249,5 +249,31 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  // Future<List<Product>> similarPro
+  Future<List<Product>> similarProduct({int? productId, int? categoryId, int? pageNumber, int? pageCount}) async {
+    final response = await _client.query$SimilarProducts(
+      Options$Query$SimilarProducts(
+          variables: Variables$Query$SimilarProducts(
+        productId: productId,
+        categoryId: categoryId,
+        pageNumber: pageNumber,
+        pageCount: pageCount,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.similarProducts!.map((x) => Product.fromJson((x!).toJson())).toList();
+  }
 }

@@ -4145,6 +4145,8 @@ class Variables$Mutation$UpdateProduct {
     required int productId,
     Enum$SizeEnum? size,
     int? subCategory,
+    List<String?>? color,
+    int? brand,
   }) =>
       Variables$Mutation$UpdateProduct._({
         if (category != null) r'category': category,
@@ -4157,6 +4159,8 @@ class Variables$Mutation$UpdateProduct {
         r'productId': productId,
         if (size != null) r'size': size,
         if (subCategory != null) r'subCategory': subCategory,
+        if (color != null) r'color': color,
+        if (brand != null) r'brand': brand,
       });
 
   Variables$Mutation$UpdateProduct._(this._$data);
@@ -4207,6 +4211,15 @@ class Variables$Mutation$UpdateProduct {
       final l$subCategory = data['subCategory'];
       result$data['subCategory'] = (l$subCategory as int?);
     }
+    if (data.containsKey('color')) {
+      final l$color = data['color'];
+      result$data['color'] =
+          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+    }
+    if (data.containsKey('brand')) {
+      final l$brand = data['brand'];
+      result$data['brand'] = (l$brand as int?);
+    }
     return Variables$Mutation$UpdateProduct._(result$data);
   }
 
@@ -4233,6 +4246,10 @@ class Variables$Mutation$UpdateProduct {
   Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
 
   int? get subCategory => (_$data['subCategory'] as int?);
+
+  List<String?>? get color => (_$data['color'] as List<String?>?);
+
+  int? get brand => (_$data['brand'] as int?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -4279,6 +4296,14 @@ class Variables$Mutation$UpdateProduct {
     if (_$data.containsKey('subCategory')) {
       final l$subCategory = subCategory;
       result$data['subCategory'] = l$subCategory;
+    }
+    if (_$data.containsKey('color')) {
+      final l$color = color;
+      result$data['color'] = l$color?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('brand')) {
+      final l$brand = brand;
+      result$data['brand'] = l$brand;
     }
     return result$data;
   }
@@ -4381,6 +4406,33 @@ class Variables$Mutation$UpdateProduct {
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (_$data.containsKey('color') != other._$data.containsKey('color')) {
+      return false;
+    }
+    if (l$color != null && lOther$color != null) {
+      if (l$color.length != lOther$color.length) {
+        return false;
+      }
+      for (int i = 0; i < l$color.length; i++) {
+        final l$color$entry = l$color[i];
+        final lOther$color$entry = lOther$color[i];
+        if (l$color$entry != lOther$color$entry) {
+          return false;
+        }
+      }
+    } else if (l$color != lOther$color) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (_$data.containsKey('brand') != other._$data.containsKey('brand')) {
+      return false;
+    }
+    if (l$brand != lOther$brand) {
+      return false;
+    }
     return true;
   }
 
@@ -4396,6 +4448,8 @@ class Variables$Mutation$UpdateProduct {
     final l$productId = productId;
     final l$size = size;
     final l$subCategory = subCategory;
+    final l$color = color;
+    final l$brand = brand;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -4407,6 +4461,12 @@ class Variables$Mutation$UpdateProduct {
       l$productId,
       _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('subCategory') ? l$subCategory : const {},
+      _$data.containsKey('color')
+          ? l$color == null
+              ? null
+              : Object.hashAll(l$color.map((v) => v))
+          : const {},
+      _$data.containsKey('brand') ? l$brand : const {},
     ]);
   }
 }
@@ -4431,6 +4491,8 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     int? productId,
     Enum$SizeEnum? size,
     int? subCategory,
+    List<String?>? color,
+    int? brand,
   });
 }
 
@@ -4458,6 +4520,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? productId = _undefined,
     Object? size = _undefined,
     Object? subCategory = _undefined,
+    Object? color = _undefined,
+    Object? brand = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProduct._({
         ..._instance._$data,
@@ -4474,6 +4538,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
           'productId': (productId as int),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
+        if (color != _undefined) 'color': (color as List<String?>?),
+        if (brand != _undefined) 'brand': (brand as int?),
       }));
 }
 
@@ -4494,6 +4560,8 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     int? productId,
     Enum$SizeEnum? size,
     int? subCategory,
+    List<String?>? color,
+    int? brand,
   }) =>
       _res;
 }
@@ -4731,6 +4799,27 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'color')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'brand')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -4777,6 +4866,14 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'subCategory'),
             value: VariableNode(name: NameNode(value: 'subCategory')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'color'),
+            value: VariableNode(name: NameNode(value: 'color')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'brand'),
+            value: VariableNode(name: NameNode(value: 'brand')),
           ),
         ],
         directives: [],

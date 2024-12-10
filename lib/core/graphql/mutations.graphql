@@ -98,6 +98,8 @@ mutation UpdateProduct(
   $productId: Int!
   $size: SizeEnum
   $subCategory: Int
+  $color: [String]
+  $brand: Int
 ) {
   updateProduct(
     category: $category
@@ -110,6 +112,8 @@ mutation UpdateProduct(
     productId: $productId
     size: $size
     subCategory: $subCategory
+    color: $color
+    brand: $brand
   ) {
     success
     message

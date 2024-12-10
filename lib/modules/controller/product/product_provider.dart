@@ -67,6 +67,14 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
+final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, id) async {
+  final repo = ref.watch(productRepo);
+
+  final result = await repo.similarProduct(productId: id);
+
+  return result;
+});
+
 final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
 class _ProductProvider extends AsyncNotifier<void> {
@@ -126,17 +134,20 @@ class _ProductProvider extends AsyncNotifier<void> {
     });
   }
 
-  Future<void> updateProduct(
-      {required int productId,
-      String? title,
-      String? desc,
-      double? price,
-      Enum$SizeEnum? size,
-      ConditionsEnum? condition,
-      int? category,
-      int? subCategory,
-      Enum$ParcelSizeEnum? parcelSize,
-      double? discount}) async {
+  Future<void> updateProduct({
+    required int productId,
+    String? title,
+    String? desc,
+    double? price,
+    Enum$SizeEnum? size,
+    ConditionsEnum? condition,
+    int? category,
+    int? subCategory,
+    Enum$ParcelSizeEnum? parcelSize,
+    double? discount,
+    int? brandId,
+    List<String>? color,
+  }) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
@@ -153,6 +164,8 @@ class _ProductProvider extends AsyncNotifier<void> {
           name: title,
           parcelSize: parcelSize,
           discount: discount,
+          brand: brandId,
+          color: color,
         ),
       );
       ref.invalidate(userProduct);
