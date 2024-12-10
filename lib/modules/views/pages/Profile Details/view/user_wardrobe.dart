@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/modules/views/widgets/rating.dart';
@@ -218,11 +219,7 @@ class UserWardrobe extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2.5,
-                    ),
-                  ),
+                  loading: () => const LoadingWidget(),
                 ),
           )
         ],

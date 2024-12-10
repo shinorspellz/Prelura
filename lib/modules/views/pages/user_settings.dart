@@ -6,6 +6,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
@@ -25,7 +26,7 @@ class SettingScreen extends StatelessWidget {
       MenuCard(
           title: "Account Setting",
           onTap: () {
-            context.router.push(AccountSettingRoute());
+            context.router.push(const AccountSettingRoute());
           }),
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
@@ -33,26 +34,16 @@ class SettingScreen extends StatelessWidget {
     ];
 
     List menuItem2 = [
-      MenuCard(
-          title: "Push notifications",
-          icon: const Icon(Icons.settings),
-          onTap: () {}),
-      MenuCard(
-          title: "Email notifications",
-          icon: const Icon(Icons.lock),
-          onTap: () {}),
+      MenuCard(title: "Push notifications", icon: const Icon(Icons.settings), onTap: () {}),
+      MenuCard(title: "Email notifications", icon: const Icon(Icons.lock), onTap: () {}),
     ];
     List menuItem3 = [
-      MenuCard(
-          title: "About Prelura",
-          icon: const Icon(Icons.info_outlined),
-          onTap: () {}),
+      MenuCard(title: "About Prelura", icon: const Icon(Icons.info_outlined), onTap: () {}),
     ];
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         appbarTitle: "Settings",
@@ -68,10 +59,7 @@ class SettingScreen extends StatelessWidget {
               return menuItem1[index];
             },
           ),
-          MenuCard(
-              title: "Invite Friend",
-              icon: const Icon(Icons.person_add_sharp),
-              onTap: () {}),
+          MenuCard(title: "Invite Friend", icon: const Icon(Icons.person_add_sharp), onTap: () {}),
           Container(
             padding: const EdgeInsets.all(16),
             width: double.infinity,
@@ -101,16 +89,11 @@ class SettingScreen extends StatelessWidget {
                       fontSize: 12,
                     )),
           ),
-          MenuCard(
-              title: "Language",
-              icon: const Icon(CupertinoIcons.globe),
-              subtitle: "English (EN)",
-              onTap: () {}),
+          MenuCard(title: "Language", icon: const Icon(CupertinoIcons.globe), subtitle: "English (EN)", onTap: () {}),
           const SizedBox(
             height: 20,
           ),
-          MenuCard(
-              title: "Dark mode", subtitle: "System setting", onTap: () {}),
+          MenuCard(title: "Dark mode", subtitle: "System setting", onTap: () {}),
           MenuCard(
             title: "Log out",
             onTap: () {
@@ -119,8 +102,7 @@ class SettingScreen extends StatelessWidget {
                   builder: (context) => Consumer(builder: (_, ref, __) {
                         return AlertDialog.adaptive(
                           title: const Text('Logout'),
-                          content:
-                              const Text('Are you sure you want to logout ?'),
+                          content: const Text('Are you sure you want to logout ?'),
                           actions: [
                             if (ref.watch(authProvider).isLoading)
                               const Padding(
@@ -129,26 +111,19 @@ class SettingScreen extends StatelessWidget {
                                     child: SizedBox(
                                   height: 20,
                                   width: 20,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 1.8,
-                                  ),
+                                  child: LoadingWidget(),
                                 )),
                               )
                             else
                               TextButton(
                                   onPressed: () async {
-                                    await ref
-                                        .read(authProvider.notifier)
-                                        .logout();
+                                    await ref.read(authProvider.notifier).logout();
                                     ref.read(authProvider).whenOrNull(
-                                          error: (e, _) =>
-                                              context.alert(e.toString()),
+                                          error: (e, _) => context.alert(e.toString()),
                                         );
                                   },
                                   child: const Text('Logout')),
-                            TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('Dismiss')),
+                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Dismiss')),
                           ],
                         );
                       }));

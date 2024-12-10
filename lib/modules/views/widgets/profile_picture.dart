@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
   const ProfilePictureWidget({
@@ -23,10 +24,7 @@ class ProfilePictureWidget extends StatelessWidget {
             ? const SizedBox(
                 height: 25,
                 width: 25,
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                  strokeWidth: 1.8,
-                ),
+                child: LoadingWidget(),
               )
             : Text(username?.split('').first.toUpperCase() ?? '--'),
       );
@@ -50,10 +48,7 @@ class ProfilePictureWidget extends StatelessWidget {
           const SizedBox(
             height: 25,
             width: 25,
-            child: CircularProgressIndicator(
-              color: Colors.white,
-              strokeWidth: 1.8,
-            ),
+            child: LoadingWidget(),
           )
       ],
     );

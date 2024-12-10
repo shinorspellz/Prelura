@@ -7,6 +7,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sell_item_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sub_category_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
@@ -24,8 +25,7 @@ class CategoryScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -73,9 +73,7 @@ class CategoryScreen extends ConsumerWidget {
               ),
             ),
             loading: () => const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-              ),
+              child: LoadingWidget(),
             ),
           ),
       // SingleChildScrollView(

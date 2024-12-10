@@ -19,6 +19,7 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../res/colors.dart';
@@ -102,9 +103,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                                                   child: SizedBox(
                                                 height: 20,
                                                 width: 20,
-                                                child: CircularProgressIndicator(
-                                                  strokeWidth: 1.8,
-                                                ),
+                                                child: LoadingWidget(),
                                               )),
                                             )
                                           else
@@ -377,8 +376,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
               ),
             ),
             loading: () => const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
+              child: LoadingWidget(
+                height: 50,
               ),
             ),
           ),
