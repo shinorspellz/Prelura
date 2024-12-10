@@ -3,12 +3,14 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../widgets/SearchWidget.dart';
 import '../widgets/display_section.dart';
+import '../widgets/gap.dart';
 
 final selectedTabProvider = StateProvider<int>((ref) => 0);
 
@@ -26,106 +28,96 @@ class HomeScreen extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: RefreshIndicator(
             onRefresh: () => ref.refresh(allProductProvider.future),
-            child: NestedScrollView(
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) {
-                return [
-                  SliverPersistentHeader(
-                    pinned: true, // Keeps it static
-                    delegate: StaticSliverDelegate(
-                        child: Container(
-                      padding: EdgeInsets.only(top: 16),
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Searchwidget(
-                              padding: EdgeInsets.zero,
-                              obscureText: false,
-                              shouldReadOnly: false,
-                              hintText: "Search for items and members",
-                              enabled: true,
-                              showInputBorder: true,
-                              autofocus: false,
-                              cancelButton: true),
-                          addVerticalSpacing(12),
-                          _buildTabs(ref, selectedTab, context)
-                        ],
-                      ),
-                    )),
-                  ),
-                ];
-              },
-              body: CustomScrollView(
-                controller: homeScrollController,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: _buildSectionTitle('Collection from Seller',
-                        "Items selected by amyleeliu", context),
-                  ),
-                  SliverPadding(
-                    padding: const EdgeInsets.only(bottom: 24),
-                    sliver: SliverFillRemaining(
-                      child: ref.watch(allProductProvider).when(
-                            data: (products) => DisplaySection(
-                              products: products,
-                            ),
-                            error: (e, _) => Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(e.toString()),
-                                  TextButton.icon(
-                                    onPressed: () {
-                                      // log(e.toString(), stackTrace: _);
-                                      ref.invalidate(allProductProvider);
-                                    },
-                                    label: const Text('Retry'),
-                                    icon: const Icon(Icons.refresh_rounded),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            loading: () => const Center(
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.5,
-                              ),
-                            ),
-                          ),
+            child: CustomScrollView(
+              controller: homeScrollController,
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true, // Keeps it static
+                  delegate: StaticSliverDelegate(
+                      child: Container(
+                    padding: EdgeInsets.only(top: 16),
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Searchwidget(
+                            padding: EdgeInsets.zero,
+                            obscureText: false,
+                            shouldReadOnly: false,
+                            hintText: "Search for items and members",
+                            enabled: true,
+                            showInputBorder: true,
+                            autofocus: false,
+                            cancelButton: true),
+                        addVerticalSpacing(12),
+                        _buildTabs(ref, selectedTab, context)
+                      ],
                     ),
-                  ),
-                  // Container(
-                  //   padding: const EdgeInsets.all(10),
-                  //   child: const Column(
-                  //     children: [
-                  //       // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // const SizedBox(
-                  //       //   height: 12,
-                  //       // ),
-                  //       // const DisplayLiveCard(),
-                  //       // const SizedBox(
-                  //       //   height: 12,
-                  //       // ),
-                  //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                  //       // const DisplaySection(),
-                  //       // const SizedBox(
-                  //       //   height: 30,
-                  //       // )
-                  //     ],
-                  //   ),
-                  // )
-                ],
-              ),
+                  )),
+                ),
+                SliverToBoxAdapter(
+                  child: _buildSectionTitle('Collection from Seller',
+                      "Items selected by amyleeliu", context),
+                ),
+                SliverFillRemaining(
+                  child: ref.watch(allProductProvider).when(
+                        data: (products) => DisplaySection(
+                          products: products,
+                        ),
+                        error: (e, _) => Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(e.toString()),
+                              TextButton.icon(
+                                onPressed: () {
+                                  // log(e.toString(), stackTrace: _);
+                                  ref.invalidate(allProductProvider);
+                                },
+                                label: const Text('Retry'),
+                                icon: const Icon(Icons.refresh_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                        loading: () => const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                          ),
+                        ),
+                      ),
+                ),
+                // Container(
+                //   padding: const EdgeInsets.all(10),
+                //   child: const Column(
+                //     children: [
+                //       // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // const SizedBox(
+                //       //   height: 12,
+                //       // ),
+                //       // const DisplayLiveCard(),
+                //       // const SizedBox(
+                //       //   height: 12,
+                //       // ),
+                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
+                //       // const DisplaySection(),
+                //       // const SizedBox(
+                //       //   height: 30,
+                //       // )
+                //     ],
+                //   ),
+                // )
+              ],
             ),
           ),
         ),

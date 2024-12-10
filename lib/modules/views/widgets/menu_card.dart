@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/res/render_svg.dart';
 
 import '../../../res/images.dart';
 
 class MenuCard extends StatelessWidget {
-  const MenuCard({
-    super.key,
-    required this.title,
-    this.borderbottom = true,
-    this.icon,
-    this.widget,
-    required this.onTap,
-    this.subtitle,
-    this.subtitleColor,
-    this.profilePic = false,
-    this.rightArrow = true,
-    this.additionalText,
-    this.textColor,
-    this.iconColor,
-  });
+  const MenuCard(
+      {super.key,
+      required this.title,
+      this.borderbottom = true,
+      this.icon,
+      this.widget,
+      required this.onTap,
+      this.subtitle,
+      this.subtitleColor,
+      this.profilePic = false,
+      this.rightArrow = true,
+      this.additionalText,
+      this.textColor,
+      this.iconColor,
+      this.svgPath});
   final String title;
   final String? subtitle;
   final String? additionalText;
@@ -31,6 +32,7 @@ class MenuCard extends StatelessWidget {
   final Color? subtitleColor;
   final Color? textColor;
   final Color? iconColor;
+  final String? svgPath;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,9 @@ class MenuCard extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
             bottom: BorderSide(
-              color: borderbottom ? Theme.of(context).dividerColor : Colors.transparent, // Use the theme's divider color
+              color: borderbottom
+                  ? Theme.of(context).dividerColor
+                  : Colors.transparent, // Use the theme's divider color
               width: 1.0,
             ),
           ),
@@ -57,7 +61,8 @@ class MenuCard extends StatelessWidget {
                   children: [
                     if (profilePic) ...[
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(25), // Circular border radius (since height and width are 60)
+                        borderRadius: BorderRadius.circular(
+                            25), // Circular border radius (since height and width are 60)
                         child: Image.asset(
                           PreluraIcons.Image,
                           fit: BoxFit.cover,
@@ -65,6 +70,8 @@ class MenuCard extends StatelessWidget {
                           width: 50,
                         ),
                       )
+                    ] else if (svgPath != null) ...[
+                      RenderSvg(svgPath: svgPath ?? "")
                     ] else if (icon != null) ...[
                       icon!,
                       const SizedBox(width: 10),
@@ -78,13 +85,25 @@ class MenuCard extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: textColor ?? Theme.of(context).textTheme.bodyMedium?.color),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: textColor ??
+                                      Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.color),
                         ),
                         widget ?? const SizedBox.shrink(),
                         if (additionalText != null)
                           Text(
                             additionalText ?? "",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
                                   fontWeight: FontWeight.w400,
                                 ),
                           )
@@ -95,7 +114,8 @@ class MenuCard extends StatelessWidget {
                       subtitle ?? "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w400,
-                            color: subtitleColor ?? Theme.of(context).textTheme.bodyMedium?.color,
+                            color: subtitleColor ??
+                                Theme.of(context).textTheme.bodyMedium?.color,
                           ),
                     ),
                     const SizedBox(
