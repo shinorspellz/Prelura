@@ -70,4 +70,23 @@ class PreluraIcons {
   static const String women_svg = "assets/svgs/women.svg";
   static const String lipstick_svg = "assets/svgs/lipstick.svg";
   static const String electronics_svg = "assets/svgs/electronics.svg";
+
+  static String? getConstant(String keyword) {
+    // Get all static fields of this class using reflection-like behavior
+    final Map<String, String> constants = {
+      'electronics': electronics_svg,
+      'men': men_svg,
+      'women': women_svg,
+      'lipstick': lipstick_svg,
+      // Add the rest of the constants here...
+    };
+
+    // Find the first matching key that contains the keyword
+    return constants.entries
+        .firstWhere(
+          (entry) => entry.key.toLowerCase().contains(keyword.toLowerCase()),
+          orElse: () => MapEntry('', ''),
+        )
+        .value;
+  }
 }

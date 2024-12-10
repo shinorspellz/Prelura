@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sub_categor
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/images.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../../../widgets/menu_card.dart';
 
@@ -23,7 +24,8 @@ class CategoryScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -35,12 +37,18 @@ class CategoryScreen extends ConsumerWidget {
               itemCount: data.length,
               itemBuilder: (_, index) {
                 final cat = data[index];
+                final svgPath = PreluraIcons.getConstant(cat.name);
+                print(svgPath);
+                print(PreluraIcons.appleIcon);
                 return MenuCard(
                   title: cat.name,
-                  icon: const Icon(
-                    Icons.settings,
-                    color: PreluraColors.activeColor,
-                  ),
+                  svgPath: svgPath != "" ? svgPath : null,
+                  icon: svgPath == ""
+                      ? const Icon(
+                          Icons.settings,
+                          color: PreluraColors.activeColor,
+                        )
+                      : null,
                   onTap: () {
                     ref.read(sellItemProvider.notifier).updateCategory(cat);
                     return context.router.push(
