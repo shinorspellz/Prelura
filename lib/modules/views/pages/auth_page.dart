@@ -41,8 +41,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
-            final isSellItemRoute =
-                tabRouter.current.name == SellNavigationRoute.name;
+            final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -57,9 +56,9 @@ class _AuthPageState extends ConsumerState<AuthPage> {
               //   ),
               // ),
               bottomNavigationBar: SizedBox(
-                height: 70,
+                height: 80,
                 child: TabBar(
-                    padding: EdgeInsets.only(top: 5, bottom: 15),
+                    padding: const EdgeInsets.only(top: 5, bottom: 15),
                     onTap: (index) {
                       switch (index) {
                         case 0:
@@ -67,7 +66,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           tabRouter.setActiveIndex(index);
                           HomeScreen.homeScrollController.animateTo(
                             0.0,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                             curve: Curves.easeInOut,
                           );
 
@@ -116,8 +115,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.search,
                           size: 24,
                         ),
-                        activeIcon: const Icon(Icons.search,
-                            color: PreluraColors.activeColor, size: 24),
+                        activeIcon: const Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
                         label: 'Search',
                       ),
                       const TabItem(
@@ -127,8 +125,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.add_circle_outline,
                           size: 24,
                         ),
-                        activeIcon: Icon(Icons.add_circle_outline,
-                            color: PreluraColors.activeColor, size: 24),
+                        activeIcon: Icon(Icons.add_circle_outline, color: PreluraColors.activeColor, size: 24),
                         label: 'Sell',
                       ),
                       TabItem(
@@ -283,6 +280,7 @@ class TabItem extends StatelessWidget {
                   color: isActive ? PreluraColors.activeColor : Colors.grey,
                 ),
           ),
+          8.verticalSpacing,
         ],
       ),
     );

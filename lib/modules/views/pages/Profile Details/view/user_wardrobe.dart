@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/modules/views/widgets/rating.dart';
@@ -220,79 +221,74 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
 
-            // Social and Additional Info Section
+                  // Social and Additional Info Section
 
-            const Divider(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: AppButton(
-                      onTap: () {
-                        // Handle Message button
-                      },
-                      text: "Message",
-                      textColor: PreluraColors.white,
-                      bgColor: Theme.of(context).scaffoldBackgroundColor,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: AppButton(
-                      onTap: () {
-                        // Handle Follow button
-                      },
-                      text: "Follow",
-                      textColor: PreluraColors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: ref.watch(userProduct(user?.username)).when(
-                    skipLoadingOnRefresh: false,
-                    data: (products) => DisplaySection(
-                      products: products,
-                    ),
-                    error: (e, _) => Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(e.toString()),
-                          TextButton.icon(
-                            onPressed: () {
-                              // log(e.toString(), stackTrace: _);
-                              ref.invalidate(userProduct);
+                  const Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: AppButton(
+                            onTap: () {
+                              // Handle Message button
                             },
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
+                            text: "Message",
+                            textColor: PreluraColors.white,
+                            bgColor: Theme.of(context).scaffoldBackgroundColor,
                           ),
-                        ],
-                      ),
-                    ),
-                    loading: () => const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.5,
-                      ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: AppButton(
+                            onTap: () {
+                              // Handle Follow button
+                            },
+                            text: "Follow",
+                            textColor: PreluraColors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-            )
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: ref.watch(userProduct(user?.username)).when(
+                          skipLoadingOnRefresh: false,
+                          data: (products) => DisplaySection(
+                            products: products,
+                          ),
+                          error: (e, _) => Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(userProduct);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
+                            ),
+                          ),
+                          loading: () => const LoadingWidget(),
+                        ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-}

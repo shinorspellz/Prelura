@@ -2,7 +2,11 @@
     <application
         android:label="Prelura"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+<<<<<<< HEAD
+        android:icon="@mipmap/launcher_icon">
+=======
+        android:icon="@mipmap/launcher_icon">
+>>>>>>> 0a2e2d1d20b9d7443f67948d2eadc2cbfd06cff3
         <activity
             android:name=".MainActivity"
             android:exported="true"

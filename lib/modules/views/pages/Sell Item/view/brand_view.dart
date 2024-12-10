@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_radio.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
@@ -31,6 +33,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
       final delta = MediaQuery.sizeOf(context).height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(brandsProvider).isLoading) return;
+        if (searchQuery.isNotEmpty) return;
         ref.read(brandsProvider.notifier).fetchMoreData();
       }
     });
@@ -43,6 +46,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     super.dispose();
   }
 
+  String searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     final selectedBrand = ref.watch(sellItemProvider).brand;
@@ -50,8 +55,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -60,58 +64,98 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
             data: (brands) => CustomScrollView(
               controller: controller,
               slivers: [
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Searchwidget(
-                        hintText: "Find a brand",
-                        obscureText: false,
-                        shouldReadOnly: false,
-                        enabled: true,
-                        showInputBorder: true,
-                        autofocus: false,
-                        cancelButton: true),
+                      hintText: "Find a brand",
+                      obscureText: false,
+                      shouldReadOnly: false,
+                      enabled: true,
+                      showInputBorder: true,
+                      autofocus: false,
+                      cancelButton: true,
+                      onChanged: (val) {
+                        searchQuery = val;
+                        setState(() {});
+                      },
+                    ),
                   ),
                 ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return PreluraRadio(
-                        title: brands[index].name,
-                        value: brands[index].name,
-                        groupValue: selectedBrand?.name,
-                        onChanged: (value) {
-                          ref
-                              .read(sellItemProvider.notifier)
-                              .selectBrand(brands[index]);
-                          context.back();
-                        },
-                      );
-                    },
-                    childCount: brands.length, // Number of items in the list
-                  ),
-                ),
-                if (ref.watch(brandsProvider.notifier).canLoadMore())
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 25,
-                            width: 25,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 1.8,
+                if (searchQuery.isNotEmpty) ...[
+                  ref.watch(searchBrand(searchQuery)).when(
+                        data: (brands) => SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              return PreluraRadio(
+                                title: brands[index].name,
+                                value: brands[index].name,
+                                groupValue: selectedBrand?.name,
+                                onChanged: (value) {
+                                  ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                                  context.back();
+                                },
+                              );
+                            },
+                            childCount: brands.length, // Number of items in the list
+                          ),
+                        ),
+                        error: (e, _) => SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () => ref.invalidate(brandsProvider),
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
                             ),
                           ),
-                          10.horizontalSpacing,
-                          const Text('Loading more...')
-                        ],
+                        ),
+                        loading: () => const SliverToBoxAdapter(
+                          child: LoadingWidget(),
+                        ),
                       ),
+                ] else
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return PreluraRadio(
+                          title: brands[index].name,
+                          value: brands[index].name,
+                          groupValue: selectedBrand?.name,
+                          onChanged: (value) {
+                            ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                            context.back();
+                          },
+                        );
+                      },
+                      childCount: brands.length, // Number of items in the list
                     ),
-                  )
+                  ),
+                if (ref.watch(brandsProvider.notifier).canLoadMore())
+                  if (searchQuery.isEmpty)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 25),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: LoadingWidget(),
+                            ),
+                            10.horizontalSpacing,
+                            const Text('Loading more...')
+                          ],
+                        ),
+                      ),
+                    )
               ],
             ),
             error: (e, _) => Center(
@@ -129,9 +173,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
               ),
             ),
             loading: () => const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-              ),
+              child: LoadingWidget(),
             ),
           ),
     );

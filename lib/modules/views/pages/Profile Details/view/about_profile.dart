@@ -12,6 +12,7 @@ import 'package:prelura_app/modules/views/widgets/app_button_with_loader.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/helper_function.dart';
 
@@ -73,10 +74,7 @@ class AboutProfile extends ConsumerWidget {
                           ? const SizedBox(
                               height: 25,
                               width: 25,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 1.8,
-                              ),
+                              child: LoadingWidget(),
                             )
                           : IconButton(
                               onPressed: () {

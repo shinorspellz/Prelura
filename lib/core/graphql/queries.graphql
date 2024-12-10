@@ -247,10 +247,50 @@ query Brands($search: String, $pageCount: Int, $pageNumber: Int) {
   brandsTotalNumber
 }
 
-# query Sizes {
-#   sizes {
-#     id
-#     sizeValue
-#     sizeSystem
-#   }
-# }
+query SimilarProducts(
+  $productId: Int
+  $categoryId: Int
+  $pageCount: Int
+  $pageNumber: Int
+) {
+  similarProducts(
+    productId: $productId
+    categoryId: $categoryId
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+  ) {
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    seller {
+      id
+      username
+    }
+    condition
+    discountPrice
+    size
+    condition
+    price
+    parcelSize
+    views
+    likes
+    userLiked
+    imagesUrl
+    createdAt
+    updatedAt
+    likes
+    color
+    brand {
+      id
+      name
+    }
+  }
+}

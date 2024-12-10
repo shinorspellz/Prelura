@@ -7,7 +7,9 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sell_item_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/shared_notifier.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sub_category_provider.dart';
+import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../widgets/gesture_navigator.dart';
@@ -15,12 +17,20 @@ import '../../../widgets/menu_card.dart';
 import '../provider/product_sub_category_provider.dart';
 
 @RoutePage()
-class SubCategoryScreen extends ConsumerWidget {
+class SubCategoryScreen extends ConsumerStatefulWidget {
   const SubCategoryScreen({super.key, required this.subCategories});
   final List<CategoryModel> subCategories;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SubCategoryScreen> createState() => _SubCategoryScreenState();
+}
+
+class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
+  bool isSearching = false;
+  List<CategoryModel> filter = [];
+
+  @override
+  Widget build(BuildContext context) {
     final sharedData = ref.watch(selectedCategoryNotifierProvider);
 
     return Scaffold(
@@ -37,26 +47,65 @@ class SubCategoryScreen extends ConsumerWidget {
         padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
-            ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: subCategories.length,
-                itemBuilder: (context, index) {
-                  return MenuCard(
-                      title: subCategories[index].name,
-                      icon: const Icon(
-                        Icons.settings,
-                        color: PreluraColors.activeColor,
-                      ),
-                      onTap: () {
-                        ref.read(sellItemProvider.notifier).updateSubCategory(subCategories[index]);
-                        // ref.read(selectedProductCategoryNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
-                        // context.router.push(const SubCategoryProductRoute());
-                        Navigator.of(context)
-                          ..pop()
-                          ..pop();
-                      });
-                }),
+            10.verticalSpacing,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Searchwidget(
+                padding: EdgeInsets.zero,
+                obscureText: false,
+                shouldReadOnly: false,
+                hintText: "Search Sub Categories",
+                enabled: true,
+                showInputBorder: true,
+                autofocus: false,
+                cancelButton: true,
+                onChanged: (val) {
+                  isSearching = val.isNotEmpty;
+                  filter = widget.subCategories.where((e) => e.name.toLowerCase().contains(val.toLowerCase())).toList();
+                  setState(() {});
+                },
+              ),
+            ),
+            if (isSearching) ...[
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: filter.length,
+                  itemBuilder: (context, index) {
+                    return MenuCard(
+                        title: filter[index].name,
+                        icon: const Icon(
+                          Icons.settings,
+                          color: PreluraColors.activeColor,
+                        ),
+                        onTap: () {
+                          ref.read(sellItemProvider.notifier).updateSubCategory(filter[index]);
+                          // ref.read(selectedProductCategoryNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
+                          // context.router.push(const SubCategoryProductRoute());
+                          Navigator.of(context)
+                            ..pop()
+                            ..pop();
+                        });
+                  })
+            ] else
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: widget.subCategories.length,
+                  itemBuilder: (context, index) {
+                    return MenuCard(
+                        title: widget.subCategories[index].name,
+                        icon: const Icon(
+                          Icons.settings,
+                          color: PreluraColors.activeColor,
+                        ),
+                        onTap: () {
+                          ref.read(sellItemProvider.notifier).updateSubCategory(widget.subCategories[index]);
+                          // ref.read(selectedProductCategoryNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
+                          // context.router.push(const SubCategoryProductRoute());
+                          Navigator.of(context)
+                            ..pop()
+                            ..pop();
+                        });
+                  }),
           ],
         ),
       ),

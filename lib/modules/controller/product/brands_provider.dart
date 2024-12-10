@@ -64,3 +64,13 @@ class _BrandController extends AsyncNotifier<List<Brand>> {
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+
+final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
+  (ref, query) async {
+    final repo = ref.watch(productRepo);
+
+    final result = await repo.getBrands(search: query);
+
+    return result.brands!.map((e) => Brand.fromJson(e!.toJson())).toList();
+  },
+);

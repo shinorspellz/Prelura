@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/shared/mock_data.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -10,7 +11,7 @@ import '../../controller/product/product_provider.dart';
 
 @RoutePage()
 class MyFavouriteScreen extends ConsumerStatefulWidget {
-  const MyFavouriteScreen({Key? key}) : super(key: key);
+  const MyFavouriteScreen({super.key});
 
   @override
   _MyFavouriteScreenState createState() => _MyFavouriteScreenState();
@@ -50,8 +51,7 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
         appBar: PreluraAppBar(
           appbarTitle: "Favourite items",
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
         ),
@@ -65,24 +65,17 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
           child: asyncFavouriteProducts.when(
             data: (products) {
               return products.isEmpty
-                  ? SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      child: Center(child: Text('No Favourite Items')))
+                  ? SizedBox(height: MediaQuery.of(context).size.height * 0.7, child: const Center(child: Text('No Favourite Items')))
                   : GridView.builder(
                       padding: const EdgeInsets.all(10),
                       shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 0.58),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.58),
                       itemCount: products.length,
                       itemBuilder: (context, index) {
                         return ProductCard(product: products[index]);
                       });
             },
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const LoadingWidget(),
             error: (error, stack) => Center(child: Text('Error: $error')),
           ),
         ));

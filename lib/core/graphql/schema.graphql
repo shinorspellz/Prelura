@@ -467,8 +467,10 @@ type Query {
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
   brandsTotalNumber: Int
   likedProductsTotalNumber: Int
+  similarProductsTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]

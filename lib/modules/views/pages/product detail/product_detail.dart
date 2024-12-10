@@ -19,6 +19,7 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../res/colors.dart';
@@ -111,10 +112,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                   child: SizedBox(
                                                 height: 20,
                                                 width: 20,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  strokeWidth: 1.8,
-                                                ),
+                                                child: LoadingWidget(),
                                               )),
                                             )
                                           else
@@ -390,13 +388,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               Tab(text: "Similar items"),
                             ],
                           ),
-                          ContentSizeTabBarView(
-                              physics: const ClampingScrollPhysics(),
-                              controller: _tabController,
-                              children: [
-                                _buildMemberItemsTab(context),
-                                _buildSimilarItemsTab(context),
-                              ]),
+                          ContentSizeTabBarView(physics: const ClampingScrollPhysics(), controller: _tabController, children: [
+                            _buildMemberItemsTab(context, product),
+                            _buildSimilarItemsTab(context),
+                          ]),
                         ],
                       ),
                     ),
@@ -445,16 +440,14 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 ],
               ),
             ),
-            loading: () => const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-              ),
+            loading: () => const LoadingWidget(
+              height: 50,
             ),
           ),
     );
   }
 
-  Widget _buildMemberItemsTab(BuildContext context) {
+  Widget _buildMemberItemsTab(BuildContext context, Product product) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -489,18 +482,97 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
         ),
 
         // Grid View Section
-        const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: DisplaySection(),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ref.watch(userProduct(product.seller.username)).when(
+                data: (data) {
+                  final items = data.where((x) => x.id != product.id).toList();
+                  if (items.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20, top: 10),
+                      child: Center(
+                        child: Text(
+                          'No member items available yet',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    );
+                  }
+                  return DisplaySection(
+                    products: items,
+                  );
+                },
+                error: (e, _) => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(e.toString()),
+                      TextButton.icon(
+                        onPressed: () {
+                          // log(e.toString(), stackTrace: _);
+                          ref.invalidate(userProduct(product.seller.username));
+                        },
+                        label: const Text('Retry'),
+                        icon: const Icon(Icons.refresh_rounded),
+                      ),
+                    ],
+                  ),
+                ),
+                loading: () => const LoadingWidget(
+                  height: 50,
+                ),
+              ),
         )
       ],
     );
   }
 
   Widget _buildSimilarItemsTab(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(10.0),
-      child: DisplaySection(),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ref.watch(similarProductsProvider(widget.productId)).when(
+            data: (data) {
+              if (data.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20, top: 10),
+                  child: Center(
+                    child: Text(
+                      'No similar items available yet',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                );
+              }
+              return DisplaySection(
+                products: data,
+              );
+            },
+            error: (e, _) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(e.toString()),
+                  TextButton.icon(
+                    onPressed: () {
+                      // log(e.toString(), stackTrace: _);
+                      ref.invalidate(allProductProvider);
+                    },
+                    label: const Text('Retry'),
+                    icon: const Icon(Icons.refresh_rounded),
+                  ),
+                ],
+              ),
+            ),
+            loading: () => const LoadingWidget(
+              height: 50,
+            ),
+          ),
     );
   }
 

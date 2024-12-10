@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../../../../controller/product/product_provider.dart';
@@ -115,7 +116,7 @@ class LiveSearchPage extends ConsumerWidget {
                           );
                         }),
                 ),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const LoadingWidget(),
             error: (error, stack) => Center(child: Text('Error: $error'))),
       ],
     );

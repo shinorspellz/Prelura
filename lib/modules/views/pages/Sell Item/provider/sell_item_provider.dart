@@ -179,6 +179,8 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
           : null,
       price: product.price,
       selectedCondition: product.condition,
+      brand: product.brand,
+      selectedColors: product.color,
     );
   }
 
