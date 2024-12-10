@@ -32,6 +32,10 @@ class SearchScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Divider(
+              thickness: 1,
+            ),
+            addVerticalSpacing(20),
             Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
@@ -77,7 +81,9 @@ class SearchScreen extends ConsumerWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
-                                ?.copyWith(color: PreluraColors.white),
+                                ?.copyWith(
+                                    color: PreluraColors.white,
+                                    fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -110,7 +116,9 @@ class SearchScreen extends ConsumerWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.copyWith(color: PreluraColors.white)),
+                                  ?.copyWith(
+                                      color: PreluraColors.white,
+                                      fontWeight: FontWeight.w700)),
                         ),
                       ),
                   ],
@@ -169,7 +177,7 @@ class SearchScreen extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                          child: Text("DONT WEAR IT?\n SELL IT 🤑",
+                          child: Text("DONT WEAR IT?\nSELL IT 🤑",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
@@ -226,16 +234,16 @@ class SearchScreen extends ConsumerWidget {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
-      width: 150,
-      height: 200,
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      width: 170,
+      height: 220,
+      margin: EdgeInsets.only(right: 12),
       child: Column(
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.asset(
               image,
-              height: 150,
+              height: 170,
               width: double.infinity,
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,

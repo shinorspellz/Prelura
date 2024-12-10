@@ -36,13 +36,19 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
           automaticallyImplyLeading: false,
           leading: leadingIcon,
           leadingWidth: leadingWidth,
-          elevation: elevation ?? 0,
-          toolbarHeight: appBarHeight ?? 45,
-          backgroundColor: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+          elevation: elevation ?? 0.3,
+          shadowColor: Colors.white,
+          toolbarHeight: appBarHeight ?? 55,
+          backgroundColor:
+              backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
           title: titleWidget ??
               Text(
                 appbarTitle!,
-                style: style ?? Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w600),
+                style: style ??
+                    Theme.of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(fontWeight: FontWeight.w600),
               ),
           actions: [...?trailingIcon],
         ),
