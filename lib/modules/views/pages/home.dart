@@ -4,10 +4,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/images.dart';
 
 import '../widgets/SearchWidget.dart';
 import '../widgets/card.dart';
@@ -37,6 +39,46 @@ class HomeScreen extends ConsumerWidget {
             child: CustomScrollView(
               controller: homeScrollController,
               slivers: [
+                SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Transform.scale(
+                              scale: 6,
+                              child: GestureDetector(
+                                onTap: () {
+                                  ref.read(refreshingHome.notifier).state = true;
+                                  ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+                                },
+                                child: Image.asset(
+                                  PreluraIcons.splash,
+                                  height: 20,
+                                  width: 120,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: GestureDetector(
+                              onTap: () => context.pushRoute(const MyFavouriteRoute()),
+                              child: const Icon(
+                                Icons.favorite,
+                                size: 30,
+                                color: PreluraColors.activeColor,
+                              ),
+                            ),
+                          ),
+                          10.horizontalSpacing,
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(

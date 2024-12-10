@@ -435,6 +435,9 @@ enum ProductsProductSizeChoices {
 
   """EU46"""
   EU46
+
+  """One size"""
+  ONE_SIZE
 }
 
 type ProductType {
@@ -519,6 +522,7 @@ enum SizeEnum {
   EU42
   EU44
   EU46
+  ONE_SIZE
 }
 
 type SubCategoryType {
