@@ -24,7 +24,7 @@ class RenderSvg extends StatelessWidget {
         fit: BoxFit.contain,
         height: svgHeight ?? 24,
         width: svgWidth ?? 24,
-        color: color ?? Theme.of(context).iconTheme.color,
+        // color: color ?? Theme.of(context).iconTheme.color,
         colorFilter: ColorFilter.mode(
             color ?? Theme.of(context).iconTheme.color!, BlendMode.srcIn),
       ),

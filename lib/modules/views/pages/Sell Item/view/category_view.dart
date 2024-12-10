@@ -39,10 +39,10 @@ class CategoryScreen extends ConsumerWidget {
                 final cat = data[index];
                 final svgPath = PreluraIcons.getConstant(cat.name);
                 print(svgPath);
-                print(PreluraIcons.appleIcon);
+                print(PreluraIcons.askAQuestion);
                 return MenuCard(
                   title: cat.name,
-                  svgPath: svgPath != "" ? svgPath : null,
+                  svgPath: svgPath != "" ? PreluraIcons.lipstick_svg : null,
                   icon: svgPath == ""
                       ? const Icon(
                           Icons.settings,

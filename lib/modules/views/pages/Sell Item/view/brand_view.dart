@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/app_radio.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
@@ -50,7 +51,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -62,24 +64,32 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 const SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Searchwidget(hintText: "Find a brand", obscureText: false, shouldReadOnly: false, enabled: true, showInputBorder: true, autofocus: false, cancelButton: true),
+                    child: Searchwidget(
+                        hintText: "Find a brand",
+                        obscureText: false,
+                        shouldReadOnly: false,
+                        enabled: true,
+                        showInputBorder: true,
+                        autofocus: false,
+                        cancelButton: true),
                   ),
                 ),
-                SliverList.separated(
-                  itemCount: brands.length,
-                  separatorBuilder: (_, index) => const Divider(
-                    thickness: 1,
-                  ),
-                  itemBuilder: (_, index) => ListTile(
-                    title: Text(brands[index].name),
-                    trailing: Radio<String>(
-                      value: brands[index].name,
-                      groupValue: selectedBrand?.name,
-                      onChanged: (value) {
-                        ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
-                        context.back();
-                      },
-                    ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return PreluraRadio(
+                        title: brands[index].name,
+                        value: brands[index].name,
+                        groupValue: selectedBrand?.name,
+                        onChanged: (value) {
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .selectBrand(brands[index]);
+                          context.back();
+                        },
+                      );
+                    },
+                    childCount: brands.length, // Number of items in the list
                   ),
                 ),
                 if (ref.watch(brandsProvider.notifier).canLoadMore())
