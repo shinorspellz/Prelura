@@ -3,7 +3,7 @@
         android:label="Prelura"
         android:name="${applicationName}"
 <<<<<<< HEAD
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
 =======
         android:icon="@mipmap/launcher_icon">
 >>>>>>> 0a2e2d1d20b9d7443f67948d2eadc2cbfd06cff3
