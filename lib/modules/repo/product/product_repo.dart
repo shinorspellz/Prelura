@@ -120,7 +120,7 @@ class ProductRepo {
     return response.parsedData!.userProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
   }
 
-  Future<List<Product>> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<Query$AllProducts> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(
           variables: Variables$Query$AllProducts(
@@ -144,8 +144,7 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    print(response.parsedData!.allProducts);
-    return response.parsedData!.allProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
+    return response.parsedData!;
   }
 
   Future<List<Product>> getMyFavouriteProduct(int? pageCount) async {

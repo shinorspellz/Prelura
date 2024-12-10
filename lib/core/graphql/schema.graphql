@@ -471,6 +471,7 @@ type Query {
   categories: [CategoryTypes]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
+  allProductsTotalNumber: Int
   brandsTotalNumber: Int
   likedProductsTotalNumber: Int
   similarProductsTotalNumber: Int

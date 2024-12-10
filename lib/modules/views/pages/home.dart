@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart';
 import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
@@ -20,12 +22,41 @@ final selectedTabProvider = StateProvider<int>((ref) => 0);
 final refreshingHome = StateProvider<bool>((ref) => false);
 
 @RoutePage()
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
   static final ScrollController homeScrollController = ScrollController();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final controller = HomeScreen.homeScrollController;
+
+  @override
+  void initState() {
+    controller.addListener(() {
+      // setState(() => autoScroll = false);
+      final maxScroll = controller.position.maxScrollExtent;
+      final currentScroll = controller.position.pixels;
+      final delta = MediaQuery.sizeOf(context).height * 0.2;
+      if (maxScroll - currentScroll <= delta) {
+        if (ref.read(allProductProvider).isLoading) return;
+
+        ref.read(allProductProvider.notifier).fetchMoreData();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final selectedTab = ref.watch(selectedTabProvider);
     return Scaffold(
       body: SafeArea(
@@ -37,7 +68,7 @@ class HomeScreen extends ConsumerWidget {
               ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
             },
             child: CustomScrollView(
-              controller: homeScrollController,
+              controller: controller,
               slivers: [
                 SliverToBoxAdapter(
                   child: Column(
@@ -141,6 +172,11 @@ class HomeScreen extends ConsumerWidget {
                           ),
                         ),
                     loading: () => const SliverToBoxAdapter(child: LoadingWidget())),
+                if (ref.watch(allProductProvider.notifier).canLoadMore())
+                  if (!ref.watch(allProductProvider).isLoading)
+                    const SliverToBoxAdapter(
+                      child: PaginationLoadingIndicator(),
+                    )
                 // SliverFillRemaining(
                 //   child: ref.watch(allProductProvider).when(
                 //       data: (products) => DisplaySection(

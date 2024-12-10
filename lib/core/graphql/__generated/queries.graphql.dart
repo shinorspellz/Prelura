@@ -7085,11 +7085,13 @@ class _CopyWithStubImpl$Variables$Query$AllProducts<TRes>
 class Query$AllProducts {
   Query$AllProducts({
     this.allProducts,
+    this.allProductsTotalNumber,
     this.$__typename = 'Query',
   });
 
   factory Query$AllProducts.fromJson(Map<String, dynamic> json) {
     final l$allProducts = json['allProducts'];
+    final l$allProductsTotalNumber = json['allProductsTotalNumber'];
     final l$$__typename = json['__typename'];
     return Query$AllProducts(
       allProducts: (l$allProducts as List<dynamic>?)
@@ -7098,11 +7100,14 @@ class Query$AllProducts {
               : Query$AllProducts$allProducts.fromJson(
                   (e as Map<String, dynamic>)))
           .toList(),
+      allProductsTotalNumber: (l$allProductsTotalNumber as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<Query$AllProducts$allProducts?>? allProducts;
+
+  final int? allProductsTotalNumber;
 
   final String $__typename;
 
@@ -7111,6 +7116,8 @@ class Query$AllProducts {
     final l$allProducts = allProducts;
     _resultData['allProducts'] =
         l$allProducts?.map((e) => e?.toJson()).toList();
+    final l$allProductsTotalNumber = allProductsTotalNumber;
+    _resultData['allProductsTotalNumber'] = l$allProductsTotalNumber;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -7119,11 +7126,13 @@ class Query$AllProducts {
   @override
   int get hashCode {
     final l$allProducts = allProducts;
+    final l$allProductsTotalNumber = allProductsTotalNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$allProducts == null
           ? null
           : Object.hashAll(l$allProducts.map((v) => v)),
+      l$allProductsTotalNumber,
       l$$__typename,
     ]);
   }
@@ -7150,6 +7159,11 @@ class Query$AllProducts {
         }
       }
     } else if (l$allProducts != lOther$allProducts) {
+      return false;
+    }
+    final l$allProductsTotalNumber = allProductsTotalNumber;
+    final lOther$allProductsTotalNumber = other.allProductsTotalNumber;
+    if (l$allProductsTotalNumber != lOther$allProductsTotalNumber) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -7180,6 +7194,7 @@ abstract class CopyWith$Query$AllProducts<TRes> {
 
   TRes call({
     List<Query$AllProducts$allProducts?>? allProducts,
+    int? allProductsTotalNumber,
     String? $__typename,
   });
   TRes allProducts(
@@ -7205,12 +7220,16 @@ class _CopyWithImpl$Query$AllProducts<TRes>
 
   TRes call({
     Object? allProducts = _undefined,
+    Object? allProductsTotalNumber = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$AllProducts(
         allProducts: allProducts == _undefined
             ? _instance.allProducts
             : (allProducts as List<Query$AllProducts$allProducts?>?),
+        allProductsTotalNumber: allProductsTotalNumber == _undefined
+            ? _instance.allProductsTotalNumber
+            : (allProductsTotalNumber as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -7239,6 +7258,7 @@ class _CopyWithStubImpl$Query$AllProducts<TRes>
 
   call({
     List<Query$AllProducts$allProducts?>? allProducts,
+    int? allProductsTotalNumber,
     String? $__typename,
   }) =>
       _res;
@@ -7543,6 +7563,13 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'allProductsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
