@@ -53,12 +53,13 @@ class PreluraTextButton extends StatelessWidget {
         child: showLoadingIndicator
             ? Center(
                 child: CupertinoActivityIndicator(
-                  color: loadingIndicatorColor ?? Theme.of(context).primaryColor,
+                  color:
+                      loadingIndicatorColor ?? Theme.of(context).primaryColor,
                 ),
               )
             : Text(text,
                 style: textStyle ??
-                    Theme.of(context).textTheme.displayMedium!.copyWith(
+                    Theme.of(context).textTheme.bodyLarge!.copyWith(
                           fontWeight: FontWeight.w600,
                         )));
   }
