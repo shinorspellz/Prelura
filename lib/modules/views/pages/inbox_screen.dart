@@ -43,7 +43,7 @@ class _InboxScreenState extends State<InboxScreen>
         appBar: PreluraAppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
-          appbarTitle: "inbox",
+          appbarTitle: "Inbox",
           trailingIcon: const [],
         ),
         body: Column(
@@ -107,7 +107,7 @@ class _InboxScreenState extends State<InboxScreen>
                       ),
                     ],
                   ),
-                  NotificationsTab( )
+                  NotificationsTab()
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/render_svg.dart';
 
 import '../../../res/images.dart';
@@ -71,10 +72,11 @@ class MenuCard extends StatelessWidget {
                         ),
                       )
                     ] else if (svgPath != null) ...[
-                      RenderSvg(svgPath: svgPath ?? "")
+                      RenderSvg(
+                        svgPath: svgPath ?? "",
+                      ),
                     ] else if (icon != null) ...[
                       icon!,
-                      const SizedBox(width: 10),
                     ],
                     const SizedBox(
                       width: 10,
