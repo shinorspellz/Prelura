@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_p
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
 
@@ -430,10 +431,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         ? const SizedBox(
                             height: 25,
                             width: 25,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 1.8,
-                              color: Colors.white,
-                            ),
+                            child: LoadingWidget(),
                           )
                         : const Text(
                             'Upload',

@@ -6,6 +6,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_radio.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
@@ -101,10 +102,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                           const SizedBox(
                             height: 25,
                             width: 25,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 1.8,
-                            ),
+                            child: LoadingWidget(),
                           ),
                           10.horizontalSpacing,
                           const Text('Loading more...')
@@ -129,9 +127,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
               ),
             ),
             loading: () => const Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-              ),
+              child: LoadingWidget(),
             ),
           ),
     );

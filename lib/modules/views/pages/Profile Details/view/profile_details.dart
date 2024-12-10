@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
 import '../provider/tab_controller.dart';
@@ -149,11 +150,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                           ),
                         ],
                       ),
-                      loading: () => const Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                        ),
-                      ),
+                      loading: () => const LoadingWidget(),
                     ),
 
                 // const UserWardrobe(),
