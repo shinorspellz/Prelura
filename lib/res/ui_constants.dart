@@ -37,8 +37,8 @@ class UIConstants {
     return InputDecoration(
       label: labelText != null
           ? Text(labelText,
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  fontSize: 13.sp,
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontSize: 14,
                   height: 1.7,
                   color: hasFocus
                       ? PreluraColors.activeColor
@@ -68,9 +68,9 @@ class UIConstants {
       hintText: hintText,
       helperText: helperText,
       hintStyle: hintStyle ??
-          Theme.of(context).textTheme.displayMedium!.copyWith(
+          Theme.of(context).textTheme.bodyMedium!.copyWith(
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
-                fontSize: 12.sp,
+                fontSize: 14,
                 height: 1.7,
               ),
       contentPadding:

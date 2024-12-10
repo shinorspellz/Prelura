@@ -146,7 +146,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               //   });
               //   return null;
               // },
-              style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
               readOnly: widget.shouldReadOnly,
               decoration: UIConstants.instance
                   .inputDecoration(

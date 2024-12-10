@@ -73,7 +73,7 @@ class MenuCard extends StatelessWidget {
                       )
                     ] else if (svgPath != null) ...[
                       RenderSvg(
-                        svgPath: PreluraIcons.menSvg,
+                        svgPath: svgPath ?? "",
                         color: PreluraColors.primaryColor,
                       ),
                     ] else if (icon != null) ...[

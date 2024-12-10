@@ -44,6 +44,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
         centerTitle: true,
         appbarTitle: "Category",
       ),
+
       body: Column(
         children: [
           10.verticalSpacing,
