@@ -79,8 +79,9 @@ class ProductDescription extends ConsumerWidget {
           ),
           if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
           if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
+          if (product.brand != null) _buildInfoRow("Brand", product.brand!.name, context),
 
-          if (product.size != null) _buildInfoRow("Size", product.size!.name, context),
+          if (product.size != null) _buildInfoRow("Size", product.size!.name.replaceAll('_', ' '), context),
           if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
           _buildInfoRow("Views", product.views.toString(), context),
           _buildInfoRow("Uploaded", DateFormat.yMMMMEEEEd().format(product.createdAt), context),
