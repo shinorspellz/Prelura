@@ -42,7 +42,7 @@ class CategoryScreen extends ConsumerWidget {
                 print(PreluraIcons.askAQuestion);
                 return MenuCard(
                   title: cat.name,
-                  svgPath: svgPath != "" ? PreluraIcons.lipstick_svg : null,
+                  svgPath: svgPath != "" ? svgPath : null,
                   icon: svgPath == ""
                       ? const Icon(
                           Icons.settings,

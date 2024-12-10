@@ -116,7 +116,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: currentIndex == entry.key
-                                ? Colors.white
+                                ? Theme.of(context).textTheme.bodyMedium?.color
                                 : PreluraColors.greyLightColor,
                           ),
                         ),

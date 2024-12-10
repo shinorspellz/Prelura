@@ -81,7 +81,18 @@ class SellItemState {
   }
 
   @override
-  int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
+  int get hashCode => Object.hash(
+      title,
+      description,
+      category,
+      images.length,
+      selectedColors.length,
+      selectedCondition,
+      selectedMaterials.length,
+      parcel,
+      price,
+      size,
+      brand);
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -102,6 +113,13 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   Future<void> addImages() async {
     final pickedImages = await _picker.pickMultiImage();
     state = state.copyWith(images: [...state.images, ...pickedImages]);
+  }
+
+  void deleteImage(XFile id) {
+    final currentImages = state.images;
+    state = state.copyWith(
+      images: currentImages.where((c) => c != id).toList(),
+    );
   }
 
   // Update title
@@ -153,8 +171,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       description: product.description,
       category: product.category,
       subCategory: product.subCategory,
-      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+      parcel: product.parcelSize != null
+          ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
+          : null,
+      size: product.size != null
+          ? Enum$SizeEnum.fromJson(product.size!.toJson())
+          : null,
       price: product.price,
       selectedCondition: product.condition,
     );
@@ -196,7 +218,9 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections.where((m) => m != material).toList() // Remove material
+          ? currentSelections
+              .where((m) => m != material)
+              .toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),

@@ -39,6 +39,7 @@ class PreluraTheme {
           unselectedLabelColor: PreluraColors.primaryColor.withOpacity(0.4),
           labelColor: Colors.black, //PreluraColors.primaryColor,
           indicatorColor: PreluraColors.primaryColor,
+          
           splashFactory: NoSplash.splashFactory,
         ),
         buttonTheme: ButtonThemeData(
