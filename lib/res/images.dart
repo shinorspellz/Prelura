@@ -66,7 +66,7 @@ class PreluraIcons {
   static const String webp_xmas = "assets/images/xmas.webp";
   static const String webp_season = "assets/images/season.webp";
   static const String webp_jumpers = "assets/images/jumpers.webp";
-  static const String men_svg = "assets/svgs/men.svg";
+  static const String menSvg = "assets/svgs/003-boy 1.svg";
   static const String women_svg = "assets/svgs/women.svg";
   static const String lipstick_svg = "assets/svgs/lipstick.svg";
   static const String electronics_svg = "assets/svgs/electronics.svg";
@@ -75,7 +75,7 @@ class PreluraIcons {
     // Get all static fields of this class using reflection-like behavior
     final Map<String, String> constants = {
       'electronics': electronics_svg,
-      'men': men_svg,
+      'men': menSvg,
       'women': women_svg,
       'lipstick': lipstick_svg,
       // Add the rest of the constants here...

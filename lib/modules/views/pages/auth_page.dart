@@ -59,7 +59,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
               bottomNavigationBar: SizedBox(
                 height: 70,
                 child: TabBar(
-                    padding: EdgeInsets.only(top: 10, bottom: 10),
+                    padding: EdgeInsets.only(top: 5, bottom: 15),
                     onTap: (index) {
                       switch (index) {
                         case 0:
