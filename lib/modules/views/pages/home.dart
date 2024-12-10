@@ -15,6 +15,7 @@ import '../widgets/display_section.dart';
 import '../widgets/gap.dart';
 
 final selectedTabProvider = StateProvider<int>((ref) => 0);
+final refreshingHome = StateProvider<bool>((ref) => false);
 
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
@@ -29,7 +30,10 @@ class HomeScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: RefreshIndicator(
-            onRefresh: () => ref.refresh(allProductProvider.future),
+            onRefresh: () async {
+              ref.read(refreshingHome.notifier).state = true;
+              ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+            },
             child: CustomScrollView(
               controller: homeScrollController,
               slivers: [
@@ -62,6 +66,7 @@ class HomeScreen extends ConsumerWidget {
                   child: _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
                 ),
                 ref.watch(allProductProvider).when(
+                    skipLoadingOnRefresh: !ref.watch(refreshingHome),
                     data: (products) => SliverGrid.builder(
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
