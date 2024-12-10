@@ -317,9 +317,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             ?.copyWith(
                                 fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
-                        onSaved: (value) {
-                          _descriptionfocusNode.unfocus();
-                        },
+                        // focusNode: _descriptionfocusNode,
                         controller: descController,
                         // maxLines: null,
                       ),
