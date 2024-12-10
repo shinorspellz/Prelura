@@ -287,7 +287,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           children: [
             Text(
               "Already have an account?",
-              style: mcontext.textTheme.displayMedium!.copyWith(
+              style: mcontext.textTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).primaryColor.withOpacity(0.5),
               ),
@@ -297,7 +297,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               onPressed: () {
                 context.router.push(LoginRoute());
               },
-              textStyle: mcontext.textTheme.displayMedium!.copyWith(
+              textStyle: mcontext.textTheme.bodyLarge!.copyWith(
                 fontWeight: FontWeight.w600,
                 color: Colors.blue,
               ),
