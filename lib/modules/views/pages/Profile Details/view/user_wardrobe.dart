@@ -292,3 +292,4 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
       ),
     );
   }
+}

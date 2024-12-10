@@ -50,6 +50,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   }
 
   final titleController = TextEditingController();
+  final FocusNode _descriptionfocusNode = FocusNode();
+  final FocusNode titlefocusNode = FocusNode();
   final descController = TextEditingController();
 
   @override
@@ -315,6 +317,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             ?.copyWith(
                                 fontWeight: FontWeight.w400, fontSize: 18),
                         onChanged: notifier.updateDescription,
+                        onSaved: (value) {
+                          _descriptionfocusNode.unfocus();
+                        },
                         controller: descController,
                         // maxLines: null,
                       ),
@@ -481,8 +486,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             parcelSize: state.parcel,
                             size: state.size!,
                             category: int.parse(state.category!.id.toString()),
-
-                            subCategory: int.parse(state.subCategory!.id.toString()),
+                            subCategory:
+                                int.parse(state.subCategory!.id.toString()),
                             color: state.selectedColors,
                             brandId: state.brand!.id,
                           );
