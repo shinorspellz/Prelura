@@ -6,9 +6,10 @@ import 'package:prelura_app/shared/mock_data.dart';
 typedef RefreshCallback = Future<void> Function();
 
 class DisplaySection extends StatelessWidget {
-  const DisplaySection({super.key, this.products, this.onRefresh});
+  const DisplaySection({super.key, this.products, this.onRefresh, this.isScrollable = false});
   final List<Product>? products;
   final RefreshCallback? onRefresh;
+  final bool isScrollable;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,7 @@ class DisplaySection extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.54),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.54),
               itemCount: mockData.length,
               itemBuilder: (context, index) {
                 return DisplayCard(itemData: mockData[index]);
@@ -36,7 +33,7 @@ class DisplaySection extends StatelessWidget {
           onRefresh: onRefresh ?? () async {},
           child: GridView.builder(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: isScrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 10,

@@ -42,14 +42,15 @@ class HomeScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Searchwidget(
-                            padding: EdgeInsets.zero,
-                            obscureText: false,
-                            shouldReadOnly: false,
-                            hintText: "Search for items and members",
-                            enabled: true,
-                            showInputBorder: true,
-                            autofocus: false,
-                            cancelButton: true),
+                          padding: EdgeInsets.zero,
+                          obscureText: false,
+                          shouldReadOnly: false,
+                          hintText: "Search for items and members",
+                          enabled: true,
+                          showInputBorder: true,
+                          autofocus: false,
+                          cancelButton: true,
+                        ),
                         addVerticalSpacing(12),
                         _buildTabs(ref, selectedTab, context)
                       ],
@@ -63,6 +64,7 @@ class HomeScreen extends ConsumerWidget {
                   child: ref.watch(allProductProvider).when(
                       data: (products) => DisplaySection(
                             products: products,
+                            isScrollable: true,
                           ),
                       error: (e, _) => Center(
                             child: Column(
