@@ -29,7 +29,6 @@ dependencies:
   freezed_annotation:
   json_annotation:
   pull_to_refresh: ^2.0.0
-  infinite_scroll_pagination: ^4.1.0
 
   graphql:
   rxdart:
@@ -45,23 +44,20 @@ dev_dependencies:
   freezed:
   json_serializable:
   graphql_codegen:
-  flutter_launcher_icons: ^0.14.2
+  flutter_launcher_icons: 0.14.1
 
-flutter_icons:
-  android: "ic_launcher"
+flutter_launcher_icons:
+  android: "launcher_icon"
   ios: true
-#   image_path: "assets/images/logo.png"
-#   min_sdk_android: 21
-#   adaptive_icon_foreground: "assets/images/logo.png"
-#   adaptive_icon_background: "#ffffff"
-#   remove_alpha_ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
 
 flutter_native_splash:
   color: "#ffffff"
   image: "assets/images/splash.png"
   android: true
   ios: true
-
   android_12:
     color: "#ffffff"
     color_dark: "#0C0F12"
@@ -86,6 +82,7 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/images/splash.png
+    - assets/images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
