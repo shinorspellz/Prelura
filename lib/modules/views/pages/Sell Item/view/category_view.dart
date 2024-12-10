@@ -38,7 +38,8 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -62,7 +63,12 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
               onChanged: (val) {
                 if (ref.read(categoryProvider).valueOrNull == null) return;
                 isSearching = val.isNotEmpty;
-                filter = ref.read(categoryProvider).valueOrNull!.where((e) => e.name.toLowerCase().contains(val.toLowerCase())).toList();
+                filter = ref
+                    .read(categoryProvider)
+                    .valueOrNull!
+                    .where(
+                        (e) => e.name.toLowerCase().contains(val.toLowerCase()))
+                    .toList();
                 setState(() {});
               },
             ),
@@ -77,7 +83,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
 
                   return MenuCard(
                     title: cat.name,
-                    svgPath: svgPath != "" ? PreluraIcons.lipstick_svg : null,
+                    svgPath: svgPath != "" ? svgPath : null,
                     icon: svgPath == ""
                         ? const Icon(
                             Icons.settings,
@@ -87,7 +93,9 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                     onTap: () {
                       ref.read(sellItemProvider.notifier).updateCategory(cat);
                       return context.router.push(
-                        SubCategoryRoute(subCategories: cat.subCategory ?? []),
+                        SubCategoryRoute(
+                            subCategories: cat.subCategory ?? [],
+                            categoryName: cat.name),
                       );
                     },
                   );
@@ -106,7 +114,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
 
                         return MenuCard(
                           title: cat.name,
-                          svgPath: svgPath != "" ? PreluraIcons.lipstick_svg : null,
+                          svgPath: svgPath != "" ? svgPath : null,
                           icon: svgPath == ""
                               ? const Icon(
                                   Icons.settings,
@@ -114,9 +122,13 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                                 )
                               : null,
                           onTap: () {
-                            ref.read(sellItemProvider.notifier).updateCategory(cat);
+                            ref
+                                .read(sellItemProvider.notifier)
+                                .updateCategory(cat);
                             return context.router.push(
-                              SubCategoryRoute(subCategories: cat.subCategory ?? []),
+                              SubCategoryRoute(
+                                  subCategories: cat.subCategory ?? [],
+                                  categoryName: cat.name),
                             );
                           },
                         );

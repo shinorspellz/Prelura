@@ -12,14 +12,17 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/images.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../../../widgets/menu_card.dart';
 import '../provider/product_sub_category_provider.dart';
 
 @RoutePage()
 class SubCategoryScreen extends ConsumerStatefulWidget {
-  const SubCategoryScreen({super.key, required this.subCategories});
+  const SubCategoryScreen(
+      {super.key, required this.subCategories, required this.categoryName});
   final List<CategoryModel> subCategories;
+  final String categoryName;
 
   @override
   ConsumerState<SubCategoryScreen> createState() => _SubCategoryScreenState();
@@ -37,11 +40,12 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: sharedData.selectedValue,
+        appbarTitle: widget.categoryName,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 20),
@@ -61,7 +65,10 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                 cancelButton: true,
                 onChanged: (val) {
                   isSearching = val.isNotEmpty;
-                  filter = widget.subCategories.where((e) => e.name.toLowerCase().contains(val.toLowerCase())).toList();
+                  filter = widget.subCategories
+                      .where((e) =>
+                          e.name.toLowerCase().contains(val.toLowerCase()))
+                      .toList();
                   setState(() {});
                 },
               ),
@@ -69,16 +76,24 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
             if (isSearching) ...[
               ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: filter.length,
                   itemBuilder: (context, index) {
+                    final svgPath =
+                        PreluraIcons.getConstant(filter[index].name);
                     return MenuCard(
                         title: filter[index].name,
-                        icon: const Icon(
-                          Icons.settings,
-                          color: PreluraColors.activeColor,
-                        ),
+                        svgPath: svgPath != "" ? svgPath : null,
+                        icon: svgPath == ""
+                            ? const Icon(
+                                Icons.settings,
+                                color: PreluraColors.activeColor,
+                              )
+                            : null,
                         onTap: () {
-                          ref.read(sellItemProvider.notifier).updateSubCategory(filter[index]);
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .updateSubCategory(filter[index]);
                           // ref.read(selectedProductCategoryNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
                           // context.router.push(const SubCategoryProductRoute());
                           Navigator.of(context)
@@ -90,6 +105,7 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
               ListView.builder(
                   shrinkWrap: true,
                   itemCount: widget.subCategories.length,
+                  physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return MenuCard(
                         title: widget.subCategories[index].name,
@@ -98,7 +114,9 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                           color: PreluraColors.activeColor,
                         ),
                         onTap: () {
-                          ref.read(sellItemProvider.notifier).updateSubCategory(widget.subCategories[index]);
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .updateSubCategory(widget.subCategories[index]);
                           // ref.read(selectedProductCategoryNotifierProvider.notifier).updateData(sharedData.relatedStrings[index]);
                           // context.router.push(const SubCategoryProductRoute());
                           Navigator.of(context)
