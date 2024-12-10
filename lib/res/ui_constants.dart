@@ -69,7 +69,11 @@ class UIConstants {
       helperText: helperText,
       hintStyle: hintStyle ??
           Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Theme.of(context).primaryColor.withOpacity(0.5),
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.color
+                    ?.withOpacity(0.5),
                 fontSize: 14,
                 height: 1.7,
               ),

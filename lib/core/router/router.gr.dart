@@ -882,12 +882,14 @@ class SubCategoryRoute extends _i36.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
     _i37.Key? key,
     required List<_i40.CategoryModel> subCategories,
+    required String categoryName,
     List<_i36.PageRouteInfo>? children,
   }) : super(
           SubCategoryRoute.name,
           args: SubCategoryRouteArgs(
             key: key,
             subCategories: subCategories,
+            categoryName: categoryName,
           ),
           initialChildren: children,
         );
@@ -901,6 +903,7 @@ class SubCategoryRoute extends _i36.PageRouteInfo<SubCategoryRouteArgs> {
       return _i35.SubCategoryScreen(
         key: args.key,
         subCategories: args.subCategories,
+        categoryName: args.categoryName,
       );
     },
   );
@@ -910,14 +913,17 @@ class SubCategoryRouteArgs {
   const SubCategoryRouteArgs({
     this.key,
     required this.subCategories,
+    required this.categoryName,
   });
 
   final _i37.Key? key;
 
   final List<_i40.CategoryModel> subCategories;
 
+  final String categoryName;
+
   @override
   String toString() {
-    return 'SubCategoryRouteArgs{key: $key, subCategories: $subCategories}';
+    return 'SubCategoryRouteArgs{key: $key, subCategories: $subCategories, categoryName: $categoryName}';
   }
 }

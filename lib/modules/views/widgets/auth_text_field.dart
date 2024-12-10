@@ -30,40 +30,42 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final TextStyle? hintStyle;
   final FocusNode? focusNode;
   final int? maxLines;
+  final TextInputAction? textInputAction;
 
   /// formats the textfeild to a password version
   final bool isPassword;
 
-  const PreluraAuthTextField({
-    super.key,
-    this.label,
-    this.minLines,
-    this.onChanged,
-    this.onTap,
-    this.keyboardType,
-    this.formatter,
-    this.onSaved,
-    this.obscureText = false,
-    this.hintText,
-    this.maxLength,
-    this.controller,
-    this.validator,
-    this.textCapitalization,
-    this.shouldReadOnly = false,
-    trailing,
-    this.suffixIcon,
-    this.enabled = true,
-    this.minWidth,
-    this.prefixIcon,
-    this.labelStyle,
-    this.hintStyle,
-    this.focusNode,
-    this.isPassword = false,
-    this.maxLines = 1,
-  });
+  const PreluraAuthTextField(
+      {super.key,
+      this.label,
+      this.minLines,
+      this.onChanged,
+      this.onTap,
+      this.keyboardType,
+      this.formatter,
+      this.onSaved,
+      this.obscureText = false,
+      this.hintText,
+      this.maxLength,
+      this.controller,
+      this.validator,
+      this.textCapitalization,
+      this.shouldReadOnly = false,
+      trailing,
+      this.suffixIcon,
+      this.enabled = true,
+      this.minWidth,
+      this.prefixIcon,
+      this.labelStyle,
+      this.hintStyle,
+      this.focusNode,
+      this.isPassword = false,
+      this.maxLines = 1,
+      this.textInputAction});
 
   @override
-  ConsumerState<PreluraAuthTextField> createState() => _VWidgetsLoginTextFieldState();
+  ConsumerState<PreluraAuthTextField> createState() =>
+      _VWidgetsLoginTextFieldState();
 }
 
 class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
@@ -93,7 +95,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    bool showGradient = widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
+    bool showGradient =
+        widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
     return Column(children: [
       Container(
         padding: const EdgeInsets.all(2),
@@ -110,6 +113,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: TextFormField(
+              textInputAction: widget.textInputAction,
               autocorrect: false,
               enableSuggestions: false,
               minLines: widget.minLines ?? 1,
@@ -119,7 +123,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               onSaved: widget.onSaved,
               enabled: widget.enabled,
               cursorHeight: 15,
-              textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+              textCapitalization:
+                  widget.textCapitalization ?? TextCapitalization.none,
               // onTap: widget.onTap,
               focusNode: widget.focusNode ?? focusNodeZZZ,
               onChanged: (text) {
@@ -129,7 +134,14 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               keyboardType: widget.keyboardType,
               obscureText: obscureText,
               obscuringCharacter: '*',
-              inputFormatters: [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
+              inputFormatters: [
+                widget.formatter ??
+                    FilteringTextInputFormatter.singleLineFormatter
+              ],
+              onFieldSubmitted: (value) {
+                widget.focusNode?.unfocus();
+                focusNodeZZZ?.unfocus();
+              },
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: widget.validator,
@@ -146,14 +158,19 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               //   });
               //   return null;
               // },
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).primaryColor.withOpacity(1), fontSize: 14),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(fontSize: 14),
               readOnly: widget.shouldReadOnly,
               decoration: UIConstants.instance
                   .inputDecoration(
                     labelText: widget.label,
                     labelStyle: widget.labelStyle,
                     context,
-                    hasFocus: widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false,
+                    hasFocus: widget.focusNode?.hasFocus ??
+                        focusNodeZZZ?.hasFocus ??
+                        false,
                     hintText: widget.hintText,
                     suffixIcon: widget.suffixIcon,
                     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),
@@ -170,8 +187,12 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
-                            onPressed: () => setState(() => obscureText = !obscureText),
-                            icon: obscureText ? const RenderSvg(svgPath: PreluraIcons.eyeIcon) : const RenderSvg(svgPath: PreluraIcons.eyeSlashOutline),
+                            onPressed: () =>
+                                setState(() => obscureText = !obscureText),
+                            icon: obscureText
+                                ? const RenderSvg(svgPath: PreluraIcons.eyeIcon)
+                                : const RenderSvg(
+                                    svgPath: PreluraIcons.eyeSlashOutline),
                           ),
                   ),
             ),

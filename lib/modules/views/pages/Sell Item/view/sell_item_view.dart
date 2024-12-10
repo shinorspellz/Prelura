@@ -255,7 +255,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                     color: PreluraColors.white,
                                                   ),
                                                   color: PreluraColors.white,
-                                                  onPressed: () {}),
+                                                  onPressed: () {
+                                                    notifier.deleteImage(image);
+                                                  }),
                                             ),
                                         ],
                                       ),
@@ -303,6 +305,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       const SizedBox(height: 16),
                       PreluraAuthTextField(
                         label: 'Describe your item',
+                        textInputAction: TextInputAction.done,
+                        focusNode: _descriptionfocusNode,
                         labelStyle: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -356,7 +360,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 },
               ),
               MenuCard(
-                title: 'Condtion',
+                title: 'Condition',
                 rightArrow: false,
                 subtitle: state.selectedCondition?.simpleName,
                 onTap: () {
