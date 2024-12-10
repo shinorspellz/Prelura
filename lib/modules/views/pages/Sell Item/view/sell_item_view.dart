@@ -12,9 +12,12 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
+import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/res/images.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/render_svg.dart';
 import '../../auth_page.dart';
 import '../provider/brand_provider.dart';
 import '../provider/parcel_provider.dart';
@@ -47,6 +50,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   }
 
   final titleController = TextEditingController();
+  final FocusNode _descriptionfocusNode = FocusNode();
+  final FocusNode titlefocusNode = FocusNode();
   final descController = TextEditingController();
 
   @override
@@ -138,7 +143,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.product == null) ...[
+                if (widget.product == null && state.images.isEmpty) ...[
                   Container(
                     margin: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
@@ -189,21 +194,87 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       ),
                     ),
                   ),
-                  if (state.images.isNotEmpty)
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: state.images
-                          .map((image) => Image.file(
-                                File(image.path),
-                                height: 80,
-                                width: 80,
-                                fit: BoxFit.cover,
-                              ))
-                          .toList(),
-                    ),
-                  const SizedBox(height: 16),
                 ],
+                if (state.images.isNotEmpty) ...[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: SizedBox(
+                      height: 130,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ReorderableListView(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.horizontal,
+                              physics: const NeverScrollableScrollPhysics(),
+                              onReorder: (int oldIndex, int newIndex) {
+                                setState(() {
+                                  if (oldIndex < newIndex) {
+                                    newIndex -= 1;
+                                  }
+                                  final item = state.images.removeAt(oldIndex);
+                                  state.images.insert(newIndex, item);
+                                });
+                              },
+                              children: state.images
+                                  .map((image) => Container(
+                                        key: ValueKey(image),
+                                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.transparent),
+                                        child: Stack(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.circular(8), // Match the Container's border radius
+                                              child: Image.file(
+                                                File(image.path),
+                                                fit: BoxFit.cover,
+                                                height: 142,
+                                                width: 100,
+                                              ),
+                                            ),
+                                            if (state.images.contains(image))
+                                              Align(
+                                                alignment: Alignment.bottomLeft,
+                                                child: IconButton(
+                                                    //use VIcons here
+                                                    icon: RenderSvg(
+                                                      // svgPath: VIcons.trashIcon,
+                                                      svgPath: PreluraIcons.removeIcon,
+                                                      color: PreluraColors.white,
+                                                    ),
+                                                    color: PreluraColors.white,
+                                                    onPressed: () {}),
+                                              ),
+                                          ],
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
+                            GestureDetector(
+                              onTap: () => notifier.addImages(),
+                              child: Container(
+                                  width: 100,
+                                  height: 142,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.grey[400],
+                                  ),
+                                  child: Center(
+                                    child: Icon(Icons.add_circle, size: 32.sp),
+                                  )),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
@@ -225,6 +296,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           maxLines: null,
                           hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
                           onChanged: notifier.updateDescription,
+                          // focusNode: _descriptionfocusNode,
                           controller: descController,
                           // maxLines: null,
                         ),
@@ -250,7 +322,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Size',
                   rightArrow: false,
-                  subtitle: state.size?.name.replaceAll('_', ' '),
+                  subtitle: state.size?.name,
                   onTap: () {
                     context.router.push(const SizeSelectionRoute());
                   },
@@ -321,42 +393,43 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () async {
+                      HelperFunction.context = context;
                       final files = state.images.map((x) => File(x.path)).toList();
                       if (files.isEmpty && widget.product == null) {
-                        context.alert('Images are required to sell product');
+                        HelperFunction.showToast(message: 'Images are required to sell product');
                         return;
                       }
 
                       if (state.category == null) {
-                        context.alert('Select an item category to proceed.');
+                        HelperFunction.showToast(message: 'Select an item category to proceed.');
                         return;
                       }
                       if (state.subCategory == null) {
-                        context.alert('Select an item sub category to proceed.');
+                        HelperFunction.showToast(message: 'Select an item sub category to proceed.');
                         return;
                       }
                       if (state.size == null) {
-                        context.alert('Select an size category to proceed.');
+                        HelperFunction.showToast(message: 'Select an size category to proceed.');
                         return;
                       }
                       if (state.price == null) {
-                        context.alert('Price is required for product.');
+                        HelperFunction.showToast(message: 'Price is required for product.');
                         return;
                       }
                       if (state.selectedCondition == null) {
-                        context.alert('Condition is required for product.');
+                        HelperFunction.showToast(message: 'Condition is required for product.');
                         return;
                       }
                       if (state.parcel == null) {
-                        context.alert('Parcel size is required for product.');
+                        HelperFunction.showToast(message: 'Parcel size is required for product.');
                         return;
                       }
                       if (state.selectedColors.isEmpty) {
-                        context.alert('Colors are required for product.');
+                        HelperFunction.showToast(message: 'Colors are required for product.');
                         return;
                       }
                       if (state.brand == null) {
-                        context.alert('A `brand` is required for product.');
+                        HelperFunction.showToast(message: 'A `brand` is required for product.');
                         return;
                       }
                       // if (state.selectedColors.) {
@@ -365,7 +438,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       // }
 
                       if (!notifier.validateInputs()) {
-                        context.alert('Both title and description of product are requuired');
+                        HelperFunction.showToast(message: 'Both title and description of product are requuired');
                         return;
                       }
                       if (widget.product != null) {

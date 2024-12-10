@@ -40,6 +40,9 @@ class PreluraIcons {
   static const String ussdIcon = "assets/icons/ussd.png";
   static const String cardIcon = "assets/icons/card.png";
 
+  static const String snackbarIconThick =
+      "assets/icons/check-mark-circle-thick.svg";
+
   static const String Image = "assets/images/image2.jpeg";
   static const String van = "assets/svgs/delivery_van.svg";
   static const String mugShot = "assets/images/mugshot.jpg";
@@ -71,6 +74,8 @@ class PreluraIcons {
   static const String women_svg = "assets/svgs/women.svg";
   static const String lipstick_svg = "assets/svgs/lipstick.svg";
   static const String electronics_svg = "assets/svgs/electronics.svg";
+  static const String pet_svg = "assets/svgs/pet.svg";
+  static const String removeIcon = "assets/svgs/remove.svg";
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -79,6 +84,7 @@ class PreluraIcons {
       'men': menSvg,
       'women': women_svg,
       'lipstick': lipstick_svg,
+      'pet': pet_svg
       // Add the rest of the constants here...
     };
 

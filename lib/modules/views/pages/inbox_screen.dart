@@ -24,8 +24,12 @@ class _InboxScreenState extends State<InboxScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
+    // Add a listener to sync tab changes
     _tabController.addListener(() {
-      setState(() {});
+      if (!_tabController.indexIsChanging) {
+        setState(() {}); // Trigger UI update for custom tabs
+      }
     });
   }
 
@@ -48,27 +52,52 @@ class _InboxScreenState extends State<InboxScreen>
         ),
         body: Column(
           children: [
-            TabBar(
-              controller: _tabController,
-              indicatorColor: PreluraColors.activeColor,
-              unselectedLabelColor:
-                  PreluraColors.greyLightColor, // Text color for inactive tabs
-              labelStyle: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16, // Font size for the active tab
-              ),
-              unselectedLabelStyle: const TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 14, // Font size for inactive tabs
-              ),
-              tabs: const [
-                Tab(
-                  text: "Messages",
-                ),
-                Tab(
-                  text: "Notifications",
-                ),
-              ],
+            Row(
+              children: ["Messages", "Notifications"]
+                  .asMap()
+                  .entries
+                  .map(
+                    (entry) => Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          _tabController.animateTo(entry.key);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                            top: 12,
+                            bottom: 18,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: _tabController.index == entry.key
+                                    ? PreluraColors.activeColor
+                                    : PreluraColors.greyColor.withOpacity(0.5),
+                                width: _tabController.index == entry.key
+                                    ? 2.0
+                                    : 1.0,
+                              ),
+                            ),
+                          ),
+                          child: Text(
+                            entry.value,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: _tabController.index == entry.key
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.color
+                                  : PreluraColors.greyLightColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
             Expanded(
               child: TabBarView(

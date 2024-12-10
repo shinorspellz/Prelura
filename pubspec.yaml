@@ -29,6 +29,7 @@ dependencies:
   freezed_annotation:
   json_annotation:
   pull_to_refresh: ^2.0.0
+  flutter_styled_toast: ^2.2.1
 
   graphql:
   rxdart:

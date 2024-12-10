@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/res/colors.dart';
 
 class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PreluraAppBar({
@@ -29,6 +30,7 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Column(
       children: [
         AppBar(
@@ -36,7 +38,7 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
           automaticallyImplyLeading: false,
           leading: leadingIcon,
           leadingWidth: leadingWidth,
-          elevation: elevation ?? 0.3,
+          elevation: elevation ?? 0,
           shadowColor: Colors.white,
           toolbarHeight: appBarHeight ?? 55,
           backgroundColor:
@@ -51,6 +53,9 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
                         .copyWith(fontWeight: FontWeight.w600),
               ),
           actions: [...?trailingIcon],
+          shape: Border(
+            bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
+          ),
         ),
       ],
     );
