@@ -328,7 +328,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                             ],
                           ),
                           ContentSizeTabBarView(physics: const ClampingScrollPhysics(), controller: _tabController, children: [
-                            _buildMemberItemsTab(context),
+                            _buildMemberItemsTab(context, product),
                             _buildSimilarItemsTab(context),
                           ]),
                         ],
@@ -375,16 +375,14 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
                 ],
               ),
             ),
-            loading: () => const Center(
-              child: LoadingWidget(
-                height: 50,
-              ),
+            loading: () => const LoadingWidget(
+              height: 50,
             ),
           ),
     );
   }
 
-  Widget _buildMemberItemsTab(BuildContext context) {
+  Widget _buildMemberItemsTab(BuildContext context, Product product) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -419,18 +417,97 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
         ),
 
         // Grid View Section
-        const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: DisplaySection(),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ref.watch(userProduct(product.seller.username)).when(
+                data: (data) {
+                  final items = data.where((x) => x.id != product.id).toList();
+                  if (items.isEmpty) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20, top: 10),
+                      child: Center(
+                        child: Text(
+                          'No member items available yet',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    );
+                  }
+                  return DisplaySection(
+                    products: items,
+                  );
+                },
+                error: (e, _) => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(e.toString()),
+                      TextButton.icon(
+                        onPressed: () {
+                          // log(e.toString(), stackTrace: _);
+                          ref.invalidate(userProduct(product.seller.username));
+                        },
+                        label: const Text('Retry'),
+                        icon: const Icon(Icons.refresh_rounded),
+                      ),
+                    ],
+                  ),
+                ),
+                loading: () => const LoadingWidget(
+                  height: 50,
+                ),
+              ),
         )
       ],
     );
   }
 
   Widget _buildSimilarItemsTab(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(10.0),
-      child: DisplaySection(),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: ref.watch(similarProductsProvider(widget.productId)).when(
+            data: (data) {
+              if (data.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20, top: 10),
+                  child: Center(
+                    child: Text(
+                      'No similar items available yet',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                );
+              }
+              return DisplaySection(
+                products: data,
+              );
+            },
+            error: (e, _) => Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(e.toString()),
+                  TextButton.icon(
+                    onPressed: () {
+                      // log(e.toString(), stackTrace: _);
+                      ref.invalidate(allProductProvider);
+                    },
+                    label: const Text('Retry'),
+                    icon: const Icon(Icons.refresh_rounded),
+                  ),
+                ],
+              ),
+            ),
+            loading: () => const LoadingWidget(
+              height: 50,
+            ),
+          ),
     );
   }
 

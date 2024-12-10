@@ -10,10 +10,12 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../widgets/SearchWidget.dart';
+import '../widgets/card.dart';
 import '../widgets/display_section.dart';
 import '../widgets/gap.dart';
 
 final selectedTabProvider = StateProvider<int>((ref) => 0);
+final refreshingHome = StateProvider<bool>((ref) => false);
 
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
@@ -28,7 +30,10 @@ class HomeScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: RefreshIndicator(
-            onRefresh: () => ref.refresh(allProductProvider.future),
+            onRefresh: () async {
+              ref.read(refreshingHome.notifier).state = true;
+              ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+            },
             child: CustomScrollView(
               controller: homeScrollController,
               slivers: [
@@ -60,13 +65,22 @@ class HomeScreen extends ConsumerWidget {
                 SliverToBoxAdapter(
                   child: _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
                 ),
-                SliverFillRemaining(
-                  child: ref.watch(allProductProvider).when(
-                      data: (products) => DisplaySection(
-                            products: products,
-                            isScrollable: true,
+                ref.watch(allProductProvider).when(
+                    skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                    data: (products) => SliverGrid.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.572,
                           ),
-                      error: (e, _) => Center(
+                          itemCount: products.length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(product: products[index]);
+                          },
+                        ),
+                    error: (e, _) => SliverToBoxAdapter(
+                          child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
@@ -83,8 +97,33 @@ class HomeScreen extends ConsumerWidget {
                               ],
                             ),
                           ),
-                      loading: () => const LoadingWidget()),
-                ),
+                        ),
+                    loading: () => const SliverToBoxAdapter(child: LoadingWidget())),
+                // SliverFillRemaining(
+                //   child: ref.watch(allProductProvider).when(
+                //       data: (products) => DisplaySection(
+                //             products: products,
+                //             isScrollable: true,
+                //           ),
+                //       error: (e, _) => Center(
+                //             child: Column(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               mainAxisSize: MainAxisSize.min,
+                //               children: [
+                //                 Text(e.toString()),
+                //                 TextButton.icon(
+                //                   onPressed: () {
+                //                     // log(e.toString(), stackTrace: _);
+                //                     ref.invalidate(allProductProvider);
+                //                   },
+                //                   label: const Text('Retry'),
+                //                   icon: const Icon(Icons.refresh_rounded),
+                //                 ),
+                //               ],
+                //             ),
+                //           ),
+                //       loading: () => const LoadingWidget()),
+                // ),
                 // Container(
                 //   padding: const EdgeInsets.all(10),
                 //   child: const Column(

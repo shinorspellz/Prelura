@@ -217,6 +217,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
             Text(
               widget.product.name,
               style: Theme.of(context).textTheme.bodyMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             if (widget.product.condition != null) ...[
               Text(

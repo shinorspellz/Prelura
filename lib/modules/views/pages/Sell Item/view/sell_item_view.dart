@@ -373,6 +373,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             size: state.size!,
                             category: int.parse(state.category!.id.toString()),
                             subCategory: int.parse(state.subCategory!.id.toString()),
+                            color: state.selectedColors,
+                            brandId: state.brand!.id,
                           );
                       ref.read(productProvider).whenOrNull(
                             error: (e, _) => context.alert(e.toString()),
