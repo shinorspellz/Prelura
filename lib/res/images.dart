@@ -66,4 +66,8 @@ class PreluraIcons {
   static const String webp_xmas = "assets/images/xmas.webp";
   static const String webp_season = "assets/images/season.webp";
   static const String webp_jumpers = "assets/images/jumpers.webp";
+  static const String men_svg = "assets/svgs/men.svg";
+  static const String women_svg = "assets/svgs/women.svg";
+  static const String lipstick_svg = "assets/svgs/lipstick.svg";
+  static const String electronics_svg = "assets/svgs/electronics.svg";
 }
