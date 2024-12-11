@@ -86,7 +86,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     }).onError((error, stackTrace) async {
       //print('888^^^0000 $error');
       setState(() {
-        isLoading = true;
+        isLoading = false;
       });
       if (showDialog) {
         final String newError = error.toString();
@@ -217,33 +217,55 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
           child: PreluraButtonWithLoader(
             showLoadingIndicator: isLoading,
             onPressed: () async {
-              setState(() {
-                isLoading = true;
-              });
-              if(long == 0 && lat == 0){
-              await getLongLat(showDialog: true);
-              }
-              print('lat: $lat, long: $long');
+              try {
+                if (locationController.text.isEmpty) {
+                  context.alert('Location cannot be empty');
+                  return;
+                }
+                setState(() {
+                  isLoading = true;
+                });
 
-              await ref.read(userNotfierProvider.notifier).updateProfile(
+                if ((long == 0.0 && lat == 0.0)) {
+                  await getLongLat(showDialog: true);
+                }
+
+                if (long == 0.0 || lat == 0.0) {
+                  throw Exception('Invalid location coordinates');
+                }
+
+                await ref.read(userNotfierProvider.notifier).updateProfile(
                       location: Input$LocationInputType(
-                    longitude: long.toString(),
-                    latitude: lat.toString(),
-                    locationName: locationController.text,
-                  ));
-              ref.read(userNotfierProvider).whenOrNull(
-                    error: (e, _) =>
-                        context.alert('An error occured while updating'),
-                    data: (_) {
-                      setState(() {
-                        isLoading = false;
-                      });
-                      Navigator.pop(context);
-                      HelperFunction.context = context;
-                      HelperFunction.showToast(message: 'Location updated!');
-                    },
-                  );
+                        longitude: long.toString(),
+                        latitude: lat.toString(),
+                        locationName: locationController.text,
+                      ),
+                    );
+
+                ref.read(userNotfierProvider).whenOrNull(
+                      error: (e, _) => context.alert('An error occurred: $e'),
+                      data: (_) {
+                        setState(() {
+                          isLoading = false;
+                        });
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                          HelperFunction.context = context;
+                          HelperFunction.showToast(
+                              message: 'Location updated!');
+                        }
+                      },
+                    );
+              } catch (e, stackTrace) {
+                setState(() {
+                  isLoading = false;
+                });
+                print('Update failed: $e');
+                print(stackTrace);
+                context.alert('Failed to update profile: $e');
+              }
             },
+
             buttonTitle: 'Update',
             // width: MediaQuery.sizeOf(context).width,
           ),
