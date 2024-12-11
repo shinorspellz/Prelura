@@ -125,6 +125,176 @@ class _CopyWithStubImpl$Input$ImagesInputType<TRes>
       _res;
 }
 
+class Input$LocationInputType {
+  factory Input$LocationInputType({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  }) =>
+      Input$LocationInputType._({
+        if (latitude != null) r'latitude': latitude,
+        if (longitude != null) r'longitude': longitude,
+        if (locationName != null) r'locationName': locationName,
+      });
+
+  Input$LocationInputType._(this._$data);
+
+  factory Input$LocationInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('latitude')) {
+      final l$latitude = data['latitude'];
+      result$data['latitude'] = (l$latitude as String?);
+    }
+    if (data.containsKey('longitude')) {
+      final l$longitude = data['longitude'];
+      result$data['longitude'] = (l$longitude as String?);
+    }
+    if (data.containsKey('locationName')) {
+      final l$locationName = data['locationName'];
+      result$data['locationName'] = (l$locationName as String?);
+    }
+    return Input$LocationInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get latitude => (_$data['latitude'] as String?);
+
+  String? get longitude => (_$data['longitude'] as String?);
+
+  String? get locationName => (_$data['locationName'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('latitude')) {
+      final l$latitude = latitude;
+      result$data['latitude'] = l$latitude;
+    }
+    if (_$data.containsKey('longitude')) {
+      final l$longitude = longitude;
+      result$data['longitude'] = l$longitude;
+    }
+    if (_$data.containsKey('locationName')) {
+      final l$locationName = locationName;
+      result$data['locationName'] = l$locationName;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$LocationInputType<Input$LocationInputType> get copyWith =>
+      CopyWith$Input$LocationInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$LocationInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latitude = latitude;
+    final lOther$latitude = other.latitude;
+    if (_$data.containsKey('latitude') !=
+        other._$data.containsKey('latitude')) {
+      return false;
+    }
+    if (l$latitude != lOther$latitude) {
+      return false;
+    }
+    final l$longitude = longitude;
+    final lOther$longitude = other.longitude;
+    if (_$data.containsKey('longitude') !=
+        other._$data.containsKey('longitude')) {
+      return false;
+    }
+    if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (_$data.containsKey('locationName') !=
+        other._$data.containsKey('locationName')) {
+      return false;
+    }
+    if (l$locationName != lOther$locationName) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$latitude = latitude;
+    final l$longitude = longitude;
+    final l$locationName = locationName;
+    return Object.hashAll([
+      _$data.containsKey('latitude') ? l$latitude : const {},
+      _$data.containsKey('longitude') ? l$longitude : const {},
+      _$data.containsKey('locationName') ? l$locationName : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$LocationInputType<TRes> {
+  factory CopyWith$Input$LocationInputType(
+    Input$LocationInputType instance,
+    TRes Function(Input$LocationInputType) then,
+  ) = _CopyWithImpl$Input$LocationInputType;
+
+  factory CopyWith$Input$LocationInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$LocationInputType;
+
+  TRes call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  });
+}
+
+class _CopyWithImpl$Input$LocationInputType<TRes>
+    implements CopyWith$Input$LocationInputType<TRes> {
+  _CopyWithImpl$Input$LocationInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$LocationInputType _instance;
+
+  final TRes Function(Input$LocationInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latitude = _undefined,
+    Object? longitude = _undefined,
+    Object? locationName = _undefined,
+  }) =>
+      _then(Input$LocationInputType._({
+        ..._instance._$data,
+        if (latitude != _undefined) 'latitude': (latitude as String?),
+        if (longitude != _undefined) 'longitude': (longitude as String?),
+        if (locationName != _undefined)
+          'locationName': (locationName as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$LocationInputType<TRes>
+    implements CopyWith$Input$LocationInputType<TRes> {
+  _CopyWithStubImpl$Input$LocationInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  }) =>
+      _res;
+}
+
 class Input$PhoneInputType {
   factory Input$PhoneInputType({
     required String countryCode,

@@ -124,6 +124,12 @@ type LikeProduct {
   success: Boolean
 }
 
+input LocationInputType {
+  latitude: String
+  longitude: String
+  locationName: String
+}
+
 type LoginMutation {
   user: UserType
   token: String
@@ -149,6 +155,7 @@ type Mutation {
     firstName: String
     gender: String
     lastName: String
+    location: LocationInputType
 
     """
     The one-time password (OTP) code that the user must provide to verify their

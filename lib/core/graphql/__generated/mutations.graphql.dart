@@ -5810,6 +5810,7 @@ class Variables$Mutation$UpdateProfile {
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   }) =>
       Variables$Mutation$UpdateProfile._({
         if (bio != null) r'bio': bio,
@@ -5826,6 +5827,7 @@ class Variables$Mutation$UpdateProfile {
         if (thumbnailUrl != null) r'thumbnailUrl': thumbnailUrl,
         if (use2fa != null) r'use2fa': use2fa,
         if (username != null) r'username': username,
+        if (location != null) r'location': location,
       });
 
   Variables$Mutation$UpdateProfile._(this._$data);
@@ -5892,6 +5894,13 @@ class Variables$Mutation$UpdateProfile {
       final l$username = data['username'];
       result$data['username'] = (l$username as String?);
     }
+    if (data.containsKey('location')) {
+      final l$location = data['location'];
+      result$data['location'] = l$location == null
+          ? null
+          : Input$LocationInputType.fromJson(
+              (l$location as Map<String, dynamic>));
+    }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
 
@@ -5925,6 +5934,9 @@ class Variables$Mutation$UpdateProfile {
   bool? get use2fa => (_$data['use2fa'] as bool?);
 
   String? get username => (_$data['username'] as String?);
+
+  Input$LocationInputType? get location =>
+      (_$data['location'] as Input$LocationInputType?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -5983,6 +5995,10 @@ class Variables$Mutation$UpdateProfile {
     if (_$data.containsKey('username')) {
       final l$username = username;
       result$data['username'] = l$username;
+    }
+    if (_$data.containsKey('location')) {
+      final l$location = location;
+      result$data['location'] = l$location?.toJson();
     }
     return result$data;
   }
@@ -6122,6 +6138,15 @@ class Variables$Mutation$UpdateProfile {
     if (l$username != lOther$username) {
       return false;
     }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (_$data.containsKey('location') !=
+        other._$data.containsKey('location')) {
+      return false;
+    }
+    if (l$location != lOther$location) {
+      return false;
+    }
     return true;
   }
 
@@ -6141,6 +6166,7 @@ class Variables$Mutation$UpdateProfile {
     final l$thumbnailUrl = thumbnailUrl;
     final l$use2fa = use2fa;
     final l$username = username;
+    final l$location = location;
     return Object.hashAll([
       _$data.containsKey('bio') ? l$bio : const {},
       _$data.containsKey('country') ? l$country : const {},
@@ -6156,6 +6182,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('thumbnailUrl') ? l$thumbnailUrl : const {},
       _$data.containsKey('use2fa') ? l$use2fa : const {},
       _$data.containsKey('username') ? l$username : const {},
+      _$data.containsKey('location') ? l$location : const {},
     ]);
   }
 }
@@ -6184,6 +6211,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   });
 }
 
@@ -6215,6 +6243,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? thumbnailUrl = _undefined,
     Object? use2fa = _undefined,
     Object? username = _undefined,
+    Object? location = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProfile._({
         ..._instance._$data,
@@ -6235,6 +6264,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
           'thumbnailUrl': (thumbnailUrl as String?),
         if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
         if (username != _undefined) 'username': (username as String?),
+        if (location != _undefined)
+          'location': (location as Input$LocationInputType?),
       }));
 }
 
@@ -6259,6 +6290,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   }) =>
       _res;
 }
@@ -6532,6 +6564,15 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'location')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'LocationInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -6594,6 +6635,10 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'username'),
             value: VariableNode(name: NameNode(value: 'username')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'location'),
+            value: VariableNode(name: NameNode(value: 'location')),
           ),
         ],
         directives: [],

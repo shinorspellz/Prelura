@@ -146,6 +146,7 @@ mutation UpdateProfile(
   $thumbnailUrl: String
   $use2fa: Boolean
   $username: String
+  $location: LocationInputType
 ) {
   updateProfile(
     bio: $bio
@@ -162,6 +163,7 @@ mutation UpdateProfile(
     thumbnailUrl: $thumbnailUrl
     use2fa: $use2fa
     username: $username
+    location: $location
   ) {
     message
   }
