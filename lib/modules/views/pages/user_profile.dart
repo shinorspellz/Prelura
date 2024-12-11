@@ -12,15 +12,18 @@ import 'Profile Details/provider/tab_controller.dart';
 @RoutePage()
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
+  static final ScrollController menuScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ProfileScreen.menuScrollController;
     return Scaffold(
       appBar: const PreluraAppBar(
         appbarTitle: "Profile",
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
+        controller: controller,
         child: Column(children: [
           const ProfileStatsCard(),
           MenuCard(

@@ -107,12 +107,17 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                   itemCount: widget.subCategories.length,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
+                    final svgPath = PreluraIcons.getConstant(
+                        widget.subCategories[index].name);
                     return MenuCard(
                         title: widget.subCategories[index].name,
-                        icon: const Icon(
-                          Icons.settings,
-                          color: PreluraColors.activeColor,
-                        ),
+                        svgPath: svgPath != "" ? svgPath : null,
+                        icon: svgPath == ""
+                            ? const Icon(
+                                Icons.settings,
+                                color: PreluraColors.activeColor,
+                              )
+                            : null,
                         onTap: () {
                           ref
                               .read(sellItemProvider.notifier)

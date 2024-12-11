@@ -15,7 +15,8 @@ class ObscureTextNotifier extends StateNotifier<bool> {
 }
 
 // Provider for the ObscureTextNotifier
-final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>((ref) => ObscureTextNotifier());
+final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>(
+    (ref) => ObscureTextNotifier());
 
 @RoutePage()
 class ProfileSettingScreen extends ConsumerWidget {
@@ -28,7 +29,8 @@ class ProfileSettingScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "Profile Settings",
@@ -57,6 +59,12 @@ class ProfileSettingScreen extends ConsumerWidget {
               hintText: 'e.g. app@prelura.com',
             ),
             addVerticalSpacing(16),
+            _buildAuthTextField(
+              context,
+              label: 'Location',
+              hintText: 'e.g. Exter, United Kingdom',
+            ),
+            addVerticalSpacing(16),
             PreluraAuthTextField(
               label: 'Password',
               labelStyle: _labelStyle(context),
@@ -66,9 +74,12 @@ class ProfileSettingScreen extends ConsumerWidget {
               onChanged: (value) {},
               suffixIcon: IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () => ref.read(obscureTextProvider.notifier).toggle(),
+                onPressed: () =>
+                    ref.read(obscureTextProvider.notifier).toggle(),
                 icon: RenderSvg(
-                  svgPath: obscureText ? PreluraIcons.eyeIcon : PreluraIcons.eyeSlashOutline,
+                  svgPath: obscureText
+                      ? PreluraIcons.eyeIcon
+                      : PreluraIcons.eyeSlashOutline,
                 ),
               ),
             ),
@@ -93,10 +104,16 @@ class ProfileSettingScreen extends ConsumerWidget {
   }
 
   TextStyle? _labelStyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
+    return Theme.of(context)
+        .textTheme
+        .bodyMedium
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
   }
 
   TextStyle? _hintStyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
+    return Theme.of(context)
+        .textTheme
+        .bodyMedium
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
   }
 }

@@ -13,6 +13,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
 
+import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import '../widgets/card.dart';
 import '../widgets/display_section.dart';
@@ -65,7 +66,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: RefreshIndicator(
             onRefresh: () async {
               ref.read(refreshingHome.notifier).state = true;
-              ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+              ref
+                  .refresh(allProductProvider.future)
+                  .then((_) => ref.read(refreshingHome.notifier).state = false);
             },
             child: CustomScrollView(
               controller: controller,
@@ -81,8 +84,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               scale: 6,
                               child: GestureDetector(
                                 onTap: () {
-                                  ref.read(refreshingHome.notifier).state = true;
-                                  ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+                                  ref.read(refreshingHome.notifier).state =
+                                      true;
+                                  ref.refresh(allProductProvider.future).then(
+                                      (_) => ref
+                                          .read(refreshingHome.notifier)
+                                          .state = false);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -96,7 +103,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: GestureDetector(
-                              onTap: () => context.pushRoute(const MyFavouriteRoute()),
+                              onTap: () =>
+                                  context.pushRoute(const MyFavouriteRoute()),
                               child: const Icon(
                                 Icons.favorite,
                                 size: 30,
@@ -136,12 +144,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   )),
                 ),
                 SliverToBoxAdapter(
-                  child: _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
+                  child: _buildSectionTitle('Collection from Seller',
+                      "Items selected by amyleeliu", context),
                 ),
                 ref.watch(allProductProvider).when(
                     skipLoadingOnRefresh: !ref.watch(refreshingHome),
                     data: (products) => SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -171,7 +181,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             ),
                           ),
                         ),
-                    loading: () => const SliverToBoxAdapter(child: LoadingWidget())),
+                    loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 if (ref.watch(allProductProvider.notifier).canLoadMore())
                   if (!ref.watch(allProductProvider).isLoading)
                     const SliverToBoxAdapter(
@@ -252,7 +262,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 122.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
@@ -276,13 +287,23 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
           },
           child: Container(
             padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: selectedTab == index ? PreluraColors.activeColor : Colors.transparent))),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        width: 1,
+                        color: selectedTab == index
+                            ? PreluraColors.activeColor
+                            : Colors.transparent))),
             child: Center(
               child: Text(
                 tabs[index],
                 style: TextStyle(
-                  color: selectedTab == index ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyColor,
-                  fontWeight: selectedTab == index ? FontWeight.bold : FontWeight.normal,
+                  color: selectedTab == index
+                      ? Theme.of(context).textTheme.bodyMedium?.color
+                      : PreluraColors.greyColor,
+                  fontWeight: selectedTab == index
+                      ? FontWeight.bold
+                      : FontWeight.normal,
                 ),
               ),
             ),
@@ -293,7 +314,8 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
   );
 }
 
-Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context) {
+Widget _buildSectionTitle(
+    String MainTitle, String subtitle, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10),
     child: Row(
@@ -317,7 +339,10 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
             ),
           ],
         ),
-        TextButton(onPressed: () {}, child: Text("See All", style: Theme.of(context).textTheme.bodySmall))
+        TextButton(
+            onPressed: () {},
+            child:
+                Text("See All", style: Theme.of(context).textTheme.bodySmall))
       ],
     ),
   );
