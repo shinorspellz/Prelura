@@ -86,7 +86,7 @@ class PreluraIcons {
   static const String lipstick_svg = "assets/svgs/lipstick.svg";
   static const String foundation_svg = "assets/svgs/foundation.svg";
   static const String blush_svg = "assets/svgs/blush.svg";
-  static const String eye_shadow_svg = "assets/svgs/eyeshadow.svg";
+  static const String eye_shadow_svg = "assets/svgs/eye shadow.svg";
   static const String mascara_svg = "assets/svgs/mascara.svg";
   static const String lip_balm_svg = "assets/svgs/lip balm.svg";
   static const String make_up_scg = "assets/svgs/make up.svg";
@@ -115,6 +115,13 @@ class PreluraIcons {
   static const String anti_aging_svg = "assets/svgs/anti aging.svg";
   static const String after_shave_svg = "assets/svgs/after shave.svg";
   static const String beard_care_svg = "assets/svgs/beard care.svg";
+  static const String moisturizer_svg = "assets/svgs/moisturizer.svg";
+  static const String men_grooming_svg = "assets/svgs/men grooming.svg";
+  static const String serum_svg = "assets/svgs/serums.svg";
+  static const String sunscreen_svg = "assets/svgs/sunscreen.svg";
+  static const String make_up_brush_svg = "assets/svgs/make up blush.svg";
+  static const String make_up_remover_svg = "assets/svgs/make up remover.svg";
+  
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -158,6 +165,14 @@ class PreluraIcons {
       'deodorant': deodorant_svg,
       'cream': cream_svg,
       'curling irons': curling_irons_svg,
+      'hair oil': hair_oil_svg,
+      'anti aging': anti_aging_svg,
+      'aftershave': after_shave_svg,
+      'beard care': beard_care_svg,
+      'moisturizer': moisturizer_svg,
+      'men grooming': men_grooming_svg,
+      'serums': serum_svg,
+      'sunscreen': sunscreen_svg,
 
       // Add the rest of the constants here...
     };
