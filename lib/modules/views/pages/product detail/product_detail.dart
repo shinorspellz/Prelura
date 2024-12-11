@@ -34,12 +34,10 @@ class ProductDetailScreen extends ConsumerStatefulWidget {
   const ProductDetailScreen({super.key, required this.productId});
 
   @override
-  ConsumerState<ProductDetailScreen> createState() =>
-      _ProductDetailScreenState();
+  ConsumerState<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
 
-class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
-    with SingleTickerProviderStateMixin {
+class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with SingleTickerProviderStateMixin {
   int _currentPage = 0;
   double showAppBar = 0;
   late TabController _tabController;
@@ -79,8 +77,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     return Scaffold(
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
-              bool isCurrentUser = product.seller.username ==
-                  ref.read(userProvider).valueOrNull?.username;
+              bool isCurrentUser = product.seller.username == ref.read(userProvider).valueOrNull?.username;
 
               void showOptionModal() => VBottomSheetComponent.actionBottomSheet(
                     context: context,
@@ -96,16 +93,12 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                             Navigator.pop(context);
                             showDialog(
                                 context: context,
-                                builder: (context) =>
-                                    Consumer(builder: (context, ref, _) {
+                                builder: (context) => Consumer(builder: (context, ref, _) {
                                       return AlertDialog.adaptive(
                                         title: const Text('Delete Product'),
-                                        content: const Text(
-                                            'This product would be deleted parmanently, are you sure you want to delete ?'),
+                                        content: const Text('This product would be deleted parmanently, are you sure you want to delete ?'),
                                         actions: [
-                                          if (ref
-                                              .watch(productProvider)
-                                              .isLoading)
+                                          if (ref.watch(productProvider).isLoading)
                                             const Padding(
                                               padding: EdgeInsets.only(top: 12),
                                               child: UnconstrainedBox(
@@ -118,24 +111,12 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                           else
                                             TextButton(
                                                 onPressed: () async {
-                                                  await ref
-                                                      .read(productProvider
-                                                          .notifier)
-                                                      .deleteProduct(
-                                                          widget.productId);
-                                                  ref
-                                                      .read(productProvider)
-                                                      .whenOrNull(
-                                                        error: (e, _) =>
-                                                            context.alert(
-                                                                'An error occured deleting product'),
+                                                  await ref.read(productProvider.notifier).deleteProduct(widget.productId);
+                                                  ref.read(productProvider).whenOrNull(
+                                                        error: (e, _) => context.alert('An error occured deleting product'),
                                                         data: (_) {
-                                                          HelperFunction
-                                                                  .context =
-                                                              context;
-                                                          HelperFunction.showToast(
-                                                              message:
-                                                                  "product deleted successfully");
+                                                          HelperFunction.context = context;
+                                                          HelperFunction.showToast(message: "product deleted successfully");
                                                           Navigator.of(context)
                                                             ..pop()
                                                             ..pop();
@@ -143,10 +124,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                       );
                                                 },
                                                 child: const Text('Delete')),
-                                          TextButton(
-                                              onPressed: () =>
-                                                  Navigator.pop(context),
-                                              child: const Text('Dismiss')),
+                                          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Dismiss')),
                                         ],
                                       );
                                     }));
@@ -159,16 +137,14 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 bottomNavigationBar: isCurrentUser
                     ? null
                     : Padding(
-                        padding: const EdgeInsets.only(
-                            left: 16.0, bottom: 32, right: 16, top: 16),
+                        padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
                         child: Row(
                           children: [
                             Expanded(
                               child: AppButton(
                                 onTap: () {},
                                 text: "Make an Offer",
-                                bgColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                                bgColor: Theme.of(context).scaffoldBackgroundColor,
                                 borderColor: Colors.purple,
                                 textColor: Colors.purple,
                               ),
@@ -178,8 +154,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               child: AppButton(
                                 onTap: () {},
                                 text: "Buy now",
-                                textColor:
-                                    Theme.of(context).scaffoldBackgroundColor,
+                                textColor: Theme.of(context).scaffoldBackgroundColor,
                                 borderColor: Colors.purple,
                               ),
                             ),
@@ -222,14 +197,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   onTap: () async {
                                     final userLiked = !product.userLiked;
 
-                                    ref
-                                        .read(productProvider.notifier)
-                                        .likeProduct(
+                                    ref.read(productProvider.notifier).likeProduct(
                                           int.parse(product.id),
                                           userLiked,
-                                          userLiked
-                                              ? product.likes + 1
-                                              : product.likes - 1,
+                                          userLiked ? product.likes + 1 : product.likes - 1,
                                         );
                                     // Update state using providers
                                     // final isLiked = await ref.read(toggleLikeProductProvider(int.parse(product.id)).future);
@@ -242,42 +213,25 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                     // ref.refresh(getProductProvider(widget.productId));
                                   },
                                   child: Container(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, bottom: 5, left: 8, right: 8),
+                                    padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
                                     decoration: BoxDecoration(
                                       color: PreluraColors.blackCardColor,
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Circular radius
+                                      borderRadius: BorderRadius.circular(8), // Circular radius
                                     ),
                                     child: Row(
                                       children: [
-                                        Icon(
-                                            product.userLiked
-                                                ? Icons.favorite
-                                                : Icons
-                                                    .favorite_border_outlined,
-                                            size: 17,
-                                            color: PreluraColors.white),
+                                        Icon(product.userLiked ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
                                         const SizedBox(width: 5),
                                         Text(
                                           '${product.likes}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall
-                                              ?.copyWith(
-                                                  color: PreluraColors.white),
+                                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
                                         ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                  bottom: 15,
-                                  right: 0,
-                                  left: 0,
-                                  child: carouselIndicator(
-                                      product.imagesUrl.length)),
+                              Positioned(bottom: 15, right: 0, left: 0, child: carouselIndicator(product.imagesUrl.length)),
                               Positioned(
                                   top: showAppBar == 1 ? 40 : 60,
                                   left: 15,
@@ -285,8 +239,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   child: VisibilityDetector(
                                     key: UniqueKey(),
                                     onVisibilityChanged: (visibilityInfo) {
-                                      var visiblePercentage =
-                                          visibilityInfo.visibleFraction * 100;
+                                      var visiblePercentage = visibilityInfo.visibleFraction * 100;
                                       if (visiblePercentage > 40) {
                                         if (!context.mounted) return;
                                         // 1 =
@@ -294,22 +247,19 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                         setState(() {});
                                       } else {
                                         if (!context.mounted) return;
-                                        showAppBar =
-                                            1 - (visiblePercentage / 40);
+                                        showAppBar = 1 - (visiblePercentage / 40);
                                         setState(() {});
                                       }
                                     },
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         InkWell(
                                           onTap: () {
                                             Navigator.pop(context);
                                           },
                                           child: CircleAvatar(
-                                            backgroundColor: PreluraColors.black
-                                                .withOpacity(0.2),
+                                            backgroundColor: PreluraColors.black.withOpacity(0.2),
                                             child: Icon(
                                               Icons.arrow_back,
                                               color: PreluraColors.white,
@@ -321,14 +271,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                           InkWell(
                                             onTap: () => showOptionModal(),
                                             child: CircleAvatar(
-                                              backgroundColor: PreluraColors
-                                                  .black
-                                                  .withOpacity(0.2),
+                                              backgroundColor: PreluraColors.black.withOpacity(0.2),
                                               child: Icon(
                                                 Icons.more_vert_rounded,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
+                                                color: Theme.of(context).iconTheme.color,
                                               ),
                                             ),
                                           )
@@ -373,8 +319,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                           TabBar(
                             controller: _tabController,
                             indicatorColor: PreluraColors.activeColor,
-                            unselectedLabelColor: PreluraColors
-                                .greyLightColor, // Text color for inactive tabs
+                            unselectedLabelColor: PreluraColors.greyLightColor, // Text color for inactive tabs
                             labelStyle: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16, // Font size for the active tab
@@ -401,10 +346,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                             duration: const Duration(milliseconds: 340),
                             child: PreluraAppBar(
                               appBarHeight: 50,
-                              leadingIcon: IconButton(
-                                  icon: Icon(Icons.arrow_back,
-                                      color: Theme.of(context).iconTheme.color),
-                                  onPressed: () => Navigator.pop(context)),
+                              leadingIcon: IconButton(icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color), onPressed: () => Navigator.pop(context)),
                               appbarTitle: product.name,
                               trailingIcon: [
                                 if (isCurrentUser)
@@ -412,8 +354,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                       onPressed: () => showOptionModal(),
                                       icon: Icon(
                                         Icons.more_vert_rounded,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
+                                        color: Theme.of(context).iconTheme.color,
                                       )),
                               ],
                             ),
@@ -586,11 +527,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
               margin: const EdgeInsets.only(right: 5),
               height: _currentPage == i ? 7 : 5,
               width: _currentPage == i ? 7 : 5,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _currentPage == i
-                      ? PreluraColors.activeColor
-                      : PreluraColors.black),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: _currentPage == i ? PreluraColors.activeColor : PreluraColors.black),
             )
         ],
       ),

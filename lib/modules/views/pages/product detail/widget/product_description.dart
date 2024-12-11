@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:sizer/sizer.dart';
 
@@ -79,7 +80,18 @@ class ProductDescription extends ConsumerWidget {
           ),
           if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
           if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
-          if (product.brand != null) _buildInfoRow("Brand", product.brand!.name, context),
+          if (product.brand != null)
+            _buildInfoRow("Brand", product.brand!.name, context,
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: PreluraColors.activeColor,
+                )),
+          if (product.materials != null)
+            if (product.materials!.isNotEmpty)
+              _buildInfoRow(
+                "Material",
+                product.materials!.map((e) => e.name).join(', '),
+                context,
+              ),
 
           if (product.size != null) _buildInfoRow("Size", product.size!.name.replaceAll('_', ' '), context),
           if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
@@ -218,7 +230,7 @@ class ProductDescription extends ConsumerWidget {
     return description;
   }
 
-  Widget _buildInfoRow(String label, String value, context) {
+  Widget _buildInfoRow(String label, String value, context, {TextStyle? style}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
       decoration: BoxDecoration(
@@ -239,7 +251,7 @@ class ProductDescription extends ConsumerWidget {
           ),
           Text(
             value,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(),
           ),
         ],
       ),

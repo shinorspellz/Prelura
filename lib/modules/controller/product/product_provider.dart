@@ -114,6 +114,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     double? discount,
     int? brandId,
     List<String>? color,
+    List<int>? materials,
   }) async {
     state = const AsyncLoading();
 
@@ -133,6 +134,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           discount: discount,
           brand: brandId,
           color: color,
+          materials: materials,
         ),
       );
       ref.invalidate(userProduct);
@@ -153,6 +155,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     double? discount,
     int? brandId,
     List<String>? color,
+    List<int>? materials,
   }) async {
     state = const AsyncLoading();
 
@@ -172,6 +175,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           discount: discount,
           brand: brandId,
           color: color,
+          materials: materials,
         ),
       );
       ref.invalidate(userProduct);
