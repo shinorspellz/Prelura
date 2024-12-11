@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
+import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
 import '../provider/sell_item_provider.dart';
@@ -55,7 +56,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -92,12 +94,15 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                 value: brands[index].name,
                                 groupValue: selectedBrand?.name,
                                 onChanged: (value) {
-                                  ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                                  ref
+                                      .read(sellItemProvider.notifier)
+                                      .selectBrand(brands[index]);
                                   context.back();
                                 },
                               );
                             },
-                            childCount: brands.length, // Number of items in the list
+                            childCount:
+                                brands.length, // Number of items in the list
                           ),
                         ),
                         error: (e, _) => SliverToBoxAdapter(
@@ -108,7 +113,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                               children: [
                                 Text(e.toString()),
                                 TextButton.icon(
-                                  onPressed: () => ref.invalidate(brandsProvider),
+                                  onPressed: () =>
+                                      ref.invalidate(brandsProvider),
                                   label: const Text('Retry'),
                                   icon: const Icon(Icons.refresh_rounded),
                                 ),
@@ -116,8 +122,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                             ),
                           ),
                         ),
-                        loading: () => const SliverToBoxAdapter(
-                          child: LoadingWidget(),
+                        loading: () => SliverToBoxAdapter(
+                          child: GridMenuCardShimmer(),
                         ),
                       ),
                 ] else
@@ -129,7 +135,9 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                           value: brands[index].name,
                           groupValue: selectedBrand?.name,
                           onChanged: (value) {
-                            ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                            ref
+                                .read(sellItemProvider.notifier)
+                                .selectBrand(brands[index]);
                             context.back();
                           },
                         );
@@ -158,9 +166,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 ],
               ),
             ),
-            loading: () => const Center(
-              child: LoadingWidget(),
-            ),
+            loading: () => GridMenuCardShimmer(),
           ),
     );
   }

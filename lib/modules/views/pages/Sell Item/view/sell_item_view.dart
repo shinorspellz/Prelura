@@ -92,7 +92,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Text('Unsaved Changes'),
-                      content: const Text('You have unsaved changes. Do you want to save them as a draft or discard them?'),
+                      content: const Text(
+                          'You have unsaved changes. Do you want to save them as a draft or discard them?'),
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -153,7 +154,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           color: Theme.of(context).dividerColor,
                         ),
                         borderRadius: BorderRadius.circular(10)),
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 16),
                     child: GestureDetector(
                       onTap: () => notifier.addImages(),
                       child: ClipRRect(
@@ -161,7 +163,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         child: Container(
                           child: Column(
                             children: [
-                              Icon(Icons.add_circle, size: 48.sp),
+                              Icon(
+                                Icons.add_circle,
+                                size: 48.sp,
+                                color: PreluraColors.grey,
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -170,19 +176,24 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 children: [
                                   const Text(
                                     'Add up to 20 photos.',
-                                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 14),
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
                                   Text(
                                     "See more photo tips",
-                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 10.sp,
                                           color: PreluraColors.activeColor,
                                           decoration: TextDecoration.underline,
-                                          decorationColor: PreluraColors.activeColor,
+                                          decorationColor:
+                                              PreluraColors.activeColor,
                                           decorationThickness: 2,
                                         ),
                                   ),
@@ -197,7 +208,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 ],
                 if (state.images.isNotEmpty) ...[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: SizedBox(
                       height: 130,
                       child: SingleChildScrollView(
@@ -224,12 +235,17 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               children: state.images
                                   .map((image) => Container(
                                         key: ValueKey(image),
-                                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.transparent),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            color: Colors.transparent),
                                         child: Stack(
                                           children: [
                                             ClipRRect(
-                                              borderRadius: BorderRadius.circular(8), // Match the Container's border radius
+                                              borderRadius: BorderRadius.circular(
+                                                  8), // Match the Container's border radius
                                               child: Image.file(
                                                 File(image.path),
                                                 fit: BoxFit.cover,
@@ -244,11 +260,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                     //use VIcons here
                                                     icon: RenderSvg(
                                                       // svgPath: VIcons.trashIcon,
-                                                      svgPath: PreluraIcons.removeIcon,
-                                                      color: PreluraColors.white,
+                                                      svgPath: PreluraIcons
+                                                          .removeIcon,
+                                                      color:
+                                                          PreluraColors.white,
                                                     ),
                                                     color: PreluraColors.white,
-                                                    onPressed: () {}),
+                                                    onPressed: () {
+                                                      notifier
+                                                          .deleteImage(image);
+                                                    }),
                                               ),
                                           ],
                                         ),
@@ -281,9 +302,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       children: [
                         PreluraAuthTextField(
                           label: 'Title',
-                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                          labelStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w400),
                           hintText: 'e.g. White COS Jumper',
-                          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w400),
                           onChanged: notifier.updateTitle,
                           controller: titleController,
                         ),
@@ -292,11 +319,19 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           label: 'Describe your item',
                           textInputAction: TextInputAction.done,
                           focusNode: _descriptionfocusNode,
-                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 17),
+                          labelStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.w400, fontSize: 17),
                           hintText: 'e.g. only worn a few times, true to size',
                           minLines: 6,
                           maxLines: null,
-                          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  fontWeight: FontWeight.w400, fontSize: 18),
                           onChanged: notifier.updateDescription,
                           // focusNode: _descriptionfocusNode,
                           controller: descController,
@@ -321,11 +356,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     context.router.push(const BrandSelectionRoute());
                   },
                 ),
+
                 if (state.subCategory?.name != 'Accessories')
                   MenuCard(
                     title: 'Size',
                     rightArrow: false,
-                    subtitle: state.size?.name,
+                    subtitle: state.size?.name.replaceAll('_', ' '),
                     onTap: () {
                       context.router.push(const SizeSelectionRoute());
                     },
@@ -397,42 +433,52 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   child: ElevatedButton(
                     onPressed: () async {
                       HelperFunction.context = context;
-                      final files = state.images.map((x) => File(x.path)).toList();
+                      final files =
+                          state.images.map((x) => File(x.path)).toList();
                       if (files.isEmpty && widget.product == null) {
-                        HelperFunction.showToast(message: 'Images are required to sell product');
+                        HelperFunction.showToast(
+                            message: 'Images are required to sell product');
                         return;
                       }
 
                       if (state.category == null) {
-                        HelperFunction.showToast(message: 'Select an item category to proceed.');
+                        HelperFunction.showToast(
+                            message: 'Select an item category to proceed.');
                         return;
                       }
                       if (state.subCategory == null) {
-                        HelperFunction.showToast(message: 'Select an item sub category to proceed.');
+                        HelperFunction.showToast(
+                            message: 'Select an item sub category to proceed.');
                         return;
                       }
                       if (state.size == null) {
-                        HelperFunction.showToast(message: 'Select an size category to proceed.');
+                        HelperFunction.showToast(
+                            message: 'Select an size category to proceed.');
                         return;
                       }
                       if (state.price == null) {
-                        HelperFunction.showToast(message: 'Price is required for product.');
+                        HelperFunction.showToast(
+                            message: 'Price is required for product.');
                         return;
                       }
                       if (state.selectedCondition == null) {
-                        HelperFunction.showToast(message: 'Condition is required for product.');
+                        HelperFunction.showToast(
+                            message: 'Condition is required for product.');
                         return;
                       }
                       if (state.parcel == null) {
-                        HelperFunction.showToast(message: 'Parcel size is required for product.');
+                        HelperFunction.showToast(
+                            message: 'Parcel size is required for product.');
                         return;
                       }
                       if (state.selectedColors.isEmpty) {
-                        HelperFunction.showToast(message: 'Colors are required for product.');
+                        HelperFunction.showToast(
+                            message: 'Colors are required for product.');
                         return;
                       }
                       if (state.brand == null) {
-                        HelperFunction.showToast(message: 'A `brand` is required for product.');
+                        HelperFunction.showToast(
+                            message: 'A `brand` is required for product.');
                         return;
                       }
                       // if (state.selectedColors.) {
@@ -441,7 +487,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       // }
 
                       if (!notifier.validateInputs()) {
-                        HelperFunction.showToast(message: 'Both title and description of product are requuired');
+                        HelperFunction.showToast(
+                            message:
+                                'Both title and description of product are requuired');
                         return;
                       }
                       if (widget.product != null) {
@@ -453,8 +501,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               condition: state.selectedCondition!,
                               parcelSize: state.parcel,
                               size: state.size!,
-                              category: int.parse(state.category!.id.toString()),
-                              subCategory: int.parse(state.subCategory!.id.toString()),
+                              category:
+                                  int.parse(state.category!.id.toString()),
+                              subCategory:
+                                  int.parse(state.subCategory!.id.toString()),
                               color: state.selectedColors,
                               brandId: state.brand!.id,
                             );
@@ -480,7 +530,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             images: files,
                             size: state.size!,
                             category: int.parse(state.category!.id.toString()),
-                            subCategory: int.parse(state.subCategory!.id.toString()),
+                            subCategory:
+                                int.parse(state.subCategory!.id.toString()),
                             brandId: state.brand!.id,
                             color: state.selectedColors,
                           );

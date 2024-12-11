@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/views/pages/home.dart';
+import 'package:prelura_app/modules/views/pages/user_profile.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
@@ -41,7 +42,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
-            final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
+            final isSellItemRoute =
+                tabRouter.current.name == SellNavigationRoute.name;
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -87,6 +89,11 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         case 4:
                           tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(3);
+                          ProfileScreen.menuScrollController.animateTo(
+                            0.0,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
                           break;
                         default:
                       }
@@ -115,7 +122,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.search,
                           size: 24,
                         ),
-                        activeIcon: const Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: const Icon(Icons.search,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Search',
                       ),
                       const TabItem(
@@ -125,7 +133,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.add_circle_outline,
                           size: 24,
                         ),
-                        activeIcon: Icon(Icons.add_circle_outline, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: Icon(Icons.add_circle_outline,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Sell',
                       ),
                       TabItem(

@@ -42,6 +42,7 @@ class PreluraIcons {
 
   static const String snackbarIconThick =
       "assets/icons/check-mark-circle-thick.svg";
+  static const String removeIcon = "assets/svgs/remove.svg";
 
   static const String Image = "assets/images/image2.jpeg";
   static const String van = "assets/svgs/delivery_van.svg";
@@ -70,21 +71,94 @@ class PreluraIcons {
   static const String webp_xmas = "assets/images/xmas.webp";
   static const String webp_season = "assets/images/season.webp";
   static const String webp_jumpers = "assets/images/jumpers.webp";
+
+  //category
   static const String menSvg = "assets/svgs/003-boy 1.svg";
   static const String women_svg = "assets/svgs/women.svg";
-  static const String lipstick_svg = "assets/svgs/lipstick.svg";
+  static const String beauty_svg = "assets/svgs/beauty.svg";
   static const String electronics_svg = "assets/svgs/electronics.svg";
   static const String pet_svg = "assets/svgs/pet.svg";
-  static const String removeIcon = "assets/svgs/remove.svg";
+  static const String home_svg = "assets/svgs/home.svg";
+  static const String entertainment_svg = "assets/svgs/entertainment.svg";
+  static const String kids_svg = "assets/svgs/kids.svg";
+
+  //beauty
+  static const String lipstick_svg = "assets/svgs/lipstick.svg";
+  static const String foundation_svg = "assets/svgs/foundation.svg";
+  static const String blush_svg = "assets/svgs/blush.svg";
+  static const String eye_shadow_svg = "assets/svgs/eyeshadow.svg";
+  static const String mascara_svg = "assets/svgs/mascara.svg";
+  static const String lip_balm_svg = "assets/svgs/lip balm.svg";
+  static const String make_up_scg = "assets/svgs/make up.svg";
+  static const String lip_gloss_svg = "assets/svgs/lip gloss.svg";
+  static const String highlighter_svg = "assets/svgs/highlighter.svg";
+  static const String bronzer_svg = "assets/svgs/bronzer.svg";
+  static const String eye_liner_svg = "assets/svgs/eye liner.svg";
+  static const String concealer_svg = "assets/svgs/concealer.svg";
+  static const String cologne_svg = "assets/svgs/cologne.svg";
+  static const String perfume_svg = "assets/svgs/perfume.svg";
+  static const String fragrance_svg = "assets/svgs/fragrance.svg";
+  static const String manicure_svg = "assets/svgs/manicure.svg";
+  static const String nail_tool_svg = "assets/svgs/nail tool.svg";
+  static const String nail_polish_svg = "assets/svgs/nail polish.svg";
+  static const String nail_care_svg = "assets/svgs/nail care.svg";
+  static const String hair_care_svg = "assets/svgs/hair care.svg";
+  static const String hair_styling_svg = "assets/svgs/hair styling tools.svg";
+  static const String hair_color_svg = "assets/svgs/hair color.svg";
+  static const String hair_dryer_svg = "assets/svgs/hair dryer.svg";
+  static const String hair_brush_svg = "assets/svgs/hair brush.svg";
+  static const String straightener_svg = "assets/svgs/straightener.svg";
+  static const String deodorant_svg = "assets/svgs/deodorants.svg";
+  static const String cream_svg = "assets/svgs/cream.svg";
+  static const String curling_irons_svg = "assets/svgs/curling irons.svg";
+  static const String hair_oil_svg = "assets/svgs/hair dryer.svg";
+  static const String anti_aging_svg = "assets/svgs/anti aging.svg";
+  static const String after_shave_svg = "assets/svgs/after shave.svg";
+  static const String beard_care_svg = "assets/svgs/beard care.svg";
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
     final Map<String, String> constants = {
+      //category
       'electronics': electronics_svg,
-      'men': menSvg,
+      'men': kids_svg,
       'women': women_svg,
+      'beauty': beauty_svg,
+      'pet care': pet_svg,
+      'entertainment': entertainment_svg,
+      'home': home_svg,
+      'kids': kids_svg,
+
+      //beauty
       'lipstick': lipstick_svg,
-      'pet': pet_svg
+      'foundation': foundation_svg,
+      'blush': blush_svg,
+      'eyeshadow': eye_shadow_svg,
+      'mascara': mascara_svg,
+      'lip balm': lip_balm_svg,
+      'makeup': make_up_scg,
+      'lip gloss': lip_gloss_svg,
+      'highlighter': highlighter_svg,
+      'bronzer': bronzer_svg,
+      'eyeliner': eye_liner_svg,
+      'concealer': concealer_svg,
+      'cologne': cologne_svg,
+      'perfume': perfume_svg,
+      'fragrance': fragrance_svg,
+      'manicure': manicure_svg,
+      'nail tool': nail_tool_svg,
+      'nail polish': nail_polish_svg,
+      'nail care': nail_care_svg,
+      'hair care': hair_care_svg,
+      'hair styling tools': hair_styling_svg,
+      'hair color': hair_color_svg,
+      'hair dryer': hair_dryer_svg,
+      'hair brush': hair_brush_svg,
+      'straightener': straightener_svg,
+      'deodorant': deodorant_svg,
+      'cream': cream_svg,
+      'curling irons': curling_irons_svg,
+
       // Add the rest of the constants here...
     };
 

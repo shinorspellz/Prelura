@@ -12,6 +12,8 @@ import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 
+import '../../../res/colors.dart';
+
 class ProfileCardWidget extends ConsumerWidget {
   const ProfileCardWidget({super.key, this.user});
   final UserModel? user;
@@ -36,26 +38,36 @@ class ProfileCardWidget extends ConsumerWidget {
                             VBottomSheetItem(
                                 onTap: () async {
                                   Navigator.pop(context);
-                                  final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                  final photo = await ImagePicker()
+                                      .pickImage(source: ImageSource.gallery);
 
                                   if (photo == null) return;
-                                  await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                  await ref
+                                      .read(userNotfierProvider.notifier)
+                                      .updateProfilePicture(File(photo.path));
                                   ref.read(userNotfierProvider).whenOrNull(
-                                        error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                        data: (_) => context.alert('Profile photo updated!'),
+                                        error: (e, _) => context.alert(
+                                            'An error occured while uploading profile image'),
+                                        data: (_) => context
+                                            .alert('Profile photo updated!'),
                                       );
                                 },
                                 title: 'Gallery'),
                             VBottomSheetItem(
                                 onTap: () async {
                                   Navigator.pop(context);
-                                  final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+                                  final photo = await ImagePicker()
+                                      .pickImage(source: ImageSource.camera);
 
                                   if (photo == null) return;
-                                  await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                  await ref
+                                      .read(userNotfierProvider.notifier)
+                                      .updateProfilePicture(File(photo.path));
                                   ref.read(userNotfierProvider).whenOrNull(
-                                        error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                        data: (_) => context.alert('Profile photo updated!'),
+                                        error: (e, _) => context.alert(
+                                            'An error occured while uploading profile image'),
+                                        data: (_) => context
+                                            .alert('Profile photo updated!'),
                                       );
                                 },
                                 title: 'Camera'),
@@ -67,8 +79,12 @@ class ProfileCardWidget extends ConsumerWidget {
               );
             },
             child: ProfilePictureWidget(
-              profilePicture: user != null ? user?.profilePictureUrl : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-              username: user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
+              profilePicture: user != null
+                  ? user?.profilePictureUrl
+                  : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+              username: user != null
+                  ? user?.username ?? '--'
+                  : ref.watch(userProvider).valueOrNull?.username ?? '--',
               updating: ref.watch(userNotfierProvider).isLoading,
             ),
           ),
@@ -80,14 +96,19 @@ class ProfileCardWidget extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
+                user != null
+                    ? user?.username ?? '--'
+                    : ref.watch(userProvider).valueOrNull?.username ?? '--',
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).textTheme.bodyMedium?.color),
               ),
               if (user != null || ref.watch(userProvider).valueOrNull != null)
                 Text(
                   '${(user != null ? user?.listing ?? '--' : ref.watch(userProvider).valueOrNull?.listing).toString()} listing',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w400,
+                        color: PreluraColors.greyColor,
                       ),
                 )
             ],

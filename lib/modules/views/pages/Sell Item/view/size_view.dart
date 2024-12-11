@@ -27,7 +27,8 @@ class SizeSelectionPage extends ConsumerWidget {
         centerTitle: true,
         appbarTitle: "Sizes",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
       ),
@@ -94,7 +95,9 @@ class SizeSelectionPage extends ConsumerWidget {
                           value: value,
                           groupValue: ref.watch(sellItemProvider).size,
                           onChanged: (value) => {
-                                ref.read(sellItemProvider.notifier).selectSize(value!),
+                                ref
+                                    .read(sellItemProvider.notifier)
+                                    .selectSize(value!),
                                 context.router.popForced(),
                               }),
                 );
@@ -108,7 +111,8 @@ class SizeSelectionPage extends ConsumerWidget {
 }
 
 class CustomRadioButton extends StatelessWidget {
-  const CustomRadioButton({super.key, required this.isSelected, required this.onChanged});
+  const CustomRadioButton(
+      {super.key, required this.isSelected, required this.onChanged});
   final bool isSelected;
   final VoidCallback onChanged;
 
@@ -132,7 +136,9 @@ class CustomRadioButton extends StatelessWidget {
           width: 20,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+            color: isSelected
+                ? Theme.of(context).primaryColor
+                : Colors.transparent,
           ),
         ),
       ),
