@@ -356,14 +356,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     context.router.push(const BrandSelectionRoute());
                   },
                 ),
-                MenuCard(
-                  title: 'Size',
-                  rightArrow: false,
-                  subtitle: state.size?.name.replaceAll('_', ' '),
-                  onTap: () {
-                    context.router.push(const SizeSelectionRoute());
-                  },
-                ),
+
+                if (state.subCategory?.name != 'Accessories')
+                  MenuCard(
+                    title: 'Size',
+                    rightArrow: false,
+                    subtitle: state.size?.name.replaceAll('_', ' '),
+                    onTap: () {
+                      context.router.push(const SizeSelectionRoute());
+                    },
+                  ),
                 MenuCard(
                   title: 'Measurements (Recommended)',
                   rightArrow: false,

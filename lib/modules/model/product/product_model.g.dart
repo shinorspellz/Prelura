@@ -98,3 +98,15 @@ Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
       'id': instance.id,
       'name': instance.name,
     };
+
+_$MaterialImpl _$$MaterialImplFromJson(Map<String, dynamic> json) =>
+    _$MaterialImpl(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$MaterialImplToJson(_$MaterialImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

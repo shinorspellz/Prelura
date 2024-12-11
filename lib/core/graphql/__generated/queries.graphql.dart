@@ -12326,6 +12326,720 @@ class _CopyWithStubImpl$Query$Brands$brands<TRes>
       _res;
 }
 
+class Variables$Query$Materials {
+  factory Variables$Query$Materials({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$Materials._({
+        if (search != null) r'search': search,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$Materials._(this._$data);
+
+  factory Variables$Query$Materials.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('search')) {
+      final l$search = data['search'];
+      result$data['search'] = (l$search as String?);
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$Materials._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get search => (_$data['search'] as String?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('search')) {
+      final l$search = search;
+      result$data['search'] = l$search;
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Materials<Variables$Query$Materials> get copyWith =>
+      CopyWith$Variables$Query$Materials(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Materials ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
+      return false;
+    }
+    if (l$search != lOther$search) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$search = search;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('search') ? l$search : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Materials<TRes> {
+  factory CopyWith$Variables$Query$Materials(
+    Variables$Query$Materials instance,
+    TRes Function(Variables$Query$Materials) then,
+  ) = _CopyWithImpl$Variables$Query$Materials;
+
+  factory CopyWith$Variables$Query$Materials.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Materials;
+
+  TRes call({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$Materials<TRes>
+    implements CopyWith$Variables$Query$Materials<TRes> {
+  _CopyWithImpl$Variables$Query$Materials(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Materials _instance;
+
+  final TRes Function(Variables$Query$Materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? search = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$Materials._({
+        ..._instance._$data,
+        if (search != _undefined) 'search': (search as String?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Materials<TRes>
+    implements CopyWith$Variables$Query$Materials<TRes> {
+  _CopyWithStubImpl$Variables$Query$Materials(this._res);
+
+  TRes _res;
+
+  call({
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$Materials {
+  Query$Materials({
+    this.materials,
+    this.materialsTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Materials.fromJson(Map<String, dynamic> json) {
+    final l$materials = json['materials'];
+    final l$materialsTotalNumber = json['materialsTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$Materials(
+      materials: (l$materials as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Materials$materials.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      materialsTotalNumber: (l$materialsTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Materials$materials?>? materials;
+
+  final int? materialsTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$materials = materials;
+    _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
+    final l$materialsTotalNumber = materialsTotalNumber;
+    _resultData['materialsTotalNumber'] = l$materialsTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$materials = materials;
+    final l$materialsTotalNumber = materialsTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
+      l$materialsTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Materials || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
+    final l$materialsTotalNumber = materialsTotalNumber;
+    final lOther$materialsTotalNumber = other.materialsTotalNumber;
+    if (l$materialsTotalNumber != lOther$materialsTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Materials on Query$Materials {
+  CopyWith$Query$Materials<Query$Materials> get copyWith =>
+      CopyWith$Query$Materials(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Materials<TRes> {
+  factory CopyWith$Query$Materials(
+    Query$Materials instance,
+    TRes Function(Query$Materials) then,
+  ) = _CopyWithImpl$Query$Materials;
+
+  factory CopyWith$Query$Materials.stub(TRes res) =
+      _CopyWithStubImpl$Query$Materials;
+
+  TRes call({
+    List<Query$Materials$materials?>? materials,
+    int? materialsTotalNumber,
+    String? $__typename,
+  });
+  TRes materials(
+      Iterable<Query$Materials$materials?>? Function(
+              Iterable<
+                  CopyWith$Query$Materials$materials<
+                      Query$Materials$materials>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Materials<TRes>
+    implements CopyWith$Query$Materials<TRes> {
+  _CopyWithImpl$Query$Materials(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Materials _instance;
+
+  final TRes Function(Query$Materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? materials = _undefined,
+    Object? materialsTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Materials(
+        materials: materials == _undefined
+            ? _instance.materials
+            : (materials as List<Query$Materials$materials?>?),
+        materialsTotalNumber: materialsTotalNumber == _undefined
+            ? _instance.materialsTotalNumber
+            : (materialsTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes materials(
+          Iterable<Query$Materials$materials?>? Function(
+                  Iterable<
+                      CopyWith$Query$Materials$materials<
+                          Query$Materials$materials>?>?)
+              _fn) =>
+      call(
+          materials: _fn(_instance.materials?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Materials$materials(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Materials<TRes>
+    implements CopyWith$Query$Materials<TRes> {
+  _CopyWithStubImpl$Query$Materials(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Materials$materials?>? materials,
+    int? materialsTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+
+  materials(_fn) => _res;
+}
+
+const documentNodeQueryMaterials = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Materials'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'materials'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'materialsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Materials _parserFn$Query$Materials(Map<String, dynamic> data) =>
+    Query$Materials.fromJson(data);
+typedef OnQueryComplete$Query$Materials = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Materials?,
+);
+
+class Options$Query$Materials extends graphql.QueryOptions<Query$Materials> {
+  Options$Query$Materials({
+    String? operationName,
+    Variables$Query$Materials? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Materials? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Materials? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Materials(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryMaterials,
+          parserFn: _parserFn$Query$Materials,
+        );
+
+  final OnQueryComplete$Query$Materials? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Materials
+    extends graphql.WatchQueryOptions<Query$Materials> {
+  WatchOptions$Query$Materials({
+    String? operationName,
+    Variables$Query$Materials? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Materials? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryMaterials,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Materials,
+        );
+}
+
+class FetchMoreOptions$Query$Materials extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Materials({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$Materials? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryMaterials,
+        );
+}
+
+extension ClientExtension$Query$Materials on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Materials>> query$Materials(
+          [Options$Query$Materials? options]) async =>
+      await this.query(options ?? Options$Query$Materials());
+  graphql.ObservableQuery<Query$Materials> watchQuery$Materials(
+          [WatchOptions$Query$Materials? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$Materials());
+  void writeQuery$Materials({
+    required Query$Materials data,
+    Variables$Query$Materials? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryMaterials),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Materials? readQuery$Materials({
+    Variables$Query$Materials? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryMaterials),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Materials.fromJson(result);
+  }
+}
+
+class Query$Materials$materials {
+  Query$Materials$materials({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$Materials$materials.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Materials$materials(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Materials$materials ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Materials$materials
+    on Query$Materials$materials {
+  CopyWith$Query$Materials$materials<Query$Materials$materials> get copyWith =>
+      CopyWith$Query$Materials$materials(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Materials$materials<TRes> {
+  factory CopyWith$Query$Materials$materials(
+    Query$Materials$materials instance,
+    TRes Function(Query$Materials$materials) then,
+  ) = _CopyWithImpl$Query$Materials$materials;
+
+  factory CopyWith$Query$Materials$materials.stub(TRes res) =
+      _CopyWithStubImpl$Query$Materials$materials;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Materials$materials<TRes>
+    implements CopyWith$Query$Materials$materials<TRes> {
+  _CopyWithImpl$Query$Materials$materials(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Materials$materials _instance;
+
+  final TRes Function(Query$Materials$materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Materials$materials(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Materials$materials<TRes>
+    implements CopyWith$Query$Materials$materials<TRes> {
+  _CopyWithStubImpl$Query$Materials$materials(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$SimilarProducts {
   factory Variables$Query$SimilarProducts({
     int? productId,

@@ -113,3 +113,13 @@ class Brand with _$Brand {
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
 }
+
+@freezed
+class Material with _$Material {
+  const factory Material({
+    required int id,
+    required String name,
+  }) = _Material;
+
+  factory Material.fromJson(Map<String, dynamic> json) => _$MaterialFromJson(json);
+}

@@ -20,11 +20,12 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
+        AutoRoute(page: AppStartupRoute.page, initial: _ref.read(authStateProvider).requireValue),
         AutoRoute(
             guards: [AuthGuard(_ref)],
             page: AuthRoute.page,
             path: "/",
-            initial: _ref.read(authStateProvider).requireValue,
+            // initial: _ref.read(authStateProvider).requireValue,
             children: [
               AutoRoute(
                 guards: [AuthGuard(_ref)],
