@@ -2614,42 +2614,42 @@ class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
 
 class Variables$Mutation$CreateProduct {
   factory Variables$Mutation$CreateProduct({
-    int? category,
+    required int category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     required String description,
     required List<Input$ImagesInputType?> imageUrl,
     required double price,
     Enum$SizeEnum? size,
-    int? subCategory,
+    required int subCategory,
     required String name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   }) =>
       Variables$Mutation$CreateProduct._({
-        if (category != null) r'category': category,
+        r'category': category,
         if (condition != null) r'condition': condition,
         r'description': description,
         r'imageUrl': imageUrl,
         r'price': price,
         if (size != null) r'size': size,
-        if (subCategory != null) r'subCategory': subCategory,
+        r'subCategory': subCategory,
         r'name': name,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (discount != null) r'discount': discount,
         if (color != null) r'color': color,
         if (brand != null) r'brand': brand,
+        if (materials != null) r'materials': materials,
       });
 
   Variables$Mutation$CreateProduct._(this._$data);
 
   factory Variables$Mutation$CreateProduct.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('category')) {
-      final l$category = data['category'];
-      result$data['category'] = (l$category as int?);
-    }
+    final l$category = data['category'];
+    result$data['category'] = (l$category as int);
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
       result$data['condition'] = l$condition == null
@@ -2672,10 +2672,8 @@ class Variables$Mutation$CreateProduct {
       result$data['size'] =
           l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
-    if (data.containsKey('subCategory')) {
-      final l$subCategory = data['subCategory'];
-      result$data['subCategory'] = (l$subCategory as int?);
-    }
+    final l$subCategory = data['subCategory'];
+    result$data['subCategory'] = (l$subCategory as int);
     final l$name = data['name'];
     result$data['name'] = (l$name as String);
     if (data.containsKey('parcelSize')) {
@@ -2697,12 +2695,17 @@ class Variables$Mutation$CreateProduct {
       final l$brand = data['brand'];
       result$data['brand'] = (l$brand as int?);
     }
+    if (data.containsKey('materials')) {
+      final l$materials = data['materials'];
+      result$data['materials'] =
+          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+    }
     return Variables$Mutation$CreateProduct._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  int? get category => (_$data['category'] as int?);
+  int get category => (_$data['category'] as int);
 
   EnumImport$ConditionEnum.ConditionsEnum? get condition =>
       (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
@@ -2716,7 +2719,7 @@ class Variables$Mutation$CreateProduct {
 
   Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
 
-  int? get subCategory => (_$data['subCategory'] as int?);
+  int get subCategory => (_$data['subCategory'] as int);
 
   String get name => (_$data['name'] as String);
 
@@ -2729,12 +2732,12 @@ class Variables$Mutation$CreateProduct {
 
   int? get brand => (_$data['brand'] as int?);
 
+  List<int?>? get materials => (_$data['materials'] as List<int?>?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('category')) {
-      final l$category = category;
-      result$data['category'] = l$category;
-    }
+    final l$category = category;
+    result$data['category'] = l$category;
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
       result$data['condition'] = l$condition == null
@@ -2753,10 +2756,8 @@ class Variables$Mutation$CreateProduct {
       result$data['size'] =
           l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
-    if (_$data.containsKey('subCategory')) {
-      final l$subCategory = subCategory;
-      result$data['subCategory'] = l$subCategory;
-    }
+    final l$subCategory = subCategory;
+    result$data['subCategory'] = l$subCategory;
     final l$name = name;
     result$data['name'] = l$name;
     if (_$data.containsKey('parcelSize')) {
@@ -2776,6 +2777,10 @@ class Variables$Mutation$CreateProduct {
     if (_$data.containsKey('brand')) {
       final l$brand = brand;
       result$data['brand'] = l$brand;
+    }
+    if (_$data.containsKey('materials')) {
+      final l$materials = materials;
+      result$data['materials'] = l$materials?.map((e) => e).toList();
     }
     return result$data;
   }
@@ -2797,10 +2802,6 @@ class Variables$Mutation$CreateProduct {
     }
     final l$category = category;
     final lOther$category = other.category;
-    if (_$data.containsKey('category') !=
-        other._$data.containsKey('category')) {
-      return false;
-    }
     if (l$category != lOther$category) {
       return false;
     }
@@ -2845,10 +2846,6 @@ class Variables$Mutation$CreateProduct {
     }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') !=
-        other._$data.containsKey('subCategory')) {
-      return false;
-    }
     if (l$subCategory != lOther$subCategory) {
       return false;
     }
@@ -2902,6 +2899,26 @@ class Variables$Mutation$CreateProduct {
     if (l$brand != lOther$brand) {
       return false;
     }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (_$data.containsKey('materials') !=
+        other._$data.containsKey('materials')) {
+      return false;
+    }
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
     return true;
   }
 
@@ -2919,14 +2936,15 @@ class Variables$Mutation$CreateProduct {
     final l$discount = discount;
     final l$color = color;
     final l$brand = brand;
+    final l$materials = materials;
     return Object.hashAll([
-      _$data.containsKey('category') ? l$category : const {},
+      l$category,
       _$data.containsKey('condition') ? l$condition : const {},
       l$description,
       Object.hashAll(l$imageUrl.map((v) => v)),
       l$price,
       _$data.containsKey('size') ? l$size : const {},
-      _$data.containsKey('subCategory') ? l$subCategory : const {},
+      l$subCategory,
       l$name,
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('discount') ? l$discount : const {},
@@ -2936,6 +2954,11 @@ class Variables$Mutation$CreateProduct {
               : Object.hashAll(l$color.map((v) => v))
           : const {},
       _$data.containsKey('brand') ? l$brand : const {},
+      _$data.containsKey('materials')
+          ? l$materials == null
+              ? null
+              : Object.hashAll(l$materials.map((v) => v))
+          : const {},
     ]);
   }
 }
@@ -2962,6 +2985,7 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     double? discount,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   });
 }
 
@@ -2991,10 +3015,12 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? discount = _undefined,
     Object? color = _undefined,
     Object? brand = _undefined,
+    Object? materials = _undefined,
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
-        if (category != _undefined) 'category': (category as int?),
+        if (category != _undefined && category != null)
+          'category': (category as int),
         if (condition != _undefined)
           'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
         if (description != _undefined && description != null)
@@ -3003,13 +3029,15 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
           'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
         if (price != _undefined && price != null) 'price': (price as double),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
-        if (subCategory != _undefined) 'subCategory': (subCategory as int?),
+        if (subCategory != _undefined && subCategory != null)
+          'subCategory': (subCategory as int),
         if (name != _undefined && name != null) 'name': (name as String),
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
+        if (materials != _undefined) 'materials': (materials as List<int?>?),
       }));
 }
 
@@ -3032,6 +3060,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
     double? discount,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   }) =>
       _res;
 }
@@ -3183,7 +3212,7 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'category')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
-          isNonNull: false,
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3240,7 +3269,7 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'subCategory')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
-          isNonNull: false,
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3288,6 +3317,18 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'brand')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'materials')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -3347,6 +3388,10 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'brand'),
             value: VariableNode(name: NameNode(value: 'brand')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'materials'),
+            value: VariableNode(name: NameNode(value: 'materials')),
           ),
         ],
         directives: [],
@@ -4147,6 +4192,7 @@ class Variables$Mutation$UpdateProduct {
     int? subCategory,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   }) =>
       Variables$Mutation$UpdateProduct._({
         if (category != null) r'category': category,
@@ -4161,6 +4207,7 @@ class Variables$Mutation$UpdateProduct {
         if (subCategory != null) r'subCategory': subCategory,
         if (color != null) r'color': color,
         if (brand != null) r'brand': brand,
+        if (materials != null) r'materials': materials,
       });
 
   Variables$Mutation$UpdateProduct._(this._$data);
@@ -4220,6 +4267,11 @@ class Variables$Mutation$UpdateProduct {
       final l$brand = data['brand'];
       result$data['brand'] = (l$brand as int?);
     }
+    if (data.containsKey('materials')) {
+      final l$materials = data['materials'];
+      result$data['materials'] =
+          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+    }
     return Variables$Mutation$UpdateProduct._(result$data);
   }
 
@@ -4250,6 +4302,8 @@ class Variables$Mutation$UpdateProduct {
   List<String?>? get color => (_$data['color'] as List<String?>?);
 
   int? get brand => (_$data['brand'] as int?);
+
+  List<int?>? get materials => (_$data['materials'] as List<int?>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -4304,6 +4358,10 @@ class Variables$Mutation$UpdateProduct {
     if (_$data.containsKey('brand')) {
       final l$brand = brand;
       result$data['brand'] = l$brand;
+    }
+    if (_$data.containsKey('materials')) {
+      final l$materials = materials;
+      result$data['materials'] = l$materials?.map((e) => e).toList();
     }
     return result$data;
   }
@@ -4433,6 +4491,26 @@ class Variables$Mutation$UpdateProduct {
     if (l$brand != lOther$brand) {
       return false;
     }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (_$data.containsKey('materials') !=
+        other._$data.containsKey('materials')) {
+      return false;
+    }
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
     return true;
   }
 
@@ -4450,6 +4528,7 @@ class Variables$Mutation$UpdateProduct {
     final l$subCategory = subCategory;
     final l$color = color;
     final l$brand = brand;
+    final l$materials = materials;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -4467,6 +4546,11 @@ class Variables$Mutation$UpdateProduct {
               : Object.hashAll(l$color.map((v) => v))
           : const {},
       _$data.containsKey('brand') ? l$brand : const {},
+      _$data.containsKey('materials')
+          ? l$materials == null
+              ? null
+              : Object.hashAll(l$materials.map((v) => v))
+          : const {},
     ]);
   }
 }
@@ -4493,6 +4577,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     int? subCategory,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   });
 }
 
@@ -4522,6 +4607,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? subCategory = _undefined,
     Object? color = _undefined,
     Object? brand = _undefined,
+    Object? materials = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProduct._({
         ..._instance._$data,
@@ -4540,6 +4626,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
+        if (materials != _undefined) 'materials': (materials as List<int?>?),
       }));
 }
 
@@ -4562,6 +4649,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     int? subCategory,
     List<String?>? color,
     int? brand,
+    List<int?>? materials,
   }) =>
       _res;
 }
@@ -4820,6 +4908,18 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'materials')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -4874,6 +4974,10 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'brand'),
             value: VariableNode(name: NameNode(value: 'brand')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'materials'),
+            value: VariableNode(name: NameNode(value: 'materials')),
           ),
         ],
         directives: [],
@@ -5706,6 +5810,7 @@ class Variables$Mutation$UpdateProfile {
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   }) =>
       Variables$Mutation$UpdateProfile._({
         if (bio != null) r'bio': bio,
@@ -5722,6 +5827,7 @@ class Variables$Mutation$UpdateProfile {
         if (thumbnailUrl != null) r'thumbnailUrl': thumbnailUrl,
         if (use2fa != null) r'use2fa': use2fa,
         if (username != null) r'username': username,
+        if (location != null) r'location': location,
       });
 
   Variables$Mutation$UpdateProfile._(this._$data);
@@ -5788,6 +5894,13 @@ class Variables$Mutation$UpdateProfile {
       final l$username = data['username'];
       result$data['username'] = (l$username as String?);
     }
+    if (data.containsKey('location')) {
+      final l$location = data['location'];
+      result$data['location'] = l$location == null
+          ? null
+          : Input$LocationInputType.fromJson(
+              (l$location as Map<String, dynamic>));
+    }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
 
@@ -5821,6 +5934,9 @@ class Variables$Mutation$UpdateProfile {
   bool? get use2fa => (_$data['use2fa'] as bool?);
 
   String? get username => (_$data['username'] as String?);
+
+  Input$LocationInputType? get location =>
+      (_$data['location'] as Input$LocationInputType?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -5879,6 +5995,10 @@ class Variables$Mutation$UpdateProfile {
     if (_$data.containsKey('username')) {
       final l$username = username;
       result$data['username'] = l$username;
+    }
+    if (_$data.containsKey('location')) {
+      final l$location = location;
+      result$data['location'] = l$location?.toJson();
     }
     return result$data;
   }
@@ -6018,6 +6138,15 @@ class Variables$Mutation$UpdateProfile {
     if (l$username != lOther$username) {
       return false;
     }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (_$data.containsKey('location') !=
+        other._$data.containsKey('location')) {
+      return false;
+    }
+    if (l$location != lOther$location) {
+      return false;
+    }
     return true;
   }
 
@@ -6037,6 +6166,7 @@ class Variables$Mutation$UpdateProfile {
     final l$thumbnailUrl = thumbnailUrl;
     final l$use2fa = use2fa;
     final l$username = username;
+    final l$location = location;
     return Object.hashAll([
       _$data.containsKey('bio') ? l$bio : const {},
       _$data.containsKey('country') ? l$country : const {},
@@ -6052,6 +6182,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('thumbnailUrl') ? l$thumbnailUrl : const {},
       _$data.containsKey('use2fa') ? l$use2fa : const {},
       _$data.containsKey('username') ? l$username : const {},
+      _$data.containsKey('location') ? l$location : const {},
     ]);
   }
 }
@@ -6080,6 +6211,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   });
 }
 
@@ -6111,6 +6243,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? thumbnailUrl = _undefined,
     Object? use2fa = _undefined,
     Object? username = _undefined,
+    Object? location = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProfile._({
         ..._instance._$data,
@@ -6131,6 +6264,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
           'thumbnailUrl': (thumbnailUrl as String?),
         if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
         if (username != _undefined) 'username': (username as String?),
+        if (location != _undefined)
+          'location': (location as Input$LocationInputType?),
       }));
 }
 
@@ -6155,6 +6290,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     String? thumbnailUrl,
     bool? use2fa,
     String? username,
+    Input$LocationInputType? location,
   }) =>
       _res;
 }
@@ -6428,6 +6564,15 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'location')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'LocationInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -6490,6 +6635,10 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'username'),
             value: VariableNode(name: NameNode(value: 'username')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'location'),
+            value: VariableNode(name: NameNode(value: 'location')),
           ),
         ],
         directives: [],

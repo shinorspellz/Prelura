@@ -14,6 +14,7 @@ query ViewMe {
     lastLogin
     fullName
     listing
+
     phone {
       number
       countryCode
@@ -246,6 +247,14 @@ query Brands($search: String, $pageCount: Int, $pageNumber: Int) {
     name
   }
   brandsTotalNumber
+}
+
+query Materials($search: String, $pageCount: Int, $pageNumber: Int) {
+  materials(search: $search, pageCount: $pageCount, pageNumber: $pageNumber) {
+    id
+    name
+  }
+  materialsTotalNumber
 }
 
 query SimilarProducts(
