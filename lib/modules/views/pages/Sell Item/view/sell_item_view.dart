@@ -161,7 +161,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         child: Container(
                           child: Column(
                             children: [
-                              Icon(Icons.add_circle, size: 48.sp),
+                              Icon(
+                                Icons.add_circle,
+                                size: 48.sp,
+                                color: PreluraColors.grey,
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -197,7 +201,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 ],
                 if (state.images.isNotEmpty) ...[
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: SizedBox(
                       height: 130,
                       child: SingleChildScrollView(
@@ -248,7 +252,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                       color: PreluraColors.white,
                                                     ),
                                                     color: PreluraColors.white,
-                                                    onPressed: () {}),
+                                                    onPressed: () {
+                                                      notifier.deleteImage(image);
+                                                    }),
                                               ),
                                           ],
                                         ),
@@ -321,11 +327,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     context.router.push(const BrandSelectionRoute());
                   },
                 ),
+
                 if (state.subCategory?.name != 'Accessories')
                   MenuCard(
                     title: 'Size',
                     rightArrow: false,
-                    subtitle: state.size?.name,
+                    subtitle: state.size?.name.replaceAll('_', ' '),
                     onTap: () {
                       context.router.push(const SizeSelectionRoute());
                     },

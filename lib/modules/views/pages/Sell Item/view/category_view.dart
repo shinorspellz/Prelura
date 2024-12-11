@@ -16,6 +16,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
+import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../../../widgets/menu_card.dart';
 
@@ -148,9 +149,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         ],
                       ),
                     ),
-                    loading: () => const Center(
-                      child: LoadingWidget(),
-                    ),
+                    loading: () => GridMenuCardShimmer(length: 8),
                   ),
             ),
         ],

@@ -377,9 +377,11 @@ class AboutProfile extends ConsumerWidget {
             Expanded(
               child: AppButton(
                 onTap: () {
-                  // Handle Message button
+                  if (isCurrentUser) {
+                    context.pushRoute(SellItemRoute());
+                  }
                 },
-                text: "Message",
+                text: isCurrentUser ? "Upload" : "Message",
                 bgColor: Theme.of(context).scaffoldBackgroundColor,
               ),
             ),
@@ -389,7 +391,7 @@ class AboutProfile extends ConsumerWidget {
                 onTap: () {
                   // Handle Follow button
                 },
-                text: "Follow",
+                text: isCurrentUser ? "Share" : "Follow",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
               ),
             ),

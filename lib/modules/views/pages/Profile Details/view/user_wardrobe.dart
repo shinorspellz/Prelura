@@ -17,6 +17,7 @@ import 'package:prelura_app/modules/views/widgets/rating.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button.dart';
 
 class UserWardrobe extends ConsumerStatefulWidget {
@@ -32,7 +33,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
   Future<void> _onRefresh() async {
     try {
-      await ref.refresh(userProvider.future); // Re-trigger the provider
+      if (widget.username != null) {
+        await ref.refresh(otherUserProfile(widget.username!));
+        await ref.refresh(userProduct(widget.username!).future);
+      } else {
+        final user = await ref.refresh(userProvider).valueOrNull;
+        await ref.refresh(userProduct(user?.username).future);
+      } // Re-trigger the provider
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
       _refreshController.refreshFailed(); // Notify SmartRefresher of failure
@@ -42,9 +49,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   void _onLoading() async {
     try {
       // Fetch more products from the repository
-      await ref.refresh(userProvider.future); // Re-trigger the provider
-
-      // await ref.read(productRepo).fetchMoreFavouriteProducts();
+      if (widget.username != null) {
+        await ref.refresh(otherUserProfile(widget.username!));
+        await ref.refresh(userProduct(widget.username!).future);
+      } else {
+        final user = await ref.refresh(userProvider).valueOrNull;
+        await ref.refresh(userProduct(user?.username).future);
+      } //
       _refreshController.loadComplete();
     } catch (e) {
       _refreshController.loadFailed();
@@ -58,13 +69,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             ? otherUserProfile(widget.username!)
             : userProvider))
         .valueOrNull;
+    bool isCurrentUser = widget.username == null;
 
     return SmartRefresher(
       controller: _refreshController,
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       enablePullDown: true,
-      enablePullUp: true,
+      enablePullUp: false,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -232,9 +244,11 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         Expanded(
                           child: AppButton(
                             onTap: () {
-                              // Handle Message button
+                              if (isCurrentUser) {
+                                context.pushRoute(SellItemRoute());
+                              }
                             },
-                            text: "Message",
+                            text: isCurrentUser ? "Upload" : "Message",
                             textColor: PreluraColors.white,
                             bgColor: Theme.of(context).scaffoldBackgroundColor,
                           ),
@@ -245,7 +259,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             onTap: () {
                               // Handle Follow button
                             },
-                            text: "Follow",
+                            text: isCurrentUser ? "Share" : "Follow",
                             textColor: PreluraColors.white,
                           ),
                         ),
@@ -281,7 +295,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               ],
                             ),
                           ),
-                          loading: () => const LoadingWidget(),
+                          loading: () => GridShimmer(),
                         ),
                   )
                 ],
