@@ -46,6 +46,13 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   List<AutocompletePrediction> placePredictions = [];
   TextEditingController locationController = TextEditingController();
 
+  @override
+  void initState() {
+    getLongLat(showDialog: true);
+
+    super.initState();
+  }
+
   void placeAutoComplete(String query) async {
     Uri uri =
         Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
@@ -213,7 +220,9 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
               setState(() {
                 isLoading = true;
               });
+              if(long == 0 && lat == 0){
               await getLongLat(showDialog: true);
+              }
               print('lat: $lat, long: $long');
 
               await ref.read(userNotfierProvider.notifier).updateProfile(
