@@ -14,7 +14,7 @@ class SellItemState {
   final CategoryModel? subCategory;
   final Enum$ParcelSizeEnum? parcel;
   final List<String> selectedColors;
-  final List<String> selectedMaterials;
+  final List<Material> selectedMaterials;
   final Brand? brand;
   final Enum$SizeEnum? size;
   final String? price;
@@ -43,7 +43,7 @@ class SellItemState {
       CategoryModel? subCategory,
       Enum$ParcelSizeEnum? parcel,
       List<String>? selectedColors,
-      List<String>? selectedMaterials,
+      List<Material>? selectedMaterials,
       Brand? brand,
       Enum$SizeEnum? size,
       String? price,
@@ -81,18 +81,7 @@ class SellItemState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      title,
-      description,
-      category,
-      images.length,
-      selectedColors.length,
-      selectedCondition,
-      selectedMaterials.length,
-      parcel,
-      price,
-      size,
-      brand);
+  int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -171,16 +160,13 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       description: product.description,
       category: product.category,
       subCategory: product.subCategory,
-      parcel: product.parcelSize != null
-          ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
-          : null,
-      size: product.size != null
-          ? Enum$SizeEnum.fromJson(product.size!.toJson())
-          : null,
+      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
+      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
       price: product.price,
       selectedCondition: product.condition,
       brand: product.brand,
       selectedColors: product.color,
+      selectedMaterials: product.materials,
     );
   }
 
@@ -212,7 +198,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     return state.selectedColors.length < maxColorSelections;
   }
 
-  void toggleMaterial(String material) {
+  void toggleMaterial(Material material) {
     final currentSelections = state.selectedMaterials;
 
     // Check if the material is already selected
@@ -220,16 +206,14 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections
-              .where((m) => m != material)
-              .toList() // Remove material
+          ? currentSelections.where((m) => m != material).toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),
     );
   }
 
-  bool isMaterialSelected(String material) {
+  bool isMaterialSelected(Material material) {
     return state.selectedMaterials.contains(material);
   }
 

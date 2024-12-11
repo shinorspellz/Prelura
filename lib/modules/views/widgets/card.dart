@@ -219,7 +219,10 @@ class _ProductCardState extends ConsumerState<ProductCard> {
             if (widget.product.brand != null) ...[
               Text(
                 widget.product.brand!.name,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: PreluraColors.activeColor,
+                      fontWeight: FontWeight.w500,
+                    ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -130,6 +130,12 @@ input LocationInputType {
   locationName: String
 }
 
+type LocationType {
+  latitude: String
+  longitude: String
+  locationName: String
+}
+
 type LoginMutation {
   user: UserType
   token: String
@@ -475,6 +481,7 @@ type ProductType {
   discountPrice: Decimal
   imagesUrl: [JSONString!]!
   status: ProductsProductStatusChoices!
+  materials: [BrandType]
   color: [String!]!
   brand: BrandType
   customBrand: String
@@ -622,6 +629,7 @@ type UserType {
   username: String
   email: String
   bio: String
+  location: LocationType
   profilePictureUrl: String
   gender: String
   displayName: String
