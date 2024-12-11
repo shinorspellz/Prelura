@@ -248,6 +248,14 @@ query Brands($search: String, $pageCount: Int, $pageNumber: Int) {
   brandsTotalNumber
 }
 
+query Materials($search: String, $pageCount: Int, $pageNumber: Int) {
+  materials(search: $search, pageCount: $pageCount, pageNumber: $pageNumber) {
+    id
+    name
+  }
+  materialsTotalNumber
+}
+
 query SimilarProducts(
   $productId: Int
   $categoryId: Int

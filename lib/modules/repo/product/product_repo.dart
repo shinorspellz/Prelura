@@ -158,7 +158,6 @@ class ProductRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-        print(error);
         throw error;
       }
       log(response.exception.toString(), name: 'ProductRepo');
@@ -225,6 +224,33 @@ class ProductRepo {
     final response = await _client.query$Brands(
       Options$Query$Brands(
           variables: Variables$Query$Brands(
+        search: search,
+        pageNumber: pageNumber,
+        pageCount: pageCount,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!;
+  }
+
+  Future<Query$Materials> getMaterial({String? search, int? pageNumber, int? pageCount}) async {
+    final response = await _client.query$Materials(
+      Options$Query$Materials(
+          variables: Variables$Query$Materials(
         search: search,
         pageNumber: pageNumber,
         pageCount: pageCount,

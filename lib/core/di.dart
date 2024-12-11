@@ -24,12 +24,6 @@ Future<ProviderContainer> initializeDependencies() async {
     );
     container.read(graphqlClient);
     await container.read(authStateProvider.future);
-    if (container.read(authStateProvider).requireValue) {
-      await Future.wait([
-        container.read(userProvider.future),
-        container.read(allProductProvider.future),
-      ]);
-    }
   } catch (e, st) {
     log(e.toString(), name: 'Bootstrap', stackTrace: st);
     // logger.e(e.toString(), stackTrace: st);
@@ -37,6 +31,15 @@ Future<ProviderContainer> initializeDependencies() async {
 
   return container;
 }
+
+final appStartUpProvider = FutureProvider((ref) async {
+  if (ref.read(authStateProvider).requireValue) {
+    await Future.wait([
+      ref.read(userProvider.future),
+      ref.read(allProductProvider.future),
+    ]);
+  }
+});
 
 final router = Provider((ref) => AppRouter(ref));
 

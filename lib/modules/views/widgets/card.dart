@@ -7,7 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/shared/card_model.dart';
 import 'package:sizer/sizer.dart';
@@ -214,9 +216,20 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               ),
             ),
             const SizedBox(height: 8),
+            if (widget.product.brand != null) ...[
+              Text(
+                widget.product.brand!.name,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              // 10.verticalSpacing,
+            ],
             Text(
               widget.product.name,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

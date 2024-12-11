@@ -135,8 +135,8 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
+  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int!): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
@@ -440,6 +440,18 @@ enum ProductsProductSizeChoices {
   ONE_SIZE
 }
 
+"""An enumeration."""
+enum ProductsProductStatusChoices {
+  """ACTIVE"""
+  ACTIVE
+
+  """INACTIVE"""
+  INACTIVE
+
+  """SOLD"""
+  SOLD
+}
+
 type ProductType {
   id: ID!
   name: String!
@@ -455,6 +467,7 @@ type ProductType {
   likes: Int!
   discountPrice: Decimal
   imagesUrl: [JSONString!]!
+  status: ProductsProductStatusChoices!
   color: [String!]!
   brand: BrandType
   customBrand: String
@@ -470,10 +483,12 @@ type Query {
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
   likedProductsTotalNumber: Int
+  materialsTotalNumber: Int
   similarProductsTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType

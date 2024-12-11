@@ -607,6 +607,46 @@ Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
   }
 }
 
+enum Enum$ProductsProductStatusChoices {
+  ACTIVE,
+  INACTIVE,
+  SOLD,
+  $unknown;
+
+  factory Enum$ProductsProductStatusChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductStatusChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductStatusChoices(this);
+}
+
+String toJson$Enum$ProductsProductStatusChoices(
+    Enum$ProductsProductStatusChoices e) {
+  switch (e) {
+    case Enum$ProductsProductStatusChoices.ACTIVE:
+      return r'ACTIVE';
+    case Enum$ProductsProductStatusChoices.INACTIVE:
+      return r'INACTIVE';
+    case Enum$ProductsProductStatusChoices.SOLD:
+      return r'SOLD';
+    case Enum$ProductsProductStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
+    String value) {
+  switch (value) {
+    case r'ACTIVE':
+      return Enum$ProductsProductStatusChoices.ACTIVE;
+    case r'INACTIVE':
+      return Enum$ProductsProductStatusChoices.INACTIVE;
+    case r'SOLD':
+      return Enum$ProductsProductStatusChoices.SOLD;
+    default:
+      return Enum$ProductsProductStatusChoices.$unknown;
+  }
+}
+
 enum Enum$SizeEnum {
   XS,
   S,
