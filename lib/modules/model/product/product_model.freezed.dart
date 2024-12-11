@@ -47,6 +47,7 @@ mixin _$Product {
   set color(List<String>? value) => throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
   set brand(Brand? value) => throw _privateConstructorUsedError;
+  List<Material>? get materials => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -82,7 +83,8 @@ abstract class $ProductCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt,
       List<String>? color,
-      Brand? brand});
+      Brand? brand,
+      List<Material>? materials});
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
@@ -125,6 +127,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? updatedAt = null,
     Object? color = freezed,
     Object? brand = freezed,
+    Object? materials = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -207,6 +210,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as Brand?,
+      materials: freezed == materials
+          ? _value.materials
+          : materials // ignore: cast_nullable_to_non_nullable
+              as List<Material>?,
     ) as $Val);
   }
 
@@ -290,7 +297,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       DateTime createdAt,
       DateTime updatedAt,
       List<String>? color,
-      Brand? brand});
+      Brand? brand,
+      List<Material>? materials});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -335,6 +343,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? updatedAt = null,
     Object? color = freezed,
     Object? brand = freezed,
+    Object? materials = freezed,
   }) {
     return _then(_$ProductImpl(
       id: null == id
@@ -417,6 +426,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as Brand?,
+      materials: freezed == materials
+          ? _value.materials
+          : materials // ignore: cast_nullable_to_non_nullable
+              as List<Material>?,
     ));
   }
 }
@@ -444,7 +457,8 @@ class _$ProductImpl implements _Product {
       required this.createdAt,
       required this.updatedAt,
       required this.color,
-      required this.brand});
+      required this.brand,
+      this.materials});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -490,10 +504,12 @@ class _$ProductImpl implements _Product {
   List<String>? color;
   @override
   Brand? brand;
+  @override
+  final List<Material>? materials;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand)';
+    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials)';
   }
 
   /// Create a copy of Product
@@ -533,7 +549,8 @@ abstract class _Product implements Product {
       required final DateTime createdAt,
       required final DateTime updatedAt,
       required List<String>? color,
-      required Brand? brand}) = _$ProductImpl;
+      required Brand? brand,
+      final List<Material>? materials}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -582,6 +599,8 @@ abstract class _Product implements Product {
   @override
   Brand? get brand;
   set brand(Brand? value);
+  @override
+  List<Material>? get materials;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

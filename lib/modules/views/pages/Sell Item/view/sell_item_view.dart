@@ -357,6 +357,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   onTap: () {
                     context.router.push(const MaterialSelectionRoute());
                   },
+                  subtitle: '${state.selectedMaterials.map((e) => e.name).take(2).join(', ')} ${state.selectedMaterials.length > 2 ? '...' : ''}',
                 ),
                 MenuCard(
                   title: 'Price',
@@ -411,10 +412,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         HelperFunction.showToast(message: 'Select an item sub category to proceed.');
                         return;
                       }
-                      if (state.size == null) {
-                        HelperFunction.showToast(message: 'Select an size category to proceed.');
-                        return;
-                      }
+                      // if (state.size == null) {
+                      //   HelperFunction.showToast(message: 'Select an size category to proceed.');
+                      //   return;
+                      // }
                       if (state.price == null) {
                         HelperFunction.showToast(message: 'Price is required for product.');
                         return;
@@ -429,6 +430,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       }
                       if (state.selectedColors.isEmpty) {
                         HelperFunction.showToast(message: 'Colors are required for product.');
+                        return;
+                      }
+                      if (state.selectedMaterials.isEmpty) {
+                        HelperFunction.showToast(message: 'Materials are required for product.');
                         return;
                       }
                       if (state.brand == null) {
@@ -457,6 +462,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               subCategory: int.parse(state.subCategory!.id.toString()),
                               color: state.selectedColors,
                               brandId: state.brand!.id,
+                              materials: state.selectedMaterials.map((e) => e.id).toList(),
                             );
                         ref.read(productProvider).whenOrNull(
                               error: (e, _) => context.alert(e.toString()),
@@ -483,6 +489,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             subCategory: int.parse(state.subCategory!.id.toString()),
                             brandId: state.brand!.id,
                             color: state.selectedColors,
+                            materials: state.selectedMaterials.map((e) => e.id).toList(),
                           );
                       ref.read(productProvider).whenOrNull(
                             error: (e, _) => context.alert(e.toString()),

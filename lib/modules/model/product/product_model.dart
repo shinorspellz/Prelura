@@ -31,6 +31,7 @@ class Product with _$Product {
     required final DateTime updatedAt,
     required List<String>? color,
     required Brand? brand,
+    final List<Material>? materials,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);

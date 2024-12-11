@@ -14,7 +14,10 @@ query ViewMe {
     lastLogin
     fullName
     listing
-
+    location {
+      latitude
+      longitude
+    }
     phone {
       number
       countryCode
@@ -60,6 +63,10 @@ query GetUser($username: String!) {
     lastLogin
     fullName
     listing
+    location {
+      latitude
+      longitude
+    }
     phone {
       number
       countryCode
@@ -98,6 +105,10 @@ query Product($id: Int!) {
     createdAt
     updatedAt
     color
+    materials {
+      id
+      name
+    }
     brand {
       id
       name
@@ -145,6 +156,10 @@ query UserProducts(
     createdAt
     updatedAt
     color
+    materials {
+      id
+      name
+    }
     brand {
       id
       name
@@ -182,6 +197,10 @@ query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
     updatedAt
     likes
     color
+    materials {
+      id
+      name
+    }
     brand {
       id
       name
@@ -233,6 +252,10 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       likes
       userLiked
       color
+      materials {
+        id
+        name
+      }
       brand {
         id
         name
@@ -298,6 +321,10 @@ query SimilarProducts(
     updatedAt
     likes
     color
+    materials {
+      id
+      name
+    }
     brand {
       id
       name
