@@ -78,11 +78,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       return null;
     }).onError((error, stackTrace) async {
       //print('888^^^0000 $error');
+      setState(() {
+        isLoading = true;
+      });
       if (showDialog) {
         final String newError = error.toString();
         print('888^^^0000 $newError');
         if (newError.contains('denied')) {
-          _showEnableLocationPopup(context,
+          await _showEnableLocationPopup(context,
               title: "Permission Access",
               description:
                   "Prelura requires permission for location access to function "
@@ -90,7 +93,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
               positiveCallback: Geolocator.openAppSettings);
         } else if (newError.contains('disabled')) {
           print(" it is true");
-          _showEnableLocationPopup(context,
+          await _showEnableLocationPopup(context,
               title: "Location Disabled",
               description:
                   'Prelura requires location access for the proper functioning of '
@@ -202,7 +205,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
           ),
         ),
         bottomNavigationBar: Container(
-          height: 74,
+          height: 106,
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
           child: PreluraButtonWithLoader(
             showLoadingIndicator: isLoading,
@@ -224,7 +227,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                         context.alert('An error occured while updating'),
                     data: (_) {
                       setState(() {
-                        isLoading = true;
+                        isLoading = false;
                       });
                       Navigator.pop(context);
                       HelperFunction.context = context;
@@ -388,11 +391,11 @@ class LocationListTile extends StatelessWidget {
   }
 }
 
-void _showEnableLocationPopup(BuildContext context,
+Future<void> _showEnableLocationPopup(BuildContext context,
     {required String title,
     required String description,
-    required Future<bool> Function() positiveCallback}) {
-  showDialog(
+    required Future<bool> Function() positiveCallback}) async {
+  await showDialog(
     context: context,
     builder: (BuildContext context) {
       return PreluraConfirmationPopUp(
@@ -401,10 +404,13 @@ void _showEnableLocationPopup(BuildContext context,
         onPressedYes: () async {
           //Calls to settings are not supported on the web
           if (kIsWeb) return;
-          await positiveCallback();
+          final res = await positiveCallback();
+          if (res && context.mounted) {
+            Navigator.pop(context);
+          }
         },
         onPressedNo: () {
-          Navigator.pop(context);
+          Navigator.pop(context, false);
         },
       );
     },
