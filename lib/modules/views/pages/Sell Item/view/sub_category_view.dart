@@ -48,7 +48,6 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
         appbarTitle: widget.categoryName,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             10.verticalSpacing,

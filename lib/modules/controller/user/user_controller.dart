@@ -23,7 +23,8 @@ final searchUserProvider = FutureProvider.family((ref, String query) async {
   return result;
 });
 
-final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username) async {
+final otherUserProfile =
+    FutureProvider.family<UserModel, String>((ref, username) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getUser(username);
@@ -31,7 +32,8 @@ final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username
   return result;
 });
 
-final userNotfierProvider = AsyncNotifierProvider<_UserController, void>(_UserController.new);
+final userNotfierProvider =
+    AsyncNotifierProvider<_UserController, void>(_UserController.new);
 
 class _UserController extends AsyncNotifier<void> {
   late final _repo = ref.read(userRepo);
@@ -86,6 +88,7 @@ class _UserController extends AsyncNotifier<void> {
     String? profilePictureUrl,
     String? thumbnailUrl,
     String? username,
+    Input$LocationInputType? location,
   }) async {
     state = const AsyncLoading();
 
@@ -93,20 +96,20 @@ class _UserController extends AsyncNotifier<void> {
       () async {
         await _repo.updateProfile(
           Variables$Mutation$UpdateProfile(
-            bio: bio,
-            country: country,
-            displayName: displayName,
-            dob: dob,
-            firstName: firstName,
-            gender: gender,
-            lastName: lastName,
-            otp: otp,
-            phoneNumber: phoneNumber,
-            postCode: postCode,
-            profilePictureUrl: profilePictureUrl,
-            thumbnailUrl: thumbnailUrl,
-            username: username,
-          ),
+              bio: bio,
+              country: country,
+              displayName: displayName,
+              dob: dob,
+              firstName: firstName,
+              gender: gender,
+              lastName: lastName,
+              otp: otp,
+              phoneNumber: phoneNumber,
+              postCode: postCode,
+              profilePictureUrl: profilePictureUrl,
+              thumbnailUrl: thumbnailUrl,
+              username: username,
+              location: location),
         );
 
         await ref.refresh(userProvider.future);
