@@ -34,7 +34,7 @@ class AppStartupPage extends ConsumerWidget {
                 const AuthRoute(),
               ]);
             });
-            return const SizedBox.shrink();
+            return const _StartUpLoadingWidget();
           },
           error: (e, _) {
             WidgetsBinding.instance.addPostFrameCallback((_) {

@@ -292,6 +292,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
                           onChanged: notifier.updateTitle,
                           controller: titleController,
+                          // textInputAction: TextInputActio,
                         ),
                         const SizedBox(height: 16),
                         PreluraAuthTextField(
@@ -439,10 +440,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         HelperFunction.showToast(message: 'Colors are required for product.');
                         return;
                       }
-                      if (state.selectedMaterials.isEmpty) {
-                        HelperFunction.showToast(message: 'Materials are required for product.');
-                        return;
-                      }
+                      // if (state.selectedMaterials.isEmpty) {
+                      //   HelperFunction.showToast(message: 'Materials are required for product.');
+                      //   return;
+                      // }
                       if (state.brand == null) {
                         HelperFunction.showToast(message: 'A `brand` is required for product.');
                         return;
