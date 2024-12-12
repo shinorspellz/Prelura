@@ -168,3 +168,15 @@ mutation UpdateProfile(
     message
   }
 }
+
+mutation followUser($followedId: Int!) {
+  followUser(followedId: $followedId) {
+    success
+  }
+}
+
+mutation unfollowUser($followedId: Int!) {
+  unfollowUser(followedId: $followedId) {
+    success
+  }
+}

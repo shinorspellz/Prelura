@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
@@ -21,9 +22,11 @@ class UserModel with _$UserModel {
     String? fullName,
     int? listing,
     PhoneModel? phone,
+    LocationInputType? location,
   }) = _UserModel;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 }
 
 @freezed
@@ -33,5 +36,17 @@ class PhoneModel with _$PhoneModel {
     required String countryCode,
   }) = _PhoneModel;
 
-  factory PhoneModel.fromJson(Map<String, dynamic> json) => _$PhoneModelFromJson(json);
+  factory PhoneModel.fromJson(Map<String, dynamic> json) =>
+      _$PhoneModelFromJson(json);
+}
+
+@freezed
+class LocationInputType with _$LocationInputType {
+  const factory LocationInputType(
+      {required String latitude,
+      required String longitude,
+      required String locationName}) = _LocationInputType;
+
+  factory LocationInputType.fromJson(Map<String, dynamic> json) =>
+      _$LocationInputTypeFromJson(json);
 }

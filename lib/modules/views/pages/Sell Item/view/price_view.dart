@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../widgets/app_button.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../provider/price_provider.dart';
 import '../provider/sell_item_provider.dart'; // Update this path
@@ -29,7 +30,8 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -80,31 +82,24 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
 
               // Done Button
               const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 46),
-                child: ElevatedButton(
-                  onPressed: priceState != null
-                      ? () {
-                          // Pass the data back or proceed to the next screen
-                          Navigator.pop(context);
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: PreluraColors.activeColor,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Done",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
-                    ),
-                  ),
-                ),
-              ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 112,
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
+          child: AppButton(
+            onTap: priceState != null
+                ? () {
+                    // Pass the data back or proceed to the next screen
+                    Navigator.pop(context);
+                  }
+                : null,
+            isDisabled: priceState!.isEmpty,
+            text: "Done",
           ),
         ),
       ),

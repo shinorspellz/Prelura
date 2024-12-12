@@ -268,6 +268,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'locationName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -884,16 +891,19 @@ class Query$ViewMe$viewMe$location {
   Query$ViewMe$viewMe$location({
     this.latitude,
     this.longitude,
+    this.locationName,
     this.$__typename = 'LocationType',
   });
 
   factory Query$ViewMe$viewMe$location.fromJson(Map<String, dynamic> json) {
     final l$latitude = json['latitude'];
     final l$longitude = json['longitude'];
+    final l$locationName = json['locationName'];
     final l$$__typename = json['__typename'];
     return Query$ViewMe$viewMe$location(
       latitude: (l$latitude as String?),
       longitude: (l$longitude as String?),
+      locationName: (l$locationName as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -901,6 +911,8 @@ class Query$ViewMe$viewMe$location {
   final String? latitude;
 
   final String? longitude;
+
+  final String? locationName;
 
   final String $__typename;
 
@@ -910,6 +922,8 @@ class Query$ViewMe$viewMe$location {
     _resultData['latitude'] = l$latitude;
     final l$longitude = longitude;
     _resultData['longitude'] = l$longitude;
+    final l$locationName = locationName;
+    _resultData['locationName'] = l$locationName;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -919,10 +933,12 @@ class Query$ViewMe$viewMe$location {
   int get hashCode {
     final l$latitude = latitude;
     final l$longitude = longitude;
+    final l$locationName = locationName;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$latitude,
       l$longitude,
+      l$locationName,
       l$$__typename,
     ]);
   }
@@ -944,6 +960,11 @@ class Query$ViewMe$viewMe$location {
     final l$longitude = longitude;
     final lOther$longitude = other.longitude;
     if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (l$locationName != lOther$locationName) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -976,6 +997,7 @@ abstract class CopyWith$Query$ViewMe$viewMe$location<TRes> {
   TRes call({
     String? latitude,
     String? longitude,
+    String? locationName,
     String? $__typename,
   });
 }
@@ -996,6 +1018,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe$location<TRes>
   TRes call({
     Object? latitude = _undefined,
     Object? longitude = _undefined,
+    Object? locationName = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$ViewMe$viewMe$location(
@@ -1004,6 +1027,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe$location<TRes>
         longitude: longitude == _undefined
             ? _instance.longitude
             : (longitude as String?),
+        locationName: locationName == _undefined
+            ? _instance.locationName
+            : (locationName as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1019,6 +1045,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe$location<TRes>
   call({
     String? latitude,
     String? longitude,
+    String? locationName,
     String? $__typename,
   }) =>
       _res;
@@ -2666,6 +2693,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'locationName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -3297,16 +3331,19 @@ class Query$GetUser$getUser$location {
   Query$GetUser$getUser$location({
     this.latitude,
     this.longitude,
+    this.locationName,
     this.$__typename = 'LocationType',
   });
 
   factory Query$GetUser$getUser$location.fromJson(Map<String, dynamic> json) {
     final l$latitude = json['latitude'];
     final l$longitude = json['longitude'];
+    final l$locationName = json['locationName'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser$location(
       latitude: (l$latitude as String?),
       longitude: (l$longitude as String?),
+      locationName: (l$locationName as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3314,6 +3351,8 @@ class Query$GetUser$getUser$location {
   final String? latitude;
 
   final String? longitude;
+
+  final String? locationName;
 
   final String $__typename;
 
@@ -3323,6 +3362,8 @@ class Query$GetUser$getUser$location {
     _resultData['latitude'] = l$latitude;
     final l$longitude = longitude;
     _resultData['longitude'] = l$longitude;
+    final l$locationName = locationName;
+    _resultData['locationName'] = l$locationName;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3332,10 +3373,12 @@ class Query$GetUser$getUser$location {
   int get hashCode {
     final l$latitude = latitude;
     final l$longitude = longitude;
+    final l$locationName = locationName;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$latitude,
       l$longitude,
+      l$locationName,
       l$$__typename,
     ]);
   }
@@ -3357,6 +3400,11 @@ class Query$GetUser$getUser$location {
     final l$longitude = longitude;
     final lOther$longitude = other.longitude;
     if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (l$locationName != lOther$locationName) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -3389,6 +3437,7 @@ abstract class CopyWith$Query$GetUser$getUser$location<TRes> {
   TRes call({
     String? latitude,
     String? longitude,
+    String? locationName,
     String? $__typename,
   });
 }
@@ -3409,6 +3458,7 @@ class _CopyWithImpl$Query$GetUser$getUser$location<TRes>
   TRes call({
     Object? latitude = _undefined,
     Object? longitude = _undefined,
+    Object? locationName = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetUser$getUser$location(
@@ -3417,6 +3467,9 @@ class _CopyWithImpl$Query$GetUser$getUser$location<TRes>
         longitude: longitude == _undefined
             ? _instance.longitude
             : (longitude as String?),
+        locationName: locationName == _undefined
+            ? _instance.locationName
+            : (locationName as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -3432,6 +3485,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser$location<TRes>
   call({
     String? latitude,
     String? longitude,
+    String? locationName,
     String? $__typename,
   }) =>
       _res;
@@ -16591,6 +16645,2642 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$brand<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Variables$Query$following {
+  factory Variables$Query$following({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$following._({
+        if (latestFirst != null) r'latestFirst': latestFirst,
+        if (search != null) r'search': search,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$following._(this._$data);
+
+  factory Variables$Query$following.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('latestFirst')) {
+      final l$latestFirst = data['latestFirst'];
+      result$data['latestFirst'] = (l$latestFirst as bool?);
+    }
+    if (data.containsKey('search')) {
+      final l$search = data['search'];
+      result$data['search'] = (l$search as String?);
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$following._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get latestFirst => (_$data['latestFirst'] as bool?);
+
+  String? get search => (_$data['search'] as String?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('latestFirst')) {
+      final l$latestFirst = latestFirst;
+      result$data['latestFirst'] = l$latestFirst;
+    }
+    if (_$data.containsKey('search')) {
+      final l$search = search;
+      result$data['search'] = l$search;
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$following<Variables$Query$following> get copyWith =>
+      CopyWith$Variables$Query$following(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$following ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latestFirst = latestFirst;
+    final lOther$latestFirst = other.latestFirst;
+    if (_$data.containsKey('latestFirst') !=
+        other._$data.containsKey('latestFirst')) {
+      return false;
+    }
+    if (l$latestFirst != lOther$latestFirst) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
+      return false;
+    }
+    if (l$search != lOther$search) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$latestFirst = latestFirst;
+    final l$search = search;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('latestFirst') ? l$latestFirst : const {},
+      _$data.containsKey('search') ? l$search : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$following<TRes> {
+  factory CopyWith$Variables$Query$following(
+    Variables$Query$following instance,
+    TRes Function(Variables$Query$following) then,
+  ) = _CopyWithImpl$Variables$Query$following;
+
+  factory CopyWith$Variables$Query$following.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$following;
+
+  TRes call({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$following<TRes>
+    implements CopyWith$Variables$Query$following<TRes> {
+  _CopyWithImpl$Variables$Query$following(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$following _instance;
+
+  final TRes Function(Variables$Query$following) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latestFirst = _undefined,
+    Object? search = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$following._({
+        ..._instance._$data,
+        if (latestFirst != _undefined) 'latestFirst': (latestFirst as bool?),
+        if (search != _undefined) 'search': (search as String?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$following<TRes>
+    implements CopyWith$Variables$Query$following<TRes> {
+  _CopyWithStubImpl$Variables$Query$following(this._res);
+
+  TRes _res;
+
+  call({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$following {
+  Query$following({
+    this.following,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$following.fromJson(Map<String, dynamic> json) {
+    final l$following = json['following'];
+    final l$$__typename = json['__typename'];
+    return Query$following(
+      following: (l$following as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$following$following.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$following$following?>? following;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$following = following;
+    _resultData['following'] = l$following?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$following = following;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$following == null ? null : Object.hashAll(l$following.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$following || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$following = following;
+    final lOther$following = other.following;
+    if (l$following != null && lOther$following != null) {
+      if (l$following.length != lOther$following.length) {
+        return false;
+      }
+      for (int i = 0; i < l$following.length; i++) {
+        final l$following$entry = l$following[i];
+        final lOther$following$entry = lOther$following[i];
+        if (l$following$entry != lOther$following$entry) {
+          return false;
+        }
+      }
+    } else if (l$following != lOther$following) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$following on Query$following {
+  CopyWith$Query$following<Query$following> get copyWith =>
+      CopyWith$Query$following(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$following<TRes> {
+  factory CopyWith$Query$following(
+    Query$following instance,
+    TRes Function(Query$following) then,
+  ) = _CopyWithImpl$Query$following;
+
+  factory CopyWith$Query$following.stub(TRes res) =
+      _CopyWithStubImpl$Query$following;
+
+  TRes call({
+    List<Query$following$following?>? following,
+    String? $__typename,
+  });
+  TRes following(
+      Iterable<Query$following$following?>? Function(
+              Iterable<
+                  CopyWith$Query$following$following<
+                      Query$following$following>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$following<TRes>
+    implements CopyWith$Query$following<TRes> {
+  _CopyWithImpl$Query$following(
+    this._instance,
+    this._then,
+  );
+
+  final Query$following _instance;
+
+  final TRes Function(Query$following) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? following = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$following(
+        following: following == _undefined
+            ? _instance.following
+            : (following as List<Query$following$following?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes following(
+          Iterable<Query$following$following?>? Function(
+                  Iterable<
+                      CopyWith$Query$following$following<
+                          Query$following$following>?>?)
+              _fn) =>
+      call(
+          following: _fn(_instance.following?.map((e) => e == null
+              ? null
+              : CopyWith$Query$following$following(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$following<TRes>
+    implements CopyWith$Query$following<TRes> {
+  _CopyWithStubImpl$Query$following(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$following$following?>? following,
+    String? $__typename,
+  }) =>
+      _res;
+
+  following(_fn) => _res;
+}
+
+const documentNodeQueryfollowing = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'following'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'latestFirst')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'following'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'latestFirst'),
+            value: VariableNode(name: NameNode(value: 'latestFirst')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'username'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'fullName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'listing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'profilePictureUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'location'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'latitude'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'longitude'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'locationName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$following _parserFn$Query$following(Map<String, dynamic> data) =>
+    Query$following.fromJson(data);
+typedef OnQueryComplete$Query$following = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$following?,
+);
+
+class Options$Query$following extends graphql.QueryOptions<Query$following> {
+  Options$Query$following({
+    String? operationName,
+    Variables$Query$following? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$following? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$following? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$following(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryfollowing,
+          parserFn: _parserFn$Query$following,
+        );
+
+  final OnQueryComplete$Query$following? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$following
+    extends graphql.WatchQueryOptions<Query$following> {
+  WatchOptions$Query$following({
+    String? operationName,
+    Variables$Query$following? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$following? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryfollowing,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$following,
+        );
+}
+
+class FetchMoreOptions$Query$following extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$following({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$following? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryfollowing,
+        );
+}
+
+extension ClientExtension$Query$following on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$following>> query$following(
+          [Options$Query$following? options]) async =>
+      await this.query(options ?? Options$Query$following());
+  graphql.ObservableQuery<Query$following> watchQuery$following(
+          [WatchOptions$Query$following? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$following());
+  void writeQuery$following({
+    required Query$following data,
+    Variables$Query$following? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryfollowing),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$following? readQuery$following({
+    Variables$Query$following? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryfollowing),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$following.fromJson(result);
+  }
+}
+
+class Query$following$following {
+  Query$following$following({
+    this.id,
+    this.username,
+    this.fullName,
+    this.listing,
+    this.profilePictureUrl,
+    this.location,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$following$following.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$location = json['location'];
+    final l$$__typename = json['__typename'];
+    return Query$following$following(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      location: l$location == null
+          ? null
+          : Query$following$following$location.fromJson(
+              (l$location as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? fullName;
+
+  final int? listing;
+
+  final String? profilePictureUrl;
+
+  final Query$following$following$location? location;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$location = location;
+    _resultData['location'] = l$location?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$fullName = fullName;
+    final l$listing = listing;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$location = location;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$fullName,
+      l$listing,
+      l$profilePictureUrl,
+      l$location,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$following$following ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (l$location != lOther$location) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$following$following
+    on Query$following$following {
+  CopyWith$Query$following$following<Query$following$following> get copyWith =>
+      CopyWith$Query$following$following(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$following$following<TRes> {
+  factory CopyWith$Query$following$following(
+    Query$following$following instance,
+    TRes Function(Query$following$following) then,
+  ) = _CopyWithImpl$Query$following$following;
+
+  factory CopyWith$Query$following$following.stub(TRes res) =
+      _CopyWithStubImpl$Query$following$following;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? fullName,
+    int? listing,
+    String? profilePictureUrl,
+    Query$following$following$location? location,
+    String? $__typename,
+  });
+  CopyWith$Query$following$following$location<TRes> get location;
+}
+
+class _CopyWithImpl$Query$following$following<TRes>
+    implements CopyWith$Query$following$following<TRes> {
+  _CopyWithImpl$Query$following$following(
+    this._instance,
+    this._then,
+  );
+
+  final Query$following$following _instance;
+
+  final TRes Function(Query$following$following) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? fullName = _undefined,
+    Object? listing = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? location = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$following$following(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        location: location == _undefined
+            ? _instance.location
+            : (location as Query$following$following$location?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$following$following$location<TRes> get location {
+    final local$location = _instance.location;
+    return local$location == null
+        ? CopyWith$Query$following$following$location.stub(_then(_instance))
+        : CopyWith$Query$following$following$location(
+            local$location, (e) => call(location: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$following$following<TRes>
+    implements CopyWith$Query$following$following<TRes> {
+  _CopyWithStubImpl$Query$following$following(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? fullName,
+    int? listing,
+    String? profilePictureUrl,
+    Query$following$following$location? location,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$following$following$location<TRes> get location =>
+      CopyWith$Query$following$following$location.stub(_res);
+}
+
+class Query$following$following$location {
+  Query$following$following$location({
+    this.latitude,
+    this.longitude,
+    this.locationName,
+    this.$__typename = 'LocationType',
+  });
+
+  factory Query$following$following$location.fromJson(
+      Map<String, dynamic> json) {
+    final l$latitude = json['latitude'];
+    final l$longitude = json['longitude'];
+    final l$locationName = json['locationName'];
+    final l$$__typename = json['__typename'];
+    return Query$following$following$location(
+      latitude: (l$latitude as String?),
+      longitude: (l$longitude as String?),
+      locationName: (l$locationName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? latitude;
+
+  final String? longitude;
+
+  final String? locationName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$latitude = latitude;
+    _resultData['latitude'] = l$latitude;
+    final l$longitude = longitude;
+    _resultData['longitude'] = l$longitude;
+    final l$locationName = locationName;
+    _resultData['locationName'] = l$locationName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$latitude = latitude;
+    final l$longitude = longitude;
+    final l$locationName = locationName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$latitude,
+      l$longitude,
+      l$locationName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$following$following$location ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latitude = latitude;
+    final lOther$latitude = other.latitude;
+    if (l$latitude != lOther$latitude) {
+      return false;
+    }
+    final l$longitude = longitude;
+    final lOther$longitude = other.longitude;
+    if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (l$locationName != lOther$locationName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$following$following$location
+    on Query$following$following$location {
+  CopyWith$Query$following$following$location<
+          Query$following$following$location>
+      get copyWith => CopyWith$Query$following$following$location(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$following$following$location<TRes> {
+  factory CopyWith$Query$following$following$location(
+    Query$following$following$location instance,
+    TRes Function(Query$following$following$location) then,
+  ) = _CopyWithImpl$Query$following$following$location;
+
+  factory CopyWith$Query$following$following$location.stub(TRes res) =
+      _CopyWithStubImpl$Query$following$following$location;
+
+  TRes call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$following$following$location<TRes>
+    implements CopyWith$Query$following$following$location<TRes> {
+  _CopyWithImpl$Query$following$following$location(
+    this._instance,
+    this._then,
+  );
+
+  final Query$following$following$location _instance;
+
+  final TRes Function(Query$following$following$location) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latitude = _undefined,
+    Object? longitude = _undefined,
+    Object? locationName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$following$following$location(
+        latitude:
+            latitude == _undefined ? _instance.latitude : (latitude as String?),
+        longitude: longitude == _undefined
+            ? _instance.longitude
+            : (longitude as String?),
+        locationName: locationName == _undefined
+            ? _instance.locationName
+            : (locationName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$following$following$location<TRes>
+    implements CopyWith$Query$following$following$location<TRes> {
+  _CopyWithStubImpl$Query$following$following$location(this._res);
+
+  TRes _res;
+
+  call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$followers {
+  factory Variables$Query$followers({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$followers._({
+        if (latestFirst != null) r'latestFirst': latestFirst,
+        if (search != null) r'search': search,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$followers._(this._$data);
+
+  factory Variables$Query$followers.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('latestFirst')) {
+      final l$latestFirst = data['latestFirst'];
+      result$data['latestFirst'] = (l$latestFirst as bool?);
+    }
+    if (data.containsKey('search')) {
+      final l$search = data['search'];
+      result$data['search'] = (l$search as String?);
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$followers._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get latestFirst => (_$data['latestFirst'] as bool?);
+
+  String? get search => (_$data['search'] as String?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('latestFirst')) {
+      final l$latestFirst = latestFirst;
+      result$data['latestFirst'] = l$latestFirst;
+    }
+    if (_$data.containsKey('search')) {
+      final l$search = search;
+      result$data['search'] = l$search;
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$followers<Variables$Query$followers> get copyWith =>
+      CopyWith$Variables$Query$followers(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$followers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latestFirst = latestFirst;
+    final lOther$latestFirst = other.latestFirst;
+    if (_$data.containsKey('latestFirst') !=
+        other._$data.containsKey('latestFirst')) {
+      return false;
+    }
+    if (l$latestFirst != lOther$latestFirst) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
+      return false;
+    }
+    if (l$search != lOther$search) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$latestFirst = latestFirst;
+    final l$search = search;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('latestFirst') ? l$latestFirst : const {},
+      _$data.containsKey('search') ? l$search : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$followers<TRes> {
+  factory CopyWith$Variables$Query$followers(
+    Variables$Query$followers instance,
+    TRes Function(Variables$Query$followers) then,
+  ) = _CopyWithImpl$Variables$Query$followers;
+
+  factory CopyWith$Variables$Query$followers.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$followers;
+
+  TRes call({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$followers<TRes>
+    implements CopyWith$Variables$Query$followers<TRes> {
+  _CopyWithImpl$Variables$Query$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$followers _instance;
+
+  final TRes Function(Variables$Query$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latestFirst = _undefined,
+    Object? search = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$followers._({
+        ..._instance._$data,
+        if (latestFirst != _undefined) 'latestFirst': (latestFirst as bool?),
+        if (search != _undefined) 'search': (search as String?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$followers<TRes>
+    implements CopyWith$Variables$Query$followers<TRes> {
+  _CopyWithStubImpl$Variables$Query$followers(this._res);
+
+  TRes _res;
+
+  call({
+    bool? latestFirst,
+    String? search,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$followers {
+  Query$followers({
+    this.followers,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$followers.fromJson(Map<String, dynamic> json) {
+    final l$followers = json['followers'];
+    final l$$__typename = json['__typename'];
+    return Query$followers(
+      followers: (l$followers as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$followers$followers.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$followers$followers?>? followers;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$followers = followers;
+    _resultData['followers'] = l$followers?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$followers = followers;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$followers || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followers = followers;
+    final lOther$followers = other.followers;
+    if (l$followers != null && lOther$followers != null) {
+      if (l$followers.length != lOther$followers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$followers.length; i++) {
+        final l$followers$entry = l$followers[i];
+        final lOther$followers$entry = lOther$followers[i];
+        if (l$followers$entry != lOther$followers$entry) {
+          return false;
+        }
+      }
+    } else if (l$followers != lOther$followers) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$followers on Query$followers {
+  CopyWith$Query$followers<Query$followers> get copyWith =>
+      CopyWith$Query$followers(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$followers<TRes> {
+  factory CopyWith$Query$followers(
+    Query$followers instance,
+    TRes Function(Query$followers) then,
+  ) = _CopyWithImpl$Query$followers;
+
+  factory CopyWith$Query$followers.stub(TRes res) =
+      _CopyWithStubImpl$Query$followers;
+
+  TRes call({
+    List<Query$followers$followers?>? followers,
+    String? $__typename,
+  });
+  TRes followers(
+      Iterable<Query$followers$followers?>? Function(
+              Iterable<
+                  CopyWith$Query$followers$followers<
+                      Query$followers$followers>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$followers<TRes>
+    implements CopyWith$Query$followers<TRes> {
+  _CopyWithImpl$Query$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$followers _instance;
+
+  final TRes Function(Query$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? followers = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$followers(
+        followers: followers == _undefined
+            ? _instance.followers
+            : (followers as List<Query$followers$followers?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes followers(
+          Iterable<Query$followers$followers?>? Function(
+                  Iterable<
+                      CopyWith$Query$followers$followers<
+                          Query$followers$followers>?>?)
+              _fn) =>
+      call(
+          followers: _fn(_instance.followers?.map((e) => e == null
+              ? null
+              : CopyWith$Query$followers$followers(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$followers<TRes>
+    implements CopyWith$Query$followers<TRes> {
+  _CopyWithStubImpl$Query$followers(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$followers$followers?>? followers,
+    String? $__typename,
+  }) =>
+      _res;
+
+  followers(_fn) => _res;
+}
+
+const documentNodeQueryfollowers = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'followers'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'latestFirst')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'search')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'followers'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'latestFirst'),
+            value: VariableNode(name: NameNode(value: 'latestFirst')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'search'),
+            value: VariableNode(name: NameNode(value: 'search')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'username'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'fullName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'listing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'profilePictureUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'location'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'latitude'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'longitude'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'locationName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$followers _parserFn$Query$followers(Map<String, dynamic> data) =>
+    Query$followers.fromJson(data);
+typedef OnQueryComplete$Query$followers = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$followers?,
+);
+
+class Options$Query$followers extends graphql.QueryOptions<Query$followers> {
+  Options$Query$followers({
+    String? operationName,
+    Variables$Query$followers? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followers? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$followers? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$followers(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryfollowers,
+          parserFn: _parserFn$Query$followers,
+        );
+
+  final OnQueryComplete$Query$followers? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$followers
+    extends graphql.WatchQueryOptions<Query$followers> {
+  WatchOptions$Query$followers({
+    String? operationName,
+    Variables$Query$followers? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followers? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryfollowers,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$followers,
+        );
+}
+
+class FetchMoreOptions$Query$followers extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$followers({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$followers? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryfollowers,
+        );
+}
+
+extension ClientExtension$Query$followers on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$followers>> query$followers(
+          [Options$Query$followers? options]) async =>
+      await this.query(options ?? Options$Query$followers());
+  graphql.ObservableQuery<Query$followers> watchQuery$followers(
+          [WatchOptions$Query$followers? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$followers());
+  void writeQuery$followers({
+    required Query$followers data,
+    Variables$Query$followers? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryfollowers),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$followers? readQuery$followers({
+    Variables$Query$followers? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryfollowers),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$followers.fromJson(result);
+  }
+}
+
+class Query$followers$followers {
+  Query$followers$followers({
+    this.id,
+    this.username,
+    this.fullName,
+    this.listing,
+    this.profilePictureUrl,
+    this.location,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$followers$followers.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$location = json['location'];
+    final l$$__typename = json['__typename'];
+    return Query$followers$followers(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      location: l$location == null
+          ? null
+          : Query$followers$followers$location.fromJson(
+              (l$location as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? fullName;
+
+  final int? listing;
+
+  final String? profilePictureUrl;
+
+  final Query$followers$followers$location? location;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$location = location;
+    _resultData['location'] = l$location?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$fullName = fullName;
+    final l$listing = listing;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$location = location;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$fullName,
+      l$listing,
+      l$profilePictureUrl,
+      l$location,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$followers$followers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (l$location != lOther$location) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$followers$followers
+    on Query$followers$followers {
+  CopyWith$Query$followers$followers<Query$followers$followers> get copyWith =>
+      CopyWith$Query$followers$followers(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$followers$followers<TRes> {
+  factory CopyWith$Query$followers$followers(
+    Query$followers$followers instance,
+    TRes Function(Query$followers$followers) then,
+  ) = _CopyWithImpl$Query$followers$followers;
+
+  factory CopyWith$Query$followers$followers.stub(TRes res) =
+      _CopyWithStubImpl$Query$followers$followers;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? fullName,
+    int? listing,
+    String? profilePictureUrl,
+    Query$followers$followers$location? location,
+    String? $__typename,
+  });
+  CopyWith$Query$followers$followers$location<TRes> get location;
+}
+
+class _CopyWithImpl$Query$followers$followers<TRes>
+    implements CopyWith$Query$followers$followers<TRes> {
+  _CopyWithImpl$Query$followers$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$followers$followers _instance;
+
+  final TRes Function(Query$followers$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? fullName = _undefined,
+    Object? listing = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? location = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$followers$followers(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        location: location == _undefined
+            ? _instance.location
+            : (location as Query$followers$followers$location?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$followers$followers$location<TRes> get location {
+    final local$location = _instance.location;
+    return local$location == null
+        ? CopyWith$Query$followers$followers$location.stub(_then(_instance))
+        : CopyWith$Query$followers$followers$location(
+            local$location, (e) => call(location: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$followers$followers<TRes>
+    implements CopyWith$Query$followers$followers<TRes> {
+  _CopyWithStubImpl$Query$followers$followers(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? fullName,
+    int? listing,
+    String? profilePictureUrl,
+    Query$followers$followers$location? location,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$followers$followers$location<TRes> get location =>
+      CopyWith$Query$followers$followers$location.stub(_res);
+}
+
+class Query$followers$followers$location {
+  Query$followers$followers$location({
+    this.latitude,
+    this.longitude,
+    this.locationName,
+    this.$__typename = 'LocationType',
+  });
+
+  factory Query$followers$followers$location.fromJson(
+      Map<String, dynamic> json) {
+    final l$latitude = json['latitude'];
+    final l$longitude = json['longitude'];
+    final l$locationName = json['locationName'];
+    final l$$__typename = json['__typename'];
+    return Query$followers$followers$location(
+      latitude: (l$latitude as String?),
+      longitude: (l$longitude as String?),
+      locationName: (l$locationName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? latitude;
+
+  final String? longitude;
+
+  final String? locationName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$latitude = latitude;
+    _resultData['latitude'] = l$latitude;
+    final l$longitude = longitude;
+    _resultData['longitude'] = l$longitude;
+    final l$locationName = locationName;
+    _resultData['locationName'] = l$locationName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$latitude = latitude;
+    final l$longitude = longitude;
+    final l$locationName = locationName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$latitude,
+      l$longitude,
+      l$locationName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$followers$followers$location ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latitude = latitude;
+    final lOther$latitude = other.latitude;
+    if (l$latitude != lOther$latitude) {
+      return false;
+    }
+    final l$longitude = longitude;
+    final lOther$longitude = other.longitude;
+    if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (l$locationName != lOther$locationName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$followers$followers$location
+    on Query$followers$followers$location {
+  CopyWith$Query$followers$followers$location<
+          Query$followers$followers$location>
+      get copyWith => CopyWith$Query$followers$followers$location(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$followers$followers$location<TRes> {
+  factory CopyWith$Query$followers$followers$location(
+    Query$followers$followers$location instance,
+    TRes Function(Query$followers$followers$location) then,
+  ) = _CopyWithImpl$Query$followers$followers$location;
+
+  factory CopyWith$Query$followers$followers$location.stub(TRes res) =
+      _CopyWithStubImpl$Query$followers$followers$location;
+
+  TRes call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$followers$followers$location<TRes>
+    implements CopyWith$Query$followers$followers$location<TRes> {
+  _CopyWithImpl$Query$followers$followers$location(
+    this._instance,
+    this._then,
+  );
+
+  final Query$followers$followers$location _instance;
+
+  final TRes Function(Query$followers$followers$location) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latitude = _undefined,
+    Object? longitude = _undefined,
+    Object? locationName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$followers$followers$location(
+        latitude:
+            latitude == _undefined ? _instance.latitude : (latitude as String?),
+        longitude: longitude == _undefined
+            ? _instance.longitude
+            : (longitude as String?),
+        locationName: locationName == _undefined
+            ? _instance.locationName
+            : (locationName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$followers$followers$location<TRes>
+    implements CopyWith$Query$followers$followers$location<TRes> {
+  _CopyWithStubImpl$Query$followers$followers$location(this._res);
+
+  TRes _res;
+
+  call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$followersTotalNumber {
+  Query$followersTotalNumber({
+    this.followersTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$followersTotalNumber.fromJson(Map<String, dynamic> json) {
+    final l$followersTotalNumber = json['followersTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$followersTotalNumber(
+      followersTotalNumber: (l$followersTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? followersTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$followersTotalNumber = followersTotalNumber;
+    _resultData['followersTotalNumber'] = l$followersTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$followersTotalNumber = followersTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$followersTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$followersTotalNumber ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followersTotalNumber = followersTotalNumber;
+    final lOther$followersTotalNumber = other.followersTotalNumber;
+    if (l$followersTotalNumber != lOther$followersTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$followersTotalNumber
+    on Query$followersTotalNumber {
+  CopyWith$Query$followersTotalNumber<Query$followersTotalNumber>
+      get copyWith => CopyWith$Query$followersTotalNumber(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$followersTotalNumber<TRes> {
+  factory CopyWith$Query$followersTotalNumber(
+    Query$followersTotalNumber instance,
+    TRes Function(Query$followersTotalNumber) then,
+  ) = _CopyWithImpl$Query$followersTotalNumber;
+
+  factory CopyWith$Query$followersTotalNumber.stub(TRes res) =
+      _CopyWithStubImpl$Query$followersTotalNumber;
+
+  TRes call({
+    int? followersTotalNumber,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$followersTotalNumber<TRes>
+    implements CopyWith$Query$followersTotalNumber<TRes> {
+  _CopyWithImpl$Query$followersTotalNumber(
+    this._instance,
+    this._then,
+  );
+
+  final Query$followersTotalNumber _instance;
+
+  final TRes Function(Query$followersTotalNumber) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? followersTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$followersTotalNumber(
+        followersTotalNumber: followersTotalNumber == _undefined
+            ? _instance.followersTotalNumber
+            : (followersTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$followersTotalNumber<TRes>
+    implements CopyWith$Query$followersTotalNumber<TRes> {
+  _CopyWithStubImpl$Query$followersTotalNumber(this._res);
+
+  TRes _res;
+
+  call({
+    int? followersTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeQueryfollowersTotalNumber = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'followersTotalNumber'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'followersTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$followersTotalNumber _parserFn$Query$followersTotalNumber(
+        Map<String, dynamic> data) =>
+    Query$followersTotalNumber.fromJson(data);
+typedef OnQueryComplete$Query$followersTotalNumber = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$followersTotalNumber?,
+);
+
+class Options$Query$followersTotalNumber
+    extends graphql.QueryOptions<Query$followersTotalNumber> {
+  Options$Query$followersTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followersTotalNumber? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$followersTotalNumber? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$followersTotalNumber(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryfollowersTotalNumber,
+          parserFn: _parserFn$Query$followersTotalNumber,
+        );
+
+  final OnQueryComplete$Query$followersTotalNumber? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$followersTotalNumber
+    extends graphql.WatchQueryOptions<Query$followersTotalNumber> {
+  WatchOptions$Query$followersTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followersTotalNumber? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryfollowersTotalNumber,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$followersTotalNumber,
+        );
+}
+
+class FetchMoreOptions$Query$followersTotalNumber
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$followersTotalNumber(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryfollowersTotalNumber,
+        );
+}
+
+extension ClientExtension$Query$followersTotalNumber on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$followersTotalNumber>>
+      query$followersTotalNumber(
+              [Options$Query$followersTotalNumber? options]) async =>
+          await this.query(options ?? Options$Query$followersTotalNumber());
+  graphql.ObservableQuery<Query$followersTotalNumber>
+      watchQuery$followersTotalNumber(
+              [WatchOptions$Query$followersTotalNumber? options]) =>
+          this.watchQuery(options ?? WatchOptions$Query$followersTotalNumber());
+  void writeQuery$followersTotalNumber({
+    required Query$followersTotalNumber data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryfollowersTotalNumber)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$followersTotalNumber? readQuery$followersTotalNumber(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryfollowersTotalNumber)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$followersTotalNumber.fromJson(result);
+  }
+}
+
+class Query$followingTotalNumber {
+  Query$followingTotalNumber({
+    this.followingTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$followingTotalNumber.fromJson(Map<String, dynamic> json) {
+    final l$followingTotalNumber = json['followingTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$followingTotalNumber(
+      followingTotalNumber: (l$followingTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? followingTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$followingTotalNumber = followingTotalNumber;
+    _resultData['followingTotalNumber'] = l$followingTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$followingTotalNumber = followingTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$followingTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$followingTotalNumber ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followingTotalNumber = followingTotalNumber;
+    final lOther$followingTotalNumber = other.followingTotalNumber;
+    if (l$followingTotalNumber != lOther$followingTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$followingTotalNumber
+    on Query$followingTotalNumber {
+  CopyWith$Query$followingTotalNumber<Query$followingTotalNumber>
+      get copyWith => CopyWith$Query$followingTotalNumber(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$followingTotalNumber<TRes> {
+  factory CopyWith$Query$followingTotalNumber(
+    Query$followingTotalNumber instance,
+    TRes Function(Query$followingTotalNumber) then,
+  ) = _CopyWithImpl$Query$followingTotalNumber;
+
+  factory CopyWith$Query$followingTotalNumber.stub(TRes res) =
+      _CopyWithStubImpl$Query$followingTotalNumber;
+
+  TRes call({
+    int? followingTotalNumber,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$followingTotalNumber<TRes>
+    implements CopyWith$Query$followingTotalNumber<TRes> {
+  _CopyWithImpl$Query$followingTotalNumber(
+    this._instance,
+    this._then,
+  );
+
+  final Query$followingTotalNumber _instance;
+
+  final TRes Function(Query$followingTotalNumber) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? followingTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$followingTotalNumber(
+        followingTotalNumber: followingTotalNumber == _undefined
+            ? _instance.followingTotalNumber
+            : (followingTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$followingTotalNumber<TRes>
+    implements CopyWith$Query$followingTotalNumber<TRes> {
+  _CopyWithStubImpl$Query$followingTotalNumber(this._res);
+
+  TRes _res;
+
+  call({
+    int? followingTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeQueryfollowingTotalNumber = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'followingTotalNumber'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'followingTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$followingTotalNumber _parserFn$Query$followingTotalNumber(
+        Map<String, dynamic> data) =>
+    Query$followingTotalNumber.fromJson(data);
+typedef OnQueryComplete$Query$followingTotalNumber = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$followingTotalNumber?,
+);
+
+class Options$Query$followingTotalNumber
+    extends graphql.QueryOptions<Query$followingTotalNumber> {
+  Options$Query$followingTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followingTotalNumber? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$followingTotalNumber? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$followingTotalNumber(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryfollowingTotalNumber,
+          parserFn: _parserFn$Query$followingTotalNumber,
+        );
+
+  final OnQueryComplete$Query$followingTotalNumber? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$followingTotalNumber
+    extends graphql.WatchQueryOptions<Query$followingTotalNumber> {
+  WatchOptions$Query$followingTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$followingTotalNumber? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryfollowingTotalNumber,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$followingTotalNumber,
+        );
+}
+
+class FetchMoreOptions$Query$followingTotalNumber
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$followingTotalNumber(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryfollowingTotalNumber,
+        );
+}
+
+extension ClientExtension$Query$followingTotalNumber on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$followingTotalNumber>>
+      query$followingTotalNumber(
+              [Options$Query$followingTotalNumber? options]) async =>
+          await this.query(options ?? Options$Query$followingTotalNumber());
+  graphql.ObservableQuery<Query$followingTotalNumber>
+      watchQuery$followingTotalNumber(
+              [WatchOptions$Query$followingTotalNumber? options]) =>
+          this.watchQuery(options ?? WatchOptions$Query$followingTotalNumber());
+  void writeQuery$followingTotalNumber({
+    required Query$followingTotalNumber data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryfollowingTotalNumber)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$followingTotalNumber? readQuery$followingTotalNumber(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryfollowingTotalNumber)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$followingTotalNumber.fromJson(result);
+  }
 }
 
 class Variables$Query$FilterProductsByPrice {

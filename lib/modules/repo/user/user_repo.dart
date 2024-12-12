@@ -19,6 +19,7 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
+        print("error : $error");
         throw error;
       }
       log(response.exception.toString(), name: 'UserRepo');
@@ -30,7 +31,7 @@ class UserRepo {
       throw 'An error occured';
     }
 
-    log('${response.parsedData!.viewMe!.toJson()}');
+    log(' response gotten ${response.parsedData!.viewMe!.toJson()}');
 
     return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
   }
@@ -77,7 +78,8 @@ class UserRepo {
     }
 
     // Handle missing parsed data
-    if (response.parsedData == null || response.parsedData!.searchUsers == null) {
+    if (response.parsedData == null ||
+        response.parsedData!.searchUsers == null) {
       log('Missing response data', name: 'UserRepo');
       throw Exception('No users found.');
     }
@@ -85,7 +87,9 @@ class UserRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.searchUsers!;
-      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',
@@ -113,3 +117,5 @@ class UserRepo {
     }
   }
 }
+
+// followers repo

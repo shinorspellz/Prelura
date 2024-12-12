@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/model/user/user_model.dart';
 import 'package:prelura_app/modules/views/pages/Following/provider/follower_provider.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import '../../../../../res/colors.dart';
@@ -8,9 +9,10 @@ import '../model/model.dart';
 import '../provider/follower_provider.dart';
 
 class FollowerTile extends ConsumerWidget {
-  final dynamic follower;
+  final UserModel follower;
+  final bool isFollowing;
 
-  const FollowerTile({super.key, required this.follower});
+  const FollowerTile({super.key, required this.follower, required this.isFollowing});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,8 +31,8 @@ class FollowerTile extends ConsumerWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: follower.profilePicture.isNotEmpty ? NetworkImage(follower.profilePicture) : null,
-            child: follower.profilePicture.isEmpty ? Text(follower.username[0].toUpperCase()) : null,
+            backgroundImage: follower.profilePictureUrl!.isNotEmpty ? NetworkImage(follower.profilePictureUrl!) : null,
+            child: follower.profilePictureUrl!.isEmpty ? Text(follower.username[0].toUpperCase()) : null,
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -43,35 +45,28 @@ class FollowerTile extends ConsumerWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${follower.followersCount} followers',
+                  '${follower} followers',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
           ),
           AppButton(
-            width: isFollowerModel
-                ? follower.isFollowing
+            width: isFollowing
                     ? 85
                     : 70
-                : follower.isFollowing
-                    ? 105
-                    : 85,
+              ,
             onTap: () {
-              if (isFollowerModel) {
-                ref.read(followersProvider.notifier).toggleFollow(follower.username);
-              } else {
-                ref.read(followingProvider.notifier).toggleFollow(follower.username);
-              }
+              // if (isFollowerModel) {
+              //   ref.read(followersProvider.notifier).toggleFollow(follower.username);
+              // } else {
+              //   ref.read(followingProvider.notifier).toggleFollow(follower.username);
+              // }
             },
-            bgColor: follower.isFollowing ? Theme.of(context).scaffoldBackgroundColor : null,
-            text: isFollowerModel
-                ? follower.isFollowing
+            bgColor: isFollowing ? Theme.of(context).scaffoldBackgroundColor : null,
+            text: isFollowing
                     ? 'Following'
-                    : 'Follow'
-                : follower.isFollowing
-                    ? "Connected"
-                    : "Connect",
+                    : 'Follow',
           ),
         ],
       ),

@@ -20,6 +20,7 @@ class ProfileCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print(user?.location?.locationName);
     return SizedBox(
         width: MediaQuery.sizeOf(context).width,
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [

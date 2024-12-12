@@ -7,11 +7,15 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
+import 'package:prelura_app/modules/repo/user/user_repo.dart';
+
+import '../../repo/followers_repo.dart';
 
 final userProvider = FutureProvider((ref) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getMe();
+  log(" result is ${result.toString()}");
 
   return result;
 });
@@ -117,3 +121,42 @@ class _UserController extends AsyncNotifier<void> {
     );
   }
 }
+
+//
+class FollowerQuery {
+  final String? query;
+  final bool? latestFirst;
+  final int? page;
+  final int? pageCount;
+
+  FollowerQuery(
+      {this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
+}
+
+final followersProvider =
+    FutureProvider.family((ref, FollowerQuery params) async {
+  final repo = ref.watch(followerRepo);
+
+  // Validate input params
+  final query = params.query;
+  final latestFirst = params.latestFirst ?? false;
+
+  // Fetch followers based on parameters
+  final result = await repo.getFollowers(query!, latestFirst);
+
+  return result;
+});
+
+final followingProvider =
+    FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
+  final repo = ref.watch(followingRepo);
+
+  // Validate input params
+  final query = params.query;
+  final latestFirst = params.latestFirst ?? false;
+
+  // Fetch followers based on parameters
+  final result = await repo.getFollowing(query, latestFirst);
+
+  return result;
+});

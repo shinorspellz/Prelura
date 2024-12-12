@@ -31,6 +31,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final FocusNode? focusNode;
   final int? maxLines;
   final TextInputAction? textInputAction;
+  final bool isDescription;
 
   /// formats the textfeild to a password version
   final bool isPassword;
@@ -61,7 +62,8 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.focusNode,
       this.isPassword = false,
       this.maxLines = 1,
-      this.textInputAction});
+      this.textInputAction,
+      this.isDescription = false});
 
   @override
   ConsumerState<PreluraAuthTextField> createState() =>
@@ -103,11 +105,16 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
+        constraints: BoxConstraints(
+          minHeight: widget.minLines != null ? widget.minLines! * 24.0 : 65.0,
+          maxHeight: widget.minLines != null ? double.infinity : 65.0,
+        ),
         child: GestureDetector(
           onTap: widget.onTap,
           child: Container(
             // height: maxLength != null ? 6.h : 6.h,
             width: widget.minWidth ?? 100.0.w,
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Theme.of(context).scaffoldBackgroundColor,
@@ -134,14 +141,18 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               keyboardType: widget.keyboardType,
               obscureText: obscureText,
               obscuringCharacter: '*',
-              inputFormatters: [
-                widget.formatter ??
-                    FilteringTextInputFormatter.singleLineFormatter
-              ],
-              onFieldSubmitted: (value) {
-                widget.focusNode?.unfocus();
-                focusNodeZZZ?.unfocus();
-              },
+              inputFormatters: widget.isDescription
+                  ? []
+                  : [
+                      widget.formatter ??
+                          FilteringTextInputFormatter.singleLineFormatter
+                    ],
+              // onFieldSubmitted: (value) {
+              //   if (widget.textInputAction != TextInputAction.newline) {
+              //     widget.focusNode?.unfocus();
+              //     focusNodeZZZ?.unfocus();
+              //   }
+              // },
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: widget.validator,
@@ -187,12 +198,14 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
+                            padding: EdgeInsets.zero,
                             onPressed: () =>
                                 setState(() => obscureText = !obscureText),
-                            icon: obscureText
-                                ? const RenderSvg(svgPath: PreluraIcons.eyeIcon)
-                                : const RenderSvg(
-                                    svgPath: PreluraIcons.eyeSlashOutline),
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility_rounded
+                                  : Icons.visibility_off_rounded,
+                            ),
                           ),
                   ),
             ),

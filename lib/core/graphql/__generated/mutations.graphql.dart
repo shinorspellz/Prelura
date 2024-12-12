@@ -6891,3 +6891,1020 @@ class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$followUser {
+  factory Variables$Mutation$followUser({required int followedId}) =>
+      Variables$Mutation$followUser._({
+        r'followedId': followedId,
+      });
+
+  Variables$Mutation$followUser._(this._$data);
+
+  factory Variables$Mutation$followUser.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$followedId = data['followedId'];
+    result$data['followedId'] = (l$followedId as int);
+    return Variables$Mutation$followUser._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get followedId => (_$data['followedId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$followedId = followedId;
+    result$data['followedId'] = l$followedId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$followUser<Variables$Mutation$followUser>
+      get copyWith => CopyWith$Variables$Mutation$followUser(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$followUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followedId = followedId;
+    final lOther$followedId = other.followedId;
+    if (l$followedId != lOther$followedId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$followedId = followedId;
+    return Object.hashAll([l$followedId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$followUser<TRes> {
+  factory CopyWith$Variables$Mutation$followUser(
+    Variables$Mutation$followUser instance,
+    TRes Function(Variables$Mutation$followUser) then,
+  ) = _CopyWithImpl$Variables$Mutation$followUser;
+
+  factory CopyWith$Variables$Mutation$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$followUser;
+
+  TRes call({int? followedId});
+}
+
+class _CopyWithImpl$Variables$Mutation$followUser<TRes>
+    implements CopyWith$Variables$Mutation$followUser<TRes> {
+  _CopyWithImpl$Variables$Mutation$followUser(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$followUser _instance;
+
+  final TRes Function(Variables$Mutation$followUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? followedId = _undefined}) =>
+      _then(Variables$Mutation$followUser._({
+        ..._instance._$data,
+        if (followedId != _undefined && followedId != null)
+          'followedId': (followedId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$followUser<TRes>
+    implements CopyWith$Variables$Mutation$followUser<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$followUser(this._res);
+
+  TRes _res;
+
+  call({int? followedId}) => _res;
+}
+
+class Mutation$followUser {
+  Mutation$followUser({
+    this.followUser,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$followUser.fromJson(Map<String, dynamic> json) {
+    final l$followUser = json['followUser'];
+    final l$$__typename = json['__typename'];
+    return Mutation$followUser(
+      followUser: l$followUser == null
+          ? null
+          : Mutation$followUser$followUser.fromJson(
+              (l$followUser as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$followUser$followUser? followUser;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$followUser = followUser;
+    _resultData['followUser'] = l$followUser?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$followUser = followUser;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$followUser,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$followUser || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followUser = followUser;
+    final lOther$followUser = other.followUser;
+    if (l$followUser != lOther$followUser) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$followUser on Mutation$followUser {
+  CopyWith$Mutation$followUser<Mutation$followUser> get copyWith =>
+      CopyWith$Mutation$followUser(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$followUser<TRes> {
+  factory CopyWith$Mutation$followUser(
+    Mutation$followUser instance,
+    TRes Function(Mutation$followUser) then,
+  ) = _CopyWithImpl$Mutation$followUser;
+
+  factory CopyWith$Mutation$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$followUser;
+
+  TRes call({
+    Mutation$followUser$followUser? followUser,
+    String? $__typename,
+  });
+  CopyWith$Mutation$followUser$followUser<TRes> get followUser;
+}
+
+class _CopyWithImpl$Mutation$followUser<TRes>
+    implements CopyWith$Mutation$followUser<TRes> {
+  _CopyWithImpl$Mutation$followUser(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$followUser _instance;
+
+  final TRes Function(Mutation$followUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? followUser = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$followUser(
+        followUser: followUser == _undefined
+            ? _instance.followUser
+            : (followUser as Mutation$followUser$followUser?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$followUser$followUser<TRes> get followUser {
+    final local$followUser = _instance.followUser;
+    return local$followUser == null
+        ? CopyWith$Mutation$followUser$followUser.stub(_then(_instance))
+        : CopyWith$Mutation$followUser$followUser(
+            local$followUser, (e) => call(followUser: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$followUser<TRes>
+    implements CopyWith$Mutation$followUser<TRes> {
+  _CopyWithStubImpl$Mutation$followUser(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$followUser$followUser? followUser,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$followUser$followUser<TRes> get followUser =>
+      CopyWith$Mutation$followUser$followUser.stub(_res);
+}
+
+const documentNodeMutationfollowUser = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'followUser'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'followedId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'followUser'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'followedId'),
+            value: VariableNode(name: NameNode(value: 'followedId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$followUser _parserFn$Mutation$followUser(Map<String, dynamic> data) =>
+    Mutation$followUser.fromJson(data);
+typedef OnMutationCompleted$Mutation$followUser = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$followUser?,
+);
+
+class Options$Mutation$followUser
+    extends graphql.MutationOptions<Mutation$followUser> {
+  Options$Mutation$followUser({
+    String? operationName,
+    required Variables$Mutation$followUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$followUser? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$followUser? onCompleted,
+    graphql.OnMutationUpdate<Mutation$followUser>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$followUser(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationfollowUser,
+          parserFn: _parserFn$Mutation$followUser,
+        );
+
+  final OnMutationCompleted$Mutation$followUser? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$followUser
+    extends graphql.WatchQueryOptions<Mutation$followUser> {
+  WatchOptions$Mutation$followUser({
+    String? operationName,
+    required Variables$Mutation$followUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$followUser? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationfollowUser,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$followUser,
+        );
+}
+
+extension ClientExtension$Mutation$followUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$followUser>> mutate$followUser(
+          Options$Mutation$followUser options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$followUser> watchMutation$followUser(
+          WatchOptions$Mutation$followUser options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$followUser$followUser {
+  Mutation$followUser$followUser({
+    this.success,
+    this.$__typename = 'FollowUser',
+  });
+
+  factory Mutation$followUser$followUser.fromJson(Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$followUser$followUser(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$followUser$followUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$followUser$followUser
+    on Mutation$followUser$followUser {
+  CopyWith$Mutation$followUser$followUser<Mutation$followUser$followUser>
+      get copyWith => CopyWith$Mutation$followUser$followUser(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$followUser$followUser<TRes> {
+  factory CopyWith$Mutation$followUser$followUser(
+    Mutation$followUser$followUser instance,
+    TRes Function(Mutation$followUser$followUser) then,
+  ) = _CopyWithImpl$Mutation$followUser$followUser;
+
+  factory CopyWith$Mutation$followUser$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$followUser$followUser;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$followUser$followUser<TRes>
+    implements CopyWith$Mutation$followUser$followUser<TRes> {
+  _CopyWithImpl$Mutation$followUser$followUser(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$followUser$followUser _instance;
+
+  final TRes Function(Mutation$followUser$followUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$followUser$followUser(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$followUser$followUser<TRes>
+    implements CopyWith$Mutation$followUser$followUser<TRes> {
+  _CopyWithStubImpl$Mutation$followUser$followUser(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$unfollowUser {
+  factory Variables$Mutation$unfollowUser({required int followedId}) =>
+      Variables$Mutation$unfollowUser._({
+        r'followedId': followedId,
+      });
+
+  Variables$Mutation$unfollowUser._(this._$data);
+
+  factory Variables$Mutation$unfollowUser.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$followedId = data['followedId'];
+    result$data['followedId'] = (l$followedId as int);
+    return Variables$Mutation$unfollowUser._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get followedId => (_$data['followedId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$followedId = followedId;
+    result$data['followedId'] = l$followedId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$unfollowUser<Variables$Mutation$unfollowUser>
+      get copyWith => CopyWith$Variables$Mutation$unfollowUser(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$unfollowUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followedId = followedId;
+    final lOther$followedId = other.followedId;
+    if (l$followedId != lOther$followedId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$followedId = followedId;
+    return Object.hashAll([l$followedId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$unfollowUser<TRes> {
+  factory CopyWith$Variables$Mutation$unfollowUser(
+    Variables$Mutation$unfollowUser instance,
+    TRes Function(Variables$Mutation$unfollowUser) then,
+  ) = _CopyWithImpl$Variables$Mutation$unfollowUser;
+
+  factory CopyWith$Variables$Mutation$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$unfollowUser;
+
+  TRes call({int? followedId});
+}
+
+class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes>
+    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+  _CopyWithImpl$Variables$Mutation$unfollowUser(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$unfollowUser _instance;
+
+  final TRes Function(Variables$Mutation$unfollowUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? followedId = _undefined}) =>
+      _then(Variables$Mutation$unfollowUser._({
+        ..._instance._$data,
+        if (followedId != _undefined && followedId != null)
+          'followedId': (followedId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$unfollowUser<TRes>
+    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$unfollowUser(this._res);
+
+  TRes _res;
+
+  call({int? followedId}) => _res;
+}
+
+class Mutation$unfollowUser {
+  Mutation$unfollowUser({
+    this.unfollowUser,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$unfollowUser.fromJson(Map<String, dynamic> json) {
+    final l$unfollowUser = json['unfollowUser'];
+    final l$$__typename = json['__typename'];
+    return Mutation$unfollowUser(
+      unfollowUser: l$unfollowUser == null
+          ? null
+          : Mutation$unfollowUser$unfollowUser.fromJson(
+              (l$unfollowUser as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$unfollowUser$unfollowUser? unfollowUser;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$unfollowUser = unfollowUser;
+    _resultData['unfollowUser'] = l$unfollowUser?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$unfollowUser = unfollowUser;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$unfollowUser,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$unfollowUser || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$unfollowUser = unfollowUser;
+    final lOther$unfollowUser = other.unfollowUser;
+    if (l$unfollowUser != lOther$unfollowUser) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$unfollowUser on Mutation$unfollowUser {
+  CopyWith$Mutation$unfollowUser<Mutation$unfollowUser> get copyWith =>
+      CopyWith$Mutation$unfollowUser(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$unfollowUser<TRes> {
+  factory CopyWith$Mutation$unfollowUser(
+    Mutation$unfollowUser instance,
+    TRes Function(Mutation$unfollowUser) then,
+  ) = _CopyWithImpl$Mutation$unfollowUser;
+
+  factory CopyWith$Mutation$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$unfollowUser;
+
+  TRes call({
+    Mutation$unfollowUser$unfollowUser? unfollowUser,
+    String? $__typename,
+  });
+  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser;
+}
+
+class _CopyWithImpl$Mutation$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser<TRes> {
+  _CopyWithImpl$Mutation$unfollowUser(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$unfollowUser _instance;
+
+  final TRes Function(Mutation$unfollowUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? unfollowUser = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$unfollowUser(
+        unfollowUser: unfollowUser == _undefined
+            ? _instance.unfollowUser
+            : (unfollowUser as Mutation$unfollowUser$unfollowUser?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser {
+    final local$unfollowUser = _instance.unfollowUser;
+    return local$unfollowUser == null
+        ? CopyWith$Mutation$unfollowUser$unfollowUser.stub(_then(_instance))
+        : CopyWith$Mutation$unfollowUser$unfollowUser(
+            local$unfollowUser, (e) => call(unfollowUser: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser<TRes> {
+  _CopyWithStubImpl$Mutation$unfollowUser(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$unfollowUser$unfollowUser? unfollowUser,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser =>
+      CopyWith$Mutation$unfollowUser$unfollowUser.stub(_res);
+}
+
+const documentNodeMutationunfollowUser = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'unfollowUser'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'followedId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'unfollowUser'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'followedId'),
+            value: VariableNode(name: NameNode(value: 'followedId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$unfollowUser _parserFn$Mutation$unfollowUser(
+        Map<String, dynamic> data) =>
+    Mutation$unfollowUser.fromJson(data);
+typedef OnMutationCompleted$Mutation$unfollowUser = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$unfollowUser?,
+);
+
+class Options$Mutation$unfollowUser
+    extends graphql.MutationOptions<Mutation$unfollowUser> {
+  Options$Mutation$unfollowUser({
+    String? operationName,
+    required Variables$Mutation$unfollowUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$unfollowUser? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$unfollowUser? onCompleted,
+    graphql.OnMutationUpdate<Mutation$unfollowUser>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$unfollowUser(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationunfollowUser,
+          parserFn: _parserFn$Mutation$unfollowUser,
+        );
+
+  final OnMutationCompleted$Mutation$unfollowUser? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$unfollowUser
+    extends graphql.WatchQueryOptions<Mutation$unfollowUser> {
+  WatchOptions$Mutation$unfollowUser({
+    String? operationName,
+    required Variables$Mutation$unfollowUser variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$unfollowUser? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationunfollowUser,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$unfollowUser,
+        );
+}
+
+extension ClientExtension$Mutation$unfollowUser on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$unfollowUser>> mutate$unfollowUser(
+          Options$Mutation$unfollowUser options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$unfollowUser> watchMutation$unfollowUser(
+          WatchOptions$Mutation$unfollowUser options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$unfollowUser$unfollowUser {
+  Mutation$unfollowUser$unfollowUser({
+    this.success,
+    this.$__typename = 'UnfollowUser',
+  });
+
+  factory Mutation$unfollowUser$unfollowUser.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$unfollowUser$unfollowUser(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$unfollowUser$unfollowUser ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$unfollowUser$unfollowUser
+    on Mutation$unfollowUser$unfollowUser {
+  CopyWith$Mutation$unfollowUser$unfollowUser<
+          Mutation$unfollowUser$unfollowUser>
+      get copyWith => CopyWith$Mutation$unfollowUser$unfollowUser(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+  factory CopyWith$Mutation$unfollowUser$unfollowUser(
+    Mutation$unfollowUser$unfollowUser instance,
+    TRes Function(Mutation$unfollowUser$unfollowUser) then,
+  ) = _CopyWithImpl$Mutation$unfollowUser$unfollowUser;
+
+  factory CopyWith$Mutation$unfollowUser$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+  _CopyWithImpl$Mutation$unfollowUser$unfollowUser(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$unfollowUser$unfollowUser _instance;
+
+  final TRes Function(Mutation$unfollowUser$unfollowUser) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$unfollowUser$unfollowUser(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+  _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
