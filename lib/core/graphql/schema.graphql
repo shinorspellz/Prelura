@@ -96,6 +96,10 @@ type DeleteProduct {
 """
 scalar ExpectedErrorType
 
+type FollowUser {
+  success: Boolean
+}
+
 """
 The `GenericScalar` scalar type represents a generic
 GraphQL scalar value that could be:
@@ -177,6 +181,8 @@ type Mutation {
     use2fa: Boolean
     username: String
   ): UpdateUserMutation
+  followUser(followedId: Int!): FollowUser
+  unfollowUser(followedId: Int!): UnfollowUser
 
   """
   Register user with fields defined in the settings.
@@ -499,14 +505,20 @@ type Query {
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
+  filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
+  filterProductsByPriceTotalNumber: Int
   likedProductsTotalNumber: Int
   materialsTotalNumber: Int
   similarProductsTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]
+  following(search: String, latestFirst: Boolean, pageCount: Int, pageNumber: Int): [UserType]
+  followers(search: String, latestFirst: Boolean, pageCount: Int, pageNumber: Int): [UserType]
+  followingTotalNumber: Int
+  followersTotalNumber: Int
 }
 
 """
@@ -558,6 +570,10 @@ enum SizeEnum {
 type SubCategoryType {
   id: Int
   name: String
+}
+
+type UnfollowUser {
+  success: Boolean
 }
 
 """

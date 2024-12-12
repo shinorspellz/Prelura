@@ -147,6 +147,33 @@ class ProductRepo {
     return response.parsedData!;
   }
 
+  Future<Query$FilterProductsByPrice> filterProductByPrice({required double price, int? pageCount, int? pageNumber}) async {
+    final response = await _client.query$FilterProductsByPrice(
+      Options$Query$FilterProductsByPrice(
+          variables: Variables$Query$FilterProductsByPrice(
+        priceLimit: price,
+        pageCount: pageCount,
+        pageNumber: pageNumber,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!;
+  }
+
   Future<List<Product>> getMyFavouriteProduct(int? pageCount) async {
     final response = await _client.query$likedProducts(
       Options$Query$likedProducts(

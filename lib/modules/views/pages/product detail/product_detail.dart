@@ -426,6 +426,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
         Padding(
           padding: const EdgeInsets.all(10.0),
           child: ref.watch(userProduct(product.seller.username)).when(
+                skipLoadingOnRefresh: false,
                 data: (data) {
                   final items = data.where((x) => x.id != product.id).toList();
                   if (items.isEmpty) {
@@ -475,6 +476,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> with 
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: ref.watch(similarProductsProvider(widget.productId)).when(
+            skipLoadingOnRefresh: false,
             data: (data) {
               if (data.isEmpty) {
                 return Padding(

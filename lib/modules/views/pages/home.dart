@@ -12,6 +12,7 @@ import 'package:prelura_app/modules/views/widgets/display_live_card.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/shared/mock_data.dart';
 
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
@@ -66,9 +67,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: RefreshIndicator(
             onRefresh: () async {
               ref.read(refreshingHome.notifier).state = true;
-              ref
-                  .refresh(allProductProvider.future)
-                  .then((_) => ref.read(refreshingHome.notifier).state = false);
+              ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
             },
             child: CustomScrollView(
               controller: controller,
@@ -84,12 +83,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               scale: 6,
                               child: GestureDetector(
                                 onTap: () {
-                                  ref.read(refreshingHome.notifier).state =
-                                      true;
-                                  ref.refresh(allProductProvider.future).then(
-                                      (_) => ref
-                                          .read(refreshingHome.notifier)
-                                          .state = false);
+                                  ref.read(refreshingHome.notifier).state = true;
+                                  ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -103,8 +98,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: GestureDetector(
-                              onTap: () =>
-                                  context.pushRoute(const MyFavouriteRoute()),
+                              onTap: () => context.pushRoute(const MyFavouriteRoute()),
                               child: const Icon(
                                 Icons.favorite,
                                 size: 30,
@@ -143,45 +137,114 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   )),
                 ),
-                SliverToBoxAdapter(
-                  child: _buildSectionTitle('Collection from Seller',
-                      "Items selected by amyleeliu", context),
+
+                ref.watch(allProductProvider).maybeWhen(
+                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                      data: (products) => SliverGrid.builder(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.55,
+                        ),
+                        itemCount: products.take(6).length,
+                        itemBuilder: (context, index) {
+                          return ProductCard(product: products.take(6).toList()[index]);
+                        },
+                      ),
+                      orElse: () => SliverToBoxAdapter(child: Container()),
+                    ),
+                const SliverToBoxAdapter(
+                  child: Divider(
+                    thickness: 1.5,
+                  ),
                 ),
-                ref.watch(allProductProvider).when(
-                    skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                    data: (products) => SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                SliverToBoxAdapter(
+                  child: _buildSectionTitle(
+                    'Shop Bargains',
+                    "Steals under £15",
+                    context,
+                    onTap: () => context.pushRoute(
+                      ProductPriceFilterRoute(title: 'Shop Bargains'),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 320,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
+                          data: (products) => ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            separatorBuilder: (context, index) => 10.horizontalSpacing,
+                            itemBuilder: (context, index) => SizedBox(
+                              width: 180,
+                              child: ProductCard(product: products[index]),
+                            ),
+                            itemCount: products.length,
+                          ),
+                          orElse: () => ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: List.generate(
+                              mockData.length,
+                              (_) => Container(
+                                // height: 220,
+                                width: 180,
+                                margin: const EdgeInsets.symmetric(horizontal: 5),
+                                child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                              ),
+                            ),
+                          ),
+                        ),
+                  ),
+                ),
+
+                const SliverToBoxAdapter(
+                  child: Divider(
+                    thickness: 1.5,
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(top: 10),
+                  sliver: ref.watch(allProductProvider).when(
+                      skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                      data: (products) {
+                        if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                        final clippedProducts = products.sublist(0, 6);
+                        return SliverGrid.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
                             childAspectRatio: 0.55,
                           ),
-                          itemCount: products.length,
+                          itemCount: clippedProducts.length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: products[index]);
+                            return ProductCard(product: clippedProducts[index]);
                           },
-                        ),
-                    error: (e, _) => SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(allProductProvider);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
+                        );
+                      },
+                      error: (e, _) => SliverToBoxAdapter(
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(e.toString()),
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      // log(e.toString(), stackTrace: _);
+                                      ref.invalidate(allProductProvider);
+                                    },
+                                    label: const Text('Retry'),
+                                    icon: const Icon(Icons.refresh_rounded),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                    loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                ),
                 if (ref.watch(allProductProvider.notifier).canLoadMore())
                   if (!ref.watch(allProductProvider).isLoading)
                     const SliverToBoxAdapter(
@@ -262,8 +325,7 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 122.8;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
@@ -287,23 +349,13 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
           },
           child: Container(
             padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        width: 1,
-                        color: selectedTab == index
-                            ? PreluraColors.activeColor
-                            : Colors.transparent))),
+            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: selectedTab == index ? PreluraColors.activeColor : Colors.transparent))),
             child: Center(
               child: Text(
                 tabs[index],
                 style: TextStyle(
-                  color: selectedTab == index
-                      ? Theme.of(context).textTheme.bodyMedium?.color
-                      : PreluraColors.greyColor,
-                  fontWeight: selectedTab == index
-                      ? FontWeight.bold
-                      : FontWeight.normal,
+                  color: selectedTab == index ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyColor,
+                  fontWeight: selectedTab == index ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
             ),
@@ -314,36 +366,32 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
   );
 }
 
-Widget _buildSectionTitle(
-    String MainTitle, String subtitle, BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              MainTitle,
-              textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            const SizedBox(
-              height: 1,
-            ),
-            Text(
-              subtitle,
-              textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ],
-        ),
-        TextButton(
-            onPressed: () {},
-            child:
-                Text("See All", style: Theme.of(context).textTheme.bodySmall))
-      ],
-    ),
+Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            MainTitle,
+            textAlign: TextAlign.left,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(
+            height: 1,
+          ),
+          Text(
+            subtitle,
+            textAlign: TextAlign.left,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
+      ),
+      TextButton(
+        onPressed: onTap,
+        child: Text("See All", style: Theme.of(context).textTheme.bodySmall),
+      )
+    ],
   );
 }
