@@ -505,8 +505,10 @@ type Query {
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
+  filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
+  filterProductsByPriceTotalNumber: Int
   likedProductsTotalNumber: Int
   materialsTotalNumber: Int
   similarProductsTotalNumber: Int

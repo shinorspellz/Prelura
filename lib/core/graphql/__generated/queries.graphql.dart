@@ -16647,32 +16647,25 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$brand<TRes>
       _res;
 }
 
-class Variables$Query$following {
-  factory Variables$Query$following({
-    bool? latestFirst,
-    String? search,
+class Variables$Query$FilterProductsByPrice {
+  factory Variables$Query$FilterProductsByPrice({
+    required double priceLimit,
     int? pageCount,
     int? pageNumber,
   }) =>
-      Variables$Query$following._({
-        if (latestFirst != null) r'latestFirst': latestFirst,
-        if (search != null) r'search': search,
+      Variables$Query$FilterProductsByPrice._({
+        r'priceLimit': priceLimit,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
       });
 
-  Variables$Query$following._(this._$data);
+  Variables$Query$FilterProductsByPrice._(this._$data);
 
-  factory Variables$Query$following.fromJson(Map<String, dynamic> data) {
+  factory Variables$Query$FilterProductsByPrice.fromJson(
+      Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('latestFirst')) {
-      final l$latestFirst = data['latestFirst'];
-      result$data['latestFirst'] = (l$latestFirst as bool?);
-    }
-    if (data.containsKey('search')) {
-      final l$search = data['search'];
-      result$data['search'] = (l$search as String?);
-    }
+    final l$priceLimit = data['priceLimit'];
+    result$data['priceLimit'] = (l$priceLimit as num).toDouble();
     if (data.containsKey('pageCount')) {
       final l$pageCount = data['pageCount'];
       result$data['pageCount'] = (l$pageCount as int?);
@@ -16681,14 +16674,12 @@ class Variables$Query$following {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
-    return Variables$Query$following._(result$data);
+    return Variables$Query$FilterProductsByPrice._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  bool? get latestFirst => (_$data['latestFirst'] as bool?);
-
-  String? get search => (_$data['search'] as String?);
+  double get priceLimit => (_$data['priceLimit'] as double);
 
   int? get pageCount => (_$data['pageCount'] as int?);
 
@@ -16696,14 +16687,8 @@ class Variables$Query$following {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('latestFirst')) {
-      final l$latestFirst = latestFirst;
-      result$data['latestFirst'] = l$latestFirst;
-    }
-    if (_$data.containsKey('search')) {
-      final l$search = search;
-      result$data['search'] = l$search;
-    }
+    final l$priceLimit = priceLimit;
+    result$data['priceLimit'] = l$priceLimit;
     if (_$data.containsKey('pageCount')) {
       final l$pageCount = pageCount;
       result$data['pageCount'] = l$pageCount;
@@ -16715,36 +16700,25 @@ class Variables$Query$following {
     return result$data;
   }
 
-  CopyWith$Variables$Query$following<Variables$Query$following> get copyWith =>
-      CopyWith$Variables$Query$following(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Query$FilterProductsByPrice<
+          Variables$Query$FilterProductsByPrice>
+      get copyWith => CopyWith$Variables$Query$FilterProductsByPrice(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Query$following ||
+    if (other is! Variables$Query$FilterProductsByPrice ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$latestFirst = latestFirst;
-    final lOther$latestFirst = other.latestFirst;
-    if (_$data.containsKey('latestFirst') !=
-        other._$data.containsKey('latestFirst')) {
-      return false;
-    }
-    if (l$latestFirst != lOther$latestFirst) {
-      return false;
-    }
-    final l$search = search;
-    final lOther$search = other.search;
-    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
-      return false;
-    }
-    if (l$search != lOther$search) {
+    final l$priceLimit = priceLimit;
+    final lOther$priceLimit = other.priceLimit;
+    if (l$priceLimit != lOther$priceLimit) {
       return false;
     }
     final l$pageCount = pageCount;
@@ -16770,106 +16744,114 @@ class Variables$Query$following {
 
   @override
   int get hashCode {
-    final l$latestFirst = latestFirst;
-    final l$search = search;
+    final l$priceLimit = priceLimit;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
     return Object.hashAll([
-      _$data.containsKey('latestFirst') ? l$latestFirst : const {},
-      _$data.containsKey('search') ? l$search : const {},
+      l$priceLimit,
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
     ]);
   }
 }
 
-abstract class CopyWith$Variables$Query$following<TRes> {
-  factory CopyWith$Variables$Query$following(
-    Variables$Query$following instance,
-    TRes Function(Variables$Query$following) then,
-  ) = _CopyWithImpl$Variables$Query$following;
+abstract class CopyWith$Variables$Query$FilterProductsByPrice<TRes> {
+  factory CopyWith$Variables$Query$FilterProductsByPrice(
+    Variables$Query$FilterProductsByPrice instance,
+    TRes Function(Variables$Query$FilterProductsByPrice) then,
+  ) = _CopyWithImpl$Variables$Query$FilterProductsByPrice;
 
-  factory CopyWith$Variables$Query$following.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$following;
+  factory CopyWith$Variables$Query$FilterProductsByPrice.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$FilterProductsByPrice;
 
   TRes call({
-    bool? latestFirst,
-    String? search,
+    double? priceLimit,
     int? pageCount,
     int? pageNumber,
   });
 }
 
-class _CopyWithImpl$Variables$Query$following<TRes>
-    implements CopyWith$Variables$Query$following<TRes> {
-  _CopyWithImpl$Variables$Query$following(
+class _CopyWithImpl$Variables$Query$FilterProductsByPrice<TRes>
+    implements CopyWith$Variables$Query$FilterProductsByPrice<TRes> {
+  _CopyWithImpl$Variables$Query$FilterProductsByPrice(
     this._instance,
     this._then,
   );
 
-  final Variables$Query$following _instance;
+  final Variables$Query$FilterProductsByPrice _instance;
 
-  final TRes Function(Variables$Query$following) _then;
+  final TRes Function(Variables$Query$FilterProductsByPrice) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? latestFirst = _undefined,
-    Object? search = _undefined,
+    Object? priceLimit = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
   }) =>
-      _then(Variables$Query$following._({
+      _then(Variables$Query$FilterProductsByPrice._({
         ..._instance._$data,
-        if (latestFirst != _undefined) 'latestFirst': (latestFirst as bool?),
-        if (search != _undefined) 'search': (search as String?),
+        if (priceLimit != _undefined && priceLimit != null)
+          'priceLimit': (priceLimit as double),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Query$following<TRes>
-    implements CopyWith$Variables$Query$following<TRes> {
-  _CopyWithStubImpl$Variables$Query$following(this._res);
+class _CopyWithStubImpl$Variables$Query$FilterProductsByPrice<TRes>
+    implements CopyWith$Variables$Query$FilterProductsByPrice<TRes> {
+  _CopyWithStubImpl$Variables$Query$FilterProductsByPrice(this._res);
 
   TRes _res;
 
   call({
-    bool? latestFirst,
-    String? search,
+    double? priceLimit,
     int? pageCount,
     int? pageNumber,
   }) =>
       _res;
 }
 
-class Query$following {
-  Query$following({
-    this.following,
+class Query$FilterProductsByPrice {
+  Query$FilterProductsByPrice({
+    this.filterProductsByPrice,
+    this.filterProductsByPriceTotalNumber,
     this.$__typename = 'Query',
   });
 
-  factory Query$following.fromJson(Map<String, dynamic> json) {
-    final l$following = json['following'];
+  factory Query$FilterProductsByPrice.fromJson(Map<String, dynamic> json) {
+    final l$filterProductsByPrice = json['filterProductsByPrice'];
+    final l$filterProductsByPriceTotalNumber =
+        json['filterProductsByPriceTotalNumber'];
     final l$$__typename = json['__typename'];
-    return Query$following(
-      following: (l$following as List<dynamic>?)
+    return Query$FilterProductsByPrice(
+      filterProductsByPrice: (l$filterProductsByPrice as List<dynamic>?)
           ?.map((e) => e == null
               ? null
-              : Query$following$following.fromJson((e as Map<String, dynamic>)))
+              : Query$FilterProductsByPrice$filterProductsByPrice.fromJson(
+                  (e as Map<String, dynamic>)))
           .toList(),
+      filterProductsByPriceTotalNumber:
+          (l$filterProductsByPriceTotalNumber as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<Query$following$following?>? following;
+  final List<Query$FilterProductsByPrice$filterProductsByPrice?>?
+      filterProductsByPrice;
+
+  final int? filterProductsByPriceTotalNumber;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$following = following;
-    _resultData['following'] = l$following?.map((e) => e?.toJson()).toList();
+    final l$filterProductsByPrice = filterProductsByPrice;
+    _resultData['filterProductsByPrice'] =
+        l$filterProductsByPrice?.map((e) => e?.toJson()).toList();
+    final l$filterProductsByPriceTotalNumber = filterProductsByPriceTotalNumber;
+    _resultData['filterProductsByPriceTotalNumber'] =
+        l$filterProductsByPriceTotalNumber;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -16877,10 +16859,14 @@ class Query$following {
 
   @override
   int get hashCode {
-    final l$following = following;
+    final l$filterProductsByPrice = filterProductsByPrice;
+    final l$filterProductsByPriceTotalNumber = filterProductsByPriceTotalNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$following == null ? null : Object.hashAll(l$following.map((v) => v)),
+      l$filterProductsByPrice == null
+          ? null
+          : Object.hashAll(l$filterProductsByPrice.map((v) => v)),
+      l$filterProductsByPriceTotalNumber,
       l$$__typename,
     ]);
   }
@@ -16890,23 +16876,35 @@ class Query$following {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$following || runtimeType != other.runtimeType) {
+    if (other is! Query$FilterProductsByPrice ||
+        runtimeType != other.runtimeType) {
       return false;
     }
-    final l$following = following;
-    final lOther$following = other.following;
-    if (l$following != null && lOther$following != null) {
-      if (l$following.length != lOther$following.length) {
+    final l$filterProductsByPrice = filterProductsByPrice;
+    final lOther$filterProductsByPrice = other.filterProductsByPrice;
+    if (l$filterProductsByPrice != null &&
+        lOther$filterProductsByPrice != null) {
+      if (l$filterProductsByPrice.length !=
+          lOther$filterProductsByPrice.length) {
         return false;
       }
-      for (int i = 0; i < l$following.length; i++) {
-        final l$following$entry = l$following[i];
-        final lOther$following$entry = lOther$following[i];
-        if (l$following$entry != lOther$following$entry) {
+      for (int i = 0; i < l$filterProductsByPrice.length; i++) {
+        final l$filterProductsByPrice$entry = l$filterProductsByPrice[i];
+        final lOther$filterProductsByPrice$entry =
+            lOther$filterProductsByPrice[i];
+        if (l$filterProductsByPrice$entry !=
+            lOther$filterProductsByPrice$entry) {
           return false;
         }
       }
-    } else if (l$following != lOther$following) {
+    } else if (l$filterProductsByPrice != lOther$filterProductsByPrice) {
+      return false;
+    }
+    final l$filterProductsByPriceTotalNumber = filterProductsByPriceTotalNumber;
+    final lOther$filterProductsByPriceTotalNumber =
+        other.filterProductsByPriceTotalNumber;
+    if (l$filterProductsByPriceTotalNumber !=
+        lOther$filterProductsByPriceTotalNumber) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -16918,110 +16916,113 @@ class Query$following {
   }
 }
 
-extension UtilityExtension$Query$following on Query$following {
-  CopyWith$Query$following<Query$following> get copyWith =>
-      CopyWith$Query$following(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Query$FilterProductsByPrice
+    on Query$FilterProductsByPrice {
+  CopyWith$Query$FilterProductsByPrice<Query$FilterProductsByPrice>
+      get copyWith => CopyWith$Query$FilterProductsByPrice(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Query$following<TRes> {
-  factory CopyWith$Query$following(
-    Query$following instance,
-    TRes Function(Query$following) then,
-  ) = _CopyWithImpl$Query$following;
+abstract class CopyWith$Query$FilterProductsByPrice<TRes> {
+  factory CopyWith$Query$FilterProductsByPrice(
+    Query$FilterProductsByPrice instance,
+    TRes Function(Query$FilterProductsByPrice) then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice;
 
-  factory CopyWith$Query$following.stub(TRes res) =
-      _CopyWithStubImpl$Query$following;
+  factory CopyWith$Query$FilterProductsByPrice.stub(TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice;
 
   TRes call({
-    List<Query$following$following?>? following,
+    List<Query$FilterProductsByPrice$filterProductsByPrice?>?
+        filterProductsByPrice,
+    int? filterProductsByPriceTotalNumber,
     String? $__typename,
   });
-  TRes following(
-      Iterable<Query$following$following?>? Function(
+  TRes filterProductsByPrice(
+      Iterable<Query$FilterProductsByPrice$filterProductsByPrice?>? Function(
               Iterable<
-                  CopyWith$Query$following$following<
-                      Query$following$following>?>?)
+                  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
+                      Query$FilterProductsByPrice$filterProductsByPrice>?>?)
           _fn);
 }
 
-class _CopyWithImpl$Query$following<TRes>
-    implements CopyWith$Query$following<TRes> {
-  _CopyWithImpl$Query$following(
+class _CopyWithImpl$Query$FilterProductsByPrice<TRes>
+    implements CopyWith$Query$FilterProductsByPrice<TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice(
     this._instance,
     this._then,
   );
 
-  final Query$following _instance;
+  final Query$FilterProductsByPrice _instance;
 
-  final TRes Function(Query$following) _then;
+  final TRes Function(Query$FilterProductsByPrice) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? following = _undefined,
+    Object? filterProductsByPrice = _undefined,
+    Object? filterProductsByPriceTotalNumber = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$following(
-        following: following == _undefined
-            ? _instance.following
-            : (following as List<Query$following$following?>?),
+      _then(Query$FilterProductsByPrice(
+        filterProductsByPrice: filterProductsByPrice == _undefined
+            ? _instance.filterProductsByPrice
+            : (filterProductsByPrice
+                as List<Query$FilterProductsByPrice$filterProductsByPrice?>?),
+        filterProductsByPriceTotalNumber:
+            filterProductsByPriceTotalNumber == _undefined
+                ? _instance.filterProductsByPriceTotalNumber
+                : (filterProductsByPriceTotalNumber as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  TRes following(
-          Iterable<Query$following$following?>? Function(
+  TRes filterProductsByPrice(
+          Iterable<Query$FilterProductsByPrice$filterProductsByPrice?>? Function(
                   Iterable<
-                      CopyWith$Query$following$following<
-                          Query$following$following>?>?)
+                      CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
+                          Query$FilterProductsByPrice$filterProductsByPrice>?>?)
               _fn) =>
       call(
-          following: _fn(_instance.following?.map((e) => e == null
-              ? null
-              : CopyWith$Query$following$following(
-                  e,
-                  (i) => i,
-                )))?.toList());
+          filterProductsByPrice:
+              _fn(_instance.filterProductsByPrice?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice(
+                      e,
+                      (i) => i,
+                    )))?.toList());
 }
 
-class _CopyWithStubImpl$Query$following<TRes>
-    implements CopyWith$Query$following<TRes> {
-  _CopyWithStubImpl$Query$following(this._res);
+class _CopyWithStubImpl$Query$FilterProductsByPrice<TRes>
+    implements CopyWith$Query$FilterProductsByPrice<TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice(this._res);
 
   TRes _res;
 
   call({
-    List<Query$following$following?>? following,
+    List<Query$FilterProductsByPrice$filterProductsByPrice?>?
+        filterProductsByPrice,
+    int? filterProductsByPriceTotalNumber,
     String? $__typename,
   }) =>
       _res;
 
-  following(_fn) => _res;
+  filterProductsByPrice(_fn) => _res;
 }
 
-const documentNodeQueryfollowing = DocumentNode(definitions: [
+const documentNodeQueryFilterProductsByPrice = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.query,
-    name: NameNode(value: 'following'),
+    name: NameNode(value: 'FilterProductsByPrice'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'latestFirst')),
+        variable: VariableNode(name: NameNode(value: 'priceLimit')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Boolean'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'search')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
+          name: NameNode(value: 'Float'),
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -17048,12 +17049,12 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'following'),
+        name: NameNode(value: 'filterProductsByPrice'),
         alias: null,
         arguments: [
           ArgumentNode(
-            name: NameNode(value: 'latestFirst'),
-            value: VariableNode(name: NameNode(value: 'latestFirst')),
+            name: NameNode(value: 'priceLimit'),
+            value: VariableNode(name: NameNode(value: 'priceLimit')),
           ),
           ArgumentNode(
             name: NameNode(value: 'pageCount'),
@@ -17062,10 +17063,6 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'search'),
-            value: VariableNode(name: NameNode(value: 'search')),
           ),
         ],
         directives: [],
@@ -17078,55 +17075,248 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'username'),
+            name: NameNode(value: 'name'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'fullName'),
+            name: NameNode(value: 'description'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'listing'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'profilePictureUrl'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'location'),
+            name: NameNode(value: 'category'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
-                name: NameNode(value: 'latitude'),
+                name: NameNode(value: 'id'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'longitude'),
+                name: NameNode(value: 'name'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'locationName'),
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'subCategory'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'seller'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'size'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'price'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'parcelSize'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'views'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'likes'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'userLiked'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'imagesUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'likes'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'materials'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'brand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -17151,6 +17341,13 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
         ]),
       ),
       FieldNode(
+        name: NameNode(value: 'filterProductsByPriceTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
         name: NameNode(value: '__typename'),
         alias: null,
         arguments: [],
@@ -17160,29 +17357,31 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Query$following _parserFn$Query$following(Map<String, dynamic> data) =>
-    Query$following.fromJson(data);
-typedef OnQueryComplete$Query$following = FutureOr<void> Function(
+Query$FilterProductsByPrice _parserFn$Query$FilterProductsByPrice(
+        Map<String, dynamic> data) =>
+    Query$FilterProductsByPrice.fromJson(data);
+typedef OnQueryComplete$Query$FilterProductsByPrice = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Query$following?,
+  Query$FilterProductsByPrice?,
 );
 
-class Options$Query$following extends graphql.QueryOptions<Query$following> {
-  Options$Query$following({
+class Options$Query$FilterProductsByPrice
+    extends graphql.QueryOptions<Query$FilterProductsByPrice> {
+  Options$Query$FilterProductsByPrice({
     String? operationName,
-    Variables$Query$following? variables,
+    required Variables$Query$FilterProductsByPrice variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$following? typedOptimisticResult,
+    Query$FilterProductsByPrice? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$following? onComplete,
+    OnQueryComplete$Query$FilterProductsByPrice? onComplete,
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -17194,14 +17393,16 @@ class Options$Query$following extends graphql.QueryOptions<Query$following> {
               ? null
               : (data) => onComplete(
                     data,
-                    data == null ? null : _parserFn$Query$following(data),
+                    data == null
+                        ? null
+                        : _parserFn$Query$FilterProductsByPrice(data),
                   ),
           onError: onError,
-          document: documentNodeQueryfollowing,
-          parserFn: _parserFn$Query$following,
+          document: documentNodeQueryFilterProductsByPrice,
+          parserFn: _parserFn$Query$FilterProductsByPrice,
         );
 
-  final OnQueryComplete$Query$following? onCompleteWithParsed;
+  final OnQueryComplete$Query$FilterProductsByPrice? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -17212,128 +17413,229 @@ class Options$Query$following extends graphql.QueryOptions<Query$following> {
       ];
 }
 
-class WatchOptions$Query$following
-    extends graphql.WatchQueryOptions<Query$following> {
-  WatchOptions$Query$following({
+class WatchOptions$Query$FilterProductsByPrice
+    extends graphql.WatchQueryOptions<Query$FilterProductsByPrice> {
+  WatchOptions$Query$FilterProductsByPrice({
     String? operationName,
-    Variables$Query$following? variables,
+    required Variables$Query$FilterProductsByPrice variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$following? typedOptimisticResult,
+    Query$FilterProductsByPrice? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeQueryfollowing,
+          document: documentNodeQueryFilterProductsByPrice,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Query$following,
+          parserFn: _parserFn$Query$FilterProductsByPrice,
         );
 }
 
-class FetchMoreOptions$Query$following extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$following({
+class FetchMoreOptions$Query$FilterProductsByPrice
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$FilterProductsByPrice({
     required graphql.UpdateQuery updateQuery,
-    Variables$Query$following? variables,
+    required Variables$Query$FilterProductsByPrice variables,
   }) : super(
           updateQuery: updateQuery,
-          variables: variables?.toJson() ?? {},
-          document: documentNodeQueryfollowing,
+          variables: variables.toJson(),
+          document: documentNodeQueryFilterProductsByPrice,
         );
 }
 
-extension ClientExtension$Query$following on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$following>> query$following(
-          [Options$Query$following? options]) async =>
-      await this.query(options ?? Options$Query$following());
-  graphql.ObservableQuery<Query$following> watchQuery$following(
-          [WatchOptions$Query$following? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$following());
-  void writeQuery$following({
-    required Query$following data,
-    Variables$Query$following? variables,
+extension ClientExtension$Query$FilterProductsByPrice on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$FilterProductsByPrice>>
+      query$FilterProductsByPrice(
+              Options$Query$FilterProductsByPrice options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$FilterProductsByPrice>
+      watchQuery$FilterProductsByPrice(
+              WatchOptions$Query$FilterProductsByPrice options) =>
+          this.watchQuery(options);
+  void writeQuery$FilterProductsByPrice({
+    required Query$FilterProductsByPrice data,
+    required Variables$Query$FilterProductsByPrice variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryfollowing),
-          variables: variables?.toJson() ?? const {},
+          operation: graphql.Operation(
+              document: documentNodeQueryFilterProductsByPrice),
+          variables: variables.toJson(),
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
-  Query$following? readQuery$following({
-    Variables$Query$following? variables,
+  Query$FilterProductsByPrice? readQuery$FilterProductsByPrice({
+    required Variables$Query$FilterProductsByPrice variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryfollowing),
-        variables: variables?.toJson() ?? const {},
+        operation:
+            graphql.Operation(document: documentNodeQueryFilterProductsByPrice),
+        variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
-    return result == null ? null : Query$following.fromJson(result);
+    return result == null ? null : Query$FilterProductsByPrice.fromJson(result);
   }
 }
 
-class Query$following$following {
-  Query$following$following({
-    this.id,
-    this.username,
-    this.fullName,
-    this.listing,
-    this.profilePictureUrl,
-    this.location,
-    this.$__typename = 'UserType',
+class Query$FilterProductsByPrice$filterProductsByPrice {
+  Query$FilterProductsByPrice$filterProductsByPrice({
+    required this.id,
+    required this.name,
+    required this.description,
+    this.category,
+    this.subCategory,
+    this.seller,
+    this.condition,
+    this.discountPrice,
+    this.size,
+    required this.price,
+    this.parcelSize,
+    required this.views,
+    required this.likes,
+    this.userLiked,
+    required this.imagesUrl,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.color,
+    this.materials,
+    this.brand,
+    this.$__typename = 'ProductType',
   });
 
-  factory Query$following$following.fromJson(Map<String, dynamic> json) {
+  factory Query$FilterProductsByPrice$filterProductsByPrice.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$username = json['username'];
-    final l$fullName = json['fullName'];
-    final l$listing = json['listing'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
-    final l$location = json['location'];
+    final l$name = json['name'];
+    final l$description = json['description'];
+    final l$category = json['category'];
+    final l$subCategory = json['subCategory'];
+    final l$seller = json['seller'];
+    final l$condition = json['condition'];
+    final l$discountPrice = json['discountPrice'];
+    final l$size = json['size'];
+    final l$price = json['price'];
+    final l$parcelSize = json['parcelSize'];
+    final l$views = json['views'];
+    final l$likes = json['likes'];
+    final l$userLiked = json['userLiked'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$createdAt = json['createdAt'];
+    final l$updatedAt = json['updatedAt'];
+    final l$color = json['color'];
+    final l$materials = json['materials'];
+    final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
-    return Query$following$following(
-      id: (l$id as int?),
-      username: (l$username as String?),
-      fullName: (l$fullName as String?),
-      listing: (l$listing as int?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
-      location: l$location == null
+    return Query$FilterProductsByPrice$filterProductsByPrice(
+      id: (l$id as String),
+      name: (l$name as String),
+      description: (l$description as String),
+      category: l$category == null
           ? null
-          : Query$following$following$location.fromJson(
-              (l$location as Map<String, dynamic>)),
+          : Query$FilterProductsByPrice$filterProductsByPrice$category.fromJson(
+              (l$category as Map<String, dynamic>)),
+      subCategory: l$subCategory == null
+          ? null
+          : Query$FilterProductsByPrice$filterProductsByPrice$subCategory
+              .fromJson((l$subCategory as Map<String, dynamic>)),
+      seller: l$seller == null
+          ? null
+          : Query$FilterProductsByPrice$filterProductsByPrice$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      condition: l$condition == null
+          ? null
+          : fromJson$Enum$ProductsProductConditionChoices(
+              (l$condition as String)),
+      discountPrice: (l$discountPrice as String?),
+      size: l$size == null
+          ? null
+          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+      price: (l$price as String),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
+      views: (l$views as int),
+      likes: (l$likes as int),
+      userLiked: (l$userLiked as bool?),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      materials: (l$materials as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$FilterProductsByPrice$filterProductsByPrice$materials
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      brand: l$brand == null
+          ? null
+          : Query$FilterProductsByPrice$filterProductsByPrice$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? id;
+  final String id;
 
-  final String? username;
+  final String name;
 
-  final String? fullName;
+  final String description;
 
-  final int? listing;
+  final Query$FilterProductsByPrice$filterProductsByPrice$category? category;
 
-  final String? profilePictureUrl;
+  final Query$FilterProductsByPrice$filterProductsByPrice$subCategory?
+      subCategory;
 
-  final Query$following$following$location? location;
+  final Query$FilterProductsByPrice$filterProductsByPrice$seller? seller;
+
+  final Enum$ProductsProductConditionChoices? condition;
+
+  final String? discountPrice;
+
+  final Enum$ProductsProductSizeChoices? size;
+
+  final String price;
+
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
+
+  final int views;
+
+  final int likes;
+
+  final bool? userLiked;
+
+  final List<String> imagesUrl;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
+  final List<String> color;
+
+  final List<Query$FilterProductsByPrice$filterProductsByPrice$materials?>?
+      materials;
+
+  final Query$FilterProductsByPrice$filterProductsByPrice$brand? brand;
 
   final String $__typename;
 
@@ -17341,16 +17643,49 @@ class Query$following$following {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$fullName = fullName;
-    _resultData['fullName'] = l$fullName;
-    final l$listing = listing;
-    _resultData['listing'] = l$listing;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
-    final l$location = location;
-    _resultData['location'] = l$location?.toJson();
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$category = category;
+    _resultData['category'] = l$category?.toJson();
+    final l$subCategory = subCategory;
+    _resultData['subCategory'] = l$subCategory?.toJson();
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$condition = condition;
+    _resultData['condition'] = l$condition == null
+        ? null
+        : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$size = size;
+    _resultData['size'] =
+        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
+    final l$views = views;
+    _resultData['views'] = l$views;
+    final l$likes = likes;
+    _resultData['likes'] = l$likes;
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$materials = materials;
+    _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -17359,19 +17694,47 @@ class Query$following$following {
   @override
   int get hashCode {
     final l$id = id;
-    final l$username = username;
-    final l$fullName = fullName;
-    final l$listing = listing;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$location = location;
+    final l$name = name;
+    final l$description = description;
+    final l$category = category;
+    final l$subCategory = subCategory;
+    final l$seller = seller;
+    final l$condition = condition;
+    final l$discountPrice = discountPrice;
+    final l$size = size;
+    final l$price = price;
+    final l$parcelSize = parcelSize;
+    final l$views = views;
+    final l$likes = likes;
+    final l$userLiked = userLiked;
+    final l$imagesUrl = imagesUrl;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$color = color;
+    final l$materials = materials;
+    final l$brand = brand;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$username,
-      l$fullName,
-      l$listing,
-      l$profilePictureUrl,
-      l$location,
+      l$name,
+      l$description,
+      l$category,
+      l$subCategory,
+      l$seller,
+      l$condition,
+      l$discountPrice,
+      l$size,
+      l$price,
+      l$parcelSize,
+      l$views,
+      l$likes,
+      l$userLiked,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$createdAt,
+      l$updatedAt,
+      Object.hashAll(l$color.map((v) => v)),
+      l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
+      l$brand,
       l$$__typename,
     ]);
   }
@@ -17381,7 +17744,7 @@ class Query$following$following {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$following$following ||
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -17390,566 +17753,124 @@ class Query$following$following {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
       return false;
     }
-    final l$fullName = fullName;
-    final lOther$fullName = other.fullName;
-    if (l$fullName != lOther$fullName) {
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
       return false;
     }
-    final l$listing = listing;
-    final lOther$listing = other.listing;
-    if (l$listing != lOther$listing) {
+    final l$category = category;
+    final lOther$category = other.category;
+    if (l$category != lOther$category) {
       return false;
     }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+    final l$subCategory = subCategory;
+    final lOther$subCategory = other.subCategory;
+    if (l$subCategory != lOther$subCategory) {
       return false;
     }
-    final l$location = location;
-    final lOther$location = other.location;
-    if (l$location != lOther$location) {
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (l$condition != lOther$condition) {
       return false;
     }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$following$following
-    on Query$following$following {
-  CopyWith$Query$following$following<Query$following$following> get copyWith =>
-      CopyWith$Query$following$following(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Query$following$following<TRes> {
-  factory CopyWith$Query$following$following(
-    Query$following$following instance,
-    TRes Function(Query$following$following) then,
-  ) = _CopyWithImpl$Query$following$following;
-
-  factory CopyWith$Query$following$following.stub(TRes res) =
-      _CopyWithStubImpl$Query$following$following;
-
-  TRes call({
-    int? id,
-    String? username,
-    String? fullName,
-    int? listing,
-    String? profilePictureUrl,
-    Query$following$following$location? location,
-    String? $__typename,
-  });
-  CopyWith$Query$following$following$location<TRes> get location;
-}
-
-class _CopyWithImpl$Query$following$following<TRes>
-    implements CopyWith$Query$following$following<TRes> {
-  _CopyWithImpl$Query$following$following(
-    this._instance,
-    this._then,
-  );
-
-  final Query$following$following _instance;
-
-  final TRes Function(Query$following$following) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? username = _undefined,
-    Object? fullName = _undefined,
-    Object? listing = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? location = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$following$following(
-        id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        fullName:
-            fullName == _undefined ? _instance.fullName : (fullName as String?),
-        listing: listing == _undefined ? _instance.listing : (listing as int?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        location: location == _undefined
-            ? _instance.location
-            : (location as Query$following$following$location?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Query$following$following$location<TRes> get location {
-    final local$location = _instance.location;
-    return local$location == null
-        ? CopyWith$Query$following$following$location.stub(_then(_instance))
-        : CopyWith$Query$following$following$location(
-            local$location, (e) => call(location: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$following$following<TRes>
-    implements CopyWith$Query$following$following<TRes> {
-  _CopyWithStubImpl$Query$following$following(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? username,
-    String? fullName,
-    int? listing,
-    String? profilePictureUrl,
-    Query$following$following$location? location,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Query$following$following$location<TRes> get location =>
-      CopyWith$Query$following$following$location.stub(_res);
-}
-
-class Query$following$following$location {
-  Query$following$following$location({
-    this.latitude,
-    this.longitude,
-    this.locationName,
-    this.$__typename = 'LocationType',
-  });
-
-  factory Query$following$following$location.fromJson(
-      Map<String, dynamic> json) {
-    final l$latitude = json['latitude'];
-    final l$longitude = json['longitude'];
-    final l$locationName = json['locationName'];
-    final l$$__typename = json['__typename'];
-    return Query$following$following$location(
-      latitude: (l$latitude as String?),
-      longitude: (l$longitude as String?),
-      locationName: (l$locationName as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? latitude;
-
-  final String? longitude;
-
-  final String? locationName;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$latitude = latitude;
-    _resultData['latitude'] = l$latitude;
-    final l$longitude = longitude;
-    _resultData['longitude'] = l$longitude;
-    final l$locationName = locationName;
-    _resultData['locationName'] = l$locationName;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$latitude = latitude;
-    final l$longitude = longitude;
-    final l$locationName = locationName;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$latitude,
-      l$longitude,
-      l$locationName,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$following$following$location ||
-        runtimeType != other.runtimeType) {
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
       return false;
     }
-    final l$latitude = latitude;
-    final lOther$latitude = other.latitude;
-    if (l$latitude != lOther$latitude) {
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
       return false;
     }
-    final l$longitude = longitude;
-    final lOther$longitude = other.longitude;
-    if (l$longitude != lOther$longitude) {
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
       return false;
     }
-    final l$locationName = locationName;
-    final lOther$locationName = other.locationName;
-    if (l$locationName != lOther$locationName) {
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
       return false;
     }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
+    final l$views = views;
+    final lOther$views = other.views;
+    if (l$views != lOther$views) {
       return false;
     }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$following$following$location
-    on Query$following$following$location {
-  CopyWith$Query$following$following$location<
-          Query$following$following$location>
-      get copyWith => CopyWith$Query$following$following$location(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$following$following$location<TRes> {
-  factory CopyWith$Query$following$following$location(
-    Query$following$following$location instance,
-    TRes Function(Query$following$following$location) then,
-  ) = _CopyWithImpl$Query$following$following$location;
-
-  factory CopyWith$Query$following$following$location.stub(TRes res) =
-      _CopyWithStubImpl$Query$following$following$location;
-
-  TRes call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$following$following$location<TRes>
-    implements CopyWith$Query$following$following$location<TRes> {
-  _CopyWithImpl$Query$following$following$location(
-    this._instance,
-    this._then,
-  );
-
-  final Query$following$following$location _instance;
-
-  final TRes Function(Query$following$following$location) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? latitude = _undefined,
-    Object? longitude = _undefined,
-    Object? locationName = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$following$following$location(
-        latitude:
-            latitude == _undefined ? _instance.latitude : (latitude as String?),
-        longitude: longitude == _undefined
-            ? _instance.longitude
-            : (longitude as String?),
-        locationName: locationName == _undefined
-            ? _instance.locationName
-            : (locationName as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$following$following$location<TRes>
-    implements CopyWith$Query$following$following$location<TRes> {
-  _CopyWithStubImpl$Query$following$following$location(this._res);
-
-  TRes _res;
-
-  call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Variables$Query$followers {
-  factory Variables$Query$followers({
-    bool? latestFirst,
-    String? search,
-    int? pageCount,
-    int? pageNumber,
-  }) =>
-      Variables$Query$followers._({
-        if (latestFirst != null) r'latestFirst': latestFirst,
-        if (search != null) r'search': search,
-        if (pageCount != null) r'pageCount': pageCount,
-        if (pageNumber != null) r'pageNumber': pageNumber,
-      });
-
-  Variables$Query$followers._(this._$data);
-
-  factory Variables$Query$followers.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('latestFirst')) {
-      final l$latestFirst = data['latestFirst'];
-      result$data['latestFirst'] = (l$latestFirst as bool?);
-    }
-    if (data.containsKey('search')) {
-      final l$search = data['search'];
-      result$data['search'] = (l$search as String?);
-    }
-    if (data.containsKey('pageCount')) {
-      final l$pageCount = data['pageCount'];
-      result$data['pageCount'] = (l$pageCount as int?);
-    }
-    if (data.containsKey('pageNumber')) {
-      final l$pageNumber = data['pageNumber'];
-      result$data['pageNumber'] = (l$pageNumber as int?);
-    }
-    return Variables$Query$followers._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  bool? get latestFirst => (_$data['latestFirst'] as bool?);
-
-  String? get search => (_$data['search'] as String?);
-
-  int? get pageCount => (_$data['pageCount'] as int?);
-
-  int? get pageNumber => (_$data['pageNumber'] as int?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('latestFirst')) {
-      final l$latestFirst = latestFirst;
-      result$data['latestFirst'] = l$latestFirst;
-    }
-    if (_$data.containsKey('search')) {
-      final l$search = search;
-      result$data['search'] = l$search;
-    }
-    if (_$data.containsKey('pageCount')) {
-      final l$pageCount = pageCount;
-      result$data['pageCount'] = l$pageCount;
-    }
-    if (_$data.containsKey('pageNumber')) {
-      final l$pageNumber = pageNumber;
-      result$data['pageNumber'] = l$pageNumber;
-    }
-    return result$data;
-  }
-
-  CopyWith$Variables$Query$followers<Variables$Query$followers> get copyWith =>
-      CopyWith$Variables$Query$followers(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Variables$Query$followers ||
-        runtimeType != other.runtimeType) {
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (l$likes != lOther$likes) {
       return false;
     }
-    final l$latestFirst = latestFirst;
-    final lOther$latestFirst = other.latestFirst;
-    if (_$data.containsKey('latestFirst') !=
-        other._$data.containsKey('latestFirst')) {
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
       return false;
     }
-    if (l$latestFirst != lOther$latestFirst) {
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
       return false;
     }
-    final l$search = search;
-    final lOther$search = other.search;
-    if (_$data.containsKey('search') != other._$data.containsKey('search')) {
-      return false;
-    }
-    if (l$search != lOther$search) {
-      return false;
-    }
-    final l$pageCount = pageCount;
-    final lOther$pageCount = other.pageCount;
-    if (_$data.containsKey('pageCount') !=
-        other._$data.containsKey('pageCount')) {
-      return false;
-    }
-    if (l$pageCount != lOther$pageCount) {
-      return false;
-    }
-    final l$pageNumber = pageNumber;
-    final lOther$pageNumber = other.pageNumber;
-    if (_$data.containsKey('pageNumber') !=
-        other._$data.containsKey('pageNumber')) {
-      return false;
-    }
-    if (l$pageNumber != lOther$pageNumber) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$latestFirst = latestFirst;
-    final l$search = search;
-    final l$pageCount = pageCount;
-    final l$pageNumber = pageNumber;
-    return Object.hashAll([
-      _$data.containsKey('latestFirst') ? l$latestFirst : const {},
-      _$data.containsKey('search') ? l$search : const {},
-      _$data.containsKey('pageCount') ? l$pageCount : const {},
-      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
-    ]);
-  }
-}
-
-abstract class CopyWith$Variables$Query$followers<TRes> {
-  factory CopyWith$Variables$Query$followers(
-    Variables$Query$followers instance,
-    TRes Function(Variables$Query$followers) then,
-  ) = _CopyWithImpl$Variables$Query$followers;
-
-  factory CopyWith$Variables$Query$followers.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$followers;
-
-  TRes call({
-    bool? latestFirst,
-    String? search,
-    int? pageCount,
-    int? pageNumber,
-  });
-}
-
-class _CopyWithImpl$Variables$Query$followers<TRes>
-    implements CopyWith$Variables$Query$followers<TRes> {
-  _CopyWithImpl$Variables$Query$followers(
-    this._instance,
-    this._then,
-  );
-
-  final Variables$Query$followers _instance;
-
-  final TRes Function(Variables$Query$followers) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? latestFirst = _undefined,
-    Object? search = _undefined,
-    Object? pageCount = _undefined,
-    Object? pageNumber = _undefined,
-  }) =>
-      _then(Variables$Query$followers._({
-        ..._instance._$data,
-        if (latestFirst != _undefined) 'latestFirst': (latestFirst as bool?),
-        if (search != _undefined) 'search': (search as String?),
-        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
-        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
-      }));
-}
-
-class _CopyWithStubImpl$Variables$Query$followers<TRes>
-    implements CopyWith$Variables$Query$followers<TRes> {
-  _CopyWithStubImpl$Variables$Query$followers(this._res);
-
-  TRes _res;
-
-  call({
-    bool? latestFirst,
-    String? search,
-    int? pageCount,
-    int? pageNumber,
-  }) =>
-      _res;
-}
-
-class Query$followers {
-  Query$followers({
-    this.followers,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$followers.fromJson(Map<String, dynamic> json) {
-    final l$followers = json['followers'];
-    final l$$__typename = json['__typename'];
-    return Query$followers(
-      followers: (l$followers as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$followers$followers.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$followers$followers?>? followers;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$followers = followers;
-    _resultData['followers'] = l$followers?.map((e) => e?.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$followers = followers;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$followers || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$followers = followers;
-    final lOther$followers = other.followers;
-    if (l$followers != null && lOther$followers != null) {
-      if (l$followers.length != lOther$followers.length) {
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
         return false;
       }
-      for (int i = 0; i < l$followers.length; i++) {
-        final l$followers$entry = l$followers[i];
-        final lOther$followers$entry = lOther$followers[i];
-        if (l$followers$entry != lOther$followers$entry) {
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
           return false;
         }
       }
-    } else if (l$followers != lOther$followers) {
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -17961,422 +17882,308 @@ class Query$followers {
   }
 }
 
-extension UtilityExtension$Query$followers on Query$followers {
-  CopyWith$Query$followers<Query$followers> get copyWith =>
-      CopyWith$Query$followers(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice
+    on Query$FilterProductsByPrice$filterProductsByPrice {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
+          Query$FilterProductsByPrice$filterProductsByPrice>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Query$followers<TRes> {
-  factory CopyWith$Query$followers(
-    Query$followers instance,
-    TRes Function(Query$followers) then,
-  ) = _CopyWithImpl$Query$followers;
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice(
+    Query$FilterProductsByPrice$filterProductsByPrice instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice) then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice;
 
-  factory CopyWith$Query$followers.stub(TRes res) =
-      _CopyWithStubImpl$Query$followers;
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice;
 
   TRes call({
-    List<Query$followers$followers?>? followers,
+    String? id,
+    String? name,
+    String? description,
+    Query$FilterProductsByPrice$filterProductsByPrice$category? category,
+    Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
+    Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,
+    Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
+    String? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    int? likes,
+    bool? userLiked,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<String>? color,
+    List<Query$FilterProductsByPrice$filterProductsByPrice$materials?>?
+        materials,
+    Query$FilterProductsByPrice$filterProductsByPrice$brand? brand,
     String? $__typename,
   });
-  TRes followers(
-      Iterable<Query$followers$followers?>? Function(
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<TRes>
+      get category;
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
+      get subCategory;
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
+      get seller;
+  TRes materials(
+      Iterable<Query$FilterProductsByPrice$filterProductsByPrice$materials?>? Function(
               Iterable<
-                  CopyWith$Query$followers$followers<
-                      Query$followers$followers>?>?)
+                  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+                      Query$FilterProductsByPrice$filterProductsByPrice$materials>?>?)
           _fn);
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes>
+      get brand;
 }
 
-class _CopyWithImpl$Query$followers<TRes>
-    implements CopyWith$Query$followers<TRes> {
-  _CopyWithImpl$Query$followers(
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice(
     this._instance,
     this._then,
   );
 
-  final Query$followers _instance;
+  final Query$FilterProductsByPrice$filterProductsByPrice _instance;
 
-  final TRes Function(Query$followers) _then;
+  final TRes Function(Query$FilterProductsByPrice$filterProductsByPrice) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? followers = _undefined,
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? description = _undefined,
+    Object? category = _undefined,
+    Object? subCategory = _undefined,
+    Object? seller = _undefined,
+    Object? condition = _undefined,
+    Object? discountPrice = _undefined,
+    Object? size = _undefined,
+    Object? price = _undefined,
+    Object? parcelSize = _undefined,
+    Object? views = _undefined,
+    Object? likes = _undefined,
+    Object? userLiked = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+    Object? color = _undefined,
+    Object? materials = _undefined,
+    Object? brand = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$followers(
-        followers: followers == _undefined
-            ? _instance.followers
-            : (followers as List<Query$followers$followers?>?),
+      _then(Query$FilterProductsByPrice$filterProductsByPrice(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        category: category == _undefined
+            ? _instance.category
+            : (category
+                as Query$FilterProductsByPrice$filterProductsByPrice$category?),
+        subCategory: subCategory == _undefined
+            ? _instance.subCategory
+            : (subCategory
+                as Query$FilterProductsByPrice$filterProductsByPrice$subCategory?),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller
+                as Query$FilterProductsByPrice$filterProductsByPrice$seller?),
+        condition: condition == _undefined
+            ? _instance.condition
+            : (condition as Enum$ProductsProductConditionChoices?),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Enum$ProductsProductSizeChoices?),
+        price: price == _undefined || price == null
+            ? _instance.price
+            : (price as String),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
+        views: views == _undefined || views == null
+            ? _instance.views
+            : (views as int),
+        likes: likes == _undefined || likes == null
+            ? _instance.likes
+            : (likes as int),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        materials: materials == _undefined
+            ? _instance.materials
+            : (materials as List<
+                Query$FilterProductsByPrice$filterProductsByPrice$materials?>?),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand
+                as Query$FilterProductsByPrice$filterProductsByPrice$brand?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  TRes followers(
-          Iterable<Query$followers$followers?>? Function(
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<TRes>
+      get category {
+    final local$category = _instance.category;
+    return local$category == null
+        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category
+            .stub(_then(_instance))
+        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category(
+            local$category, (e) => call(category: e));
+  }
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
+      get subCategory {
+    final local$subCategory = _instance.subCategory;
+    return local$subCategory == null
+        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
+            .stub(_then(_instance))
+        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+            local$subCategory, (e) => call(subCategory: e));
+  }
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
+      get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller
+            .stub(_then(_instance))
+        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller(
+            local$seller, (e) => call(seller: e));
+  }
+
+  TRes materials(
+          Iterable<Query$FilterProductsByPrice$filterProductsByPrice$materials?>? Function(
                   Iterable<
-                      CopyWith$Query$followers$followers<
-                          Query$followers$followers>?>?)
+                      CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+                          Query$FilterProductsByPrice$filterProductsByPrice$materials>?>?)
               _fn) =>
       call(
-          followers: _fn(_instance.followers?.map((e) => e == null
+          materials: _fn(_instance.materials?.map((e) => e == null
               ? null
-              : CopyWith$Query$followers$followers(
+              : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials(
                   e,
                   (i) => i,
                 )))?.toList());
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes>
+      get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand.stub(
+            _then(_instance))
+        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand(
+            local$brand, (e) => call(brand: e));
+  }
 }
 
-class _CopyWithStubImpl$Query$followers<TRes>
-    implements CopyWith$Query$followers<TRes> {
-  _CopyWithStubImpl$Query$followers(this._res);
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice(
+      this._res);
 
   TRes _res;
 
   call({
-    List<Query$followers$followers?>? followers,
+    String? id,
+    String? name,
+    String? description,
+    Query$FilterProductsByPrice$filterProductsByPrice$category? category,
+    Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
+    Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,
+    Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Enum$ProductsProductSizeChoices? size,
+    String? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    int? likes,
+    bool? userLiked,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<String>? color,
+    List<Query$FilterProductsByPrice$filterProductsByPrice$materials?>?
+        materials,
+    Query$FilterProductsByPrice$filterProductsByPrice$brand? brand,
     String? $__typename,
   }) =>
       _res;
 
-  followers(_fn) => _res;
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<TRes>
+      get category =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category
+              .stub(_res);
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
+      get subCategory =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
+              .stub(_res);
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
+      get seller =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller
+              .stub(_res);
+
+  materials(_fn) => _res;
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes>
+      get brand =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand.stub(
+              _res);
 }
 
-const documentNodeQueryfollowers = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'followers'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'latestFirst')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Boolean'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'search')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'pageCount')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'pageNumber')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'followers'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'latestFirst'),
-            value: VariableNode(name: NameNode(value: 'latestFirst')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'pageCount'),
-            value: VariableNode(name: NameNode(value: 'pageCount')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'pageNumber'),
-            value: VariableNode(name: NameNode(value: 'pageNumber')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'search'),
-            value: VariableNode(name: NameNode(value: 'search')),
-          ),
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'username'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'fullName'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'listing'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'profilePictureUrl'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'location'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'latitude'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'longitude'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'locationName'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$followers _parserFn$Query$followers(Map<String, dynamic> data) =>
-    Query$followers.fromJson(data);
-typedef OnQueryComplete$Query$followers = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$followers?,
-);
-
-class Options$Query$followers extends graphql.QueryOptions<Query$followers> {
-  Options$Query$followers({
-    String? operationName,
-    Variables$Query$followers? variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followers? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$followers? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$followers(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryfollowers,
-          parserFn: _parserFn$Query$followers,
-        );
-
-  final OnQueryComplete$Query$followers? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$followers
-    extends graphql.WatchQueryOptions<Query$followers> {
-  WatchOptions$Query$followers({
-    String? operationName,
-    Variables$Query$followers? variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followers? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryfollowers,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$followers,
-        );
-}
-
-class FetchMoreOptions$Query$followers extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$followers({
-    required graphql.UpdateQuery updateQuery,
-    Variables$Query$followers? variables,
-  }) : super(
-          updateQuery: updateQuery,
-          variables: variables?.toJson() ?? {},
-          document: documentNodeQueryfollowers,
-        );
-}
-
-extension ClientExtension$Query$followers on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$followers>> query$followers(
-          [Options$Query$followers? options]) async =>
-      await this.query(options ?? Options$Query$followers());
-  graphql.ObservableQuery<Query$followers> watchQuery$followers(
-          [WatchOptions$Query$followers? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$followers());
-  void writeQuery$followers({
-    required Query$followers data,
-    Variables$Query$followers? variables,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryfollowers),
-          variables: variables?.toJson() ?? const {},
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$followers? readQuery$followers({
-    Variables$Query$followers? variables,
-    bool optimistic = true,
-  }) {
-    final result = this.readQuery(
-      graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryfollowers),
-        variables: variables?.toJson() ?? const {},
-      ),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$followers.fromJson(result);
-  }
-}
-
-class Query$followers$followers {
-  Query$followers$followers({
+class Query$FilterProductsByPrice$filterProductsByPrice$category {
+  Query$FilterProductsByPrice$filterProductsByPrice$category({
     this.id,
-    this.username,
-    this.fullName,
-    this.listing,
-    this.profilePictureUrl,
-    this.location,
-    this.$__typename = 'UserType',
+    this.name,
+    this.$__typename = 'CategoryType',
   });
 
-  factory Query$followers$followers.fromJson(Map<String, dynamic> json) {
+  factory Query$FilterProductsByPrice$filterProductsByPrice$category.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$username = json['username'];
-    final l$fullName = json['fullName'];
-    final l$listing = json['listing'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
-    final l$location = json['location'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Query$followers$followers(
+    return Query$FilterProductsByPrice$filterProductsByPrice$category(
       id: (l$id as int?),
-      username: (l$username as String?),
-      fullName: (l$fullName as String?),
-      listing: (l$listing as int?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
-      location: l$location == null
-          ? null
-          : Query$followers$followers$location.fromJson(
-              (l$location as Map<String, dynamic>)),
+      name: (l$name as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? id;
 
-  final String? username;
-
-  final String? fullName;
-
-  final int? listing;
-
-  final String? profilePictureUrl;
-
-  final Query$followers$followers$location? location;
+  final String? name;
 
   final String $__typename;
 
@@ -18384,16 +18191,8 @@ class Query$followers$followers {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$fullName = fullName;
-    _resultData['fullName'] = l$fullName;
-    final l$listing = listing;
-    _resultData['listing'] = l$listing;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
-    final l$location = location;
-    _resultData['location'] = l$location?.toJson();
+    final l$name = name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -18402,19 +18201,11 @@ class Query$followers$followers {
   @override
   int get hashCode {
     final l$id = id;
-    final l$username = username;
-    final l$fullName = fullName;
-    final l$listing = listing;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$location = location;
+    final l$name = name;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$username,
-      l$fullName,
-      l$listing,
-      l$profilePictureUrl,
-      l$location,
+      l$name,
       l$$__typename,
     ]);
   }
@@ -18424,7 +18215,318 @@ class Query$followers$followers {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$followers$followers ||
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$category ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$category
+    on Query$FilterProductsByPrice$filterProductsByPrice$category {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<
+          Query$FilterProductsByPrice$filterProductsByPrice$category>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category(
+    Query$FilterProductsByPrice$filterProductsByPrice$category instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$category)
+        then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$category;
+
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$category;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$category<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<
+            TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$category(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FilterProductsByPrice$filterProductsByPrice$category _instance;
+
+  final TRes Function(
+      Query$FilterProductsByPrice$filterProductsByPrice$category) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$category(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$category<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<
+            TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$category(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FilterProductsByPrice$filterProductsByPrice$subCategory {
+  Query$FilterProductsByPrice$filterProductsByPrice$subCategory({
+    this.id,
+    this.name,
+    this.$__typename = 'SubCategoryType',
+  });
+
+  factory Query$FilterProductsByPrice$filterProductsByPrice$subCategory.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$FilterProductsByPrice$filterProductsByPrice$subCategory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
+    on Query$FilterProductsByPrice$filterProductsByPrice$subCategory {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+          Query$FilterProductsByPrice$filterProductsByPrice$subCategory>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+    Query$FilterProductsByPrice$filterProductsByPrice$subCategory instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$subCategory)
+        then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory;
+
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+            TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FilterProductsByPrice$filterProductsByPrice$subCategory _instance;
+
+  final TRes Function(
+      Query$FilterProductsByPrice$filterProductsByPrice$subCategory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
+            TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FilterProductsByPrice$filterProductsByPrice$seller {
+  Query$FilterProductsByPrice$filterProductsByPrice$seller({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$FilterProductsByPrice$filterProductsByPrice$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Query$FilterProductsByPrice$filterProductsByPrice$seller(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -18438,26 +18540,6 @@ class Query$followers$followers {
     if (l$username != lOther$username) {
       return false;
     }
-    final l$fullName = fullName;
-    final lOther$fullName = other.fullName;
-    if (l$fullName != lOther$fullName) {
-      return false;
-    }
-    final l$listing = listing;
-    final lOther$listing = other.listing;
-    if (l$listing != lOther$listing) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
-      return false;
-    }
-    final l$location = location;
-    final lOther$location = other.location;
-    if (l$location != lOther$location) {
-      return false;
-    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -18467,144 +18549,117 @@ class Query$followers$followers {
   }
 }
 
-extension UtilityExtension$Query$followers$followers
-    on Query$followers$followers {
-  CopyWith$Query$followers$followers<Query$followers$followers> get copyWith =>
-      CopyWith$Query$followers$followers(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$seller
+    on Query$FilterProductsByPrice$filterProductsByPrice$seller {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+          Query$FilterProductsByPrice$filterProductsByPrice$seller>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Query$followers$followers<TRes> {
-  factory CopyWith$Query$followers$followers(
-    Query$followers$followers instance,
-    TRes Function(Query$followers$followers) then,
-  ) = _CopyWithImpl$Query$followers$followers;
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller(
+    Query$FilterProductsByPrice$filterProductsByPrice$seller instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$seller)
+        then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller;
 
-  factory CopyWith$Query$followers$followers.stub(TRes res) =
-      _CopyWithStubImpl$Query$followers$followers;
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller;
 
   TRes call({
     int? id,
     String? username,
-    String? fullName,
-    int? listing,
-    String? profilePictureUrl,
-    Query$followers$followers$location? location,
     String? $__typename,
   });
-  CopyWith$Query$followers$followers$location<TRes> get location;
 }
 
-class _CopyWithImpl$Query$followers$followers<TRes>
-    implements CopyWith$Query$followers$followers<TRes> {
-  _CopyWithImpl$Query$followers$followers(
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+            TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller(
     this._instance,
     this._then,
   );
 
-  final Query$followers$followers _instance;
+  final Query$FilterProductsByPrice$filterProductsByPrice$seller _instance;
 
-  final TRes Function(Query$followers$followers) _then;
+  final TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$seller)
+      _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
     Object? username = _undefined,
-    Object? fullName = _undefined,
-    Object? listing = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? location = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$followers$followers(
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
-        fullName:
-            fullName == _undefined ? _instance.fullName : (fullName as String?),
-        listing: listing == _undefined ? _instance.listing : (listing as int?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        location: location == _undefined
-            ? _instance.location
-            : (location as Query$followers$followers$location?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Query$followers$followers$location<TRes> get location {
-    final local$location = _instance.location;
-    return local$location == null
-        ? CopyWith$Query$followers$followers$location.stub(_then(_instance))
-        : CopyWith$Query$followers$followers$location(
-            local$location, (e) => call(location: e));
-  }
 }
 
-class _CopyWithStubImpl$Query$followers$followers<TRes>
-    implements CopyWith$Query$followers$followers<TRes> {
-  _CopyWithStubImpl$Query$followers$followers(this._res);
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<
+            TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller(
+      this._res);
 
   TRes _res;
 
   call({
     int? id,
     String? username,
-    String? fullName,
-    int? listing,
-    String? profilePictureUrl,
-    Query$followers$followers$location? location,
     String? $__typename,
   }) =>
       _res;
-
-  CopyWith$Query$followers$followers$location<TRes> get location =>
-      CopyWith$Query$followers$followers$location.stub(_res);
 }
 
-class Query$followers$followers$location {
-  Query$followers$followers$location({
-    this.latitude,
-    this.longitude,
-    this.locationName,
-    this.$__typename = 'LocationType',
+class Query$FilterProductsByPrice$filterProductsByPrice$materials {
+  Query$FilterProductsByPrice$filterProductsByPrice$materials({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
   });
 
-  factory Query$followers$followers$location.fromJson(
+  factory Query$FilterProductsByPrice$filterProductsByPrice$materials.fromJson(
       Map<String, dynamic> json) {
-    final l$latitude = json['latitude'];
-    final l$longitude = json['longitude'];
-    final l$locationName = json['locationName'];
+    final l$id = json['id'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Query$followers$followers$location(
-      latitude: (l$latitude as String?),
-      longitude: (l$longitude as String?),
-      locationName: (l$locationName as String?),
+    return Query$FilterProductsByPrice$filterProductsByPrice$materials(
+      id: (l$id as int?),
+      name: (l$name as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String? latitude;
+  final int? id;
 
-  final String? longitude;
-
-  final String? locationName;
+  final String? name;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$latitude = latitude;
-    _resultData['latitude'] = l$latitude;
-    final l$longitude = longitude;
-    _resultData['longitude'] = l$longitude;
-    final l$locationName = locationName;
-    _resultData['locationName'] = l$locationName;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -18612,14 +18667,12 @@ class Query$followers$followers$location {
 
   @override
   int get hashCode {
-    final l$latitude = latitude;
-    final l$longitude = longitude;
-    final l$locationName = locationName;
+    final l$id = id;
+    final l$name = name;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$latitude,
-      l$longitude,
-      l$locationName,
+      l$id,
+      l$name,
       l$$__typename,
     ]);
   }
@@ -18629,23 +18682,18 @@ class Query$followers$followers$location {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$followers$followers$location ||
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$materials ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$latitude = latitude;
-    final lOther$latitude = other.latitude;
-    if (l$latitude != lOther$latitude) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
-    final l$longitude = longitude;
-    final lOther$longitude = other.longitude;
-    if (l$longitude != lOther$longitude) {
-      return false;
-    }
-    final l$locationName = locationName;
-    final lOther$locationName = other.locationName;
-    if (l$locationName != lOther$locationName) {
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -18657,105 +18705,116 @@ class Query$followers$followers$location {
   }
 }
 
-extension UtilityExtension$Query$followers$followers$location
-    on Query$followers$followers$location {
-  CopyWith$Query$followers$followers$location<
-          Query$followers$followers$location>
-      get copyWith => CopyWith$Query$followers$followers$location(
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$materials
+    on Query$FilterProductsByPrice$filterProductsByPrice$materials {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+          Query$FilterProductsByPrice$filterProductsByPrice$materials>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$followers$followers$location<TRes> {
-  factory CopyWith$Query$followers$followers$location(
-    Query$followers$followers$location instance,
-    TRes Function(Query$followers$followers$location) then,
-  ) = _CopyWithImpl$Query$followers$followers$location;
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials(
+    Query$FilterProductsByPrice$filterProductsByPrice$materials instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$materials)
+        then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials;
 
-  factory CopyWith$Query$followers$followers$location.stub(TRes res) =
-      _CopyWithStubImpl$Query$followers$followers$location;
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials;
 
   TRes call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
+    int? id,
+    String? name,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$followers$followers$location<TRes>
-    implements CopyWith$Query$followers$followers$location<TRes> {
-  _CopyWithImpl$Query$followers$followers$location(
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+            TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials(
     this._instance,
     this._then,
   );
 
-  final Query$followers$followers$location _instance;
+  final Query$FilterProductsByPrice$filterProductsByPrice$materials _instance;
 
-  final TRes Function(Query$followers$followers$location) _then;
+  final TRes Function(
+      Query$FilterProductsByPrice$filterProductsByPrice$materials) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? latitude = _undefined,
-    Object? longitude = _undefined,
-    Object? locationName = _undefined,
+    Object? id = _undefined,
+    Object? name = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$followers$followers$location(
-        latitude:
-            latitude == _undefined ? _instance.latitude : (latitude as String?),
-        longitude: longitude == _undefined
-            ? _instance.longitude
-            : (longitude as String?),
-        locationName: locationName == _undefined
-            ? _instance.locationName
-            : (locationName as String?),
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$materials(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$followers$followers$location<TRes>
-    implements CopyWith$Query$followers$followers$location<TRes> {
-  _CopyWithStubImpl$Query$followers$followers$location(this._res);
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$materials<
+            TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$materials(
+      this._res);
 
   TRes _res;
 
   call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;
 }
 
-class Query$followersTotalNumber {
-  Query$followersTotalNumber({
-    this.followersTotalNumber,
-    this.$__typename = 'Query',
+class Query$FilterProductsByPrice$filterProductsByPrice$brand {
+  Query$FilterProductsByPrice$filterProductsByPrice$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
   });
 
-  factory Query$followersTotalNumber.fromJson(Map<String, dynamic> json) {
-    final l$followersTotalNumber = json['followersTotalNumber'];
+  factory Query$FilterProductsByPrice$filterProductsByPrice$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Query$followersTotalNumber(
-      followersTotalNumber: (l$followersTotalNumber as int?),
+    return Query$FilterProductsByPrice$filterProductsByPrice$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? followersTotalNumber;
+  final int? id;
+
+  final String? name;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$followersTotalNumber = followersTotalNumber;
-    _resultData['followersTotalNumber'] = l$followersTotalNumber;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -18763,10 +18822,12 @@ class Query$followersTotalNumber {
 
   @override
   int get hashCode {
-    final l$followersTotalNumber = followersTotalNumber;
+    final l$id = id;
+    final l$name = name;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$followersTotalNumber,
+      l$id,
+      l$name,
       l$$__typename,
     ]);
   }
@@ -18776,13 +18837,18 @@ class Query$followersTotalNumber {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$followersTotalNumber ||
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$brand ||
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$followersTotalNumber = followersTotalNumber;
-    final lOther$followersTotalNumber = other.followersTotalNumber;
-    if (l$followersTotalNumber != lOther$followersTotalNumber) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -18794,491 +18860,78 @@ class Query$followersTotalNumber {
   }
 }
 
-extension UtilityExtension$Query$followersTotalNumber
-    on Query$followersTotalNumber {
-  CopyWith$Query$followersTotalNumber<Query$followersTotalNumber>
-      get copyWith => CopyWith$Query$followersTotalNumber(
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$brand
+    on Query$FilterProductsByPrice$filterProductsByPrice$brand {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<
+          Query$FilterProductsByPrice$filterProductsByPrice$brand>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$followersTotalNumber<TRes> {
-  factory CopyWith$Query$followersTotalNumber(
-    Query$followersTotalNumber instance,
-    TRes Function(Query$followersTotalNumber) then,
-  ) = _CopyWithImpl$Query$followersTotalNumber;
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand(
+    Query$FilterProductsByPrice$filterProductsByPrice$brand instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$brand) then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand;
 
-  factory CopyWith$Query$followersTotalNumber.stub(TRes res) =
-      _CopyWithStubImpl$Query$followersTotalNumber;
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand;
 
   TRes call({
-    int? followersTotalNumber,
+    int? id,
+    String? name,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$followersTotalNumber<TRes>
-    implements CopyWith$Query$followersTotalNumber<TRes> {
-  _CopyWithImpl$Query$followersTotalNumber(
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand(
     this._instance,
     this._then,
   );
 
-  final Query$followersTotalNumber _instance;
+  final Query$FilterProductsByPrice$filterProductsByPrice$brand _instance;
 
-  final TRes Function(Query$followersTotalNumber) _then;
+  final TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$brand)
+      _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? followersTotalNumber = _undefined,
+    Object? id = _undefined,
+    Object? name = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$followersTotalNumber(
-        followersTotalNumber: followersTotalNumber == _undefined
-            ? _instance.followersTotalNumber
-            : (followersTotalNumber as int?),
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$followersTotalNumber<TRes>
-    implements CopyWith$Query$followersTotalNumber<TRes> {
-  _CopyWithStubImpl$Query$followersTotalNumber(this._res);
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand(
+      this._res);
 
   TRes _res;
 
   call({
-    int? followersTotalNumber,
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;
-}
-
-const documentNodeQueryfollowersTotalNumber = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'followersTotalNumber'),
-    variableDefinitions: [],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'followersTotalNumber'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$followersTotalNumber _parserFn$Query$followersTotalNumber(
-        Map<String, dynamic> data) =>
-    Query$followersTotalNumber.fromJson(data);
-typedef OnQueryComplete$Query$followersTotalNumber = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$followersTotalNumber?,
-);
-
-class Options$Query$followersTotalNumber
-    extends graphql.QueryOptions<Query$followersTotalNumber> {
-  Options$Query$followersTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followersTotalNumber? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$followersTotalNumber? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null
-                        ? null
-                        : _parserFn$Query$followersTotalNumber(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryfollowersTotalNumber,
-          parserFn: _parserFn$Query$followersTotalNumber,
-        );
-
-  final OnQueryComplete$Query$followersTotalNumber? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$followersTotalNumber
-    extends graphql.WatchQueryOptions<Query$followersTotalNumber> {
-  WatchOptions$Query$followersTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followersTotalNumber? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryfollowersTotalNumber,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$followersTotalNumber,
-        );
-}
-
-class FetchMoreOptions$Query$followersTotalNumber
-    extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$followersTotalNumber(
-      {required graphql.UpdateQuery updateQuery})
-      : super(
-          updateQuery: updateQuery,
-          document: documentNodeQueryfollowersTotalNumber,
-        );
-}
-
-extension ClientExtension$Query$followersTotalNumber on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$followersTotalNumber>>
-      query$followersTotalNumber(
-              [Options$Query$followersTotalNumber? options]) async =>
-          await this.query(options ?? Options$Query$followersTotalNumber());
-  graphql.ObservableQuery<Query$followersTotalNumber>
-      watchQuery$followersTotalNumber(
-              [WatchOptions$Query$followersTotalNumber? options]) =>
-          this.watchQuery(options ?? WatchOptions$Query$followersTotalNumber());
-  void writeQuery$followersTotalNumber({
-    required Query$followersTotalNumber data,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-            operation: graphql.Operation(
-                document: documentNodeQueryfollowersTotalNumber)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$followersTotalNumber? readQuery$followersTotalNumber(
-      {bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
-          operation: graphql.Operation(
-              document: documentNodeQueryfollowersTotalNumber)),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$followersTotalNumber.fromJson(result);
-  }
-}
-
-class Query$followingTotalNumber {
-  Query$followingTotalNumber({
-    this.followingTotalNumber,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$followingTotalNumber.fromJson(Map<String, dynamic> json) {
-    final l$followingTotalNumber = json['followingTotalNumber'];
-    final l$$__typename = json['__typename'];
-    return Query$followingTotalNumber(
-      followingTotalNumber: (l$followingTotalNumber as int?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? followingTotalNumber;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$followingTotalNumber = followingTotalNumber;
-    _resultData['followingTotalNumber'] = l$followingTotalNumber;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$followingTotalNumber = followingTotalNumber;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$followingTotalNumber,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$followingTotalNumber ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$followingTotalNumber = followingTotalNumber;
-    final lOther$followingTotalNumber = other.followingTotalNumber;
-    if (l$followingTotalNumber != lOther$followingTotalNumber) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$followingTotalNumber
-    on Query$followingTotalNumber {
-  CopyWith$Query$followingTotalNumber<Query$followingTotalNumber>
-      get copyWith => CopyWith$Query$followingTotalNumber(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$followingTotalNumber<TRes> {
-  factory CopyWith$Query$followingTotalNumber(
-    Query$followingTotalNumber instance,
-    TRes Function(Query$followingTotalNumber) then,
-  ) = _CopyWithImpl$Query$followingTotalNumber;
-
-  factory CopyWith$Query$followingTotalNumber.stub(TRes res) =
-      _CopyWithStubImpl$Query$followingTotalNumber;
-
-  TRes call({
-    int? followingTotalNumber,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$followingTotalNumber<TRes>
-    implements CopyWith$Query$followingTotalNumber<TRes> {
-  _CopyWithImpl$Query$followingTotalNumber(
-    this._instance,
-    this._then,
-  );
-
-  final Query$followingTotalNumber _instance;
-
-  final TRes Function(Query$followingTotalNumber) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? followingTotalNumber = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$followingTotalNumber(
-        followingTotalNumber: followingTotalNumber == _undefined
-            ? _instance.followingTotalNumber
-            : (followingTotalNumber as int?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$followingTotalNumber<TRes>
-    implements CopyWith$Query$followingTotalNumber<TRes> {
-  _CopyWithStubImpl$Query$followingTotalNumber(this._res);
-
-  TRes _res;
-
-  call({
-    int? followingTotalNumber,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-const documentNodeQueryfollowingTotalNumber = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'followingTotalNumber'),
-    variableDefinitions: [],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'followingTotalNumber'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$followingTotalNumber _parserFn$Query$followingTotalNumber(
-        Map<String, dynamic> data) =>
-    Query$followingTotalNumber.fromJson(data);
-typedef OnQueryComplete$Query$followingTotalNumber = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$followingTotalNumber?,
-);
-
-class Options$Query$followingTotalNumber
-    extends graphql.QueryOptions<Query$followingTotalNumber> {
-  Options$Query$followingTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followingTotalNumber? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$followingTotalNumber? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null
-                        ? null
-                        : _parserFn$Query$followingTotalNumber(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryfollowingTotalNumber,
-          parserFn: _parserFn$Query$followingTotalNumber,
-        );
-
-  final OnQueryComplete$Query$followingTotalNumber? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$followingTotalNumber
-    extends graphql.WatchQueryOptions<Query$followingTotalNumber> {
-  WatchOptions$Query$followingTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$followingTotalNumber? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryfollowingTotalNumber,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$followingTotalNumber,
-        );
-}
-
-class FetchMoreOptions$Query$followingTotalNumber
-    extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$followingTotalNumber(
-      {required graphql.UpdateQuery updateQuery})
-      : super(
-          updateQuery: updateQuery,
-          document: documentNodeQueryfollowingTotalNumber,
-        );
-}
-
-extension ClientExtension$Query$followingTotalNumber on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$followingTotalNumber>>
-      query$followingTotalNumber(
-              [Options$Query$followingTotalNumber? options]) async =>
-          await this.query(options ?? Options$Query$followingTotalNumber());
-  graphql.ObservableQuery<Query$followingTotalNumber>
-      watchQuery$followingTotalNumber(
-              [WatchOptions$Query$followingTotalNumber? options]) =>
-          this.watchQuery(options ?? WatchOptions$Query$followingTotalNumber());
-  void writeQuery$followingTotalNumber({
-    required Query$followingTotalNumber data,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-            operation: graphql.Operation(
-                document: documentNodeQueryfollowingTotalNumber)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$followingTotalNumber? readQuery$followingTotalNumber(
-      {bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
-          operation: graphql.Operation(
-              document: documentNodeQueryfollowingTotalNumber)),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$followingTotalNumber.fromJson(result);
-  }
 }

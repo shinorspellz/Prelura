@@ -20,8 +20,7 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 //   return result.reversed.toList();
 // });
 
-final searchProductProvider =
-    FutureProvider.family<List<Product>, String?>((ref, query) async {
+final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getAllProducts(search: query);
@@ -29,8 +28,7 @@ final searchProductProvider =
   return result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
 });
 
-final toggleLikeProductProvider =
-    FutureProvider.autoDispose.family<bool, int>((ref, query) async {
+final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
   final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
@@ -38,8 +36,7 @@ final toggleLikeProductProvider =
   return result!;
 });
 
-final userProduct =
-    FutureProvider.family<List<Product>, String?>((ref, username) async {
+final userProduct = FutureProvider.family<List<Product>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getUserProduct(username: username, pageCount: 100);
@@ -70,8 +67,7 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
-final similarProductsProvider =
-    FutureProvider.family<List<Product>, int>((ref, id) async {
+final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, id) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.similarProduct(productId: id);
@@ -79,8 +75,7 @@ final similarProductsProvider =
   return result;
 });
 
-final productProvider =
-    AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
+final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
 class _ProductProvider extends AsyncNotifier<void> {
   late final _productRepo = ref.read(productRepo);
@@ -92,8 +87,7 @@ class _ProductProvider extends AsyncNotifier<void> {
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
-      onUploadProgress: (sent, total) =>
-          log('${sent / total}%', name: 'FileUpload'),
+      onUploadProgress: (sent, total) => log('${sent / total}%', name: 'FileUpload'),
     );
 
     if (upload == null) throw 'Failed to upload images.';
@@ -226,9 +220,84 @@ final colorsProvider = Provider((ref) {
   return colorOptions;
 });
 
-final allProductProvider =
-    AsyncNotifierProvider<_AllProductController, List<Product>>(
-        _AllProductController.new);
+final filterProductByPriceProvider = AsyncNotifierProvider.family<_FilteredProductController, List<Product>, double>(_FilteredProductController.new);
+
+class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, double> {
+  late final _repository = ref.read(productRepo);
+  // List<ServicePackageModel>? services;
+  final int _pageCount = 15;
+  int _currentPage = 1;
+  int _brandTotalItems = 0;
+
+  double _price = 15;
+
+  @override
+  Future<List<Product>> build(double priceLimit) async {
+    state = const AsyncLoading();
+    _price = priceLimit;
+    _currentPage = 1;
+    await _getProducts(pageNumber: _currentPage, price: priceLimit);
+    return state.value!;
+  }
+
+  Future<void> _getProducts({required double price, int? pageNumber}) async {
+    // final sort = ref.watch(sortAllServiceProvider);
+    final result = await _repository.filterProductByPrice(
+      price: price,
+      pageCount: _pageCount,
+      pageNumber: pageNumber,
+    );
+
+    _brandTotalItems = result.filterProductsByPriceTotalNumber!;
+
+    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
+    final currentState = state.valueOrNull ?? [];
+    if (pageNumber == 1) {
+      state = AsyncData(newState.toList());
+    } else {
+      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+        return;
+      }
+
+      state = AsyncData([...currentState, ...newState]);
+    }
+    _currentPage = pageNumber!;
+  }
+
+  Future<void> fetchMoreData() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+
+    if (canLoadMore) {
+      await _getProducts(
+        price: _price,
+        pageNumber: _currentPage + 1,
+      );
+    }
+  }
+
+  Future<void> fetchMoreHandler() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (canLoadMore) {
+      await fetchMoreData();
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
+
+final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
+  (ref, query) async {
+    final repo = ref.watch(productRepo);
+
+    final result = await repo.getBrands(search: query);
+
+    return result.brands!.map((e) => Brand.fromJson(e!.toJson())).toList();
+  },
+);
+
+final allProductProvider = AsyncNotifierProvider<_AllProductController, List<Product>>(_AllProductController.new);
 
 class _AllProductController extends AsyncNotifier<List<Product>> {
   late final _repository = ref.read(productRepo);
@@ -254,14 +323,12 @@ class _AllProductController extends AsyncNotifier<List<Product>> {
 
     _brandTotalItems = result.allProductsTotalNumber!;
 
-    final newState =
-        result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty &&
-          newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -291,13 +358,3 @@ class _AllProductController extends AsyncNotifier<List<Product>> {
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
-
-final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
-  (ref, query) async {
-    final repo = ref.watch(productRepo);
-
-    final result = await repo.getBrands(search: query);
-
-    return result.brands!.map((e) => Brand.fromJson(e!.toJson())).toList();
-  },
-);
