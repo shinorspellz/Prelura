@@ -144,6 +144,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   void updatePrice(String? price) {
     state = state.copyWith(price: price);
+    log('${state.price}');
   }
 
   void selectBrand(Brand? brand) {
