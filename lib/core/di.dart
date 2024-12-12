@@ -38,6 +38,9 @@ final appStartUpProvider = FutureProvider((ref) async {
       ref.read(userProvider.future),
       ref.read(allProductProvider.future),
     ]);
+
+    // custom delay added for splash
+    await Future.delayed(const Duration(seconds: 3));
   }
 });
 
@@ -55,7 +58,7 @@ final graphqlClient = Provider((ref) {
   });
 
   HttpLink httpLink = HttpLink(
-    'https://prelura-app.vercel.app/graphql/',
+    'https://prelura.com/graphql/',
     defaultHeaders: {HttpHeaders.acceptHeader: 'application/json'},
   );
 
