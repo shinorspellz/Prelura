@@ -105,16 +105,16 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
         ),
+        constraints: BoxConstraints(
+          minHeight: widget.minLines != null ? widget.minLines! * 24.0 : 65.0,
+          maxHeight: widget.minLines != null ? double.infinity : 65.0,
+        ),
         child: GestureDetector(
           onTap: widget.onTap,
           child: Container(
             // height: maxLength != null ? 6.h : 6.h,
             width: widget.minWidth ?? 100.0.w,
-            constraints: BoxConstraints(
-              minHeight:
-                  widget.minLines != null ? widget.minLines! * 24.0 : 48.0,
-              maxHeight: widget.minLines != null ? double.infinity : 48.0,
-            ),
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Theme.of(context).scaffoldBackgroundColor,

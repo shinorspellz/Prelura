@@ -80,8 +80,7 @@ class UIConstants {
                 fontSize: 14,
                 height: 1.7,
               ),
-      contentPadding:
-          contentPadding ?? const EdgeInsets.fromLTRB(12, 12, 12, 12),
+      contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
       border: InputBorder.none,
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(

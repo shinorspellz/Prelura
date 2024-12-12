@@ -70,7 +70,11 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             : userProvider))
         .valueOrNull;
     bool isCurrentUser = widget.username == null;
-    print(user);
+    print('location name is ${user?.location?.locationName}');
+    final followers = ref
+        .read(followingProvider(FollowerQuery(query: "", latestFirst: false)));
+    final following = ref.read(followingProvider(FollowerQuery()));
+    print({following.value?.length, followers.valueOrNull?.length});
 
     return SmartRefresher(
       controller: _refreshController,
@@ -109,7 +113,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text("Exeter, United Kingdom",
+                            Text(
+                                user?.location?.locationName ??
+                                    "Exeter, United Kingdom",
                                 style: Theme.of(context).textTheme.bodyMedium),
                           ],
                         ),

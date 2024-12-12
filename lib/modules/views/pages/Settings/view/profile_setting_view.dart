@@ -225,7 +225,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 if (long == 0.0 || lat == 0.0) {
                   throw Exception('Invalid location coordinates');
                 }
-
+                print("location name is ${locationController.text}");
                 await ref.read(userNotfierProvider.notifier).updateProfile(
                       location: Input$LocationInputType(
                         longitude: long.toString(),
