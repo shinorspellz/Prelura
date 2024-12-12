@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,8 +32,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -86,11 +87,10 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 112,
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
+          padding: const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
           child: AppButton(
             onTap: priceState != null
                 ? () {
@@ -98,7 +98,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
                     Navigator.pop(context);
                   }
                 : null,
-            isDisabled: priceState!.isEmpty,
+            isDisabled: priceState?.isEmpty ?? true,
             text: "Done",
           ),
         ),
