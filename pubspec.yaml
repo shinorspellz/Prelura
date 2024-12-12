@@ -34,6 +34,7 @@ dependencies:
   geolocator: ^12.0.0
   flutter_portal: ^1.1.3
   logger:
+  flutter_dotenv: ^5.0.2
 
   graphql:
   rxdart:
@@ -94,6 +95,7 @@ flutter:
     - assets/svgs/
     - assets/images/splash.png
     - assets/images/logo.png
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

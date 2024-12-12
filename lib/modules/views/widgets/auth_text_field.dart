@@ -108,6 +108,11 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
           child: Container(
             // height: maxLength != null ? 6.h : 6.h,
             width: widget.minWidth ?? 100.0.w,
+            constraints: BoxConstraints(
+              minHeight:
+                  widget.minLines != null ? widget.minLines! * 24.0 : 48.0,
+              maxHeight: widget.minLines != null ? double.infinity : 48.0,
+            ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Theme.of(context).scaffoldBackgroundColor,
@@ -139,8 +144,10 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     FilteringTextInputFormatter.singleLineFormatter
               ],
               onFieldSubmitted: (value) {
-                widget.focusNode?.unfocus();
-                focusNodeZZZ?.unfocus();
+                if (widget.textInputAction != TextInputAction.newline) {
+                  widget.focusNode?.unfocus();
+                  focusNodeZZZ?.unfocus();
+                }
               },
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -187,12 +194,14 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
+                            padding: EdgeInsets.zero,
                             onPressed: () =>
                                 setState(() => obscureText = !obscureText),
-                            icon: obscureText
-                                ? const RenderSvg(svgPath: PreluraIcons.eyeIcon)
-                                : const RenderSvg(
-                                    svgPath: PreluraIcons.eyeSlashOutline),
+                            icon: Icon(
+                              obscureText
+                                  ? Icons.visibility_rounded
+                                  : Icons.visibility_off_rounded,
+                            ),
                           ),
                   ),
             ),

@@ -70,6 +70,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             : userProvider))
         .valueOrNull;
     bool isCurrentUser = widget.username == null;
+    print(user);
 
     return SmartRefresher(
       controller: _refreshController,

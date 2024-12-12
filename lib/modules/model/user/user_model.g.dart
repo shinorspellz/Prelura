@@ -29,6 +29,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] == null
           ? null
           : PhoneModel.fromJson(json['phone'] as Map<String, dynamic>),
+      location: json['location'] == null
+          ? null
+          : LocationInputType.fromJson(
+              json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -48,6 +52,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'fullName': instance.fullName,
       'listing': instance.listing,
       'phone': instance.phone,
+      'location': instance.location,
     };
 
 _$PhoneModelImpl _$$PhoneModelImplFromJson(Map<String, dynamic> json) =>
@@ -60,4 +65,20 @@ Map<String, dynamic> _$$PhoneModelImplToJson(_$PhoneModelImpl instance) =>
     <String, dynamic>{
       'number': instance.number,
       'countryCode': instance.countryCode,
+    };
+
+_$LocationInputTypeImpl _$$LocationInputTypeImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LocationInputTypeImpl(
+      latitude: json['latitude'] as String,
+      longitude: json['longitude'] as String,
+      locationName: json['locationName'] as String,
+    );
+
+Map<String, dynamic> _$$LocationInputTypeImplToJson(
+        _$LocationInputTypeImpl instance) =>
+    <String, dynamic>{
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'locationName': instance.locationName,
     };

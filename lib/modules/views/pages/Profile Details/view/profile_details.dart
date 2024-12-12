@@ -139,17 +139,21 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                       data: (_) => UserWardrobe(
                         username: widget.username,
                       ),
-                      error: (e, _) => Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('An error occured!'),
-                          TextButton.icon(
-                            onPressed: () => ref.invalidate(userProvider),
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
-                        ],
-                      ),
+                      error: (e, _) {
+                        print(e.toString());
+                        print(_);
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('An error occured!'),
+                            TextButton.icon(
+                              onPressed: () => ref.invalidate(userProvider),
+                              label: const Text('Retry'),
+                              icon: const Icon(Icons.refresh_rounded),
+                            ),
+                          ],
+                        );
+                      },
                       loading: () => const LoadingWidget(),
                     ),
 

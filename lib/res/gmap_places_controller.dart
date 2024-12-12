@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,7 +25,7 @@ class SuggestedPlacesNotifier
 
   Future<List<AutocompletePrediction>?> _getLocationResults(
       String query) async {
-    final String apiKey = "AIzaSyCKdIyABKpYZWDwnkhKD8D2n_0JTAW3Hj8";
+    final String? apiKey = dotenv.env['LOCATION_API_KEY'];
 
     Uri uri =
         Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
@@ -43,7 +44,7 @@ class SuggestedPlacesNotifier
   }
 
   Future<dynamic> getPlacesDetail(String placeId) async {
-    final String apiKey = "AIzaSyCKdIyABKpYZWDwnkhKD8D2n_0JTAW3Hj8";
+    final String? apiKey = dotenv.env['LOCATION_API_KEY'];
     final url = Uri.parse(
         'https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=${apiKey}');
 

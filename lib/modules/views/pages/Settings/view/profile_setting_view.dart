@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -42,7 +43,7 @@ class ProfileSettingScreen extends ConsumerStatefulWidget {
 }
 
 class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
-  final String apiKey = "AIzaSyCKdIyABKpYZWDwnkhKD8D2n_0JTAW3Hj8";
+  final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
   TextEditingController locationController = TextEditingController();
 
@@ -158,16 +159,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 hintStyle: _hintStyle(context),
                 obscureText: obscureText,
                 onChanged: (value) {},
-                suffixIcon: IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () =>
-                      ref.read(obscureTextProvider.notifier).toggle(),
-                  icon: RenderSvg(
-                    svgPath: obscureText
-                        ? PreluraIcons.eyeIcon
-                        : PreluraIcons.eyeSlashOutline,
-                  ),
-                ),
+                isPassword: true,
               ),
               addVerticalSpacing(16),
               // PlacesAutocompletionField(

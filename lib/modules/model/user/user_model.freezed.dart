@@ -35,6 +35,7 @@ mixin _$UserModel {
   String? get fullName => throw _privateConstructorUsedError;
   int? get listing => throw _privateConstructorUsedError;
   PhoneModel? get phone => throw _privateConstructorUsedError;
+  LocationInputType? get location => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -66,9 +67,11 @@ abstract class $UserModelCopyWith<$Res> {
       DateTime? lastLogin,
       String? fullName,
       int? listing,
-      PhoneModel? phone});
+      PhoneModel? phone,
+      LocationInputType? location});
 
   $PhoneModelCopyWith<$Res>? get phone;
+  $LocationInputTypeCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -101,6 +104,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? fullName = freezed,
     Object? listing = freezed,
     Object? phone = freezed,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -163,6 +167,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneModel?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LocationInputType?,
     ) as $Val);
   }
 
@@ -177,6 +185,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
 
     return $PhoneModelCopyWith<$Res>(_value.phone!, (value) {
       return _then(_value.copyWith(phone: value) as $Val);
+    });
+  }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationInputTypeCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $LocationInputTypeCopyWith<$Res>(_value.location!, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
     });
   }
 }
@@ -204,10 +226,13 @@ abstract class _$$UserModelImplCopyWith<$Res>
       DateTime? lastLogin,
       String? fullName,
       int? listing,
-      PhoneModel? phone});
+      PhoneModel? phone,
+      LocationInputType? location});
 
   @override
   $PhoneModelCopyWith<$Res>? get phone;
+  @override
+  $LocationInputTypeCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -238,6 +263,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? listing = freezed,
     Object? phone = freezed,
+    Object? location = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -300,6 +326,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneModel?,
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LocationInputType?,
     ));
   }
 }
@@ -322,7 +352,8 @@ class _$UserModelImpl implements _UserModel {
       this.lastLogin,
       this.fullName,
       this.listing,
-      this.phone});
+      this.phone,
+      this.location});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -357,10 +388,12 @@ class _$UserModelImpl implements _UserModel {
   final int? listing;
   @override
   final PhoneModel? phone;
+  @override
+  final LocationInputType? location;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location)';
   }
 
   @override
@@ -390,7 +423,9 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.listing, listing) || other.listing == listing) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.location, location) ||
+                other.location == location));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -411,7 +446,8 @@ class _$UserModelImpl implements _UserModel {
       lastLogin,
       fullName,
       listing,
-      phone);
+      phone,
+      location);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -445,7 +481,8 @@ abstract class _UserModel implements UserModel {
       final DateTime? lastLogin,
       final String? fullName,
       final int? listing,
-      final PhoneModel? phone}) = _$UserModelImpl;
+      final PhoneModel? phone,
+      final LocationInputType? location}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -480,6 +517,8 @@ abstract class _UserModel implements UserModel {
   int? get listing;
   @override
   PhoneModel? get phone;
+  @override
+  LocationInputType? get location;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -654,5 +693,197 @@ abstract class _PhoneModel implements PhoneModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PhoneModelImplCopyWith<_$PhoneModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LocationInputType _$LocationInputTypeFromJson(Map<String, dynamic> json) {
+  return _LocationInputType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LocationInputType {
+  String get latitude => throw _privateConstructorUsedError;
+  String get longitude => throw _privateConstructorUsedError;
+  String get locationName => throw _privateConstructorUsedError;
+
+  /// Serializes this LocationInputType to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LocationInputType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LocationInputTypeCopyWith<LocationInputType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocationInputTypeCopyWith<$Res> {
+  factory $LocationInputTypeCopyWith(
+          LocationInputType value, $Res Function(LocationInputType) then) =
+      _$LocationInputTypeCopyWithImpl<$Res, LocationInputType>;
+  @useResult
+  $Res call({String latitude, String longitude, String locationName});
+}
+
+/// @nodoc
+class _$LocationInputTypeCopyWithImpl<$Res, $Val extends LocationInputType>
+    implements $LocationInputTypeCopyWith<$Res> {
+  _$LocationInputTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LocationInputType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? locationName = null,
+  }) {
+    return _then(_value.copyWith(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      locationName: null == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LocationInputTypeImplCopyWith<$Res>
+    implements $LocationInputTypeCopyWith<$Res> {
+  factory _$$LocationInputTypeImplCopyWith(_$LocationInputTypeImpl value,
+          $Res Function(_$LocationInputTypeImpl) then) =
+      __$$LocationInputTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String latitude, String longitude, String locationName});
+}
+
+/// @nodoc
+class __$$LocationInputTypeImplCopyWithImpl<$Res>
+    extends _$LocationInputTypeCopyWithImpl<$Res, _$LocationInputTypeImpl>
+    implements _$$LocationInputTypeImplCopyWith<$Res> {
+  __$$LocationInputTypeImplCopyWithImpl(_$LocationInputTypeImpl _value,
+      $Res Function(_$LocationInputTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LocationInputType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? latitude = null,
+    Object? longitude = null,
+    Object? locationName = null,
+  }) {
+    return _then(_$LocationInputTypeImpl(
+      latitude: null == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      longitude: null == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as String,
+      locationName: null == locationName
+          ? _value.locationName
+          : locationName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LocationInputTypeImpl implements _LocationInputType {
+  const _$LocationInputTypeImpl(
+      {required this.latitude,
+      required this.longitude,
+      required this.locationName});
+
+  factory _$LocationInputTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LocationInputTypeImplFromJson(json);
+
+  @override
+  final String latitude;
+  @override
+  final String longitude;
+  @override
+  final String locationName;
+
+  @override
+  String toString() {
+    return 'LocationInputType(latitude: $latitude, longitude: $longitude, locationName: $locationName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationInputTypeImpl &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.locationName, locationName) ||
+                other.locationName == locationName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, latitude, longitude, locationName);
+
+  /// Create a copy of LocationInputType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationInputTypeImplCopyWith<_$LocationInputTypeImpl> get copyWith =>
+      __$$LocationInputTypeImplCopyWithImpl<_$LocationInputTypeImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LocationInputTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LocationInputType implements LocationInputType {
+  const factory _LocationInputType(
+      {required final String latitude,
+      required final String longitude,
+      required final String locationName}) = _$LocationInputTypeImpl;
+
+  factory _LocationInputType.fromJson(Map<String, dynamic> json) =
+      _$LocationInputTypeImpl.fromJson;
+
+  @override
+  String get latitude;
+  @override
+  String get longitude;
+  @override
+  String get locationName;
+
+  /// Create a copy of LocationInputType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LocationInputTypeImplCopyWith<_$LocationInputTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

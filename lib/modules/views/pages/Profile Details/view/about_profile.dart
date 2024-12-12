@@ -28,6 +28,7 @@ class AboutProfile extends ConsumerWidget {
     final user = ref
         .watch((username != null ? otherUserProfile(username!) : userProvider))
         .valueOrNull;
+    print("user is ${user?.location?.locationName}");
 
     bool isCurrentUser = username == null;
     HelperFunction.context = context;

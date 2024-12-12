@@ -67,7 +67,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
               slivers: [
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(0.0),
                     child: Searchwidget(
                       hintText: "Find a brand",
                       obscureText: false,

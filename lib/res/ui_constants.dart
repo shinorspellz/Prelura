@@ -14,27 +14,30 @@ class UIConstants {
         ?.resolve({WidgetState.selected});
   }
 
-  InputDecoration inputDecoration(
-    BuildContext context, {
-    bool hasFocus = false,
-    Widget? prefixIcon,
-    Widget? suffixIcon,
-    Widget? suffixWidget,
-    String? hintText,
-    String? labelText,
-    String? prefixText,
-    String? helperText,
-    String? counterText = '',
-    TextStyle? hintStyle,
-    TextStyle? labelStyle,
-    EdgeInsets? contentPadding,
-    bool isCollapsed = false,
-    bool showCounter = false,
-    bool enabled = true,
-    bool showCurrency = false,
-    BorderRadius? borderRadius,
-  }) {
+  InputDecoration inputDecoration(BuildContext context,
+      {bool hasFocus = false,
+      Widget? prefixIcon,
+      Widget? suffixIcon,
+      Widget? suffixWidget,
+      String? hintText,
+      String? labelText,
+      String? prefixText,
+      String? helperText,
+      String? counterText = '',
+      TextStyle? hintStyle,
+      TextStyle? labelStyle,
+      EdgeInsets? contentPadding,
+      bool isCollapsed = false,
+      bool showCounter = false,
+      bool enabled = true,
+      bool showCurrency = false,
+      BorderRadius? borderRadius,
+      int? minLines}) {
     return InputDecoration(
+      constraints: BoxConstraints(
+        minHeight: minLines != null ? minLines! * 24.0 : 48.0,
+        maxHeight: minLines != null ? double.infinity : 48.0,
+      ),
       label: labelText != null
           ? Text(labelText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(

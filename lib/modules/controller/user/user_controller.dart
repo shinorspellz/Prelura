@@ -12,6 +12,7 @@ final userProvider = FutureProvider((ref) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getMe();
+  log(" result is ${result.toString()}");
 
   return result;
 });
@@ -117,3 +118,9 @@ class _UserController extends AsyncNotifier<void> {
     );
   }
 }
+
+
+
+
+//
+

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/res/colors.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
@@ -18,50 +17,67 @@ class NotificationCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
-          border: Border(
-            bottom: BorderSide(
-              color: Theme.of(context).dividerColor,
-              width: 1,
-            ),
-          )),
+        color: Theme.of(context).scaffoldBackgroundColor,
+        border: Border(
+          bottom: BorderSide(
+            color: Theme.of(context).dividerColor,
+            width: 1,
+          ),
+        ),
+      ),
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Image.asset(
-                itemImageUrl,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              itemImageUrl,
+              width: 40,
+              height: 40,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(width: 15),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    message,
-                    overflow: TextOverflow.clip,
-                    maxLines: 5,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    time,
-                    style: const TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                ],
-              ),
+          ),
+          const SizedBox(width: 15),
+
+          // Message and Time Row
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Message (constrained to avoid overflow)
+                    Expanded(
+                      child: Text(
+                        message,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    const SizedBox(width: 10), // Add spacing before time
+                    // Time
+                    Text(
+                      time,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+              ],
             ),
-            const SizedBox(width: 35),
-          ]),
+          ),
+        ],
+      ),
     );
   }
 }

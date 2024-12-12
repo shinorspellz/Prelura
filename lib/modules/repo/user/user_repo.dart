@@ -19,6 +19,7 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
+        print("error : $error");
         throw error;
       }
       log(response.exception.toString(), name: 'UserRepo');
@@ -30,7 +31,7 @@ class UserRepo {
       throw 'An error occured';
     }
 
-    log('${response.parsedData!.viewMe!.toJson()}');
+    log(' response gotten ${response.parsedData!.viewMe!.toJson()}');
 
     return UserModel.fromJson(response.parsedData!.viewMe!.toJson());
   }
@@ -77,7 +78,8 @@ class UserRepo {
     }
 
     // Handle missing parsed data
-    if (response.parsedData == null || response.parsedData!.searchUsers == null) {
+    if (response.parsedData == null ||
+        response.parsedData!.searchUsers == null) {
       log('Missing response data', name: 'UserRepo');
       throw Exception('No users found.');
     }
@@ -85,7 +87,9 @@ class UserRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.searchUsers!;
-      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',
@@ -110,6 +114,99 @@ class UserRepo {
       }
       log(response.exception.toString(), name: 'UserRepo');
       throw 'An error occured';
+    }
+  }
+}
+
+// followers repo
+class FollowerRepo {
+  final GraphQLClient _client;
+
+  FollowerRepo(this._client);
+  Future<List<UserModel>> getFollowers(String query, bool latestFirst) async {
+    final response = await _client.query$followers(
+      Options$Query$followers(
+        variables: Variables$Query$followers(
+            search: query, pageCount: 100, latestFirst: latestFirst),
+      ),
+    );
+
+    // Handle GraphQL exceptions
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw Exception(error); // Wrap the error in an Exception
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw Exception('An error occurred while performing the search.');
+    }
+
+    // Handle missing parsed data
+    if (response.parsedData == null || response.parsedData!.followers == null) {
+      log('Missing response data', name: 'UserRepo');
+      throw Exception('No users found.');
+    }
+
+    try {
+      // Assuming `searchUsers` is a list in the GraphQL response
+      final usersJsonList = response.parsedData!.followers!;
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
+    } catch (e, stackTrace) {
+      log(
+        'Error parsing user data: $e',
+        name: 'UserRepo',
+        stackTrace: stackTrace,
+      );
+      throw Exception('Failed to parse user data.');
+    }
+  }
+}
+
+//following Repo
+
+class FollowingRepo {
+  final GraphQLClient _client;
+
+  FollowingRepo(this._client);
+  Future<List<UserModel>> getFollowing(String query, bool latestFirst) async {
+    final response = await _client.query$following(
+      Options$Query$following(
+        variables: Variables$Query$following(
+            search: query, pageCount: 100, latestFirst: latestFirst),
+      ),
+    );
+
+    // Handle GraphQL exceptions
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw Exception(error); // Wrap the error in an Exception
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw Exception('An error occurred while performing the search.');
+    }
+
+    // Handle missing parsed data
+    if (response.parsedData == null || response.parsedData!.following == null) {
+      log('Missing response data', name: 'UserRepo');
+      throw Exception('No users found.');
+    }
+
+    try {
+      // Assuming `searchUsers` is a list in the GraphQL response
+      final usersJsonList = response.parsedData!.following!;
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
+    } catch (e, stackTrace) {
+      log(
+        'Error parsing user data: $e',
+        name: 'UserRepo',
+        stackTrace: stackTrace,
+      );
+      throw Exception('Failed to parse user data.');
     }
   }
 }
