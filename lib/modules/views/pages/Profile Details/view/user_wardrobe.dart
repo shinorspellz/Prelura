@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
@@ -263,8 +264,16 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: AppButton(
-                            onTap: () {
-                              // Handle Follow button
+                            onTap: () async {
+                              if (!isCurrentUser) {
+                                print("running");
+                                print(user!.id);
+                                final result =
+                                    await ref.read(followUserProvider(user.id));
+                                if (result == true) {
+                                  context.alert("Following ${user.username}");
+                                }
+                              }
                             },
                             text: isCurrentUser ? "Share" : "Follow",
                             textColor: PreluraColors.white,

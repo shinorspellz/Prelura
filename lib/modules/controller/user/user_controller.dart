@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -157,6 +158,26 @@ final followingProvider =
 
   // Fetch followers based on parameters
   final result = await repo.getFollowing(query, latestFirst);
+
+  return result;
+});
+
+final followUserProvider =
+    FutureProvider.family<bool?, int>((ref, userId) async {
+  final repo = ref.watch(followingRepo);
+
+  // Fetch followers based on parameters
+  final result = await repo.followUser(userId);
+
+  return result;
+});
+
+final unFollowUserProvider =
+    FutureProvider.autoDispose.family<bool?, int>((ref, userId) async {
+  final repo = ref.watch(followingRepo);
+
+  // Fetch followers based on parameters
+  final result = await repo.unFollowUser(userId);
 
   return result;
 });

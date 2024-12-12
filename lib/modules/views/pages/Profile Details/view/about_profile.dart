@@ -283,7 +283,9 @@ class AboutProfile extends ConsumerWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text("Exeter, United Kingdom",
+                      Text(
+                          user?.location?.locationName ??
+                              "Exeter, United Kingdom",
                           style: Theme.of(context).textTheme.bodyMedium),
                     ],
                   ),
@@ -389,8 +391,13 @@ class AboutProfile extends ConsumerWidget {
             const SizedBox(width: 8),
             Expanded(
               child: AppButton(
-                onTap: () {
+                onTap: () async {
                   // Handle Follow button
+                  if (!isCurrentUser) {
+                    print("running");
+                    print(user!.id);
+                    await ref.read(followUserProvider(user!.id));
+                  }
                 },
                 text: isCurrentUser ? "Share" : "Follow",
                 textColor: Theme.of(context).scaffoldBackgroundColor,
