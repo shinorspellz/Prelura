@@ -320,6 +320,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           textInputAction: TextInputAction.newline,
                           // formatter: FilteringTextInputFormatter.allow(
                           //     RegExp(r'[^\n]+')),
+                          keyboardType: TextInputType.multiline,
                           focusNode: _descriptionfocusNode,
                           labelStyle: Theme.of(context)
                               .textTheme
@@ -329,6 +330,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           hintText: 'e.g. only worn a few times, true to size',
                           minLines: 6,
                           maxLines: null,
+                          isDescription: true,
                           hintStyle: Theme.of(context)
                               .textTheme
                               .bodyMedium

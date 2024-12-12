@@ -224,7 +224,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                     borderRadius: BorderRadius.circular(12),
                     borderSide: const BorderSide(
                       color: PreluraColors.activeColor,
-                      width: 1.0,
+                      width: 2.0,
                     ),
                   ),
                   filled: false,
