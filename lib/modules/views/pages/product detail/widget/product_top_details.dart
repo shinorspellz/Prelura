@@ -46,13 +46,14 @@ class ProductTopDetails extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.purple,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
+                  if (product.brand != null)
+                    Text(
+                      product.brand!.name,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.purple,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   Text(
                     "Size ${product.size?.name ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(

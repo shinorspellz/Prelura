@@ -80,11 +80,11 @@ class ProductDescription extends ConsumerWidget {
           ),
           if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
           if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
-          if (product.brand != null)
-            _buildInfoRow("Brand", product.brand!.name, context,
-                style: context.textTheme.labelLarge?.copyWith(
-                  color: PreluraColors.activeColor,
-                )),
+          // if (product.brand != null)
+          //   _buildInfoRow("Brand", product.brand!.name, context,
+          //       style: context.textTheme.labelLarge?.copyWith(
+          //         color: PreluraColors.activeColor,
+          //       )),
           if (product.materials != null)
             if (product.materials!.isNotEmpty)
               _buildInfoRow(
