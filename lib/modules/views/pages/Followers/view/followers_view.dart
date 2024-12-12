@@ -56,7 +56,7 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: "Followers",
+        appbarTitle: "Following",
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
@@ -90,9 +90,9 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                     itemCount: followersList.length,
                     itemBuilder: (context, index) {
                       final user = followersList[index];
-                      return ListTile(
-                        title: Text(user.username),
-                        subtitle: Text(user.username),
+                      return FollowerTile(
+                        follower: user,
+                        isFollowing: false,
                       );
                     },
                   );

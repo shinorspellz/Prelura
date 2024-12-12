@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
 import '../../core/graphql/__generated/queries.graphql.dart';
 import '../model/user/user_model.dart';
@@ -90,5 +91,55 @@ class FollowingRepo {
       );
       throw Exception('Failed to parse user data.');
     }
+  }
+
+  Future<bool?> unFollowUser(int followedId) async {
+    final response = await _client.mutate$unfollowUser(
+      Options$Mutation$unfollowUser(
+          variables: Variables$Mutation$unfollowUser(
+        followedId: followedId,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.unfollowUser?.success;
+  }
+
+  Future<bool?> followUser(int followedId) async {
+    final response = await _client.mutate$followUser(
+      Options$Mutation$followUser(
+          variables: Variables$Mutation$followUser(
+        followedId: followedId,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.followUser!.success!;
   }
 }

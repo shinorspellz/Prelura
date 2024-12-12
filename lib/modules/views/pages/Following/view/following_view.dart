@@ -90,9 +90,9 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
                     itemCount: followersList.length,
                     itemBuilder: (context, index) {
                       final user = followersList[index];
-                      return ListTile(
-                        title: Text(user.username),
-                        subtitle: Text(user.username),
+                      return FollowerTile(
+                        follower: user,
+                        isFollowing: true,
                       );
                     },
                   );
