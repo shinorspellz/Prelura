@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/views/shimmers/custom_shimmer.dart';
 import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -8,9 +9,7 @@ Widget MyFavoriteShimmer() {
     padding: EdgeInsets.symmetric(horizontal: 16),
     child: Column(
       children: [
-        Shimmer.fromColors(
-          baseColor: Colors.grey[200]!,
-          highlightColor: Colors.grey[300]!,
+        CustomShimmer(
           child: Container(
             height: 38,
             width: 100.w,

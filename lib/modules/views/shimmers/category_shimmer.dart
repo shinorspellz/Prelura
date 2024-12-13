@@ -3,6 +3,8 @@ import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
+import 'custom_shimmer.dart';
+
 Widget CategoryShimmer({int? length}) {
   return ListView.separated(
     padding: EdgeInsets.only(top: 16),
@@ -10,9 +12,7 @@ Widget CategoryShimmer({int? length}) {
     physics: const BouncingScrollPhysics(),
     itemCount: length ?? 18,
     itemBuilder: (context, index) {
-      return Shimmer.fromColors(
-        baseColor: Colors.grey[200]!,
-        highlightColor: Colors.grey[300]!,
+      return CustomShimmer(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
