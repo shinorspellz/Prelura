@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/app_radio.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
@@ -89,10 +90,10 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                         data: (brands) => SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                              return PreluraRadio(
+                              return PreluraCheckBox(
                                 title: brands[index].name,
-                                value: brands[index].name,
-                                groupValue: selectedBrand?.name,
+                                isChecked:
+                                    brands[index].name == selectedBrand?.name,
                                 onChanged: (value) {
                                   ref
                                       .read(sellItemProvider.notifier)
@@ -130,10 +131,9 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        return PreluraRadio(
+                        return PreluraCheckBox(
                           title: brands[index].name,
-                          value: brands[index].name,
-                          groupValue: selectedBrand?.name,
+                          isChecked: brands[index].name == selectedBrand?.name,
                           onChanged: (value) {
                             ref
                                 .read(sellItemProvider.notifier)

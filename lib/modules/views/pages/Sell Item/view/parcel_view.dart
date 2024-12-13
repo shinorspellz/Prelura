@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import '../../../../../res/colors.dart';
 import '../provider/parcel_provider.dart';
 import '../provider/sell_item_provider.dart';
@@ -18,11 +19,12 @@ class ParcelScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
-        appbarTitle: "Percel Size",
+        appbarTitle: "Parcel Size",
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,71 +32,46 @@ class ParcelScreen extends ConsumerWidget {
           const SizedBox(
             height: 24,
           ),
-          ListTile(
-            title: Text(parcelSizes[0].name),
-            subtitle: const Text("Choose this for light T-Shirts and small beauty items"),
-            trailing: Radio(
-                value: parcelSizes[0],
-                groupValue: selectedParcel,
-                onChanged: (value) {
-                  ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[0]);
-                  // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  context.router.popForced();
-                }),
+          PreluraCheckBox(
+            title: parcelSizes[0].name,
+            subtitle: "Choose this for light T-Shirts and small beauty items",
+            isChecked: parcelSizes[0].name == selectedParcel?.name,
+            onChanged: (value) {
+              ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[0]);
+              // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
+              context.router.popForced();
+            },
           ),
-          const Divider(
-            thickness: 1,
+          PreluraCheckBox(
+            title: parcelSizes[1].name,
+            subtitle:
+                "Dresses, handbags and ballet flats will fit into the parcel",
+            isChecked: parcelSizes[1].name == selectedParcel?.name,
+            onChanged: (value) {
+              ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[1]);
+              // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
+              context.router.popForced();
+            },
           ),
-          ListTile(
-            title: Text(parcelSizes[1].name),
-            subtitle: const Text("Dresses, handbags and ballet flats will fit into the parcel"),
-            trailing: Radio(
-                value: parcelSizes[1],
-                groupValue: selectedParcel,
-                onChanged: (value) {
-                  ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[1]);
-                  // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  context.router.popForced();
-                }),
-          ),
-          const Divider(
-            thickness: 1,
-          ),
-          ListTile(
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                      color: Colors.green, // Customize color
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Text("Star Wardrobe", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white)),
-                ),
-                const SizedBox(
-                  height: 2,
-                ),
-                Text(parcelSizes[2].name),
-              ],
-            ),
-            subtitle: const Text("Choose this for light T-Shirts and small beauty items"),
-            trailing: Radio(
-                value: parcelSizes[2],
-                groupValue: selectedParcel,
-                onChanged: (value) {
-                  ref.read(sellItemProvider.notifier).selectParcel(parcelSizes[2]);
-                  // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                  context.router.popForced();
-                }),
-          ),
-          const Divider(
-            thickness: 1,
-          ),
+          PreluraCheckBox(
+              title: parcelSizes[2].name,
+              subtitle: "Choose this for light T-Shirts and small beauty items",
+              isChecked: parcelSizes[2].name == selectedParcel?.name,
+              onChanged: (value) {
+                ref
+                    .read(sellItemProvider.notifier)
+                    .selectParcel(parcelSizes[2]);
+                // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
+                context.router.popForced();
+              }),
           const Padding(
             padding: EdgeInsets.only(left: 16.0, top: 16),
             child: Text(
               "See sizing and compensation details",
-              style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline, decorationColor: Colors.blue),
+              style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.blue),
             ),
           ),
         ],

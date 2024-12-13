@@ -11,8 +11,8 @@ Widget CategoryShimmer({int? length}) {
     itemCount: length ?? 18,
     itemBuilder: (context, index) {
       return Shimmer.fromColors(
-        baseColor: Colors.grey[700]!,
-        highlightColor: Colors.grey[800]!,
+        baseColor: Colors.grey[200]!,
+        highlightColor: Colors.grey[300]!,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

@@ -67,11 +67,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: RefreshIndicator(
             onRefresh: () async {
               ref.read(refreshingHome.notifier).state = true;
-              ref.refresh(allProductProvider(null).future).then((_) => ref.read(refreshingHome.notifier).state = false);
+              ref
+                  .refresh(allProductProvider(null).future)
+                  .then((_) => ref.read(refreshingHome.notifier).state = false);
             },
             child: CustomScrollView(
               controller: controller,
@@ -82,13 +84,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 2, right: 15),
                             child: Transform.scale(
                               scale: 6,
                               child: GestureDetector(
                                 onTap: () {
-                                  ref.read(refreshingHome.notifier).state = true;
-                                  ref.refresh(allProductProvider(null).future).then((_) => ref.read(refreshingHome.notifier).state = false);
+                                  ref.read(refreshingHome.notifier).state =
+                                      true;
+                                  ref
+                                      .refresh(allProductProvider(null).future)
+                                      .then((_) => ref
+                                          .read(refreshingHome.notifier)
+                                          .state = false);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -102,7 +110,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: GestureDetector(
-                              onTap: () => context.pushRoute(const MyFavouriteRoute()),
+                              onTap: () =>
+                                  context.pushRoute(const MyFavouriteRoute()),
                               child: const Icon(
                                 Icons.favorite,
                                 size: 30,
@@ -120,7 +129,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,17 +158,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 if (searchQuery.isNotEmpty) ...[
                   ref.watch(allProductProvider(searchQuery)).when(
                       data: (products) {
-                        return SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.55,
+                        return SliverPadding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          sliver: SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.55,
+                            ),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(product: products[index]);
+                            },
                           ),
-                          itemCount: products.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(product: products[index]);
-                          },
                         );
                       },
                       error: (e, _) => SliverToBoxAdapter(
@@ -171,7 +185,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                   TextButton.icon(
                                     onPressed: () {
                                       // log(e.toString(), stackTrace: _);
-                                      ref.invalidate(allProductProvider(searchQuery));
+                                      ref.invalidate(
+                                          allProductProvider(searchQuery));
                                     },
                                     label: const Text('Retry'),
                                     icon: const Icon(Icons.refresh_rounded),
@@ -184,24 +199,28 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ] else ...[
                   ref.watch(allProductProvider(null)).maybeWhen(
                         // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                        data: (products) => SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.55,
+                        data: (products) => SliverPadding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          sliver: SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.55,
+                            ),
+                            itemCount: products.take(6).length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(
+                                  product: products.take(6).toList()[index]);
+                            },
                           ),
-                          itemCount: products.take(6).length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(product: products.take(6).toList()[index]);
-                          },
                         ),
                         orElse: () => SliverToBoxAdapter(child: Container()),
                       ),
                   const SliverToBoxAdapter(
                     child: Divider(
-                      thickness: 1.5,
-                    ),
+                        thickness: 1, color: PreluraColors.primaryColor),
                   ),
                   SliverToBoxAdapter(
                     child: _buildSectionTitle(
@@ -218,10 +237,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       aspectRatio: 1.1,
                       // height: 320,
                       // width: MediaQuery.sizeOf(context).width,
-                      child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
+                      child: ref
+                          .watch(filterProductByPriceProvider(15))
+                          .maybeWhen(
                             data: (products) => ListView.separated(
+                              padding: EdgeInsets.only(left: 15),
                               scrollDirection: Axis.horizontal,
-                              separatorBuilder: (context, index) => 10.horizontalSpacing,
+                              separatorBuilder: (context, index) =>
+                                  10.horizontalSpacing,
                               itemBuilder: (context, index) => SizedBox(
                                 width: 180,
                                 child: ProductCard(product: products[index]),
@@ -235,8 +258,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 (_) => Container(
                                   // height: 220,
                                   width: 180,
-                                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                                  child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                                  margin:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  child:
+                                      const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                                 ),
                               ),
                             ),
@@ -245,18 +270,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SliverToBoxAdapter(
                     child: Divider(
-                      thickness: 1.5,
-                    ),
+                        thickness: 1, color: PreluraColors.primaryColor),
                   ),
                   SliverPadding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 15, right: 15),
                     sliver: ref.watch(allProductProvider(null)).when(
                         skipLoadingOnRefresh: !ref.watch(refreshingHome),
                         data: (products) {
-                          if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                          if (products.length < 6)
+                            return SliverToBoxAdapter(child: Container());
                           final clippedProducts = products.sublist(0, 6);
                           return SliverGrid.builder(
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
@@ -264,7 +291,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             ),
                             itemCount: clippedProducts.length,
                             itemBuilder: (context, index) {
-                              return ProductCard(product: clippedProducts[index]);
+                              return ProductCard(
+                                  product: clippedProducts[index]);
                             },
                           );
                         },
@@ -287,9 +315,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 ),
                               ),
                             ),
-                        loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                        loading: () =>
+                            SliverToBoxAdapter(child: GridShimmer())),
                   ),
-                  if (ref.watch(allProductProvider(null).notifier).canLoadMore())
+                  if (ref
+                      .watch(allProductProvider(null).notifier)
+                      .canLoadMore())
                     if (!ref.watch(allProductProvider(null)).isLoading)
                       const SliverToBoxAdapter(
                         child: PaginationLoadingIndicator(),
@@ -316,7 +347,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 122.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
@@ -340,13 +372,23 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
           },
           child: Container(
             padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: selectedTab == index ? PreluraColors.activeColor : Colors.transparent))),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        width: 1,
+                        color: selectedTab == index
+                            ? PreluraColors.activeColor
+                            : Colors.transparent))),
             child: Center(
               child: Text(
                 tabs[index],
                 style: TextStyle(
-                  color: selectedTab == index ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyColor,
-                  fontWeight: selectedTab == index ? FontWeight.bold : FontWeight.normal,
+                  color: selectedTab == index
+                      ? Theme.of(context).textTheme.bodyMedium?.color
+                      : PreluraColors.greyColor,
+                  fontWeight: selectedTab == index
+                      ? FontWeight.bold
+                      : FontWeight.normal,
                 ),
               ),
             ),
@@ -357,32 +399,37 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
   );
 }
 
-Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            MainTitle,
-            textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(
-            height: 1,
-          ),
-          Text(
-            subtitle,
-            textAlign: TextAlign.left,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
-      ),
-      TextButton(
-        onPressed: onTap,
-        child: Text("See All", style: Theme.of(context).textTheme.bodySmall),
-      )
-    ],
+Widget _buildSectionTitle(
+    String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              MainTitle,
+              textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(
+              height: 1,
+            ),
+            Text(
+              subtitle,
+              textAlign: TextAlign.left,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+        TextButton(
+          onPressed: onTap,
+          child: Text("See All", style: Theme.of(context).textTheme.bodySmall),
+        )
+      ],
+    ),
   );
 }
