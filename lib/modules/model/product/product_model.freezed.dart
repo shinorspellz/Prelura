@@ -48,6 +48,7 @@ mixin _$Product {
   Brand? get brand => throw _privateConstructorUsedError;
   set brand(Brand? value) => throw _privateConstructorUsedError;
   List<Material>? get materials => throw _privateConstructorUsedError;
+  Enum$StyleEnum? get style => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -84,7 +85,8 @@ abstract class $ProductCopyWith<$Res> {
       DateTime updatedAt,
       List<String>? color,
       Brand? brand,
-      List<Material>? materials});
+      List<Material>? materials,
+      Enum$StyleEnum? style});
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
@@ -128,6 +130,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? color = freezed,
     Object? brand = freezed,
     Object? materials = freezed,
+    Object? style = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -214,6 +217,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.materials
           : materials // ignore: cast_nullable_to_non_nullable
               as List<Material>?,
+      style: freezed == style
+          ? _value.style
+          : style // ignore: cast_nullable_to_non_nullable
+              as Enum$StyleEnum?,
     ) as $Val);
   }
 
@@ -298,7 +305,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       DateTime updatedAt,
       List<String>? color,
       Brand? brand,
-      List<Material>? materials});
+      List<Material>? materials,
+      Enum$StyleEnum? style});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -344,6 +352,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? color = freezed,
     Object? brand = freezed,
     Object? materials = freezed,
+    Object? style = freezed,
   }) {
     return _then(_$ProductImpl(
       id: null == id
@@ -430,6 +439,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.materials
           : materials // ignore: cast_nullable_to_non_nullable
               as List<Material>?,
+      style: freezed == style
+          ? _value.style
+          : style // ignore: cast_nullable_to_non_nullable
+              as Enum$StyleEnum?,
     ));
   }
 }
@@ -458,7 +471,8 @@ class _$ProductImpl implements _Product {
       required this.updatedAt,
       required this.color,
       required this.brand,
-      this.materials});
+      this.materials,
+      this.style});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -506,10 +520,12 @@ class _$ProductImpl implements _Product {
   Brand? brand;
   @override
   final List<Material>? materials;
+  @override
+  final Enum$StyleEnum? style;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials)';
+    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style)';
   }
 
   /// Create a copy of Product
@@ -550,7 +566,8 @@ abstract class _Product implements Product {
       required final DateTime updatedAt,
       required List<String>? color,
       required Brand? brand,
-      final List<Material>? materials}) = _$ProductImpl;
+      final List<Material>? materials,
+      final Enum$StyleEnum? style}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -601,6 +618,8 @@ abstract class _Product implements Product {
   set brand(Brand? value);
   @override
   List<Material>? get materials;
+  @override
+  Enum$StyleEnum? get style;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

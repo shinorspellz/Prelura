@@ -6,6 +6,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
+import 'package:prelura_app/modules/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/res/context_entension.dart';
@@ -46,14 +47,7 @@ class ProductTopDetails extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (product.brand != null)
-                    Text(
-                      product.brand!.name,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.purple,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
+                  if (product.brand != null) BrandTextWidget(brand: product.brand!),
                   Text(
                     "Size ${product.size?.name ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(

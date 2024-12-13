@@ -43,10 +43,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.sizeOf(context).height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        if (ref.read(allProductProvider(null)).isLoading) return;
-        if (searchQuery.isNotEmpty) {
-          ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
-        }
+        if (ref.read(paginatingHome)) return;
+        // if (searchQuery.isNotEmpty) {
+        //   ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
+        //   return;
+        // }
         ref.read(allProductProvider(null).notifier).fetchMoreData();
       }
     });
@@ -254,7 +255,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         skipLoadingOnRefresh: !ref.watch(refreshingHome),
                         data: (products) {
                           if (products.length < 6) return SliverToBoxAdapter(child: Container());
-                          final clippedProducts = products.sublist(0, 6);
+                          final clippedProducts = products.sublist(6);
                           return SliverGrid.builder(
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,

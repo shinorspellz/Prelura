@@ -26,3 +26,6 @@ targets:
               type: String
             GenericScalar:
               type: dynamic
+            Upload:
+              type: MultipartFile
+              import: package:dio/dio.dart

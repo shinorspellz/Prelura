@@ -87,6 +87,7 @@ class _ProductProvider extends AsyncNotifier<void> {
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
+      Enum$FileTypeEnum.PRODUCT,
       onUploadProgress: (sent, total) => log('${sent / total}%', name: 'FileUpload'),
     );
 
@@ -109,6 +110,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     int? brandId,
     List<String>? color,
     List<int>? materials,
+    Enum$StyleEnum? style,
   }) async {
     state = const AsyncLoading();
 
@@ -116,20 +118,20 @@ class _ProductProvider extends AsyncNotifier<void> {
       final files = await _uploadMedia(images);
       await _productRepo.createProduct(
         Variables$Mutation$CreateProduct(
-          category: category,
-          subCategory: subCategory,
-          condition: condition,
-          description: desc,
-          imageUrl: files,
-          price: price,
-          size: size,
-          name: title,
-          parcelSize: parcelSize,
-          discount: discount,
-          brand: brandId,
-          color: color,
-          materials: materials,
-        ),
+            category: category,
+            subCategory: subCategory,
+            condition: condition,
+            description: desc,
+            imageUrl: files,
+            price: price,
+            size: size,
+            name: title,
+            parcelSize: parcelSize,
+            discount: discount,
+            brand: brandId,
+            color: color,
+            materials: materials,
+            style: style),
       );
       ref.invalidate(userProduct);
       ref.invalidate(allProductProvider);
@@ -150,6 +152,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     int? brandId,
     List<String>? color,
     List<int>? materials,
+    Enum$StyleEnum? style,
   }) async {
     state = const AsyncLoading();
 
@@ -170,6 +173,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           brand: brandId,
           color: color,
           materials: materials,
+          style: style,
         ),
       );
       ref.invalidate(userProduct);
@@ -207,6 +211,7 @@ final colorsProvider = Provider((ref) {
     "Black": Colors.black,
     "Brown": Colors.brown,
     "Grey": Colors.grey,
+    "White": Colors.white,
     "Beige": const Color(0xFFF5F5DC),
     "Pink": Colors.pink,
     "Purple": Colors.purple,
@@ -297,9 +302,12 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
   },
 );
 
-final allProductProvider = AsyncNotifierProvider.family<_AllProductController, List<Product>, String?>(_AllProductController.new);
+/// boolean flag for when paginating home page
+final paginatingHome = StateProvider((ref) => false);
 
-class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> {
+final allProductProvider = AsyncNotifierProvider.family.autoDispose<_AllProductController, List<Product>, String?>(_AllProductController.new);
+
+class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -317,7 +325,6 @@ class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> 
   }
 
   Future<void> _getProducts({String? query, int? pageNumber}) async {
-    // final sort = ref.watch(sortAllServiceProvider);
     final result = await _repository.getAllProducts(
       search: query,
       pageCount: _pageCount,
@@ -344,10 +351,12 @@ class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> 
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
 
     if (canLoadMore) {
+      ref.read(paginatingHome.notifier).state = true;
       await _getProducts(
         query: _query,
         pageNumber: _currentPage + 1,
       );
+      ref.read(paginatingHome.notifier).state = false;
     }
   }
 

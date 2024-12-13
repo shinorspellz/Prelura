@@ -54,7 +54,15 @@ class AppRouter extends RootStackRouter {
               //     ]),
             ]),
         AutoRoute(
+          page: StyleRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: ProductPriceFilterRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: ProductsByBrandRoute.page,
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(

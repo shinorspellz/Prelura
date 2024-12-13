@@ -107,6 +107,7 @@ query Product($id: Int!) {
     createdAt
     updatedAt
     color
+    style
     materials {
       id
       name
@@ -158,6 +159,7 @@ query UserProducts(
     createdAt
     updatedAt
     color
+    style
     materials {
       id
       name
@@ -199,6 +201,7 @@ query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
     updatedAt
     likes
     color
+    style
     materials {
       id
       name
@@ -254,6 +257,7 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       likes
       userLiked
       color
+      style
       materials {
         id
         name
@@ -323,6 +327,7 @@ query SimilarProducts(
     updatedAt
     likes
     color
+    style
     materials {
       id
       name

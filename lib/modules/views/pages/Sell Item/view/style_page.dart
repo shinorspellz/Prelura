@@ -1,0 +1,57 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sell_item_provider.dart';
+import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+
+@RoutePage()
+class StylePage extends ConsumerWidget {
+  const StylePage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedParcel = ref.watch(sellItemProvider).style;
+
+    return Scaffold(
+      appBar: PreluraAppBar(
+        leadingIcon: IconButton(
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.back(),
+        ),
+        centerTitle: true,
+        appbarTitle: "Percel Size",
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 24,
+          ),
+          ...Enum$StyleEnum.values.map((e) {
+            if (e == Enum$StyleEnum.$unknown) return Container();
+            return Column(
+              children: [
+                ListTile(
+                  title: Text(e.name.replaceAll('_', " ")),
+                  trailing: Radio(
+                      value: e,
+                      groupValue: selectedParcel,
+                      onChanged: (value) {
+                        ref.read(sellItemProvider.notifier).selectStyle(e);
+                        // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
+                        context.router.popForced();
+                      }),
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+              ],
+            );
+          }),
+        ],
+      ),
+    );
+  }
+}

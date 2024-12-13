@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:prelura_app/modules/model/product/product_model.dart'
@@ -2627,6 +2628,7 @@ class Variables$Mutation$CreateProduct {
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   }) =>
       Variables$Mutation$CreateProduct._({
         r'category': category,
@@ -2642,6 +2644,7 @@ class Variables$Mutation$CreateProduct {
         if (color != null) r'color': color,
         if (brand != null) r'brand': brand,
         if (materials != null) r'materials': materials,
+        if (style != null) r'style': style,
       });
 
   Variables$Mutation$CreateProduct._(this._$data);
@@ -2700,6 +2703,11 @@ class Variables$Mutation$CreateProduct {
       result$data['materials'] =
           (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
+    if (data.containsKey('style')) {
+      final l$style = data['style'];
+      result$data['style'] =
+          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+    }
     return Variables$Mutation$CreateProduct._(result$data);
   }
 
@@ -2733,6 +2741,8 @@ class Variables$Mutation$CreateProduct {
   int? get brand => (_$data['brand'] as int?);
 
   List<int?>? get materials => (_$data['materials'] as List<int?>?);
+
+  Enum$StyleEnum? get style => (_$data['style'] as Enum$StyleEnum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -2781,6 +2791,11 @@ class Variables$Mutation$CreateProduct {
     if (_$data.containsKey('materials')) {
       final l$materials = materials;
       result$data['materials'] = l$materials?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('style')) {
+      final l$style = style;
+      result$data['style'] =
+          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     return result$data;
   }
@@ -2919,6 +2934,14 @@ class Variables$Mutation$CreateProduct {
     } else if (l$materials != lOther$materials) {
       return false;
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (_$data.containsKey('style') != other._$data.containsKey('style')) {
+      return false;
+    }
+    if (l$style != lOther$style) {
+      return false;
+    }
     return true;
   }
 
@@ -2937,6 +2960,7 @@ class Variables$Mutation$CreateProduct {
     final l$color = color;
     final l$brand = brand;
     final l$materials = materials;
+    final l$style = style;
     return Object.hashAll([
       l$category,
       _$data.containsKey('condition') ? l$condition : const {},
@@ -2959,6 +2983,7 @@ class Variables$Mutation$CreateProduct {
               ? null
               : Object.hashAll(l$materials.map((v) => v))
           : const {},
+      _$data.containsKey('style') ? l$style : const {},
     ]);
   }
 }
@@ -2986,6 +3011,7 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   });
 }
 
@@ -3016,6 +3042,7 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? color = _undefined,
     Object? brand = _undefined,
     Object? materials = _undefined,
+    Object? style = _undefined,
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
@@ -3038,6 +3065,7 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (materials != _undefined) 'materials': (materials as List<int?>?),
+        if (style != _undefined) 'style': (style as Enum$StyleEnum?),
       }));
 }
 
@@ -3061,6 +3089,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   }) =>
       _res;
 }
@@ -3334,6 +3363,15 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'style')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'StyleEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -3392,6 +3430,10 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'materials'),
             value: VariableNode(name: NameNode(value: 'materials')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'style'),
+            value: VariableNode(name: NameNode(value: 'style')),
           ),
         ],
         directives: [],
@@ -4193,6 +4235,7 @@ class Variables$Mutation$UpdateProduct {
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   }) =>
       Variables$Mutation$UpdateProduct._({
         if (category != null) r'category': category,
@@ -4208,6 +4251,7 @@ class Variables$Mutation$UpdateProduct {
         if (color != null) r'color': color,
         if (brand != null) r'brand': brand,
         if (materials != null) r'materials': materials,
+        if (style != null) r'style': style,
       });
 
   Variables$Mutation$UpdateProduct._(this._$data);
@@ -4272,6 +4316,11 @@ class Variables$Mutation$UpdateProduct {
       result$data['materials'] =
           (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
+    if (data.containsKey('style')) {
+      final l$style = data['style'];
+      result$data['style'] =
+          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+    }
     return Variables$Mutation$UpdateProduct._(result$data);
   }
 
@@ -4304,6 +4353,8 @@ class Variables$Mutation$UpdateProduct {
   int? get brand => (_$data['brand'] as int?);
 
   List<int?>? get materials => (_$data['materials'] as List<int?>?);
+
+  Enum$StyleEnum? get style => (_$data['style'] as Enum$StyleEnum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -4362,6 +4413,11 @@ class Variables$Mutation$UpdateProduct {
     if (_$data.containsKey('materials')) {
       final l$materials = materials;
       result$data['materials'] = l$materials?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('style')) {
+      final l$style = style;
+      result$data['style'] =
+          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     return result$data;
   }
@@ -4511,6 +4567,14 @@ class Variables$Mutation$UpdateProduct {
     } else if (l$materials != lOther$materials) {
       return false;
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (_$data.containsKey('style') != other._$data.containsKey('style')) {
+      return false;
+    }
+    if (l$style != lOther$style) {
+      return false;
+    }
     return true;
   }
 
@@ -4529,6 +4593,7 @@ class Variables$Mutation$UpdateProduct {
     final l$color = color;
     final l$brand = brand;
     final l$materials = materials;
+    final l$style = style;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -4551,6 +4616,7 @@ class Variables$Mutation$UpdateProduct {
               ? null
               : Object.hashAll(l$materials.map((v) => v))
           : const {},
+      _$data.containsKey('style') ? l$style : const {},
     ]);
   }
 }
@@ -4578,6 +4644,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   });
 }
 
@@ -4608,6 +4675,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? color = _undefined,
     Object? brand = _undefined,
     Object? materials = _undefined,
+    Object? style = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProduct._({
         ..._instance._$data,
@@ -4627,6 +4695,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (materials != _undefined) 'materials': (materials as List<int?>?),
+        if (style != _undefined) 'style': (style as Enum$StyleEnum?),
       }));
 }
 
@@ -4650,6 +4719,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     List<String?>? color,
     int? brand,
     List<int?>? materials,
+    Enum$StyleEnum? style,
   }) =>
       _res;
 }
@@ -4920,6 +4990,15 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'style')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'StyleEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -4978,6 +5057,10 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'materials'),
             value: VariableNode(name: NameNode(value: 'materials')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'style'),
+            value: VariableNode(name: NameNode(value: 'style')),
           ),
         ],
         directives: [],
@@ -7904,6 +7987,606 @@ class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes>
 
   call({
     bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$UploadFile {
+  factory Variables$Mutation$UploadFile({
+    required List<MultipartFile?> files,
+    required Enum$FileTypeEnum fileType,
+  }) =>
+      Variables$Mutation$UploadFile._({
+        r'files': files,
+        r'fileType': fileType,
+      });
+
+  Variables$Mutation$UploadFile._(this._$data);
+
+  factory Variables$Mutation$UploadFile.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$files = data['files'];
+    result$data['files'] =
+        (l$files as List<dynamic>).map((e) => (e as MultipartFile?)).toList();
+    final l$fileType = data['fileType'];
+    result$data['fileType'] =
+        fromJson$Enum$FileTypeEnum((l$fileType as String));
+    return Variables$Mutation$UploadFile._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<MultipartFile?> get files => (_$data['files'] as List<MultipartFile?>);
+
+  Enum$FileTypeEnum get fileType => (_$data['fileType'] as Enum$FileTypeEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$files = files;
+    result$data['files'] = l$files.map((e) => e).toList();
+    final l$fileType = fileType;
+    result$data['fileType'] = toJson$Enum$FileTypeEnum(l$fileType);
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UploadFile<Variables$Mutation$UploadFile>
+      get copyWith => CopyWith$Variables$Mutation$UploadFile(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UploadFile ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$files = files;
+    final lOther$files = other.files;
+    if (l$files.length != lOther$files.length) {
+      return false;
+    }
+    for (int i = 0; i < l$files.length; i++) {
+      final l$files$entry = l$files[i];
+      final lOther$files$entry = lOther$files[i];
+      if (l$files$entry != lOther$files$entry) {
+        return false;
+      }
+    }
+    final l$fileType = fileType;
+    final lOther$fileType = other.fileType;
+    if (l$fileType != lOther$fileType) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$files = files;
+    final l$fileType = fileType;
+    return Object.hashAll([
+      Object.hashAll(l$files.map((v) => v)),
+      l$fileType,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UploadFile<TRes> {
+  factory CopyWith$Variables$Mutation$UploadFile(
+    Variables$Mutation$UploadFile instance,
+    TRes Function(Variables$Mutation$UploadFile) then,
+  ) = _CopyWithImpl$Variables$Mutation$UploadFile;
+
+  factory CopyWith$Variables$Mutation$UploadFile.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UploadFile;
+
+  TRes call({
+    List<MultipartFile?>? files,
+    Enum$FileTypeEnum? fileType,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$UploadFile<TRes>
+    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+  _CopyWithImpl$Variables$Mutation$UploadFile(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UploadFile _instance;
+
+  final TRes Function(Variables$Mutation$UploadFile) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? files = _undefined,
+    Object? fileType = _undefined,
+  }) =>
+      _then(Variables$Mutation$UploadFile._({
+        ..._instance._$data,
+        if (files != _undefined && files != null)
+          'files': (files as List<MultipartFile?>),
+        if (fileType != _undefined && fileType != null)
+          'fileType': (fileType as Enum$FileTypeEnum),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UploadFile<TRes>
+    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UploadFile(this._res);
+
+  TRes _res;
+
+  call({
+    List<MultipartFile?>? files,
+    Enum$FileTypeEnum? fileType,
+  }) =>
+      _res;
+}
+
+class Mutation$UploadFile {
+  Mutation$UploadFile({
+    this.upload,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UploadFile.fromJson(Map<String, dynamic> json) {
+    final l$upload = json['upload'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UploadFile(
+      upload: l$upload == null
+          ? null
+          : Mutation$UploadFile$upload.fromJson(
+              (l$upload as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UploadFile$upload? upload;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$upload = upload;
+    _resultData['upload'] = l$upload?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$upload = upload;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$upload,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UploadFile || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$upload = upload;
+    final lOther$upload = other.upload;
+    if (l$upload != lOther$upload) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UploadFile on Mutation$UploadFile {
+  CopyWith$Mutation$UploadFile<Mutation$UploadFile> get copyWith =>
+      CopyWith$Mutation$UploadFile(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$UploadFile<TRes> {
+  factory CopyWith$Mutation$UploadFile(
+    Mutation$UploadFile instance,
+    TRes Function(Mutation$UploadFile) then,
+  ) = _CopyWithImpl$Mutation$UploadFile;
+
+  factory CopyWith$Mutation$UploadFile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UploadFile;
+
+  TRes call({
+    Mutation$UploadFile$upload? upload,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UploadFile$upload<TRes> get upload;
+}
+
+class _CopyWithImpl$Mutation$UploadFile<TRes>
+    implements CopyWith$Mutation$UploadFile<TRes> {
+  _CopyWithImpl$Mutation$UploadFile(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UploadFile _instance;
+
+  final TRes Function(Mutation$UploadFile) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? upload = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UploadFile(
+        upload: upload == _undefined
+            ? _instance.upload
+            : (upload as Mutation$UploadFile$upload?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UploadFile$upload<TRes> get upload {
+    final local$upload = _instance.upload;
+    return local$upload == null
+        ? CopyWith$Mutation$UploadFile$upload.stub(_then(_instance))
+        : CopyWith$Mutation$UploadFile$upload(
+            local$upload, (e) => call(upload: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UploadFile<TRes>
+    implements CopyWith$Mutation$UploadFile<TRes> {
+  _CopyWithStubImpl$Mutation$UploadFile(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UploadFile$upload? upload,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UploadFile$upload<TRes> get upload =>
+      CopyWith$Mutation$UploadFile$upload.stub(_res);
+}
+
+const documentNodeMutationUploadFile = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UploadFile'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'files')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Upload'),
+            isNonNull: false,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'fileType')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'FileTypeEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'upload'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'files'),
+            value: VariableNode(name: NameNode(value: 'files')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'filetype'),
+            value: VariableNode(name: NameNode(value: 'fileType')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'baseUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'data'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UploadFile _parserFn$Mutation$UploadFile(Map<String, dynamic> data) =>
+    Mutation$UploadFile.fromJson(data);
+typedef OnMutationCompleted$Mutation$UploadFile = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$UploadFile?,
+);
+
+class Options$Mutation$UploadFile
+    extends graphql.MutationOptions<Mutation$UploadFile> {
+  Options$Mutation$UploadFile({
+    String? operationName,
+    required Variables$Mutation$UploadFile variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UploadFile? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UploadFile? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UploadFile>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$UploadFile(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUploadFile,
+          parserFn: _parserFn$Mutation$UploadFile,
+        );
+
+  final OnMutationCompleted$Mutation$UploadFile? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UploadFile
+    extends graphql.WatchQueryOptions<Mutation$UploadFile> {
+  WatchOptions$Mutation$UploadFile({
+    String? operationName,
+    required Variables$Mutation$UploadFile variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UploadFile? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUploadFile,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UploadFile,
+        );
+}
+
+extension ClientExtension$Mutation$UploadFile on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UploadFile>> mutate$UploadFile(
+          Options$Mutation$UploadFile options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UploadFile> watchMutation$UploadFile(
+          WatchOptions$Mutation$UploadFile options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$UploadFile$upload {
+  Mutation$UploadFile$upload({
+    this.baseUrl,
+    this.data,
+    this.$__typename = 'UploadPictures',
+  });
+
+  factory Mutation$UploadFile$upload.fromJson(Map<String, dynamic> json) {
+    final l$baseUrl = json['baseUrl'];
+    final l$data = json['data'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UploadFile$upload(
+      baseUrl: (l$baseUrl as String?),
+      data: (l$data as List<dynamic>?)?.map((e) => (e as String?)).toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? baseUrl;
+
+  final List<String?>? data;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$baseUrl = baseUrl;
+    _resultData['baseUrl'] = l$baseUrl;
+    final l$data = data;
+    _resultData['data'] = l$data?.map((e) => e).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$baseUrl = baseUrl;
+    final l$data = data;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$baseUrl,
+      l$data == null ? null : Object.hashAll(l$data.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UploadFile$upload ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$baseUrl = baseUrl;
+    final lOther$baseUrl = other.baseUrl;
+    if (l$baseUrl != lOther$baseUrl) {
+      return false;
+    }
+    final l$data = data;
+    final lOther$data = other.data;
+    if (l$data != null && lOther$data != null) {
+      if (l$data.length != lOther$data.length) {
+        return false;
+      }
+      for (int i = 0; i < l$data.length; i++) {
+        final l$data$entry = l$data[i];
+        final lOther$data$entry = lOther$data[i];
+        if (l$data$entry != lOther$data$entry) {
+          return false;
+        }
+      }
+    } else if (l$data != lOther$data) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UploadFile$upload
+    on Mutation$UploadFile$upload {
+  CopyWith$Mutation$UploadFile$upload<Mutation$UploadFile$upload>
+      get copyWith => CopyWith$Mutation$UploadFile$upload(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
+  factory CopyWith$Mutation$UploadFile$upload(
+    Mutation$UploadFile$upload instance,
+    TRes Function(Mutation$UploadFile$upload) then,
+  ) = _CopyWithImpl$Mutation$UploadFile$upload;
+
+  factory CopyWith$Mutation$UploadFile$upload.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UploadFile$upload;
+
+  TRes call({
+    String? baseUrl,
+    List<String?>? data,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UploadFile$upload<TRes>
+    implements CopyWith$Mutation$UploadFile$upload<TRes> {
+  _CopyWithImpl$Mutation$UploadFile$upload(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UploadFile$upload _instance;
+
+  final TRes Function(Mutation$UploadFile$upload) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? baseUrl = _undefined,
+    Object? data = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UploadFile$upload(
+        baseUrl:
+            baseUrl == _undefined ? _instance.baseUrl : (baseUrl as String?),
+        data: data == _undefined ? _instance.data : (data as List<String?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
+    implements CopyWith$Mutation$UploadFile$upload<TRes> {
+  _CopyWithStubImpl$Mutation$UploadFile$upload(this._res);
+
+  TRes _res;
+
+  call({
+    String? baseUrl,
+    List<String?>? data,
     String? $__typename,
   }) =>
       _res;

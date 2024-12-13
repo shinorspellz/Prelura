@@ -32,6 +32,7 @@ class Product with _$Product {
     required List<String>? color,
     required Brand? brand,
     final List<Material>? materials,
+    final Enum$StyleEnum? style,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);

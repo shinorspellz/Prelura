@@ -4100,6 +4100,13 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'style'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'materials'),
             alias: null,
             arguments: [],
@@ -4326,6 +4333,7 @@ class Query$Product$product {
     required this.createdAt,
     required this.updatedAt,
     required this.color,
+    this.style,
     this.materials,
     this.brand,
     this.$__typename = 'ProductType',
@@ -4350,6 +4358,7 @@ class Query$Product$product {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$color = json['color'];
+    final l$style = json['style'];
     final l$materials = json['materials'];
     final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
@@ -4390,6 +4399,9 @@ class Query$Product$product {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -4440,6 +4452,8 @@ class Query$Product$product {
 
   final List<String> color;
 
+  final Enum$ProductsProductStyleChoices? style;
+
   final List<Query$Product$product$materials?>? materials;
 
   final Query$Product$product$brand? brand;
@@ -4489,6 +4503,10 @@ class Query$Product$product {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$brand = brand;
@@ -4518,6 +4536,7 @@ class Query$Product$product {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$color = color;
+    final l$style = style;
     final l$materials = materials;
     final l$brand = brand;
     final l$$__typename = $__typename;
@@ -4540,6 +4559,7 @@ class Query$Product$product {
       l$createdAt,
       l$updatedAt,
       Object.hashAll(l$color.map((v) => v)),
+      l$style,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$brand,
       l$$__typename,
@@ -4658,6 +4678,11 @@ class Query$Product$product {
         return false;
       }
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -4724,6 +4749,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$Product$product$materials?>? materials,
     Query$Product$product$brand? brand,
     String? $__typename,
@@ -4772,6 +4798,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? color = _undefined,
+    Object? style = _undefined,
     Object? materials = _undefined,
     Object? brand = _undefined,
     Object? $__typename = _undefined,
@@ -4829,6 +4856,9 @@ class _CopyWithImpl$Query$Product$product<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
         materials: materials == _undefined
             ? _instance.materials
             : (materials as List<Query$Product$product$materials?>?),
@@ -4912,6 +4942,7 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$Product$product$materials?>? materials,
     Query$Product$product$brand? brand,
     String? $__typename,
@@ -6287,6 +6318,13 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'style'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'materials'),
             alias: null,
             arguments: [],
@@ -6514,6 +6552,7 @@ class Query$UserProducts$userProducts {
     required this.createdAt,
     required this.updatedAt,
     required this.color,
+    this.style,
     this.materials,
     this.brand,
     this.$__typename = 'ProductType',
@@ -6538,6 +6577,7 @@ class Query$UserProducts$userProducts {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$color = json['color'];
+    final l$style = json['style'];
     final l$materials = json['materials'];
     final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
@@ -6578,6 +6618,9 @@ class Query$UserProducts$userProducts {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -6628,6 +6671,8 @@ class Query$UserProducts$userProducts {
 
   final List<String> color;
 
+  final Enum$ProductsProductStyleChoices? style;
+
   final List<Query$UserProducts$userProducts$materials?>? materials;
 
   final Query$UserProducts$userProducts$brand? brand;
@@ -6677,6 +6722,10 @@ class Query$UserProducts$userProducts {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$brand = brand;
@@ -6706,6 +6755,7 @@ class Query$UserProducts$userProducts {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$color = color;
+    final l$style = style;
     final l$materials = materials;
     final l$brand = brand;
     final l$$__typename = $__typename;
@@ -6728,6 +6778,7 @@ class Query$UserProducts$userProducts {
       l$createdAt,
       l$updatedAt,
       Object.hashAll(l$color.map((v) => v)),
+      l$style,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$brand,
       l$$__typename,
@@ -6847,6 +6898,11 @@ class Query$UserProducts$userProducts {
         return false;
       }
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -6914,6 +6970,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$UserProducts$userProducts$materials?>? materials,
     Query$UserProducts$userProducts$brand? brand,
     String? $__typename,
@@ -6962,6 +7019,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? color = _undefined,
+    Object? style = _undefined,
     Object? materials = _undefined,
     Object? brand = _undefined,
     Object? $__typename = _undefined,
@@ -7019,6 +7077,9 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
         materials: materials == _undefined
             ? _instance.materials
             : (materials as List<Query$UserProducts$userProducts$materials?>?),
@@ -7104,6 +7165,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$UserProducts$userProducts$materials?>? materials,
     Query$UserProducts$userProducts$brand? brand,
     String? $__typename,
@@ -8455,6 +8517,13 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'style'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'materials'),
             alias: null,
             arguments: [],
@@ -8689,6 +8758,7 @@ class Query$AllProducts$allProducts {
     required this.createdAt,
     required this.updatedAt,
     required this.color,
+    this.style,
     this.materials,
     this.brand,
     this.$__typename = 'ProductType',
@@ -8713,6 +8783,7 @@ class Query$AllProducts$allProducts {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$color = json['color'];
+    final l$style = json['style'];
     final l$materials = json['materials'];
     final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
@@ -8753,6 +8824,9 @@ class Query$AllProducts$allProducts {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -8803,6 +8877,8 @@ class Query$AllProducts$allProducts {
 
   final List<String> color;
 
+  final Enum$ProductsProductStyleChoices? style;
+
   final List<Query$AllProducts$allProducts$materials?>? materials;
 
   final Query$AllProducts$allProducts$brand? brand;
@@ -8852,6 +8928,10 @@ class Query$AllProducts$allProducts {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$brand = brand;
@@ -8881,6 +8961,7 @@ class Query$AllProducts$allProducts {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$color = color;
+    final l$style = style;
     final l$materials = materials;
     final l$brand = brand;
     final l$$__typename = $__typename;
@@ -8903,6 +8984,7 @@ class Query$AllProducts$allProducts {
       l$createdAt,
       l$updatedAt,
       Object.hashAll(l$color.map((v) => v)),
+      l$style,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$brand,
       l$$__typename,
@@ -9022,6 +9104,11 @@ class Query$AllProducts$allProducts {
         return false;
       }
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -9089,6 +9176,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$AllProducts$allProducts$materials?>? materials,
     Query$AllProducts$allProducts$brand? brand,
     String? $__typename,
@@ -9137,6 +9225,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? color = _undefined,
+    Object? style = _undefined,
     Object? materials = _undefined,
     Object? brand = _undefined,
     Object? $__typename = _undefined,
@@ -9194,6 +9283,9 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
         materials: materials == _undefined
             ? _instance.materials
             : (materials as List<Query$AllProducts$allProducts$materials?>?),
@@ -9278,6 +9370,7 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$AllProducts$allProducts$materials?>? materials,
     Query$AllProducts$allProducts$brand? brand,
     String? $__typename,
@@ -11275,6 +11368,13 @@ const documentNodeQuerylikedProducts = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'style'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'materials'),
                 alias: null,
                 arguments: [],
@@ -11654,6 +11754,7 @@ class Query$likedProducts$likedProducts$product {
     required this.updatedAt,
     this.userLiked,
     required this.color,
+    this.style,
     this.materials,
     this.brand,
     this.$__typename = 'ProductType',
@@ -11679,6 +11780,7 @@ class Query$likedProducts$likedProducts$product {
     final l$updatedAt = json['updatedAt'];
     final l$userLiked = json['userLiked'];
     final l$color = json['color'];
+    final l$style = json['style'];
     final l$materials = json['materials'];
     final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
@@ -11719,6 +11821,9 @@ class Query$likedProducts$likedProducts$product {
       updatedAt: DateTime.parse((l$updatedAt as String)),
       userLiked: (l$userLiked as bool?),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -11769,6 +11874,8 @@ class Query$likedProducts$likedProducts$product {
 
   final List<String> color;
 
+  final Enum$ProductsProductStyleChoices? style;
+
   final List<Query$likedProducts$likedProducts$product$materials?>? materials;
 
   final Query$likedProducts$likedProducts$product$brand? brand;
@@ -11818,6 +11925,10 @@ class Query$likedProducts$likedProducts$product {
     _resultData['userLiked'] = l$userLiked;
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$brand = brand;
@@ -11847,6 +11958,7 @@ class Query$likedProducts$likedProducts$product {
     final l$updatedAt = updatedAt;
     final l$userLiked = userLiked;
     final l$color = color;
+    final l$style = style;
     final l$materials = materials;
     final l$brand = brand;
     final l$$__typename = $__typename;
@@ -11869,6 +11981,7 @@ class Query$likedProducts$likedProducts$product {
       l$updatedAt,
       l$userLiked,
       Object.hashAll(l$color.map((v) => v)),
+      l$style,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$brand,
       l$$__typename,
@@ -11988,6 +12101,11 @@ class Query$likedProducts$likedProducts$product {
         return false;
       }
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -12056,6 +12174,7 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     DateTime? updatedAt,
     bool? userLiked,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$likedProducts$likedProducts$product$materials?>? materials,
     Query$likedProducts$likedProducts$product$brand? brand,
     String? $__typename,
@@ -12106,6 +12225,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
     Object? updatedAt = _undefined,
     Object? userLiked = _undefined,
     Object? color = _undefined,
+    Object? style = _undefined,
     Object? materials = _undefined,
     Object? brand = _undefined,
     Object? $__typename = _undefined,
@@ -12164,6 +12284,9 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
         materials: materials == _undefined
             ? _instance.materials
             : (materials
@@ -12254,6 +12377,7 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     DateTime? updatedAt,
     bool? userLiked,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$likedProducts$likedProducts$product$materials?>? materials,
     Query$likedProducts$likedProducts$product$brand? brand,
     String? $__typename,
@@ -15073,6 +15197,13 @@ const documentNodeQuerySimilarProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'style'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'materials'),
             alias: null,
             arguments: [],
@@ -15303,6 +15434,7 @@ class Query$SimilarProducts$similarProducts {
     required this.createdAt,
     required this.updatedAt,
     required this.color,
+    this.style,
     this.materials,
     this.brand,
     this.$__typename = 'ProductType',
@@ -15328,6 +15460,7 @@ class Query$SimilarProducts$similarProducts {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$color = json['color'];
+    final l$style = json['style'];
     final l$materials = json['materials'];
     final l$brand = json['brand'];
     final l$$__typename = json['__typename'];
@@ -15368,6 +15501,9 @@ class Query$SimilarProducts$similarProducts {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -15418,6 +15554,8 @@ class Query$SimilarProducts$similarProducts {
 
   final List<String> color;
 
+  final Enum$ProductsProductStyleChoices? style;
+
   final List<Query$SimilarProducts$similarProducts$materials?>? materials;
 
   final Query$SimilarProducts$similarProducts$brand? brand;
@@ -15467,6 +15605,10 @@ class Query$SimilarProducts$similarProducts {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$brand = brand;
@@ -15496,6 +15638,7 @@ class Query$SimilarProducts$similarProducts {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$color = color;
+    final l$style = style;
     final l$materials = materials;
     final l$brand = brand;
     final l$$__typename = $__typename;
@@ -15518,6 +15661,7 @@ class Query$SimilarProducts$similarProducts {
       l$createdAt,
       l$updatedAt,
       Object.hashAll(l$color.map((v) => v)),
+      l$style,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$brand,
       l$$__typename,
@@ -15637,6 +15781,11 @@ class Query$SimilarProducts$similarProducts {
         return false;
       }
     }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -15705,6 +15854,7 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$SimilarProducts$similarProducts$materials?>? materials,
     Query$SimilarProducts$similarProducts$brand? brand,
     String? $__typename,
@@ -15754,6 +15904,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? color = _undefined,
+    Object? style = _undefined,
     Object? materials = _undefined,
     Object? brand = _undefined,
     Object? $__typename = _undefined,
@@ -15812,6 +15963,9 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
         materials: materials == _undefined
             ? _instance.materials
             : (materials
@@ -15901,6 +16055,7 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     List<String>? color,
+    Enum$ProductsProductStyleChoices? style,
     List<Query$SimilarProducts$similarProducts$materials?>? materials,
     Query$SimilarProducts$similarProducts$brand? brand,
     String? $__typename,
