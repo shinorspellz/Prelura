@@ -396,7 +396,12 @@ class AboutProfile extends ConsumerWidget {
                   if (!isCurrentUser) {
                     print("running");
                     print(user!.id);
-                    await ref.read(followUserProvider(user!.id));
+                    final result =
+                        await ref.refresh(followUserProvider(user.id).future);
+                    print("result is ${result}");
+                    if (result) {
+                      context.alert("Following ${user.username}");
+                    }
                   }
                 },
                 text: isCurrentUser ? "Share" : "Follow",

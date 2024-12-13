@@ -32,7 +32,8 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -90,15 +91,18 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
       bottomNavigationBar: SizedBox(
         height: 112,
         child: Padding(
-          padding: const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
+          padding:
+              const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
           child: AppButton(
-            onTap: priceState != null
+            onTap: priceState != null && priceState.isNotEmpty
                 ? () {
+                    print("Price: $priceState");
                     // Pass the data back or proceed to the next screen
                     Navigator.pop(context);
                   }
                 : null,
-            isDisabled: priceState?.isEmpty ?? true,
+            bgColor: PreluraColors.primaryColor,
+            isDisabled: priceState == null || priceState.isEmpty,
             text: "Done",
           ),
         ),

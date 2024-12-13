@@ -134,7 +134,7 @@ class FollowerQuery {
       {this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
 }
 
-final followersProvider =
+   final followersProvider =
     FutureProvider.family((ref, FollowerQuery params) async {
   final repo = ref.watch(followerRepo);
 
@@ -159,25 +159,27 @@ final followingProvider =
   // Fetch followers based on parameters
   final result = await repo.getFollowing(query, latestFirst);
 
-  return result;
+  return Future.value(result);
 });
 
 final followUserProvider =
-    FutureProvider.family<bool?, int>((ref, userId) async {
+    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
   final repo = ref.watch(followingRepo);
 
   // Fetch followers based on parameters
   final result = await repo.followUser(userId);
+  print("result is ${result}");
 
   return result;
 });
 
 final unFollowUserProvider =
-    FutureProvider.autoDispose.family<bool?, int>((ref, userId) async {
+    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
   final repo = ref.watch(followingRepo);
 
   // Fetch followers based on parameters
   final result = await repo.unFollowUser(userId);
+  // ref.invalidate(followingProvider(FollowerQuery()));
 
   return result;
 });

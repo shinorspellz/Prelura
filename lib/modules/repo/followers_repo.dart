@@ -93,7 +93,7 @@ class FollowingRepo {
     }
   }
 
-  Future<bool?> unFollowUser(int followedId) async {
+  Future<bool> unFollowUser(int followedId) async {
     final response = await _client.mutate$unfollowUser(
       Options$Mutation$unfollowUser(
           variables: Variables$Mutation$unfollowUser(
@@ -115,10 +115,10 @@ class FollowingRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.unfollowUser?.success;
+    return response.parsedData!.unfollowUser!.success!;
   }
 
-  Future<bool?> followUser(int followedId) async {
+  Future<bool> followUser(int followedId) async {
     final response = await _client.mutate$followUser(
       Options$Mutation$followUser(
           variables: Variables$Mutation$followUser(
@@ -139,6 +139,7 @@ class FollowingRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+    print(" result is ${response.parsedData!.followUser!.success}");
 
     return response.parsedData!.followUser!.success!;
   }

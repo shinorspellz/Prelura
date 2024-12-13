@@ -10,9 +10,9 @@ import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await dotenv.load(fileName: '.env');
   runApp(
     UncontrolledProviderScope(
       container: await initializeDependencies(),
