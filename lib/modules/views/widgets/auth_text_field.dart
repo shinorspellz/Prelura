@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/res/render_svg.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../res/colors.dart';
 import '../../../res/ui_constants.dart';
 
 class PreluraAuthTextField extends ConsumerStatefulWidget {
@@ -169,10 +171,9 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               //   });
               //   return null;
               // },
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 14,
+                  ),
               readOnly: widget.shouldReadOnly,
               decoration: UIConstants.instance
                   .inputDecoration(
@@ -190,8 +191,10 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     focusedBorder: showGradient
                         ? OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
+                            borderSide: BorderSide(
+                              color: context.isDarkMode
+                                  ? Colors.grey[400]!
+                                  : Colors.black,
                             ),
                           )
                         : null,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:prelura_app/core/router/app_startup.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -216,7 +218,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(
-                      color: Colors.grey[400]!,
+                      color:
+                          context.isDarkMode ? Colors.grey[400]! : Colors.black,
                       width: 2,
                     ),
                   ),
