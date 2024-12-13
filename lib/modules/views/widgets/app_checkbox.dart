@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:sizer/sizer.dart';
+
+import '../../../res/colors.dart';
 
 class PreluraCheckBox extends StatelessWidget {
   final bool isChecked; // Current state of the checkbox
@@ -9,17 +13,21 @@ class PreluraCheckBox extends StatelessWidget {
   final BorderRadius borderRadius; // Border radius for rounded corners
   final Color? colorName;
   final String title;
+  final String? subtitle;
+  final Widget? titleWidget;
 
   const PreluraCheckBox(
       {Key? key,
       required this.isChecked,
       required this.onChanged,
       this.size = 20.0,
-      this.activeColor = Colors.blue,
+      this.activeColor = PreluraColors.primaryColor,
       this.inactiveColor = Colors.grey,
       this.borderRadius = BorderRadius.zero,
       required this.title,
-      this.colorName})
+      this.subtitle,
+      this.colorName,
+      this.titleWidget})
       : super(key: key);
 
   @override
@@ -53,11 +61,39 @@ class PreluraCheckBox extends StatelessWidget {
                     width: 36,
                   ),
                 ],
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                Container(
+                  width: 60.w,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (titleWidget != null) ...[
+                        titleWidget!,
+                      ] else ...[
+                        Text(
+                          title,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                      if (subtitle != null) ...[
+                        const SizedBox(height: 6),
+                        Text(
+                          subtitle!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w300),
+                          overflow: TextOverflow.ellipsis, // Handle overflow
+                          maxLines:
+                              4, // Limit the number of lines for the subtitle
+                        ),
+                      ]
+                    ],
+                  ),
                 ),
               ],
+            ),
+            SizedBox(
+              width: 20,
             ),
             Container(
               height: size,

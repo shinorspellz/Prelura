@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../provider/brand_provider.dart';
 import '../provider/sell_item_provider.dart';
@@ -68,39 +69,33 @@ class SizeSelectionPage extends ConsumerWidget {
             thickness: 1,
           ),
           Expanded(
-            child: ListView.separated(
+            child: ListView.builder(
               itemCount: Enum$SizeEnum.values.length,
-              separatorBuilder: (_, index) => const Divider(
-                thickness: 1,
-              ),
               itemBuilder: (_, index) {
                 final value = Enum$SizeEnum.values[index];
                 if (value == Enum$SizeEnum.$unknown) return Container();
-                return ListTile(
-                  title: Text(value.name.replaceAll('_', ' ')),
-                  trailing:
-                      // CustomRadioButton(
-                      //   isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
-                      //   onChanged: () {
-                      //     if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
-                      //       ref.read(sellItemProvider.notifier).removeSize(data[index]);
-                      //     } else {
-                      //       ref.read(sellItemProvider.notifier).selectSize(data[index]);
-                      //     }
+                return PreluraCheckBox(
+                    title: value.name.replaceAll('_', ' '),
 
-                      //     log('${ref.read(sellItemProvider).size}');
-                      //   },
-                      // )
-                      Radio<Enum$SizeEnum>(
-                          value: value,
-                          groupValue: ref.watch(sellItemProvider).size,
-                          onChanged: (value) => {
-                                ref
-                                    .read(sellItemProvider.notifier)
-                                    .selectSize(value!),
-                                context.router.popForced(),
-                              }),
-                );
+                    // CustomRadioButton(
+                    //   isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
+                    //   onChanged: () {
+                    //     if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
+                    //       ref.read(sellItemProvider.notifier).removeSize(data[index]);
+                    //     } else {
+                    //       ref.read(sellItemProvider.notifier).selectSize(data[index]);
+                    //     }
+
+                    //     log('${ref.read(sellItemProvider).size}');
+                    //   },
+                    // )
+                    isChecked: value == ref.watch(sellItemProvider).size,
+                    onChanged: (size) => {
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .selectSize(value!),
+                          context.router.popForced(),
+                        });
               },
             ),
           ),

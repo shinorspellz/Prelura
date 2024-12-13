@@ -216,60 +216,74 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 });
                               },
                               children: state.images
-                                  .map((image) => GestureDetector(
+                                  .map((image) => Row(
                                         key: ValueKey(image),
-                                        onTap: () {
-                                          // Navigator.of(context).push(
-                                          //   // MaterialPageRoute(
-                                          //   //   builder: (_) => FullScreenImage(
-                                          //   //       imageUrl:
-                                          //   //           'https://example.com/your-image.jpg'),
-                                          //   // ),
-                                          // );
-                                        },
-                                        child: Container(
-                                          key: ValueKey(image),
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 5),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              color: Colors.transparent),
-                                          child: Stack(
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius: BorderRadius.circular(
-                                                    8), // Match the Container's border radius
-                                                child: Image.file(
-                                                  File(image.path),
-                                                  fit: BoxFit.cover,
-                                                  height: 142,
-                                                  width: 100,
-                                                ),
-                                              ),
-                                              if (state.images.contains(image))
-                                                Align(
-                                                  alignment:
-                                                      Alignment.bottomLeft,
-                                                  child: IconButton(
-                                                      //use VIcons here
-                                                      icon: RenderSvg(
-                                                        // svgPath: VIcons.trashIcon,
-                                                        svgPath: PreluraIcons
-                                                            .removeIcon,
-                                                        color:
-                                                            PreluraColors.white,
+                                        children: [
+                                          GestureDetector(
+                                            key: ValueKey(image),
+                                            onTap: () {
+                                              // Navigator.of(context).push(
+                                              //   // MaterialPageRoute(
+                                              //   //   builder: (_) => FullScreenImage(
+                                              //   //       imageUrl:
+                                              //   //           'https://example.com/your-image.jpg'),
+                                              //   // ),
+                                              // );
+                                            },
+                                            child: Container(
+                                              key: ValueKey(image),
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 5),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  color: Colors.transparent
+                                                      .withOpacity(0.1)),
+                                              child: Stack(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8), // Match the Container's border radius
+                                                    child: Image.file(
+                                                      File(image.path),
+                                                      fit: BoxFit.cover,
+                                                      height: 142,
+                                                      width: 100,
+                                                    ),
+                                                  ),
+                                                  if (state.images
+                                                      .contains(image))
+                                                    Positioned(
+                                                      bottom: 5,
+                                                      right: 5,
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .bottomRight,
+                                                        child: InkWell(
+                                                            child: Icon(
+                                                              Icons
+                                                                  .cancel_rounded,
+                                                              color:
+                                                                  PreluraColors
+                                                                      .greyColor,
+                                                              fill: 1,
+                                                            ),
+                                                            onTap: () {
+                                                              notifier
+                                                                  .deleteImage(
+                                                                      image);
+                                                            }),
                                                       ),
-                                                      color:
-                                                          PreluraColors.white,
-                                                      onPressed: () {
-                                                        notifier
-                                                            .deleteImage(image);
-                                                      }),
-                                                ),
-                                            ],
+                                                    ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          // SizedBox(
+                                          //   width: 6,
+                                          // ),
+                                        ],
                                       ))
                                   .toList(),
                             ),
@@ -283,7 +297,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                     color: Colors.grey[400],
                                   ),
                                   child: Center(
-                                    child: Icon(Icons.add_circle, size: 32.sp),
+                                    child: Icon(Icons.add_circle,
+                                        size: 32.sp,
+                                        color: PreluraColors.primaryColor),
                                   )),
                             )
                           ],
