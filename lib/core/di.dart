@@ -10,7 +10,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/repo/auth_repo/auth_repo.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
-import 'package:prelura_app/modules/repo/followers_repo.dart';
+import 'package:prelura_app/modules/repo/network_repo.dart';
 import 'package:prelura_app/modules/repo/product/product_repo.dart';
 import 'package:prelura_app/modules/repo/user/user_repo.dart';
 
@@ -37,7 +37,7 @@ final appStartUpProvider = FutureProvider((ref) async {
   if (ref.read(authStateProvider).requireValue) {
     await Future.wait([
       ref.read(userProvider.future),
-      ref.read(allProductProvider.future),
+      ref.read(allProductProvider(null).future),
     ]);
 
     // custom delay added for splash
@@ -90,8 +90,7 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) =>
-      AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
+  (ref) => AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
@@ -104,13 +103,13 @@ final userRepo = Provider(
   (ref) => UserRepo(ref.watch(graphqlClient)),
 );
 
-final followerRepo = Provider(
-  (ref) => FollowerRepo(ref.watch(graphqlClient)),
+final networkRepo = Provider(
+  (ref) => NetworkRepo(ref.watch(graphqlClient)),
 );
 
-final followingRepo = Provider(
-  (ref) => FollowingRepo(ref.watch(graphqlClient)),
-);
+// final networkRepo = Provider(
+//   (ref) => FollowingRepo(ref.watch(graphqlClient)),
+// );
 
 /// File Media upload repository for any dependency
 final fileUploadRepo = Provider(

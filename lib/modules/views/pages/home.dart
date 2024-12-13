@@ -43,9 +43,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.sizeOf(context).height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        if (ref.read(allProductProvider).isLoading) return;
-
-        ref.read(allProductProvider.notifier).fetchMoreData();
+        if (ref.read(allProductProvider(null)).isLoading) return;
+        if (searchQuery.isNotEmpty) {
+          ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
+        }
+        ref.read(allProductProvider(null).notifier).fetchMoreData();
       }
     });
     super.initState();
@@ -57,6 +59,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.dispose();
   }
 
+  String searchQuery = '';
+
   @override
   Widget build(BuildContext context) {
     final selectedTab = ref.watch(selectedTabProvider);
@@ -67,7 +71,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: RefreshIndicator(
             onRefresh: () async {
               ref.read(refreshingHome.notifier).state = true;
-              ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+              ref.refresh(allProductProvider(null).future).then((_) => ref.read(refreshingHome.notifier).state = false);
             },
             child: CustomScrollView(
               controller: controller,
@@ -84,7 +88,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               child: GestureDetector(
                                 onTap: () {
                                   ref.read(refreshingHome.notifier).state = true;
-                                  ref.refresh(allProductProvider.future).then((_) => ref.read(refreshingHome.notifier).state = false);
+                                  ref.refresh(allProductProvider(null).future).then((_) => ref.read(refreshingHome.notifier).state = false);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -121,7 +125,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Searchwidget(
+                        Searchwidget(
                           padding: EdgeInsets.zero,
                           obscureText: false,
                           shouldReadOnly: false,
@@ -130,6 +134,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           showInputBorder: true,
                           autofocus: false,
                           cancelButton: true,
+                          onChanged: (val) {
+                            searchQuery = val;
+                            setState(() {});
+                          },
                         ),
                         addVerticalSpacing(12),
                         _buildTabs(ref, selectedTab, context)
@@ -137,80 +145,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   )),
                 ),
-
-                ref.watch(allProductProvider).maybeWhen(
-                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                      data: (products) => SliverGrid.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 0.55,
-                        ),
-                        itemCount: products.take(6).length,
-                        itemBuilder: (context, index) {
-                          return ProductCard(product: products.take(6).toList()[index]);
-                        },
-                      ),
-                      orElse: () => SliverToBoxAdapter(child: Container()),
-                    ),
-                const SliverToBoxAdapter(
-                  child: Divider(
-                    thickness: 1.5,
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: _buildSectionTitle(
-                    'Shop Bargains',
-                    "Steals under £15",
-                    context,
-                    onTap: () => context.pushRoute(
-                      ProductPriceFilterRoute(title: 'Shop Bargains'),
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 320,
-                    width: MediaQuery.sizeOf(context).width,
-                    child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
-                          data: (products) => ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder: (context, index) => 10.horizontalSpacing,
-                            itemBuilder: (context, index) => SizedBox(
-                              width: 180,
-                              child: ProductCard(product: products[index]),
-                            ),
-                            itemCount: products.length,
-                          ),
-                          orElse: () => ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: List.generate(
-                              mockData.length,
-                              (_) => Container(
-                                // height: 220,
-                                width: 180,
-                                margin: const EdgeInsets.symmetric(horizontal: 5),
-                                child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
-                              ),
-                            ),
-                          ),
-                        ),
-                  ),
-                ),
-
-                const SliverToBoxAdapter(
-                  child: Divider(
-                    thickness: 1.5,
-                  ),
-                ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 10),
-                  sliver: ref.watch(allProductProvider).when(
-                      skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                if (searchQuery.isNotEmpty) ...[
+                  ref.watch(allProductProvider(searchQuery)).when(
                       data: (products) {
-                        if (products.length < 6) return SliverToBoxAdapter(child: Container());
-                        final clippedProducts = products.sublist(0, 6);
                         return SliverGrid.builder(
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -218,9 +155,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             mainAxisSpacing: 10,
                             childAspectRatio: 0.55,
                           ),
-                          itemCount: clippedProducts.length,
+                          itemCount: products.length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: clippedProducts[index]);
+                            return ProductCard(product: products[index]);
                           },
                         );
                       },
@@ -234,7 +171,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                   TextButton.icon(
                                     onPressed: () {
                                       // log(e.toString(), stackTrace: _);
-                                      ref.invalidate(allProductProvider);
+                                      ref.invalidate(allProductProvider(searchQuery));
                                     },
                                     label: const Text('Retry'),
                                     icon: const Icon(Icons.refresh_rounded),
@@ -244,66 +181,120 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             ),
                           ),
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
-                ),
-                if (ref.watch(allProductProvider.notifier).canLoadMore())
-                  if (!ref.watch(allProductProvider).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
-                // SliverFillRemaining(
-                //   child: ref.watch(allProductProvider).when(
-                //       data: (products) => DisplaySection(
-                //             products: products,
-                //             isScrollable: true,
-                //           ),
-                //       error: (e, _) => Center(
-                //             child: Column(
-                //               mainAxisAlignment: MainAxisAlignment.center,
-                //               mainAxisSize: MainAxisSize.min,
-                //               children: [
-                //                 Text(e.toString()),
-                //                 TextButton.icon(
-                //                   onPressed: () {
-                //                     // log(e.toString(), stackTrace: _);
-                //                     ref.invalidate(allProductProvider);
-                //                   },
-                //                   label: const Text('Retry'),
-                //                   icon: const Icon(Icons.refresh_rounded),
-                //                 ),
-                //               ],
-                //             ),
-                //           ),
-                //       loading: () => const LoadingWidget()),
-                // ),
-                // Container(
-                //   padding: const EdgeInsets.all(10),
-                //   child: const Column(
-                //     children: [
-                //       // _buildSectionTitle('Collection from Seller', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // const SizedBox(
-                //       //   height: 12,
-                //       // ),
-                //       // const DisplayLiveCard(),
-                //       // const SizedBox(
-                //       //   height: 12,
-                //       // ),
-                //       // _buildSectionTitle('Antropologies', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // _buildSectionTitle('Recommended for You', "Items selected by amyleeliu", context),
-                //       // const DisplaySection(),
-                //       // const SizedBox(
-                //       //   height: 30,
-                //       // )
-                //     ],
-                //   ),
-                // )
+                ] else ...[
+                  ref.watch(allProductProvider(null)).maybeWhen(
+                        // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                        data: (products) => SliverGrid.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.55,
+                          ),
+                          itemCount: products.take(6).length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(product: products.take(6).toList()[index]);
+                          },
+                        ),
+                        orElse: () => SliverToBoxAdapter(child: Container()),
+                      ),
+                  const SliverToBoxAdapter(
+                    child: Divider(
+                      thickness: 1.5,
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: _buildSectionTitle(
+                      'Shop Bargains',
+                      "Steals under £15",
+                      context,
+                      onTap: () => context.pushRoute(
+                        ProductPriceFilterRoute(title: 'Shop Bargains'),
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: AspectRatio(
+                      aspectRatio: 1.1,
+                      // height: 320,
+                      // width: MediaQuery.sizeOf(context).width,
+                      child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
+                            data: (products) => ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              separatorBuilder: (context, index) => 10.horizontalSpacing,
+                              itemBuilder: (context, index) => SizedBox(
+                                width: 180,
+                                child: ProductCard(product: products[index]),
+                              ),
+                              itemCount: products.length,
+                            ),
+                            orElse: () => ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: List.generate(
+                                mockData.length,
+                                (_) => Container(
+                                  // height: 220,
+                                  width: 180,
+                                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                                  child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                                ),
+                              ),
+                            ),
+                          ),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: Divider(
+                      thickness: 1.5,
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(top: 10),
+                    sliver: ref.watch(allProductProvider(null)).when(
+                        skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                        data: (products) {
+                          if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                          final clippedProducts = products.sublist(0, 6);
+                          return SliverGrid.builder(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.55,
+                            ),
+                            itemCount: clippedProducts.length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(product: clippedProducts[index]);
+                            },
+                          );
+                        },
+                        error: (e, _) => SliverToBoxAdapter(
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(e.toString()),
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        // log(e.toString(), stackTrace: _);
+                                        ref.invalidate(allProductProvider);
+                                      },
+                                      label: const Text('Retry'),
+                                      icon: const Icon(Icons.refresh_rounded),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                  ),
+                  if (ref.watch(allProductProvider(null).notifier).canLoadMore())
+                    if (!ref.watch(allProductProvider(null)).isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
+                ]
               ],
             ),
           ),
