@@ -335,59 +335,68 @@ query SimilarProducts(
 }
 
 query following(
-  $latestFirst : Boolean
-  $search : String
-  $pageCount : Int
-  $pageNumber : Int
-  ) {
+  $latestFirst: Boolean
+  $search: String
+  $pageCount: Int
+  $pageNumber: Int
+) {
   following(
-    latestFirst: $latestFirst,
-    pageCount: $pageCount,
-    pageNumber: $pageNumber,
-    search: $search){
-      id,
-      username,
-      fullName,
-      listing,
-      profilePictureUrl,
-      location{
-        latitude,
-        longitude,
-        locationName
-      }
+    latestFirst: $latestFirst
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+    search: $search
+  ) {
+    id
+    username
+    fullName
+    listing
+    profilePictureUrl
+    location {
+      latitude
+      longitude
+      locationName
     }
+  }
 }
 
-query followers($latestFirst : Boolean, $search : String
-  $pageCount : Int
-  $pageNumber : Int
-  ) {
+query followers(
+  $latestFirst: Boolean
+  $search: String
+  $pageCount: Int
+  $pageNumber: Int
+) {
   followers(
-    latestFirst: $latestFirst,
-    pageCount: $pageCount,
-    pageNumber: $pageNumber,
-    search: $search){
-      id,
-      username,
-      fullName,
-      listing,
-      profilePictureUrl,
-      location{
-        latitude,
-        longitude,
-        locationName
-      }
+    latestFirst: $latestFirst
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+    search: $search
+  ) {
+    id
+    username
+    fullName
+    listing
+    profilePictureUrl
+    location {
+      latitude
+      longitude
+      locationName
     }
+  }
 }
 
 query followersTotalNumber {
+  followers {
+    username
+  }
   followersTotalNumber
 }
 
 query followingTotalNumber {
+  following {
+    username
+  }
   followingTotalNumber
 }
-
 
 query FilterProductsByPrice(
   $priceLimit: Float!
@@ -439,4 +448,3 @@ query FilterProductsByPrice(
   }
   filterProductsByPriceTotalNumber
 }
-

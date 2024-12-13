@@ -297,26 +297,29 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
   },
 );
 
-final allProductProvider = AsyncNotifierProvider<_AllProductController, List<Product>>(_AllProductController.new);
+final allProductProvider = AsyncNotifierProvider.family<_AllProductController, List<Product>, String?>(_AllProductController.new);
 
-class _AllProductController extends AsyncNotifier<List<Product>> {
+class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
   int _currentPage = 1;
   int _brandTotalItems = 0;
+  String? _query;
 
   @override
-  Future<List<Product>> build() async {
+  Future<List<Product>> build(String? query) async {
     state = const AsyncLoading();
     _currentPage = 1;
-    await _getProducts(pageNumber: _currentPage);
+    _query = query;
+    await _getProducts(query: query, pageNumber: _currentPage);
     return state.value!;
   }
 
-  Future<void> _getProducts({int? pageNumber}) async {
+  Future<void> _getProducts({String? query, int? pageNumber}) async {
     // final sort = ref.watch(sortAllServiceProvider);
     final result = await _repository.getAllProducts(
+      search: query,
       pageCount: _pageCount,
       pageNumber: pageNumber,
     );
@@ -342,6 +345,7 @@ class _AllProductController extends AsyncNotifier<List<Product>> {
 
     if (canLoadMore) {
       await _getProducts(
+        query: _query,
         pageNumber: _currentPage + 1,
       );
     }
