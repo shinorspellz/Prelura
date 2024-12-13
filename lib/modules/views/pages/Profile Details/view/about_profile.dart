@@ -372,45 +372,6 @@ class AboutProfile extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding:
-            const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
-        child: Row(
-          children: [
-            Expanded(
-              child: AppButton(
-                onTap: () {
-                  if (isCurrentUser) {
-                    context.pushRoute(SellItemRoute());
-                  }
-                },
-                text: isCurrentUser ? "Upload" : "Message",
-                bgColor: Theme.of(context).scaffoldBackgroundColor,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: AppButton(
-                onTap: () async {
-                  // Handle Follow button
-                  if (!isCurrentUser) {
-                    print("running");
-                    print(user!.id);
-                    final result =
-                        await ref.refresh(followUserProvider(user.id).future);
-                    print("result is ${result}");
-                    if (result) {
-                      context.alert("Following ${user.username}");
-                    }
-                  }
-                },
-                text: isCurrentUser ? "Share" : "Follow",
-                textColor: Theme.of(context).scaffoldBackgroundColor,
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

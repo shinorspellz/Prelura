@@ -218,9 +218,10 @@ class _SearchwidgetState extends State<Searchwidget> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(
-                      color:
-                          context.isDarkMode ? Colors.grey[400]! : Colors.black,
-                      width: 2,
+                      color: context.isDarkMode
+                          ? Colors.grey[400]!
+                          : Colors.black.withOpacity(0.8),
+                      width: 1.5,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
