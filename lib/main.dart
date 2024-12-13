@@ -33,8 +33,7 @@ class MyApp extends ConsumerWidget {
       FlutterNativeSplash.remove();
     });
     return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
         return MaterialApp.router(
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,
