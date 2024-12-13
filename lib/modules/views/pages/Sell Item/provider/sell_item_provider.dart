@@ -19,6 +19,7 @@ class SellItemState {
   final Enum$SizeEnum? size;
   final String? price;
   final ConditionsEnum? selectedCondition;
+  final Enum$StyleEnum? style;
 
   SellItemState({
     this.images = const [],
@@ -33,34 +34,39 @@ class SellItemState {
     this.price,
     this.selectedColors = const [],
     this.selectedMaterials = const [],
+    this.style,
   });
 
-  SellItemState copyWith(
-      {List<XFile>? images,
-      String? title,
-      String? description,
-      CategoryModel? category,
-      CategoryModel? subCategory,
-      Enum$ParcelSizeEnum? parcel,
-      List<String>? selectedColors,
-      List<Material>? selectedMaterials,
-      Brand? brand,
-      Enum$SizeEnum? size,
-      String? price,
-      ConditionsEnum? selectedCondition}) {
+  SellItemState copyWith({
+    List<XFile>? images,
+    String? title,
+    String? description,
+    CategoryModel? category,
+    CategoryModel? subCategory,
+    Enum$ParcelSizeEnum? parcel,
+    List<String>? selectedColors,
+    List<Material>? selectedMaterials,
+    Brand? brand,
+    Enum$SizeEnum? size,
+    String? price,
+    Enum$StyleEnum? style,
+    ConditionsEnum? selectedCondition,
+  }) {
     return SellItemState(
-        images: images ?? this.images,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        category: category ?? this.category,
-        subCategory: subCategory ?? this.subCategory,
-        parcel: parcel ?? this.parcel,
-        size: size ?? this.size,
-        brand: brand ?? this.brand,
-        price: price ?? this.price,
-        selectedColors: selectedColors ?? this.selectedColors,
-        selectedCondition: selectedCondition ?? this.selectedCondition,
-        selectedMaterials: selectedMaterials ?? this.selectedMaterials);
+      images: images ?? this.images,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      subCategory: subCategory ?? this.subCategory,
+      parcel: parcel ?? this.parcel,
+      size: size ?? this.size,
+      brand: brand ?? this.brand,
+      price: price ?? this.price,
+      selectedColors: selectedColors ?? this.selectedColors,
+      selectedCondition: selectedCondition ?? this.selectedCondition,
+      selectedMaterials: selectedMaterials ?? this.selectedMaterials,
+      style: style ?? this.style,
+    );
   }
 
   @override
@@ -155,6 +161,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(selectedCondition: selectedCondition);
   }
 
+  void selectStyle(Enum$StyleEnum style) {
+    state = state.copyWith(style: style);
+  }
+
   void productToItem(Product product) {
     state = state.copyWith(
       title: product.name,
@@ -168,6 +178,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       brand: product.brand,
       selectedColors: product.color,
       selectedMaterials: product.materials,
+      style: product.style,
     );
   }
 

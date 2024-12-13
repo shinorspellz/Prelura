@@ -4,49 +4,64 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
+import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as fileUtil;
 import "package:http_parser/http_parser.dart" show MediaType;
 import 'package:prelura_app/core/errors/failures.dart';
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/image_upload_response_model.dart';
 
 typedef OnDownloadProgressCallback = void Function(int receivedBytes, int totalBytes);
 typedef OnUploadProgressCallback = void Function(int sentBytes, int totalBytes);
 
 class FileUploadRepo {
-  final Box _cacheBox;
+  final GraphQLClient _client;
+  // final Box _cacheBox;
 
-  FileUploadRepo(this._cacheBox);
+  FileUploadRepo(this._client);
 
-  String get _uploadUrl => 'https://uat-api.vmodel.app/images/prelura/$_getUsername/';
+  // String get _uploadUrl => 'https://uat-api.vmodel.app/images/prelura/$_getUsername/';
 
-  Future<List<Input$ImagesInputType>?> uploadFiles(List<File> files, {OnUploadProgressCallback? onUploadProgress}) async {
-    final fps = files.map((e) => e.path).toList();
+  Future<List<Input$ImagesInputType>?> uploadFiles(List<File> files, Enum$FileTypeEnum uploadType, {OnUploadProgressCallback? onUploadProgress}) async {
+    final fps = files.map((e) => MultipartFile.fromFileSync(e.path)).toList();
 
-    final restToken = _getToken;
+    final res = await _client.mutate$UploadFile(Options$Mutation$UploadFile(
+      fetchPolicy: FetchPolicy.noCache,
+      variables: Variables$Mutation$UploadFile(
+        files: fps,
+        fileType: uploadType,
+      ),
+    ));
 
-    if (restToken == null) throw const CacheFailure();
+    if (res.hasException) {
+      if (res.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = res.exception!.graphqlErrors.first.message;
+        log(error, name: 'FileUploadRepo');
+        throw error;
+      }
+      log(res.exception.toString(), name: 'FileUploadRepo');
+      throw 'An error occured';
+    }
 
-    log(_uploadUrl);
+    if (res.parsedData == null) {
+      log('Mising response', name: 'FileUploadRepo');
+      throw 'An error occured';
+    }
 
-    final res = await _FileService.fileUploadMultipart(
-      url: _uploadUrl,
-      restToken: restToken,
-      files: fps,
-      onUploadProgress: onUploadProgress,
-    );
-    // return res;
-    final response = jsonDecode(res);
-    final uploadedFilesMap = response["data"] as List<dynamic>;
-    String baseUrl = response['base_url'] ?? '';
-    if (uploadedFilesMap.isNotEmpty) {
-      final images = uploadedFilesMap.map((e) => ImageUploadResponseModel.fromMap(baseUrl, e)).toList();
+    final response = res.parsedData;
+    final uploadedFilesMap = response!.upload!.data;
+    String baseUrl = response.upload!.baseUrl ?? '';
+    if (uploadedFilesMap!.isNotEmpty) {
+      final images = uploadedFilesMap.map((e) => ImageUploadResponseModel.fromMap(baseUrl, jsonDecode(e!))).toList();
 
       final filesToPost = images
           .map(
-            (e) => Input$ImagesInputType(url: '${e.baseUrl}${e.file_url}', thumbnail: '${e.baseUrl}${e.sd_url}'),
+            (e) => Input$ImagesInputType(url: '${e.baseUrl}${e.image}', thumbnail: '${e.baseUrl}${e.thumbnail}'),
           )
           .toList();
       return filesToPost;
@@ -55,25 +70,25 @@ class FileUploadRepo {
     return null;
   }
 
-  Future<Map<String, dynamic>?> uploadRawBytesList(List<Uint8List> rawData, {OnUploadProgressCallback? onUploadProgress}) async {
-    // final fps = files.map((e) => e.path).toList();
+  // Future<Map<String, dynamic>?> uploadRawBytesList(List<Uint8List> rawData, {OnUploadProgressCallback? onUploadProgress}) async {
+  //   // final fps = files.map((e) => e.path).toList();
 
-    final restToken = _getToken;
+  //   final restToken = _getToken;
 
-    if (restToken == null) throw const CacheFailure();
+  //   if (restToken == null) throw const CacheFailure();
 
-    final res = await _FileService.rawBytesDataUploadMultipart(
-      url: _uploadUrl,
-      restToken: restToken,
-      rawDataList: rawData,
-      onUploadProgress: onUploadProgress,
-    );
-    // return res;
-    return jsonDecode(res);
-  }
+  //   final res = await _FileService.rawBytesDataUploadMultipart(
+  //     url: _uploadUrl,
+  //     restToken: restToken,
+  //     rawDataList: rawData,
+  //     onUploadProgress: onUploadProgress,
+  //   );
+  //   // return res;
+  //   return jsonDecode(res);
+  // }
 
-  String? get _getToken => _cacheBox.get('REST_TOKEN');
-  String? get _getUsername => _cacheBox.get('USERNAME');
+  // String? get _getToken => _cacheBox.get('REST_TOKEN');
+  // String? get _getUsername => _cacheBox.get('USERNAME');
 }
 
 /// File REST upload service

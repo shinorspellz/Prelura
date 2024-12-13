@@ -62,6 +62,7 @@ mutation CreateProduct(
   $color: [String]
   $brand: Int
   $materials: [Int]
+  $style: StyleEnum
 ) {
   createProduct(
     category: $category
@@ -77,6 +78,7 @@ mutation CreateProduct(
     color: $color
     brand: $brand
     materials: $materials
+    style: $style
   ) {
     success
     message
@@ -103,6 +105,7 @@ mutation UpdateProduct(
   $color: [String]
   $brand: Int
   $materials: [Int]
+  $style: StyleEnum
 ) {
   updateProduct(
     category: $category
@@ -118,6 +121,7 @@ mutation UpdateProduct(
     color: $color
     brand: $brand
     materials: $materials
+    style: $style
   ) {
     success
     message
@@ -178,5 +182,12 @@ mutation followUser($followedId: Int!) {
 mutation unfollowUser($followedId: Int!) {
   unfollowUser(followedId: $followedId) {
     success
+  }
+}
+
+mutation UploadFile($files: [Upload]!, $fileType: FileTypeEnum!) {
+  upload(files: $files, filetype: $fileType) {
+    baseUrl
+    data
   }
 }

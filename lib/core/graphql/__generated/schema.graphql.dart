@@ -489,6 +489,39 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
   }
 }
 
+enum Enum$FileTypeEnum {
+  PRODUCT,
+  PROFILE_PICTURE,
+  $unknown;
+
+  factory Enum$FileTypeEnum.fromJson(String value) =>
+      fromJson$Enum$FileTypeEnum(value);
+
+  String toJson() => toJson$Enum$FileTypeEnum(this);
+}
+
+String toJson$Enum$FileTypeEnum(Enum$FileTypeEnum e) {
+  switch (e) {
+    case Enum$FileTypeEnum.PRODUCT:
+      return r'PRODUCT';
+    case Enum$FileTypeEnum.PROFILE_PICTURE:
+      return r'PROFILE_PICTURE';
+    case Enum$FileTypeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
+  switch (value) {
+    case r'PRODUCT':
+      return Enum$FileTypeEnum.PRODUCT;
+    case r'PROFILE_PICTURE':
+      return Enum$FileTypeEnum.PROFILE_PICTURE;
+    default:
+      return Enum$FileTypeEnum.$unknown;
+  }
+}
+
 enum Enum$ParcelSizeEnum {
   SMALL,
   MEDIUM,
@@ -817,6 +850,51 @@ Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
   }
 }
 
+enum Enum$ProductsProductStyleChoices {
+  WORKWEAR,
+  WORKOUT,
+  CASUAL,
+  PARTY_DRESS,
+  $unknown;
+
+  factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductStyleChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductStyleChoices(this);
+}
+
+String toJson$Enum$ProductsProductStyleChoices(
+    Enum$ProductsProductStyleChoices e) {
+  switch (e) {
+    case Enum$ProductsProductStyleChoices.WORKWEAR:
+      return r'WORKWEAR';
+    case Enum$ProductsProductStyleChoices.WORKOUT:
+      return r'WORKOUT';
+    case Enum$ProductsProductStyleChoices.CASUAL:
+      return r'CASUAL';
+    case Enum$ProductsProductStyleChoices.PARTY_DRESS:
+      return r'PARTY_DRESS';
+    case Enum$ProductsProductStyleChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
+    String value) {
+  switch (value) {
+    case r'WORKWEAR':
+      return Enum$ProductsProductStyleChoices.WORKWEAR;
+    case r'WORKOUT':
+      return Enum$ProductsProductStyleChoices.WORKOUT;
+    case r'CASUAL':
+      return Enum$ProductsProductStyleChoices.CASUAL;
+    case r'PARTY_DRESS':
+      return Enum$ProductsProductStyleChoices.PARTY_DRESS;
+    default:
+      return Enum$ProductsProductStyleChoices.$unknown;
+  }
+}
+
 enum Enum$SizeEnum {
   XS,
   S,
@@ -976,6 +1054,49 @@ Enum$SizeEnum fromJson$Enum$SizeEnum(String value) {
       return Enum$SizeEnum.ONE_SIZE;
     default:
       return Enum$SizeEnum.$unknown;
+  }
+}
+
+enum Enum$StyleEnum {
+  WORKWEAR,
+  WORKOUT,
+  CASUAL,
+  PARTY_DRESS,
+  $unknown;
+
+  factory Enum$StyleEnum.fromJson(String value) =>
+      fromJson$Enum$StyleEnum(value);
+
+  String toJson() => toJson$Enum$StyleEnum(this);
+}
+
+String toJson$Enum$StyleEnum(Enum$StyleEnum e) {
+  switch (e) {
+    case Enum$StyleEnum.WORKWEAR:
+      return r'WORKWEAR';
+    case Enum$StyleEnum.WORKOUT:
+      return r'WORKOUT';
+    case Enum$StyleEnum.CASUAL:
+      return r'CASUAL';
+    case Enum$StyleEnum.PARTY_DRESS:
+      return r'PARTY_DRESS';
+    case Enum$StyleEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$StyleEnum fromJson$Enum$StyleEnum(String value) {
+  switch (value) {
+    case r'WORKWEAR':
+      return Enum$StyleEnum.WORKWEAR;
+    case r'WORKOUT':
+      return Enum$StyleEnum.WORKOUT;
+    case r'CASUAL':
+      return Enum$StyleEnum.CASUAL;
+    case r'PARTY_DRESS':
+      return Enum$StyleEnum.PARTY_DRESS;
+    default:
+      return Enum$StyleEnum.$unknown;
   }
 }
 

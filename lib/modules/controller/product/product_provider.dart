@@ -20,8 +20,7 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 //   return result.reversed.toList();
 // });
 
-final searchProductProvider =
-    FutureProvider.family<List<Product>, String?>((ref, query) async {
+final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getAllProducts(search: query);
@@ -29,8 +28,7 @@ final searchProductProvider =
   return result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
 });
 
-final toggleLikeProductProvider =
-    FutureProvider.autoDispose.family<bool, int>((ref, query) async {
+final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
   final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
@@ -38,8 +36,7 @@ final toggleLikeProductProvider =
   return result!;
 });
 
-final userProduct =
-    FutureProvider.family<List<Product>, String?>((ref, username) async {
+final userProduct = FutureProvider.family<List<Product>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getUserProduct(username: username, pageCount: 100);
@@ -70,8 +67,7 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
-final similarProductsProvider =
-    FutureProvider.family<List<Product>, int>((ref, id) async {
+final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, id) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.similarProduct(productId: id);
@@ -79,8 +75,7 @@ final similarProductsProvider =
   return result;
 });
 
-final productProvider =
-    AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
+final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
 class _ProductProvider extends AsyncNotifier<void> {
   late final _productRepo = ref.read(productRepo);
@@ -92,8 +87,8 @@ class _ProductProvider extends AsyncNotifier<void> {
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
-      onUploadProgress: (sent, total) =>
-          log('${sent / total}%', name: 'FileUpload'),
+      Enum$FileTypeEnum.PRODUCT,
+      onUploadProgress: (sent, total) => log('${sent / total}%', name: 'FileUpload'),
     );
 
     if (upload == null) throw 'Failed to upload images.';
@@ -115,6 +110,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     int? brandId,
     List<String>? color,
     List<int>? materials,
+    Enum$StyleEnum? style,
   }) async {
     state = const AsyncLoading();
 
@@ -122,20 +118,20 @@ class _ProductProvider extends AsyncNotifier<void> {
       final files = await _uploadMedia(images);
       await _productRepo.createProduct(
         Variables$Mutation$CreateProduct(
-          category: category,
-          subCategory: subCategory,
-          condition: condition,
-          description: desc,
-          imageUrl: files,
-          price: price,
-          size: size,
-          name: title,
-          parcelSize: parcelSize,
-          discount: discount,
-          brand: brandId,
-          color: color,
-          materials: materials,
-        ),
+            category: category,
+            subCategory: subCategory,
+            condition: condition,
+            description: desc,
+            imageUrl: files,
+            price: price,
+            size: size,
+            name: title,
+            parcelSize: parcelSize,
+            discount: discount,
+            brand: brandId,
+            color: color,
+            materials: materials,
+            style: style),
       );
       ref.invalidate(userProduct);
       ref.invalidate(allProductProvider);
@@ -156,6 +152,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     int? brandId,
     List<String>? color,
     List<int>? materials,
+    Enum$StyleEnum? style,
   }) async {
     state = const AsyncLoading();
 
@@ -176,6 +173,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           brand: brandId,
           color: color,
           materials: materials,
+          style: style,
         ),
       );
       ref.invalidate(userProduct);
@@ -213,6 +211,7 @@ final colorsProvider = Provider((ref) {
     "Black": Colors.black,
     "Brown": Colors.brown,
     "Grey": Colors.grey,
+    "White": Colors.white,
     "Beige": const Color(0xFFF5F5DC),
     "Pink": Colors.pink,
     "Purple": Colors.purple,
@@ -226,13 +225,9 @@ final colorsProvider = Provider((ref) {
   return colorOptions;
 });
 
-final filterProductByPriceProvider = AsyncNotifierProvider.family<
-    _FilteredProductController,
-    List<Product>,
-    double>(_FilteredProductController.new);
+final filterProductByPriceProvider = AsyncNotifierProvider.family<_FilteredProductController, List<Product>, double>(_FilteredProductController.new);
 
-class _FilteredProductController
-    extends FamilyAsyncNotifier<List<Product>, double> {
+class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, double> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -260,14 +255,12 @@ class _FilteredProductController
 
     _brandTotalItems = result.filterProductsByPriceTotalNumber!;
 
-    final newState =
-        result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty &&
-          newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -309,9 +302,12 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
   },
 );
 
-final allProductProvider = AsyncNotifierProvider.family<_AllProductController, List<Product>, String?>(_AllProductController.new);
+/// boolean flag for when paginating home page
+final paginatingHome = StateProvider((ref) => false);
 
-class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> {
+final allProductProvider = AsyncNotifierProvider.family.autoDispose<_AllProductController, List<Product>, String?>(_AllProductController.new);
+
+class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -329,7 +325,6 @@ class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> 
   }
 
   Future<void> _getProducts({String? query, int? pageNumber}) async {
-    // final sort = ref.watch(sortAllServiceProvider);
     final result = await _repository.getAllProducts(
       search: query,
       pageCount: _pageCount,
@@ -338,14 +333,12 @@ class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> 
 
     _brandTotalItems = result.allProductsTotalNumber!;
 
-    final newState =
-        result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty &&
-          newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -358,10 +351,12 @@ class _AllProductController extends FamilyAsyncNotifier<List<Product>, String?> 
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
 
     if (canLoadMore) {
+      ref.read(paginatingHome.notifier).state = true;
       await _getProducts(
         query: _query,
         pageNumber: _currentPage + 1,
       );
+      ref.read(paginatingHome.notifier).state = false;
     }
   }
 

@@ -96,6 +96,11 @@ type DeleteProduct {
 """
 scalar ExpectedErrorType
 
+enum FileTypeEnum {
+  PRODUCT
+  PROFILE_PICTURE
+}
+
 type FollowUser {
   success: Boolean
 }
@@ -151,8 +156,9 @@ type LogoutMutation {
 }
 
 type Mutation {
-  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, subCategory: Int!): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, subCategory: Int): UpdateProduct
+  upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
+  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
@@ -471,6 +477,21 @@ enum ProductsProductStatusChoices {
   SOLD
 }
 
+"""An enumeration."""
+enum ProductsProductStyleChoices {
+  """Workwear"""
+  WORKWEAR
+
+  """Workout"""
+  WORKOUT
+
+  """Casual"""
+  CASUAL
+
+  """Party dress"""
+  PARTY_DRESS
+}
+
 type ProductType {
   id: ID!
   name: String!
@@ -479,6 +500,7 @@ type ProductType {
   category: CategoryType
   subCategory: SubCategoryType
   size: ProductsProductSizeChoices
+  style: ProductsProductStyleChoices
   parcelSize: ProductsProductParcelSizeChoices
   condition: ProductsProductConditionChoices
   price: Decimal!
@@ -567,6 +589,13 @@ enum SizeEnum {
   ONE_SIZE
 }
 
+enum StyleEnum {
+  WORKWEAR
+  WORKOUT
+  CASUAL
+  PARTY_DRESS
+}
+
 type SubCategoryType {
   id: Int
   name: String
@@ -597,6 +626,18 @@ type UpdateUserMutation {
   user: UserType
   token: String
   restToken: String
+}
+
+"""
+Create scalar that ignores normal serialization/deserialization, since
+that will be handled by the multipart request spec
+"""
+scalar Upload
+
+type UploadPictures {
+  baseUrl: String
+  data: [JSONString]
+  success: Boolean
 }
 
 type UserNode implements Node {

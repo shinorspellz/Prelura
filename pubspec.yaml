@@ -37,8 +37,11 @@ dependencies:
   flutter_dotenv: ^5.0.2
 
   graphql:
+  gql_dio_link: ^1.0.1+1
+  dio:
   rxdart:
   http:
+  talker_dio_logger:
   cached_network_image: ^3.4.1
 
 dev_dependencies:

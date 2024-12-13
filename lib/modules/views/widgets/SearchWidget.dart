@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
-import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/core/utils/debouncer.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
 class Searchwidget extends StatefulWidget {
@@ -80,6 +80,8 @@ class _SearchwidgetState extends State<Searchwidget> {
   bool showCancel = false;
   bool showText = false;
 
+  final _debouncer = Debouncer(1000);
+
   @override
   initState() {
     super.initState();
@@ -87,10 +89,7 @@ class _SearchwidgetState extends State<Searchwidget> {
     suffixIconII = widget.suffixIcon ??
         InkResponse(
           onTap: () {},
-          child: Container(
-              color: Colors.amber,
-              padding: const EdgeInsets.all(5),
-              child: const Icon(Icons.close_rounded)),
+          child: Container(color: Colors.amber, padding: const EdgeInsets.all(5), child: const Icon(Icons.close_rounded)),
         );
 
     if (widget.focusNode == null) {
@@ -185,13 +184,13 @@ class _SearchwidgetState extends State<Searchwidget> {
                 maxLength: widget.maxLength,
                 onSaved: widget.onSaved,
                 enabled: widget.enabled,
-                textCapitalization:
-                    widget.textCapitalization ?? TextCapitalization.none,
+                textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
                 onTap: widget.onTap,
                 onTapOutside: widget.onTapOutside,
                 focusNode: widget.focusNode ?? focusNodeZZZ,
                 onChanged: (text) {
-                  if (widget.onChanged != null) widget.onChanged!(text);
+                  _debouncer.run(() => widget.onChanged?.call(text));
+
                   _hasText = text.isNotEmpty;
                   setState(() {});
                 },
@@ -199,10 +198,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                 keyboardType: widget.keyboardType,
                 obscureText: widget.obscureText,
                 obscuringCharacter: '●',
-                inputFormatters: [
-                  widget.formatter ??
-                      FilteringTextInputFormatter.singleLineFormatter
-                ],
+                inputFormatters: [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: widget.validator,
@@ -218,9 +214,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(
-                      color: context.isDarkMode
-                          ? Colors.grey[400]!
-                          : Theme.of(context).dividerColor,
+                      color: context.isDarkMode ? Colors.grey[400]! : Theme.of(context).dividerColor,
                       width: 1.5,
                     ),
                   ),
@@ -242,9 +236,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                             if (showCancel) clearText();
                           },
                           child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(100)),
+                              decoration: BoxDecoration(color: Colors.black.withOpacity(0.3), borderRadius: BorderRadius.circular(100)),
                               padding: const EdgeInsets.all(3),
                               child: const Icon(
                                 Icons.close_rounded,
@@ -254,8 +246,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                         )
                       : const SizedBox.shrink(),
                   // suffixIcon: _hasText ? suffixIconII : null,
-                  suffixIconConstraints:
-                      const BoxConstraints(maxHeight: 20, maxWidth: 24),
+                  suffixIconConstraints: const BoxConstraints(maxHeight: 20, maxWidth: 24),
 
                   prefixIcon: Icon(
                     Icons.search,
@@ -269,12 +260,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   isDense: true,
                   counterText: "",
                   hintText: widget.hintText,
-                  hintStyle: widget.hintStyle ??
-                      Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.5),
-                          fontSize: 11.sp,
-                          overflow: TextOverflow.clip),
+                  hintStyle: widget.hintStyle ?? Theme.of(context).textTheme.labelLarge!.copyWith(color: Theme.of(context).primaryColor.withOpacity(0.5), fontSize: 11.sp, overflow: TextOverflow.clip),
                   contentPadding: const EdgeInsets.fromLTRB(10, 13, 14.5, 8),
                 ),
               ),
@@ -288,9 +274,7 @@ class _SearchwidgetState extends State<Searchwidget> {
             color: Colors.transparent,
             alignment: Alignment.centerRight,
             duration: const Duration(milliseconds: 150),
-            padding: showCancel
-                ? const EdgeInsets.fromLTRB(15, 0, 0, 0)
-                : EdgeInsets.zero,
+            padding: showCancel ? const EdgeInsets.fromLTRB(15, 0, 0, 0) : EdgeInsets.zero,
             // margin: const EdgeInsets.only(bottom: 10),
             child: GestureDetector(
               onTap: () {
@@ -308,9 +292,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                     Expanded(
                       child: Text(
                         "Cancel",
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: PreluraColors.primaryColor),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold, color: PreluraColors.primaryColor),
                       ),
                     ),
                 ],

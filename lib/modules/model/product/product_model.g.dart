@@ -45,6 +45,9 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       materials: (json['materials'] as List<dynamic>?)
           ?.map((e) => Material.fromJson(e as Map<String, dynamic>))
           .toList(),
+      style: json['style'] == null
+          ? null
+          : Enum$StyleEnum.fromJson(json['style'] as String),
     );
 
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
@@ -70,6 +73,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'color': instance.color,
       'brand': instance.brand,
       'materials': instance.materials,
+      'style': instance.style,
     };
 
 const _$ConditionsEnumEnumMap = {
