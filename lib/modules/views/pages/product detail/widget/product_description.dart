@@ -48,19 +48,27 @@ class ProductDescription extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    ref.read(isDescriptionExpandedProvider.notifier).state = !isDescriptionExpanded;
+                    ref.read(isDescriptionExpandedProvider.notifier).state =
+                        !isDescriptionExpanded;
                   },
                   child: Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: isDescriptionExpanded ? product.description : truncatedDescription,
+                          text: isDescriptionExpanded
+                              ? product.description
+                              : truncatedDescription,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         if (shouldShowSeeMore)
                           TextSpan(
-                            text: isDescriptionExpanded ? " See less" : " See more",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            text: isDescriptionExpanded
+                                ? " See less"
+                                : " See more",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -78,8 +86,10 @@ class ProductDescription extends ConsumerWidget {
             height: 2,
             thickness: 1,
           ),
-          if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
-          if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
+          if (product.category != null)
+            _buildInfoRow("Category", product.category!.name, context),
+          if (product.subCategory != null)
+            _buildInfoRow("Sub Category", product.subCategory!.name, context),
           // if (product.brand != null)
           //   _buildInfoRow("Brand", product.brand!.name, context,
           //       style: context.textTheme.labelLarge?.copyWith(
@@ -93,10 +103,14 @@ class ProductDescription extends ConsumerWidget {
                 context,
               ),
 
-          if (product.size != null) _buildInfoRow("Size", product.size!.name.replaceAll('_', ' '), context),
-          if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
+          if (product.size != null)
+            _buildInfoRow(
+                "Size", product.size!.name.replaceAll('_', ' '), context),
+          if (product.condition != null)
+            _buildInfoRow("Condition", product.condition!.simpleName, context),
           _buildInfoRow("Views", product.views.toString(), context),
-          _buildInfoRow("Uploaded", DateFormat.yMMMMEEEEd().format(product.createdAt), context),
+          _buildInfoRow("Uploaded",
+              DateFormat.yMMMMEEEEd().format(product.createdAt), context),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
@@ -117,7 +131,8 @@ class ProductDescription extends ConsumerWidget {
                 ),
                 Text(
                   "Postage: From £${dummy.postageCost.toStringAsFixed(2)}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500, color: Colors.purple),
                 ),
               ],
             ),
@@ -230,7 +245,8 @@ class ProductDescription extends ConsumerWidget {
     return description;
   }
 
-  Widget _buildInfoRow(String label, String value, context, {TextStyle? style}) {
+  Widget _buildInfoRow(String label, String value, context,
+      {TextStyle? style}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
       decoration: BoxDecoration(
@@ -251,7 +267,11 @@ class ProductDescription extends ConsumerWidget {
           ),
           Text(
             value,
-            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(),
+            style: style ??
+                Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: PreluraColors.greyColor),
           ),
         ],
       ),

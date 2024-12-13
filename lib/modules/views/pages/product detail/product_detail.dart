@@ -27,6 +27,7 @@ import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
 import '../../../../res/images.dart';
 import '../../../../shared/card_model.dart';
+import '../../shimmers/product_details_shimmer.dart';
 import '../../widgets/card.dart';
 
 @RoutePage()
@@ -80,6 +81,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     return Scaffold(
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
+              return ProductDetailsShimmer();
               bool isCurrentUser = product.seller.username ==
                   ref.read(userProvider).valueOrNull?.username;
 
@@ -358,42 +360,24 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                             ),
                                           ),
                                         ),
-                                        if (isCurrentUser)
-                                          InkWell(
-                                            onTap: () {
-                                              HapticFeedback.lightImpact();
+                                        InkWell(
+                                          onTap: () {
+                                            HapticFeedback.lightImpact();
+                                            if (isCurrentUser) {
                                               showOptionModal();
-                                            },
-                                            child: CircleAvatar(
-                                              backgroundColor: PreluraColors
-                                                  .black
-                                                  .withOpacity(0.2),
-                                              child: Icon(
-                                                Icons.more_vert_rounded,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                              ),
-                                            ),
-                                          )
-                                        else
-                                          InkWell(
-                                            onTap: () {
-                                              HapticFeedback.lightImpact();
+                                            } else {
                                               showOtherOptionModal();
-                                            },
-                                            child: CircleAvatar(
-                                              backgroundColor: PreluraColors
-                                                  .black
-                                                  .withOpacity(0.2),
-                                              child: Icon(
-                                                Icons.more_vert_rounded,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                              ),
+                                            }
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor: PreluraColors.black
+                                                .withOpacity(0.2),
+                                            child: Icon(
+                                              Icons.more_vert_rounded,
+                                              color: PreluraColors.white,
                                             ),
-                                          )
+                                          ),
+                                        )
                                       ],
                                     ),
                                   )),
@@ -519,9 +503,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 ],
               ),
             ),
-            loading: () => const LoadingWidget(
-              height: 50,
-            ),
+            loading: () => ProductDetailsShimmer(),
           ),
     );
   }

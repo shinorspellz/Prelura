@@ -328,7 +328,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           controller: titleController,
                           // textInputAction: TextInputActio,
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                         PreluraAuthTextField(
                           label: 'Describe your item',
                           textInputAction: TextInputAction.newline,
@@ -357,11 +357,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         ),
                       ],
                     )),
-                const SizedBox(height: 16),
+                // const SizedBox(height: 8),
                 MenuCard(
                   title: "Category",
                   subtitle: state.subCategory?.name ?? state.category?.name,
                   rightArrow: false,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const CategoryRoute());
                   },
@@ -370,6 +371,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   title: 'Brand',
                   rightArrow: false,
                   subtitle: state.brand?.name,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const BrandSelectionRoute());
                   },
@@ -380,6 +382,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     title: 'Size',
                     rightArrow: false,
                     subtitle: state.size?.name.replaceAll('_', ' '),
+                    subtitleColor: PreluraColors.greyColor,
                     onTap: () {
                       context.router.push(const SizeSelectionRoute());
                     },
@@ -395,6 +398,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   title: 'Condition',
                   rightArrow: false,
                   subtitle: state.selectedCondition?.simpleName,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const ConditionRoute());
                   },
@@ -402,6 +406,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Colours',
                   subtitle: state.selectedColors.join(', '),
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const ColorSelectorRoute());
                   },
@@ -411,12 +416,14 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   onTap: () {
                     context.router.push(const MaterialSelectionRoute());
                   },
+                  subtitleColor: PreluraColors.greyColor,
                   subtitle:
                       '${state.selectedMaterials.map((e) => e.name).take(2).join(', ')} ${state.selectedMaterials.length > 2 ? '...' : ''}',
                 ),
                 MenuCard(
                   title: 'Price',
                   subtitle: state.price,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const PriceRoute());
                   },
@@ -424,6 +431,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Parcel Size',
                   subtitle: state.parcel?.name,
+                  subtitleColor: PreluraColors.greyColor,
                   rightArrow: false,
                   onTap: () {
                     context.router.push(const ParcelRoute());

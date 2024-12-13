@@ -81,8 +81,10 @@ class UIConstants {
       border: InputBorder.none,
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: context.isDarkMode ? Colors.grey[400]! : Colors.black,
-            width: 1,
+            color: context.isDarkMode
+                ? Colors.grey[400]!
+                : Colors.black.withOpacity(0.8),
+            width: 1.25,
           ),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
@@ -90,17 +92,18 @@ class UIConstants {
           borderSide: BorderSide(
             color: context.isDarkMode
                 ? Colors.grey[400]!
-                : Colors.black, //Theme.of(context).primaryColor,
-            width: 1,
+                : Colors.black
+                    .withOpacity(0.8), //Theme.of(context).primaryColor,
+            width: 1.25,
           ),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderSide: const BorderSide(color: Colors.red, width: 1.25),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderSide: const BorderSide(color: Colors.red, width: 1.25),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
     );
