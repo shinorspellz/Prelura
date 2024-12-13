@@ -268,9 +268,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               if (!isCurrentUser) {
                                 print("running");
                                 print(user!.id);
-                                final result =
-                                    await ref.read(followUserProvider(user.id));
-                                if (result == true) {
+                                final result = await ref.refresh(
+                                    followUserProvider(user.id).future);
+                                print("result is ${result}");
+                                if (result) {
                                   context.alert("Following ${user.username}");
                                 }
                               }

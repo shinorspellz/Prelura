@@ -36,6 +36,7 @@ mixin _$UserModel {
   int? get listing => throw _privateConstructorUsedError;
   PhoneModel? get phone => throw _privateConstructorUsedError;
   LocationInputType? get location => throw _privateConstructorUsedError;
+  bool? get isFollowing => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -68,7 +69,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? fullName,
       int? listing,
       PhoneModel? phone,
-      LocationInputType? location});
+      LocationInputType? location,
+      bool? isFollowing});
 
   $PhoneModelCopyWith<$Res>? get phone;
   $LocationInputTypeCopyWith<$Res>? get location;
@@ -105,6 +107,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? listing = freezed,
     Object? phone = freezed,
     Object? location = freezed,
+    Object? isFollowing = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -171,6 +174,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationInputType?,
+      isFollowing: freezed == isFollowing
+          ? _value.isFollowing
+          : isFollowing // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -227,7 +234,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? fullName,
       int? listing,
       PhoneModel? phone,
-      LocationInputType? location});
+      LocationInputType? location,
+      bool? isFollowing});
 
   @override
   $PhoneModelCopyWith<$Res>? get phone;
@@ -264,6 +272,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? listing = freezed,
     Object? phone = freezed,
     Object? location = freezed,
+    Object? isFollowing = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -330,6 +339,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationInputType?,
+      isFollowing: freezed == isFollowing
+          ? _value.isFollowing
+          : isFollowing // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -353,7 +366,8 @@ class _$UserModelImpl implements _UserModel {
       this.fullName,
       this.listing,
       this.phone,
-      this.location});
+      this.location,
+      this.isFollowing});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -390,10 +404,12 @@ class _$UserModelImpl implements _UserModel {
   final PhoneModel? phone;
   @override
   final LocationInputType? location;
+  @override
+  final bool? isFollowing;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isFollowing: $isFollowing)';
   }
 
   @override
@@ -425,7 +441,9 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.listing, listing) || other.listing == listing) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.location, location) ||
-                other.location == location));
+                other.location == location) &&
+            (identical(other.isFollowing, isFollowing) ||
+                other.isFollowing == isFollowing));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -447,7 +465,8 @@ class _$UserModelImpl implements _UserModel {
       fullName,
       listing,
       phone,
-      location);
+      location,
+      isFollowing);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -482,7 +501,8 @@ abstract class _UserModel implements UserModel {
       final String? fullName,
       final int? listing,
       final PhoneModel? phone,
-      final LocationInputType? location}) = _$UserModelImpl;
+      final LocationInputType? location,
+      final bool? isFollowing}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -519,6 +539,8 @@ abstract class _UserModel implements UserModel {
   PhoneModel? get phone;
   @override
   LocationInputType? get location;
+  @override
+  bool? get isFollowing;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

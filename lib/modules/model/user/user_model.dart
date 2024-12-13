@@ -23,6 +23,7 @@ class UserModel with _$UserModel {
     int? listing,
     PhoneModel? phone,
     LocationInputType? location,
+    bool? isFollowing,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

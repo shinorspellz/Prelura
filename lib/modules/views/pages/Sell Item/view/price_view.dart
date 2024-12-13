@@ -92,13 +92,15 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
           padding:
               const EdgeInsets.only(top: 16, bottom: 46, left: 16, right: 16),
           child: AppButton(
-            onTap: priceState != null
+            onTap: priceState != null && priceState.isNotEmpty
                 ? () {
+                    print("Price: $priceState");
                     // Pass the data back or proceed to the next screen
                     Navigator.pop(context);
                   }
                 : null,
-            isDisabled: priceState!.isEmpty,
+            bgColor: PreluraColors.primaryColor,
+            isDisabled: priceState == null || priceState.isEmpty,
             text: "Done",
           ),
         ),

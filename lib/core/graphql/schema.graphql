@@ -647,6 +647,7 @@ type UserType {
   bio: String
   location: LocationType
   profilePictureUrl: String
+  thumbnailUrl: String
   gender: String
   displayName: String
   dob: DateTime
@@ -655,5 +656,6 @@ type UserType {
   fullName: String
   phone: PhoneType
   listing: Int
+  isFollowing: Boolean
 }
 

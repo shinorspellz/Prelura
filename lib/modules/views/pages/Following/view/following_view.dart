@@ -56,54 +56,60 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: "Followers",
+        appbarTitle: "Following",
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => AutoRouter.of(context).popForced(),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0),
-        child: Column(
-          children: [
-            // Search Input
-            Searchwidget(
-              controller: _searchController,
-              obscureText: false,
-              shouldReadOnly: false,
-              enabled: true,
-              showInputBorder: true,
-              autofocus: false,
-              cancelButton: true,
-              hintText: "Enter a name or keyword",
-            ),
-            const SizedBox(height: 16),
-            // Result Section
-            Expanded(
-              child: following.when(
-                data: (followersList) {
-                  if (followersList.isEmpty) {
-                    return const Center(child: Text("No Connections Yet."));
-                  }
-                  return ListView.builder(
-                    itemCount: followersList.length,
-                    itemBuilder: (context, index) {
-                      final user = followersList[index];
-                      return FollowerTile(
-                        follower: user,
-                        isFollowing: true,
-                      );
-                    },
-                  );
-                },
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (error, stackTrace) {
-                  return Center(child: Text("Error: ${error.toString()}"));
-                },
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.refresh(followingProvider(ref.read(_queryProvider)));
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Column(
+            children: [
+              // Search Input
+              Searchwidget(
+                controller: _searchController,
+                obscureText: false,
+                shouldReadOnly: false,
+                enabled: true,
+                showInputBorder: true,
+                autofocus: false,
+                cancelButton: true,
+                hintText: "Enter a name or keyword",
               ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              // Result Section
+              Expanded(
+                child: following.when(
+                  data: (followersList) {
+                    if (followersList.isEmpty) {
+                      return const Center(child: Text("No Connections Yet."));
+                    }
+                    return ListView.builder(
+                      itemCount: followersList.length,
+                      itemBuilder: (context, index) {
+                        final user = followersList[index];
+                        return FollowerTile(
+                          follower: user,
+                          isFollowing: true,
+                        );
+                      },
+                    );
+                  },
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (error, stackTrace) {
+                    return Center(child: Text("Error: ${error.toString()}"));
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
