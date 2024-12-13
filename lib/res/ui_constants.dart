@@ -42,8 +42,13 @@ class UIConstants {
       label: labelText != null
           ? Text(labelText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 14, height: 1.7, color: PreluraColors.activeColor))
+                  fontSize: 16, height: 1.7, color: PreluraColors.activeColor))
           : null,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
+      floatingLabelStyle: Theme.of(context)
+          .textTheme
+          .bodyMedium!
+          .copyWith(fontSize: 19, color: PreluraColors.black),
       enabled: enabled,
       fillColor: Theme.of(context).buttonTheme.colorScheme!.secondary,
       filled: false,
@@ -83,7 +88,7 @@ class UIConstants {
           borderSide: BorderSide(
             color: context.isDarkMode
                 ? Colors.grey[400]!
-                : Colors.black.withOpacity(0.8),
+                : Colors.red.withOpacity(0.8),
             width: 1.25,
           ),
           borderRadius:
@@ -92,8 +97,8 @@ class UIConstants {
           borderSide: BorderSide(
             color: context.isDarkMode
                 ? Colors.grey[400]!
-                : Colors.black
-                    .withOpacity(0.8), //Theme.of(context).primaryColor,
+                : Theme.of(context)
+                    .dividerColor, //Theme.of(context).primaryColor,
             width: 1.25,
           ),
           borderRadius:

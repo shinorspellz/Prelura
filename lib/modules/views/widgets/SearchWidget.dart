@@ -220,7 +220,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                     borderSide: BorderSide(
                       color: context.isDarkMode
                           ? Colors.grey[400]!
-                          : Colors.black.withOpacity(0.8),
+                          : Theme.of(context).dividerColor,
                       width: 1.5,
                     ),
                   ),
