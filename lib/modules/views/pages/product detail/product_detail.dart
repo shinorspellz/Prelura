@@ -81,7 +81,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     return Scaffold(
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
-              return ProductDetailsShimmer();
+              // return ProductDetailsShimmer();
               bool isCurrentUser = product.seller.username ==
                   ref.read(userProvider).valueOrNull?.username;
 
