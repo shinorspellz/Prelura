@@ -18,6 +18,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/render_svg.dart';
+import '../../../widgets/full_screen_image.dart';
 import '../../auth_page.dart';
 import '../provider/brand_provider.dart';
 import '../provider/parcel_provider.dart';
@@ -166,7 +167,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               Icon(
                                 Icons.add_circle,
                                 size: 48.sp,
-                                color: PreluraColors.grey,
+                                color: PreluraColors.primaryColor,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -178,24 +179,6 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                     'Add up to 20 photos.',
                                     style: TextStyle(
                                         color: Colors.grey, fontSize: 14),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "See more photo tips",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10.sp,
-                                          color: PreluraColors.activeColor,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor:
-                                              PreluraColors.activeColor,
-                                          decorationThickness: 2,
-                                        ),
                                   ),
                                 ],
                               ),
@@ -233,45 +216,58 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 });
                               },
                               children: state.images
-                                  .map((image) => Container(
-                                        key: ValueKey(image),
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 5),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: Colors.transparent),
-                                        child: Stack(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(
-                                                  8), // Match the Container's border radius
-                                              child: Image.file(
-                                                File(image.path),
-                                                fit: BoxFit.cover,
-                                                height: 142,
-                                                width: 100,
-                                              ),
+                                  .map((image) => GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (_) => FullScreenImage(
+                                                  imageUrl:
+                                                      'https://example.com/your-image.jpg'),
                                             ),
-                                            if (state.images.contains(image))
-                                              Align(
-                                                alignment: Alignment.bottomLeft,
-                                                child: IconButton(
-                                                    //use VIcons here
-                                                    icon: RenderSvg(
-                                                      // svgPath: VIcons.trashIcon,
-                                                      svgPath: PreluraIcons
-                                                          .removeIcon,
+                                          );
+                                        },
+                                        child: Container(
+                                          key: ValueKey(image),
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              color: Colors.transparent),
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius: BorderRadius.circular(
+                                                    8), // Match the Container's border radius
+                                                child: Image.file(
+                                                  File(image.path),
+                                                  fit: BoxFit.cover,
+                                                  height: 142,
+                                                  width: 100,
+                                                ),
+                                              ),
+                                              if (state.images.contains(image))
+                                                Align(
+                                                  alignment:
+                                                      Alignment.bottomLeft,
+                                                  child: IconButton(
+                                                      //use VIcons here
+                                                      icon: RenderSvg(
+                                                        // svgPath: VIcons.trashIcon,
+                                                        svgPath: PreluraIcons
+                                                            .removeIcon,
+                                                        color:
+                                                            PreluraColors.white,
+                                                      ),
                                                       color:
                                                           PreluraColors.white,
-                                                    ),
-                                                    color: PreluraColors.white,
-                                                    onPressed: () {
-                                                      notifier
-                                                          .deleteImage(image);
-                                                    }),
-                                              ),
-                                          ],
+                                                      onPressed: () {
+                                                        notifier
+                                                            .deleteImage(image);
+                                                      }),
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                       ))
                                   .toList(),

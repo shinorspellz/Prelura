@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contentsize_tabbarview/contentsize_tabbarview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -359,7 +360,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                         ),
                                         if (isCurrentUser)
                                           InkWell(
-                                            onTap: () => showOptionModal(),
+                                            onTap: () {
+                                              HapticFeedback.lightImpact();
+                                              showOptionModal();
+                                            },
                                             child: CircleAvatar(
                                               backgroundColor: PreluraColors
                                                   .black
@@ -374,7 +378,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                           )
                                         else
                                           InkWell(
-                                            onTap: () => showOtherOptionModal(),
+                                            onTap: () {
+                                              HapticFeedback.lightImpact();
+                                              showOtherOptionModal();
+                                            },
                                             child: CircleAvatar(
                                               backgroundColor: PreluraColors
                                                   .black
@@ -467,7 +474,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               trailingIcon: [
                                 if (isCurrentUser) ...[
                                   IconButton(
-                                      onPressed: () => showOptionModal(),
+                                      onPressed: () {
+                                        HapticFeedback.lightImpact();
+                                        showOptionModal();
+                                      },
                                       icon: Icon(
                                         Icons.more_vert_rounded,
                                         color:
@@ -475,7 +485,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                       )),
                                 ] else
                                   IconButton(
-                                      onPressed: () => showOtherOptionModal(),
+                                      onPressed: () {
+                                        HapticFeedback.lightImpact();
+                                        showOtherOptionModal();
+                                      },
                                       icon: Icon(
                                         Icons.more_vert_rounded,
                                         color:
