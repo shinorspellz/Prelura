@@ -19,6 +19,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/render_svg.dart';
+import '../../../widgets/full_screen_image.dart';
 import '../../auth_page.dart';
 import '../provider/brand_provider.dart';
 import '../provider/parcel_provider.dart';
@@ -165,7 +166,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               Icon(
                                 Icons.add_circle,
                                 size: 48.sp,
-                                color: PreluraColors.grey,
+                                color: PreluraColors.primaryColor,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -176,20 +177,6 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   const Text(
                                     'Add up to 20 photos.',
                                     style: TextStyle(color: Colors.grey, fontSize: 14),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    "See more photo tips",
-                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10.sp,
-                                          color: PreluraColors.activeColor,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor: PreluraColors.activeColor,
-                                          decorationThickness: 2,
-                                        ),
                                   ),
                                 ],
                               ),
@@ -227,38 +214,58 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 });
                               },
                               children: state.images
-                                  .map((image) => Container(
+                                  .map((image) => Row(
                                         key: ValueKey(image),
-                                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.transparent),
-                                        child: Stack(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(8), // Match the Container's border radius
-                                              child: Image.file(
-                                                File(image.path),
-                                                fit: BoxFit.cover,
-                                                height: 142,
-                                                width: 100,
+                                        children: [
+                                          GestureDetector(
+                                            key: ValueKey(image),
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) => FullScreenImage(imagePath: image.path),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              key: ValueKey(image),
+                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.transparent.withOpacity(0.1)),
+                                              child: Stack(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(8), // Match the Container's border radius
+                                                    child: Image.file(
+                                                      File(image.path),
+                                                      fit: BoxFit.cover,
+                                                      height: 142,
+                                                      width: 100,
+                                                    ),
+                                                  ),
+                                                  if (state.images.contains(image))
+                                                    Positioned(
+                                                      bottom: 5,
+                                                      right: 5,
+                                                      child: Align(
+                                                        alignment: Alignment.bottomRight,
+                                                        child: InkWell(
+                                                            child: Icon(
+                                                              Icons.cancel_rounded,
+                                                              color: PreluraColors.greyColor,
+                                                              fill: 1,
+                                                            ),
+                                                            onTap: () {
+                                                              notifier.deleteImage(image);
+                                                            }),
+                                                      ),
+                                                    ),
+                                                ],
                                               ),
                                             ),
-                                            if (state.images.contains(image))
-                                              Align(
-                                                alignment: Alignment.bottomLeft,
-                                                child: IconButton(
-                                                    //use VIcons here
-                                                    icon: RenderSvg(
-                                                      // svgPath: VIcons.trashIcon,
-                                                      svgPath: PreluraIcons.removeIcon,
-                                                      color: PreluraColors.white,
-                                                    ),
-                                                    color: PreluraColors.white,
-                                                    onPressed: () {
-                                                      notifier.deleteImage(image);
-                                                    }),
-                                              ),
-                                          ],
-                                        ),
+                                          ),
+                                          // SizedBox(
+                                          //   width: 6,
+                                          // ),
+                                        ],
                                       ))
                                   .toList(),
                             ),
@@ -272,7 +279,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                     color: Colors.grey[400],
                                   ),
                                   child: Center(
-                                    child: Icon(Icons.add_circle, size: 32.sp),
+                                    child: Icon(Icons.add_circle, size: 32.sp, color: PreluraColors.primaryColor),
                                   )),
                             )
                           ],
@@ -295,7 +302,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           controller: titleController,
                           // textInputAction: TextInputActio,
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 8),
                         PreluraAuthTextField(
                           label: 'Describe your item',
                           textInputAction: TextInputAction.newline,
@@ -316,11 +323,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         ),
                       ],
                     )),
-                const SizedBox(height: 16),
+                // const SizedBox(height: 8),
                 MenuCard(
                   title: "Category",
                   subtitle: state.subCategory?.name ?? state.category?.name,
                   rightArrow: false,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const CategoryRoute());
                   },
@@ -329,6 +337,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   title: 'Brand',
                   rightArrow: false,
                   subtitle: state.brand?.name,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const BrandSelectionRoute());
                   },
@@ -339,6 +348,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     title: 'Size',
                     rightArrow: false,
                     subtitle: state.size?.name.replaceAll('_', ' '),
+                    subtitleColor: PreluraColors.greyColor,
                     onTap: () {
                       context.router.push(const SizeSelectionRoute());
                     },
@@ -354,6 +364,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   title: 'Condition',
                   rightArrow: false,
                   subtitle: state.selectedCondition?.simpleName,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const ConditionRoute());
                   },
@@ -361,6 +372,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Colours',
                   subtitle: state.selectedColors.join(', '),
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const ColorSelectorRoute());
                   },
@@ -382,6 +394,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Price',
                   subtitle: state.price,
+                  subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const PriceRoute());
                   },
@@ -389,6 +402,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Parcel Size',
                   subtitle: state.parcel?.name,
+                  subtitleColor: PreluraColors.greyColor,
                   rightArrow: false,
                   onTap: () {
                     context.router.push(const ParcelRoute());

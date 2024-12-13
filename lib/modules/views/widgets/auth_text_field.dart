@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/res/render_svg.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../res/colors.dart';
 import '../../../res/ui_constants.dart';
 
 class PreluraAuthTextField extends ConsumerStatefulWidget {
@@ -106,8 +108,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
           borderRadius: BorderRadius.circular(8),
         ),
         constraints: BoxConstraints(
-          minHeight: widget.minLines != null ? widget.minLines! * 24.0 : 65.0,
-          maxHeight: widget.minLines != null ? double.infinity : 65.0,
+          minHeight: widget.minLines != null ? widget.minLines! * 20.0 : 50.0,
+          maxHeight: widget.minLines != null ? double.infinity : 50.0,
         ),
         child: GestureDetector(
           onTap: widget.onTap,
@@ -169,10 +171,9 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               //   });
               //   return null;
               // },
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(fontSize: 14),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 14,
+                  ),
               readOnly: widget.shouldReadOnly,
               decoration: UIConstants.instance
                   .inputDecoration(
@@ -190,9 +191,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     focusedBorder: showGradient
                         ? OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                            ),
+                            borderSide: BorderSide(
+                                color: PreluraColors.primaryColor, width: 1.25),
                           )
                         : null,
                     suffixIcon: !widget.isPassword

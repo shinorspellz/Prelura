@@ -56,7 +56,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         ref.refresh(otherUserProfile(widget.username!));
         await ref.refresh(userProduct(widget.username!).future);
       } else {
-        final user = ref.refresh(userProvider).valueOrNull;
+        final user = await ref.refresh(userProvider.future);
         await ref.refresh(userProduct(user?.username).future);
       } //
       _refreshController.loadComplete();
@@ -67,10 +67,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
     bool isCurrentUser = widget.username == null;
 
-    final followers = ref.read(followingProvider(FollowerQuery(query: "", latestFirst: false)));
+    final followers = ref
+        .read(followingProvider(FollowerQuery(query: "", latestFirst: false)));
     final following = ref.read(followingProvider(FollowerQuery()));
 
     return SmartRefresher(
@@ -84,7 +89,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -109,7 +115,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text(user?.location?.locationName ?? "Exeter, United Kingdom", style: Theme.of(context).textTheme.bodyMedium),
+                            Text(
+                                user?.location?.locationName ??
+                                    "Exeter, United Kingdom",
+                                style: Theme.of(context).textTheme.bodyMedium),
                           ],
                         ),
                         const SizedBox(
@@ -129,16 +138,30 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               child: Text.rich(TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      context.router.push(const FollowersRoute());
+                                      context.router
+                                          .push(const FollowersRoute());
                                     },
-                                  text: ref.watch(followersTotalProvider).valueOrNull?.toString() ?? '--',
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                        color: Theme.of(context).textTheme.bodySmall?.color,
+                                  text: ref
+                                          .watch(followersTotalProvider)
+                                          .valueOrNull
+                                          ?.toString() ??
+                                      '--',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.color,
                                       ),
                                   children: [
                                     TextSpan(
                                       text: " followers,",
-                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
                                     ),
@@ -150,14 +173,27 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 context.router.push(const FollowingRoute());
                               },
                               child: Text.rich(TextSpan(
-                                  text: ref.watch(followingTotalProvider).valueOrNull?.toString() ?? '--',
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                        color: Theme.of(context).textTheme.bodySmall?.color,
+                                  text: ref
+                                          .watch(followingTotalProvider)
+                                          .valueOrNull
+                                          ?.toString() ??
+                                      '--',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.color,
                                       ),
                                   children: [
                                     TextSpan(
                                       text: " following",
-                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
                                     ),
@@ -175,7 +211,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text("Usually ships within 1 day", style: Theme.of(context).textTheme.bodyMedium),
+                            Text("Usually ships within 1 day",
+                                style: Theme.of(context).textTheme.bodyMedium),
                           ],
                         ),
                         const SizedBox(
@@ -201,7 +238,11 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               },
                               child: Text(
                                 "reviews",
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.activeColor),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        color: PreluraColors.activeColor),
                               ),
                             ),
                           ],
@@ -236,7 +277,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               if (!isCurrentUser) {
                                 print("running");
                                 print(user!.id);
-                                final result = await ref.refresh(followUserProvider(user.id).future);
+                                final result = await ref.refresh(
+                                    followUserProvider(user.id).future);
                                 print("result is $result");
                                 if (result) {
                                   context.alert("Following ${user.username}");

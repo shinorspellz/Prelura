@@ -3,6 +3,8 @@ import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
+import 'custom_shimmer.dart';
+
 Widget GridMenuCardShimmer({int? length}) {
   return ListView.separated(
     padding: EdgeInsets.only(top: 20),
@@ -10,9 +12,7 @@ Widget GridMenuCardShimmer({int? length}) {
     physics: const BouncingScrollPhysics(),
     itemCount: length ?? 18,
     itemBuilder: (context, index) {
-      return Shimmer.fromColors(
-        baseColor: Colors.grey[700]!,
-        highlightColor: Colors.grey[800]!,
+      return CustomShimmer(
         child: Row(
           children: [
             addHorizontalSpacing(16),

@@ -247,7 +247,7 @@ class ProductDescription extends ConsumerWidget {
           ),
           Text(
             value,
-            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(),
+            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
           ),
         ],
       ),

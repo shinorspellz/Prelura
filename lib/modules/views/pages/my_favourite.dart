@@ -15,8 +15,6 @@ import '../shimmers/my_favorite_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import '../widgets/gap.dart';
 
-
-
 @RoutePage()
 class MyFavouriteScreen extends ConsumerStatefulWidget {
   const MyFavouriteScreen({super.key});
@@ -93,7 +91,7 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Searchwidget(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
+                                padding: EdgeInsets.symmetric(horizontal: 12),
                                 obscureText: false,
                                 shouldReadOnly: false,
                                 hintText: "Search for products",
@@ -116,22 +114,26 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                           ),
                         )),
                       ),
-                      SliverGrid(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 10,
-                          crossAxisSpacing: 10,
-                          childAspectRatio: 0.572,
-                        ),
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            return ProductCard(
-                                product: isSearching
-                                    ? filter[index]
-                                    : products[index]);
-                          },
-                          childCount:
-                              isSearching ? filter.length : products.length,
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        sliver: SliverGrid(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 0.572,
+                          ),
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              return ProductCard(
+                                  product: isSearching
+                                      ? filter[index]
+                                      : products[index]);
+                            },
+                            childCount:
+                                isSearching ? filter.length : products.length,
+                          ),
                         ),
                       ),
                     ]);

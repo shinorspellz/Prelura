@@ -19,7 +19,7 @@ class ProfileScreen extends ConsumerWidget {
     final controller = ProfileScreen.menuScrollController;
     return Scaffold(
       appBar: const PreluraAppBar(
-        appbarTitle: "Profile",
+        appbarTitle: "Menu",
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
@@ -41,14 +41,14 @@ class ProfileScreen extends ConsumerWidget {
               subtitleColor: PreluraColors.activeColor,
               rightArrow: false,
               onTap: () {}),
-          MenuCard(
-              // profilePic: false,
-              title: "My Profile",
-              icon: const Icon(Icons.info_outlined),
-              rightArrow: false,
-              onTap: () {
-                context.router.push(ProfileDetailsRoute());
-              }),
+          // MenuCard(
+          //     // profilePic: false,
+          //     title: "My Profile",
+          //     icon: const Icon(Icons.info_outlined),
+          //     rightArrow: false,
+          //     onTap: () {
+          //       context.router.push(ProfileDetailsRoute());
+          //     }),
           // const LiveCard(),
           MenuCard(
               title: "Orders",

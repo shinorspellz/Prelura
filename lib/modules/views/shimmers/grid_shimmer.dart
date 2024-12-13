@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/views/shimmers/custom_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,9 +26,7 @@ class ProductShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey[700]!,
-      highlightColor: Colors.grey[800]!,
+    return CustomShimmer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

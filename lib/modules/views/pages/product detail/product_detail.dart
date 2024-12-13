@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contentsize_tabbarview/contentsize_tabbarview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -14,6 +15,7 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/auth_page.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_top_details.dart';
+import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
@@ -26,7 +28,9 @@ import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
 import '../../../../res/images.dart';
 import '../../../../shared/card_model.dart';
+import '../../shimmers/product_details_shimmer.dart';
 import '../../widgets/card.dart';
+import '../../widgets/full_screen_image.dart';
 
 @RoutePage()
 class ProductDetailScreen extends ConsumerStatefulWidget {
@@ -249,9 +253,19 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   },
                                 ),
                                 items: product.imagesUrl
-                                    .map((e) => CachedNetworkImage(
-                                          imageUrl: e.url,
-                                          fit: BoxFit.cover,
+                                    .map((e) => GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) => FullScreenImage(
+                                                    imageUrl: e.url),
+                                              ),
+                                            );
+                                          },
+                                          child: CachedNetworkImage(
+                                            imageUrl: e.url,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ))
                                     .toList(),
                               ),
@@ -357,36 +371,24 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                             ),
                                           ),
                                         ),
-                                        if (isCurrentUser)
-                                          InkWell(
-                                            onTap: () => showOptionModal(),
-                                            child: CircleAvatar(
-                                              backgroundColor: PreluraColors
-                                                  .black
-                                                  .withOpacity(0.2),
-                                              child: Icon(
-                                                Icons.more_vert_rounded,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                              ),
+                                        InkWell(
+                                          onTap: () {
+                                            HapticFeedback.lightImpact();
+                                            if (isCurrentUser) {
+                                              showOptionModal();
+                                            } else {
+                                              showOtherOptionModal();
+                                            }
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor: PreluraColors.black
+                                                .withOpacity(0.2),
+                                            child: Icon(
+                                              Icons.more_vert_rounded,
+                                              color: PreluraColors.white,
                                             ),
-                                          )
-                                        else
-                                          InkWell(
-                                            onTap: () => showOtherOptionModal(),
-                                            child: CircleAvatar(
-                                              backgroundColor: PreluraColors
-                                                  .black
-                                                  .withOpacity(0.2),
-                                              child: Icon(
-                                                Icons.more_vert_rounded,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                              ),
-                                            ),
-                                          )
+                                          ),
+                                        )
                                       ],
                                     ),
                                   )),
@@ -467,7 +469,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               trailingIcon: [
                                 if (isCurrentUser) ...[
                                   IconButton(
-                                      onPressed: () => showOptionModal(),
+                                      onPressed: () {
+                                        HapticFeedback.lightImpact();
+                                        showOptionModal();
+                                      },
                                       icon: Icon(
                                         Icons.more_vert_rounded,
                                         color:
@@ -475,7 +480,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                       )),
                                 ] else
                                   IconButton(
-                                      onPressed: () => showOtherOptionModal(),
+                                      onPressed: () {
+                                        HapticFeedback.lightImpact();
+                                        showOtherOptionModal();
+                                      },
                                       icon: Icon(
                                         Icons.more_vert_rounded,
                                         color:
@@ -506,9 +514,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 ],
               ),
             ),
-            loading: () => const LoadingWidget(
-              height: 50,
-            ),
+            loading: () => ProductDetailsShimmer(),
           ),
     );
   }
@@ -589,9 +595,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                     ],
                   ),
                 ),
-                loading: () => const LoadingWidget(
-                  height: 50,
-                ),
+                loading: () => GridShimmer(),
               ),
         )
       ],

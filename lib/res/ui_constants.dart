@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:sizer/sizer.dart';
 
 import 'colors.dart';
@@ -41,15 +42,16 @@ class UIConstants {
       label: labelText != null
           ? Text(labelText,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 14,
-                  height: 1.7,
-                  color: hasFocus
-                      ? PreluraColors.activeColor
-                      : Theme.of(context).textTheme.displayMedium?.color))
+                  fontSize: 16, height: 1.7, color: PreluraColors.activeColor))
           : null,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
+      floatingLabelStyle: Theme.of(context)
+          .textTheme
+          .bodyMedium!
+          .copyWith(fontSize: 19, color: PreluraColors.black),
       enabled: enabled,
       fillColor: Theme.of(context).buttonTheme.colorScheme!.secondary,
-      filled: true,
+      filled: false,
       isDense: true,
       isCollapsed: isCollapsed,
       alignLabelWithHint: true,
@@ -84,24 +86,29 @@ class UIConstants {
       border: InputBorder.none,
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Theme.of(context).primaryColor,
-            width: 1,
+            color: context.isDarkMode
+                ? Colors.grey[400]!
+                : Colors.red.withOpacity(0.8),
+            width: 1.25,
           ),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.transparent, //Theme.of(context).primaryColor,
-            width: 0,
+          borderSide: BorderSide(
+            color: context.isDarkMode
+                ? Colors.grey[400]!
+                : Theme.of(context)
+                    .dividerColor, //Theme.of(context).primaryColor,
+            width: 1.25,
           ),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderSide: const BorderSide(color: Colors.red, width: 1.25),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1),
+          borderSide: const BorderSide(color: Colors.red, width: 1.25),
           borderRadius:
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
     );

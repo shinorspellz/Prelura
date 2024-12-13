@@ -16,13 +16,17 @@ class ReviewTab extends StatelessWidget {
       children: [
         // Header Section
         Padding(
-          padding: const EdgeInsets.only(left: 16.0, top: 24, right: 16, bottom: 10),
+          padding:
+              const EdgeInsets.only(left: 16.0, top: 24, right: 16, bottom: 10),
           child: Column(
             children: [
               Text(
                 "5.0",
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 48, fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontSize: 48, fontWeight: FontWeight.bold),
               ),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +40,8 @@ class ReviewTab extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Member reviews (54)", style: Theme.of(context).textTheme.bodyMedium),
+                  Text("Member reviews (54)",
+                      style: Theme.of(context).textTheme.bodyMedium),
                   const Row(
                     children: [
                       Text("5.0"),
@@ -54,7 +59,8 @@ class ReviewTab extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Automatic reviews (54)", style: Theme.of(context).textTheme.bodyMedium),
+                  Text("Automatic reviews (54)",
+                      style: Theme.of(context).textTheme.bodyMedium),
                   const Row(
                     children: [
                       Text("5.0"),
@@ -73,9 +79,16 @@ class ReviewTab extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(16),
-          child: Text("How reviews work", textAlign: TextAlign.left, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.activeColor)),
+          child: Text("How reviews work",
+              textAlign: TextAlign.left,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: PreluraColors.activeColor)),
         ),
-        const Divider(color: Colors.grey),
+        const Divider(
+          thickness: 1,
+        ),
 
         // Filter Buttons
         Padding(
@@ -116,9 +129,13 @@ class ReviewTab extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-            color: isSelected ? PreluraColors.activeColor.withOpacity(0.4) : Theme.of(context).scaffoldBackgroundColor,
+            color: isSelected
+                ? PreluraColors.activeColor.withOpacity(0.4)
+                : Theme.of(context).scaffoldBackgroundColor,
             border: Border.all(
-              color: isSelected ? PreluraColors.activeColor.withOpacity(0.4) : PreluraColors.greyColor,
+              color: isSelected
+                  ? PreluraColors.activeColor.withOpacity(0.4)
+                  : PreluraColors.greyColor,
             ),
             borderRadius: BorderRadius.circular(8)),
         child: Text(text, style: Theme.of(context).textTheme.bodySmall),
@@ -129,7 +146,11 @@ class ReviewTab extends StatelessWidget {
   Widget reviewCard(context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-      decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, border: Border(bottom: BorderSide(color: PreluraColors.grey, width: 0.5))),
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border(
+              bottom:
+                  BorderSide(color: Theme.of(context).dividerColor, width: 1))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -152,8 +173,11 @@ class ReviewTab extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("stacey309", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        Text("3 hours ago", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        Text("stacey309",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16)),
+                        Text("3 hours ago",
+                            style: TextStyle(color: Colors.grey, fontSize: 12)),
                       ],
                     ),
                     SizedBox(height: 4),

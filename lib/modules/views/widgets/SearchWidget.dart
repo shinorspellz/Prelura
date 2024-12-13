@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:prelura_app/core/utils/debouncer.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
 class Searchwidget extends StatefulWidget {
@@ -213,8 +214,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(
-                      color: Colors.grey[400]!,
-                      width: 2,
+                      color: context.isDarkMode ? Colors.grey[400]! : Theme.of(context).dividerColor,
+                      width: 1.5,
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
