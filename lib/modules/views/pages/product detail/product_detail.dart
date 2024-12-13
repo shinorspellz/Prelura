@@ -30,6 +30,7 @@ import '../../../../res/images.dart';
 import '../../../../shared/card_model.dart';
 import '../../shimmers/product_details_shimmer.dart';
 import '../../widgets/card.dart';
+import '../../widgets/full_screen_image.dart';
 
 @RoutePage()
 class ProductDetailScreen extends ConsumerStatefulWidget {
@@ -252,9 +253,19 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   },
                                 ),
                                 items: product.imagesUrl
-                                    .map((e) => CachedNetworkImage(
-                                          imageUrl: e.url,
-                                          fit: BoxFit.cover,
+                                    .map((e) => GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) => FullScreenImage(
+                                                    imageUrl: e.url),
+                                              ),
+                                            );
+                                          },
+                                          child: CachedNetworkImage(
+                                            imageUrl: e.url,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ))
                                     .toList(),
                               ),
