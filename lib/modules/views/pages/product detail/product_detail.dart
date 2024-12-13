@@ -15,6 +15,7 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/auth_page.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_top_details.dart';
+import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
@@ -81,7 +82,6 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     return Scaffold(
       body: ref.watch(getProductProvider(widget.productId)).when(
             data: (product) {
-              // return ProductDetailsShimmer();
               bool isCurrentUser = product.seller.username ==
                   ref.read(userProvider).valueOrNull?.username;
 
@@ -584,9 +584,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                     ],
                   ),
                 ),
-                loading: () => const LoadingWidget(
-                  height: 50,
-                ),
+                loading: () => GridShimmer(),
               ),
         )
       ],
