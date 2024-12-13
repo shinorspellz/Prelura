@@ -6,14 +6,13 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import '../../core/graphql/__generated/queries.graphql.dart';
 import '../model/user/user_model.dart';
 
-class FollowerRepo {
-  final GraphQLClient _graphqlService;
+class NetworkRepo {
+  final GraphQLClient _client;
 
-  FollowerRepo(this._graphqlService);
+  NetworkRepo(this._client);
 
-  Future<List<UserModel>> getFollowers(String? query, bool? latestFirst,
-      {int page = 1, int pageCount = 100}) async {
-    final response = await _graphqlService.query$followers(
+  Future<List<UserModel>> getFollowers(String? query, bool? latestFirst, {int page = 1, int pageCount = 100}) async {
+    final response = await _client.query$followers(
       Options$Query$followers(
         variables: Variables$Query$followers(
           search: query,
@@ -25,8 +24,7 @@ class FollowerRepo {
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ??
-          'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -36,28 +34,18 @@ class FollowerRepo {
     }
 
     try {
-      print("followers are ${followers}");
-      return followers
-          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
-          .toList();
+      //@AYOPELUMI please stop using print statement just use log its safer
+      return followers.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
     } catch (e, stackTrace) {
       log('Error parsing user data: $e', stackTrace: stackTrace);
       throw Exception('Failed to parse user data.');
     }
   }
-}
 
-//following Repo
-
-class FollowingRepo {
-  final GraphQLClient _client;
-
-  FollowingRepo(this._client);
   Future<List<UserModel>> getFollowing(String? query, bool? latestFirst) async {
     final response = await _client.query$following(
       Options$Query$following(
-        variables: Variables$Query$following(
-            search: query, pageCount: 100, latestFirst: latestFirst),
+        variables: Variables$Query$following(search: query, pageCount: 100, latestFirst: latestFirst),
       ),
     );
 
@@ -80,9 +68,7 @@ class FollowingRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.following!;
-      return usersJsonList
-          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
-          .toList();
+      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',
@@ -139,8 +125,52 @@ class FollowingRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
-    print(" result is ${response.parsedData!.followUser!.success}");
+    log(" result is ${response.parsedData!.followUser!.success}");
 
     return response.parsedData!.followUser!.success!;
+  }
+
+  Future<int> followerTotalNumber() async {
+    final response = await _client.query$followersTotalNumber(
+      Options$Query$followersTotalNumber(),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.followersTotalNumber!;
+  }
+
+  Future<int> followingTotalNumber() async {
+    final response = await _client.query$followingTotalNumber(
+      Options$Query$followingTotalNumber(),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.followingTotalNumber!;
   }
 }
