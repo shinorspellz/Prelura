@@ -222,13 +222,14 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                           GestureDetector(
                                             key: ValueKey(image),
                                             onTap: () {
-                                              // Navigator.of(context).push(
-                                              //   // MaterialPageRoute(
-                                              //   //   builder: (_) => FullScreenImage(
-                                              //   //       imageUrl:
-                                              //   //           'https://example.com/your-image.jpg'),
-                                              //   // ),
-                                              // );
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      FullScreenImage(
+                                                          imagePath:
+                                                              image.path),
+                                                ),
+                                              );
                                             },
                                             child: Container(
                                               key: ValueKey(image),
