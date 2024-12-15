@@ -20,7 +20,8 @@ import 'package:prelura_app/modules/model/product/product_model.dart';
 //   return result.reversed.toList();
 // });
 
-final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
+final searchProductProvider =
+    FutureProvider.family<List<Product>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getAllProducts(search: query);
@@ -28,7 +29,8 @@ final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref
   return result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
 });
 
-final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
+final toggleLikeProductProvider =
+    FutureProvider.autoDispose.family<bool, int>((ref, query) async {
   final repo = ref.read(productRepo);
 
   final result = await repo.toggleLikeProduct(query);
@@ -36,7 +38,8 @@ final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((
   return result!;
 });
 
-final userProduct = FutureProvider.family<List<Product>, String?>((ref, username) async {
+final userProduct =
+    FutureProvider.family<List<Product>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getUserProduct(username: username, pageCount: 100);
@@ -67,7 +70,8 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
-final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, id) async {
+final similarProductsProvider =
+    FutureProvider.family<List<Product>, int>((ref, id) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.similarProduct(productId: id);
@@ -75,7 +79,8 @@ final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, 
   return result;
 });
 
-final productProvider = AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
+final productProvider =
+    AsyncNotifierProvider<_ProductProvider, void>(_ProductProvider.new);
 
 class _ProductProvider extends AsyncNotifier<void> {
   late final _productRepo = ref.read(productRepo);
@@ -88,7 +93,8 @@ class _ProductProvider extends AsyncNotifier<void> {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
       Enum$FileTypeEnum.PRODUCT,
-      onUploadProgress: (sent, total) => log('${sent / total}%', name: 'FileUpload'),
+      onUploadProgress: (sent, total) =>
+          log('${sent / total}%', name: 'FileUpload'),
     );
 
     if (upload == null) throw 'Failed to upload images.';
@@ -201,7 +207,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     await _productRepo.toggleLikeProduct(productId);
 
     ref.invalidate(getProductProvider(productId));
-    ref.invalidate(allProductProvider);
+    // ref.invalidate(allProductProvider);
     ref.invalidate(userFavouriteProduct);
   }
 }
@@ -225,9 +231,13 @@ final colorsProvider = Provider((ref) {
   return colorOptions;
 });
 
-final filterProductByPriceProvider = AsyncNotifierProvider.family<_FilteredProductController, List<Product>, double>(_FilteredProductController.new);
+final filterProductByPriceProvider = AsyncNotifierProvider.family<
+    _FilteredProductController,
+    List<Product>,
+    double>(_FilteredProductController.new);
 
-class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, double> {
+class _FilteredProductController
+    extends FamilyAsyncNotifier<List<Product>, double> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -255,12 +265,14 @@ class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, doub
 
     _brandTotalItems = result.filterProductsByPriceTotalNumber!;
 
-    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
+    final newState =
+        result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -305,9 +317,12 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
 /// boolean flag for when paginating home page
 final paginatingHome = StateProvider((ref) => false);
 
-final allProductProvider = AsyncNotifierProvider.family.autoDispose<_AllProductController, List<Product>, String?>(_AllProductController.new);
+final allProductProvider = AsyncNotifierProvider.family
+    .autoDispose<_AllProductController, List<Product>, String?>(
+        _AllProductController.new);
 
-class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>, String?> {
+class _AllProductController
+    extends AutoDisposeFamilyAsyncNotifier<List<Product>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -333,12 +348,14 @@ class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>
 
     _brandTotalItems = result.allProductsTotalNumber!;
 
-    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+    final newState =
+        result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 

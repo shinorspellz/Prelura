@@ -127,9 +127,11 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
                               return ProductCard(
-                                  product: isSearching
-                                      ? filter[index]
-                                      : products[index]);
+                                product: isSearching
+                                    ? filter[index]
+                                    : products[index],
+                                isSimilar: false,
+                              );
                             },
                             childCount:
                                 isSearching ? filter.length : products.length,

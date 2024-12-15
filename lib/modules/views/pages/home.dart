@@ -176,26 +176,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           ),
                         );
                       },
-                      error: (e, _) => SliverToBoxAdapter(
-                            child: Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(e.toString()),
-                                  TextButton.icon(
-                                    onPressed: () {
-                                      // log(e.toString(), stackTrace: _);
-                                      ref.invalidate(
-                                          allProductProvider(searchQuery));
-                                    },
-                                    label: const Text('Retry'),
-                                    icon: const Icon(Icons.refresh_rounded),
-                                  ),
-                                ],
-                              ),
+                      error: (e, _) {
+                        print(e);
+                        log("${_}");
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(
+                                        allProductProvider(searchQuery));
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
                             ),
                           ),
+                        );
+                      },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ] else ...[
                   ref.watch(allProductProvider(null)).maybeWhen(
@@ -208,7 +212,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
-                              childAspectRatio: 0.55,
+                              childAspectRatio: 0.50,
                             ),
                             itemCount: products.take(6).length,
                             itemBuilder: (context, index) {
@@ -288,7 +292,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
-                              childAspectRatio: 0.55,
+                              childAspectRatio: 0.50,
                             ),
                             itemCount: clippedProducts.length,
                             itemBuilder: (context, index) {
@@ -297,25 +301,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             },
                           );
                         },
-                        error: (e, _) => SliverToBoxAdapter(
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(e.toString()),
-                                    TextButton.icon(
-                                      onPressed: () {
-                                        // log(e.toString(), stackTrace: _);
-                                        ref.invalidate(allProductProvider);
-                                      },
-                                      label: const Text('Retry'),
-                                      icon: const Icon(Icons.refresh_rounded),
-                                    ),
-                                  ],
-                                ),
+                        error: (e, _) {
+                          log("${_}");
+                          log(e.toString());
+                          return SliverToBoxAdapter(
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(e.toString()),
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      // log(e.toString(), stackTrace: _);
+                                      ref.invalidate(allProductProvider);
+                                    },
+                                    label: const Text('Retry'),
+                                    icon: const Icon(Icons.refresh_rounded),
+                                  ),
+                                ],
                               ),
                             ),
+                          );
+                        },
                         loading: () =>
                             SliverToBoxAdapter(child: GridShimmer())),
                   ),

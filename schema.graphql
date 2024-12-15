@@ -351,6 +351,18 @@ type PhoneType {
   completed: String
 }
 
+input ProductFiltersInput {
+  name: String
+  brand: Int
+  category: Int
+  subCategory: Int
+  price: Float
+  status: ProductStatusEnum
+  size: SizeEnum
+  style: StyleEnum
+  condition: ConditionEnum
+}
+
 """An enumeration."""
 enum ProductsProductConditionChoices {
   """New with tags"""
@@ -492,6 +504,12 @@ enum ProductsProductStyleChoices {
   PARTY_DRESS
 }
 
+enum ProductStatusEnum {
+  ACTIVE
+  INACTIVE
+  SOLD
+}
+
 type ProductType {
   id: ID!
   name: String!
@@ -519,7 +537,7 @@ type ProductType {
 }
 
 type Query {
-  allProducts(search: String, pageCount: Int, pageNumber: Int): [ProductType]
+  allProducts(filters: ProductFiltersInput, search: String, pageCount: Int, pageNumber: Int): [ProductType]
   userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
@@ -537,8 +555,22 @@ type Query {
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]
-  following(search: String, latestFirst: Boolean, pageCount: Int, pageNumber: Int): [UserType]
-  followers(search: String, latestFirst: Boolean, pageCount: Int, pageNumber: Int): [UserType]
+  following(
+    """Username of the user to get followings"""
+    username: String
+    search: String
+    latestFirst: Boolean
+    pageCount: Int
+    pageNumber: Int
+  ): [UserType]
+  followers(
+    """Username of the user to get followers"""
+    username: String
+    search: String
+    latestFirst: Boolean
+    pageCount: Int
+    pageNumber: Int
+  ): [UserType]
   followingTotalNumber: Int
   followersTotalNumber: Int
 }

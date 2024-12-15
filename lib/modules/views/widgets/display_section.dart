@@ -12,11 +12,13 @@ class DisplaySection extends StatelessWidget {
     this.onRefresh,
     this.isScrollable = false,
     this.controller,
+    this.isInProduct = true,
   });
   final List<Product>? products;
   final RefreshCallback? onRefresh;
   final bool isScrollable;
   final ScrollController? controller;
+  final bool isInProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,11 @@ class DisplaySection extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.54),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.54),
               itemCount: mockData.length,
               itemBuilder: (context, index) {
                 return DisplayCard(itemData: mockData[index]);
@@ -39,17 +45,22 @@ class DisplaySection extends StatelessWidget {
           onRefresh: onRefresh ?? () async {},
           child: GridView.builder(
             shrinkWrap: true,
-            physics: isScrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+            physics: isScrollable
+                ? const BouncingScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
             controller: controller,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 0.55,
+              childAspectRatio: 0.52,
             ),
             itemCount: products!.length,
             itemBuilder: (context, index) {
-              return ProductCard(product: products![index]);
+              return ProductCard(
+                product: products![index],
+                isSimilar: isInProduct,
+              );
             },
           ),
         );
