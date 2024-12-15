@@ -1,3 +1,6 @@
+import 'package:prelura_app/modules/model/product/product_model.dart'
+    as EnumImport$ConditionEnum;
+
 class Input$ImagesInputType {
   factory Input$ImagesInputType({
     required String url,
@@ -450,6 +453,348 @@ class _CopyWithStubImpl$Input$PhoneInputType<TRes>
       _res;
 }
 
+class Input$ProductFiltersInput {
+  factory Input$ProductFiltersInput({
+    String? name,
+    int? brand,
+    int? category,
+    int? subCategory,
+    double? price,
+    Enum$ProductStatusEnum? status,
+    Enum$SizeEnum? size,
+    Enum$StyleEnum? style,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+  }) =>
+      Input$ProductFiltersInput._({
+        if (name != null) r'name': name,
+        if (brand != null) r'brand': brand,
+        if (category != null) r'category': category,
+        if (subCategory != null) r'subCategory': subCategory,
+        if (price != null) r'price': price,
+        if (status != null) r'status': status,
+        if (size != null) r'size': size,
+        if (style != null) r'style': style,
+        if (condition != null) r'condition': condition,
+      });
+
+  Input$ProductFiltersInput._(this._$data);
+
+  factory Input$ProductFiltersInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('name')) {
+      final l$name = data['name'];
+      result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('brand')) {
+      final l$brand = data['brand'];
+      result$data['brand'] = (l$brand as int?);
+    }
+    if (data.containsKey('category')) {
+      final l$category = data['category'];
+      result$data['category'] = (l$category as int?);
+    }
+    if (data.containsKey('subCategory')) {
+      final l$subCategory = data['subCategory'];
+      result$data['subCategory'] = (l$subCategory as int?);
+    }
+    if (data.containsKey('price')) {
+      final l$price = data['price'];
+      result$data['price'] = (l$price as num?)?.toDouble();
+    }
+    if (data.containsKey('status')) {
+      final l$status = data['status'];
+      result$data['status'] = l$status == null
+          ? null
+          : fromJson$Enum$ProductStatusEnum((l$status as String));
+    }
+    if (data.containsKey('size')) {
+      final l$size = data['size'];
+      result$data['size'] =
+          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+    }
+    if (data.containsKey('style')) {
+      final l$style = data['style'];
+      result$data['style'] =
+          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+    }
+    if (data.containsKey('condition')) {
+      final l$condition = data['condition'];
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
+              (l$condition as String));
+    }
+    return Input$ProductFiltersInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get name => (_$data['name'] as String?);
+
+  int? get brand => (_$data['brand'] as int?);
+
+  int? get category => (_$data['category'] as int?);
+
+  int? get subCategory => (_$data['subCategory'] as int?);
+
+  double? get price => (_$data['price'] as double?);
+
+  Enum$ProductStatusEnum? get status =>
+      (_$data['status'] as Enum$ProductStatusEnum?);
+
+  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
+
+  Enum$StyleEnum? get style => (_$data['style'] as Enum$StyleEnum?);
+
+  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
+      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('name')) {
+      final l$name = name;
+      result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('brand')) {
+      final l$brand = brand;
+      result$data['brand'] = l$brand;
+    }
+    if (_$data.containsKey('category')) {
+      final l$category = category;
+      result$data['category'] = l$category;
+    }
+    if (_$data.containsKey('subCategory')) {
+      final l$subCategory = subCategory;
+      result$data['subCategory'] = l$subCategory;
+    }
+    if (_$data.containsKey('price')) {
+      final l$price = price;
+      result$data['price'] = l$price;
+    }
+    if (_$data.containsKey('status')) {
+      final l$status = status;
+      result$data['status'] =
+          l$status == null ? null : toJson$Enum$ProductStatusEnum(l$status);
+    }
+    if (_$data.containsKey('size')) {
+      final l$size = size;
+      result$data['size'] =
+          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+    }
+    if (_$data.containsKey('style')) {
+      final l$style = style;
+      result$data['style'] =
+          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+    }
+    if (_$data.containsKey('condition')) {
+      final l$condition = condition;
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
+              l$condition);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ProductFiltersInput<Input$ProductFiltersInput> get copyWith =>
+      CopyWith$Input$ProductFiltersInput(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ProductFiltersInput ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (_$data.containsKey('name') != other._$data.containsKey('name')) {
+      return false;
+    }
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (_$data.containsKey('brand') != other._$data.containsKey('brand')) {
+      return false;
+    }
+    if (l$brand != lOther$brand) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (_$data.containsKey('category') !=
+        other._$data.containsKey('category')) {
+      return false;
+    }
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$subCategory = subCategory;
+    final lOther$subCategory = other.subCategory;
+    if (_$data.containsKey('subCategory') !=
+        other._$data.containsKey('subCategory')) {
+      return false;
+    }
+    if (l$subCategory != lOther$subCategory) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (_$data.containsKey('price') != other._$data.containsKey('price')) {
+      return false;
+    }
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (_$data.containsKey('status') != other._$data.containsKey('status')) {
+      return false;
+    }
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (_$data.containsKey('size') != other._$data.containsKey('size')) {
+      return false;
+    }
+    if (l$size != lOther$size) {
+      return false;
+    }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (_$data.containsKey('style') != other._$data.containsKey('style')) {
+      return false;
+    }
+    if (l$style != lOther$style) {
+      return false;
+    }
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (_$data.containsKey('condition') !=
+        other._$data.containsKey('condition')) {
+      return false;
+    }
+    if (l$condition != lOther$condition) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$name = name;
+    final l$brand = brand;
+    final l$category = category;
+    final l$subCategory = subCategory;
+    final l$price = price;
+    final l$status = status;
+    final l$size = size;
+    final l$style = style;
+    final l$condition = condition;
+    return Object.hashAll([
+      _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('brand') ? l$brand : const {},
+      _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('subCategory') ? l$subCategory : const {},
+      _$data.containsKey('price') ? l$price : const {},
+      _$data.containsKey('status') ? l$status : const {},
+      _$data.containsKey('size') ? l$size : const {},
+      _$data.containsKey('style') ? l$style : const {},
+      _$data.containsKey('condition') ? l$condition : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ProductFiltersInput<TRes> {
+  factory CopyWith$Input$ProductFiltersInput(
+    Input$ProductFiltersInput instance,
+    TRes Function(Input$ProductFiltersInput) then,
+  ) = _CopyWithImpl$Input$ProductFiltersInput;
+
+  factory CopyWith$Input$ProductFiltersInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$ProductFiltersInput;
+
+  TRes call({
+    String? name,
+    int? brand,
+    int? category,
+    int? subCategory,
+    double? price,
+    Enum$ProductStatusEnum? status,
+    Enum$SizeEnum? size,
+    Enum$StyleEnum? style,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+  });
+}
+
+class _CopyWithImpl$Input$ProductFiltersInput<TRes>
+    implements CopyWith$Input$ProductFiltersInput<TRes> {
+  _CopyWithImpl$Input$ProductFiltersInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ProductFiltersInput _instance;
+
+  final TRes Function(Input$ProductFiltersInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? name = _undefined,
+    Object? brand = _undefined,
+    Object? category = _undefined,
+    Object? subCategory = _undefined,
+    Object? price = _undefined,
+    Object? status = _undefined,
+    Object? size = _undefined,
+    Object? style = _undefined,
+    Object? condition = _undefined,
+  }) =>
+      _then(Input$ProductFiltersInput._({
+        ..._instance._$data,
+        if (name != _undefined) 'name': (name as String?),
+        if (brand != _undefined) 'brand': (brand as int?),
+        if (category != _undefined) 'category': (category as int?),
+        if (subCategory != _undefined) 'subCategory': (subCategory as int?),
+        if (price != _undefined) 'price': (price as double?),
+        if (status != _undefined) 'status': (status as Enum$ProductStatusEnum?),
+        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
+        if (style != _undefined) 'style': (style as Enum$StyleEnum?),
+        if (condition != _undefined)
+          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
+    implements CopyWith$Input$ProductFiltersInput<TRes> {
+  _CopyWithStubImpl$Input$ProductFiltersInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? name,
+    int? brand,
+    int? category,
+    int? subCategory,
+    double? price,
+    Enum$ProductStatusEnum? status,
+    Enum$SizeEnum? size,
+    Enum$StyleEnum? style,
+    EnumImport$ConditionEnum.ConditionsEnum? condition,
+  }) =>
+      _res;
+}
+
 enum Enum$AccountsUserGenderChoices {
   MALE,
   FEMALE,
@@ -892,6 +1237,44 @@ Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
       return Enum$ProductsProductStyleChoices.PARTY_DRESS;
     default:
       return Enum$ProductsProductStyleChoices.$unknown;
+  }
+}
+
+enum Enum$ProductStatusEnum {
+  ACTIVE,
+  INACTIVE,
+  SOLD,
+  $unknown;
+
+  factory Enum$ProductStatusEnum.fromJson(String value) =>
+      fromJson$Enum$ProductStatusEnum(value);
+
+  String toJson() => toJson$Enum$ProductStatusEnum(this);
+}
+
+String toJson$Enum$ProductStatusEnum(Enum$ProductStatusEnum e) {
+  switch (e) {
+    case Enum$ProductStatusEnum.ACTIVE:
+      return r'ACTIVE';
+    case Enum$ProductStatusEnum.INACTIVE:
+      return r'INACTIVE';
+    case Enum$ProductStatusEnum.SOLD:
+      return r'SOLD';
+    case Enum$ProductStatusEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductStatusEnum fromJson$Enum$ProductStatusEnum(String value) {
+  switch (value) {
+    case r'ACTIVE':
+      return Enum$ProductStatusEnum.ACTIVE;
+    case r'INACTIVE':
+      return Enum$ProductStatusEnum.INACTIVE;
+    case r'SOLD':
+      return Enum$ProductStatusEnum.SOLD;
+    default:
+      return Enum$ProductStatusEnum.$unknown;
   }
 }
 
