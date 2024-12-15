@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
 import '../../../../../res/render_svg.dart';
+import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/rating.dart';
 import '../provider/product_detail_provider.dart';
@@ -26,6 +27,8 @@ class ProductTopDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dummy = ref.watch(productDetailProvider);
+    final user = ref.watch(userProvider).valueOrNull;
+    final isCurrentUser = user?.username == product.seller.username;
 
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
@@ -37,7 +40,10 @@ class ProductTopDetails extends ConsumerWidget {
             product.name,
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           const SizedBox(height: 12),
           Column(
@@ -47,7 +53,8 @@ class ProductTopDetails extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (product.brand != null) BrandTextWidget(brand: product.brand!),
+                  if (product.brand != null)
+                    BrandTextWidget(brand: product.brand!),
                   Text(
                     "Size ${product.size?.name ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -65,7 +72,10 @@ class ProductTopDetails extends ConsumerWidget {
                   // Product condition text
                   Text(
                     dummy.condition,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w500,
+                        color: PreluraColors.greyColor),
                   ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
@@ -82,7 +92,11 @@ class ProductTopDetails extends ConsumerWidget {
               if (product.color != null)
                 Row(
                   children: product.color!.map((color) {
-                    final value = ref.watch(colorsProvider).entries.where((e) => e.key == color).first;
+                    final value = ref
+                        .watch(colorsProvider)
+                        .entries
+                        .where((e) => e.key == color)
+                        .first;
                     return Row(
                       children: [
                         Container(
@@ -90,15 +104,17 @@ class ProductTopDetails extends ConsumerWidget {
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: value.value, // Assuming `color` is a valid Color object
+                            color: value
+                                .value, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
                         ),
                         Text(
                           value.key,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         8.horizontalSpacing
                       ],
@@ -145,7 +161,12 @@ class ProductTopDetails extends ConsumerWidget {
                   // ),
                   InkWell(
                       onTap: () {
-                        context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                        if (isCurrentUser) {
+                          context.router.push(ProfileDetailsRoute());
+                        } else {
+                          context.router.push(ProfileDetailsRoute(
+                              username: product.seller.username));
+                        }
                       },
                       child: ProfilePictureWidget(
                         username: product.seller.username,
@@ -160,11 +181,15 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(
+                              username: product.seller.username));
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Row(
@@ -172,7 +197,10 @@ class ProductTopDetails extends ConsumerWidget {
                           const Ratings(),
                           Text(
                             "(250)",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontWeight: FontWeight.w400),
                           ),
                         ],
                       )

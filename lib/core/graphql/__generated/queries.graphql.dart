@@ -284,6 +284,20 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'noOfFollowing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'noOfFollowers'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -463,6 +477,8 @@ class Query$ViewMe$viewMe {
     this.fullName,
     this.listing,
     this.location,
+    this.noOfFollowing,
+    this.noOfFollowers,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -483,6 +499,8 @@ class Query$ViewMe$viewMe {
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
     final l$location = json['location'];
+    final l$noOfFollowing = json['noOfFollowing'];
+    final l$noOfFollowers = json['noOfFollowers'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$ViewMe$viewMe(
@@ -507,6 +525,8 @@ class Query$ViewMe$viewMe {
           ? null
           : Query$ViewMe$viewMe$location.fromJson(
               (l$location as Map<String, dynamic>)),
+      noOfFollowing: (l$noOfFollowing as int?),
+      noOfFollowers: (l$noOfFollowers as int?),
       phone: l$phone == null
           ? null
           : Query$ViewMe$viewMe$phone.fromJson(
@@ -545,6 +565,10 @@ class Query$ViewMe$viewMe {
 
   final Query$ViewMe$viewMe$location? location;
 
+  final int? noOfFollowing;
+
+  final int? noOfFollowers;
+
   final Query$ViewMe$viewMe$phone? phone;
 
   final String $__typename;
@@ -581,6 +605,10 @@ class Query$ViewMe$viewMe {
     _resultData['listing'] = l$listing;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
+    final l$noOfFollowing = noOfFollowing;
+    _resultData['noOfFollowing'] = l$noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
+    _resultData['noOfFollowers'] = l$noOfFollowers;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -605,6 +633,8 @@ class Query$ViewMe$viewMe {
     final l$fullName = fullName;
     final l$listing = listing;
     final l$location = location;
+    final l$noOfFollowing = noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -623,6 +653,8 @@ class Query$ViewMe$viewMe {
       l$fullName,
       l$listing,
       l$location,
+      l$noOfFollowing,
+      l$noOfFollowers,
       l$phone,
       l$$__typename,
     ]);
@@ -711,6 +743,16 @@ class Query$ViewMe$viewMe {
     if (l$location != lOther$location) {
       return false;
     }
+    final l$noOfFollowing = noOfFollowing;
+    final lOther$noOfFollowing = other.noOfFollowing;
+    if (l$noOfFollowing != lOther$noOfFollowing) {
+      return false;
+    }
+    final l$noOfFollowers = noOfFollowers;
+    final lOther$noOfFollowers = other.noOfFollowers;
+    if (l$noOfFollowers != lOther$noOfFollowers) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -758,6 +800,8 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     String? fullName,
     int? listing,
     Query$ViewMe$viewMe$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
     Query$ViewMe$viewMe$phone? phone,
     String? $__typename,
   });
@@ -794,6 +838,8 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? fullName = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
+    Object? noOfFollowing = _undefined,
+    Object? noOfFollowers = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -828,6 +874,12 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
         location: location == _undefined
             ? _instance.location
             : (location as Query$ViewMe$viewMe$location?),
+        noOfFollowing: noOfFollowing == _undefined
+            ? _instance.noOfFollowing
+            : (noOfFollowing as int?),
+        noOfFollowers: noOfFollowers == _undefined
+            ? _instance.noOfFollowers
+            : (noOfFollowers as int?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$ViewMe$viewMe$phone?),
@@ -875,6 +927,8 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     String? fullName,
     int? listing,
     Query$ViewMe$viewMe$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
     Query$ViewMe$viewMe$phone? phone,
     String? $__typename,
   }) =>
@@ -2709,6 +2763,20 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'noOfFollowing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'noOfFollowers'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -2903,6 +2971,8 @@ class Query$GetUser$getUser {
     this.fullName,
     this.listing,
     this.location,
+    this.noOfFollowing,
+    this.noOfFollowers,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -2923,6 +2993,8 @@ class Query$GetUser$getUser {
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
     final l$location = json['location'];
+    final l$noOfFollowing = json['noOfFollowing'];
+    final l$noOfFollowers = json['noOfFollowers'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
@@ -2947,6 +3019,8 @@ class Query$GetUser$getUser {
           ? null
           : Query$GetUser$getUser$location.fromJson(
               (l$location as Map<String, dynamic>)),
+      noOfFollowing: (l$noOfFollowing as int?),
+      noOfFollowers: (l$noOfFollowers as int?),
       phone: l$phone == null
           ? null
           : Query$GetUser$getUser$phone.fromJson(
@@ -2985,6 +3059,10 @@ class Query$GetUser$getUser {
 
   final Query$GetUser$getUser$location? location;
 
+  final int? noOfFollowing;
+
+  final int? noOfFollowers;
+
   final Query$GetUser$getUser$phone? phone;
 
   final String $__typename;
@@ -3021,6 +3099,10 @@ class Query$GetUser$getUser {
     _resultData['listing'] = l$listing;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
+    final l$noOfFollowing = noOfFollowing;
+    _resultData['noOfFollowing'] = l$noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
+    _resultData['noOfFollowers'] = l$noOfFollowers;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -3045,6 +3127,8 @@ class Query$GetUser$getUser {
     final l$fullName = fullName;
     final l$listing = listing;
     final l$location = location;
+    final l$noOfFollowing = noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -3063,6 +3147,8 @@ class Query$GetUser$getUser {
       l$fullName,
       l$listing,
       l$location,
+      l$noOfFollowing,
+      l$noOfFollowers,
       l$phone,
       l$$__typename,
     ]);
@@ -3151,6 +3237,16 @@ class Query$GetUser$getUser {
     if (l$location != lOther$location) {
       return false;
     }
+    final l$noOfFollowing = noOfFollowing;
+    final lOther$noOfFollowing = other.noOfFollowing;
+    if (l$noOfFollowing != lOther$noOfFollowing) {
+      return false;
+    }
+    final l$noOfFollowers = noOfFollowers;
+    final lOther$noOfFollowers = other.noOfFollowers;
+    if (l$noOfFollowers != lOther$noOfFollowers) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -3198,6 +3294,8 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     String? fullName,
     int? listing,
     Query$GetUser$getUser$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
@@ -3234,6 +3332,8 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? fullName = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
+    Object? noOfFollowing = _undefined,
+    Object? noOfFollowers = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -3268,6 +3368,12 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         location: location == _undefined
             ? _instance.location
             : (location as Query$GetUser$getUser$location?),
+        noOfFollowing: noOfFollowing == _undefined
+            ? _instance.noOfFollowing
+            : (noOfFollowing as int?),
+        noOfFollowers: noOfFollowers == _undefined
+            ? _instance.noOfFollowers
+            : (noOfFollowers as int?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$GetUser$getUser$phone?),
@@ -3315,6 +3421,8 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     String? fullName,
     int? listing,
     Query$GetUser$getUser$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   }) =>

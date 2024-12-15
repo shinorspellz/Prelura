@@ -37,6 +37,8 @@ mixin _$UserModel {
   PhoneModel? get phone => throw _privateConstructorUsedError;
   LocationInputType? get location => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
+  int? get noOfFollowers => throw _privateConstructorUsedError;
+  int? get noOfFollowing => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,7 +72,9 @@ abstract class $UserModelCopyWith<$Res> {
       int? listing,
       PhoneModel? phone,
       LocationInputType? location,
-      bool? isFollowing});
+      bool? isFollowing,
+      int? noOfFollowers,
+      int? noOfFollowing});
 
   $PhoneModelCopyWith<$Res>? get phone;
   $LocationInputTypeCopyWith<$Res>? get location;
@@ -108,6 +112,8 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? phone = freezed,
     Object? location = freezed,
     Object? isFollowing = freezed,
+    Object? noOfFollowers = freezed,
+    Object? noOfFollowing = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -178,6 +184,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
               as bool?,
+      noOfFollowers: freezed == noOfFollowers
+          ? _value.noOfFollowers
+          : noOfFollowers // ignore: cast_nullable_to_non_nullable
+              as int?,
+      noOfFollowing: freezed == noOfFollowing
+          ? _value.noOfFollowing
+          : noOfFollowing // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -235,7 +249,9 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int? listing,
       PhoneModel? phone,
       LocationInputType? location,
-      bool? isFollowing});
+      bool? isFollowing,
+      int? noOfFollowers,
+      int? noOfFollowing});
 
   @override
   $PhoneModelCopyWith<$Res>? get phone;
@@ -273,6 +289,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? location = freezed,
     Object? isFollowing = freezed,
+    Object? noOfFollowers = freezed,
+    Object? noOfFollowing = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -343,6 +361,14 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
               as bool?,
+      noOfFollowers: freezed == noOfFollowers
+          ? _value.noOfFollowers
+          : noOfFollowers // ignore: cast_nullable_to_non_nullable
+              as int?,
+      noOfFollowing: freezed == noOfFollowing
+          ? _value.noOfFollowing
+          : noOfFollowing // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -367,7 +393,9 @@ class _$UserModelImpl implements _UserModel {
       this.listing,
       this.phone,
       this.location,
-      this.isFollowing});
+      this.isFollowing,
+      this.noOfFollowers,
+      this.noOfFollowing});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -406,10 +434,14 @@ class _$UserModelImpl implements _UserModel {
   final LocationInputType? location;
   @override
   final bool? isFollowing;
+  @override
+  final int? noOfFollowers;
+  @override
+  final int? noOfFollowing;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isFollowing: $isFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -443,30 +475,37 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.isFollowing, isFollowing) ||
-                other.isFollowing == isFollowing));
+                other.isFollowing == isFollowing) &&
+            (identical(other.noOfFollowers, noOfFollowers) ||
+                other.noOfFollowers == noOfFollowers) &&
+            (identical(other.noOfFollowing, noOfFollowing) ||
+                other.noOfFollowing == noOfFollowing));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      firstName,
-      lastName,
-      username,
-      email,
-      bio,
-      profilePictureUrl,
-      gender,
-      displayName,
-      dob,
-      dateJoined,
-      lastLogin,
-      fullName,
-      listing,
-      phone,
-      location,
-      isFollowing);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        firstName,
+        lastName,
+        username,
+        email,
+        bio,
+        profilePictureUrl,
+        gender,
+        displayName,
+        dob,
+        dateJoined,
+        lastLogin,
+        fullName,
+        listing,
+        phone,
+        location,
+        isFollowing,
+        noOfFollowers,
+        noOfFollowing
+      ]);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -502,7 +541,9 @@ abstract class _UserModel implements UserModel {
       final int? listing,
       final PhoneModel? phone,
       final LocationInputType? location,
-      final bool? isFollowing}) = _$UserModelImpl;
+      final bool? isFollowing,
+      final int? noOfFollowers,
+      final int? noOfFollowing}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -541,6 +582,10 @@ abstract class _UserModel implements UserModel {
   LocationInputType? get location;
   @override
   bool? get isFollowing;
+  @override
+  int? get noOfFollowers;
+  @override
+  int? get noOfFollowing;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

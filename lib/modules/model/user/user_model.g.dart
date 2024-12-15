@@ -34,6 +34,8 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           : LocationInputType.fromJson(
               json['location'] as Map<String, dynamic>),
       isFollowing: json['isFollowing'] as bool?,
+      noOfFollowers: (json['noOfFollowers'] as num?)?.toInt(),
+      noOfFollowing: (json['noOfFollowing'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -55,6 +57,8 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'phone': instance.phone,
       'location': instance.location,
       'isFollowing': instance.isFollowing,
+      'noOfFollowers': instance.noOfFollowers,
+      'noOfFollowing': instance.noOfFollowing,
     };
 
 _$PhoneModelImpl _$$PhoneModelImplFromJson(Map<String, dynamic> json) =>
