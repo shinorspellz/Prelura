@@ -36,6 +36,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     final sharedData = ref.watch(selectedCategoryNotifierProvider);
+    final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -108,34 +109,41 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
             Expanded(
               child: ref.watch(categoryProvider).when(
                     skipLoadingOnRefresh: false,
-                    data: (data) => ListView.builder(
-                      itemCount: data.length,
-                      itemBuilder: (_, index) {
-                        final cat = data[index];
-                        final svgPath = PreluraIcons.getConstant(cat.name);
+                    data: (data) {
+                      final List<CategoryModel> categories;
+                      categories = data
+                          .where((word) =>
+                              !wordsToRemove.contains(word.name.toLowerCase()))
+                          .toList();
+                      return ListView.builder(
+                        itemCount: categories.length,
+                        itemBuilder: (_, index) {
+                          final cat = categories[index];
+                          final svgPath = PreluraIcons.getConstant(cat.name);
 
-                        return MenuCard(
-                          title: cat.name,
-                          svgPath: svgPath != "" ? svgPath : null,
-                          icon: svgPath == ""
-                              ? const Icon(
-                                  Icons.settings,
-                                  color: PreluraColors.activeColor,
-                                )
-                              : null,
-                          onTap: () {
-                            ref
-                                .read(sellItemProvider.notifier)
-                                .updateCategory(cat);
-                            return context.router.push(
-                              SubCategoryRoute(
-                                  subCategories: cat.subCategory ?? [],
-                                  categoryName: cat.name),
-                            );
-                          },
-                        );
-                      },
-                    ),
+                          return MenuCard(
+                            title: cat.name,
+                            svgPath: svgPath != "" ? svgPath : null,
+                            icon: svgPath == ""
+                                ? const Icon(
+                                    Icons.settings,
+                                    color: PreluraColors.activeColor,
+                                  )
+                                : null,
+                            onTap: () {
+                              ref
+                                  .read(sellItemProvider.notifier)
+                                  .updateCategory(cat);
+                              return context.router.push(
+                                SubCategoryRoute(
+                                    subCategories: cat.subCategory ?? [],
+                                    categoryName: cat.name),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
                     error: (e, _) => Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -150,7 +158,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         ],
                       ),
                     ),
-                    loading: () => CategoryShimmer(length: 8),
+                    loading: () => CategoryShimmer(length: 4),
                   ),
             ),
         ],

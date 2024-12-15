@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
+import 'package:prelura_app/modules/views/widgets/primary_switch.dart';
 import 'package:prelura_app/modules/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../controller/theme_notifier.dart';
 import 'Profile Details/provider/tab_controller.dart';
 
 @RoutePage()
@@ -17,6 +19,9 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ProfileScreen.menuScrollController;
+    final themeNotifier = ref.read(themeNotifierProvider.notifier);
+    final themeMode = ref.watch(themeNotifierProvider);
+
     return Scaffold(
       appBar: const PreluraAppBar(
         appbarTitle: "Menu",
@@ -26,6 +31,34 @@ class ProfileScreen extends ConsumerWidget {
         controller: controller,
         child: Column(children: [
           const ProfileStatsCard(),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                border: Border(
+                    bottom: BorderSide(
+                  color: Theme.of(context).dividerColor,
+                  // Use the theme's divider color
+                  width: 1.0,
+                ))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Dark Mode",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).textTheme.bodyMedium?.color),
+                ),
+                PreluraSwitch(
+                  swicthValue: themeMode == ThemeMode.dark,
+                  onChanged: (value) {
+                    themeNotifier.toggleThemeMode();
+                  },
+                ),
+              ],
+            ),
+          ),
           MenuCard(
               title: "Wardrobe",
               icon: const Icon(Icons.wallet),

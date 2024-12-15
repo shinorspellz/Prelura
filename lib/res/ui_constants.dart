@@ -87,8 +87,8 @@ class UIConstants {
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: context.isDarkMode
-                ? Colors.grey[400]!
-                : Colors.red.withOpacity(0.8),
+                ? PreluraColors.white.withOpacity(0.5)
+                : PreluraColors.white.withOpacity(0.5),
             width: 1.25,
           ),
           borderRadius:
@@ -96,7 +96,7 @@ class UIConstants {
       enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: context.isDarkMode
-                ? Colors.grey[400]!
+                ? PreluraColors.white.withOpacity(0.5)
                 : Theme.of(context)
                     .dividerColor, //Theme.of(context).primaryColor,
             width: 1.25,

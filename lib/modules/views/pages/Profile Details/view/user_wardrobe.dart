@@ -292,6 +292,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           skipLoadingOnRefresh: false,
                           data: (products) => DisplaySection(
                             products: products,
+                            isInProduct: false,
                           ),
                           error: (e, _) => Center(
                             child: Column(

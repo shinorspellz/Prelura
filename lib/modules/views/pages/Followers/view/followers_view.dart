@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../widget/follower_tile.dart';
 
@@ -18,6 +19,8 @@ class FollowersScreen extends ConsumerStatefulWidget {
 
 class _FollowersScreenState extends ConsumerState<FollowersScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final RefreshController _refreshController = RefreshController();
+
   final _queryProvider = StateProvider<FollowerQuery>((ref) => FollowerQuery(
         query: "",
         latestFirst: false,
@@ -46,6 +49,29 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     super.dispose();
   }
 
+  Future<void> _onRefresh() async {
+    try {
+      await ref.refresh(followingProvider(
+          ref.read(_queryProvider))); // Re-trigger the provider
+      _refreshController.refreshCompleted(); // Notify SmartRefresher of success
+    } catch (e) {
+      _refreshController.refreshFailed(); // Notify SmartRefresher of failure
+    }
+  }
+
+  void _onLoading() async {
+    try {
+      // Fetch more products from the repository
+      await ref.refresh(followingProvider(
+          ref.read(_queryProvider))); // Re-trigger the provider
+
+      // await ref.read(productRepo).fetchMoreFavouriteProducts();
+      _refreshController.loadComplete();
+    } catch (e) {
+      _refreshController.loadFailed();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final queryParams = ref.watch(_queryProvider);
@@ -53,21 +79,21 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     // Watch the followersProvider with current query parameters
     final followers = ref.watch(followersProvider(queryParams));
 
-    return Scaffold(
-      appBar: PreluraAppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: "Followers",
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => AutoRouter.of(context).popForced(),
+    return SmartRefresher(
+      controller: _refreshController,
+      onRefresh: _onRefresh,
+      onLoading: _onLoading,
+      child: Scaffold(
+        appBar: PreluraAppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          appbarTitle: "Followers",
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => AutoRouter.of(context).popForced(),
+          ),
         ),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          ref.refresh(followersProvider(ref.read(_queryProvider)));
-        },
-        child: Padding(
+        body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
             children: [
@@ -96,7 +122,6 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                         final user = followersList[index];
                         return FollowerTile(
                           follower: user,
-                          isFollowing: false,
                         );
                       },
                     );

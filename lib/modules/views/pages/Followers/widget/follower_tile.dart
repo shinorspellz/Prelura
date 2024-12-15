@@ -17,13 +17,15 @@ final _queryProvider = StateProvider<FollowerQuery>((ref) => FollowerQuery(
 
 class FollowerTile extends ConsumerWidget {
   final UserModel follower;
-  final bool isFollowing;
 
-  const FollowerTile(
-      {super.key, required this.follower, required this.isFollowing});
+  const FollowerTile({
+    super.key,
+    required this.follower,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isFollowing = follower.isFollowing ?? false;
     return GestureDetector(
       onTap: () {
         context.router.push(ProfileDetailsRoute(username: follower.username));
@@ -44,7 +46,7 @@ class FollowerTile extends ConsumerWidget {
               backgroundImage: follower.profilePictureUrl != null
                   ? NetworkImage(follower.profilePictureUrl!)
                   : null,
-              child: follower.profilePictureUrl != null
+              child: follower.profilePictureUrl == null
                   ? Text(
                       follower.username[0].toUpperCase(),
                       style: TextStyle(
@@ -84,7 +86,6 @@ class FollowerTile extends ConsumerWidget {
                       HelperFunction.showToast(
                           message: "Unfollowed ${username}");
                     }
-                  
                   } else {
                     await ref.read(followUserProvider(follower.id));
                   }
@@ -100,9 +101,14 @@ class FollowerTile extends ConsumerWidget {
                       .refresh(followingProvider(ref.read(_queryProvider)));
                   ref.invalidate(followersProvider(
                       FollowerQuery(query: "", latestFirst: false)));
-                 
+                  ref.invalidate(userProvider);
                 }
               },
+              textColor: isFollowing
+                  ? context.isDarkMode
+                      ? PreluraColors.white
+                      : PreluraColors.primaryColor
+                  : PreluraColors.white,
               bgColor: isFollowing
                   ? Theme.of(context).scaffoldBackgroundColor
                   : null,
