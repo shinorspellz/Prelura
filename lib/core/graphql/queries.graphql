@@ -19,6 +19,8 @@ query ViewMe {
       longitude
       locationName
     }
+    noOfFollowing
+    noOfFollowers
     phone {
       number
       countryCode
@@ -69,6 +71,8 @@ query GetUser($username: String!) {
       longitude
       locationName
     }
+    noOfFollowing
+    noOfFollowers
     phone {
       number
       countryCode

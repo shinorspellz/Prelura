@@ -73,10 +73,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             : userProvider))
         .valueOrNull;
     bool isCurrentUser = widget.username == null;
-
-    final followers = ref
-        .read(followingProvider(FollowerQuery(query: "", latestFirst: false)));
-    final following = ref.read(followingProvider(FollowerQuery()));
+    print(user);
 
     return SmartRefresher(
       controller: _refreshController,
@@ -141,11 +138,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       context.router
                                           .push(const FollowersRoute());
                                     },
-                                  text: ref
-                                          .watch(followersTotalProvider)
-                                          .valueOrNull
-                                          ?.toString() ??
-                                      '--',
+                                  text: user?.noOfFollowers.toString() ?? '--',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -173,11 +166,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 context.router.push(const FollowingRoute());
                               },
                               child: Text.rich(TextSpan(
-                                  text: ref
-                                          .watch(followingTotalProvider)
-                                          .valueOrNull
-                                          ?.toString() ??
-                                      '--',
+                                  text: user?.noOfFollowing.toString() ?? '--',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
