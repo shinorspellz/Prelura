@@ -265,8 +265,10 @@ class _FilteredProductController
 
     _brandTotalItems = result.filterProductsByPriceTotalNumber!;
 
-    final newState =
-        result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.filterProductsByPrice!
+        .map((e) => Product.fromJson(e!.toJson()))
+        .toList();
+    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());

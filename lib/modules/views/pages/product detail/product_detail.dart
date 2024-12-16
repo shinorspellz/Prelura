@@ -231,8 +231,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                 child: AppButton(
                                   onTap: () {},
                                   text: "Buy now",
-                                  textColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
+                                  textColor: PreluraColors.white,
                                   borderColor: Colors.purple,
                                 ),
                               ),
@@ -567,7 +566,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 width: 120,
                 onTap: () {},
                 text: "Create Bundle",
-                textColor: Theme.of(context).scaffoldBackgroundColor,
+                textColor: PreluraColors.white,
               ),
             ],
           ),
@@ -596,6 +595,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                   }
                   return DisplaySection(
                     products: items,
+                    isInProduct: false,
                   );
                 },
                 error: (e, _) => Center(

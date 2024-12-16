@@ -75,6 +75,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ref
                   .refresh(allProductProvider(null).future)
                   .then((_) => ref.read(refreshingHome.notifier).state = false);
+              ref.refresh(filterProductByPriceProvider(15).future);
             },
             child: CustomScrollView(
               controller: controller,
