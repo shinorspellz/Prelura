@@ -21,7 +21,7 @@ class StylePage extends ConsumerWidget {
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
-        appbarTitle: "Percel Size",
+        appbarTitle: "Style",
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class StylePage extends ConsumerWidget {
             return Column(
               children: [
                 ListTile(
-                  title: Text(e.name.replaceAll('_', " ")),
+                  title: Text(e.name.replaceAll('_', " ").toLowerCase()),
                   trailing: Radio(
                       value: e,
                       groupValue: selectedParcel,
