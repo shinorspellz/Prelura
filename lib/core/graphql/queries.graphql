@@ -193,6 +193,7 @@ query AllProducts($search: String, $pageCount: Int, $pageNumber: Int, $brandFilt
     seller {
       id
       username
+      profilePictureUrl
     }
     condition
     discountPrice

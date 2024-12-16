@@ -16,6 +16,7 @@ import 'package:prelura_app/shared/card_model.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controller/product/product_provider.dart';
+import '../../controller/user/user_controller.dart';
 import 'profile_picture.dart';
 
 class DisplayCard extends StatefulWidget {
@@ -199,24 +200,35 @@ class _ProductCardState extends ConsumerState<ProductCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (widget.isSimilar) ...[
-              Row(
-                children: [
-                  ProfilePictureWidget(
-                    profilePicture: widget.product.seller.profilePictureUrl,
-                    username: widget.product.seller.username,
-                    width: 30,
-                    height: 30,
-                  ),
-                  addHorizontalSpacing(8),
-                  Text(
-                    widget.product.seller.username,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).textTheme.bodyMedium?.color),
-                  ),
-                ],
+              GestureDetector(
+                onTap: () {
+                  final user = ref.read(userProvider).valueOrNull;
+
+                  context.router.push(ProfileDetailsRoute(
+                      username: user?.username == widget.product.seller.username
+                          ? null
+                          : widget.product.seller.username));
+                },
+                child: Row(
+                  children: [
+                    ProfilePictureWidget(
+                      profilePicture: widget.product.seller.profilePictureUrl,
+                      username: widget.product.seller.username,
+                      width: 20,
+                      height: 20,
+                    ),
+                    addHorizontalSpacing(8),
+                    Text(
+                      widget.product.seller.username,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: Theme.of(context).textTheme.bodyMedium?.color),
+                    ),
+                  ],
+                ),
               ),
-              addVerticalSpacing(4),
+              addVerticalSpacing(8),
             ],
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
