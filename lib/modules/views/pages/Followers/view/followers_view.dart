@@ -94,21 +94,21 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     // Watch the followersProvider with current query parameters
     final followers = ref.watch(followersProvider(queryParams));
 
-    return SmartRefresher(
-      controller: _refreshController,
-      onRefresh: _onRefresh,
-      onLoading: _onLoading,
-      child: Scaffold(
-        appBar: PreluraAppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          appbarTitle: "Followers",
-          leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
-            onPressed: () => AutoRouter.of(context).popForced(),
-          ),
+    return Scaffold(
+      appBar: PreluraAppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        appbarTitle: "Followers",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => AutoRouter.of(context).popForced(),
         ),
-        body: Padding(
+      ),
+      body: SmartRefresher(
+        controller: _refreshController,
+        onRefresh: _onRefresh,
+        onLoading: _onLoading,
+        child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
             children: [

@@ -38,7 +38,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         //   ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
         //   return;
         // }
-        ref.read(allProductProvider(null).notifier).fetchMoreData();
+        ref
+            .read(
+                filterProductByBrandProvider((widget.id, searchQuery)).notifier)
+            .fetchMoreData(widget.id, searchQuery);
       }
     });
     super.initState();

@@ -277,7 +277,8 @@ class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, doub
 
     _brandTotalItems = result.filterProductsByPriceTotalNumber!;
 
-    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson())).toList();
+    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
@@ -355,7 +356,9 @@ class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>
 
     _brandTotalItems = result.allProductsTotalNumber!;
 
-    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
+    newState.shuffle();
+    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());

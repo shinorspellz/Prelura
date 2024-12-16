@@ -449,6 +449,7 @@ query FilterProductsByPrice(
     seller {
       id
       username
+      profilePictureUrl
     }
     condition
     discountPrice

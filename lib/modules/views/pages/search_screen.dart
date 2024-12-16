@@ -229,7 +229,6 @@ class SearchScreen extends ConsumerWidget {
     final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
       width: 170,
-      height: 220,
       margin: EdgeInsets.only(right: 12),
       child: Column(
         children: [
@@ -237,7 +236,7 @@ class SearchScreen extends ConsumerWidget {
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: Image.asset(
               image,
-              height: 170,
+              height: 27.h,
               width: double.infinity,
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,

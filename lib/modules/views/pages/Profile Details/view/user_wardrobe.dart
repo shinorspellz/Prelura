@@ -136,7 +136,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       ),
                                   children: [
                                     TextSpan(
-                                      text: (user != null && user.noOfFollowers!.toInt() > 1) ? "followers" : " follower,",
+                                      text: (user != null && user.noOfFollowers!.toInt() > 1) ? " followers" : " follower,",
                                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
