@@ -167,7 +167,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
-                              childAspectRatio: 0.55,
+                              childAspectRatio: 0.50,
                             ),
                             itemCount: products.length,
                             itemBuilder: (context, index) {
@@ -233,7 +233,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       "Steals under £15",
                       context,
                       onTap: () => context.pushRoute(
-                        ProductPriceFilterRoute(title: 'Shop Bargains'),
+                        ProductPriceFilterRoute(title: 'Steals under £15'),
                       ),
                     ),
                   ),
@@ -413,32 +413,44 @@ Widget _buildSectionTitle(
     {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Text(
+          MainTitle,
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+        ),
+        const SizedBox(
+          height: 1,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              MainTitle,
-              textAlign: TextAlign.left,
-              style:
-                  Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 17),
-            ),
-            const SizedBox(
-              height: 1,
-            ),
             Text(
               subtitle,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
+            GestureDetector(
+              onTap: onTap,
+              child: Text("See All",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: PreluraColors.primaryColor)),
+            )
           ],
         ),
-        TextButton(
-          onPressed: onTap,
-          child: Text("See All", style: Theme.of(context).textTheme.bodySmall),
-        )
+        const SizedBox(
+          height: 10,
+        ),
       ],
     ),
   );

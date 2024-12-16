@@ -20711,6 +20711,13 @@ const documentNodeQueryFilterProductsByPrice = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -22021,6 +22028,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
   Query$FilterProductsByPrice$filterProductsByPrice$seller({
     this.id,
     this.username,
+    this.profilePictureUrl,
     this.$__typename = 'UserType',
   });
 
@@ -22028,10 +22036,12 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
     final l$$__typename = json['__typename'];
     return Query$FilterProductsByPrice$filterProductsByPrice$seller(
       id: (l$id as int?),
       username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -22039,6 +22049,8 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
   final int? id;
 
   final String? username;
+
+  final String? profilePictureUrl;
 
   final String $__typename;
 
@@ -22048,6 +22060,8 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
     _resultData['id'] = l$id;
     final l$username = username;
     _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -22057,10 +22071,12 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
   int get hashCode {
     final l$id = id;
     final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$username,
+      l$profilePictureUrl,
       l$$__typename,
     ]);
   }
@@ -22082,6 +22098,11 @@ class Query$FilterProductsByPrice$filterProductsByPrice$seller {
     final l$username = username;
     final lOther$username = other.username;
     if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -22119,6 +22140,7 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller
   TRes call({
     int? id,
     String? username,
+    String? profilePictureUrl,
     String? $__typename,
   });
 }
@@ -22143,12 +22165,16 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller<
   TRes call({
     Object? id = _undefined,
     Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$FilterProductsByPrice$filterProductsByPrice$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -22168,6 +22194,7 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller
   call({
     int? id,
     String? username,
+    String? profilePictureUrl,
     String? $__typename,
   }) =>
       _res;

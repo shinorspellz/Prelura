@@ -349,7 +349,9 @@ class _AllProductController
     _brandTotalItems = result.allProductsTotalNumber!;
 
     final newState =
-        result.allProducts!.map((e) => Product.fromJson(e!.toJson()));
+        result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
+    newState.shuffle();
+    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
