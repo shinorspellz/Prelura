@@ -28,7 +28,8 @@ final searchUserProvider = FutureProvider.family((ref, String query) async {
   return result;
 });
 
-final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username) async {
+final otherUserProfile =
+    FutureProvider.family<UserModel, String>((ref, username) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getUser(username);
@@ -36,7 +37,8 @@ final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username
   return result;
 });
 
-final userNotfierProvider = AsyncNotifierProvider<_UserController, void>(_UserController.new);
+final userNotfierProvider =
+    AsyncNotifierProvider<_UserController, void>(_UserController.new);
 
 class _UserController extends AsyncNotifier<void> {
   late final _repo = ref.read(userRepo);
@@ -128,37 +130,48 @@ class FollowerQuery {
   final bool? latestFirst;
   final int? page;
   final int? pageCount;
+  final String username;
 
-  FollowerQuery({this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
+  FollowerQuery(
+      {required this.username,
+      this.query,
+      this.latestFirst,
+      this.page = 1,
+      this.pageCount = 20});
 }
 
-final followersProvider = FutureProvider.family((ref, FollowerQuery params) async {
+final followersProvider =
+    FutureProvider.family((ref, FollowerQuery params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
   final query = params.query;
   final latestFirst = params.latestFirst ?? false;
+  final username = params.username;
 
   // Fetch followers based on parameters
-  final result = await repo.getFollowers(query!, latestFirst);
+  final result = await repo.getFollowers(query!, latestFirst, username);
 
   return result;
 });
 
-final followingProvider = FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
+final followingProvider =
+    FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
   final query = params.query;
   final latestFirst = params.latestFirst ?? false;
+  final username = params.username;
 
   // Fetch followers based on parameters
-  final result = await repo.getFollowing(query, latestFirst);
+  final result = await repo.getFollowing(query, latestFirst, username);
 
   return Future.value(result);
 });
 
-final followUserProvider = FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
+final followUserProvider =
+    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
   final repo = ref.watch(networkRepo);
 
   // Fetch followers based on parameters
@@ -171,15 +184,30 @@ final followUserProvider = FutureProvider.autoDispose.family<bool, int>((ref, us
 // @AYOPELUMI you dont put these actions in future provider instead use them in notifier provider classes
 // @AYOPELUMI future provider is only used in get requests
 // @AYOPELUMI look up productProvider to better understand what i'm saying
-final unFollowUserProvider = FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
-  final repo = ref.watch(networkRepo);
 
-  // Fetch followers based on parameters
-  final result = await repo.unFollowUser(userId);
-  // ref.invalidate(followingProvider(FollowerQuery()));
+class UnFollowUserNotifier extends AsyncNotifier<bool> {
+  late final NetworkRepo repo;
 
-  return result;
-});
+  @override
+  FutureOr<bool> build() async {
+    repo = ref.watch(networkRepo); // Initialize dependencies
+    return false;
+  }
+
+  // Async function to unfollow a user
+  Future<bool> unFollowUser(int userId) async {
+    final result = await repo.unFollowUser(userId);
+    state = AsyncValue.data(result); // Update the state
+    return result;
+  }
+}
+
+// Use AsyncNotifierProvider for AsyncNotifier
+final unFollowUserProvider = AsyncNotifierProvider<UnFollowUserNotifier, bool>(
+  UnFollowUserNotifier.new,
+);
+
+// Define the provider
 
 /// Exposes total numbers for followers
 final followersTotalProvider = FutureProvider((ref) async {

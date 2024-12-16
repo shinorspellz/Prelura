@@ -2777,6 +2777,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFollowing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -2973,6 +2980,7 @@ class Query$GetUser$getUser {
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
+    this.isFollowing,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -2995,6 +3003,7 @@ class Query$GetUser$getUser {
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
+    final l$isFollowing = json['isFollowing'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
@@ -3021,6 +3030,7 @@ class Query$GetUser$getUser {
               (l$location as Map<String, dynamic>)),
       noOfFollowing: (l$noOfFollowing as int?),
       noOfFollowers: (l$noOfFollowers as int?),
+      isFollowing: (l$isFollowing as bool?),
       phone: l$phone == null
           ? null
           : Query$GetUser$getUser$phone.fromJson(
@@ -3063,6 +3073,8 @@ class Query$GetUser$getUser {
 
   final int? noOfFollowers;
 
+  final bool? isFollowing;
+
   final Query$GetUser$getUser$phone? phone;
 
   final String $__typename;
@@ -3103,6 +3115,8 @@ class Query$GetUser$getUser {
     _resultData['noOfFollowing'] = l$noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
     _resultData['noOfFollowers'] = l$noOfFollowers;
+    final l$isFollowing = isFollowing;
+    _resultData['isFollowing'] = l$isFollowing;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -3129,6 +3143,7 @@ class Query$GetUser$getUser {
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
+    final l$isFollowing = isFollowing;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -3149,6 +3164,7 @@ class Query$GetUser$getUser {
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
+      l$isFollowing,
       l$phone,
       l$$__typename,
     ]);
@@ -3247,6 +3263,11 @@ class Query$GetUser$getUser {
     if (l$noOfFollowers != lOther$noOfFollowers) {
       return false;
     }
+    final l$isFollowing = isFollowing;
+    final lOther$isFollowing = other.isFollowing;
+    if (l$isFollowing != lOther$isFollowing) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -3296,6 +3317,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
+    bool? isFollowing,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
@@ -3334,6 +3356,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
+    Object? isFollowing = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -3374,6 +3397,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         noOfFollowers: noOfFollowers == _undefined
             ? _instance.noOfFollowers
             : (noOfFollowers as int?),
+        isFollowing: isFollowing == _undefined
+            ? _instance.isFollowing
+            : (isFollowing as bool?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$GetUser$getUser$phone?),
@@ -3423,6 +3449,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
+    bool? isFollowing,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   }) =>
@@ -8016,11 +8043,13 @@ class Variables$Query$AllProducts {
     String? search,
     int? pageCount,
     int? pageNumber,
+    int? brandFilter,
   }) =>
       Variables$Query$AllProducts._({
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
+        if (brandFilter != null) r'brandFilter': brandFilter,
       });
 
   Variables$Query$AllProducts._(this._$data);
@@ -8039,6 +8068,10 @@ class Variables$Query$AllProducts {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
+    if (data.containsKey('brandFilter')) {
+      final l$brandFilter = data['brandFilter'];
+      result$data['brandFilter'] = (l$brandFilter as int?);
+    }
     return Variables$Query$AllProducts._(result$data);
   }
 
@@ -8049,6 +8082,8 @@ class Variables$Query$AllProducts {
   int? get pageCount => (_$data['pageCount'] as int?);
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  int? get brandFilter => (_$data['brandFilter'] as int?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -8063,6 +8098,10 @@ class Variables$Query$AllProducts {
     if (_$data.containsKey('pageNumber')) {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
+    }
+    if (_$data.containsKey('brandFilter')) {
+      final l$brandFilter = brandFilter;
+      result$data['brandFilter'] = l$brandFilter;
     }
     return result$data;
   }
@@ -8108,6 +8147,15 @@ class Variables$Query$AllProducts {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
+    final l$brandFilter = brandFilter;
+    final lOther$brandFilter = other.brandFilter;
+    if (_$data.containsKey('brandFilter') !=
+        other._$data.containsKey('brandFilter')) {
+      return false;
+    }
+    if (l$brandFilter != lOther$brandFilter) {
+      return false;
+    }
     return true;
   }
 
@@ -8116,10 +8164,12 @@ class Variables$Query$AllProducts {
     final l$search = search;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
+    final l$brandFilter = brandFilter;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+      _$data.containsKey('brandFilter') ? l$brandFilter : const {},
     ]);
   }
 }
@@ -8137,6 +8187,7 @@ abstract class CopyWith$Variables$Query$AllProducts<TRes> {
     String? search,
     int? pageCount,
     int? pageNumber,
+    int? brandFilter,
   });
 }
 
@@ -8157,12 +8208,14 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
     Object? search = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
+    Object? brandFilter = _undefined,
   }) =>
       _then(Variables$Query$AllProducts._({
         ..._instance._$data,
         if (search != _undefined) 'search': (search as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+        if (brandFilter != _undefined) 'brandFilter': (brandFilter as int?),
       }));
 }
 
@@ -8176,6 +8229,7 @@ class _CopyWithStubImpl$Variables$Query$AllProducts<TRes>
     String? search,
     int? pageCount,
     int? pageNumber,
+    int? brandFilter,
   }) =>
       _res;
 }
@@ -8396,6 +8450,15 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'brandFilter')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -8414,6 +8477,15 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'filters'),
+            value: ObjectValueNode(fields: [
+              ObjectFieldNode(
+                name: NameNode(value: 'brand'),
+                value: VariableNode(name: NameNode(value: 'brandFilter')),
+              )
+            ]),
           ),
         ],
         directives: [],
@@ -16916,12 +16988,14 @@ class Variables$Query$following {
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   }) =>
       Variables$Query$following._({
         if (latestFirst != null) r'latestFirst': latestFirst,
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
+        if (username != null) r'username': username,
       });
 
   Variables$Query$following._(this._$data);
@@ -16944,6 +17018,10 @@ class Variables$Query$following {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
+    if (data.containsKey('username')) {
+      final l$username = data['username'];
+      result$data['username'] = (l$username as String?);
+    }
     return Variables$Query$following._(result$data);
   }
 
@@ -16956,6 +17034,8 @@ class Variables$Query$following {
   int? get pageCount => (_$data['pageCount'] as int?);
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  String? get username => (_$data['username'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -16974,6 +17054,10 @@ class Variables$Query$following {
     if (_$data.containsKey('pageNumber')) {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
+    }
+    if (_$data.containsKey('username')) {
+      final l$username = username;
+      result$data['username'] = l$username;
     }
     return result$data;
   }
@@ -17028,6 +17112,15 @@ class Variables$Query$following {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (_$data.containsKey('username') !=
+        other._$data.containsKey('username')) {
+      return false;
+    }
+    if (l$username != lOther$username) {
+      return false;
+    }
     return true;
   }
 
@@ -17037,11 +17130,13 @@ class Variables$Query$following {
     final l$search = search;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
+    final l$username = username;
     return Object.hashAll([
       _$data.containsKey('latestFirst') ? l$latestFirst : const {},
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+      _$data.containsKey('username') ? l$username : const {},
     ]);
   }
 }
@@ -17060,6 +17155,7 @@ abstract class CopyWith$Variables$Query$following<TRes> {
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   });
 }
 
@@ -17081,6 +17177,7 @@ class _CopyWithImpl$Variables$Query$following<TRes>
     Object? search = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
+    Object? username = _undefined,
   }) =>
       _then(Variables$Query$following._({
         ..._instance._$data,
@@ -17088,6 +17185,7 @@ class _CopyWithImpl$Variables$Query$following<TRes>
         if (search != _undefined) 'search': (search as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+        if (username != _undefined) 'username': (username as String?),
       }));
 }
 
@@ -17102,6 +17200,7 @@ class _CopyWithStubImpl$Variables$Query$following<TRes>
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   }) =>
       _res;
 }
@@ -17307,6 +17406,15 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'username')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -17329,6 +17437,10 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'search'),
             value: VariableNode(name: NameNode(value: 'search')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'username'),
+            value: VariableNode(name: NameNode(value: 'username')),
           ),
         ],
         directives: [],
@@ -17403,6 +17515,13 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'isFollowing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -17561,6 +17680,7 @@ class Query$following$following {
     this.listing,
     this.profilePictureUrl,
     this.location,
+    this.isFollowing,
     this.$__typename = 'UserType',
   });
 
@@ -17571,6 +17691,7 @@ class Query$following$following {
     final l$listing = json['listing'];
     final l$profilePictureUrl = json['profilePictureUrl'];
     final l$location = json['location'];
+    final l$isFollowing = json['isFollowing'];
     final l$$__typename = json['__typename'];
     return Query$following$following(
       id: (l$id as int?),
@@ -17582,6 +17703,7 @@ class Query$following$following {
           ? null
           : Query$following$following$location.fromJson(
               (l$location as Map<String, dynamic>)),
+      isFollowing: (l$isFollowing as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -17597,6 +17719,8 @@ class Query$following$following {
   final String? profilePictureUrl;
 
   final Query$following$following$location? location;
+
+  final bool? isFollowing;
 
   final String $__typename;
 
@@ -17614,6 +17738,8 @@ class Query$following$following {
     _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
+    final l$isFollowing = isFollowing;
+    _resultData['isFollowing'] = l$isFollowing;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -17627,6 +17753,7 @@ class Query$following$following {
     final l$listing = listing;
     final l$profilePictureUrl = profilePictureUrl;
     final l$location = location;
+    final l$isFollowing = isFollowing;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -17635,6 +17762,7 @@ class Query$following$following {
       l$listing,
       l$profilePictureUrl,
       l$location,
+      l$isFollowing,
       l$$__typename,
     ]);
   }
@@ -17678,6 +17806,11 @@ class Query$following$following {
     if (l$location != lOther$location) {
       return false;
     }
+    final l$isFollowing = isFollowing;
+    final lOther$isFollowing = other.isFollowing;
+    if (l$isFollowing != lOther$isFollowing) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -17712,6 +17845,7 @@ abstract class CopyWith$Query$following$following<TRes> {
     int? listing,
     String? profilePictureUrl,
     Query$following$following$location? location,
+    bool? isFollowing,
     String? $__typename,
   });
   CopyWith$Query$following$following$location<TRes> get location;
@@ -17737,6 +17871,7 @@ class _CopyWithImpl$Query$following$following<TRes>
     Object? listing = _undefined,
     Object? profilePictureUrl = _undefined,
     Object? location = _undefined,
+    Object? isFollowing = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$following$following(
@@ -17752,6 +17887,9 @@ class _CopyWithImpl$Query$following$following<TRes>
         location: location == _undefined
             ? _instance.location
             : (location as Query$following$following$location?),
+        isFollowing: isFollowing == _undefined
+            ? _instance.isFollowing
+            : (isFollowing as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -17779,6 +17917,7 @@ class _CopyWithStubImpl$Query$following$following<TRes>
     int? listing,
     String? profilePictureUrl,
     Query$following$following$location? location,
+    bool? isFollowing,
     String? $__typename,
   }) =>
       _res;
@@ -17959,12 +18098,14 @@ class Variables$Query$followers {
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   }) =>
       Variables$Query$followers._({
         if (latestFirst != null) r'latestFirst': latestFirst,
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
+        if (username != null) r'username': username,
       });
 
   Variables$Query$followers._(this._$data);
@@ -17987,6 +18128,10 @@ class Variables$Query$followers {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
+    if (data.containsKey('username')) {
+      final l$username = data['username'];
+      result$data['username'] = (l$username as String?);
+    }
     return Variables$Query$followers._(result$data);
   }
 
@@ -17999,6 +18144,8 @@ class Variables$Query$followers {
   int? get pageCount => (_$data['pageCount'] as int?);
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  String? get username => (_$data['username'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -18017,6 +18164,10 @@ class Variables$Query$followers {
     if (_$data.containsKey('pageNumber')) {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
+    }
+    if (_$data.containsKey('username')) {
+      final l$username = username;
+      result$data['username'] = l$username;
     }
     return result$data;
   }
@@ -18071,6 +18222,15 @@ class Variables$Query$followers {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (_$data.containsKey('username') !=
+        other._$data.containsKey('username')) {
+      return false;
+    }
+    if (l$username != lOther$username) {
+      return false;
+    }
     return true;
   }
 
@@ -18080,11 +18240,13 @@ class Variables$Query$followers {
     final l$search = search;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
+    final l$username = username;
     return Object.hashAll([
       _$data.containsKey('latestFirst') ? l$latestFirst : const {},
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+      _$data.containsKey('username') ? l$username : const {},
     ]);
   }
 }
@@ -18103,6 +18265,7 @@ abstract class CopyWith$Variables$Query$followers<TRes> {
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   });
 }
 
@@ -18124,6 +18287,7 @@ class _CopyWithImpl$Variables$Query$followers<TRes>
     Object? search = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
+    Object? username = _undefined,
   }) =>
       _then(Variables$Query$followers._({
         ..._instance._$data,
@@ -18131,6 +18295,7 @@ class _CopyWithImpl$Variables$Query$followers<TRes>
         if (search != _undefined) 'search': (search as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+        if (username != _undefined) 'username': (username as String?),
       }));
 }
 
@@ -18145,6 +18310,7 @@ class _CopyWithStubImpl$Variables$Query$followers<TRes>
     String? search,
     int? pageCount,
     int? pageNumber,
+    String? username,
   }) =>
       _res;
 }
@@ -18350,6 +18516,15 @@ const documentNodeQueryfollowers = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'username')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -18372,6 +18547,10 @@ const documentNodeQueryfollowers = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'search'),
             value: VariableNode(name: NameNode(value: 'search')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'username'),
+            value: VariableNode(name: NameNode(value: 'username')),
           ),
         ],
         directives: [],
@@ -18446,6 +18625,13 @@ const documentNodeQueryfollowers = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'isFollowing'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -18604,6 +18790,7 @@ class Query$followers$followers {
     this.listing,
     this.profilePictureUrl,
     this.location,
+    this.isFollowing,
     this.$__typename = 'UserType',
   });
 
@@ -18614,6 +18801,7 @@ class Query$followers$followers {
     final l$listing = json['listing'];
     final l$profilePictureUrl = json['profilePictureUrl'];
     final l$location = json['location'];
+    final l$isFollowing = json['isFollowing'];
     final l$$__typename = json['__typename'];
     return Query$followers$followers(
       id: (l$id as int?),
@@ -18625,6 +18813,7 @@ class Query$followers$followers {
           ? null
           : Query$followers$followers$location.fromJson(
               (l$location as Map<String, dynamic>)),
+      isFollowing: (l$isFollowing as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -18640,6 +18829,8 @@ class Query$followers$followers {
   final String? profilePictureUrl;
 
   final Query$followers$followers$location? location;
+
+  final bool? isFollowing;
 
   final String $__typename;
 
@@ -18657,6 +18848,8 @@ class Query$followers$followers {
     _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
+    final l$isFollowing = isFollowing;
+    _resultData['isFollowing'] = l$isFollowing;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -18670,6 +18863,7 @@ class Query$followers$followers {
     final l$listing = listing;
     final l$profilePictureUrl = profilePictureUrl;
     final l$location = location;
+    final l$isFollowing = isFollowing;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -18678,6 +18872,7 @@ class Query$followers$followers {
       l$listing,
       l$profilePictureUrl,
       l$location,
+      l$isFollowing,
       l$$__typename,
     ]);
   }
@@ -18721,6 +18916,11 @@ class Query$followers$followers {
     if (l$location != lOther$location) {
       return false;
     }
+    final l$isFollowing = isFollowing;
+    final lOther$isFollowing = other.isFollowing;
+    if (l$isFollowing != lOther$isFollowing) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -18755,6 +18955,7 @@ abstract class CopyWith$Query$followers$followers<TRes> {
     int? listing,
     String? profilePictureUrl,
     Query$followers$followers$location? location,
+    bool? isFollowing,
     String? $__typename,
   });
   CopyWith$Query$followers$followers$location<TRes> get location;
@@ -18780,6 +18981,7 @@ class _CopyWithImpl$Query$followers$followers<TRes>
     Object? listing = _undefined,
     Object? profilePictureUrl = _undefined,
     Object? location = _undefined,
+    Object? isFollowing = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$followers$followers(
@@ -18795,6 +18997,9 @@ class _CopyWithImpl$Query$followers$followers<TRes>
         location: location == _undefined
             ? _instance.location
             : (location as Query$followers$followers$location?),
+        isFollowing: isFollowing == _undefined
+            ? _instance.isFollowing
+            : (isFollowing as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -18822,6 +19027,7 @@ class _CopyWithStubImpl$Query$followers$followers<TRes>
     int? listing,
     String? profilePictureUrl,
     Query$followers$followers$location? location,
+    bool? isFollowing,
     String? $__typename,
   }) =>
       _res;

@@ -55,12 +55,6 @@ class ProductDescription extends ConsumerWidget {
                   child: Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(
-                          text: isDescriptionExpanded
-                              ? product.description
-                              : truncatedDescription,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
                         ...buildHashtagText(
                           isDescriptionExpanded
                               ? product.description

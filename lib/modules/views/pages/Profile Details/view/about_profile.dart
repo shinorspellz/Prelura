@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -299,10 +300,16 @@ class AboutProfile extends ConsumerWidget {
                       const SizedBox(width: 8),
                       GestureDetector(
                         onTap: () {
-                          context.router.push(const FollowersRoute());
+                          context.router
+                              .push(FollowersRoute(username: user!.username));
                         },
                         child: Text.rich(TextSpan(
-                            text: "3",
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                context.router.push(
+                                    FollowersRoute(username: user!.username));
+                              },
+                            text: user?.noOfFollowers.toString() ?? '--',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -314,7 +321,10 @@ class AboutProfile extends ConsumerWidget {
                                 ),
                             children: [
                               TextSpan(
-                                text: " followers,",
+                                text: (user != null &&
+                                        user.noOfFollowers!.toInt() > 1)
+                                    ? "followers"
+                                    : " follower,",
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -327,10 +337,11 @@ class AboutProfile extends ConsumerWidget {
                       const SizedBox(width: 6),
                       GestureDetector(
                         onTap: () {
-                          context.router.push(const FollowingRoute());
+                          context.router
+                              .push(FollowingRoute(username: user!.username));
                         },
                         child: Text.rich(TextSpan(
-                            text: "3",
+                            text: user?.noOfFollowing.toString() ?? '--',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

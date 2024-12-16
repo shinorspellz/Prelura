@@ -8,12 +8,12 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import '../../../../../core/router/router.gr.dart';
 import '../../../../../res/colors.dart';
+import '../../Following/view/following_view.dart';
 import '../model/model.dart';
+import '../view/followers_view.dart';
 
-final _queryProvider = StateProvider<FollowerQuery>((ref) => FollowerQuery(
-      query: "",
-      latestFirst: false,
-    ));
+final _queryProvider = StateProvider<FollowerQuery>(
+    (ref) => FollowerQuery(query: "", latestFirst: false, username: ""));
 
 class FollowerTile extends ConsumerWidget {
   final UserModel follower;
@@ -26,9 +26,16 @@ class FollowerTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFollowing = follower.isFollowing ?? false;
+    print("isFollowing : ${follower.isFollowing}");
+    final isCurrentUser =
+        ref.watch(userProvider).valueOrNull?.username == follower.username;
     return GestureDetector(
       onTap: () {
-        context.router.push(ProfileDetailsRoute(username: follower.username));
+        if (isCurrentUser) {
+          context.router.push(ProfileDetailsRoute());
+        } else {
+          context.router.push(ProfileDetailsRoute(username: follower.username));
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -78,8 +85,9 @@ class FollowerTile extends ConsumerWidget {
                 try {
                   if (isFollowing) {
                     final username = follower.username;
-                    final result = await ref
-                        .read(unFollowUserProvider(follower.id).future);
+                    final notifier =
+                        await ref.read(unFollowUserProvider.notifier);
+                    final result = await notifier.unFollowUser(follower.id);
                     if (result) {
                       print(username);
                       HelperFunction.context = context;
@@ -97,10 +105,11 @@ class FollowerTile extends ConsumerWidget {
                 } finally {
                   // Always refresh the providers
                   print("i am here");
-                  await ref
-                      .refresh(followingProvider(ref.read(_queryProvider)));
-                  ref.invalidate(followersProvider(
-                      FollowerQuery(query: "", latestFirst: false)));
+                  ref.invalidate(
+                      followingProvider(ref.read(followingqueryProvider)));
+                  ref.invalidate(
+                      followersProvider(ref.read(followersqueryProvider)));
+
                   ref.invalidate(userProvider);
                 }
               },
@@ -113,6 +122,7 @@ class FollowerTile extends ConsumerWidget {
                   ? Theme.of(context).scaffoldBackgroundColor
                   : null,
               text: isFollowing ? 'Following' : 'Follow',
+              isDisabled: isCurrentUser,
             ),
           ],
         ),

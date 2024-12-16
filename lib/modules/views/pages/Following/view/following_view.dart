@@ -3,15 +3,25 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/model/user/user_model.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../Followers/widget/follower_tile.dart';
 
+final followingqueryProvider = StateProvider<FollowerQuery>(
+  (ref) => FollowerQuery(
+    query: "",
+    latestFirst: false,
+    username: "", // Default value, can be updated per widget instance
+  ),
+);
+
 @RoutePage()
 class FollowingScreen extends ConsumerStatefulWidget {
-  const FollowingScreen({super.key});
+  const FollowingScreen({super.key, required this.username});
+  final String username;
 
   @override
   ConsumerState<FollowingScreen> createState() => _FollowingScreenState();
@@ -20,25 +30,32 @@ class FollowingScreen extends ConsumerStatefulWidget {
 class _FollowingScreenState extends ConsumerState<FollowingScreen> {
   final TextEditingController _searchController = TextEditingController();
   final RefreshController _refreshController = RefreshController();
-  final _queryProvider = StateProvider<FollowerQuery>((ref) => FollowerQuery(
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(followingqueryProvider.notifier).state = FollowerQuery(
         query: "",
         latestFirst: false,
-      ));
+        username: widget.username,
+      );
+    });
+  }
+
   Timer? _debounce;
 
   void _onSearchChanged() {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
       // Update the query parameters in the StateProvider
-      ref.read(_queryProvider.notifier).state =
-          FollowerQuery(query: _searchController.text, latestFirst: false);
+      ref.read(followingqueryProvider.notifier).state = FollowerQuery(
+          query: _searchController.text,
+          latestFirst: false,
+          username: widget.username);
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController.addListener(_onSearchChanged);
   }
 
   @override
@@ -50,8 +67,8 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
 
   Future<void> _onRefresh() async {
     try {
-      await ref.refresh(followingProvider(
-          ref.read(_queryProvider))); // Re-trigger the provider
+      ref.invalidate(followingProvider(
+          ref.read(followingqueryProvider))); // Re-trigger the provider
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
       _refreshController.refreshFailed(); // Notify SmartRefresher of failure
@@ -61,8 +78,8 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
   void _onLoading() async {
     try {
       // Fetch more products from the repository
-      await ref.refresh(followingProvider(
-          ref.read(_queryProvider))); // Re-trigger the provider
+      ref.invalidate(followingProvider(
+          ref.read(followingqueryProvider))); // Re-trigger the provider
 
       // await ref.read(productRepo).fetchMoreFavouriteProducts();
       _refreshController.loadComplete();
@@ -73,7 +90,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final queryParams = ref.watch(_queryProvider);
+    final queryParams = ref.watch(followingqueryProvider);
 
     // Watch the followersProvider with current query parameters
     final following = ref.watch(followingProvider(queryParams));
