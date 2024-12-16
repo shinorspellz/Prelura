@@ -76,3 +76,24 @@ class ProductShimmer extends StatelessWidget {
     );
   }
 }
+
+class ShimmerBox extends StatelessWidget {
+  const ShimmerBox({super.key, required this.height, required this.width, this.radius});
+  final double height;
+  final double width;
+  final double? radius;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomShimmer(
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(radius ?? 10),
+        ),
+      ),
+    );
+  }
+}

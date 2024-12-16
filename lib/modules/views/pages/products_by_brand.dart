@@ -57,21 +57,17 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider =
-        ref.watch(filterProductByBrandProvider((widget.id, searchQuery)));
-    final productNotifier = ref
-        .read(filterProductByBrandProvider((widget.id, searchQuery)).notifier);
+    final productProvider = ref.watch(filterProductByBrandProvider((widget.id, searchQuery)));
+    final productNotifier = ref.read(filterProductByBrandProvider((widget.id, searchQuery)).notifier);
 
     return RefreshIndicator(
       onRefresh: () async {
-        ref.refresh(
-            filterProductByBrandProvider((widget.id, searchQuery)).future);
+        ref.refresh(filterProductByBrandProvider((widget.id, searchQuery)).future);
       },
       child: Scaffold(
         appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -123,8 +119,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,16 +143,12 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                     ),
                   )),
                 ),
-                ref
-                    .watch(
-                        filterProductByBrandProvider((widget.id, searchQuery)))
-                    .maybeWhen(
+                ref.watch(filterProductByBrandProvider((widget.id, searchQuery))).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         sliver: SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -165,8 +156,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                           ),
                           itemCount: products.take(6).length,
                           itemBuilder: (context, index) {
-                            return ProductCard(
-                                product: products.take(6).toList()[index]);
+                            return ProductCard(product: products.take(6).toList()[index]);
                           },
                         ),
                       ),
@@ -174,62 +164,48 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                     ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref
-                      .watch(filterProductByBrandProvider(
-                          (widget.id, searchQuery)))
-                      .when(
-                          data: (products) {
-                            if (products.length < 6)
-                              return SliverToBoxAdapter(child: Container());
-                            final clippedProducts = products.sublist(6);
-                            return SliverGrid.builder(
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
-                                childAspectRatio: 0.50,
-                              ),
-                              itemCount: clippedProducts.length,
-                              itemBuilder: (context, index) {
-                                return ProductCard(
-                                    product: clippedProducts[index]);
-                              },
-                            );
+                  sliver: ref.watch(filterProductByBrandProvider((widget.id, searchQuery))).when(
+                      data: (products) {
+                        if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                        final clippedProducts = products.sublist(6);
+                        return SliverGrid.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.50,
+                          ),
+                          itemCount: clippedProducts.length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(product: clippedProducts[index]);
                           },
-                          error: (e, _) {
-                            return SliverToBoxAdapter(
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(e.toString()),
-                                    TextButton.icon(
-                                      onPressed: () {
-                                        // log(e.toString(), stackTrace: _);
-                                        ref.invalidate(allProductProvider);
-                                      },
-                                      label: const Text('Retry'),
-                                      icon: const Icon(Icons.refresh_rounded),
-                                    ),
-                                  ],
+                        );
+                      },
+                      error: (e, _) {
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(allProductProvider);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
                                 ),
-                              ),
-                            );
-                          },
-                          loading: () =>
-                              SliverToBoxAdapter(child: GridShimmer())),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
-                if (ref
-                    .watch(
-                        filterProductByBrandProvider((widget.id, searchQuery))
-                            .notifier)
-                    .canLoadMore())
-                  if (!ref
-                      .watch(filterProductByBrandProvider(
-                          (widget.id, searchQuery)))
-                      .isLoading)
+                if (ref.watch(filterProductByBrandProvider((widget.id, searchQuery)).notifier).canLoadMore())
+                  if (!ref.watch(filterProductByBrandProvider((widget.id, searchQuery))).isLoading)
                     const SliverToBoxAdapter(
                       child: PaginationLoadingIndicator(),
                     )
@@ -254,8 +230,7 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

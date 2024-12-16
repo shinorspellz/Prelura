@@ -2,11 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/primary_switch.dart';
+import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/modules/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/helper_function.dart';
 
 import '../../controller/theme_notifier.dart';
 import 'Profile Details/provider/tab_controller.dart';
@@ -23,14 +27,25 @@ class ProfileScreen extends ConsumerWidget {
     final themeMode = ref.watch(themeNotifierProvider);
 
     return Scaffold(
-      appBar: const PreluraAppBar(
+      appBar: PreluraAppBar(
         appbarTitle: "Menu",
+        trailingIcon: [
+          GestureDetector(
+            onTap: () => context.pushRoute(ProfileDetailsRoute()),
+            child: ProfilePictureWidget(
+              profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+              username: ref.watch(userProvider).valueOrNull?.username ?? '--',
+              height: 40,
+              width: 40,
+            ),
+          ),
+          10.horizontalSpacing,
+        ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
         controller: controller,
         child: Column(children: [
-          const ProfileStatsCard(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
@@ -46,9 +61,7 @@ class ProfileScreen extends ConsumerWidget {
               children: [
                 Text(
                   "Dark Mode",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyMedium?.color),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(
                   swicthValue: themeMode == ThemeMode.dark,
@@ -68,12 +81,15 @@ class ProfileScreen extends ConsumerWidget {
                 context.router.push(ProfileDetailsRoute());
               }),
           MenuCard(
-              title: "Balance",
-              icon: const Icon(Icons.wallet_outlined),
-              subtitle: '£0.00',
-              subtitleColor: PreluraColors.activeColor,
-              rightArrow: false,
-              onTap: () {}),
+            title: "Balance",
+            icon: const Icon(Icons.wallet_outlined),
+            subtitle: '£0.00',
+            subtitleColor: PreluraColors.activeColor,
+            rightArrow: false,
+            onTap: () {
+              context.pushRoute(BalanceRoute());
+            },
+          ),
           // MenuCard(
           //     // profilePic: false,
           //     title: "My Profile",
@@ -97,12 +113,7 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const MyFavouriteRoute());
               }),
-          MenuCard(
-              title: "Discounts",
-              subtitle: "off",
-              rightArrow: false,
-              icon: const Icon(Icons.info_outlined),
-              onTap: () {}),
+          MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
@@ -123,11 +134,7 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const SettingRoute());
               }),
-          MenuCard(
-              title: "Help Centre",
-              icon: const Icon(Icons.question_mark_rounded),
-              rightArrow: false,
-              onTap: () {}),
+          MenuCard(title: "Help Centre", icon: const Icon(Icons.question_mark_rounded), rightArrow: false, onTap: () {}),
           MenuCard(
               title: "About Prelura",
               icon: const Icon(Icons.info_outlined),

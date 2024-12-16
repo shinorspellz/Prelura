@@ -274,10 +274,10 @@ If user is archived, make it unarchive and
 return `unarchiving=True` on output.
 """
 type NewObtainJSONWebToken {
-  payload: GenericScalar!
-  refreshExpiresIn: Int!
-  success: Boolean
+  payload: GenericScalar
+  refreshExpiresIn: Int
   errors: ExpectedErrorType
+  success: Boolean
   user: UserNode
   unarchiving: Boolean
   restToken: String
@@ -307,8 +307,8 @@ Send account verification email.
 If allowed to not verified users login, return token.
 """
 type NewRegister {
-  success: Boolean
   errors: ExpectedErrorType
+  success: Boolean
 }
 
 """An object with an ID"""
@@ -335,8 +335,8 @@ tokens, revoke all of them.
 Also, if user has not been verified yet, verify it.
 """
 type PasswordReset {
-  success: Boolean
   errors: ExpectedErrorType
+  success: Boolean
 }
 
 input PhoneInputType {
@@ -500,8 +500,149 @@ enum ProductsProductStyleChoices {
   """Casual"""
   CASUAL
 
-  """Party dress"""
+  """Party Dress"""
   PARTY_DRESS
+
+  """Party Outfit"""
+  PARTY_OUTFIT
+
+  """Formal Wear"""
+  FORMAL_WEAR
+
+  """Evening Wear"""
+  EVENING_WEAR
+
+  """Wedding Guest"""
+  WEDDING_GUEST
+
+  """Loungewear"""
+  LOUNGEWEAR
+
+  """Vacation/Resort Wear"""
+  VACATION_RESORT_WEAR
+
+  """Festival Wear"""
+  FESTIVAL_WEAR
+
+  """Activewear"""
+  ACTIVEWEAR
+
+  """Nightwear"""
+  NIGHTWEAR
+
+  """Vintage"""
+  VINTAGE
+
+  """Y2K"""
+  Y2K
+
+  """Boho"""
+  BOHO
+
+  """Minimalist"""
+  MINIMALIST
+
+  """Grunge"""
+  GRUNGE
+
+  """Chic"""
+  CHIC
+
+  """Streetwear"""
+  STREETWEAR
+
+  """Preppy"""
+  PREPPY
+
+  """Retro"""
+  RETRO
+
+  """Cottagecore"""
+  COTTAGECORE
+
+  """Glam"""
+  GLAM
+
+  """Summer Styles"""
+  SUMMER_STYLES
+
+  """Winter Essentials"""
+  WINTER_ESSENTIALS
+
+  """Spring Florals"""
+  SPRING_FLORALS
+
+  """Autumn Layers"""
+  AUTUMN_LAYERS
+
+  """Rainy Day Wear"""
+  RAINY_DAY_WEAR
+
+  """Denim & Jeans"""
+  DENIM_JEANS
+
+  """Dresses & Gowns"""
+  DRESSES_GOWNS
+
+  """Jackets & Coats"""
+  JACKETS_COATS
+
+  """Knitwear & Sweaters"""
+  KNITWEAR_SWEATERS
+
+  """Skirts & Shorts"""
+  SKIRTS_SHORTS
+
+  """Suits & Blazers"""
+  SUITS_BLAZERS
+
+  """Tops & Blouses"""
+  TOPS_BLOUSES
+
+  """Shoes & Footwear"""
+  SHOES_FOOTWEAR
+
+  """Travel-Friendly"""
+  TRAVEL_FRIENDLY
+
+  """Maternity Wear"""
+  MATERNITY_WEAR
+
+  """Athleisure"""
+  ATHLEISURE
+
+  """Eco-Friendly/Upcycled"""
+  ECO_FRIENDLY_UPCYCLED
+
+  """Festival-Ready"""
+  FESTIVAL_READY
+
+  """Date Night"""
+  DATE_NIGHT
+
+  """Ethnic Wear"""
+  ETHNIC_WEAR
+
+  """Office Party Outfit"""
+  OFFICE_PARTY_OUTFIT
+
+  """Cocktail Attire"""
+  COCKTAIL_ATTIRE
+
+  """Prom Dresses"""
+  PROM_DRESSES
+
+  """Music Concert Wear"""
+  MUSIC_CONCERT_WEAR
+
+  """Oversized"""
+  OVERSIZED
+
+  """Slim Fit"""
+  SLIM_FIT
+
+  """Relaxed Fit"""
+  RELAXED_FIT
 }
 
 enum ProductStatusEnum {
@@ -543,6 +684,7 @@ type Query {
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  popularBrands(top: Int!): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
   filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
@@ -586,8 +728,8 @@ If there is no user with the requested email,
 a successful response is returned.
 """
 type ResendActivationEmail {
-  success: Boolean
   errors: ExpectedErrorType
+  success: Boolean
 }
 
 enum SizeEnum {
@@ -626,6 +768,53 @@ enum StyleEnum {
   WORKOUT
   CASUAL
   PARTY_DRESS
+  PARTY_OUTFIT
+  FORMAL_WEAR
+  EVENING_WEAR
+  WEDDING_GUEST
+  LOUNGEWEAR
+  VACATION_RESORT_WEAR
+  FESTIVAL_WEAR
+  ACTIVEWEAR
+  NIGHTWEAR
+  VINTAGE
+  Y2K
+  BOHO
+  MINIMALIST
+  GRUNGE
+  CHIC
+  STREETWEAR
+  PREPPY
+  RETRO
+  COTTAGECORE
+  GLAM
+  SUMMER_STYLES
+  WINTER_ESSENTIALS
+  SPRING_FLORALS
+  AUTUMN_LAYERS
+  RAINY_DAY_WEAR
+  DENIM_JEANS
+  DRESSES_GOWNS
+  JACKETS_COATS
+  KNITWEAR_SWEATERS
+  SKIRTS_SHORTS
+  SUITS_BLAZERS
+  TOPS_BLOUSES
+  SHOES_FOOTWEAR
+  TRAVEL_FRIENDLY
+  MATERNITY_WEAR
+  ATHLEISURE
+  ECO_FRIENDLY
+  FESTIVAL_READY
+  DATE_NIGHT
+  ETHNIC_WEAR
+  OFFICE_PARTY_OUTFIT
+  COCKTAIL_ATTIRE
+  PROM_DRESSES
+  MUSIC_CONCERT_WEAR
+  OVERSIZED
+  SLIM_FIT
+  RELAXED_FIT
 }
 
 type SubCategoryType {
@@ -643,8 +832,8 @@ Update user model fields, defined on settings.
 User must be verified.
 """
 type UpdateAccount {
-  success: Boolean
   errors: ExpectedErrorType
+  success: Boolean
 }
 
 type UpdateProduct {

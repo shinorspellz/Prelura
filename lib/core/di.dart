@@ -170,10 +170,6 @@ final networkRepo = Provider(
   (ref) => NetworkRepo(ref.watch(graphqlClient)),
 );
 
-// final networkRepo = Provider(
-//   (ref) => FollowingRepo(ref.watch(graphqlClient)),
-// );
-
 /// File Media upload repository for any dependency
 final fileUploadRepo = Provider(
   (ref) => FileUploadRepo(ref.watch(graphqUploadlClient)),

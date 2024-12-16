@@ -74,3 +74,11 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
     return result.brands!.map((e) => Brand.fromJson(e!.toJson())).toList();
   },
 );
+
+final popularBrandsProvider = FutureProvider((ref) async {
+  final repo = ref.watch(productRepo);
+
+  final result = await repo.getPopularBrands(20);
+
+  return result;
+});

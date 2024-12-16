@@ -162,6 +162,10 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
           page: ChatRoute.page,
         ),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
+          page: BalanceRoute.page,
+        ),
       ];
 }
 
