@@ -388,3 +388,93 @@ class _AllProductController
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+
+final filterProductByBrandProvider = AsyncNotifierProvider.family<
+    FilteredBrandProductController,
+    List<Product>,
+    (int, String)>(FilteredBrandProductController.new);
+
+class FilteredBrandProductController
+    extends FamilyAsyncNotifier<List<Product>, (int, String)> {
+  late final _repository = ref.read(productRepo);
+
+  final int _pageCount = 15;
+  int _currentPage = 1;
+  int _brandTotalItems = 0;
+
+  @override
+  Future<List<Product>> build((int, String) params) async {
+    final (brandId, query) = params;
+    state = const AsyncLoading();
+    _currentPage = 1;
+
+    try {
+      return await _getProducts(
+        brandId: brandId,
+        pageNumber: _currentPage,
+        query: query,
+      );
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+      return [];
+    }
+  }
+
+  Future<List<Product>> _getProducts({
+    required int brandId,
+    required int pageNumber,
+    String query = "",
+  }) async {
+    try {
+      final result = await _repository.getAllProducts(
+        pageCount: _pageCount,
+        pageNumber: pageNumber,
+        brandId: brandId,
+        search: query,
+      );
+
+      _brandTotalItems = result.allProductsTotalNumber ?? 0;
+
+      final newProducts = result.allProducts!
+          .map((e) => Product.fromJson(e!.toJson()))
+          .toList();
+
+      final currentProducts = state.valueOrNull ?? [];
+      state = pageNumber == 1
+          ? AsyncData(newProducts)
+          : AsyncData([...currentProducts, ...newProducts]);
+
+      _currentPage = pageNumber;
+      return state.value!;
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+      return [];
+    }
+  }
+
+  Future<void> fetchMoreData(int brandId, String query) async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (!canLoadMore) return;
+
+    try {
+      await _getProducts(
+        brandId: brandId,
+        pageNumber: _currentPage + 1,
+        query: query,
+      );
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+    }
+  }
+
+  Future<void> fetchMoreHandler(int brandId, String query) async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (canLoadMore) {
+      await fetchMoreData(brandId, query);
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
