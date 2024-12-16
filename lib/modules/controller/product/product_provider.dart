@@ -269,6 +269,7 @@ class _FilteredProductController
         .map((e) => Product.fromJson(e!.toJson()))
         .toList();
     newState.shuffle();
+    newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
