@@ -72,16 +72,16 @@ class AuthRepo {
       if (response.parsedData?.register?.errors != null) {
         final errors = response.parsedData?.register?.errors;
         if (errors?.containsKey('username') ?? false) {
-          throw errors?['username'][0]['message'] ?? 'An error occured';
+          throw errors?['username'][0] ?? 'An error occured';
         }
         if (errors?.containsKey('password1') ?? false) {
-          throw errors?['password1'][0]['message'] ?? 'An error occured';
+          throw errors?['password1'][0] ?? 'An error occured';
         }
         if (errors?.containsKey('password2') ?? false) {
-          throw errors?['password2'][0]['message'] ?? 'An error occured';
+          throw errors?['password2'][0] ?? 'An error occured';
         }
         if (errors?.containsKey('email') ?? false) {
-          throw errors?['email'][0]['message'] ?? 'An error occured';
+          throw errors?['email'][0] ?? 'An error occured';
         }
         throw 'An error occured';
       }

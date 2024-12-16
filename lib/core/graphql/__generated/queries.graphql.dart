@@ -8043,13 +8043,13 @@ class Variables$Query$AllProducts {
     String? search,
     int? pageCount,
     int? pageNumber,
-    int? brandFilter,
+    Input$ProductFiltersInput? filters,
   }) =>
       Variables$Query$AllProducts._({
         if (search != null) r'search': search,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
-        if (brandFilter != null) r'brandFilter': brandFilter,
+        if (filters != null) r'filters': filters,
       });
 
   Variables$Query$AllProducts._(this._$data);
@@ -8068,9 +8068,12 @@ class Variables$Query$AllProducts {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
-    if (data.containsKey('brandFilter')) {
-      final l$brandFilter = data['brandFilter'];
-      result$data['brandFilter'] = (l$brandFilter as int?);
+    if (data.containsKey('filters')) {
+      final l$filters = data['filters'];
+      result$data['filters'] = l$filters == null
+          ? null
+          : Input$ProductFiltersInput.fromJson(
+              (l$filters as Map<String, dynamic>));
     }
     return Variables$Query$AllProducts._(result$data);
   }
@@ -8083,7 +8086,8 @@ class Variables$Query$AllProducts {
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
 
-  int? get brandFilter => (_$data['brandFilter'] as int?);
+  Input$ProductFiltersInput? get filters =>
+      (_$data['filters'] as Input$ProductFiltersInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -8099,9 +8103,9 @@ class Variables$Query$AllProducts {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
     }
-    if (_$data.containsKey('brandFilter')) {
-      final l$brandFilter = brandFilter;
-      result$data['brandFilter'] = l$brandFilter;
+    if (_$data.containsKey('filters')) {
+      final l$filters = filters;
+      result$data['filters'] = l$filters?.toJson();
     }
     return result$data;
   }
@@ -8147,13 +8151,12 @@ class Variables$Query$AllProducts {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
-    final l$brandFilter = brandFilter;
-    final lOther$brandFilter = other.brandFilter;
-    if (_$data.containsKey('brandFilter') !=
-        other._$data.containsKey('brandFilter')) {
+    final l$filters = filters;
+    final lOther$filters = other.filters;
+    if (_$data.containsKey('filters') != other._$data.containsKey('filters')) {
       return false;
     }
-    if (l$brandFilter != lOther$brandFilter) {
+    if (l$filters != lOther$filters) {
       return false;
     }
     return true;
@@ -8164,12 +8167,12 @@ class Variables$Query$AllProducts {
     final l$search = search;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
-    final l$brandFilter = brandFilter;
+    final l$filters = filters;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
-      _$data.containsKey('brandFilter') ? l$brandFilter : const {},
+      _$data.containsKey('filters') ? l$filters : const {},
     ]);
   }
 }
@@ -8187,7 +8190,7 @@ abstract class CopyWith$Variables$Query$AllProducts<TRes> {
     String? search,
     int? pageCount,
     int? pageNumber,
-    int? brandFilter,
+    Input$ProductFiltersInput? filters,
   });
 }
 
@@ -8208,14 +8211,15 @@ class _CopyWithImpl$Variables$Query$AllProducts<TRes>
     Object? search = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
-    Object? brandFilter = _undefined,
+    Object? filters = _undefined,
   }) =>
       _then(Variables$Query$AllProducts._({
         ..._instance._$data,
         if (search != _undefined) 'search': (search as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
-        if (brandFilter != _undefined) 'brandFilter': (brandFilter as int?),
+        if (filters != _undefined)
+          'filters': (filters as Input$ProductFiltersInput?),
       }));
 }
 
@@ -8229,7 +8233,7 @@ class _CopyWithStubImpl$Variables$Query$AllProducts<TRes>
     String? search,
     int? pageCount,
     int? pageNumber,
-    int? brandFilter,
+    Input$ProductFiltersInput? filters,
   }) =>
       _res;
 }
@@ -8451,9 +8455,9 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'brandFilter')),
+        variable: VariableNode(name: NameNode(value: 'filters')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
+          name: NameNode(value: 'ProductFiltersInput'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -8480,12 +8484,7 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
           ),
           ArgumentNode(
             name: NameNode(value: 'filters'),
-            value: ObjectValueNode(fields: [
-              ObjectFieldNode(
-                name: NameNode(value: 'brand'),
-                value: VariableNode(name: NameNode(value: 'brandFilter')),
-              )
-            ]),
+            value: VariableNode(name: NameNode(value: 'filters')),
           ),
         ],
         directives: [],
@@ -22469,6 +22468,602 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand<
         CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$brand<TRes> {
   _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$brand(
       this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$PopularBrands {
+  factory Variables$Query$PopularBrands({required int top}) =>
+      Variables$Query$PopularBrands._({
+        r'top': top,
+      });
+
+  Variables$Query$PopularBrands._(this._$data);
+
+  factory Variables$Query$PopularBrands.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$top = data['top'];
+    result$data['top'] = (l$top as int);
+    return Variables$Query$PopularBrands._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get top => (_$data['top'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$top = top;
+    result$data['top'] = l$top;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$PopularBrands<Variables$Query$PopularBrands>
+      get copyWith => CopyWith$Variables$Query$PopularBrands(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$PopularBrands ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$top = top;
+    final lOther$top = other.top;
+    if (l$top != lOther$top) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$top = top;
+    return Object.hashAll([l$top]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$PopularBrands<TRes> {
+  factory CopyWith$Variables$Query$PopularBrands(
+    Variables$Query$PopularBrands instance,
+    TRes Function(Variables$Query$PopularBrands) then,
+  ) = _CopyWithImpl$Variables$Query$PopularBrands;
+
+  factory CopyWith$Variables$Query$PopularBrands.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$PopularBrands;
+
+  TRes call({int? top});
+}
+
+class _CopyWithImpl$Variables$Query$PopularBrands<TRes>
+    implements CopyWith$Variables$Query$PopularBrands<TRes> {
+  _CopyWithImpl$Variables$Query$PopularBrands(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$PopularBrands _instance;
+
+  final TRes Function(Variables$Query$PopularBrands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? top = _undefined}) =>
+      _then(Variables$Query$PopularBrands._({
+        ..._instance._$data,
+        if (top != _undefined && top != null) 'top': (top as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$PopularBrands<TRes>
+    implements CopyWith$Variables$Query$PopularBrands<TRes> {
+  _CopyWithStubImpl$Variables$Query$PopularBrands(this._res);
+
+  TRes _res;
+
+  call({int? top}) => _res;
+}
+
+class Query$PopularBrands {
+  Query$PopularBrands({
+    this.popularBrands,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$PopularBrands.fromJson(Map<String, dynamic> json) {
+    final l$popularBrands = json['popularBrands'];
+    final l$$__typename = json['__typename'];
+    return Query$PopularBrands(
+      popularBrands: (l$popularBrands as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$PopularBrands$popularBrands.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$PopularBrands$popularBrands?>? popularBrands;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$popularBrands = popularBrands;
+    _resultData['popularBrands'] =
+        l$popularBrands?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$popularBrands = popularBrands;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$popularBrands == null
+          ? null
+          : Object.hashAll(l$popularBrands.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$PopularBrands || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$popularBrands = popularBrands;
+    final lOther$popularBrands = other.popularBrands;
+    if (l$popularBrands != null && lOther$popularBrands != null) {
+      if (l$popularBrands.length != lOther$popularBrands.length) {
+        return false;
+      }
+      for (int i = 0; i < l$popularBrands.length; i++) {
+        final l$popularBrands$entry = l$popularBrands[i];
+        final lOther$popularBrands$entry = lOther$popularBrands[i];
+        if (l$popularBrands$entry != lOther$popularBrands$entry) {
+          return false;
+        }
+      }
+    } else if (l$popularBrands != lOther$popularBrands) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$PopularBrands on Query$PopularBrands {
+  CopyWith$Query$PopularBrands<Query$PopularBrands> get copyWith =>
+      CopyWith$Query$PopularBrands(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$PopularBrands<TRes> {
+  factory CopyWith$Query$PopularBrands(
+    Query$PopularBrands instance,
+    TRes Function(Query$PopularBrands) then,
+  ) = _CopyWithImpl$Query$PopularBrands;
+
+  factory CopyWith$Query$PopularBrands.stub(TRes res) =
+      _CopyWithStubImpl$Query$PopularBrands;
+
+  TRes call({
+    List<Query$PopularBrands$popularBrands?>? popularBrands,
+    String? $__typename,
+  });
+  TRes popularBrands(
+      Iterable<Query$PopularBrands$popularBrands?>? Function(
+              Iterable<
+                  CopyWith$Query$PopularBrands$popularBrands<
+                      Query$PopularBrands$popularBrands>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$PopularBrands<TRes>
+    implements CopyWith$Query$PopularBrands<TRes> {
+  _CopyWithImpl$Query$PopularBrands(
+    this._instance,
+    this._then,
+  );
+
+  final Query$PopularBrands _instance;
+
+  final TRes Function(Query$PopularBrands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? popularBrands = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$PopularBrands(
+        popularBrands: popularBrands == _undefined
+            ? _instance.popularBrands
+            : (popularBrands as List<Query$PopularBrands$popularBrands?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes popularBrands(
+          Iterable<Query$PopularBrands$popularBrands?>? Function(
+                  Iterable<
+                      CopyWith$Query$PopularBrands$popularBrands<
+                          Query$PopularBrands$popularBrands>?>?)
+              _fn) =>
+      call(
+          popularBrands: _fn(_instance.popularBrands?.map((e) => e == null
+              ? null
+              : CopyWith$Query$PopularBrands$popularBrands(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$PopularBrands<TRes>
+    implements CopyWith$Query$PopularBrands<TRes> {
+  _CopyWithStubImpl$Query$PopularBrands(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$PopularBrands$popularBrands?>? popularBrands,
+    String? $__typename,
+  }) =>
+      _res;
+
+  popularBrands(_fn) => _res;
+}
+
+const documentNodeQueryPopularBrands = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'PopularBrands'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'top')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'popularBrands'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'top'),
+            value: VariableNode(name: NameNode(value: 'top')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$PopularBrands _parserFn$Query$PopularBrands(Map<String, dynamic> data) =>
+    Query$PopularBrands.fromJson(data);
+typedef OnQueryComplete$Query$PopularBrands = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$PopularBrands?,
+);
+
+class Options$Query$PopularBrands
+    extends graphql.QueryOptions<Query$PopularBrands> {
+  Options$Query$PopularBrands({
+    String? operationName,
+    required Variables$Query$PopularBrands variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$PopularBrands? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$PopularBrands? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$PopularBrands(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryPopularBrands,
+          parserFn: _parserFn$Query$PopularBrands,
+        );
+
+  final OnQueryComplete$Query$PopularBrands? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$PopularBrands
+    extends graphql.WatchQueryOptions<Query$PopularBrands> {
+  WatchOptions$Query$PopularBrands({
+    String? operationName,
+    required Variables$Query$PopularBrands variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$PopularBrands? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryPopularBrands,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$PopularBrands,
+        );
+}
+
+class FetchMoreOptions$Query$PopularBrands extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$PopularBrands({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$PopularBrands variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryPopularBrands,
+        );
+}
+
+extension ClientExtension$Query$PopularBrands on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$PopularBrands>> query$PopularBrands(
+          Options$Query$PopularBrands options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$PopularBrands> watchQuery$PopularBrands(
+          WatchOptions$Query$PopularBrands options) =>
+      this.watchQuery(options);
+  void writeQuery$PopularBrands({
+    required Query$PopularBrands data,
+    required Variables$Query$PopularBrands variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryPopularBrands),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$PopularBrands? readQuery$PopularBrands({
+    required Variables$Query$PopularBrands variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryPopularBrands),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$PopularBrands.fromJson(result);
+  }
+}
+
+class Query$PopularBrands$popularBrands {
+  Query$PopularBrands$popularBrands({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$PopularBrands$popularBrands.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$PopularBrands$popularBrands(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$PopularBrands$popularBrands ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$PopularBrands$popularBrands
+    on Query$PopularBrands$popularBrands {
+  CopyWith$Query$PopularBrands$popularBrands<Query$PopularBrands$popularBrands>
+      get copyWith => CopyWith$Query$PopularBrands$popularBrands(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$PopularBrands$popularBrands<TRes> {
+  factory CopyWith$Query$PopularBrands$popularBrands(
+    Query$PopularBrands$popularBrands instance,
+    TRes Function(Query$PopularBrands$popularBrands) then,
+  ) = _CopyWithImpl$Query$PopularBrands$popularBrands;
+
+  factory CopyWith$Query$PopularBrands$popularBrands.stub(TRes res) =
+      _CopyWithStubImpl$Query$PopularBrands$popularBrands;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$PopularBrands$popularBrands<TRes>
+    implements CopyWith$Query$PopularBrands$popularBrands<TRes> {
+  _CopyWithImpl$Query$PopularBrands$popularBrands(
+    this._instance,
+    this._then,
+  );
+
+  final Query$PopularBrands$popularBrands _instance;
+
+  final TRes Function(Query$PopularBrands$popularBrands) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$PopularBrands$popularBrands(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$PopularBrands$popularBrands<TRes>
+    implements CopyWith$Query$PopularBrands$popularBrands<TRes> {
+  _CopyWithStubImpl$Query$PopularBrands$popularBrands(this._res);
 
   TRes _res;
 

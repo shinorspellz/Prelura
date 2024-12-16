@@ -175,10 +175,18 @@ query UserProducts(
     }
   }
 }
-query AllProducts($search: String, $pageCount: Int, $pageNumber: Int, $brandFilter :Int) {
-  allProducts(search: $search, pageCount: $pageCount, pageNumber: $pageNumber, filters:  {
-     brand: $brandFilter
-  }) {
+query AllProducts(
+  $search: String
+  $pageCount: Int
+  $pageNumber: Int
+  $filters: ProductFiltersInput
+) {
+  allProducts(
+    search: $search
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+    filters: $filters
+  ) {
     id
     name
     description
@@ -352,7 +360,7 @@ query following(
   $search: String
   $pageCount: Int
   $pageNumber: Int
-  $username : String
+  $username: String
 ) {
   following(
     latestFirst: $latestFirst
@@ -380,7 +388,7 @@ query followers(
   $search: String
   $pageCount: Int
   $pageNumber: Int
-  $username : String
+  $username: String
 ) {
   followers(
     latestFirst: $latestFirst
@@ -466,4 +474,11 @@ query FilterProductsByPrice(
     }
   }
   filterProductsByPriceTotalNumber
+}
+
+query PopularBrands($top: Int!) {
+  popularBrands(top: $top) {
+    id
+    name
+  }
 }

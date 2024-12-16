@@ -1200,6 +1200,53 @@ enum Enum$ProductsProductStyleChoices {
   WORKOUT,
   CASUAL,
   PARTY_DRESS,
+  PARTY_OUTFIT,
+  FORMAL_WEAR,
+  EVENING_WEAR,
+  WEDDING_GUEST,
+  LOUNGEWEAR,
+  VACATION_RESORT_WEAR,
+  FESTIVAL_WEAR,
+  ACTIVEWEAR,
+  NIGHTWEAR,
+  VINTAGE,
+  Y2K,
+  BOHO,
+  MINIMALIST,
+  GRUNGE,
+  CHIC,
+  STREETWEAR,
+  PREPPY,
+  RETRO,
+  COTTAGECORE,
+  GLAM,
+  SUMMER_STYLES,
+  WINTER_ESSENTIALS,
+  SPRING_FLORALS,
+  AUTUMN_LAYERS,
+  RAINY_DAY_WEAR,
+  DENIM_JEANS,
+  DRESSES_GOWNS,
+  JACKETS_COATS,
+  KNITWEAR_SWEATERS,
+  SKIRTS_SHORTS,
+  SUITS_BLAZERS,
+  TOPS_BLOUSES,
+  SHOES_FOOTWEAR,
+  TRAVEL_FRIENDLY,
+  MATERNITY_WEAR,
+  ATHLEISURE,
+  ECO_FRIENDLY_UPCYCLED,
+  FESTIVAL_READY,
+  DATE_NIGHT,
+  ETHNIC_WEAR,
+  OFFICE_PARTY_OUTFIT,
+  COCKTAIL_ATTIRE,
+  PROM_DRESSES,
+  MUSIC_CONCERT_WEAR,
+  OVERSIZED,
+  SLIM_FIT,
+  RELAXED_FIT,
   $unknown;
 
   factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
@@ -1219,6 +1266,100 @@ String toJson$Enum$ProductsProductStyleChoices(
       return r'CASUAL';
     case Enum$ProductsProductStyleChoices.PARTY_DRESS:
       return r'PARTY_DRESS';
+    case Enum$ProductsProductStyleChoices.PARTY_OUTFIT:
+      return r'PARTY_OUTFIT';
+    case Enum$ProductsProductStyleChoices.FORMAL_WEAR:
+      return r'FORMAL_WEAR';
+    case Enum$ProductsProductStyleChoices.EVENING_WEAR:
+      return r'EVENING_WEAR';
+    case Enum$ProductsProductStyleChoices.WEDDING_GUEST:
+      return r'WEDDING_GUEST';
+    case Enum$ProductsProductStyleChoices.LOUNGEWEAR:
+      return r'LOUNGEWEAR';
+    case Enum$ProductsProductStyleChoices.VACATION_RESORT_WEAR:
+      return r'VACATION_RESORT_WEAR';
+    case Enum$ProductsProductStyleChoices.FESTIVAL_WEAR:
+      return r'FESTIVAL_WEAR';
+    case Enum$ProductsProductStyleChoices.ACTIVEWEAR:
+      return r'ACTIVEWEAR';
+    case Enum$ProductsProductStyleChoices.NIGHTWEAR:
+      return r'NIGHTWEAR';
+    case Enum$ProductsProductStyleChoices.VINTAGE:
+      return r'VINTAGE';
+    case Enum$ProductsProductStyleChoices.Y2K:
+      return r'Y2K';
+    case Enum$ProductsProductStyleChoices.BOHO:
+      return r'BOHO';
+    case Enum$ProductsProductStyleChoices.MINIMALIST:
+      return r'MINIMALIST';
+    case Enum$ProductsProductStyleChoices.GRUNGE:
+      return r'GRUNGE';
+    case Enum$ProductsProductStyleChoices.CHIC:
+      return r'CHIC';
+    case Enum$ProductsProductStyleChoices.STREETWEAR:
+      return r'STREETWEAR';
+    case Enum$ProductsProductStyleChoices.PREPPY:
+      return r'PREPPY';
+    case Enum$ProductsProductStyleChoices.RETRO:
+      return r'RETRO';
+    case Enum$ProductsProductStyleChoices.COTTAGECORE:
+      return r'COTTAGECORE';
+    case Enum$ProductsProductStyleChoices.GLAM:
+      return r'GLAM';
+    case Enum$ProductsProductStyleChoices.SUMMER_STYLES:
+      return r'SUMMER_STYLES';
+    case Enum$ProductsProductStyleChoices.WINTER_ESSENTIALS:
+      return r'WINTER_ESSENTIALS';
+    case Enum$ProductsProductStyleChoices.SPRING_FLORALS:
+      return r'SPRING_FLORALS';
+    case Enum$ProductsProductStyleChoices.AUTUMN_LAYERS:
+      return r'AUTUMN_LAYERS';
+    case Enum$ProductsProductStyleChoices.RAINY_DAY_WEAR:
+      return r'RAINY_DAY_WEAR';
+    case Enum$ProductsProductStyleChoices.DENIM_JEANS:
+      return r'DENIM_JEANS';
+    case Enum$ProductsProductStyleChoices.DRESSES_GOWNS:
+      return r'DRESSES_GOWNS';
+    case Enum$ProductsProductStyleChoices.JACKETS_COATS:
+      return r'JACKETS_COATS';
+    case Enum$ProductsProductStyleChoices.KNITWEAR_SWEATERS:
+      return r'KNITWEAR_SWEATERS';
+    case Enum$ProductsProductStyleChoices.SKIRTS_SHORTS:
+      return r'SKIRTS_SHORTS';
+    case Enum$ProductsProductStyleChoices.SUITS_BLAZERS:
+      return r'SUITS_BLAZERS';
+    case Enum$ProductsProductStyleChoices.TOPS_BLOUSES:
+      return r'TOPS_BLOUSES';
+    case Enum$ProductsProductStyleChoices.SHOES_FOOTWEAR:
+      return r'SHOES_FOOTWEAR';
+    case Enum$ProductsProductStyleChoices.TRAVEL_FRIENDLY:
+      return r'TRAVEL_FRIENDLY';
+    case Enum$ProductsProductStyleChoices.MATERNITY_WEAR:
+      return r'MATERNITY_WEAR';
+    case Enum$ProductsProductStyleChoices.ATHLEISURE:
+      return r'ATHLEISURE';
+    case Enum$ProductsProductStyleChoices.ECO_FRIENDLY_UPCYCLED:
+      return r'ECO_FRIENDLY_UPCYCLED';
+    case Enum$ProductsProductStyleChoices.FESTIVAL_READY:
+      return r'FESTIVAL_READY';
+    case Enum$ProductsProductStyleChoices.DATE_NIGHT:
+      return r'DATE_NIGHT';
+    case Enum$ProductsProductStyleChoices.ETHNIC_WEAR:
+      return r'ETHNIC_WEAR';
+    case Enum$ProductsProductStyleChoices.OFFICE_PARTY_OUTFIT:
+      return r'OFFICE_PARTY_OUTFIT';
+    case Enum$ProductsProductStyleChoices.COCKTAIL_ATTIRE:
+      return r'COCKTAIL_ATTIRE';
+    case Enum$ProductsProductStyleChoices.PROM_DRESSES:
+      return r'PROM_DRESSES';
+    case Enum$ProductsProductStyleChoices.MUSIC_CONCERT_WEAR:
+      return r'MUSIC_CONCERT_WEAR';
+    case Enum$ProductsProductStyleChoices.OVERSIZED:
+      return r'OVERSIZED';
+    case Enum$ProductsProductStyleChoices.SLIM_FIT:
+      return r'SLIM_FIT';
+    case Enum$ProductsProductStyleChoices.RELAXED_FIT:
+      return r'RELAXED_FIT';
     case Enum$ProductsProductStyleChoices.$unknown:
       return r'$unknown';
   }
@@ -1235,6 +1376,100 @@ Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
       return Enum$ProductsProductStyleChoices.CASUAL;
     case r'PARTY_DRESS':
       return Enum$ProductsProductStyleChoices.PARTY_DRESS;
+    case r'PARTY_OUTFIT':
+      return Enum$ProductsProductStyleChoices.PARTY_OUTFIT;
+    case r'FORMAL_WEAR':
+      return Enum$ProductsProductStyleChoices.FORMAL_WEAR;
+    case r'EVENING_WEAR':
+      return Enum$ProductsProductStyleChoices.EVENING_WEAR;
+    case r'WEDDING_GUEST':
+      return Enum$ProductsProductStyleChoices.WEDDING_GUEST;
+    case r'LOUNGEWEAR':
+      return Enum$ProductsProductStyleChoices.LOUNGEWEAR;
+    case r'VACATION_RESORT_WEAR':
+      return Enum$ProductsProductStyleChoices.VACATION_RESORT_WEAR;
+    case r'FESTIVAL_WEAR':
+      return Enum$ProductsProductStyleChoices.FESTIVAL_WEAR;
+    case r'ACTIVEWEAR':
+      return Enum$ProductsProductStyleChoices.ACTIVEWEAR;
+    case r'NIGHTWEAR':
+      return Enum$ProductsProductStyleChoices.NIGHTWEAR;
+    case r'VINTAGE':
+      return Enum$ProductsProductStyleChoices.VINTAGE;
+    case r'Y2K':
+      return Enum$ProductsProductStyleChoices.Y2K;
+    case r'BOHO':
+      return Enum$ProductsProductStyleChoices.BOHO;
+    case r'MINIMALIST':
+      return Enum$ProductsProductStyleChoices.MINIMALIST;
+    case r'GRUNGE':
+      return Enum$ProductsProductStyleChoices.GRUNGE;
+    case r'CHIC':
+      return Enum$ProductsProductStyleChoices.CHIC;
+    case r'STREETWEAR':
+      return Enum$ProductsProductStyleChoices.STREETWEAR;
+    case r'PREPPY':
+      return Enum$ProductsProductStyleChoices.PREPPY;
+    case r'RETRO':
+      return Enum$ProductsProductStyleChoices.RETRO;
+    case r'COTTAGECORE':
+      return Enum$ProductsProductStyleChoices.COTTAGECORE;
+    case r'GLAM':
+      return Enum$ProductsProductStyleChoices.GLAM;
+    case r'SUMMER_STYLES':
+      return Enum$ProductsProductStyleChoices.SUMMER_STYLES;
+    case r'WINTER_ESSENTIALS':
+      return Enum$ProductsProductStyleChoices.WINTER_ESSENTIALS;
+    case r'SPRING_FLORALS':
+      return Enum$ProductsProductStyleChoices.SPRING_FLORALS;
+    case r'AUTUMN_LAYERS':
+      return Enum$ProductsProductStyleChoices.AUTUMN_LAYERS;
+    case r'RAINY_DAY_WEAR':
+      return Enum$ProductsProductStyleChoices.RAINY_DAY_WEAR;
+    case r'DENIM_JEANS':
+      return Enum$ProductsProductStyleChoices.DENIM_JEANS;
+    case r'DRESSES_GOWNS':
+      return Enum$ProductsProductStyleChoices.DRESSES_GOWNS;
+    case r'JACKETS_COATS':
+      return Enum$ProductsProductStyleChoices.JACKETS_COATS;
+    case r'KNITWEAR_SWEATERS':
+      return Enum$ProductsProductStyleChoices.KNITWEAR_SWEATERS;
+    case r'SKIRTS_SHORTS':
+      return Enum$ProductsProductStyleChoices.SKIRTS_SHORTS;
+    case r'SUITS_BLAZERS':
+      return Enum$ProductsProductStyleChoices.SUITS_BLAZERS;
+    case r'TOPS_BLOUSES':
+      return Enum$ProductsProductStyleChoices.TOPS_BLOUSES;
+    case r'SHOES_FOOTWEAR':
+      return Enum$ProductsProductStyleChoices.SHOES_FOOTWEAR;
+    case r'TRAVEL_FRIENDLY':
+      return Enum$ProductsProductStyleChoices.TRAVEL_FRIENDLY;
+    case r'MATERNITY_WEAR':
+      return Enum$ProductsProductStyleChoices.MATERNITY_WEAR;
+    case r'ATHLEISURE':
+      return Enum$ProductsProductStyleChoices.ATHLEISURE;
+    case r'ECO_FRIENDLY_UPCYCLED':
+      return Enum$ProductsProductStyleChoices.ECO_FRIENDLY_UPCYCLED;
+    case r'FESTIVAL_READY':
+      return Enum$ProductsProductStyleChoices.FESTIVAL_READY;
+    case r'DATE_NIGHT':
+      return Enum$ProductsProductStyleChoices.DATE_NIGHT;
+    case r'ETHNIC_WEAR':
+      return Enum$ProductsProductStyleChoices.ETHNIC_WEAR;
+    case r'OFFICE_PARTY_OUTFIT':
+      return Enum$ProductsProductStyleChoices.OFFICE_PARTY_OUTFIT;
+    case r'COCKTAIL_ATTIRE':
+      return Enum$ProductsProductStyleChoices.COCKTAIL_ATTIRE;
+    case r'PROM_DRESSES':
+      return Enum$ProductsProductStyleChoices.PROM_DRESSES;
+    case r'MUSIC_CONCERT_WEAR':
+      return Enum$ProductsProductStyleChoices.MUSIC_CONCERT_WEAR;
+    case r'OVERSIZED':
+      return Enum$ProductsProductStyleChoices.OVERSIZED;
+    case r'SLIM_FIT':
+      return Enum$ProductsProductStyleChoices.SLIM_FIT;
+    case r'RELAXED_FIT':
+      return Enum$ProductsProductStyleChoices.RELAXED_FIT;
     default:
       return Enum$ProductsProductStyleChoices.$unknown;
   }
@@ -1445,6 +1680,53 @@ enum Enum$StyleEnum {
   WORKOUT,
   CASUAL,
   PARTY_DRESS,
+  PARTY_OUTFIT,
+  FORMAL_WEAR,
+  EVENING_WEAR,
+  WEDDING_GUEST,
+  LOUNGEWEAR,
+  VACATION_RESORT_WEAR,
+  FESTIVAL_WEAR,
+  ACTIVEWEAR,
+  NIGHTWEAR,
+  VINTAGE,
+  Y2K,
+  BOHO,
+  MINIMALIST,
+  GRUNGE,
+  CHIC,
+  STREETWEAR,
+  PREPPY,
+  RETRO,
+  COTTAGECORE,
+  GLAM,
+  SUMMER_STYLES,
+  WINTER_ESSENTIALS,
+  SPRING_FLORALS,
+  AUTUMN_LAYERS,
+  RAINY_DAY_WEAR,
+  DENIM_JEANS,
+  DRESSES_GOWNS,
+  JACKETS_COATS,
+  KNITWEAR_SWEATERS,
+  SKIRTS_SHORTS,
+  SUITS_BLAZERS,
+  TOPS_BLOUSES,
+  SHOES_FOOTWEAR,
+  TRAVEL_FRIENDLY,
+  MATERNITY_WEAR,
+  ATHLEISURE,
+  ECO_FRIENDLY,
+  FESTIVAL_READY,
+  DATE_NIGHT,
+  ETHNIC_WEAR,
+  OFFICE_PARTY_OUTFIT,
+  COCKTAIL_ATTIRE,
+  PROM_DRESSES,
+  MUSIC_CONCERT_WEAR,
+  OVERSIZED,
+  SLIM_FIT,
+  RELAXED_FIT,
   $unknown;
 
   factory Enum$StyleEnum.fromJson(String value) =>
@@ -1463,6 +1745,100 @@ String toJson$Enum$StyleEnum(Enum$StyleEnum e) {
       return r'CASUAL';
     case Enum$StyleEnum.PARTY_DRESS:
       return r'PARTY_DRESS';
+    case Enum$StyleEnum.PARTY_OUTFIT:
+      return r'PARTY_OUTFIT';
+    case Enum$StyleEnum.FORMAL_WEAR:
+      return r'FORMAL_WEAR';
+    case Enum$StyleEnum.EVENING_WEAR:
+      return r'EVENING_WEAR';
+    case Enum$StyleEnum.WEDDING_GUEST:
+      return r'WEDDING_GUEST';
+    case Enum$StyleEnum.LOUNGEWEAR:
+      return r'LOUNGEWEAR';
+    case Enum$StyleEnum.VACATION_RESORT_WEAR:
+      return r'VACATION_RESORT_WEAR';
+    case Enum$StyleEnum.FESTIVAL_WEAR:
+      return r'FESTIVAL_WEAR';
+    case Enum$StyleEnum.ACTIVEWEAR:
+      return r'ACTIVEWEAR';
+    case Enum$StyleEnum.NIGHTWEAR:
+      return r'NIGHTWEAR';
+    case Enum$StyleEnum.VINTAGE:
+      return r'VINTAGE';
+    case Enum$StyleEnum.Y2K:
+      return r'Y2K';
+    case Enum$StyleEnum.BOHO:
+      return r'BOHO';
+    case Enum$StyleEnum.MINIMALIST:
+      return r'MINIMALIST';
+    case Enum$StyleEnum.GRUNGE:
+      return r'GRUNGE';
+    case Enum$StyleEnum.CHIC:
+      return r'CHIC';
+    case Enum$StyleEnum.STREETWEAR:
+      return r'STREETWEAR';
+    case Enum$StyleEnum.PREPPY:
+      return r'PREPPY';
+    case Enum$StyleEnum.RETRO:
+      return r'RETRO';
+    case Enum$StyleEnum.COTTAGECORE:
+      return r'COTTAGECORE';
+    case Enum$StyleEnum.GLAM:
+      return r'GLAM';
+    case Enum$StyleEnum.SUMMER_STYLES:
+      return r'SUMMER_STYLES';
+    case Enum$StyleEnum.WINTER_ESSENTIALS:
+      return r'WINTER_ESSENTIALS';
+    case Enum$StyleEnum.SPRING_FLORALS:
+      return r'SPRING_FLORALS';
+    case Enum$StyleEnum.AUTUMN_LAYERS:
+      return r'AUTUMN_LAYERS';
+    case Enum$StyleEnum.RAINY_DAY_WEAR:
+      return r'RAINY_DAY_WEAR';
+    case Enum$StyleEnum.DENIM_JEANS:
+      return r'DENIM_JEANS';
+    case Enum$StyleEnum.DRESSES_GOWNS:
+      return r'DRESSES_GOWNS';
+    case Enum$StyleEnum.JACKETS_COATS:
+      return r'JACKETS_COATS';
+    case Enum$StyleEnum.KNITWEAR_SWEATERS:
+      return r'KNITWEAR_SWEATERS';
+    case Enum$StyleEnum.SKIRTS_SHORTS:
+      return r'SKIRTS_SHORTS';
+    case Enum$StyleEnum.SUITS_BLAZERS:
+      return r'SUITS_BLAZERS';
+    case Enum$StyleEnum.TOPS_BLOUSES:
+      return r'TOPS_BLOUSES';
+    case Enum$StyleEnum.SHOES_FOOTWEAR:
+      return r'SHOES_FOOTWEAR';
+    case Enum$StyleEnum.TRAVEL_FRIENDLY:
+      return r'TRAVEL_FRIENDLY';
+    case Enum$StyleEnum.MATERNITY_WEAR:
+      return r'MATERNITY_WEAR';
+    case Enum$StyleEnum.ATHLEISURE:
+      return r'ATHLEISURE';
+    case Enum$StyleEnum.ECO_FRIENDLY:
+      return r'ECO_FRIENDLY';
+    case Enum$StyleEnum.FESTIVAL_READY:
+      return r'FESTIVAL_READY';
+    case Enum$StyleEnum.DATE_NIGHT:
+      return r'DATE_NIGHT';
+    case Enum$StyleEnum.ETHNIC_WEAR:
+      return r'ETHNIC_WEAR';
+    case Enum$StyleEnum.OFFICE_PARTY_OUTFIT:
+      return r'OFFICE_PARTY_OUTFIT';
+    case Enum$StyleEnum.COCKTAIL_ATTIRE:
+      return r'COCKTAIL_ATTIRE';
+    case Enum$StyleEnum.PROM_DRESSES:
+      return r'PROM_DRESSES';
+    case Enum$StyleEnum.MUSIC_CONCERT_WEAR:
+      return r'MUSIC_CONCERT_WEAR';
+    case Enum$StyleEnum.OVERSIZED:
+      return r'OVERSIZED';
+    case Enum$StyleEnum.SLIM_FIT:
+      return r'SLIM_FIT';
+    case Enum$StyleEnum.RELAXED_FIT:
+      return r'RELAXED_FIT';
     case Enum$StyleEnum.$unknown:
       return r'$unknown';
   }
@@ -1478,6 +1854,100 @@ Enum$StyleEnum fromJson$Enum$StyleEnum(String value) {
       return Enum$StyleEnum.CASUAL;
     case r'PARTY_DRESS':
       return Enum$StyleEnum.PARTY_DRESS;
+    case r'PARTY_OUTFIT':
+      return Enum$StyleEnum.PARTY_OUTFIT;
+    case r'FORMAL_WEAR':
+      return Enum$StyleEnum.FORMAL_WEAR;
+    case r'EVENING_WEAR':
+      return Enum$StyleEnum.EVENING_WEAR;
+    case r'WEDDING_GUEST':
+      return Enum$StyleEnum.WEDDING_GUEST;
+    case r'LOUNGEWEAR':
+      return Enum$StyleEnum.LOUNGEWEAR;
+    case r'VACATION_RESORT_WEAR':
+      return Enum$StyleEnum.VACATION_RESORT_WEAR;
+    case r'FESTIVAL_WEAR':
+      return Enum$StyleEnum.FESTIVAL_WEAR;
+    case r'ACTIVEWEAR':
+      return Enum$StyleEnum.ACTIVEWEAR;
+    case r'NIGHTWEAR':
+      return Enum$StyleEnum.NIGHTWEAR;
+    case r'VINTAGE':
+      return Enum$StyleEnum.VINTAGE;
+    case r'Y2K':
+      return Enum$StyleEnum.Y2K;
+    case r'BOHO':
+      return Enum$StyleEnum.BOHO;
+    case r'MINIMALIST':
+      return Enum$StyleEnum.MINIMALIST;
+    case r'GRUNGE':
+      return Enum$StyleEnum.GRUNGE;
+    case r'CHIC':
+      return Enum$StyleEnum.CHIC;
+    case r'STREETWEAR':
+      return Enum$StyleEnum.STREETWEAR;
+    case r'PREPPY':
+      return Enum$StyleEnum.PREPPY;
+    case r'RETRO':
+      return Enum$StyleEnum.RETRO;
+    case r'COTTAGECORE':
+      return Enum$StyleEnum.COTTAGECORE;
+    case r'GLAM':
+      return Enum$StyleEnum.GLAM;
+    case r'SUMMER_STYLES':
+      return Enum$StyleEnum.SUMMER_STYLES;
+    case r'WINTER_ESSENTIALS':
+      return Enum$StyleEnum.WINTER_ESSENTIALS;
+    case r'SPRING_FLORALS':
+      return Enum$StyleEnum.SPRING_FLORALS;
+    case r'AUTUMN_LAYERS':
+      return Enum$StyleEnum.AUTUMN_LAYERS;
+    case r'RAINY_DAY_WEAR':
+      return Enum$StyleEnum.RAINY_DAY_WEAR;
+    case r'DENIM_JEANS':
+      return Enum$StyleEnum.DENIM_JEANS;
+    case r'DRESSES_GOWNS':
+      return Enum$StyleEnum.DRESSES_GOWNS;
+    case r'JACKETS_COATS':
+      return Enum$StyleEnum.JACKETS_COATS;
+    case r'KNITWEAR_SWEATERS':
+      return Enum$StyleEnum.KNITWEAR_SWEATERS;
+    case r'SKIRTS_SHORTS':
+      return Enum$StyleEnum.SKIRTS_SHORTS;
+    case r'SUITS_BLAZERS':
+      return Enum$StyleEnum.SUITS_BLAZERS;
+    case r'TOPS_BLOUSES':
+      return Enum$StyleEnum.TOPS_BLOUSES;
+    case r'SHOES_FOOTWEAR':
+      return Enum$StyleEnum.SHOES_FOOTWEAR;
+    case r'TRAVEL_FRIENDLY':
+      return Enum$StyleEnum.TRAVEL_FRIENDLY;
+    case r'MATERNITY_WEAR':
+      return Enum$StyleEnum.MATERNITY_WEAR;
+    case r'ATHLEISURE':
+      return Enum$StyleEnum.ATHLEISURE;
+    case r'ECO_FRIENDLY':
+      return Enum$StyleEnum.ECO_FRIENDLY;
+    case r'FESTIVAL_READY':
+      return Enum$StyleEnum.FESTIVAL_READY;
+    case r'DATE_NIGHT':
+      return Enum$StyleEnum.DATE_NIGHT;
+    case r'ETHNIC_WEAR':
+      return Enum$StyleEnum.ETHNIC_WEAR;
+    case r'OFFICE_PARTY_OUTFIT':
+      return Enum$StyleEnum.OFFICE_PARTY_OUTFIT;
+    case r'COCKTAIL_ATTIRE':
+      return Enum$StyleEnum.COCKTAIL_ATTIRE;
+    case r'PROM_DRESSES':
+      return Enum$StyleEnum.PROM_DRESSES;
+    case r'MUSIC_CONCERT_WEAR':
+      return Enum$StyleEnum.MUSIC_CONCERT_WEAR;
+    case r'OVERSIZED':
+      return Enum$StyleEnum.OVERSIZED;
+    case r'SLIM_FIT':
+      return Enum$StyleEnum.SLIM_FIT;
+    case r'RELAXED_FIT':
+      return Enum$StyleEnum.RELAXED_FIT;
     default:
       return Enum$StyleEnum.$unknown;
   }
