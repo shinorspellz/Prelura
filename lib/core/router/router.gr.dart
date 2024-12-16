@@ -298,10 +298,17 @@ class ConditionRoute extends _i40.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.FollowersScreen]
-class FollowersRoute extends _i40.PageRouteInfo<void> {
-  const FollowersRoute({List<_i40.PageRouteInfo>? children})
-      : super(
+class FollowersRoute extends _i40.PageRouteInfo<FollowersRouteArgs> {
+  FollowersRoute({
+    required String username,
+    _i41.Key? key,
+    List<_i40.PageRouteInfo>? children,
+  }) : super(
           FollowersRoute.name,
+          args: FollowersRouteArgs(
+            username: username,
+            key: key,
+          ),
           initialChildren: children,
         );
 
@@ -310,17 +317,44 @@ class FollowersRoute extends _i40.PageRouteInfo<void> {
   static _i40.PageInfo page = _i40.PageInfo(
     name,
     builder: (data) {
-      return const _i10.FollowersScreen();
+      final args = data.argsAs<FollowersRouteArgs>();
+      return _i10.FollowersScreen(
+        args.username,
+        key: args.key,
+      );
     },
   );
 }
 
+class FollowersRouteArgs {
+  const FollowersRouteArgs({
+    required this.username,
+    this.key,
+  });
+
+  final String username;
+
+  final _i41.Key? key;
+
+  @override
+  String toString() {
+    return 'FollowersRouteArgs{username: $username, key: $key}';
+  }
+}
+
 /// generated route for
 /// [_i11.FollowingScreen]
-class FollowingRoute extends _i40.PageRouteInfo<void> {
-  const FollowingRoute({List<_i40.PageRouteInfo>? children})
-      : super(
+class FollowingRoute extends _i40.PageRouteInfo<FollowingRouteArgs> {
+  FollowingRoute({
+    _i41.Key? key,
+    required String username,
+    List<_i40.PageRouteInfo>? children,
+  }) : super(
           FollowingRoute.name,
+          args: FollowingRouteArgs(
+            key: key,
+            username: username,
+          ),
           initialChildren: children,
         );
 
@@ -329,9 +363,29 @@ class FollowingRoute extends _i40.PageRouteInfo<void> {
   static _i40.PageInfo page = _i40.PageInfo(
     name,
     builder: (data) {
-      return const _i11.FollowingScreen();
+      final args = data.argsAs<FollowingRouteArgs>();
+      return _i11.FollowingScreen(
+        key: args.key,
+        username: args.username,
+      );
     },
   );
+}
+
+class FollowingRouteArgs {
+  const FollowingRouteArgs({
+    this.key,
+    required this.username,
+  });
+
+  final _i41.Key? key;
+
+  final String username;
+
+  @override
+  String toString() {
+    return 'FollowingRouteArgs{key: $key, username: $username}';
+  }
 }
 
 /// generated route for
@@ -688,14 +742,16 @@ class ProductPriceFilterRouteArgs {
 class ProductsByBrandRoute
     extends _i40.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
-    _i42.Key? key,
+    _i41.Key? key,
     required String title,
+    required int id,
     List<_i40.PageRouteInfo>? children,
   }) : super(
           ProductsByBrandRoute.name,
           args: ProductsByBrandRouteArgs(
             key: key,
             title: title,
+            id: id,
           ),
           initialChildren: children,
         );
@@ -709,6 +765,7 @@ class ProductsByBrandRoute
       return _i26.ProductsByBrandPage(
         key: args.key,
         title: args.title,
+        id: args.id,
       );
     },
   );
@@ -718,15 +775,18 @@ class ProductsByBrandRouteArgs {
   const ProductsByBrandRouteArgs({
     this.key,
     required this.title,
+    required this.id,
   });
 
-  final _i42.Key? key;
+  final _i41.Key? key;
 
   final String title;
 
+  final int id;
+
   @override
   String toString() {
-    return 'ProductsByBrandRouteArgs{key: $key, title: $title}';
+    return 'ProductsByBrandRouteArgs{key: $key, title: $title, id: $id}';
   }
 }
 

@@ -13,7 +13,8 @@ class BrandTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.pushRoute(ProductsByBrandRoute(title: brand.name)),
+      onTap: () => context.pushRoute(
+          ProductsByBrandRoute(title: brand.name, id: (brand.id).toInt())),
       child: Text(
         brand.name,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(

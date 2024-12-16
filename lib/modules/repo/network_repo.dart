@@ -11,20 +11,23 @@ class NetworkRepo {
 
   NetworkRepo(this._client);
 
-  Future<List<UserModel>> getFollowers(String? query, bool? latestFirst, {int page = 1, int pageCount = 100}) async {
+  Future<List<UserModel>> getFollowers(
+      String? query, bool? latestFirst, String username,
+      {int page = 1, int pageCount = 100}) async {
     final response = await _client.query$followers(
       Options$Query$followers(
         variables: Variables$Query$followers(
-          search: query,
-          pageCount: pageCount,
-          latestFirst: latestFirst,
-          pageNumber: page,
-        ),
+            search: query,
+            pageCount: pageCount,
+            latestFirst: latestFirst,
+            pageNumber: page,
+            username: username),
       ),
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -35,17 +38,24 @@ class NetworkRepo {
 
     try {
       //@AYOPELUMI please stop using print statement just use log its safer
-      return followers.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
+      return followers
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
     } catch (e, stackTrace) {
       log('Error parsing user data: $e', stackTrace: stackTrace);
       throw Exception('Failed to parse user data.');
     }
   }
 
-  Future<List<UserModel>> getFollowing(String? query, bool? latestFirst) async {
+  Future<List<UserModel>> getFollowing(
+      String? query, bool? latestFirst, String username) async {
     final response = await _client.query$following(
       Options$Query$following(
-        variables: Variables$Query$following(search: query, pageCount: 100, latestFirst: latestFirst),
+        variables: Variables$Query$following(
+            search: query,
+            pageCount: 100,
+            latestFirst: latestFirst,
+            username: username),
       ),
     );
 
@@ -68,7 +78,9 @@ class NetworkRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.following!;
-      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',

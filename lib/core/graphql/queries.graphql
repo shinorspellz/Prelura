@@ -73,6 +73,7 @@ query GetUser($username: String!) {
     }
     noOfFollowing
     noOfFollowers
+    isFollowing
     phone {
       number
       countryCode
@@ -174,8 +175,10 @@ query UserProducts(
     }
   }
 }
-query AllProducts($search: String, $pageCount: Int, $pageNumber: Int) {
-  allProducts(search: $search, pageCount: $pageCount, pageNumber: $pageNumber) {
+query AllProducts($search: String, $pageCount: Int, $pageNumber: Int, $brandFilter :Int) {
+  allProducts(search: $search, pageCount: $pageCount, pageNumber: $pageNumber, filters:  {
+     brand: $brandFilter
+  }) {
     id
     name
     description
@@ -348,12 +351,14 @@ query following(
   $search: String
   $pageCount: Int
   $pageNumber: Int
+  $username : String
 ) {
   following(
     latestFirst: $latestFirst
     pageCount: $pageCount
     pageNumber: $pageNumber
     search: $search
+    username: $username
   ) {
     id
     username
@@ -365,6 +370,7 @@ query following(
       longitude
       locationName
     }
+    isFollowing
   }
 }
 
@@ -373,12 +379,14 @@ query followers(
   $search: String
   $pageCount: Int
   $pageNumber: Int
+  $username : String
 ) {
   followers(
     latestFirst: $latestFirst
     pageCount: $pageCount
     pageNumber: $pageNumber
     search: $search
+    username: $username
   ) {
     id
     username
@@ -390,6 +398,7 @@ query followers(
       longitude
       locationName
     }
+    isFollowing
   }
 }
 

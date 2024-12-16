@@ -92,7 +92,11 @@ class ProductRepo {
     return Product.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<Product>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<List<Product>> getUserProduct(
+      {String? username,
+      String? search,
+      int? pageCount,
+      int? pageNumber}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -117,17 +121,24 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
+    return response.parsedData!.userProducts!
+        .map((x) => Product.fromJson(x!.toJson()))
+        .toList();
   }
 
-  Future<Query$AllProducts> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<Query$AllProducts> getAllProducts(
+      {String? username,
+      String? search,
+      int? pageCount,
+      int? pageNumber,
+      int? brandId}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(
           variables: Variables$Query$AllProducts(
-        search: search,
-        pageCount: pageCount,
-        pageNumber: pageNumber,
-      )),
+              search: search,
+              pageCount: pageCount,
+              pageNumber: pageNumber,
+              brandFilter: brandId)),
     );
 
     if (response.hasException) {
@@ -147,7 +158,8 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<Query$FilterProductsByPrice> filterProductByPrice({required double price, int? pageCount, int? pageNumber}) async {
+  Future<Query$FilterProductsByPrice> filterProductByPrice(
+      {required double price, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$FilterProductsByPrice(
       Options$Query$FilterProductsByPrice(
           variables: Variables$Query$FilterProductsByPrice(
@@ -196,7 +208,9 @@ class ProductRepo {
       throw 'An error occured here';
     }
 
-    return response.parsedData!.likedProducts!.map((x) => Product.fromJson((x!.product)!.toJson())).toList();
+    return response.parsedData!.likedProducts!
+        .map((x) => Product.fromJson((x!.product)!.toJson()))
+        .toList();
   }
 
   Future<bool?> toggleLikeProduct(int productId) async {
@@ -244,10 +258,13 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.categories!.map((x) => CategoryModel.fromJson(x!.toJson())).toList();
+    return response.parsedData!.categories!
+        .map((x) => CategoryModel.fromJson(x!.toJson()))
+        .toList();
   }
 
-  Future<Query$Brands> getBrands({String? search, int? pageNumber, int? pageCount}) async {
+  Future<Query$Brands> getBrands(
+      {String? search, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$Brands(
       Options$Query$Brands(
           variables: Variables$Query$Brands(
@@ -274,7 +291,8 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<Query$Materials> getMaterial({String? search, int? pageNumber, int? pageCount}) async {
+  Future<Query$Materials> getMaterial(
+      {String? search, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$Materials(
       Options$Query$Materials(
           variables: Variables$Query$Materials(
@@ -301,7 +319,11 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<List<Product>> similarProduct({int? productId, int? categoryId, int? pageNumber, int? pageCount}) async {
+  Future<List<Product>> similarProduct(
+      {int? productId,
+      int? categoryId,
+      int? pageNumber,
+      int? pageCount}) async {
     final response = await _client.query$SimilarProducts(
       Options$Query$SimilarProducts(
           variables: Variables$Query$SimilarProducts(
@@ -326,6 +348,8 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.similarProducts!.map((x) => Product.fromJson((x!).toJson())).toList();
+    return response.parsedData!.similarProducts!
+        .map((x) => Product.fromJson((x!).toJson()))
+        .toList();
   }
 }

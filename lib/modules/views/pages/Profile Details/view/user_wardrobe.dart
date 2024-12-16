@@ -130,13 +130,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () {
-                                context.router.push(const FollowersRoute());
+                                context.router.push(
+                                    FollowersRoute(username: user!.username));
                               },
                               child: Text.rich(TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      context.router
-                                          .push(const FollowersRoute());
+                                      context.router.push(FollowersRoute(
+                                          username: user!.username));
                                     },
                                   text: user?.noOfFollowers.toString() ?? '--',
                                   style: Theme.of(context)
@@ -150,7 +151,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       ),
                                   children: [
                                     TextSpan(
-                                      text: " followers,",
+                                      text: (user != null &&
+                                              user.noOfFollowers!.toInt() > 1)
+                                          ? "followers"
+                                          : " follower,",
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
@@ -163,7 +167,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             const SizedBox(width: 6),
                             GestureDetector(
                               onTap: () {
-                                context.router.push(const FollowingRoute());
+                                context.router.push(
+                                    FollowingRoute(username: user!.username));
                               },
                               child: Text.rich(TextSpan(
                                   text: user?.noOfFollowing.toString() ?? '--',
@@ -263,7 +268,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         Expanded(
                           child: AppButton(
                             onTap: () async {
-                              if (!isCurrentUser) {
+                              if (!isCurrentUser &&
+                                  user?.isFollowing! == false) {
                                 print("running");
                                 print(user!.id);
                                 final result = await ref.refresh(
@@ -271,10 +277,17 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 print("result is $result");
                                 if (result) {
                                   context.alert("Following ${user.username}");
+                                  ref.invalidate(
+                                      otherUserProfile(widget.username!));
+                                  ref.invalidate(userProvider);
                                 }
                               }
                             },
-                            text: isCurrentUser ? "Share" : "Follow",
+                            text: isCurrentUser
+                                ? "Share"
+                                : (user != null && user.isFollowing!)
+                                    ? "Following"
+                                    : "Follow",
                             textColor: PreluraColors.white,
                           ),
                         ),
