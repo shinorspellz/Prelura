@@ -121,7 +121,19 @@ class PreluraIcons {
   static const String sunscreen_svg = "assets/svgs/sunscreen.svg";
   static const String make_up_brush_svg = "assets/svgs/make up blush.svg";
   static const String make_up_remover_svg = "assets/svgs/make up remover.svg";
-  
+  static const String toner_svg = "assets/svgs/toner.svg";
+  static const String facial_tools_svg = "assets/svgs/facial tools.svg";
+  static const String straighteners_svg = "assets/svgs/straighteners";
+  static const String beauty_tools_svg = "assets/svgs/beauty_tools.svg";
+  static const String hair_removal_svg = "assets/svgs/hair removal tools.svg";
+  static const String hand_cream_svg = "assets/svgs/hand cream.svg";
+  static const String lotion_svg = "assets/svgs/lotion.svg";
+  static const String body_wash_svg = "assets/svgs/body wash.svg";
+  static const String conditioner_svg = "assets/svgs/conditioner.svg";
+  static const String essential_oil_svg = "assets/svgs/essential oils.svg";
+  static const String shampoo_svg = "assets/svgs/shampoo.svg";
+  static const String facial_mask_svg = "assets/svgs/facial mask.svg";
+  static const String exfoliator_svg = "asets/svgs/exfoliators.svg";
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -151,28 +163,42 @@ class PreluraIcons {
       'concealer': concealer_svg,
       'cologne': cologne_svg,
       'perfume': perfume_svg,
-      'fragrance': fragrance_svg,
-      'manicure': manicure_svg,
-      'nail tool': nail_tool_svg,
+      'fragrances': fragrance_svg,
+      'manicure & pedicure kits': manicure_svg,
+      'nail tools': nail_tool_svg,
       'nail polish': nail_polish_svg,
       'nail care': nail_care_svg,
       'hair care': hair_care_svg,
       'hair styling tools': hair_styling_svg,
       'hair color': hair_color_svg,
-      'hair dryer': hair_dryer_svg,
+      'hair dryers': hair_dryer_svg,
       'hair brush': hair_brush_svg,
       'straightener': straightener_svg,
       'deodorant': deodorant_svg,
       'cream': cream_svg,
       'curling irons': curling_irons_svg,
       'hair oil': hair_oil_svg,
-      'anti aging': anti_aging_svg,
+      'anti-aging products': anti_aging_svg,
       'aftershave': after_shave_svg,
       'beard care': beard_care_svg,
-      'moisturizer': moisturizer_svg,
-      'men grooming': men_grooming_svg,
+      'moisturizers': moisturizer_svg,
+      "men's grooming": men_grooming_svg,
       'serums': serum_svg,
       'sunscreen': sunscreen_svg,
+      'makeup brushes': make_up_brush_svg,
+      'makeup removers': make_up_remover_svg,
+      'toners': toner_svg,
+      'essential oils': essential_oil_svg,
+      "body wash": body_wash_svg,
+      "lotions": lotion_svg,
+      "hand cream": hand_cream_svg,
+      "hair removal products": hair_removal_svg,
+      "straighteners": straightener_svg,
+      "conditioner": conditioner_svg,
+      "shampoo": shampoo_svg,
+      "facial masks": facial_mask_svg,
+      "facial tools": facial_tools_svg,
+      "exfoliators": exfoliator_svg
 
       // Add the rest of the constants here...
     };
