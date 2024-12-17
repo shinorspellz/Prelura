@@ -71,6 +71,7 @@ class PreluraIcons {
   static const String webp_xmas = "assets/images/xmas.webp";
   static const String webp_season = "assets/images/season.webp";
   static const String webp_jumpers = "assets/images/jumpers.webp";
+  static const String menu_svg = "assets/svgs/Menu Button.svg";
 
   //category
   static const String menSvg = "assets/svgs/003-boy 1.svg";
@@ -99,7 +100,7 @@ class PreluraIcons {
   static const String perfume_svg = "assets/svgs/perfume.svg";
   static const String fragrance_svg = "assets/svgs/fragrance.svg";
   static const String manicure_svg = "assets/svgs/manicure.svg";
-  static const String nail_tool_svg = "assets/svgs/nail tool.svg";
+  static const String nail_tool_svg = "assets/svgs/nail tools.svg";
   static const String nail_polish_svg = "assets/svgs/nail polish.svg";
   static const String nail_care_svg = "assets/svgs/nail care.svg";
   static const String hair_care_svg = "assets/svgs/hair care.svg";
@@ -115,16 +116,16 @@ class PreluraIcons {
   static const String anti_aging_svg = "assets/svgs/anti aging.svg";
   static const String after_shave_svg = "assets/svgs/after shave.svg";
   static const String beard_care_svg = "assets/svgs/beard care.svg";
-  static const String moisturizer_svg = "assets/svgs/moisturizer.svg";
+  static const String moisturizer_svg = "assets/svgs/moisturizers.svg";
   static const String men_grooming_svg = "assets/svgs/men grooming.svg";
   static const String serum_svg = "assets/svgs/serums.svg";
   static const String sunscreen_svg = "assets/svgs/sunscreen.svg";
   static const String make_up_brush_svg = "assets/svgs/make up blush.svg";
   static const String make_up_remover_svg = "assets/svgs/make up remover.svg";
-  static const String toner_svg = "assets/svgs/toner.svg";
+  static const String toner_svg = "assets/svgs/toners.svg";
   static const String facial_tools_svg = "assets/svgs/facial tools.svg";
   static const String straighteners_svg = "assets/svgs/straighteners";
-  static const String beauty_tools_svg = "assets/svgs/beauty_tools.svg";
+  static const String beauty_tools_svg = "assets/svgs/beauty tools.svg";
   static const String hair_removal_svg = "assets/svgs/hair removal tools.svg";
   static const String hand_cream_svg = "assets/svgs/hand cream.svg";
   static const String lotion_svg = "assets/svgs/lotion.svg";
@@ -133,7 +134,30 @@ class PreluraIcons {
   static const String essential_oil_svg = "assets/svgs/essential oils.svg";
   static const String shampoo_svg = "assets/svgs/shampoo.svg";
   static const String facial_mask_svg = "assets/svgs/facial mask.svg";
-  static const String exfoliator_svg = "asets/svgs/exfoliators.svg";
+  static const String exfoliator_svg = "assets/svgs/exfoliators.svg";
+  static const String hair_mask_svg = "assets/svgs/hair mask.svg";
+  static const String skin_care_svg = "assets/svgs/skin care.svg";
+  static const String cleanser_svg = "assets/svgs/cleansers.svg";
+  static const String bath_body_svg = "assets/svgs/bath & body.svg";
+  static const String body_scrub_svg = "assets/svgs/body scrub.svg";
+  static const String shaving_scream_svg = "assets/svgs/shaving cream.svg";
+
+  // static const String
+
+  //men
+
+  static const String accessories_svg = "assets/svgs/men/accessories.svg";
+  static const String activewear_svg = "assets/svgs/men/activewear.svg";
+  static const String boot_svg = "assets/svgs/men/boot.svg";
+  static const String hoodie_svg = "assets/svgs/men/hoodie.svg";
+  static const String jacket_svg = "assets/svgs/men/jacket.svg";
+  static const String sandal_svg = "asstes/svgs/men/sandals.svg";
+  static const String shorts_svg = "assets/svgs/men/shorts.svg";
+  static const String sneakers_svg = "assets/svgs/sneakers.svg";
+  static const String socks_svg = "asstes/svgs/men/socks.svg";
+  static const String sweatshirt_svg = "assets/svg/men/sweatshirt.svg";
+  static const String tshirt_svg = "assets/svgs/men/t shirt.svg";
+  static const String watches_svg = "assets/svgs/watches.svg";
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -163,7 +187,7 @@ class PreluraIcons {
       'concealer': concealer_svg,
       'cologne': cologne_svg,
       'perfume': perfume_svg,
-      'fragrances': fragrance_svg,
+      'fragrances': cologne_svg,
       'manicure & pedicure kits': manicure_svg,
       'nail tools': nail_tool_svg,
       'nail polish': nail_polish_svg,
@@ -198,7 +222,28 @@ class PreluraIcons {
       "shampoo": shampoo_svg,
       "facial masks": facial_mask_svg,
       "facial tools": facial_tools_svg,
-      "exfoliators": exfoliator_svg
+      "exfoliators": exfoliator_svg,
+      "beauty tools": beauty_tools_svg,
+      "shaving cream": shaving_scream_svg,
+      "body scrubs": body_scrub_svg,
+      "bath & body": bath_body_svg,
+      "hair masks": hair_mask_svg,
+      "cleansers": cleanser_svg,
+      "skincare": skin_care_svg,
+
+      //men
+      "t-shirts": tshirt_svg,
+      "shorts": shorts_svg,
+      "boots": boot_svg,
+      "sandals": sandal_svg,
+      "sneakers": sneakers_svg,
+      "watches": watches_svg,
+      "accessories": accessories_svg,
+      "socks": socks_svg,
+      "activewear": activewear_svg,
+      "sweatshirts": sweatshirt_svg,
+      "jackets": jacket_svg,
+      "hoodies": hoodie_svg
 
       // Add the rest of the constants here...
     };

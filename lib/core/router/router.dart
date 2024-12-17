@@ -18,9 +18,13 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LoginRoute.page, initial: !_ref.read(authStateProvider).requireValue),
+        AutoRoute(
+            page: LoginRoute.page,
+            initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
-        AutoRoute(page: AppStartupRoute.page, initial: _ref.read(authStateProvider).requireValue),
+        AutoRoute(
+            page: AppStartupRoute.page,
+            initial: _ref.read(authStateProvider).requireValue),
         AutoRoute(
             guards: [AuthGuard(_ref)],
             page: AuthRoute.page,
@@ -36,16 +40,14 @@ class AppRouter extends RootStackRouter {
               AutoRoute(guards: [AuthGuard(_ref)], page: SearchRoute.page),
               AutoRoute(guards: [AuthGuard(_ref)], page: InboxRoute.page),
               AutoRoute(
+                guards: [AuthGuard(_ref)],
+                page: ProfileDetailsRoute.page,
+              ),
+              AutoRoute(
                   guards: [AuthGuard(_ref)],
                   page: ProfileNavigationRoute.page,
                   path: "profile",
-                  children: [
-                    AutoRoute(
-                      guards: [AuthGuard(_ref)],
-                      page: ProfileRoute.page,
-                      initial: true,
-                    ),
-                  ]),
+                  children: []),
               // AutoRoute(
               //     guards: [AuthGuard(_ref)],
               //     page: SellNavigationRoute.page,
@@ -53,6 +55,10 @@ class AppRouter extends RootStackRouter {
 
               //     ]),
             ]),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
+          page: ProfileRoute.page,
+        ),
         AutoRoute(
           page: StyleRoute.page,
           guards: [AuthGuard(_ref)],
@@ -148,10 +154,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           guards: [AuthGuard(_ref)],
-          page: ProfileDetailsRoute.page,
-        ),
-        AutoRoute(
-          guards: [AuthGuard(_ref)],
           page: FollowersRoute.page,
         ),
         AutoRoute(
@@ -170,6 +172,7 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
           page: DiscountRoute.page,
         ),
+
       ];
 }
 
@@ -233,7 +236,8 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = !_isHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !_isHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -267,7 +271,9 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = previousRoute == null || !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          previousRoute == null ||
+              !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -283,19 +289,24 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = !_isTabHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !_isTabHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
-  bool _isHidden(Route<dynamic> route, List<String> parentRoutes, List<String> hiddenRoutes) {
+  bool _isHidden(Route<dynamic> route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.settings.name;
-    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
   }
 
-  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes, List<String> hiddenRoutes) {
+  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.name;
-    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName.startsWith(parent) == true);
   }
 }

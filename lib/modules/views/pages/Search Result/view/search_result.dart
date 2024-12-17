@@ -19,7 +19,8 @@ import '../../../widgets/card.dart';
 import '../provider/filter_provider.dart';
 import '../provider/search_provider.dart';
 
-final dialogFilterStateProvider = StateProvider<Map<String, List<String>>>((ref) => {});
+final dialogFilterStateProvider =
+    StateProvider<Map<String, List<String>>>((ref) => {});
 
 enum FilterTypes {
   size('Size'),
@@ -70,7 +71,8 @@ class LiveSearchPage extends ConsumerWidget {
                 selected: false,
                 checkmarkColor: Theme.of(context).iconTheme.color,
                 backgroundColor: Colors.transparent, // Transparent background
-                selectedColor: Colors.blue.withOpacity(0.1), // Light blue when selected
+                selectedColor:
+                    Colors.blue.withOpacity(0.1), // Light blue when selected
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8), // Rounded corners
                   side: BorderSide(
@@ -83,13 +85,19 @@ class LiveSearchPage extends ConsumerWidget {
                 return Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: FilterChip(
-                    checkmarkColor: filters.containsKey(filter) ? PreluraColors.activeColor : Theme.of(context).iconTheme.color,
-                    backgroundColor: Colors.transparent, // Transparent background
-                    selectedColor: Colors.blue.withOpacity(0.1), // Light blue when selected
+                    checkmarkColor: filters.containsKey(filter)
+                        ? PreluraColors.activeColor
+                        : Theme.of(context).iconTheme.color,
+                    backgroundColor:
+                        Colors.transparent, // Transparent background
+                    selectedColor: Colors.blue
+                        .withOpacity(0.1), // Light blue when selected
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8), // Rounded corners
                       side: BorderSide(
-                        color: filters.containsKey(filter) ? PreluraColors.activeColor : Theme.of(context).dividerColor, // Border color
+                        color: filters.containsKey(filter)
+                            ? PreluraColors.activeColor
+                            : Theme.of(context).dividerColor, // Border color
                         width: 1.5, // Border width
                       ),
                     ),
@@ -115,14 +123,19 @@ class LiveSearchPage extends ConsumerWidget {
                             child: Text('No results found'),
                           ),
                         )
-                      : LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                      : LayoutBuilder(builder:
+                          (BuildContext context, BoxConstraints constraints) {
                           // Dynamically adjust grid column count or aspect ratio based on constraints
-                          final crossAxisCount = constraints.maxWidth > 600 ? 3 : 2;
+                          final crossAxisCount =
+                              constraints.maxWidth > 600 ? 3 : 2;
                           return GridView.builder(
                             shrinkWrap: true,
-                            physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+                            physics: scrollable
+                                ? const BouncingScrollPhysics()
+                                : const NeverScrollableScrollPhysics(),
                             padding: const EdgeInsets.all(8.0),
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: crossAxisCount,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
@@ -137,7 +150,7 @@ class LiveSearchPage extends ConsumerWidget {
                           );
                         }),
                 ),
-            loading: () => const GridShimmer(),
+            loading: () => GridShimmer(),
             error: (error, stack) {
               log(error.toString(), stackTrace: stack);
               return Center(child: Text('Error: $error'));
@@ -146,7 +159,8 @@ class LiveSearchPage extends ConsumerWidget {
     );
   }
 
-  void _showFilterModal(BuildContext context, FilterTypes filterType, WidgetRef ref) {
+  void _showFilterModal(
+      BuildContext context, FilterTypes filterType, WidgetRef ref) {
     final filterNotifier = ref.watch(searchFilterProvider.notifier);
     // final List<String> selectedOptions =
     //     ref.watch(searchFilterProvider)[filterType] ?? [];
@@ -154,11 +168,25 @@ class LiveSearchPage extends ConsumerWidget {
     // print(tempSelections);
 
     final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values.where((e) => e != Enum$SizeEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.style: Enum$StyleEnum.values.where((e) => e != Enum$StyleEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.brand: ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
-      FilterTypes.category: ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
-      FilterTypes.condition: ConditionsEnum.values.map((e) => e.simpleName).toList(),
+      FilterTypes.size: Enum$SizeEnum.values
+          .where((e) => e != Enum$SizeEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.style: Enum$StyleEnum.values
+          .where((e) => e != Enum$StyleEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.brand:
+          ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+              [],
+      FilterTypes.category: ref
+              .watch(categoryProvider)
+              .valueOrNull
+              ?.map((e) => e.name)
+              .toList() ??
+          [],
+      FilterTypes.condition:
+          ConditionsEnum.values.map((e) => e.simpleName).toList(),
       // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
     };
     String? selectedOptions = ref.read(searchFilterProvider)[filterType];
@@ -189,15 +217,18 @@ class LiveSearchPage extends ConsumerWidget {
                                   child: Row(
                                     children: [
                                       Text(e.replaceAll("_", " "),
-                                          style: context.textTheme.bodyLarge?.copyWith(
+                                          style: context.textTheme.bodyLarge
+                                              ?.copyWith(
                                             fontWeight: FontWeight.bold,
                                           )),
                                       Spacer(),
                                       Radio(
                                           value: e,
-                                          groupValue: selectedOptions, //selectedOptions,
+                                          groupValue:
+                                              selectedOptions, //selectedOptions,
                                           onChanged: (value) {
-                                            filterNotifier.updateFilter(filterType, value!);
+                                            filterNotifier.updateFilter(
+                                                filterType, value!);
                                             setState(() {
                                               selectedOptions = value;
                                             });

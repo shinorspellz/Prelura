@@ -67,7 +67,8 @@ class SearchScreen extends ConsumerWidget {
                           return List.generate(
                               10,
                               (_) => Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
                                     child: ShimmerBox(
                                       height: 28,
                                       width: 100,
@@ -77,15 +78,27 @@ class SearchScreen extends ConsumerWidget {
                         },
                         data: (data) => data.take(10).map(
                               (brand) => Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6.0),
                                 child: GestureDetector(
-                                  onTap: () => context.pushRoute(ProductsByBrandRoute(title: brand.name, id: (brand.id).toInt())),
+                                  onTap: () => context.pushRoute(
+                                      ProductsByBrandRoute(
+                                          title: brand.name,
+                                          id: (brand.id).toInt())),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                    decoration: BoxDecoration(color: PreluraColors.activeColor, borderRadius: BorderRadius.circular(6)),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    decoration: BoxDecoration(
+                                        color: PreluraColors.activeColor,
+                                        borderRadius: BorderRadius.circular(6)),
                                     child: Text(
                                       brand.name,
-                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white, fontWeight: FontWeight.w700),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              color: PreluraColors.white,
+                                              fontWeight: FontWeight.w700),
                                     ),
                                   ),
                                 ),
@@ -105,7 +118,8 @@ class SearchScreen extends ConsumerWidget {
                           return List.generate(
                               10,
                               (_) => Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
                                     child: ShimmerBox(
                                       height: 28,
                                       width: 100,
@@ -115,15 +129,27 @@ class SearchScreen extends ConsumerWidget {
                         },
                         data: (data) => data.sublist(6).map(
                               (brand) => Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 6.0),
                                 child: GestureDetector(
-                                  onTap: () => context.pushRoute(ProductsByBrandRoute(title: brand.name, id: (brand.id).toInt())),
+                                  onTap: () => context.pushRoute(
+                                      ProductsByBrandRoute(
+                                          title: brand.name,
+                                          id: (brand.id).toInt())),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                    decoration: BoxDecoration(color: PreluraColors.activeColor, borderRadius: BorderRadius.circular(6)),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 6),
+                                    decoration: BoxDecoration(
+                                        color: PreluraColors.activeColor,
+                                        borderRadius: BorderRadius.circular(6)),
                                     child: Text(
                                       brand.name,
-                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white, fontWeight: FontWeight.w700),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              color: PreluraColors.white,
+                                              fontWeight: FontWeight.w700),
                                     ),
                                   ),
                                 ),
@@ -138,29 +164,35 @@ class SearchScreen extends ConsumerWidget {
                 margin: EdgeInsets.all(16),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(PreluraIcons.webp_xmas), fit: BoxFit.cover, alignment: Alignment.topLeft),
+                  image: DecorationImage(
+                      image: AssetImage(PreluraIcons.webp_xmas),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topLeft),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
               ),
               SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _categoriesSection("Women", PreluraIcons.webp_women, context),
+                    _categoriesSection(
+                        "Women", PreluraIcons.webp_women, context),
                     _categoriesSection("Men", PreluraIcons.webp_men, context),
                     _categoriesSection("Kids", PreluraIcons.kids, context),
-                    _categoriesSection("Electronics", PreluraIcons.electronics, context),
-                    _categoriesSection("Home", PreluraIcons.home, context),
-                    _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
-                    _categoriesSection("Pets", PreluraIcons.petCare, context),
+                    // _categoriesSection("Electronics", PreluraIcons.electronics, context),
+                    // _categoriesSection("Home", PreluraIcons.home, context),
+                    // _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
+                    // _categoriesSection("Pets", PreluraIcons.petCare, context),
                   ],
                 ),
               ),
               GestureDetector(
                 onTap: () => context.pushRoute(SellItemRoute()),
                 child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 24),
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
@@ -181,12 +213,19 @@ class SearchScreen extends ConsumerWidget {
                         Expanded(
                           child: Text(
                             "DONT WEAR IT?\nSELL IT 🤑",
-                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 19.sp, fontWeight: FontWeight.w700, color: PreluraColors.white),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
+                                    fontSize: 19.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: PreluraColors.white),
                           ),
                         ),
                         addHorizontalSpacing(20),
                         ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             PreluraIcons.mugShot,
                             height: 70,
@@ -203,7 +242,10 @@ class SearchScreen extends ConsumerWidget {
                 margin: EdgeInsets.all(16),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(PreluraIcons.webp_vintage), fit: BoxFit.cover, alignment: Alignment.topLeft),
+                  image: DecorationImage(
+                      image: AssetImage(PreluraIcons.webp_vintage),
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topLeft),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
               ),
@@ -212,7 +254,8 @@ class SearchScreen extends ConsumerWidget {
                 crossAxisCount: 2,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
-                  _buildPromoBanner("Christmas Jumpers", PreluraIcons.webp_season),
+                  _buildPromoBanner(
+                      "Christmas Jumpers", PreluraIcons.webp_season),
                   _buildPromoBanner("Party Season", PreluraIcons.webp_jumpers),
                 ],
               ),
@@ -226,7 +269,8 @@ class SearchScreen extends ConsumerWidget {
   }
 
   Widget _categoriesSection(String title, String image, context) {
-    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
       width: 170,
       margin: EdgeInsets.only(right: 12),
@@ -249,13 +293,18 @@ class SearchScreen extends ConsumerWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
-                color: isDarkMode ? PreluraColors.activeColor.withOpacity(0.4) : PreluraColors.activeColor.withOpacity(0.1),
+                color: isDarkMode
+                    ? PreluraColors.activeColor.withOpacity(0.4)
+                    : PreluraColors.activeColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w700),
               ),
             ),
           )
@@ -277,7 +326,10 @@ class SearchScreen extends ConsumerWidget {
         child: Text(
           title,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(fontWeight: FontWeight.w700),
         ),
       ),
     );
