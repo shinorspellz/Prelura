@@ -33,8 +33,8 @@ void main() async {
       child: const MyApp(),
     ),
   );
-
 }
+
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
@@ -48,7 +48,8 @@ class MyApp extends ConsumerWidget {
       FlutterNativeSplash.remove();
     });
     return Sizer(
-      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation,
+          DeviceType deviceType) {
         return MaterialApp.router(
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,

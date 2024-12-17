@@ -76,7 +76,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   .refresh(allProductProvider(null).future)
                   .then((_) => ref.read(refreshingHome.notifier).state = false);
               ref.refresh(filterProductByPriceProvider(15).future);
-              ref.refresh(filterProductByStatusProvider("").future);
             },
             child: CustomScrollView(
               controller: controller,
@@ -102,8 +101,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                           .state = false);
                                   ref.refresh(
                                       filterProductByPriceProvider(15).future);
-                                  ref.refresh(
-                                      filterProductByStatusProvider("").future);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,

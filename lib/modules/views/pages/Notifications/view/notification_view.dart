@@ -14,22 +14,22 @@ class NotificationsTab extends ConsumerWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              notificationService.displayTestNotification();
-            },
-            child: const Text('Send Test Notification'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              await notificationService.init();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text('Notification service initialized')),
-              );
-            },
-            child: const Text('Initialize Notifications'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     notificationService.displayTestNotification();
+          //   },
+          //   child: const Text('Send Test Notification'),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () async {
+          //     await notificationService.init();
+          //     ScaffoldMessenger.of(context).showSnackBar(
+          //       const SnackBar(
+          //           content: Text('Notification service initialized')),
+          //     );
+          //   },
+          //   child: const Text('Initialize Notifications'),
+          // ),
           ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
