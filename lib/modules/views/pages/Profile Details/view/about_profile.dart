@@ -322,7 +322,8 @@ class AboutProfile extends ConsumerWidget {
                             children: [
                               TextSpan(
                                 text: (user != null &&
-                                        user.noOfFollowers!.toInt() > 1)
+                                        (user.noOfFollowers!.toInt() > 1 ||
+                                            user.noOfFollowers!.toInt() == 0))
                                     ? " followers"
                                     : " follower,",
                                 style: Theme.of(context)

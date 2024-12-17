@@ -369,7 +369,7 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
 }
 
 Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
-  final tabs = ["All", "Premium Brands", "Electronics", "Books"];
+  final tabs = ["All", "Premium Brands", "Women", "Men", "Kids"];
 
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),

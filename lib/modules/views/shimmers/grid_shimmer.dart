@@ -11,7 +11,7 @@ Widget GridShimmer() {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
-        childAspectRatio: 0.572,
+        childAspectRatio: 0.50,
       ),
       itemCount: 6,
       itemBuilder: (context, index) {
@@ -39,7 +39,18 @@ class ProductShimmer extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 8,
+            height: 4,
+          ),
+          Container(
+            height: 16,
+            width: 70,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          const SizedBox(
+            height: 4,
           ),
           Container(
             height: 16,
@@ -78,7 +89,8 @@ class ProductShimmer extends StatelessWidget {
 }
 
 class ShimmerBox extends StatelessWidget {
-  const ShimmerBox({super.key, required this.height, required this.width, this.radius});
+  const ShimmerBox(
+      {super.key, required this.height, required this.width, this.radius});
   final double height;
   final double width;
   final double? radius;

@@ -86,9 +86,7 @@ class _ProductPriceFilterPageState
                       .watch(filterProductByPriceProvider(15).notifier)
                       .canLoadMore())
                     if (!ref.watch(filterProductByPriceProvider(15)).isLoading)
-                      const SliverToBoxAdapter(
-                        child: PaginationLoadingIndicator(),
-                      )
+                      PaginationLoadingIndicator()
                 ],
               ),
               orElse: () => GridShimmer(),

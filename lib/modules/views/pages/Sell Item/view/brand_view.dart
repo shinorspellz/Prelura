@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
+import '../../../../../res/colors.dart';
 import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../provider/brand_provider.dart';
@@ -128,21 +129,42 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                         ),
                       ),
                 ] else
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return PreluraCheckBox(
-                          title: brands[index].name,
-                          isChecked: brands[index].name == selectedBrand?.name,
-                          onChanged: (value) {
-                            ref
-                                .read(sellItemProvider.notifier)
-                                .selectBrand(brands[index]);
-                            context.back();
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildSuggestedBrands(selectedBrand),
+                        addVerticalSpacing(16),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            "All Brands",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(color: PreluraColors.primaryColor),
+                          ),
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return PreluraCheckBox(
+                              title: brands[index].name,
+                              isChecked:
+                                  brands[index].name == selectedBrand?.name,
+                              onChanged: (value) {
+                                ref
+                                    .read(sellItemProvider.notifier)
+                                    .selectBrand(brands[index]);
+                                context.back();
+                              },
+                            );
                           },
-                        );
-                      },
-                      childCount: brands.length, // Number of items in the list
+                          itemCount:
+                              brands.length, // Number of items in the list
+                        ),
+                      ],
                     ),
                   ),
                 if (ref.watch(brandsProvider.notifier).canLoadMore())
@@ -169,6 +191,45 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
             loading: () => GridMenuCardShimmer(),
           ),
     );
+  }
+
+  @override
+  Widget _buildSuggestedBrands(selectedBrand) {
+    return ref.watch(popularBrandsProvider).maybeWhen(
+          data: (brands) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  "Suggested Brands",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: PreluraColors.primaryColor),
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: brands.take(5).length,
+                itemBuilder: (context, index) {
+                  return PreluraCheckBox(
+                    title: brands[index].name,
+                    isChecked: brands[index].name == selectedBrand?.name,
+                    onChanged: (_) {
+                      ref
+                          .read(sellItemProvider.notifier)
+                          .selectBrand(brands[index]);
+                      context.router.popForced();
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
+          orElse: () => const SliverToBoxAdapter(),
+        );
   }
 }
 

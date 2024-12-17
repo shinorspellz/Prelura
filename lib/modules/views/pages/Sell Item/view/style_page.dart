@@ -25,25 +25,18 @@ class StylePage extends ConsumerWidget {
         centerTitle: true,
         appbarTitle: "Style",
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 24,
-          ),
-          ...Enum$StyleEnum.values.map((e) {
-            if (e == Enum$StyleEnum.$unknown) return Container();
-            return PreluraCheckBox(
-              title: e.name.replaceAll('_', " ").toLowerCase(),
-              isChecked: e.name == selectedParcel?.name,
-              onChanged: (value) {
-                ref.read(sellItemProvider.notifier).selectStyle(e);
-                // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
-                context.router.popForced();
-              },
-            );
-          }),
-        ],
+      body: ListView(
+        children: Enum$StyleEnum.values.map((e) {
+          if (e == Enum$StyleEnum.$unknown) return Container();
+          return PreluraCheckBox(
+            title: e.name.replaceAll('_', " ").toLowerCase(),
+            isChecked: e.name == selectedParcel?.name,
+            onChanged: (value) {
+              ref.read(sellItemProvider.notifier).selectStyle(e);
+              context.router.popForced();
+            },
+          );
+        }).toList(),
       ),
     );
   }

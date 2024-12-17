@@ -11,7 +11,7 @@ Widget MyFavoriteShimmer() {
       children: [
         CustomShimmer(
           child: Container(
-            height: 38,
+            height: 58,
             width: 100.w,
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -20,7 +20,7 @@ Widget MyFavoriteShimmer() {
           ),
         ),
         SizedBox(
-          height: 30,
+          height: 10,
         ),
         GridShimmer()
       ],

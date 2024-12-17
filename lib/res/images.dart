@@ -99,7 +99,7 @@ class PreluraIcons {
   static const String perfume_svg = "assets/svgs/perfume.svg";
   static const String fragrance_svg = "assets/svgs/fragrance.svg";
   static const String manicure_svg = "assets/svgs/manicure.svg";
-  static const String nail_tool_svg = "assets/svgs/nail tool.svg";
+  static const String nail_tool_svg = "assets/svgs/nail tools.svg";
   static const String nail_polish_svg = "assets/svgs/nail polish.svg";
   static const String nail_care_svg = "assets/svgs/nail care.svg";
   static const String hair_care_svg = "assets/svgs/hair care.svg";
@@ -115,16 +115,16 @@ class PreluraIcons {
   static const String anti_aging_svg = "assets/svgs/anti aging.svg";
   static const String after_shave_svg = "assets/svgs/after shave.svg";
   static const String beard_care_svg = "assets/svgs/beard care.svg";
-  static const String moisturizer_svg = "assets/svgs/moisturizer.svg";
+  static const String moisturizer_svg = "assets/svgs/moisturizers.svg";
   static const String men_grooming_svg = "assets/svgs/men grooming.svg";
   static const String serum_svg = "assets/svgs/serums.svg";
   static const String sunscreen_svg = "assets/svgs/sunscreen.svg";
   static const String make_up_brush_svg = "assets/svgs/make up blush.svg";
   static const String make_up_remover_svg = "assets/svgs/make up remover.svg";
-  static const String toner_svg = "assets/svgs/toner.svg";
+  static const String toner_svg = "assets/svgs/toners.svg";
   static const String facial_tools_svg = "assets/svgs/facial tools.svg";
   static const String straighteners_svg = "assets/svgs/straighteners";
-  static const String beauty_tools_svg = "assets/svgs/beauty_tools.svg";
+  static const String beauty_tools_svg = "assets/svgs/beauty tools.svg";
   static const String hair_removal_svg = "assets/svgs/hair removal tools.svg";
   static const String hand_cream_svg = "assets/svgs/hand cream.svg";
   static const String lotion_svg = "assets/svgs/lotion.svg";
@@ -134,6 +134,7 @@ class PreluraIcons {
   static const String shampoo_svg = "assets/svgs/shampoo.svg";
   static const String facial_mask_svg = "assets/svgs/facial mask.svg";
   static const String exfoliator_svg = "asets/svgs/exfoliators.svg";
+  // static const String
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -198,7 +199,8 @@ class PreluraIcons {
       "shampoo": shampoo_svg,
       "facial masks": facial_mask_svg,
       "facial tools": facial_tools_svg,
-      "exfoliators": exfoliator_svg
+      "exfoliators": exfoliator_svg,
+      "beauty tools": beauty_tools_svg,
 
       // Add the rest of the constants here...
     };
