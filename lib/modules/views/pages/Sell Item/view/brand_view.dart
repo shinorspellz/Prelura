@@ -1,14 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/app_radio.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
+import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/ui_constants.dart';
 
 import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -57,8 +60,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -87,25 +89,72 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 ),
                 if (searchQuery.isNotEmpty) ...[
                   ref.watch(searchBrand(searchQuery)).when(
-                        data: (brands) => SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (BuildContext context, int index) {
-                              return PreluraCheckBox(
-                                title: brands[index].name,
-                                isChecked:
-                                    brands[index].name == selectedBrand?.name,
+                        data: (brands) {
+                          if (brands.isEmpty) {
+                            return SliverToBoxAdapter(
+                              child: PreluraCheckBox(
+                                title: "Create '$searchQuery' Brand",
+                                titleWidget: RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
+                                        style: context.textTheme.bodyLarge?.copyWith(
+                                          color: PreluraColors.activeColor,
+                                        ),
+                                        children: [
+                                          TextSpan(text: 'Create '),
+                                          TextSpan(text: ' "$searchQuery" '),
+                                          TextSpan(text: 'Brand'),
+                                        ])),
+                                isChecked: ref.watch(sellItemProvider).customBrand == searchQuery,
                                 onChanged: (value) {
-                                  ref
-                                      .read(sellItemProvider.notifier)
-                                      .selectBrand(brands[index]);
+                                  ref.read(sellItemProvider.notifier).selectCustomBrand(searchQuery);
                                   context.back();
                                 },
-                              );
-                            },
-                            childCount:
-                                brands.length, // Number of items in the list
-                          ),
-                        ),
+                              ),
+                            );
+                          }
+
+                          // WidgetsBinding.instance.addPostFrameCallback((_) {
+                          //   if (brands.isEmpty) {
+                          //     showDialog(
+                          //       context: context,
+                          //       builder: (context) => AlertDialog.adaptive(
+                          //         title: Text('Custom Brand'),
+                          // content: RichText(
+                          //     textAlign: TextAlign.center,
+                          //     text: TextSpan(children: [
+                          //       TextSpan(text: 'Would you like to create a brand '),
+                          //       TextSpan(
+                          //           text: searchQuery,
+                          //           style: context.textTheme.bodyLarge?.copyWith(
+                          //             color: PreluraColors.activeColor,
+                          //           )),
+                          //       TextSpan(text: ' as a custom brand for your product'),
+                          //     ])),
+                          //         actions: [
+                          //           TextButton(onPressed: () {}, child: Text('Add')),
+                          //           TextButton(onPressed: () => Navigator.pop(context), child: Text('Dismiss')),
+                          //         ],
+                          //       ),
+                          //     );
+                          //   }
+                          // });
+                          return SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                                return PreluraCheckBox(
+                                  title: brands[index].name,
+                                  isChecked: brands[index].name == selectedBrand?.name,
+                                  onChanged: (value) {
+                                    ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                                    context.back();
+                                  },
+                                );
+                              },
+                              childCount: brands.length, // Number of items in the list
+                            ),
+                          );
+                        },
                         error: (e, _) => SliverToBoxAdapter(
                           child: Center(
                             child: Column(
@@ -114,8 +163,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                               children: [
                                 Text(e.toString()),
                                 TextButton.icon(
-                                  onPressed: () =>
-                                      ref.invalidate(brandsProvider),
+                                  onPressed: () => ref.invalidate(brandsProvider),
                                   label: const Text('Retry'),
                                   icon: const Icon(Icons.refresh_rounded),
                                 ),
@@ -135,9 +183,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                           title: brands[index].name,
                           isChecked: brands[index].name == selectedBrand?.name,
                           onChanged: (value) {
-                            ref
-                                .read(sellItemProvider.notifier)
-                                .selectBrand(brands[index]);
+                            ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
                             context.back();
                           },
                         );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
@@ -8,7 +8,7 @@ import '../../../widgets/app_button.dart';
 class ProductCard extends StatelessWidget {
   final String image;
 
-  const ProductCard({required this.image});
+  const ProductCard({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +21,13 @@ class ProductCard extends StatelessWidget {
             leading: Image.asset(image, width: 60, height: 60),
             title: Text(
               "The North Face Fleece Jacket",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.w800),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 addVerticalSpacing(4),
-                Text('£ 33.00',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w800)),
+                Text('£ 33.00', style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w800)),
                 addVerticalSpacing(4),
                 Text('£ 35.35 incl.     (subtotal for buyer)',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -44,8 +37,7 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0, bottom: 32, right: 16, top: 16),
+            padding: const EdgeInsets.only(left: 16.0, bottom: 32, right: 16, top: 16),
             child: Row(
               children: [
                 Expanded(

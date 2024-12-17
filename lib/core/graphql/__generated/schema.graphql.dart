@@ -1,5 +1,4 @@
-import 'package:prelura_app/modules/model/product/product_model.dart'
-    as EnumImport$ConditionEnum;
+import 'package:prelura_app/modules/model/product/product.dart' as EnumImport$ConditionEnum;
 
 class Input$ImagesInputType {
   factory Input$ImagesInputType({
@@ -37,8 +36,7 @@ class Input$ImagesInputType {
     return result$data;
   }
 
-  CopyWith$Input$ImagesInputType<Input$ImagesInputType> get copyWith =>
-      CopyWith$Input$ImagesInputType(
+  CopyWith$Input$ImagesInputType<Input$ImagesInputType> get copyWith => CopyWith$Input$ImagesInputType(
         this,
         (i) => i,
       );
@@ -81,8 +79,7 @@ abstract class CopyWith$Input$ImagesInputType<TRes> {
     TRes Function(Input$ImagesInputType) then,
   ) = _CopyWithImpl$Input$ImagesInputType;
 
-  factory CopyWith$Input$ImagesInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$ImagesInputType;
+  factory CopyWith$Input$ImagesInputType.stub(TRes res) = _CopyWithStubImpl$Input$ImagesInputType;
 
   TRes call({
     String? url,
@@ -90,8 +87,7 @@ abstract class CopyWith$Input$ImagesInputType<TRes> {
   });
 }
 
-class _CopyWithImpl$Input$ImagesInputType<TRes>
-    implements CopyWith$Input$ImagesInputType<TRes> {
+class _CopyWithImpl$Input$ImagesInputType<TRes> implements CopyWith$Input$ImagesInputType<TRes> {
   _CopyWithImpl$Input$ImagesInputType(
     this._instance,
     this._then,
@@ -103,6 +99,7 @@ class _CopyWithImpl$Input$ImagesInputType<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? url = _undefined,
     Object? thumbnail = _undefined,
@@ -110,17 +107,16 @@ class _CopyWithImpl$Input$ImagesInputType<TRes>
       _then(Input$ImagesInputType._({
         ..._instance._$data,
         if (url != _undefined && url != null) 'url': (url as String),
-        if (thumbnail != _undefined && thumbnail != null)
-          'thumbnail': (thumbnail as String),
+        if (thumbnail != _undefined && thumbnail != null) 'thumbnail': (thumbnail as String),
       }));
 }
 
-class _CopyWithStubImpl$Input$ImagesInputType<TRes>
-    implements CopyWith$Input$ImagesInputType<TRes> {
+class _CopyWithStubImpl$Input$ImagesInputType<TRes> implements CopyWith$Input$ImagesInputType<TRes> {
   _CopyWithStubImpl$Input$ImagesInputType(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? url,
     String? thumbnail,
@@ -184,8 +180,7 @@ class Input$LocationInputType {
     return result$data;
   }
 
-  CopyWith$Input$LocationInputType<Input$LocationInputType> get copyWith =>
-      CopyWith$Input$LocationInputType(
+  CopyWith$Input$LocationInputType<Input$LocationInputType> get copyWith => CopyWith$Input$LocationInputType(
         this,
         (i) => i,
       );
@@ -200,8 +195,7 @@ class Input$LocationInputType {
     }
     final l$latitude = latitude;
     final lOther$latitude = other.latitude;
-    if (_$data.containsKey('latitude') !=
-        other._$data.containsKey('latitude')) {
+    if (_$data.containsKey('latitude') != other._$data.containsKey('latitude')) {
       return false;
     }
     if (l$latitude != lOther$latitude) {
@@ -209,8 +203,7 @@ class Input$LocationInputType {
     }
     final l$longitude = longitude;
     final lOther$longitude = other.longitude;
-    if (_$data.containsKey('longitude') !=
-        other._$data.containsKey('longitude')) {
+    if (_$data.containsKey('longitude') != other._$data.containsKey('longitude')) {
       return false;
     }
     if (l$longitude != lOther$longitude) {
@@ -218,8 +211,7 @@ class Input$LocationInputType {
     }
     final l$locationName = locationName;
     final lOther$locationName = other.locationName;
-    if (_$data.containsKey('locationName') !=
-        other._$data.containsKey('locationName')) {
+    if (_$data.containsKey('locationName') != other._$data.containsKey('locationName')) {
       return false;
     }
     if (l$locationName != lOther$locationName) {
@@ -247,8 +239,7 @@ abstract class CopyWith$Input$LocationInputType<TRes> {
     TRes Function(Input$LocationInputType) then,
   ) = _CopyWithImpl$Input$LocationInputType;
 
-  factory CopyWith$Input$LocationInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$LocationInputType;
+  factory CopyWith$Input$LocationInputType.stub(TRes res) = _CopyWithStubImpl$Input$LocationInputType;
 
   TRes call({
     String? latitude,
@@ -257,8 +248,7 @@ abstract class CopyWith$Input$LocationInputType<TRes> {
   });
 }
 
-class _CopyWithImpl$Input$LocationInputType<TRes>
-    implements CopyWith$Input$LocationInputType<TRes> {
+class _CopyWithImpl$Input$LocationInputType<TRes> implements CopyWith$Input$LocationInputType<TRes> {
   _CopyWithImpl$Input$LocationInputType(
     this._instance,
     this._then,
@@ -270,6 +260,7 @@ class _CopyWithImpl$Input$LocationInputType<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? latitude = _undefined,
     Object? longitude = _undefined,
@@ -279,17 +270,16 @@ class _CopyWithImpl$Input$LocationInputType<TRes>
         ..._instance._$data,
         if (latitude != _undefined) 'latitude': (latitude as String?),
         if (longitude != _undefined) 'longitude': (longitude as String?),
-        if (locationName != _undefined)
-          'locationName': (locationName as String?),
+        if (locationName != _undefined) 'locationName': (locationName as String?),
       }));
 }
 
-class _CopyWithStubImpl$Input$LocationInputType<TRes>
-    implements CopyWith$Input$LocationInputType<TRes> {
+class _CopyWithStubImpl$Input$LocationInputType<TRes> implements CopyWith$Input$LocationInputType<TRes> {
   _CopyWithStubImpl$Input$LocationInputType(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? latitude,
     String? longitude,
@@ -346,8 +336,7 @@ class Input$PhoneInputType {
     return result$data;
   }
 
-  CopyWith$Input$PhoneInputType<Input$PhoneInputType> get copyWith =>
-      CopyWith$Input$PhoneInputType(
+  CopyWith$Input$PhoneInputType<Input$PhoneInputType> get copyWith => CopyWith$Input$PhoneInputType(
         this,
         (i) => i,
       );
@@ -372,8 +361,7 @@ class Input$PhoneInputType {
     }
     final l$completed = completed;
     final lOther$completed = other.completed;
-    if (_$data.containsKey('completed') !=
-        other._$data.containsKey('completed')) {
+    if (_$data.containsKey('completed') != other._$data.containsKey('completed')) {
       return false;
     }
     if (l$completed != lOther$completed) {
@@ -401,8 +389,7 @@ abstract class CopyWith$Input$PhoneInputType<TRes> {
     TRes Function(Input$PhoneInputType) then,
   ) = _CopyWithImpl$Input$PhoneInputType;
 
-  factory CopyWith$Input$PhoneInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$PhoneInputType;
+  factory CopyWith$Input$PhoneInputType.stub(TRes res) = _CopyWithStubImpl$Input$PhoneInputType;
 
   TRes call({
     String? countryCode,
@@ -411,8 +398,7 @@ abstract class CopyWith$Input$PhoneInputType<TRes> {
   });
 }
 
-class _CopyWithImpl$Input$PhoneInputType<TRes>
-    implements CopyWith$Input$PhoneInputType<TRes> {
+class _CopyWithImpl$Input$PhoneInputType<TRes> implements CopyWith$Input$PhoneInputType<TRes> {
   _CopyWithImpl$Input$PhoneInputType(
     this._instance,
     this._then,
@@ -424,6 +410,7 @@ class _CopyWithImpl$Input$PhoneInputType<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? countryCode = _undefined,
     Object? number = _undefined,
@@ -431,20 +418,18 @@ class _CopyWithImpl$Input$PhoneInputType<TRes>
   }) =>
       _then(Input$PhoneInputType._({
         ..._instance._$data,
-        if (countryCode != _undefined && countryCode != null)
-          'countryCode': (countryCode as String),
-        if (number != _undefined && number != null)
-          'number': (number as String),
+        if (countryCode != _undefined && countryCode != null) 'countryCode': (countryCode as String),
+        if (number != _undefined && number != null) 'number': (number as String),
         if (completed != _undefined) 'completed': (completed as String?),
       }));
 }
 
-class _CopyWithStubImpl$Input$PhoneInputType<TRes>
-    implements CopyWith$Input$PhoneInputType<TRes> {
+class _CopyWithStubImpl$Input$PhoneInputType<TRes> implements CopyWith$Input$PhoneInputType<TRes> {
   _CopyWithStubImpl$Input$PhoneInputType(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? countryCode,
     String? number,
@@ -503,26 +488,19 @@ class Input$ProductFiltersInput {
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
-      result$data['status'] = l$status == null
-          ? null
-          : fromJson$Enum$ProductStatusEnum((l$status as String));
+      result$data['status'] = l$status == null ? null : fromJson$Enum$ProductStatusEnum((l$status as String));
     }
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] = l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
-      result$data['style'] =
-          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+      result$data['style'] = l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
     }
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
-              (l$condition as String));
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue((l$condition as String));
     }
     return Input$ProductFiltersInput._(result$data);
   }
@@ -539,15 +517,13 @@ class Input$ProductFiltersInput {
 
   double? get price => (_$data['price'] as double?);
 
-  Enum$ProductStatusEnum? get status =>
-      (_$data['status'] as Enum$ProductStatusEnum?);
+  Enum$ProductStatusEnum? get status => (_$data['status'] as Enum$ProductStatusEnum?);
 
   Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
 
   Enum$StyleEnum? get style => (_$data['style'] as Enum$StyleEnum?);
 
-  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
-      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition => (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -573,31 +549,24 @@ class Input$ProductFiltersInput {
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
-      result$data['status'] =
-          l$status == null ? null : toJson$Enum$ProductStatusEnum(l$status);
+      result$data['status'] = l$status == null ? null : toJson$Enum$ProductStatusEnum(l$status);
     }
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+      result$data['size'] = l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
-      result$data['style'] =
-          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+      result$data['style'] = l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
-              l$condition);
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(l$condition);
     }
     return result$data;
   }
 
-  CopyWith$Input$ProductFiltersInput<Input$ProductFiltersInput> get copyWith =>
-      CopyWith$Input$ProductFiltersInput(
+  CopyWith$Input$ProductFiltersInput<Input$ProductFiltersInput> get copyWith => CopyWith$Input$ProductFiltersInput(
         this,
         (i) => i,
       );
@@ -607,8 +576,7 @@ class Input$ProductFiltersInput {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Input$ProductFiltersInput ||
-        runtimeType != other.runtimeType) {
+    if (other is! Input$ProductFiltersInput || runtimeType != other.runtimeType) {
       return false;
     }
     final l$name = name;
@@ -629,8 +597,7 @@ class Input$ProductFiltersInput {
     }
     final l$category = category;
     final lOther$category = other.category;
-    if (_$data.containsKey('category') !=
-        other._$data.containsKey('category')) {
+    if (_$data.containsKey('category') != other._$data.containsKey('category')) {
       return false;
     }
     if (l$category != lOther$category) {
@@ -638,8 +605,7 @@ class Input$ProductFiltersInput {
     }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') !=
-        other._$data.containsKey('subCategory')) {
+    if (_$data.containsKey('subCategory') != other._$data.containsKey('subCategory')) {
       return false;
     }
     if (l$subCategory != lOther$subCategory) {
@@ -679,8 +645,7 @@ class Input$ProductFiltersInput {
     }
     final l$condition = condition;
     final lOther$condition = other.condition;
-    if (_$data.containsKey('condition') !=
-        other._$data.containsKey('condition')) {
+    if (_$data.containsKey('condition') != other._$data.containsKey('condition')) {
       return false;
     }
     if (l$condition != lOther$condition) {
@@ -720,8 +685,7 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     TRes Function(Input$ProductFiltersInput) then,
   ) = _CopyWithImpl$Input$ProductFiltersInput;
 
-  factory CopyWith$Input$ProductFiltersInput.stub(TRes res) =
-      _CopyWithStubImpl$Input$ProductFiltersInput;
+  factory CopyWith$Input$ProductFiltersInput.stub(TRes res) = _CopyWithStubImpl$Input$ProductFiltersInput;
 
   TRes call({
     String? name,
@@ -736,8 +700,7 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
   });
 }
 
-class _CopyWithImpl$Input$ProductFiltersInput<TRes>
-    implements CopyWith$Input$ProductFiltersInput<TRes> {
+class _CopyWithImpl$Input$ProductFiltersInput<TRes> implements CopyWith$Input$ProductFiltersInput<TRes> {
   _CopyWithImpl$Input$ProductFiltersInput(
     this._instance,
     this._then,
@@ -749,6 +712,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? brand = _undefined,
@@ -770,17 +734,16 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (status != _undefined) 'status': (status as Enum$ProductStatusEnum?),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
-        if (condition != _undefined)
-          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (condition != _undefined) 'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
       }));
 }
 
-class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
-    implements CopyWith$Input$ProductFiltersInput<TRes> {
+class _CopyWithStubImpl$Input$ProductFiltersInput<TRes> implements CopyWith$Input$ProductFiltersInput<TRes> {
   _CopyWithStubImpl$Input$ProductFiltersInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? name,
     int? brand,
@@ -801,8 +764,7 @@ enum Enum$AccountsUserGenderChoices {
   ANY,
   $unknown;
 
-  factory Enum$AccountsUserGenderChoices.fromJson(String value) =>
-      fromJson$Enum$AccountsUserGenderChoices(value);
+  factory Enum$AccountsUserGenderChoices.fromJson(String value) => fromJson$Enum$AccountsUserGenderChoices(value);
 
   String toJson() => toJson$Enum$AccountsUserGenderChoices(this);
 }
@@ -820,8 +782,7 @@ String toJson$Enum$AccountsUserGenderChoices(Enum$AccountsUserGenderChoices e) {
   }
 }
 
-Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
-    String value) {
+Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(String value) {
   switch (value) {
     case r'MALE':
       return Enum$AccountsUserGenderChoices.MALE;
@@ -839,8 +800,7 @@ enum Enum$FileTypeEnum {
   PROFILE_PICTURE,
   $unknown;
 
-  factory Enum$FileTypeEnum.fromJson(String value) =>
-      fromJson$Enum$FileTypeEnum(value);
+  factory Enum$FileTypeEnum.fromJson(String value) => fromJson$Enum$FileTypeEnum(value);
 
   String toJson() => toJson$Enum$FileTypeEnum(this);
 }
@@ -873,8 +833,7 @@ enum Enum$ParcelSizeEnum {
   LARGE,
   $unknown;
 
-  factory Enum$ParcelSizeEnum.fromJson(String value) =>
-      fromJson$Enum$ParcelSizeEnum(value);
+  factory Enum$ParcelSizeEnum.fromJson(String value) => fromJson$Enum$ParcelSizeEnum(value);
 
   String toJson() => toJson$Enum$ParcelSizeEnum(this);
 }
@@ -912,14 +871,12 @@ enum Enum$ProductsProductConditionChoices {
   HEAVILY_USED,
   $unknown;
 
-  factory Enum$ProductsProductConditionChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductConditionChoices(value);
+  factory Enum$ProductsProductConditionChoices.fromJson(String value) => fromJson$Enum$ProductsProductConditionChoices(value);
 
   String toJson() => toJson$Enum$ProductsProductConditionChoices(this);
 }
 
-String toJson$Enum$ProductsProductConditionChoices(
-    Enum$ProductsProductConditionChoices e) {
+String toJson$Enum$ProductsProductConditionChoices(Enum$ProductsProductConditionChoices e) {
   switch (e) {
     case Enum$ProductsProductConditionChoices.NEW_WITH_TAGS:
       return r'NEW_WITH_TAGS';
@@ -934,8 +891,7 @@ String toJson$Enum$ProductsProductConditionChoices(
   }
 }
 
-Enum$ProductsProductConditionChoices
-    fromJson$Enum$ProductsProductConditionChoices(String value) {
+Enum$ProductsProductConditionChoices fromJson$Enum$ProductsProductConditionChoices(String value) {
   switch (value) {
     case r'NEW_WITH_TAGS':
       return Enum$ProductsProductConditionChoices.NEW_WITH_TAGS;
@@ -956,14 +912,12 @@ enum Enum$ProductsProductParcelSizeChoices {
   LARGE,
   $unknown;
 
-  factory Enum$ProductsProductParcelSizeChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductParcelSizeChoices(value);
+  factory Enum$ProductsProductParcelSizeChoices.fromJson(String value) => fromJson$Enum$ProductsProductParcelSizeChoices(value);
 
   String toJson() => toJson$Enum$ProductsProductParcelSizeChoices(this);
 }
 
-String toJson$Enum$ProductsProductParcelSizeChoices(
-    Enum$ProductsProductParcelSizeChoices e) {
+String toJson$Enum$ProductsProductParcelSizeChoices(Enum$ProductsProductParcelSizeChoices e) {
   switch (e) {
     case Enum$ProductsProductParcelSizeChoices.SMALL:
       return r'SMALL';
@@ -976,8 +930,7 @@ String toJson$Enum$ProductsProductParcelSizeChoices(
   }
 }
 
-Enum$ProductsProductParcelSizeChoices
-    fromJson$Enum$ProductsProductParcelSizeChoices(String value) {
+Enum$ProductsProductParcelSizeChoices fromJson$Enum$ProductsProductParcelSizeChoices(String value) {
   switch (value) {
     case r'SMALL':
       return Enum$ProductsProductParcelSizeChoices.SMALL;
@@ -1021,14 +974,12 @@ enum Enum$ProductsProductSizeChoices {
   ONE_SIZE,
   $unknown;
 
-  factory Enum$ProductsProductSizeChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductSizeChoices(value);
+  factory Enum$ProductsProductSizeChoices.fromJson(String value) => fromJson$Enum$ProductsProductSizeChoices(value);
 
   String toJson() => toJson$Enum$ProductsProductSizeChoices(this);
 }
 
-String toJson$Enum$ProductsProductSizeChoices(
-    Enum$ProductsProductSizeChoices e) {
+String toJson$Enum$ProductsProductSizeChoices(Enum$ProductsProductSizeChoices e) {
   switch (e) {
     case Enum$ProductsProductSizeChoices.XS:
       return r'XS';
@@ -1091,8 +1042,7 @@ String toJson$Enum$ProductsProductSizeChoices(
   }
 }
 
-Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
-    String value) {
+Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(String value) {
   switch (value) {
     case r'XS':
       return Enum$ProductsProductSizeChoices.XS;
@@ -1161,14 +1111,12 @@ enum Enum$ProductsProductStatusChoices {
   SOLD,
   $unknown;
 
-  factory Enum$ProductsProductStatusChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductStatusChoices(value);
+  factory Enum$ProductsProductStatusChoices.fromJson(String value) => fromJson$Enum$ProductsProductStatusChoices(value);
 
   String toJson() => toJson$Enum$ProductsProductStatusChoices(this);
 }
 
-String toJson$Enum$ProductsProductStatusChoices(
-    Enum$ProductsProductStatusChoices e) {
+String toJson$Enum$ProductsProductStatusChoices(Enum$ProductsProductStatusChoices e) {
   switch (e) {
     case Enum$ProductsProductStatusChoices.ACTIVE:
       return r'ACTIVE';
@@ -1181,8 +1129,7 @@ String toJson$Enum$ProductsProductStatusChoices(
   }
 }
 
-Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
-    String value) {
+Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(String value) {
   switch (value) {
     case r'ACTIVE':
       return Enum$ProductsProductStatusChoices.ACTIVE;
@@ -1249,14 +1196,12 @@ enum Enum$ProductsProductStyleChoices {
   RELAXED_FIT,
   $unknown;
 
-  factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductStyleChoices(value);
+  factory Enum$ProductsProductStyleChoices.fromJson(String value) => fromJson$Enum$ProductsProductStyleChoices(value);
 
   String toJson() => toJson$Enum$ProductsProductStyleChoices(this);
 }
 
-String toJson$Enum$ProductsProductStyleChoices(
-    Enum$ProductsProductStyleChoices e) {
+String toJson$Enum$ProductsProductStyleChoices(Enum$ProductsProductStyleChoices e) {
   switch (e) {
     case Enum$ProductsProductStyleChoices.WORKWEAR:
       return r'WORKWEAR';
@@ -1365,8 +1310,7 @@ String toJson$Enum$ProductsProductStyleChoices(
   }
 }
 
-Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
-    String value) {
+Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(String value) {
   switch (value) {
     case r'WORKWEAR':
       return Enum$ProductsProductStyleChoices.WORKWEAR;
@@ -1481,8 +1425,7 @@ enum Enum$ProductStatusEnum {
   SOLD,
   $unknown;
 
-  factory Enum$ProductStatusEnum.fromJson(String value) =>
-      fromJson$Enum$ProductStatusEnum(value);
+  factory Enum$ProductStatusEnum.fromJson(String value) => fromJson$Enum$ProductStatusEnum(value);
 
   String toJson() => toJson$Enum$ProductStatusEnum(this);
 }
@@ -1729,8 +1672,7 @@ enum Enum$StyleEnum {
   RELAXED_FIT,
   $unknown;
 
-  factory Enum$StyleEnum.fromJson(String value) =>
-      fromJson$Enum$StyleEnum(value);
+  factory Enum$StyleEnum.fromJson(String value) => fromJson$Enum$StyleEnum(value);
 
   String toJson() => toJson$Enum$StyleEnum(this);
 }
@@ -1964,8 +1906,7 @@ enum Enum$__TypeKind {
   NON_NULL,
   $unknown;
 
-  factory Enum$__TypeKind.fromJson(String value) =>
-      fromJson$Enum$__TypeKind(value);
+  factory Enum$__TypeKind.fromJson(String value) => fromJson$Enum$__TypeKind(value);
 
   String toJson() => toJson$Enum$__TypeKind(this);
 }
@@ -2038,8 +1979,7 @@ enum Enum$__DirectiveLocation {
   INPUT_FIELD_DEFINITION,
   $unknown;
 
-  factory Enum$__DirectiveLocation.fromJson(String value) =>
-      fromJson$Enum$__DirectiveLocation(value);
+  factory Enum$__DirectiveLocation.fromJson(String value) => fromJson$Enum$__DirectiveLocation(value);
 
   String toJson() => toJson$Enum$__DirectiveLocation(this);
 }
