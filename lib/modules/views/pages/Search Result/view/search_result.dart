@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
@@ -24,6 +25,7 @@ enum FilterTypes {
   size('Size'),
   brand('Brand'),
   condition('Condition'),
+  category('Category'),
   style('Style');
   // color('Color');
 
@@ -135,7 +137,7 @@ class LiveSearchPage extends ConsumerWidget {
                           );
                         }),
                 ),
-            loading: () => const LoadingWidget(),
+            loading: () => const GridShimmer(),
             error: (error, stack) {
               log(error.toString(), stackTrace: stack);
               return Center(child: Text('Error: $error'));
@@ -155,6 +157,7 @@ class LiveSearchPage extends ConsumerWidget {
       FilterTypes.size: Enum$SizeEnum.values.where((e) => e != Enum$SizeEnum.$unknown).map((e) => e.name).toList(),
       FilterTypes.style: Enum$StyleEnum.values.where((e) => e != Enum$StyleEnum.$unknown).map((e) => e.name).toList(),
       FilterTypes.brand: ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
+      FilterTypes.category: ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
       FilterTypes.condition: ConditionsEnum.values.map((e) => e.simpleName).toList(),
       // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
     };

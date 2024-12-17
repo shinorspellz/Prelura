@@ -6,7 +6,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
 class ProductRepo {
@@ -68,7 +68,7 @@ class ProductRepo {
     }
   }
 
-  Future<Product> getProduct(int id) async {
+  Future<ProductModel> getProduct(int id) async {
     final response = await _client.query$Product(
       Options$Query$Product(
           variables: Variables$Query$Product(
@@ -90,10 +90,10 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return Product.fromJson(response.parsedData!.product!.toJson());
+    return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<Product>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<List<ProductModel>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -118,7 +118,7 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProducts!.map((x) => Product.fromJson(x!.toJson())).toList();
+    return response.parsedData!.userProducts!.map((x) => ProductModel.fromJson(x!.toJson())).toList();
   }
 
   Future<Query$AllProducts> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber, Input$ProductFiltersInput? filters}) async {
@@ -170,7 +170,7 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<List<Product>> getMyFavouriteProduct(int? pageCount) async {
+  Future<List<ProductModel>> getMyFavouriteProduct(int? pageCount) async {
     final response = await _client.query$likedProducts(
       Options$Query$likedProducts(
           variables: Variables$Query$likedProducts(
@@ -192,7 +192,7 @@ class ProductRepo {
       throw 'An error occured here';
     }
 
-    return response.parsedData!.likedProducts!.map((x) => Product.fromJson((x!.product)!.toJson())).toList();
+    return response.parsedData!.likedProducts!.map((x) => ProductModel.fromJson((x!.product)!.toJson())).toList();
   }
 
   Future<bool?> toggleLikeProduct(int productId) async {
@@ -319,7 +319,7 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<List<Product>> similarProduct({int? productId, int? categoryId, int? pageNumber, int? pageCount}) async {
+  Future<List<ProductModel>> similarProduct({int? productId, int? categoryId, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$SimilarProducts(
       Options$Query$SimilarProducts(
           variables: Variables$Query$SimilarProducts(
@@ -344,6 +344,6 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.similarProducts!.map((x) => Product.fromJson((x!).toJson())).toList();
+    return response.parsedData!.similarProducts!.map((x) => ProductModel.fromJson((x!).toJson())).toList();
   }
 }

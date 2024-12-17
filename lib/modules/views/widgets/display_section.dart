@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 import 'package:prelura_app/shared/mock_data.dart';
 
@@ -14,7 +14,7 @@ class DisplaySection extends StatelessWidget {
     this.controller,
     this.isInProduct = true,
   });
-  final List<Product>? products;
+  final List<ProductModel>? products;
   final RefreshCallback? onRefresh;
   final bool isScrollable;
   final ScrollController? controller;
@@ -31,11 +31,7 @@ class DisplaySection extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.54),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10, childAspectRatio: 0.54),
               itemCount: mockData.length,
               itemBuilder: (context, index) {
                 return DisplayCard(itemData: mockData[index]);
@@ -45,9 +41,7 @@ class DisplaySection extends StatelessWidget {
           onRefresh: onRefresh ?? () async {},
           child: GridView.builder(
             shrinkWrap: true,
-            physics: isScrollable
-                ? const BouncingScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
+            physics: isScrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
             controller: controller,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,

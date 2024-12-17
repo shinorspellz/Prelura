@@ -6,8 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
@@ -29,7 +30,7 @@ import '../provider/sell_item_provider.dart';
 @RoutePage()
 class SellItemScreen extends ConsumerStatefulWidget {
   const SellItemScreen({super.key, this.product});
-  final Product? product;
+  final ProductModel? product;
 
   @override
   ConsumerState<SellItemScreen> createState() => _SellItemScreenState();
@@ -342,7 +343,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Brand',
                   rightArrow: false,
-                  subtitle: state.brand?.name,
+                  subtitle: state.brand?.name ?? state.customBrand,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const BrandSelectionRoute());
@@ -403,6 +404,14 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const PriceRoute());
+                  },
+                ),
+                MenuCard(
+                  title: 'Discount Price',
+                  subtitle: '${state.discount ?? 0}%',
+                  subtitleColor: PreluraColors.greyColor,
+                  onTap: () {
+                    context.router.push(const DiscountRoute());
                   },
                 ),
                 MenuCard(
@@ -477,8 +486,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       //   return;
                       // }
 
-                      if (state.brand == null) {
-                        HelperFunction.showToast(message: 'A `brand` is required for product.');
+                      if (state.brand == null && state.customBrand == null) {
+                        HelperFunction.showToast(message: 'A `brand` or `Custom brand` is required for product.');
                         return;
                       }
                       // if (state.selectedColors.) {
@@ -502,9 +511,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               category: int.parse(state.category!.id.toString()),
                               subCategory: int.parse(state.subCategory!.id.toString()),
                               color: state.selectedColors,
-                              brandId: state.brand!.id,
+                              brandId: state.brand?.id,
                               materials: state.selectedMaterials.map((e) => e.id).toList(),
                               style: state.style,
+                              discount: state.discount == null ? null : double.parse(state.discount!),
+                              customBrand: state.customBrand,
                             );
                         ref.read(productProvider).whenOrNull(
                               error: (e, _) => context.alert(e.toString()),
@@ -529,10 +540,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             size: state.size!,
                             category: int.parse(state.category!.id.toString()),
                             subCategory: int.parse(state.subCategory!.id.toString()),
-                            brandId: state.brand!.id,
+                            brandId: state.brand?.id,
                             color: state.selectedColors,
                             materials: state.selectedMaterials.map((e) => e.id).toList(),
                             style: state.style,
+                            discount: state.discount == null ? null : double.parse(state.discount!),
+                            customBrand: state.customBrand,
                           );
                       ref.read(productProvider).whenOrNull(
                         error: (e, _) {

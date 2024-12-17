@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 
 class SellItemState {
   final List<XFile> images;
@@ -18,8 +18,10 @@ class SellItemState {
   final Brand? brand;
   final Enum$SizeEnum? size;
   final String? price;
+  final String? discount;
   final ConditionsEnum? selectedCondition;
   final Enum$StyleEnum? style;
+  final String? customBrand;
 
   SellItemState({
     this.images = const [],
@@ -35,38 +37,42 @@ class SellItemState {
     this.selectedColors = const [],
     this.selectedMaterials = const [],
     this.style,
+    this.discount,
+    this.customBrand,
   });
 
-  SellItemState copyWith({
-    List<XFile>? images,
-    String? title,
-    String? description,
-    CategoryModel? category,
-    CategoryModel? subCategory,
-    Enum$ParcelSizeEnum? parcel,
-    List<String>? selectedColors,
-    List<Material>? selectedMaterials,
-    Brand? brand,
-    Enum$SizeEnum? size,
-    String? price,
-    Enum$StyleEnum? style,
-    ConditionsEnum? selectedCondition,
-  }) {
+  SellItemState copyWith(
+      {List<XFile>? images,
+      String? title,
+      String? description,
+      CategoryModel? category,
+      CategoryModel? subCategory,
+      Enum$ParcelSizeEnum? parcel,
+      List<String>? selectedColors,
+      List<Material>? selectedMaterials,
+      Brand? brand,
+      Enum$SizeEnum? size,
+      String? price,
+      String? discount,
+      Enum$StyleEnum? style,
+      ConditionsEnum? selectedCondition,
+      String? customBrand}) {
     return SellItemState(
-      images: images ?? this.images,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      category: category ?? this.category,
-      subCategory: subCategory ?? this.subCategory,
-      parcel: parcel ?? this.parcel,
-      size: size ?? this.size,
-      brand: brand ?? this.brand,
-      price: price ?? this.price,
-      selectedColors: selectedColors ?? this.selectedColors,
-      selectedCondition: selectedCondition ?? this.selectedCondition,
-      selectedMaterials: selectedMaterials ?? this.selectedMaterials,
-      style: style ?? this.style,
-    );
+        images: images ?? this.images,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        category: category ?? this.category,
+        subCategory: subCategory ?? this.subCategory,
+        parcel: parcel ?? this.parcel,
+        size: size ?? this.size,
+        brand: brand ?? this.brand,
+        price: price ?? this.price,
+        selectedColors: selectedColors ?? this.selectedColors,
+        selectedCondition: selectedCondition ?? this.selectedCondition,
+        selectedMaterials: selectedMaterials ?? this.selectedMaterials,
+        style: style ?? this.style,
+        discount: discount ?? this.discount,
+        customBrand: customBrand ?? this.customBrand);
   }
 
   @override
@@ -153,8 +159,17 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     log('${state.price}');
   }
 
+  void updateDiscount(String? price) {
+    state = state.copyWith(discount: price);
+    log('${state.discount}');
+  }
+
   void selectBrand(Brand? brand) {
     state = state.copyWith(brand: brand);
+  }
+
+  void selectCustomBrand(String? brand) {
+    state = state.copyWith(customBrand: brand);
   }
 
   void selectCondition(ConditionsEnum selectedCondition) {
@@ -165,21 +180,22 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(style: style);
   }
 
-  void productToItem(Product product) {
+  void productToItem(ProductModel product) {
     state = state.copyWith(
-      title: product.name,
-      description: product.description,
-      category: product.category,
-      subCategory: product.subCategory,
-      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
-      price: product.price,
-      selectedCondition: product.condition,
-      brand: product.brand,
-      selectedColors: product.color,
-      selectedMaterials: product.materials,
-      style: product.style,
-    );
+        title: product.name,
+        description: product.description,
+        category: product.category,
+        subCategory: product.subCategory,
+        parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
+        size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+        price: product.price,
+        selectedCondition: product.condition,
+        brand: product.brand,
+        selectedColors: product.color,
+        selectedMaterials: product.materials,
+        style: product.style,
+        discount: product.discountPrice,
+        customBrand: product.customBrand);
   }
 
   // Add or remove a color

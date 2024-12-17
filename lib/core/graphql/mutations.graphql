@@ -63,6 +63,7 @@ mutation CreateProduct(
   $brand: Int
   $materials: [Int]
   $style: StyleEnum
+  $customBrand: String
 ) {
   createProduct(
     category: $category
@@ -79,6 +80,7 @@ mutation CreateProduct(
     brand: $brand
     materials: $materials
     style: $style
+    customBrand: $customBrand
   ) {
     success
     message
@@ -106,6 +108,7 @@ mutation UpdateProduct(
   $brand: Int
   $materials: [Int]
   $style: StyleEnum
+  $customBrand: String
 ) {
   updateProduct(
     category: $category
@@ -122,6 +125,7 @@ mutation UpdateProduct(
     brand: $brand
     materials: $materials
     style: $style
+    customBrand: $customBrand
   ) {
     success
     message

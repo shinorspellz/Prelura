@@ -5,12 +5,12 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
 
-part 'product_model.freezed.dart';
-part 'product_model.g.dart';
+part 'product.freezed.dart';
+part 'product.g.dart';
 
 @unfreezed
-class Product with _$Product {
-  factory Product({
+class ProductModel with _$ProductModel {
+  factory ProductModel({
     required final String id,
     required final String name,
     required final String description,
@@ -33,9 +33,10 @@ class Product with _$Product {
     required Brand? brand,
     final List<Material>? materials,
     final Enum$StyleEnum? style,
-  }) = _Product;
+    final String? customBrand,
+  }) = _ProductModel;
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 }
 
 @freezed

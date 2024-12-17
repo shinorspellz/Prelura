@@ -9,7 +9,7 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 
@@ -23,7 +23,7 @@ import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_resu
 //   return result.reversed.toList();
 // });
 
-final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref, query) async {
+final searchProductProvider = FutureProvider.family<List<ProductModel>, String?>((ref, query) async {
   final repo = ref.watch(productRepo);
   final filters = ref.watch(searchFilterProvider);
 
@@ -31,8 +31,10 @@ final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref
   final sizeFilter = filters.entries.where((e) => e.key == FilterTypes.size).firstOrNull?.value;
   final conditionFilter = filters.entries.where((e) => e.key == FilterTypes.condition).firstOrNull?.value;
   final styleFilter = filters.entries.where((e) => e.key == FilterTypes.style).firstOrNull?.value;
+  final categoryFilter = filters.entries.where((e) => e.key == FilterTypes.category).firstOrNull?.value;
 
   final brand = ref.watch(brandsProvider).valueOrNull?.where((e) => e.name == brandFilter).firstOrNull;
+  final category = ref.watch(categoryProvider).valueOrNull?.where((e) => e.name == categoryFilter).firstOrNull;
   final size = Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition = ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style = Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
@@ -44,10 +46,11 @@ final searchProductProvider = FutureProvider.family<List<Product>, String?>((ref
       size: size,
       condition: condition,
       style: style,
+      category: category?.id == null ? null : int.tryParse(category?.id),
     ),
   );
 
-  return result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
+  return result.allProducts!.map((e) => ProductModel.fromJson(e!.toJson())).toList();
 });
 
 final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((ref, query) async {
@@ -58,14 +61,14 @@ final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((
   return result!;
 });
 
-final userProduct = FutureProvider.family<List<Product>, String?>((ref, username) async {
+final userProduct = FutureProvider.family<List<ProductModel>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getUserProduct(username: username, pageCount: 100);
 
   return result.reversed.toList();
 });
-final getProductProvider = FutureProvider.family<Product, int>((ref, id) async {
+final getProductProvider = FutureProvider.family<ProductModel, int>((ref, id) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.getProduct(id);
@@ -89,7 +92,7 @@ final categoryProvider = FutureProvider((ref) async {
   return result;
 });
 
-final similarProductsProvider = FutureProvider.family<List<Product>, int>((ref, id) async {
+final similarProductsProvider = FutureProvider.family<List<ProductModel>, int>((ref, id) async {
   final repo = ref.watch(productRepo);
 
   final result = await repo.similarProduct(productId: id);
@@ -104,7 +107,7 @@ class _ProductProvider extends AsyncNotifier<void> {
   late final _fileUploadRepo = ref.read(fileUploadRepo);
 
   @override
-  FutureOr<List<Product>> build() => [];
+  FutureOr<List<ProductModel>> build() => [];
 
   Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
     final upload = await _fileUploadRepo.uploadFiles(
@@ -133,6 +136,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     List<String>? color,
     List<int>? materials,
     Enum$StyleEnum? style,
+    String? customBrand,
   }) async {
     state = const AsyncLoading();
 
@@ -140,20 +144,22 @@ class _ProductProvider extends AsyncNotifier<void> {
       final files = await _uploadMedia(images);
       await _productRepo.createProduct(
         Variables$Mutation$CreateProduct(
-            category: category,
-            subCategory: subCategory,
-            condition: condition,
-            description: desc,
-            imageUrl: files,
-            price: price,
-            size: size,
-            name: title,
-            parcelSize: parcelSize,
-            discount: discount,
-            brand: brandId,
-            color: color,
-            materials: materials,
-            style: style),
+          category: category,
+          subCategory: subCategory,
+          condition: condition,
+          description: desc,
+          imageUrl: files,
+          price: price,
+          size: size,
+          name: title,
+          parcelSize: parcelSize,
+          discount: discount,
+          brand: brandId,
+          color: color,
+          materials: materials,
+          style: style,
+          customBrand: customBrand,
+        ),
       );
       ref.invalidate(userProduct);
       ref.invalidate(allProductProvider);
@@ -175,8 +181,11 @@ class _ProductProvider extends AsyncNotifier<void> {
     List<String>? color,
     List<int>? materials,
     Enum$StyleEnum? style,
+    String? customBrand,
   }) async {
     state = const AsyncLoading();
+
+    log('Discount $discount');
 
     state = await AsyncValue.guard(() async {
       // final files = await _uploadMedia(images);
@@ -196,6 +205,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           color: color,
           materials: materials,
           style: style,
+          customBrand: customBrand,
         ),
       );
       ref.invalidate(userProduct);
@@ -247,9 +257,9 @@ final colorsProvider = Provider((ref) {
   return colorOptions;
 });
 
-final filterProductByPriceProvider = AsyncNotifierProvider.family<_FilteredProductController, List<Product>, double>(_FilteredProductController.new);
+final filterProductByPriceProvider = AsyncNotifierProvider.family<_FilteredProductController, List<ProductModel>, double>(_FilteredProductController.new);
 
-class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, double> {
+class _FilteredProductController extends FamilyAsyncNotifier<List<ProductModel>, double> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -259,7 +269,7 @@ class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, doub
   double _price = 15;
 
   @override
-  Future<List<Product>> build(double priceLimit) async {
+  Future<List<ProductModel>> build(double priceLimit) async {
     state = const AsyncLoading();
     _price = priceLimit;
     _currentPage = 1;
@@ -277,7 +287,7 @@ class _FilteredProductController extends FamilyAsyncNotifier<List<Product>, doub
 
     _brandTotalItems = result.filterProductsByPriceTotalNumber!;
 
-    final newState = result.filterProductsByPrice!.map((e) => Product.fromJson(e!.toJson())).toList();
+    final newState = result.filterProductsByPrice!.map((e) => ProductModel.fromJson(e!.toJson())).toList();
     newState.shuffle();
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
@@ -328,9 +338,9 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
 /// boolean flag for when paginating home page
 final paginatingHome = StateProvider((ref) => false);
 
-final allProductProvider = AsyncNotifierProvider.family.autoDispose<_AllProductController, List<Product>, String?>(_AllProductController.new);
+final allProductProvider = AsyncNotifierProvider.family.autoDispose<_AllProductController, List<ProductModel>, String?>(_AllProductController.new);
 
-class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>, String?> {
+class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -339,7 +349,7 @@ class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>
   String? _query;
 
   @override
-  Future<List<Product>> build(String? query) async {
+  Future<List<ProductModel>> build(String? query) async {
     state = const AsyncLoading();
     _currentPage = 1;
     _query = query;
@@ -356,7 +366,7 @@ class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>
 
     _brandTotalItems = result.allProductsTotalNumber!;
 
-    final newState = result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
+    final newState = result.allProducts!.map((e) => ProductModel.fromJson(e!.toJson())).toList();
     newState.shuffle();
     newState.shuffle();
     final currentState = state.valueOrNull ?? [];
@@ -397,9 +407,9 @@ class _AllProductController extends AutoDisposeFamilyAsyncNotifier<List<Product>
   }
 }
 
-final filterProductByBrandProvider = AsyncNotifierProvider.family<FilteredBrandProductController, List<Product>, (int, String)>(FilteredBrandProductController.new);
+final filterProductByBrandProvider = AsyncNotifierProvider.family<FilteredBrandProductController, List<ProductModel>, (int, String)>(FilteredBrandProductController.new);
 
-class FilteredBrandProductController extends FamilyAsyncNotifier<List<Product>, (int, String)> {
+class FilteredBrandProductController extends FamilyAsyncNotifier<List<ProductModel>, (int, String)> {
   late final _repository = ref.read(productRepo);
 
   final int _pageCount = 15;
@@ -407,7 +417,7 @@ class FilteredBrandProductController extends FamilyAsyncNotifier<List<Product>, 
   int _brandTotalItems = 0;
 
   @override
-  Future<List<Product>> build((int, String) params) async {
+  Future<List<ProductModel>> build((int, String) params) async {
     final (brandId, query) = params;
     state = const AsyncLoading();
     _currentPage = 1;
@@ -424,7 +434,7 @@ class FilteredBrandProductController extends FamilyAsyncNotifier<List<Product>, 
     }
   }
 
-  Future<List<Product>> _getProducts({
+  Future<List<ProductModel>> _getProducts({
     required int brandId,
     required int pageNumber,
     String? query,
@@ -442,7 +452,7 @@ class FilteredBrandProductController extends FamilyAsyncNotifier<List<Product>, 
 
       _brandTotalItems = result.allProductsTotalNumber ?? 0;
 
-      final newProducts = result.allProducts!.map((e) => Product.fromJson(e!.toJson())).toList();
+      final newProducts = result.allProducts!.map((e) => ProductModel.fromJson(e!.toJson())).toList();
 
       final currentProducts = state.valueOrNull ?? [];
       state = pageNumber == 1 ? AsyncData(newProducts) : AsyncData([...currentProducts, ...newProducts]);

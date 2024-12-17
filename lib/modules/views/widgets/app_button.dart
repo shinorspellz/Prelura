@@ -44,30 +44,21 @@ class AppButton extends StatelessWidget {
   final bool isDisabled;
   @override
   Widget build(BuildContext context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return GestureDetector(
-      onTap: onTap,
+      onTap: isDisabled ? null : onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          border: Border.all(
-              width: bgColor != null ? 1 : 0,
-              color: bgColor == null
-                  ? borderColor ?? Colors.transparent
-                  : borderColor),
+          border: Border.all(width: bgColor != null ? 1 : 0, color: bgColor == null ? borderColor ?? Colors.transparent : borderColor),
           borderRadius: BorderRadius.circular(8),
-          color: isDisabled
-              ? PreluraColors.activeColor.withOpacity(0.2)
-              : bgColor ?? PreluraColors.activeColor,
+          color: isDisabled ? PreluraColors.activeColor.withOpacity(0.2) : bgColor ?? PreluraColors.activeColor,
         ),
         height: height ?? 40,
         width: width,
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: textWidget != null
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.center,
+          mainAxisAlignment: textWidget != null ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
             textWidget ?? const SizedBox.shrink(),
             textWidget != null
@@ -75,15 +66,14 @@ class AppButton extends StatelessWidget {
                     text!,
                     style: TextStyle(
                       fontSize: fontSize ?? 10.sp,
-                      color: textColor != null
-                          ? textColor
-                          : isDarkMode
+                      color: textColor ??
+                          (isDarkMode
                               ? isDisabled
                                   ? PreluraColors.white.withOpacity(0.5)
                                   : PreluraColors.white
                               : bgColor != null
                                   ? PreluraColors.activeColor
-                                  : PreluraColors.white,
+                                  : PreluraColors.white),
                       fontWeight: FontWeight.w800,
                     ),
                   )
@@ -92,15 +82,14 @@ class AppButton extends StatelessWidget {
                       text!,
                       style: TextStyle(
                         fontSize: fontSize ?? 10.sp,
-                        color: textColor != null
-                            ? textColor
-                            : isDarkMode
+                        color: textColor ??
+                            (isDarkMode
                                 ? isDisabled
                                     ? PreluraColors.white.withOpacity(0.5)
                                     : PreluraColors.white
                                 : bgColor != null
                                     ? PreluraColors.activeColor
-                                    : PreluraColors.white,
+                                    : PreluraColors.white),
                         fontWeight: FontWeight.w800,
                       ),
                     ),

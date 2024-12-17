@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../model/product/product_model.dart';
+import '../../model/product/product.dart';
 
 class FullScreenImage extends StatelessWidget {
   final List<XFile> imagePath; // Local image files
@@ -12,12 +12,12 @@ class FullScreenImage extends StatelessWidget {
   final bool isLocal; // Whether the images are local or from the network
 
   const FullScreenImage({
-    Key? key,
+    super.key,
     this.imageUrl = const [],
     this.imagePath = const [],
     required this.initialIndex,
     this.isLocal = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

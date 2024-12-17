@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 
 final materialsProvider = AsyncNotifierProvider<_MaterialsProvider, List<Material>>(_MaterialsProvider.new);
 
