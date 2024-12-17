@@ -2450,8 +2450,8 @@ extension ClientExtension$Mutation$TokenAuth on graphql.GraphQLClient {
 class Mutation$TokenAuth$tokenAuth {
   Mutation$TokenAuth$tokenAuth({
     required this.token,
-    required this.payload,
-    required this.refreshExpiresIn,
+    this.payload,
+    this.refreshExpiresIn,
     this.$__typename = 'NewObtainJSONWebToken',
   });
 
@@ -2462,17 +2462,17 @@ class Mutation$TokenAuth$tokenAuth {
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth$tokenAuth(
       token: (l$token as String),
-      payload: (l$payload as dynamic),
-      refreshExpiresIn: (l$refreshExpiresIn as int),
+      payload: (l$payload as dynamic?),
+      refreshExpiresIn: (l$refreshExpiresIn as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String token;
 
-  final dynamic payload;
+  final dynamic? payload;
 
-  final int refreshExpiresIn;
+  final int? refreshExpiresIn;
 
   final String $__typename;
 
@@ -2585,13 +2585,11 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
-        payload: payload == _undefined || payload == null
-            ? _instance.payload
-            : (payload as dynamic),
-        refreshExpiresIn:
-            refreshExpiresIn == _undefined || refreshExpiresIn == null
-                ? _instance.refreshExpiresIn
-                : (refreshExpiresIn as int),
+        payload:
+            payload == _undefined ? _instance.payload : (payload as dynamic?),
+        refreshExpiresIn: refreshExpiresIn == _undefined
+            ? _instance.refreshExpiresIn
+            : (refreshExpiresIn as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),

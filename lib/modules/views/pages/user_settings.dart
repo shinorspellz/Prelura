@@ -93,7 +93,7 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          MenuCard(title: "Dark mode", subtitle: "System setting", onTap: () {}),
+          // MenuCard(title: "Dark mode", subtitle: "System setting", onTap: () {}),
           MenuCard(
             title: "Log out",
             onTap: () {

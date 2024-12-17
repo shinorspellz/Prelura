@@ -4,7 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
+import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/images.dart';
@@ -60,33 +62,35 @@ class SearchScreen extends ConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (var brand in [
-                      'Ralph Lauren',
-                      'Gucci',
-                      'Nike',
-                      'Adidas',
-                      'Fubu',
-                      'Yeezy'
-                    ])
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                              color: PreluraColors.activeColor,
-                              borderRadius: BorderRadius.circular(6)),
-                          child: Text(
-                            brand,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    color: PreluraColors.white,
-                                    fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ),
+                    ...ref.watch(popularBrandsProvider).maybeWhen(
+                        orElse: () {
+                          return List.generate(
+                              10,
+                              (_) => Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                    child: ShimmerBox(
+                                      height: 28,
+                                      width: 100,
+                                      radius: 5,
+                                    ),
+                                  ));
+                        },
+                        data: (data) => data.take(10).map(
+                              (brand) => Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                child: GestureDetector(
+                                  onTap: () => context.pushRoute(ProductsByBrandRoute(title: brand.name, id: (brand.id).toInt())),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                    decoration: BoxDecoration(color: PreluraColors.activeColor, borderRadius: BorderRadius.circular(6)),
+                                    child: Text(
+                                      brand.name,
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white, fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ))
                   ],
                 ),
               ),
@@ -96,31 +100,35 @@ class SearchScreen extends ConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    for (var brand in [
-                      'Toms',
-                      'Vans',
-                      'Timberland',
-                      'D&Ds',
-                      'Versace',
-                      'D&G'
-                    ])
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                              color: PreluraColors.activeColor,
-                              borderRadius: BorderRadius.circular(6)),
-                          child: Text(brand,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(
-                                      color: PreluraColors.white,
-                                      fontWeight: FontWeight.w700)),
-                        ),
-                      ),
+                    ...ref.watch(popularBrandsProvider).maybeWhen(
+                        orElse: () {
+                          return List.generate(
+                              10,
+                              (_) => Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                    child: ShimmerBox(
+                                      height: 28,
+                                      width: 100,
+                                      radius: 5,
+                                    ),
+                                  ));
+                        },
+                        data: (data) => data.sublist(6).map(
+                              (brand) => Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                child: GestureDetector(
+                                  onTap: () => context.pushRoute(ProductsByBrandRoute(title: brand.name, id: (brand.id).toInt())),
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                    decoration: BoxDecoration(color: PreluraColors.activeColor, borderRadius: BorderRadius.circular(6)),
+                                    child: Text(
+                                      brand.name,
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white, fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ))
                   ],
                 ),
               ),
@@ -130,84 +138,72 @@ class SearchScreen extends ConsumerWidget {
                 margin: EdgeInsets.all(16),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(PreluraIcons.webp_xmas),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topLeft),
+                  image: DecorationImage(image: AssetImage(PreluraIcons.webp_xmas), fit: BoxFit.cover, alignment: Alignment.topLeft),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
               ),
               SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _categoriesSection(
-                        "Women", PreluraIcons.webp_women, context),
+                    _categoriesSection("Women", PreluraIcons.webp_women, context),
                     _categoriesSection("Men", PreluraIcons.webp_men, context),
                     _categoriesSection("Kids", PreluraIcons.kids, context),
-                    _categoriesSection(
-                        "Electronics", PreluraIcons.electronics, context),
+                    _categoriesSection("Electronics", PreluraIcons.electronics, context),
                     _categoriesSection("Home", PreluraIcons.home, context),
-                    _categoriesSection(
-                        "Entertainment", PreluraIcons.entertainment, context),
+                    _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
                     _categoriesSection("Pets", PreluraIcons.petCare, context),
                   ],
                 ),
               ),
-              Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFFab28b2),
-                        Color(0XFFa126a8),
-                        Color(0xFF8a2190),
-                        Color(0xFF8a2190),
-                      ], // Purple gradient
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                          child: Text("DONT WEAR IT?\nSELL IT 🤑",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                      fontSize: 19.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: PreluraColors.white))),
-                      addHorizontalSpacing(20),
-                      ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        child: Image.asset(
-                          PreluraIcons.mugShot,
-                          height: 70,
-                          width: 50,
-                          fit: BoxFit.cover,
-                        ),
+              GestureDetector(
+                onTap: () => context.pushRoute(SellItemRoute()),
+                child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color(0xFFab28b2),
+                          Color(0XFFa126a8),
+                          Color(0xFF8a2190),
+                          Color(0xFF8a2190),
+                        ], // Purple gradient
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                    ],
-                  )),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "DONT WEAR IT?\nSELL IT 🤑",
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 19.sp, fontWeight: FontWeight.w700, color: PreluraColors.white),
+                          ),
+                        ),
+                        addHorizontalSpacing(20),
+                        ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          child: Image.asset(
+                            PreluraIcons.mugShot,
+                            height: 70,
+                            width: 50,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
               Container(
                 width: double.infinity,
                 height: 45.h,
                 margin: EdgeInsets.all(16),
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(PreluraIcons.webp_vintage),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topLeft),
+                  image: DecorationImage(image: AssetImage(PreluraIcons.webp_vintage), fit: BoxFit.cover, alignment: Alignment.topLeft),
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
               ),
@@ -216,8 +212,7 @@ class SearchScreen extends ConsumerWidget {
                 crossAxisCount: 2,
                 physics: NeverScrollableScrollPhysics(),
                 children: [
-                  _buildPromoBanner(
-                      "Christmas Jumpers", PreluraIcons.webp_season),
+                  _buildPromoBanner("Christmas Jumpers", PreluraIcons.webp_season),
                   _buildPromoBanner("Party Season", PreluraIcons.webp_jumpers),
                 ],
               ),
@@ -231,8 +226,7 @@ class SearchScreen extends ConsumerWidget {
   }
 
   Widget _categoriesSection(String title, String image, context) {
-    final isDarkMode =
-        MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
       width: 170,
       margin: EdgeInsets.only(right: 12),
@@ -255,18 +249,13 @@ class SearchScreen extends ConsumerWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
-                color: isDarkMode
-                    ? PreluraColors.activeColor.withOpacity(0.4)
-                    : PreluraColors.activeColor.withOpacity(0.1),
+                color: isDarkMode ? PreluraColors.activeColor.withOpacity(0.4) : PreluraColors.activeColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.w700),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
             ),
           )
@@ -288,10 +277,7 @@ class SearchScreen extends ConsumerWidget {
         child: Text(
           title,
           textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.w700),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
         ),
       ),
     );

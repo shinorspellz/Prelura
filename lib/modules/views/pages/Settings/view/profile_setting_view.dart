@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
@@ -30,22 +31,23 @@ class ObscureTextNotifier extends StateNotifier<bool> {
 }
 
 // Provider for the ObscureTextNotifier
-final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>(
-    (ref) => ObscureTextNotifier());
+final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>((ref) => ObscureTextNotifier());
 
 @RoutePage()
 class ProfileSettingScreen extends ConsumerStatefulWidget {
   const ProfileSettingScreen({super.key});
 
   @override
-  ConsumerState<ProfileSettingScreen> createState() =>
-      _ProfileSettingScreenState();
+  ConsumerState<ProfileSettingScreen> createState() => _ProfileSettingScreenState();
 }
 
 class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
-  TextEditingController locationController = TextEditingController();
+  late TextEditingController locationController = TextEditingController(text: ref.read(userProvider).valueOrNull?.location?.locationName);
+  TextEditingController get name => TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  TextEditingController get username => TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
+  TextEditingController get email => TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
 
   @override
   void initState() {
@@ -55,16 +57,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   }
 
   void placeAutoComplete(String query) async {
-    Uri uri =
-        Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
+    Uri uri = Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
       "input": query,
       "key": apiKey,
     });
     String? response = await NetworkUtility.fetchUrl(uri);
 
     if (response != null) {
-      PlaceAutocompleteResponse result =
-          PlaceAutocompleteResponse.parseAutocompleteResult(response);
+      PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
 
       if (result.predictions != null) {
         setState(() {
@@ -95,16 +95,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
         if (newError.contains('denied')) {
           await _showEnableLocationPopup(context,
               title: "Permission Access",
-              description:
-                  "Prelura requires permission for location access to function "
+              description: "Prelura requires permission for location access to function "
                   "while on this page.",
               positiveCallback: Geolocator.openAppSettings);
         } else if (newError.contains('disabled')) {
           print(" it is true");
           await _showEnableLocationPopup(context,
               title: "Location Disabled",
-              description:
-                  'Prelura requires location access for the proper functioning of '
+              description: 'Prelura requires location access for the proper functioning of '
                   'app. Please enable device location.',
               positiveCallback: Geolocator.openLocationSettings);
         }
@@ -122,8 +120,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       child: Scaffold(
         appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           appbarTitle: "Profile Settings",
@@ -138,30 +135,34 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 context,
                 label: 'Name',
                 hintText: 'e.g. Prelura App',
+                controller: name,
               ),
               addVerticalSpacing(16),
               _buildAuthTextField(
                 context,
                 label: 'Username',
                 hintText: 'e.g. prelura_app',
+                controller: username,
               ),
               addVerticalSpacing(16),
               _buildAuthTextField(
                 context,
                 label: 'Email',
                 hintText: 'e.g. app@prelura.com',
+                controller: email,
+                enabled: false,
               ),
               addVerticalSpacing(16),
-              PreluraAuthTextField(
-                label: 'Password',
-                labelStyle: _labelStyle(context),
-                hintText: '*********',
-                hintStyle: _hintStyle(context),
-                obscureText: obscureText,
-                onChanged: (value) {},
-                isPassword: true,
-              ),
-              addVerticalSpacing(16),
+              // PreluraAuthTextField(
+              //   label: 'Password',
+              //   labelStyle: _labelStyle(context),
+              //   hintText: '*********',
+              //   hintStyle: _hintStyle(context),
+              //   obscureText: obscureText,
+              //   onChanged: (value) {},
+              //   isPassword: true,
+              // ),
+              // addVerticalSpacing(16),
               // PlacesAutocompletionField(
               //   label: 'Location',
               //   hintText: 'e.g. Exter, United Kingdom',
@@ -177,12 +178,15 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
               //   },
               // ),
 
-              _buildAuthTextField(context,
-                  label: 'Location',
-                  hintText: 'e.g. Exter, United Kingdom',
-                  controller: locationController, onChanged: (value) {
-                placeAutoComplete(value ?? '');
-              }),
+              _buildAuthTextField(
+                context,
+                label: 'Location',
+                hintText: 'e.g. Exter, United Kingdom',
+                controller: locationController,
+                onChanged: (value) {
+                  placeAutoComplete(value);
+                },
+              ),
               if (placePredictions.isNotEmpty) ...[
                 Expanded(
                   child: ListView.builder(
@@ -190,8 +194,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                     itemBuilder: (context, index) => LocationListTile(
                       press: () {
                         setState(() {
-                          locationController.text =
-                              placePredictions[index].description!;
+                          locationController.text = placePredictions[index].description!;
                           placePredictions = [];
                         });
                       },
@@ -225,35 +228,42 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 if (long == 0.0 || lat == 0.0) {
                   throw Exception('Invalid location coordinates');
                 }
-                print("location name is ${locationController.text}");
+
                 await ref.read(userNotfierProvider.notifier).updateProfile(
                       location: Input$LocationInputType(
                         longitude: long.toString(),
                         latitude: lat.toString(),
                         locationName: locationController.text,
                       ),
+                      firstName: name.text.isEmpty ? null : name.text.split(' ')[0],
+                      lastName: name.text.isEmpty ? null : name.text.split(' ')[1],
+                      username: username.text == ref.read(userProvider).valueOrNull?.username ? null : username.text,
                     );
 
                 ref.read(userNotfierProvider).whenOrNull(
-                      error: (e, _) => context.alert('An error occurred: $e'),
-                      data: (_) {
-                        setState(() {
-                          isLoading = false;
-                        });
-                        if (context.mounted) {
-                          Navigator.pop(context);
-                          HelperFunction.context = context;
-                          HelperFunction.showToast(
-                              message: 'Location updated!');
-                        }
-                      },
-                    );
+                  error: (e, _) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                    return context.alert('An error occurred: $e');
+                  },
+                  data: (_) {
+                    setState(() {
+                      isLoading = false;
+                    });
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                      HelperFunction.context = context;
+                      HelperFunction.showToast(message: 'Profile updated!');
+                    }
+                  },
+                );
               } catch (e, stackTrace) {
                 setState(() {
                   isLoading = false;
                 });
-                print('Update failed: $e');
-                print(stackTrace);
+                log('Update failed: $e', stackTrace: stackTrace);
+
                 context.alert('Failed to update profile: $e');
               }
             },
@@ -272,6 +282,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     required String hintText,
     void Function(String)? onChanged,
     TextEditingController? controller,
+    bool enabled = true,
   }) {
     return PreluraAuthTextField(
       label: label,
@@ -280,21 +291,16 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       hintStyle: _hintStyle(context),
       onChanged: onChanged,
       controller: controller,
+      enabled: enabled,
     );
   }
 
   TextStyle? _labelStyle(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
+    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
   }
 
   TextStyle? _hintStyle(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
+    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
   }
 }
 
@@ -307,17 +313,11 @@ class PlaceAutocompleteResponse {
   factory PlaceAutocompleteResponse.fromJson(Map<String, dynamic> json) {
     return PlaceAutocompleteResponse(
       status: json['status'] as String?,
-      predictions: json['predictions'] != null
-          ? json['predictions']
-              .map<AutocompletePrediction>(
-                  (json) => AutocompletePrediction.fromJson(json))
-              .toList()
-          : null,
+      predictions: json['predictions']?.map<AutocompletePrediction>((json) => AutocompletePrediction.fromJson(json)).toList(),
     );
   }
 
-  static PlaceAutocompleteResponse parseAutocompleteResult(
-      String responseBody) {
+  static PlaceAutocompleteResponse parseAutocompleteResult(String responseBody) {
     final parsed = json.decode(responseBody).cast<String, dynamic>();
 
     return PlaceAutocompleteResponse.fromJson(parsed);
@@ -351,9 +351,7 @@ class AutocompletePrediction {
       description: json['description'] as String?,
       placeId: json['place_id'] as String?,
       reference: json['reference'] as String?,
-      structuredFormatting: json['structured_formatting'] != null
-          ? StructuredFormatting.fromJson(json['structured_formatting'])
-          : null,
+      structuredFormatting: json['structured_formatting'] != null ? StructuredFormatting.fromJson(json['structured_formatting']) : null,
     );
   }
 }
@@ -377,10 +375,10 @@ class StructuredFormatting {
 
 class LocationListTile extends StatelessWidget {
   const LocationListTile({
-    Key? key,
+    super.key,
     required this.location,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String location;
   final VoidCallback press;
@@ -414,10 +412,7 @@ class LocationListTile extends StatelessWidget {
   }
 }
 
-Future<void> _showEnableLocationPopup(BuildContext context,
-    {required String title,
-    required String description,
-    required Future<bool> Function() positiveCallback}) async {
+Future<void> _showEnableLocationPopup(BuildContext context, {required String title, required String description, required Future<bool> Function() positiveCallback}) async {
   await showDialog(
     context: context,
     builder: (BuildContext context) {

@@ -43,6 +43,7 @@ dependencies:
   http:
   talker_dio_logger:
   cached_network_image: ^3.4.1
+  share_plus: ^10.1.3
 
 dev_dependencies:
   flutter_test:
