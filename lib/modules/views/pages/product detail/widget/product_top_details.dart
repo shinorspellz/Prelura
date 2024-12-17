@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
@@ -22,7 +22,7 @@ import '../provider/product_detail_provider.dart';
 
 class ProductTopDetails extends ConsumerWidget {
   const ProductTopDetails({super.key, required this.product});
-  final Product product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,10 +40,7 @@ class ProductTopDetails extends ConsumerWidget {
             product.name,
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           const SizedBox(height: 12),
           Column(
@@ -53,8 +50,11 @@ class ProductTopDetails extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (product.brand != null)
-                    BrandTextWidget(brand: product.brand!),
+                  if (product.brand != null || product.customBrand != null)
+                    BrandTextWidget(
+                      brand: product.brand,
+                      customBrand: product.customBrand,
+                    ),
                   Text(
                     "Size ${product.size?.name ?? ''}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -70,13 +70,11 @@ class ProductTopDetails extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   // Product condition text
-                  Text(
-                    dummy.condition,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w500,
-                        color: PreluraColors.greyColor),
-                  ),
+                  if (product.condition != null)
+                    Text(
+                      product.condition!.simpleName,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+                    ),
                   const SizedBox(width: 8), // Spacing between text and colors
 
                   Text(
@@ -92,11 +90,7 @@ class ProductTopDetails extends ConsumerWidget {
               if (product.color != null)
                 Row(
                   children: product.color!.map((color) {
-                    final value = ref
-                        .watch(colorsProvider)
-                        .entries
-                        .where((e) => e.key == color)
-                        .first;
+                    final value = ref.watch(colorsProvider).entries.where((e) => e.key == color).first;
                     return Row(
                       children: [
                         Container(
@@ -104,17 +98,15 @@ class ProductTopDetails extends ConsumerWidget {
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: value
-                                .value, // Assuming `color` is a valid Color object
+                            color: value.value, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
                         ),
                         Text(
                           value.key,
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         8.horizontalSpacing
                       ],
@@ -164,8 +156,7 @@ class ProductTopDetails extends ConsumerWidget {
                         if (isCurrentUser) {
                           context.router.push(ProfileDetailsRoute());
                         } else {
-                          context.router.push(ProfileDetailsRoute(
-                              username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         }
                       },
                       child: ProfilePictureWidget(
@@ -181,15 +172,11 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.push(ProfileDetailsRoute(
-                              username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Row(
@@ -197,10 +184,7 @@ class ProductTopDetails extends ConsumerWidget {
                           const Ratings(),
                           Text(
                             "(250)",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontWeight: FontWeight.w400),
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400),
                           ),
                         ],
                       )

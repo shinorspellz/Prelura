@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product_model.dart';
+part of 'product.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Product _$ProductFromJson(Map<String, dynamic> json) {
-  return _Product.fromJson(json);
+ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
+  return _ProductModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Product {
+mixin _$ProductModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -49,20 +49,23 @@ mixin _$Product {
   set brand(Brand? value) => throw _privateConstructorUsedError;
   List<Material>? get materials => throw _privateConstructorUsedError;
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
+  String? get customBrand => throw _privateConstructorUsedError;
 
-  /// Serializes this Product to a JSON map.
+  /// Serializes this ProductModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
+  $ProductModelCopyWith<ProductModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
-      _$ProductCopyWithImpl<$Res, Product>;
+abstract class $ProductModelCopyWith<$Res> {
+  factory $ProductModelCopyWith(
+          ProductModel value, $Res Function(ProductModel) then) =
+      _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
       {String id,
@@ -86,7 +89,8 @@ abstract class $ProductCopyWith<$Res> {
       List<String>? color,
       Brand? brand,
       List<Material>? materials,
-      Enum$StyleEnum? style});
+      Enum$StyleEnum? style,
+      String? customBrand});
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
@@ -95,16 +99,16 @@ abstract class $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product>
-    implements $ProductCopyWith<$Res> {
-  _$ProductCopyWithImpl(this._value, this._then);
+class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
+    implements $ProductModelCopyWith<$Res> {
+  _$ProductModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -131,6 +135,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? brand = freezed,
     Object? materials = freezed,
     Object? style = freezed,
+    Object? customBrand = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -221,10 +226,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
               as Enum$StyleEnum?,
+      customBrand: freezed == customBrand
+          ? _value.customBrand
+          : customBrand // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -238,7 +247,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     });
   }
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -252,7 +261,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     });
   }
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -262,7 +271,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     });
   }
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -278,10 +287,11 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
 }
 
 /// @nodoc
-abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$ProductImplCopyWith(
-          _$ProductImpl value, $Res Function(_$ProductImpl) then) =
-      __$$ProductImplCopyWithImpl<$Res>;
+abstract class _$$ProductModelImplCopyWith<$Res>
+    implements $ProductModelCopyWith<$Res> {
+  factory _$$ProductModelImplCopyWith(
+          _$ProductModelImpl value, $Res Function(_$ProductModelImpl) then) =
+      __$$ProductModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -306,7 +316,8 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       List<String>? color,
       Brand? brand,
       List<Material>? materials,
-      Enum$StyleEnum? style});
+      Enum$StyleEnum? style,
+      String? customBrand});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -319,14 +330,14 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ProductImplCopyWithImpl<$Res>
-    extends _$ProductCopyWithImpl<$Res, _$ProductImpl>
-    implements _$$ProductImplCopyWith<$Res> {
-  __$$ProductImplCopyWithImpl(
-      _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
+class __$$ProductModelImplCopyWithImpl<$Res>
+    extends _$ProductModelCopyWithImpl<$Res, _$ProductModelImpl>
+    implements _$$ProductModelImplCopyWith<$Res> {
+  __$$ProductModelImplCopyWithImpl(
+      _$ProductModelImpl _value, $Res Function(_$ProductModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -353,8 +364,9 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? brand = freezed,
     Object? materials = freezed,
     Object? style = freezed,
+    Object? customBrand = freezed,
   }) {
-    return _then(_$ProductImpl(
+    return _then(_$ProductModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -443,14 +455,18 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
               as Enum$StyleEnum?,
+      customBrand: freezed == customBrand
+          ? _value.customBrand
+          : customBrand // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductImpl implements _Product {
-  _$ProductImpl(
+class _$ProductModelImpl implements _ProductModel {
+  _$ProductModelImpl(
       {required this.id,
       required this.name,
       required this.description,
@@ -472,10 +488,11 @@ class _$ProductImpl implements _Product {
       required this.color,
       required this.brand,
       this.materials,
-      this.style});
+      this.style,
+      this.customBrand});
 
-  factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProductImplFromJson(json);
+  factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductModelImplFromJson(json);
 
   @override
   final String id;
@@ -522,30 +539,32 @@ class _$ProductImpl implements _Product {
   final List<Material>? materials;
   @override
   final Enum$StyleEnum? style;
+  @override
+  final String? customBrand;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style)';
+    return 'ProductModel(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand)';
   }
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
-      __$$ProductImplCopyWithImpl<_$ProductImpl>(this, _$identity);
+  _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
+      __$$ProductModelImplCopyWithImpl<_$ProductModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProductImplToJson(
+    return _$$ProductModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _Product implements Product {
-  factory _Product(
+abstract class _ProductModel implements ProductModel {
+  factory _ProductModel(
       {required final String id,
       required final String name,
       required final String description,
@@ -567,9 +586,11 @@ abstract class _Product implements Product {
       required List<String>? color,
       required Brand? brand,
       final List<Material>? materials,
-      final Enum$StyleEnum? style}) = _$ProductImpl;
+      final Enum$StyleEnum? style,
+      final String? customBrand}) = _$ProductModelImpl;
 
-  factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
+  factory _ProductModel.fromJson(Map<String, dynamic> json) =
+      _$ProductModelImpl.fromJson;
 
   @override
   String get id;
@@ -620,12 +641,14 @@ abstract class _Product implements Product {
   List<Material>? get materials;
   @override
   Enum$StyleEnum? get style;
+  @override
+  String? get customBrand;
 
-  /// Create a copy of Product
+  /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
+  _$$ProductModelImplCopyWith<_$ProductModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

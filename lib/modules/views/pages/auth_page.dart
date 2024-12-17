@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/notification_service.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/views/pages/home.dart';
 import 'package:prelura_app/modules/views/pages/user_profile.dart';
@@ -31,7 +32,11 @@ class _AuthPageState extends ConsumerState<AuthPage> {
   @override
   Widget build(BuildContext context) {
     final showBottomNavBar = ref.watch(showBottomNavBarProvider);
-    print(showBottomNavBar);
+
+    // inits the notification provider and register all neccesary
+    // data for notfication
+    ref.watch(notificationServiceProvider);
+
     return DefaultTabController(
       length: 5,
       child: AutoTabsRouter(
@@ -44,8 +49,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
-            final isSellItemRoute =
-                tabRouter.current.name == SellNavigationRoute.name;
+            final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -124,8 +128,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.search,
                           size: 24,
                         ),
-                        activeIcon: const Icon(Icons.search,
-                            color: PreluraColors.activeColor, size: 24),
+                        activeIcon: const Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
                         label: 'Search',
                       ),
                       const TabItem(
@@ -135,8 +138,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.add_circle_outline,
                           size: 24,
                         ),
-                        activeIcon: Icon(Icons.add_circle_outline,
-                            color: PreluraColors.activeColor, size: 24),
+                        activeIcon: Icon(Icons.add_circle_outline, color: PreluraColors.activeColor, size: 24),
                         label: 'Sell',
                       ),
                       TabItem(

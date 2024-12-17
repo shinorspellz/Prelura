@@ -8,6 +8,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.dart';
+import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
@@ -23,17 +24,17 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('settings');
 
-  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-// await PushNotifications;
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     UncontrolledProviderScope(
       container: await initializeDependencies(),
       child: const MyApp(),
     ),
   );
-}
 
+}
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
@@ -47,8 +48,7 @@ class MyApp extends ConsumerWidget {
       FlutterNativeSplash.remove();
     });
     return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
         return MaterialApp.router(
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,

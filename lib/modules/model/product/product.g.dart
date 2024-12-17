@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_model.dart';
+part of 'product.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
-    _$ProductImpl(
+_$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
+    _$ProductModelImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -48,9 +48,10 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       style: json['style'] == null
           ? null
           : Enum$StyleEnum.fromJson(json['style'] as String),
+      customBrand: json['customBrand'] as String?,
     );
 
-Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
+Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -74,6 +75,7 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'brand': instance.brand,
       'materials': instance.materials,
       'style': instance.style,
+      'customBrand': instance.customBrand,
     };
 
 const _$ConditionsEnumEnumMap = {

@@ -117,6 +117,7 @@ query Product($id: Int!) {
       id
       name
     }
+    customBrand
     brand {
       id
       name
@@ -169,6 +170,7 @@ query UserProducts(
       id
       name
     }
+    customBrand
     brand {
       id
       name
@@ -222,6 +224,7 @@ query AllProducts(
       id
       name
     }
+    customBrand
     brand {
       id
       name

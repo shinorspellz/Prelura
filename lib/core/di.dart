@@ -8,6 +8,7 @@ import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
+import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/repo/auth_repo/auth_repo.dart';
@@ -42,10 +43,12 @@ final appStartUpProvider = FutureProvider((ref) async {
     await Future.wait([
       ref.read(userProvider.future),
       ref.read(allProductProvider(null).future),
+      ref.read(brandsProvider.future),
+      ref.read(categoryProvider.future),
     ]);
 
     // custom delay added for splash
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 2));
   }
 });
 
@@ -89,7 +92,7 @@ final graphqlClient = Provider((ref) {
         fetch: FetchPolicy.noCache,
       ),
     ),
-    queryRequestTimeout: const Duration(minutes: 1),
+    queryRequestTimeout: const Duration(minutes: 3),
     cache: GraphQLCache(store: InMemoryStore()),
     link: link,
   );

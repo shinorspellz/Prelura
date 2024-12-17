@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 
@@ -23,8 +23,7 @@ class ConditionScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           centerTitle: true,
@@ -40,11 +39,9 @@ class ConditionScreen extends ConsumerWidget {
             isChecked: e.simpleName == selectedCondition?.simpleName,
             subtitle: e.subtitle,
             onChanged: (value) {
-              if (value != null) {
-                // Update the selected condition in the provider
-                ref.read(sellItemProvider.notifier).selectCondition(e);
-                context.router.popForced();
-              }
+              // Update the selected condition in the provider
+              ref.read(sellItemProvider.notifier).selectCondition(e);
+              context.router.popForced();
             },
           );
         },

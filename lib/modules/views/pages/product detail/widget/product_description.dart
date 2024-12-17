@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/model/product/product.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
@@ -14,7 +14,7 @@ final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
 
 class ProductDescription extends ConsumerWidget {
   const ProductDescription({super.key, required this.product});
-  final Product product;
+  final ProductModel product;
 
 
 
@@ -23,7 +23,7 @@ class ProductDescription extends ConsumerWidget {
     final dummy = ref.watch(productDetailProvider);
     final isDescriptionExpanded = ref.watch(isDescriptionExpandedProvider);
     bool shouldShowSeeMore = _shouldShowSeeMore(product.description);
-    print(product.description);
+
     String truncatedDescription = _getTruncatedDescription(product.description);
 
     return Container(
