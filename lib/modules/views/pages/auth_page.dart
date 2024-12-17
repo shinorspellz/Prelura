@@ -12,6 +12,8 @@ import 'package:prelura_app/res/colors.dart';
 
 import '../../../core/router/router.dart';
 import '../../../res/images.dart';
+import '../../controller/user/user_controller.dart';
+import '../widgets/profile_picture.dart';
 
 final routePathProvider = StateProvider<int>(
   (_) => 0,
@@ -33,12 +35,12 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     return DefaultTabController(
       length: 5,
       child: AutoTabsRouter(
-          routes: const [
+          routes: [
             HomeRoute(),
             SearchRoute(),
             // SellNavigationRoute(),
             InboxRoute(),
-            ProfileNavigationRoute()
+            ProfileDetailsRoute()
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
@@ -151,19 +153,16 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         ),
                         label: 'Inbox',
                       ),
-                      TabItem(
-                        isActive: tabRouter.activeIndex == 3,
-                        // onChanged: () => tabRouter.setActiveIndex(3),
-                        icon: const Icon(
-                          Icons.person_outline,
-                          size: 24,
-                        ),
-                        activeIcon: const Icon(
-                          Icons.person,
-                          color: PreluraColors.activeColor,
-                          size: 24,
-                        ),
-                        label: 'Profile',
+                      ProfilePictureWidget(
+                        profilePicture: ref
+                            .watch(userProvider)
+                            .valueOrNull
+                            ?.profilePictureUrl,
+                        username:
+                            ref.watch(userProvider).valueOrNull?.username ??
+                                '--',
+                        height: 27,
+                        width: 27,
                       ),
                     ]),
               ),

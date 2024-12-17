@@ -12,18 +12,18 @@ import '../widgets/gap.dart';
 import 'Sell Item/view/brand_view.dart';
 
 @RoutePage()
-class ProductsByBrandPage extends ConsumerStatefulWidget {
-  const ProductsByBrandPage({super.key, required this.title, required this.id});
+class ProductsByStatusScreen extends ConsumerStatefulWidget {
+  const ProductsByStatusScreen({super.key, required this.title});
   final String title;
-  final int id;
   static final ScrollController scrollController = ScrollController();
 
   @override
-  _ProductsByBrandPageState createState() => _ProductsByBrandPageState();
+  _ProductsByStatusScreenState createState() => _ProductsByStatusScreenState();
 }
 
-class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
-  final controller = ProductsByBrandPage.scrollController;
+class _ProductsByStatusScreenState
+    extends ConsumerState<ProductsByStatusScreen> {
+  final controller = ProductsByStatusScreen.scrollController;
 
   @override
   void initState() {
@@ -37,9 +37,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
         ref
-            .read(
-                filterProductByBrandProvider((widget.id, searchQuery)).notifier)
-            .fetchMoreData(widget.id, searchQuery);
+            .read(filterProductByStatusProvider(searchQuery).notifier)
+            .fetchMoreHandler(searchQuery);
       }
     });
   }
@@ -54,11 +53,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider =
-        ref.watch(filterProductByBrandProvider((widget.id, searchQuery)));
-    final productNotifier = ref
-        .read(filterProductByBrandProvider((widget.id, searchQuery)).notifier);
-
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -107,8 +101,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(
-              filterProductByBrandProvider((widget.id, searchQuery)).future);
+          await ref.refresh(filterProductByStatusProvider(searchQuery).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -147,10 +140,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                     ),
                   )),
                 ),
-                ref
-                    .watch(
-                        filterProductByBrandProvider((widget.id, searchQuery)))
-                    .maybeWhen(
+                ref.watch(filterProductByStatusProvider(searchQuery)).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -174,8 +164,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
                   sliver: ref
-                      .watch(filterProductByBrandProvider(
-                          (widget.id, searchQuery)))
+                      .watch(filterProductByStatusProvider(searchQuery))
                       .when(
                           data: (products) {
                             if (products.length < 6)
@@ -208,7 +197,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                                       onPressed: () {
                                         // log(e.toString(), stackTrace: _);
                                         ref.invalidate(
-                                            filterProductByBrandProvider);
+                                            filterProductByStatusProvider);
                                       },
                                       label: const Text('Retry'),
                                       icon: const Icon(Icons.refresh_rounded),
@@ -222,13 +211,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                               SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
-                    .watch(
-                        filterProductByBrandProvider((widget.id, searchQuery))
-                            .notifier)
+                    .watch(filterProductByStatusProvider(searchQuery).notifier)
                     .canLoadMore())
                   if (!ref
-                      .watch(filterProductByBrandProvider(
-                          (widget.id, searchQuery)))
+                      .watch(filterProductByStatusProvider(searchQuery))
                       .isLoading)
                     const SliverToBoxAdapter(
                       child: PaginationLoadingIndicator(),

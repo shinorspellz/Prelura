@@ -9,6 +9,9 @@
         android:label="Prelura"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+         <!-- <service android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+            android:exported="true">
+        </service> -->
 
         <activity
             android:name=".MainActivity"

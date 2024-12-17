@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -11,7 +12,9 @@ import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
 
+import 'core/notification_service.dart';
 import 'modules/controller/theme_notifier.dart';
+import 'res/firebase_options.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +22,10 @@ void main() async {
   await dotenv.load(fileName: '.env');
   await Hive.initFlutter();
   await Hive.openBox('settings');
+
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+// await PushNotifications;
+
   runApp(
     UncontrolledProviderScope(
       container: await initializeDependencies(),
@@ -34,6 +41,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
     final themeMode = ref.watch(themeNotifierProvider);
+    ref.read(notificationServiceProvider.notifier).init();
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FlutterNativeSplash.remove();

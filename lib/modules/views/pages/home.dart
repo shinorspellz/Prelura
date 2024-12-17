@@ -76,6 +76,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   .refresh(allProductProvider(null).future)
                   .then((_) => ref.read(refreshingHome.notifier).state = false);
               ref.refresh(filterProductByPriceProvider(15).future);
+              ref.refresh(filterProductByStatusProvider("").future);
             },
             child: CustomScrollView(
               controller: controller,
@@ -99,6 +100,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       .then((_) => ref
                                           .read(refreshingHome.notifier)
                                           .state = false);
+                                  ref.refresh(
+                                      filterProductByPriceProvider(15).future);
+                                  ref.refresh(
+                                      filterProductByStatusProvider("").future);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -206,7 +211,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ref.watch(allProductProvider(null)).maybeWhen(
                         // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                         data: (products) => SliverPadding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
                           sliver: SliverGrid.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(

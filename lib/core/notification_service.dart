@@ -8,21 +8,30 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final notificationServiceProvider = AsyncNotifierProvider<NotificationServiceProvider, void>(NotificationServiceProvider.new);
+final notificationServiceProvider =
+    AsyncNotifierProvider<NotificationServiceProvider, void>(
+        NotificationServiceProvider.new);
 
 class NotificationServiceProvider extends AsyncNotifier<void> {
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   // final StreamController<ReceivedNotification> didReceiveLocalNotificationStream = StreamController<ReceivedNotification>.broadcast();
 
-  final StreamController<String?> _tappedNotificationStream = StreamController<String?>.broadcast();
+  final StreamController<String?> _tappedNotificationStream =
+      StreamController<String?>.broadcast();
 
+//initialize local settings
   Future<void> init() async {
-    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('icon');
+    //android settings
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+    //ios settings
+    DarwinInitializationSettings initializationSettingsDarwin =
+        const DarwinInitializationSettings();
 
-    DarwinInitializationSettings initializationSettingsDarwin = const DarwinInitializationSettings();
-
-    final InitializationSettings initializationSettings = InitializationSettings(
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
     );
@@ -66,7 +75,8 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
       sound: true,
     );
 
-    messaging.setForegroundNotificationPresentationOptions(sound: true, alert: true);
+    messaging.setForegroundNotificationPresentationOptions(
+        sound: true, alert: true);
 
     messaging.getToken().then((deviceToken) async {
       if (deviceToken != null) {
@@ -79,7 +89,8 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
       }
     });
 
-    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
       _handleMessage(jsonEncode(initialMessage.data));
@@ -95,10 +106,16 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
   }
 
   displayNotification(RemoteMessage message) {
-    _flutterLocalNotificationsPlugin.show(0, message.notification?.title ?? '', message.notification?.body ?? '', _notificationDetails(), payload: jsonEncode(message.data));
+    _flutterLocalNotificationsPlugin.show(0, message.notification?.title ?? '',
+        message.notification?.body ?? '', _notificationDetails(),
+        payload: jsonEncode(message.data));
   }
 
-  displayTestNotification() => _flutterLocalNotificationsPlugin.show(0, 'Test Notification', 'This is a test notification message', _notificationDetails());
+  displayTestNotification() => _flutterLocalNotificationsPlugin.show(
+      0,
+      'Test Notification',
+      'This is a test notification message',
+      _notificationDetails());
 
   _handleMessage(String message) async {
     //TODO : Navigate to target page

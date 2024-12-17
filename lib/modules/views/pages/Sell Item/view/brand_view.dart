@@ -54,6 +54,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
   @override
   Widget build(BuildContext context) {
     final selectedBrand = ref.watch(sellItemProvider).brand;
+    final title = ref.watch(sellItemProvider).title.trim();
+    print(title);
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -133,7 +135,9 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildSuggestedBrands(selectedBrand),
+                        if (title.isNotEmpty) ...[
+                          _buildSuggestedBrands(title, selectedBrand),
+                        ],
                         addVerticalSpacing(16),
                         Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -192,43 +196,45 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
           ),
     );
   }
-
-  @override
-  Widget _buildSuggestedBrands(selectedBrand) {
-    return ref.watch(popularBrandsProvider).maybeWhen(
-          data: (brands) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  "Suggested Brands",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: PreluraColors.primaryColor),
+  
+@override
+  Widget _buildSuggestedBrands(String title, Brand? selectedBrand) {
+    return ref.watch(searchBrand(title)).maybeWhen(
+          data: (brands) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    "Suggested Brands",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: PreluraColors.primaryColor),
+                  ),
                 ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: brands.take(5).length,
-                itemBuilder: (context, index) {
-                  return PreluraCheckBox(
-                    title: brands[index].name,
-                    isChecked: brands[index].name == selectedBrand?.name,
-                    onChanged: (_) {
-                      ref
-                          .read(sellItemProvider.notifier)
-                          .selectBrand(brands[index]);
-                      context.router.popForced();
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          orElse: () => const SliverToBoxAdapter(),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: brands.take(12).length,
+                  itemBuilder: (context, index) {
+                    return PreluraCheckBox(
+                      title: brands[index].name,
+                      isChecked: brands[index].name == selectedBrand?.name,
+                      onChanged: (_) {
+                        ref
+                            .read(sellItemProvider.notifier)
+                            .selectBrand(brands[index]);
+                        context.router.popForced();
+                      },
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+          orElse: () => Container(),
         );
   }
 }

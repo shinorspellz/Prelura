@@ -58,11 +58,6 @@ dev_dependencies:
   json_serializable:
   graphql_codegen:
   flutter_launcher_icons: ^0.14.2
-  firebase_core: ^2.14.0
-  firebase_messaging: ^14.6.4
-  firebase_crashlytics:
-  #  firebase_dynamic_links:
-  flutter_local_notifications: ^17.2.4
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -108,6 +103,8 @@ flutter:
     - assets/images/splash.png
     - assets/images/logo.png
     - .env
+    - assets/svgs/men
+    - assets/svgs/women
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

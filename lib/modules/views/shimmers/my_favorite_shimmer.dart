@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/views/shimmers/custom_shimmer.dart';
 import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,9 +10,10 @@ Widget MyFavoriteShimmer() {
     padding: EdgeInsets.symmetric(horizontal: 16),
     child: Column(
       children: [
+        addVerticalSpacing(16),
         CustomShimmer(
           child: Container(
-            height: 58,
+            height: 5.h,
             width: 100.w,
             decoration: BoxDecoration(
               color: Colors.grey[300],
@@ -20,7 +22,7 @@ Widget MyFavoriteShimmer() {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 28,
         ),
         GridShimmer()
       ],
