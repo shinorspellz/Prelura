@@ -151,13 +151,20 @@ class PreluraIcons {
   static const String boot_svg = "assets/svgs/men/boot.svg";
   static const String hoodie_svg = "assets/svgs/men/hoodie.svg";
   static const String jacket_svg = "assets/svgs/men/jacket.svg";
-  static const String sandal_svg = "asstes/svgs/men/sandals.svg";
+  static const String sandal_svg = "assets/svgs/men/sandals.svg";
   static const String shorts_svg = "assets/svgs/men/shorts.svg";
-  static const String sneakers_svg = "assets/svgs/sneakers.svg";
-  static const String socks_svg = "asstes/svgs/men/socks.svg";
-  static const String sweatshirt_svg = "assets/svg/men/sweatshirt.svg";
+  static const String sneakers_svg = "assets/svgs/men/sneakers.svg";
+  static const String socks_svg = "assets/svgs/men/socks.svg";
+  static const String sweatshirt_svg = "assets/svgs/men/sweatshirt.svg";
   static const String tshirt_svg = "assets/svgs/men/t shirt.svg";
-  static const String watches_svg = "assets/svgs/watches.svg";
+  static const String watches_svg = "assets/svgs/men/watches.svg";
+  static const String shoe_svg = "assets/svgs/men/shoe.svg";
+  static const String suit_svg = "assets/svgs/men/suit.svg";
+  static const String polo_shirt_svg = "assets/svgs/men/polo shirt.svg";
+  static const String blazer_svg = "assets/svgs/men/blazer.svg";
+  static const String chinos_svg = "assets/svgs/men/chinos.svg";
+  static const String jeans_svg = "assets/svgs/men/jeans.svg";
+  static const String men_swimwear_svg = "assets/svgs/men/mean swimwear.svg";
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -243,7 +250,14 @@ class PreluraIcons {
       "activewear": activewear_svg,
       "sweatshirts": sweatshirt_svg,
       "jackets": jacket_svg,
-      "hoodies": hoodie_svg
+      "hoodies": hoodie_svg,
+      "shoes": shoe_svg,
+      "suits": suit_svg,
+      "polo shirts": polo_shirt_svg,
+      "blazers": blazer_svg,
+      "chinos": chinos_svg,
+      "jeans": jeans_svg,
+      "swimwear": men_swimwear_svg,
 
       // Add the rest of the constants here...
     };

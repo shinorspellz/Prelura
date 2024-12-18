@@ -46,7 +46,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
             SearchRoute(),
             // SellNavigationRoute(),
             InboxRoute(),
-            ProfileDetailsRoute()
+            UserProfileDetailsRoute()
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
@@ -68,6 +68,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 height: 80,
                 child: TabBar(
                     padding: const EdgeInsets.only(top: 5, bottom: 15),
+                    tabAlignment: TabAlignment.fill,
                     onTap: (index) {
                       switch (index) {
                         case 0:
@@ -162,11 +163,21 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         ),
                         label: 'Inbox',
                       ),
-                      ProfilePictureWidget(
-                        profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-                        username: ref.watch(userProvider).valueOrNull?.username ?? '--',
-                        height: 27,
-                        width: 27,
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ProfilePictureWidget(
+                              profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+                              username: ref.watch(userProvider).valueOrNull?.username ?? '--',
+                              height: 30,
+                              width: 30,
+                              borderColor: tabRouter.activeIndex == 3
+                                  ? PreluraColors.activeColor // Purple when active
+                                  : Colors.grey,
+                            ),
+                          ],
+                        ),
                       ),
                     ]),
               ),

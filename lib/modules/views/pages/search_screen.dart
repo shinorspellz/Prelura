@@ -30,7 +30,7 @@ class SearchScreen extends ConsumerWidget {
     final state = ref.watch(ActiveSearchProvider);
     return SafeArea(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

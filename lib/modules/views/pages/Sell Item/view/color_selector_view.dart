@@ -27,7 +27,8 @@ class ColorSelectorScreen extends ConsumerWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -44,7 +45,7 @@ class ColorSelectorScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Choose up to 3 colours",
+                    "Choose up to 2 colours",
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 32),
@@ -96,7 +97,8 @@ class ColorSelectorScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16, top: 16, bottom: 46),
+              padding: const EdgeInsets.only(
+                  left: 16.0, right: 16, top: 16, bottom: 46),
               child: ElevatedButton(
                 onPressed: state.isNotEmpty
                     ? () {
@@ -113,7 +115,10 @@ class ColorSelectorScreen extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     "Done",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: PreluraColors.white),
                   ),
                 ),
               ),
