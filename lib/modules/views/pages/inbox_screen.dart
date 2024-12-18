@@ -129,17 +129,15 @@ class ChatsTab extends ConsumerWidget {
             );
           }
 
-          return ListView.builder(itemBuilder: (_, index) {
-            final conv = conversations[index];
+          return ListView.builder(
+              itemCount: conversations.length,
+              itemBuilder: (_, index) {
+                final conv = conversations[index];
 
-            return MessageCard(
-              username: conv.recipient.username,
-              message: conv.lastMessage?.text ?? '',
-              time: DateFormat().format(conv.lastModified),
-              avatarUrl: PreluraIcons.Image,
-              itemImageUrl: PreluraIcons.Image,
-            );
-          });
+                return MessageCard(
+                  model: conv,
+                );
+              });
         });
   }
 }

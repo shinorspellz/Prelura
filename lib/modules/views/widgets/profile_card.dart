@@ -20,13 +20,12 @@ class ProfileCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(user?.location?.locationName);
     return SizedBox(
         width: MediaQuery.sizeOf(context).width,
         child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           GestureDetector(
             onTap: () {
-              if (user == null) return;
+              if (user != null) return;
               VBottomSheetComponent.actionBottomSheet(
                 context: context,
                 actions: [
@@ -72,7 +71,7 @@ class ProfileCardWidget extends ConsumerWidget {
             child: ProfilePictureWidget(
               profilePicture: user != null ? user?.profilePictureUrl : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
               username: user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
-              updating: ref.watch(userNotfierProvider).isLoading,
+              updating: user != null ? false : ref.watch(userNotfierProvider).isLoading,
             ),
           ),
           const SizedBox(

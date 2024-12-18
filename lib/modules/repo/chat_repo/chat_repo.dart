@@ -31,9 +31,13 @@ class ChatRepo {
     return response.parsedData!.conversations!.map((x) => ConversationModel.fromJson(x!.toJson())).toList();
   }
 
-  Future<Query$Conversation> getMessages(String id) async {
+  Future<Query$Conversation> getMessages({required String id, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$Conversation(Options$Query$Conversation(
-      variables: Variables$Query$Conversation(id: id),
+      variables: Variables$Query$Conversation(
+        id: id,
+        pageCount: pageCount,
+        pageNumber: pageNumber,
+      ),
     ));
 
     if (response.hasException) {
@@ -53,9 +57,9 @@ class ChatRepo {
     return response.parsedData!;
   }
 
-  Future<ConversationModel> createChat(String name, String recipient) async {
+  Future<ConversationModel> createChat(String recipient) async {
     final response = await _client.mutate$CreateChat(
-      Options$Mutation$CreateChat(variables: Variables$Mutation$CreateChat(name: name, recipient: recipient)),
+      Options$Mutation$CreateChat(variables: Variables$Mutation$CreateChat(recipient: recipient)),
     );
 
     if (response.hasException) {

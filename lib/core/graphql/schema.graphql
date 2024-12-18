@@ -91,6 +91,11 @@ type ConversationType {
   unreadMessagesCount: Int
 }
 
+type CreateBanner {
+  message: String
+  success: Boolean
+}
+
 type CreateChat {
   chat: ConversationType
 }
@@ -225,7 +230,7 @@ type LogoutMutation {
 
 type MessageType {
   id: ID!
-  sender: UserNode
+  sender: UserType
   text: String!
   attachment: String
   attachmentType: ChatsMessageAttachmentTypeChoices
@@ -244,7 +249,8 @@ type MessageType {
 
 type Mutation {
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
-  createChat(name: String!, recipient: String!): CreateChat
+  createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
+  createChat(recipient: String!): CreateChat
   deleteMessage(messageId: Int!): DeleteMessage
   deleteConversation(conversationId: Int!): DeleteConversation
   archiveConversation(conversationId: Int!): ArchiveConversation
@@ -422,7 +428,7 @@ interface Node {
 }
 
 type NotificationPreferenceType {
-  user: UserNode!
+  user: UserType
   isPushNotification: Boolean!
   isEmailNotification: Boolean!
   inappNotifications: JSONString!
@@ -496,6 +502,7 @@ input ProductFiltersInput {
   size: SizeEnum
   style: StyleEnum
   condition: ConditionEnum
+  discountPrice: Boolean
 }
 
 """An enumeration."""
@@ -813,6 +820,7 @@ type ProductType {
 }
 
 type Query {
+  getBannerForCurrentSeason: String
   conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
   conversations: [ConversationType]
   archivedConversations: [ConversationType]
@@ -880,8 +888,19 @@ type ResendActivationEmail {
   success: Boolean
 }
 
+enum SeasonEnum {
+  CHRISTMAS
+  HALLOWEEN
+  SUMMER
+  WINTER
+  SPRING
+  AUTUMN
+  BLACK_FRIDAY
+  EASTER
+}
+
 type SenderType {
-  profileRing: String
+  username: String
   thumbnailUrl: String
   profilePictureUrl: String
 }

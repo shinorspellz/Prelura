@@ -24530,12 +24530,12 @@ class _CopyWithStubImpl$Query$Conversation$conversation$replyTo<TRes>
 
 class Query$Conversation$conversation$replyTo$sender {
   Query$Conversation$conversation$replyTo$sender({
-    required this.id,
-    required this.username,
+    this.id,
+    this.username,
     this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
-    this.$__typename = 'UserNode',
+    this.$__typename = 'UserType',
   });
 
   factory Query$Conversation$conversation$replyTo$sender.fromJson(
@@ -24547,8 +24547,8 @@ class Query$Conversation$conversation$replyTo$sender {
     final l$displayName = json['displayName'];
     final l$$__typename = json['__typename'];
     return Query$Conversation$conversation$replyTo$sender(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
@@ -24556,9 +24556,9 @@ class Query$Conversation$conversation$replyTo$sender {
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String? profilePictureUrl;
 
@@ -24667,7 +24667,7 @@ abstract class CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> {
       _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -24698,10 +24698,9 @@ class _CopyWithImpl$Query$Conversation$conversation$replyTo$sender<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversation$conversation$replyTo$sender(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
@@ -24724,7 +24723,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender<TRes>
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -24736,12 +24735,12 @@ class _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender<TRes>
 
 class Query$Conversation$conversation$sender {
   Query$Conversation$conversation$sender({
-    required this.id,
-    required this.username,
+    this.id,
+    this.username,
     this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
-    this.$__typename = 'UserNode',
+    this.$__typename = 'UserType',
   });
 
   factory Query$Conversation$conversation$sender.fromJson(
@@ -24753,8 +24752,8 @@ class Query$Conversation$conversation$sender {
     final l$displayName = json['displayName'];
     final l$$__typename = json['__typename'];
     return Query$Conversation$conversation$sender(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
@@ -24762,9 +24761,9 @@ class Query$Conversation$conversation$sender {
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String? profilePictureUrl;
 
@@ -24872,7 +24871,7 @@ abstract class CopyWith$Query$Conversation$conversation$sender<TRes> {
       _CopyWithStubImpl$Query$Conversation$conversation$sender;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -24903,10 +24902,9 @@ class _CopyWithImpl$Query$Conversation$conversation$sender<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversation$conversation$sender(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
@@ -24929,7 +24927,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation$sender<TRes>
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -26257,12 +26255,12 @@ class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage<TRes>
 
 class Query$Conversations$conversations$lastMessage$sender {
   Query$Conversations$conversations$lastMessage$sender({
-    required this.id,
-    required this.username,
+    this.id,
+    this.username,
     this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
-    this.$__typename = 'UserNode',
+    this.$__typename = 'UserType',
   });
 
   factory Query$Conversations$conversations$lastMessage$sender.fromJson(
@@ -26274,8 +26272,8 @@ class Query$Conversations$conversations$lastMessage$sender {
     final l$displayName = json['displayName'];
     final l$$__typename = json['__typename'];
     return Query$Conversations$conversations$lastMessage$sender(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
@@ -26283,9 +26281,9 @@ class Query$Conversations$conversations$lastMessage$sender {
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String? profilePictureUrl;
 
@@ -26396,7 +26394,7 @@ abstract class CopyWith$Query$Conversations$conversations$lastMessage$sender<
       _CopyWithStubImpl$Query$Conversations$conversations$lastMessage$sender;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -26429,10 +26427,9 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage$sender<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversations$conversations$lastMessage$sender(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
@@ -26458,7 +26455,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage$sender<
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -27850,12 +27847,12 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMe
 
 class Query$ArchivedConversations$archivedConversations$lastMessage$sender {
   Query$ArchivedConversations$archivedConversations$lastMessage$sender({
-    required this.id,
-    required this.username,
+    this.id,
+    this.username,
     this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
-    this.$__typename = 'UserNode',
+    this.$__typename = 'UserType',
   });
 
   factory Query$ArchivedConversations$archivedConversations$lastMessage$sender.fromJson(
@@ -27867,8 +27864,8 @@ class Query$ArchivedConversations$archivedConversations$lastMessage$sender {
     final l$displayName = json['displayName'];
     final l$$__typename = json['__typename'];
     return Query$ArchivedConversations$archivedConversations$lastMessage$sender(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
@@ -27876,9 +27873,9 @@ class Query$ArchivedConversations$archivedConversations$lastMessage$sender {
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String? profilePictureUrl;
 
@@ -27993,7 +27990,7 @@ abstract class CopyWith$Query$ArchivedConversations$archivedConversations$lastMe
       _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -28031,10 +28028,9 @@ class _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessag
   }) =>
       _then(
           Query$ArchivedConversations$archivedConversations$lastMessage$sender(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
@@ -28061,7 +28057,7 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMe
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -29364,7 +29360,7 @@ extension ClientExtension$Query$NotificationPreference
 
 class Query$NotificationPreference$notificationPreference {
   Query$NotificationPreference$notificationPreference({
-    required this.user,
+    this.user,
     required this.isPushNotification,
     required this.isEmailNotification,
     required this.inappNotifications,
@@ -29381,8 +29377,10 @@ class Query$NotificationPreference$notificationPreference {
     final l$emailNotifications = json['emailNotifications'];
     final l$$__typename = json['__typename'];
     return Query$NotificationPreference$notificationPreference(
-      user: Query$NotificationPreference$notificationPreference$user.fromJson(
-          (l$user as Map<String, dynamic>)),
+      user: l$user == null
+          ? null
+          : Query$NotificationPreference$notificationPreference$user.fromJson(
+              (l$user as Map<String, dynamic>)),
       isPushNotification: (l$isPushNotification as bool),
       isEmailNotification: (l$isEmailNotification as bool),
       inappNotifications: (l$inappNotifications as String),
@@ -29391,7 +29389,7 @@ class Query$NotificationPreference$notificationPreference {
     );
   }
 
-  final Query$NotificationPreference$notificationPreference$user user;
+  final Query$NotificationPreference$notificationPreference$user? user;
 
   final bool isPushNotification;
 
@@ -29406,7 +29404,7 @@ class Query$NotificationPreference$notificationPreference {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$user = user;
-    _resultData['user'] = l$user.toJson();
+    _resultData['user'] = l$user?.toJson();
     final l$isPushNotification = isPushNotification;
     _resultData['isPushNotification'] = l$isPushNotification;
     final l$isEmailNotification = isEmailNotification;
@@ -29539,10 +29537,10 @@ class _CopyWithImpl$Query$NotificationPreference$notificationPreference<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Query$NotificationPreference$notificationPreference(
-        user: user == _undefined || user == null
+        user: user == _undefined
             ? _instance.user
             : (user
-                as Query$NotificationPreference$notificationPreference$user),
+                as Query$NotificationPreference$notificationPreference$user?),
         isPushNotification:
             isPushNotification == _undefined || isPushNotification == null
                 ? _instance.isPushNotification
@@ -29567,8 +29565,11 @@ class _CopyWithImpl$Query$NotificationPreference$notificationPreference<TRes>
   CopyWith$Query$NotificationPreference$notificationPreference$user<TRes>
       get user {
     final local$user = _instance.user;
-    return CopyWith$Query$NotificationPreference$notificationPreference$user(
-        local$user, (e) => call(user: e));
+    return local$user == null
+        ? CopyWith$Query$NotificationPreference$notificationPreference$user
+            .stub(_then(_instance))
+        : CopyWith$Query$NotificationPreference$notificationPreference$user(
+            local$user, (e) => call(user: e));
   }
 }
 
@@ -29599,9 +29600,9 @@ class _CopyWithStubImpl$Query$NotificationPreference$notificationPreference<
 
 class Query$NotificationPreference$notificationPreference$user {
   Query$NotificationPreference$notificationPreference$user({
-    required this.id,
-    required this.username,
-    this.$__typename = 'UserNode',
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
   });
 
   factory Query$NotificationPreference$notificationPreference$user.fromJson(
@@ -29610,15 +29611,15 @@ class Query$NotificationPreference$notificationPreference$user {
     final l$username = json['username'];
     final l$$__typename = json['__typename'];
     return Query$NotificationPreference$notificationPreference$user(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String $__typename;
 
@@ -29697,7 +29698,7 @@ abstract class CopyWith$Query$NotificationPreference$notificationPreference$user
       _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? $__typename,
   });
@@ -29726,10 +29727,9 @@ class _CopyWithImpl$Query$NotificationPreference$notificationPreference$user<
     Object? $__typename = _undefined,
   }) =>
       _then(Query$NotificationPreference$notificationPreference$user(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -29747,7 +29747,7 @@ class _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? $__typename,
   }) =>

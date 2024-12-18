@@ -8711,12 +8711,8 @@ class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
 }
 
 class Variables$Mutation$CreateChat {
-  factory Variables$Mutation$CreateChat({
-    required String name,
-    required String recipient,
-  }) =>
+  factory Variables$Mutation$CreateChat({required String recipient}) =>
       Variables$Mutation$CreateChat._({
-        r'name': name,
         r'recipient': recipient,
       });
 
@@ -8724,8 +8720,6 @@ class Variables$Mutation$CreateChat {
 
   factory Variables$Mutation$CreateChat.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$name = data['name'];
-    result$data['name'] = (l$name as String);
     final l$recipient = data['recipient'];
     result$data['recipient'] = (l$recipient as String);
     return Variables$Mutation$CreateChat._(result$data);
@@ -8733,14 +8727,10 @@ class Variables$Mutation$CreateChat {
 
   Map<String, dynamic> _$data;
 
-  String get name => (_$data['name'] as String);
-
   String get recipient => (_$data['recipient'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$name = name;
-    result$data['name'] = l$name;
     final l$recipient = recipient;
     result$data['recipient'] = l$recipient;
     return result$data;
@@ -8761,11 +8751,6 @@ class Variables$Mutation$CreateChat {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
     final l$recipient = recipient;
     final lOther$recipient = other.recipient;
     if (l$recipient != lOther$recipient) {
@@ -8776,12 +8761,8 @@ class Variables$Mutation$CreateChat {
 
   @override
   int get hashCode {
-    final l$name = name;
     final l$recipient = recipient;
-    return Object.hashAll([
-      l$name,
-      l$recipient,
-    ]);
+    return Object.hashAll([l$recipient]);
   }
 }
 
@@ -8794,10 +8775,7 @@ abstract class CopyWith$Variables$Mutation$CreateChat<TRes> {
   factory CopyWith$Variables$Mutation$CreateChat.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$CreateChat;
 
-  TRes call({
-    String? name,
-    String? recipient,
-  });
+  TRes call({String? recipient});
 }
 
 class _CopyWithImpl$Variables$Mutation$CreateChat<TRes>
@@ -8813,13 +8791,9 @@ class _CopyWithImpl$Variables$Mutation$CreateChat<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({
-    Object? name = _undefined,
-    Object? recipient = _undefined,
-  }) =>
+  TRes call({Object? recipient = _undefined}) =>
       _then(Variables$Mutation$CreateChat._({
         ..._instance._$data,
-        if (name != _undefined && name != null) 'name': (name as String),
         if (recipient != _undefined && recipient != null)
           'recipient': (recipient as String),
       }));
@@ -8831,11 +8805,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateChat<TRes>
 
   TRes _res;
 
-  call({
-    String? name,
-    String? recipient,
-  }) =>
-      _res;
+  call({String? recipient}) => _res;
 }
 
 class Mutation$CreateChat {
@@ -8982,15 +8952,6 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
     name: NameNode(value: 'CreateChat'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'name')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'recipient')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
@@ -8998,7 +8959,7 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      ),
+      )
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -9007,13 +8968,9 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
         alias: null,
         arguments: [
           ArgumentNode(
-            name: NameNode(value: 'name'),
-            value: VariableNode(name: NameNode(value: 'name')),
-          ),
-          ArgumentNode(
             name: NameNode(value: 'recipient'),
             value: VariableNode(name: NameNode(value: 'recipient')),
-          ),
+          )
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -10293,12 +10250,12 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
 
 class Mutation$CreateChat$createChat$chat$lastMessage$sender {
   Mutation$CreateChat$createChat$chat$lastMessage$sender({
-    required this.id,
-    required this.username,
+    this.id,
+    this.username,
     this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
-    this.$__typename = 'UserNode',
+    this.$__typename = 'UserType',
   });
 
   factory Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(
@@ -10310,8 +10267,8 @@ class Mutation$CreateChat$createChat$chat$lastMessage$sender {
     final l$displayName = json['displayName'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateChat$createChat$chat$lastMessage$sender(
-      id: (l$id as String),
-      username: (l$username as String),
+      id: (l$id as int?),
+      username: (l$username as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
@@ -10319,9 +10276,9 @@ class Mutation$CreateChat$createChat$chat$lastMessage$sender {
     );
   }
 
-  final String id;
+  final int? id;
 
-  final String username;
+  final String? username;
 
   final String? profilePictureUrl;
 
@@ -10432,7 +10389,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
       _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
 
   TRes call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,
@@ -10465,10 +10422,9 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateChat$createChat$chat$lastMessage$sender(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
@@ -10494,7 +10450,7 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<
   TRes _res;
 
   call({
-    String? id,
+    int? id,
     String? username,
     String? profilePictureUrl,
     String? thumbnailUrl,

@@ -41,12 +41,16 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
 
 @RoutePage()
 class ChatScreen extends ConsumerWidget {
-  const ChatScreen(this.username, this.message, this.time, this.avatarUrl, {super.key});
+  const ChatScreen({
+    super.key,
+    required this.id,
+    required this.username,
+    required this.avatarUrl,
+  });
 
+  final String id;
   final String username;
-  final String message;
-  final String time;
-  final String avatarUrl;
+  final String? avatarUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -67,14 +71,51 @@ class ChatScreen extends ConsumerWidget {
           ),
         ],
       ),
+      bottomSheet: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+        child: Row(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            addHorizontalSpacing(4),
+            Expanded(
+              child: TextField(
+                controller: textController,
+                decoration: const InputDecoration(
+                  hintText: 'Type your message...',
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.send),
+              onPressed: () {
+                final message = textController.text.trim();
+                if (message.isNotEmpty) {
+                  ref.read(chatProvider.notifier).sendMessage(message);
+                  textController.clear();
+                }
+              },
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
             child: Column(
               children: [
                 // Static content at the top
-                ProductCard(image: avatarUrl),
-                SellerCard(name: username),
+                // ProductCard(image: avatarUrl),
+                SellerCard(
+                  name: username,
+                  profilePicture: avatarUrl,
+                ),
 
                 // Scrollable chat messages list
                 ConstrainedBox(
@@ -114,45 +155,12 @@ class ChatScreen extends ConsumerWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Icon(Icons.camera_alt),
-                    ),
-                  ),
-                  addHorizontalSpacing(4),
-                  Expanded(
-                    child: TextField(
-                      controller: textController,
-                      decoration: const InputDecoration(
-                        hintText: 'Type your message...',
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () {
-                      final message = textController.text.trim();
-                      if (message.isNotEmpty) {
-                        ref.read(chatProvider.notifier).sendMessage(message);
-                        textController.clear();
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   bottom: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child:
+          // ),
         ],
       ),
     );

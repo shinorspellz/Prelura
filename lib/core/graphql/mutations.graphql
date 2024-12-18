@@ -198,8 +198,8 @@ mutation UploadFile($files: [Upload]!, $fileType: FileTypeEnum!) {
   }
 }
 
-mutation CreateChat($name: String!, $recipient: String!) {
-  createChat(name: $name, recipient: $recipient) {
+mutation CreateChat($recipient: String!) {
+  createChat(recipient: $recipient) {
     chat {
       id
       name

@@ -8,6 +8,7 @@ import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
+import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
@@ -33,7 +34,6 @@ Future<ProviderContainer> initializeDependencies() async {
     await container.read(authStateProvider.future);
   } catch (e, st) {
     log(e.toString(), name: 'Bootstrap', stackTrace: st);
-    // logger.e(e.toString(), stackTrace: st);
   }
 
   return container;
@@ -47,6 +47,7 @@ final appStartUpProvider = FutureProvider((ref) async {
       ref.read(brandsProvider.future),
       ref.read(categoryProvider.future),
     ]);
+    ref.read(conversationProvider.future);
 
     // custom delay added for splash
     await Future.delayed(const Duration(seconds: 2));
@@ -181,5 +182,5 @@ final fileUploadRepo = Provider(
 
 /// File Media upload repository for any dependency
 final chatRepo = Provider(
-  (ref) => ChatRepo(ref.watch(graphqUploadlClient)),
+  (ref) => ChatRepo(ref.watch(graphqlClient)),
 );

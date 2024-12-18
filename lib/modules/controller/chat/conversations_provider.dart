@@ -17,11 +17,11 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
     return result;
   }
 
-  Future<void> createChat(String name, String recipient) async {
+  Future<void> createChat(String recipient) async {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      final result = await _repo.createChat(name, recipient);
+      final result = await _repo.createChat(recipient);
 
       final currentState = state.valueOrNull ?? [];
 
