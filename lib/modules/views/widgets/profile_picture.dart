@@ -10,26 +10,35 @@ class ProfilePictureWidget extends StatelessWidget {
       this.username,
       this.updating = false,
       this.height,
-      this.width});
+      this.width,
+      this.borderColor});
 
   final String? profilePicture;
   final String? username;
   final bool updating;
   final double? width;
   final double? height;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
     if (profilePicture == null) {
-      return CircleAvatar(
-        radius: height != null ? height! / 2 : 25,
-        child: updating
-            ? SizedBox(
-                height: height != null ? height! / 2 : 25,
-                width: width != null ? height! / 2 : 25,
-                child: LoadingWidget(),
-              )
-            : Text(username?.split('').first.toUpperCase() ?? '--'),
+      return Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border:
+              Border.all(color: borderColor ?? Colors.transparent, width: 2),
+        ),
+        child: CircleAvatar(
+          radius: height != null ? height! / 2 : 25,
+          child: updating
+              ? SizedBox(
+                  height: height != null ? height! / 2 : 25,
+                  width: width != null ? height! / 2 : 25,
+                  child: LoadingWidget(),
+                )
+              : Text(username?.split('').first.toUpperCase() ?? '--'),
+        ),
       );
     }
     return Stack(
@@ -40,6 +49,8 @@ class ProfilePictureWidget extends StatelessWidget {
           width: height ?? 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
+            border:
+                Border.all(color: borderColor ?? Colors.transparent, width: 2),
             image: DecorationImage(
               image: CachedNetworkImageProvider(profilePicture!),
               fit: BoxFit.cover,

@@ -8,9 +8,9 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
 
-final discountController = StateProvider.autoDispose((ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
+final discountController = StateProvider.autoDispose(
+    (ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
 
 @RoutePage()
 class DiscountPage extends ConsumerWidget {
@@ -21,7 +21,8 @@ class DiscountPage extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
@@ -54,14 +55,32 @@ class DiscountPage extends ConsumerWidget {
             PreluraAuthTextField(
               keyboardType: TextInputType.number,
               label: "Discount",
-              hintText: "Enter discount offer",
+              hintText: "Enter discount offer (max 95%)",
               formatter: LengthLimitingTextInputFormatter(3),
+              maxLength: 2,
               controller: ref.watch(discountController),
               onChanged: (value) {
-                ref.read(sellItemProvider.notifier).updateDiscount(value);
+                // Parse the input and clamp it to a maximum of 95
+                final discount = int.tryParse(value) ?? 0;
+                if (discount > 95) {
+                  // Adjust the controller's value if the input exceeds the limit
+                  ref.read(discountController).text = '95';
+                  ref.read(sellItemProvider.notifier).updateDiscount('95');
+                } else {
+                  ref.read(sellItemProvider.notifier).updateDiscount(value);
+                }
               },
               onSaved: (value) {
-                ref.read(sellItemProvider.notifier).updateDiscount(value);
+                if (value == null || value.isEmpty) {
+                  ref.read(sellItemProvider.notifier).updateDiscount('0');
+                } else {
+                  final discount = int.tryParse(value) ?? 0;
+                  if (discount > 95) {
+                    ref.read(sellItemProvider.notifier).updateDiscount('95');
+                  } else {
+                    ref.read(sellItemProvider.notifier).updateDiscount(value);
+                  }
+                }
               },
             ),
           ],

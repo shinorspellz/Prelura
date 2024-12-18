@@ -420,7 +420,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   },
                 ),
                 MenuCard(
-                  title: 'MaterialModel (Recommended)',
+                  title: 'Material (Recommended)',
                   onTap: () {
                     context.router.push(const MaterialSelectionRoute());
                   },

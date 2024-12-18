@@ -4263,6 +4263,7 @@ class Variables$Mutation$UpdateProduct {
     int? category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     String? description,
+    double? discount,
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
@@ -4279,6 +4280,7 @@ class Variables$Mutation$UpdateProduct {
         if (category != null) r'category': category,
         if (condition != null) r'condition': condition,
         if (description != null) r'description': description,
+        if (discount != null) r'discount': discount,
         if (name != null) r'name': name,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (price != null) r'price': price,
@@ -4310,6 +4312,10 @@ class Variables$Mutation$UpdateProduct {
     if (data.containsKey('description')) {
       final l$description = data['description'];
       result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('discount')) {
+      final l$discount = data['discount'];
+      result$data['discount'] = (l$discount as num?)?.toDouble();
     }
     if (data.containsKey('name')) {
       final l$name = data['name'];
@@ -4371,6 +4377,8 @@ class Variables$Mutation$UpdateProduct {
 
   String? get description => (_$data['description'] as String?);
 
+  double? get discount => (_$data['discount'] as double?);
+
   String? get name => (_$data['name'] as String?);
 
   Enum$ParcelSizeEnum? get parcelSize =>
@@ -4410,6 +4418,10 @@ class Variables$Mutation$UpdateProduct {
     if (_$data.containsKey('description')) {
       final l$description = description;
       result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('discount')) {
+      final l$discount = discount;
+      result$data['discount'] = l$discount;
     }
     if (_$data.containsKey('name')) {
       final l$name = name;
@@ -4630,6 +4642,7 @@ class Variables$Mutation$UpdateProduct {
     final l$category = category;
     final l$condition = condition;
     final l$description = description;
+    final l$discount = discount;
     final l$name = name;
     final l$parcelSize = parcelSize;
     final l$price = price;
@@ -4645,6 +4658,7 @@ class Variables$Mutation$UpdateProduct {
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
       _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('discount') ? l$discount : const {},
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('price') ? l$price : const {},
@@ -4681,6 +4695,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     int? category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     String? description,
+    double? discount,
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
@@ -4712,6 +4727,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? category = _undefined,
     Object? condition = _undefined,
     Object? description = _undefined,
+    Object? discount = _undefined,
     Object? name = _undefined,
     Object? parcelSize = _undefined,
     Object? price = _undefined,
@@ -4730,6 +4746,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (condition != _undefined)
           'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
         if (description != _undefined) 'description': (description as String?),
+        if (discount != _undefined) 'discount': (discount as double?),
         if (name != _undefined) 'name': (name as String?),
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
@@ -4756,6 +4773,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     int? category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     String? description,
+    double? discount,
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
@@ -4942,6 +4960,15 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'discount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'name')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
@@ -5064,6 +5091,10 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'description'),
             value: VariableNode(name: NameNode(value: 'description')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'discountPrice'),
+            value: VariableNode(name: NameNode(value: 'discount')),
           ),
           ArgumentNode(
             name: NameNode(value: 'name'),

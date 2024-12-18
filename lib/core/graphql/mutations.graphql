@@ -114,7 +114,7 @@ mutation UpdateProduct(
     category: $category
     condition: $condition
     description: $description
-    discount: $discount
+    discountPrice: $discount
     name: $name
     parcelSize: $parcelSize
     price: $price

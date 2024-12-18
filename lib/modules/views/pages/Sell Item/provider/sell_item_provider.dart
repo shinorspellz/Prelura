@@ -242,6 +242,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     return state.selectedColors.length < maxColorSelections;
   }
 
+  void updateSelectedMaterials(List<MaterialModel> materials) {
+    state = state.copyWith(selectedMaterials: materials);
+  }
+
   void toggleMaterial(MaterialModel material) {
     final currentSelections = state.selectedMaterials;
 
