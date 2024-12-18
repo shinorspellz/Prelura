@@ -496,93 +496,56 @@ class FilteredBrandProductController extends FamilyAsyncNotifier<List<ProductMod
   }
 }
 
-// final filterProductByStatusProvider = AsyncNotifierProvider.family<
-//     FilteredStatusController,
-//     List<Product>,
-//     String>(FilteredStatusController.new);
+final discountedProductsProvider =
+    AsyncNotifierProvider<DiscountProductsController, List<ProductModel>>(
+        DiscountProductsController.new);
 
-// class FilteredStatusController
-//     extends FamilyAsyncNotifier<List<Product>, String> {
-//   late final _repository = ref.read(productRepo);
+class DiscountProductsController extends AsyncNotifier<List<ProductModel>> {
+  late final _repository = ref.read(productRepo);
 
-//   final int _pageCount = 15;
-//   int _currentPage = 1;
-//   int _brandTotalItems = 0;
+  static const int _pageSize = 15;
+  int _currentPage = 1;
+  int _totalItems = 0;
 
-//   @override
-//   Future<List<Product>> build(String query) async {
-//     state = const AsyncLoading();
-//     _currentPage = 1;
+  @override
+  Future<List<ProductModel>> build() async {
+    return _fetchProducts(page: 1);
+  }
 
-//     try {
-//       return await _getProducts(
-//         pageNumber: _currentPage,
-//         query: query,
-//       );
-//     } catch (e, stack) {
-//       state = AsyncError(e, stack);
-//       return [];
-//     }
-//   }
+  Future<List<ProductModel>> _fetchProducts({required int page}) async {
+    try {
+      final response = await _repository.getAllProducts(
+        pageCount: _pageSize,
+        pageNumber: page,
+        filters: Input$ProductFiltersInput(discountPrice: true),
+      );
 
-//   Future<List<Product>> _getProducts({
-//     required int pageNumber,
-//     String? query,
-//   }) async {
-//     try {
-//       final result = await _repository.getAllProducts(
-//         pageCount: _pageCount,
-//         pageNumber: pageNumber,
-//         // brandId: brandId,
-//         filters: Input$ProductFiltersInput(
-//           status: Enum$ProductStatusEnum.ACTIVE,
-//         ),
-//         search: query,
-//       );
+      _totalItems = response.allProductsTotalNumber ?? 0;
+      final newProducts = response.allProducts!
+          .map((e) => ProductModel.fromJson(e!.toJson()))
+          .toList();
 
-//       _brandTotalItems = result.allProductsTotalNumber ?? 0;
+      if (page == 1) {
+        state = AsyncData(newProducts);
+      } else {
+        final currentProducts = state.value ?? [];
+        state = AsyncData([...currentProducts, ...newProducts]);
+      }
+      _currentPage = page;
+      return state.value!;
+    } catch (e, stackTrace) {
+      state = AsyncError(e, stackTrace);
+      return [];
+    }
+  }
 
-//       final newProducts = result.allProducts!
-//           .map((e) => Product.fromJson(e!.toJson()))
-//           .toList();
-//       newProducts.shuffle();
-//       newProducts.shuffle();
+  Future<void> fetchMoreProducts() async {
+    if (canLoadMore()) {
+      await _fetchProducts(page: _currentPage + 1);
+    }
+  }
 
-//       final currentProducts = state.valueOrNull ?? [];
-//       state = pageNumber == 1
-//           ? AsyncData(newProducts)
-//           : AsyncData([...currentProducts, ...newProducts]);
-
-//       _currentPage = pageNumber;
-//       return state.value!;
-//     } catch (e, stack) {
-//       state = AsyncError(e, stack);
-//       return [];
-//     }
-//   }
-
-//   Future<void> fetchMoreData(String query) async {
-//     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
-//     if (!canLoadMore) return;
-
-//     try {
-//       await _getProducts(
-//         pageNumber: _currentPage + 1,
-//         query: query,
-//       );
-//     } catch (e, stack) {
-//       state = AsyncError(e, stack);
-//     }
-//   }
-
-//   Future<void> fetchMoreHandler(String query) async {
-//     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
-//     if (canLoadMore) {
-//       await fetchMoreData(query);
-//     }
-//   }
-
-//   bool canLoadMore() {
-//     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
-//   }
-// }
+  bool canLoadMore() {
+    return (state.value?.length ?? 0) < _totalItems;
+  }
+}
