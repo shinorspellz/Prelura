@@ -5093,7 +5093,7 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'description')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'discount'),
+            name: NameNode(value: 'discountPrice'),
             value: VariableNode(name: NameNode(value: 'discount')),
           ),
           ArgumentNode(

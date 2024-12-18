@@ -40,8 +40,8 @@ class AppRouter extends RootStackRouter {
               AutoRoute(guards: [AuthGuard(_ref)], page: SearchRoute.page),
               AutoRoute(guards: [AuthGuard(_ref)], page: InboxRoute.page),
               AutoRoute(
+                page: UserProfileDetailsRoute.page,
                 guards: [AuthGuard(_ref)],
-                page: ProfileDetailsRoute.page,
               ),
               AutoRoute(
                   guards: [AuthGuard(_ref)],
@@ -55,6 +55,10 @@ class AppRouter extends RootStackRouter {
 
               //     ]),
             ]),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
+          page: ProfileDetailsRoute.page,
+        ),
         AutoRoute(
           guards: [AuthGuard(_ref)],
           page: ProfileRoute.page,
@@ -172,7 +176,6 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
           page: DiscountRoute.page,
         ),
-
       ];
 }
 

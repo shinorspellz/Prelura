@@ -45,11 +45,12 @@ class _AuthPageState extends ConsumerState<AuthPage> {
             SearchRoute(),
             // SellNavigationRoute(),
             InboxRoute(),
-            ProfileDetailsRoute()
+            UserProfileDetailsRoute()
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
-            final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
+            final isSellItemRoute =
+                tabRouter.current.name == SellNavigationRoute.name;
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -67,6 +68,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                 height: 80,
                 child: TabBar(
                     padding: const EdgeInsets.only(top: 5, bottom: 15),
+                    tabAlignment: TabAlignment.fill,
                     onTap: (index) {
                       switch (index) {
                         case 0:
@@ -128,7 +130,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.search,
                           size: 24,
                         ),
-                        activeIcon: const Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: const Icon(Icons.search,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Search',
                       ),
                       const TabItem(
@@ -138,7 +141,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.add_circle_outline,
                           size: 24,
                         ),
-                        activeIcon: Icon(Icons.add_circle_outline, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: Icon(Icons.add_circle_outline,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Sell',
                       ),
                       TabItem(
@@ -155,16 +159,29 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         ),
                         label: 'Inbox',
                       ),
-                      ProfilePictureWidget(
-                        profilePicture: ref
-                            .watch(userProvider)
-                            .valueOrNull
-                            ?.profilePictureUrl,
-                        username:
-                            ref.watch(userProvider).valueOrNull?.username ??
-                                '--',
-                        height: 27,
-                        width: 27,
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ProfilePictureWidget(
+                              profilePicture: ref
+                                  .watch(userProvider)
+                                  .valueOrNull
+                                  ?.profilePictureUrl,
+                              username: ref
+                                      .watch(userProvider)
+                                      .valueOrNull
+                                      ?.username ??
+                                  '--',
+                              height: 30,
+                              width: 30,
+                              borderColor: tabRouter.activeIndex == 3
+                                  ? PreluraColors
+                                      .activeColor // Purple when active
+                                  : Colors.grey,
+                            ),
+                          ],
+                        ),
                       ),
                     ]),
               ),

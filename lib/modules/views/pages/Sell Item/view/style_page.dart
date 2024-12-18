@@ -1,24 +1,43 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sell_item_provider.dart';
-import 'package:prelura_app/modules/views/widgets/app_bar.dart';
-import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
+
+import '../../../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../widgets/SearchWidget.dart';
+import '../../../widgets/app_bar.dart';
+import '../../../widgets/app_checkbox.dart';
+import '../provider/sell_item_provider.dart';
 
 @RoutePage()
-class StylePage extends ConsumerWidget {
+class StylePage extends ConsumerStatefulWidget {
   const StylePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<StylePage> createState() => _StylePageState();
+}
+
+class _StylePageState extends ConsumerState<StylePage> {
+  String searchQuery = ""; // Holds the user's search input
+
+  @override
+  Widget build(BuildContext context) {
     final selectedParcel = ref.watch(sellItemProvider).style;
+
+    // Filter the styles based on the search query
+    final filteredStyles = Enum$StyleEnum.values
+        .where((style) =>
+            style != Enum$StyleEnum.$unknown) // Exclude unknown value
+        .where((style) => style.name
+            .replaceAll('_', ' ')
+            .toLowerCase()
+            .contains(searchQuery.toLowerCase())) // Match search query
+        .toList();
 
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
@@ -28,17 +47,28 @@ class StylePage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 24,
+            Searchwidget(
+              hintText: "Find a style",
+              obscureText: false,
+              shouldReadOnly: false,
+              // padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              enabled: true,
+              showInputBorder: true,
+              autofocus: false,
+              cancelButton: true,
+              onChanged: (val) {
+                setState(() {
+                  searchQuery = val; // Update the search query
+                });
+              },
             ),
-            ...Enum$StyleEnum.values.map((e) {
-              if (e == Enum$StyleEnum.$unknown) return Container();
+            ...filteredStyles.map((style) {
               return PreluraCheckBox(
-                title: e.name.replaceAll('_', " ").toLowerCase(),
-                isChecked: e.name == selectedParcel?.name,
+                title: style.name[0].toUpperCase() +
+                    style.name.substring(1).replaceAll('_', " ").toLowerCase(),
+                isChecked: style.name == selectedParcel?.name,
                 onChanged: (value) {
-                  ref.read(sellItemProvider.notifier).selectStyle(e);
-                  // await SharedPreferencesHelper.saveSelection("selectedParcel", parcelSizes[index]);
+                  ref.read(sellItemProvider.notifier).selectStyle(style);
                   context.router.popForced();
                 },
               );

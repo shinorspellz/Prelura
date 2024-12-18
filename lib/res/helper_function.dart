@@ -51,4 +51,13 @@ class HelperFunction {
       },
     );
   }
+
+  double getBottomInsets() {
+    if (MediaQuery.of(context!).viewInsets.bottom >
+        MediaQuery.of(context!).viewPadding.bottom) {
+      return MediaQuery.of(context!).viewInsets.bottom -
+          MediaQuery.of(context!).viewPadding.bottom;
+    }
+    return 0;
+  }
 }

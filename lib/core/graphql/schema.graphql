@@ -16,6 +16,29 @@ enum AccountsUserGenderChoices {
   ANY
 }
 
+type ArchiveConversation {
+  message: String
+}
+
+type BlockedUserType {
+  id: Int
+  username: String
+  firstName: String
+  lastName: String
+  displayName: String
+  label: String
+  isVerified: Boolean
+  blueTickVerified: Boolean
+  userType: String
+  thumbnailUrl: String
+  profilePictureUrl: String
+}
+
+type BlockUserMutation {
+  success: Boolean
+  message: String
+}
+
 type BrandType {
   id: Int
   name: String
@@ -32,11 +55,44 @@ type CategoryTypes {
   subCategory: [SubCategoryType]
 }
 
+"""An enumeration."""
+enum ChatsMessageAttachmentTypeChoices {
+  """PICTURE"""
+  PICTURE
+
+  """VIDEO"""
+  VIDEO
+
+  """AUDIO"""
+  AUDIO
+
+  """ZIP"""
+  ZIP
+}
+
 enum ConditionEnum {
   NEW_WITH_TAGS
   LIKE_NEW
   USED
   HEAVILY_USED
+}
+
+type ConversationType {
+  id: ID!
+  name: String!
+  disableResponse: Boolean!
+  createdAt: DateTime!
+  lastModified: DateTime!
+  deleted: Boolean!
+  participant1Deleted: Boolean!
+  participant2Deleted: Boolean!
+  recipient: UserType
+  lastMessage: MessageType
+  unreadMessagesCount: Int
+}
+
+type CreateChat {
+  chat: ConversationType
 }
 
 type CreateProduct {
@@ -61,6 +117,18 @@ scalar DateTime
 
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
+
+type DeleteConversation {
+  message: String
+}
+
+type DeleteMessage {
+  message: String
+}
+
+type DeleteNotification {
+  success: Boolean
+}
 
 type DeleteProduct {
   success: Boolean
@@ -155,10 +223,44 @@ type LogoutMutation {
   message: String
 }
 
+type MessageType {
+  id: ID!
+  sender: UserNode
+  text: String!
+  attachment: String
+  attachmentType: ChatsMessageAttachmentTypeChoices
+  conversation: ConversationType
+  createdAt: DateTime!
+  read: Boolean!
+  deleted: Boolean!
+  isItem: Boolean!
+  itemId: Int
+  replyTo: MessageType
+  itemType: String
+  replies: [MessageType!]!
+  senderName: String
+  receiverProfile: String
+}
+
 type Mutation {
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
+  createChat(name: String!, recipient: String!): CreateChat
+  deleteMessage(messageId: Int!): DeleteMessage
+  deleteConversation(conversationId: Int!): DeleteConversation
+  archiveConversation(conversationId: Int!): ArchiveConversation
+  unarchiveConversation(conversationId: Int!): UnarchiveConversation
+  updateReadMessages(messageIds: [Int]!): UpdateReadMessages
+
+  """Read notification"""
+  readNotification(notificationId: Int): ReadNotification
+
+  """Delete notification"""
+  deleteNotification(notificationId: Int!): DeleteNotification
+
+  """update user notification preferences"""
+  updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
   createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discount: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   login(password: String!, username: String): LoginMutation
@@ -168,6 +270,7 @@ type Mutation {
     country: String
     displayName: String
     dob: Date
+    fcmToken: String
     firstName: String
     gender: String
     lastName: String
@@ -188,6 +291,7 @@ type Mutation {
     username: String
   ): UpdateUserMutation
   followUser(followedId: Int!): FollowUser
+  blockUnblock(blockUser: Boolean!, userId: Int!): BlockUserMutation
   unfollowUser(followedId: Int!): UnfollowUser
 
   """
@@ -317,6 +421,36 @@ interface Node {
   id: ID!
 }
 
+type NotificationPreferenceType {
+  user: UserNode!
+  isPushNotification: Boolean!
+  isEmailNotification: Boolean!
+  inappNotifications: JSONString!
+  emailNotifications: JSONString!
+}
+
+input NotificationsPreferenceInputType {
+  likes: Boolean
+  newFollowers: Boolean
+  profileView: Boolean
+  messages: Boolean
+}
+
+type NotificationType {
+  id: ID!
+  sender: SenderType
+  message: String!
+  model: String!
+  modelId: String!
+  modelGroup: String
+  isRead: Boolean!
+  delivered: Boolean!
+  deleted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  meta: JSONString
+}
+
 enum ParcelSizeEnum {
   SMALL
   MEDIUM
@@ -355,6 +489,7 @@ input ProductFiltersInput {
   name: String
   brand: Int
   category: Int
+  customBrand: String
   subCategory: Int
   price: Float
   status: ProductStatusEnum
@@ -678,6 +813,13 @@ type ProductType {
 }
 
 type Query {
+  conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
+  conversations: [ConversationType]
+  archivedConversations: [ConversationType]
+  conversationTotalNumber: Int
+  notifications(pageCount: Int, pageNumber: Int): [NotificationType]
+  notificationPreference: NotificationPreferenceType
+  notificationsTotalNumber: Int
   allProducts(filters: ProductFiltersInput, search: String, pageCount: Int, pageNumber: Int): [ProductType]
   userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
   product(id: Int!): ProductType
@@ -713,8 +855,14 @@ type Query {
     pageCount: Int
     pageNumber: Int
   ): [UserType]
+  blockedUsers(search: String, pageCount: Int, pageNumber: Int): [BlockedUserType]
   followingTotalNumber: Int
   followersTotalNumber: Int
+  blockedUsersTotalNumber: Int
+}
+
+type ReadNotification {
+  success: Boolean
 }
 
 """
@@ -730,6 +878,12 @@ a successful response is returned.
 type ResendActivationEmail {
   errors: ExpectedErrorType
   success: Boolean
+}
+
+type SenderType {
+  profileRing: String
+  thumbnailUrl: String
+  profilePictureUrl: String
 }
 
 enum SizeEnum {
@@ -822,6 +976,10 @@ type SubCategoryType {
   name: String
 }
 
+type UnarchiveConversation {
+  message: String
+}
+
 type UnfollowUser {
   success: Boolean
 }
@@ -836,10 +994,31 @@ type UpdateAccount {
   success: Boolean
 }
 
+"""
+Mutation to update user notification preferences.
+
+Allows updating push and email notification settings, as well as
+in-app and email notification details. Can also turn off all notifications
+with a single flag.
+
+If is_all_notifications_off is True, it overrides other inputs and
+disables all notifications. Otherwise, it updates individual settings
+based on the provided inputs.
+"""
+type UpdateNotificationPreference {
+  success: Boolean
+  notificationPreference: NotificationPreferenceType
+}
+
 type UpdateProduct {
   success: Boolean
   message: String
   product: ProductType
+}
+
+type UpdateReadMessages {
+  success: Boolean
+  updatedCount: Int
 }
 
 type UpdateUserMutation {
@@ -892,8 +1071,14 @@ type UserNode implements Node {
   useGoogleAuthenticator: Boolean!
   gASecret: String
   usernameLastUpdated: DateTime
+  fcmTokens: [String!]!
   meta: JSONString!
   products: [ProductType!]!
+  sentNotifications: [NotificationType!]!
+  notificationPreferences: NotificationPreferenceType
+  participant1: [ConversationType!]!
+  participant2: [ConversationType!]!
+  messageSender: [MessageType!]!
   pk: Int
   archived: Boolean
   verified: Boolean

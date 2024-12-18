@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
@@ -82,6 +83,7 @@ class FollowerTile extends ConsumerWidget {
             AppButton(
               width: isFollowing ? 85 : 70,
               onTap: () async {
+                HapticFeedback.lightImpact();
                 try {
                   if (isFollowing) {
                     final username = follower.username;
