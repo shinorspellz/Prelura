@@ -12,47 +12,76 @@ import 'package:auto_route/auto_route.dart' as _i43;
 import 'package:flutter/cupertino.dart' as _i45;
 import 'package:flutter/material.dart' as _i44;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
-import 'package:prelura_app/modules/model/product/categories/category_model.dart' as _i47;
+import 'package:prelura_app/modules/model/product/categories/category_model.dart'
+    as _i47;
 import 'package:prelura_app/modules/model/product/product_model.dart' as _i46;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i4;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart' as _i19;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart' as _i37;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
+    as _i19;
+import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart'
+    as _i37;
 import 'package:prelura_app/modules/views/pages/balance_page.dart' as _i5;
-import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart' as _i8;
-import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart' as _i12;
-import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart' as _i13;
+import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart'
+    as _i8;
+import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart'
+    as _i12;
+import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart'
+    as _i13;
 import 'package:prelura_app/modules/views/pages/holiday_mode.dart' as _i14;
 import 'package:prelura_app/modules/views/pages/home.dart' as _i16;
 import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i15;
 import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i17;
 import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i18;
-import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart' as _i22;
+import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart'
+    as _i22;
 import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i21;
-import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart' as _i25;
-import 'package:prelura_app/modules/views/pages/product_filter_page.dart' as _i27;
+import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart'
+    as _i25;
+import 'package:prelura_app/modules/views/pages/product_filter_page.dart'
+    as _i27;
 import 'package:prelura_app/modules/views/pages/products_by_brand.dart' as _i28;
-import 'package:prelura_app/modules/views/pages/Profile%20Details%20copy/view/profile_details.dart' as _i42;
-import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart' as _i29;
-import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart' as _i30;
+import 'package:prelura_app/modules/views/pages/Profile%20Details%20copy/view/profile_details.dart'
+    as _i42;
+import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart'
+    as _i29;
+import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
+    as _i30;
 import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i33;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart' as _i6;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart' as _i7;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart' as _i9;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart' as _i10;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart' as _i11;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart' as _i20;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart' as _i23;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart' as _i24;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart' as _i26;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart' as _i40;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart' as _i34;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart' as _i38;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/style_page.dart' as _i39;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart' as _i41;
-import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart' as _i35;
-import 'package:prelura_app/modules/views/pages/Settings/view/account_setting_view.dart' as _i2;
-import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart' as _i32;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart'
+    as _i6;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart'
+    as _i7;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart'
+    as _i9;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart'
+    as _i10;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart'
+    as _i11;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart'
+    as _i20;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart'
+    as _i23;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart'
+    as _i24;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart'
+    as _i26;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart'
+    as _i40;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart'
+    as _i34;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart'
+    as _i38;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/style_page.dart'
+    as _i39;
+import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart'
+    as _i41;
+import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart'
+    as _i35;
+import 'package:prelura_app/modules/views/pages/Settings/view/account_setting_view.dart'
+    as _i2;
+import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart'
+    as _i32;
 import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i31;
 import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i36;
 
@@ -518,7 +547,8 @@ class LoginRoute extends _i43.PageRouteInfo<LoginRouteArgs> {
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
       return _i19.LoginScreen(
         key: args.key,
         onLoginResult: args.onLoginResult,
@@ -705,7 +735,8 @@ class ProductListRoute extends _i43.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i27.ProductPriceFilterPage]
-class ProductPriceFilterRoute extends _i43.PageRouteInfo<ProductPriceFilterRouteArgs> {
+class ProductPriceFilterRoute
+    extends _i43.PageRouteInfo<ProductPriceFilterRouteArgs> {
   ProductPriceFilterRoute({
     _i44.Key? key,
     required String title,
@@ -751,13 +782,14 @@ class ProductPriceFilterRouteArgs {
 
 /// generated route for
 /// [_i28.ProductsByBrandPage]
-class ProductsByBrandRoute extends _i43.PageRouteInfo<ProductsByBrandRouteArgs> {
+class ProductsByBrandRoute
+    extends _i43.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
-    _i43.Key? key,
+    _i44.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
-    List<_i42.PageRouteInfo>? children,
+    List<_i43.PageRouteInfo>? children,
   }) : super(
           ProductsByBrandRoute.name,
           args: ProductsByBrandRouteArgs(
@@ -828,7 +860,8 @@ class ProfileDetailsRoute extends _i43.PageRouteInfo<ProfileDetailsRouteArgs> {
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ProfileDetailsRouteArgs>(orElse: () => const ProfileDetailsRouteArgs());
+      final args = data.argsAs<ProfileDetailsRouteArgs>(
+          orElse: () => const ProfileDetailsRouteArgs());
       return _i29.ProfileDetailsScreen(
         key: args.key,
         username: args.username,
@@ -950,7 +983,8 @@ class SellItemRoute extends _i43.PageRouteInfo<SellItemRouteArgs> {
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SellItemRouteArgs>(orElse: () => const SellItemRouteArgs());
+      final args = data.argsAs<SellItemRouteArgs>(
+          orElse: () => const SellItemRouteArgs());
       return _i34.SellItemScreen(
         key: args.key,
         product: args.product,
@@ -1143,7 +1177,8 @@ class SubCategoryRouteArgs {
 
 /// generated route for
 /// [_i42.UserProfileDetailsScreen]
-class UserProfileDetailsRoute extends _i43.PageRouteInfo<UserProfileDetailsRouteArgs> {
+class UserProfileDetailsRoute
+    extends _i43.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
     _i45.Key? key,
     String? username,
@@ -1162,7 +1197,8 @@ class UserProfileDetailsRoute extends _i43.PageRouteInfo<UserProfileDetailsRoute
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UserProfileDetailsRouteArgs>(orElse: () => const UserProfileDetailsRouteArgs());
+      final args = data.argsAs<UserProfileDetailsRouteArgs>(
+          orElse: () => const UserProfileDetailsRouteArgs());
       return _i42.UserProfileDetailsScreen(
         key: args.key,
         username: args.username,
