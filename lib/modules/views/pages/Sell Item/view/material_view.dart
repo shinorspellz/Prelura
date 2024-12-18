@@ -14,6 +14,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../controller/product/materials_provider.dart';
+import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../provider/sell_item_provider.dart';
 
@@ -243,9 +244,7 @@ class _MaterialSelectionScreenState
                 ],
               ),
             ),
-            loading: () => const Center(
-              child: LoadingWidget(),
-            ),
+            loading: () => GridMenuCardShimmer(),
           ),
     );
   }

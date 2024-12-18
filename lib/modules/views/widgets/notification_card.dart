@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/model/notification/notification_model.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
     super.key,
-    required this.message,
-    required this.time,
-    required this.itemImageUrl,
+    required this.notification,
   });
 
-  final String message;
-  final String time;
-  final String itemImageUrl;
+  final NotificationModel notification;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +29,7 @@ class NotificationCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              itemImageUrl,
+              notification.sender.profilePictureUrl ?? "",
               width: 40,
               height: 40,
               fit: BoxFit.cover,
@@ -52,7 +49,7 @@ class NotificationCard extends StatelessWidget {
                     // Message (constrained to avoid overflow)
                     Expanded(
                       child: Text(
-                        message,
+                        notification.message,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: Theme.of(context)
@@ -64,7 +61,7 @@ class NotificationCard extends StatelessWidget {
                     const SizedBox(width: 10), // Add spacing before time
                     // Time
                     Text(
-                      time,
+                      notification.createdAt!.hour.toString(),
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall
