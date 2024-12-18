@@ -99,6 +99,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                       .then((_) => ref
                                           .read(refreshingHome.notifier)
                                           .state = false);
+                                  ref.refresh(
+                                      filterProductByPriceProvider(15).future);
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -206,7 +208,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ref.watch(allProductProvider(null)).maybeWhen(
                         // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                         data: (products) => SliverPadding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 15,
+                          ),
                           sliver: SliverGrid.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -369,7 +373,7 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
 }
 
 Widget _buildTabs(WidgetRef ref, int selectedTab, context) {
-  final tabs = ["All", "Premium Brands", "Electronics", "Books"];
+  final tabs = ["All", "Premium Brands", "Women", "Men", "Kids"];
 
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),

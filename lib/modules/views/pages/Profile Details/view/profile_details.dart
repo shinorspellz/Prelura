@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/about_profile.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/review_tab.dart';
@@ -9,10 +10,12 @@ import 'package:prelura_app/modules/views/pages/Profile%20Details/view/user_ward
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../widgets/profile_picture.dart';
 import '../provider/tab_controller.dart';
 
 @RoutePage()
@@ -75,11 +78,17 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: user?.username ?? "--",
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
-        ),
+        // leadingIcon: IconButton(
+        //   icon:
+        //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+        //   onPressed: () => context.router.popForced(),
+        // ),
+        trailingIcon: [
+          GestureDetector(
+              onTap: () => context.pushRoute(ProfileRoute()),
+              child: Icon(Icons.menu_sharp)),
+          10.horizontalSpacing,
+        ],
       ),
       body: Column(
         children: [
