@@ -1,33 +1,26 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/model/chat/conversation_model.dart';
+import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/res/colors.dart';
 
 class MessageCard extends StatelessWidget {
   const MessageCard({
     super.key,
-    required this.username,
-    required this.message,
-    required this.time,
-    required this.avatarUrl,
-    required this.itemImageUrl,
+    required this.model,
   });
 
-  final String username;
-  final String message;
-  final String time;
-  final String avatarUrl;
-  final String itemImageUrl;
-
+  final ConversationModel model;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         context.router.push(ChatRoute(
-          message: message,
-          avatarUrl: avatarUrl,
-          username: username,
-          time: time,
+          id: model.id,
+          username: model.recipient.username,
+          avatarUrl: model.recipient.profilePictureUrl,
         ));
       },
       child: Container(
@@ -42,43 +35,42 @@ class MessageCard extends StatelessWidget {
             )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // User Avatar
-            CircleAvatar(
-              radius: 25,
-              backgroundImage: AssetImage(avatarUrl),
+            ProfilePictureWidget(
+              height: 40,
+              width: 40,
+              profilePicture: model.recipient.profilePictureUrl,
             ),
             const SizedBox(width: 15),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    username,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                    model.recipient.username,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    message,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(fontWeight: FontWeight.w400),
-                  ),
-                  const SizedBox(height: 5),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: Image.asset(
-                      itemImageUrl,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
+                  if (model.lastMessage?.text != null) ...[
+                    // const SizedBox(height: 5),
+                    Text(
+                      model.lastMessage!.text,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
                     ),
-                  ),
+                  ]
+
+                  // const SizedBox(height: 5),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(6),
+                  //   child: Image.asset(
+                  //     itemImageUrl,
+                  //     width: 40,
+                  //     height: 40,
+                  //     fit: BoxFit.cover,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -86,7 +78,7 @@ class MessageCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  time,
+                  DateFormat(DateFormat.HOUR_MINUTE).format(model.lastModified),
                   style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
                 const SizedBox(height: 5),

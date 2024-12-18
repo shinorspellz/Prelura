@@ -250,7 +250,7 @@ type MessageType {
 type Mutation {
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
-  createChat(name: String!, recipient: String!): CreateChat
+  createChat(recipient: String!): CreateChat
   deleteMessage(messageId: Int!): DeleteMessage
   deleteConversation(conversationId: Int!): DeleteConversation
   archiveConversation(conversationId: Int!): ArchiveConversation

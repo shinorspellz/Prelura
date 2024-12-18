@@ -378,7 +378,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                 MenuCard(
                   title: 'Brand',
                   rightArrow: false,
-                  subtitle: state.brand?.name ?? state.customBrand,
+                  subtitle: state.customBrand ?? state.brand?.name,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
                     context.router.push(const BrandSelectionRoute());

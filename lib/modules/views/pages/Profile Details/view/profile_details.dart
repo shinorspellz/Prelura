@@ -20,16 +20,14 @@ import '../provider/tab_controller.dart';
 
 @RoutePage()
 class ProfileDetailsScreen extends ConsumerStatefulWidget {
-  const ProfileDetailsScreen({super.key, this.username});
-  final String? username;
+  const ProfileDetailsScreen({super.key, required this.username});
+  final String username;
 
   @override
-  ConsumerState<ProfileDetailsScreen> createState() =>
-      _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -47,8 +45,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index !=
-          ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -63,15 +60,10 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref
-        .watch((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .valueOrNull;
+    final user = ref.watch(otherUserProfile(widget.username)).valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index =
-          currentIndex; // Sync tab index if changed externally
+      _tabController.index = currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(
@@ -79,14 +71,16 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: user?.username ?? "--",
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
+        // leadingIcon: IconButton(
+        //   icon:
+        //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+        //   onPressed: () => context.router.popForced(),
+        // ),
         // trailingIcon: [
-        //   GestureDetector(
-        //       onTap: () => context.pushRoute(ProfileRoute()),
-        //       child: Icon(Icons.menu_sharp)),
+        //   GestureDetector(onTap: () => context.pushRoute(ProfileRoute()), child: Icon(Icons.menu_sharp)),
         //   10.horizontalSpacing,
         // ],
       ),
@@ -113,11 +107,8 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                         decoration: BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                              color: currentIndex == entry.key
-                                  ? PreluraColors.activeColor
-                                  : PreluraColors.greyColor.withOpacity(0.5),
-                              width:
-                                  _tabController.index == entry.key ? 2.0 : 1.0,
+                              color: currentIndex == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
+                              width: _tabController.index == entry.key ? 2.0 : 1.0,
                             ),
                           ),
                         ),
@@ -125,9 +116,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                           entry.value,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: currentIndex == entry.key
-                                ? Theme.of(context).textTheme.bodyMedium?.color
-                                : PreluraColors.greyLightColor,
+                            color: currentIndex == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
                           ),
                         ),
                       ),
@@ -140,17 +129,11 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                ref
-                    .watch((widget.username != null
-                        ? otherUserProfile(widget.username!)
-                        : userProvider))
-                    .when(
+                ref.watch(otherUserProfile(widget.username)).when(
                       data: (_) => UserWardrobe(
                         username: widget.username,
                       ),
                       error: (e, _) {
-                        print(e.toString());
-                        print(_);
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

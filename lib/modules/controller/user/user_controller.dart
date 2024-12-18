@@ -28,8 +28,7 @@ final searchUserProvider = FutureProvider.family((ref, String query) async {
   return result;
 });
 
-final otherUserProfile =
-    FutureProvider.family<UserModel, String>((ref, username) async {
+final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getUser(username);
@@ -37,8 +36,7 @@ final otherUserProfile =
   return result;
 });
 
-final userNotfierProvider =
-    AsyncNotifierProvider<_UserController, void>(_UserController.new);
+final userNotfierProvider = AsyncNotifierProvider<_UserController, void>(_UserController.new);
 
 class _UserController extends AsyncNotifier<void> {
   late final _repo = ref.read(userRepo);
@@ -95,6 +93,7 @@ class _UserController extends AsyncNotifier<void> {
     String? thumbnailUrl,
     String? username,
     Input$LocationInputType? location,
+    String? fcmToken,
   }) async {
     state = const AsyncLoading();
 
@@ -102,20 +101,22 @@ class _UserController extends AsyncNotifier<void> {
       () async {
         await _repo.updateProfile(
           Variables$Mutation$UpdateProfile(
-              bio: bio,
-              country: country,
-              displayName: displayName,
-              dob: dob,
-              firstName: firstName,
-              gender: gender,
-              lastName: lastName,
-              otp: otp,
-              phoneNumber: phoneNumber,
-              postCode: postCode,
-              profilePictureUrl: profilePictureUrl,
-              thumbnailUrl: thumbnailUrl,
-              username: username,
-              location: location),
+            bio: bio,
+            country: country,
+            displayName: displayName,
+            dob: dob,
+            firstName: firstName,
+            gender: gender,
+            lastName: lastName,
+            otp: otp,
+            phoneNumber: phoneNumber,
+            postCode: postCode,
+            profilePictureUrl: profilePictureUrl,
+            thumbnailUrl: thumbnailUrl,
+            username: username,
+            location: location,
+            fcmToken: fcmToken,
+          ),
         );
 
         await ref.refresh(userProvider.future);
@@ -132,16 +133,10 @@ class FollowerQuery {
   final int? pageCount;
   final String username;
 
-  FollowerQuery(
-      {required this.username,
-      this.query,
-      this.latestFirst,
-      this.page = 1,
-      this.pageCount = 20});
+  FollowerQuery({required this.username, this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
 }
 
-final followersProvider =
-    FutureProvider.family((ref, FollowerQuery params) async {
+final followersProvider = FutureProvider.family((ref, FollowerQuery params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -155,8 +150,7 @@ final followersProvider =
   return result;
 });
 
-final followingProvider =
-    FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
+final followingProvider = FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -170,8 +164,7 @@ final followingProvider =
   return Future.value(result);
 });
 
-final followUserProvider =
-    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
+final followUserProvider = FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
   final repo = ref.watch(networkRepo);
 
   // Fetch followers based on parameters

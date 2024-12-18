@@ -222,20 +222,18 @@ class CategoryRoute extends _i43.PageRouteInfo<void> {
 /// [_i8.ChatScreen]
 class ChatRoute extends _i43.PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
-    required String username,
-    required String message,
-    required String time,
-    required String avatarUrl,
     _i44.Key? key,
+    required String id,
+    required String username,
+    required String? avatarUrl,
     List<_i43.PageRouteInfo>? children,
   }) : super(
           ChatRoute.name,
           args: ChatRouteArgs(
-            username: username,
-            message: message,
-            time: time,
-            avatarUrl: avatarUrl,
             key: key,
+            id: id,
+            username: username,
+            avatarUrl: avatarUrl,
           ),
           initialChildren: children,
         );
@@ -247,11 +245,10 @@ class ChatRoute extends _i43.PageRouteInfo<ChatRouteArgs> {
     builder: (data) {
       final args = data.argsAs<ChatRouteArgs>();
       return _i8.ChatScreen(
-        args.username,
-        args.message,
-        args.time,
-        args.avatarUrl,
         key: args.key,
+        id: args.id,
+        username: args.username,
+        avatarUrl: args.avatarUrl,
       );
     },
   );
@@ -259,26 +256,23 @@ class ChatRoute extends _i43.PageRouteInfo<ChatRouteArgs> {
 
 class ChatRouteArgs {
   const ChatRouteArgs({
-    required this.username,
-    required this.message,
-    required this.time,
-    required this.avatarUrl,
     this.key,
+    required this.id,
+    required this.username,
+    required this.avatarUrl,
   });
-
-  final String username;
-
-  final String message;
-
-  final String time;
-
-  final String avatarUrl;
 
   final _i44.Key? key;
 
+  final String id;
+
+  final String username;
+
+  final String? avatarUrl;
+
   @override
   String toString() {
-    return 'ChatRouteArgs{username: $username, message: $message, time: $time, avatarUrl: $avatarUrl, key: $key}';
+    return 'ChatRouteArgs{key: $key, id: $id, username: $username, avatarUrl: $avatarUrl}';
   }
 }
 
@@ -786,8 +780,9 @@ class ProductsByBrandRoute
     extends _i43.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
     _i44.Key? key,
-    required String title,
-    required int id,
+    required String? title,
+    required int? id,
+    String? customBrand,
     List<_i43.PageRouteInfo>? children,
   }) : super(
           ProductsByBrandRoute.name,
@@ -795,6 +790,7 @@ class ProductsByBrandRoute
             key: key,
             title: title,
             id: id,
+            customBrand: customBrand,
           ),
           initialChildren: children,
         );
@@ -809,6 +805,7 @@ class ProductsByBrandRoute
         key: args.key,
         title: args.title,
         id: args.id,
+        customBrand: args.customBrand,
       );
     },
   );
@@ -819,17 +816,20 @@ class ProductsByBrandRouteArgs {
     this.key,
     required this.title,
     required this.id,
+    this.customBrand,
   });
 
   final _i44.Key? key;
 
-  final String title;
+  final String? title;
 
-  final int id;
+  final int? id;
+
+  final String? customBrand;
 
   @override
   String toString() {
-    return 'ProductsByBrandRouteArgs{key: $key, title: $title, id: $id}';
+    return 'ProductsByBrandRouteArgs{key: $key, title: $title, id: $id, customBrand: $customBrand}';
   }
 }
 
@@ -838,7 +838,7 @@ class ProductsByBrandRouteArgs {
 class ProfileDetailsRoute extends _i43.PageRouteInfo<ProfileDetailsRouteArgs> {
   ProfileDetailsRoute({
     _i45.Key? key,
-    String? username,
+    required String username,
     List<_i43.PageRouteInfo>? children,
   }) : super(
           ProfileDetailsRoute.name,
@@ -854,8 +854,7 @@ class ProfileDetailsRoute extends _i43.PageRouteInfo<ProfileDetailsRouteArgs> {
   static _i43.PageInfo page = _i43.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ProfileDetailsRouteArgs>(
-          orElse: () => const ProfileDetailsRouteArgs());
+      final args = data.argsAs<ProfileDetailsRouteArgs>();
       return _i29.ProfileDetailsScreen(
         key: args.key,
         username: args.username,
@@ -867,12 +866,12 @@ class ProfileDetailsRoute extends _i43.PageRouteInfo<ProfileDetailsRouteArgs> {
 class ProfileDetailsRouteArgs {
   const ProfileDetailsRouteArgs({
     this.key,
-    this.username,
+    required this.username,
   });
 
   final _i45.Key? key;
 
-  final String? username;
+  final String username;
 
   @override
   String toString() {

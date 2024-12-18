@@ -154,7 +154,8 @@ class ProductTopDetails extends ConsumerWidget {
                   InkWell(
                       onTap: () {
                         if (isCurrentUser) {
-                          context.router.push(ProfileDetailsRoute());
+                          // context.router.push(ProfileDetailsRoute());
+                          // context.pushRoute(route)
                         } else {
                           context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         }

@@ -486,3 +486,136 @@ query PopularBrands($top: Int!) {
     name
   }
 }
+
+query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
+  conversation(id: $id, pageCount: $pageCount, pageNumber: $pageNumber) {
+    id
+    text
+    attachment
+    attachmentType
+    read
+    deleted
+    isItem
+    itemId
+    itemType
+    replyTo {
+      id
+      text
+      attachment
+      attachmentType
+      sender {
+        id
+        username
+        profilePictureUrl
+        thumbnailUrl
+        displayName
+      }
+    }
+    sender {
+      id
+      username
+      profilePictureUrl
+      thumbnailUrl
+      displayName
+    }
+  }
+  conversationTotalNumber
+}
+
+query Conversations {
+  conversations {
+    id
+    name
+    disableResponse
+    createdAt
+    lastModified
+    deleted
+    participant1Deleted
+    participant2Deleted
+    unreadMessagesCount
+    recipient {
+      id
+      username
+      displayName
+      profilePictureUrl
+      thumbnailUrl
+    }
+    lastMessage {
+      id
+      text
+      attachment
+      attachmentType
+      sender {
+        id
+        username
+        profilePictureUrl
+        thumbnailUrl
+        displayName
+      }
+    }
+  }
+}
+
+query ArchivedConversations {
+  archivedConversations {
+    id
+    name
+    disableResponse
+    createdAt
+    lastModified
+    deleted
+    participant1Deleted
+    participant2Deleted
+    unreadMessagesCount
+    recipient {
+      id
+      username
+      displayName
+      profilePictureUrl
+      thumbnailUrl
+    }
+    lastMessage {
+      id
+      text
+      attachment
+      attachmentType
+      sender {
+        id
+        username
+        profilePictureUrl
+        thumbnailUrl
+        displayName
+      }
+    }
+  }
+}
+
+query Notifications($pageCount: Int, $pageNumber: Int) {
+  notifications(pageCount: $pageCount, pageNumber: $pageNumber) {
+    id
+    message
+    model
+    modelId
+    modelGroup
+    isRead
+    delivered
+    deleted
+    createdAt
+    updatedAt
+    meta
+  }
+  notificationsTotalNumber
+}
+
+query NotificationPreference {
+  notificationPreference {
+    user {
+      id
+      username
+    }
+    isPushNotification
+    isEmailNotification
+    inappNotifications
+    emailNotifications
+  }
+}
