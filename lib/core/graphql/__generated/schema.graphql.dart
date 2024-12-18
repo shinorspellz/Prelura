@@ -663,6 +663,7 @@ class Input$ProductFiltersInput {
     Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
+    bool? discountPrice,
   }) =>
       Input$ProductFiltersInput._({
         if (name != null) r'name': name,
@@ -675,6 +676,7 @@ class Input$ProductFiltersInput {
         if (size != null) r'size': size,
         if (style != null) r'style': style,
         if (condition != null) r'condition': condition,
+        if (discountPrice != null) r'discountPrice': discountPrice,
       });
 
   Input$ProductFiltersInput._(this._$data);
@@ -728,6 +730,10 @@ class Input$ProductFiltersInput {
           : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
               (l$condition as String));
     }
+    if (data.containsKey('discountPrice')) {
+      final l$discountPrice = data['discountPrice'];
+      result$data['discountPrice'] = (l$discountPrice as bool?);
+    }
     return Input$ProductFiltersInput._(result$data);
   }
 
@@ -754,6 +760,8 @@ class Input$ProductFiltersInput {
 
   EnumImport$ConditionEnum.ConditionsEnum? get condition =>
       (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+
+  bool? get discountPrice => (_$data['discountPrice'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -802,6 +810,10 @@ class Input$ProductFiltersInput {
           ? null
           : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
               l$condition);
+    }
+    if (_$data.containsKey('discountPrice')) {
+      final l$discountPrice = discountPrice;
+      result$data['discountPrice'] = l$discountPrice;
     }
     return result$data;
   }
@@ -905,6 +917,15 @@ class Input$ProductFiltersInput {
     if (l$condition != lOther$condition) {
       return false;
     }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (_$data.containsKey('discountPrice') !=
+        other._$data.containsKey('discountPrice')) {
+      return false;
+    }
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
     return true;
   }
 
@@ -920,6 +941,7 @@ class Input$ProductFiltersInput {
     final l$size = size;
     final l$style = style;
     final l$condition = condition;
+    final l$discountPrice = discountPrice;
     return Object.hashAll([
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('brand') ? l$brand : const {},
@@ -931,6 +953,7 @@ class Input$ProductFiltersInput {
       _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('style') ? l$style : const {},
       _$data.containsKey('condition') ? l$condition : const {},
+      _$data.containsKey('discountPrice') ? l$discountPrice : const {},
     ]);
   }
 }
@@ -955,6 +978,7 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
+    bool? discountPrice,
   });
 }
 
@@ -982,6 +1006,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
     Object? size = _undefined,
     Object? style = _undefined,
     Object? condition = _undefined,
+    Object? discountPrice = _undefined,
   }) =>
       _then(Input$ProductFiltersInput._({
         ..._instance._$data,
@@ -996,6 +1021,8 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
         if (condition != _undefined)
           'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (discountPrice != _undefined)
+          'discountPrice': (discountPrice as bool?),
       }));
 }
 
@@ -1016,6 +1043,7 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
     Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
+    bool? discountPrice,
   }) =>
       _res;
 }
@@ -1780,6 +1808,69 @@ Enum$ProductStatusEnum fromJson$Enum$ProductStatusEnum(String value) {
       return Enum$ProductStatusEnum.SOLD;
     default:
       return Enum$ProductStatusEnum.$unknown;
+  }
+}
+
+enum Enum$SeasonEnum {
+  CHRISTMAS,
+  HALLOWEEN,
+  SUMMER,
+  WINTER,
+  SPRING,
+  AUTUMN,
+  BLACK_FRIDAY,
+  EASTER,
+  $unknown;
+
+  factory Enum$SeasonEnum.fromJson(String value) =>
+      fromJson$Enum$SeasonEnum(value);
+
+  String toJson() => toJson$Enum$SeasonEnum(this);
+}
+
+String toJson$Enum$SeasonEnum(Enum$SeasonEnum e) {
+  switch (e) {
+    case Enum$SeasonEnum.CHRISTMAS:
+      return r'CHRISTMAS';
+    case Enum$SeasonEnum.HALLOWEEN:
+      return r'HALLOWEEN';
+    case Enum$SeasonEnum.SUMMER:
+      return r'SUMMER';
+    case Enum$SeasonEnum.WINTER:
+      return r'WINTER';
+    case Enum$SeasonEnum.SPRING:
+      return r'SPRING';
+    case Enum$SeasonEnum.AUTUMN:
+      return r'AUTUMN';
+    case Enum$SeasonEnum.BLACK_FRIDAY:
+      return r'BLACK_FRIDAY';
+    case Enum$SeasonEnum.EASTER:
+      return r'EASTER';
+    case Enum$SeasonEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SeasonEnum fromJson$Enum$SeasonEnum(String value) {
+  switch (value) {
+    case r'CHRISTMAS':
+      return Enum$SeasonEnum.CHRISTMAS;
+    case r'HALLOWEEN':
+      return Enum$SeasonEnum.HALLOWEEN;
+    case r'SUMMER':
+      return Enum$SeasonEnum.SUMMER;
+    case r'WINTER':
+      return Enum$SeasonEnum.WINTER;
+    case r'SPRING':
+      return Enum$SeasonEnum.SPRING;
+    case r'AUTUMN':
+      return Enum$SeasonEnum.AUTUMN;
+    case r'BLACK_FRIDAY':
+      return Enum$SeasonEnum.BLACK_FRIDAY;
+    case r'EASTER':
+      return Enum$SeasonEnum.EASTER;
+    default:
+      return Enum$SeasonEnum.$unknown;
   }
 }
 

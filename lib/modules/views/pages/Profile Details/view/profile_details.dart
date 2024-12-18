@@ -78,17 +78,17 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: user?.username ?? "--",
-        // leadingIcon: IconButton(
-        //   icon:
-        //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-        //   onPressed: () => context.router.popForced(),
-        // ),
-        trailingIcon: [
-          GestureDetector(
-              onTap: () => context.pushRoute(ProfileRoute()),
-              child: Icon(Icons.menu_sharp)),
-          10.horizontalSpacing,
-        ],
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
+        // trailingIcon: [
+        //   GestureDetector(
+        //       onTap: () => context.pushRoute(ProfileRoute()),
+        //       child: Icon(Icons.menu_sharp)),
+        //   10.horizontalSpacing,
+        // ],
       ),
       body: Column(
         children: [
