@@ -25,18 +25,19 @@ class _ProductPriceFilterPageState
 
   @override
   void initState() {
+    super.initState();
+
     controller.addListener(() {
-      // setState(() => autoScroll = false);
+      if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
-      final delta = MediaQuery.sizeOf(context).height * 0.2;
+      final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(filterProductByPriceProvider(15)).isLoading) return;
         // if (searchQuery.isNotEmpty) return;
         ref.read(filterProductByPriceProvider(15).notifier).fetchMoreData();
       }
     });
-    super.initState();
   }
 
   @override
@@ -57,41 +58,45 @@ class _ProductPriceFilterPageState
         centerTitle: true,
         appbarTitle: widget.title,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
-              data: (products) => Column(
-                children: [
-                  10.verticalSpacing,
-                  Expanded(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      controller: controller,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.50,
+      body: CustomScrollView(controller: controller, slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          sliver: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
+                data: (products) => SliverToBoxAdapter(
+                  child: Column(
+                    children: [
+                      10.verticalSpacing,
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        // controller: controller,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.50,
+                        ),
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          return ProductCard(product: products[index]);
+                        },
                       ),
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        return ProductCard(product: products[index]);
-                      },
-                    ),
+                      10.verticalSpacing,
+                      if (ref
+                          .watch(filterProductByPriceProvider(15).notifier)
+                          .canLoadMore())
+                        if (!ref
+                            .watch(filterProductByPriceProvider(15))
+                            .isLoading)
+                          PaginationLoadingIndicator()
+                    ],
                   ),
-                  10.verticalSpacing,
-                  if (ref
-                      .watch(filterProductByPriceProvider(15).notifier)
-                      .canLoadMore())
-                    if (!ref.watch(filterProductByPriceProvider(15)).isLoading)
-                      PaginationLoadingIndicator()
-                ],
+                ),
+                orElse: () => GridShimmer(),
               ),
-              orElse: () => GridShimmer(),
-            ),
-      ),
+        ),
+      ]),
     );
   }
 }

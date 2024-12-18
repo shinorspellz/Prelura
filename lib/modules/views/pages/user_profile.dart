@@ -29,11 +29,11 @@ class ProfileScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: "Menu",
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
-        ),
+        // leadingIcon: IconButton(
+        //   icon:
+        //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+        //   onPressed: () => context.router.popForced(),
+        // ),
         // trailingIcon: [
         //   GestureDetector(
         //     onTap: () => context.pushRoute(ProfileDetailsRoute()),

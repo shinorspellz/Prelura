@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/res/colors.dart';
 
 class BrandTextWidget extends StatelessWidget {

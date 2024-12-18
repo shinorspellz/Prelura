@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 
 class SellItemState {
   final List<XFile> images;
@@ -14,7 +14,7 @@ class SellItemState {
   final CategoryModel? subCategory;
   final Enum$ParcelSizeEnum? parcel;
   final List<String> selectedColors;
-  final List<Material> selectedMaterials;
+  final List<Materials> selectedMaterials;
   final Brand? brand;
   final Enum$SizeEnum? size;
   final String? price;
@@ -49,7 +49,7 @@ class SellItemState {
       CategoryModel? subCategory,
       Enum$ParcelSizeEnum? parcel,
       List<String>? selectedColors,
-      List<Material>? selectedMaterials,
+      List<Materials>? selectedMaterials,
       Brand? brand,
       Enum$SizeEnum? size,
       String? price,
@@ -93,7 +93,18 @@ class SellItemState {
   }
 
   @override
-  int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
+  int get hashCode => Object.hash(
+      title,
+      description,
+      category,
+      images.length,
+      selectedColors.length,
+      selectedCondition,
+      selectedMaterials.length,
+      parcel,
+      price,
+      size,
+      brand);
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -186,8 +197,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
         description: product.description,
         category: product.category,
         subCategory: product.subCategory,
-        parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-        size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+        parcel: product.parcelSize != null
+            ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
+            : null,
+        size: product.size != null
+            ? Enum$SizeEnum.fromJson(product.size!.toJson())
+            : null,
         price: product.price,
         selectedCondition: product.condition,
         brand: product.brand,
@@ -226,7 +241,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     return state.selectedColors.length < maxColorSelections;
   }
 
-  void toggleMaterial(Material material) {
+  void toggleMaterial(Materials material) {
     final currentSelections = state.selectedMaterials;
 
     // Check if the material is already selected
@@ -234,14 +249,16 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections.where((m) => m != material).toList() // Remove material
+          ? currentSelections
+              .where((m) => m != material)
+              .toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),
     );
   }
 
-  bool isMaterialSelected(Material material) {
+  bool isMaterialSelected(Materials material) {
     return state.selectedMaterials.contains(material);
   }
 

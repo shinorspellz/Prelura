@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sell_item_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/shared_notifier.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/sub_category_provider.dart';

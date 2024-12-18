@@ -9,7 +9,7 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 

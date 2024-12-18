@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product.dart';
+part of 'product_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -47,7 +47,7 @@ mixin _$ProductModel {
   set color(List<String>? value) => throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
   set brand(Brand? value) => throw _privateConstructorUsedError;
-  List<Material>? get materials => throw _privateConstructorUsedError;
+  List<Materials>? get materials => throw _privateConstructorUsedError;
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
   String? get customBrand => throw _privateConstructorUsedError;
 
@@ -88,7 +88,7 @@ abstract class $ProductModelCopyWith<$Res> {
       DateTime updatedAt,
       List<String>? color,
       Brand? brand,
-      List<Material>? materials,
+      List<Materials>? materials,
       Enum$StyleEnum? style,
       String? customBrand});
 
@@ -221,7 +221,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       materials: freezed == materials
           ? _value.materials
           : materials // ignore: cast_nullable_to_non_nullable
-              as List<Material>?,
+              as List<Materials>?,
       style: freezed == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
@@ -315,7 +315,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       DateTime updatedAt,
       List<String>? color,
       Brand? brand,
-      List<Material>? materials,
+      List<Materials>? materials,
       Enum$StyleEnum? style,
       String? customBrand});
 
@@ -450,7 +450,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       materials: freezed == materials
           ? _value.materials
           : materials // ignore: cast_nullable_to_non_nullable
-              as List<Material>?,
+              as List<Materials>?,
       style: freezed == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
@@ -536,7 +536,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   Brand? brand;
   @override
-  final List<Material>? materials;
+  final List<Materials>? materials;
   @override
   final Enum$StyleEnum? style;
   @override
@@ -585,7 +585,7 @@ abstract class _ProductModel implements ProductModel {
       required final DateTime updatedAt,
       required List<String>? color,
       required Brand? brand,
-      final List<Material>? materials,
+      final List<Materials>? materials,
       final Enum$StyleEnum? style,
       final String? customBrand}) = _$ProductModelImpl;
 
@@ -638,7 +638,7 @@ abstract class _ProductModel implements ProductModel {
   Brand? get brand;
   set brand(Brand? value);
   @override
-  List<Material>? get materials;
+  List<Materials>? get materials;
   @override
   Enum$StyleEnum? get style;
   @override
@@ -983,44 +983,44 @@ abstract class _Brand implements Brand {
       throw _privateConstructorUsedError;
 }
 
-Material _$MaterialFromJson(Map<String, dynamic> json) {
-  return _Material.fromJson(json);
+Materials _$MaterialsFromJson(Map<String, dynamic> json) {
+  return _Materials.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Material {
+mixin _$Materials {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
-  /// Serializes this Material to a JSON map.
+  /// Serializes this Materials to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Material
+  /// Create a copy of Materials
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MaterialCopyWith<Material> get copyWith =>
+  $MaterialsCopyWith<Materials> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MaterialCopyWith<$Res> {
-  factory $MaterialCopyWith(Material value, $Res Function(Material) then) =
-      _$MaterialCopyWithImpl<$Res, Material>;
+abstract class $MaterialsCopyWith<$Res> {
+  factory $MaterialsCopyWith(Materials value, $Res Function(Materials) then) =
+      _$MaterialsCopyWithImpl<$Res, Materials>;
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class _$MaterialCopyWithImpl<$Res, $Val extends Material>
-    implements $MaterialCopyWith<$Res> {
-  _$MaterialCopyWithImpl(this._value, this._then);
+class _$MaterialsCopyWithImpl<$Res, $Val extends Materials>
+    implements $MaterialsCopyWith<$Res> {
+  _$MaterialsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Material
+  /// Create a copy of Materials
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1042,25 +1042,25 @@ class _$MaterialCopyWithImpl<$Res, $Val extends Material>
 }
 
 /// @nodoc
-abstract class _$$MaterialImplCopyWith<$Res>
-    implements $MaterialCopyWith<$Res> {
-  factory _$$MaterialImplCopyWith(
-          _$MaterialImpl value, $Res Function(_$MaterialImpl) then) =
-      __$$MaterialImplCopyWithImpl<$Res>;
+abstract class _$$MaterialsImplCopyWith<$Res>
+    implements $MaterialsCopyWith<$Res> {
+  factory _$$MaterialsImplCopyWith(
+          _$MaterialsImpl value, $Res Function(_$MaterialsImpl) then) =
+      __$$MaterialsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$MaterialImplCopyWithImpl<$Res>
-    extends _$MaterialCopyWithImpl<$Res, _$MaterialImpl>
-    implements _$$MaterialImplCopyWith<$Res> {
-  __$$MaterialImplCopyWithImpl(
-      _$MaterialImpl _value, $Res Function(_$MaterialImpl) _then)
+class __$$MaterialsImplCopyWithImpl<$Res>
+    extends _$MaterialsCopyWithImpl<$Res, _$MaterialsImpl>
+    implements _$$MaterialsImplCopyWith<$Res> {
+  __$$MaterialsImplCopyWithImpl(
+      _$MaterialsImpl _value, $Res Function(_$MaterialsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Material
+  /// Create a copy of Materials
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1068,7 +1068,7 @@ class __$$MaterialImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$MaterialImpl(
+    return _then(_$MaterialsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1083,11 +1083,11 @@ class __$$MaterialImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$MaterialImpl implements _Material {
-  const _$MaterialImpl({required this.id, required this.name});
+class _$MaterialsImpl implements _Materials {
+  const _$MaterialsImpl({required this.id, required this.name});
 
-  factory _$MaterialImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MaterialImplFromJson(json);
+  factory _$MaterialsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MaterialsImplFromJson(json);
 
   @override
   final int id;
@@ -1096,14 +1096,14 @@ class _$MaterialImpl implements _Material {
 
   @override
   String toString() {
-    return 'Material(id: $id, name: $name)';
+    return 'Materials(id: $id, name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MaterialImpl &&
+            other is _$MaterialsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1112,38 +1112,38 @@ class _$MaterialImpl implements _Material {
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of Material
+  /// Create a copy of Materials
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$MaterialImplCopyWith<_$MaterialImpl> get copyWith =>
-      __$$MaterialImplCopyWithImpl<_$MaterialImpl>(this, _$identity);
+  _$$MaterialsImplCopyWith<_$MaterialsImpl> get copyWith =>
+      __$$MaterialsImplCopyWithImpl<_$MaterialsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MaterialImplToJson(
+    return _$$MaterialsImplToJson(
       this,
     );
   }
 }
 
-abstract class _Material implements Material {
-  const factory _Material({required final int id, required final String name}) =
-      _$MaterialImpl;
+abstract class _Materials implements Materials {
+  const factory _Materials(
+      {required final int id, required final String name}) = _$MaterialsImpl;
 
-  factory _Material.fromJson(Map<String, dynamic> json) =
-      _$MaterialImpl.fromJson;
+  factory _Materials.fromJson(Map<String, dynamic> json) =
+      _$MaterialsImpl.fromJson;
 
   @override
   int get id;
   @override
   String get name;
 
-  /// Create a copy of Material
+  /// Create a copy of Materials
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MaterialImplCopyWith<_$MaterialImpl> get copyWith =>
+  _$$MaterialsImplCopyWith<_$MaterialsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

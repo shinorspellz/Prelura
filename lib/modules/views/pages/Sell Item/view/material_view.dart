@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/modules/controller/product/materials_provider.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
@@ -9,8 +9,8 @@ import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../controller/product/materials_provider.dart';
 import '../../../widgets/gesture_navigator.dart';
-import '../provider/material_provider.dart';
 import '../provider/sell_item_provider.dart';
 
 @RoutePage()
@@ -18,11 +18,15 @@ class MaterialSelectionScreen extends ConsumerStatefulWidget {
   const MaterialSelectionScreen({super.key});
 
   @override
-  ConsumerState<MaterialSelectionScreen> createState() => _MaterialSelectionScreenState();
+  ConsumerState<MaterialSelectionScreen> createState() =>
+      _MaterialSelectionScreenState();
 }
 
-class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScreen> {
+class _MaterialSelectionScreenState
+    extends ConsumerState<MaterialSelectionScreen> {
   final controller = ScrollController();
+
+  List<Materials> selectedMaterials = [];
 
   @override
   void initState() {
@@ -55,7 +59,8 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -88,37 +93,39 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                         data: (searchMaterials) => SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                              final isSelected = notifier.isMaterialSelected(searchMaterials[index]);
+                              final isSelected = notifier
+                                  .isMaterialSelected(searchMaterials[index]);
                               return PreluraCheckBox(
                                 isChecked: isSelected,
                                 onChanged: (isChecked) {
-                                  if (isChecked == true || isSelected) {
-                                    notifier.toggleMaterial(searchMaterials[index]);
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "You can only select up to 2 colours.",
-                                          style: TextStyle(color: Colors.white),
+                                  setState(() {
+                                    if (selectedMaterials.length < 3) {
+                                      if (isChecked == true) {
+                                        selectedMaterials
+                                            .add(searchMaterials[index]);
+                                      } else {
+                                        selectedMaterials
+                                            .remove(searchMaterials[index]);
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            "You can only select up to 2 colours.",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.red,
                                         ),
-                                        backgroundColor: Colors.red,
-                                      ),
-                                    );
-                                  }
+                                      );
+                                    }
+                                  });
                                 },
                                 title: searchMaterials[index].name,
                               );
-                              // return PreluraRadio(
-                              //   title: brands[index].name,
-                              //   value: brands[index].name,
-                              //   groupValue: selectedBrand?.name,
-                              //   onChanged: (value) {
-                              //     ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
-                              //     context.back();
-                              //   },
-                              // );
                             },
-                            childCount: searchMaterials.length, // Number of items in the list
+                            childCount: searchMaterials.length,
                           ),
                         ),
                         error: (e, _) => SliverToBoxAdapter(
@@ -129,7 +136,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                               children: [
                                 Text(e.toString()),
                                 TextButton.icon(
-                                  onPressed: () => ref.invalidate(materialProvider),
+                                  onPressed: () {},
                                   label: const Text('Retry'),
                                   icon: const Icon(Icons.refresh_rounded),
                                 ),
@@ -145,28 +152,35 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        final isSelected = notifier.isMaterialSelected(materials[index]);
+                        final isSelected =
+                            notifier.isMaterialSelected(materials[index]);
                         return PreluraCheckBox(
                           isChecked: isSelected,
                           onChanged: (isChecked) {
-                            if (isChecked == true || isSelected) {
-                              notifier.toggleMaterial(materials[index]);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "You can only select up to 2 colours.",
-                                    style: TextStyle(color: Colors.white),
+                            setState(() {
+                              if (selectedMaterials.length < 3) {
+                                if (isChecked == true) {
+                                  selectedMaterials.add(materials[index]);
+                                } else {
+                                  selectedMaterials.remove(materials[index]);
+                                }
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "You can only select up to 2 colours.",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
                                   ),
-                                  backgroundColor: Colors.red,
-                                ),
-                              );
-                            }
+                                );
+                              }
+                            });
                           },
                           title: materials[index].name,
                         );
                       },
-                      childCount: materials.length, // Number of items in the list
+                      childCount: materials.length,
                     ),
                   ),
                 if (ref.watch(materialsProvider.notifier).canLoadMore())
@@ -183,7 +197,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                 children: [
                   Text(e.toString()),
                   TextButton.icon(
-                    onPressed: () => ref.invalidate(materialProvider),
+                    onPressed: () => ref.invalidate(materialsProvider),
                     label: const Text('Retry'),
                     icon: const Icon(Icons.refresh_rounded),
                   ),
@@ -195,76 +209,5 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
             ),
           ),
     );
-
-    // return Scaffold(
-    //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-    //   appBar: PreluraAppBar(
-    //       leadingIcon: IconButton(
-    //         icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-    //         onPressed: () => context.router.popForced(),
-    //       ),
-    //       centerTitle: true,
-    //       appbarTitle: "Material (recommended)"),
-    //   body: Container(
-    //     color: Theme.of(context).scaffoldBackgroundColor,
-    //     child: Column(
-    //       children: [
-    //         Expanded(
-    //           child: ListView(
-    //             children: materials.map((entry) {
-    //               final value = entry;
-    //               final isSelected = notifier.isMaterialSelected(value);
-
-    //               return PreluraCheckBox(
-    //                 isChecked: isSelected,
-    //                 onChanged: (isChecked) {
-    //                   if (isChecked == true || isSelected) {
-    //                     notifier.toggleMaterial(value);
-    //                   } else {
-    //                     ScaffoldMessenger.of(context).showSnackBar(
-    //                       const SnackBar(
-    //                         content: Text(
-    //                           "You can only select up to 2 colours.",
-    //                           style: TextStyle(color: Colors.white),
-    //                         ),
-    //                         backgroundColor: Colors.red,
-    //                       ),
-    //                     );
-    //                   }
-    //                 },
-    //                 title: value,
-    //               );
-    //             }).toList(),
-    //           ),
-    //         ),
-    //         const SizedBox(height: 16),
-    //         Padding(
-    //           padding: const EdgeInsets.only(left: 16.0, right: 16, top: 16, bottom: 46),
-    //           child: ElevatedButton(
-    //             onPressed: materialState.isNotEmpty
-    //                 ? () {
-    //                     // Pass the data back or proceed to the next screen
-    //                     context.router.popForced();
-    //                   }
-    //                 : null,
-    //             style: ElevatedButton.styleFrom(
-    //               backgroundColor: PreluraColors.activeColor,
-    //               padding: const EdgeInsets.symmetric(vertical: 16),
-    //               shape: RoundedRectangleBorder(
-    //                 borderRadius: BorderRadius.circular(8),
-    //               ),
-    //             ),
-    //             child: Center(
-    //               child: Text(
-    //                 "Done",
-    //                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white),
-    //               ),
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

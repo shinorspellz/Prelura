@@ -11,7 +11,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/auth_page.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_description.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/widget/product_top_details.dart';

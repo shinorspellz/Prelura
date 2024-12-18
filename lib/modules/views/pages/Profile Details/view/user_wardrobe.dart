@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -259,6 +260,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         Expanded(
                           child: AppButton(
                             onTap: () {
+                              HapticFeedback.lightImpact();
                               if (isCurrentUser) {
                                 context.pushRoute(SellItemRoute());
                               }
@@ -289,6 +291,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   ref.invalidate(userProvider);
                                 }
                               }
+                              ;
+                              HapticFeedback.lightImpact();
                             },
                             text: isCurrentUser
                                 ? "Share"

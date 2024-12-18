@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../model/product/product.dart';
+import '../../model/product/product_model.dart';
 
 class FullScreenImage extends StatelessWidget {
   final List<XFile> imagePath; // Local image files
