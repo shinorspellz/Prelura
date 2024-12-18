@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
@@ -385,7 +385,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   },
                 ),
                 MenuCard(
-                  title: 'Material (Recommended)',
+                  title: 'MaterialModel (Recommended)',
                   onTap: () {
                     context.router.push(const MaterialSelectionRoute());
                   },

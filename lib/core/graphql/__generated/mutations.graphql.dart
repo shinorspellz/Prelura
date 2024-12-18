@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
-import 'package:prelura_app/modules/model/product/product.dart' as EnumImport$ConditionEnum;
+import 'package:prelura_app/modules/model/product/product_model.dart'
+    as EnumImport$ConditionEnum;
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -45,7 +46,8 @@ class Variables$Mutation$Login {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$Login<Variables$Mutation$Login> get copyWith => CopyWith$Variables$Mutation$Login(
+  CopyWith$Variables$Mutation$Login<Variables$Mutation$Login> get copyWith =>
+      CopyWith$Variables$Mutation$Login(
         this,
         (i) => i,
       );
@@ -55,7 +57,8 @@ class Variables$Mutation$Login {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$Login || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$Login ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$password = password;
@@ -65,7 +68,8 @@ class Variables$Mutation$Login {
     }
     final l$username = username;
     final lOther$username = other.username;
-    if (_$data.containsKey('username') != other._$data.containsKey('username')) {
+    if (_$data.containsKey('username') !=
+        other._$data.containsKey('username')) {
       return false;
     }
     if (l$username != lOther$username) {
@@ -91,7 +95,8 @@ abstract class CopyWith$Variables$Mutation$Login<TRes> {
     TRes Function(Variables$Mutation$Login) then,
   ) = _CopyWithImpl$Variables$Mutation$Login;
 
-  factory CopyWith$Variables$Mutation$Login.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$Login;
+  factory CopyWith$Variables$Mutation$Login.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$Login;
 
   TRes call({
     String? password,
@@ -99,7 +104,8 @@ abstract class CopyWith$Variables$Mutation$Login<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$Login<TRes> implements CopyWith$Variables$Mutation$Login<TRes> {
+class _CopyWithImpl$Variables$Mutation$Login<TRes>
+    implements CopyWith$Variables$Mutation$Login<TRes> {
   _CopyWithImpl$Variables$Mutation$Login(
     this._instance,
     this._then,
@@ -111,24 +117,24 @@ class _CopyWithImpl$Variables$Mutation$Login<TRes> implements CopyWith$Variables
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? password = _undefined,
     Object? username = _undefined,
   }) =>
       _then(Variables$Mutation$Login._({
         ..._instance._$data,
-        if (password != _undefined && password != null) 'password': (password as String),
+        if (password != _undefined && password != null)
+          'password': (password as String),
         if (username != _undefined) 'username': (username as String?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$Login<TRes> implements CopyWith$Variables$Mutation$Login<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$Login<TRes>
+    implements CopyWith$Variables$Mutation$Login<TRes> {
   _CopyWithStubImpl$Variables$Mutation$Login(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? password,
     String? username,
@@ -146,7 +152,9 @@ class Mutation$Login {
     final l$login = json['login'];
     final l$$__typename = json['__typename'];
     return Mutation$Login(
-      login: l$login == null ? null : Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
+      login: l$login == null
+          ? null
+          : Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -156,12 +164,12 @@ class Mutation$Login {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$login = login;
-    resultData['login'] = l$login?.toJson();
+    _resultData['login'] = l$login?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -197,7 +205,8 @@ class Mutation$Login {
 }
 
 extension UtilityExtension$Mutation$Login on Mutation$Login {
-  CopyWith$Mutation$Login<Mutation$Login> get copyWith => CopyWith$Mutation$Login(
+  CopyWith$Mutation$Login<Mutation$Login> get copyWith =>
+      CopyWith$Mutation$Login(
         this,
         (i) => i,
       );
@@ -209,7 +218,8 @@ abstract class CopyWith$Mutation$Login<TRes> {
     TRes Function(Mutation$Login) then,
   ) = _CopyWithImpl$Mutation$Login;
 
-  factory CopyWith$Mutation$Login.stub(TRes res) = _CopyWithStubImpl$Mutation$Login;
+  factory CopyWith$Mutation$Login.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Login;
 
   TRes call({
     Mutation$Login$login? login,
@@ -218,7 +228,8 @@ abstract class CopyWith$Mutation$Login<TRes> {
   CopyWith$Mutation$Login$login<TRes> get login;
 }
 
-class _CopyWithImpl$Mutation$Login<TRes> implements CopyWith$Mutation$Login<TRes> {
+class _CopyWithImpl$Mutation$Login<TRes>
+    implements CopyWith$Mutation$Login<TRes> {
   _CopyWithImpl$Mutation$Login(
     this._instance,
     this._then,
@@ -230,37 +241,41 @@ class _CopyWithImpl$Mutation$Login<TRes> implements CopyWith$Mutation$Login<TRes
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? login = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login(
-        login: login == _undefined ? _instance.login : (login as Mutation$Login$login?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        login: login == _undefined
+            ? _instance.login
+            : (login as Mutation$Login$login?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$Login$login<TRes> get login {
     final local$login = _instance.login;
-    return local$login == null ? CopyWith$Mutation$Login$login.stub(_then(_instance)) : CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
+    return local$login == null
+        ? CopyWith$Mutation$Login$login.stub(_then(_instance))
+        : CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Login<TRes> implements CopyWith$Mutation$Login<TRes> {
+class _CopyWithStubImpl$Mutation$Login<TRes>
+    implements CopyWith$Mutation$Login<TRes> {
   _CopyWithStubImpl$Mutation$Login(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$Login$login? login,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$Login$login<TRes> get login => CopyWith$Mutation$Login$login.stub(_res);
+  CopyWith$Mutation$Login$login<TRes> get login =>
+      CopyWith$Mutation$Login$login.stub(_res);
 }
 
 const documentNodeMutationLogin = DocumentNode(definitions: [
@@ -366,7 +381,8 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Login _parserFn$Mutation$Login(Map<String, dynamic> data) => Mutation$Login.fromJson(data);
+Mutation$Login _parserFn$Mutation$Login(Map<String, dynamic> data) =>
+    Mutation$Login.fromJson(data);
 typedef OnMutationCompleted$Mutation$Login = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Login?,
@@ -374,27 +390,34 @@ typedef OnMutationCompleted$Mutation$Login = FutureOr<void> Function(
 
 class Options$Mutation$Login extends graphql.MutationOptions<Mutation$Login> {
   Options$Mutation$Login({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$Login variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Login? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$Login? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$Login>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$Login(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationLogin,
           parserFn: _parserFn$Mutation$Login,
         );
@@ -403,36 +426,52 @@ class Options$Mutation$Login extends graphql.MutationOptions<Mutation$Login> {
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Login extends graphql.WatchQueryOptions<Mutation$Login> {
+class WatchOptions$Mutation$Login
+    extends graphql.WatchQueryOptions<Mutation$Login> {
   WatchOptions$Mutation$Login({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$Login variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Login? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationLogin,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$Login,
         );
 }
 
 extension ClientExtension$Mutation$Login on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Login>> mutate$Login(Options$Mutation$Login options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$Login> watchMutation$Login(WatchOptions$Mutation$Login options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$Login>> mutate$Login(
+          Options$Mutation$Login options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$Login> watchMutation$Login(
+          WatchOptions$Mutation$Login options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$Login$login {
@@ -451,7 +490,10 @@ class Mutation$Login$login {
     return Mutation$Login$login(
       restToken: (l$restToken as String?),
       token: (l$token as String?),
-      user: l$user == null ? null : Mutation$Login$login$user.fromJson((l$user as Map<String, dynamic>)),
+      user: l$user == null
+          ? null
+          : Mutation$Login$login$user.fromJson(
+              (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -465,16 +507,16 @@ class Mutation$Login$login {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$restToken = restToken;
-    resultData['restToken'] = l$restToken;
+    _resultData['restToken'] = l$restToken;
     final l$token = token;
-    resultData['token'] = l$token;
+    _resultData['token'] = l$token;
     final l$user = user;
-    resultData['user'] = l$user?.toJson();
+    _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -524,7 +566,8 @@ class Mutation$Login$login {
 }
 
 extension UtilityExtension$Mutation$Login$login on Mutation$Login$login {
-  CopyWith$Mutation$Login$login<Mutation$Login$login> get copyWith => CopyWith$Mutation$Login$login(
+  CopyWith$Mutation$Login$login<Mutation$Login$login> get copyWith =>
+      CopyWith$Mutation$Login$login(
         this,
         (i) => i,
       );
@@ -536,7 +579,8 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
     TRes Function(Mutation$Login$login) then,
   ) = _CopyWithImpl$Mutation$Login$login;
 
-  factory CopyWith$Mutation$Login$login.stub(TRes res) = _CopyWithStubImpl$Mutation$Login$login;
+  factory CopyWith$Mutation$Login$login.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Login$login;
 
   TRes call({
     String? restToken,
@@ -547,7 +591,8 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
   CopyWith$Mutation$Login$login$user<TRes> get user;
 }
 
-class _CopyWithImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Login$login<TRes> {
+class _CopyWithImpl$Mutation$Login$login<TRes>
+    implements CopyWith$Mutation$Login$login<TRes> {
   _CopyWithImpl$Mutation$Login$login(
     this._instance,
     this._then,
@@ -559,7 +604,6 @@ class _CopyWithImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Logi
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? restToken = _undefined,
     Object? token = _undefined,
@@ -567,25 +611,32 @@ class _CopyWithImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Logi
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login$login(
-        restToken: restToken == _undefined ? _instance.restToken : (restToken as String?),
+        restToken: restToken == _undefined
+            ? _instance.restToken
+            : (restToken as String?),
         token: token == _undefined ? _instance.token : (token as String?),
-        user: user == _undefined ? _instance.user : (user as Mutation$Login$login$user?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Mutation$Login$login$user?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$Login$login$user<TRes> get user {
     final local$user = _instance.user;
-    return local$user == null ? CopyWith$Mutation$Login$login$user.stub(_then(_instance)) : CopyWith$Mutation$Login$login$user(local$user, (e) => call(user: e));
+    return local$user == null
+        ? CopyWith$Mutation$Login$login$user.stub(_then(_instance))
+        : CopyWith$Mutation$Login$login$user(local$user, (e) => call(user: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Login$login<TRes> {
+class _CopyWithStubImpl$Mutation$Login$login<TRes>
+    implements CopyWith$Mutation$Login$login<TRes> {
   _CopyWithStubImpl$Mutation$Login$login(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? restToken,
     String? token,
@@ -594,8 +645,8 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$Login$login$user<TRes> get user => CopyWith$Mutation$Login$login$user.stub(_res);
+  CopyWith$Mutation$Login$login$user<TRes> get user =>
+      CopyWith$Mutation$Login$login$user.stub(_res);
 }
 
 class Mutation$Login$login$user {
@@ -623,14 +674,14 @@ class Mutation$Login$login$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$username = username;
-    resultData['username'] = l$username;
+    _resultData['username'] = l$username;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -650,7 +701,8 @@ class Mutation$Login$login$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$Login$login$user || runtimeType != other.runtimeType) {
+    if (other is! Mutation$Login$login$user ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -672,8 +724,10 @@ class Mutation$Login$login$user {
   }
 }
 
-extension UtilityExtension$Mutation$Login$login$user on Mutation$Login$login$user {
-  CopyWith$Mutation$Login$login$user<Mutation$Login$login$user> get copyWith => CopyWith$Mutation$Login$login$user(
+extension UtilityExtension$Mutation$Login$login$user
+    on Mutation$Login$login$user {
+  CopyWith$Mutation$Login$login$user<Mutation$Login$login$user> get copyWith =>
+      CopyWith$Mutation$Login$login$user(
         this,
         (i) => i,
       );
@@ -685,7 +739,8 @@ abstract class CopyWith$Mutation$Login$login$user<TRes> {
     TRes Function(Mutation$Login$login$user) then,
   ) = _CopyWithImpl$Mutation$Login$login$user;
 
-  factory CopyWith$Mutation$Login$login$user.stub(TRes res) = _CopyWithStubImpl$Mutation$Login$login$user;
+  factory CopyWith$Mutation$Login$login$user.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Login$login$user;
 
   TRes call({
     int? id,
@@ -694,7 +749,8 @@ abstract class CopyWith$Mutation$Login$login$user<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation$Login$login$user<TRes> {
+class _CopyWithImpl$Mutation$Login$login$user<TRes>
+    implements CopyWith$Mutation$Login$login$user<TRes> {
   _CopyWithImpl$Mutation$Login$login$user(
     this._instance,
     this._then,
@@ -706,7 +762,6 @@ class _CopyWithImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? username = _undefined,
@@ -714,17 +769,20 @@ class _CopyWithImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation
   }) =>
       _then(Mutation$Login$login$user(
         id: id == _undefined ? _instance.id : (id as int?),
-        username: username == _undefined ? _instance.username : (username as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation$Login$login$user<TRes> {
+class _CopyWithStubImpl$Mutation$Login$login$user<TRes>
+    implements CopyWith$Mutation$Login$login$user<TRes> {
   _CopyWithStubImpl$Mutation$Login$login$user(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     int? id,
     String? username,
@@ -765,7 +823,8 @@ class Variables$Mutation$Register {
     }
     if (data.containsKey('dob')) {
       final l$dob = data['dob'];
-      result$data['dob'] = l$dob == null ? null : DateTime.parse((l$dob as String));
+      result$data['dob'] =
+          l$dob == null ? null : DateTime.parse((l$dob as String));
     }
     final l$email = data['email'];
     result$data['email'] = (l$email as String);
@@ -825,22 +884,25 @@ class Variables$Mutation$Register {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$Register<Variables$Mutation$Register> get copyWith => CopyWith$Variables$Mutation$Register(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$Register<Variables$Mutation$Register>
+      get copyWith => CopyWith$Variables$Mutation$Register(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$Register || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$Register ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
-    if (_$data.containsKey('displayName') != other._$data.containsKey('displayName')) {
+    if (_$data.containsKey('displayName') !=
+        other._$data.containsKey('displayName')) {
       return false;
     }
     if (l$displayName != lOther$displayName) {
@@ -916,7 +978,8 @@ abstract class CopyWith$Variables$Mutation$Register<TRes> {
     TRes Function(Variables$Mutation$Register) then,
   ) = _CopyWithImpl$Variables$Mutation$Register;
 
-  factory CopyWith$Variables$Mutation$Register.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$Register;
+  factory CopyWith$Variables$Mutation$Register.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$Register;
 
   TRes call({
     String? displayName,
@@ -930,7 +993,8 @@ abstract class CopyWith$Variables$Mutation$Register<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variables$Mutation$Register<TRes> {
+class _CopyWithImpl$Variables$Mutation$Register<TRes>
+    implements CopyWith$Variables$Mutation$Register<TRes> {
   _CopyWithImpl$Variables$Mutation$Register(
     this._instance,
     this._then,
@@ -942,7 +1006,6 @@ class _CopyWithImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variab
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? displayName = _undefined,
     Object? dob = _undefined,
@@ -958,20 +1021,25 @@ class _CopyWithImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variab
         if (displayName != _undefined) 'displayName': (displayName as String?),
         if (dob != _undefined) 'dob': (dob as DateTime?),
         if (email != _undefined && email != null) 'email': (email as String),
-        if (firstName != _undefined && firstName != null) 'firstName': (firstName as String),
-        if (lastName != _undefined && lastName != null) 'lastName': (lastName as String),
-        if (password1 != _undefined && password1 != null) 'password1': (password1 as String),
-        if (password2 != _undefined && password2 != null) 'password2': (password2 as String),
-        if (username != _undefined && username != null) 'username': (username as String),
+        if (firstName != _undefined && firstName != null)
+          'firstName': (firstName as String),
+        if (lastName != _undefined && lastName != null)
+          'lastName': (lastName as String),
+        if (password1 != _undefined && password1 != null)
+          'password1': (password1 as String),
+        if (password2 != _undefined && password2 != null)
+          'password2': (password2 as String),
+        if (username != _undefined && username != null)
+          'username': (username as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variables$Mutation$Register<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$Register<TRes>
+    implements CopyWith$Variables$Mutation$Register<TRes> {
   _CopyWithStubImpl$Variables$Mutation$Register(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? displayName,
     DateTime? dob,
@@ -995,7 +1063,10 @@ class Mutation$Register {
     final l$register = json['register'];
     final l$$__typename = json['__typename'];
     return Mutation$Register(
-      register: l$register == null ? null : Mutation$Register$register.fromJson((l$register as Map<String, dynamic>)),
+      register: l$register == null
+          ? null
+          : Mutation$Register$register.fromJson(
+              (l$register as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1005,12 +1076,12 @@ class Mutation$Register {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$register = register;
-    resultData['register'] = l$register?.toJson();
+    _resultData['register'] = l$register?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1046,7 +1117,8 @@ class Mutation$Register {
 }
 
 extension UtilityExtension$Mutation$Register on Mutation$Register {
-  CopyWith$Mutation$Register<Mutation$Register> get copyWith => CopyWith$Mutation$Register(
+  CopyWith$Mutation$Register<Mutation$Register> get copyWith =>
+      CopyWith$Mutation$Register(
         this,
         (i) => i,
       );
@@ -1058,7 +1130,8 @@ abstract class CopyWith$Mutation$Register<TRes> {
     TRes Function(Mutation$Register) then,
   ) = _CopyWithImpl$Mutation$Register;
 
-  factory CopyWith$Mutation$Register.stub(TRes res) = _CopyWithStubImpl$Mutation$Register;
+  factory CopyWith$Mutation$Register.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Register;
 
   TRes call({
     Mutation$Register$register? register,
@@ -1067,7 +1140,8 @@ abstract class CopyWith$Mutation$Register<TRes> {
   CopyWith$Mutation$Register$register<TRes> get register;
 }
 
-class _CopyWithImpl$Mutation$Register<TRes> implements CopyWith$Mutation$Register<TRes> {
+class _CopyWithImpl$Mutation$Register<TRes>
+    implements CopyWith$Mutation$Register<TRes> {
   _CopyWithImpl$Mutation$Register(
     this._instance,
     this._then,
@@ -1079,37 +1153,42 @@ class _CopyWithImpl$Mutation$Register<TRes> implements CopyWith$Mutation$Registe
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? register = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Register(
-        register: register == _undefined ? _instance.register : (register as Mutation$Register$register?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        register: register == _undefined
+            ? _instance.register
+            : (register as Mutation$Register$register?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$Register$register<TRes> get register {
     final local$register = _instance.register;
-    return local$register == null ? CopyWith$Mutation$Register$register.stub(_then(_instance)) : CopyWith$Mutation$Register$register(local$register, (e) => call(register: e));
+    return local$register == null
+        ? CopyWith$Mutation$Register$register.stub(_then(_instance))
+        : CopyWith$Mutation$Register$register(
+            local$register, (e) => call(register: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Register<TRes> implements CopyWith$Mutation$Register<TRes> {
+class _CopyWithStubImpl$Mutation$Register<TRes>
+    implements CopyWith$Mutation$Register<TRes> {
   _CopyWithStubImpl$Mutation$Register(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$Register$register? register,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$Register$register<TRes> get register => CopyWith$Mutation$Register$register.stub(_res);
+  CopyWith$Mutation$Register$register<TRes> get register =>
+      CopyWith$Mutation$Register$register.stub(_res);
 }
 
 const documentNodeMutationRegister = DocumentNode(definitions: [
@@ -1264,35 +1343,44 @@ const documentNodeMutationRegister = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Register _parserFn$Mutation$Register(Map<String, dynamic> data) => Mutation$Register.fromJson(data);
+Mutation$Register _parserFn$Mutation$Register(Map<String, dynamic> data) =>
+    Mutation$Register.fromJson(data);
 typedef OnMutationCompleted$Mutation$Register = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Register?,
 );
 
-class Options$Mutation$Register extends graphql.MutationOptions<Mutation$Register> {
+class Options$Mutation$Register
+    extends graphql.MutationOptions<Mutation$Register> {
   Options$Mutation$Register({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$Register variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Register? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$Register? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$Register>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$Register(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationRegister,
           parserFn: _parserFn$Mutation$Register,
         );
@@ -1301,36 +1389,52 @@ class Options$Mutation$Register extends graphql.MutationOptions<Mutation$Registe
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Register extends graphql.WatchQueryOptions<Mutation$Register> {
+class WatchOptions$Mutation$Register
+    extends graphql.WatchQueryOptions<Mutation$Register> {
   WatchOptions$Mutation$Register({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$Register variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Register? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationRegister,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$Register,
         );
 }
 
 extension ClientExtension$Mutation$Register on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Register>> mutate$Register(Options$Mutation$Register options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$Register> watchMutation$Register(WatchOptions$Mutation$Register options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$Register>> mutate$Register(
+          Options$Mutation$Register options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$Register> watchMutation$Register(
+          WatchOptions$Mutation$Register options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$Register$register {
@@ -1358,14 +1462,14 @@ class Mutation$Register$register {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$errors = errors;
-    resultData['errors'] = l$errors;
+    _resultData['errors'] = l$errors;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1385,7 +1489,8 @@ class Mutation$Register$register {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$Register$register || runtimeType != other.runtimeType) {
+    if (other is! Mutation$Register$register ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -1407,11 +1512,13 @@ class Mutation$Register$register {
   }
 }
 
-extension UtilityExtension$Mutation$Register$register on Mutation$Register$register {
-  CopyWith$Mutation$Register$register<Mutation$Register$register> get copyWith => CopyWith$Mutation$Register$register(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$Register$register
+    on Mutation$Register$register {
+  CopyWith$Mutation$Register$register<Mutation$Register$register>
+      get copyWith => CopyWith$Mutation$Register$register(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$Register$register<TRes> {
@@ -1420,7 +1527,8 @@ abstract class CopyWith$Mutation$Register$register<TRes> {
     TRes Function(Mutation$Register$register) then,
   ) = _CopyWithImpl$Mutation$Register$register;
 
-  factory CopyWith$Mutation$Register$register.stub(TRes res) = _CopyWithStubImpl$Mutation$Register$register;
+  factory CopyWith$Mutation$Register$register.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Register$register;
 
   TRes call({
     bool? success,
@@ -1429,7 +1537,8 @@ abstract class CopyWith$Mutation$Register$register<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Register$register<TRes> implements CopyWith$Mutation$Register$register<TRes> {
+class _CopyWithImpl$Mutation$Register$register<TRes>
+    implements CopyWith$Mutation$Register$register<TRes> {
   _CopyWithImpl$Mutation$Register$register(
     this._instance,
     this._then,
@@ -1441,7 +1550,6 @@ class _CopyWithImpl$Mutation$Register$register<TRes> implements CopyWith$Mutatio
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? errors = _undefined,
@@ -1449,17 +1557,21 @@ class _CopyWithImpl$Mutation$Register$register<TRes> implements CopyWith$Mutatio
   }) =>
       _then(Mutation$Register$register(
         success: success == _undefined ? _instance.success : (success as bool?),
-        errors: errors == _undefined ? _instance.errors : (errors as Map<String, dynamic>?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        errors: errors == _undefined
+            ? _instance.errors
+            : (errors as Map<String, dynamic>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Register$register<TRes> implements CopyWith$Mutation$Register$register<TRes> {
+class _CopyWithStubImpl$Mutation$Register$register<TRes>
+    implements CopyWith$Mutation$Register$register<TRes> {
   _CopyWithStubImpl$Mutation$Register$register(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     Map<String, dynamic>? errors,
@@ -1478,7 +1590,9 @@ class Mutation$Logout {
     final l$logout = json['logout'];
     final l$$__typename = json['__typename'];
     return Mutation$Logout(
-      logout: l$logout == null ? null : Mutation$Logout$logout.fromJson((l$logout as Map<String, dynamic>)),
+      logout: l$logout == null
+          ? null
+          : Mutation$Logout$logout.fromJson((l$logout as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1488,12 +1602,12 @@ class Mutation$Logout {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$logout = logout;
-    resultData['logout'] = l$logout?.toJson();
+    _resultData['logout'] = l$logout?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1529,7 +1643,8 @@ class Mutation$Logout {
 }
 
 extension UtilityExtension$Mutation$Logout on Mutation$Logout {
-  CopyWith$Mutation$Logout<Mutation$Logout> get copyWith => CopyWith$Mutation$Logout(
+  CopyWith$Mutation$Logout<Mutation$Logout> get copyWith =>
+      CopyWith$Mutation$Logout(
         this,
         (i) => i,
       );
@@ -1541,7 +1656,8 @@ abstract class CopyWith$Mutation$Logout<TRes> {
     TRes Function(Mutation$Logout) then,
   ) = _CopyWithImpl$Mutation$Logout;
 
-  factory CopyWith$Mutation$Logout.stub(TRes res) = _CopyWithStubImpl$Mutation$Logout;
+  factory CopyWith$Mutation$Logout.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Logout;
 
   TRes call({
     Mutation$Logout$logout? logout,
@@ -1550,7 +1666,8 @@ abstract class CopyWith$Mutation$Logout<TRes> {
   CopyWith$Mutation$Logout$logout<TRes> get logout;
 }
 
-class _CopyWithImpl$Mutation$Logout<TRes> implements CopyWith$Mutation$Logout<TRes> {
+class _CopyWithImpl$Mutation$Logout<TRes>
+    implements CopyWith$Mutation$Logout<TRes> {
   _CopyWithImpl$Mutation$Logout(
     this._instance,
     this._then,
@@ -1562,37 +1679,41 @@ class _CopyWithImpl$Mutation$Logout<TRes> implements CopyWith$Mutation$Logout<TR
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? logout = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Logout(
-        logout: logout == _undefined ? _instance.logout : (logout as Mutation$Logout$logout?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        logout: logout == _undefined
+            ? _instance.logout
+            : (logout as Mutation$Logout$logout?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$Logout$logout<TRes> get logout {
     final local$logout = _instance.logout;
-    return local$logout == null ? CopyWith$Mutation$Logout$logout.stub(_then(_instance)) : CopyWith$Mutation$Logout$logout(local$logout, (e) => call(logout: e));
+    return local$logout == null
+        ? CopyWith$Mutation$Logout$logout.stub(_then(_instance))
+        : CopyWith$Mutation$Logout$logout(local$logout, (e) => call(logout: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Logout<TRes> implements CopyWith$Mutation$Logout<TRes> {
+class _CopyWithStubImpl$Mutation$Logout<TRes>
+    implements CopyWith$Mutation$Logout<TRes> {
   _CopyWithStubImpl$Mutation$Logout(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$Logout$logout? logout,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$Logout$logout<TRes> get logout => CopyWith$Mutation$Logout$logout.stub(_res);
+  CopyWith$Mutation$Logout$logout<TRes> get logout =>
+      CopyWith$Mutation$Logout$logout.stub(_res);
 }
 
 const documentNodeMutationLogout = DocumentNode(definitions: [
@@ -1634,7 +1755,8 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Logout _parserFn$Mutation$Logout(Map<String, dynamic> data) => Mutation$Logout.fromJson(data);
+Mutation$Logout _parserFn$Mutation$Logout(Map<String, dynamic> data) =>
+    Mutation$Logout.fromJson(data);
 typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Logout?,
@@ -1642,25 +1764,32 @@ typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
 
 class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
   Options$Mutation$Logout({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Logout? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$Logout? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$Logout>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$Logout(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationLogout,
           parserFn: _parserFn$Mutation$Logout,
         );
@@ -1669,34 +1798,50 @@ class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Logout extends graphql.WatchQueryOptions<Mutation$Logout> {
+class WatchOptions$Mutation$Logout
+    extends graphql.WatchQueryOptions<Mutation$Logout> {
   WatchOptions$Mutation$Logout({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$Logout? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationLogout,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$Logout,
         );
 }
 
 extension ClientExtension$Mutation$Logout on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Logout>> mutate$Logout([Options$Mutation$Logout? options]) async => await mutate(options ?? Options$Mutation$Logout());
-  graphql.ObservableQuery<Mutation$Logout> watchMutation$Logout([WatchOptions$Mutation$Logout? options]) => watchMutation(options ?? WatchOptions$Mutation$Logout());
+  Future<graphql.QueryResult<Mutation$Logout>> mutate$Logout(
+          [Options$Mutation$Logout? options]) async =>
+      await this.mutate(options ?? Options$Mutation$Logout());
+  graphql.ObservableQuery<Mutation$Logout> watchMutation$Logout(
+          [WatchOptions$Mutation$Logout? options]) =>
+      this.watchMutation(options ?? WatchOptions$Mutation$Logout());
 }
 
 class Mutation$Logout$logout {
@@ -1719,12 +1864,12 @@ class Mutation$Logout$logout {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$message = message;
-    resultData['message'] = l$message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1760,7 +1905,8 @@ class Mutation$Logout$logout {
 }
 
 extension UtilityExtension$Mutation$Logout$logout on Mutation$Logout$logout {
-  CopyWith$Mutation$Logout$logout<Mutation$Logout$logout> get copyWith => CopyWith$Mutation$Logout$logout(
+  CopyWith$Mutation$Logout$logout<Mutation$Logout$logout> get copyWith =>
+      CopyWith$Mutation$Logout$logout(
         this,
         (i) => i,
       );
@@ -1772,7 +1918,8 @@ abstract class CopyWith$Mutation$Logout$logout<TRes> {
     TRes Function(Mutation$Logout$logout) then,
   ) = _CopyWithImpl$Mutation$Logout$logout;
 
-  factory CopyWith$Mutation$Logout$logout.stub(TRes res) = _CopyWithStubImpl$Mutation$Logout$logout;
+  factory CopyWith$Mutation$Logout$logout.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$Logout$logout;
 
   TRes call({
     String? message,
@@ -1780,7 +1927,8 @@ abstract class CopyWith$Mutation$Logout$logout<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Logout$logout<TRes> implements CopyWith$Mutation$Logout$logout<TRes> {
+class _CopyWithImpl$Mutation$Logout$logout<TRes>
+    implements CopyWith$Mutation$Logout$logout<TRes> {
   _CopyWithImpl$Mutation$Logout$logout(
     this._instance,
     this._then,
@@ -1792,23 +1940,25 @@ class _CopyWithImpl$Mutation$Logout$logout<TRes> implements CopyWith$Mutation$Lo
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? message = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Logout$logout(
-        message: message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Logout$logout<TRes> implements CopyWith$Mutation$Logout$logout<TRes> {
+class _CopyWithStubImpl$Mutation$Logout$logout<TRes>
+    implements CopyWith$Mutation$Logout$logout<TRes> {
   _CopyWithStubImpl$Mutation$Logout$logout(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? message,
     String? $__typename,
@@ -1864,17 +2014,19 @@ class Variables$Mutation$TokenAuth {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$TokenAuth<Variables$Mutation$TokenAuth> get copyWith => CopyWith$Variables$Mutation$TokenAuth(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$TokenAuth<Variables$Mutation$TokenAuth>
+      get copyWith => CopyWith$Variables$Mutation$TokenAuth(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$TokenAuth || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$TokenAuth ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -1917,7 +2069,8 @@ abstract class CopyWith$Variables$Mutation$TokenAuth<TRes> {
     TRes Function(Variables$Mutation$TokenAuth) then,
   ) = _CopyWithImpl$Variables$Mutation$TokenAuth;
 
-  factory CopyWith$Variables$Mutation$TokenAuth.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$TokenAuth;
+  factory CopyWith$Variables$Mutation$TokenAuth.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$TokenAuth;
 
   TRes call({
     String? email,
@@ -1926,7 +2079,8 @@ abstract class CopyWith$Variables$Mutation$TokenAuth<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
+class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes>
+    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
   _CopyWithImpl$Variables$Mutation$TokenAuth(
     this._instance,
     this._then,
@@ -1938,7 +2092,6 @@ class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Varia
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? email = _undefined,
     Object? password = _undefined,
@@ -1947,17 +2100,19 @@ class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Varia
       _then(Variables$Mutation$TokenAuth._({
         ..._instance._$data,
         if (email != _undefined) 'email': (email as String?),
-        if (password != _undefined && password != null) 'password': (password as String),
-        if (username != _undefined && username != null) 'username': (username as String),
+        if (password != _undefined && password != null)
+          'password': (password as String),
+        if (username != _undefined && username != null)
+          'username': (username as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$TokenAuth<TRes>
+    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
   _CopyWithStubImpl$Variables$Mutation$TokenAuth(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? email,
     String? password,
@@ -1976,7 +2131,10 @@ class Mutation$TokenAuth {
     final l$tokenAuth = json['tokenAuth'];
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth(
-      tokenAuth: l$tokenAuth == null ? null : Mutation$TokenAuth$tokenAuth.fromJson((l$tokenAuth as Map<String, dynamic>)),
+      tokenAuth: l$tokenAuth == null
+          ? null
+          : Mutation$TokenAuth$tokenAuth.fromJson(
+              (l$tokenAuth as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1986,12 +2144,12 @@ class Mutation$TokenAuth {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$tokenAuth = tokenAuth;
-    resultData['tokenAuth'] = l$tokenAuth?.toJson();
+    _resultData['tokenAuth'] = l$tokenAuth?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2027,7 +2185,8 @@ class Mutation$TokenAuth {
 }
 
 extension UtilityExtension$Mutation$TokenAuth on Mutation$TokenAuth {
-  CopyWith$Mutation$TokenAuth<Mutation$TokenAuth> get copyWith => CopyWith$Mutation$TokenAuth(
+  CopyWith$Mutation$TokenAuth<Mutation$TokenAuth> get copyWith =>
+      CopyWith$Mutation$TokenAuth(
         this,
         (i) => i,
       );
@@ -2039,7 +2198,8 @@ abstract class CopyWith$Mutation$TokenAuth<TRes> {
     TRes Function(Mutation$TokenAuth) then,
   ) = _CopyWithImpl$Mutation$TokenAuth;
 
-  factory CopyWith$Mutation$TokenAuth.stub(TRes res) = _CopyWithStubImpl$Mutation$TokenAuth;
+  factory CopyWith$Mutation$TokenAuth.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$TokenAuth;
 
   TRes call({
     Mutation$TokenAuth$tokenAuth? tokenAuth,
@@ -2048,7 +2208,8 @@ abstract class CopyWith$Mutation$TokenAuth<TRes> {
   CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth;
 }
 
-class _CopyWithImpl$Mutation$TokenAuth<TRes> implements CopyWith$Mutation$TokenAuth<TRes> {
+class _CopyWithImpl$Mutation$TokenAuth<TRes>
+    implements CopyWith$Mutation$TokenAuth<TRes> {
   _CopyWithImpl$Mutation$TokenAuth(
     this._instance,
     this._then,
@@ -2060,37 +2221,42 @@ class _CopyWithImpl$Mutation$TokenAuth<TRes> implements CopyWith$Mutation$TokenA
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? tokenAuth = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TokenAuth(
-        tokenAuth: tokenAuth == _undefined ? _instance.tokenAuth : (tokenAuth as Mutation$TokenAuth$tokenAuth?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        tokenAuth: tokenAuth == _undefined
+            ? _instance.tokenAuth
+            : (tokenAuth as Mutation$TokenAuth$tokenAuth?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth {
     final local$tokenAuth = _instance.tokenAuth;
-    return local$tokenAuth == null ? CopyWith$Mutation$TokenAuth$tokenAuth.stub(_then(_instance)) : CopyWith$Mutation$TokenAuth$tokenAuth(local$tokenAuth, (e) => call(tokenAuth: e));
+    return local$tokenAuth == null
+        ? CopyWith$Mutation$TokenAuth$tokenAuth.stub(_then(_instance))
+        : CopyWith$Mutation$TokenAuth$tokenAuth(
+            local$tokenAuth, (e) => call(tokenAuth: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth<TRes> implements CopyWith$Mutation$TokenAuth<TRes> {
+class _CopyWithStubImpl$Mutation$TokenAuth<TRes>
+    implements CopyWith$Mutation$TokenAuth<TRes> {
   _CopyWithStubImpl$Mutation$TokenAuth(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$TokenAuth$tokenAuth? tokenAuth,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth => CopyWith$Mutation$TokenAuth$tokenAuth.stub(_res);
+  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth =>
+      CopyWith$Mutation$TokenAuth$tokenAuth.stub(_res);
 }
 
 const documentNodeMutationTokenAuth = DocumentNode(definitions: [
@@ -2187,35 +2353,44 @@ const documentNodeMutationTokenAuth = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$TokenAuth _parserFn$Mutation$TokenAuth(Map<String, dynamic> data) => Mutation$TokenAuth.fromJson(data);
+Mutation$TokenAuth _parserFn$Mutation$TokenAuth(Map<String, dynamic> data) =>
+    Mutation$TokenAuth.fromJson(data);
 typedef OnMutationCompleted$Mutation$TokenAuth = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$TokenAuth?,
 );
 
-class Options$Mutation$TokenAuth extends graphql.MutationOptions<Mutation$TokenAuth> {
+class Options$Mutation$TokenAuth
+    extends graphql.MutationOptions<Mutation$TokenAuth> {
   Options$Mutation$TokenAuth({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$TokenAuth variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$TokenAuth? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$TokenAuth? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$TokenAuth>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$TokenAuth(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationTokenAuth,
           parserFn: _parserFn$Mutation$TokenAuth,
         );
@@ -2224,36 +2399,52 @@ class Options$Mutation$TokenAuth extends graphql.MutationOptions<Mutation$TokenA
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$TokenAuth extends graphql.WatchQueryOptions<Mutation$TokenAuth> {
+class WatchOptions$Mutation$TokenAuth
+    extends graphql.WatchQueryOptions<Mutation$TokenAuth> {
   WatchOptions$Mutation$TokenAuth({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$TokenAuth variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$TokenAuth? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationTokenAuth,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$TokenAuth,
         );
 }
 
 extension ClientExtension$Mutation$TokenAuth on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$TokenAuth>> mutate$TokenAuth(Options$Mutation$TokenAuth options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$TokenAuth> watchMutation$TokenAuth(WatchOptions$Mutation$TokenAuth options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$TokenAuth>> mutate$TokenAuth(
+          Options$Mutation$TokenAuth options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$TokenAuth> watchMutation$TokenAuth(
+          WatchOptions$Mutation$TokenAuth options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$TokenAuth$tokenAuth {
@@ -2271,7 +2462,7 @@ class Mutation$TokenAuth$tokenAuth {
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth$tokenAuth(
       token: (l$token as String),
-      payload: (l$payload as dynamic),
+      payload: (l$payload as dynamic?),
       refreshExpiresIn: (l$refreshExpiresIn as int?),
       $__typename: (l$$__typename as String),
     );
@@ -2279,23 +2470,23 @@ class Mutation$TokenAuth$tokenAuth {
 
   final String token;
 
-  final dynamic payload;
+  final dynamic? payload;
 
   final int? refreshExpiresIn;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$token = token;
-    resultData['token'] = l$token;
+    _resultData['token'] = l$token;
     final l$payload = payload;
-    resultData['payload'] = l$payload;
+    _resultData['payload'] = l$payload;
     final l$refreshExpiresIn = refreshExpiresIn;
-    resultData['refreshExpiresIn'] = l$refreshExpiresIn;
+    _resultData['refreshExpiresIn'] = l$refreshExpiresIn;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2317,7 +2508,8 @@ class Mutation$TokenAuth$tokenAuth {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$TokenAuth$tokenAuth || runtimeType != other.runtimeType) {
+    if (other is! Mutation$TokenAuth$tokenAuth ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$token = token;
@@ -2344,11 +2536,13 @@ class Mutation$TokenAuth$tokenAuth {
   }
 }
 
-extension UtilityExtension$Mutation$TokenAuth$tokenAuth on Mutation$TokenAuth$tokenAuth {
-  CopyWith$Mutation$TokenAuth$tokenAuth<Mutation$TokenAuth$tokenAuth> get copyWith => CopyWith$Mutation$TokenAuth$tokenAuth(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$TokenAuth$tokenAuth
+    on Mutation$TokenAuth$tokenAuth {
+  CopyWith$Mutation$TokenAuth$tokenAuth<Mutation$TokenAuth$tokenAuth>
+      get copyWith => CopyWith$Mutation$TokenAuth$tokenAuth(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
@@ -2357,17 +2551,19 @@ abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
     TRes Function(Mutation$TokenAuth$tokenAuth) then,
   ) = _CopyWithImpl$Mutation$TokenAuth$tokenAuth;
 
-  factory CopyWith$Mutation$TokenAuth$tokenAuth.stub(TRes res) = _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth;
+  factory CopyWith$Mutation$TokenAuth$tokenAuth.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth;
 
   TRes call({
     String? token,
-    dynamic payload,
+    dynamic? payload,
     int? refreshExpiresIn,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
+class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
+    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
   _CopyWithImpl$Mutation$TokenAuth$tokenAuth(
     this._instance,
     this._then,
@@ -2379,7 +2575,6 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutat
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? token = _undefined,
     Object? payload = _undefined,
@@ -2387,22 +2582,29 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutat
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TokenAuth$tokenAuth(
-        token: token == _undefined || token == null ? _instance.token : (token as String),
-        payload: payload == _undefined ? _instance.payload : (payload as dynamic),
-        refreshExpiresIn: refreshExpiresIn == _undefined ? _instance.refreshExpiresIn : (refreshExpiresIn as int?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        token: token == _undefined || token == null
+            ? _instance.token
+            : (token as String),
+        payload:
+            payload == _undefined ? _instance.payload : (payload as dynamic?),
+        refreshExpiresIn: refreshExpiresIn == _undefined
+            ? _instance.refreshExpiresIn
+            : (refreshExpiresIn as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
+class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
+    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
   _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? token,
-    dynamic payload,
+    dynamic? payload,
     int? refreshExpiresIn,
     String? $__typename,
   }) =>
@@ -2453,17 +2655,25 @@ class Variables$Mutation$CreateProduct {
     result$data['category'] = (l$category as int);
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue((l$condition as String));
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
+              (l$condition as String));
     }
     final l$description = data['description'];
     result$data['description'] = (l$description as String);
     final l$imageUrl = data['imageUrl'];
-    result$data['imageUrl'] = (l$imageUrl as List<dynamic>).map((e) => e == null ? null : Input$ImagesInputType.fromJson((e as Map<String, dynamic>))).toList();
+    result$data['imageUrl'] = (l$imageUrl as List<dynamic>)
+        .map((e) => e == null
+            ? null
+            : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
+        .toList();
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] = l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] =
+          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     final l$subCategory = data['subCategory'];
     result$data['subCategory'] = (l$subCategory as int);
@@ -2471,7 +2681,9 @@ class Variables$Mutation$CreateProduct {
     result$data['name'] = (l$name as String);
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
-      result$data['parcelSize'] = l$parcelSize == null ? null : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
     }
     if (data.containsKey('discount')) {
       final l$discount = data['discount'];
@@ -2479,7 +2691,8 @@ class Variables$Mutation$CreateProduct {
     }
     if (data.containsKey('color')) {
       final l$color = data['color'];
-      result$data['color'] = (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+      result$data['color'] =
+          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
     }
     if (data.containsKey('brand')) {
       final l$brand = data['brand'];
@@ -2487,11 +2700,13 @@ class Variables$Mutation$CreateProduct {
     }
     if (data.containsKey('materials')) {
       final l$materials = data['materials'];
-      result$data['materials'] = (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+      result$data['materials'] =
+          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
-      result$data['style'] = l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+      result$data['style'] =
+          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
     }
     if (data.containsKey('customBrand')) {
       final l$customBrand = data['customBrand'];
@@ -2504,11 +2719,13 @@ class Variables$Mutation$CreateProduct {
 
   int get category => (_$data['category'] as int);
 
-  EnumImport$ConditionEnum.ConditionsEnum? get condition => (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
+      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   String get description => (_$data['description'] as String);
 
-  List<Input$ImagesInputType?> get imageUrl => (_$data['imageUrl'] as List<Input$ImagesInputType?>);
+  List<Input$ImagesInputType?> get imageUrl =>
+      (_$data['imageUrl'] as List<Input$ImagesInputType?>);
 
   double get price => (_$data['price'] as double);
 
@@ -2518,7 +2735,8 @@ class Variables$Mutation$CreateProduct {
 
   String get name => (_$data['name'] as String);
 
-  Enum$ParcelSizeEnum? get parcelSize => (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+  Enum$ParcelSizeEnum? get parcelSize =>
+      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
   double? get discount => (_$data['discount'] as double?);
 
@@ -2538,7 +2756,10 @@ class Variables$Mutation$CreateProduct {
     result$data['category'] = l$category;
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(l$condition);
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
+              l$condition);
     }
     final l$description = description;
     result$data['description'] = l$description;
@@ -2548,7 +2769,8 @@ class Variables$Mutation$CreateProduct {
     result$data['price'] = l$price;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] = l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+      result$data['size'] =
+          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     final l$subCategory = subCategory;
     result$data['subCategory'] = l$subCategory;
@@ -2556,7 +2778,9 @@ class Variables$Mutation$CreateProduct {
     result$data['name'] = l$name;
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
-      result$data['parcelSize'] = l$parcelSize == null ? null : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
     }
     if (_$data.containsKey('discount')) {
       final l$discount = discount;
@@ -2576,7 +2800,8 @@ class Variables$Mutation$CreateProduct {
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
-      result$data['style'] = l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+      result$data['style'] =
+          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     if (_$data.containsKey('customBrand')) {
       final l$customBrand = customBrand;
@@ -2585,17 +2810,19 @@ class Variables$Mutation$CreateProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CreateProduct<Variables$Mutation$CreateProduct> get copyWith => CopyWith$Variables$Mutation$CreateProduct(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$CreateProduct<Variables$Mutation$CreateProduct>
+      get copyWith => CopyWith$Variables$Mutation$CreateProduct(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CreateProduct || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CreateProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$category = category;
@@ -2605,7 +2832,8 @@ class Variables$Mutation$CreateProduct {
     }
     final l$condition = condition;
     final lOther$condition = other.condition;
-    if (_$data.containsKey('condition') != other._$data.containsKey('condition')) {
+    if (_$data.containsKey('condition') !=
+        other._$data.containsKey('condition')) {
       return false;
     }
     if (l$condition != lOther$condition) {
@@ -2653,7 +2881,8 @@ class Variables$Mutation$CreateProduct {
     }
     final l$parcelSize = parcelSize;
     final lOther$parcelSize = other.parcelSize;
-    if (_$data.containsKey('parcelSize') != other._$data.containsKey('parcelSize')) {
+    if (_$data.containsKey('parcelSize') !=
+        other._$data.containsKey('parcelSize')) {
       return false;
     }
     if (l$parcelSize != lOther$parcelSize) {
@@ -2661,7 +2890,8 @@ class Variables$Mutation$CreateProduct {
     }
     final l$discount = discount;
     final lOther$discount = other.discount;
-    if (_$data.containsKey('discount') != other._$data.containsKey('discount')) {
+    if (_$data.containsKey('discount') !=
+        other._$data.containsKey('discount')) {
       return false;
     }
     if (l$discount != lOther$discount) {
@@ -2696,7 +2926,8 @@ class Variables$Mutation$CreateProduct {
     }
     final l$materials = materials;
     final lOther$materials = other.materials;
-    if (_$data.containsKey('materials') != other._$data.containsKey('materials')) {
+    if (_$data.containsKey('materials') !=
+        other._$data.containsKey('materials')) {
       return false;
     }
     if (l$materials != null && lOther$materials != null) {
@@ -2723,7 +2954,8 @@ class Variables$Mutation$CreateProduct {
     }
     final l$customBrand = customBrand;
     final lOther$customBrand = other.customBrand;
-    if (_$data.containsKey('customBrand') != other._$data.containsKey('customBrand')) {
+    if (_$data.containsKey('customBrand') !=
+        other._$data.containsKey('customBrand')) {
       return false;
     }
     if (l$customBrand != lOther$customBrand) {
@@ -2783,7 +3015,8 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     TRes Function(Variables$Mutation$CreateProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$CreateProduct;
 
-  factory CopyWith$Variables$Mutation$CreateProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CreateProduct;
+  factory CopyWith$Variables$Mutation$CreateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CreateProduct;
 
   TRes call({
     int? category,
@@ -2804,7 +3037,8 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
+    implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$CreateProduct(
     this._instance,
     this._then,
@@ -2816,7 +3050,6 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$V
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? category = _undefined,
     Object? condition = _undefined,
@@ -2836,15 +3069,21 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$V
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
-        if (category != _undefined && category != null) 'category': (category as int),
-        if (condition != _undefined) 'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
-        if (description != _undefined && description != null) 'description': (description as String),
-        if (imageUrl != _undefined && imageUrl != null) 'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
+        if (category != _undefined && category != null)
+          'category': (category as int),
+        if (condition != _undefined)
+          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (description != _undefined && description != null)
+          'description': (description as String),
+        if (imageUrl != _undefined && imageUrl != null)
+          'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
         if (price != _undefined && price != null) 'price': (price as double),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
-        if (subCategory != _undefined && subCategory != null) 'subCategory': (subCategory as int),
+        if (subCategory != _undefined && subCategory != null)
+          'subCategory': (subCategory as int),
         if (name != _undefined && name != null) 'name': (name as String),
-        if (parcelSize != _undefined) 'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (parcelSize != _undefined)
+          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
@@ -2854,12 +3093,12 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$V
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
+    implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     int? category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
@@ -2890,7 +3129,10 @@ class Mutation$CreateProduct {
     final l$createProduct = json['createProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateProduct(
-      createProduct: l$createProduct == null ? null : Mutation$CreateProduct$createProduct.fromJson((l$createProduct as Map<String, dynamic>)),
+      createProduct: l$createProduct == null
+          ? null
+          : Mutation$CreateProduct$createProduct.fromJson(
+              (l$createProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2900,12 +3142,12 @@ class Mutation$CreateProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$createProduct = createProduct;
-    resultData['createProduct'] = l$createProduct?.toJson();
+    _resultData['createProduct'] = l$createProduct?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2941,7 +3183,8 @@ class Mutation$CreateProduct {
 }
 
 extension UtilityExtension$Mutation$CreateProduct on Mutation$CreateProduct {
-  CopyWith$Mutation$CreateProduct<Mutation$CreateProduct> get copyWith => CopyWith$Mutation$CreateProduct(
+  CopyWith$Mutation$CreateProduct<Mutation$CreateProduct> get copyWith =>
+      CopyWith$Mutation$CreateProduct(
         this,
         (i) => i,
       );
@@ -2953,7 +3196,8 @@ abstract class CopyWith$Mutation$CreateProduct<TRes> {
     TRes Function(Mutation$CreateProduct) then,
   ) = _CopyWithImpl$Mutation$CreateProduct;
 
-  factory CopyWith$Mutation$CreateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateProduct;
+  factory CopyWith$Mutation$CreateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateProduct;
 
   TRes call({
     Mutation$CreateProduct$createProduct? createProduct,
@@ -2962,7 +3206,8 @@ abstract class CopyWith$Mutation$CreateProduct<TRes> {
   CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct;
 }
 
-class _CopyWithImpl$Mutation$CreateProduct<TRes> implements CopyWith$Mutation$CreateProduct<TRes> {
+class _CopyWithImpl$Mutation$CreateProduct<TRes>
+    implements CopyWith$Mutation$CreateProduct<TRes> {
   _CopyWithImpl$Mutation$CreateProduct(
     this._instance,
     this._then,
@@ -2974,39 +3219,42 @@ class _CopyWithImpl$Mutation$CreateProduct<TRes> implements CopyWith$Mutation$Cr
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? createProduct = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateProduct(
-        createProduct: createProduct == _undefined ? _instance.createProduct : (createProduct as Mutation$CreateProduct$createProduct?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        createProduct: createProduct == _undefined
+            ? _instance.createProduct
+            : (createProduct as Mutation$CreateProduct$createProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct {
     final local$createProduct = _instance.createProduct;
     return local$createProduct == null
         ? CopyWith$Mutation$CreateProduct$createProduct.stub(_then(_instance))
-        : CopyWith$Mutation$CreateProduct$createProduct(local$createProduct, (e) => call(createProduct: e));
+        : CopyWith$Mutation$CreateProduct$createProduct(
+            local$createProduct, (e) => call(createProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateProduct<TRes> implements CopyWith$Mutation$CreateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$CreateProduct<TRes>
+    implements CopyWith$Mutation$CreateProduct<TRes> {
   _CopyWithStubImpl$Mutation$CreateProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$CreateProduct$createProduct? createProduct,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct => CopyWith$Mutation$CreateProduct$createProduct.stub(_res);
+  CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct =>
+      CopyWith$Mutation$CreateProduct$createProduct.stub(_res);
 }
 
 const documentNodeMutationCreateProduct = DocumentNode(definitions: [
@@ -3261,35 +3509,47 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CreateProduct _parserFn$Mutation$CreateProduct(Map<String, dynamic> data) => Mutation$CreateProduct.fromJson(data);
+Mutation$CreateProduct _parserFn$Mutation$CreateProduct(
+        Map<String, dynamic> data) =>
+    Mutation$CreateProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$CreateProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CreateProduct?,
 );
 
-class Options$Mutation$CreateProduct extends graphql.MutationOptions<Mutation$CreateProduct> {
+class Options$Mutation$CreateProduct
+    extends graphql.MutationOptions<Mutation$CreateProduct> {
   Options$Mutation$CreateProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$CreateProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateProduct? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$CreateProduct? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$CreateProduct>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$CreateProduct(data),
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$CreateProduct(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationCreateProduct,
           parserFn: _parserFn$Mutation$CreateProduct,
         );
@@ -3298,36 +3558,52 @@ class Options$Mutation$CreateProduct extends graphql.MutationOptions<Mutation$Cr
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CreateProduct extends graphql.WatchQueryOptions<Mutation$CreateProduct> {
+class WatchOptions$Mutation$CreateProduct
+    extends graphql.WatchQueryOptions<Mutation$CreateProduct> {
   WatchOptions$Mutation$CreateProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$CreateProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateProduct? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationCreateProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$CreateProduct,
         );
 }
 
 extension ClientExtension$Mutation$CreateProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreateProduct>> mutate$CreateProduct(Options$Mutation$CreateProduct options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$CreateProduct> watchMutation$CreateProduct(WatchOptions$Mutation$CreateProduct options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$CreateProduct>> mutate$CreateProduct(
+          Options$Mutation$CreateProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateProduct> watchMutation$CreateProduct(
+          WatchOptions$Mutation$CreateProduct options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$CreateProduct$createProduct {
@@ -3337,7 +3613,8 @@ class Mutation$CreateProduct$createProduct {
     this.$__typename = 'CreateProduct',
   });
 
-  factory Mutation$CreateProduct$createProduct.fromJson(Map<String, dynamic> json) {
+  factory Mutation$CreateProduct$createProduct.fromJson(
+      Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -3355,14 +3632,14 @@ class Mutation$CreateProduct$createProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$message = message;
-    resultData['message'] = l$message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -3382,7 +3659,8 @@ class Mutation$CreateProduct$createProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateProduct$createProduct || runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateProduct$createProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -3404,11 +3682,14 @@ class Mutation$CreateProduct$createProduct {
   }
 }
 
-extension UtilityExtension$Mutation$CreateProduct$createProduct on Mutation$CreateProduct$createProduct {
-  CopyWith$Mutation$CreateProduct$createProduct<Mutation$CreateProduct$createProduct> get copyWith => CopyWith$Mutation$CreateProduct$createProduct(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$CreateProduct$createProduct
+    on Mutation$CreateProduct$createProduct {
+  CopyWith$Mutation$CreateProduct$createProduct<
+          Mutation$CreateProduct$createProduct>
+      get copyWith => CopyWith$Mutation$CreateProduct$createProduct(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
@@ -3417,7 +3698,8 @@ abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
     TRes Function(Mutation$CreateProduct$createProduct) then,
   ) = _CopyWithImpl$Mutation$CreateProduct$createProduct;
 
-  factory CopyWith$Mutation$CreateProduct$createProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateProduct$createProduct;
+  factory CopyWith$Mutation$CreateProduct$createProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateProduct$createProduct;
 
   TRes call({
     bool? success,
@@ -3426,7 +3708,8 @@ abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
+class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes>
+    implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   _CopyWithImpl$Mutation$CreateProduct$createProduct(
     this._instance,
     this._then,
@@ -3438,7 +3721,6 @@ class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWi
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? message = _undefined,
@@ -3446,17 +3728,20 @@ class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWi
   }) =>
       _then(Mutation$CreateProduct$createProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message: message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
+class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
+    implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   _CopyWithStubImpl$Mutation$CreateProduct$createProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? message,
@@ -3466,7 +3751,8 @@ class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes> implements Co
 }
 
 class Variables$Mutation$likeProduct {
-  factory Variables$Mutation$likeProduct({required int productId}) => Variables$Mutation$likeProduct._({
+  factory Variables$Mutation$likeProduct({required int productId}) =>
+      Variables$Mutation$likeProduct._({
         r'productId': productId,
       });
 
@@ -3490,17 +3776,19 @@ class Variables$Mutation$likeProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$likeProduct<Variables$Mutation$likeProduct> get copyWith => CopyWith$Variables$Mutation$likeProduct(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$likeProduct<Variables$Mutation$likeProduct>
+      get copyWith => CopyWith$Variables$Mutation$likeProduct(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$likeProduct || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$likeProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$productId = productId;
@@ -3524,12 +3812,14 @@ abstract class CopyWith$Variables$Mutation$likeProduct<TRes> {
     TRes Function(Variables$Mutation$likeProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$likeProduct;
 
-  factory CopyWith$Variables$Mutation$likeProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$likeProduct;
+  factory CopyWith$Variables$Mutation$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$likeProduct;
 
   TRes call({int? productId});
 }
 
-class _CopyWithImpl$Variables$Mutation$likeProduct<TRes> implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$likeProduct<TRes>
+    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$likeProduct(
     this._instance,
     this._then,
@@ -3541,19 +3831,20 @@ class _CopyWithImpl$Variables$Mutation$likeProduct<TRes> implements CopyWith$Var
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
-  TRes call({Object? productId = _undefined}) => _then(Variables$Mutation$likeProduct._({
+  TRes call({Object? productId = _undefined}) =>
+      _then(Variables$Mutation$likeProduct._({
         ..._instance._$data,
-        if (productId != _undefined && productId != null) 'productId': (productId as int),
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$likeProduct<TRes> implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$likeProduct<TRes>
+    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$likeProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({int? productId}) => _res;
 }
 
@@ -3567,7 +3858,10 @@ class Mutation$likeProduct {
     final l$likeProduct = json['likeProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$likeProduct(
-      likeProduct: l$likeProduct == null ? null : Mutation$likeProduct$likeProduct.fromJson((l$likeProduct as Map<String, dynamic>)),
+      likeProduct: l$likeProduct == null
+          ? null
+          : Mutation$likeProduct$likeProduct.fromJson(
+              (l$likeProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3577,12 +3871,12 @@ class Mutation$likeProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$likeProduct = likeProduct;
-    resultData['likeProduct'] = l$likeProduct?.toJson();
+    _resultData['likeProduct'] = l$likeProduct?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -3618,7 +3912,8 @@ class Mutation$likeProduct {
 }
 
 extension UtilityExtension$Mutation$likeProduct on Mutation$likeProduct {
-  CopyWith$Mutation$likeProduct<Mutation$likeProduct> get copyWith => CopyWith$Mutation$likeProduct(
+  CopyWith$Mutation$likeProduct<Mutation$likeProduct> get copyWith =>
+      CopyWith$Mutation$likeProduct(
         this,
         (i) => i,
       );
@@ -3630,7 +3925,8 @@ abstract class CopyWith$Mutation$likeProduct<TRes> {
     TRes Function(Mutation$likeProduct) then,
   ) = _CopyWithImpl$Mutation$likeProduct;
 
-  factory CopyWith$Mutation$likeProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$likeProduct;
+  factory CopyWith$Mutation$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$likeProduct;
 
   TRes call({
     Mutation$likeProduct$likeProduct? likeProduct,
@@ -3639,7 +3935,8 @@ abstract class CopyWith$Mutation$likeProduct<TRes> {
   CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct;
 }
 
-class _CopyWithImpl$Mutation$likeProduct<TRes> implements CopyWith$Mutation$likeProduct<TRes> {
+class _CopyWithImpl$Mutation$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct<TRes> {
   _CopyWithImpl$Mutation$likeProduct(
     this._instance,
     this._then,
@@ -3651,37 +3948,42 @@ class _CopyWithImpl$Mutation$likeProduct<TRes> implements CopyWith$Mutation$like
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? likeProduct = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$likeProduct(
-        likeProduct: likeProduct == _undefined ? _instance.likeProduct : (likeProduct as Mutation$likeProduct$likeProduct?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        likeProduct: likeProduct == _undefined
+            ? _instance.likeProduct
+            : (likeProduct as Mutation$likeProduct$likeProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct {
     final local$likeProduct = _instance.likeProduct;
-    return local$likeProduct == null ? CopyWith$Mutation$likeProduct$likeProduct.stub(_then(_instance)) : CopyWith$Mutation$likeProduct$likeProduct(local$likeProduct, (e) => call(likeProduct: e));
+    return local$likeProduct == null
+        ? CopyWith$Mutation$likeProduct$likeProduct.stub(_then(_instance))
+        : CopyWith$Mutation$likeProduct$likeProduct(
+            local$likeProduct, (e) => call(likeProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$likeProduct<TRes> implements CopyWith$Mutation$likeProduct<TRes> {
+class _CopyWithStubImpl$Mutation$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct<TRes> {
   _CopyWithStubImpl$Mutation$likeProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$likeProduct$likeProduct? likeProduct,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct => CopyWith$Mutation$likeProduct$likeProduct.stub(_res);
+  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct =>
+      CopyWith$Mutation$likeProduct$likeProduct.stub(_res);
 }
 
 const documentNodeMutationlikeProduct = DocumentNode(definitions: [
@@ -3738,35 +4040,45 @@ const documentNodeMutationlikeProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$likeProduct _parserFn$Mutation$likeProduct(Map<String, dynamic> data) => Mutation$likeProduct.fromJson(data);
+Mutation$likeProduct _parserFn$Mutation$likeProduct(
+        Map<String, dynamic> data) =>
+    Mutation$likeProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$likeProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$likeProduct?,
 );
 
-class Options$Mutation$likeProduct extends graphql.MutationOptions<Mutation$likeProduct> {
+class Options$Mutation$likeProduct
+    extends graphql.MutationOptions<Mutation$likeProduct> {
   Options$Mutation$likeProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$likeProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$likeProduct? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$likeProduct? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$likeProduct>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$likeProduct(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationlikeProduct,
           parserFn: _parserFn$Mutation$likeProduct,
         );
@@ -3775,36 +4087,52 @@ class Options$Mutation$likeProduct extends graphql.MutationOptions<Mutation$like
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$likeProduct extends graphql.WatchQueryOptions<Mutation$likeProduct> {
+class WatchOptions$Mutation$likeProduct
+    extends graphql.WatchQueryOptions<Mutation$likeProduct> {
   WatchOptions$Mutation$likeProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$likeProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$likeProduct? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationlikeProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$likeProduct,
         );
 }
 
 extension ClientExtension$Mutation$likeProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$likeProduct>> mutate$likeProduct(Options$Mutation$likeProduct options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$likeProduct> watchMutation$likeProduct(WatchOptions$Mutation$likeProduct options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$likeProduct>> mutate$likeProduct(
+          Options$Mutation$likeProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$likeProduct> watchMutation$likeProduct(
+          WatchOptions$Mutation$likeProduct options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$likeProduct$likeProduct {
@@ -3827,12 +4155,12 @@ class Mutation$likeProduct$likeProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -3850,7 +4178,8 @@ class Mutation$likeProduct$likeProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$likeProduct$likeProduct || runtimeType != other.runtimeType) {
+    if (other is! Mutation$likeProduct$likeProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -3867,11 +4196,13 @@ class Mutation$likeProduct$likeProduct {
   }
 }
 
-extension UtilityExtension$Mutation$likeProduct$likeProduct on Mutation$likeProduct$likeProduct {
-  CopyWith$Mutation$likeProduct$likeProduct<Mutation$likeProduct$likeProduct> get copyWith => CopyWith$Mutation$likeProduct$likeProduct(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$likeProduct$likeProduct
+    on Mutation$likeProduct$likeProduct {
+  CopyWith$Mutation$likeProduct$likeProduct<Mutation$likeProduct$likeProduct>
+      get copyWith => CopyWith$Mutation$likeProduct$likeProduct(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
@@ -3880,7 +4211,8 @@ abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
     TRes Function(Mutation$likeProduct$likeProduct) then,
   ) = _CopyWithImpl$Mutation$likeProduct$likeProduct;
 
-  factory CopyWith$Mutation$likeProduct$likeProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$likeProduct$likeProduct;
+  factory CopyWith$Mutation$likeProduct$likeProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$likeProduct$likeProduct;
 
   TRes call({
     bool? success,
@@ -3888,7 +4220,8 @@ abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes> implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   _CopyWithImpl$Mutation$likeProduct$likeProduct(
     this._instance,
     this._then,
@@ -3900,23 +4233,24 @@ class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes> implements CopyWith$M
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$likeProduct$likeProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$likeProduct$likeProduct<TRes> implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+class _CopyWithStubImpl$Mutation$likeProduct$likeProduct<TRes>
+    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   _CopyWithStubImpl$Mutation$likeProduct$likeProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? $__typename,
@@ -3970,7 +4304,10 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue((l$condition as String));
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
+              (l$condition as String));
     }
     if (data.containsKey('description')) {
       final l$description = data['description'];
@@ -3986,7 +4323,9 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
-      result$data['parcelSize'] = l$parcelSize == null ? null : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
     }
     if (data.containsKey('price')) {
       final l$price = data['price'];
@@ -3996,7 +4335,8 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = (l$productId as int);
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] = l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] =
+          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     if (data.containsKey('subCategory')) {
       final l$subCategory = data['subCategory'];
@@ -4004,7 +4344,8 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('color')) {
       final l$color = data['color'];
-      result$data['color'] = (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+      result$data['color'] =
+          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
     }
     if (data.containsKey('brand')) {
       final l$brand = data['brand'];
@@ -4012,11 +4353,13 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('materials')) {
       final l$materials = data['materials'];
-      result$data['materials'] = (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+      result$data['materials'] =
+          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
-      result$data['style'] = l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+      result$data['style'] =
+          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
     }
     if (data.containsKey('customBrand')) {
       final l$customBrand = data['customBrand'];
@@ -4029,7 +4372,8 @@ class Variables$Mutation$UpdateProduct {
 
   int? get category => (_$data['category'] as int?);
 
-  EnumImport$ConditionEnum.ConditionsEnum? get condition => (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
+      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   String? get description => (_$data['description'] as String?);
 
@@ -4037,7 +4381,8 @@ class Variables$Mutation$UpdateProduct {
 
   String? get name => (_$data['name'] as String?);
 
-  Enum$ParcelSizeEnum? get parcelSize => (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+  Enum$ParcelSizeEnum? get parcelSize =>
+      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
   double? get price => (_$data['price'] as double?);
 
@@ -4065,7 +4410,10 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(l$condition);
+      result$data['condition'] = l$condition == null
+          ? null
+          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
+              l$condition);
     }
     if (_$data.containsKey('description')) {
       final l$description = description;
@@ -4081,7 +4429,9 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
-      result$data['parcelSize'] = l$parcelSize == null ? null : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+      result$data['parcelSize'] = l$parcelSize == null
+          ? null
+          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
     }
     if (_$data.containsKey('price')) {
       final l$price = price;
@@ -4091,7 +4441,8 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = l$productId;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] = l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+      result$data['size'] =
+          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     if (_$data.containsKey('subCategory')) {
       final l$subCategory = subCategory;
@@ -4111,7 +4462,8 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
-      result$data['style'] = l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+      result$data['style'] =
+          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     if (_$data.containsKey('customBrand')) {
       final l$customBrand = customBrand;
@@ -4120,22 +4472,25 @@ class Variables$Mutation$UpdateProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateProduct<Variables$Mutation$UpdateProduct> get copyWith => CopyWith$Variables$Mutation$UpdateProduct(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$UpdateProduct<Variables$Mutation$UpdateProduct>
+      get copyWith => CopyWith$Variables$Mutation$UpdateProduct(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateProduct || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$category = category;
     final lOther$category = other.category;
-    if (_$data.containsKey('category') != other._$data.containsKey('category')) {
+    if (_$data.containsKey('category') !=
+        other._$data.containsKey('category')) {
       return false;
     }
     if (l$category != lOther$category) {
@@ -4143,7 +4498,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$condition = condition;
     final lOther$condition = other.condition;
-    if (_$data.containsKey('condition') != other._$data.containsKey('condition')) {
+    if (_$data.containsKey('condition') !=
+        other._$data.containsKey('condition')) {
       return false;
     }
     if (l$condition != lOther$condition) {
@@ -4151,7 +4507,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -4159,7 +4516,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$discount = discount;
     final lOther$discount = other.discount;
-    if (_$data.containsKey('discount') != other._$data.containsKey('discount')) {
+    if (_$data.containsKey('discount') !=
+        other._$data.containsKey('discount')) {
       return false;
     }
     if (l$discount != lOther$discount) {
@@ -4175,7 +4533,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$parcelSize = parcelSize;
     final lOther$parcelSize = other.parcelSize;
-    if (_$data.containsKey('parcelSize') != other._$data.containsKey('parcelSize')) {
+    if (_$data.containsKey('parcelSize') !=
+        other._$data.containsKey('parcelSize')) {
       return false;
     }
     if (l$parcelSize != lOther$parcelSize) {
@@ -4204,7 +4563,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') != other._$data.containsKey('subCategory')) {
+    if (_$data.containsKey('subCategory') !=
+        other._$data.containsKey('subCategory')) {
       return false;
     }
     if (l$subCategory != lOther$subCategory) {
@@ -4239,7 +4599,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$materials = materials;
     final lOther$materials = other.materials;
-    if (_$data.containsKey('materials') != other._$data.containsKey('materials')) {
+    if (_$data.containsKey('materials') !=
+        other._$data.containsKey('materials')) {
       return false;
     }
     if (l$materials != null && lOther$materials != null) {
@@ -4266,7 +4627,8 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$customBrand = customBrand;
     final lOther$customBrand = other.customBrand;
-    if (_$data.containsKey('customBrand') != other._$data.containsKey('customBrand')) {
+    if (_$data.containsKey('customBrand') !=
+        other._$data.containsKey('customBrand')) {
       return false;
     }
     if (l$customBrand != lOther$customBrand) {
@@ -4326,7 +4688,8 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     TRes Function(Variables$Mutation$UpdateProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateProduct;
 
-  factory CopyWith$Variables$Mutation$UpdateProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateProduct;
+  factory CopyWith$Variables$Mutation$UpdateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateProduct;
 
   TRes call({
     int? category,
@@ -4347,7 +4710,8 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateProduct(
     this._instance,
     this._then,
@@ -4359,7 +4723,6 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$V
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? category = _undefined,
     Object? condition = _undefined,
@@ -4380,13 +4743,16 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$V
       _then(Variables$Mutation$UpdateProduct._({
         ..._instance._$data,
         if (category != _undefined) 'category': (category as int?),
-        if (condition != _undefined) 'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (condition != _undefined)
+          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
         if (description != _undefined) 'description': (description as String?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (name != _undefined) 'name': (name as String?),
-        if (parcelSize != _undefined) 'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (parcelSize != _undefined)
+          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (price != _undefined) 'price': (price as double?),
-        if (productId != _undefined && productId != null) 'productId': (productId as int),
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (color != _undefined) 'color': (color as List<String?>?),
@@ -4397,12 +4763,12 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$V
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     int? category,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
@@ -4433,7 +4799,10 @@ class Mutation$UpdateProduct {
     final l$updateProduct = json['updateProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProduct(
-      updateProduct: l$updateProduct == null ? null : Mutation$UpdateProduct$updateProduct.fromJson((l$updateProduct as Map<String, dynamic>)),
+      updateProduct: l$updateProduct == null
+          ? null
+          : Mutation$UpdateProduct$updateProduct.fromJson(
+              (l$updateProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -4443,12 +4812,12 @@ class Mutation$UpdateProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$updateProduct = updateProduct;
-    resultData['updateProduct'] = l$updateProduct?.toJson();
+    _resultData['updateProduct'] = l$updateProduct?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -4484,7 +4853,8 @@ class Mutation$UpdateProduct {
 }
 
 extension UtilityExtension$Mutation$UpdateProduct on Mutation$UpdateProduct {
-  CopyWith$Mutation$UpdateProduct<Mutation$UpdateProduct> get copyWith => CopyWith$Mutation$UpdateProduct(
+  CopyWith$Mutation$UpdateProduct<Mutation$UpdateProduct> get copyWith =>
+      CopyWith$Mutation$UpdateProduct(
         this,
         (i) => i,
       );
@@ -4496,7 +4866,8 @@ abstract class CopyWith$Mutation$UpdateProduct<TRes> {
     TRes Function(Mutation$UpdateProduct) then,
   ) = _CopyWithImpl$Mutation$UpdateProduct;
 
-  factory CopyWith$Mutation$UpdateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProduct;
+  factory CopyWith$Mutation$UpdateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProduct;
 
   TRes call({
     Mutation$UpdateProduct$updateProduct? updateProduct,
@@ -4505,7 +4876,8 @@ abstract class CopyWith$Mutation$UpdateProduct<TRes> {
   CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct;
 }
 
-class _CopyWithImpl$Mutation$UpdateProduct<TRes> implements CopyWith$Mutation$UpdateProduct<TRes> {
+class _CopyWithImpl$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct<TRes> {
   _CopyWithImpl$Mutation$UpdateProduct(
     this._instance,
     this._then,
@@ -4517,39 +4889,42 @@ class _CopyWithImpl$Mutation$UpdateProduct<TRes> implements CopyWith$Mutation$Up
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? updateProduct = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProduct(
-        updateProduct: updateProduct == _undefined ? _instance.updateProduct : (updateProduct as Mutation$UpdateProduct$updateProduct?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        updateProduct: updateProduct == _undefined
+            ? _instance.updateProduct
+            : (updateProduct as Mutation$UpdateProduct$updateProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct {
     final local$updateProduct = _instance.updateProduct;
     return local$updateProduct == null
         ? CopyWith$Mutation$UpdateProduct$updateProduct.stub(_then(_instance))
-        : CopyWith$Mutation$UpdateProduct$updateProduct(local$updateProduct, (e) => call(updateProduct: e));
+        : CopyWith$Mutation$UpdateProduct$updateProduct(
+            local$updateProduct, (e) => call(updateProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProduct<TRes> implements CopyWith$Mutation$UpdateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$UpdateProduct$updateProduct? updateProduct,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct => CopyWith$Mutation$UpdateProduct$updateProduct.stub(_res);
+  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct =>
+      CopyWith$Mutation$UpdateProduct$updateProduct.stub(_res);
 }
 
 const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
@@ -4801,35 +5176,47 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UpdateProduct _parserFn$Mutation$UpdateProduct(Map<String, dynamic> data) => Mutation$UpdateProduct.fromJson(data);
+Mutation$UpdateProduct _parserFn$Mutation$UpdateProduct(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateProduct?,
 );
 
-class Options$Mutation$UpdateProduct extends graphql.MutationOptions<Mutation$UpdateProduct> {
+class Options$Mutation$UpdateProduct
+    extends graphql.MutationOptions<Mutation$UpdateProduct> {
   Options$Mutation$UpdateProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UpdateProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateProduct? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateProduct? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$UpdateProduct>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$UpdateProduct(data),
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateProduct(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationUpdateProduct,
           parserFn: _parserFn$Mutation$UpdateProduct,
         );
@@ -4838,36 +5225,52 @@ class Options$Mutation$UpdateProduct extends graphql.MutationOptions<Mutation$Up
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateProduct extends graphql.WatchQueryOptions<Mutation$UpdateProduct> {
+class WatchOptions$Mutation$UpdateProduct
+    extends graphql.WatchQueryOptions<Mutation$UpdateProduct> {
   WatchOptions$Mutation$UpdateProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UpdateProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateProduct? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationUpdateProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdateProduct,
         );
 }
 
 extension ClientExtension$Mutation$UpdateProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateProduct>> mutate$UpdateProduct(Options$Mutation$UpdateProduct options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$UpdateProduct> watchMutation$UpdateProduct(WatchOptions$Mutation$UpdateProduct options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$UpdateProduct>> mutate$UpdateProduct(
+          Options$Mutation$UpdateProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateProduct> watchMutation$UpdateProduct(
+          WatchOptions$Mutation$UpdateProduct options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$UpdateProduct$updateProduct {
@@ -4877,7 +5280,8 @@ class Mutation$UpdateProduct$updateProduct {
     this.$__typename = 'UpdateProduct',
   });
 
-  factory Mutation$UpdateProduct$updateProduct.fromJson(Map<String, dynamic> json) {
+  factory Mutation$UpdateProduct$updateProduct.fromJson(
+      Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -4895,14 +5299,14 @@ class Mutation$UpdateProduct$updateProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$message = message;
-    resultData['message'] = l$message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -4922,7 +5326,8 @@ class Mutation$UpdateProduct$updateProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateProduct$updateProduct || runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateProduct$updateProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -4944,11 +5349,14 @@ class Mutation$UpdateProduct$updateProduct {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateProduct$updateProduct on Mutation$UpdateProduct$updateProduct {
-  CopyWith$Mutation$UpdateProduct$updateProduct<Mutation$UpdateProduct$updateProduct> get copyWith => CopyWith$Mutation$UpdateProduct$updateProduct(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$UpdateProduct$updateProduct
+    on Mutation$UpdateProduct$updateProduct {
+  CopyWith$Mutation$UpdateProduct$updateProduct<
+          Mutation$UpdateProduct$updateProduct>
+      get copyWith => CopyWith$Mutation$UpdateProduct$updateProduct(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
@@ -4957,7 +5365,8 @@ abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
     TRes Function(Mutation$UpdateProduct$updateProduct) then,
   ) = _CopyWithImpl$Mutation$UpdateProduct$updateProduct;
 
-  factory CopyWith$Mutation$UpdateProduct$updateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct;
+  factory CopyWith$Mutation$UpdateProduct$updateProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct;
 
   TRes call({
     bool? success,
@@ -4966,7 +5375,8 @@ abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   _CopyWithImpl$Mutation$UpdateProduct$updateProduct(
     this._instance,
     this._then,
@@ -4978,7 +5388,6 @@ class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWi
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? message = _undefined,
@@ -4986,17 +5395,20 @@ class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWi
   }) =>
       _then(Mutation$UpdateProduct$updateProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message: message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes>
+    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? message,
@@ -5006,7 +5418,8 @@ class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes> implements Co
 }
 
 class Variables$Mutation$DeleteProduct {
-  factory Variables$Mutation$DeleteProduct({required int productId}) => Variables$Mutation$DeleteProduct._({
+  factory Variables$Mutation$DeleteProduct({required int productId}) =>
+      Variables$Mutation$DeleteProduct._({
         r'productId': productId,
       });
 
@@ -5030,17 +5443,19 @@ class Variables$Mutation$DeleteProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$DeleteProduct<Variables$Mutation$DeleteProduct> get copyWith => CopyWith$Variables$Mutation$DeleteProduct(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$DeleteProduct<Variables$Mutation$DeleteProduct>
+      get copyWith => CopyWith$Variables$Mutation$DeleteProduct(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$DeleteProduct || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$DeleteProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$productId = productId;
@@ -5064,12 +5479,14 @@ abstract class CopyWith$Variables$Mutation$DeleteProduct<TRes> {
     TRes Function(Variables$Mutation$DeleteProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$DeleteProduct;
 
-  factory CopyWith$Variables$Mutation$DeleteProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$DeleteProduct;
+  factory CopyWith$Variables$Mutation$DeleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteProduct;
 
   TRes call({int? productId});
 }
 
-class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes> implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$DeleteProduct(
     this._instance,
     this._then,
@@ -5081,19 +5498,20 @@ class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes> implements CopyWith$V
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
-  TRes call({Object? productId = _undefined}) => _then(Variables$Mutation$DeleteProduct._({
+  TRes call({Object? productId = _undefined}) =>
+      _then(Variables$Mutation$DeleteProduct._({
         ..._instance._$data,
-        if (productId != _undefined && productId != null) 'productId': (productId as int),
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$DeleteProduct<TRes> implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({int? productId}) => _res;
 }
 
@@ -5107,7 +5525,10 @@ class Mutation$DeleteProduct {
     final l$deleteProduct = json['deleteProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteProduct(
-      deleteProduct: l$deleteProduct == null ? null : Mutation$DeleteProduct$deleteProduct.fromJson((l$deleteProduct as Map<String, dynamic>)),
+      deleteProduct: l$deleteProduct == null
+          ? null
+          : Mutation$DeleteProduct$deleteProduct.fromJson(
+              (l$deleteProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5117,12 +5538,12 @@ class Mutation$DeleteProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$deleteProduct = deleteProduct;
-    resultData['deleteProduct'] = l$deleteProduct?.toJson();
+    _resultData['deleteProduct'] = l$deleteProduct?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -5158,7 +5579,8 @@ class Mutation$DeleteProduct {
 }
 
 extension UtilityExtension$Mutation$DeleteProduct on Mutation$DeleteProduct {
-  CopyWith$Mutation$DeleteProduct<Mutation$DeleteProduct> get copyWith => CopyWith$Mutation$DeleteProduct(
+  CopyWith$Mutation$DeleteProduct<Mutation$DeleteProduct> get copyWith =>
+      CopyWith$Mutation$DeleteProduct(
         this,
         (i) => i,
       );
@@ -5170,7 +5592,8 @@ abstract class CopyWith$Mutation$DeleteProduct<TRes> {
     TRes Function(Mutation$DeleteProduct) then,
   ) = _CopyWithImpl$Mutation$DeleteProduct;
 
-  factory CopyWith$Mutation$DeleteProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteProduct;
+  factory CopyWith$Mutation$DeleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteProduct;
 
   TRes call({
     Mutation$DeleteProduct$deleteProduct? deleteProduct,
@@ -5179,7 +5602,8 @@ abstract class CopyWith$Mutation$DeleteProduct<TRes> {
   CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct;
 }
 
-class _CopyWithImpl$Mutation$DeleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct<TRes> {
+class _CopyWithImpl$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct<TRes> {
   _CopyWithImpl$Mutation$DeleteProduct(
     this._instance,
     this._then,
@@ -5191,39 +5615,42 @@ class _CopyWithImpl$Mutation$DeleteProduct<TRes> implements CopyWith$Mutation$De
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? deleteProduct = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteProduct(
-        deleteProduct: deleteProduct == _undefined ? _instance.deleteProduct : (deleteProduct as Mutation$DeleteProduct$deleteProduct?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        deleteProduct: deleteProduct == _undefined
+            ? _instance.deleteProduct
+            : (deleteProduct as Mutation$DeleteProduct$deleteProduct?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct {
     final local$deleteProduct = _instance.deleteProduct;
     return local$deleteProduct == null
         ? CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_then(_instance))
-        : CopyWith$Mutation$DeleteProduct$deleteProduct(local$deleteProduct, (e) => call(deleteProduct: e));
+        : CopyWith$Mutation$DeleteProduct$deleteProduct(
+            local$deleteProduct, (e) => call(deleteProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$DeleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct<TRes> {
   _CopyWithStubImpl$Mutation$DeleteProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$DeleteProduct$deleteProduct? deleteProduct,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct => CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_res);
+  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct =>
+      CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_res);
 }
 
 const documentNodeMutationDeleteProduct = DocumentNode(definitions: [
@@ -5287,35 +5714,47 @@ const documentNodeMutationDeleteProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$DeleteProduct _parserFn$Mutation$DeleteProduct(Map<String, dynamic> data) => Mutation$DeleteProduct.fromJson(data);
+Mutation$DeleteProduct _parserFn$Mutation$DeleteProduct(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$DeleteProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$DeleteProduct?,
 );
 
-class Options$Mutation$DeleteProduct extends graphql.MutationOptions<Mutation$DeleteProduct> {
+class Options$Mutation$DeleteProduct
+    extends graphql.MutationOptions<Mutation$DeleteProduct> {
   Options$Mutation$DeleteProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$DeleteProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteProduct? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$DeleteProduct? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$DeleteProduct>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$DeleteProduct(data),
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteProduct(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationDeleteProduct,
           parserFn: _parserFn$Mutation$DeleteProduct,
         );
@@ -5324,36 +5763,52 @@ class Options$Mutation$DeleteProduct extends graphql.MutationOptions<Mutation$De
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$DeleteProduct extends graphql.WatchQueryOptions<Mutation$DeleteProduct> {
+class WatchOptions$Mutation$DeleteProduct
+    extends graphql.WatchQueryOptions<Mutation$DeleteProduct> {
   WatchOptions$Mutation$DeleteProduct({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$DeleteProduct variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteProduct? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationDeleteProduct,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$DeleteProduct,
         );
 }
 
 extension ClientExtension$Mutation$DeleteProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$DeleteProduct>> mutate$DeleteProduct(Options$Mutation$DeleteProduct options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$DeleteProduct> watchMutation$DeleteProduct(WatchOptions$Mutation$DeleteProduct options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$DeleteProduct>> mutate$DeleteProduct(
+          Options$Mutation$DeleteProduct options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteProduct> watchMutation$DeleteProduct(
+          WatchOptions$Mutation$DeleteProduct options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$DeleteProduct$deleteProduct {
@@ -5363,7 +5818,8 @@ class Mutation$DeleteProduct$deleteProduct {
     this.$__typename = 'DeleteProduct',
   });
 
-  factory Mutation$DeleteProduct$deleteProduct.fromJson(Map<String, dynamic> json) {
+  factory Mutation$DeleteProduct$deleteProduct.fromJson(
+      Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -5381,14 +5837,14 @@ class Mutation$DeleteProduct$deleteProduct {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$message = message;
-    resultData['message'] = l$message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -5408,7 +5864,8 @@ class Mutation$DeleteProduct$deleteProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteProduct$deleteProduct || runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteProduct$deleteProduct ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -5430,11 +5887,14 @@ class Mutation$DeleteProduct$deleteProduct {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteProduct$deleteProduct on Mutation$DeleteProduct$deleteProduct {
-  CopyWith$Mutation$DeleteProduct$deleteProduct<Mutation$DeleteProduct$deleteProduct> get copyWith => CopyWith$Mutation$DeleteProduct$deleteProduct(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$DeleteProduct$deleteProduct
+    on Mutation$DeleteProduct$deleteProduct {
+  CopyWith$Mutation$DeleteProduct$deleteProduct<
+          Mutation$DeleteProduct$deleteProduct>
+      get copyWith => CopyWith$Mutation$DeleteProduct$deleteProduct(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
@@ -5443,7 +5903,8 @@ abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
     TRes Function(Mutation$DeleteProduct$deleteProduct) then,
   ) = _CopyWithImpl$Mutation$DeleteProduct$deleteProduct;
 
-  factory CopyWith$Mutation$DeleteProduct$deleteProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct;
+  factory CopyWith$Mutation$DeleteProduct$deleteProduct.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct;
 
   TRes call({
     bool? success,
@@ -5452,7 +5913,8 @@ abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   _CopyWithImpl$Mutation$DeleteProduct$deleteProduct(
     this._instance,
     this._then,
@@ -5464,7 +5926,6 @@ class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWi
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? message = _undefined,
@@ -5472,17 +5933,20 @@ class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWi
   }) =>
       _then(Mutation$DeleteProduct$deleteProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message: message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes>
+    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? message,
@@ -5545,7 +6009,8 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('dob')) {
       final l$dob = data['dob'];
-      result$data['dob'] = l$dob == null ? null : DateTime.parse((l$dob as String));
+      result$data['dob'] =
+          l$dob == null ? null : DateTime.parse((l$dob as String));
     }
     if (data.containsKey('firstName')) {
       final l$firstName = data['firstName'];
@@ -5565,7 +6030,10 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('phoneNumber')) {
       final l$phoneNumber = data['phoneNumber'];
-      result$data['phoneNumber'] = l$phoneNumber == null ? null : Input$PhoneInputType.fromJson((l$phoneNumber as Map<String, dynamic>));
+      result$data['phoneNumber'] = l$phoneNumber == null
+          ? null
+          : Input$PhoneInputType.fromJson(
+              (l$phoneNumber as Map<String, dynamic>));
     }
     if (data.containsKey('postCode')) {
       final l$postCode = data['postCode'];
@@ -5589,7 +6057,10 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('location')) {
       final l$location = data['location'];
-      result$data['location'] = l$location == null ? null : Input$LocationInputType.fromJson((l$location as Map<String, dynamic>));
+      result$data['location'] = l$location == null
+          ? null
+          : Input$LocationInputType.fromJson(
+              (l$location as Map<String, dynamic>));
     }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
@@ -5612,7 +6083,8 @@ class Variables$Mutation$UpdateProfile {
 
   String? get otp => (_$data['otp'] as String?);
 
-  Input$PhoneInputType? get phoneNumber => (_$data['phoneNumber'] as Input$PhoneInputType?);
+  Input$PhoneInputType? get phoneNumber =>
+      (_$data['phoneNumber'] as Input$PhoneInputType?);
 
   String? get postCode => (_$data['postCode'] as String?);
 
@@ -5624,7 +6096,8 @@ class Variables$Mutation$UpdateProfile {
 
   String? get username => (_$data['username'] as String?);
 
-  Input$LocationInputType? get location => (_$data['location'] as Input$LocationInputType?);
+  Input$LocationInputType? get location =>
+      (_$data['location'] as Input$LocationInputType?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -5691,17 +6164,19 @@ class Variables$Mutation$UpdateProfile {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateProfile<Variables$Mutation$UpdateProfile> get copyWith => CopyWith$Variables$Mutation$UpdateProfile(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$UpdateProfile<Variables$Mutation$UpdateProfile>
+      get copyWith => CopyWith$Variables$Mutation$UpdateProfile(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateProfile || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateProfile ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$bio = bio;
@@ -5722,7 +6197,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
-    if (_$data.containsKey('displayName') != other._$data.containsKey('displayName')) {
+    if (_$data.containsKey('displayName') !=
+        other._$data.containsKey('displayName')) {
       return false;
     }
     if (l$displayName != lOther$displayName) {
@@ -5738,7 +6214,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$firstName = firstName;
     final lOther$firstName = other.firstName;
-    if (_$data.containsKey('firstName') != other._$data.containsKey('firstName')) {
+    if (_$data.containsKey('firstName') !=
+        other._$data.containsKey('firstName')) {
       return false;
     }
     if (l$firstName != lOther$firstName) {
@@ -5754,7 +6231,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$lastName = lastName;
     final lOther$lastName = other.lastName;
-    if (_$data.containsKey('lastName') != other._$data.containsKey('lastName')) {
+    if (_$data.containsKey('lastName') !=
+        other._$data.containsKey('lastName')) {
       return false;
     }
     if (l$lastName != lOther$lastName) {
@@ -5770,7 +6248,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$phoneNumber = phoneNumber;
     final lOther$phoneNumber = other.phoneNumber;
-    if (_$data.containsKey('phoneNumber') != other._$data.containsKey('phoneNumber')) {
+    if (_$data.containsKey('phoneNumber') !=
+        other._$data.containsKey('phoneNumber')) {
       return false;
     }
     if (l$phoneNumber != lOther$phoneNumber) {
@@ -5778,7 +6257,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$postCode = postCode;
     final lOther$postCode = other.postCode;
-    if (_$data.containsKey('postCode') != other._$data.containsKey('postCode')) {
+    if (_$data.containsKey('postCode') !=
+        other._$data.containsKey('postCode')) {
       return false;
     }
     if (l$postCode != lOther$postCode) {
@@ -5786,7 +6266,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$profilePictureUrl = profilePictureUrl;
     final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (_$data.containsKey('profilePictureUrl') != other._$data.containsKey('profilePictureUrl')) {
+    if (_$data.containsKey('profilePictureUrl') !=
+        other._$data.containsKey('profilePictureUrl')) {
       return false;
     }
     if (l$profilePictureUrl != lOther$profilePictureUrl) {
@@ -5794,7 +6275,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$thumbnailUrl = thumbnailUrl;
     final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (_$data.containsKey('thumbnailUrl') != other._$data.containsKey('thumbnailUrl')) {
+    if (_$data.containsKey('thumbnailUrl') !=
+        other._$data.containsKey('thumbnailUrl')) {
       return false;
     }
     if (l$thumbnailUrl != lOther$thumbnailUrl) {
@@ -5810,7 +6292,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$username = username;
     final lOther$username = other.username;
-    if (_$data.containsKey('username') != other._$data.containsKey('username')) {
+    if (_$data.containsKey('username') !=
+        other._$data.containsKey('username')) {
       return false;
     }
     if (l$username != lOther$username) {
@@ -5818,7 +6301,8 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$location = location;
     final lOther$location = other.location;
-    if (_$data.containsKey('location') != other._$data.containsKey('location')) {
+    if (_$data.containsKey('location') !=
+        other._$data.containsKey('location')) {
       return false;
     }
     if (l$location != lOther$location) {
@@ -5870,7 +6354,8 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     TRes Function(Variables$Mutation$UpdateProfile) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateProfile;
 
-  factory CopyWith$Variables$Mutation$UpdateProfile.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateProfile;
+  factory CopyWith$Variables$Mutation$UpdateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateProfile;
 
   TRes call({
     String? bio,
@@ -5891,7 +6376,8 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateProfile(
     this._instance,
     this._then,
@@ -5903,7 +6389,6 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$V
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? bio = _undefined,
     Object? country = _undefined,
@@ -5931,22 +6416,26 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$V
         if (gender != _undefined) 'gender': (gender as String?),
         if (lastName != _undefined) 'lastName': (lastName as String?),
         if (otp != _undefined) 'otp': (otp as String?),
-        if (phoneNumber != _undefined) 'phoneNumber': (phoneNumber as Input$PhoneInputType?),
+        if (phoneNumber != _undefined)
+          'phoneNumber': (phoneNumber as Input$PhoneInputType?),
         if (postCode != _undefined) 'postCode': (postCode as String?),
-        if (profilePictureUrl != _undefined) 'profilePictureUrl': (profilePictureUrl as String?),
-        if (thumbnailUrl != _undefined) 'thumbnailUrl': (thumbnailUrl as String?),
+        if (profilePictureUrl != _undefined)
+          'profilePictureUrl': (profilePictureUrl as String?),
+        if (thumbnailUrl != _undefined)
+          'thumbnailUrl': (thumbnailUrl as String?),
         if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
         if (username != _undefined) 'username': (username as String?),
-        if (location != _undefined) 'location': (location as Input$LocationInputType?),
+        if (location != _undefined)
+          'location': (location as Input$LocationInputType?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateProfile(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? bio,
     String? country,
@@ -5977,7 +6466,10 @@ class Mutation$UpdateProfile {
     final l$updateProfile = json['updateProfile'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProfile(
-      updateProfile: l$updateProfile == null ? null : Mutation$UpdateProfile$updateProfile.fromJson((l$updateProfile as Map<String, dynamic>)),
+      updateProfile: l$updateProfile == null
+          ? null
+          : Mutation$UpdateProfile$updateProfile.fromJson(
+              (l$updateProfile as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5987,12 +6479,12 @@ class Mutation$UpdateProfile {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$updateProfile = updateProfile;
-    resultData['updateProfile'] = l$updateProfile?.toJson();
+    _resultData['updateProfile'] = l$updateProfile?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -6028,7 +6520,8 @@ class Mutation$UpdateProfile {
 }
 
 extension UtilityExtension$Mutation$UpdateProfile on Mutation$UpdateProfile {
-  CopyWith$Mutation$UpdateProfile<Mutation$UpdateProfile> get copyWith => CopyWith$Mutation$UpdateProfile(
+  CopyWith$Mutation$UpdateProfile<Mutation$UpdateProfile> get copyWith =>
+      CopyWith$Mutation$UpdateProfile(
         this,
         (i) => i,
       );
@@ -6040,7 +6533,8 @@ abstract class CopyWith$Mutation$UpdateProfile<TRes> {
     TRes Function(Mutation$UpdateProfile) then,
   ) = _CopyWithImpl$Mutation$UpdateProfile;
 
-  factory CopyWith$Mutation$UpdateProfile.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProfile;
+  factory CopyWith$Mutation$UpdateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProfile;
 
   TRes call({
     Mutation$UpdateProfile$updateProfile? updateProfile,
@@ -6049,7 +6543,8 @@ abstract class CopyWith$Mutation$UpdateProfile<TRes> {
   CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile;
 }
 
-class _CopyWithImpl$Mutation$UpdateProfile<TRes> implements CopyWith$Mutation$UpdateProfile<TRes> {
+class _CopyWithImpl$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile<TRes> {
   _CopyWithImpl$Mutation$UpdateProfile(
     this._instance,
     this._then,
@@ -6061,39 +6556,42 @@ class _CopyWithImpl$Mutation$UpdateProfile<TRes> implements CopyWith$Mutation$Up
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? updateProfile = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProfile(
-        updateProfile: updateProfile == _undefined ? _instance.updateProfile : (updateProfile as Mutation$UpdateProfile$updateProfile?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        updateProfile: updateProfile == _undefined
+            ? _instance.updateProfile
+            : (updateProfile as Mutation$UpdateProfile$updateProfile?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile {
     final local$updateProfile = _instance.updateProfile;
     return local$updateProfile == null
         ? CopyWith$Mutation$UpdateProfile$updateProfile.stub(_then(_instance))
-        : CopyWith$Mutation$UpdateProfile$updateProfile(local$updateProfile, (e) => call(updateProfile: e));
+        : CopyWith$Mutation$UpdateProfile$updateProfile(
+            local$updateProfile, (e) => call(updateProfile: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProfile<TRes> implements CopyWith$Mutation$UpdateProfile<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProfile(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$UpdateProfile$updateProfile? updateProfile,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile => CopyWith$Mutation$UpdateProfile$updateProfile.stub(_res);
+  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile =>
+      CopyWith$Mutation$UpdateProfile$updateProfile.stub(_res);
 }
 
 const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
@@ -6332,35 +6830,47 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UpdateProfile _parserFn$Mutation$UpdateProfile(Map<String, dynamic> data) => Mutation$UpdateProfile.fromJson(data);
+Mutation$UpdateProfile _parserFn$Mutation$UpdateProfile(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateProfile.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateProfile = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateProfile?,
 );
 
-class Options$Mutation$UpdateProfile extends graphql.MutationOptions<Mutation$UpdateProfile> {
+class Options$Mutation$UpdateProfile
+    extends graphql.MutationOptions<Mutation$UpdateProfile> {
   Options$Mutation$UpdateProfile({
-    super.operationName,
+    String? operationName,
     Variables$Mutation$UpdateProfile? variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateProfile? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateProfile? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$UpdateProfile>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$UpdateProfile(data),
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateProfile(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationUpdateProfile,
           parserFn: _parserFn$Mutation$UpdateProfile,
         );
@@ -6369,36 +6879,52 @@ class Options$Mutation$UpdateProfile extends graphql.MutationOptions<Mutation$Up
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateProfile extends graphql.WatchQueryOptions<Mutation$UpdateProfile> {
+class WatchOptions$Mutation$UpdateProfile
+    extends graphql.WatchQueryOptions<Mutation$UpdateProfile> {
   WatchOptions$Mutation$UpdateProfile({
-    super.operationName,
+    String? operationName,
     Variables$Mutation$UpdateProfile? variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateProfile? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationUpdateProfile,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdateProfile,
         );
 }
 
 extension ClientExtension$Mutation$UpdateProfile on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateProfile>> mutate$UpdateProfile([Options$Mutation$UpdateProfile? options]) async => await mutate(options ?? Options$Mutation$UpdateProfile());
-  graphql.ObservableQuery<Mutation$UpdateProfile> watchMutation$UpdateProfile([WatchOptions$Mutation$UpdateProfile? options]) => watchMutation(options ?? WatchOptions$Mutation$UpdateProfile());
+  Future<graphql.QueryResult<Mutation$UpdateProfile>> mutate$UpdateProfile(
+          [Options$Mutation$UpdateProfile? options]) async =>
+      await this.mutate(options ?? Options$Mutation$UpdateProfile());
+  graphql.ObservableQuery<Mutation$UpdateProfile> watchMutation$UpdateProfile(
+          [WatchOptions$Mutation$UpdateProfile? options]) =>
+      this.watchMutation(options ?? WatchOptions$Mutation$UpdateProfile());
 }
 
 class Mutation$UpdateProfile$updateProfile {
@@ -6407,7 +6933,8 @@ class Mutation$UpdateProfile$updateProfile {
     this.$__typename = 'UpdateUserMutation',
   });
 
-  factory Mutation$UpdateProfile$updateProfile.fromJson(Map<String, dynamic> json) {
+  factory Mutation$UpdateProfile$updateProfile.fromJson(
+      Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProfile$updateProfile(
@@ -6421,12 +6948,12 @@ class Mutation$UpdateProfile$updateProfile {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$message = message;
-    resultData['message'] = l$message;
+    _resultData['message'] = l$message;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -6444,7 +6971,8 @@ class Mutation$UpdateProfile$updateProfile {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateProfile$updateProfile || runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateProfile$updateProfile ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -6461,11 +6989,14 @@ class Mutation$UpdateProfile$updateProfile {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateProfile$updateProfile on Mutation$UpdateProfile$updateProfile {
-  CopyWith$Mutation$UpdateProfile$updateProfile<Mutation$UpdateProfile$updateProfile> get copyWith => CopyWith$Mutation$UpdateProfile$updateProfile(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$UpdateProfile$updateProfile
+    on Mutation$UpdateProfile$updateProfile {
+  CopyWith$Mutation$UpdateProfile$updateProfile<
+          Mutation$UpdateProfile$updateProfile>
+      get copyWith => CopyWith$Mutation$UpdateProfile$updateProfile(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
@@ -6474,7 +7005,8 @@ abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
     TRes Function(Mutation$UpdateProfile$updateProfile) then,
   ) = _CopyWithImpl$Mutation$UpdateProfile$updateProfile;
 
-  factory CopyWith$Mutation$UpdateProfile$updateProfile.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile;
+  factory CopyWith$Mutation$UpdateProfile$updateProfile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile;
 
   TRes call({
     String? message,
@@ -6482,7 +7014,8 @@ abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes> implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   _CopyWithImpl$Mutation$UpdateProfile$updateProfile(
     this._instance,
     this._then,
@@ -6494,23 +7027,25 @@ class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes> implements CopyWi
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? message = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProfile$updateProfile(
-        message: message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes> implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes>
+    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? message,
     String? $__typename,
@@ -6519,7 +7054,8 @@ class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes> implements Co
 }
 
 class Variables$Mutation$followUser {
-  factory Variables$Mutation$followUser({required int followedId}) => Variables$Mutation$followUser._({
+  factory Variables$Mutation$followUser({required int followedId}) =>
+      Variables$Mutation$followUser._({
         r'followedId': followedId,
       });
 
@@ -6543,17 +7079,19 @@ class Variables$Mutation$followUser {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$followUser<Variables$Mutation$followUser> get copyWith => CopyWith$Variables$Mutation$followUser(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$followUser<Variables$Mutation$followUser>
+      get copyWith => CopyWith$Variables$Mutation$followUser(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$followUser || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$followUser ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$followedId = followedId;
@@ -6577,12 +7115,14 @@ abstract class CopyWith$Variables$Mutation$followUser<TRes> {
     TRes Function(Variables$Mutation$followUser) then,
   ) = _CopyWithImpl$Variables$Mutation$followUser;
 
-  factory CopyWith$Variables$Mutation$followUser.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$followUser;
+  factory CopyWith$Variables$Mutation$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$followUser;
 
   TRes call({int? followedId});
 }
 
-class _CopyWithImpl$Variables$Mutation$followUser<TRes> implements CopyWith$Variables$Mutation$followUser<TRes> {
+class _CopyWithImpl$Variables$Mutation$followUser<TRes>
+    implements CopyWith$Variables$Mutation$followUser<TRes> {
   _CopyWithImpl$Variables$Mutation$followUser(
     this._instance,
     this._then,
@@ -6594,19 +7134,20 @@ class _CopyWithImpl$Variables$Mutation$followUser<TRes> implements CopyWith$Vari
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
-  TRes call({Object? followedId = _undefined}) => _then(Variables$Mutation$followUser._({
+  TRes call({Object? followedId = _undefined}) =>
+      _then(Variables$Mutation$followUser._({
         ..._instance._$data,
-        if (followedId != _undefined && followedId != null) 'followedId': (followedId as int),
+        if (followedId != _undefined && followedId != null)
+          'followedId': (followedId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$followUser<TRes> implements CopyWith$Variables$Mutation$followUser<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$followUser<TRes>
+    implements CopyWith$Variables$Mutation$followUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$followUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({int? followedId}) => _res;
 }
 
@@ -6620,7 +7161,10 @@ class Mutation$followUser {
     final l$followUser = json['followUser'];
     final l$$__typename = json['__typename'];
     return Mutation$followUser(
-      followUser: l$followUser == null ? null : Mutation$followUser$followUser.fromJson((l$followUser as Map<String, dynamic>)),
+      followUser: l$followUser == null
+          ? null
+          : Mutation$followUser$followUser.fromJson(
+              (l$followUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -6630,12 +7174,12 @@ class Mutation$followUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$followUser = followUser;
-    resultData['followUser'] = l$followUser?.toJson();
+    _resultData['followUser'] = l$followUser?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -6671,7 +7215,8 @@ class Mutation$followUser {
 }
 
 extension UtilityExtension$Mutation$followUser on Mutation$followUser {
-  CopyWith$Mutation$followUser<Mutation$followUser> get copyWith => CopyWith$Mutation$followUser(
+  CopyWith$Mutation$followUser<Mutation$followUser> get copyWith =>
+      CopyWith$Mutation$followUser(
         this,
         (i) => i,
       );
@@ -6683,7 +7228,8 @@ abstract class CopyWith$Mutation$followUser<TRes> {
     TRes Function(Mutation$followUser) then,
   ) = _CopyWithImpl$Mutation$followUser;
 
-  factory CopyWith$Mutation$followUser.stub(TRes res) = _CopyWithStubImpl$Mutation$followUser;
+  factory CopyWith$Mutation$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$followUser;
 
   TRes call({
     Mutation$followUser$followUser? followUser,
@@ -6692,7 +7238,8 @@ abstract class CopyWith$Mutation$followUser<TRes> {
   CopyWith$Mutation$followUser$followUser<TRes> get followUser;
 }
 
-class _CopyWithImpl$Mutation$followUser<TRes> implements CopyWith$Mutation$followUser<TRes> {
+class _CopyWithImpl$Mutation$followUser<TRes>
+    implements CopyWith$Mutation$followUser<TRes> {
   _CopyWithImpl$Mutation$followUser(
     this._instance,
     this._then,
@@ -6704,37 +7251,42 @@ class _CopyWithImpl$Mutation$followUser<TRes> implements CopyWith$Mutation$follo
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? followUser = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$followUser(
-        followUser: followUser == _undefined ? _instance.followUser : (followUser as Mutation$followUser$followUser?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        followUser: followUser == _undefined
+            ? _instance.followUser
+            : (followUser as Mutation$followUser$followUser?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$followUser$followUser<TRes> get followUser {
     final local$followUser = _instance.followUser;
-    return local$followUser == null ? CopyWith$Mutation$followUser$followUser.stub(_then(_instance)) : CopyWith$Mutation$followUser$followUser(local$followUser, (e) => call(followUser: e));
+    return local$followUser == null
+        ? CopyWith$Mutation$followUser$followUser.stub(_then(_instance))
+        : CopyWith$Mutation$followUser$followUser(
+            local$followUser, (e) => call(followUser: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$followUser<TRes> implements CopyWith$Mutation$followUser<TRes> {
+class _CopyWithStubImpl$Mutation$followUser<TRes>
+    implements CopyWith$Mutation$followUser<TRes> {
   _CopyWithStubImpl$Mutation$followUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$followUser$followUser? followUser,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$followUser$followUser<TRes> get followUser => CopyWith$Mutation$followUser$followUser.stub(_res);
+  CopyWith$Mutation$followUser$followUser<TRes> get followUser =>
+      CopyWith$Mutation$followUser$followUser.stub(_res);
 }
 
 const documentNodeMutationfollowUser = DocumentNode(definitions: [
@@ -6791,35 +7343,44 @@ const documentNodeMutationfollowUser = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$followUser _parserFn$Mutation$followUser(Map<String, dynamic> data) => Mutation$followUser.fromJson(data);
+Mutation$followUser _parserFn$Mutation$followUser(Map<String, dynamic> data) =>
+    Mutation$followUser.fromJson(data);
 typedef OnMutationCompleted$Mutation$followUser = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$followUser?,
 );
 
-class Options$Mutation$followUser extends graphql.MutationOptions<Mutation$followUser> {
+class Options$Mutation$followUser
+    extends graphql.MutationOptions<Mutation$followUser> {
   Options$Mutation$followUser({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$followUser variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$followUser? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$followUser? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$followUser>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$followUser(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationfollowUser,
           parserFn: _parserFn$Mutation$followUser,
         );
@@ -6828,36 +7389,52 @@ class Options$Mutation$followUser extends graphql.MutationOptions<Mutation$follo
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$followUser extends graphql.WatchQueryOptions<Mutation$followUser> {
+class WatchOptions$Mutation$followUser
+    extends graphql.WatchQueryOptions<Mutation$followUser> {
   WatchOptions$Mutation$followUser({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$followUser variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$followUser? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationfollowUser,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$followUser,
         );
 }
 
 extension ClientExtension$Mutation$followUser on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$followUser>> mutate$followUser(Options$Mutation$followUser options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$followUser> watchMutation$followUser(WatchOptions$Mutation$followUser options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$followUser>> mutate$followUser(
+          Options$Mutation$followUser options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$followUser> watchMutation$followUser(
+          WatchOptions$Mutation$followUser options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$followUser$followUser {
@@ -6880,12 +7457,12 @@ class Mutation$followUser$followUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -6903,7 +7480,8 @@ class Mutation$followUser$followUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$followUser$followUser || runtimeType != other.runtimeType) {
+    if (other is! Mutation$followUser$followUser ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -6920,11 +7498,13 @@ class Mutation$followUser$followUser {
   }
 }
 
-extension UtilityExtension$Mutation$followUser$followUser on Mutation$followUser$followUser {
-  CopyWith$Mutation$followUser$followUser<Mutation$followUser$followUser> get copyWith => CopyWith$Mutation$followUser$followUser(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$followUser$followUser
+    on Mutation$followUser$followUser {
+  CopyWith$Mutation$followUser$followUser<Mutation$followUser$followUser>
+      get copyWith => CopyWith$Mutation$followUser$followUser(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$followUser$followUser<TRes> {
@@ -6933,7 +7513,8 @@ abstract class CopyWith$Mutation$followUser$followUser<TRes> {
     TRes Function(Mutation$followUser$followUser) then,
   ) = _CopyWithImpl$Mutation$followUser$followUser;
 
-  factory CopyWith$Mutation$followUser$followUser.stub(TRes res) = _CopyWithStubImpl$Mutation$followUser$followUser;
+  factory CopyWith$Mutation$followUser$followUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$followUser$followUser;
 
   TRes call({
     bool? success,
@@ -6941,7 +7522,8 @@ abstract class CopyWith$Mutation$followUser$followUser<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$followUser$followUser<TRes> implements CopyWith$Mutation$followUser$followUser<TRes> {
+class _CopyWithImpl$Mutation$followUser$followUser<TRes>
+    implements CopyWith$Mutation$followUser$followUser<TRes> {
   _CopyWithImpl$Mutation$followUser$followUser(
     this._instance,
     this._then,
@@ -6953,23 +7535,24 @@ class _CopyWithImpl$Mutation$followUser$followUser<TRes> implements CopyWith$Mut
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$followUser$followUser(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$followUser$followUser<TRes> implements CopyWith$Mutation$followUser$followUser<TRes> {
+class _CopyWithStubImpl$Mutation$followUser$followUser<TRes>
+    implements CopyWith$Mutation$followUser$followUser<TRes> {
   _CopyWithStubImpl$Mutation$followUser$followUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? $__typename,
@@ -6978,7 +7561,8 @@ class _CopyWithStubImpl$Mutation$followUser$followUser<TRes> implements CopyWith
 }
 
 class Variables$Mutation$unfollowUser {
-  factory Variables$Mutation$unfollowUser({required int followedId}) => Variables$Mutation$unfollowUser._({
+  factory Variables$Mutation$unfollowUser({required int followedId}) =>
+      Variables$Mutation$unfollowUser._({
         r'followedId': followedId,
       });
 
@@ -7002,17 +7586,19 @@ class Variables$Mutation$unfollowUser {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$unfollowUser<Variables$Mutation$unfollowUser> get copyWith => CopyWith$Variables$Mutation$unfollowUser(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$unfollowUser<Variables$Mutation$unfollowUser>
+      get copyWith => CopyWith$Variables$Mutation$unfollowUser(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$unfollowUser || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$unfollowUser ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$followedId = followedId;
@@ -7036,12 +7622,14 @@ abstract class CopyWith$Variables$Mutation$unfollowUser<TRes> {
     TRes Function(Variables$Mutation$unfollowUser) then,
   ) = _CopyWithImpl$Variables$Mutation$unfollowUser;
 
-  factory CopyWith$Variables$Mutation$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$unfollowUser;
+  factory CopyWith$Variables$Mutation$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$unfollowUser;
 
   TRes call({int? followedId});
 }
 
-class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes> implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes>
+    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
   _CopyWithImpl$Variables$Mutation$unfollowUser(
     this._instance,
     this._then,
@@ -7053,19 +7641,20 @@ class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes> implements CopyWith$Va
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
-  TRes call({Object? followedId = _undefined}) => _then(Variables$Mutation$unfollowUser._({
+  TRes call({Object? followedId = _undefined}) =>
+      _then(Variables$Mutation$unfollowUser._({
         ..._instance._$data,
-        if (followedId != _undefined && followedId != null) 'followedId': (followedId as int),
+        if (followedId != _undefined && followedId != null)
+          'followedId': (followedId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$unfollowUser<TRes> implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$unfollowUser<TRes>
+    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$unfollowUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({int? followedId}) => _res;
 }
 
@@ -7079,7 +7668,10 @@ class Mutation$unfollowUser {
     final l$unfollowUser = json['unfollowUser'];
     final l$$__typename = json['__typename'];
     return Mutation$unfollowUser(
-      unfollowUser: l$unfollowUser == null ? null : Mutation$unfollowUser$unfollowUser.fromJson((l$unfollowUser as Map<String, dynamic>)),
+      unfollowUser: l$unfollowUser == null
+          ? null
+          : Mutation$unfollowUser$unfollowUser.fromJson(
+              (l$unfollowUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -7089,12 +7681,12 @@ class Mutation$unfollowUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$unfollowUser = unfollowUser;
-    resultData['unfollowUser'] = l$unfollowUser?.toJson();
+    _resultData['unfollowUser'] = l$unfollowUser?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -7130,7 +7722,8 @@ class Mutation$unfollowUser {
 }
 
 extension UtilityExtension$Mutation$unfollowUser on Mutation$unfollowUser {
-  CopyWith$Mutation$unfollowUser<Mutation$unfollowUser> get copyWith => CopyWith$Mutation$unfollowUser(
+  CopyWith$Mutation$unfollowUser<Mutation$unfollowUser> get copyWith =>
+      CopyWith$Mutation$unfollowUser(
         this,
         (i) => i,
       );
@@ -7142,7 +7735,8 @@ abstract class CopyWith$Mutation$unfollowUser<TRes> {
     TRes Function(Mutation$unfollowUser) then,
   ) = _CopyWithImpl$Mutation$unfollowUser;
 
-  factory CopyWith$Mutation$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Mutation$unfollowUser;
+  factory CopyWith$Mutation$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$unfollowUser;
 
   TRes call({
     Mutation$unfollowUser$unfollowUser? unfollowUser,
@@ -7151,7 +7745,8 @@ abstract class CopyWith$Mutation$unfollowUser<TRes> {
   CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser;
 }
 
-class _CopyWithImpl$Mutation$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser<TRes> {
+class _CopyWithImpl$Mutation$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser<TRes> {
   _CopyWithImpl$Mutation$unfollowUser(
     this._instance,
     this._then,
@@ -7163,39 +7758,42 @@ class _CopyWithImpl$Mutation$unfollowUser<TRes> implements CopyWith$Mutation$unf
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? unfollowUser = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$unfollowUser(
-        unfollowUser: unfollowUser == _undefined ? _instance.unfollowUser : (unfollowUser as Mutation$unfollowUser$unfollowUser?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        unfollowUser: unfollowUser == _undefined
+            ? _instance.unfollowUser
+            : (unfollowUser as Mutation$unfollowUser$unfollowUser?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser {
     final local$unfollowUser = _instance.unfollowUser;
     return local$unfollowUser == null
         ? CopyWith$Mutation$unfollowUser$unfollowUser.stub(_then(_instance))
-        : CopyWith$Mutation$unfollowUser$unfollowUser(local$unfollowUser, (e) => call(unfollowUser: e));
+        : CopyWith$Mutation$unfollowUser$unfollowUser(
+            local$unfollowUser, (e) => call(unfollowUser: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser<TRes> {
+class _CopyWithStubImpl$Mutation$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser<TRes> {
   _CopyWithStubImpl$Mutation$unfollowUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$unfollowUser$unfollowUser? unfollowUser,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser => CopyWith$Mutation$unfollowUser$unfollowUser.stub(_res);
+  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser =>
+      CopyWith$Mutation$unfollowUser$unfollowUser.stub(_res);
 }
 
 const documentNodeMutationunfollowUser = DocumentNode(definitions: [
@@ -7252,35 +7850,45 @@ const documentNodeMutationunfollowUser = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$unfollowUser _parserFn$Mutation$unfollowUser(Map<String, dynamic> data) => Mutation$unfollowUser.fromJson(data);
+Mutation$unfollowUser _parserFn$Mutation$unfollowUser(
+        Map<String, dynamic> data) =>
+    Mutation$unfollowUser.fromJson(data);
 typedef OnMutationCompleted$Mutation$unfollowUser = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$unfollowUser?,
 );
 
-class Options$Mutation$unfollowUser extends graphql.MutationOptions<Mutation$unfollowUser> {
+class Options$Mutation$unfollowUser
+    extends graphql.MutationOptions<Mutation$unfollowUser> {
   Options$Mutation$unfollowUser({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$unfollowUser variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$unfollowUser? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$unfollowUser? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$unfollowUser>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$unfollowUser(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationunfollowUser,
           parserFn: _parserFn$Mutation$unfollowUser,
         );
@@ -7289,36 +7897,52 @@ class Options$Mutation$unfollowUser extends graphql.MutationOptions<Mutation$unf
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$unfollowUser extends graphql.WatchQueryOptions<Mutation$unfollowUser> {
+class WatchOptions$Mutation$unfollowUser
+    extends graphql.WatchQueryOptions<Mutation$unfollowUser> {
   WatchOptions$Mutation$unfollowUser({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$unfollowUser variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$unfollowUser? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationunfollowUser,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$unfollowUser,
         );
 }
 
 extension ClientExtension$Mutation$unfollowUser on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$unfollowUser>> mutate$unfollowUser(Options$Mutation$unfollowUser options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$unfollowUser> watchMutation$unfollowUser(WatchOptions$Mutation$unfollowUser options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$unfollowUser>> mutate$unfollowUser(
+          Options$Mutation$unfollowUser options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$unfollowUser> watchMutation$unfollowUser(
+          WatchOptions$Mutation$unfollowUser options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$unfollowUser$unfollowUser {
@@ -7327,7 +7951,8 @@ class Mutation$unfollowUser$unfollowUser {
     this.$__typename = 'UnfollowUser',
   });
 
-  factory Mutation$unfollowUser$unfollowUser.fromJson(Map<String, dynamic> json) {
+  factory Mutation$unfollowUser$unfollowUser.fromJson(
+      Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$unfollowUser$unfollowUser(
@@ -7341,12 +7966,12 @@ class Mutation$unfollowUser$unfollowUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$success = success;
-    resultData['success'] = l$success;
+    _resultData['success'] = l$success;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -7364,7 +7989,8 @@ class Mutation$unfollowUser$unfollowUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$unfollowUser$unfollowUser || runtimeType != other.runtimeType) {
+    if (other is! Mutation$unfollowUser$unfollowUser ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -7381,11 +8007,14 @@ class Mutation$unfollowUser$unfollowUser {
   }
 }
 
-extension UtilityExtension$Mutation$unfollowUser$unfollowUser on Mutation$unfollowUser$unfollowUser {
-  CopyWith$Mutation$unfollowUser$unfollowUser<Mutation$unfollowUser$unfollowUser> get copyWith => CopyWith$Mutation$unfollowUser$unfollowUser(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$unfollowUser$unfollowUser
+    on Mutation$unfollowUser$unfollowUser {
+  CopyWith$Mutation$unfollowUser$unfollowUser<
+          Mutation$unfollowUser$unfollowUser>
+      get copyWith => CopyWith$Mutation$unfollowUser$unfollowUser(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
@@ -7394,7 +8023,8 @@ abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
     TRes Function(Mutation$unfollowUser$unfollowUser) then,
   ) = _CopyWithImpl$Mutation$unfollowUser$unfollowUser;
 
-  factory CopyWith$Mutation$unfollowUser$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser;
+  factory CopyWith$Mutation$unfollowUser$unfollowUser.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser;
 
   TRes call({
     bool? success,
@@ -7402,7 +8032,8 @@ abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   _CopyWithImpl$Mutation$unfollowUser$unfollowUser(
     this._instance,
     this._then,
@@ -7414,23 +8045,24 @@ class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes> implements CopyWith
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? success = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$unfollowUser$unfollowUser(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes>
+    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? success,
     String? $__typename,
@@ -7453,9 +8085,11 @@ class Variables$Mutation$UploadFile {
   factory Variables$Mutation$UploadFile.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$files = data['files'];
-    result$data['files'] = (l$files as List<dynamic>).map((e) => (e as MultipartFile?)).toList();
+    result$data['files'] =
+        (l$files as List<dynamic>).map((e) => (e as MultipartFile?)).toList();
     final l$fileType = data['fileType'];
-    result$data['fileType'] = fromJson$Enum$FileTypeEnum((l$fileType as String));
+    result$data['fileType'] =
+        fromJson$Enum$FileTypeEnum((l$fileType as String));
     return Variables$Mutation$UploadFile._(result$data);
   }
 
@@ -7474,17 +8108,19 @@ class Variables$Mutation$UploadFile {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UploadFile<Variables$Mutation$UploadFile> get copyWith => CopyWith$Variables$Mutation$UploadFile(
-        this,
-        (i) => i,
-      );
+  CopyWith$Variables$Mutation$UploadFile<Variables$Mutation$UploadFile>
+      get copyWith => CopyWith$Variables$Mutation$UploadFile(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UploadFile || runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UploadFile ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$files = files;
@@ -7524,7 +8160,8 @@ abstract class CopyWith$Variables$Mutation$UploadFile<TRes> {
     TRes Function(Variables$Mutation$UploadFile) then,
   ) = _CopyWithImpl$Variables$Mutation$UploadFile;
 
-  factory CopyWith$Variables$Mutation$UploadFile.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UploadFile;
+  factory CopyWith$Variables$Mutation$UploadFile.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UploadFile;
 
   TRes call({
     List<MultipartFile?>? files,
@@ -7532,7 +8169,8 @@ abstract class CopyWith$Variables$Mutation$UploadFile<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UploadFile<TRes> implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+class _CopyWithImpl$Variables$Mutation$UploadFile<TRes>
+    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
   _CopyWithImpl$Variables$Mutation$UploadFile(
     this._instance,
     this._then,
@@ -7544,24 +8182,25 @@ class _CopyWithImpl$Variables$Mutation$UploadFile<TRes> implements CopyWith$Vari
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? files = _undefined,
     Object? fileType = _undefined,
   }) =>
       _then(Variables$Mutation$UploadFile._({
         ..._instance._$data,
-        if (files != _undefined && files != null) 'files': (files as List<MultipartFile?>),
-        if (fileType != _undefined && fileType != null) 'fileType': (fileType as Enum$FileTypeEnum),
+        if (files != _undefined && files != null)
+          'files': (files as List<MultipartFile?>),
+        if (fileType != _undefined && fileType != null)
+          'fileType': (fileType as Enum$FileTypeEnum),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UploadFile<TRes> implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UploadFile<TRes>
+    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UploadFile(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     List<MultipartFile?>? files,
     Enum$FileTypeEnum? fileType,
@@ -7579,7 +8218,10 @@ class Mutation$UploadFile {
     final l$upload = json['upload'];
     final l$$__typename = json['__typename'];
     return Mutation$UploadFile(
-      upload: l$upload == null ? null : Mutation$UploadFile$upload.fromJson((l$upload as Map<String, dynamic>)),
+      upload: l$upload == null
+          ? null
+          : Mutation$UploadFile$upload.fromJson(
+              (l$upload as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -7589,12 +8231,12 @@ class Mutation$UploadFile {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$upload = upload;
-    resultData['upload'] = l$upload?.toJson();
+    _resultData['upload'] = l$upload?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -7630,7 +8272,8 @@ class Mutation$UploadFile {
 }
 
 extension UtilityExtension$Mutation$UploadFile on Mutation$UploadFile {
-  CopyWith$Mutation$UploadFile<Mutation$UploadFile> get copyWith => CopyWith$Mutation$UploadFile(
+  CopyWith$Mutation$UploadFile<Mutation$UploadFile> get copyWith =>
+      CopyWith$Mutation$UploadFile(
         this,
         (i) => i,
       );
@@ -7642,7 +8285,8 @@ abstract class CopyWith$Mutation$UploadFile<TRes> {
     TRes Function(Mutation$UploadFile) then,
   ) = _CopyWithImpl$Mutation$UploadFile;
 
-  factory CopyWith$Mutation$UploadFile.stub(TRes res) = _CopyWithStubImpl$Mutation$UploadFile;
+  factory CopyWith$Mutation$UploadFile.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UploadFile;
 
   TRes call({
     Mutation$UploadFile$upload? upload,
@@ -7651,7 +8295,8 @@ abstract class CopyWith$Mutation$UploadFile<TRes> {
   CopyWith$Mutation$UploadFile$upload<TRes> get upload;
 }
 
-class _CopyWithImpl$Mutation$UploadFile<TRes> implements CopyWith$Mutation$UploadFile<TRes> {
+class _CopyWithImpl$Mutation$UploadFile<TRes>
+    implements CopyWith$Mutation$UploadFile<TRes> {
   _CopyWithImpl$Mutation$UploadFile(
     this._instance,
     this._then,
@@ -7663,37 +8308,42 @@ class _CopyWithImpl$Mutation$UploadFile<TRes> implements CopyWith$Mutation$Uploa
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? upload = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UploadFile(
-        upload: upload == _undefined ? _instance.upload : (upload as Mutation$UploadFile$upload?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        upload: upload == _undefined
+            ? _instance.upload
+            : (upload as Mutation$UploadFile$upload?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  @override
   CopyWith$Mutation$UploadFile$upload<TRes> get upload {
     final local$upload = _instance.upload;
-    return local$upload == null ? CopyWith$Mutation$UploadFile$upload.stub(_then(_instance)) : CopyWith$Mutation$UploadFile$upload(local$upload, (e) => call(upload: e));
+    return local$upload == null
+        ? CopyWith$Mutation$UploadFile$upload.stub(_then(_instance))
+        : CopyWith$Mutation$UploadFile$upload(
+            local$upload, (e) => call(upload: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UploadFile<TRes> implements CopyWith$Mutation$UploadFile<TRes> {
+class _CopyWithStubImpl$Mutation$UploadFile<TRes>
+    implements CopyWith$Mutation$UploadFile<TRes> {
   _CopyWithStubImpl$Mutation$UploadFile(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Mutation$UploadFile$upload? upload,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  CopyWith$Mutation$UploadFile$upload<TRes> get upload => CopyWith$Mutation$UploadFile$upload.stub(_res);
+  CopyWith$Mutation$UploadFile$upload<TRes> get upload =>
+      CopyWith$Mutation$UploadFile$upload.stub(_res);
 }
 
 const documentNodeMutationUploadFile = DocumentNode(definitions: [
@@ -7773,35 +8423,44 @@ const documentNodeMutationUploadFile = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UploadFile _parserFn$Mutation$UploadFile(Map<String, dynamic> data) => Mutation$UploadFile.fromJson(data);
+Mutation$UploadFile _parserFn$Mutation$UploadFile(Map<String, dynamic> data) =>
+    Mutation$UploadFile.fromJson(data);
 typedef OnMutationCompleted$Mutation$UploadFile = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UploadFile?,
 );
 
-class Options$Mutation$UploadFile extends graphql.MutationOptions<Mutation$UploadFile> {
+class Options$Mutation$UploadFile
+    extends graphql.MutationOptions<Mutation$UploadFile> {
   Options$Mutation$UploadFile({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UploadFile variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UploadFile? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$UploadFile? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$UploadFile>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$UploadFile(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationUploadFile,
           parserFn: _parserFn$Mutation$UploadFile,
         );
@@ -7810,36 +8469,52 @@ class Options$Mutation$UploadFile extends graphql.MutationOptions<Mutation$Uploa
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UploadFile extends graphql.WatchQueryOptions<Mutation$UploadFile> {
+class WatchOptions$Mutation$UploadFile
+    extends graphql.WatchQueryOptions<Mutation$UploadFile> {
   WatchOptions$Mutation$UploadFile({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UploadFile variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UploadFile? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationUploadFile,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UploadFile,
         );
 }
 
 extension ClientExtension$Mutation$UploadFile on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UploadFile>> mutate$UploadFile(Options$Mutation$UploadFile options) async => await mutate(options);
-  graphql.ObservableQuery<Mutation$UploadFile> watchMutation$UploadFile(WatchOptions$Mutation$UploadFile options) => watchMutation(options);
+  Future<graphql.QueryResult<Mutation$UploadFile>> mutate$UploadFile(
+          Options$Mutation$UploadFile options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UploadFile> watchMutation$UploadFile(
+          WatchOptions$Mutation$UploadFile options) =>
+      this.watchMutation(options);
 }
 
 class Mutation$UploadFile$upload {
@@ -7867,14 +8542,14 @@ class Mutation$UploadFile$upload {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$baseUrl = baseUrl;
-    resultData['baseUrl'] = l$baseUrl;
+    _resultData['baseUrl'] = l$baseUrl;
     final l$data = data;
-    resultData['data'] = l$data?.map((e) => e).toList();
+    _resultData['data'] = l$data?.map((e) => e).toList();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -7894,7 +8569,8 @@ class Mutation$UploadFile$upload {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UploadFile$upload || runtimeType != other.runtimeType) {
+    if (other is! Mutation$UploadFile$upload ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$baseUrl = baseUrl;
@@ -7927,11 +8603,13 @@ class Mutation$UploadFile$upload {
   }
 }
 
-extension UtilityExtension$Mutation$UploadFile$upload on Mutation$UploadFile$upload {
-  CopyWith$Mutation$UploadFile$upload<Mutation$UploadFile$upload> get copyWith => CopyWith$Mutation$UploadFile$upload(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Mutation$UploadFile$upload
+    on Mutation$UploadFile$upload {
+  CopyWith$Mutation$UploadFile$upload<Mutation$UploadFile$upload>
+      get copyWith => CopyWith$Mutation$UploadFile$upload(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
@@ -7940,7 +8618,8 @@ abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
     TRes Function(Mutation$UploadFile$upload) then,
   ) = _CopyWithImpl$Mutation$UploadFile$upload;
 
-  factory CopyWith$Mutation$UploadFile$upload.stub(TRes res) = _CopyWithStubImpl$Mutation$UploadFile$upload;
+  factory CopyWith$Mutation$UploadFile$upload.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UploadFile$upload;
 
   TRes call({
     String? baseUrl,
@@ -7949,7 +8628,8 @@ abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UploadFile$upload<TRes> implements CopyWith$Mutation$UploadFile$upload<TRes> {
+class _CopyWithImpl$Mutation$UploadFile$upload<TRes>
+    implements CopyWith$Mutation$UploadFile$upload<TRes> {
   _CopyWithImpl$Mutation$UploadFile$upload(
     this._instance,
     this._then,
@@ -7961,25 +8641,27 @@ class _CopyWithImpl$Mutation$UploadFile$upload<TRes> implements CopyWith$Mutatio
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? baseUrl = _undefined,
     Object? data = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UploadFile$upload(
-        baseUrl: baseUrl == _undefined ? _instance.baseUrl : (baseUrl as String?),
+        baseUrl:
+            baseUrl == _undefined ? _instance.baseUrl : (baseUrl as String?),
         data: data == _undefined ? _instance.data : (data as List<String?>?),
-        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes> implements CopyWith$Mutation$UploadFile$upload<TRes> {
+class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
+    implements CopyWith$Mutation$UploadFile$upload<TRes> {
   _CopyWithStubImpl$Mutation$UploadFile$upload(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? baseUrl,
     List<String?>? data,

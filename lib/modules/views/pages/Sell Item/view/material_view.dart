@@ -59,7 +59,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "Material (recommended)",
+        appbarTitle: "MaterialModel (recommended)",
       ),
       body: ref.watch(materialsProvider).when(
             data: (materials) => CustomScrollView(
@@ -204,7 +204,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
     //         onPressed: () => context.router.popForced(),
     //       ),
     //       centerTitle: true,
-    //       appbarTitle: "Material (recommended)"),
+    //       appbarTitle: "MaterialModel (recommended)"),
     //   body: Container(
     //     color: Theme.of(context).scaffoldBackgroundColor,
     //     child: Column(

@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final materialProvider =
-    StateNotifierProvider<MaterialSelectorNotifier, MaterialSelectorState>(
-        (ref) {
+final materialProvider = StateNotifierProvider<MaterialSelectorNotifier, MaterialSelectorState>((ref) {
   return MaterialSelectorNotifier();
 });
 
@@ -23,7 +21,7 @@ class MaterialSelectorNotifier extends StateNotifier<MaterialSelectorState> {
 
   MaterialSelectorNotifier() : super(MaterialSelectorState());
 
-  final List<String> materials = ["Material 1", "Material 2", "Material 3"];
+  final List<String> materials = ["MaterialModel 1", "MaterialModel 2", "MaterialModel 3"];
 
   void toggleMaterial(String material) {
     final currentSelections = state.selectedMaterials;
@@ -33,9 +31,7 @@ class MaterialSelectorNotifier extends StateNotifier<MaterialSelectorState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections
-              .where((m) => m != material)
-              .toList() // Remove material
+          ? currentSelections.where((m) => m != material).toList() // Remove material
           : (currentSelections.length < maxSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),

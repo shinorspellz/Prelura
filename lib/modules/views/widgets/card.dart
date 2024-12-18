@@ -9,7 +9,7 @@ import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/core/utils/utils.dart';
 import 'package:prelura_app/main.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
