@@ -1,11 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
+import 'package:prelura_app/modules/model/product/material/material_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 
-final materialsProvider = AsyncNotifierProvider<_MaterialsProvider, List<Materials>>(_MaterialsProvider.new);
+final materialsProvider = AsyncNotifierProvider<_MaterialsProvider, List<MaterialModel>>(_MaterialsProvider.new);
 
-class _MaterialsProvider extends AsyncNotifier<List<Materials>> {
+class _MaterialsProvider extends AsyncNotifier<List<MaterialModel>> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
@@ -13,7 +14,7 @@ class _MaterialsProvider extends AsyncNotifier<List<Materials>> {
   int _brandTotalItems = 0;
 
   @override
-  Future<List<Materials>> build() async {
+  Future<List<MaterialModel>> build() async {
     state = const AsyncLoading();
     _currentPage = 1;
     await _getMaterials(pageNumber: _currentPage);
@@ -29,7 +30,7 @@ class _MaterialsProvider extends AsyncNotifier<List<Materials>> {
 
     _brandTotalItems = result.materialsTotalNumber!;
 
-    final newState = result.materials!.map((e) => Materials.fromJson(e!.toJson()));
+    final newState = result.materials!.map((e) => MaterialModel.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
@@ -65,12 +66,12 @@ class _MaterialsProvider extends AsyncNotifier<List<Materials>> {
   }
 }
 
-final searchMaterial = FutureProvider.family.autoDispose<List<Materials>, String>(
+final searchMaterial = FutureProvider.family.autoDispose<List<MaterialModel>, String>(
   (ref, query) async {
     final repo = ref.watch(productRepo);
 
     final result = await repo.getMaterial(search: query);
 
-    return result.materials!.map((e) => Materials.fromJson(e!.toJson())).toList();
+    return result.materials!.map((e) => MaterialModel.fromJson(e!.toJson())).toList();
   },
 );

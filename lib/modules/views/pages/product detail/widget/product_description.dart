@@ -103,7 +103,7 @@ class ProductDescription extends ConsumerWidget {
           if (product.materials != null)
             if (product.materials!.isNotEmpty)
               _buildInfoRow(
-                "Material",
+                "MaterialModel",
                 product.materials!.map((e) => e.name).join(', '),
                 context,
               ),

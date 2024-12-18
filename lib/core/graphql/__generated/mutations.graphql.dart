@@ -4502,6 +4502,15 @@ class Variables$Mutation$UpdateProduct {
     if (l$description != lOther$description) {
       return false;
     }
+    final l$discount = discount;
+    final lOther$discount = other.discount;
+    if (_$data.containsKey('discount') !=
+        other._$data.containsKey('discount')) {
+      return false;
+    }
+    if (l$discount != lOther$discount) {
+      return false;
+    }
     final l$name = name;
     final lOther$name = other.name;
     if (_$data.containsKey('name') != other._$data.containsKey('name')) {

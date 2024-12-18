@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/material/material_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 
 class SellItemState {
@@ -14,7 +15,7 @@ class SellItemState {
   final CategoryModel? subCategory;
   final Enum$ParcelSizeEnum? parcel;
   final List<String> selectedColors;
-  final List<Materials> selectedMaterials;
+  final List<MaterialModel> selectedMaterials;
   final Brand? brand;
   final Enum$SizeEnum? size;
   final String? price;
@@ -49,7 +50,7 @@ class SellItemState {
       CategoryModel? subCategory,
       Enum$ParcelSizeEnum? parcel,
       List<String>? selectedColors,
-      List<Materials>? selectedMaterials,
+      List<MaterialModel>? selectedMaterials,
       Brand? brand,
       Enum$SizeEnum? size,
       String? price,
@@ -241,7 +242,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     return state.selectedColors.length < maxColorSelections;
   }
 
-  void toggleMaterial(Materials material) {
+  void toggleMaterial(MaterialModel material) {
     final currentSelections = state.selectedMaterials;
 
     // Check if the material is already selected
@@ -258,7 +259,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     );
   }
 
-  bool isMaterialSelected(Materials material) {
+  bool isMaterialSelected(MaterialModel material) {
     return state.selectedMaterials.contains(material);
   }
 
