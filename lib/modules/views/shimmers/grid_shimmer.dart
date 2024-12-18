@@ -3,10 +3,11 @@ import 'package:prelura_app/modules/views/shimmers/custom_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
-Widget GridShimmer() {
+Widget GridShimmer({Axis? scrollDirection}) {
   return GridView.builder(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
+      scrollDirection: scrollDirection ?? Axis.vertical,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,

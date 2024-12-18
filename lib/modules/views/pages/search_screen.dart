@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
+import '../../../shared/mock_data.dart';
 import '../../controller/product/product_provider.dart';
 import '../../controller/user/user_controller.dart';
 import '../widgets/menu_card.dart';
@@ -164,6 +165,7 @@ class SearchScreen extends ConsumerWidget {
                   data: (products) {
                     return Column(
                       children: [
+                        addVerticalSpacing(20),
                         Divider(
                             thickness: 1, color: PreluraColors.primaryColor),
                         _buildSectionTitle(
@@ -183,6 +185,7 @@ class SearchScreen extends ConsumerWidget {
                             separatorBuilder: (context, index) =>
                                 10.horizontalSpacing,
                             itemCount: products.length,
+                            shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             itemBuilder: (context, index) {
                               final product = products[index];
@@ -218,7 +221,27 @@ class SearchScreen extends ConsumerWidget {
                       ),
                     );
                   },
-                  loading: () => GridShimmer()),
+                  loading: () => AspectRatio(
+                        aspectRatio: 1.1,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: ListView(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            children: List.generate(
+                              mockData.length,
+                              (_) => Container(
+                                // height: 220,
+                                width: 180,
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child:
+                                    const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
               // Container(
               //   width: double.infinity,
               //   height: 20.h,

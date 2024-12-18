@@ -21,6 +21,8 @@ import 'package:prelura_app/modules/repo/user/user_repo.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
+import '../modules/repo/notifications_repo.dart';
+
 Future<ProviderContainer> initializeDependencies() async {
   final container = ProviderContainer();
   try {
@@ -158,7 +160,8 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) => AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
+  (ref) =>
+      AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
@@ -183,4 +186,8 @@ final fileUploadRepo = Provider(
 /// File Media upload repository for any dependency
 final chatRepo = Provider(
   (ref) => ChatRepo(ref.watch(graphqlClient)),
+);
+
+final notificationRepo = Provider(
+  (ref) => NotificationRepo(ref.watch(graphqlClient)),
 );
