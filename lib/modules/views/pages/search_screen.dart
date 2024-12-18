@@ -219,19 +219,19 @@ class SearchScreen extends ConsumerWidget {
                     );
                   },
                   loading: () => GridShimmer()),
-              Container(
-                width: double.infinity,
-                height: 20.h,
-                margin: EdgeInsets.all(16),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(PreluraIcons.webp_xmas),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topLeft),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
-              ),
+              // Container(
+              //   width: double.infinity,
+              //   height: 20.h,
+              //   margin: EdgeInsets.all(16),
+              //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              //   decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage(PreluraIcons.webp_xmas),
+              //         fit: BoxFit.cover,
+              //         alignment: Alignment.topLeft),
+              //     borderRadius: BorderRadius.all(Radius.circular(10)),
+              //   ),
+              // ),
               SingleChildScrollView(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
