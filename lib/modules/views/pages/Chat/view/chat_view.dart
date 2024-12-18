@@ -25,13 +25,9 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
   ChatNotifier()
       : super([
           ChatMessage(message: "Hello! How are you?", isSentByUser: false),
-          ChatMessage(
-              message: "I'm good, thanks! How about you?", isSentByUser: true),
-          ChatMessage(
-              message: "I'm doing great! What's new?", isSentByUser: false),
-          ChatMessage(
-              message: "Not much, just working on a Flutter project.",
-              isSentByUser: true),
+          ChatMessage(message: "I'm good, thanks! How about you?", isSentByUser: true),
+          ChatMessage(message: "I'm doing great! What's new?", isSentByUser: false),
+          ChatMessage(message: "Not much, just working on a Flutter project.", isSentByUser: true),
         ]);
 
   void sendMessage(String message) {
@@ -45,13 +41,16 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
 
 @RoutePage()
 class ChatScreen extends ConsumerWidget {
-  const ChatScreen(this.username, this.message, this.time, this.avatarUrl,
-      {super.key});
+  const ChatScreen({
+    super.key,
+    required this.id,
+    required this.username,
+    required this.avatarUrl,
+  });
 
+  final String id;
   final String username;
-  final String message;
-  final String time;
-  final String avatarUrl;
+  final String? avatarUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,18 +60,50 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         appbarTitle: username,
         trailingIcon: [
           IconButton(
-            icon: Icon(Icons.info_outline,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.info_outline, color: Theme.of(context).iconTheme.color),
             onPressed: () {},
           ),
         ],
+      ),
+      bottomSheet: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+        child: Row(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Icon(Icons.camera_alt),
+              ),
+            ),
+            addHorizontalSpacing(4),
+            Expanded(
+              child: TextField(
+                controller: textController,
+                decoration: const InputDecoration(
+                  hintText: 'Type your message...',
+                ),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.send),
+              onPressed: () {
+                final message = textController.text.trim();
+                if (message.isNotEmpty) {
+                  ref.read(chatProvider.notifier).sendMessage(message);
+                  textController.clear();
+                }
+              },
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: [
@@ -80,30 +111,28 @@ class ChatScreen extends ConsumerWidget {
             child: Column(
               children: [
                 // Static content at the top
-                ProductCard(image: avatarUrl),
-                SellerCard(name: username),
+                // ProductCard(image: avatarUrl),
+                SellerCard(
+                  name: username,
+                  profilePicture: avatarUrl,
+                ),
 
                 // Scrollable chat messages list
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height *
-                        0.5, // Limit height
+                    minHeight: MediaQuery.of(context).size.height * 0.5, // Limit height
                   ),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    physics:
-                        const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+                    physics: const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
                     itemCount: chatMessages.length,
                     itemBuilder: (context, index) {
                       final chat = chatMessages[index];
                       return Align(
-                        alignment: chat.isSentByUser
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
+                        alignment: chat.isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           padding: const EdgeInsets.all(8.0),
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 16),
+                          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
                           decoration: BoxDecoration(
                             color: chat.isSentByUser
                                 ? context.isDarkMode
@@ -126,45 +155,12 @@ class ChatScreen extends ConsumerWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Icon(Icons.camera_alt),
-                    ),
-                  ),
-                  addHorizontalSpacing(4),
-                  Expanded(
-                    child: TextField(
-                      controller: textController,
-                      decoration: const InputDecoration(
-                        hintText: 'Type your message...',
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () {
-                      final message = textController.text.trim();
-                      if (message.isNotEmpty) {
-                        ref.read(chatProvider.notifier).sendMessage(message);
-                        textController.clear();
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Positioned(
+          //   bottom: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child:
+          // ),
         ],
       ),
     );

@@ -177,11 +177,11 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   }
 
   void selectBrand(Brand? brand) {
-    state = state.copyWith(brand: brand);
+    state = state.copyWith(brand: brand, customBrand: null);
   }
 
   void selectCustomBrand(String? brand) {
-    state = state.copyWith(customBrand: brand);
+    state = state.copyWith(customBrand: brand, brand: null);
   }
 
   void selectCondition(ConditionsEnum selectedCondition) {
