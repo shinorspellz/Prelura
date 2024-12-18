@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 
 final notificationServiceProvider = AsyncNotifierProvider<NotificationServiceProvider, void>(NotificationServiceProvider.new);
 
@@ -70,9 +71,10 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
     messaging.getToken().then((deviceToken) async {
       if (deviceToken != null) {
-        log(deviceToken);
-        // final update = ref.listenManual(accountNotifierProvider, (previous, next) {});
-        // final deviceName = await ref.read(getDeviceName.future);
+        log(deviceToken, name: 'NotificationService');
+        ref.read(userNotfierProvider.notifier).updateProfile(fcmToken: deviceToken);
+        // final update = ref.listenManual(userNotfierProvider, (previous, next) {});
+
         // ref.read(userProvider);
         // await ref.read(userProvider.notifier).updateDeviceToken(deviceToken);
         // update.close();

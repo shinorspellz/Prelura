@@ -298,6 +298,204 @@ class _CopyWithStubImpl$Input$LocationInputType<TRes>
       _res;
 }
 
+class Input$NotificationsPreferenceInputType {
+  factory Input$NotificationsPreferenceInputType({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  }) =>
+      Input$NotificationsPreferenceInputType._({
+        if (likes != null) r'likes': likes,
+        if (newFollowers != null) r'newFollowers': newFollowers,
+        if (profileView != null) r'profileView': profileView,
+        if (messages != null) r'messages': messages,
+      });
+
+  Input$NotificationsPreferenceInputType._(this._$data);
+
+  factory Input$NotificationsPreferenceInputType.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('likes')) {
+      final l$likes = data['likes'];
+      result$data['likes'] = (l$likes as bool?);
+    }
+    if (data.containsKey('newFollowers')) {
+      final l$newFollowers = data['newFollowers'];
+      result$data['newFollowers'] = (l$newFollowers as bool?);
+    }
+    if (data.containsKey('profileView')) {
+      final l$profileView = data['profileView'];
+      result$data['profileView'] = (l$profileView as bool?);
+    }
+    if (data.containsKey('messages')) {
+      final l$messages = data['messages'];
+      result$data['messages'] = (l$messages as bool?);
+    }
+    return Input$NotificationsPreferenceInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get likes => (_$data['likes'] as bool?);
+
+  bool? get newFollowers => (_$data['newFollowers'] as bool?);
+
+  bool? get profileView => (_$data['profileView'] as bool?);
+
+  bool? get messages => (_$data['messages'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('likes')) {
+      final l$likes = likes;
+      result$data['likes'] = l$likes;
+    }
+    if (_$data.containsKey('newFollowers')) {
+      final l$newFollowers = newFollowers;
+      result$data['newFollowers'] = l$newFollowers;
+    }
+    if (_$data.containsKey('profileView')) {
+      final l$profileView = profileView;
+      result$data['profileView'] = l$profileView;
+    }
+    if (_$data.containsKey('messages')) {
+      final l$messages = messages;
+      result$data['messages'] = l$messages;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$NotificationsPreferenceInputType<
+          Input$NotificationsPreferenceInputType>
+      get copyWith => CopyWith$Input$NotificationsPreferenceInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$NotificationsPreferenceInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (_$data.containsKey('likes') != other._$data.containsKey('likes')) {
+      return false;
+    }
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$newFollowers = newFollowers;
+    final lOther$newFollowers = other.newFollowers;
+    if (_$data.containsKey('newFollowers') !=
+        other._$data.containsKey('newFollowers')) {
+      return false;
+    }
+    if (l$newFollowers != lOther$newFollowers) {
+      return false;
+    }
+    final l$profileView = profileView;
+    final lOther$profileView = other.profileView;
+    if (_$data.containsKey('profileView') !=
+        other._$data.containsKey('profileView')) {
+      return false;
+    }
+    if (l$profileView != lOther$profileView) {
+      return false;
+    }
+    final l$messages = messages;
+    final lOther$messages = other.messages;
+    if (_$data.containsKey('messages') !=
+        other._$data.containsKey('messages')) {
+      return false;
+    }
+    if (l$messages != lOther$messages) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$likes = likes;
+    final l$newFollowers = newFollowers;
+    final l$profileView = profileView;
+    final l$messages = messages;
+    return Object.hashAll([
+      _$data.containsKey('likes') ? l$likes : const {},
+      _$data.containsKey('newFollowers') ? l$newFollowers : const {},
+      _$data.containsKey('profileView') ? l$profileView : const {},
+      _$data.containsKey('messages') ? l$messages : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  factory CopyWith$Input$NotificationsPreferenceInputType(
+    Input$NotificationsPreferenceInputType instance,
+    TRes Function(Input$NotificationsPreferenceInputType) then,
+  ) = _CopyWithImpl$Input$NotificationsPreferenceInputType;
+
+  factory CopyWith$Input$NotificationsPreferenceInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$NotificationsPreferenceInputType;
+
+  TRes call({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  });
+}
+
+class _CopyWithImpl$Input$NotificationsPreferenceInputType<TRes>
+    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  _CopyWithImpl$Input$NotificationsPreferenceInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$NotificationsPreferenceInputType _instance;
+
+  final TRes Function(Input$NotificationsPreferenceInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? likes = _undefined,
+    Object? newFollowers = _undefined,
+    Object? profileView = _undefined,
+    Object? messages = _undefined,
+  }) =>
+      _then(Input$NotificationsPreferenceInputType._({
+        ..._instance._$data,
+        if (likes != _undefined) 'likes': (likes as bool?),
+        if (newFollowers != _undefined) 'newFollowers': (newFollowers as bool?),
+        if (profileView != _undefined) 'profileView': (profileView as bool?),
+        if (messages != _undefined) 'messages': (messages as bool?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
+    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  _CopyWithStubImpl$Input$NotificationsPreferenceInputType(this._res);
+
+  TRes _res;
+
+  call({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  }) =>
+      _res;
+}
+
 class Input$PhoneInputType {
   factory Input$PhoneInputType({
     required String countryCode,
@@ -458,6 +656,7 @@ class Input$ProductFiltersInput {
     String? name,
     int? brand,
     int? category,
+    String? customBrand,
     int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
@@ -469,6 +668,7 @@ class Input$ProductFiltersInput {
         if (name != null) r'name': name,
         if (brand != null) r'brand': brand,
         if (category != null) r'category': category,
+        if (customBrand != null) r'customBrand': customBrand,
         if (subCategory != null) r'subCategory': subCategory,
         if (price != null) r'price': price,
         if (status != null) r'status': status,
@@ -492,6 +692,10 @@ class Input$ProductFiltersInput {
     if (data.containsKey('category')) {
       final l$category = data['category'];
       result$data['category'] = (l$category as int?);
+    }
+    if (data.containsKey('customBrand')) {
+      final l$customBrand = data['customBrand'];
+      result$data['customBrand'] = (l$customBrand as String?);
     }
     if (data.containsKey('subCategory')) {
       final l$subCategory = data['subCategory'];
@@ -535,6 +739,8 @@ class Input$ProductFiltersInput {
 
   int? get category => (_$data['category'] as int?);
 
+  String? get customBrand => (_$data['customBrand'] as String?);
+
   int? get subCategory => (_$data['subCategory'] as int?);
 
   double? get price => (_$data['price'] as double?);
@@ -562,6 +768,10 @@ class Input$ProductFiltersInput {
     if (_$data.containsKey('category')) {
       final l$category = category;
       result$data['category'] = l$category;
+    }
+    if (_$data.containsKey('customBrand')) {
+      final l$customBrand = customBrand;
+      result$data['customBrand'] = l$customBrand;
     }
     if (_$data.containsKey('subCategory')) {
       final l$subCategory = subCategory;
@@ -636,6 +846,15 @@ class Input$ProductFiltersInput {
     if (l$category != lOther$category) {
       return false;
     }
+    final l$customBrand = customBrand;
+    final lOther$customBrand = other.customBrand;
+    if (_$data.containsKey('customBrand') !=
+        other._$data.containsKey('customBrand')) {
+      return false;
+    }
+    if (l$customBrand != lOther$customBrand) {
+      return false;
+    }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
     if (_$data.containsKey('subCategory') !=
@@ -694,6 +913,7 @@ class Input$ProductFiltersInput {
     final l$name = name;
     final l$brand = brand;
     final l$category = category;
+    final l$customBrand = customBrand;
     final l$subCategory = subCategory;
     final l$price = price;
     final l$status = status;
@@ -704,6 +924,7 @@ class Input$ProductFiltersInput {
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('brand') ? l$brand : const {},
       _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('customBrand') ? l$customBrand : const {},
       _$data.containsKey('subCategory') ? l$subCategory : const {},
       _$data.containsKey('price') ? l$price : const {},
       _$data.containsKey('status') ? l$status : const {},
@@ -727,6 +948,7 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     String? name,
     int? brand,
     int? category,
+    String? customBrand,
     int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
@@ -753,6 +975,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
     Object? name = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
+    Object? customBrand = _undefined,
     Object? subCategory = _undefined,
     Object? price = _undefined,
     Object? status = _undefined,
@@ -765,6 +988,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (name != _undefined) 'name': (name as String?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (category != _undefined) 'category': (category as int?),
+        if (customBrand != _undefined) 'customBrand': (customBrand as String?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (price != _undefined) 'price': (price as double?),
         if (status != _undefined) 'status': (status as Enum$ProductStatusEnum?),
@@ -785,6 +1009,7 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
     String? name,
     int? brand,
     int? category,
+    String? customBrand,
     int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
@@ -831,6 +1056,51 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
       return Enum$AccountsUserGenderChoices.ANY;
     default:
       return Enum$AccountsUserGenderChoices.$unknown;
+  }
+}
+
+enum Enum$ChatsMessageAttachmentTypeChoices {
+  PICTURE,
+  VIDEO,
+  AUDIO,
+  ZIP,
+  $unknown;
+
+  factory Enum$ChatsMessageAttachmentTypeChoices.fromJson(String value) =>
+      fromJson$Enum$ChatsMessageAttachmentTypeChoices(value);
+
+  String toJson() => toJson$Enum$ChatsMessageAttachmentTypeChoices(this);
+}
+
+String toJson$Enum$ChatsMessageAttachmentTypeChoices(
+    Enum$ChatsMessageAttachmentTypeChoices e) {
+  switch (e) {
+    case Enum$ChatsMessageAttachmentTypeChoices.PICTURE:
+      return r'PICTURE';
+    case Enum$ChatsMessageAttachmentTypeChoices.VIDEO:
+      return r'VIDEO';
+    case Enum$ChatsMessageAttachmentTypeChoices.AUDIO:
+      return r'AUDIO';
+    case Enum$ChatsMessageAttachmentTypeChoices.ZIP:
+      return r'ZIP';
+    case Enum$ChatsMessageAttachmentTypeChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ChatsMessageAttachmentTypeChoices
+    fromJson$Enum$ChatsMessageAttachmentTypeChoices(String value) {
+  switch (value) {
+    case r'PICTURE':
+      return Enum$ChatsMessageAttachmentTypeChoices.PICTURE;
+    case r'VIDEO':
+      return Enum$ChatsMessageAttachmentTypeChoices.VIDEO;
+    case r'AUDIO':
+      return Enum$ChatsMessageAttachmentTypeChoices.AUDIO;
+    case r'ZIP':
+      return Enum$ChatsMessageAttachmentTypeChoices.ZIP;
+    default:
+      return Enum$ChatsMessageAttachmentTypeChoices.$unknown;
   }
 }
 

@@ -23182,3 +23182,6574 @@ class _CopyWithStubImpl$Query$PopularBrands$popularBrands<TRes>
   }) =>
       _res;
 }
+
+class Variables$Query$Conversation {
+  factory Variables$Query$Conversation({
+    required String id,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$Conversation._({
+        r'id': id,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$Conversation._(this._$data);
+
+  factory Variables$Query$Conversation.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$Conversation._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Conversation<Variables$Query$Conversation>
+      get copyWith => CopyWith$Variables$Query$Conversation(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Conversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      l$id,
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Conversation<TRes> {
+  factory CopyWith$Variables$Query$Conversation(
+    Variables$Query$Conversation instance,
+    TRes Function(Variables$Query$Conversation) then,
+  ) = _CopyWithImpl$Variables$Query$Conversation;
+
+  factory CopyWith$Variables$Query$Conversation.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Conversation;
+
+  TRes call({
+    String? id,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$Conversation<TRes>
+    implements CopyWith$Variables$Query$Conversation<TRes> {
+  _CopyWithImpl$Variables$Query$Conversation(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Conversation _instance;
+
+  final TRes Function(Variables$Query$Conversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$Conversation._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as String),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Conversation<TRes>
+    implements CopyWith$Variables$Query$Conversation<TRes> {
+  _CopyWithStubImpl$Variables$Query$Conversation(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$Conversation {
+  Query$Conversation({
+    this.conversation,
+    this.conversationTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Conversation.fromJson(Map<String, dynamic> json) {
+    final l$conversation = json['conversation'];
+    final l$conversationTotalNumber = json['conversationTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversation(
+      conversation: (l$conversation as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Conversation$conversation.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      conversationTotalNumber: (l$conversationTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Conversation$conversation?>? conversation;
+
+  final int? conversationTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$conversation = conversation;
+    _resultData['conversation'] =
+        l$conversation?.map((e) => e?.toJson()).toList();
+    final l$conversationTotalNumber = conversationTotalNumber;
+    _resultData['conversationTotalNumber'] = l$conversationTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversation = conversation;
+    final l$conversationTotalNumber = conversationTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$conversation == null
+          ? null
+          : Object.hashAll(l$conversation.map((v) => v)),
+      l$conversationTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversation || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversation = conversation;
+    final lOther$conversation = other.conversation;
+    if (l$conversation != null && lOther$conversation != null) {
+      if (l$conversation.length != lOther$conversation.length) {
+        return false;
+      }
+      for (int i = 0; i < l$conversation.length; i++) {
+        final l$conversation$entry = l$conversation[i];
+        final lOther$conversation$entry = lOther$conversation[i];
+        if (l$conversation$entry != lOther$conversation$entry) {
+          return false;
+        }
+      }
+    } else if (l$conversation != lOther$conversation) {
+      return false;
+    }
+    final l$conversationTotalNumber = conversationTotalNumber;
+    final lOther$conversationTotalNumber = other.conversationTotalNumber;
+    if (l$conversationTotalNumber != lOther$conversationTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversation on Query$Conversation {
+  CopyWith$Query$Conversation<Query$Conversation> get copyWith =>
+      CopyWith$Query$Conversation(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Conversation<TRes> {
+  factory CopyWith$Query$Conversation(
+    Query$Conversation instance,
+    TRes Function(Query$Conversation) then,
+  ) = _CopyWithImpl$Query$Conversation;
+
+  factory CopyWith$Query$Conversation.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversation;
+
+  TRes call({
+    List<Query$Conversation$conversation?>? conversation,
+    int? conversationTotalNumber,
+    String? $__typename,
+  });
+  TRes conversation(
+      Iterable<Query$Conversation$conversation?>? Function(
+              Iterable<
+                  CopyWith$Query$Conversation$conversation<
+                      Query$Conversation$conversation>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Conversation<TRes>
+    implements CopyWith$Query$Conversation<TRes> {
+  _CopyWithImpl$Query$Conversation(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversation _instance;
+
+  final TRes Function(Query$Conversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? conversation = _undefined,
+    Object? conversationTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversation(
+        conversation: conversation == _undefined
+            ? _instance.conversation
+            : (conversation as List<Query$Conversation$conversation?>?),
+        conversationTotalNumber: conversationTotalNumber == _undefined
+            ? _instance.conversationTotalNumber
+            : (conversationTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes conversation(
+          Iterable<Query$Conversation$conversation?>? Function(
+                  Iterable<
+                      CopyWith$Query$Conversation$conversation<
+                          Query$Conversation$conversation>?>?)
+              _fn) =>
+      call(
+          conversation: _fn(_instance.conversation?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Conversation$conversation(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Conversation<TRes>
+    implements CopyWith$Query$Conversation<TRes> {
+  _CopyWithStubImpl$Query$Conversation(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Conversation$conversation?>? conversation,
+    int? conversationTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+
+  conversation(_fn) => _res;
+}
+
+const documentNodeQueryConversation = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Conversation'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'conversation'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'text'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'attachment'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'attachmentType'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'read'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isItem'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'itemId'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'itemType'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'replyTo'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'text'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachment'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachmentType'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'sender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'sender'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'displayName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'conversationTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Conversation _parserFn$Query$Conversation(Map<String, dynamic> data) =>
+    Query$Conversation.fromJson(data);
+typedef OnQueryComplete$Query$Conversation = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Conversation?,
+);
+
+class Options$Query$Conversation
+    extends graphql.QueryOptions<Query$Conversation> {
+  Options$Query$Conversation({
+    String? operationName,
+    required Variables$Query$Conversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Conversation? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Conversation? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Conversation(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryConversation,
+          parserFn: _parserFn$Query$Conversation,
+        );
+
+  final OnQueryComplete$Query$Conversation? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Conversation
+    extends graphql.WatchQueryOptions<Query$Conversation> {
+  WatchOptions$Query$Conversation({
+    String? operationName,
+    required Variables$Query$Conversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Conversation? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryConversation,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Conversation,
+        );
+}
+
+class FetchMoreOptions$Query$Conversation extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Conversation({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$Conversation variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryConversation,
+        );
+}
+
+extension ClientExtension$Query$Conversation on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Conversation>> query$Conversation(
+          Options$Query$Conversation options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$Conversation> watchQuery$Conversation(
+          WatchOptions$Query$Conversation options) =>
+      this.watchQuery(options);
+  void writeQuery$Conversation({
+    required Query$Conversation data,
+    required Variables$Query$Conversation variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryConversation),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Conversation? readQuery$Conversation({
+    required Variables$Query$Conversation variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryConversation),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Conversation.fromJson(result);
+  }
+}
+
+class Query$Conversation$conversation {
+  Query$Conversation$conversation({
+    required this.id,
+    required this.text,
+    this.attachment,
+    this.attachmentType,
+    required this.read,
+    required this.deleted,
+    required this.isItem,
+    this.itemId,
+    this.itemType,
+    this.replyTo,
+    this.sender,
+    this.$__typename = 'MessageType',
+  });
+
+  factory Query$Conversation$conversation.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$text = json['text'];
+    final l$attachment = json['attachment'];
+    final l$attachmentType = json['attachmentType'];
+    final l$read = json['read'];
+    final l$deleted = json['deleted'];
+    final l$isItem = json['isItem'];
+    final l$itemId = json['itemId'];
+    final l$itemType = json['itemType'];
+    final l$replyTo = json['replyTo'];
+    final l$sender = json['sender'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversation$conversation(
+      id: (l$id as String),
+      text: (l$text as String),
+      attachment: (l$attachment as String?),
+      attachmentType: l$attachmentType == null
+          ? null
+          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
+              (l$attachmentType as String)),
+      read: (l$read as bool),
+      deleted: (l$deleted as bool),
+      isItem: (l$isItem as bool),
+      itemId: (l$itemId as int?),
+      itemType: (l$itemType as String?),
+      replyTo: l$replyTo == null
+          ? null
+          : Query$Conversation$conversation$replyTo.fromJson(
+              (l$replyTo as Map<String, dynamic>)),
+      sender: l$sender == null
+          ? null
+          : Query$Conversation$conversation$sender.fromJson(
+              (l$sender as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String text;
+
+  final String? attachment;
+
+  final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final bool read;
+
+  final bool deleted;
+
+  final bool isItem;
+
+  final int? itemId;
+
+  final String? itemType;
+
+  final Query$Conversation$conversation$replyTo? replyTo;
+
+  final Query$Conversation$conversation$sender? sender;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$attachment = attachment;
+    _resultData['attachment'] = l$attachment;
+    final l$attachmentType = attachmentType;
+    _resultData['attachmentType'] = l$attachmentType == null
+        ? null
+        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$read = read;
+    _resultData['read'] = l$read;
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$isItem = isItem;
+    _resultData['isItem'] = l$isItem;
+    final l$itemId = itemId;
+    _resultData['itemId'] = l$itemId;
+    final l$itemType = itemType;
+    _resultData['itemType'] = l$itemType;
+    final l$replyTo = replyTo;
+    _resultData['replyTo'] = l$replyTo?.toJson();
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$text = text;
+    final l$attachment = attachment;
+    final l$attachmentType = attachmentType;
+    final l$read = read;
+    final l$deleted = deleted;
+    final l$isItem = isItem;
+    final l$itemId = itemId;
+    final l$itemType = itemType;
+    final l$replyTo = replyTo;
+    final l$sender = sender;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$text,
+      l$attachment,
+      l$attachmentType,
+      l$read,
+      l$deleted,
+      l$isItem,
+      l$itemId,
+      l$itemType,
+      l$replyTo,
+      l$sender,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversation$conversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$attachment = attachment;
+    final lOther$attachment = other.attachment;
+    if (l$attachment != lOther$attachment) {
+      return false;
+    }
+    final l$attachmentType = attachmentType;
+    final lOther$attachmentType = other.attachmentType;
+    if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$read = read;
+    final lOther$read = other.read;
+    if (l$read != lOther$read) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$isItem = isItem;
+    final lOther$isItem = other.isItem;
+    if (l$isItem != lOther$isItem) {
+      return false;
+    }
+    final l$itemId = itemId;
+    final lOther$itemId = other.itemId;
+    if (l$itemId != lOther$itemId) {
+      return false;
+    }
+    final l$itemType = itemType;
+    final lOther$itemType = other.itemType;
+    if (l$itemType != lOther$itemType) {
+      return false;
+    }
+    final l$replyTo = replyTo;
+    final lOther$replyTo = other.replyTo;
+    if (l$replyTo != lOther$replyTo) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversation$conversation
+    on Query$Conversation$conversation {
+  CopyWith$Query$Conversation$conversation<Query$Conversation$conversation>
+      get copyWith => CopyWith$Query$Conversation$conversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversation$conversation<TRes> {
+  factory CopyWith$Query$Conversation$conversation(
+    Query$Conversation$conversation instance,
+    TRes Function(Query$Conversation$conversation) then,
+  ) = _CopyWithImpl$Query$Conversation$conversation;
+
+  factory CopyWith$Query$Conversation$conversation.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversation$conversation;
+
+  TRes call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    bool? read,
+    bool? deleted,
+    bool? isItem,
+    int? itemId,
+    String? itemType,
+    Query$Conversation$conversation$replyTo? replyTo,
+    Query$Conversation$conversation$sender? sender,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversation$conversation$replyTo<TRes> get replyTo;
+  CopyWith$Query$Conversation$conversation$sender<TRes> get sender;
+}
+
+class _CopyWithImpl$Query$Conversation$conversation<TRes>
+    implements CopyWith$Query$Conversation$conversation<TRes> {
+  _CopyWithImpl$Query$Conversation$conversation(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversation$conversation _instance;
+
+  final TRes Function(Query$Conversation$conversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? text = _undefined,
+    Object? attachment = _undefined,
+    Object? attachmentType = _undefined,
+    Object? read = _undefined,
+    Object? deleted = _undefined,
+    Object? isItem = _undefined,
+    Object? itemId = _undefined,
+    Object? itemType = _undefined,
+    Object? replyTo = _undefined,
+    Object? sender = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversation$conversation(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        attachment: attachment == _undefined
+            ? _instance.attachment
+            : (attachment as String?),
+        attachmentType: attachmentType == _undefined
+            ? _instance.attachmentType
+            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        read: read == _undefined || read == null
+            ? _instance.read
+            : (read as bool),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        isItem: isItem == _undefined || isItem == null
+            ? _instance.isItem
+            : (isItem as bool),
+        itemId: itemId == _undefined ? _instance.itemId : (itemId as int?),
+        itemType:
+            itemType == _undefined ? _instance.itemType : (itemType as String?),
+        replyTo: replyTo == _undefined
+            ? _instance.replyTo
+            : (replyTo as Query$Conversation$conversation$replyTo?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender as Query$Conversation$conversation$sender?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversation$conversation$replyTo<TRes> get replyTo {
+    final local$replyTo = _instance.replyTo;
+    return local$replyTo == null
+        ? CopyWith$Query$Conversation$conversation$replyTo.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversation$conversation$replyTo(
+            local$replyTo, (e) => call(replyTo: e));
+  }
+
+  CopyWith$Query$Conversation$conversation$sender<TRes> get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Query$Conversation$conversation$sender.stub(_then(_instance))
+        : CopyWith$Query$Conversation$conversation$sender(
+            local$sender, (e) => call(sender: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversation$conversation<TRes>
+    implements CopyWith$Query$Conversation$conversation<TRes> {
+  _CopyWithStubImpl$Query$Conversation$conversation(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    bool? read,
+    bool? deleted,
+    bool? isItem,
+    int? itemId,
+    String? itemType,
+    Query$Conversation$conversation$replyTo? replyTo,
+    Query$Conversation$conversation$sender? sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversation$conversation$replyTo<TRes> get replyTo =>
+      CopyWith$Query$Conversation$conversation$replyTo.stub(_res);
+
+  CopyWith$Query$Conversation$conversation$sender<TRes> get sender =>
+      CopyWith$Query$Conversation$conversation$sender.stub(_res);
+}
+
+class Query$Conversation$conversation$replyTo {
+  Query$Conversation$conversation$replyTo({
+    required this.id,
+    required this.text,
+    this.attachment,
+    this.attachmentType,
+    this.sender,
+    this.$__typename = 'MessageType',
+  });
+
+  factory Query$Conversation$conversation$replyTo.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$text = json['text'];
+    final l$attachment = json['attachment'];
+    final l$attachmentType = json['attachmentType'];
+    final l$sender = json['sender'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversation$conversation$replyTo(
+      id: (l$id as String),
+      text: (l$text as String),
+      attachment: (l$attachment as String?),
+      attachmentType: l$attachmentType == null
+          ? null
+          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
+              (l$attachmentType as String)),
+      sender: l$sender == null
+          ? null
+          : Query$Conversation$conversation$replyTo$sender.fromJson(
+              (l$sender as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String text;
+
+  final String? attachment;
+
+  final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final Query$Conversation$conversation$replyTo$sender? sender;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$attachment = attachment;
+    _resultData['attachment'] = l$attachment;
+    final l$attachmentType = attachmentType;
+    _resultData['attachmentType'] = l$attachmentType == null
+        ? null
+        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$text = text;
+    final l$attachment = attachment;
+    final l$attachmentType = attachmentType;
+    final l$sender = sender;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$text,
+      l$attachment,
+      l$attachmentType,
+      l$sender,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversation$conversation$replyTo ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$attachment = attachment;
+    final lOther$attachment = other.attachment;
+    if (l$attachment != lOther$attachment) {
+      return false;
+    }
+    final l$attachmentType = attachmentType;
+    final lOther$attachmentType = other.attachmentType;
+    if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversation$conversation$replyTo
+    on Query$Conversation$conversation$replyTo {
+  CopyWith$Query$Conversation$conversation$replyTo<
+          Query$Conversation$conversation$replyTo>
+      get copyWith => CopyWith$Query$Conversation$conversation$replyTo(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversation$conversation$replyTo<TRes> {
+  factory CopyWith$Query$Conversation$conversation$replyTo(
+    Query$Conversation$conversation$replyTo instance,
+    TRes Function(Query$Conversation$conversation$replyTo) then,
+  ) = _CopyWithImpl$Query$Conversation$conversation$replyTo;
+
+  factory CopyWith$Query$Conversation$conversation$replyTo.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversation$conversation$replyTo;
+
+  TRes call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$Conversation$conversation$replyTo$sender? sender,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> get sender;
+}
+
+class _CopyWithImpl$Query$Conversation$conversation$replyTo<TRes>
+    implements CopyWith$Query$Conversation$conversation$replyTo<TRes> {
+  _CopyWithImpl$Query$Conversation$conversation$replyTo(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversation$conversation$replyTo _instance;
+
+  final TRes Function(Query$Conversation$conversation$replyTo) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? text = _undefined,
+    Object? attachment = _undefined,
+    Object? attachmentType = _undefined,
+    Object? sender = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversation$conversation$replyTo(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        attachment: attachment == _undefined
+            ? _instance.attachment
+            : (attachment as String?),
+        attachmentType: attachmentType == _undefined
+            ? _instance.attachmentType
+            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender as Query$Conversation$conversation$replyTo$sender?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Query$Conversation$conversation$replyTo$sender.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversation$conversation$replyTo$sender(
+            local$sender, (e) => call(sender: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversation$conversation$replyTo<TRes>
+    implements CopyWith$Query$Conversation$conversation$replyTo<TRes> {
+  _CopyWithStubImpl$Query$Conversation$conversation$replyTo(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$Conversation$conversation$replyTo$sender? sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> get sender =>
+      CopyWith$Query$Conversation$conversation$replyTo$sender.stub(_res);
+}
+
+class Query$Conversation$conversation$replyTo$sender {
+  Query$Conversation$conversation$replyTo$sender({
+    required this.id,
+    required this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.displayName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$Conversation$conversation$replyTo$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$displayName = json['displayName'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversation$conversation$replyTo$sender(
+      id: (l$id as String),
+      username: (l$username as String),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      displayName: (l$displayName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String? displayName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$displayName = displayName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$displayName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversation$conversation$replyTo$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversation$conversation$replyTo$sender
+    on Query$Conversation$conversation$replyTo$sender {
+  CopyWith$Query$Conversation$conversation$replyTo$sender<
+          Query$Conversation$conversation$replyTo$sender>
+      get copyWith => CopyWith$Query$Conversation$conversation$replyTo$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> {
+  factory CopyWith$Query$Conversation$conversation$replyTo$sender(
+    Query$Conversation$conversation$replyTo$sender instance,
+    TRes Function(Query$Conversation$conversation$replyTo$sender) then,
+  ) = _CopyWithImpl$Query$Conversation$conversation$replyTo$sender;
+
+  factory CopyWith$Query$Conversation$conversation$replyTo$sender.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversation$conversation$replyTo$sender<TRes>
+    implements CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> {
+  _CopyWithImpl$Query$Conversation$conversation$replyTo$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversation$conversation$replyTo$sender _instance;
+
+  final TRes Function(Query$Conversation$conversation$replyTo$sender) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? displayName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversation$conversation$replyTo$sender(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender<TRes>
+    implements CopyWith$Query$Conversation$conversation$replyTo$sender<TRes> {
+  _CopyWithStubImpl$Query$Conversation$conversation$replyTo$sender(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversation$conversation$sender {
+  Query$Conversation$conversation$sender({
+    required this.id,
+    required this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.displayName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$Conversation$conversation$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$displayName = json['displayName'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversation$conversation$sender(
+      id: (l$id as String),
+      username: (l$username as String),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      displayName: (l$displayName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String? displayName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$displayName = displayName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$displayName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversation$conversation$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversation$conversation$sender
+    on Query$Conversation$conversation$sender {
+  CopyWith$Query$Conversation$conversation$sender<
+          Query$Conversation$conversation$sender>
+      get copyWith => CopyWith$Query$Conversation$conversation$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversation$conversation$sender<TRes> {
+  factory CopyWith$Query$Conversation$conversation$sender(
+    Query$Conversation$conversation$sender instance,
+    TRes Function(Query$Conversation$conversation$sender) then,
+  ) = _CopyWithImpl$Query$Conversation$conversation$sender;
+
+  factory CopyWith$Query$Conversation$conversation$sender.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversation$conversation$sender;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversation$conversation$sender<TRes>
+    implements CopyWith$Query$Conversation$conversation$sender<TRes> {
+  _CopyWithImpl$Query$Conversation$conversation$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversation$conversation$sender _instance;
+
+  final TRes Function(Query$Conversation$conversation$sender) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? displayName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversation$conversation$sender(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversation$conversation$sender<TRes>
+    implements CopyWith$Query$Conversation$conversation$sender<TRes> {
+  _CopyWithStubImpl$Query$Conversation$conversation$sender(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations {
+  Query$Conversations({
+    this.conversations,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Conversations.fromJson(Map<String, dynamic> json) {
+    final l$conversations = json['conversations'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations(
+      conversations: (l$conversations as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Conversations$conversations.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Conversations$conversations?>? conversations;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$conversations = conversations;
+    _resultData['conversations'] =
+        l$conversations?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversations = conversations;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$conversations == null
+          ? null
+          : Object.hashAll(l$conversations.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversations = conversations;
+    final lOther$conversations = other.conversations;
+    if (l$conversations != null && lOther$conversations != null) {
+      if (l$conversations.length != lOther$conversations.length) {
+        return false;
+      }
+      for (int i = 0; i < l$conversations.length; i++) {
+        final l$conversations$entry = l$conversations[i];
+        final lOther$conversations$entry = lOther$conversations[i];
+        if (l$conversations$entry != lOther$conversations$entry) {
+          return false;
+        }
+      }
+    } else if (l$conversations != lOther$conversations) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations on Query$Conversations {
+  CopyWith$Query$Conversations<Query$Conversations> get copyWith =>
+      CopyWith$Query$Conversations(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Conversations<TRes> {
+  factory CopyWith$Query$Conversations(
+    Query$Conversations instance,
+    TRes Function(Query$Conversations) then,
+  ) = _CopyWithImpl$Query$Conversations;
+
+  factory CopyWith$Query$Conversations.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversations;
+
+  TRes call({
+    List<Query$Conversations$conversations?>? conversations,
+    String? $__typename,
+  });
+  TRes conversations(
+      Iterable<Query$Conversations$conversations?>? Function(
+              Iterable<
+                  CopyWith$Query$Conversations$conversations<
+                      Query$Conversations$conversations>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Conversations<TRes>
+    implements CopyWith$Query$Conversations<TRes> {
+  _CopyWithImpl$Query$Conversations(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations _instance;
+
+  final TRes Function(Query$Conversations) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? conversations = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations(
+        conversations: conversations == _undefined
+            ? _instance.conversations
+            : (conversations as List<Query$Conversations$conversations?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes conversations(
+          Iterable<Query$Conversations$conversations?>? Function(
+                  Iterable<
+                      CopyWith$Query$Conversations$conversations<
+                          Query$Conversations$conversations>?>?)
+              _fn) =>
+      call(
+          conversations: _fn(_instance.conversations?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Conversations$conversations(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Conversations<TRes>
+    implements CopyWith$Query$Conversations<TRes> {
+  _CopyWithStubImpl$Query$Conversations(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Conversations$conversations?>? conversations,
+    String? $__typename,
+  }) =>
+      _res;
+
+  conversations(_fn) => _res;
+}
+
+const documentNodeQueryConversations = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Conversations'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'conversations'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'disableResponse'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastModified'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'participant1Deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'participant2Deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'unreadMessagesCount'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'recipient'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'displayName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastMessage'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'text'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachment'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachmentType'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'sender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Conversations _parserFn$Query$Conversations(Map<String, dynamic> data) =>
+    Query$Conversations.fromJson(data);
+typedef OnQueryComplete$Query$Conversations = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Conversations?,
+);
+
+class Options$Query$Conversations
+    extends graphql.QueryOptions<Query$Conversations> {
+  Options$Query$Conversations({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Conversations? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Conversations? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Conversations(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryConversations,
+          parserFn: _parserFn$Query$Conversations,
+        );
+
+  final OnQueryComplete$Query$Conversations? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Conversations
+    extends graphql.WatchQueryOptions<Query$Conversations> {
+  WatchOptions$Query$Conversations({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Conversations? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryConversations,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Conversations,
+        );
+}
+
+class FetchMoreOptions$Query$Conversations extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Conversations(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryConversations,
+        );
+}
+
+extension ClientExtension$Query$Conversations on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Conversations>> query$Conversations(
+          [Options$Query$Conversations? options]) async =>
+      await this.query(options ?? Options$Query$Conversations());
+  graphql.ObservableQuery<Query$Conversations> watchQuery$Conversations(
+          [WatchOptions$Query$Conversations? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$Conversations());
+  void writeQuery$Conversations({
+    required Query$Conversations data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryConversations)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Conversations? readQuery$Conversations({bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryConversations)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Conversations.fromJson(result);
+  }
+}
+
+class Query$Conversations$conversations {
+  Query$Conversations$conversations({
+    required this.id,
+    required this.name,
+    required this.disableResponse,
+    required this.createdAt,
+    required this.lastModified,
+    required this.deleted,
+    required this.participant1Deleted,
+    required this.participant2Deleted,
+    this.unreadMessagesCount,
+    this.recipient,
+    this.lastMessage,
+    this.$__typename = 'ConversationType',
+  });
+
+  factory Query$Conversations$conversations.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$disableResponse = json['disableResponse'];
+    final l$createdAt = json['createdAt'];
+    final l$lastModified = json['lastModified'];
+    final l$deleted = json['deleted'];
+    final l$participant1Deleted = json['participant1Deleted'];
+    final l$participant2Deleted = json['participant2Deleted'];
+    final l$unreadMessagesCount = json['unreadMessagesCount'];
+    final l$recipient = json['recipient'];
+    final l$lastMessage = json['lastMessage'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations(
+      id: (l$id as String),
+      name: (l$name as String),
+      disableResponse: (l$disableResponse as bool),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      lastModified: DateTime.parse((l$lastModified as String)),
+      deleted: (l$deleted as bool),
+      participant1Deleted: (l$participant1Deleted as bool),
+      participant2Deleted: (l$participant2Deleted as bool),
+      unreadMessagesCount: (l$unreadMessagesCount as int?),
+      recipient: l$recipient == null
+          ? null
+          : Query$Conversations$conversations$recipient.fromJson(
+              (l$recipient as Map<String, dynamic>)),
+      lastMessage: l$lastMessage == null
+          ? null
+          : Query$Conversations$conversations$lastMessage.fromJson(
+              (l$lastMessage as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String name;
+
+  final bool disableResponse;
+
+  final DateTime createdAt;
+
+  final DateTime lastModified;
+
+  final bool deleted;
+
+  final bool participant1Deleted;
+
+  final bool participant2Deleted;
+
+  final int? unreadMessagesCount;
+
+  final Query$Conversations$conversations$recipient? recipient;
+
+  final Query$Conversations$conversations$lastMessage? lastMessage;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$disableResponse = disableResponse;
+    _resultData['disableResponse'] = l$disableResponse;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$lastModified = lastModified;
+    _resultData['lastModified'] = l$lastModified.toIso8601String();
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$participant1Deleted = participant1Deleted;
+    _resultData['participant1Deleted'] = l$participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    _resultData['participant2Deleted'] = l$participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    _resultData['unreadMessagesCount'] = l$unreadMessagesCount;
+    final l$recipient = recipient;
+    _resultData['recipient'] = l$recipient?.toJson();
+    final l$lastMessage = lastMessage;
+    _resultData['lastMessage'] = l$lastMessage?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$disableResponse = disableResponse;
+    final l$createdAt = createdAt;
+    final l$lastModified = lastModified;
+    final l$deleted = deleted;
+    final l$participant1Deleted = participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final l$recipient = recipient;
+    final l$lastMessage = lastMessage;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$disableResponse,
+      l$createdAt,
+      l$lastModified,
+      l$deleted,
+      l$participant1Deleted,
+      l$participant2Deleted,
+      l$unreadMessagesCount,
+      l$recipient,
+      l$lastMessage,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$disableResponse = disableResponse;
+    final lOther$disableResponse = other.disableResponse;
+    if (l$disableResponse != lOther$disableResponse) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$lastModified = lastModified;
+    final lOther$lastModified = other.lastModified;
+    if (l$lastModified != lOther$lastModified) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$participant1Deleted = participant1Deleted;
+    final lOther$participant1Deleted = other.participant1Deleted;
+    if (l$participant1Deleted != lOther$participant1Deleted) {
+      return false;
+    }
+    final l$participant2Deleted = participant2Deleted;
+    final lOther$participant2Deleted = other.participant2Deleted;
+    if (l$participant2Deleted != lOther$participant2Deleted) {
+      return false;
+    }
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final lOther$unreadMessagesCount = other.unreadMessagesCount;
+    if (l$unreadMessagesCount != lOther$unreadMessagesCount) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    final l$lastMessage = lastMessage;
+    final lOther$lastMessage = other.lastMessage;
+    if (l$lastMessage != lOther$lastMessage) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations
+    on Query$Conversations$conversations {
+  CopyWith$Query$Conversations$conversations<Query$Conversations$conversations>
+      get copyWith => CopyWith$Query$Conversations$conversations(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations<TRes> {
+  factory CopyWith$Query$Conversations$conversations(
+    Query$Conversations$conversations instance,
+    TRes Function(Query$Conversations$conversations) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations;
+
+  factory CopyWith$Query$Conversations$conversations.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations;
+
+  TRes call({
+    String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Query$Conversations$conversations$recipient? recipient,
+    Query$Conversations$conversations$lastMessage? lastMessage,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient;
+  CopyWith$Query$Conversations$conversations$lastMessage<TRes> get lastMessage;
+}
+
+class _CopyWithImpl$Query$Conversations$conversations<TRes>
+    implements CopyWith$Query$Conversations$conversations<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations _instance;
+
+  final TRes Function(Query$Conversations$conversations) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? disableResponse = _undefined,
+    Object? createdAt = _undefined,
+    Object? lastModified = _undefined,
+    Object? deleted = _undefined,
+    Object? participant1Deleted = _undefined,
+    Object? participant2Deleted = _undefined,
+    Object? unreadMessagesCount = _undefined,
+    Object? recipient = _undefined,
+    Object? lastMessage = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        disableResponse:
+            disableResponse == _undefined || disableResponse == null
+                ? _instance.disableResponse
+                : (disableResponse as bool),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        lastModified: lastModified == _undefined || lastModified == null
+            ? _instance.lastModified
+            : (lastModified as DateTime),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        participant1Deleted:
+            participant1Deleted == _undefined || participant1Deleted == null
+                ? _instance.participant1Deleted
+                : (participant1Deleted as bool),
+        participant2Deleted:
+            participant2Deleted == _undefined || participant2Deleted == null
+                ? _instance.participant2Deleted
+                : (participant2Deleted as bool),
+        unreadMessagesCount: unreadMessagesCount == _undefined
+            ? _instance.unreadMessagesCount
+            : (unreadMessagesCount as int?),
+        recipient: recipient == _undefined
+            ? _instance.recipient
+            : (recipient as Query$Conversations$conversations$recipient?),
+        lastMessage: lastMessage == _undefined
+            ? _instance.lastMessage
+            : (lastMessage as Query$Conversations$conversations$lastMessage?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient {
+    final local$recipient = _instance.recipient;
+    return local$recipient == null
+        ? CopyWith$Query$Conversations$conversations$recipient.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$recipient(
+            local$recipient, (e) => call(recipient: e));
+  }
+
+  CopyWith$Query$Conversations$conversations$lastMessage<TRes> get lastMessage {
+    final local$lastMessage = _instance.lastMessage;
+    return local$lastMessage == null
+        ? CopyWith$Query$Conversations$conversations$lastMessage.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$lastMessage(
+            local$lastMessage, (e) => call(lastMessage: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations<TRes>
+    implements CopyWith$Query$Conversations$conversations<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Query$Conversations$conversations$recipient? recipient,
+    Query$Conversations$conversations$lastMessage? lastMessage,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversations$conversations$recipient<TRes> get recipient =>
+      CopyWith$Query$Conversations$conversations$recipient.stub(_res);
+
+  CopyWith$Query$Conversations$conversations$lastMessage<TRes>
+      get lastMessage =>
+          CopyWith$Query$Conversations$conversations$lastMessage.stub(_res);
+}
+
+class Query$Conversations$conversations$recipient {
+  Query$Conversations$conversations$recipient({
+    this.id,
+    this.username,
+    this.displayName,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$Conversations$conversations$recipient.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$displayName = json['displayName'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$recipient(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      displayName: (l$displayName as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? displayName;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$displayName = displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$displayName,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$recipient ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$recipient
+    on Query$Conversations$conversations$recipient {
+  CopyWith$Query$Conversations$conversations$recipient<
+          Query$Conversations$conversations$recipient>
+      get copyWith => CopyWith$Query$Conversations$conversations$recipient(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$recipient<TRes> {
+  factory CopyWith$Query$Conversations$conversations$recipient(
+    Query$Conversations$conversations$recipient instance,
+    TRes Function(Query$Conversations$conversations$recipient) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$recipient;
+
+  factory CopyWith$Query$Conversations$conversations$recipient.stub(TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$recipient;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$recipient<TRes>
+    implements CopyWith$Query$Conversations$conversations$recipient<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$recipient(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$recipient _instance;
+
+  final TRes Function(Query$Conversations$conversations$recipient) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? displayName = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$recipient(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$recipient<TRes>
+    implements CopyWith$Query$Conversations$conversations$recipient<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$recipient(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations$conversations$lastMessage {
+  Query$Conversations$conversations$lastMessage({
+    required this.id,
+    required this.text,
+    this.attachment,
+    this.attachmentType,
+    this.sender,
+    this.$__typename = 'MessageType',
+  });
+
+  factory Query$Conversations$conversations$lastMessage.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$text = json['text'];
+    final l$attachment = json['attachment'];
+    final l$attachmentType = json['attachmentType'];
+    final l$sender = json['sender'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$lastMessage(
+      id: (l$id as String),
+      text: (l$text as String),
+      attachment: (l$attachment as String?),
+      attachmentType: l$attachmentType == null
+          ? null
+          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
+              (l$attachmentType as String)),
+      sender: l$sender == null
+          ? null
+          : Query$Conversations$conversations$lastMessage$sender.fromJson(
+              (l$sender as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String text;
+
+  final String? attachment;
+
+  final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final Query$Conversations$conversations$lastMessage$sender? sender;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$attachment = attachment;
+    _resultData['attachment'] = l$attachment;
+    final l$attachmentType = attachmentType;
+    _resultData['attachmentType'] = l$attachmentType == null
+        ? null
+        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$text = text;
+    final l$attachment = attachment;
+    final l$attachmentType = attachmentType;
+    final l$sender = sender;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$text,
+      l$attachment,
+      l$attachmentType,
+      l$sender,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$lastMessage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$attachment = attachment;
+    final lOther$attachment = other.attachment;
+    if (l$attachment != lOther$attachment) {
+      return false;
+    }
+    final l$attachmentType = attachmentType;
+    final lOther$attachmentType = other.attachmentType;
+    if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$lastMessage
+    on Query$Conversations$conversations$lastMessage {
+  CopyWith$Query$Conversations$conversations$lastMessage<
+          Query$Conversations$conversations$lastMessage>
+      get copyWith => CopyWith$Query$Conversations$conversations$lastMessage(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
+  factory CopyWith$Query$Conversations$conversations$lastMessage(
+    Query$Conversations$conversations$lastMessage instance,
+    TRes Function(Query$Conversations$conversations$lastMessage) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$lastMessage;
+
+  factory CopyWith$Query$Conversations$conversations$lastMessage.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$lastMessage;
+
+  TRes call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$Conversations$conversations$lastMessage$sender? sender,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversations$conversations$lastMessage$sender<TRes>
+      get sender;
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
+    implements CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$lastMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$lastMessage _instance;
+
+  final TRes Function(Query$Conversations$conversations$lastMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? text = _undefined,
+    Object? attachment = _undefined,
+    Object? attachmentType = _undefined,
+    Object? sender = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$lastMessage(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        attachment: attachment == _undefined
+            ? _instance.attachment
+            : (attachment as String?),
+        attachmentType: attachmentType == _undefined
+            ? _instance.attachmentType
+            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender as Query$Conversations$conversations$lastMessage$sender?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversations$conversations$lastMessage$sender<TRes>
+      get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Query$Conversations$conversations$lastMessage$sender.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$lastMessage$sender(
+            local$sender, (e) => call(sender: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage<TRes>
+    implements CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$lastMessage(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$Conversations$conversations$lastMessage$sender? sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversations$conversations$lastMessage$sender<TRes>
+      get sender =>
+          CopyWith$Query$Conversations$conversations$lastMessage$sender.stub(
+              _res);
+}
+
+class Query$Conversations$conversations$lastMessage$sender {
+  Query$Conversations$conversations$lastMessage$sender({
+    required this.id,
+    required this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.displayName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$Conversations$conversations$lastMessage$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$displayName = json['displayName'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$lastMessage$sender(
+      id: (l$id as String),
+      username: (l$username as String),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      displayName: (l$displayName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String? displayName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$displayName = displayName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$displayName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$lastMessage$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$lastMessage$sender
+    on Query$Conversations$conversations$lastMessage$sender {
+  CopyWith$Query$Conversations$conversations$lastMessage$sender<
+          Query$Conversations$conversations$lastMessage$sender>
+      get copyWith =>
+          CopyWith$Query$Conversations$conversations$lastMessage$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$lastMessage$sender<
+    TRes> {
+  factory CopyWith$Query$Conversations$conversations$lastMessage$sender(
+    Query$Conversations$conversations$lastMessage$sender instance,
+    TRes Function(Query$Conversations$conversations$lastMessage$sender) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$lastMessage$sender;
+
+  factory CopyWith$Query$Conversations$conversations$lastMessage$sender.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$lastMessage$sender;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$lastMessage$sender<TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$lastMessage$sender<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$lastMessage$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$lastMessage$sender _instance;
+
+  final TRes Function(Query$Conversations$conversations$lastMessage$sender)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? displayName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$lastMessage$sender(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage$sender<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$lastMessage$sender<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$lastMessage$sender(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$ArchivedConversations {
+  Query$ArchivedConversations({
+    this.archivedConversations,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$ArchivedConversations.fromJson(Map<String, dynamic> json) {
+    final l$archivedConversations = json['archivedConversations'];
+    final l$$__typename = json['__typename'];
+    return Query$ArchivedConversations(
+      archivedConversations: (l$archivedConversations as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$ArchivedConversations$archivedConversations.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$ArchivedConversations$archivedConversations?>?
+      archivedConversations;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$archivedConversations = archivedConversations;
+    _resultData['archivedConversations'] =
+        l$archivedConversations?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$archivedConversations = archivedConversations;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$archivedConversations == null
+          ? null
+          : Object.hashAll(l$archivedConversations.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArchivedConversations ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$archivedConversations = archivedConversations;
+    final lOther$archivedConversations = other.archivedConversations;
+    if (l$archivedConversations != null &&
+        lOther$archivedConversations != null) {
+      if (l$archivedConversations.length !=
+          lOther$archivedConversations.length) {
+        return false;
+      }
+      for (int i = 0; i < l$archivedConversations.length; i++) {
+        final l$archivedConversations$entry = l$archivedConversations[i];
+        final lOther$archivedConversations$entry =
+            lOther$archivedConversations[i];
+        if (l$archivedConversations$entry !=
+            lOther$archivedConversations$entry) {
+          return false;
+        }
+      }
+    } else if (l$archivedConversations != lOther$archivedConversations) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArchivedConversations
+    on Query$ArchivedConversations {
+  CopyWith$Query$ArchivedConversations<Query$ArchivedConversations>
+      get copyWith => CopyWith$Query$ArchivedConversations(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$ArchivedConversations<TRes> {
+  factory CopyWith$Query$ArchivedConversations(
+    Query$ArchivedConversations instance,
+    TRes Function(Query$ArchivedConversations) then,
+  ) = _CopyWithImpl$Query$ArchivedConversations;
+
+  factory CopyWith$Query$ArchivedConversations.stub(TRes res) =
+      _CopyWithStubImpl$Query$ArchivedConversations;
+
+  TRes call({
+    List<Query$ArchivedConversations$archivedConversations?>?
+        archivedConversations,
+    String? $__typename,
+  });
+  TRes archivedConversations(
+      Iterable<Query$ArchivedConversations$archivedConversations?>? Function(
+              Iterable<
+                  CopyWith$Query$ArchivedConversations$archivedConversations<
+                      Query$ArchivedConversations$archivedConversations>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$ArchivedConversations<TRes>
+    implements CopyWith$Query$ArchivedConversations<TRes> {
+  _CopyWithImpl$Query$ArchivedConversations(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ArchivedConversations _instance;
+
+  final TRes Function(Query$ArchivedConversations) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? archivedConversations = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$ArchivedConversations(
+        archivedConversations: archivedConversations == _undefined
+            ? _instance.archivedConversations
+            : (archivedConversations
+                as List<Query$ArchivedConversations$archivedConversations?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes archivedConversations(
+          Iterable<Query$ArchivedConversations$archivedConversations?>? Function(
+                  Iterable<
+                      CopyWith$Query$ArchivedConversations$archivedConversations<
+                          Query$ArchivedConversations$archivedConversations>?>?)
+              _fn) =>
+      call(
+          archivedConversations:
+              _fn(_instance.archivedConversations?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$ArchivedConversations$archivedConversations(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$ArchivedConversations<TRes>
+    implements CopyWith$Query$ArchivedConversations<TRes> {
+  _CopyWithStubImpl$Query$ArchivedConversations(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$ArchivedConversations$archivedConversations?>?
+        archivedConversations,
+    String? $__typename,
+  }) =>
+      _res;
+
+  archivedConversations(_fn) => _res;
+}
+
+const documentNodeQueryArchivedConversations = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'ArchivedConversations'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'archivedConversations'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'disableResponse'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastModified'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'participant1Deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'participant2Deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'unreadMessagesCount'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'recipient'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'displayName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastMessage'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'text'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachment'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'attachmentType'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'sender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$ArchivedConversations _parserFn$Query$ArchivedConversations(
+        Map<String, dynamic> data) =>
+    Query$ArchivedConversations.fromJson(data);
+typedef OnQueryComplete$Query$ArchivedConversations = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$ArchivedConversations?,
+);
+
+class Options$Query$ArchivedConversations
+    extends graphql.QueryOptions<Query$ArchivedConversations> {
+  Options$Query$ArchivedConversations({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$ArchivedConversations? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$ArchivedConversations? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$ArchivedConversations(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryArchivedConversations,
+          parserFn: _parserFn$Query$ArchivedConversations,
+        );
+
+  final OnQueryComplete$Query$ArchivedConversations? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$ArchivedConversations
+    extends graphql.WatchQueryOptions<Query$ArchivedConversations> {
+  WatchOptions$Query$ArchivedConversations({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$ArchivedConversations? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryArchivedConversations,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$ArchivedConversations,
+        );
+}
+
+class FetchMoreOptions$Query$ArchivedConversations
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$ArchivedConversations(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryArchivedConversations,
+        );
+}
+
+extension ClientExtension$Query$ArchivedConversations on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$ArchivedConversations>>
+      query$ArchivedConversations(
+              [Options$Query$ArchivedConversations? options]) async =>
+          await this.query(options ?? Options$Query$ArchivedConversations());
+  graphql.ObservableQuery<
+      Query$ArchivedConversations> watchQuery$ArchivedConversations(
+          [WatchOptions$Query$ArchivedConversations? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$ArchivedConversations());
+  void writeQuery$ArchivedConversations({
+    required Query$ArchivedConversations data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryArchivedConversations)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$ArchivedConversations? readQuery$ArchivedConversations(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryArchivedConversations)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$ArchivedConversations.fromJson(result);
+  }
+}
+
+class Query$ArchivedConversations$archivedConversations {
+  Query$ArchivedConversations$archivedConversations({
+    required this.id,
+    required this.name,
+    required this.disableResponse,
+    required this.createdAt,
+    required this.lastModified,
+    required this.deleted,
+    required this.participant1Deleted,
+    required this.participant2Deleted,
+    this.unreadMessagesCount,
+    this.recipient,
+    this.lastMessage,
+    this.$__typename = 'ConversationType',
+  });
+
+  factory Query$ArchivedConversations$archivedConversations.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$disableResponse = json['disableResponse'];
+    final l$createdAt = json['createdAt'];
+    final l$lastModified = json['lastModified'];
+    final l$deleted = json['deleted'];
+    final l$participant1Deleted = json['participant1Deleted'];
+    final l$participant2Deleted = json['participant2Deleted'];
+    final l$unreadMessagesCount = json['unreadMessagesCount'];
+    final l$recipient = json['recipient'];
+    final l$lastMessage = json['lastMessage'];
+    final l$$__typename = json['__typename'];
+    return Query$ArchivedConversations$archivedConversations(
+      id: (l$id as String),
+      name: (l$name as String),
+      disableResponse: (l$disableResponse as bool),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      lastModified: DateTime.parse((l$lastModified as String)),
+      deleted: (l$deleted as bool),
+      participant1Deleted: (l$participant1Deleted as bool),
+      participant2Deleted: (l$participant2Deleted as bool),
+      unreadMessagesCount: (l$unreadMessagesCount as int?),
+      recipient: l$recipient == null
+          ? null
+          : Query$ArchivedConversations$archivedConversations$recipient
+              .fromJson((l$recipient as Map<String, dynamic>)),
+      lastMessage: l$lastMessage == null
+          ? null
+          : Query$ArchivedConversations$archivedConversations$lastMessage
+              .fromJson((l$lastMessage as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String name;
+
+  final bool disableResponse;
+
+  final DateTime createdAt;
+
+  final DateTime lastModified;
+
+  final bool deleted;
+
+  final bool participant1Deleted;
+
+  final bool participant2Deleted;
+
+  final int? unreadMessagesCount;
+
+  final Query$ArchivedConversations$archivedConversations$recipient? recipient;
+
+  final Query$ArchivedConversations$archivedConversations$lastMessage?
+      lastMessage;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$disableResponse = disableResponse;
+    _resultData['disableResponse'] = l$disableResponse;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$lastModified = lastModified;
+    _resultData['lastModified'] = l$lastModified.toIso8601String();
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$participant1Deleted = participant1Deleted;
+    _resultData['participant1Deleted'] = l$participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    _resultData['participant2Deleted'] = l$participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    _resultData['unreadMessagesCount'] = l$unreadMessagesCount;
+    final l$recipient = recipient;
+    _resultData['recipient'] = l$recipient?.toJson();
+    final l$lastMessage = lastMessage;
+    _resultData['lastMessage'] = l$lastMessage?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$disableResponse = disableResponse;
+    final l$createdAt = createdAt;
+    final l$lastModified = lastModified;
+    final l$deleted = deleted;
+    final l$participant1Deleted = participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final l$recipient = recipient;
+    final l$lastMessage = lastMessage;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$disableResponse,
+      l$createdAt,
+      l$lastModified,
+      l$deleted,
+      l$participant1Deleted,
+      l$participant2Deleted,
+      l$unreadMessagesCount,
+      l$recipient,
+      l$lastMessage,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArchivedConversations$archivedConversations ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$disableResponse = disableResponse;
+    final lOther$disableResponse = other.disableResponse;
+    if (l$disableResponse != lOther$disableResponse) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$lastModified = lastModified;
+    final lOther$lastModified = other.lastModified;
+    if (l$lastModified != lOther$lastModified) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$participant1Deleted = participant1Deleted;
+    final lOther$participant1Deleted = other.participant1Deleted;
+    if (l$participant1Deleted != lOther$participant1Deleted) {
+      return false;
+    }
+    final l$participant2Deleted = participant2Deleted;
+    final lOther$participant2Deleted = other.participant2Deleted;
+    if (l$participant2Deleted != lOther$participant2Deleted) {
+      return false;
+    }
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final lOther$unreadMessagesCount = other.unreadMessagesCount;
+    if (l$unreadMessagesCount != lOther$unreadMessagesCount) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    final l$lastMessage = lastMessage;
+    final lOther$lastMessage = other.lastMessage;
+    if (l$lastMessage != lOther$lastMessage) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArchivedConversations$archivedConversations
+    on Query$ArchivedConversations$archivedConversations {
+  CopyWith$Query$ArchivedConversations$archivedConversations<
+          Query$ArchivedConversations$archivedConversations>
+      get copyWith =>
+          CopyWith$Query$ArchivedConversations$archivedConversations(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$ArchivedConversations$archivedConversations<
+    TRes> {
+  factory CopyWith$Query$ArchivedConversations$archivedConversations(
+    Query$ArchivedConversations$archivedConversations instance,
+    TRes Function(Query$ArchivedConversations$archivedConversations) then,
+  ) = _CopyWithImpl$Query$ArchivedConversations$archivedConversations;
+
+  factory CopyWith$Query$ArchivedConversations$archivedConversations.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations;
+
+  TRes call({
+    String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Query$ArchivedConversations$archivedConversations$recipient? recipient,
+    Query$ArchivedConversations$archivedConversations$lastMessage? lastMessage,
+    String? $__typename,
+  });
+  CopyWith$Query$ArchivedConversations$archivedConversations$recipient<TRes>
+      get recipient;
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<TRes>
+      get lastMessage;
+}
+
+class _CopyWithImpl$Query$ArchivedConversations$archivedConversations<TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations<TRes> {
+  _CopyWithImpl$Query$ArchivedConversations$archivedConversations(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ArchivedConversations$archivedConversations _instance;
+
+  final TRes Function(Query$ArchivedConversations$archivedConversations) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? disableResponse = _undefined,
+    Object? createdAt = _undefined,
+    Object? lastModified = _undefined,
+    Object? deleted = _undefined,
+    Object? participant1Deleted = _undefined,
+    Object? participant2Deleted = _undefined,
+    Object? unreadMessagesCount = _undefined,
+    Object? recipient = _undefined,
+    Object? lastMessage = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$ArchivedConversations$archivedConversations(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        disableResponse:
+            disableResponse == _undefined || disableResponse == null
+                ? _instance.disableResponse
+                : (disableResponse as bool),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        lastModified: lastModified == _undefined || lastModified == null
+            ? _instance.lastModified
+            : (lastModified as DateTime),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        participant1Deleted:
+            participant1Deleted == _undefined || participant1Deleted == null
+                ? _instance.participant1Deleted
+                : (participant1Deleted as bool),
+        participant2Deleted:
+            participant2Deleted == _undefined || participant2Deleted == null
+                ? _instance.participant2Deleted
+                : (participant2Deleted as bool),
+        unreadMessagesCount: unreadMessagesCount == _undefined
+            ? _instance.unreadMessagesCount
+            : (unreadMessagesCount as int?),
+        recipient: recipient == _undefined
+            ? _instance.recipient
+            : (recipient
+                as Query$ArchivedConversations$archivedConversations$recipient?),
+        lastMessage: lastMessage == _undefined
+            ? _instance.lastMessage
+            : (lastMessage
+                as Query$ArchivedConversations$archivedConversations$lastMessage?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$recipient<TRes>
+      get recipient {
+    final local$recipient = _instance.recipient;
+    return local$recipient == null
+        ? CopyWith$Query$ArchivedConversations$archivedConversations$recipient
+            .stub(_then(_instance))
+        : CopyWith$Query$ArchivedConversations$archivedConversations$recipient(
+            local$recipient, (e) => call(recipient: e));
+  }
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<TRes>
+      get lastMessage {
+    final local$lastMessage = _instance.lastMessage;
+    return local$lastMessage == null
+        ? CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage
+            .stub(_then(_instance))
+        : CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage(
+            local$lastMessage, (e) => call(lastMessage: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations<TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations<TRes> {
+  _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Query$ArchivedConversations$archivedConversations$recipient? recipient,
+    Query$ArchivedConversations$archivedConversations$lastMessage? lastMessage,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$recipient<TRes>
+      get recipient =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$recipient
+              .stub(_res);
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<TRes>
+      get lastMessage =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage
+              .stub(_res);
+}
+
+class Query$ArchivedConversations$archivedConversations$recipient {
+  Query$ArchivedConversations$archivedConversations$recipient({
+    this.id,
+    this.username,
+    this.displayName,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$ArchivedConversations$archivedConversations$recipient.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$displayName = json['displayName'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$ArchivedConversations$archivedConversations$recipient(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      displayName: (l$displayName as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? displayName;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$displayName = displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$displayName,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$ArchivedConversations$archivedConversations$recipient ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArchivedConversations$archivedConversations$recipient
+    on Query$ArchivedConversations$archivedConversations$recipient {
+  CopyWith$Query$ArchivedConversations$archivedConversations$recipient<
+          Query$ArchivedConversations$archivedConversations$recipient>
+      get copyWith =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$recipient(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$ArchivedConversations$archivedConversations$recipient<
+    TRes> {
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$recipient(
+    Query$ArchivedConversations$archivedConversations$recipient instance,
+    TRes Function(Query$ArchivedConversations$archivedConversations$recipient)
+        then,
+  ) = _CopyWithImpl$Query$ArchivedConversations$archivedConversations$recipient;
+
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$recipient.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$recipient;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$ArchivedConversations$archivedConversations$recipient<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$recipient<
+            TRes> {
+  _CopyWithImpl$Query$ArchivedConversations$archivedConversations$recipient(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ArchivedConversations$archivedConversations$recipient _instance;
+
+  final TRes Function(
+      Query$ArchivedConversations$archivedConversations$recipient) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? displayName = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$ArchivedConversations$archivedConversations$recipient(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$recipient<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$recipient<
+            TRes> {
+  _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$recipient(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$ArchivedConversations$archivedConversations$lastMessage {
+  Query$ArchivedConversations$archivedConversations$lastMessage({
+    required this.id,
+    required this.text,
+    this.attachment,
+    this.attachmentType,
+    this.sender,
+    this.$__typename = 'MessageType',
+  });
+
+  factory Query$ArchivedConversations$archivedConversations$lastMessage.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$text = json['text'];
+    final l$attachment = json['attachment'];
+    final l$attachmentType = json['attachmentType'];
+    final l$sender = json['sender'];
+    final l$$__typename = json['__typename'];
+    return Query$ArchivedConversations$archivedConversations$lastMessage(
+      id: (l$id as String),
+      text: (l$text as String),
+      attachment: (l$attachment as String?),
+      attachmentType: l$attachmentType == null
+          ? null
+          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
+              (l$attachmentType as String)),
+      sender: l$sender == null
+          ? null
+          : Query$ArchivedConversations$archivedConversations$lastMessage$sender
+              .fromJson((l$sender as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String text;
+
+  final String? attachment;
+
+  final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final Query$ArchivedConversations$archivedConversations$lastMessage$sender?
+      sender;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$attachment = attachment;
+    _resultData['attachment'] = l$attachment;
+    final l$attachmentType = attachmentType;
+    _resultData['attachmentType'] = l$attachmentType == null
+        ? null
+        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$text = text;
+    final l$attachment = attachment;
+    final l$attachmentType = attachmentType;
+    final l$sender = sender;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$text,
+      l$attachment,
+      l$attachmentType,
+      l$sender,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$ArchivedConversations$archivedConversations$lastMessage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$attachment = attachment;
+    final lOther$attachment = other.attachment;
+    if (l$attachment != lOther$attachment) {
+      return false;
+    }
+    final l$attachmentType = attachmentType;
+    final lOther$attachmentType = other.attachmentType;
+    if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArchivedConversations$archivedConversations$lastMessage
+    on Query$ArchivedConversations$archivedConversations$lastMessage {
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<
+          Query$ArchivedConversations$archivedConversations$lastMessage>
+      get copyWith =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<
+    TRes> {
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage(
+    Query$ArchivedConversations$archivedConversations$lastMessage instance,
+    TRes Function(Query$ArchivedConversations$archivedConversations$lastMessage)
+        then,
+  ) = _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage;
+
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage;
+
+  TRes call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$ArchivedConversations$archivedConversations$lastMessage$sender?
+        sender,
+    String? $__typename,
+  });
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+      TRes> get sender;
+}
+
+class _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<
+            TRes> {
+  _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ArchivedConversations$archivedConversations$lastMessage _instance;
+
+  final TRes Function(
+      Query$ArchivedConversations$archivedConversations$lastMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? text = _undefined,
+    Object? attachment = _undefined,
+    Object? attachmentType = _undefined,
+    Object? sender = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$ArchivedConversations$archivedConversations$lastMessage(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        attachment: attachment == _undefined
+            ? _instance.attachment
+            : (attachment as String?),
+        attachmentType: attachmentType == _undefined
+            ? _instance.attachmentType
+            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender
+                as Query$ArchivedConversations$archivedConversations$lastMessage$sender?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+      TRes> get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender
+            .stub(_then(_instance))
+        : CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+            local$sender, (e) => call(sender: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage<
+            TRes> {
+  _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Query$ArchivedConversations$archivedConversations$lastMessage$sender?
+        sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+          TRes>
+      get sender =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender
+              .stub(_res);
+}
+
+class Query$ArchivedConversations$archivedConversations$lastMessage$sender {
+  Query$ArchivedConversations$archivedConversations$lastMessage$sender({
+    required this.id,
+    required this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.displayName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$ArchivedConversations$archivedConversations$lastMessage$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$displayName = json['displayName'];
+    final l$$__typename = json['__typename'];
+    return Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+      id: (l$id as String),
+      username: (l$username as String),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      displayName: (l$displayName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String? displayName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$displayName = displayName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$displayName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$ArchivedConversations$archivedConversations$lastMessage$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$ArchivedConversations$archivedConversations$lastMessage$sender
+    on Query$ArchivedConversations$archivedConversations$lastMessage$sender {
+  CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+          Query$ArchivedConversations$archivedConversations$lastMessage$sender>
+      get copyWith =>
+          CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+    TRes> {
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+    Query$ArchivedConversations$archivedConversations$lastMessage$sender
+        instance,
+    TRes Function(
+            Query$ArchivedConversations$archivedConversations$lastMessage$sender)
+        then,
+  ) = _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender;
+
+  factory CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+            TRes> {
+  _CopyWithImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Query$ArchivedConversations$archivedConversations$lastMessage$sender
+      _instance;
+
+  final TRes Function(
+          Query$ArchivedConversations$archivedConversations$lastMessage$sender)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? displayName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+        TRes>
+    implements
+        CopyWith$Query$ArchivedConversations$archivedConversations$lastMessage$sender<
+            TRes> {
+  _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMessage$sender(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$Notifications {
+  factory Variables$Query$Notifications({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$Notifications._({
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$Notifications._(this._$data);
+
+  factory Variables$Query$Notifications.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$Notifications._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Notifications<Variables$Query$Notifications>
+      get copyWith => CopyWith$Variables$Query$Notifications(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Notifications ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Notifications<TRes> {
+  factory CopyWith$Variables$Query$Notifications(
+    Variables$Query$Notifications instance,
+    TRes Function(Variables$Query$Notifications) then,
+  ) = _CopyWithImpl$Variables$Query$Notifications;
+
+  factory CopyWith$Variables$Query$Notifications.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Notifications;
+
+  TRes call({
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$Notifications<TRes>
+    implements CopyWith$Variables$Query$Notifications<TRes> {
+  _CopyWithImpl$Variables$Query$Notifications(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Notifications _instance;
+
+  final TRes Function(Variables$Query$Notifications) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$Notifications._({
+        ..._instance._$data,
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Notifications<TRes>
+    implements CopyWith$Variables$Query$Notifications<TRes> {
+  _CopyWithStubImpl$Variables$Query$Notifications(this._res);
+
+  TRes _res;
+
+  call({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$Notifications {
+  Query$Notifications({
+    this.notifications,
+    this.notificationsTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Notifications.fromJson(Map<String, dynamic> json) {
+    final l$notifications = json['notifications'];
+    final l$notificationsTotalNumber = json['notificationsTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$Notifications(
+      notifications: (l$notifications as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Notifications$notifications.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      notificationsTotalNumber: (l$notificationsTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Notifications$notifications?>? notifications;
+
+  final int? notificationsTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$notifications = notifications;
+    _resultData['notifications'] =
+        l$notifications?.map((e) => e?.toJson()).toList();
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    _resultData['notificationsTotalNumber'] = l$notificationsTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$notifications = notifications;
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$notifications == null
+          ? null
+          : Object.hashAll(l$notifications.map((v) => v)),
+      l$notificationsTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Notifications || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notifications = notifications;
+    final lOther$notifications = other.notifications;
+    if (l$notifications != null && lOther$notifications != null) {
+      if (l$notifications.length != lOther$notifications.length) {
+        return false;
+      }
+      for (int i = 0; i < l$notifications.length; i++) {
+        final l$notifications$entry = l$notifications[i];
+        final lOther$notifications$entry = lOther$notifications[i];
+        if (l$notifications$entry != lOther$notifications$entry) {
+          return false;
+        }
+      }
+    } else if (l$notifications != lOther$notifications) {
+      return false;
+    }
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    final lOther$notificationsTotalNumber = other.notificationsTotalNumber;
+    if (l$notificationsTotalNumber != lOther$notificationsTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Notifications on Query$Notifications {
+  CopyWith$Query$Notifications<Query$Notifications> get copyWith =>
+      CopyWith$Query$Notifications(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Notifications<TRes> {
+  factory CopyWith$Query$Notifications(
+    Query$Notifications instance,
+    TRes Function(Query$Notifications) then,
+  ) = _CopyWithImpl$Query$Notifications;
+
+  factory CopyWith$Query$Notifications.stub(TRes res) =
+      _CopyWithStubImpl$Query$Notifications;
+
+  TRes call({
+    List<Query$Notifications$notifications?>? notifications,
+    int? notificationsTotalNumber,
+    String? $__typename,
+  });
+  TRes notifications(
+      Iterable<Query$Notifications$notifications?>? Function(
+              Iterable<
+                  CopyWith$Query$Notifications$notifications<
+                      Query$Notifications$notifications>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Notifications<TRes>
+    implements CopyWith$Query$Notifications<TRes> {
+  _CopyWithImpl$Query$Notifications(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Notifications _instance;
+
+  final TRes Function(Query$Notifications) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? notifications = _undefined,
+    Object? notificationsTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Notifications(
+        notifications: notifications == _undefined
+            ? _instance.notifications
+            : (notifications as List<Query$Notifications$notifications?>?),
+        notificationsTotalNumber: notificationsTotalNumber == _undefined
+            ? _instance.notificationsTotalNumber
+            : (notificationsTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes notifications(
+          Iterable<Query$Notifications$notifications?>? Function(
+                  Iterable<
+                      CopyWith$Query$Notifications$notifications<
+                          Query$Notifications$notifications>?>?)
+              _fn) =>
+      call(
+          notifications: _fn(_instance.notifications?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Notifications$notifications(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Notifications<TRes>
+    implements CopyWith$Query$Notifications<TRes> {
+  _CopyWithStubImpl$Query$Notifications(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Notifications$notifications?>? notifications,
+    int? notificationsTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+
+  notifications(_fn) => _res;
+}
+
+const documentNodeQueryNotifications = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Notifications'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'notifications'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'model'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'modelId'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'modelGroup'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isRead'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'delivered'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'deleted'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'meta'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'notificationsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Notifications _parserFn$Query$Notifications(Map<String, dynamic> data) =>
+    Query$Notifications.fromJson(data);
+typedef OnQueryComplete$Query$Notifications = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Notifications?,
+);
+
+class Options$Query$Notifications
+    extends graphql.QueryOptions<Query$Notifications> {
+  Options$Query$Notifications({
+    String? operationName,
+    Variables$Query$Notifications? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Notifications? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Notifications? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Notifications(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryNotifications,
+          parserFn: _parserFn$Query$Notifications,
+        );
+
+  final OnQueryComplete$Query$Notifications? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Notifications
+    extends graphql.WatchQueryOptions<Query$Notifications> {
+  WatchOptions$Query$Notifications({
+    String? operationName,
+    Variables$Query$Notifications? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Notifications? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryNotifications,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Notifications,
+        );
+}
+
+class FetchMoreOptions$Query$Notifications extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Notifications({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$Notifications? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryNotifications,
+        );
+}
+
+extension ClientExtension$Query$Notifications on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Notifications>> query$Notifications(
+          [Options$Query$Notifications? options]) async =>
+      await this.query(options ?? Options$Query$Notifications());
+  graphql.ObservableQuery<Query$Notifications> watchQuery$Notifications(
+          [WatchOptions$Query$Notifications? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$Notifications());
+  void writeQuery$Notifications({
+    required Query$Notifications data,
+    Variables$Query$Notifications? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryNotifications),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Notifications? readQuery$Notifications({
+    Variables$Query$Notifications? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryNotifications),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Notifications.fromJson(result);
+  }
+}
+
+class Query$Notifications$notifications {
+  Query$Notifications$notifications({
+    required this.id,
+    required this.message,
+    required this.model,
+    required this.modelId,
+    this.modelGroup,
+    required this.isRead,
+    required this.delivered,
+    required this.deleted,
+    required this.createdAt,
+    required this.updatedAt,
+    this.meta,
+    this.$__typename = 'NotificationType',
+  });
+
+  factory Query$Notifications$notifications.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$message = json['message'];
+    final l$model = json['model'];
+    final l$modelId = json['modelId'];
+    final l$modelGroup = json['modelGroup'];
+    final l$isRead = json['isRead'];
+    final l$delivered = json['delivered'];
+    final l$deleted = json['deleted'];
+    final l$createdAt = json['createdAt'];
+    final l$updatedAt = json['updatedAt'];
+    final l$meta = json['meta'];
+    final l$$__typename = json['__typename'];
+    return Query$Notifications$notifications(
+      id: (l$id as String),
+      message: (l$message as String),
+      model: (l$model as String),
+      modelId: (l$modelId as String),
+      modelGroup: (l$modelGroup as String?),
+      isRead: (l$isRead as bool),
+      delivered: (l$delivered as bool),
+      deleted: (l$deleted as bool),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      meta: (l$meta as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String message;
+
+  final String model;
+
+  final String modelId;
+
+  final String? modelGroup;
+
+  final bool isRead;
+
+  final bool delivered;
+
+  final bool deleted;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
+  final String? meta;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$model = model;
+    _resultData['model'] = l$model;
+    final l$modelId = modelId;
+    _resultData['modelId'] = l$modelId;
+    final l$modelGroup = modelGroup;
+    _resultData['modelGroup'] = l$modelGroup;
+    final l$isRead = isRead;
+    _resultData['isRead'] = l$isRead;
+    final l$delivered = delivered;
+    _resultData['delivered'] = l$delivered;
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$meta = meta;
+    _resultData['meta'] = l$meta;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$message = message;
+    final l$model = model;
+    final l$modelId = modelId;
+    final l$modelGroup = modelGroup;
+    final l$isRead = isRead;
+    final l$delivered = delivered;
+    final l$deleted = deleted;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$meta = meta;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$message,
+      l$model,
+      l$modelId,
+      l$modelGroup,
+      l$isRead,
+      l$delivered,
+      l$deleted,
+      l$createdAt,
+      l$updatedAt,
+      l$meta,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Notifications$notifications ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$model = model;
+    final lOther$model = other.model;
+    if (l$model != lOther$model) {
+      return false;
+    }
+    final l$modelId = modelId;
+    final lOther$modelId = other.modelId;
+    if (l$modelId != lOther$modelId) {
+      return false;
+    }
+    final l$modelGroup = modelGroup;
+    final lOther$modelGroup = other.modelGroup;
+    if (l$modelGroup != lOther$modelGroup) {
+      return false;
+    }
+    final l$isRead = isRead;
+    final lOther$isRead = other.isRead;
+    if (l$isRead != lOther$isRead) {
+      return false;
+    }
+    final l$delivered = delivered;
+    final lOther$delivered = other.delivered;
+    if (l$delivered != lOther$delivered) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$meta = meta;
+    final lOther$meta = other.meta;
+    if (l$meta != lOther$meta) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Notifications$notifications
+    on Query$Notifications$notifications {
+  CopyWith$Query$Notifications$notifications<Query$Notifications$notifications>
+      get copyWith => CopyWith$Query$Notifications$notifications(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Notifications$notifications<TRes> {
+  factory CopyWith$Query$Notifications$notifications(
+    Query$Notifications$notifications instance,
+    TRes Function(Query$Notifications$notifications) then,
+  ) = _CopyWithImpl$Query$Notifications$notifications;
+
+  factory CopyWith$Query$Notifications$notifications.stub(TRes res) =
+      _CopyWithStubImpl$Query$Notifications$notifications;
+
+  TRes call({
+    String? id,
+    String? message,
+    String? model,
+    String? modelId,
+    String? modelGroup,
+    bool? isRead,
+    bool? delivered,
+    bool? deleted,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? meta,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Notifications$notifications<TRes>
+    implements CopyWith$Query$Notifications$notifications<TRes> {
+  _CopyWithImpl$Query$Notifications$notifications(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Notifications$notifications _instance;
+
+  final TRes Function(Query$Notifications$notifications) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? message = _undefined,
+    Object? model = _undefined,
+    Object? modelId = _undefined,
+    Object? modelGroup = _undefined,
+    Object? isRead = _undefined,
+    Object? delivered = _undefined,
+    Object? deleted = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+    Object? meta = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Notifications$notifications(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        message: message == _undefined || message == null
+            ? _instance.message
+            : (message as String),
+        model: model == _undefined || model == null
+            ? _instance.model
+            : (model as String),
+        modelId: modelId == _undefined || modelId == null
+            ? _instance.modelId
+            : (modelId as String),
+        modelGroup: modelGroup == _undefined
+            ? _instance.modelGroup
+            : (modelGroup as String?),
+        isRead: isRead == _undefined || isRead == null
+            ? _instance.isRead
+            : (isRead as bool),
+        delivered: delivered == _undefined || delivered == null
+            ? _instance.delivered
+            : (delivered as bool),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        meta: meta == _undefined ? _instance.meta : (meta as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Notifications$notifications<TRes>
+    implements CopyWith$Query$Notifications$notifications<TRes> {
+  _CopyWithStubImpl$Query$Notifications$notifications(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? message,
+    String? model,
+    String? modelId,
+    String? modelGroup,
+    bool? isRead,
+    bool? delivered,
+    bool? deleted,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? meta,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$NotificationPreference {
+  Query$NotificationPreference({
+    this.notificationPreference,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$NotificationPreference.fromJson(Map<String, dynamic> json) {
+    final l$notificationPreference = json['notificationPreference'];
+    final l$$__typename = json['__typename'];
+    return Query$NotificationPreference(
+      notificationPreference: l$notificationPreference == null
+          ? null
+          : Query$NotificationPreference$notificationPreference.fromJson(
+              (l$notificationPreference as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$NotificationPreference$notificationPreference?
+      notificationPreference;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$notificationPreference = notificationPreference;
+    _resultData['notificationPreference'] = l$notificationPreference?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$notificationPreference = notificationPreference;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$notificationPreference,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$NotificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notificationPreference = notificationPreference;
+    final lOther$notificationPreference = other.notificationPreference;
+    if (l$notificationPreference != lOther$notificationPreference) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$NotificationPreference
+    on Query$NotificationPreference {
+  CopyWith$Query$NotificationPreference<Query$NotificationPreference>
+      get copyWith => CopyWith$Query$NotificationPreference(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$NotificationPreference<TRes> {
+  factory CopyWith$Query$NotificationPreference(
+    Query$NotificationPreference instance,
+    TRes Function(Query$NotificationPreference) then,
+  ) = _CopyWithImpl$Query$NotificationPreference;
+
+  factory CopyWith$Query$NotificationPreference.stub(TRes res) =
+      _CopyWithStubImpl$Query$NotificationPreference;
+
+  TRes call({
+    Query$NotificationPreference$notificationPreference? notificationPreference,
+    String? $__typename,
+  });
+  CopyWith$Query$NotificationPreference$notificationPreference<TRes>
+      get notificationPreference;
+}
+
+class _CopyWithImpl$Query$NotificationPreference<TRes>
+    implements CopyWith$Query$NotificationPreference<TRes> {
+  _CopyWithImpl$Query$NotificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Query$NotificationPreference _instance;
+
+  final TRes Function(Query$NotificationPreference) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? notificationPreference = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$NotificationPreference(
+        notificationPreference: notificationPreference == _undefined
+            ? _instance.notificationPreference
+            : (notificationPreference
+                as Query$NotificationPreference$notificationPreference?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$NotificationPreference$notificationPreference<TRes>
+      get notificationPreference {
+    final local$notificationPreference = _instance.notificationPreference;
+    return local$notificationPreference == null
+        ? CopyWith$Query$NotificationPreference$notificationPreference.stub(
+            _then(_instance))
+        : CopyWith$Query$NotificationPreference$notificationPreference(
+            local$notificationPreference,
+            (e) => call(notificationPreference: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$NotificationPreference<TRes>
+    implements CopyWith$Query$NotificationPreference<TRes> {
+  _CopyWithStubImpl$Query$NotificationPreference(this._res);
+
+  TRes _res;
+
+  call({
+    Query$NotificationPreference$notificationPreference? notificationPreference,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$NotificationPreference$notificationPreference<TRes>
+      get notificationPreference =>
+          CopyWith$Query$NotificationPreference$notificationPreference.stub(
+              _res);
+}
+
+const documentNodeQueryNotificationPreference = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'NotificationPreference'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'notificationPreference'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'isPushNotification'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isEmailNotification'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'inappNotifications'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'emailNotifications'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$NotificationPreference _parserFn$Query$NotificationPreference(
+        Map<String, dynamic> data) =>
+    Query$NotificationPreference.fromJson(data);
+typedef OnQueryComplete$Query$NotificationPreference = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$NotificationPreference?,
+);
+
+class Options$Query$NotificationPreference
+    extends graphql.QueryOptions<Query$NotificationPreference> {
+  Options$Query$NotificationPreference({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$NotificationPreference? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$NotificationPreference? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$NotificationPreference(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryNotificationPreference,
+          parserFn: _parserFn$Query$NotificationPreference,
+        );
+
+  final OnQueryComplete$Query$NotificationPreference? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$NotificationPreference
+    extends graphql.WatchQueryOptions<Query$NotificationPreference> {
+  WatchOptions$Query$NotificationPreference({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$NotificationPreference? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryNotificationPreference,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$NotificationPreference,
+        );
+}
+
+class FetchMoreOptions$Query$NotificationPreference
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$NotificationPreference(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryNotificationPreference,
+        );
+}
+
+extension ClientExtension$Query$NotificationPreference
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$NotificationPreference>>
+      query$NotificationPreference(
+              [Options$Query$NotificationPreference? options]) async =>
+          await this.query(options ?? Options$Query$NotificationPreference());
+  graphql.ObservableQuery<
+      Query$NotificationPreference> watchQuery$NotificationPreference(
+          [WatchOptions$Query$NotificationPreference? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$NotificationPreference());
+  void writeQuery$NotificationPreference({
+    required Query$NotificationPreference data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryNotificationPreference)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$NotificationPreference? readQuery$NotificationPreference(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryNotificationPreference)),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$NotificationPreference.fromJson(result);
+  }
+}
+
+class Query$NotificationPreference$notificationPreference {
+  Query$NotificationPreference$notificationPreference({
+    required this.user,
+    required this.isPushNotification,
+    required this.isEmailNotification,
+    required this.inappNotifications,
+    required this.emailNotifications,
+    this.$__typename = 'NotificationPreferenceType',
+  });
+
+  factory Query$NotificationPreference$notificationPreference.fromJson(
+      Map<String, dynamic> json) {
+    final l$user = json['user'];
+    final l$isPushNotification = json['isPushNotification'];
+    final l$isEmailNotification = json['isEmailNotification'];
+    final l$inappNotifications = json['inappNotifications'];
+    final l$emailNotifications = json['emailNotifications'];
+    final l$$__typename = json['__typename'];
+    return Query$NotificationPreference$notificationPreference(
+      user: Query$NotificationPreference$notificationPreference$user.fromJson(
+          (l$user as Map<String, dynamic>)),
+      isPushNotification: (l$isPushNotification as bool),
+      isEmailNotification: (l$isEmailNotification as bool),
+      inappNotifications: (l$inappNotifications as String),
+      emailNotifications: (l$emailNotifications as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$NotificationPreference$notificationPreference$user user;
+
+  final bool isPushNotification;
+
+  final bool isEmailNotification;
+
+  final String inappNotifications;
+
+  final String emailNotifications;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$user = user;
+    _resultData['user'] = l$user.toJson();
+    final l$isPushNotification = isPushNotification;
+    _resultData['isPushNotification'] = l$isPushNotification;
+    final l$isEmailNotification = isEmailNotification;
+    _resultData['isEmailNotification'] = l$isEmailNotification;
+    final l$inappNotifications = inappNotifications;
+    _resultData['inappNotifications'] = l$inappNotifications;
+    final l$emailNotifications = emailNotifications;
+    _resultData['emailNotifications'] = l$emailNotifications;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$user = user;
+    final l$isPushNotification = isPushNotification;
+    final l$isEmailNotification = isEmailNotification;
+    final l$inappNotifications = inappNotifications;
+    final l$emailNotifications = emailNotifications;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$user,
+      l$isPushNotification,
+      l$isEmailNotification,
+      l$inappNotifications,
+      l$emailNotifications,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$NotificationPreference$notificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
+      return false;
+    }
+    final l$isPushNotification = isPushNotification;
+    final lOther$isPushNotification = other.isPushNotification;
+    if (l$isPushNotification != lOther$isPushNotification) {
+      return false;
+    }
+    final l$isEmailNotification = isEmailNotification;
+    final lOther$isEmailNotification = other.isEmailNotification;
+    if (l$isEmailNotification != lOther$isEmailNotification) {
+      return false;
+    }
+    final l$inappNotifications = inappNotifications;
+    final lOther$inappNotifications = other.inappNotifications;
+    if (l$inappNotifications != lOther$inappNotifications) {
+      return false;
+    }
+    final l$emailNotifications = emailNotifications;
+    final lOther$emailNotifications = other.emailNotifications;
+    if (l$emailNotifications != lOther$emailNotifications) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$NotificationPreference$notificationPreference
+    on Query$NotificationPreference$notificationPreference {
+  CopyWith$Query$NotificationPreference$notificationPreference<
+          Query$NotificationPreference$notificationPreference>
+      get copyWith =>
+          CopyWith$Query$NotificationPreference$notificationPreference(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$NotificationPreference$notificationPreference<
+    TRes> {
+  factory CopyWith$Query$NotificationPreference$notificationPreference(
+    Query$NotificationPreference$notificationPreference instance,
+    TRes Function(Query$NotificationPreference$notificationPreference) then,
+  ) = _CopyWithImpl$Query$NotificationPreference$notificationPreference;
+
+  factory CopyWith$Query$NotificationPreference$notificationPreference.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$NotificationPreference$notificationPreference;
+
+  TRes call({
+    Query$NotificationPreference$notificationPreference$user? user,
+    bool? isPushNotification,
+    bool? isEmailNotification,
+    String? inappNotifications,
+    String? emailNotifications,
+    String? $__typename,
+  });
+  CopyWith$Query$NotificationPreference$notificationPreference$user<TRes>
+      get user;
+}
+
+class _CopyWithImpl$Query$NotificationPreference$notificationPreference<TRes>
+    implements
+        CopyWith$Query$NotificationPreference$notificationPreference<TRes> {
+  _CopyWithImpl$Query$NotificationPreference$notificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Query$NotificationPreference$notificationPreference _instance;
+
+  final TRes Function(Query$NotificationPreference$notificationPreference)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? user = _undefined,
+    Object? isPushNotification = _undefined,
+    Object? isEmailNotification = _undefined,
+    Object? inappNotifications = _undefined,
+    Object? emailNotifications = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$NotificationPreference$notificationPreference(
+        user: user == _undefined || user == null
+            ? _instance.user
+            : (user
+                as Query$NotificationPreference$notificationPreference$user),
+        isPushNotification:
+            isPushNotification == _undefined || isPushNotification == null
+                ? _instance.isPushNotification
+                : (isPushNotification as bool),
+        isEmailNotification:
+            isEmailNotification == _undefined || isEmailNotification == null
+                ? _instance.isEmailNotification
+                : (isEmailNotification as bool),
+        inappNotifications:
+            inappNotifications == _undefined || inappNotifications == null
+                ? _instance.inappNotifications
+                : (inappNotifications as String),
+        emailNotifications:
+            emailNotifications == _undefined || emailNotifications == null
+                ? _instance.emailNotifications
+                : (emailNotifications as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$NotificationPreference$notificationPreference$user<TRes>
+      get user {
+    final local$user = _instance.user;
+    return CopyWith$Query$NotificationPreference$notificationPreference$user(
+        local$user, (e) => call(user: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$NotificationPreference$notificationPreference<
+        TRes>
+    implements
+        CopyWith$Query$NotificationPreference$notificationPreference<TRes> {
+  _CopyWithStubImpl$Query$NotificationPreference$notificationPreference(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Query$NotificationPreference$notificationPreference$user? user,
+    bool? isPushNotification,
+    bool? isEmailNotification,
+    String? inappNotifications,
+    String? emailNotifications,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$NotificationPreference$notificationPreference$user<TRes>
+      get user =>
+          CopyWith$Query$NotificationPreference$notificationPreference$user
+              .stub(_res);
+}
+
+class Query$NotificationPreference$notificationPreference$user {
+  Query$NotificationPreference$notificationPreference$user({
+    required this.id,
+    required this.username,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$NotificationPreference$notificationPreference$user.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Query$NotificationPreference$notificationPreference$user(
+      id: (l$id as String),
+      username: (l$username as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$NotificationPreference$notificationPreference$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$NotificationPreference$notificationPreference$user
+    on Query$NotificationPreference$notificationPreference$user {
+  CopyWith$Query$NotificationPreference$notificationPreference$user<
+          Query$NotificationPreference$notificationPreference$user>
+      get copyWith =>
+          CopyWith$Query$NotificationPreference$notificationPreference$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$NotificationPreference$notificationPreference$user<
+    TRes> {
+  factory CopyWith$Query$NotificationPreference$notificationPreference$user(
+    Query$NotificationPreference$notificationPreference$user instance,
+    TRes Function(Query$NotificationPreference$notificationPreference$user)
+        then,
+  ) = _CopyWithImpl$Query$NotificationPreference$notificationPreference$user;
+
+  factory CopyWith$Query$NotificationPreference$notificationPreference$user.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$NotificationPreference$notificationPreference$user<
+        TRes>
+    implements
+        CopyWith$Query$NotificationPreference$notificationPreference$user<
+            TRes> {
+  _CopyWithImpl$Query$NotificationPreference$notificationPreference$user(
+    this._instance,
+    this._then,
+  );
+
+  final Query$NotificationPreference$notificationPreference$user _instance;
+
+  final TRes Function(Query$NotificationPreference$notificationPreference$user)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$NotificationPreference$notificationPreference$user(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user<
+        TRes>
+    implements
+        CopyWith$Query$NotificationPreference$notificationPreference$user<
+            TRes> {
+  _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? $__typename,
+  }) =>
+      _res;
+}

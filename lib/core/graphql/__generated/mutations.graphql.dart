@@ -5093,7 +5093,7 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'description')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'discount'),
+            name: NameNode(value: 'discountPrice'),
             value: VariableNode(name: NameNode(value: 'discount')),
           ),
           ArgumentNode(
@@ -5972,6 +5972,7 @@ class Variables$Mutation$UpdateProfile {
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
+    String? fcmToken,
   }) =>
       Variables$Mutation$UpdateProfile._({
         if (bio != null) r'bio': bio,
@@ -5989,6 +5990,7 @@ class Variables$Mutation$UpdateProfile {
         if (use2fa != null) r'use2fa': use2fa,
         if (username != null) r'username': username,
         if (location != null) r'location': location,
+        if (fcmToken != null) r'fcmToken': fcmToken,
       });
 
   Variables$Mutation$UpdateProfile._(this._$data);
@@ -6062,6 +6064,10 @@ class Variables$Mutation$UpdateProfile {
           : Input$LocationInputType.fromJson(
               (l$location as Map<String, dynamic>));
     }
+    if (data.containsKey('fcmToken')) {
+      final l$fcmToken = data['fcmToken'];
+      result$data['fcmToken'] = (l$fcmToken as String?);
+    }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
 
@@ -6098,6 +6104,8 @@ class Variables$Mutation$UpdateProfile {
 
   Input$LocationInputType? get location =>
       (_$data['location'] as Input$LocationInputType?);
+
+  String? get fcmToken => (_$data['fcmToken'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -6160,6 +6168,10 @@ class Variables$Mutation$UpdateProfile {
     if (_$data.containsKey('location')) {
       final l$location = location;
       result$data['location'] = l$location?.toJson();
+    }
+    if (_$data.containsKey('fcmToken')) {
+      final l$fcmToken = fcmToken;
+      result$data['fcmToken'] = l$fcmToken;
     }
     return result$data;
   }
@@ -6308,6 +6320,15 @@ class Variables$Mutation$UpdateProfile {
     if (l$location != lOther$location) {
       return false;
     }
+    final l$fcmToken = fcmToken;
+    final lOther$fcmToken = other.fcmToken;
+    if (_$data.containsKey('fcmToken') !=
+        other._$data.containsKey('fcmToken')) {
+      return false;
+    }
+    if (l$fcmToken != lOther$fcmToken) {
+      return false;
+    }
     return true;
   }
 
@@ -6328,6 +6349,7 @@ class Variables$Mutation$UpdateProfile {
     final l$use2fa = use2fa;
     final l$username = username;
     final l$location = location;
+    final l$fcmToken = fcmToken;
     return Object.hashAll([
       _$data.containsKey('bio') ? l$bio : const {},
       _$data.containsKey('country') ? l$country : const {},
@@ -6344,6 +6366,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('use2fa') ? l$use2fa : const {},
       _$data.containsKey('username') ? l$username : const {},
       _$data.containsKey('location') ? l$location : const {},
+      _$data.containsKey('fcmToken') ? l$fcmToken : const {},
     ]);
   }
 }
@@ -6373,6 +6396,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
+    String? fcmToken,
   });
 }
 
@@ -6405,6 +6429,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? use2fa = _undefined,
     Object? username = _undefined,
     Object? location = _undefined,
+    Object? fcmToken = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProfile._({
         ..._instance._$data,
@@ -6427,6 +6452,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (username != _undefined) 'username': (username as String?),
         if (location != _undefined)
           'location': (location as Input$LocationInputType?),
+        if (fcmToken != _undefined) 'fcmToken': (fcmToken as String?),
       }));
 }
 
@@ -6452,6 +6478,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
+    String? fcmToken,
   }) =>
       _res;
 }
@@ -6734,6 +6761,15 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'fcmToken')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -6800,6 +6836,10 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'location'),
             value: VariableNode(name: NameNode(value: 'location')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'fcmToken'),
+            value: VariableNode(name: NameNode(value: 'fcmToken')),
           ),
         ],
         directives: [],
@@ -8665,6 +8705,5138 @@ class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
   call({
     String? baseUrl,
     List<String?>? data,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$CreateChat {
+  factory Variables$Mutation$CreateChat({
+    required String name,
+    required String recipient,
+  }) =>
+      Variables$Mutation$CreateChat._({
+        r'name': name,
+        r'recipient': recipient,
+      });
+
+  Variables$Mutation$CreateChat._(this._$data);
+
+  factory Variables$Mutation$CreateChat.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$name = data['name'];
+    result$data['name'] = (l$name as String);
+    final l$recipient = data['recipient'];
+    result$data['recipient'] = (l$recipient as String);
+    return Variables$Mutation$CreateChat._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get name => (_$data['name'] as String);
+
+  String get recipient => (_$data['recipient'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$name = name;
+    result$data['name'] = l$name;
+    final l$recipient = recipient;
+    result$data['recipient'] = l$recipient;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CreateChat<Variables$Mutation$CreateChat>
+      get copyWith => CopyWith$Variables$Mutation$CreateChat(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CreateChat ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$name = name;
+    final l$recipient = recipient;
+    return Object.hashAll([
+      l$name,
+      l$recipient,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CreateChat<TRes> {
+  factory CopyWith$Variables$Mutation$CreateChat(
+    Variables$Mutation$CreateChat instance,
+    TRes Function(Variables$Mutation$CreateChat) then,
+  ) = _CopyWithImpl$Variables$Mutation$CreateChat;
+
+  factory CopyWith$Variables$Mutation$CreateChat.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CreateChat;
+
+  TRes call({
+    String? name,
+    String? recipient,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$CreateChat<TRes>
+    implements CopyWith$Variables$Mutation$CreateChat<TRes> {
+  _CopyWithImpl$Variables$Mutation$CreateChat(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CreateChat _instance;
+
+  final TRes Function(Variables$Mutation$CreateChat) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? name = _undefined,
+    Object? recipient = _undefined,
+  }) =>
+      _then(Variables$Mutation$CreateChat._({
+        ..._instance._$data,
+        if (name != _undefined && name != null) 'name': (name as String),
+        if (recipient != _undefined && recipient != null)
+          'recipient': (recipient as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CreateChat<TRes>
+    implements CopyWith$Variables$Mutation$CreateChat<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CreateChat(this._res);
+
+  TRes _res;
+
+  call({
+    String? name,
+    String? recipient,
+  }) =>
+      _res;
+}
+
+class Mutation$CreateChat {
+  Mutation$CreateChat({
+    this.createChat,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$CreateChat.fromJson(Map<String, dynamic> json) {
+    final l$createChat = json['createChat'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat(
+      createChat: l$createChat == null
+          ? null
+          : Mutation$CreateChat$createChat.fromJson(
+              (l$createChat as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreateChat$createChat? createChat;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createChat = createChat;
+    _resultData['createChat'] = l$createChat?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createChat = createChat;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createChat,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createChat = createChat;
+    final lOther$createChat = other.createChat;
+    if (l$createChat != lOther$createChat) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat on Mutation$CreateChat {
+  CopyWith$Mutation$CreateChat<Mutation$CreateChat> get copyWith =>
+      CopyWith$Mutation$CreateChat(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$CreateChat<TRes> {
+  factory CopyWith$Mutation$CreateChat(
+    Mutation$CreateChat instance,
+    TRes Function(Mutation$CreateChat) then,
+  ) = _CopyWithImpl$Mutation$CreateChat;
+
+  factory CopyWith$Mutation$CreateChat.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat;
+
+  TRes call({
+    Mutation$CreateChat$createChat? createChat,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateChat$createChat<TRes> get createChat;
+}
+
+class _CopyWithImpl$Mutation$CreateChat<TRes>
+    implements CopyWith$Mutation$CreateChat<TRes> {
+  _CopyWithImpl$Mutation$CreateChat(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat _instance;
+
+  final TRes Function(Mutation$CreateChat) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createChat = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat(
+        createChat: createChat == _undefined
+            ? _instance.createChat
+            : (createChat as Mutation$CreateChat$createChat?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateChat$createChat<TRes> get createChat {
+    final local$createChat = _instance.createChat;
+    return local$createChat == null
+        ? CopyWith$Mutation$CreateChat$createChat.stub(_then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat(
+            local$createChat, (e) => call(createChat: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat<TRes>
+    implements CopyWith$Mutation$CreateChat<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreateChat$createChat? createChat,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateChat$createChat<TRes> get createChat =>
+      CopyWith$Mutation$CreateChat$createChat.stub(_res);
+}
+
+const documentNodeMutationCreateChat = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateChat'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'name')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'recipient')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'createChat'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'name'),
+            value: VariableNode(name: NameNode(value: 'name')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'recipient'),
+            value: VariableNode(name: NameNode(value: 'recipient')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'chat'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$CreateChat _parserFn$Mutation$CreateChat(Map<String, dynamic> data) =>
+    Mutation$CreateChat.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreateChat = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$CreateChat?,
+);
+
+class Options$Mutation$CreateChat
+    extends graphql.MutationOptions<Mutation$CreateChat> {
+  Options$Mutation$CreateChat({
+    String? operationName,
+    required Variables$Mutation$CreateChat variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateChat? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreateChat? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreateChat>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$CreateChat(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationCreateChat,
+          parserFn: _parserFn$Mutation$CreateChat,
+        );
+
+  final OnMutationCompleted$Mutation$CreateChat? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$CreateChat
+    extends graphql.WatchQueryOptions<Mutation$CreateChat> {
+  WatchOptions$Mutation$CreateChat({
+    String? operationName,
+    required Variables$Mutation$CreateChat variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateChat? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationCreateChat,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$CreateChat,
+        );
+}
+
+extension ClientExtension$Mutation$CreateChat on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreateChat>> mutate$CreateChat(
+          Options$Mutation$CreateChat options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateChat> watchMutation$CreateChat(
+          WatchOptions$Mutation$CreateChat options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$CreateChat$createChat {
+  Mutation$CreateChat$createChat({
+    this.chat,
+    this.$__typename = 'CreateChat',
+  });
+
+  factory Mutation$CreateChat$createChat.fromJson(Map<String, dynamic> json) {
+    final l$chat = json['chat'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat$createChat(
+      chat: l$chat == null
+          ? null
+          : Mutation$CreateChat$createChat$chat.fromJson(
+              (l$chat as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreateChat$createChat$chat? chat;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$chat = chat;
+    _resultData['chat'] = l$chat?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$chat = chat;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$chat,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat$createChat ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$chat = chat;
+    final lOther$chat = other.chat;
+    if (l$chat != lOther$chat) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat$createChat
+    on Mutation$CreateChat$createChat {
+  CopyWith$Mutation$CreateChat$createChat<Mutation$CreateChat$createChat>
+      get copyWith => CopyWith$Mutation$CreateChat$createChat(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateChat$createChat<TRes> {
+  factory CopyWith$Mutation$CreateChat$createChat(
+    Mutation$CreateChat$createChat instance,
+    TRes Function(Mutation$CreateChat$createChat) then,
+  ) = _CopyWithImpl$Mutation$CreateChat$createChat;
+
+  factory CopyWith$Mutation$CreateChat$createChat.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat$createChat;
+
+  TRes call({
+    Mutation$CreateChat$createChat$chat? chat,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat;
+}
+
+class _CopyWithImpl$Mutation$CreateChat$createChat<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat<TRes> {
+  _CopyWithImpl$Mutation$CreateChat$createChat(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat$createChat _instance;
+
+  final TRes Function(Mutation$CreateChat$createChat) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? chat = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat$createChat(
+        chat: chat == _undefined
+            ? _instance.chat
+            : (chat as Mutation$CreateChat$createChat$chat?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat {
+    final local$chat = _instance.chat;
+    return local$chat == null
+        ? CopyWith$Mutation$CreateChat$createChat$chat.stub(_then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat(
+            local$chat, (e) => call(chat: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat$createChat<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreateChat$createChat$chat? chat,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat =>
+      CopyWith$Mutation$CreateChat$createChat$chat.stub(_res);
+}
+
+class Mutation$CreateChat$createChat$chat {
+  Mutation$CreateChat$createChat$chat({
+    required this.id,
+    this.$__typename = 'ConversationType',
+  });
+
+  factory Mutation$CreateChat$createChat$chat.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat$createChat$chat(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat$createChat$chat ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat$createChat$chat
+    on Mutation$CreateChat$createChat$chat {
+  CopyWith$Mutation$CreateChat$createChat$chat<
+          Mutation$CreateChat$createChat$chat>
+      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
+  factory CopyWith$Mutation$CreateChat$createChat$chat(
+    Mutation$CreateChat$createChat$chat instance,
+    TRes Function(Mutation$CreateChat$createChat$chat) then,
+  ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat;
+
+  factory CopyWith$Mutation$CreateChat$createChat$chat.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
+  _CopyWithImpl$Mutation$CreateChat$createChat$chat(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat$createChat$chat _instance;
+
+  final TRes Function(Mutation$CreateChat$createChat$chat) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat$createChat$chat(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeleteMessage {
+  factory Variables$Mutation$DeleteMessage({required int messageId}) =>
+      Variables$Mutation$DeleteMessage._({
+        r'messageId': messageId,
+      });
+
+  Variables$Mutation$DeleteMessage._(this._$data);
+
+  factory Variables$Mutation$DeleteMessage.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$messageId = data['messageId'];
+    result$data['messageId'] = (l$messageId as int);
+    return Variables$Mutation$DeleteMessage._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get messageId => (_$data['messageId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$messageId = messageId;
+    result$data['messageId'] = l$messageId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteMessage<Variables$Mutation$DeleteMessage>
+      get copyWith => CopyWith$Variables$Mutation$DeleteMessage(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeleteMessage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$messageId = messageId;
+    final lOther$messageId = other.messageId;
+    if (l$messageId != lOther$messageId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$messageId = messageId;
+    return Object.hashAll([l$messageId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteMessage<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteMessage(
+    Variables$Mutation$DeleteMessage instance,
+    TRes Function(Variables$Mutation$DeleteMessage) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteMessage;
+
+  factory CopyWith$Variables$Mutation$DeleteMessage.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteMessage;
+
+  TRes call({int? messageId});
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteMessage<TRes>
+    implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteMessage _instance;
+
+  final TRes Function(Variables$Mutation$DeleteMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? messageId = _undefined}) =>
+      _then(Variables$Mutation$DeleteMessage._({
+        ..._instance._$data,
+        if (messageId != _undefined && messageId != null)
+          'messageId': (messageId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteMessage<TRes>
+    implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteMessage(this._res);
+
+  TRes _res;
+
+  call({int? messageId}) => _res;
+}
+
+class Mutation$DeleteMessage {
+  Mutation$DeleteMessage({
+    this.deleteMessage,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteMessage.fromJson(Map<String, dynamic> json) {
+    final l$deleteMessage = json['deleteMessage'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteMessage(
+      deleteMessage: l$deleteMessage == null
+          ? null
+          : Mutation$DeleteMessage$deleteMessage.fromJson(
+              (l$deleteMessage as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteMessage$deleteMessage? deleteMessage;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deleteMessage = deleteMessage;
+    _resultData['deleteMessage'] = l$deleteMessage?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deleteMessage = deleteMessage;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deleteMessage,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteMessage || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deleteMessage = deleteMessage;
+    final lOther$deleteMessage = other.deleteMessage;
+    if (l$deleteMessage != lOther$deleteMessage) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteMessage on Mutation$DeleteMessage {
+  CopyWith$Mutation$DeleteMessage<Mutation$DeleteMessage> get copyWith =>
+      CopyWith$Mutation$DeleteMessage(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$DeleteMessage<TRes> {
+  factory CopyWith$Mutation$DeleteMessage(
+    Mutation$DeleteMessage instance,
+    TRes Function(Mutation$DeleteMessage) then,
+  ) = _CopyWithImpl$Mutation$DeleteMessage;
+
+  factory CopyWith$Mutation$DeleteMessage.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteMessage;
+
+  TRes call({
+    Mutation$DeleteMessage$deleteMessage? deleteMessage,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage;
+}
+
+class _CopyWithImpl$Mutation$DeleteMessage<TRes>
+    implements CopyWith$Mutation$DeleteMessage<TRes> {
+  _CopyWithImpl$Mutation$DeleteMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteMessage _instance;
+
+  final TRes Function(Mutation$DeleteMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deleteMessage = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteMessage(
+        deleteMessage: deleteMessage == _undefined
+            ? _instance.deleteMessage
+            : (deleteMessage as Mutation$DeleteMessage$deleteMessage?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage {
+    final local$deleteMessage = _instance.deleteMessage;
+    return local$deleteMessage == null
+        ? CopyWith$Mutation$DeleteMessage$deleteMessage.stub(_then(_instance))
+        : CopyWith$Mutation$DeleteMessage$deleteMessage(
+            local$deleteMessage, (e) => call(deleteMessage: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteMessage<TRes>
+    implements CopyWith$Mutation$DeleteMessage<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteMessage(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteMessage$deleteMessage? deleteMessage,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage =>
+      CopyWith$Mutation$DeleteMessage$deleteMessage.stub(_res);
+}
+
+const documentNodeMutationDeleteMessage = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteMessage'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'messageId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deleteMessage'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'messageId'),
+            value: VariableNode(name: NameNode(value: 'messageId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteMessage _parserFn$Mutation$DeleteMessage(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteMessage.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteMessage = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteMessage?,
+);
+
+class Options$Mutation$DeleteMessage
+    extends graphql.MutationOptions<Mutation$DeleteMessage> {
+  Options$Mutation$DeleteMessage({
+    String? operationName,
+    required Variables$Mutation$DeleteMessage variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteMessage? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteMessage? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteMessage>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteMessage(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteMessage,
+          parserFn: _parserFn$Mutation$DeleteMessage,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteMessage? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteMessage
+    extends graphql.WatchQueryOptions<Mutation$DeleteMessage> {
+  WatchOptions$Mutation$DeleteMessage({
+    String? operationName,
+    required Variables$Mutation$DeleteMessage variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteMessage? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteMessage,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteMessage,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteMessage on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteMessage>> mutate$DeleteMessage(
+          Options$Mutation$DeleteMessage options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteMessage> watchMutation$DeleteMessage(
+          WatchOptions$Mutation$DeleteMessage options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$DeleteMessage$deleteMessage {
+  Mutation$DeleteMessage$deleteMessage({
+    this.message,
+    this.$__typename = 'DeleteMessage',
+  });
+
+  factory Mutation$DeleteMessage$deleteMessage.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteMessage$deleteMessage(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteMessage$deleteMessage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteMessage$deleteMessage
+    on Mutation$DeleteMessage$deleteMessage {
+  CopyWith$Mutation$DeleteMessage$deleteMessage<
+          Mutation$DeleteMessage$deleteMessage>
+      get copyWith => CopyWith$Mutation$DeleteMessage$deleteMessage(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
+  factory CopyWith$Mutation$DeleteMessage$deleteMessage(
+    Mutation$DeleteMessage$deleteMessage instance,
+    TRes Function(Mutation$DeleteMessage$deleteMessage) then,
+  ) = _CopyWithImpl$Mutation$DeleteMessage$deleteMessage;
+
+  factory CopyWith$Mutation$DeleteMessage$deleteMessage.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteMessage$deleteMessage<TRes>
+    implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
+  _CopyWithImpl$Mutation$DeleteMessage$deleteMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteMessage$deleteMessage _instance;
+
+  final TRes Function(Mutation$DeleteMessage$deleteMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteMessage$deleteMessage(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage<TRes>
+    implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeleteConversation {
+  factory Variables$Mutation$DeleteConversation(
+          {required int conversationId}) =>
+      Variables$Mutation$DeleteConversation._({
+        r'conversationId': conversationId,
+      });
+
+  Variables$Mutation$DeleteConversation._(this._$data);
+
+  factory Variables$Mutation$DeleteConversation.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = data['conversationId'];
+    result$data['conversationId'] = (l$conversationId as int);
+    return Variables$Mutation$DeleteConversation._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get conversationId => (_$data['conversationId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = conversationId;
+    result$data['conversationId'] = l$conversationId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteConversation<
+          Variables$Mutation$DeleteConversation>
+      get copyWith => CopyWith$Variables$Mutation$DeleteConversation(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeleteConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversationId = conversationId;
+    return Object.hashAll([l$conversationId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteConversation<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteConversation(
+    Variables$Mutation$DeleteConversation instance,
+    TRes Function(Variables$Mutation$DeleteConversation) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteConversation;
+
+  factory CopyWith$Variables$Mutation$DeleteConversation.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteConversation;
+
+  TRes call({int? conversationId});
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteConversation<TRes>
+    implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteConversation _instance;
+
+  final TRes Function(Variables$Mutation$DeleteConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? conversationId = _undefined}) =>
+      _then(Variables$Mutation$DeleteConversation._({
+        ..._instance._$data,
+        if (conversationId != _undefined && conversationId != null)
+          'conversationId': (conversationId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteConversation<TRes>
+    implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteConversation(this._res);
+
+  TRes _res;
+
+  call({int? conversationId}) => _res;
+}
+
+class Mutation$DeleteConversation {
+  Mutation$DeleteConversation({
+    this.deleteConversation,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteConversation.fromJson(Map<String, dynamic> json) {
+    final l$deleteConversation = json['deleteConversation'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteConversation(
+      deleteConversation: l$deleteConversation == null
+          ? null
+          : Mutation$DeleteConversation$deleteConversation.fromJson(
+              (l$deleteConversation as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteConversation$deleteConversation? deleteConversation;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deleteConversation = deleteConversation;
+    _resultData['deleteConversation'] = l$deleteConversation?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deleteConversation = deleteConversation;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deleteConversation,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deleteConversation = deleteConversation;
+    final lOther$deleteConversation = other.deleteConversation;
+    if (l$deleteConversation != lOther$deleteConversation) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteConversation
+    on Mutation$DeleteConversation {
+  CopyWith$Mutation$DeleteConversation<Mutation$DeleteConversation>
+      get copyWith => CopyWith$Mutation$DeleteConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteConversation<TRes> {
+  factory CopyWith$Mutation$DeleteConversation(
+    Mutation$DeleteConversation instance,
+    TRes Function(Mutation$DeleteConversation) then,
+  ) = _CopyWithImpl$Mutation$DeleteConversation;
+
+  factory CopyWith$Mutation$DeleteConversation.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteConversation;
+
+  TRes call({
+    Mutation$DeleteConversation$deleteConversation? deleteConversation,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
+      get deleteConversation;
+}
+
+class _CopyWithImpl$Mutation$DeleteConversation<TRes>
+    implements CopyWith$Mutation$DeleteConversation<TRes> {
+  _CopyWithImpl$Mutation$DeleteConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteConversation _instance;
+
+  final TRes Function(Mutation$DeleteConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deleteConversation = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteConversation(
+        deleteConversation: deleteConversation == _undefined
+            ? _instance.deleteConversation
+            : (deleteConversation
+                as Mutation$DeleteConversation$deleteConversation?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
+      get deleteConversation {
+    final local$deleteConversation = _instance.deleteConversation;
+    return local$deleteConversation == null
+        ? CopyWith$Mutation$DeleteConversation$deleteConversation.stub(
+            _then(_instance))
+        : CopyWith$Mutation$DeleteConversation$deleteConversation(
+            local$deleteConversation, (e) => call(deleteConversation: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteConversation<TRes>
+    implements CopyWith$Mutation$DeleteConversation<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteConversation(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteConversation$deleteConversation? deleteConversation,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
+      get deleteConversation =>
+          CopyWith$Mutation$DeleteConversation$deleteConversation.stub(_res);
+}
+
+const documentNodeMutationDeleteConversation = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteConversation'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'conversationId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deleteConversation'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'conversationId'),
+            value: VariableNode(name: NameNode(value: 'conversationId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteConversation _parserFn$Mutation$DeleteConversation(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteConversation = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteConversation?,
+);
+
+class Options$Mutation$DeleteConversation
+    extends graphql.MutationOptions<Mutation$DeleteConversation> {
+  Options$Mutation$DeleteConversation({
+    String? operationName,
+    required Variables$Mutation$DeleteConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteConversation? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteConversation? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteConversation>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteConversation(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteConversation,
+          parserFn: _parserFn$Mutation$DeleteConversation,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteConversation? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteConversation
+    extends graphql.WatchQueryOptions<Mutation$DeleteConversation> {
+  WatchOptions$Mutation$DeleteConversation({
+    String? operationName,
+    required Variables$Mutation$DeleteConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteConversation? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteConversation,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteConversation,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteConversation on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteConversation>>
+      mutate$DeleteConversation(
+              Options$Mutation$DeleteConversation options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteConversation>
+      watchMutation$DeleteConversation(
+              WatchOptions$Mutation$DeleteConversation options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$DeleteConversation$deleteConversation {
+  Mutation$DeleteConversation$deleteConversation({
+    this.message,
+    this.$__typename = 'DeleteConversation',
+  });
+
+  factory Mutation$DeleteConversation$deleteConversation.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteConversation$deleteConversation(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteConversation$deleteConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteConversation$deleteConversation
+    on Mutation$DeleteConversation$deleteConversation {
+  CopyWith$Mutation$DeleteConversation$deleteConversation<
+          Mutation$DeleteConversation$deleteConversation>
+      get copyWith => CopyWith$Mutation$DeleteConversation$deleteConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
+  factory CopyWith$Mutation$DeleteConversation$deleteConversation(
+    Mutation$DeleteConversation$deleteConversation instance,
+    TRes Function(Mutation$DeleteConversation$deleteConversation) then,
+  ) = _CopyWithImpl$Mutation$DeleteConversation$deleteConversation;
+
+  factory CopyWith$Mutation$DeleteConversation$deleteConversation.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteConversation$deleteConversation<TRes>
+    implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
+  _CopyWithImpl$Mutation$DeleteConversation$deleteConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteConversation$deleteConversation _instance;
+
+  final TRes Function(Mutation$DeleteConversation$deleteConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteConversation$deleteConversation(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation<TRes>
+    implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$ArchiveConversation {
+  factory Variables$Mutation$ArchiveConversation(
+          {required int conversationId}) =>
+      Variables$Mutation$ArchiveConversation._({
+        r'conversationId': conversationId,
+      });
+
+  Variables$Mutation$ArchiveConversation._(this._$data);
+
+  factory Variables$Mutation$ArchiveConversation.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = data['conversationId'];
+    result$data['conversationId'] = (l$conversationId as int);
+    return Variables$Mutation$ArchiveConversation._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get conversationId => (_$data['conversationId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = conversationId;
+    result$data['conversationId'] = l$conversationId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$ArchiveConversation<
+          Variables$Mutation$ArchiveConversation>
+      get copyWith => CopyWith$Variables$Mutation$ArchiveConversation(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$ArchiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversationId = conversationId;
+    return Object.hashAll([l$conversationId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
+  factory CopyWith$Variables$Mutation$ArchiveConversation(
+    Variables$Mutation$ArchiveConversation instance,
+    TRes Function(Variables$Mutation$ArchiveConversation) then,
+  ) = _CopyWithImpl$Variables$Mutation$ArchiveConversation;
+
+  factory CopyWith$Variables$Mutation$ArchiveConversation.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ArchiveConversation;
+
+  TRes call({int? conversationId});
+}
+
+class _CopyWithImpl$Variables$Mutation$ArchiveConversation<TRes>
+    implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
+  _CopyWithImpl$Variables$Mutation$ArchiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$ArchiveConversation _instance;
+
+  final TRes Function(Variables$Mutation$ArchiveConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? conversationId = _undefined}) =>
+      _then(Variables$Mutation$ArchiveConversation._({
+        ..._instance._$data,
+        if (conversationId != _undefined && conversationId != null)
+          'conversationId': (conversationId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ArchiveConversation<TRes>
+    implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ArchiveConversation(this._res);
+
+  TRes _res;
+
+  call({int? conversationId}) => _res;
+}
+
+class Mutation$ArchiveConversation {
+  Mutation$ArchiveConversation({
+    this.archiveConversation,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$ArchiveConversation.fromJson(Map<String, dynamic> json) {
+    final l$archiveConversation = json['archiveConversation'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ArchiveConversation(
+      archiveConversation: l$archiveConversation == null
+          ? null
+          : Mutation$ArchiveConversation$archiveConversation.fromJson(
+              (l$archiveConversation as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$ArchiveConversation$archiveConversation? archiveConversation;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$archiveConversation = archiveConversation;
+    _resultData['archiveConversation'] = l$archiveConversation?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$archiveConversation = archiveConversation;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$archiveConversation,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ArchiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$archiveConversation = archiveConversation;
+    final lOther$archiveConversation = other.archiveConversation;
+    if (l$archiveConversation != lOther$archiveConversation) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ArchiveConversation
+    on Mutation$ArchiveConversation {
+  CopyWith$Mutation$ArchiveConversation<Mutation$ArchiveConversation>
+      get copyWith => CopyWith$Mutation$ArchiveConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$ArchiveConversation<TRes> {
+  factory CopyWith$Mutation$ArchiveConversation(
+    Mutation$ArchiveConversation instance,
+    TRes Function(Mutation$ArchiveConversation) then,
+  ) = _CopyWithImpl$Mutation$ArchiveConversation;
+
+  factory CopyWith$Mutation$ArchiveConversation.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ArchiveConversation;
+
+  TRes call({
+    Mutation$ArchiveConversation$archiveConversation? archiveConversation,
+    String? $__typename,
+  });
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
+      get archiveConversation;
+}
+
+class _CopyWithImpl$Mutation$ArchiveConversation<TRes>
+    implements CopyWith$Mutation$ArchiveConversation<TRes> {
+  _CopyWithImpl$Mutation$ArchiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ArchiveConversation _instance;
+
+  final TRes Function(Mutation$ArchiveConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? archiveConversation = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ArchiveConversation(
+        archiveConversation: archiveConversation == _undefined
+            ? _instance.archiveConversation
+            : (archiveConversation
+                as Mutation$ArchiveConversation$archiveConversation?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
+      get archiveConversation {
+    final local$archiveConversation = _instance.archiveConversation;
+    return local$archiveConversation == null
+        ? CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(
+            _then(_instance))
+        : CopyWith$Mutation$ArchiveConversation$archiveConversation(
+            local$archiveConversation, (e) => call(archiveConversation: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ArchiveConversation<TRes>
+    implements CopyWith$Mutation$ArchiveConversation<TRes> {
+  _CopyWithStubImpl$Mutation$ArchiveConversation(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$ArchiveConversation$archiveConversation? archiveConversation,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
+      get archiveConversation =>
+          CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(_res);
+}
+
+const documentNodeMutationArchiveConversation = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'ArchiveConversation'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'conversationId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'archiveConversation'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'conversationId'),
+            value: VariableNode(name: NameNode(value: 'conversationId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$ArchiveConversation _parserFn$Mutation$ArchiveConversation(
+        Map<String, dynamic> data) =>
+    Mutation$ArchiveConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$ArchiveConversation = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$ArchiveConversation?,
+);
+
+class Options$Mutation$ArchiveConversation
+    extends graphql.MutationOptions<Mutation$ArchiveConversation> {
+  Options$Mutation$ArchiveConversation({
+    String? operationName,
+    required Variables$Mutation$ArchiveConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ArchiveConversation? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$ArchiveConversation? onCompleted,
+    graphql.OnMutationUpdate<Mutation$ArchiveConversation>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ArchiveConversation(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationArchiveConversation,
+          parserFn: _parserFn$Mutation$ArchiveConversation,
+        );
+
+  final OnMutationCompleted$Mutation$ArchiveConversation? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$ArchiveConversation
+    extends graphql.WatchQueryOptions<Mutation$ArchiveConversation> {
+  WatchOptions$Mutation$ArchiveConversation({
+    String? operationName,
+    required Variables$Mutation$ArchiveConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ArchiveConversation? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationArchiveConversation,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$ArchiveConversation,
+        );
+}
+
+extension ClientExtension$Mutation$ArchiveConversation
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ArchiveConversation>>
+      mutate$ArchiveConversation(
+              Options$Mutation$ArchiveConversation options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ArchiveConversation>
+      watchMutation$ArchiveConversation(
+              WatchOptions$Mutation$ArchiveConversation options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$ArchiveConversation$archiveConversation {
+  Mutation$ArchiveConversation$archiveConversation({
+    this.message,
+    this.$__typename = 'ArchiveConversation',
+  });
+
+  factory Mutation$ArchiveConversation$archiveConversation.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ArchiveConversation$archiveConversation(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ArchiveConversation$archiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ArchiveConversation$archiveConversation
+    on Mutation$ArchiveConversation$archiveConversation {
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<
+          Mutation$ArchiveConversation$archiveConversation>
+      get copyWith => CopyWith$Mutation$ArchiveConversation$archiveConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
+  factory CopyWith$Mutation$ArchiveConversation$archiveConversation(
+    Mutation$ArchiveConversation$archiveConversation instance,
+    TRes Function(Mutation$ArchiveConversation$archiveConversation) then,
+  ) = _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation;
+
+  factory CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
+    implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
+  _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ArchiveConversation$archiveConversation _instance;
+
+  final TRes Function(Mutation$ArchiveConversation$archiveConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ArchiveConversation$archiveConversation(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
+    implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
+  _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$UnArchiveConversation {
+  factory Variables$Mutation$UnArchiveConversation(
+          {required int conversationId}) =>
+      Variables$Mutation$UnArchiveConversation._({
+        r'conversationId': conversationId,
+      });
+
+  Variables$Mutation$UnArchiveConversation._(this._$data);
+
+  factory Variables$Mutation$UnArchiveConversation.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = data['conversationId'];
+    result$data['conversationId'] = (l$conversationId as int);
+    return Variables$Mutation$UnArchiveConversation._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get conversationId => (_$data['conversationId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$conversationId = conversationId;
+    result$data['conversationId'] = l$conversationId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UnArchiveConversation<
+          Variables$Mutation$UnArchiveConversation>
+      get copyWith => CopyWith$Variables$Mutation$UnArchiveConversation(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UnArchiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$conversationId = conversationId;
+    final lOther$conversationId = other.conversationId;
+    if (l$conversationId != lOther$conversationId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$conversationId = conversationId;
+    return Object.hashAll([l$conversationId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
+  factory CopyWith$Variables$Mutation$UnArchiveConversation(
+    Variables$Mutation$UnArchiveConversation instance,
+    TRes Function(Variables$Mutation$UnArchiveConversation) then,
+  ) = _CopyWithImpl$Variables$Mutation$UnArchiveConversation;
+
+  factory CopyWith$Variables$Mutation$UnArchiveConversation.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation;
+
+  TRes call({int? conversationId});
+}
+
+class _CopyWithImpl$Variables$Mutation$UnArchiveConversation<TRes>
+    implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
+  _CopyWithImpl$Variables$Mutation$UnArchiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UnArchiveConversation _instance;
+
+  final TRes Function(Variables$Mutation$UnArchiveConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? conversationId = _undefined}) =>
+      _then(Variables$Mutation$UnArchiveConversation._({
+        ..._instance._$data,
+        if (conversationId != _undefined && conversationId != null)
+          'conversationId': (conversationId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation<TRes>
+    implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation(this._res);
+
+  TRes _res;
+
+  call({int? conversationId}) => _res;
+}
+
+class Mutation$UnArchiveConversation {
+  Mutation$UnArchiveConversation({
+    this.unarchiveConversation,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UnArchiveConversation.fromJson(Map<String, dynamic> json) {
+    final l$unarchiveConversation = json['unarchiveConversation'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UnArchiveConversation(
+      unarchiveConversation: l$unarchiveConversation == null
+          ? null
+          : Mutation$UnArchiveConversation$unarchiveConversation.fromJson(
+              (l$unarchiveConversation as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UnArchiveConversation$unarchiveConversation?
+      unarchiveConversation;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$unarchiveConversation = unarchiveConversation;
+    _resultData['unarchiveConversation'] = l$unarchiveConversation?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$unarchiveConversation = unarchiveConversation;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$unarchiveConversation,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UnArchiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$unarchiveConversation = unarchiveConversation;
+    final lOther$unarchiveConversation = other.unarchiveConversation;
+    if (l$unarchiveConversation != lOther$unarchiveConversation) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UnArchiveConversation
+    on Mutation$UnArchiveConversation {
+  CopyWith$Mutation$UnArchiveConversation<Mutation$UnArchiveConversation>
+      get copyWith => CopyWith$Mutation$UnArchiveConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UnArchiveConversation<TRes> {
+  factory CopyWith$Mutation$UnArchiveConversation(
+    Mutation$UnArchiveConversation instance,
+    TRes Function(Mutation$UnArchiveConversation) then,
+  ) = _CopyWithImpl$Mutation$UnArchiveConversation;
+
+  factory CopyWith$Mutation$UnArchiveConversation.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UnArchiveConversation;
+
+  TRes call({
+    Mutation$UnArchiveConversation$unarchiveConversation? unarchiveConversation,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
+      get unarchiveConversation;
+}
+
+class _CopyWithImpl$Mutation$UnArchiveConversation<TRes>
+    implements CopyWith$Mutation$UnArchiveConversation<TRes> {
+  _CopyWithImpl$Mutation$UnArchiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UnArchiveConversation _instance;
+
+  final TRes Function(Mutation$UnArchiveConversation) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? unarchiveConversation = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UnArchiveConversation(
+        unarchiveConversation: unarchiveConversation == _undefined
+            ? _instance.unarchiveConversation
+            : (unarchiveConversation
+                as Mutation$UnArchiveConversation$unarchiveConversation?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
+      get unarchiveConversation {
+    final local$unarchiveConversation = _instance.unarchiveConversation;
+    return local$unarchiveConversation == null
+        ? CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
+            _then(_instance))
+        : CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
+            local$unarchiveConversation, (e) => call(unarchiveConversation: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UnArchiveConversation<TRes>
+    implements CopyWith$Mutation$UnArchiveConversation<TRes> {
+  _CopyWithStubImpl$Mutation$UnArchiveConversation(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UnArchiveConversation$unarchiveConversation? unarchiveConversation,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
+      get unarchiveConversation =>
+          CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
+              _res);
+}
+
+const documentNodeMutationUnArchiveConversation = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UnArchiveConversation'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'conversationId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'unarchiveConversation'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'conversationId'),
+            value: VariableNode(name: NameNode(value: 'conversationId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UnArchiveConversation _parserFn$Mutation$UnArchiveConversation(
+        Map<String, dynamic> data) =>
+    Mutation$UnArchiveConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$UnArchiveConversation = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$UnArchiveConversation?,
+);
+
+class Options$Mutation$UnArchiveConversation
+    extends graphql.MutationOptions<Mutation$UnArchiveConversation> {
+  Options$Mutation$UnArchiveConversation({
+    String? operationName,
+    required Variables$Mutation$UnArchiveConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UnArchiveConversation? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UnArchiveConversation? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UnArchiveConversation>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UnArchiveConversation(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUnArchiveConversation,
+          parserFn: _parserFn$Mutation$UnArchiveConversation,
+        );
+
+  final OnMutationCompleted$Mutation$UnArchiveConversation?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UnArchiveConversation
+    extends graphql.WatchQueryOptions<Mutation$UnArchiveConversation> {
+  WatchOptions$Mutation$UnArchiveConversation({
+    String? operationName,
+    required Variables$Mutation$UnArchiveConversation variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UnArchiveConversation? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUnArchiveConversation,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UnArchiveConversation,
+        );
+}
+
+extension ClientExtension$Mutation$UnArchiveConversation
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UnArchiveConversation>>
+      mutate$UnArchiveConversation(
+              Options$Mutation$UnArchiveConversation options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UnArchiveConversation>
+      watchMutation$UnArchiveConversation(
+              WatchOptions$Mutation$UnArchiveConversation options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$UnArchiveConversation$unarchiveConversation {
+  Mutation$UnArchiveConversation$unarchiveConversation({
+    this.message,
+    this.$__typename = 'UnarchiveConversation',
+  });
+
+  factory Mutation$UnArchiveConversation$unarchiveConversation.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UnArchiveConversation$unarchiveConversation(
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UnArchiveConversation$unarchiveConversation ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UnArchiveConversation$unarchiveConversation
+    on Mutation$UnArchiveConversation$unarchiveConversation {
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<
+          Mutation$UnArchiveConversation$unarchiveConversation>
+      get copyWith =>
+          CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<
+    TRes> {
+  factory CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
+    Mutation$UnArchiveConversation$unarchiveConversation instance,
+    TRes Function(Mutation$UnArchiveConversation$unarchiveConversation) then,
+  ) = _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation;
+
+  factory CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation;
+
+  TRes call({
+    String? message,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
+    implements
+        CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
+  _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UnArchiveConversation$unarchiveConversation _instance;
+
+  final TRes Function(Mutation$UnArchiveConversation$unarchiveConversation)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UnArchiveConversation$unarchiveConversation(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation<
+        TRes>
+    implements
+        CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
+  _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$UpdateReadMessages {
+  factory Variables$Mutation$UpdateReadMessages(
+          {required List<int?> messageIds}) =>
+      Variables$Mutation$UpdateReadMessages._({
+        r'messageIds': messageIds,
+      });
+
+  Variables$Mutation$UpdateReadMessages._(this._$data);
+
+  factory Variables$Mutation$UpdateReadMessages.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$messageIds = data['messageIds'];
+    result$data['messageIds'] =
+        (l$messageIds as List<dynamic>).map((e) => (e as int?)).toList();
+    return Variables$Mutation$UpdateReadMessages._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<int?> get messageIds => (_$data['messageIds'] as List<int?>);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$messageIds = messageIds;
+    result$data['messageIds'] = l$messageIds.map((e) => e).toList();
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UpdateReadMessages<
+          Variables$Mutation$UpdateReadMessages>
+      get copyWith => CopyWith$Variables$Mutation$UpdateReadMessages(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UpdateReadMessages ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$messageIds = messageIds;
+    final lOther$messageIds = other.messageIds;
+    if (l$messageIds.length != lOther$messageIds.length) {
+      return false;
+    }
+    for (int i = 0; i < l$messageIds.length; i++) {
+      final l$messageIds$entry = l$messageIds[i];
+      final lOther$messageIds$entry = lOther$messageIds[i];
+      if (l$messageIds$entry != lOther$messageIds$entry) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$messageIds = messageIds;
+    return Object.hashAll([Object.hashAll(l$messageIds.map((v) => v))]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
+  factory CopyWith$Variables$Mutation$UpdateReadMessages(
+    Variables$Mutation$UpdateReadMessages instance,
+    TRes Function(Variables$Mutation$UpdateReadMessages) then,
+  ) = _CopyWithImpl$Variables$Mutation$UpdateReadMessages;
+
+  factory CopyWith$Variables$Mutation$UpdateReadMessages.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages;
+
+  TRes call({List<int?>? messageIds});
+}
+
+class _CopyWithImpl$Variables$Mutation$UpdateReadMessages<TRes>
+    implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
+  _CopyWithImpl$Variables$Mutation$UpdateReadMessages(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UpdateReadMessages _instance;
+
+  final TRes Function(Variables$Mutation$UpdateReadMessages) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? messageIds = _undefined}) =>
+      _then(Variables$Mutation$UpdateReadMessages._({
+        ..._instance._$data,
+        if (messageIds != _undefined && messageIds != null)
+          'messageIds': (messageIds as List<int?>),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages<TRes>
+    implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages(this._res);
+
+  TRes _res;
+
+  call({List<int?>? messageIds}) => _res;
+}
+
+class Mutation$UpdateReadMessages {
+  Mutation$UpdateReadMessages({
+    this.updateReadMessages,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UpdateReadMessages.fromJson(Map<String, dynamic> json) {
+    final l$updateReadMessages = json['updateReadMessages'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateReadMessages(
+      updateReadMessages: l$updateReadMessages == null
+          ? null
+          : Mutation$UpdateReadMessages$updateReadMessages.fromJson(
+              (l$updateReadMessages as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UpdateReadMessages$updateReadMessages? updateReadMessages;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$updateReadMessages = updateReadMessages;
+    _resultData['updateReadMessages'] = l$updateReadMessages?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$updateReadMessages = updateReadMessages;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$updateReadMessages,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateReadMessages ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$updateReadMessages = updateReadMessages;
+    final lOther$updateReadMessages = other.updateReadMessages;
+    if (l$updateReadMessages != lOther$updateReadMessages) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateReadMessages
+    on Mutation$UpdateReadMessages {
+  CopyWith$Mutation$UpdateReadMessages<Mutation$UpdateReadMessages>
+      get copyWith => CopyWith$Mutation$UpdateReadMessages(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateReadMessages<TRes> {
+  factory CopyWith$Mutation$UpdateReadMessages(
+    Mutation$UpdateReadMessages instance,
+    TRes Function(Mutation$UpdateReadMessages) then,
+  ) = _CopyWithImpl$Mutation$UpdateReadMessages;
+
+  factory CopyWith$Mutation$UpdateReadMessages.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateReadMessages;
+
+  TRes call({
+    Mutation$UpdateReadMessages$updateReadMessages? updateReadMessages,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
+      get updateReadMessages;
+}
+
+class _CopyWithImpl$Mutation$UpdateReadMessages<TRes>
+    implements CopyWith$Mutation$UpdateReadMessages<TRes> {
+  _CopyWithImpl$Mutation$UpdateReadMessages(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateReadMessages _instance;
+
+  final TRes Function(Mutation$UpdateReadMessages) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? updateReadMessages = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateReadMessages(
+        updateReadMessages: updateReadMessages == _undefined
+            ? _instance.updateReadMessages
+            : (updateReadMessages
+                as Mutation$UpdateReadMessages$updateReadMessages?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
+      get updateReadMessages {
+    final local$updateReadMessages = _instance.updateReadMessages;
+    return local$updateReadMessages == null
+        ? CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(
+            _then(_instance))
+        : CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
+            local$updateReadMessages, (e) => call(updateReadMessages: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateReadMessages<TRes>
+    implements CopyWith$Mutation$UpdateReadMessages<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateReadMessages(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UpdateReadMessages$updateReadMessages? updateReadMessages,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
+      get updateReadMessages =>
+          CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(_res);
+}
+
+const documentNodeMutationUpdateReadMessages = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UpdateReadMessages'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'messageIds')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'updateReadMessages'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'messageIds'),
+            value: VariableNode(name: NameNode(value: 'messageIds')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UpdateReadMessages _parserFn$Mutation$UpdateReadMessages(
+        Map<String, dynamic> data) =>
+    Mutation$UpdateReadMessages.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateReadMessages = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$UpdateReadMessages?,
+);
+
+class Options$Mutation$UpdateReadMessages
+    extends graphql.MutationOptions<Mutation$UpdateReadMessages> {
+  Options$Mutation$UpdateReadMessages({
+    String? operationName,
+    required Variables$Mutation$UpdateReadMessages variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateReadMessages? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UpdateReadMessages? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UpdateReadMessages>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateReadMessages(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUpdateReadMessages,
+          parserFn: _parserFn$Mutation$UpdateReadMessages,
+        );
+
+  final OnMutationCompleted$Mutation$UpdateReadMessages? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UpdateReadMessages
+    extends graphql.WatchQueryOptions<Mutation$UpdateReadMessages> {
+  WatchOptions$Mutation$UpdateReadMessages({
+    String? operationName,
+    required Variables$Mutation$UpdateReadMessages variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateReadMessages? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUpdateReadMessages,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UpdateReadMessages,
+        );
+}
+
+extension ClientExtension$Mutation$UpdateReadMessages on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateReadMessages>>
+      mutate$UpdateReadMessages(
+              Options$Mutation$UpdateReadMessages options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateReadMessages>
+      watchMutation$UpdateReadMessages(
+              WatchOptions$Mutation$UpdateReadMessages options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$UpdateReadMessages$updateReadMessages {
+  Mutation$UpdateReadMessages$updateReadMessages({
+    this.success,
+    this.$__typename = 'UpdateReadMessages',
+  });
+
+  factory Mutation$UpdateReadMessages$updateReadMessages.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateReadMessages$updateReadMessages(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateReadMessages$updateReadMessages ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateReadMessages$updateReadMessages
+    on Mutation$UpdateReadMessages$updateReadMessages {
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<
+          Mutation$UpdateReadMessages$updateReadMessages>
+      get copyWith => CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
+  factory CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
+    Mutation$UpdateReadMessages$updateReadMessages instance,
+    TRes Function(Mutation$UpdateReadMessages$updateReadMessages) then,
+  ) = _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages;
+
+  factory CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
+    implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
+  _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateReadMessages$updateReadMessages _instance;
+
+  final TRes Function(Mutation$UpdateReadMessages$updateReadMessages) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateReadMessages$updateReadMessages(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
+    implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$ReadNotification {
+  factory Variables$Mutation$ReadNotification({int? notificationId}) =>
+      Variables$Mutation$ReadNotification._({
+        if (notificationId != null) r'notificationId': notificationId,
+      });
+
+  Variables$Mutation$ReadNotification._(this._$data);
+
+  factory Variables$Mutation$ReadNotification.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('notificationId')) {
+      final l$notificationId = data['notificationId'];
+      result$data['notificationId'] = (l$notificationId as int?);
+    }
+    return Variables$Mutation$ReadNotification._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get notificationId => (_$data['notificationId'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('notificationId')) {
+      final l$notificationId = notificationId;
+      result$data['notificationId'] = l$notificationId;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$ReadNotification<
+          Variables$Mutation$ReadNotification>
+      get copyWith => CopyWith$Variables$Mutation$ReadNotification(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$ReadNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notificationId = notificationId;
+    final lOther$notificationId = other.notificationId;
+    if (_$data.containsKey('notificationId') !=
+        other._$data.containsKey('notificationId')) {
+      return false;
+    }
+    if (l$notificationId != lOther$notificationId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$notificationId = notificationId;
+    return Object.hashAll(
+        [_$data.containsKey('notificationId') ? l$notificationId : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$ReadNotification<TRes> {
+  factory CopyWith$Variables$Mutation$ReadNotification(
+    Variables$Mutation$ReadNotification instance,
+    TRes Function(Variables$Mutation$ReadNotification) then,
+  ) = _CopyWithImpl$Variables$Mutation$ReadNotification;
+
+  factory CopyWith$Variables$Mutation$ReadNotification.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ReadNotification;
+
+  TRes call({int? notificationId});
+}
+
+class _CopyWithImpl$Variables$Mutation$ReadNotification<TRes>
+    implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
+  _CopyWithImpl$Variables$Mutation$ReadNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$ReadNotification _instance;
+
+  final TRes Function(Variables$Mutation$ReadNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? notificationId = _undefined}) =>
+      _then(Variables$Mutation$ReadNotification._({
+        ..._instance._$data,
+        if (notificationId != _undefined)
+          'notificationId': (notificationId as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ReadNotification<TRes>
+    implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ReadNotification(this._res);
+
+  TRes _res;
+
+  call({int? notificationId}) => _res;
+}
+
+class Mutation$ReadNotification {
+  Mutation$ReadNotification({
+    this.readNotification,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$ReadNotification.fromJson(Map<String, dynamic> json) {
+    final l$readNotification = json['readNotification'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ReadNotification(
+      readNotification: l$readNotification == null
+          ? null
+          : Mutation$ReadNotification$readNotification.fromJson(
+              (l$readNotification as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$ReadNotification$readNotification? readNotification;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$readNotification = readNotification;
+    _resultData['readNotification'] = l$readNotification?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$readNotification = readNotification;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$readNotification,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ReadNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$readNotification = readNotification;
+    final lOther$readNotification = other.readNotification;
+    if (l$readNotification != lOther$readNotification) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ReadNotification
+    on Mutation$ReadNotification {
+  CopyWith$Mutation$ReadNotification<Mutation$ReadNotification> get copyWith =>
+      CopyWith$Mutation$ReadNotification(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$ReadNotification<TRes> {
+  factory CopyWith$Mutation$ReadNotification(
+    Mutation$ReadNotification instance,
+    TRes Function(Mutation$ReadNotification) then,
+  ) = _CopyWithImpl$Mutation$ReadNotification;
+
+  factory CopyWith$Mutation$ReadNotification.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ReadNotification;
+
+  TRes call({
+    Mutation$ReadNotification$readNotification? readNotification,
+    String? $__typename,
+  });
+  CopyWith$Mutation$ReadNotification$readNotification<TRes>
+      get readNotification;
+}
+
+class _CopyWithImpl$Mutation$ReadNotification<TRes>
+    implements CopyWith$Mutation$ReadNotification<TRes> {
+  _CopyWithImpl$Mutation$ReadNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ReadNotification _instance;
+
+  final TRes Function(Mutation$ReadNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? readNotification = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ReadNotification(
+        readNotification: readNotification == _undefined
+            ? _instance.readNotification
+            : (readNotification as Mutation$ReadNotification$readNotification?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$ReadNotification$readNotification<TRes>
+      get readNotification {
+    final local$readNotification = _instance.readNotification;
+    return local$readNotification == null
+        ? CopyWith$Mutation$ReadNotification$readNotification.stub(
+            _then(_instance))
+        : CopyWith$Mutation$ReadNotification$readNotification(
+            local$readNotification, (e) => call(readNotification: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ReadNotification<TRes>
+    implements CopyWith$Mutation$ReadNotification<TRes> {
+  _CopyWithStubImpl$Mutation$ReadNotification(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$ReadNotification$readNotification? readNotification,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$ReadNotification$readNotification<TRes>
+      get readNotification =>
+          CopyWith$Mutation$ReadNotification$readNotification.stub(_res);
+}
+
+const documentNodeMutationReadNotification = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'ReadNotification'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'notificationId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'readNotification'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'notificationId'),
+            value: VariableNode(name: NameNode(value: 'notificationId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$ReadNotification _parserFn$Mutation$ReadNotification(
+        Map<String, dynamic> data) =>
+    Mutation$ReadNotification.fromJson(data);
+typedef OnMutationCompleted$Mutation$ReadNotification = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$ReadNotification?,
+);
+
+class Options$Mutation$ReadNotification
+    extends graphql.MutationOptions<Mutation$ReadNotification> {
+  Options$Mutation$ReadNotification({
+    String? operationName,
+    Variables$Mutation$ReadNotification? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ReadNotification? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$ReadNotification? onCompleted,
+    graphql.OnMutationUpdate<Mutation$ReadNotification>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ReadNotification(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationReadNotification,
+          parserFn: _parserFn$Mutation$ReadNotification,
+        );
+
+  final OnMutationCompleted$Mutation$ReadNotification? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$ReadNotification
+    extends graphql.WatchQueryOptions<Mutation$ReadNotification> {
+  WatchOptions$Mutation$ReadNotification({
+    String? operationName,
+    Variables$Mutation$ReadNotification? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ReadNotification? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationReadNotification,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$ReadNotification,
+        );
+}
+
+extension ClientExtension$Mutation$ReadNotification on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ReadNotification>>
+      mutate$ReadNotification(
+              [Options$Mutation$ReadNotification? options]) async =>
+          await this.mutate(options ?? Options$Mutation$ReadNotification());
+  graphql.ObservableQuery<
+      Mutation$ReadNotification> watchMutation$ReadNotification(
+          [WatchOptions$Mutation$ReadNotification? options]) =>
+      this.watchMutation(options ?? WatchOptions$Mutation$ReadNotification());
+}
+
+class Mutation$ReadNotification$readNotification {
+  Mutation$ReadNotification$readNotification({
+    this.success,
+    this.$__typename = 'ReadNotification',
+  });
+
+  factory Mutation$ReadNotification$readNotification.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ReadNotification$readNotification(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ReadNotification$readNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ReadNotification$readNotification
+    on Mutation$ReadNotification$readNotification {
+  CopyWith$Mutation$ReadNotification$readNotification<
+          Mutation$ReadNotification$readNotification>
+      get copyWith => CopyWith$Mutation$ReadNotification$readNotification(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$ReadNotification$readNotification<TRes> {
+  factory CopyWith$Mutation$ReadNotification$readNotification(
+    Mutation$ReadNotification$readNotification instance,
+    TRes Function(Mutation$ReadNotification$readNotification) then,
+  ) = _CopyWithImpl$Mutation$ReadNotification$readNotification;
+
+  factory CopyWith$Mutation$ReadNotification$readNotification.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ReadNotification$readNotification;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$ReadNotification$readNotification<TRes>
+    implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
+  _CopyWithImpl$Mutation$ReadNotification$readNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ReadNotification$readNotification _instance;
+
+  final TRes Function(Mutation$ReadNotification$readNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ReadNotification$readNotification(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$ReadNotification$readNotification<TRes>
+    implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
+  _CopyWithStubImpl$Mutation$ReadNotification$readNotification(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$DeleteNotification {
+  factory Variables$Mutation$DeleteNotification(
+          {required int notificationId}) =>
+      Variables$Mutation$DeleteNotification._({
+        r'notificationId': notificationId,
+      });
+
+  Variables$Mutation$DeleteNotification._(this._$data);
+
+  factory Variables$Mutation$DeleteNotification.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$notificationId = data['notificationId'];
+    result$data['notificationId'] = (l$notificationId as int);
+    return Variables$Mutation$DeleteNotification._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get notificationId => (_$data['notificationId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$notificationId = notificationId;
+    result$data['notificationId'] = l$notificationId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteNotification<
+          Variables$Mutation$DeleteNotification>
+      get copyWith => CopyWith$Variables$Mutation$DeleteNotification(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeleteNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notificationId = notificationId;
+    final lOther$notificationId = other.notificationId;
+    if (l$notificationId != lOther$notificationId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$notificationId = notificationId;
+    return Object.hashAll([l$notificationId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteNotification<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteNotification(
+    Variables$Mutation$DeleteNotification instance,
+    TRes Function(Variables$Mutation$DeleteNotification) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteNotification;
+
+  factory CopyWith$Variables$Mutation$DeleteNotification.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteNotification;
+
+  TRes call({int? notificationId});
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteNotification<TRes>
+    implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteNotification _instance;
+
+  final TRes Function(Variables$Mutation$DeleteNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? notificationId = _undefined}) =>
+      _then(Variables$Mutation$DeleteNotification._({
+        ..._instance._$data,
+        if (notificationId != _undefined && notificationId != null)
+          'notificationId': (notificationId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteNotification<TRes>
+    implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteNotification(this._res);
+
+  TRes _res;
+
+  call({int? notificationId}) => _res;
+}
+
+class Mutation$DeleteNotification {
+  Mutation$DeleteNotification({
+    this.deleteNotification,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteNotification.fromJson(Map<String, dynamic> json) {
+    final l$deleteNotification = json['deleteNotification'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteNotification(
+      deleteNotification: l$deleteNotification == null
+          ? null
+          : Mutation$DeleteNotification$deleteNotification.fromJson(
+              (l$deleteNotification as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteNotification$deleteNotification? deleteNotification;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deleteNotification = deleteNotification;
+    _resultData['deleteNotification'] = l$deleteNotification?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deleteNotification = deleteNotification;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deleteNotification,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deleteNotification = deleteNotification;
+    final lOther$deleteNotification = other.deleteNotification;
+    if (l$deleteNotification != lOther$deleteNotification) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteNotification
+    on Mutation$DeleteNotification {
+  CopyWith$Mutation$DeleteNotification<Mutation$DeleteNotification>
+      get copyWith => CopyWith$Mutation$DeleteNotification(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteNotification<TRes> {
+  factory CopyWith$Mutation$DeleteNotification(
+    Mutation$DeleteNotification instance,
+    TRes Function(Mutation$DeleteNotification) then,
+  ) = _CopyWithImpl$Mutation$DeleteNotification;
+
+  factory CopyWith$Mutation$DeleteNotification.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteNotification;
+
+  TRes call({
+    Mutation$DeleteNotification$deleteNotification? deleteNotification,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
+      get deleteNotification;
+}
+
+class _CopyWithImpl$Mutation$DeleteNotification<TRes>
+    implements CopyWith$Mutation$DeleteNotification<TRes> {
+  _CopyWithImpl$Mutation$DeleteNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteNotification _instance;
+
+  final TRes Function(Mutation$DeleteNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deleteNotification = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteNotification(
+        deleteNotification: deleteNotification == _undefined
+            ? _instance.deleteNotification
+            : (deleteNotification
+                as Mutation$DeleteNotification$deleteNotification?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
+      get deleteNotification {
+    final local$deleteNotification = _instance.deleteNotification;
+    return local$deleteNotification == null
+        ? CopyWith$Mutation$DeleteNotification$deleteNotification.stub(
+            _then(_instance))
+        : CopyWith$Mutation$DeleteNotification$deleteNotification(
+            local$deleteNotification, (e) => call(deleteNotification: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteNotification<TRes>
+    implements CopyWith$Mutation$DeleteNotification<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteNotification(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteNotification$deleteNotification? deleteNotification,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
+      get deleteNotification =>
+          CopyWith$Mutation$DeleteNotification$deleteNotification.stub(_res);
+}
+
+const documentNodeMutationDeleteNotification = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteNotification'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'notificationId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deleteNotification'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'notificationId'),
+            value: VariableNode(name: NameNode(value: 'notificationId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteNotification _parserFn$Mutation$DeleteNotification(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteNotification.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteNotification = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteNotification?,
+);
+
+class Options$Mutation$DeleteNotification
+    extends graphql.MutationOptions<Mutation$DeleteNotification> {
+  Options$Mutation$DeleteNotification({
+    String? operationName,
+    required Variables$Mutation$DeleteNotification variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteNotification? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteNotification? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteNotification>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteNotification(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteNotification,
+          parserFn: _parserFn$Mutation$DeleteNotification,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteNotification? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteNotification
+    extends graphql.WatchQueryOptions<Mutation$DeleteNotification> {
+  WatchOptions$Mutation$DeleteNotification({
+    String? operationName,
+    required Variables$Mutation$DeleteNotification variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteNotification? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteNotification,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteNotification,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteNotification on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteNotification>>
+      mutate$DeleteNotification(
+              Options$Mutation$DeleteNotification options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteNotification>
+      watchMutation$DeleteNotification(
+              WatchOptions$Mutation$DeleteNotification options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$DeleteNotification$deleteNotification {
+  Mutation$DeleteNotification$deleteNotification({
+    this.success,
+    this.$__typename = 'DeleteNotification',
+  });
+
+  factory Mutation$DeleteNotification$deleteNotification.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteNotification$deleteNotification(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteNotification$deleteNotification ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteNotification$deleteNotification
+    on Mutation$DeleteNotification$deleteNotification {
+  CopyWith$Mutation$DeleteNotification$deleteNotification<
+          Mutation$DeleteNotification$deleteNotification>
+      get copyWith => CopyWith$Mutation$DeleteNotification$deleteNotification(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
+  factory CopyWith$Mutation$DeleteNotification$deleteNotification(
+    Mutation$DeleteNotification$deleteNotification instance,
+    TRes Function(Mutation$DeleteNotification$deleteNotification) then,
+  ) = _CopyWithImpl$Mutation$DeleteNotification$deleteNotification;
+
+  factory CopyWith$Mutation$DeleteNotification$deleteNotification.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteNotification$deleteNotification<TRes>
+    implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
+  _CopyWithImpl$Mutation$DeleteNotification$deleteNotification(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteNotification$deleteNotification _instance;
+
+  final TRes Function(Mutation$DeleteNotification$deleteNotification) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteNotification$deleteNotification(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification<TRes>
+    implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$UpdateNotificationPreference {
+  factory Variables$Mutation$UpdateNotificationPreference({
+    Input$NotificationsPreferenceInputType? emailNotification,
+    Input$NotificationsPreferenceInputType? inappNotification,
+    required bool isEmailNotification,
+    required bool isPushNotification,
+    required bool isSilentModeOn,
+  }) =>
+      Variables$Mutation$UpdateNotificationPreference._({
+        if (emailNotification != null) r'emailNotification': emailNotification,
+        if (inappNotification != null) r'inappNotification': inappNotification,
+        r'isEmailNotification': isEmailNotification,
+        r'isPushNotification': isPushNotification,
+        r'isSilentModeOn': isSilentModeOn,
+      });
+
+  Variables$Mutation$UpdateNotificationPreference._(this._$data);
+
+  factory Variables$Mutation$UpdateNotificationPreference.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('emailNotification')) {
+      final l$emailNotification = data['emailNotification'];
+      result$data['emailNotification'] = l$emailNotification == null
+          ? null
+          : Input$NotificationsPreferenceInputType.fromJson(
+              (l$emailNotification as Map<String, dynamic>));
+    }
+    if (data.containsKey('inappNotification')) {
+      final l$inappNotification = data['inappNotification'];
+      result$data['inappNotification'] = l$inappNotification == null
+          ? null
+          : Input$NotificationsPreferenceInputType.fromJson(
+              (l$inappNotification as Map<String, dynamic>));
+    }
+    final l$isEmailNotification = data['isEmailNotification'];
+    result$data['isEmailNotification'] = (l$isEmailNotification as bool);
+    final l$isPushNotification = data['isPushNotification'];
+    result$data['isPushNotification'] = (l$isPushNotification as bool);
+    final l$isSilentModeOn = data['isSilentModeOn'];
+    result$data['isSilentModeOn'] = (l$isSilentModeOn as bool);
+    return Variables$Mutation$UpdateNotificationPreference._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$NotificationsPreferenceInputType? get emailNotification =>
+      (_$data['emailNotification'] as Input$NotificationsPreferenceInputType?);
+
+  Input$NotificationsPreferenceInputType? get inappNotification =>
+      (_$data['inappNotification'] as Input$NotificationsPreferenceInputType?);
+
+  bool get isEmailNotification => (_$data['isEmailNotification'] as bool);
+
+  bool get isPushNotification => (_$data['isPushNotification'] as bool);
+
+  bool get isSilentModeOn => (_$data['isSilentModeOn'] as bool);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('emailNotification')) {
+      final l$emailNotification = emailNotification;
+      result$data['emailNotification'] = l$emailNotification?.toJson();
+    }
+    if (_$data.containsKey('inappNotification')) {
+      final l$inappNotification = inappNotification;
+      result$data['inappNotification'] = l$inappNotification?.toJson();
+    }
+    final l$isEmailNotification = isEmailNotification;
+    result$data['isEmailNotification'] = l$isEmailNotification;
+    final l$isPushNotification = isPushNotification;
+    result$data['isPushNotification'] = l$isPushNotification;
+    final l$isSilentModeOn = isSilentModeOn;
+    result$data['isSilentModeOn'] = l$isSilentModeOn;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$UpdateNotificationPreference<
+          Variables$Mutation$UpdateNotificationPreference>
+      get copyWith => CopyWith$Variables$Mutation$UpdateNotificationPreference(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$UpdateNotificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$emailNotification = emailNotification;
+    final lOther$emailNotification = other.emailNotification;
+    if (_$data.containsKey('emailNotification') !=
+        other._$data.containsKey('emailNotification')) {
+      return false;
+    }
+    if (l$emailNotification != lOther$emailNotification) {
+      return false;
+    }
+    final l$inappNotification = inappNotification;
+    final lOther$inappNotification = other.inappNotification;
+    if (_$data.containsKey('inappNotification') !=
+        other._$data.containsKey('inappNotification')) {
+      return false;
+    }
+    if (l$inappNotification != lOther$inappNotification) {
+      return false;
+    }
+    final l$isEmailNotification = isEmailNotification;
+    final lOther$isEmailNotification = other.isEmailNotification;
+    if (l$isEmailNotification != lOther$isEmailNotification) {
+      return false;
+    }
+    final l$isPushNotification = isPushNotification;
+    final lOther$isPushNotification = other.isPushNotification;
+    if (l$isPushNotification != lOther$isPushNotification) {
+      return false;
+    }
+    final l$isSilentModeOn = isSilentModeOn;
+    final lOther$isSilentModeOn = other.isSilentModeOn;
+    if (l$isSilentModeOn != lOther$isSilentModeOn) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$emailNotification = emailNotification;
+    final l$inappNotification = inappNotification;
+    final l$isEmailNotification = isEmailNotification;
+    final l$isPushNotification = isPushNotification;
+    final l$isSilentModeOn = isSilentModeOn;
+    return Object.hashAll([
+      _$data.containsKey('emailNotification') ? l$emailNotification : const {},
+      _$data.containsKey('inappNotification') ? l$inappNotification : const {},
+      l$isEmailNotification,
+      l$isPushNotification,
+      l$isSilentModeOn,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
+  factory CopyWith$Variables$Mutation$UpdateNotificationPreference(
+    Variables$Mutation$UpdateNotificationPreference instance,
+    TRes Function(Variables$Mutation$UpdateNotificationPreference) then,
+  ) = _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference;
+
+  factory CopyWith$Variables$Mutation$UpdateNotificationPreference.stub(
+          TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference;
+
+  TRes call({
+    Input$NotificationsPreferenceInputType? emailNotification,
+    Input$NotificationsPreferenceInputType? inappNotification,
+    bool? isEmailNotification,
+    bool? isPushNotification,
+    bool? isSilentModeOn,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference<TRes>
+    implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
+  _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$UpdateNotificationPreference _instance;
+
+  final TRes Function(Variables$Mutation$UpdateNotificationPreference) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? emailNotification = _undefined,
+    Object? inappNotification = _undefined,
+    Object? isEmailNotification = _undefined,
+    Object? isPushNotification = _undefined,
+    Object? isSilentModeOn = _undefined,
+  }) =>
+      _then(Variables$Mutation$UpdateNotificationPreference._({
+        ..._instance._$data,
+        if (emailNotification != _undefined)
+          'emailNotification':
+              (emailNotification as Input$NotificationsPreferenceInputType?),
+        if (inappNotification != _undefined)
+          'inappNotification':
+              (inappNotification as Input$NotificationsPreferenceInputType?),
+        if (isEmailNotification != _undefined && isEmailNotification != null)
+          'isEmailNotification': (isEmailNotification as bool),
+        if (isPushNotification != _undefined && isPushNotification != null)
+          'isPushNotification': (isPushNotification as bool),
+        if (isSilentModeOn != _undefined && isSilentModeOn != null)
+          'isSilentModeOn': (isSilentModeOn as bool),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference<TRes>
+    implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference(this._res);
+
+  TRes _res;
+
+  call({
+    Input$NotificationsPreferenceInputType? emailNotification,
+    Input$NotificationsPreferenceInputType? inappNotification,
+    bool? isEmailNotification,
+    bool? isPushNotification,
+    bool? isSilentModeOn,
+  }) =>
+      _res;
+}
+
+class Mutation$UpdateNotificationPreference {
+  Mutation$UpdateNotificationPreference({
+    this.updateNotificationPreference,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$UpdateNotificationPreference.fromJson(
+      Map<String, dynamic> json) {
+    final l$updateNotificationPreference = json['updateNotificationPreference'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateNotificationPreference(
+      updateNotificationPreference: l$updateNotificationPreference == null
+          ? null
+          : Mutation$UpdateNotificationPreference$updateNotificationPreference
+              .fromJson(
+                  (l$updateNotificationPreference as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference?
+      updateNotificationPreference;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$updateNotificationPreference = updateNotificationPreference;
+    _resultData['updateNotificationPreference'] =
+        l$updateNotificationPreference?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$updateNotificationPreference = updateNotificationPreference;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$updateNotificationPreference,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$UpdateNotificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$updateNotificationPreference = updateNotificationPreference;
+    final lOther$updateNotificationPreference =
+        other.updateNotificationPreference;
+    if (l$updateNotificationPreference != lOther$updateNotificationPreference) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateNotificationPreference
+    on Mutation$UpdateNotificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference<
+          Mutation$UpdateNotificationPreference>
+      get copyWith => CopyWith$Mutation$UpdateNotificationPreference(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateNotificationPreference<TRes> {
+  factory CopyWith$Mutation$UpdateNotificationPreference(
+    Mutation$UpdateNotificationPreference instance,
+    TRes Function(Mutation$UpdateNotificationPreference) then,
+  ) = _CopyWithImpl$Mutation$UpdateNotificationPreference;
+
+  factory CopyWith$Mutation$UpdateNotificationPreference.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateNotificationPreference;
+
+  TRes call({
+    Mutation$UpdateNotificationPreference$updateNotificationPreference?
+        updateNotificationPreference,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+      TRes> get updateNotificationPreference;
+}
+
+class _CopyWithImpl$Mutation$UpdateNotificationPreference<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
+  _CopyWithImpl$Mutation$UpdateNotificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateNotificationPreference _instance;
+
+  final TRes Function(Mutation$UpdateNotificationPreference) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? updateNotificationPreference = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateNotificationPreference(
+        updateNotificationPreference: updateNotificationPreference == _undefined
+            ? _instance.updateNotificationPreference
+            : (updateNotificationPreference
+                as Mutation$UpdateNotificationPreference$updateNotificationPreference?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+      TRes> get updateNotificationPreference {
+    final local$updateNotificationPreference =
+        _instance.updateNotificationPreference;
+    return local$updateNotificationPreference == null
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference
+            .stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+            local$updateNotificationPreference,
+            (e) => call(updateNotificationPreference: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UpdateNotificationPreference$updateNotificationPreference?
+        updateNotificationPreference,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+          TRes>
+      get updateNotificationPreference =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference
+              .stub(_res);
+}
+
+const documentNodeMutationUpdateNotificationPreference =
+    DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'UpdateNotificationPreference'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'emailNotification')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'NotificationsPreferenceInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'inappNotification')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'NotificationsPreferenceInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isEmailNotification')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isPushNotification')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isSilentModeOn')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'updateNotificationPreference'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'emailNotifications'),
+            value: VariableNode(name: NameNode(value: 'emailNotification')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'inappNotifications'),
+            value: VariableNode(name: NameNode(value: 'inappNotification')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'isEmailNotification'),
+            value: VariableNode(name: NameNode(value: 'isEmailNotification')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'isPushNotification'),
+            value: VariableNode(name: NameNode(value: 'isPushNotification')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'isSilentModeOn'),
+            value: VariableNode(name: NameNode(value: 'isSilentModeOn')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$UpdateNotificationPreference
+    _parserFn$Mutation$UpdateNotificationPreference(
+            Map<String, dynamic> data) =>
+        Mutation$UpdateNotificationPreference.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateNotificationPreference
+    = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$UpdateNotificationPreference?,
+);
+
+class Options$Mutation$UpdateNotificationPreference
+    extends graphql.MutationOptions<Mutation$UpdateNotificationPreference> {
+  Options$Mutation$UpdateNotificationPreference({
+    String? operationName,
+    required Variables$Mutation$UpdateNotificationPreference variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateNotificationPreference? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$UpdateNotificationPreference? onCompleted,
+    graphql.OnMutationUpdate<Mutation$UpdateNotificationPreference>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$UpdateNotificationPreference(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationUpdateNotificationPreference,
+          parserFn: _parserFn$Mutation$UpdateNotificationPreference,
+        );
+
+  final OnMutationCompleted$Mutation$UpdateNotificationPreference?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$UpdateNotificationPreference
+    extends graphql.WatchQueryOptions<Mutation$UpdateNotificationPreference> {
+  WatchOptions$Mutation$UpdateNotificationPreference({
+    String? operationName,
+    required Variables$Mutation$UpdateNotificationPreference variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$UpdateNotificationPreference? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationUpdateNotificationPreference,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$UpdateNotificationPreference,
+        );
+}
+
+extension ClientExtension$Mutation$UpdateNotificationPreference
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateNotificationPreference>>
+      mutate$UpdateNotificationPreference(
+              Options$Mutation$UpdateNotificationPreference options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateNotificationPreference>
+      watchMutation$UpdateNotificationPreference(
+              WatchOptions$Mutation$UpdateNotificationPreference options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$UpdateNotificationPreference$updateNotificationPreference {
+  Mutation$UpdateNotificationPreference$updateNotificationPreference({
+    this.success,
+    this.$__typename = 'UpdateNotificationPreference',
+  });
+
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateNotificationPreference$updateNotificationPreference(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$UpdateNotificationPreference$updateNotificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference
+    on Mutation$UpdateNotificationPreference$updateNotificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+          Mutation$UpdateNotificationPreference$updateNotificationPreference>
+      get copyWith =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+    TRes> {
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+    Mutation$UpdateNotificationPreference$updateNotificationPreference instance,
+    TRes Function(
+            Mutation$UpdateNotificationPreference$updateNotificationPreference)
+        then,
+  ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference;
+
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+            TRes> {
+  _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference
+      _instance;
+
+  final TRes Function(
+      Mutation$UpdateNotificationPreference$updateNotificationPreference) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$UpdateNotificationPreference$updateNotificationPreference(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
+            TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+      this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
     String? $__typename,
   }) =>
       _res;

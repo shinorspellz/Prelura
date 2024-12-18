@@ -114,7 +114,7 @@ mutation UpdateProduct(
     category: $category
     condition: $condition
     description: $description
-    discount: $discount
+    discountPrice: $discount
     name: $name
     parcelSize: $parcelSize
     price: $price
@@ -155,6 +155,7 @@ mutation UpdateProfile(
   $use2fa: Boolean
   $username: String
   $location: LocationInputType
+  $fcmToken: String
 ) {
   updateProfile(
     bio: $bio
@@ -172,6 +173,7 @@ mutation UpdateProfile(
     use2fa: $use2fa
     username: $username
     location: $location
+    fcmToken: $fcmToken
   ) {
     message
   }
@@ -193,5 +195,73 @@ mutation UploadFile($files: [Upload]!, $fileType: FileTypeEnum!) {
   upload(files: $files, filetype: $fileType) {
     baseUrl
     data
+  }
+}
+
+mutation CreateChat($name: String!, $recipient: String!) {
+  createChat(name: $name, recipient: $recipient) {
+    chat {
+      id
+    }
+  }
+}
+
+mutation DeleteMessage($messageId: Int!) {
+  deleteMessage(messageId: $messageId) {
+    message
+  }
+}
+
+mutation DeleteConversation($conversationId: Int!) {
+  deleteConversation(conversationId: $conversationId) {
+    message
+  }
+}
+
+mutation ArchiveConversation($conversationId: Int!) {
+  archiveConversation(conversationId: $conversationId) {
+    message
+  }
+}
+
+mutation UnArchiveConversation($conversationId: Int!) {
+  unarchiveConversation(conversationId: $conversationId) {
+    message
+  }
+}
+
+mutation UpdateReadMessages($messageIds: [Int]!) {
+  updateReadMessages(messageIds: $messageIds) {
+    success
+  }
+}
+
+mutation ReadNotification($notificationId: Int) {
+  readNotification(notificationId: $notificationId) {
+    success
+  }
+}
+
+mutation DeleteNotification($notificationId: Int!) {
+  deleteNotification(notificationId: $notificationId) {
+    success
+  }
+}
+
+mutation UpdateNotificationPreference(
+  $emailNotification: NotificationsPreferenceInputType
+  $inappNotification: NotificationsPreferenceInputType
+  $isEmailNotification: Boolean!
+  $isPushNotification: Boolean!
+  $isSilentModeOn: Boolean!
+) {
+  updateNotificationPreference(
+    emailNotifications: $emailNotification
+    inappNotifications: $inappNotification
+    isEmailNotification: $isEmailNotification
+    isPushNotification: $isPushNotification
+    isSilentModeOn: $isSilentModeOn
+  ) {
+    success
   }
 }
