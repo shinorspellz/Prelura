@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';

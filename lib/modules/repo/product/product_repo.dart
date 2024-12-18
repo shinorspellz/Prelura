@@ -6,7 +6,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
 class ProductRepo {

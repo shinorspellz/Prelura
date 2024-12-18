@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product.dart';
+part of 'product_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -43,7 +43,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Brand.fromJson(json['brand'] as Map<String, dynamic>),
       materials: (json['materials'] as List<dynamic>?)
-          ?.map((e) => Material.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => MaterialModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       style: json['style'] == null
           ? null
@@ -104,18 +104,6 @@ _$BrandImpl _$$BrandImplFromJson(Map<String, dynamic> json) => _$BrandImpl(
     );
 
 Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
-_$MaterialImpl _$$MaterialImplFromJson(Map<String, dynamic> json) =>
-    _$MaterialImpl(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
-    );
-
-Map<String, dynamic> _$$MaterialImplToJson(_$MaterialImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

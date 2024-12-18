@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
@@ -103,7 +103,7 @@ class ProductDescription extends ConsumerWidget {
           if (product.materials != null)
             if (product.materials!.isNotEmpty)
               _buildInfoRow(
-                "Material",
+                "MaterialModel",
                 product.materials!.map((e) => e.name).join(', '),
                 context,
               ),

@@ -14,7 +14,7 @@ import 'package:flutter/material.dart' as _i43;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
 import 'package:prelura_app/modules/model/product/categories/category_model.dart'
     as _i46;
-import 'package:prelura_app/modules/model/product/product.dart' as _i45;
+import 'package:prelura_app/modules/model/product/product_model.dart' as _i45;
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i4;
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'

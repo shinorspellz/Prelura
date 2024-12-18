@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/material/material_model.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
 
-part 'product.freezed.dart';
-part 'product.g.dart';
+part 'product_model.freezed.dart';
+part 'product_model.g.dart';
 
 @unfreezed
 class ProductModel with _$ProductModel {
@@ -31,7 +32,7 @@ class ProductModel with _$ProductModel {
     required final DateTime updatedAt,
     required List<String>? color,
     required Brand? brand,
-    final List<Material>? materials,
+    final List<MaterialModel>? materials,
     final Enum$StyleEnum? style,
     final String? customBrand,
   }) = _ProductModel;
@@ -115,14 +116,4 @@ class Brand with _$Brand {
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
-}
-
-@freezed
-class Material with _$Material {
-  const factory Material({
-    required int id,
-    required String name,
-  }) = _Material;
-
-  factory Material.fromJson(Map<String, dynamic> json) => _$MaterialFromJson(json);
 }

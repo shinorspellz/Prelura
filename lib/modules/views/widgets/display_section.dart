@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/modules/model/product/product.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 import 'package:prelura_app/shared/mock_data.dart';
 
