@@ -9031,6 +9031,205 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'disableResponse'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'lastModified'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'deleted'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'participant1Deleted'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'participant2Deleted'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'unreadMessagesCount'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'recipient'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'lastMessage'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'text'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'attachment'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'attachmentType'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'sender'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'username'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'profilePictureUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'thumbnailUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'displayName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -9295,20 +9494,76 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat<TRes>
 class Mutation$CreateChat$createChat$chat {
   Mutation$CreateChat$createChat$chat({
     required this.id,
+    required this.name,
+    required this.disableResponse,
+    required this.createdAt,
+    required this.lastModified,
+    required this.deleted,
+    required this.participant1Deleted,
+    required this.participant2Deleted,
+    this.unreadMessagesCount,
+    this.recipient,
+    this.lastMessage,
     this.$__typename = 'ConversationType',
   });
 
   factory Mutation$CreateChat$createChat$chat.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$name = json['name'];
+    final l$disableResponse = json['disableResponse'];
+    final l$createdAt = json['createdAt'];
+    final l$lastModified = json['lastModified'];
+    final l$deleted = json['deleted'];
+    final l$participant1Deleted = json['participant1Deleted'];
+    final l$participant2Deleted = json['participant2Deleted'];
+    final l$unreadMessagesCount = json['unreadMessagesCount'];
+    final l$recipient = json['recipient'];
+    final l$lastMessage = json['lastMessage'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateChat$createChat$chat(
       id: (l$id as String),
+      name: (l$name as String),
+      disableResponse: (l$disableResponse as bool),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      lastModified: DateTime.parse((l$lastModified as String)),
+      deleted: (l$deleted as bool),
+      participant1Deleted: (l$participant1Deleted as bool),
+      participant2Deleted: (l$participant2Deleted as bool),
+      unreadMessagesCount: (l$unreadMessagesCount as int?),
+      recipient: l$recipient == null
+          ? null
+          : Mutation$CreateChat$createChat$chat$recipient.fromJson(
+              (l$recipient as Map<String, dynamic>)),
+      lastMessage: l$lastMessage == null
+          ? null
+          : Mutation$CreateChat$createChat$chat$lastMessage.fromJson(
+              (l$lastMessage as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
+
+  final String name;
+
+  final bool disableResponse;
+
+  final DateTime createdAt;
+
+  final DateTime lastModified;
+
+  final bool deleted;
+
+  final bool participant1Deleted;
+
+  final bool participant2Deleted;
+
+  final int? unreadMessagesCount;
+
+  final Mutation$CreateChat$createChat$chat$recipient? recipient;
+
+  final Mutation$CreateChat$createChat$chat$lastMessage? lastMessage;
 
   final String $__typename;
 
@@ -9316,6 +9571,26 @@ class Mutation$CreateChat$createChat$chat {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$disableResponse = disableResponse;
+    _resultData['disableResponse'] = l$disableResponse;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$lastModified = lastModified;
+    _resultData['lastModified'] = l$lastModified.toIso8601String();
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$participant1Deleted = participant1Deleted;
+    _resultData['participant1Deleted'] = l$participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    _resultData['participant2Deleted'] = l$participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    _resultData['unreadMessagesCount'] = l$unreadMessagesCount;
+    final l$recipient = recipient;
+    _resultData['recipient'] = l$recipient?.toJson();
+    final l$lastMessage = lastMessage;
+    _resultData['lastMessage'] = l$lastMessage?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -9324,9 +9599,29 @@ class Mutation$CreateChat$createChat$chat {
   @override
   int get hashCode {
     final l$id = id;
+    final l$name = name;
+    final l$disableResponse = disableResponse;
+    final l$createdAt = createdAt;
+    final l$lastModified = lastModified;
+    final l$deleted = deleted;
+    final l$participant1Deleted = participant1Deleted;
+    final l$participant2Deleted = participant2Deleted;
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final l$recipient = recipient;
+    final l$lastMessage = lastMessage;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$name,
+      l$disableResponse,
+      l$createdAt,
+      l$lastModified,
+      l$deleted,
+      l$participant1Deleted,
+      l$participant2Deleted,
+      l$unreadMessagesCount,
+      l$recipient,
+      l$lastMessage,
       l$$__typename,
     ]);
   }
@@ -9343,6 +9638,56 @@ class Mutation$CreateChat$createChat$chat {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$disableResponse = disableResponse;
+    final lOther$disableResponse = other.disableResponse;
+    if (l$disableResponse != lOther$disableResponse) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$lastModified = lastModified;
+    final lOther$lastModified = other.lastModified;
+    if (l$lastModified != lOther$lastModified) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$participant1Deleted = participant1Deleted;
+    final lOther$participant1Deleted = other.participant1Deleted;
+    if (l$participant1Deleted != lOther$participant1Deleted) {
+      return false;
+    }
+    final l$participant2Deleted = participant2Deleted;
+    final lOther$participant2Deleted = other.participant2Deleted;
+    if (l$participant2Deleted != lOther$participant2Deleted) {
+      return false;
+    }
+    final l$unreadMessagesCount = unreadMessagesCount;
+    final lOther$unreadMessagesCount = other.unreadMessagesCount;
+    if (l$unreadMessagesCount != lOther$unreadMessagesCount) {
+      return false;
+    }
+    final l$recipient = recipient;
+    final lOther$recipient = other.recipient;
+    if (l$recipient != lOther$recipient) {
+      return false;
+    }
+    final l$lastMessage = lastMessage;
+    final lOther$lastMessage = other.lastMessage;
+    if (l$lastMessage != lOther$lastMessage) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -9375,8 +9720,21 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
 
   TRes call({
     String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Mutation$CreateChat$createChat$chat$recipient? recipient,
+    Mutation$CreateChat$createChat$chat$lastMessage? lastMessage,
     String? $__typename,
   });
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient;
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
+      get lastMessage;
 }
 
 class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
@@ -9394,14 +9752,76 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
 
   TRes call({
     Object? id = _undefined,
+    Object? name = _undefined,
+    Object? disableResponse = _undefined,
+    Object? createdAt = _undefined,
+    Object? lastModified = _undefined,
+    Object? deleted = _undefined,
+    Object? participant1Deleted = _undefined,
+    Object? participant2Deleted = _undefined,
+    Object? unreadMessagesCount = _undefined,
+    Object? recipient = _undefined,
+    Object? lastMessage = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateChat$createChat$chat(
         id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        disableResponse:
+            disableResponse == _undefined || disableResponse == null
+                ? _instance.disableResponse
+                : (disableResponse as bool),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        lastModified: lastModified == _undefined || lastModified == null
+            ? _instance.lastModified
+            : (lastModified as DateTime),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        participant1Deleted:
+            participant1Deleted == _undefined || participant1Deleted == null
+                ? _instance.participant1Deleted
+                : (participant1Deleted as bool),
+        participant2Deleted:
+            participant2Deleted == _undefined || participant2Deleted == null
+                ? _instance.participant2Deleted
+                : (participant2Deleted as bool),
+        unreadMessagesCount: unreadMessagesCount == _undefined
+            ? _instance.unreadMessagesCount
+            : (unreadMessagesCount as int?),
+        recipient: recipient == _undefined
+            ? _instance.recipient
+            : (recipient as Mutation$CreateChat$createChat$chat$recipient?),
+        lastMessage: lastMessage == _undefined
+            ? _instance.lastMessage
+            : (lastMessage as Mutation$CreateChat$createChat$chat$lastMessage?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient {
+    final local$recipient = _instance.recipient;
+    return local$recipient == null
+        ? CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$recipient(
+            local$recipient, (e) => call(recipient: e));
+  }
+
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
+      get lastMessage {
+    final local$lastMessage = _instance.lastMessage;
+    return local$lastMessage == null
+        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
+            local$lastMessage, (e) => call(lastMessage: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
@@ -9412,6 +9832,673 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
 
   call({
     String? id,
+    String? name,
+    bool? disableResponse,
+    DateTime? createdAt,
+    DateTime? lastModified,
+    bool? deleted,
+    bool? participant1Deleted,
+    bool? participant2Deleted,
+    int? unreadMessagesCount,
+    Mutation$CreateChat$createChat$chat$recipient? recipient,
+    Mutation$CreateChat$createChat$chat$lastMessage? lastMessage,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient =>
+      CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(_res);
+
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
+      get lastMessage =>
+          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(_res);
+}
+
+class Mutation$CreateChat$createChat$chat$recipient {
+  Mutation$CreateChat$createChat$chat$recipient({
+    this.id,
+    this.username,
+    this.displayName,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Mutation$CreateChat$createChat$chat$recipient.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$displayName = json['displayName'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat$createChat$chat$recipient(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      displayName: (l$displayName as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? displayName;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$displayName = displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$displayName,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat$createChat$chat$recipient ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$recipient
+    on Mutation$CreateChat$createChat$chat$recipient {
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<
+          Mutation$CreateChat$createChat$chat$recipient>
+      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$recipient(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
+  factory CopyWith$Mutation$CreateChat$createChat$chat$recipient(
+    Mutation$CreateChat$createChat$chat$recipient instance,
+    TRes Function(Mutation$CreateChat$createChat$chat$recipient) then,
+  ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient;
+
+  factory CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
+  _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat$createChat$chat$recipient _instance;
+
+  final TRes Function(Mutation$CreateChat$createChat$chat$recipient) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? displayName = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat$createChat$chat$recipient(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? displayName,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$CreateChat$createChat$chat$lastMessage {
+  Mutation$CreateChat$createChat$chat$lastMessage({
+    required this.id,
+    required this.text,
+    this.attachment,
+    this.attachmentType,
+    this.sender,
+    this.$__typename = 'MessageType',
+  });
+
+  factory Mutation$CreateChat$createChat$chat$lastMessage.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$text = json['text'];
+    final l$attachment = json['attachment'];
+    final l$attachmentType = json['attachmentType'];
+    final l$sender = json['sender'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat$createChat$chat$lastMessage(
+      id: (l$id as String),
+      text: (l$text as String),
+      attachment: (l$attachment as String?),
+      attachmentType: l$attachmentType == null
+          ? null
+          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
+              (l$attachmentType as String)),
+      sender: l$sender == null
+          ? null
+          : Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(
+              (l$sender as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String text;
+
+  final String? attachment;
+
+  final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final Mutation$CreateChat$createChat$chat$lastMessage$sender? sender;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$text = text;
+    _resultData['text'] = l$text;
+    final l$attachment = attachment;
+    _resultData['attachment'] = l$attachment;
+    final l$attachmentType = attachmentType;
+    _resultData['attachmentType'] = l$attachmentType == null
+        ? null
+        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$text = text;
+    final l$attachment = attachment;
+    final l$attachmentType = attachmentType;
+    final l$sender = sender;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$text,
+      l$attachment,
+      l$attachmentType,
+      l$sender,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat$createChat$chat$lastMessage ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$text = text;
+    final lOther$text = other.text;
+    if (l$text != lOther$text) {
+      return false;
+    }
+    final l$attachment = attachment;
+    final lOther$attachment = other.attachment;
+    if (l$attachment != lOther$attachment) {
+      return false;
+    }
+    final l$attachmentType = attachmentType;
+    final lOther$attachmentType = other.attachmentType;
+    if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage
+    on Mutation$CreateChat$createChat$chat$lastMessage {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<
+          Mutation$CreateChat$createChat$chat$lastMessage>
+      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
+    Mutation$CreateChat$createChat$chat$lastMessage instance,
+    TRes Function(Mutation$CreateChat$createChat$chat$lastMessage) then,
+  ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage;
+
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage;
+
+  TRes call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Mutation$CreateChat$createChat$chat$lastMessage$sender? sender,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
+      get sender;
+}
+
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
+  _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat$createChat$chat$lastMessage _instance;
+
+  final TRes Function(Mutation$CreateChat$createChat$chat$lastMessage) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? text = _undefined,
+    Object? attachment = _undefined,
+    Object? attachmentType = _undefined,
+    Object? sender = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat$createChat$chat$lastMessage(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        text: text == _undefined || text == null
+            ? _instance.text
+            : (text as String),
+        attachment: attachment == _undefined
+            ? _instance.attachment
+            : (attachment as String?),
+        attachmentType: attachmentType == _undefined
+            ? _instance.attachmentType
+            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender
+                as Mutation$CreateChat$createChat$chat$lastMessage$sender?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
+      get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+            local$sender, (e) => call(sender: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
+    implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? text,
+    String? attachment,
+    Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    Mutation$CreateChat$createChat$chat$lastMessage$sender? sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
+      get sender =>
+          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
+              _res);
+}
+
+class Mutation$CreateChat$createChat$chat$lastMessage$sender {
+  Mutation$CreateChat$createChat$chat$lastMessage$sender({
+    required this.id,
+    required this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.displayName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$displayName = json['displayName'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateChat$createChat$chat$lastMessage$sender(
+      id: (l$id as String),
+      username: (l$username as String),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      displayName: (l$displayName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String? displayName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$displayName = displayName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$displayName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateChat$createChat$chat$lastMessage$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage$sender
+    on Mutation$CreateChat$createChat$chat$lastMessage$sender {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
+          Mutation$CreateChat$createChat$chat$lastMessage$sender>
+      get copyWith =>
+          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
+    TRes> {
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+    Mutation$CreateChat$createChat$chat$lastMessage$sender instance,
+    TRes Function(Mutation$CreateChat$createChat$chat$lastMessage$sender) then,
+  ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
+
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
+
+  TRes call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
+    implements
+        CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
+  _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateChat$createChat$chat$lastMessage$sender _instance;
+
+  final TRes Function(Mutation$CreateChat$createChat$chat$lastMessage$sender)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? displayName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateChat$createChat$chat$lastMessage$sender(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? displayName,
     String? $__typename,
   }) =>
       _res;

@@ -25,13 +25,9 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
   ChatNotifier()
       : super([
           ChatMessage(message: "Hello! How are you?", isSentByUser: false),
-          ChatMessage(
-              message: "I'm good, thanks! How about you?", isSentByUser: true),
-          ChatMessage(
-              message: "I'm doing great! What's new?", isSentByUser: false),
-          ChatMessage(
-              message: "Not much, just working on a Flutter project.",
-              isSentByUser: true),
+          ChatMessage(message: "I'm good, thanks! How about you?", isSentByUser: true),
+          ChatMessage(message: "I'm doing great! What's new?", isSentByUser: false),
+          ChatMessage(message: "Not much, just working on a Flutter project.", isSentByUser: true),
         ]);
 
   void sendMessage(String message) {
@@ -45,8 +41,7 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
 
 @RoutePage()
 class ChatScreen extends ConsumerWidget {
-  const ChatScreen(this.username, this.message, this.time, this.avatarUrl,
-      {super.key});
+  const ChatScreen(this.username, this.message, this.time, this.avatarUrl, {super.key});
 
   final String username;
   final String message;
@@ -61,15 +56,13 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         appbarTitle: username,
         trailingIcon: [
           IconButton(
-            icon: Icon(Icons.info_outline,
-                color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.info_outline, color: Theme.of(context).iconTheme.color),
             onPressed: () {},
           ),
         ],
@@ -86,24 +79,19 @@ class ChatScreen extends ConsumerWidget {
                 // Scrollable chat messages list
                 ConstrainedBox(
                   constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height *
-                        0.5, // Limit height
+                    minHeight: MediaQuery.of(context).size.height * 0.5, // Limit height
                   ),
                   child: ListView.builder(
                     shrinkWrap: true,
-                    physics:
-                        const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+                    physics: const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
                     itemCount: chatMessages.length,
                     itemBuilder: (context, index) {
                       final chat = chatMessages[index];
                       return Align(
-                        alignment: chat.isSentByUser
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
+                        alignment: chat.isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           padding: const EdgeInsets.all(8.0),
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 16),
+                          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
                           decoration: BoxDecoration(
                             color: chat.isSentByUser
                                 ? context.isDarkMode

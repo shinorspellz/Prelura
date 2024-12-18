@@ -784,8 +784,9 @@ class ProductsByBrandRoute
     extends _i42.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
     _i43.Key? key,
-    required String title,
-    required int id,
+    required String? title,
+    required int? id,
+    String? customBrand,
     List<_i42.PageRouteInfo>? children,
   }) : super(
           ProductsByBrandRoute.name,
@@ -793,6 +794,7 @@ class ProductsByBrandRoute
             key: key,
             title: title,
             id: id,
+            customBrand: customBrand,
           ),
           initialChildren: children,
         );
@@ -807,6 +809,7 @@ class ProductsByBrandRoute
         key: args.key,
         title: args.title,
         id: args.id,
+        customBrand: args.customBrand,
       );
     },
   );
@@ -817,17 +820,20 @@ class ProductsByBrandRouteArgs {
     this.key,
     required this.title,
     required this.id,
+    this.customBrand,
   });
 
   final _i43.Key? key;
 
-  final String title;
+  final String? title;
 
-  final int id;
+  final int? id;
+
+  final String? customBrand;
 
   @override
   String toString() {
-    return 'ProductsByBrandRouteArgs{key: $key, title: $title, id: $id}';
+    return 'ProductsByBrandRouteArgs{key: $key, title: $title, id: $id, customBrand: $customBrand}';
   }
 }
 

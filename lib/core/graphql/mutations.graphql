@@ -202,6 +202,34 @@ mutation CreateChat($name: String!, $recipient: String!) {
   createChat(name: $name, recipient: $recipient) {
     chat {
       id
+      name
+      disableResponse
+      createdAt
+      lastModified
+      deleted
+      participant1Deleted
+      participant2Deleted
+      unreadMessagesCount
+      recipient {
+        id
+        username
+        displayName
+        profilePictureUrl
+        thumbnailUrl
+      }
+      lastMessage {
+        id
+        text
+        attachment
+        attachmentType
+        sender {
+          id
+          username
+          profilePictureUrl
+          thumbnailUrl
+          displayName
+        }
+      }
     }
   }
 }

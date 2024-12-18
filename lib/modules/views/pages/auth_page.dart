@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/notification_service.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/refresh_provider.dart';
 import 'package:prelura_app/modules/views/pages/home.dart';
 import 'package:prelura_app/modules/views/pages/user_profile.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
@@ -70,13 +71,19 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                     onTap: (index) {
                       switch (index) {
                         case 0:
+                          if (tabRouter.activeIndex == index) {
+                            HomeScreen.homeScrollController.animateTo(
+                              0.0,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                            if (HomeScreen.homeScrollController.offset == 0.0) {
+                              ref.read(homeRefreshProvider.notifier).refreshHome();
+                            }
+                          }
+
                           tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(index);
-                          HomeScreen.homeScrollController.animateTo(
-                            0.0,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          );
 
                           break;
                         case 1:
@@ -156,13 +163,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         label: 'Inbox',
                       ),
                       ProfilePictureWidget(
-                        profilePicture: ref
-                            .watch(userProvider)
-                            .valueOrNull
-                            ?.profilePictureUrl,
-                        username:
-                            ref.watch(userProvider).valueOrNull?.username ??
-                                '--',
+                        profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+                        username: ref.watch(userProvider).valueOrNull?.username ?? '--',
                         height: 27,
                         width: 27,
                       ),

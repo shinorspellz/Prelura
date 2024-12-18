@@ -15,11 +15,11 @@ class BrandTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (brand == null) return;
-        context.pushRoute(ProductsByBrandRoute(title: brand!.name, id: (brand!.id).toInt()));
+        if (brand == null && customBrand == null) return;
+        context.pushRoute(ProductsByBrandRoute(title: brand?.name, id: (brand?.id)?.toInt(), customBrand: customBrand));
       },
       child: Text(
-        brand?.name ?? customBrand ?? '',
+        customBrand ?? brand?.name ?? '',
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: PreluraColors.activeColor,
               fontWeight: FontWeight.w500,
