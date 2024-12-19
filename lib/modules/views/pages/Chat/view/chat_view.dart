@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/modules/controller/chat/messages_provider.dart';
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart';
 import 'package:prelura_app/modules/views/pages/Chat/widgets/product_card.dart';
 import 'package:prelura_app/modules/views/pages/Chat/widgets/seller_card.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/context_entension.dart';
 
@@ -71,9 +76,9 @@ class ChatScreen extends ConsumerWidget {
           ),
         ],
       ),
-      bottomSheet: Container(
+      bottomNavigationBar: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 25),
+        padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom + 20, left: 10, right: 25, top: 10),
         child: Row(
           children: [
             InkWell(
@@ -97,7 +102,8 @@ class ChatScreen extends ConsumerWidget {
               onPressed: () {
                 final message = textController.text.trim();
                 if (message.isNotEmpty) {
-                  ref.read(chatProvider.notifier).sendMessage(message);
+                  ref.read(messagesProvider(id).notifier).sendMessage(message);
+                  // ref.read(chatProvider.notifier).sendMessage(message);
                   textController.clear();
                 }
               },
@@ -105,36 +111,37 @@ class ChatScreen extends ConsumerWidget {
           ],
         ),
       ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                // Static content at the top
-                // ProductCard(image: avatarUrl),
-                SellerCard(
-                  name: username,
-                  profilePicture: avatarUrl,
-                ),
+      body: SingleChildScrollView(
+        controller: ref.watch(chatScrollController),
+        reverse: true,
+        child: Column(
+          children: [
+            // Static content at the top
+            // ProductCard(image: avatarUrl),
+            SellerCard(
+              name: username,
+              profilePicture: avatarUrl,
+            ),
 
-                // Scrollable chat messages list
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height * 0.5, // Limit height
-                  ),
-                  child: ListView.builder(
+            ref.watch(messagesProvider(id)).maybeWhen(
+                  data: (messages) => ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
-                    itemCount: chatMessages.length,
+                    itemCount: messages.length,
+                    reverse: true,
                     itemBuilder: (context, index) {
-                      final chat = chatMessages[index];
+                      final chat = messages[index];
+                      final isSender = chat.sender.username != username;
                       return Align(
-                        alignment: chat.isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
+                        alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
                         child: Container(
                           padding: const EdgeInsets.all(8.0),
-                          margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
+                          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                          constraints: BoxConstraints(
+                            maxWidth: MediaQuery.sizeOf(context).width / 1.4,
+                          ),
                           decoration: BoxDecoration(
-                            color: chat.isSentByUser
+                            color: isSender
                                 ? context.isDarkMode
                                     ? PreluraColors.blueColor9D
                                     : PreluraColors.greyLightColor
@@ -142,26 +149,28 @@ class ChatScreen extends ConsumerWidget {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Text(
-                            chat.message,
+                            chat.text,
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                       );
                     },
                   ),
-                ),
+                  orElse: () => Center(
+                    child: LoadingWidget(),
+                  ),
+                  error: (e, _) {
+                    log(e.toString(), stackTrace: _);
+                    return Center(
+                      child: LoadingWidget(),
+                    );
+                  },
+                )
+            // Scrollable chat messages list
 
-                // Input field for sending messages
-              ],
-            ),
-          ),
-          // Positioned(
-          //   bottom: 0,
-          //   left: 0,
-          //   right: 0,
-          //   child:
-          // ),
-        ],
+            // Input field for sending messages
+          ],
+        ),
       ),
     );
   }

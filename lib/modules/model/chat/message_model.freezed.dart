@@ -20,7 +20,7 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MessageModel {
-  String get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
   String? get attachment => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $MessageModelCopyWith<$Res> {
       _$MessageModelCopyWithImpl<$Res, MessageModel>;
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String text,
       String? attachment,
       bool read,
@@ -76,7 +76,7 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? text = null,
     Object? attachment = freezed,
     Object? read = null,
@@ -87,10 +87,10 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
     Object? sender = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ abstract class _$$MessageModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String text,
       String? attachment,
       bool read,
@@ -189,7 +189,7 @@ class __$$MessageModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? text = null,
     Object? attachment = freezed,
     Object? read = null,
@@ -200,10 +200,10 @@ class __$$MessageModelImplCopyWithImpl<$Res>
     Object? sender = null,
   }) {
     return _then(_$MessageModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -258,7 +258,7 @@ class _$MessageModelImpl implements _MessageModel {
       _$$MessageModelImplFromJson(json);
 
   @override
-  final String id;
+  final dynamic id;
   @override
   final String text;
   @override
@@ -286,7 +286,7 @@ class _$MessageModelImpl implements _MessageModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MessageModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.text, text) || other.text == text) &&
             (identical(other.attachment, attachment) ||
                 other.attachment == attachment) &&
@@ -300,8 +300,17 @@ class _$MessageModelImpl implements _MessageModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, text, attachment, read,
-      deleted, isItem, itemId, replyTo, sender);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      text,
+      attachment,
+      read,
+      deleted,
+      isItem,
+      itemId,
+      replyTo,
+      sender);
 
   /// Create a copy of MessageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -321,7 +330,7 @@ class _$MessageModelImpl implements _MessageModel {
 
 abstract class _MessageModel implements MessageModel {
   const factory _MessageModel(
-      {required final String id,
+      {required final dynamic id,
       required final String text,
       final String? attachment,
       required final bool read,
@@ -335,7 +344,7 @@ abstract class _MessageModel implements MessageModel {
       _$MessageModelImpl.fromJson;
 
   @override
-  String get id;
+  dynamic get id;
   @override
   String get text;
   @override

@@ -7,7 +7,7 @@ part 'message_model.g.dart';
 @freezed
 class MessageModel with _$MessageModel {
   const factory MessageModel({
-    required String id,
+    required dynamic id,
     required String text,
     String? attachment,
     required bool read,
@@ -19,4 +19,22 @@ class MessageModel with _$MessageModel {
   }) = _MessageModel;
 
   factory MessageModel.fromJson(Map<String, dynamic> json) => _$MessageModelFromJson(json);
+
+  factory MessageModel.fromSocket(Map<String, dynamic> json) => MessageModel(
+        id: json["id"],
+
+        text: json["text"],
+        attachment: json["attachment"],
+
+        read: json["read"],
+        deleted: json["deleted"],
+        isItem: json["is_item"],
+        itemId: json["item_id"],
+        // itemType: json["item_type"],
+        sender: UserModel(id: json["sender"], username: json['senderName']),
+        replyTo: json["reply_to"],
+        // messageUuid: json["message_uuid"],
+        // receiverProfile: json["receiverProfile"],
+        // replyToMessageText: json["reply_to_message_text"],
+      );
 }
