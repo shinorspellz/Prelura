@@ -29,7 +29,6 @@ type BlockedUserType {
   label: String
   isVerified: Boolean
   blueTickVerified: Boolean
-  userType: String
   thumbnailUrl: String
   profilePictureUrl: String
 }
@@ -250,7 +249,7 @@ type MessageType {
 type Mutation {
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
-  createChat(name: String!, recipient: String!): CreateChat
+  createChat(recipient: String!): CreateChat
   deleteMessage(messageId: Int!): DeleteMessage
   deleteConversation(conversationId: Int!): DeleteConversation
   archiveConversation(conversationId: Int!): ArchiveConversation
@@ -804,7 +803,7 @@ type ProductType {
   style: ProductsProductStyleChoices
   parcelSize: ProductsProductParcelSizeChoices
   condition: ProductsProductConditionChoices
-  price: Decimal!
+  price: Float
   views: Int!
   likes: Int!
   discountPrice: Decimal

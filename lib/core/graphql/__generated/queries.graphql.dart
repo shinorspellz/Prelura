@@ -4466,7 +4466,7 @@ class Query$Product$product {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -4530,7 +4530,7 @@ class Query$Product$product {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -4579,7 +4579,7 @@ class Query$Product$product {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -4896,7 +4896,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -4987,9 +4987,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -5094,7 +5092,7 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -6712,7 +6710,7 @@ class Query$UserProducts$userProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -6776,7 +6774,7 @@ class Query$UserProducts$userProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -6825,7 +6823,7 @@ class Query$UserProducts$userProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -7144,7 +7142,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -7235,9 +7233,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -7344,7 +7340,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -8996,7 +8992,7 @@ class Query$AllProducts$allProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -9060,7 +9056,7 @@ class Query$AllProducts$allProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -9109,7 +9105,7 @@ class Query$AllProducts$allProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -9428,7 +9424,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -9519,9 +9515,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -9627,7 +9621,7 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -12032,7 +12026,7 @@ class Query$likedProducts$likedProducts$product {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -12095,7 +12089,7 @@ class Query$likedProducts$likedProducts$product {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -12143,7 +12137,7 @@ class Query$likedProducts$likedProducts$product {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -12452,7 +12446,7 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -12544,9 +12538,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -12655,7 +12647,7 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -15712,7 +15704,7 @@ class Query$SimilarProducts$similarProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -15775,7 +15767,7 @@ class Query$SimilarProducts$similarProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -15823,7 +15815,7 @@ class Query$SimilarProducts$similarProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -16132,7 +16124,7 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -16223,9 +16215,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -16333,7 +16323,7 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -21138,7 +21128,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -21199,7 +21189,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -21245,7 +21235,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -21545,7 +21535,7 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -21641,9 +21631,7 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -21754,7 +21742,7 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -28594,6 +28582,42 @@ const documentNodeQueryNotifications = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'sender'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -28764,6 +28788,7 @@ class Query$Notifications$notifications {
     required this.createdAt,
     required this.updatedAt,
     this.meta,
+    this.sender,
     this.$__typename = 'NotificationType',
   });
 
@@ -28780,6 +28805,7 @@ class Query$Notifications$notifications {
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$meta = json['meta'];
+    final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
     return Query$Notifications$notifications(
       id: (l$id as String),
@@ -28793,6 +28819,10 @@ class Query$Notifications$notifications {
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       meta: (l$meta as String?),
+      sender: l$sender == null
+          ? null
+          : Query$Notifications$notifications$sender.fromJson(
+              (l$sender as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -28818,6 +28848,8 @@ class Query$Notifications$notifications {
   final DateTime updatedAt;
 
   final String? meta;
+
+  final Query$Notifications$notifications$sender? sender;
 
   final String $__typename;
 
@@ -28845,6 +28877,8 @@ class Query$Notifications$notifications {
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$meta = meta;
     _resultData['meta'] = l$meta;
+    final l$sender = sender;
+    _resultData['sender'] = l$sender?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -28863,6 +28897,7 @@ class Query$Notifications$notifications {
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$meta = meta;
+    final l$sender = sender;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -28876,6 +28911,7 @@ class Query$Notifications$notifications {
       l$createdAt,
       l$updatedAt,
       l$meta,
+      l$sender,
       l$$__typename,
     ]);
   }
@@ -28944,6 +28980,11 @@ class Query$Notifications$notifications {
     if (l$meta != lOther$meta) {
       return false;
     }
+    final l$sender = sender;
+    final lOther$sender = other.sender;
+    if (l$sender != lOther$sender) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -28983,8 +29024,10 @@ abstract class CopyWith$Query$Notifications$notifications<TRes> {
     DateTime? createdAt,
     DateTime? updatedAt,
     String? meta,
+    Query$Notifications$notifications$sender? sender,
     String? $__typename,
   });
+  CopyWith$Query$Notifications$notifications$sender<TRes> get sender;
 }
 
 class _CopyWithImpl$Query$Notifications$notifications<TRes>
@@ -29012,6 +29055,7 @@ class _CopyWithImpl$Query$Notifications$notifications<TRes>
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? meta = _undefined,
+    Object? sender = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Notifications$notifications(
@@ -29044,10 +29088,22 @@ class _CopyWithImpl$Query$Notifications$notifications<TRes>
             ? _instance.updatedAt
             : (updatedAt as DateTime),
         meta: meta == _undefined ? _instance.meta : (meta as String?),
+        sender: sender == _undefined
+            ? _instance.sender
+            : (sender as Query$Notifications$notifications$sender?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$Notifications$notifications$sender<TRes> get sender {
+    final local$sender = _instance.sender;
+    return local$sender == null
+        ? CopyWith$Query$Notifications$notifications$sender.stub(
+            _then(_instance))
+        : CopyWith$Query$Notifications$notifications$sender(
+            local$sender, (e) => call(sender: e));
+  }
 }
 
 class _CopyWithStubImpl$Query$Notifications$notifications<TRes>
@@ -29068,6 +29124,176 @@ class _CopyWithStubImpl$Query$Notifications$notifications<TRes>
     DateTime? createdAt,
     DateTime? updatedAt,
     String? meta,
+    Query$Notifications$notifications$sender? sender,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Notifications$notifications$sender<TRes> get sender =>
+      CopyWith$Query$Notifications$notifications$sender.stub(_res);
+}
+
+class Query$Notifications$notifications$sender {
+  Query$Notifications$notifications$sender({
+    this.username,
+    this.profilePictureUrl,
+    this.thumbnailUrl,
+    this.$__typename = 'SenderType',
+  });
+
+  factory Query$Notifications$notifications$sender.fromJson(
+      Map<String, dynamic> json) {
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$Notifications$notifications$sender(
+      username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? username;
+
+  final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$username,
+      l$profilePictureUrl,
+      l$thumbnailUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Notifications$notifications$sender ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Notifications$notifications$sender
+    on Query$Notifications$notifications$sender {
+  CopyWith$Query$Notifications$notifications$sender<
+          Query$Notifications$notifications$sender>
+      get copyWith => CopyWith$Query$Notifications$notifications$sender(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Notifications$notifications$sender<TRes> {
+  factory CopyWith$Query$Notifications$notifications$sender(
+    Query$Notifications$notifications$sender instance,
+    TRes Function(Query$Notifications$notifications$sender) then,
+  ) = _CopyWithImpl$Query$Notifications$notifications$sender;
+
+  factory CopyWith$Query$Notifications$notifications$sender.stub(TRes res) =
+      _CopyWithStubImpl$Query$Notifications$notifications$sender;
+
+  TRes call({
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Notifications$notifications$sender<TRes>
+    implements CopyWith$Query$Notifications$notifications$sender<TRes> {
+  _CopyWithImpl$Query$Notifications$notifications$sender(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Notifications$notifications$sender _instance;
+
+  final TRes Function(Query$Notifications$notifications$sender) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Notifications$notifications$sender(
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Notifications$notifications$sender<TRes>
+    implements CopyWith$Query$Notifications$notifications$sender<TRes> {
+  _CopyWithStubImpl$Query$Notifications$notifications$sender(this._res);
+
+  TRes _res;
+
+  call({
+    String? username,
+    String? profilePictureUrl,
+    String? thumbnailUrl,
     String? $__typename,
   }) =>
       _res;

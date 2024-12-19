@@ -204,13 +204,13 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
         size: product.size != null
             ? Enum$SizeEnum.fromJson(product.size!.toJson())
             : null,
-        price: product.price,
+        price: product.price.toString(),
         selectedCondition: product.condition,
         brand: product.brand,
         selectedColors: product.color,
         selectedMaterials: product.materials,
         style: product.style,
-        discount: product.discountPrice,
+        discount: product.discountPrice.toString(),
         customBrand: product.customBrand);
   }
 

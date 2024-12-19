@@ -81,7 +81,7 @@ class _MaterialSelectionScreenState
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "MaterialModel (recommended)",
+        appbarTitle: "Material (recommended)",
       ),
       body: ref.watch(materialsProvider).when(
             data: (materials) => Stack(

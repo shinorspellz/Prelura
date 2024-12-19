@@ -1,8 +1,11 @@
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/modules/model/notification/notification_model.dart';
+
+import '../../core/graphql/__generated/schema.graphql.dart';
 
 class NotificationRepo {
   final GraphQLClient _client;
@@ -73,5 +76,82 @@ class NotificationRepo {
       log('Error parsing user data: $e', stackTrace: stackTrace);
       throw Exception('Failed to parse user data.');
     }
+  }
+
+  Future<NotificationPreference> getNotificationPreference() async {
+    final response = await _client.query$NotificationPreference(
+      Options$Query$NotificationPreference(),
+    );
+
+    if (response.hasException) {
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
+      throw Exception('GraphQL Error: $error');
+    }
+
+    final notificationPreference = response.parsedData?.notificationPreference!;
+    if (notificationPreference == null) {
+      throw Exception('No users found.');
+    }
+
+    try {
+      //@AYOPELUMI please stop using print statement just use log its safer
+      return NotificationPreference.fromJson(notificationPreference.toJson());
+    } catch (e, stackTrace) {
+      log('Error parsing user data: $e', stackTrace: stackTrace);
+      throw Exception('Failed to parse user data.');
+    }
+  }
+
+  Future<bool> updateNotificationPreference({
+    NotificationPreference? notificationPreference,
+    bool? isSilentModeOn,
+  }) async {
+    log(notificationPreference.toString());
+    log(notificationPreference?.inappNotifications?.profileView.toString() ??
+        'null');
+    final response = await _client.mutate$UpdateNotificationPreference(
+      Options$Mutation$UpdateNotificationPreference(
+        variables: Variables$Mutation$UpdateNotificationPreference(
+          isEmailNotification: notificationPreference!.isEmailNotification!,
+          isPushNotification: notificationPreference!.isPushNotification!,
+          isSilentModeOn: isSilentModeOn ?? false,
+          emailNotification: _convertToGraphQLInput(
+              notificationPreference?.emailNotifications),
+          inappNotification: _convertToGraphQLInput(
+              notificationPreference?.inappNotifications),
+        ),
+      ),
+    );
+
+    if (response.hasException) {
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
+      log('GraphQL Error: $error');
+      log(response.exception.toString());
+      throw Exception('GraphQL Error: $error');
+    }
+
+    final success =
+        response.parsedData?.updateNotificationPreference?.success ?? false;
+    // final response  = response.parsedData?.updateNotificationPreference?.;
+
+    if (!success) {
+      log('Failed to update notification preferences.');
+      throw Exception('Failed to update notification preferences.');
+    }
+
+    return success;
+  }
+
+  Input$NotificationsPreferenceInputType? _convertToGraphQLInput(
+      NotificationsPreferenceInputType? input) {
+    if (input == null) return null;
+    return Input$NotificationsPreferenceInputType(
+      likes: input.likes,
+      newFollowers: input.newFollowers,
+      profileView: input.profileView,
+      messages: input.messages,
+    );
   }
 }

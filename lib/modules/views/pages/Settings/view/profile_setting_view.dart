@@ -31,40 +31,59 @@ class ObscureTextNotifier extends StateNotifier<bool> {
 }
 
 // Provider for the ObscureTextNotifier
-final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>((ref) => ObscureTextNotifier());
+final obscureTextProvider = StateNotifierProvider<ObscureTextNotifier, bool>(
+    (ref) => ObscureTextNotifier());
 
 @RoutePage()
 class ProfileSettingScreen extends ConsumerStatefulWidget {
   const ProfileSettingScreen({super.key});
 
   @override
-  ConsumerState<ProfileSettingScreen> createState() => _ProfileSettingScreenState();
+  ConsumerState<ProfileSettingScreen> createState() =>
+      _ProfileSettingScreenState();
 }
 
 class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
-  late TextEditingController locationController = TextEditingController(text: ref.read(userProvider).valueOrNull?.location?.locationName);
-  TextEditingController get name => TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
-  TextEditingController get username => TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
-  TextEditingController get email => TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
-
+  late TextEditingController locationController = TextEditingController(
+      text: ref.read(userProvider).valueOrNull?.location?.locationName);
+  TextEditingController get name =>
+      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  TextEditingController get username =>
+      TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
+  TextEditingController get email =>
+      TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+  final bio = TextEditingController();
+  final int MaxDescription = 300;
   @override
   void initState() {
     getLongLat(showDialog: true);
-
+    bio.text = ref.read(userProvider).valueOrNull?.bio ?? "";
     super.initState();
   }
 
+  @override
+  void dispose() {
+    locationController.dispose();
+    bio.dispose();
+    name.dispose();
+    username.dispose();
+    email.dispose();
+    super.dispose();
+  }
+
   void placeAutoComplete(String query) async {
-    Uri uri = Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
+    Uri uri =
+        Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
       "input": query,
       "key": apiKey,
     });
     String? response = await NetworkUtility.fetchUrl(uri);
 
     if (response != null) {
-      PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
+      PlaceAutocompleteResponse result =
+          PlaceAutocompleteResponse.parseAutocompleteResult(response);
 
       if (result.predictions != null) {
         setState(() {
@@ -95,14 +114,16 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
         if (newError.contains('denied')) {
           await _showEnableLocationPopup(context,
               title: "Permission Access",
-              description: "Prelura requires permission for location access to function "
+              description:
+                  "Prelura requires permission for location access to function "
                   "while on this page.",
               positiveCallback: Geolocator.openAppSettings);
         } else if (newError.contains('disabled')) {
           print(" it is true");
           await _showEnableLocationPopup(context,
               title: "Location Disabled",
-              description: 'Prelura requires location access for the proper functioning of '
+              description:
+                  'Prelura requires location access for the proper functioning of '
                   'app. Please enable device location.',
               positiveCallback: Geolocator.openLocationSettings);
         }
@@ -115,12 +136,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   @override
   Widget build(BuildContext context) {
     final obscureText = ref.watch(obscureTextProvider);
+    print(bio.text.length);
 
     return Portal(
       child: Scaffold(
         appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           appbarTitle: "Profile Settings",
@@ -144,6 +167,36 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 hintText: 'e.g. prelura_app',
                 controller: username,
               ),
+              addVerticalSpacing(16),
+              Column(children: [
+                _buildAuthTextField(
+                  context,
+                  label: 'About',
+                  hintText: 'About me ...',
+                  controller: bio,
+                  enabled: true,
+                  minLines: 5,
+                  maxLines: null,
+                  maxLength: MaxDescription,
+                  onChanged: (value) {
+                    setState(
+                        () {}); // Rebuild the widget to show updated counter
+                  },
+                  textInputAction: TextInputAction.newline,
+                  // formatter: FilteringTextInputFormatter.allow(
+                  //     RegExp(r'[^\n]+')),
+                  keyboardType: TextInputType.multiline,
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "${MaxDescription - bio.text.length} characters remaining",
+                    maxLines: 1,
+                    textAlign: TextAlign.right,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                )
+              ]),
               addVerticalSpacing(16),
               _buildAuthTextField(
                 context,
@@ -194,7 +247,8 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                     itemBuilder: (context, index) => LocationListTile(
                       press: () {
                         setState(() {
-                          locationController.text = placePredictions[index].description!;
+                          locationController.text =
+                              placePredictions[index].description!;
                           placePredictions = [];
                         });
                       },
@@ -230,15 +284,22 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 }
 
                 await ref.read(userNotfierProvider.notifier).updateProfile(
-                      location: Input$LocationInputType(
-                        longitude: long.toString(),
-                        latitude: lat.toString(),
-                        locationName: locationController.text,
-                      ),
-                      firstName: name.text.isEmpty ? null : name.text.split(' ')[0],
-                      lastName: name.text.isEmpty ? null : name.text.split(' ')[1],
-                      username: username.text == ref.read(userProvider).valueOrNull?.username ? null : username.text,
-                    );
+                    location: Input$LocationInputType(
+                      longitude: long.toString(),
+                      latitude: lat.toString(),
+                      locationName: locationController.text,
+                    ),
+                    firstName:
+                        name.text.isEmpty ? null : name.text.split(' ')[0],
+                    lastName:
+                        name.text.isEmpty ? null : name.text.split(' ')[1],
+                    username: username.text ==
+                            ref.read(userProvider).valueOrNull?.username
+                        ? null
+                        : username.text,
+                    bio: bio.text.isEmpty
+                        ? ref.read(userProvider).valueOrNull?.username
+                        : bio.text);
 
                 ref.read(userNotfierProvider).whenOrNull(
                   error: (e, _) {
@@ -283,6 +344,11 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     void Function(String)? onChanged,
     TextEditingController? controller,
     bool enabled = true,
+    int? minLines,
+    int? maxLength,
+    int? maxLines,
+    TextInputAction? textInputAction,
+    TextInputType? keyboardType,
   }) {
     return PreluraAuthTextField(
       label: label,
@@ -292,15 +358,26 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       onChanged: onChanged,
       controller: controller,
       enabled: enabled,
+      minLines: minLines,
+      maxLength: maxLength,
+      maxLines: maxLines,
+      textInputAction: textInputAction,
+      keyboardType: keyboardType,
     );
   }
 
   TextStyle? _labelStyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
+    return Theme.of(context)
+        .textTheme
+        .bodyMedium
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
   }
 
   TextStyle? _hintStyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
+    return Theme.of(context)
+        .textTheme
+        .bodyMedium
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
   }
 }
 
@@ -313,11 +390,15 @@ class PlaceAutocompleteResponse {
   factory PlaceAutocompleteResponse.fromJson(Map<String, dynamic> json) {
     return PlaceAutocompleteResponse(
       status: json['status'] as String?,
-      predictions: json['predictions']?.map<AutocompletePrediction>((json) => AutocompletePrediction.fromJson(json)).toList(),
+      predictions: json['predictions']
+          ?.map<AutocompletePrediction>(
+              (json) => AutocompletePrediction.fromJson(json))
+          .toList(),
     );
   }
 
-  static PlaceAutocompleteResponse parseAutocompleteResult(String responseBody) {
+  static PlaceAutocompleteResponse parseAutocompleteResult(
+      String responseBody) {
     final parsed = json.decode(responseBody).cast<String, dynamic>();
 
     return PlaceAutocompleteResponse.fromJson(parsed);
@@ -351,7 +432,9 @@ class AutocompletePrediction {
       description: json['description'] as String?,
       placeId: json['place_id'] as String?,
       reference: json['reference'] as String?,
-      structuredFormatting: json['structured_formatting'] != null ? StructuredFormatting.fromJson(json['structured_formatting']) : null,
+      structuredFormatting: json['structured_formatting'] != null
+          ? StructuredFormatting.fromJson(json['structured_formatting'])
+          : null,
     );
   }
 }
@@ -412,7 +495,10 @@ class LocationListTile extends StatelessWidget {
   }
 }
 
-Future<void> _showEnableLocationPopup(BuildContext context, {required String title, required String description, required Future<bool> Function() positiveCallback}) async {
+Future<void> _showEnableLocationPopup(BuildContext context,
+    {required String title,
+    required String description,
+    required Future<bool> Function() positiveCallback}) async {
   await showDialog(
     context: context,
     builder: (BuildContext context) {

@@ -13,8 +13,8 @@ import '../widgets/gap.dart';
 import 'Sell Item/view/brand_view.dart';
 
 @RoutePage()
-class ProductsByBrandPage extends ConsumerStatefulWidget {
-  const ProductsByBrandPage(
+class FilterProductPage extends ConsumerStatefulWidget {
+  const FilterProductPage(
       {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
   final int? id;
@@ -23,11 +23,11 @@ class ProductsByBrandPage extends ConsumerStatefulWidget {
   static final ScrollController scrollController = ScrollController();
 
   @override
-  _ProductsByBrandPageState createState() => _ProductsByBrandPageState();
+  _ProductFilterPageState createState() => _ProductFilterPageState();
 }
 
-class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
-  final controller = ProductsByBrandPage.scrollController;
+class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
+  final controller = FilterProductPage.scrollController;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         ref
             .read(filteredProductProvider((
               Input$ProductFiltersInput(
-                  brand: widget.id, customBrand: widget.customBrand),
+                  category: widget.id, customBrand: widget.customBrand),
               searchQuery
             )).notifier)
             .fetchMoreData();
@@ -61,27 +61,15 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = ref.watch(filteredProductProvider((
-      Input$ProductFiltersInput(
-          brand: widget.id, customBrand: widget.customBrand),
-      searchQuery
-    )));
-    final productNotifier = ref.read(filteredProductProvider((
-      Input$ProductFiltersInput(
-          brand: widget.id, customBrand: widget.customBrand),
-      searchQuery
-    )).notifier);
-
     return Scaffold(
       appBar: PreluraAppBar(
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
-        ),
-        centerTitle: true,
-        appbarTitle: widget.title ?? widget.customBrand,
-      ),
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
+            onPressed: () => context.router.popForced(),
+          ),
+          centerTitle: true,
+          appbarTitle: widget.title),
       //   body: productProvider.when(
       //     data: (products) => GridView.builder(
       //       padding: const EdgeInsets.all(10),
@@ -122,7 +110,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         onRefresh: () async {
           await ref.refresh(filteredProductProvider((
             Input$ProductFiltersInput(
-                brand: widget.id, customBrand: widget.customBrand),
+              category: widget.id,
+            ),
             searchQuery
           )).future);
           if (!mounted) return; // Prevent state updates after unmounting
@@ -166,7 +155,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 ref
                     .watch(filteredProductProvider((
                       Input$ProductFiltersInput(
-                          brand: widget.id, customBrand: widget.customBrand),
+                        category: widget.id,
+                      ),
                       searchQuery
                     )))
                     .maybeWhen(
@@ -195,7 +185,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                   sliver: ref
                       .watch(filteredProductProvider((
                         Input$ProductFiltersInput(
-                            brand: widget.id, customBrand: widget.customBrand),
+                          category: widget.id,
+                        ),
                         searchQuery
                       )))
                       .when(
@@ -245,14 +236,16 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 if (ref
                     .watch(filteredProductProvider((
                       Input$ProductFiltersInput(
-                          brand: widget.id, customBrand: widget.customBrand),
+                        category: widget.id,
+                      ),
                       searchQuery
                     )).notifier)
                     .canLoadMore())
                   if (!ref
                       .watch(filteredProductProvider((
                         Input$ProductFiltersInput(
-                            brand: widget.id, customBrand: widget.customBrand),
+                          category: widget.id,
+                        ),
                         searchQuery
                       )))
                       .isLoading)

@@ -288,8 +288,19 @@ mutation UpdateNotificationPreference(
     inappNotifications: $inappNotification
     isEmailNotification: $isEmailNotification
     isPushNotification: $isPushNotification
-    isSilentModeOn: $isSilentModeOn
+    isSilentModeOn: $isSilentModeOn,
   ) {
     success
+    notificationPreference{
+     user {
+      id
+      username
+    }
+    isPushNotification
+    isEmailNotification
+    inappNotifications
+    emailNotifications
+
+    }
   }
 }

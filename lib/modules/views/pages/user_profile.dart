@@ -66,7 +66,9 @@ class ProfileScreen extends ConsumerWidget {
               children: [
                 Text(
                   "Dark Mode",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(
                   swicthValue: themeMode == ThemeMode.dark,
@@ -77,15 +79,15 @@ class ProfileScreen extends ConsumerWidget {
               ],
             ),
           ),
-          MenuCard(
-              title: "Wardrobe",
-              icon: const Icon(Icons.wallet),
-              rightArrow: false,
-              onTap: () {
-                ref.read(tabControllerProvider).setTabIndex(0);
-                Navigator.pop(context);
-                // context.router.push(ProfileDetailsRoute());
-              }),
+          // MenuCard(
+          //     title: "Wardrobe",
+          //     icon: const Icon(Icons.wallet),
+          //     rightArrow: false,
+          //     onTap: () {
+          //       ref.read(tabControllerProvider).setTabIndex(0);
+          //       Navigator.pop(context);
+          //       // context.router.push(ProfileDetailsRoute());
+          //     }),
           MenuCard(
             title: "Balance",
             icon: const Icon(Icons.wallet_outlined),
@@ -119,7 +121,12 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const MyFavouriteRoute());
               }),
-          MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
+          MenuCard(
+              title: "Discounts",
+              subtitle: "off",
+              rightArrow: false,
+              icon: const Icon(Icons.info_outlined),
+              onTap: () {}),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
@@ -140,7 +147,11 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const SettingRoute());
               }),
-          MenuCard(title: "Help Centre", icon: const Icon(Icons.question_mark_rounded), rightArrow: false, onTap: () {}),
+          MenuCard(
+              title: "Help Centre",
+              icon: const Icon(Icons.question_mark_rounded),
+              rightArrow: false,
+              onTap: () {}),
           MenuCard(
               title: "About Prelura",
               icon: const Icon(Icons.info_outlined),

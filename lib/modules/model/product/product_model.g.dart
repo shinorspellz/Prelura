@@ -18,7 +18,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : CategoryModel.fromJson(json['subCategory'] as Map<String, dynamic>),
       seller: UserModel.fromJson(json['seller'] as Map<String, dynamic>),
-      discountPrice: json['discountPrice'] as String?,
+      discountPrice: (json['discountPrice'] as num?)?.toDouble(),
       size: json['size'] == null
           ? null
           : Enum$ProductsProductSizeChoices.fromJson(json['size'] as String),
@@ -28,7 +28,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
               json['parcelSize'] as String),
       condition:
           $enumDecodeNullable(_$ConditionsEnumEnumMap, json['condition']),
-      price: json['price'] as String,
+      price: (json['price'] as num).toDouble(),
       postagePrice: (json['postagePrice'] as num?)?.toDouble(),
       views: (json['views'] as num).toInt(),
       likes: (json['likes'] as num).toInt(),

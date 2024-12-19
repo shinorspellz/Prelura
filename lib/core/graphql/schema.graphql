@@ -29,7 +29,6 @@ type BlockedUserType {
   label: String
   isVerified: Boolean
   blueTickVerified: Boolean
-  userType: String
   thumbnailUrl: String
   profilePictureUrl: String
 }
@@ -804,7 +803,7 @@ type ProductType {
   style: ProductsProductStyleChoices
   parcelSize: ProductsProductParcelSizeChoices
   condition: ProductsProductConditionChoices
-  price: Decimal!
+  price: Float
   views: Int!
   likes: Int!
   discountPrice: Decimal

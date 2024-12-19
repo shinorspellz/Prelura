@@ -26,27 +26,23 @@ mixin _$ProductModel {
   CategoryModel? get category => throw _privateConstructorUsedError;
   CategoryModel? get subCategory => throw _privateConstructorUsedError;
   UserModel get seller => throw _privateConstructorUsedError;
-  String? get discountPrice => throw _privateConstructorUsedError;
+  double? get discountPrice => throw _privateConstructorUsedError;
   Enum$ProductsProductSizeChoices? get size =>
       throw _privateConstructorUsedError;
   Enum$ProductsProductParcelSizeChoices? get parcelSize =>
       throw _privateConstructorUsedError;
   ConditionsEnum? get condition => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
-  set likes(int value) => throw _privateConstructorUsedError;
   bool get userLiked => throw _privateConstructorUsedError;
-  set userLiked(bool value) => throw _privateConstructorUsedError;
   @BannerConverter()
   List<ProductBanners> get imagesUrl => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   List<String>? get color => throw _privateConstructorUsedError;
-  set color(List<String>? value) => throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
-  set brand(Brand? value) => throw _privateConstructorUsedError;
   List<MaterialModel>? get materials => throw _privateConstructorUsedError;
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
   String? get customBrand => throw _privateConstructorUsedError;
@@ -74,11 +70,11 @@ abstract class $ProductModelCopyWith<$Res> {
       CategoryModel? category,
       CategoryModel? subCategory,
       UserModel seller,
-      String? discountPrice,
+      double? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
-      String price,
+      double price,
       double? postagePrice,
       int views,
       int likes,
@@ -165,7 +161,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -181,7 +177,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -301,11 +297,11 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       CategoryModel? category,
       CategoryModel? subCategory,
       UserModel seller,
-      String? discountPrice,
+      double? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
-      String price,
+      double price,
       double? postagePrice,
       int views,
       int likes,
@@ -394,7 +390,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -410,7 +406,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -428,7 +424,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           : userLiked // ignore: cast_nullable_to_non_nullable
               as bool,
       imagesUrl: null == imagesUrl
-          ? _value.imagesUrl
+          ? _value._imagesUrl
           : imagesUrl // ignore: cast_nullable_to_non_nullable
               as List<ProductBanners>,
       createdAt: null == createdAt
@@ -440,7 +436,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       color: freezed == color
-          ? _value.color
+          ? _value._color
           : color // ignore: cast_nullable_to_non_nullable
               as List<String>?,
       brand: freezed == brand
@@ -448,7 +444,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           : brand // ignore: cast_nullable_to_non_nullable
               as Brand?,
       materials: freezed == materials
-          ? _value.materials
+          ? _value._materials
           : materials // ignore: cast_nullable_to_non_nullable
               as List<MaterialModel>?,
       style: freezed == style
@@ -482,14 +478,17 @@ class _$ProductModelImpl implements _ProductModel {
       required this.views,
       required this.likes,
       required this.userLiked,
-      @BannerConverter() required this.imagesUrl,
+      @BannerConverter() required final List<ProductBanners> imagesUrl,
       required this.createdAt,
       required this.updatedAt,
-      required this.color,
+      required final List<String>? color,
       required this.brand,
-      this.materials,
+      final List<MaterialModel>? materials,
       this.style,
-      this.customBrand});
+      this.customBrand})
+      : _imagesUrl = imagesUrl,
+        _color = color,
+        _materials = materials;
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
@@ -507,7 +506,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final UserModel seller;
   @override
-  final String? discountPrice;
+  final double? discountPrice;
   @override
   final Enum$ProductsProductSizeChoices? size;
   @override
@@ -515,28 +514,50 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final ConditionsEnum? condition;
   @override
-  final String price;
+  final double price;
   @override
   final double? postagePrice;
   @override
   final int views;
   @override
-  int likes;
+  final int likes;
   @override
-  bool userLiked;
+  final bool userLiked;
+  final List<ProductBanners> _imagesUrl;
   @override
   @BannerConverter()
-  final List<ProductBanners> imagesUrl;
+  List<ProductBanners> get imagesUrl {
+    if (_imagesUrl is EqualUnmodifiableListView) return _imagesUrl;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_imagesUrl);
+  }
+
   @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
+  final List<String>? _color;
   @override
-  List<String>? color;
+  List<String>? get color {
+    final value = _color;
+    if (value == null) return null;
+    if (_color is EqualUnmodifiableListView) return _color;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
-  Brand? brand;
+  final Brand? brand;
+  final List<MaterialModel>? _materials;
   @override
-  final List<MaterialModel>? materials;
+  List<MaterialModel>? get materials {
+    final value = _materials;
+    if (value == null) return null;
+    if (_materials is EqualUnmodifiableListView) return _materials;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final Enum$StyleEnum? style;
   @override
@@ -546,6 +567,78 @@ class _$ProductModelImpl implements _ProductModel {
   String toString() {
     return 'ProductModel(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand)';
   }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProductModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.subCategory, subCategory) ||
+                other.subCategory == subCategory) &&
+            (identical(other.seller, seller) || other.seller == seller) &&
+            (identical(other.discountPrice, discountPrice) ||
+                other.discountPrice == discountPrice) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.parcelSize, parcelSize) ||
+                other.parcelSize == parcelSize) &&
+            (identical(other.condition, condition) ||
+                other.condition == condition) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.postagePrice, postagePrice) ||
+                other.postagePrice == postagePrice) &&
+            (identical(other.views, views) || other.views == views) &&
+            (identical(other.likes, likes) || other.likes == likes) &&
+            (identical(other.userLiked, userLiked) ||
+                other.userLiked == userLiked) &&
+            const DeepCollectionEquality()
+                .equals(other._imagesUrl, _imagesUrl) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
+            const DeepCollectionEquality().equals(other._color, _color) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
+            const DeepCollectionEquality()
+                .equals(other._materials, _materials) &&
+            (identical(other.style, style) || other.style == style) &&
+            (identical(other.customBrand, customBrand) ||
+                other.customBrand == customBrand));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        name,
+        description,
+        category,
+        subCategory,
+        seller,
+        discountPrice,
+        size,
+        parcelSize,
+        condition,
+        price,
+        postagePrice,
+        views,
+        likes,
+        userLiked,
+        const DeepCollectionEquality().hash(_imagesUrl),
+        createdAt,
+        updatedAt,
+        const DeepCollectionEquality().hash(_color),
+        brand,
+        const DeepCollectionEquality().hash(_materials),
+        style,
+        customBrand
+      ]);
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
@@ -571,20 +664,20 @@ abstract class _ProductModel implements ProductModel {
       final CategoryModel? category,
       final CategoryModel? subCategory,
       required final UserModel seller,
-      final String? discountPrice,
+      final double? discountPrice,
       final Enum$ProductsProductSizeChoices? size,
       final Enum$ProductsProductParcelSizeChoices? parcelSize,
       final ConditionsEnum? condition,
-      required final String price,
+      required final double price,
       final double? postagePrice,
       required final int views,
-      required int likes,
-      required bool userLiked,
+      required final int likes,
+      required final bool userLiked,
       @BannerConverter() required final List<ProductBanners> imagesUrl,
       required final DateTime createdAt,
       required final DateTime updatedAt,
-      required List<String>? color,
-      required Brand? brand,
+      required final List<String>? color,
+      required final Brand? brand,
       final List<MaterialModel>? materials,
       final Enum$StyleEnum? style,
       final String? customBrand}) = _$ProductModelImpl;
@@ -605,7 +698,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   UserModel get seller;
   @override
-  String? get discountPrice;
+  double? get discountPrice;
   @override
   Enum$ProductsProductSizeChoices? get size;
   @override
@@ -613,17 +706,15 @@ abstract class _ProductModel implements ProductModel {
   @override
   ConditionsEnum? get condition;
   @override
-  String get price;
+  double get price;
   @override
   double? get postagePrice;
   @override
   int get views;
   @override
   int get likes;
-  set likes(int value);
   @override
   bool get userLiked;
-  set userLiked(bool value);
   @override
   @BannerConverter()
   List<ProductBanners> get imagesUrl;
@@ -633,10 +724,8 @@ abstract class _ProductModel implements ProductModel {
   DateTime get updatedAt;
   @override
   List<String>? get color;
-  set color(List<String>? value);
   @override
   Brand? get brand;
-  set brand(Brand? value);
   @override
   List<MaterialModel>? get materials;
   @override
