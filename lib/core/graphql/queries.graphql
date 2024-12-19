@@ -603,6 +603,11 @@ query Notifications($pageCount: Int, $pageNumber: Int) {
     createdAt
     updatedAt
     meta
+    sender{
+      username
+      profilePictureUrl
+      thumbnailUrl
+    }
   }
   notificationsTotalNumber
 }

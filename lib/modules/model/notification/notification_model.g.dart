@@ -43,3 +43,46 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'meta': instance.meta,
     };
+
+_$NotificationPreferenceImpl _$$NotificationPreferenceImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NotificationPreferenceImpl(
+      user: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      isPushNotification: json['isPushNotification'] as bool?,
+      isEmailNotification: json['isEmailNotification'] as bool?,
+      inappNotifications:
+          _parseNotifications(json['inappNotifications'] as String?),
+      emailNotifications:
+          _parseNotifications(json['emailNotifications'] as String?),
+    );
+
+Map<String, dynamic> _$$NotificationPreferenceImplToJson(
+        _$NotificationPreferenceImpl instance) =>
+    <String, dynamic>{
+      'user': instance.user,
+      'isPushNotification': instance.isPushNotification,
+      'isEmailNotification': instance.isEmailNotification,
+      'inappNotifications': _convertToJson(instance.inappNotifications),
+      'emailNotifications': _convertToJson(instance.emailNotifications),
+    };
+
+_$NotificationsPreferenceInputTypeImpl
+    _$$NotificationsPreferenceInputTypeImplFromJson(
+            Map<String, dynamic> json) =>
+        _$NotificationsPreferenceInputTypeImpl(
+          likes: json['likes'] as bool?,
+          newFollowers: json['newFollowers'] as bool?,
+          profileView: json['profileView'] as bool?,
+          messages: json['messages'] as bool?,
+        );
+
+Map<String, dynamic> _$$NotificationsPreferenceInputTypeImplToJson(
+        _$NotificationsPreferenceInputTypeImpl instance) =>
+    <String, dynamic>{
+      'likes': instance.likes,
+      'newFollowers': instance.newFollowers,
+      'profileView': instance.profileView,
+      'messages': instance.messages,
+    };

@@ -161,100 +161,24 @@ class SearchScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              ref.watch(discountedProductsProvider).when(
-                  data: (products) {
-                    return Column(
-                      children: [
-                        addVerticalSpacing(20),
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
-                        _buildSectionTitle(
-                            'On Sale', "Discounted Products", context,
-                            onTap: () {
-                          //  context.pushRoute(
-                          //     ProductPriceFilterRoute(
-                          //         title: 'Steals under £15'),
-                          //   );
-                        }),
-                        AspectRatio(
-                          aspectRatio: 1.05,
-                          child: ListView.separated(
-                            padding:
-                                EdgeInsets.only(left: 15, top: 10, bottom: 10),
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder: (context, index) =>
-                                10.horizontalSpacing,
-                            itemCount: products.length,
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              final product = products[index];
-                              return Container(
-                                  width: 180,
-                                  child: ProductCard(product: product));
-                            },
-                          ),
-                        ),
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
-                      ],
-                    );
-                  },
-                  error: (e, _) {
-                    print(e);
-                    log("${_}");
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(e.toString()),
-                          TextButton.icon(
-                            onPressed: () {
-                              // log(e.toString(), stackTrace: _);
-                              ref.invalidate(discountedProductsProvider);
-                            },
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  loading: () => AspectRatio(
-                        aspectRatio: 1.1,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20.0),
-                          child: ListView(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            children: List.generate(
-                              mockData.length,
-                              (_) => Container(
-                                // height: 220,
-                                width: 180,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child:
-                                    const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )),
-              // Container(
-              //   width: double.infinity,
-              //   height: 20.h,
-              //   margin: EdgeInsets.all(16),
-              //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         image: AssetImage(PreluraIcons.webp_xmas),
-              //         fit: BoxFit.cover,
-              //         alignment: Alignment.topLeft),
-              //     borderRadius: BorderRadius.all(Radius.circular(10)),
-              //   ),
-              // ),
+              GestureDetector(
+                onTap: () {
+                  context.router.push(DiscountedProductsView(title: "", id: 0));
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 20.h,
+                  margin: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(PreluraIcons.webp_xmas),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topLeft),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                ),
+              ),
               SingleChildScrollView(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

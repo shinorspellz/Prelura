@@ -13,6 +13,7 @@ class PreluraSwitch extends StatelessWidget {
       // width: 28,
       // height: 48,
       child: CupertinoSwitch(
+        
         value: swicthValue,
         // activeColor: Theme.of(context).colorScheme.primary,
         activeColor: UIConstants.switchActiveColor(context),

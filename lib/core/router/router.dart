@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
 import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart';
+import 'package:prelura_app/modules/views/pages/product_by_filters.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
@@ -67,6 +68,8 @@ class AppRouter extends RootStackRouter {
           page: StyleRoute.page,
           guards: [AuthGuard(_ref)],
         ),
+        AutoRoute(
+            page: NotificationSettingRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(
           page: ProductPriceFilterRoute.page,
           guards: [AuthGuard(_ref)],
@@ -176,6 +179,14 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
           page: DiscountRoute.page,
         ),
+        AutoRoute(
+          page: DiscountedProductsView.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: FilterProductRoute.page,
+          guards: [AuthGuard(_ref)],
+        )
       ];
 }
 

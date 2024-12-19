@@ -14624,6 +14624,78 @@ const documentNodeMutationUpdateNotificationPreference =
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'notificationPreference'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'user'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'isPushNotification'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'isEmailNotification'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'inappNotifications'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'emailNotifications'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -14748,20 +14820,29 @@ extension ClientExtension$Mutation$UpdateNotificationPreference
 class Mutation$UpdateNotificationPreference$updateNotificationPreference {
   Mutation$UpdateNotificationPreference$updateNotificationPreference({
     this.success,
+    this.notificationPreference,
     this.$__typename = 'UpdateNotificationPreference',
   });
 
   factory Mutation$UpdateNotificationPreference$updateNotificationPreference.fromJson(
       Map<String, dynamic> json) {
     final l$success = json['success'];
+    final l$notificationPreference = json['notificationPreference'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateNotificationPreference$updateNotificationPreference(
       success: (l$success as bool?),
+      notificationPreference: l$notificationPreference == null
+          ? null
+          : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+              .fromJson((l$notificationPreference as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final bool? success;
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
+      notificationPreference;
 
   final String $__typename;
 
@@ -14769,6 +14850,8 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
     final _resultData = <String, dynamic>{};
     final l$success = success;
     _resultData['success'] = l$success;
+    final l$notificationPreference = notificationPreference;
+    _resultData['notificationPreference'] = l$notificationPreference?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -14777,9 +14860,11 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
   @override
   int get hashCode {
     final l$success = success;
+    final l$notificationPreference = notificationPreference;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$success,
+      l$notificationPreference,
       l$$__typename,
     ]);
   }
@@ -14797,6 +14882,11 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
     final l$success = success;
     final lOther$success = other.success;
     if (l$success != lOther$success) {
+      return false;
+    }
+    final l$notificationPreference = notificationPreference;
+    final lOther$notificationPreference = other.notificationPreference;
+    if (l$notificationPreference != lOther$notificationPreference) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -14834,8 +14924,12 @@ abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotification
 
   TRes call({
     bool? success,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
+        notificationPreference,
     String? $__typename,
   });
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+      TRes> get notificationPreference;
 }
 
 class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
@@ -14858,14 +14952,30 @@ class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPref
 
   TRes call({
     Object? success = _undefined,
+    Object? notificationPreference = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateNotificationPreference$updateNotificationPreference(
         success: success == _undefined ? _instance.success : (success as bool?),
+        notificationPreference: notificationPreference == _undefined
+            ? _instance.notificationPreference
+            : (notificationPreference
+                as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+      TRes> get notificationPreference {
+    final local$notificationPreference = _instance.notificationPreference;
+    return local$notificationPreference == null
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+            .stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+            local$notificationPreference,
+            (e) => call(notificationPreference: e));
+  }
 }
 
 class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
@@ -14880,6 +14990,430 @@ class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotification
 
   call({
     bool? success,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
+        notificationPreference,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+          TRes>
+      get notificationPreference =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+              .stub(_res);
+}
+
+class Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference {
+  Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference({
+    this.user,
+    required this.isPushNotification,
+    required this.isEmailNotification,
+    required this.inappNotifications,
+    required this.emailNotifications,
+    this.$__typename = 'NotificationPreferenceType',
+  });
+
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.fromJson(
+      Map<String, dynamic> json) {
+    final l$user = json['user'];
+    final l$isPushNotification = json['isPushNotification'];
+    final l$isEmailNotification = json['isEmailNotification'];
+    final l$inappNotifications = json['inappNotifications'];
+    final l$emailNotifications = json['emailNotifications'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+      user: l$user == null
+          ? null
+          : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+              .fromJson((l$user as Map<String, dynamic>)),
+      isPushNotification: (l$isPushNotification as bool),
+      isEmailNotification: (l$isEmailNotification as bool),
+      inappNotifications: (l$inappNotifications as String),
+      emailNotifications: (l$emailNotifications as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
+      user;
+
+  final bool isPushNotification;
+
+  final bool isEmailNotification;
+
+  final String inappNotifications;
+
+  final String emailNotifications;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
+    final l$isPushNotification = isPushNotification;
+    _resultData['isPushNotification'] = l$isPushNotification;
+    final l$isEmailNotification = isEmailNotification;
+    _resultData['isEmailNotification'] = l$isEmailNotification;
+    final l$inappNotifications = inappNotifications;
+    _resultData['inappNotifications'] = l$inappNotifications;
+    final l$emailNotifications = emailNotifications;
+    _resultData['emailNotifications'] = l$emailNotifications;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$user = user;
+    final l$isPushNotification = isPushNotification;
+    final l$isEmailNotification = isEmailNotification;
+    final l$inappNotifications = inappNotifications;
+    final l$emailNotifications = emailNotifications;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$user,
+      l$isPushNotification,
+      l$isEmailNotification,
+      l$inappNotifications,
+      l$emailNotifications,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
+      return false;
+    }
+    final l$isPushNotification = isPushNotification;
+    final lOther$isPushNotification = other.isPushNotification;
+    if (l$isPushNotification != lOther$isPushNotification) {
+      return false;
+    }
+    final l$isEmailNotification = isEmailNotification;
+    final lOther$isEmailNotification = other.isEmailNotification;
+    if (l$isEmailNotification != lOther$isEmailNotification) {
+      return false;
+    }
+    final l$inappNotifications = inappNotifications;
+    final lOther$inappNotifications = other.inappNotifications;
+    if (l$inappNotifications != lOther$inappNotifications) {
+      return false;
+    }
+    final l$emailNotifications = emailNotifications;
+    final lOther$emailNotifications = other.emailNotifications;
+    if (l$emailNotifications != lOther$emailNotifications) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+    on Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference>
+      get copyWith =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+    TRes> {
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+        instance,
+    TRes Function(
+            Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference)
+        then,
+  ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference;
+
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference;
+
+  TRes call({
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
+        user,
+    bool? isPushNotification,
+    bool? isEmailNotification,
+    String? inappNotifications,
+    String? emailNotifications,
+    String? $__typename,
+  });
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+      TRes> get user;
+}
+
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+            TRes> {
+  _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
+      _instance;
+
+  final TRes Function(
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? user = _undefined,
+    Object? isPushNotification = _undefined,
+    Object? isEmailNotification = _undefined,
+    Object? inappNotifications = _undefined,
+    Object? emailNotifications = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+        user: user == _undefined
+            ? _instance.user
+            : (user
+                as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?),
+        isPushNotification:
+            isPushNotification == _undefined || isPushNotification == null
+                ? _instance.isPushNotification
+                : (isPushNotification as bool),
+        isEmailNotification:
+            isEmailNotification == _undefined || isEmailNotification == null
+                ? _instance.isEmailNotification
+                : (isEmailNotification as bool),
+        inappNotifications:
+            inappNotifications == _undefined || inappNotifications == null
+                ? _instance.inappNotifications
+                : (inappNotifications as String),
+        emailNotifications:
+            emailNotifications == _undefined || emailNotifications == null
+                ? _instance.emailNotifications
+                : (emailNotifications as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+      TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+            .stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+            local$user, (e) => call(user: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
+            TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+      this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
+        user,
+    bool? isPushNotification,
+    bool? isEmailNotification,
+    String? inappNotifications,
+    String? emailNotifications,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+          TRes>
+      get user =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+              .stub(_res);
+}
+
+class Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user {
+  Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+    on Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user>
+      get copyWith =>
+          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+    TRes> {
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+        instance,
+    TRes Function(
+            Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user)
+        then,
+  ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user;
+
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+            TRes> {
+  _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
+      _instance;
+
+  final TRes Function(
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+        TRes>
+    implements
+        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
+            TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
     String? $__typename,
   }) =>
       _res;
