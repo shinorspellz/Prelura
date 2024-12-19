@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/utils.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
@@ -66,7 +67,6 @@ class ProductTopDetails extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   // Product condition text
@@ -75,14 +75,38 @@ class ProductTopDetails extends ConsumerWidget {
                       product.condition!.simpleName,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
                     ),
-                  const SizedBox(width: 8), // Spacing between text and colors
+                  Spacer(),
 
                   Text(
-                    "£${product.price}",
+                    "£ ${product.price}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
+                          decoration: product.discountPrice != null ? TextDecoration.lineThrough : null,
+                          color: product.discountPrice != null
+                              ? !context.isDarkMode
+                                  ? Colors.grey
+                                  : Colors.white30
+                              : null,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
+                  if (product.discountPrice != null) ...[
+                    10.horizontalSpacing,
+                    Text(
+                      "£ ${calculateDiscountedAmount(
+                        price: double.parse(product.price),
+                        discount: double.parse(product.discountPrice!).toInt(),
+                      )}",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ]
+                  // Text(
+                  //   "£${product.price}",
+                  //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  //         fontWeight: FontWeight.w500,
+                  //       ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 12),

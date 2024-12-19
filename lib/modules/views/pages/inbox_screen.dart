@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -114,6 +116,12 @@ class ChatsTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(conversationProvider).maybeWhen(
+        error: (e, _) {
+          log(e.toString(), stackTrace: _);
+          return Center(
+            child: LoadingWidget(),
+          );
+        },
         orElse: () => Center(
               child: LoadingWidget(),
             ),

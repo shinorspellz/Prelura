@@ -160,8 +160,7 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) =>
-      AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
+  (ref) => AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
