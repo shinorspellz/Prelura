@@ -31,6 +31,7 @@ mixin _$NotificationModel {
   bool? get deleted => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
   Map<String, dynamic> get meta => throw _privateConstructorUsedError;
 
   /// Serializes this NotificationModel to a JSON map.
@@ -61,6 +62,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       bool? deleted,
       DateTime? createdAt,
       DateTime? updatedAt,
+      @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
       Map<String, dynamic> meta});
 
   $SenderTypeCopyWith<$Res> get sender;
@@ -177,6 +179,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
       bool? deleted,
       DateTime? createdAt,
       DateTime? updatedAt,
+      @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
       Map<String, dynamic> meta});
 
   @override
@@ -277,6 +280,7 @@ class _$NotificationModelImpl implements _NotificationModel {
       this.deleted,
       this.createdAt,
       this.updatedAt,
+      @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
       required final Map<String, dynamic> meta})
       : _meta = meta;
 
@@ -307,6 +311,7 @@ class _$NotificationModelImpl implements _NotificationModel {
   final DateTime? updatedAt;
   final Map<String, dynamic> _meta;
   @override
+  @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
   Map<String, dynamic> get meta {
     if (_meta is EqualUnmodifiableMapView) return _meta;
     // ignore: implicit_dynamic_type
@@ -388,6 +393,7 @@ abstract class _NotificationModel implements NotificationModel {
       final bool? deleted,
       final DateTime? createdAt,
       final DateTime? updatedAt,
+      @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
       required final Map<String, dynamic> meta}) = _$NotificationModelImpl;
 
   factory _NotificationModel.fromJson(Map<String, dynamic> json) =
@@ -416,6 +422,7 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   DateTime? get updatedAt;
   @override
+  @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
   Map<String, dynamic> get meta;
 
   /// Create a copy of NotificationModel

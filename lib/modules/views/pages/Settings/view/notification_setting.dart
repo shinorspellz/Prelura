@@ -70,8 +70,8 @@ class _NotificationSettingScreenState
                 PreluraSwitchWithText(
                   titleText: "Email Notifications",
                   value: notificationPreferences?.isEmailNotification,
-                  onChanged: (value) {
-                    notifier.updateNotificationPreference(
+                  onChanged: (value) async {
+                    await notifier.updateNotificationPreference(
                         isEmailNotification: value,
                         updateEmailPreferences: widget.title == "Email");
                     ref.invalidate(notificationPreferenceProvider);
@@ -81,8 +81,8 @@ class _NotificationSettingScreenState
                 PreluraSwitchWithText(
                   titleText: "Push Notifications",
                   value: notificationPreferences?.isPushNotification,
-                  onChanged: (value) {
-                    notifier.updateNotificationPreference(
+                  onChanged: (value) async {
+                    await notifier.updateNotificationPreference(
                         isPushNotification: value,
                         updateEmailPreferences: widget.title == "Email");
                     ref.invalidate(notificationPreferenceProvider);

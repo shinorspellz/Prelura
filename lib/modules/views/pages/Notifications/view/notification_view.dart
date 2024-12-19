@@ -61,7 +61,7 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                               sliver: SliverGrid.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
+                                  crossAxisCount: 1,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
                                   childAspectRatio: 0.50,

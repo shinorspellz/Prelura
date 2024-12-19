@@ -102,7 +102,7 @@ class ProductTopDetails extends ConsumerWidget {
                     Text(
                       "£ ${calculateDiscountedAmount(
                         price: product.price,
-                        discount: product.discountPrice!.toInt(),
+                        discount: double.parse(product.discountPrice!).toInt(),
                       )}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,

@@ -293,7 +293,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       alignment: Alignment.center,
                       child: Text(
-                        '- ${(widget.product.discountPrice!).toInt()}%',
+                        '- ${double.parse(widget.product.discountPrice!).toInt()}%',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
@@ -350,7 +350,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                   Text(
                     "£ ${calculateDiscountedAmount(
                       price: widget.product.price,
-                      discount: widget.product.discountPrice!.toInt(),
+                      discount:
+                          double.parse(widget.product.discountPrice!).toInt(),
                     )}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,

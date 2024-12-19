@@ -19,7 +19,7 @@ class ProductModel with _$ProductModel {
     final CategoryModel? category,
     final CategoryModel? subCategory,
     required final UserModel seller,
-    final double? discountPrice,
+    final String? discountPrice,
     final Enum$ProductsProductSizeChoices? size,
     final Enum$ProductsProductParcelSizeChoices? parcelSize,
     final ConditionsEnum? condition,
