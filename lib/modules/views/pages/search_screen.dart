@@ -186,9 +186,20 @@ class SearchScreen extends ConsumerWidget {
                 child: Row(
                   children: [
                     _categoriesSection(
-                        "Women", PreluraIcons.webp_women, context),
-                    _categoriesSection("Men", PreluraIcons.webp_men, context),
-                    _categoriesSection("Kids", PreluraIcons.kids, context),
+                        "Women", PreluraIcons.webp_women, context, onTap: () {
+                      context.router
+                          .push(FilterProductRoute(title: "Women", id: 2));
+                    }),
+                    _categoriesSection("Men", PreluraIcons.webp_men, context,
+                        onTap: () {
+                      context.router
+                          .push(FilterProductRoute(title: "Men", id: 1));
+                    }),
+                    _categoriesSection("Kids", PreluraIcons.kids, context,
+                        onTap: () {
+                      context.router
+                          .push(FilterProductRoute(title: "Kids", id: 4));
+                    }),
                     // _categoriesSection("Electronics", PreluraIcons.electronics, context),
                     // _categoriesSection("Home", PreluraIcons.home, context),
                     // _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
@@ -276,7 +287,8 @@ class SearchScreen extends ConsumerWidget {
     );
   }
 
-  Widget _categoriesSection(String title, String image, context) {
+  Widget _categoriesSection(String title, String image, context,
+      {required Function() onTap}) {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Container(
@@ -296,7 +308,7 @@ class SearchScreen extends ConsumerWidget {
           ),
           addVerticalSpacing(10),
           GestureDetector(
-            onTap: () {},
+            onTap: onTap,
             child: Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

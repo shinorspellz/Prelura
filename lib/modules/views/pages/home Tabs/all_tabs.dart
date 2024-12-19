@@ -68,6 +68,27 @@ class HomeAllTab extends ConsumerWidget {
         ] else ...[
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                error: (e, _) {
+                  print(e);
+                  log("$_");
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(e.toString()),
+                        TextButton.icon(
+                          onPressed: () {
+                            // log(e.toString(), stackTrace: _);
+                            ref.invalidate(allProductProvider(null));
+                          },
+                          label: const Text('Retry'),
+                          icon: const Icon(Icons.refresh_rounded),
+                        ),
+                      ],
+                    ),
+                  );
+                },
                 data: (products) => Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,

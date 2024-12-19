@@ -4466,7 +4466,7 @@ class Query$Product$product {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -4530,7 +4530,7 @@ class Query$Product$product {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -4579,7 +4579,7 @@ class Query$Product$product {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -4896,7 +4896,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -4987,9 +4987,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -5094,7 +5092,7 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -6712,7 +6710,7 @@ class Query$UserProducts$userProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -6776,7 +6774,7 @@ class Query$UserProducts$userProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -6825,7 +6823,7 @@ class Query$UserProducts$userProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -7144,7 +7142,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -7235,9 +7233,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -7344,7 +7340,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -8996,7 +8992,7 @@ class Query$AllProducts$allProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -9060,7 +9056,7 @@ class Query$AllProducts$allProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -9109,7 +9105,7 @@ class Query$AllProducts$allProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -9428,7 +9424,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -9519,9 +9515,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -9627,7 +9621,7 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -12032,7 +12026,7 @@ class Query$likedProducts$likedProducts$product {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -12095,7 +12089,7 @@ class Query$likedProducts$likedProducts$product {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -12143,7 +12137,7 @@ class Query$likedProducts$likedProducts$product {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -12452,7 +12446,7 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -12544,9 +12538,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -12655,7 +12647,7 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -15712,7 +15704,7 @@ class Query$SimilarProducts$similarProducts {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -15775,7 +15767,7 @@ class Query$SimilarProducts$similarProducts {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -15823,7 +15815,7 @@ class Query$SimilarProducts$similarProducts {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -16132,7 +16124,7 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -16223,9 +16215,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -16333,7 +16323,7 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -21138,7 +21128,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     this.condition,
     this.discountPrice,
     this.size,
-    required this.price,
+    this.price,
     this.parcelSize,
     required this.views,
     required this.likes,
@@ -21199,7 +21189,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       size: l$size == null
           ? null
           : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
-      price: (l$price as String),
+      price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
           : fromJson$Enum$ProductsProductParcelSizeChoices(
@@ -21245,7 +21235,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
 
   final Enum$ProductsProductSizeChoices? size;
 
-  final String price;
+  final double? price;
 
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
 
@@ -21545,7 +21535,7 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,
@@ -21641,9 +21631,7 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
         size: size == _undefined
             ? _instance.size
             : (size as Enum$ProductsProductSizeChoices?),
-        price: price == _undefined || price == null
-            ? _instance.price
-            : (price as String),
+        price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
             : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
@@ -21754,7 +21742,7 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
-    String? price,
+    double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
     int? likes,

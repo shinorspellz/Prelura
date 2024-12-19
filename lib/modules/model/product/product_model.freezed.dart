@@ -26,13 +26,13 @@ mixin _$ProductModel {
   CategoryModel? get category => throw _privateConstructorUsedError;
   CategoryModel? get subCategory => throw _privateConstructorUsedError;
   UserModel get seller => throw _privateConstructorUsedError;
-  String? get discountPrice => throw _privateConstructorUsedError;
+  double? get discountPrice => throw _privateConstructorUsedError;
   Enum$ProductsProductSizeChoices? get size =>
       throw _privateConstructorUsedError;
   Enum$ProductsProductParcelSizeChoices? get parcelSize =>
       throw _privateConstructorUsedError;
   ConditionsEnum? get condition => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
   double? get postagePrice => throw _privateConstructorUsedError;
   int get views => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
@@ -70,11 +70,11 @@ abstract class $ProductModelCopyWith<$Res> {
       CategoryModel? category,
       CategoryModel? subCategory,
       UserModel seller,
-      String? discountPrice,
+      double? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
-      String price,
+      double price,
       double? postagePrice,
       int views,
       int likes,
@@ -161,7 +161,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -177,7 +177,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -297,11 +297,11 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       CategoryModel? category,
       CategoryModel? subCategory,
       UserModel seller,
-      String? discountPrice,
+      double? discountPrice,
       Enum$ProductsProductSizeChoices? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
-      String price,
+      double price,
       double? postagePrice,
       int views,
       int likes,
@@ -390,7 +390,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
@@ -406,7 +406,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String,
+              as double,
       postagePrice: freezed == postagePrice
           ? _value.postagePrice
           : postagePrice // ignore: cast_nullable_to_non_nullable
@@ -506,7 +506,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final UserModel seller;
   @override
-  final String? discountPrice;
+  final double? discountPrice;
   @override
   final Enum$ProductsProductSizeChoices? size;
   @override
@@ -514,7 +514,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final ConditionsEnum? condition;
   @override
-  final String price;
+  final double price;
   @override
   final double? postagePrice;
   @override
@@ -664,11 +664,11 @@ abstract class _ProductModel implements ProductModel {
       final CategoryModel? category,
       final CategoryModel? subCategory,
       required final UserModel seller,
-      final String? discountPrice,
+      final double? discountPrice,
       final Enum$ProductsProductSizeChoices? size,
       final Enum$ProductsProductParcelSizeChoices? parcelSize,
       final ConditionsEnum? condition,
-      required final String price,
+      required final double price,
       final double? postagePrice,
       required final int views,
       required final int likes,
@@ -698,7 +698,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   UserModel get seller;
   @override
-  String? get discountPrice;
+  double? get discountPrice;
   @override
   Enum$ProductsProductSizeChoices? get size;
   @override
@@ -706,7 +706,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   ConditionsEnum? get condition;
   @override
-  String get price;
+  double get price;
   @override
   double? get postagePrice;
   @override

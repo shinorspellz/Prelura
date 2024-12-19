@@ -8,8 +8,8 @@ part 'notification_model.g.dart';
 @freezed
 class NotificationModel with _$NotificationModel {
   const factory NotificationModel({
-    required int id,
-    required UserModel sender,
+    required String id,
+    required SenderType sender,
     required String message,
     required String model,
     String? modelId,
@@ -23,6 +23,17 @@ class NotificationModel with _$NotificationModel {
   }) = _NotificationModel;
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       _$NotificationModelFromJson(json);
+}
+
+@freezed
+class SenderType with _$SenderType {
+  const factory SenderType({
+    required String username,
+    required String thumbnailUrl,
+    required String profilePictureUrl,
+  }) = _SenderType;
+  factory SenderType.fromJson(Map<String, dynamic> json) =>
+      _$SenderTypeFromJson(json);
 }
 
 @freezed

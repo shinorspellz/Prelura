@@ -9,8 +9,8 @@ part of 'notification_model.dart';
 _$NotificationModelImpl _$$NotificationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationModelImpl(
-      id: (json['id'] as num).toInt(),
-      sender: UserModel.fromJson(json['sender'] as Map<String, dynamic>),
+      id: json['id'] as String,
+      sender: SenderType.fromJson(json['sender'] as Map<String, dynamic>),
       message: json['message'] as String,
       model: json['model'] as String,
       modelId: json['modelId'] as String?,
@@ -42,6 +42,20 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       'meta': instance.meta,
+    };
+
+_$SenderTypeImpl _$$SenderTypeImplFromJson(Map<String, dynamic> json) =>
+    _$SenderTypeImpl(
+      username: json['username'] as String,
+      thumbnailUrl: json['thumbnailUrl'] as String,
+      profilePictureUrl: json['profilePictureUrl'] as String,
+    );
+
+Map<String, dynamic> _$$SenderTypeImplToJson(_$SenderTypeImpl instance) =>
+    <String, dynamic>{
+      'username': instance.username,
+      'thumbnailUrl': instance.thumbnailUrl,
+      'profilePictureUrl': instance.profilePictureUrl,
     };
 
 _$NotificationPreferenceImpl _$$NotificationPreferenceImplFromJson(

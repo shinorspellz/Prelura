@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -18,11 +19,11 @@ class ProductModel with _$ProductModel {
     final CategoryModel? category,
     final CategoryModel? subCategory,
     required final UserModel seller,
-    final String? discountPrice,
+    final double? discountPrice,
     final Enum$ProductsProductSizeChoices? size,
     final Enum$ProductsProductParcelSizeChoices? parcelSize,
     final ConditionsEnum? condition,
-    required final String price,
+    required final double price,
     final double? postagePrice,
     required final int views,
     required int likes,

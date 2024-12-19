@@ -20,8 +20,8 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NotificationModel {
-  int get id => throw _privateConstructorUsedError;
-  UserModel get sender => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  SenderType get sender => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get model => throw _privateConstructorUsedError;
   String? get modelId => throw _privateConstructorUsedError;
@@ -50,8 +50,8 @@ abstract class $NotificationModelCopyWith<$Res> {
       _$NotificationModelCopyWithImpl<$Res, NotificationModel>;
   @useResult
   $Res call(
-      {int id,
-      UserModel sender,
+      {String id,
+      SenderType sender,
       String message,
       String model,
       String? modelId,
@@ -63,7 +63,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       DateTime? updatedAt,
       Map<String, dynamic> meta});
 
-  $UserModelCopyWith<$Res> get sender;
+  $SenderTypeCopyWith<$Res> get sender;
 }
 
 /// @nodoc
@@ -98,11 +98,11 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as SenderType,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -150,8 +150,8 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get sender {
-    return $UserModelCopyWith<$Res>(_value.sender, (value) {
+  $SenderTypeCopyWith<$Res> get sender {
+    return $SenderTypeCopyWith<$Res>(_value.sender, (value) {
       return _then(_value.copyWith(sender: value) as $Val);
     });
   }
@@ -166,8 +166,8 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      UserModel sender,
+      {String id,
+      SenderType sender,
       String message,
       String model,
       String? modelId,
@@ -180,7 +180,7 @@ abstract class _$$NotificationModelImplCopyWith<$Res>
       Map<String, dynamic> meta});
 
   @override
-  $UserModelCopyWith<$Res> get sender;
+  $SenderTypeCopyWith<$Res> get sender;
 }
 
 /// @nodoc
@@ -213,11 +213,11 @@ class __$$NotificationModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+              as SenderType,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -284,9 +284,9 @@ class _$NotificationModelImpl implements _NotificationModel {
       _$$NotificationModelImplFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
-  final UserModel sender;
+  final SenderType sender;
   @override
   final String message;
   @override
@@ -377,8 +377,8 @@ class _$NotificationModelImpl implements _NotificationModel {
 
 abstract class _NotificationModel implements NotificationModel {
   const factory _NotificationModel(
-      {required final int id,
-      required final UserModel sender,
+      {required final String id,
+      required final SenderType sender,
       required final String message,
       required final String model,
       final String? modelId,
@@ -394,9 +394,9 @@ abstract class _NotificationModel implements NotificationModel {
       _$NotificationModelImpl.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
-  UserModel get sender;
+  SenderType get sender;
   @override
   String get message;
   @override
@@ -423,6 +423,197 @@ abstract class _NotificationModel implements NotificationModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NotificationModelImplCopyWith<_$NotificationModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SenderType _$SenderTypeFromJson(Map<String, dynamic> json) {
+  return _SenderType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SenderType {
+  String get username => throw _privateConstructorUsedError;
+  String get thumbnailUrl => throw _privateConstructorUsedError;
+  String get profilePictureUrl => throw _privateConstructorUsedError;
+
+  /// Serializes this SenderType to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SenderType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SenderTypeCopyWith<SenderType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SenderTypeCopyWith<$Res> {
+  factory $SenderTypeCopyWith(
+          SenderType value, $Res Function(SenderType) then) =
+      _$SenderTypeCopyWithImpl<$Res, SenderType>;
+  @useResult
+  $Res call({String username, String thumbnailUrl, String profilePictureUrl});
+}
+
+/// @nodoc
+class _$SenderTypeCopyWithImpl<$Res, $Val extends SenderType>
+    implements $SenderTypeCopyWith<$Res> {
+  _$SenderTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SenderType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+    Object? thumbnailUrl = null,
+    Object? profilePictureUrl = null,
+  }) {
+    return _then(_value.copyWith(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      profilePictureUrl: null == profilePictureUrl
+          ? _value.profilePictureUrl
+          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SenderTypeImplCopyWith<$Res>
+    implements $SenderTypeCopyWith<$Res> {
+  factory _$$SenderTypeImplCopyWith(
+          _$SenderTypeImpl value, $Res Function(_$SenderTypeImpl) then) =
+      __$$SenderTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String username, String thumbnailUrl, String profilePictureUrl});
+}
+
+/// @nodoc
+class __$$SenderTypeImplCopyWithImpl<$Res>
+    extends _$SenderTypeCopyWithImpl<$Res, _$SenderTypeImpl>
+    implements _$$SenderTypeImplCopyWith<$Res> {
+  __$$SenderTypeImplCopyWithImpl(
+      _$SenderTypeImpl _value, $Res Function(_$SenderTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SenderType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? username = null,
+    Object? thumbnailUrl = null,
+    Object? profilePictureUrl = null,
+  }) {
+    return _then(_$SenderTypeImpl(
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      profilePictureUrl: null == profilePictureUrl
+          ? _value.profilePictureUrl
+          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SenderTypeImpl implements _SenderType {
+  const _$SenderTypeImpl(
+      {required this.username,
+      required this.thumbnailUrl,
+      required this.profilePictureUrl});
+
+  factory _$SenderTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SenderTypeImplFromJson(json);
+
+  @override
+  final String username;
+  @override
+  final String thumbnailUrl;
+  @override
+  final String profilePictureUrl;
+
+  @override
+  String toString() {
+    return 'SenderType(username: $username, thumbnailUrl: $thumbnailUrl, profilePictureUrl: $profilePictureUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SenderTypeImpl &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
+            (identical(other.profilePictureUrl, profilePictureUrl) ||
+                other.profilePictureUrl == profilePictureUrl));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, username, thumbnailUrl, profilePictureUrl);
+
+  /// Create a copy of SenderType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SenderTypeImplCopyWith<_$SenderTypeImpl> get copyWith =>
+      __$$SenderTypeImplCopyWithImpl<_$SenderTypeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SenderTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SenderType implements SenderType {
+  const factory _SenderType(
+      {required final String username,
+      required final String thumbnailUrl,
+      required final String profilePictureUrl}) = _$SenderTypeImpl;
+
+  factory _SenderType.fromJson(Map<String, dynamic> json) =
+      _$SenderTypeImpl.fromJson;
+
+  @override
+  String get username;
+  @override
+  String get thumbnailUrl;
+  @override
+  String get profilePictureUrl;
+
+  /// Create a copy of SenderType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SenderTypeImplCopyWith<_$SenderTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

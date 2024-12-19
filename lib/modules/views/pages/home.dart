@@ -285,7 +285,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery) {
                     searchQuery
                   )).future);
                   ref.read(requestedProduct.notifier).state = products;
-                  log(products.length.toString());
+                  
                 }
               }
             },
