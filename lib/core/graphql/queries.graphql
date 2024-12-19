@@ -545,6 +545,9 @@ query Conversations {
       text
       attachment
       attachmentType
+      read
+      deleted
+      isItem
       sender {
         id
         username

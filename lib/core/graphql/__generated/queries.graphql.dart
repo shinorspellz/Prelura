@@ -25262,6 +25262,27 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'read'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'deleted'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'isItem'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'sender'),
                 alias: null,
                 arguments: [],
@@ -26028,6 +26049,9 @@ class Query$Conversations$conversations$lastMessage {
     required this.text,
     this.attachment,
     this.attachmentType,
+    required this.read,
+    required this.deleted,
+    required this.isItem,
     this.sender,
     this.$__typename = 'MessageType',
   });
@@ -26038,6 +26062,9 @@ class Query$Conversations$conversations$lastMessage {
     final l$text = json['text'];
     final l$attachment = json['attachment'];
     final l$attachmentType = json['attachmentType'];
+    final l$read = json['read'];
+    final l$deleted = json['deleted'];
+    final l$isItem = json['isItem'];
     final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
     return Query$Conversations$conversations$lastMessage(
@@ -26048,6 +26075,9 @@ class Query$Conversations$conversations$lastMessage {
           ? null
           : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
               (l$attachmentType as String)),
+      read: (l$read as bool),
+      deleted: (l$deleted as bool),
+      isItem: (l$isItem as bool),
       sender: l$sender == null
           ? null
           : Query$Conversations$conversations$lastMessage$sender.fromJson(
@@ -26063,6 +26093,12 @@ class Query$Conversations$conversations$lastMessage {
   final String? attachment;
 
   final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
+
+  final bool read;
+
+  final bool deleted;
+
+  final bool isItem;
 
   final Query$Conversations$conversations$lastMessage$sender? sender;
 
@@ -26080,6 +26116,12 @@ class Query$Conversations$conversations$lastMessage {
     _resultData['attachmentType'] = l$attachmentType == null
         ? null
         : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    final l$read = read;
+    _resultData['read'] = l$read;
+    final l$deleted = deleted;
+    _resultData['deleted'] = l$deleted;
+    final l$isItem = isItem;
+    _resultData['isItem'] = l$isItem;
     final l$sender = sender;
     _resultData['sender'] = l$sender?.toJson();
     final l$$__typename = $__typename;
@@ -26093,6 +26135,9 @@ class Query$Conversations$conversations$lastMessage {
     final l$text = text;
     final l$attachment = attachment;
     final l$attachmentType = attachmentType;
+    final l$read = read;
+    final l$deleted = deleted;
+    final l$isItem = isItem;
     final l$sender = sender;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -26100,6 +26145,9 @@ class Query$Conversations$conversations$lastMessage {
       l$text,
       l$attachment,
       l$attachmentType,
+      l$read,
+      l$deleted,
+      l$isItem,
       l$sender,
       l$$__typename,
     ]);
@@ -26132,6 +26180,21 @@ class Query$Conversations$conversations$lastMessage {
     final l$attachmentType = attachmentType;
     final lOther$attachmentType = other.attachmentType;
     if (l$attachmentType != lOther$attachmentType) {
+      return false;
+    }
+    final l$read = read;
+    final lOther$read = other.read;
+    if (l$read != lOther$read) {
+      return false;
+    }
+    final l$deleted = deleted;
+    final lOther$deleted = other.deleted;
+    if (l$deleted != lOther$deleted) {
+      return false;
+    }
+    final l$isItem = isItem;
+    final lOther$isItem = other.isItem;
+    if (l$isItem != lOther$isItem) {
       return false;
     }
     final l$sender = sender;
@@ -26173,6 +26236,9 @@ abstract class CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
     String? text,
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    bool? read,
+    bool? deleted,
+    bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
   });
@@ -26198,6 +26264,9 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
     Object? text = _undefined,
     Object? attachment = _undefined,
     Object? attachmentType = _undefined,
+    Object? read = _undefined,
+    Object? deleted = _undefined,
+    Object? isItem = _undefined,
     Object? sender = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -26212,6 +26281,15 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
         attachmentType: attachmentType == _undefined
             ? _instance.attachmentType
             : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        read: read == _undefined || read == null
+            ? _instance.read
+            : (read as bool),
+        deleted: deleted == _undefined || deleted == null
+            ? _instance.deleted
+            : (deleted as bool),
+        isItem: isItem == _undefined || isItem == null
+            ? _instance.isItem
+            : (isItem as bool),
         sender: sender == _undefined
             ? _instance.sender
             : (sender as Query$Conversations$conversations$lastMessage$sender?),
@@ -26242,6 +26320,9 @@ class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage<TRes>
     String? text,
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
+    bool? read,
+    bool? deleted,
+    bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
   }) =>

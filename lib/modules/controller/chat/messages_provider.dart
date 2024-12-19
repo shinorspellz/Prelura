@@ -1,30 +1,75 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
+import 'package:prelura_app/core/network/network.dart';
+import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/model/chat/conversation_model.dart';
 import 'package:prelura_app/modules/model/chat/message_model.dart';
+import 'package:uuid/uuid.dart';
 
-final messagesProvider = AsyncNotifierProvider.family<_MessagesNotifier, List<MessageModel>, String>(_MessagesNotifier.new);
+final chatScrollController = Provider.autoDispose((ref) => ScrollController());
+final chatAnimationListState = Provider.autoDispose((ref) => GlobalKey<AnimatedListState>());
 
-class _MessagesNotifier extends FamilyAsyncNotifier<List<MessageModel>, String> {
+final messagesProvider = StreamNotifierProvider.family.autoDispose<_MessagesNotifier, List<MessageModel>, String>(_MessagesNotifier.new);
+
+class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageModel>, String> {
   late final _repo = ref.read(chatRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 1000;
   int _currentPage = 1;
   int _messagesTotal = 0;
 
   String? _conversationId;
 
+  SocketChannel? _channel;
+
   @override
-  FutureOr<List<MessageModel>> build(String arg) async {
-    state = const AsyncLoading();
+  Stream<List<MessageModel>> build(String arg) async* {
+    // state = const AsyncLoading();
     _currentPage = 1;
+
     _conversationId = arg;
+    ref.onDispose(() => _channel?.close());
+    ref.onDispose(() => _channel = null);
+
+    _channel = SocketChannel('wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
+
     await _getMessages(id: arg, pageNumber: _currentPage);
-    return state.value!;
+    await for (final event in _channel!.stream) {
+      final newMessageData = event is String ? jsonDecode(event) : event;
+      if (newMessageData["is_typing"] == null) {
+        final MessageModel newMessage = MessageModel.fromSocket(newMessageData);
+        if (ref.read(chatScrollController).hasClients) {
+          ref.read(chatScrollController).animateTo(
+                ref.read(chatScrollController).position.minScrollExtent,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.linear,
+              );
+        }
+        addMessage(newMessage);
+        ref.invalidate(conversationProvider);
+      }
+    }
   }
 
+  /// updates the state with the latest event
+  void addMessage(MessageModel newMessage) {
+    List<MessageModel> dataList = <MessageModel>{newMessage, ...state.value ?? []}.toList();
+    state = AsyncData(dataList);
+  }
+
+  /// sends message to via [_channel]
+  Future<void> sendMessage(String message) async {
+    final messageUUID = Uuid().v4();
+    _channel?.sendMessage(jsonEncode({'message': message.trim(), 'message_uuid': messageUUID}));
+  }
+
+  /// Retrieves the list of messages via api
   Future<void> _getMessages({required String id, int? pageNumber}) async {
     final result = await _repo.getMessages(id: id, pageCount: _pageCount, pageNumber: pageNumber);
     _messagesTotal = result.conversationTotalNumber!;
@@ -92,3 +137,13 @@ class _MessssageActionNotifier extends AsyncNotifier<void> {
     });
   }
 }
+
+// final messagesLiveProvider = StreamNotifierProvider.family.autoDispose<MessagesLiveProvider, MessageModel, String>(MessagesLiveProvider.new);
+
+// class MessagesLiveProvider extends AutoDisposeFamilyStreamNotifier<MessageModel, String> {
+//   SocketChannel? _channel;
+
+//   @override
+//   Stream<MessageModel> build(String arg) async* {}
+
+// }
