@@ -30,8 +30,8 @@ class NotificationModel with _$NotificationModel {
 class SenderType with _$SenderType {
   const factory SenderType({
     required String username,
-    required String thumbnailUrl,
-    required String profilePictureUrl,
+    String? thumbnailUrl,
+    String? profilePictureUrl,
   }) = _SenderType;
   factory SenderType.fromJson(Map<String, dynamic> json) =>
       _$SenderTypeFromJson(json);

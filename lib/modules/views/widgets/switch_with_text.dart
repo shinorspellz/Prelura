@@ -19,7 +19,7 @@ class PreluraSwitchWithText extends StatelessWidget {
   const PreluraSwitchWithText(
       {super.key,
       required this.titleText,
-      required this.value,
+      this.value = false,
       this.onTap,
       this.onChanged,
       this.trailingText,
