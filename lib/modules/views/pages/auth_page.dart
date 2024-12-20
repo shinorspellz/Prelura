@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/notification_service.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/notification_provider.dart';
 import 'package:prelura_app/modules/controller/refresh_provider.dart';
 import 'package:prelura_app/modules/views/pages/home.dart';
 import 'package:prelura_app/modules/views/pages/user_profile.dart';
@@ -37,6 +38,7 @@ class _AuthPageState extends ConsumerState<AuthPage> {
     // inits the notification provider and register all neccesary
     // data for notfication
     ref.watch(notificationServiceProvider);
+    ref.watch(notificationProvider);
 
     return DefaultTabController(
       length: 5,

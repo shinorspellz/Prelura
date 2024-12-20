@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/modules/controller/notification_provider.dart';
 import 'package:prelura_app/modules/model/notification/notification_model.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
 
-class NotificationCard extends StatelessWidget {
+class NotificationCard extends ConsumerWidget {
   const NotificationCard({
     super.key,
     required this.notification,
@@ -14,9 +16,16 @@ class NotificationCard extends StatelessWidget {
   final NotificationModel notification;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        if (!notification.isRead!) {
+          await ref
+              .read(readNotificationProvider.notifier)
+              .readNotification(int.parse(notification.id));
+
+          ref.invalidate(notificationProvider);
+        }
         if (notification.modelGroup == "Chat") {
           context.router.push(ChatRoute(
             id: notification.meta["conversation_id"],
@@ -80,7 +89,10 @@ class NotificationCard extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w400),
+                              ?.copyWith(
+                                  fontWeight: notification.isRead!
+                                      ? FontWeight.w200
+                                      : FontWeight.w400),
                         ),
                       ),
                       const SizedBox(width: 10), // Add spacing before time

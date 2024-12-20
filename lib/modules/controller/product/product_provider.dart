@@ -639,6 +639,8 @@ class WomenProductController extends FamilyAsyncNotifier<List<ProductModel>,
         query: query,
       );
     } catch (e, stack) {
+      log(e.toString());
+      log(stack.toString());
       state = AsyncError(e, stack);
       return [];
     }
