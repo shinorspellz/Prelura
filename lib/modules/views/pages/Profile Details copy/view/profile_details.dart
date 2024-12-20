@@ -85,8 +85,10 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
         // ),
         trailingIcon: [
           GestureDetector(
-              onTap: () => context.pushRoute(ProfileRoute()),
-              child: Icon(Icons.menu_sharp)),
+            onTap: () => context.pushRoute(ProfileRoute()),
+            child: Icon(Icons.menu_sharp,
+                color: Theme.of(context).iconTheme.color),
+          ),
           10.horizontalSpacing,
         ],
       ),

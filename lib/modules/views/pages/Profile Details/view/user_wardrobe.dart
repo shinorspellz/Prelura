@@ -291,7 +291,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               }
                             },
                             text: isCurrentUser ? "Upload" : "Message",
-                            textColor: PreluraColors.white,
+                            textColor: PreluraColors.activeColor,
                             bgColor: Theme.of(context).scaffoldBackgroundColor,
                           ),
                         ),

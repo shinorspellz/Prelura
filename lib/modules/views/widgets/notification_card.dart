@@ -33,6 +33,11 @@ class NotificationCard extends ConsumerWidget {
             avatarUrl: notification.sender.profilePictureUrl,
           ));
         }
+        if (notification.modelGroup == "UserProfile") {
+          context.router.push(ProfileDetailsRoute(
+            username: notification.sender.username,
+          ));
+        }
       },
       child: Container(
         padding: const EdgeInsets.all(16),
@@ -51,15 +56,32 @@ class NotificationCard extends ConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             // Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                imageUrl: notification.sender.profilePictureUrl,
-                fit: BoxFit.cover,
-                height: 40,
-                width: 40,
+            if (notification.sender.profilePictureUrl == null) ...[
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: CircleAvatar(
+                  radius: 20,
+                  child: Text(notification.sender.username
+                          ?.split('')
+                          .first
+                          .toUpperCase() ??
+                      '--'),
+                ),
+              )
+            ],
+            if (notification.sender.profilePictureUrl != null) ...[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: CachedNetworkImage(
+                  imageUrl: notification.sender.profilePictureUrl!,
+                  fit: BoxFit.cover,
+                  height: 40,
+                  width: 40,
+                ),
               ),
-            ),
+            ],
             const SizedBox(width: 15),
 
             // Message and Time Row

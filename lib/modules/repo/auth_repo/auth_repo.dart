@@ -9,6 +9,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:graphql/client.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
+import '../../controller/notification_provider.dart';
+
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
 ///
@@ -118,6 +120,7 @@ class AuthRepo {
       log(response.exception.toString(), name: 'AuthMutation');
       throw 'An error occured';
     }
+    _ref.invalidate(notificationProvider);
   }
 
   String? get getToken => _cacheBox.get('AUTH_TOKEN');

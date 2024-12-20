@@ -291,44 +291,47 @@ class SearchScreen extends ConsumerWidget {
       {required Function() onTap}) {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
-    return Container(
-      width: 170,
-      margin: EdgeInsets.only(right: 12),
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            child: Image.asset(
-              image,
-              height: 27.h,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter,
-            ),
-          ),
-          addVerticalSpacing(10),
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              decoration: BoxDecoration(
-                color: isDarkMode
-                    ? PreluraColors.activeColor.withOpacity(0.4)
-                    : PreluraColors.activeColor.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.w700),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 170,
+        margin: EdgeInsets.only(right: 12),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              child: Image.asset(
+                image,
+                height: 27.h,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               ),
             ),
-          )
-        ],
+            addVerticalSpacing(10),
+            GestureDetector(
+              onTap: onTap,
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                  color: isDarkMode
+                      ? PreluraColors.activeColor.withOpacity(0.4)
+                      : PreluraColors.activeColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.w700),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

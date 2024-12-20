@@ -10,6 +10,7 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/firebase_options.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
+import 'package:prelura_app/modules/controller/notification_provider.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
     final themeMode = ref.watch(themeNotifierProvider);
+    ref.watch(notificationProvider);
     ref.read(notificationServiceProvider.notifier).init();
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
