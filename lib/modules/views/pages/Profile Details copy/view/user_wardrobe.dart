@@ -318,23 +318,26 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             products: products,
                             isInProduct: false,
                           ),
-                          error: (e, _) => Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(userProduct);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
-                          ),
+                          error: (e, _) {
+                            log("$_");
+                            return Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(e.toString()),
+                                  TextButton.icon(
+                                    onPressed: () {
+                                      // log(e.toString(), stackTrace: _);
+                                      ref.invalidate(userProduct);
+                                    },
+                                    label: const Text('Retry'),
+                                    icon: const Icon(Icons.refresh_rounded),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                           loading: () => GridShimmer(),
                         ),
                   )

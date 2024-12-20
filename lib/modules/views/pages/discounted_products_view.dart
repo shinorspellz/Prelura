@@ -125,15 +125,37 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                           },
                         ),
                       ),
+                      error: (e, _) {
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(filteredProductProvider);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      loading: () => SliverToBoxAdapter(child: GridShimmer()),
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
-                if (ref
-                    .watch(discountedProductsProvider.notifier)
-                    .canLoadMore())
-                  if (!ref.watch(discountedProductsProvider).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                // if (ref
+                //     .watch(discountedProductsProvider.notifier)
+                //     .canLoadMore())
+                //   if (!ref.watch(discountedProductsProvider).isLoading)
+                //     const SliverToBoxAdapter(
+                //       child: PaginationLoadingIndicator(),
+                //     )
               ],
             ),
           ),

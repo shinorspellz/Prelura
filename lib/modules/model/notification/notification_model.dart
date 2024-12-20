@@ -19,6 +19,7 @@ class NotificationModel with _$NotificationModel {
     bool? deleted,
     DateTime? createdAt,
     DateTime? updatedAt,
+    @JsonKey(fromJson: _parseMeta, toJson: _convertMetaToJson)
     required Map<String, dynamic> meta,
   }) = _NotificationModel;
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
@@ -85,4 +86,12 @@ String? _convertToJson(NotificationsPreferenceInputType? input) {
     'messages': input.messages,
   };
   return json.encode(jsonMap);
+}
+
+Map<String, dynamic> _parseMeta(String metaString) {
+  return json.decode(metaString) as Map<String, dynamic>;
+}
+
+String _convertMetaToJson(Map<String, dynamic> meta) {
+  return json.encode(meta);
 }

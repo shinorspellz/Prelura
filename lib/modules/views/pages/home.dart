@@ -53,28 +53,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
         ref.read(allProductProvider(null).notifier).fetchMoreData();
-        final category = ref.watch(categoryProvider).valueOrNull;
-        if (category != null) {
-          final matchingCategory =
-              category.firstWhere((e) => e.name == selectedNameProvider);
-          if (matchingCategory != null) {
-            log(matchingCategory.toString());
-            ref.read(filteredProductProvider((
+        final selectedId = ref.watch(selectedIdProvider);
+
+        ref
+            .read(filteredProductProvider((
               Input$ProductFiltersInput(
-                category: int.parse(matchingCategory.id),
+                category: selectedId, // Use the extracted value directly
               ),
               searchQuery
-            )));
-            ref
-                .read(filteredProductProvider((
-                  Input$ProductFiltersInput(
-                    category: int.parse(matchingCategory.id),
-                  ),
-                  searchQuery
-                )).notifier)
-                .fetchMoreData();
-          }
-        }
+            )).notifier)
+            .fetchMoreData();
       }
     });
     super.initState();
@@ -91,6 +79,47 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final selectedTab = ref.watch(selectedTabProvider);
+
+    SliverToBoxAdapter _buildPaginationIndicator({
+      required bool canLoadMore,
+      required bool isLoading,
+    }) {
+      return canLoadMore && !isLoading
+          ? const SliverToBoxAdapter(child: PaginationLoadingIndicator())
+          : const SliverToBoxAdapter(); // Empty placeholder if no indicator
+    }
+
+// Inside the `CustomScrollView` slivers
+    SliverToBoxAdapter paginationIndicator;
+
+    if (ref.watch(selectedTabProvider) != 0 &&
+        ref.watch(selectedTabProvider) != 1) {
+      final selectedId = ref.watch(selectedIdProvider);
+      log("i am here");
+      paginationIndicator = _buildPaginationIndicator(
+          canLoadMore: ref
+              .read(filteredProductProvider((
+                Input$ProductFiltersInput(
+                  category: selectedId, // Use the extracted value directly
+                ),
+                searchQuery
+              )).notifier)
+              .canLoadMore(),
+          isLoading: ref
+              .watch(filteredProductProvider((
+                Input$ProductFiltersInput(
+                  category: selectedId, // Use the extracted value directly
+                ),
+                searchQuery
+              )))
+              .isLoading);
+    } else {
+      paginationIndicator = _buildPaginationIndicator(
+        canLoadMore: ref.watch(allProductProvider(null).notifier).canLoadMore(),
+        isLoading: ref.watch(allProductProvider(null)).isLoading,
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -103,6 +132,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             child: CustomScrollView(
               controller: controller,
+              // physics: NeverScrollableScrollPhysics(),
               slivers: [
                 SliverToBoxAdapter(
                   child: Column(
@@ -172,17 +202,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           },
                         ),
                         addVerticalSpacing(12),
-                        _buildTabs(ref, selectedTab, context, searchQuery)
+                        _buildTabs(
+                            ref, selectedTab, context, searchQuery, controller)
                       ],
                     ),
                   )),
                 ),
                 SliverToBoxAdapter(child: _buildTabContent(selectedTab)),
-                if (ref.watch(allProductProvider(null).notifier).canLoadMore())
-                  if (!ref.watch(allProductProvider(null)).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                paginationIndicator
               ],
             ),
           ),
@@ -196,10 +223,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 0:
         return HomeAllTab(
           searchQuery: searchQuery,
+          controller: controller,
         ); // Replace with your actual widget for "All"
       case 1:
         return HomeAllTab(
           searchQuery: searchQuery,
+          controller: controller,
         ); // Replace with your actual widget for "All"
 
       case 2:
@@ -229,6 +258,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       default:
         return HomeAllTab(
           searchQuery: searchQuery,
+          controller: controller,
         ); // Replace with your actual widget for "All"
     }
   }
@@ -257,7 +287,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery) {
+Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
+    ScrollController controller) {
   final tabs = ["All", "Premium Brands", "Women", "Men", "Kids"];
 
   return Builder(builder: (context) {
@@ -271,21 +302,18 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery) {
               ref.read(selectedTabProvider.notifier).state = index;
               ref.read(selectedNameProvider.notifier).state = tabs[index];
               final category = ref.watch(categoryProvider).valueOrNull;
+              controller.animateTo(
+                0.0,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+              ;
               if (category != null) {
                 final matchingCategory =
                     category.where((e) => e.name == tabs[index]).firstOrNull;
                 if (matchingCategory != null) {
                   ref.read(selectedIdProvider.notifier).state =
                       int.parse(matchingCategory.id);
-
-                  final products = await ref.watch(filteredProductProvider((
-                    Input$ProductFiltersInput(
-                      category: int.parse(matchingCategory.id),
-                    ),
-                    searchQuery
-                  )).future);
-                  ref.read(requestedProduct.notifier).state = products;
-                  
                 }
               }
             },

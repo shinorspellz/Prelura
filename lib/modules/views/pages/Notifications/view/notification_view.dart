@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
@@ -55,20 +57,15 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
               slivers: [
                 ref.watch(notificationProvider).when(
                     data: (notifications) {
+                      log("notification length is ${notifications.length}");
                       return notifications.isNotEmpty
                           ? SliverPadding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
-                              sliver: SliverGrid.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
-                                ),
+                              sliver: SliverList.builder(
                                 itemCount: notifications.length,
                                 itemBuilder: (context, index) {
                                   return NotificationCard(
+                                      key: ValueKey(notifications[index].id),
                                       notification: notifications[index]);
                                 },
                               ),
