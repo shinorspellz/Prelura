@@ -1,10 +1,13 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/modules/controller/chat/messages_provider.dart';
+import 'package:prelura_app/modules/model/chat/message_model.dart';
 import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart';
 import 'package:prelura_app/modules/views/pages/Chat/widgets/product_card.dart';
 import 'package:prelura_app/modules/views/pages/Chat/widgets/seller_card.dart';
@@ -132,28 +135,7 @@ class ChatScreen extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final chat = messages[index];
                       final isSender = chat.sender.username != username;
-                      return Align(
-                        alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
-                        child: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                          constraints: BoxConstraints(
-                            maxWidth: MediaQuery.sizeOf(context).width / 1.4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: isSender
-                                ? context.isDarkMode
-                                    ? PreluraColors.blueColor9D
-                                    : PreluraColors.greyLightColor
-                                : PreluraColors.activeColor,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Text(
-                            chat.text,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ),
-                      );
+                      return Align(alignment: isSender ? Alignment.bottomRight : Alignment.bottomLeft, child: isSender ? SenderTextWidget(chat: chat, id: id) : RecieverTextWidget(chat: chat));
                     },
                   ),
                   orElse: () => Center(
@@ -170,6 +152,81 @@ class ChatScreen extends ConsumerWidget {
 
             // Input field for sending messages
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class RecieverTextWidget extends StatelessWidget {
+  const RecieverTextWidget({super.key, required this.chat});
+  final MessageModel chat;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.sizeOf(context).width / 1.4,
+      ),
+      decoration: BoxDecoration(
+        color: PreluraColors.activeColor,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Text(
+        chat.text,
+        style: Theme.of(context).textTheme.bodyMedium,
+      ),
+    );
+  }
+}
+
+class SenderTextWidget extends ConsumerWidget {
+  const SenderTextWidget({super.key, required this.chat, required this.id});
+  final MessageModel chat;
+  final String id;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return CupertinoContextMenu.builder(
+      enableHapticFeedback: true,
+      actions: [
+        CupertinoContextMenuAction(
+          onPressed: () {
+            Clipboard.setData(ClipboardData(text: chat.text));
+            Navigator.pop(context);
+          },
+          // isDefaultAction: true,
+          trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
+          child: const Text('Copy'),
+        ),
+        CupertinoContextMenuAction(
+          onPressed: () {
+            ref.read(messagesProvider(id).notifier).deleteMessage(chat.id);
+            Navigator.pop(context);
+          },
+          isDestructiveAction: true,
+          trailingIcon: CupertinoIcons.delete,
+          child: const Text('Delete'),
+        ),
+      ],
+      builder: (context, animation) => Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.sizeOf(context).width / 1.4,
+          ),
+          decoration: BoxDecoration(
+            color: context.isDarkMode ? PreluraColors.blueColor9D : PreluraColors.greyLightColor,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Text(
+            chat.text,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ),
       ),
     );
