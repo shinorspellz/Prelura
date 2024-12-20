@@ -28,8 +28,8 @@ class NotificationsController extends AsyncNotifier<List<NotificationModel>> {
       {required int page}) async {
     try {
       final response = await _repository.getNotifications(
-        page,
-        _pageSize,
+        pageCount: _pageSize,
+        pageNumber: page,
       );
 
       _totalItems = response.length ?? 0;
@@ -144,5 +144,50 @@ class NotificationPreferenceNotifier
       // Log or handle error appropriately
       log('Error updating notification preferences: $e');
     }
+  }
+}
+
+// Use AsyncNotifierProvider for AsyncNotifier
+final readNotificationProvider =
+    AsyncNotifierProvider<ReadNotificationNotifier, bool>(
+  ReadNotificationNotifier.new,
+);
+
+class ReadNotificationNotifier extends AsyncNotifier<bool> {
+  late final NotificationRepo repo;
+
+  @override
+  FutureOr<bool> build() async {
+    repo = ref.watch(notificationRepo); // Initialize dependencies
+    return false;
+  }
+
+  // Async function to unfollow a user
+  Future<bool> readNotification(int notificationId) async {
+    final result = await repo.readNotification(notificationId);
+    state = AsyncValue.data(result); // Update the state
+    return result;
+  }
+}
+
+final deleteNotificationProvider =
+    AsyncNotifierProvider<ReadNotificationNotifier, bool>(
+  ReadNotificationNotifier.new,
+);
+
+class DeleteNotificationProvider extends AsyncNotifier<bool> {
+  late final NotificationRepo repo;
+
+  @override
+  FutureOr<bool> build() async {
+    repo = ref.watch(notificationRepo); // Initialize dependencies
+    return false;
+  }
+
+  // Async function to unfollow a user
+  Future<bool> deleteNotification(int notificationId) async {
+    final result = await repo.deleteNotification(notificationId);
+    state = AsyncValue.data(result); // Update the state
+    return result;
   }
 }

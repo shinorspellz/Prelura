@@ -13,7 +13,7 @@ class NotificationRepo {
   NotificationRepo(this._client);
 
   Future<List<NotificationModel>> getNotifications(
-      int pageCount, int pageNumber) async {
+      {required int pageCount, required int pageNumber}) async {
     final response = await _client.query$Notifications(
       Options$Query$Notifications(
         variables: Variables$Query$Notifications(
@@ -35,7 +35,7 @@ class NotificationRepo {
     }
 
     try {
-      //@AYOPELUMI please stop using print statement just use log its safer
+      // log("response in the repo is ${response.toString()}");
       return notifications
           .map(
             (e) => NotificationModel.fromJson(e!.toJson()),
@@ -153,5 +153,44 @@ class NotificationRepo {
       profileView: input.profileView,
       messages: input.messages,
     );
+  }
+
+  Future<bool> readNotification(int notificationId) async {
+    final response = await _client.mutate$ReadNotification(
+        Options$Mutation$ReadNotification(
+            variables: Variables$Mutation$ReadNotification(
+                notificationId: notificationId)));
+
+    if (response.hasException) {
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
+      throw Exception('GraphQL Error: $error');
+    }
+
+    final success = response.parsedData?.readNotification!.success;
+    if (success == null) {
+      throw Exception('No users found.');
+    }
+    return success;
+  }
+
+  Future<bool> deleteNotification(int notificationId) async {
+    final response = await _client.mutate$DeleteNotification(
+        Options$Mutation$DeleteNotification(
+            variables: Variables$Mutation$DeleteNotification(
+                notificationId: notificationId)));
+
+    if (response.hasException) {
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
+      throw Exception('GraphQL Error: $error');
+    }
+
+    final notifications = response.parsedData?.deleteNotification!.success;
+    if (notifications == null) {
+      throw Exception('No users found.');
+    }
+
+    return notifications;
   }
 }

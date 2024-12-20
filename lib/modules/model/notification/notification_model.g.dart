@@ -24,7 +24,7 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
       updatedAt: json['updatedAt'] == null
           ? null
           : DateTime.parse(json['updatedAt'] as String),
-      meta: json['meta'] as Map<String, dynamic>,
+      meta: _parseMeta(json['meta'] as String),
     );
 
 Map<String, dynamic> _$$NotificationModelImplToJson(
@@ -41,7 +41,7 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
       'deleted': instance.deleted,
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
-      'meta': instance.meta,
+      'meta': _convertMetaToJson(instance.meta),
     };
 
 _$SenderTypeImpl _$$SenderTypeImplFromJson(Map<String, dynamic> json) =>
