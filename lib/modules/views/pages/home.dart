@@ -178,11 +178,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   )),
                 ),
                 SliverToBoxAdapter(child: _buildTabContent(selectedTab)),
-                if (ref.watch(allProductProvider(null).notifier).canLoadMore())
-                  if (!ref.watch(allProductProvider(null)).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                if (ref.watch(selectedTabProvider) != 0 &&
+                    ref.watch(selectedTabProvider) != 1)
+                  if (ref
+                      .watch(allProductProvider(null).notifier)
+                      .canLoadMore())
+                    if (!ref.watch(allProductProvider(null)).isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ],
             ),
           ),
@@ -285,7 +289,6 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery) {
                     searchQuery
                   )).future);
                   ref.read(requestedProduct.notifier).state = products;
-                  
                 }
               }
             },
