@@ -19,6 +19,7 @@ import 'package:prelura_app/res/ui_constants.dart';
 import 'package:prelura_app/shared/card_model.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../res/utils.dart';
 import '../../controller/product/product_provider.dart';
 import '../../controller/user/user_controller.dart';
 import 'profile_picture.dart';
@@ -332,7 +333,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
             Row(
               children: [
                 Text(
-                  "£ ${widget.product.price}",
+                  "£ ${formatDynamicString(widget.product.price.toString())}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         decoration: widget.product.discountPrice != null
                             ? TextDecoration.lineThrough

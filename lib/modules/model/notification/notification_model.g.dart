@@ -47,8 +47,8 @@ Map<String, dynamic> _$$NotificationModelImplToJson(
 _$SenderTypeImpl _$$SenderTypeImplFromJson(Map<String, dynamic> json) =>
     _$SenderTypeImpl(
       username: json['username'] as String,
-      thumbnailUrl: json['thumbnailUrl'] as String,
-      profilePictureUrl: json['profilePictureUrl'] as String,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+      profilePictureUrl: json['profilePictureUrl'] as String?,
     );
 
 Map<String, dynamic> _$$SenderTypeImplToJson(_$SenderTypeImpl instance) =>

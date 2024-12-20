@@ -9,8 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i46;
-import 'package:flutter/cupertino.dart' as _i48;
-import 'package:flutter/material.dart' as _i47;
+import 'package:flutter/cupertino.dart' as _i47;
+import 'package:flutter/material.dart' as _i48;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
 import 'package:prelura_app/modules/model/product/categories/category_model.dart'
     as _i50;
@@ -344,7 +344,7 @@ class DiscountRoute extends _i46.PageRouteInfo<void> {
 class DiscountedProductsView
     extends _i46.PageRouteInfo<DiscountedProductsViewArgs> {
   DiscountedProductsView({
-    _i47.Key? key,
+    _i48.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -384,7 +384,7 @@ class DiscountedProductsViewArgs {
     this.customBrand,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String? title;
 
@@ -402,7 +402,7 @@ class DiscountedProductsViewArgs {
 /// [_i13.FilterProductPage]
 class FilterProductRoute extends _i46.PageRouteInfo<FilterProductRouteArgs> {
   FilterProductRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -442,7 +442,7 @@ class FilterProductRouteArgs {
     this.customBrand,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String? title;
 
@@ -461,7 +461,7 @@ class FilterProductRouteArgs {
 class FollowersRoute extends _i46.PageRouteInfo<FollowersRouteArgs> {
   FollowersRoute({
     required String username,
-    _i47.Key? key,
+    _i48.Key? key,
     List<_i46.PageRouteInfo>? children,
   }) : super(
           FollowersRoute.name,
@@ -494,7 +494,7 @@ class FollowersRouteArgs {
 
   final String username;
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   @override
   String toString() {
@@ -506,7 +506,7 @@ class FollowersRouteArgs {
 /// [_i15.FollowingScreen]
 class FollowingRoute extends _i46.PageRouteInfo<FollowingRouteArgs> {
   FollowingRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required String username,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -538,7 +538,7 @@ class FollowingRouteArgs {
     required this.username,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String username;
 
@@ -647,7 +647,7 @@ class LegalInformationRoute extends _i46.PageRouteInfo<void> {
 /// [_i21.LoginScreen]
 class LoginRoute extends _i46.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     void Function(bool)? onLoginResult,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -680,7 +680,7 @@ class LoginRouteArgs {
     this.onLoginResult,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final void Function(bool)? onLoginResult;
 
@@ -752,7 +752,7 @@ class MyOrderRoute extends _i46.PageRouteInfo<void> {
 class NotificationSettingRoute
     extends _i46.PageRouteInfo<NotificationSettingRouteArgs> {
   NotificationSettingRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required String title,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -784,7 +784,7 @@ class NotificationSettingRouteArgs {
     required this.title,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String title;
 
@@ -836,7 +836,7 @@ class PriceRoute extends _i46.PageRouteInfo<void> {
 /// [_i28.ProductDetailScreen]
 class ProductDetailRoute extends _i46.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required int productId,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -868,7 +868,7 @@ class ProductDetailRouteArgs {
     required this.productId,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final int productId;
 
@@ -902,7 +902,7 @@ class ProductListRoute extends _i46.PageRouteInfo<void> {
 class ProductPriceFilterRoute
     extends _i46.PageRouteInfo<ProductPriceFilterRouteArgs> {
   ProductPriceFilterRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required String title,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -934,7 +934,7 @@ class ProductPriceFilterRouteArgs {
     required this.title,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String title;
 
@@ -949,7 +949,7 @@ class ProductPriceFilterRouteArgs {
 class ProductsByBrandRoute
     extends _i46.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -989,7 +989,7 @@ class ProductsByBrandRouteArgs {
     this.customBrand,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final String? title;
 
@@ -1007,7 +1007,7 @@ class ProductsByBrandRouteArgs {
 /// [_i32.ProfileDetailsScreen]
 class ProfileDetailsRoute extends _i46.PageRouteInfo<ProfileDetailsRouteArgs> {
   ProfileDetailsRoute({
-    _i48.Key? key,
+    _i47.Key? key,
     required String username,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -1039,7 +1039,7 @@ class ProfileDetailsRouteArgs {
     required this.username,
   });
 
-  final _i48.Key? key;
+  final _i47.Key? key;
 
   final String username;
 
@@ -1129,7 +1129,7 @@ class SearchRoute extends _i46.PageRouteInfo<void> {
 /// [_i37.SellItemScreen]
 class SellItemRoute extends _i46.PageRouteInfo<SellItemRouteArgs> {
   SellItemRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     _i49.ProductModel? product,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -1162,7 +1162,7 @@ class SellItemRouteArgs {
     this.product,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final _i49.ProductModel? product;
 
@@ -1290,7 +1290,7 @@ class SubCategoryProductRoute extends _i46.PageRouteInfo<void> {
 /// [_i44.SubCategoryScreen]
 class SubCategoryRoute extends _i46.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
-    _i47.Key? key,
+    _i48.Key? key,
     required List<_i50.CategoryModel> subCategories,
     required String categoryName,
     List<_i46.PageRouteInfo>? children,
@@ -1326,7 +1326,7 @@ class SubCategoryRouteArgs {
     required this.categoryName,
   });
 
-  final _i47.Key? key;
+  final _i48.Key? key;
 
   final List<_i50.CategoryModel> subCategories;
 
@@ -1343,7 +1343,7 @@ class SubCategoryRouteArgs {
 class UserProfileDetailsRoute
     extends _i46.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
-    _i48.Key? key,
+    _i47.Key? key,
     String? username,
     List<_i46.PageRouteInfo>? children,
   }) : super(
@@ -1376,7 +1376,7 @@ class UserProfileDetailsRouteArgs {
     this.username,
   });
 
-  final _i48.Key? key;
+  final _i47.Key? key;
 
   final String? username;
 

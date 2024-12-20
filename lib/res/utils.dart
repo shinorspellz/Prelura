@@ -70,3 +70,23 @@ Future<Position> determinePosition() async {
   return await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
 }
+
+
+String formatDynamicString(String input) {
+  final doubleValue = double.tryParse(input);
+  if (doubleValue == null) {
+    throw ArgumentError("Invalid input string: $input");
+  }
+
+  // If the number is effectively an integer
+  if (doubleValue == doubleValue.toInt()) {
+    return doubleValue.toInt().toString();
+  }
+
+  // Convert to a string and remove trailing zeros
+  String formatted = doubleValue.toStringAsFixed(10); // Arbitrary high precision
+  formatted = formatted.replaceAll(RegExp(r'0+$'), ''); // Remove trailing zeros
+  formatted = formatted.replaceAll(RegExp(r'\.$'), ''); // Remove trailing decimal point
+
+  return formatted;
+}

@@ -440,8 +440,8 @@ SenderType _$SenderTypeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SenderType {
   String get username => throw _privateConstructorUsedError;
-  String get thumbnailUrl => throw _privateConstructorUsedError;
-  String get profilePictureUrl => throw _privateConstructorUsedError;
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
+  String? get profilePictureUrl => throw _privateConstructorUsedError;
 
   /// Serializes this SenderType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -459,7 +459,7 @@ abstract class $SenderTypeCopyWith<$Res> {
           SenderType value, $Res Function(SenderType) then) =
       _$SenderTypeCopyWithImpl<$Res, SenderType>;
   @useResult
-  $Res call({String username, String thumbnailUrl, String profilePictureUrl});
+  $Res call({String username, String? thumbnailUrl, String? profilePictureUrl});
 }
 
 /// @nodoc
@@ -478,22 +478,22 @@ class _$SenderTypeCopyWithImpl<$Res, $Val extends SenderType>
   @override
   $Res call({
     Object? username = null,
-    Object? thumbnailUrl = null,
-    Object? profilePictureUrl = null,
+    Object? thumbnailUrl = freezed,
+    Object? profilePictureUrl = freezed,
   }) {
     return _then(_value.copyWith(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnailUrl: null == thumbnailUrl
+      thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePictureUrl: null == profilePictureUrl
+              as String?,
+      profilePictureUrl: freezed == profilePictureUrl
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -506,7 +506,7 @@ abstract class _$$SenderTypeImplCopyWith<$Res>
       __$$SenderTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String thumbnailUrl, String profilePictureUrl});
+  $Res call({String username, String? thumbnailUrl, String? profilePictureUrl});
 }
 
 /// @nodoc
@@ -523,22 +523,22 @@ class __$$SenderTypeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? username = null,
-    Object? thumbnailUrl = null,
-    Object? profilePictureUrl = null,
+    Object? thumbnailUrl = freezed,
+    Object? profilePictureUrl = freezed,
   }) {
     return _then(_$SenderTypeImpl(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnailUrl: null == thumbnailUrl
+      thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePictureUrl: null == profilePictureUrl
+              as String?,
+      profilePictureUrl: freezed == profilePictureUrl
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -547,9 +547,7 @@ class __$$SenderTypeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SenderTypeImpl implements _SenderType {
   const _$SenderTypeImpl(
-      {required this.username,
-      required this.thumbnailUrl,
-      required this.profilePictureUrl});
+      {required this.username, this.thumbnailUrl, this.profilePictureUrl});
 
   factory _$SenderTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$SenderTypeImplFromJson(json);
@@ -557,9 +555,9 @@ class _$SenderTypeImpl implements _SenderType {
   @override
   final String username;
   @override
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
   @override
-  final String profilePictureUrl;
+  final String? profilePictureUrl;
 
   @override
   String toString() {
@@ -603,8 +601,8 @@ class _$SenderTypeImpl implements _SenderType {
 abstract class _SenderType implements SenderType {
   const factory _SenderType(
       {required final String username,
-      required final String thumbnailUrl,
-      required final String profilePictureUrl}) = _$SenderTypeImpl;
+      final String? thumbnailUrl,
+      final String? profilePictureUrl}) = _$SenderTypeImpl;
 
   factory _SenderType.fromJson(Map<String, dynamic> json) =
       _$SenderTypeImpl.fromJson;
@@ -612,9 +610,9 @@ abstract class _SenderType implements SenderType {
   @override
   String get username;
   @override
-  String get thumbnailUrl;
+  String? get thumbnailUrl;
   @override
-  String get profilePictureUrl;
+  String? get profilePictureUrl;
 
   /// Create a copy of SenderType
   /// with the given fields replaced by the non-null parameter values.
