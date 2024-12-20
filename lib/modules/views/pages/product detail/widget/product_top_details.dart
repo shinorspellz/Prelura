@@ -41,10 +41,7 @@ class ProductTopDetails extends ConsumerWidget {
             product.name,
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           const SizedBox(height: 12),
           Column(
@@ -76,19 +73,14 @@ class ProductTopDetails extends ConsumerWidget {
                   if (product.condition != null)
                     Text(
                       product.condition!.simpleName,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w500,
-                          color: PreluraColors.greyColor),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
                     ),
                   Spacer(),
 
                   Text(
                     "£ ${product.price}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          decoration: product.discountPrice != null
-                              ? TextDecoration.lineThrough
-                              : null,
+                          decoration: product.discountPrice != null ? TextDecoration.lineThrough : null,
                           color: product.discountPrice != null
                               ? !context.isDarkMode
                                   ? Colors.grey
@@ -102,7 +94,7 @@ class ProductTopDetails extends ConsumerWidget {
                     Text(
                       "£ ${calculateDiscountedAmount(
                         price: product.price,
-                        discount: product.discountPrice!.toInt(),
+                        discount: num.parse(product.discountPrice!).toInt(),
                       )}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
@@ -122,11 +114,7 @@ class ProductTopDetails extends ConsumerWidget {
               if (product.color != null)
                 Row(
                   children: product.color!.map((color) {
-                    final value = ref
-                        .watch(colorsProvider)
-                        .entries
-                        .where((e) => e.key == color)
-                        .first;
+                    final value = ref.watch(colorsProvider).entries.where((e) => e.key == color).first;
                     return Row(
                       children: [
                         Container(
@@ -134,17 +122,15 @@ class ProductTopDetails extends ConsumerWidget {
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: value
-                                .value, // Assuming `color` is a valid Color object
+                            color: value.value, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
                         ),
                         Text(
                           value.key,
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         8.horizontalSpacing
                       ],
@@ -195,8 +181,7 @@ class ProductTopDetails extends ConsumerWidget {
                           // context.router.push(ProfileDetailsRoute());
                           // context.pushRoute(route)
                         } else {
-                          context.router.push(ProfileDetailsRoute(
-                              username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         }
                       },
                       child: ProfilePictureWidget(
@@ -212,15 +197,11 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.push(ProfileDetailsRoute(
-                              username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Row(
@@ -228,10 +209,7 @@ class ProductTopDetails extends ConsumerWidget {
                           const Ratings(),
                           Text(
                             "(250)",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontWeight: FontWeight.w400),
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400),
                           ),
                         ],
                       )
