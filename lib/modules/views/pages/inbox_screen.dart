@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
@@ -142,8 +143,22 @@ class ChatsTab extends ConsumerWidget {
               itemBuilder: (_, index) {
                 final conv = conversations[index];
 
-                return MessageCard(
-                  model: conv,
+                return Slidable(
+                  key: ValueKey(index),
+                  endActionPane: ActionPane(motion: DrawerMotion(), children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        ref.read(conversationProvider.notifier).deleteConversation(conv.id);
+                      },
+                      backgroundColor: Color(0xFFFE4A49),
+                      foregroundColor: Colors.white,
+                      icon: Icons.delete,
+                      label: 'Delete',
+                    ),
+                  ]),
+                  child: MessageCard(
+                    model: conv,
+                  ),
                 );
               });
         });
