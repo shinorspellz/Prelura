@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/modules/controller/notification_provider.dart';
+import 'package:prelura_app/core/di.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
+
+import '../modules/controller/notification_provider.dart';
 
 final notificationServiceProvider =
     AsyncNotifierProvider<NotificationServiceProvider, void>(
@@ -111,6 +114,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
   }
 
   displayNotification(RemoteMessage message) {
+    log(message.data.toString(), name: 'NotificationService');
     _flutterLocalNotificationsPlugin.show(0, message.notification?.title ?? '',
         message.notification?.body ?? '', _notificationDetails(),
         payload: jsonEncode(message.data));
@@ -123,7 +127,27 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
       _notificationDetails());
 
   _handleMessage(String message) async {
-    //TODO : Navigate to target page
+    final appRouter = ref.read(router);
+
+    final data = jsonDecode(message);
+    final page = data['page'];
+
+    switch (page) {
+      case 'PRODUCT':
+        appRouter
+            .push(ProductDetailRoute(productId: int.parse(data['object_id'])));
+        break;
+      case 'USER':
+        appRouter.push(ProfileDetailsRoute(username: data['object_id']));
+        break;
+      case 'CONVERSATION':
+        appRouter.push(ChatRoute(
+            id: data['object_id'],
+            username: data['title'].toString().toLowerCase(),
+            avatarUrl: null));
+        break;
+      default:
+    }
   }
 
   _handleTappedNotification(Function(String payload) action) {

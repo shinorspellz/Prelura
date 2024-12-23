@@ -45,7 +45,6 @@ class MyApp extends ConsumerWidget {
     final authState = ref.watch(authStateProvider);
     final themeMode = ref.watch(themeNotifierProvider);
     ref.watch(notificationProvider);
-    ref.read(notificationServiceProvider.notifier).init();
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Stripe.publishableKey =
@@ -53,8 +52,7 @@ class MyApp extends ConsumerWidget {
       FlutterNativeSplash.remove();
     });
     return Sizer(
-      builder: (BuildContext context, Orientation orientation,
-          DeviceType deviceType) {
+      builder: (BuildContext context, Orientation orientation, DeviceType deviceType) {
         return MaterialApp.router(
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,
