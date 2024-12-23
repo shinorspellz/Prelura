@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/di.dart';
@@ -46,6 +47,8 @@ class MyApp extends ConsumerWidget {
     ref.watch(notificationProvider);
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      Stripe.publishableKey =
+          'pk_test_51MUB2yBHdb5MeEk7eRdKhqG5CZSExTI1ChtUs6vCkGyWod8Jw6weYt1jeSMDJ2xD4m79Dj62aA3YELPAuuqyxFyV000cHayfJo';
       FlutterNativeSplash.remove();
     });
     return Sizer(
