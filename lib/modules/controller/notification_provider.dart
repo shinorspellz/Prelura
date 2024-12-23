@@ -8,11 +8,12 @@ import 'package:prelura_app/modules/repo/notifications_repo.dart';
 
 import '../model/product/product_model.dart';
 
-final notificationProvider =
-    AsyncNotifierProvider<NotificationsController, List<NotificationModel>>(
-        NotificationsController.new);
+final notificationProvider = AutoDisposeAsyncNotifierProvider<
+    NotificationsController,
+    List<NotificationModel>>(NotificationsController.new);
 
-class NotificationsController extends AsyncNotifier<List<NotificationModel>> {
+class NotificationsController
+    extends AutoDisposeAsyncNotifier<List<NotificationModel>> {
   late final _repository = ref.read(notificationRepo);
 
   static const int _pageSize = 15;

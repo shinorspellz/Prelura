@@ -15,6 +15,7 @@ class PreluraCheckBox extends StatelessWidget {
   final String title;
   final String? subtitle;
   final Widget? titleWidget;
+  final Icon? icon;
 
   const PreluraCheckBox(
       {super.key,
@@ -26,6 +27,7 @@ class PreluraCheckBox extends StatelessWidget {
       this.borderRadius = BorderRadius.zero,
       required this.title,
       this.subtitle,
+      this.icon,
       this.colorName,
       this.titleWidget});
 
@@ -34,7 +36,8 @@ class PreluraCheckBox extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChanged(!isChecked), // Toggle the state when tapped
       child: Container(
-        padding: const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
+        padding:
+            const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
@@ -59,6 +62,12 @@ class PreluraCheckBox extends StatelessWidget {
                     width: 36,
                   ),
                 ],
+                if (icon != null) ...[
+                  icon!,
+                  SizedBox(
+                    width: 16,
+                  ),
+                ],
                 SizedBox(
                   width: 60.w,
                   child: Column(
@@ -76,9 +85,13 @@ class PreluraCheckBox extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(
                           subtitle!,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w300),
                           overflow: TextOverflow.ellipsis, // Handle overflow
-                          maxLines: 4, // Limit the number of lines for the subtitle
+                          maxLines:
+                              4, // Limit the number of lines for the subtitle
                         ),
                       ]
                     ],

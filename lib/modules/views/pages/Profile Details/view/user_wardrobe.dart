@@ -299,11 +299,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         Expanded(
                           child: AppButton(
                             onTap: () async {
+                              HapticFeedback.lightImpact();
                               if (isCurrentUser) {
                                 Share.shareUri(Uri.parse(
                                     'https://prelura.com/${user?.username}'));
                                 return;
                               }
+
                               if (!isCurrentUser &&
                                   user?.isFollowing! == false) {
                                 final result = await ref.refresh(
@@ -315,8 +317,24 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       otherUserProfile(widget.username!));
                                   ref.invalidate(userProvider);
                                 }
+                                log("following");
+                                return;
                               }
-                              HapticFeedback.lightImpact();
+                              if (!isCurrentUser && user?.isFollowing == true) {
+                                final notifier =
+                                    ref.read(unFollowUserProvider.notifier);
+                                final result =
+                                    await notifier.unFollowUser(user!.id);
+                                if (result) {
+                                  context.alert("Unfollwed ${user.username}");
+                                }
+                                ref.invalidate(
+                                    otherUserProfile(widget.username!));
+                                ref.invalidate(userProvider);
+                                log("unfollowing");
+
+                                return;
+                              }
                             },
                             text: isCurrentUser
                                 ? "Share"

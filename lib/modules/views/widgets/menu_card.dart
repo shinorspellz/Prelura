@@ -20,6 +20,7 @@ class MenuCard extends StatelessWidget {
       this.additionalText,
       this.textColor,
       this.iconColor,
+      this.trailingIcon,
       this.svgPath});
   final String title;
   final String? subtitle;
@@ -34,6 +35,7 @@ class MenuCard extends StatelessWidget {
   final Color? textColor;
   final Color? iconColor;
   final String? svgPath;
+  final Icon? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -82,54 +84,78 @@ class MenuCard extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: textColor ??
-                                      Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.color),
-                        ),
-                        widget ?? const SizedBox.shrink(),
-                        if (additionalText != null)
-                          Text(
-                            additionalText ?? "",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  fontWeight: FontWeight.w400,
-                                ),
-                          )
-                      ],
-                    ),
-                    const Spacer(),
-                    Text(
-                      subtitle ?? "",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: subtitleColor ??
-                                Theme.of(context).textTheme.bodyMedium?.color,
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        color: textColor ??
+                                            Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.color),
+                              ),
+                              widget ?? const SizedBox.shrink(),
+                              if (additionalText != null)
+                                Text(
+                                  additionalText ?? "",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                )
+                            ],
                           ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    if (rightArrow)
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 18,
-                        color: iconColor ?? Theme.of(context).iconTheme.color,
+                          Row(
+                            children: [
+                              subtitle != null
+                                  ? Text(
+                                      subtitle ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: subtitleColor ??
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.color,
+                                          ),
+                                    )
+                                  : SizedBox.shrink(),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              if (rightArrow) ...[
+                                if (trailingIcon != null) ...[
+                                  trailingIcon!
+                                ] else ...[
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    size: 18,
+                                    color: iconColor ??
+                                        Theme.of(context).iconTheme.color,
+                                  ),
+                                ]
+                              ]
+                            ],
+                          ),
+                        ],
                       ),
+                    ),
                   ],
                 ),
               ),

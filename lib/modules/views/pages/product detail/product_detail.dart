@@ -229,7 +229,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               const SizedBox(width: 10),
                               Expanded(
                                 child: AppButton(
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.router
+                                        .push(PaymentRoute(product: product));
+                                  },
                                   text: "Buy now",
                                   textColor: PreluraColors.white,
                                   borderColor: Colors.purple,

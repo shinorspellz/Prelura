@@ -186,7 +186,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: FilterProductRoute.page,
           guards: [AuthGuard(_ref)],
-        )
+        ),
+        AutoRoute(page: PaymentRoute.page, guards: [AuthGuard(_ref)])
       ];
 }
 
