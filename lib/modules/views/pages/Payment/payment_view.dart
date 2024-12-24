@@ -60,7 +60,7 @@ class PaymentScreen extends ConsumerWidget {
                       ?.copyWith(fontWeight: FontWeight.w300)),
             ),
             MenuCard(
-              title: user!.location!.locationName ?? "",
+              title: user?.location?.locationName ?? "",
               trailingIcon: Icon(
                 Icons.edit,
                 size: 16,
