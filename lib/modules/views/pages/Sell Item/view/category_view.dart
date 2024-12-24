@@ -82,7 +82,8 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                 itemCount: filter.length,
                 itemBuilder: (_, index) {
                   final cat = filter[index];
-                  final svgPath = PreluraIcons.getConstant(cat.name);
+                  final svgPath = PreluraIcons.getConstant(
+                      keyword: cat.name, category: null);
 
                   return MenuCard(
                     title: cat.name,
@@ -119,7 +120,8 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         itemCount: categories.length,
                         itemBuilder: (_, index) {
                           final cat = categories[index];
-                          final svgPath = PreluraIcons.getConstant(cat.name);
+                          final svgPath = PreluraIcons.getConstant(
+                              keyword: cat.name, category: null);
 
                           return MenuCard(
                             title: cat.name,
