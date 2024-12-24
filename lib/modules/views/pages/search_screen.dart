@@ -11,8 +11,10 @@ import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/res/logs.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
 import '../../../shared/mock_data.dart';
@@ -255,17 +257,33 @@ class SearchScreen extends ConsumerWidget {
                       ],
                     )),
               ),
-              Container(
-                width: double.infinity,
-                height: 45.h,
-                margin: EdgeInsets.all(16),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(PreluraIcons.webp_vintage),
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topLeft),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+              GestureDetector(
+                onTap: () {
+                  final vintageStyle = Enum$StyleEnum.values.firstWhere(
+                    (style) =>
+                        style !=
+                            Enum$StyleEnum.$unknown && // Exclude unknown value
+                        style.name
+                            .replaceAll('_', ' ')
+                            .toLowerCase()
+                            .contains("vintage"), // Match "christmas" exactly
+                  );
+                  logger.d(vintageStyle);
+                  context.router
+                      .push(ChristmasFilteredProductRoute(style: vintageStyle));
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 45.h,
+                  margin: EdgeInsets.all(16),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(PreluraIcons.webp_vintage),
+                        fit: BoxFit.cover,
+                        alignment: Alignment.topLeft),
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
                 ),
               ),
               GridView.count(
@@ -274,8 +292,26 @@ class SearchScreen extends ConsumerWidget {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   _buildPromoBanner(
-                      "Christmas Jumpers", PreluraIcons.webp_season),
-                  _buildPromoBanner("Party Season", PreluraIcons.webp_jumpers),
+                      "Christmas Jumpers", PreluraIcons.webp_season, onTap: () {
+                    context.router.push(PartyFilteredProductRoute());
+                  }),
+                  _buildPromoBanner("Party Season", PreluraIcons.webp_jumpers,
+                      onTap: () {
+                    final christmasStyle = Enum$StyleEnum.values.firstWhere(
+                      (style) =>
+                          style !=
+                              Enum$StyleEnum
+                                  .$unknown && // Exclude unknown value
+                          style.name
+                              .replaceAll('_', ' ')
+                              .toLowerCase()
+                              .contains(
+                                  "christmas"), // Match "christmas" exactly
+                    );
+                    logger.d(christmasStyle);
+                    context.router.push(
+                        ChristmasFilteredProductRoute(style: christmasStyle));
+                  }),
                 ],
               ),
             ] else ...[
@@ -358,21 +394,25 @@ class SearchScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPromoBanner(String title, String imagePath) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(imagePath),
-                fit: BoxFit.cover,
+  Widget _buildPromoBanner(String title, String imagePath,
+      {required Function() onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(10),
               ),
-              borderRadius: BorderRadius.circular(10),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
