@@ -1,3 +1,4 @@
+// ignore_for_file: type=lint
 import 'package:prelura_app/modules/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
 
