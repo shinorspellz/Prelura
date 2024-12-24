@@ -1,3 +1,4 @@
+// ignore_for_file: type=lint
 import 'package:prelura_app/modules/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
 
@@ -1203,6 +1204,151 @@ Enum$ParcelSizeEnum fromJson$Enum$ParcelSizeEnum(String value) {
   }
 }
 
+enum Enum$PaymentsPaymentPaymentMethodChoices {
+  BANK_TRANSFER,
+  CARD,
+  STRIPE,
+  $unknown;
+
+  factory Enum$PaymentsPaymentPaymentMethodChoices.fromJson(String value) =>
+      fromJson$Enum$PaymentsPaymentPaymentMethodChoices(value);
+
+  String toJson() => toJson$Enum$PaymentsPaymentPaymentMethodChoices(this);
+}
+
+String toJson$Enum$PaymentsPaymentPaymentMethodChoices(
+    Enum$PaymentsPaymentPaymentMethodChoices e) {
+  switch (e) {
+    case Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER:
+      return r'BANK_TRANSFER';
+    case Enum$PaymentsPaymentPaymentMethodChoices.CARD:
+      return r'CARD';
+    case Enum$PaymentsPaymentPaymentMethodChoices.STRIPE:
+      return r'STRIPE';
+    case Enum$PaymentsPaymentPaymentMethodChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$PaymentsPaymentPaymentMethodChoices
+    fromJson$Enum$PaymentsPaymentPaymentMethodChoices(String value) {
+  switch (value) {
+    case r'BANK_TRANSFER':
+      return Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER;
+    case r'CARD':
+      return Enum$PaymentsPaymentPaymentMethodChoices.CARD;
+    case r'STRIPE':
+      return Enum$PaymentsPaymentPaymentMethodChoices.STRIPE;
+    default:
+      return Enum$PaymentsPaymentPaymentMethodChoices.$unknown;
+  }
+}
+
+enum Enum$PaymentsPaymentPaymentStatusChoices {
+  PENDING,
+  SUCCESSFUL,
+  REFUNDED,
+  FAILED,
+  CANCELLED,
+  $unknown;
+
+  factory Enum$PaymentsPaymentPaymentStatusChoices.fromJson(String value) =>
+      fromJson$Enum$PaymentsPaymentPaymentStatusChoices(value);
+
+  String toJson() => toJson$Enum$PaymentsPaymentPaymentStatusChoices(this);
+}
+
+String toJson$Enum$PaymentsPaymentPaymentStatusChoices(
+    Enum$PaymentsPaymentPaymentStatusChoices e) {
+  switch (e) {
+    case Enum$PaymentsPaymentPaymentStatusChoices.PENDING:
+      return r'PENDING';
+    case Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL:
+      return r'SUCCESSFUL';
+    case Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED:
+      return r'REFUNDED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.FAILED:
+      return r'FAILED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED:
+      return r'CANCELLED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$PaymentsPaymentPaymentStatusChoices
+    fromJson$Enum$PaymentsPaymentPaymentStatusChoices(String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$PaymentsPaymentPaymentStatusChoices.PENDING;
+    case r'SUCCESSFUL':
+      return Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL;
+    case r'REFUNDED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED;
+    case r'FAILED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.FAILED;
+    case r'CANCELLED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED;
+    default:
+      return Enum$PaymentsPaymentPaymentStatusChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsOrderStatusChoices {
+  PENDING,
+  CONFIRMED,
+  SHIPPED,
+  DELIVERED,
+  CANCELLED,
+  REFUNDED,
+  $unknown;
+
+  factory Enum$ProductsOrderStatusChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsOrderStatusChoices(value);
+
+  String toJson() => toJson$Enum$ProductsOrderStatusChoices(this);
+}
+
+String toJson$Enum$ProductsOrderStatusChoices(
+    Enum$ProductsOrderStatusChoices e) {
+  switch (e) {
+    case Enum$ProductsOrderStatusChoices.PENDING:
+      return r'PENDING';
+    case Enum$ProductsOrderStatusChoices.CONFIRMED:
+      return r'CONFIRMED';
+    case Enum$ProductsOrderStatusChoices.SHIPPED:
+      return r'SHIPPED';
+    case Enum$ProductsOrderStatusChoices.DELIVERED:
+      return r'DELIVERED';
+    case Enum$ProductsOrderStatusChoices.CANCELLED:
+      return r'CANCELLED';
+    case Enum$ProductsOrderStatusChoices.REFUNDED:
+      return r'REFUNDED';
+    case Enum$ProductsOrderStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsOrderStatusChoices fromJson$Enum$ProductsOrderStatusChoices(
+    String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$ProductsOrderStatusChoices.PENDING;
+    case r'CONFIRMED':
+      return Enum$ProductsOrderStatusChoices.CONFIRMED;
+    case r'SHIPPED':
+      return Enum$ProductsOrderStatusChoices.SHIPPED;
+    case r'DELIVERED':
+      return Enum$ProductsOrderStatusChoices.DELIVERED;
+    case r'CANCELLED':
+      return Enum$ProductsOrderStatusChoices.CANCELLED;
+    case r'REFUNDED':
+      return Enum$ProductsOrderStatusChoices.REFUNDED;
+    default:
+      return Enum$ProductsOrderStatusChoices.$unknown;
+  }
+}
+
 enum Enum$ProductsProductConditionChoices {
   NEW_WITH_TAGS,
   LIKE_NEW,
@@ -1545,6 +1691,7 @@ enum Enum$ProductsProductStyleChoices {
   OVERSIZED,
   SLIM_FIT,
   RELAXED_FIT,
+  CHRISTMAS_AND_VINTAGE,
   $unknown;
 
   factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
@@ -1658,6 +1805,8 @@ String toJson$Enum$ProductsProductStyleChoices(
       return r'SLIM_FIT';
     case Enum$ProductsProductStyleChoices.RELAXED_FIT:
       return r'RELAXED_FIT';
+    case Enum$ProductsProductStyleChoices.CHRISTMAS_AND_VINTAGE:
+      return r'CHRISTMAS_AND_VINTAGE';
     case Enum$ProductsProductStyleChoices.$unknown:
       return r'$unknown';
   }
@@ -1768,6 +1917,8 @@ Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
       return Enum$ProductsProductStyleChoices.SLIM_FIT;
     case r'RELAXED_FIT':
       return Enum$ProductsProductStyleChoices.RELAXED_FIT;
+    case r'CHRISTMAS_AND_VINTAGE':
+      return Enum$ProductsProductStyleChoices.CHRISTMAS_AND_VINTAGE;
     default:
       return Enum$ProductsProductStyleChoices.$unknown;
   }
@@ -2088,6 +2239,7 @@ enum Enum$StyleEnum {
   OVERSIZED,
   SLIM_FIT,
   RELAXED_FIT,
+  CHRISTMAS_AND_VINTAGE,
   $unknown;
 
   factory Enum$StyleEnum.fromJson(String value) =>
@@ -2200,6 +2352,8 @@ String toJson$Enum$StyleEnum(Enum$StyleEnum e) {
       return r'SLIM_FIT';
     case Enum$StyleEnum.RELAXED_FIT:
       return r'RELAXED_FIT';
+    case Enum$StyleEnum.CHRISTMAS_AND_VINTAGE:
+      return r'CHRISTMAS_AND_VINTAGE';
     case Enum$StyleEnum.$unknown:
       return r'$unknown';
   }
@@ -2309,6 +2463,8 @@ Enum$StyleEnum fromJson$Enum$StyleEnum(String value) {
       return Enum$StyleEnum.SLIM_FIT;
     case r'RELAXED_FIT':
       return Enum$StyleEnum.RELAXED_FIT;
+    case r'CHRISTMAS_AND_VINTAGE':
+      return Enum$StyleEnum.CHRISTMAS_AND_VINTAGE;
     default:
       return Enum$StyleEnum.$unknown;
   }
