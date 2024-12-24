@@ -242,7 +242,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                             ),
                             const SizedBox(width: 2),
                             Text(
-                              likeCount.toString(),
+                              likeCount.isNegative ? '0' : likeCount.toString(),
                               style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
                             ),
                           ],
@@ -281,7 +281,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               // 10.verticalSpacing,
             ],
             Text(
-              widget.product.name,
+              widget.product.name.trim(),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),

@@ -31,7 +31,7 @@ import 'package:prelura_app/modules/views/pages/discounted_products_view.dart'
 import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/product_by_christmas.dart'
     as _i9;
 import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/product_by_party.dart'
-    as _i28;
+    as _i29;
 import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/products_by_vintage.dart'
     as _i49;
 import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart'
@@ -43,24 +43,25 @@ import 'package:prelura_app/modules/views/pages/home.dart' as _i19;
 import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i18;
 import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i20;
 import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i21;
+import 'package:prelura_app/modules/views/pages/menu_page.dart' as _i24;
 import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart'
-    as _i25;
-import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i24;
+    as _i26;
+import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i25;
 import 'package:prelura_app/modules/views/pages/Payment/payment_view.dart'
-    as _i29;
+    as _i30;
 import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart'
-    as _i31;
+    as _i32;
 import 'package:prelura_app/modules/views/pages/product_by_filters.dart'
     as _i14;
 import 'package:prelura_app/modules/views/pages/product_filter_page.dart'
-    as _i33;
-import 'package:prelura_app/modules/views/pages/products_by_brand.dart' as _i34;
+    as _i34;
+import 'package:prelura_app/modules/views/pages/products_by_brand.dart' as _i35;
 import 'package:prelura_app/modules/views/pages/Profile%20Details%20copy/view/profile_details.dart'
     as _i48;
 import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart'
-    as _i35;
-import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
     as _i36;
+import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
+    as _i37;
 import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i39;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart'
     as _i6;
@@ -75,11 +76,11 @@ import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.d
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart'
     as _i23;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart'
-    as _i27;
+    as _i28;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart'
-    as _i30;
+    as _i31;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart'
-    as _i32;
+    as _i33;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart'
     as _i46;
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart'
@@ -95,10 +96,9 @@ import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart'
 import 'package:prelura_app/modules/views/pages/Settings/view/account_setting_view.dart'
     as _i2;
 import 'package:prelura_app/modules/views/pages/Settings/view/notification_setting.dart'
-    as _i26;
+    as _i27;
 import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart'
     as _i38;
-import 'package:prelura_app/modules/views/pages/user_profile.dart' as _i37;
 import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i42;
 
 /// generated route for
@@ -767,7 +767,26 @@ class MaterialSelectionRoute extends _i50.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i24.MyFavouriteScreen]
+/// [_i24.MenuPage]
+class MenuRoute extends _i50.PageRouteInfo<void> {
+  const MenuRoute({List<_i50.PageRouteInfo>? children})
+      : super(
+          MenuRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MenuRoute';
+
+  static _i50.PageInfo page = _i50.PageInfo(
+    name,
+    builder: (data) {
+      return const _i24.MenuPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i25.MyFavouriteScreen]
 class MyFavouriteRoute extends _i50.PageRouteInfo<void> {
   const MyFavouriteRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -780,13 +799,13 @@ class MyFavouriteRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i24.MyFavouriteScreen();
+      return const _i25.MyFavouriteScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i25.MyOrderScreen]
+/// [_i26.MyOrderScreen]
 class MyOrderRoute extends _i50.PageRouteInfo<void> {
   const MyOrderRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -799,13 +818,13 @@ class MyOrderRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i25.MyOrderScreen();
+      return const _i26.MyOrderScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i26.NotificationSettingScreen]
+/// [_i27.NotificationSettingScreen]
 class NotificationSettingRoute
     extends _i50.PageRouteInfo<NotificationSettingRouteArgs> {
   NotificationSettingRoute({
@@ -827,7 +846,7 @@ class NotificationSettingRoute
     name,
     builder: (data) {
       final args = data.argsAs<NotificationSettingRouteArgs>();
-      return _i26.NotificationSettingScreen(
+      return _i27.NotificationSettingScreen(
         key: args.key,
         title: args.title,
       );
@@ -852,7 +871,7 @@ class NotificationSettingRouteArgs {
 }
 
 /// generated route for
-/// [_i27.ParcelScreen]
+/// [_i28.ParcelScreen]
 class ParcelRoute extends _i50.PageRouteInfo<void> {
   const ParcelRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -865,13 +884,13 @@ class ParcelRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i27.ParcelScreen();
+      return const _i28.ParcelScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i28.PartyFilteredProductScreen]
+/// [_i29.PartyFilteredProductScreen]
 class PartyFilteredProductRoute extends _i50.PageRouteInfo<void> {
   const PartyFilteredProductRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -884,13 +903,13 @@ class PartyFilteredProductRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i28.PartyFilteredProductScreen();
+      return const _i29.PartyFilteredProductScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i29.PaymentScreen]
+/// [_i30.PaymentScreen]
 class PaymentRoute extends _i50.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
     _i52.Key? key,
@@ -911,7 +930,7 @@ class PaymentRoute extends _i50.PageRouteInfo<PaymentRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PaymentRouteArgs>();
-      return _i29.PaymentScreen(
+      return _i30.PaymentScreen(
         key: args.key,
         product: args.product,
       );
@@ -936,7 +955,7 @@ class PaymentRouteArgs {
 }
 
 /// generated route for
-/// [_i30.PriceScreen]
+/// [_i31.PriceScreen]
 class PriceRoute extends _i50.PageRouteInfo<void> {
   const PriceRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -949,13 +968,13 @@ class PriceRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i30.PriceScreen();
+      return const _i31.PriceScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i31.ProductDetailScreen]
+/// [_i32.ProductDetailScreen]
 class ProductDetailRoute extends _i50.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
     _i52.Key? key,
@@ -976,7 +995,7 @@ class ProductDetailRoute extends _i50.PageRouteInfo<ProductDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ProductDetailRouteArgs>();
-      return _i31.ProductDetailScreen(
+      return _i32.ProductDetailScreen(
         key: args.key,
         productId: args.productId,
       );
@@ -1001,7 +1020,7 @@ class ProductDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i32.ProductListScreen]
+/// [_i33.ProductListScreen]
 class ProductListRoute extends _i50.PageRouteInfo<void> {
   const ProductListRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -1014,13 +1033,13 @@ class ProductListRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i32.ProductListScreen();
+      return const _i33.ProductListScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i33.ProductPriceFilterPage]
+/// [_i34.ProductPriceFilterPage]
 class ProductPriceFilterRoute
     extends _i50.PageRouteInfo<ProductPriceFilterRouteArgs> {
   ProductPriceFilterRoute({
@@ -1042,7 +1061,7 @@ class ProductPriceFilterRoute
     name,
     builder: (data) {
       final args = data.argsAs<ProductPriceFilterRouteArgs>();
-      return _i33.ProductPriceFilterPage(
+      return _i34.ProductPriceFilterPage(
         key: args.key,
         title: args.title,
       );
@@ -1067,7 +1086,7 @@ class ProductPriceFilterRouteArgs {
 }
 
 /// generated route for
-/// [_i34.ProductsByBrandPage]
+/// [_i35.ProductsByBrandPage]
 class ProductsByBrandRoute
     extends _i50.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
@@ -1093,7 +1112,7 @@ class ProductsByBrandRoute
     name,
     builder: (data) {
       final args = data.argsAs<ProductsByBrandRouteArgs>();
-      return _i34.ProductsByBrandPage(
+      return _i35.ProductsByBrandPage(
         key: args.key,
         title: args.title,
         id: args.id,
@@ -1126,7 +1145,7 @@ class ProductsByBrandRouteArgs {
 }
 
 /// generated route for
-/// [_i35.ProfileDetailsScreen]
+/// [_i36.ProfileDetailsScreen]
 class ProfileDetailsRoute extends _i50.PageRouteInfo<ProfileDetailsRouteArgs> {
   ProfileDetailsRoute({
     _i51.Key? key,
@@ -1147,7 +1166,7 @@ class ProfileDetailsRoute extends _i50.PageRouteInfo<ProfileDetailsRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ProfileDetailsRouteArgs>();
-      return _i35.ProfileDetailsScreen(
+      return _i36.ProfileDetailsScreen(
         key: args.key,
         username: args.username,
       );
@@ -1172,7 +1191,7 @@ class ProfileDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i36.ProfileNavigationScreen]
+/// [_i37.ProfileNavigationScreen]
 class ProfileNavigationRoute extends _i50.PageRouteInfo<void> {
   const ProfileNavigationRoute({List<_i50.PageRouteInfo>? children})
       : super(
@@ -1185,26 +1204,7 @@ class ProfileNavigationRoute extends _i50.PageRouteInfo<void> {
   static _i50.PageInfo page = _i50.PageInfo(
     name,
     builder: (data) {
-      return const _i36.ProfileNavigationScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [_i37.ProfileScreen]
-class ProfileRoute extends _i50.PageRouteInfo<void> {
-  const ProfileRoute({List<_i50.PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ProfileRoute';
-
-  static _i50.PageInfo page = _i50.PageInfo(
-    name,
-    builder: (data) {
-      return const _i37.ProfileScreen();
+      return const _i37.ProfileNavigationScreen();
     },
   );
 }
