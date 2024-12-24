@@ -16,13 +16,13 @@ import '../../controller/theme_notifier.dart';
 import 'Profile Details/provider/tab_controller.dart';
 
 @RoutePage()
-class ProfileScreen extends ConsumerWidget {
-  const ProfileScreen({super.key});
+class MenuPage extends ConsumerWidget {
+  const MenuPage({super.key});
   static final ScrollController menuScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ProfileScreen.menuScrollController;
+    final controller = MenuPage.menuScrollController;
     final themeNotifier = ref.read(themeNotifierProvider.notifier);
     final themeMode = ref.watch(themeNotifierProvider);
 
@@ -66,9 +66,7 @@ class ProfileScreen extends ConsumerWidget {
               children: [
                 Text(
                   "Dark Mode",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyMedium?.color),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(
                   swicthValue: themeMode == ThemeMode.dark,
@@ -121,12 +119,7 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const MyFavouriteRoute());
               }),
-          MenuCard(
-              title: "Discounts",
-              subtitle: "off",
-              rightArrow: false,
-              icon: const Icon(Icons.info_outlined),
-              onTap: () {}),
+          MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
@@ -147,11 +140,7 @@ class ProfileScreen extends ConsumerWidget {
               onTap: () {
                 context.router.push(const SettingRoute());
               }),
-          MenuCard(
-              title: "Help Centre",
-              icon: const Icon(Icons.question_mark_rounded),
-              rightArrow: false,
-              onTap: () {}),
+          MenuCard(title: "Help Centre", icon: const Icon(Icons.question_mark_rounded), rightArrow: false, onTap: () {}),
           MenuCard(
               title: "About Prelura",
               icon: const Icon(Icons.info_outlined),

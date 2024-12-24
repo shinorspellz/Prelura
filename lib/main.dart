@@ -42,7 +42,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authStateProvider);
     final themeMode = ref.watch(themeNotifierProvider);
     ref.watch(notificationProvider);
     // Remove splash screen after determining auth state
@@ -58,7 +57,7 @@ class MyApp extends ConsumerWidget {
           debugShowCheckedModeBanner: false,
           theme: PreluraTheme.lightMode,
           darkTheme: PreluraTheme.darkTheme,
-          themeMode: themeMode,
+          themeMode: themeMode == ThemeMode.dark ? themeMode : ThemeMode.system,
           routerConfig: ref.watch(router).config(
                 //this line of code listens to the authstate provider
                 // and anytime the authstate changes the AutoRoute Guard is reevaluted

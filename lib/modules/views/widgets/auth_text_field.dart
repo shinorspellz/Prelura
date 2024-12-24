@@ -68,8 +68,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.isDescription = false});
 
   @override
-  ConsumerState<PreluraAuthTextField> createState() =>
-      _VWidgetsLoginTextFieldState();
+  ConsumerState<PreluraAuthTextField> createState() => _VWidgetsLoginTextFieldState();
 }
 
 class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
@@ -99,8 +98,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    bool showGradient =
-        widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
+    bool showGradient = widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
     return Column(children: [
       Container(
         padding: const EdgeInsets.all(2),
@@ -132,9 +130,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               onSaved: widget.onSaved,
               enabled: widget.enabled,
               cursorHeight: 15,
-              textCapitalization:
-                  widget.textCapitalization ?? TextCapitalization.none,
-              // onTap: widget.onTap,
+              textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+
               focusNode: widget.focusNode ?? focusNodeZZZ,
               onChanged: (text) {
                 if (widget.onChanged != null) widget.onChanged!(text);
@@ -143,12 +140,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               keyboardType: widget.keyboardType,
               obscureText: obscureText,
               obscuringCharacter: '*',
-              inputFormatters: widget.isDescription
-                  ? []
-                  : [
-                      widget.formatter ??
-                          FilteringTextInputFormatter.singleLineFormatter
-                    ],
+              inputFormatters: widget.isDescription ? [] : [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
               // onFieldSubmitted: (value) {
               //   if (widget.textInputAction != TextInputAction.newline) {
               //     widget.focusNode?.unfocus();
@@ -180,9 +172,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     labelText: widget.label,
                     labelStyle: widget.labelStyle,
                     context,
-                    hasFocus: widget.focusNode?.hasFocus ??
-                        focusNodeZZZ?.hasFocus ??
-                        false,
+                    hasFocus: widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false,
                     hintText: widget.hintText,
                     suffixIcon: widget.suffixIcon,
                     contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),
@@ -191,20 +181,16 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                     focusedBorder: showGradient
                         ? OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: PreluraColors.primaryColor, width: 1.25),
+                            borderSide: BorderSide(color: PreluraColors.primaryColor, width: 1.25),
                           )
                         : null,
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () =>
-                                setState(() => obscureText = !obscureText),
+                            onPressed: () => setState(() => obscureText = !obscureText),
                             icon: Icon(
-                              obscureText
-                                  ? Icons.visibility_rounded
-                                  : Icons.visibility_off_rounded,
+                              obscureText ? Icons.visibility_rounded : Icons.visibility_off_rounded,
                             ),
                           ),
                   ),
@@ -224,4 +210,19 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
         )
     ]);
   }
+}
+
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: capitalize(newValue.text),
+      selection: newValue.selection,
+    );
+  }
+}
+
+String capitalize(String value) {
+  if (value.trim().isEmpty) return "";
+  return "${value[0].toUpperCase()}${value.substring(1).toLowerCase()}";
 }
