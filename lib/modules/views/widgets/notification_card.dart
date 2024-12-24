@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/modules/controller/notification_provider.dart';
 import 'package:prelura_app/modules/model/notification/notification_model.dart';
+import 'package:prelura_app/modules/views/pages/product%20detail/provider/product_detail_provider.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
 
 class NotificationCard extends ConsumerWidget {
@@ -36,6 +37,12 @@ class NotificationCard extends ConsumerWidget {
         if (notification.modelGroup == "UserProfile") {
           context.router.push(ProfileDetailsRoute(
             username: notification.sender.username,
+          ));
+        }
+
+        if (notification.modelGroup == "Product") {
+          context.router.push(ProductDetailRoute(
+            productId: int.parse(notification.modelId!),
           ));
         }
       },

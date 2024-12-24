@@ -165,6 +165,18 @@ class PreluraIcons {
   static const String chinos_svg = "assets/svgs/men/chinos.svg";
   static const String jeans_svg = "assets/svgs/men/jeans.svg";
   static const String men_swimwear_svg = "assets/svgs/men/mean swimwear.svg";
+  static const String dress_shoe_svg = "assets/svgs/men/dress shoe.svg";
+  static const String formal_shirt_svg = "assets/svgs/men/formal shirt.svg";
+
+  //women
+  static const String blouses_svg = "assets/svgs/women/blouses.svg";
+  static const String dresses_svg = "assets/svgs/women/dresses.svg";
+  static const String scarves_svg = "assets/svgs/women/scarves.svg";
+  static const String skirts_svg = "assets/svgs/women/skirts.svg";
+  static const String slippers_svg = "assets/svgs/women/slippers.svg";
+  static const String heels_svg = "assets/svgs/women/heels.svg";
+  static const String jewelry_svg = "assets/svgs/women/jewelry.svg";
+  static const String handbag_svg = 'assets/svgs/women/handbag.svg';
 
   static String? getConstant(String keyword) {
     // Get all static fields of this class using reflection-like behavior
@@ -258,6 +270,18 @@ class PreluraIcons {
       "chinos": chinos_svg,
       "jeans": jeans_svg,
       "swimwear": men_swimwear_svg,
+      'dress shoes': dress_shoe_svg,
+      'formal shirts': formal_shirt_svg,
+
+      //women
+      'slippers': slippers_svg,
+      'jewelry': jewelry_svg,
+      'handbags': handbag_svg,
+      'heels': heels_svg,
+      'skirts': skirts_svg,
+      "blouses": blouses_svg,
+      'dresses': dresses_svg,
+      'scarves': scarves_svg
 
       // Add the rest of the constants here...
     };
