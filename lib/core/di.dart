@@ -21,6 +21,7 @@ import 'package:prelura_app/modules/repo/user/user_repo.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
+import '../modules/controller/notification_provider.dart';
 import '../modules/repo/notifications_repo.dart';
 
 Future<ProviderContainer> initializeDependencies() async {
@@ -48,6 +49,7 @@ final appStartUpProvider = FutureProvider((ref) async {
       ref.read(allProductProvider(null).future),
       ref.read(brandsProvider.future),
       ref.read(categoryProvider.future),
+      ref.read(notificationProvider.future),
     ]);
     ref.read(conversationProvider.future);
 
@@ -160,7 +162,8 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) => AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
+  (ref) =>
+      AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
