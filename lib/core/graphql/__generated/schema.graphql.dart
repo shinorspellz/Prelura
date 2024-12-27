@@ -2,656 +2,6 @@
 import 'package:prelura_app/modules/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
 
-class Input$ImagesInputType {
-  factory Input$ImagesInputType({
-    required String url,
-    required String thumbnail,
-  }) =>
-      Input$ImagesInputType._({
-        r'url': url,
-        r'thumbnail': thumbnail,
-      });
-
-  Input$ImagesInputType._(this._$data);
-
-  factory Input$ImagesInputType.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$url = data['url'];
-    result$data['url'] = (l$url as String);
-    final l$thumbnail = data['thumbnail'];
-    result$data['thumbnail'] = (l$thumbnail as String);
-    return Input$ImagesInputType._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get url => (_$data['url'] as String);
-
-  String get thumbnail => (_$data['thumbnail'] as String);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$url = url;
-    result$data['url'] = l$url;
-    final l$thumbnail = thumbnail;
-    result$data['thumbnail'] = l$thumbnail;
-    return result$data;
-  }
-
-  CopyWith$Input$ImagesInputType<Input$ImagesInputType> get copyWith =>
-      CopyWith$Input$ImagesInputType(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$ImagesInputType || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$url = url;
-    final lOther$url = other.url;
-    if (l$url != lOther$url) {
-      return false;
-    }
-    final l$thumbnail = thumbnail;
-    final lOther$thumbnail = other.thumbnail;
-    if (l$thumbnail != lOther$thumbnail) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$url = url;
-    final l$thumbnail = thumbnail;
-    return Object.hashAll([
-      l$url,
-      l$thumbnail,
-    ]);
-  }
-}
-
-abstract class CopyWith$Input$ImagesInputType<TRes> {
-  factory CopyWith$Input$ImagesInputType(
-    Input$ImagesInputType instance,
-    TRes Function(Input$ImagesInputType) then,
-  ) = _CopyWithImpl$Input$ImagesInputType;
-
-  factory CopyWith$Input$ImagesInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$ImagesInputType;
-
-  TRes call({
-    String? url,
-    String? thumbnail,
-  });
-}
-
-class _CopyWithImpl$Input$ImagesInputType<TRes>
-    implements CopyWith$Input$ImagesInputType<TRes> {
-  _CopyWithImpl$Input$ImagesInputType(
-    this._instance,
-    this._then,
-  );
-
-  final Input$ImagesInputType _instance;
-
-  final TRes Function(Input$ImagesInputType) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? url = _undefined,
-    Object? thumbnail = _undefined,
-  }) =>
-      _then(Input$ImagesInputType._({
-        ..._instance._$data,
-        if (url != _undefined && url != null) 'url': (url as String),
-        if (thumbnail != _undefined && thumbnail != null)
-          'thumbnail': (thumbnail as String),
-      }));
-}
-
-class _CopyWithStubImpl$Input$ImagesInputType<TRes>
-    implements CopyWith$Input$ImagesInputType<TRes> {
-  _CopyWithStubImpl$Input$ImagesInputType(this._res);
-
-  TRes _res;
-
-  call({
-    String? url,
-    String? thumbnail,
-  }) =>
-      _res;
-}
-
-class Input$LocationInputType {
-  factory Input$LocationInputType({
-    String? latitude,
-    String? longitude,
-    String? locationName,
-  }) =>
-      Input$LocationInputType._({
-        if (latitude != null) r'latitude': latitude,
-        if (longitude != null) r'longitude': longitude,
-        if (locationName != null) r'locationName': locationName,
-      });
-
-  Input$LocationInputType._(this._$data);
-
-  factory Input$LocationInputType.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('latitude')) {
-      final l$latitude = data['latitude'];
-      result$data['latitude'] = (l$latitude as String?);
-    }
-    if (data.containsKey('longitude')) {
-      final l$longitude = data['longitude'];
-      result$data['longitude'] = (l$longitude as String?);
-    }
-    if (data.containsKey('locationName')) {
-      final l$locationName = data['locationName'];
-      result$data['locationName'] = (l$locationName as String?);
-    }
-    return Input$LocationInputType._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String? get latitude => (_$data['latitude'] as String?);
-
-  String? get longitude => (_$data['longitude'] as String?);
-
-  String? get locationName => (_$data['locationName'] as String?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('latitude')) {
-      final l$latitude = latitude;
-      result$data['latitude'] = l$latitude;
-    }
-    if (_$data.containsKey('longitude')) {
-      final l$longitude = longitude;
-      result$data['longitude'] = l$longitude;
-    }
-    if (_$data.containsKey('locationName')) {
-      final l$locationName = locationName;
-      result$data['locationName'] = l$locationName;
-    }
-    return result$data;
-  }
-
-  CopyWith$Input$LocationInputType<Input$LocationInputType> get copyWith =>
-      CopyWith$Input$LocationInputType(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$LocationInputType || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$latitude = latitude;
-    final lOther$latitude = other.latitude;
-    if (_$data.containsKey('latitude') !=
-        other._$data.containsKey('latitude')) {
-      return false;
-    }
-    if (l$latitude != lOther$latitude) {
-      return false;
-    }
-    final l$longitude = longitude;
-    final lOther$longitude = other.longitude;
-    if (_$data.containsKey('longitude') !=
-        other._$data.containsKey('longitude')) {
-      return false;
-    }
-    if (l$longitude != lOther$longitude) {
-      return false;
-    }
-    final l$locationName = locationName;
-    final lOther$locationName = other.locationName;
-    if (_$data.containsKey('locationName') !=
-        other._$data.containsKey('locationName')) {
-      return false;
-    }
-    if (l$locationName != lOther$locationName) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$latitude = latitude;
-    final l$longitude = longitude;
-    final l$locationName = locationName;
-    return Object.hashAll([
-      _$data.containsKey('latitude') ? l$latitude : const {},
-      _$data.containsKey('longitude') ? l$longitude : const {},
-      _$data.containsKey('locationName') ? l$locationName : const {},
-    ]);
-  }
-}
-
-abstract class CopyWith$Input$LocationInputType<TRes> {
-  factory CopyWith$Input$LocationInputType(
-    Input$LocationInputType instance,
-    TRes Function(Input$LocationInputType) then,
-  ) = _CopyWithImpl$Input$LocationInputType;
-
-  factory CopyWith$Input$LocationInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$LocationInputType;
-
-  TRes call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
-  });
-}
-
-class _CopyWithImpl$Input$LocationInputType<TRes>
-    implements CopyWith$Input$LocationInputType<TRes> {
-  _CopyWithImpl$Input$LocationInputType(
-    this._instance,
-    this._then,
-  );
-
-  final Input$LocationInputType _instance;
-
-  final TRes Function(Input$LocationInputType) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? latitude = _undefined,
-    Object? longitude = _undefined,
-    Object? locationName = _undefined,
-  }) =>
-      _then(Input$LocationInputType._({
-        ..._instance._$data,
-        if (latitude != _undefined) 'latitude': (latitude as String?),
-        if (longitude != _undefined) 'longitude': (longitude as String?),
-        if (locationName != _undefined)
-          'locationName': (locationName as String?),
-      }));
-}
-
-class _CopyWithStubImpl$Input$LocationInputType<TRes>
-    implements CopyWith$Input$LocationInputType<TRes> {
-  _CopyWithStubImpl$Input$LocationInputType(this._res);
-
-  TRes _res;
-
-  call({
-    String? latitude,
-    String? longitude,
-    String? locationName,
-  }) =>
-      _res;
-}
-
-class Input$NotificationsPreferenceInputType {
-  factory Input$NotificationsPreferenceInputType({
-    bool? likes,
-    bool? newFollowers,
-    bool? profileView,
-    bool? messages,
-  }) =>
-      Input$NotificationsPreferenceInputType._({
-        if (likes != null) r'likes': likes,
-        if (newFollowers != null) r'newFollowers': newFollowers,
-        if (profileView != null) r'profileView': profileView,
-        if (messages != null) r'messages': messages,
-      });
-
-  Input$NotificationsPreferenceInputType._(this._$data);
-
-  factory Input$NotificationsPreferenceInputType.fromJson(
-      Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('likes')) {
-      final l$likes = data['likes'];
-      result$data['likes'] = (l$likes as bool?);
-    }
-    if (data.containsKey('newFollowers')) {
-      final l$newFollowers = data['newFollowers'];
-      result$data['newFollowers'] = (l$newFollowers as bool?);
-    }
-    if (data.containsKey('profileView')) {
-      final l$profileView = data['profileView'];
-      result$data['profileView'] = (l$profileView as bool?);
-    }
-    if (data.containsKey('messages')) {
-      final l$messages = data['messages'];
-      result$data['messages'] = (l$messages as bool?);
-    }
-    return Input$NotificationsPreferenceInputType._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  bool? get likes => (_$data['likes'] as bool?);
-
-  bool? get newFollowers => (_$data['newFollowers'] as bool?);
-
-  bool? get profileView => (_$data['profileView'] as bool?);
-
-  bool? get messages => (_$data['messages'] as bool?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('likes')) {
-      final l$likes = likes;
-      result$data['likes'] = l$likes;
-    }
-    if (_$data.containsKey('newFollowers')) {
-      final l$newFollowers = newFollowers;
-      result$data['newFollowers'] = l$newFollowers;
-    }
-    if (_$data.containsKey('profileView')) {
-      final l$profileView = profileView;
-      result$data['profileView'] = l$profileView;
-    }
-    if (_$data.containsKey('messages')) {
-      final l$messages = messages;
-      result$data['messages'] = l$messages;
-    }
-    return result$data;
-  }
-
-  CopyWith$Input$NotificationsPreferenceInputType<
-          Input$NotificationsPreferenceInputType>
-      get copyWith => CopyWith$Input$NotificationsPreferenceInputType(
-            this,
-            (i) => i,
-          );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$NotificationsPreferenceInputType ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$likes = likes;
-    final lOther$likes = other.likes;
-    if (_$data.containsKey('likes') != other._$data.containsKey('likes')) {
-      return false;
-    }
-    if (l$likes != lOther$likes) {
-      return false;
-    }
-    final l$newFollowers = newFollowers;
-    final lOther$newFollowers = other.newFollowers;
-    if (_$data.containsKey('newFollowers') !=
-        other._$data.containsKey('newFollowers')) {
-      return false;
-    }
-    if (l$newFollowers != lOther$newFollowers) {
-      return false;
-    }
-    final l$profileView = profileView;
-    final lOther$profileView = other.profileView;
-    if (_$data.containsKey('profileView') !=
-        other._$data.containsKey('profileView')) {
-      return false;
-    }
-    if (l$profileView != lOther$profileView) {
-      return false;
-    }
-    final l$messages = messages;
-    final lOther$messages = other.messages;
-    if (_$data.containsKey('messages') !=
-        other._$data.containsKey('messages')) {
-      return false;
-    }
-    if (l$messages != lOther$messages) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$likes = likes;
-    final l$newFollowers = newFollowers;
-    final l$profileView = profileView;
-    final l$messages = messages;
-    return Object.hashAll([
-      _$data.containsKey('likes') ? l$likes : const {},
-      _$data.containsKey('newFollowers') ? l$newFollowers : const {},
-      _$data.containsKey('profileView') ? l$profileView : const {},
-      _$data.containsKey('messages') ? l$messages : const {},
-    ]);
-  }
-}
-
-abstract class CopyWith$Input$NotificationsPreferenceInputType<TRes> {
-  factory CopyWith$Input$NotificationsPreferenceInputType(
-    Input$NotificationsPreferenceInputType instance,
-    TRes Function(Input$NotificationsPreferenceInputType) then,
-  ) = _CopyWithImpl$Input$NotificationsPreferenceInputType;
-
-  factory CopyWith$Input$NotificationsPreferenceInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$NotificationsPreferenceInputType;
-
-  TRes call({
-    bool? likes,
-    bool? newFollowers,
-    bool? profileView,
-    bool? messages,
-  });
-}
-
-class _CopyWithImpl$Input$NotificationsPreferenceInputType<TRes>
-    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
-  _CopyWithImpl$Input$NotificationsPreferenceInputType(
-    this._instance,
-    this._then,
-  );
-
-  final Input$NotificationsPreferenceInputType _instance;
-
-  final TRes Function(Input$NotificationsPreferenceInputType) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? likes = _undefined,
-    Object? newFollowers = _undefined,
-    Object? profileView = _undefined,
-    Object? messages = _undefined,
-  }) =>
-      _then(Input$NotificationsPreferenceInputType._({
-        ..._instance._$data,
-        if (likes != _undefined) 'likes': (likes as bool?),
-        if (newFollowers != _undefined) 'newFollowers': (newFollowers as bool?),
-        if (profileView != _undefined) 'profileView': (profileView as bool?),
-        if (messages != _undefined) 'messages': (messages as bool?),
-      }));
-}
-
-class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
-    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
-  _CopyWithStubImpl$Input$NotificationsPreferenceInputType(this._res);
-
-  TRes _res;
-
-  call({
-    bool? likes,
-    bool? newFollowers,
-    bool? profileView,
-    bool? messages,
-  }) =>
-      _res;
-}
-
-class Input$PhoneInputType {
-  factory Input$PhoneInputType({
-    required String countryCode,
-    required String number,
-    String? completed,
-  }) =>
-      Input$PhoneInputType._({
-        r'countryCode': countryCode,
-        r'number': number,
-        if (completed != null) r'completed': completed,
-      });
-
-  Input$PhoneInputType._(this._$data);
-
-  factory Input$PhoneInputType.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$countryCode = data['countryCode'];
-    result$data['countryCode'] = (l$countryCode as String);
-    final l$number = data['number'];
-    result$data['number'] = (l$number as String);
-    if (data.containsKey('completed')) {
-      final l$completed = data['completed'];
-      result$data['completed'] = (l$completed as String?);
-    }
-    return Input$PhoneInputType._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get countryCode => (_$data['countryCode'] as String);
-
-  String get number => (_$data['number'] as String);
-
-  String? get completed => (_$data['completed'] as String?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$countryCode = countryCode;
-    result$data['countryCode'] = l$countryCode;
-    final l$number = number;
-    result$data['number'] = l$number;
-    if (_$data.containsKey('completed')) {
-      final l$completed = completed;
-      result$data['completed'] = l$completed;
-    }
-    return result$data;
-  }
-
-  CopyWith$Input$PhoneInputType<Input$PhoneInputType> get copyWith =>
-      CopyWith$Input$PhoneInputType(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$PhoneInputType || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$countryCode = countryCode;
-    final lOther$countryCode = other.countryCode;
-    if (l$countryCode != lOther$countryCode) {
-      return false;
-    }
-    final l$number = number;
-    final lOther$number = other.number;
-    if (l$number != lOther$number) {
-      return false;
-    }
-    final l$completed = completed;
-    final lOther$completed = other.completed;
-    if (_$data.containsKey('completed') !=
-        other._$data.containsKey('completed')) {
-      return false;
-    }
-    if (l$completed != lOther$completed) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$countryCode = countryCode;
-    final l$number = number;
-    final l$completed = completed;
-    return Object.hashAll([
-      l$countryCode,
-      l$number,
-      _$data.containsKey('completed') ? l$completed : const {},
-    ]);
-  }
-}
-
-abstract class CopyWith$Input$PhoneInputType<TRes> {
-  factory CopyWith$Input$PhoneInputType(
-    Input$PhoneInputType instance,
-    TRes Function(Input$PhoneInputType) then,
-  ) = _CopyWithImpl$Input$PhoneInputType;
-
-  factory CopyWith$Input$PhoneInputType.stub(TRes res) =
-      _CopyWithStubImpl$Input$PhoneInputType;
-
-  TRes call({
-    String? countryCode,
-    String? number,
-    String? completed,
-  });
-}
-
-class _CopyWithImpl$Input$PhoneInputType<TRes>
-    implements CopyWith$Input$PhoneInputType<TRes> {
-  _CopyWithImpl$Input$PhoneInputType(
-    this._instance,
-    this._then,
-  );
-
-  final Input$PhoneInputType _instance;
-
-  final TRes Function(Input$PhoneInputType) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? countryCode = _undefined,
-    Object? number = _undefined,
-    Object? completed = _undefined,
-  }) =>
-      _then(Input$PhoneInputType._({
-        ..._instance._$data,
-        if (countryCode != _undefined && countryCode != null)
-          'countryCode': (countryCode as String),
-        if (number != _undefined && number != null)
-          'number': (number as String),
-        if (completed != _undefined) 'completed': (completed as String?),
-      }));
-}
-
-class _CopyWithStubImpl$Input$PhoneInputType<TRes>
-    implements CopyWith$Input$PhoneInputType<TRes> {
-  _CopyWithStubImpl$Input$PhoneInputType(this._res);
-
-  TRes _res;
-
-  call({
-    String? countryCode,
-    String? number,
-    String? completed,
-  }) =>
-      _res;
-}
-
 class Input$ProductFiltersInput {
   factory Input$ProductFiltersInput({
     String? name,
@@ -1049,6 +399,801 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
       _res;
 }
 
+class Input$NotificationsPreferenceInputType {
+  factory Input$NotificationsPreferenceInputType({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  }) =>
+      Input$NotificationsPreferenceInputType._({
+        if (likes != null) r'likes': likes,
+        if (newFollowers != null) r'newFollowers': newFollowers,
+        if (profileView != null) r'profileView': profileView,
+        if (messages != null) r'messages': messages,
+      });
+
+  Input$NotificationsPreferenceInputType._(this._$data);
+
+  factory Input$NotificationsPreferenceInputType.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('likes')) {
+      final l$likes = data['likes'];
+      result$data['likes'] = (l$likes as bool?);
+    }
+    if (data.containsKey('newFollowers')) {
+      final l$newFollowers = data['newFollowers'];
+      result$data['newFollowers'] = (l$newFollowers as bool?);
+    }
+    if (data.containsKey('profileView')) {
+      final l$profileView = data['profileView'];
+      result$data['profileView'] = (l$profileView as bool?);
+    }
+    if (data.containsKey('messages')) {
+      final l$messages = data['messages'];
+      result$data['messages'] = (l$messages as bool?);
+    }
+    return Input$NotificationsPreferenceInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get likes => (_$data['likes'] as bool?);
+
+  bool? get newFollowers => (_$data['newFollowers'] as bool?);
+
+  bool? get profileView => (_$data['profileView'] as bool?);
+
+  bool? get messages => (_$data['messages'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('likes')) {
+      final l$likes = likes;
+      result$data['likes'] = l$likes;
+    }
+    if (_$data.containsKey('newFollowers')) {
+      final l$newFollowers = newFollowers;
+      result$data['newFollowers'] = l$newFollowers;
+    }
+    if (_$data.containsKey('profileView')) {
+      final l$profileView = profileView;
+      result$data['profileView'] = l$profileView;
+    }
+    if (_$data.containsKey('messages')) {
+      final l$messages = messages;
+      result$data['messages'] = l$messages;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$NotificationsPreferenceInputType<
+          Input$NotificationsPreferenceInputType>
+      get copyWith => CopyWith$Input$NotificationsPreferenceInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$NotificationsPreferenceInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (_$data.containsKey('likes') != other._$data.containsKey('likes')) {
+      return false;
+    }
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$newFollowers = newFollowers;
+    final lOther$newFollowers = other.newFollowers;
+    if (_$data.containsKey('newFollowers') !=
+        other._$data.containsKey('newFollowers')) {
+      return false;
+    }
+    if (l$newFollowers != lOther$newFollowers) {
+      return false;
+    }
+    final l$profileView = profileView;
+    final lOther$profileView = other.profileView;
+    if (_$data.containsKey('profileView') !=
+        other._$data.containsKey('profileView')) {
+      return false;
+    }
+    if (l$profileView != lOther$profileView) {
+      return false;
+    }
+    final l$messages = messages;
+    final lOther$messages = other.messages;
+    if (_$data.containsKey('messages') !=
+        other._$data.containsKey('messages')) {
+      return false;
+    }
+    if (l$messages != lOther$messages) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$likes = likes;
+    final l$newFollowers = newFollowers;
+    final l$profileView = profileView;
+    final l$messages = messages;
+    return Object.hashAll([
+      _$data.containsKey('likes') ? l$likes : const {},
+      _$data.containsKey('newFollowers') ? l$newFollowers : const {},
+      _$data.containsKey('profileView') ? l$profileView : const {},
+      _$data.containsKey('messages') ? l$messages : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  factory CopyWith$Input$NotificationsPreferenceInputType(
+    Input$NotificationsPreferenceInputType instance,
+    TRes Function(Input$NotificationsPreferenceInputType) then,
+  ) = _CopyWithImpl$Input$NotificationsPreferenceInputType;
+
+  factory CopyWith$Input$NotificationsPreferenceInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$NotificationsPreferenceInputType;
+
+  TRes call({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  });
+}
+
+class _CopyWithImpl$Input$NotificationsPreferenceInputType<TRes>
+    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  _CopyWithImpl$Input$NotificationsPreferenceInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$NotificationsPreferenceInputType _instance;
+
+  final TRes Function(Input$NotificationsPreferenceInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? likes = _undefined,
+    Object? newFollowers = _undefined,
+    Object? profileView = _undefined,
+    Object? messages = _undefined,
+  }) =>
+      _then(Input$NotificationsPreferenceInputType._({
+        ..._instance._$data,
+        if (likes != _undefined) 'likes': (likes as bool?),
+        if (newFollowers != _undefined) 'newFollowers': (newFollowers as bool?),
+        if (profileView != _undefined) 'profileView': (profileView as bool?),
+        if (messages != _undefined) 'messages': (messages as bool?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
+    implements CopyWith$Input$NotificationsPreferenceInputType<TRes> {
+  _CopyWithStubImpl$Input$NotificationsPreferenceInputType(this._res);
+
+  TRes _res;
+
+  call({
+    bool? likes,
+    bool? newFollowers,
+    bool? profileView,
+    bool? messages,
+  }) =>
+      _res;
+}
+
+class Input$ImagesInputType {
+  factory Input$ImagesInputType({
+    required String url,
+    required String thumbnail,
+  }) =>
+      Input$ImagesInputType._({
+        r'url': url,
+        r'thumbnail': thumbnail,
+      });
+
+  Input$ImagesInputType._(this._$data);
+
+  factory Input$ImagesInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$url = data['url'];
+    result$data['url'] = (l$url as String);
+    final l$thumbnail = data['thumbnail'];
+    result$data['thumbnail'] = (l$thumbnail as String);
+    return Input$ImagesInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get url => (_$data['url'] as String);
+
+  String get thumbnail => (_$data['thumbnail'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$url = url;
+    result$data['url'] = l$url;
+    final l$thumbnail = thumbnail;
+    result$data['thumbnail'] = l$thumbnail;
+    return result$data;
+  }
+
+  CopyWith$Input$ImagesInputType<Input$ImagesInputType> get copyWith =>
+      CopyWith$Input$ImagesInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ImagesInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$thumbnail = thumbnail;
+    final lOther$thumbnail = other.thumbnail;
+    if (l$thumbnail != lOther$thumbnail) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$url = url;
+    final l$thumbnail = thumbnail;
+    return Object.hashAll([
+      l$url,
+      l$thumbnail,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ImagesInputType<TRes> {
+  factory CopyWith$Input$ImagesInputType(
+    Input$ImagesInputType instance,
+    TRes Function(Input$ImagesInputType) then,
+  ) = _CopyWithImpl$Input$ImagesInputType;
+
+  factory CopyWith$Input$ImagesInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$ImagesInputType;
+
+  TRes call({
+    String? url,
+    String? thumbnail,
+  });
+}
+
+class _CopyWithImpl$Input$ImagesInputType<TRes>
+    implements CopyWith$Input$ImagesInputType<TRes> {
+  _CopyWithImpl$Input$ImagesInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ImagesInputType _instance;
+
+  final TRes Function(Input$ImagesInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? url = _undefined,
+    Object? thumbnail = _undefined,
+  }) =>
+      _then(Input$ImagesInputType._({
+        ..._instance._$data,
+        if (url != _undefined && url != null) 'url': (url as String),
+        if (thumbnail != _undefined && thumbnail != null)
+          'thumbnail': (thumbnail as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ImagesInputType<TRes>
+    implements CopyWith$Input$ImagesInputType<TRes> {
+  _CopyWithStubImpl$Input$ImagesInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? url,
+    String? thumbnail,
+  }) =>
+      _res;
+}
+
+class Input$LocationInputType {
+  factory Input$LocationInputType({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  }) =>
+      Input$LocationInputType._({
+        if (latitude != null) r'latitude': latitude,
+        if (longitude != null) r'longitude': longitude,
+        if (locationName != null) r'locationName': locationName,
+      });
+
+  Input$LocationInputType._(this._$data);
+
+  factory Input$LocationInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('latitude')) {
+      final l$latitude = data['latitude'];
+      result$data['latitude'] = (l$latitude as String?);
+    }
+    if (data.containsKey('longitude')) {
+      final l$longitude = data['longitude'];
+      result$data['longitude'] = (l$longitude as String?);
+    }
+    if (data.containsKey('locationName')) {
+      final l$locationName = data['locationName'];
+      result$data['locationName'] = (l$locationName as String?);
+    }
+    return Input$LocationInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get latitude => (_$data['latitude'] as String?);
+
+  String? get longitude => (_$data['longitude'] as String?);
+
+  String? get locationName => (_$data['locationName'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('latitude')) {
+      final l$latitude = latitude;
+      result$data['latitude'] = l$latitude;
+    }
+    if (_$data.containsKey('longitude')) {
+      final l$longitude = longitude;
+      result$data['longitude'] = l$longitude;
+    }
+    if (_$data.containsKey('locationName')) {
+      final l$locationName = locationName;
+      result$data['locationName'] = l$locationName;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$LocationInputType<Input$LocationInputType> get copyWith =>
+      CopyWith$Input$LocationInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$LocationInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latitude = latitude;
+    final lOther$latitude = other.latitude;
+    if (_$data.containsKey('latitude') !=
+        other._$data.containsKey('latitude')) {
+      return false;
+    }
+    if (l$latitude != lOther$latitude) {
+      return false;
+    }
+    final l$longitude = longitude;
+    final lOther$longitude = other.longitude;
+    if (_$data.containsKey('longitude') !=
+        other._$data.containsKey('longitude')) {
+      return false;
+    }
+    if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (_$data.containsKey('locationName') !=
+        other._$data.containsKey('locationName')) {
+      return false;
+    }
+    if (l$locationName != lOther$locationName) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$latitude = latitude;
+    final l$longitude = longitude;
+    final l$locationName = locationName;
+    return Object.hashAll([
+      _$data.containsKey('latitude') ? l$latitude : const {},
+      _$data.containsKey('longitude') ? l$longitude : const {},
+      _$data.containsKey('locationName') ? l$locationName : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$LocationInputType<TRes> {
+  factory CopyWith$Input$LocationInputType(
+    Input$LocationInputType instance,
+    TRes Function(Input$LocationInputType) then,
+  ) = _CopyWithImpl$Input$LocationInputType;
+
+  factory CopyWith$Input$LocationInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$LocationInputType;
+
+  TRes call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  });
+}
+
+class _CopyWithImpl$Input$LocationInputType<TRes>
+    implements CopyWith$Input$LocationInputType<TRes> {
+  _CopyWithImpl$Input$LocationInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$LocationInputType _instance;
+
+  final TRes Function(Input$LocationInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latitude = _undefined,
+    Object? longitude = _undefined,
+    Object? locationName = _undefined,
+  }) =>
+      _then(Input$LocationInputType._({
+        ..._instance._$data,
+        if (latitude != _undefined) 'latitude': (latitude as String?),
+        if (longitude != _undefined) 'longitude': (longitude as String?),
+        if (locationName != _undefined)
+          'locationName': (locationName as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$LocationInputType<TRes>
+    implements CopyWith$Input$LocationInputType<TRes> {
+  _CopyWithStubImpl$Input$LocationInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+  }) =>
+      _res;
+}
+
+class Input$PhoneInputType {
+  factory Input$PhoneInputType({
+    required String countryCode,
+    required String number,
+    String? completed,
+  }) =>
+      Input$PhoneInputType._({
+        r'countryCode': countryCode,
+        r'number': number,
+        if (completed != null) r'completed': completed,
+      });
+
+  Input$PhoneInputType._(this._$data);
+
+  factory Input$PhoneInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$countryCode = data['countryCode'];
+    result$data['countryCode'] = (l$countryCode as String);
+    final l$number = data['number'];
+    result$data['number'] = (l$number as String);
+    if (data.containsKey('completed')) {
+      final l$completed = data['completed'];
+      result$data['completed'] = (l$completed as String?);
+    }
+    return Input$PhoneInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get countryCode => (_$data['countryCode'] as String);
+
+  String get number => (_$data['number'] as String);
+
+  String? get completed => (_$data['completed'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$countryCode = countryCode;
+    result$data['countryCode'] = l$countryCode;
+    final l$number = number;
+    result$data['number'] = l$number;
+    if (_$data.containsKey('completed')) {
+      final l$completed = completed;
+      result$data['completed'] = l$completed;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$PhoneInputType<Input$PhoneInputType> get copyWith =>
+      CopyWith$Input$PhoneInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$PhoneInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$completed = completed;
+    final lOther$completed = other.completed;
+    if (_$data.containsKey('completed') !=
+        other._$data.containsKey('completed')) {
+      return false;
+    }
+    if (l$completed != lOther$completed) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$countryCode = countryCode;
+    final l$number = number;
+    final l$completed = completed;
+    return Object.hashAll([
+      l$countryCode,
+      l$number,
+      _$data.containsKey('completed') ? l$completed : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$PhoneInputType<TRes> {
+  factory CopyWith$Input$PhoneInputType(
+    Input$PhoneInputType instance,
+    TRes Function(Input$PhoneInputType) then,
+  ) = _CopyWithImpl$Input$PhoneInputType;
+
+  factory CopyWith$Input$PhoneInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$PhoneInputType;
+
+  TRes call({
+    String? countryCode,
+    String? number,
+    String? completed,
+  });
+}
+
+class _CopyWithImpl$Input$PhoneInputType<TRes>
+    implements CopyWith$Input$PhoneInputType<TRes> {
+  _CopyWithImpl$Input$PhoneInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$PhoneInputType _instance;
+
+  final TRes Function(Input$PhoneInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? countryCode = _undefined,
+    Object? number = _undefined,
+    Object? completed = _undefined,
+  }) =>
+      _then(Input$PhoneInputType._({
+        ..._instance._$data,
+        if (countryCode != _undefined && countryCode != null)
+          'countryCode': (countryCode as String),
+        if (number != _undefined && number != null)
+          'number': (number as String),
+        if (completed != _undefined) 'completed': (completed as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$PhoneInputType<TRes>
+    implements CopyWith$Input$PhoneInputType<TRes> {
+  _CopyWithStubImpl$Input$PhoneInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? countryCode,
+    String? number,
+    String? completed,
+  }) =>
+      _res;
+}
+
+class Input$ProfilePictureInputType {
+  factory Input$ProfilePictureInputType({
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+  }) =>
+      Input$ProfilePictureInputType._({
+        if (profilePictureUrl != null) r'profilePictureUrl': profilePictureUrl,
+        if (thumbnailUrl != null) r'thumbnailUrl': thumbnailUrl,
+      });
+
+  Input$ProfilePictureInputType._(this._$data);
+
+  factory Input$ProfilePictureInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('profilePictureUrl')) {
+      final l$profilePictureUrl = data['profilePictureUrl'];
+      result$data['profilePictureUrl'] = (l$profilePictureUrl as String?);
+    }
+    if (data.containsKey('thumbnailUrl')) {
+      final l$thumbnailUrl = data['thumbnailUrl'];
+      result$data['thumbnailUrl'] = (l$thumbnailUrl as String?);
+    }
+    return Input$ProfilePictureInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get profilePictureUrl => (_$data['profilePictureUrl'] as String?);
+
+  String? get thumbnailUrl => (_$data['thumbnailUrl'] as String?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('profilePictureUrl')) {
+      final l$profilePictureUrl = profilePictureUrl;
+      result$data['profilePictureUrl'] = l$profilePictureUrl;
+    }
+    if (_$data.containsKey('thumbnailUrl')) {
+      final l$thumbnailUrl = thumbnailUrl;
+      result$data['thumbnailUrl'] = l$thumbnailUrl;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$ProfilePictureInputType<Input$ProfilePictureInputType>
+      get copyWith => CopyWith$Input$ProfilePictureInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ProfilePictureInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (_$data.containsKey('profilePictureUrl') !=
+        other._$data.containsKey('profilePictureUrl')) {
+      return false;
+    }
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (_$data.containsKey('thumbnailUrl') !=
+        other._$data.containsKey('thumbnailUrl')) {
+      return false;
+    }
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    return Object.hashAll([
+      _$data.containsKey('profilePictureUrl') ? l$profilePictureUrl : const {},
+      _$data.containsKey('thumbnailUrl') ? l$thumbnailUrl : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ProfilePictureInputType<TRes> {
+  factory CopyWith$Input$ProfilePictureInputType(
+    Input$ProfilePictureInputType instance,
+    TRes Function(Input$ProfilePictureInputType) then,
+  ) = _CopyWithImpl$Input$ProfilePictureInputType;
+
+  factory CopyWith$Input$ProfilePictureInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$ProfilePictureInputType;
+
+  TRes call({
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+  });
+}
+
+class _CopyWithImpl$Input$ProfilePictureInputType<TRes>
+    implements CopyWith$Input$ProfilePictureInputType<TRes> {
+  _CopyWithImpl$Input$ProfilePictureInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ProfilePictureInputType _instance;
+
+  final TRes Function(Input$ProfilePictureInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
+  }) =>
+      _then(Input$ProfilePictureInputType._({
+        ..._instance._$data,
+        if (profilePictureUrl != _undefined)
+          'profilePictureUrl': (profilePictureUrl as String?),
+        if (thumbnailUrl != _undefined)
+          'thumbnailUrl': (thumbnailUrl as String?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ProfilePictureInputType<TRes>
+    implements CopyWith$Input$ProfilePictureInputType<TRes> {
+  _CopyWithStubImpl$Input$ProfilePictureInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? profilePictureUrl,
+    String? thumbnailUrl,
+  }) =>
+      _res;
+}
+
 enum Enum$AccountsUserGenderChoices {
   MALE,
   FEMALE,
@@ -1085,352 +1230,6 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
       return Enum$AccountsUserGenderChoices.ANY;
     default:
       return Enum$AccountsUserGenderChoices.$unknown;
-  }
-}
-
-enum Enum$ChatsMessageAttachmentTypeChoices {
-  PICTURE,
-  VIDEO,
-  AUDIO,
-  ZIP,
-  $unknown;
-
-  factory Enum$ChatsMessageAttachmentTypeChoices.fromJson(String value) =>
-      fromJson$Enum$ChatsMessageAttachmentTypeChoices(value);
-
-  String toJson() => toJson$Enum$ChatsMessageAttachmentTypeChoices(this);
-}
-
-String toJson$Enum$ChatsMessageAttachmentTypeChoices(
-    Enum$ChatsMessageAttachmentTypeChoices e) {
-  switch (e) {
-    case Enum$ChatsMessageAttachmentTypeChoices.PICTURE:
-      return r'PICTURE';
-    case Enum$ChatsMessageAttachmentTypeChoices.VIDEO:
-      return r'VIDEO';
-    case Enum$ChatsMessageAttachmentTypeChoices.AUDIO:
-      return r'AUDIO';
-    case Enum$ChatsMessageAttachmentTypeChoices.ZIP:
-      return r'ZIP';
-    case Enum$ChatsMessageAttachmentTypeChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ChatsMessageAttachmentTypeChoices
-    fromJson$Enum$ChatsMessageAttachmentTypeChoices(String value) {
-  switch (value) {
-    case r'PICTURE':
-      return Enum$ChatsMessageAttachmentTypeChoices.PICTURE;
-    case r'VIDEO':
-      return Enum$ChatsMessageAttachmentTypeChoices.VIDEO;
-    case r'AUDIO':
-      return Enum$ChatsMessageAttachmentTypeChoices.AUDIO;
-    case r'ZIP':
-      return Enum$ChatsMessageAttachmentTypeChoices.ZIP;
-    default:
-      return Enum$ChatsMessageAttachmentTypeChoices.$unknown;
-  }
-}
-
-enum Enum$FileTypeEnum {
-  PRODUCT,
-  PROFILE_PICTURE,
-  $unknown;
-
-  factory Enum$FileTypeEnum.fromJson(String value) =>
-      fromJson$Enum$FileTypeEnum(value);
-
-  String toJson() => toJson$Enum$FileTypeEnum(this);
-}
-
-String toJson$Enum$FileTypeEnum(Enum$FileTypeEnum e) {
-  switch (e) {
-    case Enum$FileTypeEnum.PRODUCT:
-      return r'PRODUCT';
-    case Enum$FileTypeEnum.PROFILE_PICTURE:
-      return r'PROFILE_PICTURE';
-    case Enum$FileTypeEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
-  switch (value) {
-    case r'PRODUCT':
-      return Enum$FileTypeEnum.PRODUCT;
-    case r'PROFILE_PICTURE':
-      return Enum$FileTypeEnum.PROFILE_PICTURE;
-    default:
-      return Enum$FileTypeEnum.$unknown;
-  }
-}
-
-enum Enum$ParcelSizeEnum {
-  SMALL,
-  MEDIUM,
-  LARGE,
-  $unknown;
-
-  factory Enum$ParcelSizeEnum.fromJson(String value) =>
-      fromJson$Enum$ParcelSizeEnum(value);
-
-  String toJson() => toJson$Enum$ParcelSizeEnum(this);
-}
-
-String toJson$Enum$ParcelSizeEnum(Enum$ParcelSizeEnum e) {
-  switch (e) {
-    case Enum$ParcelSizeEnum.SMALL:
-      return r'SMALL';
-    case Enum$ParcelSizeEnum.MEDIUM:
-      return r'MEDIUM';
-    case Enum$ParcelSizeEnum.LARGE:
-      return r'LARGE';
-    case Enum$ParcelSizeEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ParcelSizeEnum fromJson$Enum$ParcelSizeEnum(String value) {
-  switch (value) {
-    case r'SMALL':
-      return Enum$ParcelSizeEnum.SMALL;
-    case r'MEDIUM':
-      return Enum$ParcelSizeEnum.MEDIUM;
-    case r'LARGE':
-      return Enum$ParcelSizeEnum.LARGE;
-    default:
-      return Enum$ParcelSizeEnum.$unknown;
-  }
-}
-
-enum Enum$PaymentsPaymentPaymentMethodChoices {
-  BANK_TRANSFER,
-  CARD,
-  STRIPE,
-  $unknown;
-
-  factory Enum$PaymentsPaymentPaymentMethodChoices.fromJson(String value) =>
-      fromJson$Enum$PaymentsPaymentPaymentMethodChoices(value);
-
-  String toJson() => toJson$Enum$PaymentsPaymentPaymentMethodChoices(this);
-}
-
-String toJson$Enum$PaymentsPaymentPaymentMethodChoices(
-    Enum$PaymentsPaymentPaymentMethodChoices e) {
-  switch (e) {
-    case Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER:
-      return r'BANK_TRANSFER';
-    case Enum$PaymentsPaymentPaymentMethodChoices.CARD:
-      return r'CARD';
-    case Enum$PaymentsPaymentPaymentMethodChoices.STRIPE:
-      return r'STRIPE';
-    case Enum$PaymentsPaymentPaymentMethodChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$PaymentsPaymentPaymentMethodChoices
-    fromJson$Enum$PaymentsPaymentPaymentMethodChoices(String value) {
-  switch (value) {
-    case r'BANK_TRANSFER':
-      return Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER;
-    case r'CARD':
-      return Enum$PaymentsPaymentPaymentMethodChoices.CARD;
-    case r'STRIPE':
-      return Enum$PaymentsPaymentPaymentMethodChoices.STRIPE;
-    default:
-      return Enum$PaymentsPaymentPaymentMethodChoices.$unknown;
-  }
-}
-
-enum Enum$PaymentsPaymentPaymentStatusChoices {
-  PENDING,
-  SUCCESSFUL,
-  REFUNDED,
-  FAILED,
-  CANCELLED,
-  $unknown;
-
-  factory Enum$PaymentsPaymentPaymentStatusChoices.fromJson(String value) =>
-      fromJson$Enum$PaymentsPaymentPaymentStatusChoices(value);
-
-  String toJson() => toJson$Enum$PaymentsPaymentPaymentStatusChoices(this);
-}
-
-String toJson$Enum$PaymentsPaymentPaymentStatusChoices(
-    Enum$PaymentsPaymentPaymentStatusChoices e) {
-  switch (e) {
-    case Enum$PaymentsPaymentPaymentStatusChoices.PENDING:
-      return r'PENDING';
-    case Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL:
-      return r'SUCCESSFUL';
-    case Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED:
-      return r'REFUNDED';
-    case Enum$PaymentsPaymentPaymentStatusChoices.FAILED:
-      return r'FAILED';
-    case Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED:
-      return r'CANCELLED';
-    case Enum$PaymentsPaymentPaymentStatusChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$PaymentsPaymentPaymentStatusChoices
-    fromJson$Enum$PaymentsPaymentPaymentStatusChoices(String value) {
-  switch (value) {
-    case r'PENDING':
-      return Enum$PaymentsPaymentPaymentStatusChoices.PENDING;
-    case r'SUCCESSFUL':
-      return Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL;
-    case r'REFUNDED':
-      return Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED;
-    case r'FAILED':
-      return Enum$PaymentsPaymentPaymentStatusChoices.FAILED;
-    case r'CANCELLED':
-      return Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED;
-    default:
-      return Enum$PaymentsPaymentPaymentStatusChoices.$unknown;
-  }
-}
-
-enum Enum$ProductsOrderStatusChoices {
-  PENDING,
-  CONFIRMED,
-  SHIPPED,
-  DELIVERED,
-  CANCELLED,
-  REFUNDED,
-  $unknown;
-
-  factory Enum$ProductsOrderStatusChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsOrderStatusChoices(value);
-
-  String toJson() => toJson$Enum$ProductsOrderStatusChoices(this);
-}
-
-String toJson$Enum$ProductsOrderStatusChoices(
-    Enum$ProductsOrderStatusChoices e) {
-  switch (e) {
-    case Enum$ProductsOrderStatusChoices.PENDING:
-      return r'PENDING';
-    case Enum$ProductsOrderStatusChoices.CONFIRMED:
-      return r'CONFIRMED';
-    case Enum$ProductsOrderStatusChoices.SHIPPED:
-      return r'SHIPPED';
-    case Enum$ProductsOrderStatusChoices.DELIVERED:
-      return r'DELIVERED';
-    case Enum$ProductsOrderStatusChoices.CANCELLED:
-      return r'CANCELLED';
-    case Enum$ProductsOrderStatusChoices.REFUNDED:
-      return r'REFUNDED';
-    case Enum$ProductsOrderStatusChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsOrderStatusChoices fromJson$Enum$ProductsOrderStatusChoices(
-    String value) {
-  switch (value) {
-    case r'PENDING':
-      return Enum$ProductsOrderStatusChoices.PENDING;
-    case r'CONFIRMED':
-      return Enum$ProductsOrderStatusChoices.CONFIRMED;
-    case r'SHIPPED':
-      return Enum$ProductsOrderStatusChoices.SHIPPED;
-    case r'DELIVERED':
-      return Enum$ProductsOrderStatusChoices.DELIVERED;
-    case r'CANCELLED':
-      return Enum$ProductsOrderStatusChoices.CANCELLED;
-    case r'REFUNDED':
-      return Enum$ProductsOrderStatusChoices.REFUNDED;
-    default:
-      return Enum$ProductsOrderStatusChoices.$unknown;
-  }
-}
-
-enum Enum$ProductsProductConditionChoices {
-  NEW_WITH_TAGS,
-  LIKE_NEW,
-  USED,
-  HEAVILY_USED,
-  $unknown;
-
-  factory Enum$ProductsProductConditionChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductConditionChoices(value);
-
-  String toJson() => toJson$Enum$ProductsProductConditionChoices(this);
-}
-
-String toJson$Enum$ProductsProductConditionChoices(
-    Enum$ProductsProductConditionChoices e) {
-  switch (e) {
-    case Enum$ProductsProductConditionChoices.NEW_WITH_TAGS:
-      return r'NEW_WITH_TAGS';
-    case Enum$ProductsProductConditionChoices.LIKE_NEW:
-      return r'LIKE_NEW';
-    case Enum$ProductsProductConditionChoices.USED:
-      return r'USED';
-    case Enum$ProductsProductConditionChoices.HEAVILY_USED:
-      return r'HEAVILY_USED';
-    case Enum$ProductsProductConditionChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsProductConditionChoices
-    fromJson$Enum$ProductsProductConditionChoices(String value) {
-  switch (value) {
-    case r'NEW_WITH_TAGS':
-      return Enum$ProductsProductConditionChoices.NEW_WITH_TAGS;
-    case r'LIKE_NEW':
-      return Enum$ProductsProductConditionChoices.LIKE_NEW;
-    case r'USED':
-      return Enum$ProductsProductConditionChoices.USED;
-    case r'HEAVILY_USED':
-      return Enum$ProductsProductConditionChoices.HEAVILY_USED;
-    default:
-      return Enum$ProductsProductConditionChoices.$unknown;
-  }
-}
-
-enum Enum$ProductsProductParcelSizeChoices {
-  SMALL,
-  MEDIUM,
-  LARGE,
-  $unknown;
-
-  factory Enum$ProductsProductParcelSizeChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductParcelSizeChoices(value);
-
-  String toJson() => toJson$Enum$ProductsProductParcelSizeChoices(this);
-}
-
-String toJson$Enum$ProductsProductParcelSizeChoices(
-    Enum$ProductsProductParcelSizeChoices e) {
-  switch (e) {
-    case Enum$ProductsProductParcelSizeChoices.SMALL:
-      return r'SMALL';
-    case Enum$ProductsProductParcelSizeChoices.MEDIUM:
-      return r'MEDIUM';
-    case Enum$ProductsProductParcelSizeChoices.LARGE:
-      return r'LARGE';
-    case Enum$ProductsProductParcelSizeChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsProductParcelSizeChoices
-    fromJson$Enum$ProductsProductParcelSizeChoices(String value) {
-  switch (value) {
-    case r'SMALL':
-      return Enum$ProductsProductParcelSizeChoices.SMALL;
-    case r'MEDIUM':
-      return Enum$ProductsProductParcelSizeChoices.MEDIUM;
-    case r'LARGE':
-      return Enum$ProductsProductParcelSizeChoices.LARGE;
-    default:
-      return Enum$ProductsProductParcelSizeChoices.$unknown;
   }
 }
 
@@ -1599,46 +1398,6 @@ Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
   }
 }
 
-enum Enum$ProductsProductStatusChoices {
-  ACTIVE,
-  INACTIVE,
-  SOLD,
-  $unknown;
-
-  factory Enum$ProductsProductStatusChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductStatusChoices(value);
-
-  String toJson() => toJson$Enum$ProductsProductStatusChoices(this);
-}
-
-String toJson$Enum$ProductsProductStatusChoices(
-    Enum$ProductsProductStatusChoices e) {
-  switch (e) {
-    case Enum$ProductsProductStatusChoices.ACTIVE:
-      return r'ACTIVE';
-    case Enum$ProductsProductStatusChoices.INACTIVE:
-      return r'INACTIVE';
-    case Enum$ProductsProductStatusChoices.SOLD:
-      return r'SOLD';
-    case Enum$ProductsProductStatusChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
-    String value) {
-  switch (value) {
-    case r'ACTIVE':
-      return Enum$ProductsProductStatusChoices.ACTIVE;
-    case r'INACTIVE':
-      return Enum$ProductsProductStatusChoices.INACTIVE;
-    case r'SOLD':
-      return Enum$ProductsProductStatusChoices.SOLD;
-    default:
-      return Enum$ProductsProductStatusChoices.$unknown;
-  }
-}
-
 enum Enum$ProductsProductStyleChoices {
   WORKWEAR,
   WORKOUT,
@@ -1691,7 +1450,7 @@ enum Enum$ProductsProductStyleChoices {
   OVERSIZED,
   SLIM_FIT,
   RELAXED_FIT,
-  CHRISTMAS_AND_VINTAGE,
+  CHRISTMAS,
   $unknown;
 
   factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
@@ -1805,8 +1564,8 @@ String toJson$Enum$ProductsProductStyleChoices(
       return r'SLIM_FIT';
     case Enum$ProductsProductStyleChoices.RELAXED_FIT:
       return r'RELAXED_FIT';
-    case Enum$ProductsProductStyleChoices.CHRISTMAS_AND_VINTAGE:
-      return r'CHRISTMAS_AND_VINTAGE';
+    case Enum$ProductsProductStyleChoices.CHRISTMAS:
+      return r'CHRISTMAS';
     case Enum$ProductsProductStyleChoices.$unknown:
       return r'$unknown';
   }
@@ -1917,10 +1676,325 @@ Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
       return Enum$ProductsProductStyleChoices.SLIM_FIT;
     case r'RELAXED_FIT':
       return Enum$ProductsProductStyleChoices.RELAXED_FIT;
-    case r'CHRISTMAS_AND_VINTAGE':
-      return Enum$ProductsProductStyleChoices.CHRISTMAS_AND_VINTAGE;
+    case r'CHRISTMAS':
+      return Enum$ProductsProductStyleChoices.CHRISTMAS;
     default:
       return Enum$ProductsProductStyleChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsProductParcelSizeChoices {
+  SMALL,
+  MEDIUM,
+  LARGE,
+  $unknown;
+
+  factory Enum$ProductsProductParcelSizeChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductParcelSizeChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductParcelSizeChoices(this);
+}
+
+String toJson$Enum$ProductsProductParcelSizeChoices(
+    Enum$ProductsProductParcelSizeChoices e) {
+  switch (e) {
+    case Enum$ProductsProductParcelSizeChoices.SMALL:
+      return r'SMALL';
+    case Enum$ProductsProductParcelSizeChoices.MEDIUM:
+      return r'MEDIUM';
+    case Enum$ProductsProductParcelSizeChoices.LARGE:
+      return r'LARGE';
+    case Enum$ProductsProductParcelSizeChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductParcelSizeChoices
+    fromJson$Enum$ProductsProductParcelSizeChoices(String value) {
+  switch (value) {
+    case r'SMALL':
+      return Enum$ProductsProductParcelSizeChoices.SMALL;
+    case r'MEDIUM':
+      return Enum$ProductsProductParcelSizeChoices.MEDIUM;
+    case r'LARGE':
+      return Enum$ProductsProductParcelSizeChoices.LARGE;
+    default:
+      return Enum$ProductsProductParcelSizeChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsProductConditionChoices {
+  NEW_WITH_TAGS,
+  LIKE_NEW,
+  USED,
+  HEAVILY_USED,
+  $unknown;
+
+  factory Enum$ProductsProductConditionChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductConditionChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductConditionChoices(this);
+}
+
+String toJson$Enum$ProductsProductConditionChoices(
+    Enum$ProductsProductConditionChoices e) {
+  switch (e) {
+    case Enum$ProductsProductConditionChoices.NEW_WITH_TAGS:
+      return r'NEW_WITH_TAGS';
+    case Enum$ProductsProductConditionChoices.LIKE_NEW:
+      return r'LIKE_NEW';
+    case Enum$ProductsProductConditionChoices.USED:
+      return r'USED';
+    case Enum$ProductsProductConditionChoices.HEAVILY_USED:
+      return r'HEAVILY_USED';
+    case Enum$ProductsProductConditionChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductConditionChoices
+    fromJson$Enum$ProductsProductConditionChoices(String value) {
+  switch (value) {
+    case r'NEW_WITH_TAGS':
+      return Enum$ProductsProductConditionChoices.NEW_WITH_TAGS;
+    case r'LIKE_NEW':
+      return Enum$ProductsProductConditionChoices.LIKE_NEW;
+    case r'USED':
+      return Enum$ProductsProductConditionChoices.USED;
+    case r'HEAVILY_USED':
+      return Enum$ProductsProductConditionChoices.HEAVILY_USED;
+    default:
+      return Enum$ProductsProductConditionChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsProductStatusChoices {
+  ACTIVE,
+  INACTIVE,
+  SOLD,
+  $unknown;
+
+  factory Enum$ProductsProductStatusChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsProductStatusChoices(value);
+
+  String toJson() => toJson$Enum$ProductsProductStatusChoices(this);
+}
+
+String toJson$Enum$ProductsProductStatusChoices(
+    Enum$ProductsProductStatusChoices e) {
+  switch (e) {
+    case Enum$ProductsProductStatusChoices.ACTIVE:
+      return r'ACTIVE';
+    case Enum$ProductsProductStatusChoices.INACTIVE:
+      return r'INACTIVE';
+    case Enum$ProductsProductStatusChoices.SOLD:
+      return r'SOLD';
+    case Enum$ProductsProductStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
+    String value) {
+  switch (value) {
+    case r'ACTIVE':
+      return Enum$ProductsProductStatusChoices.ACTIVE;
+    case r'INACTIVE':
+      return Enum$ProductsProductStatusChoices.INACTIVE;
+    case r'SOLD':
+      return Enum$ProductsProductStatusChoices.SOLD;
+    default:
+      return Enum$ProductsProductStatusChoices.$unknown;
+  }
+}
+
+enum Enum$ChatsMessageAttachmentTypeChoices {
+  PICTURE,
+  VIDEO,
+  AUDIO,
+  ZIP,
+  $unknown;
+
+  factory Enum$ChatsMessageAttachmentTypeChoices.fromJson(String value) =>
+      fromJson$Enum$ChatsMessageAttachmentTypeChoices(value);
+
+  String toJson() => toJson$Enum$ChatsMessageAttachmentTypeChoices(this);
+}
+
+String toJson$Enum$ChatsMessageAttachmentTypeChoices(
+    Enum$ChatsMessageAttachmentTypeChoices e) {
+  switch (e) {
+    case Enum$ChatsMessageAttachmentTypeChoices.PICTURE:
+      return r'PICTURE';
+    case Enum$ChatsMessageAttachmentTypeChoices.VIDEO:
+      return r'VIDEO';
+    case Enum$ChatsMessageAttachmentTypeChoices.AUDIO:
+      return r'AUDIO';
+    case Enum$ChatsMessageAttachmentTypeChoices.ZIP:
+      return r'ZIP';
+    case Enum$ChatsMessageAttachmentTypeChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ChatsMessageAttachmentTypeChoices
+    fromJson$Enum$ChatsMessageAttachmentTypeChoices(String value) {
+  switch (value) {
+    case r'PICTURE':
+      return Enum$ChatsMessageAttachmentTypeChoices.PICTURE;
+    case r'VIDEO':
+      return Enum$ChatsMessageAttachmentTypeChoices.VIDEO;
+    case r'AUDIO':
+      return Enum$ChatsMessageAttachmentTypeChoices.AUDIO;
+    case r'ZIP':
+      return Enum$ChatsMessageAttachmentTypeChoices.ZIP;
+    default:
+      return Enum$ChatsMessageAttachmentTypeChoices.$unknown;
+  }
+}
+
+enum Enum$ProductsOrderStatusChoices {
+  PENDING,
+  CONFIRMED,
+  SHIPPED,
+  DELIVERED,
+  CANCELLED,
+  REFUNDED,
+  $unknown;
+
+  factory Enum$ProductsOrderStatusChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsOrderStatusChoices(value);
+
+  String toJson() => toJson$Enum$ProductsOrderStatusChoices(this);
+}
+
+String toJson$Enum$ProductsOrderStatusChoices(
+    Enum$ProductsOrderStatusChoices e) {
+  switch (e) {
+    case Enum$ProductsOrderStatusChoices.PENDING:
+      return r'PENDING';
+    case Enum$ProductsOrderStatusChoices.CONFIRMED:
+      return r'CONFIRMED';
+    case Enum$ProductsOrderStatusChoices.SHIPPED:
+      return r'SHIPPED';
+    case Enum$ProductsOrderStatusChoices.DELIVERED:
+      return r'DELIVERED';
+    case Enum$ProductsOrderStatusChoices.CANCELLED:
+      return r'CANCELLED';
+    case Enum$ProductsOrderStatusChoices.REFUNDED:
+      return r'REFUNDED';
+    case Enum$ProductsOrderStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsOrderStatusChoices fromJson$Enum$ProductsOrderStatusChoices(
+    String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$ProductsOrderStatusChoices.PENDING;
+    case r'CONFIRMED':
+      return Enum$ProductsOrderStatusChoices.CONFIRMED;
+    case r'SHIPPED':
+      return Enum$ProductsOrderStatusChoices.SHIPPED;
+    case r'DELIVERED':
+      return Enum$ProductsOrderStatusChoices.DELIVERED;
+    case r'CANCELLED':
+      return Enum$ProductsOrderStatusChoices.CANCELLED;
+    case r'REFUNDED':
+      return Enum$ProductsOrderStatusChoices.REFUNDED;
+    default:
+      return Enum$ProductsOrderStatusChoices.$unknown;
+  }
+}
+
+enum Enum$PaymentsPaymentPaymentMethodChoices {
+  BANK_TRANSFER,
+  CARD,
+  STRIPE,
+  $unknown;
+
+  factory Enum$PaymentsPaymentPaymentMethodChoices.fromJson(String value) =>
+      fromJson$Enum$PaymentsPaymentPaymentMethodChoices(value);
+
+  String toJson() => toJson$Enum$PaymentsPaymentPaymentMethodChoices(this);
+}
+
+String toJson$Enum$PaymentsPaymentPaymentMethodChoices(
+    Enum$PaymentsPaymentPaymentMethodChoices e) {
+  switch (e) {
+    case Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER:
+      return r'BANK_TRANSFER';
+    case Enum$PaymentsPaymentPaymentMethodChoices.CARD:
+      return r'CARD';
+    case Enum$PaymentsPaymentPaymentMethodChoices.STRIPE:
+      return r'STRIPE';
+    case Enum$PaymentsPaymentPaymentMethodChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$PaymentsPaymentPaymentMethodChoices
+    fromJson$Enum$PaymentsPaymentPaymentMethodChoices(String value) {
+  switch (value) {
+    case r'BANK_TRANSFER':
+      return Enum$PaymentsPaymentPaymentMethodChoices.BANK_TRANSFER;
+    case r'CARD':
+      return Enum$PaymentsPaymentPaymentMethodChoices.CARD;
+    case r'STRIPE':
+      return Enum$PaymentsPaymentPaymentMethodChoices.STRIPE;
+    default:
+      return Enum$PaymentsPaymentPaymentMethodChoices.$unknown;
+  }
+}
+
+enum Enum$PaymentsPaymentPaymentStatusChoices {
+  PENDING,
+  SUCCESSFUL,
+  REFUNDED,
+  FAILED,
+  CANCELLED,
+  $unknown;
+
+  factory Enum$PaymentsPaymentPaymentStatusChoices.fromJson(String value) =>
+      fromJson$Enum$PaymentsPaymentPaymentStatusChoices(value);
+
+  String toJson() => toJson$Enum$PaymentsPaymentPaymentStatusChoices(this);
+}
+
+String toJson$Enum$PaymentsPaymentPaymentStatusChoices(
+    Enum$PaymentsPaymentPaymentStatusChoices e) {
+  switch (e) {
+    case Enum$PaymentsPaymentPaymentStatusChoices.PENDING:
+      return r'PENDING';
+    case Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL:
+      return r'SUCCESSFUL';
+    case Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED:
+      return r'REFUNDED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.FAILED:
+      return r'FAILED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED:
+      return r'CANCELLED';
+    case Enum$PaymentsPaymentPaymentStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$PaymentsPaymentPaymentStatusChoices
+    fromJson$Enum$PaymentsPaymentPaymentStatusChoices(String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$PaymentsPaymentPaymentStatusChoices.PENDING;
+    case r'SUCCESSFUL':
+      return Enum$PaymentsPaymentPaymentStatusChoices.SUCCESSFUL;
+    case r'REFUNDED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.REFUNDED;
+    case r'FAILED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.FAILED;
+    case r'CANCELLED':
+      return Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED;
+    default:
+      return Enum$PaymentsPaymentPaymentStatusChoices.$unknown;
   }
 }
 
@@ -1959,69 +2033,6 @@ Enum$ProductStatusEnum fromJson$Enum$ProductStatusEnum(String value) {
       return Enum$ProductStatusEnum.SOLD;
     default:
       return Enum$ProductStatusEnum.$unknown;
-  }
-}
-
-enum Enum$SeasonEnum {
-  CHRISTMAS,
-  HALLOWEEN,
-  SUMMER,
-  WINTER,
-  SPRING,
-  AUTUMN,
-  BLACK_FRIDAY,
-  EASTER,
-  $unknown;
-
-  factory Enum$SeasonEnum.fromJson(String value) =>
-      fromJson$Enum$SeasonEnum(value);
-
-  String toJson() => toJson$Enum$SeasonEnum(this);
-}
-
-String toJson$Enum$SeasonEnum(Enum$SeasonEnum e) {
-  switch (e) {
-    case Enum$SeasonEnum.CHRISTMAS:
-      return r'CHRISTMAS';
-    case Enum$SeasonEnum.HALLOWEEN:
-      return r'HALLOWEEN';
-    case Enum$SeasonEnum.SUMMER:
-      return r'SUMMER';
-    case Enum$SeasonEnum.WINTER:
-      return r'WINTER';
-    case Enum$SeasonEnum.SPRING:
-      return r'SPRING';
-    case Enum$SeasonEnum.AUTUMN:
-      return r'AUTUMN';
-    case Enum$SeasonEnum.BLACK_FRIDAY:
-      return r'BLACK_FRIDAY';
-    case Enum$SeasonEnum.EASTER:
-      return r'EASTER';
-    case Enum$SeasonEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$SeasonEnum fromJson$Enum$SeasonEnum(String value) {
-  switch (value) {
-    case r'CHRISTMAS':
-      return Enum$SeasonEnum.CHRISTMAS;
-    case r'HALLOWEEN':
-      return Enum$SeasonEnum.HALLOWEEN;
-    case r'SUMMER':
-      return Enum$SeasonEnum.SUMMER;
-    case r'WINTER':
-      return Enum$SeasonEnum.WINTER;
-    case r'SPRING':
-      return Enum$SeasonEnum.SPRING;
-    case r'AUTUMN':
-      return Enum$SeasonEnum.AUTUMN;
-    case r'BLACK_FRIDAY':
-      return Enum$SeasonEnum.BLACK_FRIDAY;
-    case r'EASTER':
-      return Enum$SeasonEnum.EASTER;
-    default:
-      return Enum$SeasonEnum.$unknown;
   }
 }
 
@@ -2239,7 +2250,7 @@ enum Enum$StyleEnum {
   OVERSIZED,
   SLIM_FIT,
   RELAXED_FIT,
-  CHRISTMAS_AND_VINTAGE,
+  CHRISTMAS,
   $unknown;
 
   factory Enum$StyleEnum.fromJson(String value) =>
@@ -2352,8 +2363,8 @@ String toJson$Enum$StyleEnum(Enum$StyleEnum e) {
       return r'SLIM_FIT';
     case Enum$StyleEnum.RELAXED_FIT:
       return r'RELAXED_FIT';
-    case Enum$StyleEnum.CHRISTMAS_AND_VINTAGE:
-      return r'CHRISTMAS_AND_VINTAGE';
+    case Enum$StyleEnum.CHRISTMAS:
+      return r'CHRISTMAS';
     case Enum$StyleEnum.$unknown:
       return r'$unknown';
   }
@@ -2463,10 +2474,149 @@ Enum$StyleEnum fromJson$Enum$StyleEnum(String value) {
       return Enum$StyleEnum.SLIM_FIT;
     case r'RELAXED_FIT':
       return Enum$StyleEnum.RELAXED_FIT;
-    case r'CHRISTMAS_AND_VINTAGE':
-      return Enum$StyleEnum.CHRISTMAS_AND_VINTAGE;
+    case r'CHRISTMAS':
+      return Enum$StyleEnum.CHRISTMAS;
     default:
       return Enum$StyleEnum.$unknown;
+  }
+}
+
+enum Enum$FileTypeEnum {
+  BANNER,
+  PRODUCT,
+  PROFILE_PICTURE,
+  $unknown;
+
+  factory Enum$FileTypeEnum.fromJson(String value) =>
+      fromJson$Enum$FileTypeEnum(value);
+
+  String toJson() => toJson$Enum$FileTypeEnum(this);
+}
+
+String toJson$Enum$FileTypeEnum(Enum$FileTypeEnum e) {
+  switch (e) {
+    case Enum$FileTypeEnum.BANNER:
+      return r'BANNER';
+    case Enum$FileTypeEnum.PRODUCT:
+      return r'PRODUCT';
+    case Enum$FileTypeEnum.PROFILE_PICTURE:
+      return r'PROFILE_PICTURE';
+    case Enum$FileTypeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
+  switch (value) {
+    case r'BANNER':
+      return Enum$FileTypeEnum.BANNER;
+    case r'PRODUCT':
+      return Enum$FileTypeEnum.PRODUCT;
+    case r'PROFILE_PICTURE':
+      return Enum$FileTypeEnum.PROFILE_PICTURE;
+    default:
+      return Enum$FileTypeEnum.$unknown;
+  }
+}
+
+enum Enum$SeasonEnum {
+  CHRISTMAS,
+  HALLOWEEN,
+  SUMMER,
+  WINTER,
+  SPRING,
+  AUTUMN,
+  BLACK_FRIDAY,
+  EASTER,
+  $unknown;
+
+  factory Enum$SeasonEnum.fromJson(String value) =>
+      fromJson$Enum$SeasonEnum(value);
+
+  String toJson() => toJson$Enum$SeasonEnum(this);
+}
+
+String toJson$Enum$SeasonEnum(Enum$SeasonEnum e) {
+  switch (e) {
+    case Enum$SeasonEnum.CHRISTMAS:
+      return r'CHRISTMAS';
+    case Enum$SeasonEnum.HALLOWEEN:
+      return r'HALLOWEEN';
+    case Enum$SeasonEnum.SUMMER:
+      return r'SUMMER';
+    case Enum$SeasonEnum.WINTER:
+      return r'WINTER';
+    case Enum$SeasonEnum.SPRING:
+      return r'SPRING';
+    case Enum$SeasonEnum.AUTUMN:
+      return r'AUTUMN';
+    case Enum$SeasonEnum.BLACK_FRIDAY:
+      return r'BLACK_FRIDAY';
+    case Enum$SeasonEnum.EASTER:
+      return r'EASTER';
+    case Enum$SeasonEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SeasonEnum fromJson$Enum$SeasonEnum(String value) {
+  switch (value) {
+    case r'CHRISTMAS':
+      return Enum$SeasonEnum.CHRISTMAS;
+    case r'HALLOWEEN':
+      return Enum$SeasonEnum.HALLOWEEN;
+    case r'SUMMER':
+      return Enum$SeasonEnum.SUMMER;
+    case r'WINTER':
+      return Enum$SeasonEnum.WINTER;
+    case r'SPRING':
+      return Enum$SeasonEnum.SPRING;
+    case r'AUTUMN':
+      return Enum$SeasonEnum.AUTUMN;
+    case r'BLACK_FRIDAY':
+      return Enum$SeasonEnum.BLACK_FRIDAY;
+    case r'EASTER':
+      return Enum$SeasonEnum.EASTER;
+    default:
+      return Enum$SeasonEnum.$unknown;
+  }
+}
+
+enum Enum$ParcelSizeEnum {
+  SMALL,
+  MEDIUM,
+  LARGE,
+  $unknown;
+
+  factory Enum$ParcelSizeEnum.fromJson(String value) =>
+      fromJson$Enum$ParcelSizeEnum(value);
+
+  String toJson() => toJson$Enum$ParcelSizeEnum(this);
+}
+
+String toJson$Enum$ParcelSizeEnum(Enum$ParcelSizeEnum e) {
+  switch (e) {
+    case Enum$ParcelSizeEnum.SMALL:
+      return r'SMALL';
+    case Enum$ParcelSizeEnum.MEDIUM:
+      return r'MEDIUM';
+    case Enum$ParcelSizeEnum.LARGE:
+      return r'LARGE';
+    case Enum$ParcelSizeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ParcelSizeEnum fromJson$Enum$ParcelSizeEnum(String value) {
+  switch (value) {
+    case r'SMALL':
+      return Enum$ParcelSizeEnum.SMALL;
+    case r'MEDIUM':
+      return Enum$ParcelSizeEnum.MEDIUM;
+    case r'LARGE':
+      return Enum$ParcelSizeEnum.LARGE;
+    default:
+      return Enum$ParcelSizeEnum.$unknown;
   }
 }
 

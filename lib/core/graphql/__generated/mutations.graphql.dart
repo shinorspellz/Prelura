@@ -5968,8 +5968,7 @@ class Variables$Mutation$UpdateProfile {
     String? otp,
     Input$PhoneInputType? phoneNumber,
     String? postCode,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
+    Input$ProfilePictureInputType? profilePicture,
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
@@ -5986,8 +5985,7 @@ class Variables$Mutation$UpdateProfile {
         if (otp != null) r'otp': otp,
         if (phoneNumber != null) r'phoneNumber': phoneNumber,
         if (postCode != null) r'postCode': postCode,
-        if (profilePictureUrl != null) r'profilePictureUrl': profilePictureUrl,
-        if (thumbnailUrl != null) r'thumbnailUrl': thumbnailUrl,
+        if (profilePicture != null) r'profilePicture': profilePicture,
         if (use2fa != null) r'use2fa': use2fa,
         if (username != null) r'username': username,
         if (location != null) r'location': location,
@@ -6042,13 +6040,12 @@ class Variables$Mutation$UpdateProfile {
       final l$postCode = data['postCode'];
       result$data['postCode'] = (l$postCode as String?);
     }
-    if (data.containsKey('profilePictureUrl')) {
-      final l$profilePictureUrl = data['profilePictureUrl'];
-      result$data['profilePictureUrl'] = (l$profilePictureUrl as String?);
-    }
-    if (data.containsKey('thumbnailUrl')) {
-      final l$thumbnailUrl = data['thumbnailUrl'];
-      result$data['thumbnailUrl'] = (l$thumbnailUrl as String?);
+    if (data.containsKey('profilePicture')) {
+      final l$profilePicture = data['profilePicture'];
+      result$data['profilePicture'] = l$profilePicture == null
+          ? null
+          : Input$ProfilePictureInputType.fromJson(
+              (l$profilePicture as Map<String, dynamic>));
     }
     if (data.containsKey('use2fa')) {
       final l$use2fa = data['use2fa'];
@@ -6095,9 +6092,8 @@ class Variables$Mutation$UpdateProfile {
 
   String? get postCode => (_$data['postCode'] as String?);
 
-  String? get profilePictureUrl => (_$data['profilePictureUrl'] as String?);
-
-  String? get thumbnailUrl => (_$data['thumbnailUrl'] as String?);
+  Input$ProfilePictureInputType? get profilePicture =>
+      (_$data['profilePicture'] as Input$ProfilePictureInputType?);
 
   bool? get use2fa => (_$data['use2fa'] as bool?);
 
@@ -6150,13 +6146,9 @@ class Variables$Mutation$UpdateProfile {
       final l$postCode = postCode;
       result$data['postCode'] = l$postCode;
     }
-    if (_$data.containsKey('profilePictureUrl')) {
-      final l$profilePictureUrl = profilePictureUrl;
-      result$data['profilePictureUrl'] = l$profilePictureUrl;
-    }
-    if (_$data.containsKey('thumbnailUrl')) {
-      final l$thumbnailUrl = thumbnailUrl;
-      result$data['thumbnailUrl'] = l$thumbnailUrl;
+    if (_$data.containsKey('profilePicture')) {
+      final l$profilePicture = profilePicture;
+      result$data['profilePicture'] = l$profilePicture?.toJson();
     }
     if (_$data.containsKey('use2fa')) {
       final l$use2fa = use2fa;
@@ -6277,22 +6269,13 @@ class Variables$Mutation$UpdateProfile {
     if (l$postCode != lOther$postCode) {
       return false;
     }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (_$data.containsKey('profilePictureUrl') !=
-        other._$data.containsKey('profilePictureUrl')) {
+    final l$profilePicture = profilePicture;
+    final lOther$profilePicture = other.profilePicture;
+    if (_$data.containsKey('profilePicture') !=
+        other._$data.containsKey('profilePicture')) {
       return false;
     }
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
-      return false;
-    }
-    final l$thumbnailUrl = thumbnailUrl;
-    final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (_$data.containsKey('thumbnailUrl') !=
-        other._$data.containsKey('thumbnailUrl')) {
-      return false;
-    }
-    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+    if (l$profilePicture != lOther$profilePicture) {
       return false;
     }
     final l$use2fa = use2fa;
@@ -6345,8 +6328,7 @@ class Variables$Mutation$UpdateProfile {
     final l$otp = otp;
     final l$phoneNumber = phoneNumber;
     final l$postCode = postCode;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$thumbnailUrl = thumbnailUrl;
+    final l$profilePicture = profilePicture;
     final l$use2fa = use2fa;
     final l$username = username;
     final l$location = location;
@@ -6362,8 +6344,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('otp') ? l$otp : const {},
       _$data.containsKey('phoneNumber') ? l$phoneNumber : const {},
       _$data.containsKey('postCode') ? l$postCode : const {},
-      _$data.containsKey('profilePictureUrl') ? l$profilePictureUrl : const {},
-      _$data.containsKey('thumbnailUrl') ? l$thumbnailUrl : const {},
+      _$data.containsKey('profilePicture') ? l$profilePicture : const {},
       _$data.containsKey('use2fa') ? l$use2fa : const {},
       _$data.containsKey('username') ? l$username : const {},
       _$data.containsKey('location') ? l$location : const {},
@@ -6392,8 +6373,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     String? otp,
     Input$PhoneInputType? phoneNumber,
     String? postCode,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
+    Input$ProfilePictureInputType? profilePicture,
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
@@ -6425,8 +6405,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? otp = _undefined,
     Object? phoneNumber = _undefined,
     Object? postCode = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? thumbnailUrl = _undefined,
+    Object? profilePicture = _undefined,
     Object? use2fa = _undefined,
     Object? username = _undefined,
     Object? location = _undefined,
@@ -6445,10 +6424,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (phoneNumber != _undefined)
           'phoneNumber': (phoneNumber as Input$PhoneInputType?),
         if (postCode != _undefined) 'postCode': (postCode as String?),
-        if (profilePictureUrl != _undefined)
-          'profilePictureUrl': (profilePictureUrl as String?),
-        if (thumbnailUrl != _undefined)
-          'thumbnailUrl': (thumbnailUrl as String?),
+        if (profilePicture != _undefined)
+          'profilePicture': (profilePicture as Input$ProfilePictureInputType?),
         if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
         if (username != _undefined) 'username': (username as String?),
         if (location != _undefined)
@@ -6474,8 +6451,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     String? otp,
     Input$PhoneInputType? phoneNumber,
     String? postCode,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
+    Input$ProfilePictureInputType? profilePicture,
     bool? use2fa,
     String? username,
     Input$LocationInputType? location,
@@ -6718,18 +6694,9 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'profilePictureUrl')),
+        variable: VariableNode(name: NameNode(value: 'profilePicture')),
         type: NamedTypeNode(
-          name: NameNode(value: 'String'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'thumbnailUrl')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'String'),
+          name: NameNode(value: 'ProfilePictureInputType'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -6819,12 +6786,8 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'postCode')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'profilePictureUrl'),
-            value: VariableNode(name: NameNode(value: 'profilePictureUrl')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'thumbnailUrl'),
-            value: VariableNode(name: NameNode(value: 'thumbnailUrl')),
+            name: NameNode(value: 'profilePicture'),
+            value: VariableNode(name: NameNode(value: 'profilePicture')),
           ),
           ArgumentNode(
             name: NameNode(value: 'use2fa'),
