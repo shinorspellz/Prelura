@@ -40,7 +40,7 @@ class PreluraAppBar extends StatelessWidget implements PreferredSizeWidget {
           leadingWidth: leadingWidth,
           elevation: elevation ?? 0,
           shadowColor: Colors.white,
-          toolbarHeight: appBarHeight ?? 55,
+          toolbarHeight: appBarHeight ?? 56,
           backgroundColor:
               backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
           title: titleWidget ??

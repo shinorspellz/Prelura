@@ -161,6 +161,7 @@ class _SearchwidgetState extends State<Searchwidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
       margin: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Expanded(
