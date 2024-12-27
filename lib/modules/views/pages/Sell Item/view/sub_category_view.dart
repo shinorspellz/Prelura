@@ -47,39 +47,41 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
         centerTitle: true,
         appbarTitle: widget.categoryName,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            10.verticalSpacing,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Searchwidget(
-                padding: EdgeInsets.zero,
-                obscureText: false,
-                shouldReadOnly: false,
-                hintText: "Search Sub Categories",
-                enabled: true,
-                showInputBorder: true,
-                autofocus: false,
-                cancelButton: true,
-                onChanged: (val) {
-                  isSearching = val.isNotEmpty;
-                  filter = widget.subCategories
-                      .where((e) =>
-                          e.name.toLowerCase().contains(val.toLowerCase()))
-                      .toList();
-                  setState(() {});
-                },
-              ),
+      body: Column(
+        children: [
+          10.verticalSpacing,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Searchwidget(
+              padding: EdgeInsets.zero,
+              obscureText: false,
+              shouldReadOnly: false,
+              hintText: "Search Sub Categories",
+              enabled: true,
+              showInputBorder: true,
+              autofocus: false,
+              cancelButton: true,
+              onChanged: (val) {
+                isSearching = val.isNotEmpty;
+                filter = widget.subCategories
+                    .where(
+                        (e) => e.name.toLowerCase().contains(val.toLowerCase()))
+                    .toList();
+                setState(() {});
+              },
             ),
-            if (isSearching) ...[
-              ListView.builder(
+          ),
+          16.verticalSpacing,
+          if (isSearching) ...[
+            Expanded(
+              child: ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  // physics: NeverScrollableScrollPhysics(),
                   itemCount: filter.length,
                   itemBuilder: (context, index) {
-                    final svgPath = PreluraIcons.getConstant(keyword: 
-                        filter[index].name, category:  widget.categoryName);
+                    final svgPath = PreluraIcons.getConstant(
+                        keyword: filter[index].name,
+                        category: widget.categoryName);
                     return MenuCard(
                         title: filter[index].name,
                         svgPath: svgPath != "" ? svgPath : null,
@@ -99,15 +101,18 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                             ..pop()
                             ..pop();
                         });
-                  })
-            ] else
-              ListView.builder(
+                  }),
+            )
+          ] else
+            Expanded(
+              child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: widget.subCategories.length,
-                  physics: NeverScrollableScrollPhysics(),
+                  // physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     final svgPath = PreluraIcons.getConstant(
-                       keyword: widget.subCategories[index].name, category:  widget.categoryName);
+                        keyword: widget.subCategories[index].name,
+                        category: widget.categoryName);
                     return MenuCard(
                         title: widget.subCategories[index].name,
                         svgPath: svgPath != "" ? svgPath : null,
@@ -128,8 +133,8 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                             ..pop();
                         });
                   }),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
