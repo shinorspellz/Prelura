@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/profanity/filter.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/res/render_svg.dart';
@@ -75,7 +77,11 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
   FocusNode? focusNodeZZZ;
   String? errorMessage;
 
+  late final controller = widget.controller ?? TextEditingController();
+
   late bool obscureText = widget.isPassword;
+
+  final ProfanityFilter _filter = ProfanityFilter();
 
   @override
   void initState() {
@@ -134,6 +140,17 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
 
               focusNode: widget.focusNode ?? focusNodeZZZ,
               onChanged: (text) {
+                if (_filter.hasProfanity(text)) {
+                  context.alert('Please avoid using offensive language!');
+
+                  // Remove profanity automatically
+                  setState(() {
+                    controller.text = _filter.censor(text);
+                    controller.selection = TextSelection.fromPosition(
+                      TextPosition(offset: controller.text.length),
+                    );
+                  });
+                }
                 if (widget.onChanged != null) widget.onChanged!(text);
               },
               cursorColor: Theme.of(context).primaryColor,
