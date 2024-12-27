@@ -59,7 +59,7 @@ class _ProductFilterPageState
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "Party Sytle",
+        appbarTitle: "Party",
       ),
       body: RefreshIndicator(
         onRefresh: () async {
