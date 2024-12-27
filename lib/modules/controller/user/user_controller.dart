@@ -71,8 +71,10 @@ class _UserController extends AsyncNotifier<void> {
 
         await _repo.updateProfile(
           Variables$Mutation$UpdateProfile(
-            profilePictureUrl: images.first.url,
-            thumbnailUrl: images.first.thumbnail,
+            profilePicture: Input$ProfilePictureInputType(
+              profilePictureUrl: images.first.url,
+              thumbnailUrl: images.first.thumbnail,
+            ),
           ),
         );
         await ref.refresh(userProvider.future);
@@ -113,8 +115,10 @@ class _UserController extends AsyncNotifier<void> {
             otp: otp,
             phoneNumber: phoneNumber,
             postCode: postCode,
-            profilePictureUrl: profilePictureUrl,
-            thumbnailUrl: thumbnailUrl,
+            profilePicture: Input$ProfilePictureInputType(
+              profilePictureUrl: profilePictureUrl,
+              thumbnailUrl: thumbnailUrl,
+            ),
             username: username,
             location: location,
             fcmToken: fcmToken,
