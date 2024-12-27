@@ -44,10 +44,10 @@ class _UserController extends AsyncNotifier<void> {
   @override
   Future<void> build() async {}
 
-  Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files) async {
+  Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files, Enum$FileTypeEnum type) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
-      Enum$FileTypeEnum.PRODUCT,
+      type,
       onUploadProgress: (sent, total) => log(
         '${sent / total}%',
         name: 'FileUpload',
@@ -64,7 +64,10 @@ class _UserController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(
       () async {
-        final images = await _uploadMedia([file]);
+        final images = await _uploadMedia(
+          [file],
+          Enum$FileTypeEnum.PROFILE_PICTURE,
+        );
 
         await _repo.updateProfile(
           Variables$Mutation$UpdateProfile(
