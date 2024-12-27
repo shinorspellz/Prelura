@@ -606,7 +606,7 @@ query Notifications($pageCount: Int, $pageNumber: Int) {
     createdAt
     updatedAt
     meta
-    sender{
+    sender {
       username
       profilePictureUrl
       thumbnailUrl

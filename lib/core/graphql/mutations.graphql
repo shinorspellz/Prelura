@@ -150,8 +150,7 @@ mutation UpdateProfile(
   $otp: String
   $phoneNumber: PhoneInputType
   $postCode: String
-  $profilePictureUrl: String
-  $thumbnailUrl: String
+  $profilePicture: ProfilePictureInputType
   $use2fa: Boolean
   $username: String
   $location: LocationInputType
@@ -168,8 +167,7 @@ mutation UpdateProfile(
     otp: $otp
     phoneNumber: $phoneNumber
     postcode: $postCode
-    profilePictureUrl: $profilePictureUrl
-    thumbnailUrl: $thumbnailUrl
+    profilePicture: $profilePicture
     use2fa: $use2fa
     username: $username
     location: $location
@@ -288,19 +286,18 @@ mutation UpdateNotificationPreference(
     inappNotifications: $inappNotification
     isEmailNotification: $isEmailNotification
     isPushNotification: $isPushNotification
-    isSilentModeOn: $isSilentModeOn,
+    isSilentModeOn: $isSilentModeOn
   ) {
     success
-    notificationPreference{
-     user {
-      id
-      username
-    }
-    isPushNotification
-    isEmailNotification
-    inappNotifications
-    emailNotifications
-
+    notificationPreference {
+      user {
+        id
+        username
+      }
+      isPushNotification
+      isEmailNotification
+      inappNotifications
+      emailNotifications
     }
   }
 }
