@@ -43,10 +43,6 @@ type BrandType {
   name: String
 }
 
-type CancelOrder {
-  success: Boolean
-}
-
 type CategoryType {
   id: Int
   name: String
@@ -80,10 +76,6 @@ enum ConditionEnum {
   HEAVILY_USED
 }
 
-type ConfirmPayment {
-  paymentStatus: String
-}
-
 type ConversationType {
   id: ID!
   name: String!
@@ -105,15 +97,6 @@ type CreateBanner {
 
 type CreateChat {
   chat: ConversationType
-}
-
-type CreateOrder {
-  success: Boolean
-  order: OrderType
-}
-
-type CreatePaymentIntent {
-  clientSecret: String
 }
 
 type CreateProduct {
@@ -266,10 +249,6 @@ type MessageType {
 type Mutation {
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
-  createPaymentIntent(orderId: Int!): CreatePaymentIntent
-
-  """Confirm a payment"""
-  confirmPayment(paymentRef: String!): ConfirmPayment
   createChat(recipient: String!): CreateChat
   deleteMessage(messageId: Int!): DeleteMessage
   deleteConversation(conversationId: Int!): DeleteConversation
@@ -289,8 +268,6 @@ type Mutation {
   updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
-  createOrder(productId: Int!, quantity: Int): CreateOrder
-  cancelOrder(orderId: Int!): CancelOrder
   login(password: String!, username: String): LoginMutation
   logout: LogoutMutation
   updateProfile(
@@ -479,19 +456,6 @@ type NotificationType {
   meta: JSONString
 }
 
-type OrderType {
-  id: ID!
-  user: UserNode
-  product: ProductType!
-  quantity: Int!
-  priceTotal: Decimal!
-  shippingFee: Decimal!
-  status: ProductsOrderStatusChoices!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  paymentSet: [PaymentType!]!
-}
-
 enum ParcelSizeEnum {
   SMALL
   MEDIUM
@@ -512,49 +476,6 @@ Also, if user has not been verified yet, verify it.
 type PasswordReset {
   errors: ExpectedErrorType
   success: Boolean
-}
-
-"""An enumeration."""
-enum PaymentsPaymentPaymentMethodChoices {
-  """Bank Transfer"""
-  BANK_TRANSFER
-
-  """Card"""
-  CARD
-
-  """Stripe"""
-  STRIPE
-}
-
-"""An enumeration."""
-enum PaymentsPaymentPaymentStatusChoices {
-  """PENDING"""
-  PENDING
-
-  """SUCCESSFUL"""
-  SUCCESSFUL
-
-  """REFUNDED"""
-  REFUNDED
-
-  """FAILED"""
-  FAILED
-
-  """CANCELLED"""
-  CANCELLED
-}
-
-type PaymentType {
-  id: ID!
-  order: OrderType!
-  user: UserNode
-  paymentMethod: PaymentsPaymentPaymentMethodChoices!
-  paymentRef: String
-  paymentIntentId: String
-  paymentStatus: PaymentsPaymentPaymentStatusChoices!
-  paymentAmount: Decimal!
-  createdAt: DateTime!
-  updatedAt: DateTime!
 }
 
 input PhoneInputType {
@@ -581,27 +502,6 @@ input ProductFiltersInput {
   style: StyleEnum
   condition: ConditionEnum
   discountPrice: Boolean
-}
-
-"""An enumeration."""
-enum ProductsOrderStatusChoices {
-  """PENDING"""
-  PENDING
-
-  """CONFIRMED"""
-  CONFIRMED
-
-  """SHIPPED"""
-  SHIPPED
-
-  """DELIVERED"""
-  DELIVERED
-
-  """CANCELLED"""
-  CANCELLED
-
-  """REFUNDED"""
-  REFUNDED
 }
 
 """An enumeration."""
@@ -884,9 +784,6 @@ enum ProductsProductStyleChoices {
 
   """Relaxed Fit"""
   RELAXED_FIT
-
-  """Christmas and Vintage"""
-  CHRISTMAS_AND_VINTAGE
 }
 
 enum ProductStatusEnum {
@@ -918,13 +815,11 @@ type ProductType {
   customBrand: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  orderSet: [OrderType!]!
   userLiked: Boolean
 }
 
 type Query {
   getBannerForCurrentSeason: String
-  payment(paymentId: Int!): [PaymentType]
   conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
   conversations: [ConversationType]
   archivedConversations: [ConversationType]
@@ -1092,7 +987,6 @@ enum StyleEnum {
   OVERSIZED
   SLIM_FIT
   RELAXED_FIT
-  CHRISTMAS_AND_VINTAGE
 }
 
 type SubCategoryType {
@@ -1198,13 +1092,11 @@ type UserNode implements Node {
   fcmTokens: [String!]!
   meta: JSONString!
   products: [ProductType!]!
-  orderSet: [OrderType!]!
   sentNotifications: [NotificationType!]!
   notificationPreferences: NotificationPreferenceType
   participant1: [ConversationType!]!
   participant2: [ConversationType!]!
   messageSender: [MessageType!]!
-  paymentSet: [PaymentType!]!
   pk: Int
   archived: Boolean
   verified: Boolean

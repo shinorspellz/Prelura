@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
@@ -210,7 +211,10 @@ class SearchScreen extends ConsumerWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () => context.pushRoute(SellItemRoute()),
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.pushRoute(SellItemRoute());
+                },
                 child: Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 24),
