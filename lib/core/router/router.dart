@@ -190,13 +190,10 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(page: PaymentRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(
-            page: VintageFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(
-            page: PartyFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(
-            page: ChristmasFilteredProductRoute.page,
-            guards: [AuthGuard(_ref)]),
+        AutoRoute(page: VintageFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: PartyFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: ChristmasFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: ProductByHashtagRoute.page),
       ];
 }
 

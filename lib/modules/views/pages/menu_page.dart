@@ -29,23 +29,6 @@ class MenuPage extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: "Menu",
-        // leadingIcon: IconButton(
-        //   icon:
-        //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-        //   onPressed: () => context.router.popForced(),
-        // ),
-        // trailingIcon: [
-        //   GestureDetector(
-        //     onTap: () => context.pushRoute(ProfileDetailsRoute()),
-        //     child: ProfilePictureWidget(
-        //       profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-        //       username: ref.watch(userProvider).valueOrNull?.username ?? '--',
-        //       height: 40,
-        //       width: 40,
-        //     ),
-        //   ),
-        //   10.horizontalSpacing,
-        // ],
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
