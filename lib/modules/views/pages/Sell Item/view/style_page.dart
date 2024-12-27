@@ -43,11 +43,12 @@ class _StylePageState extends ConsumerState<StylePage> {
         centerTitle: true,
         appbarTitle: "Style",
       ),
-      body: SingleChildScrollView(
+      body: Container(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Searchwidget(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16 ),
               hintText: "Find a style",
               obscureText: false,
               shouldReadOnly: false,
@@ -62,17 +63,24 @@ class _StylePageState extends ConsumerState<StylePage> {
                 });
               },
             ),
-            ...filteredStyles.map((style) {
-              return PreluraCheckBox(
-                title: style.name[0].toUpperCase() +
-                    style.name.substring(1).replaceAll('_', " ").toLowerCase(),
-                isChecked: style.name == selectedParcel?.name,
-                onChanged: (value) {
-                  ref.read(sellItemProvider.notifier).selectStyle(style);
-                  context.router.popForced();
-                },
-              );
-            }),
+            Expanded(
+              child: ListView(
+                children: filteredStyles.map((style) {
+                  return PreluraCheckBox(
+                    title: style.name[0].toUpperCase() +
+                        style.name
+                            .substring(1)
+                            .replaceAll('_', " ")
+                            .toLowerCase(),
+                    isChecked: style.name == selectedParcel?.name,
+                    onChanged: (value) {
+                      ref.read(sellItemProvider.notifier).selectStyle(style);
+                      context.router.popForced();
+                    },
+                  );
+                }).toList(),
+              ),
+            )
           ],
         ),
       ),

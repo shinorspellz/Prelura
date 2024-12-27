@@ -252,7 +252,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                 CarouselSlider(
                                   options: CarouselOptions(
                                     height: 550,
-                                    autoPlay: true,
+                                    autoPlay: false,
                                     enlargeCenterPage: false,
                                     padEnds: false,
                                     disableCenter: true,

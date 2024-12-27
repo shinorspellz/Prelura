@@ -35,16 +35,293 @@ class SearchScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(ActiveSearchProvider);
     return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 20, bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Divider(
-              thickness: 1,
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Divider(
+                  thickness: 1,
+                ),
+                addVerticalSpacing(40),
+                if (state == false) ...[
+                  addVerticalSpacing(18),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...ref.watch(popularBrandsProvider).maybeWhen(
+                            orElse: () {
+                              return List.generate(
+                                  10,
+                                  (_) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 6.0),
+                                        child: ShimmerBox(
+                                          height: 28,
+                                          width: 100,
+                                          radius: 5,
+                                        ),
+                                      ));
+                            },
+                            data: (data) => data.take(10).map(
+                                  (brand) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
+                                    child: GestureDetector(
+                                      onTap: () => context.pushRoute(
+                                          ProductsByBrandRoute(
+                                              title: brand.name,
+                                              id: (brand.id).toInt())),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 6),
+                                        decoration: BoxDecoration(
+                                            color: PreluraColors.activeColor,
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Text(
+                                          brand.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium
+                                              ?.copyWith(
+                                                  color: PreluraColors.white,
+                                                  fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                      ],
+                    ),
+                  ),
+                  addVerticalSpacing(8),
+                  SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...ref.watch(popularBrandsProvider).maybeWhen(
+                            orElse: () {
+                              return List.generate(
+                                  10,
+                                  (_) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 6.0),
+                                        child: ShimmerBox(
+                                          height: 28,
+                                          width: 100,
+                                          radius: 5,
+                                        ),
+                                      ));
+                            },
+                            data: (data) => data.sublist(6).map(
+                                  (brand) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6.0),
+                                    child: GestureDetector(
+                                      onTap: () => context.pushRoute(
+                                          ProductsByBrandRoute(
+                                              title: brand.name,
+                                              id: (brand.id).toInt())),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 6),
+                                        decoration: BoxDecoration(
+                                            color: PreluraColors.activeColor,
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Text(
+                                          brand.name,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium
+                                              ?.copyWith(
+                                                  color: PreluraColors.white,
+                                                  fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.router
+                          .push(DiscountedProductsView(title: "", id: 0));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 20.h,
+                      margin: EdgeInsets.all(16),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(PreluraIcons.webp_xmas),
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topLeft),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        _categoriesSection(
+                            "Women", PreluraIcons.webp_women, context,
+                            onTap: () {
+                          context.router
+                              .push(FilterProductRoute(title: "Women", id: 2));
+                        }),
+                        _categoriesSection(
+                            "Men", PreluraIcons.webp_men, context, onTap: () {
+                          context.router
+                              .push(FilterProductRoute(title: "Men", id: 1));
+                        }),
+                        _categoriesSection("Kids", PreluraIcons.kids, context,
+                            onTap: () {
+                          context.router
+                              .push(FilterProductRoute(title: "Kids", id: 4));
+                        }),
+                        // _categoriesSection("Electronics", PreluraIcons.electronics, context),
+                        // _categoriesSection("Home", PreluraIcons.home, context),
+                        // _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
+                        // _categoriesSection("Pets", PreluraIcons.petCare, context),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      HapticFeedback.lightImpact();
+                      context.pushRoute(SellItemRoute());
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 24),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Color(0xFFab28b2),
+                              Color(0XFFa126a8),
+                              Color(0xFF8a2190),
+                              Color(0xFF8a2190),
+                            ], // Purple gradient
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "DONT WEAR IT?\nSELL IT 🤑",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                        fontSize: 19.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: PreluraColors.white),
+                              ),
+                            ),
+                            addHorizontalSpacing(20),
+                            ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                              child: Image.asset(
+                                PreluraIcons.mugShot,
+                                height: 70,
+                                width: 50,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        )),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      final vintageStyle = Enum$StyleEnum.values.firstWhere(
+                        (style) =>
+                            style !=
+                                Enum$StyleEnum
+                                    .$unknown && // Exclude unknown value
+                            style.name
+                                .replaceAll('_', ' ')
+                                .toLowerCase()
+                                .contains(
+                                    "vintage"), // Match "christmas" exactly
+                      );
+                      logger.d(vintageStyle);
+                      context.router.push(
+                          ChristmasFilteredProductRoute(style: vintageStyle));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 45.h,
+                      margin: EdgeInsets.all(16),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(PreluraIcons.webp_vintage),
+                            fit: BoxFit.cover,
+                            alignment: Alignment.topLeft),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+                  ),
+                  GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      _buildPromoBanner(
+                          "Christmas Jumpers", PreluraIcons.webp_season,
+                          onTap: () {
+                        context.router.push(PartyFilteredProductRoute());
+                      }),
+                      _buildPromoBanner(
+                          "Party Season", PreluraIcons.webp_jumpers, onTap: () {
+                        final christmasStyle = Enum$StyleEnum.values.firstWhere(
+                          (style) =>
+                              style !=
+                                  Enum$StyleEnum
+                                      .$unknown && // Exclude unknown value
+                              style.name
+                                  .replaceAll('_', ' ')
+                                  .toLowerCase()
+                                  .contains(
+                                      "christmas"), // Match "christmas" exactly
+                        );
+                        logger.d(christmasStyle);
+                        context.router.push(ChristmasFilteredProductRoute(
+                            style: christmasStyle));
+                      }),
+                    ],
+                  ),
+                ] else ...[
+                  LiveSearchPage()
+                ]
+              ],
             ),
-            addVerticalSpacing(20),
-            Searchwidget(
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 20, bottom: 24),
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Searchwidget(
                 hintText: "Search for items or members",
                 obscureText: false,
                 shouldReadOnly: false,
@@ -61,268 +338,8 @@ class SearchScreen extends ConsumerWidget {
                 showInputBorder: true,
                 autofocus: false,
                 cancelButton: true),
-            if (state == false) ...[
-              addVerticalSpacing(18),
-              SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...ref.watch(popularBrandsProvider).maybeWhen(
-                        orElse: () {
-                          return List.generate(
-                              10,
-                              (_) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
-                                    child: ShimmerBox(
-                                      height: 28,
-                                      width: 100,
-                                      radius: 5,
-                                    ),
-                                  ));
-                        },
-                        data: (data) => data.take(10).map(
-                              (brand) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 6.0),
-                                child: GestureDetector(
-                                  onTap: () => context.pushRoute(
-                                      ProductsByBrandRoute(
-                                          title: brand.name,
-                                          id: (brand.id).toInt())),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 6),
-                                    decoration: BoxDecoration(
-                                        color: PreluraColors.activeColor,
-                                        borderRadius: BorderRadius.circular(6)),
-                                    child: Text(
-                                      brand.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              color: PreluraColors.white,
-                                              fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ))
-                  ],
-                ),
-              ),
-              addVerticalSpacing(8),
-              SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...ref.watch(popularBrandsProvider).maybeWhen(
-                        orElse: () {
-                          return List.generate(
-                              10,
-                              (_) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
-                                    child: ShimmerBox(
-                                      height: 28,
-                                      width: 100,
-                                      radius: 5,
-                                    ),
-                                  ));
-                        },
-                        data: (data) => data.sublist(6).map(
-                              (brand) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 6.0),
-                                child: GestureDetector(
-                                  onTap: () => context.pushRoute(
-                                      ProductsByBrandRoute(
-                                          title: brand.name,
-                                          id: (brand.id).toInt())),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 10, vertical: 6),
-                                    decoration: BoxDecoration(
-                                        color: PreluraColors.activeColor,
-                                        borderRadius: BorderRadius.circular(6)),
-                                    child: Text(
-                                      brand.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              color: PreluraColors.white,
-                                              fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ))
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  context.router.push(DiscountedProductsView(title: "", id: 0));
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 20.h,
-                  margin: EdgeInsets.all(16),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(PreluraIcons.webp_xmas),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topLeft),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                ),
-              ),
-              SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    _categoriesSection(
-                        "Women", PreluraIcons.webp_women, context, onTap: () {
-                      context.router
-                          .push(FilterProductRoute(title: "Women", id: 2));
-                    }),
-                    _categoriesSection("Men", PreluraIcons.webp_men, context,
-                        onTap: () {
-                      context.router
-                          .push(FilterProductRoute(title: "Men", id: 1));
-                    }),
-                    _categoriesSection("Kids", PreluraIcons.kids, context,
-                        onTap: () {
-                      context.router
-                          .push(FilterProductRoute(title: "Kids", id: 4));
-                    }),
-                    // _categoriesSection("Electronics", PreluraIcons.electronics, context),
-                    // _categoriesSection("Home", PreluraIcons.home, context),
-                    // _categoriesSection("Entertainment", PreluraIcons.entertainment, context),
-                    // _categoriesSection("Pets", PreluraIcons.petCare, context),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  HapticFeedback.lightImpact();
-                  context.pushRoute(SellItemRoute());
-                },
-                child: Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 24),
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color(0xFFab28b2),
-                          Color(0XFFa126a8),
-                          Color(0xFF8a2190),
-                          Color(0xFF8a2190),
-                        ], // Purple gradient
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "DONT WEAR IT?\nSELL IT 🤑",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(
-                                    fontSize: 19.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: PreluraColors.white),
-                          ),
-                        ),
-                        addHorizontalSpacing(20),
-                        ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
-                          child: Image.asset(
-                            PreluraIcons.mugShot,
-                            height: 70,
-                            width: 50,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-              GestureDetector(
-                onTap: () {
-                  final vintageStyle = Enum$StyleEnum.values.firstWhere(
-                    (style) =>
-                        style !=
-                            Enum$StyleEnum.$unknown && // Exclude unknown value
-                        style.name
-                            .replaceAll('_', ' ')
-                            .toLowerCase()
-                            .contains("vintage"), // Match "christmas" exactly
-                  );
-                  logger.d(vintageStyle);
-                  context.router
-                      .push(ChristmasFilteredProductRoute(style: vintageStyle));
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 45.h,
-                  margin: EdgeInsets.all(16),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(PreluraIcons.webp_vintage),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.topLeft),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                ),
-              ),
-              GridView.count(
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  _buildPromoBanner(
-                      "Christmas Jumpers", PreluraIcons.webp_season, onTap: () {
-                    context.router.push(PartyFilteredProductRoute());
-                  }),
-                  _buildPromoBanner("Party Season", PreluraIcons.webp_jumpers,
-                      onTap: () {
-                    final christmasStyle = Enum$StyleEnum.values.firstWhere(
-                      (style) =>
-                          style !=
-                              Enum$StyleEnum
-                                  .$unknown && // Exclude unknown value
-                          style.name
-                              .replaceAll('_', ' ')
-                              .toLowerCase()
-                              .contains(
-                                  "christmas"), // Match "christmas" exactly
-                    );
-                    logger.d(christmasStyle);
-                    context.router.push(
-                        ChristmasFilteredProductRoute(style: christmasStyle));
-                  }),
-                ],
-              ),
-            ] else ...[
-              LiveSearchPage()
-            ]
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
