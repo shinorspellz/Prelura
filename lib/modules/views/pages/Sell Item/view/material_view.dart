@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../res/colors.dart';
 import '../../../../controller/product/materials_provider.dart';
 import '../../../shimmers/grid_menu_card_shimmer.dart';
+import '../../../widgets/gap.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../provider/sell_item_provider.dart';
 
@@ -89,24 +90,35 @@ class _MaterialSelectionScreenState
                 CustomScrollView(
                   controller: controller,
                   slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: Searchwidget(
-                          hintText: "Find a brand",
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: false,
-                          cancelButton: true,
-                          onChanged: (val) {
-                            searchQuery = val;
-                            setState(() {});
-                          },
-                        ),
-                      ),
-                    ),
+                    SliverPersistentHeader(
+                        pinned: true, // Keeps it static
+                        delegate: StaticSliverDelegate(
+                          child: Container(
+                              margin: EdgeInsets.zero,
+                              padding: const EdgeInsets.only(
+                                  top: 16, left: 15, right: 15),
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Searchwidget(
+                                      padding: EdgeInsets.zero,
+                                      hintText: "Find a brand",
+                                      obscureText: false,
+                                      shouldReadOnly: false,
+                                      enabled: true,
+                                      showInputBorder: true,
+                                      autofocus: false,
+                                      cancelButton: true,
+                                      onChanged: (val) {
+                                        searchQuery = val;
+                                        setState(() {});
+                                      },
+                                    ),
+                                    addVerticalSpacing(15),
+                                  ])),
+                        )),
                     if (searchQuery.isNotEmpty) ...[
                       ref.watch(searchMaterial(searchQuery)).when(
                             data: (searchMaterials) => SliverList(
