@@ -33,7 +33,9 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         AndroidInitializationSettings('@mipmap/ic_launcher');
     //ios settings
     DarwinInitializationSettings initializationSettingsDarwin =
-        const DarwinInitializationSettings();
+        const DarwinInitializationSettings(
+          
+        );
 
     final InitializationSettings initializationSettings =
         InitializationSettings(
