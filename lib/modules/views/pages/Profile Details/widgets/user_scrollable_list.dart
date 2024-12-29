@@ -73,7 +73,7 @@ Widget _buildItem(BuildContext context,
       child: Column(
         children: [
           Text(
-            numbers ?? "",
+            numbers ?? "0",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 16.sp,
