@@ -17,6 +17,7 @@ class UserScrollableList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final listingCount = user?.listing ?? 0;
+    final noOfFollowing = user?.noOfFollowing ?? 0;
     return Container(
       margin: EdgeInsets.only(top: 16),
       padding: EdgeInsets.all(8),
@@ -38,16 +39,19 @@ class UserScrollableList extends ConsumerWidget {
                   onTap: () {}),
               _buildItem(context,
                   title: 'Following',
-                  numbers: user!.noOfFollowing.toString(), onTap: () {
-                context.router.push(FollowingRoute(username: user!.username));
+                  numbers: user?.noOfFollowing.toString(), onTap: () {
+                context.router
+                    .push(FollowingRoute(username: user?.username ?? ""));
               }),
               _buildItem(context,
-                  title: (user!.noOfFollowers!.toInt() > 1 ||
-                          user!.noOfFollowers?.toInt() == 0)
+                  title: (user?.noOfFollowers != null &&
+                          (noOfFollowing > 1 ||
+                              user?.noOfFollowers?.toInt() == 0))
                       ? " Followers"
                       : " Follower,",
-                  numbers: user!.noOfFollowers.toString(), onTap: () {
-                context.router.push(FollowersRoute(username: user!.username));
+                  numbers: user?.noOfFollowers.toString(), onTap: () {
+                context.router
+                    .push(FollowersRoute(username: user?.username ?? ""));
               }),
               _buildItem(context,
                   title: 'Reviews', numbers: "300", onTap: () {}),
