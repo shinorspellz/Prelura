@@ -26,6 +26,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
+import '../../../../model/product/categories/category_model.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button.dart';
 import '../widgets/user_popular_brand.dart';
@@ -41,7 +42,7 @@ class UserWardrobe extends ConsumerStatefulWidget {
 class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   final RefreshController _refreshController = RefreshController();
   bool isSelected = false;
-  String? selectedItem;
+  String selectedItem = "";
   final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
   Future<void> _onRefresh() async {
@@ -79,12 +80,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
   @override
   Widget build(BuildContext context) {
+    final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
     final user = ref
         .watch((widget.username != null
             ? otherUserProfile(widget.username!)
             : userProvider))
         .value;
     bool isCurrentUser = widget.username == null;
+    final List<CategoryModel> categories;
+    categories = ref
+        .watch(categoryProvider)
+        .value!
+        .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
+        .toList();
 
     return SmartRefresher(
       controller: _refreshController,
@@ -133,11 +141,55 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     user: user,
                   ),
                   MenuCard(
-                      title: widget.username != null
-                          ? 'Categories from this seller'
-                          : "Categories",
+                      icon: isSelected
+                          ? Icon(Icons.arrow_back_ios_rounded,
+                              size: 18, color: PreluraColors.primaryColor)
+                          : null,
+                      title: selectedItem.isNotEmpty
+                          ? "Viewing"
+                          : widget.username != null
+                              ? 'Categories from this seller'
+                              : "Categories",
+                      sideText: selectedItem.isNotEmpty ? selectedItem : null,
+                      sideTextColor: PreluraColors.primaryColor,
                       textColor: PreluraColors.grey,
-                      onTap: () {}),
+                      rightArrow: !isSelected,
+                      trailingIcon: isSelected
+                          ? null
+                          : selectedItem.isNotEmpty
+                              ? Icon(Icons.cancel_rounded,
+                                  color: PreluraColors.grey)
+                              : Icon(Icons.arrow_forward_ios_rounded,
+                                  color: PreluraColors.grey, size: 18),
+                      onTap: () {
+                        isSelected = !isSelected;
+                        selectedItem = "";
+                        setState(() {});
+                      }),
+                  if (isSelected) ...[
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: categories.length,
+                      itemBuilder: (_, index) {
+                        final cat = categories[index];
+
+                        return MenuCard(
+                          title: cat.name,
+                          textColor: PreluraColors.grey,
+                          trailingIcon: RenderSvg(
+                              svgPath: PreluraIcons.arrowDown_svg,
+                              svgHeight: 16,
+                              svgWidth: 16,
+                              color: PreluraColors.grey),
+                          onTap: () {
+                            selectedItem = cat.name;
+                            isSelected = false;
+                            setState(() {});
+                          },
+                        );
+                      },
+                    )
+                  ],
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 6),

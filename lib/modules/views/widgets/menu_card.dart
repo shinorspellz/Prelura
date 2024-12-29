@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/core/router/app_startup.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/render_svg.dart';
 
@@ -21,10 +23,14 @@ class MenuCard extends StatelessWidget {
       this.textColor,
       this.iconColor,
       this.trailingIcon,
+      this.sideTextColor,
+      this.sideText,
       this.svgPath});
   final String title;
   final String? subtitle;
   final String? additionalText;
+  final String? sideText;
+  final Color? sideTextColor;
   final Icon? icon;
   final Function onTap;
   final bool profilePic;
@@ -35,7 +41,7 @@ class MenuCard extends StatelessWidget {
   final Color? textColor;
   final Color? iconColor;
   final String? svgPath;
-  final Icon? trailingIcon;
+  final Widget? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -95,18 +101,37 @@ class MenuCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                title,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: textColor ??
-                                            Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.color),
+                              Row(
+                                children: [
+                                  Text(
+                                    title,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            color: textColor ??
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.color),
+                                  ),
+                                  6.horizontalSpacing,
+                                  if (sideText != null)
+                                    Text(
+                                      sideText ?? "",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.w400,
+                                              color: sideTextColor ??
+                                                  Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.color),
+                                    )
+                                ],
                               ),
                               widget ?? const SizedBox.shrink(),
                               if (additionalText != null)
