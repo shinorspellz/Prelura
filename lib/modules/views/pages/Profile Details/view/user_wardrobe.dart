@@ -40,6 +40,9 @@ class UserWardrobe extends ConsumerStatefulWidget {
 
 class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   final RefreshController _refreshController = RefreshController();
+  bool isSelected = false;
+  String? selectedItem;
+  final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
   Future<void> _onRefresh() async {
     try {
@@ -261,18 +264,32 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(children: [
-                            Text("Filter"),
+                            Text(
+                              "Filter",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: PreluraColors.grey),
+                            ),
                             2.horizontalSpacing,
                             // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            Icon(Icons.filter)
+                            Icon(Icons.filter_list_sharp,
+                                color: PreluraColors.primaryColor, size: 17)
                           ]),
                           Row(children: [
-                            Text("Sort"),
+                            Text(
+                              "Sort",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: PreluraColors.grey),
+                            ),
                             2.horizontalSpacing,
                             RenderSvg(
                                 svgPath: PreluraIcons.sort_icon_svg,
-                                svgHeight: 18,
-                                svgWidth: 18)
+                                color: PreluraColors.activeColor,
+                                svgHeight: 16,
+                                svgWidth: 16)
                           ])
                         ]),
                   ),
