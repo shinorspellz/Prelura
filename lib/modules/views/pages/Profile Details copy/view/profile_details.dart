@@ -15,6 +15,8 @@ import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/images.dart';
+import '../../../../../res/render_svg.dart';
 import '../../../widgets/profile_picture.dart';
 import '../provider/tab_controller.dart';
 
@@ -24,10 +26,12 @@ class UserProfileDetailsScreen extends ConsumerStatefulWidget {
   final String? username;
 
   @override
-  ConsumerState<UserProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+  ConsumerState<UserProfileDetailsScreen> createState() =>
+      _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen> with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -45,7 +49,8 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index !=
+          ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -60,10 +65,15 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index = currentIndex; // Sync tab index if changed externally
+      _tabController.index =
+          currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(
@@ -77,89 +87,94 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
         // ),
         trailingIcon: [
           GestureDetector(
-            onTap: () => context.pushRoute(MenuRoute()),
-            child: Icon(Icons.menu_sharp, color: Theme.of(context).iconTheme.color),
-          ),
+              onTap: () => context.pushRoute(MenuRoute()),
+              child: RenderSvg(
+                svgPath: PreluraIcons.menu_svg,
+                svgHeight: 18,
+                svgWidth: 18,
+              )),
           10.horizontalSpacing,
         ],
       ),
-      body: Column(
-        children: [
-          Row(
-            children: ["Wardrobe", "Reviews", "About"]
-                .asMap()
-                .entries
-                .map(
-                  (entry) => Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        ref.read(tabControllerProvider).setTabIndex(entry.key);
-                        _tabController.animateTo(entry.key);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                          top: 12,
-                          bottom: 18,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: currentIndex == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
-                              width: _tabController.index == entry.key ? 2.0 : 1.0,
-                            ),
-                          ),
-                        ),
-                        child: Text(
-                          entry.value,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: currentIndex == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).when(
-                      data: (_) => UserWardrobe(
-                        username: widget.username,
-                      ),
-                      error: (e, _) {
-                        print(e.toString());
-                        print(_);
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('An error occured!'),
-                            TextButton.icon(
-                              onPressed: () => ref.invalidate(userProvider),
-                              label: const Text('Retry'),
-                              icon: const Icon(Icons.refresh_rounded),
-                            ),
-                          ],
-                        );
-                      },
-                      loading: () => const LoadingWidget(),
-                    ),
+      // body: Column(
+      //   children: [
+      //     Row(
+      //       children: ["Wardrobe", "Reviews", "About"]
+      //           .asMap()
+      //           .entries
+      //           .map(
+      //             (entry) => Expanded(
+      //               child: GestureDetector(
+      //                 onTap: () {
+      //                   ref.read(tabControllerProvider).setTabIndex(entry.key);
+      //                   _tabController.animateTo(entry.key);
+      //                 },
+      //                 child: Container(
+      //                   padding: const EdgeInsets.only(
+      //                     left: 10,
+      //                     right: 10,
+      //                     top: 12,
+      //                     bottom: 18,
+      //                   ),
+      //                   decoration: BoxDecoration(
+      //                     border: Border(
+      //                       bottom: BorderSide(
+      //                         color: currentIndex == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
+      //                         width: _tabController.index == entry.key ? 2.0 : 1.0,
+      //                       ),
+      //                     ),
+      //                   ),
+      //                   child: Text(
+      //                     entry.value,
+      //                     textAlign: TextAlign.center,
+      //                     style: TextStyle(
+      //                       color: currentIndex == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           )
+      //           .toList(),
+      //     ),
+      //     Expanded(
+      //       child: TabBarView(
+      //         controller: _tabController,
+      //         children: [
+      //           ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).when(
+      //                 data: (_) => UserWardrobe(
+      //                   username: widget.username,
+      //                 ),
+      //                 error: (e, _) {
+      //                   print(e.toString());
+      //                   print(_);
+      //                   return Column(
+      //                     mainAxisAlignment: MainAxisAlignment.center,
+      //                     children: [
+      //                       const Text('An error occured!'),
+      //                       TextButton.icon(
+      //                         onPressed: () => ref.invalidate(userProvider),
+      //                         label: const Text('Retry'),
+      //                         icon: const Icon(Icons.refresh_rounded),
+      //                       ),
+      //                     ],
+      //                   );
+      //                 },
+      //                 loading: () => const LoadingWidget(),
+      //               ),
 
-                // const UserWardrobe(),
-                const ReviewTab(),
-                AboutProfile(
-                  username: widget.username,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      //           // const UserWardrobe(),
+      //           const ReviewTab(),
+      //           AboutProfile(
+      //             username: widget.username,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ],
+      // ),
+
+      body: UserWardrobe(),
     );
   }
 }

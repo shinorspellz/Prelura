@@ -72,7 +72,10 @@ class MenuCard extends StatelessWidget {
                           height: 50,
                           width: 50,
                         ),
-                      )
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ] else if (svgPath != null) ...[
                       RenderSvg(
                         svgPath: svgPath ?? "",
@@ -80,10 +83,10 @@ class MenuCard extends StatelessWidget {
                       ),
                     ] else if (icon != null) ...[
                       icon!,
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ],
-                    const SizedBox(
-                      width: 10,
-                    ),
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

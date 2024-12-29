@@ -71,7 +71,11 @@ class PreluraIcons {
   static const String webp_xmas = "assets/images/xmas.webp";
   static const String webp_season = "assets/images/season.webp";
   static const String webp_jumpers = "assets/images/jumpers.webp";
-  static const String menu_svg = "assets/svgs/Menu Button.svg";
+  static const String menu_svg = "assets/svgs/menu_icon.svg";
+  static const String arrowDown_svg = "assets/svgs/arrow_down.svg";
+  static const String forward_icon_svg = "assets/svgs/forward_icon.svg";
+  static const String search_glass_svg = "assets/svgs/search_glass.svg";
+  static const String sort_icon_svg = "assets/svgs/sort_icon.svg";  
 
   //category
   static const String men_svg = "assets/svgs/men.svg";
