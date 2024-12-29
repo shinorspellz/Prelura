@@ -34,7 +34,7 @@ class UserScrollableList extends ConsumerWidget {
             children: [
               _buildItem(context,
                   title: listingCount == 1 ? "Listing" : "Listings",
-                  numbers: user!.listing.toString(),
+                  numbers: user?.listing?.toString(),
                   onTap: () {}),
               _buildItem(context,
                   title: 'Following',
@@ -59,7 +59,7 @@ class UserScrollableList extends ConsumerWidget {
 
 Widget _buildItem(BuildContext context,
     {required String title,
-    required String numbers,
+    required String? numbers,
     required Function() onTap}) {
   return GestureDetector(
     onTap: onTap,
@@ -69,7 +69,7 @@ Widget _buildItem(BuildContext context,
       child: Column(
         children: [
           Text(
-            numbers,
+            numbers ?? "",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 16.sp,
