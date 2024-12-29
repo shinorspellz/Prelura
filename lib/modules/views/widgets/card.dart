@@ -282,26 +282,6 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                       ),
                     ),
                   ),
-                  if (widget.product.discountPrice != null)
-                    Container(
-                      // height: 30,
-                      // width: 50,
-                      decoration: BoxDecoration(
-                        color: 'fc0001'.fromHex.withOpacity(0.7),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                        ),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      // alignment: Alignment.center,
-                      child: Text(
-                        '- ${double.parse(widget.product.discountPrice!).toInt()}%',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
-                      ),
-                    )
                 ],
               ),
             ),
@@ -351,16 +331,33 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                 if (widget.product.discountPrice != null) ...[
                   10.horizontalSpacing,
                   Text(
-                    "£ ${calculateDiscountedAmount(
+                    "£ ${formatDynamicString(calculateDiscountedAmount(
                       price: widget.product.price,
                       discount:
                           double.parse(widget.product.discountPrice!).toInt(),
-                    )}",
+                    ).toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                   ),
                 ],
+                Spacer(),
+                if (widget.product.discountPrice != null)
+                  Container(
+                    // height: 30,
+                    // width: 50,
+                    decoration: BoxDecoration(
+                      color: 'fc0001'.fromHex.withOpacity(0.5),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    // alignment: Alignment.center,
+                    child: Text(
+                      ' ${double.parse(widget.product.discountPrice!).toInt()}%',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  )
               ],
             ),
             // if (widget.product.seller.username == user?.username &&

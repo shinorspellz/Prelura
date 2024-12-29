@@ -13,17 +13,22 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
+import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/modules/views/widgets/rating.dart';
+import 'package:prelura_app/res/render_svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/images.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button.dart';
+import '../widgets/user_popular_brand.dart';
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -75,7 +80,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         .watch((widget.username != null
             ? otherUserProfile(widget.username!)
             : userProvider))
-        .valueOrNull;
+        .value;
     bool isCurrentUser = widget.username == null;
 
     return SmartRefresher(
@@ -103,251 +108,174 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             Container(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.location_on_outlined,
-                              size: 16,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                                user?.location?.locationName ??
-                                    "Exeter, United Kingdom",
-                                style: Theme.of(context).textTheme.bodyMedium),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.wifi,
-                              size: 14,
-                            ),
-                            const SizedBox(width: 8),
-                            GestureDetector(
-                              onTap: () {
-                                context.router.push(
-                                    FollowersRoute(username: user!.username));
-                              },
-                              child: Text.rich(TextSpan(
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      context.router.push(FollowersRoute(
-                                          username: user!.username));
-                                    },
-                                  text: user?.noOfFollowers.toString() ?? '--',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
-                                      ),
-                                  children: [
-                                    TextSpan(
-                                      text: (user != null &&
-                                              (user.noOfFollowers!.toInt() >
-                                                      1 ||
-                                                  user.noOfFollowers!.toInt() ==
-                                                      0))
-                                          ? " followers"
-                                          : " follower,",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color: PreluraColors.activeColor,
-                                          ),
-                                    ),
-                                  ])),
-                            ),
-                            const SizedBox(width: 6),
-                            GestureDetector(
-                              onTap: () {
-                                context.router.push(
-                                    FollowingRoute(username: user!.username));
-                              },
-                              child: Text.rich(TextSpan(
-                                  text: user?.noOfFollowing.toString() ?? '--',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
-                                      ),
-                                  children: [
-                                    TextSpan(
-                                      text: " following",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color: PreluraColors.activeColor,
-                                          ),
-                                    ),
-                                  ])),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.delivery_dining_outlined,
-                              size: 16,
-                            ),
-                            const SizedBox(width: 8),
-                            Text("Usually ships within 1 day",
-                                style: Theme.of(context).textTheme.bodyMedium),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Ratings(),
-                            const SizedBox(
-                              width: 4,
-                            ),
-                            Text(
-                              "90 ",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print("here");
-                                ref.read(tabControllerProvider).setTabIndex(1);
-                                // context.router.replace(ProfileDetailsRoute());
-                              },
-                              child: Text(
-                                "reviews",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        color: PreluraColors.activeColor),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                  if (user?.bio != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            user?.bio ?? '',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+                      ),
                     ),
-                  ),
 
                   // Social and Additional Info Section
+                  UserScrollableList(
+                    user: user,
+                  ),
+                  MenuCard(
+                      title: widget.username != null
+                          ? 'Categories from this seller'
+                          : "Categories",
+                      textColor: PreluraColors.grey,
+                      onTap: () {}),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.username != null
+                                ? "Brands from this seller"
+                                : "Top Brands",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: PreluraColors.grey),
+                          ),
+                          //   RenderSvgWithColor2(
+                          //       svgPath: PreluraIcons.search_glass_svg)
+                          // ],
+                          Icon(Icons.search, color: PreluraColors.primaryColor)
+                        ]),
+                  ),
+                  UserPopularBrand(),
 
-                  const Divider(),
+                  // const Divider(),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  //   child: Row(
+                  //     children: [
+                  //       Expanded(
+                  //         child: AppButton(
+                  //           loading: ref.watch(conversationProvider).isLoading,
+                  //           onTap: () async {
+                  //             HapticFeedback.lightImpact();
+                  //             if (isCurrentUser) {
+                  //               context.pushRoute(SellItemRoute());
+                  //             } else {
+                  //               await ref
+                  //                   .read(conversationProvider.notifier)
+                  //                   .createChat(user!.username);
+                  //               ref.read(conversationProvider).whenOrNull(
+                  //                   error: (e, _) => context.alert(
+                  //                       'Failed to message ${user.username}'),
+                  //                   data: (conv) {
+                  //                     log('$conv');
+                  //                     final currentConv = conv.firstWhere((e) =>
+                  //                         e.recipient.username ==
+                  //                         user.username);
+                  //                     context.pushRoute(
+                  //                       ChatRoute(
+                  //                         id: currentConv.id,
+                  //                         username:
+                  //                             currentConv.recipient.username,
+                  //                         avatarUrl: currentConv
+                  //                             .recipient.profilePictureUrl,
+                  //                       ),
+                  //                     );
+                  //                   });
+                  //               // context.pushRoute(ChatScreen(username, message, time, avatarUrl))
+                  //             }
+                  //           },
+                  //           text: isCurrentUser ? "Upload" : "Message",
+                  //           textColor: PreluraColors.activeColor,
+                  //           bgColor: Theme.of(context).scaffoldBackgroundColor,
+                  //         ),
+                  //       ),
+                  //       const SizedBox(width: 8),
+                  //       Expanded(
+                  //         child: AppButton(
+                  //           onTap: () async {
+                  //             HapticFeedback.lightImpact();
+                  //             if (isCurrentUser) {
+                  //               Share.shareUri(Uri.parse(
+                  //                   'https://prelura.com/${user?.username}'));
+                  //               return;
+                  //             }
+
+                  //             if (!isCurrentUser &&
+                  //                 user?.isFollowing! == false) {
+                  //               final result = await ref.refresh(
+                  //                   followUserProvider(user!.id).future);
+
+                  //               if (result) {
+                  //                 context.alert("Following ${user.username}");
+                  //                 ref.invalidate(
+                  //                     otherUserProfile(widget.username!));
+                  //                 ref.invalidate(userProvider);
+                  //               }
+                  //               log("following");
+                  //               return;
+                  //             }
+                  //             if (!isCurrentUser && user?.isFollowing == true) {
+                  //               final notifier =
+                  //                   ref.read(unFollowUserProvider.notifier);
+                  //               final result =
+                  //                   await notifier.unFollowUser(user!.id);
+                  //               if (result) {
+                  //                 context.alert("Unfollwed ${user.username}");
+                  //               }
+                  //               ref.invalidate(
+                  //                   otherUserProfile(widget.username!));
+                  //               ref.invalidate(userProvider);
+                  //               log("unfollowing");
+
+                  //               return;
+                  //             }
+                  //           },
+                  //           text: isCurrentUser
+                  //               ? "Share"
+                  //               : (user != null && user.isFollowing!)
+                  //                   ? "Following"
+                  //                   : "Follow",
+                  //           textColor: PreluraColors.white,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
-                      children: [
-                        Expanded(
-                          child: AppButton(
-                            loading: ref.watch(conversationProvider).isLoading,
-                            onTap: () async {
-                              HapticFeedback.lightImpact();
-                              if (isCurrentUser) {
-                                context.pushRoute(SellItemRoute());
-                              } else {
-                                await ref
-                                    .read(conversationProvider.notifier)
-                                    .createChat(user!.username);
-                                ref.read(conversationProvider).whenOrNull(
-                                    error: (e, _) => context.alert(
-                                        'Failed to message ${user.username}'),
-                                    data: (conv) {
-                                      log('$conv');
-                                      final currentConv = conv.firstWhere((e) =>
-                                          e.recipient.username ==
-                                          user.username);
-                                      context.pushRoute(
-                                        ChatRoute(
-                                          id: currentConv.id,
-                                          username:
-                                              currentConv.recipient.username,
-                                          avatarUrl: currentConv
-                                              .recipient.profilePictureUrl,
-                                        ),
-                                      );
-                                    });
-                                // context.pushRoute(ChatScreen(username, message, time, avatarUrl))
-                              }
-                            },
-                            text: isCurrentUser ? "Upload" : "Message",
-                            textColor: PreluraColors.activeColor,
-                            bgColor: Theme.of(context).scaffoldBackgroundColor,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: AppButton(
-                            onTap: () async {
-                              HapticFeedback.lightImpact();
-                              if (isCurrentUser) {
-                                Share.shareUri(Uri.parse(
-                                    'https://prelura.com/${user?.username}'));
-                                return;
-                              }
-
-                              if (!isCurrentUser &&
-                                  user?.isFollowing! == false) {
-                                final result = await ref.refresh(
-                                    followUserProvider(user!.id).future);
-
-                                if (result) {
-                                  context.alert("Following ${user.username}");
-                                  ref.invalidate(
-                                      otherUserProfile(widget.username!));
-                                  ref.invalidate(userProvider);
-                                }
-                                log("following");
-                                return;
-                              }
-                              if (!isCurrentUser && user?.isFollowing == true) {
-                                final notifier =
-                                    ref.read(unFollowUserProvider.notifier);
-                                final result =
-                                    await notifier.unFollowUser(user!.id);
-                                if (result) {
-                                  context.alert("Unfollwed ${user.username}");
-                                }
-                                ref.invalidate(
-                                    otherUserProfile(widget.username!));
-                                ref.invalidate(userProvider);
-                                log("unfollowing");
-
-                                return;
-                              }
-                            },
-                            text: isCurrentUser
-                                ? "Share"
-                                : (user != null && user.isFollowing!)
-                                    ? "Following"
-                                    : "Follow",
-                            textColor: PreluraColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(children: [
+                            Text("Filter"),
+                            2.horizontalSpacing,
+                            // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
+                            Icon(Icons.filter)
+                          ]),
+                          Row(children: [
+                            Text("Sort"),
+                            2.horizontalSpacing,
+                            RenderSvg(
+                                svgPath: PreluraIcons.sort_icon_svg,
+                                svgHeight: 18,
+                                svgWidth: 18)
+                          ])
+                        ]),
                   ),
-
                   const SizedBox(
                     height: 20,
                   ),
