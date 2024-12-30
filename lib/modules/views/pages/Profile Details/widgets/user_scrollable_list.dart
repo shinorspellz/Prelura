@@ -48,7 +48,7 @@ class UserScrollableList extends ConsumerWidget {
                           (noOfFollowing > 1 ||
                               user?.noOfFollowers?.toInt() == 0))
                       ? " Followers"
-                      : " Follower,",
+                      : " Follower",
                   numbers: user?.noOfFollowers.toString(), onTap: () {
                 context.router
                     .push(FollowersRoute(username: user?.username ?? ""));

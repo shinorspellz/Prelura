@@ -1,12 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../colors.dart';
 
 class PreluraTypography1 {
   PreluraTypography1._();
-  static const String primaryfontName = "SanFrancisco";
+  static const String primaryfontName = "Inter";
   static const String secondaryfontName = 'SF';
   static TextStyle normalTextStyle = const TextStyle(
     fontFamily: primaryfontName,
@@ -40,18 +38,21 @@ class PreluraTypography1 {
     fontFamily: PreluraTypography1.primaryfontName,
   );
 
-  static customWidthOpacityText(opacity, fontWeight) =>
-      TextStyle(fontFamily: PreluraTypography1.primaryfontName, color: PreluraColors.mainColor.withOpacity(opacity), fontSize: 16, fontWeight: fontWeight);
+  static customWidthOpacityText(opacity, fontWeight) => TextStyle(
+      fontFamily: PreluraTypography1.primaryfontName,
+      color: PreluraColors.mainColor.withOpacity(opacity),
+      fontSize: 16,
+      fontWeight: fontWeight);
 
   static TextStyle pageTitleTextStyle = TextStyle(
-    fontFamily: 'SF',
+    fontFamily: 'Inter',
     color: PreluraColors.text,
     fontSize: 24,
     fontWeight: FontWeight.w700,
   );
 
   static TextStyle sheetCenterCTA = const TextStyle(
-    fontFamily: 'SF',
+    fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -59,19 +60,34 @@ class PreluraTypography1 {
 
 class PreluraDarkTheme {
   PreluraDarkTheme._();
-  static const String primaryfontName = "SanFrancisco";
+  static const String primaryfontName = "Inter";
   static const String secondaryfontName = 'Futura';
-  static TextStyle normalTextStyle = const TextStyle(fontFamily: primaryfontName, fontSize: 15, color: PreluraColors.darkOnPrimaryColor);
-  static TextStyle mediumTextStyle = const TextStyle(fontFamily: primaryfontName, fontSize: 15, color: PreluraColors.darkOnPrimaryColor);
-  static TextStyle smallTextStyle = const TextStyle(fontFamily: primaryfontName, fontSize: 15, color: PreluraColors.darkOnPrimaryColor);
-  static TextStyle bodySmallTextStyle = const TextStyle(fontFamily: primaryfontName, fontSize: 15, color: PreluraColors.darkOnPrimaryColor);
+  static TextStyle normalTextStyle = const TextStyle(
+      fontFamily: primaryfontName,
+      fontSize: 15,
+      color: PreluraColors.darkOnPrimaryColor);
+  static TextStyle mediumTextStyle = const TextStyle(
+      fontFamily: primaryfontName,
+      fontSize: 15,
+      color: PreluraColors.darkOnPrimaryColor);
+  static TextStyle smallTextStyle = const TextStyle(
+      fontFamily: primaryfontName,
+      fontSize: 15,
+      color: PreluraColors.darkOnPrimaryColor);
+  static TextStyle bodySmallTextStyle = const TextStyle(
+      fontFamily: primaryfontName,
+      fontSize: 15,
+      color: PreluraColors.darkOnPrimaryColor);
 
   static const TextStyle labelTextStyle = TextStyle(
     fontFamily: PreluraTypography1.primaryfontName,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle unselectedLabelTextStyle = TextStyle(fontFamily: PreluraTypography1.primaryfontName, fontWeight: FontWeight.w400, color: Colors.white);
+  static const TextStyle unselectedLabelTextStyle = TextStyle(
+      fontFamily: PreluraTypography1.primaryfontName,
+      fontWeight: FontWeight.w400,
+      color: Colors.white);
 
   static TextStyle promptTextStyle = TextStyle(
     color: PreluraColors.mainColor,
@@ -80,18 +96,21 @@ class PreluraDarkTheme {
     fontFamily: PreluraTypography1.primaryfontName,
   );
 
-  static customWidthOpacityText(opacity, fontWeight) =>
-      TextStyle(fontFamily: PreluraTypography1.primaryfontName, color: PreluraColors.mainColor.withOpacity(opacity), fontSize: 16, fontWeight: fontWeight);
+  static customWidthOpacityText(opacity, fontWeight) => TextStyle(
+      fontFamily: PreluraTypography1.primaryfontName,
+      color: PreluraColors.mainColor.withOpacity(opacity),
+      fontSize: 16,
+      fontWeight: fontWeight);
 
   static TextStyle pageTitleTextStyle = TextStyle(
-    fontFamily: 'SF',
+    fontFamily: 'Inter',
     color: PreluraColors.text,
     fontSize: 24,
     fontWeight: FontWeight.w700,
   );
 
   static TextStyle sheetCenterCTA = const TextStyle(
-    fontFamily: 'SF',
+    fontFamily: 'Inter',
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -135,12 +154,16 @@ final TextStyle textFieldTitleTextStyle = TextStyle(
   fontFamily: PreluraTypography1.primaryfontName,
 );
 
-customWidthOpacityText(opacity, fontWeight) => TextStyle(fontFamily: PreluraTypography1.primaryfontName, color: PreluraColors.mainColor.withOpacity(opacity), fontSize: 16, fontWeight: fontWeight);
+customWidthOpacityText(opacity, fontWeight) => TextStyle(
+    fontFamily: PreluraTypography1.primaryfontName,
+    color: PreluraColors.mainColor.withOpacity(opacity),
+    fontSize: 16,
+    fontWeight: fontWeight);
 
 final TextStyle descriptionTextStyle = const TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 14,
-  fontFamily: 'SF',
+  fontFamily: 'Inter',
 );
 
 const TextStyle bioTitleTextStyle = TextStyle(

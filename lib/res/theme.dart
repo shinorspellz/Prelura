@@ -6,6 +6,7 @@ import 'typography/typography.dart';
 
 class PreluraTheme {
   static ThemeData get lightMode => ThemeData(
+    
         useMaterial3: false,
         brightness: Brightness.light,
         highlightColor: Colors.transparent,
