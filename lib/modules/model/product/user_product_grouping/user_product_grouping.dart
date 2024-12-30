@@ -5,7 +5,7 @@ part 'user_product_grouping.g.dart';
 @freezed
 class CategoryGroupType with _$CategoryGroupType {
   const factory CategoryGroupType({
-    required final int id,
+    required final int? id,
     required final String name,
     required final int count,
   }) = _CategoryGroupType;
