@@ -12,7 +12,7 @@ class UserPopularBrand extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [

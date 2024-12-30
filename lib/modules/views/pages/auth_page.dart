@@ -114,11 +114,6 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                         case 4:
                           tabRouter.stackRouterOfIndex(3)?.popUntilRoot();
                           tabRouter.setActiveIndex(3);
-                          MenuPage.menuScrollController.animateTo(
-                            0.0,
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          );
                           break;
                         default:
                       }
