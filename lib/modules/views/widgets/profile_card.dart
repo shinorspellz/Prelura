@@ -29,174 +29,198 @@ class ProfileCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SizedBox(
-        width: MediaQuery.sizeOf(context).width,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (user != null) return;
-                  VBottomSheetComponent.actionBottomSheet(
-                    context: context,
-                    actions: [
-                      VBottomSheetItem(
-                          onTap: () {
-                            VBottomSheetComponent.actionBottomSheet(
-                              context: context,
-                              actions: [
-                                VBottomSheetItem(
-                                    onTap: () async {
-                                      Navigator.pop(context);
-                                      final photo = await ImagePicker()
-                                          .pickImage(
-                                              source: ImageSource.gallery);
+    return Builder(builder: (context) {
+      return SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (user != null) return;
+                    VBottomSheetComponent.actionBottomSheet(
+                      context: context,
+                      actions: [
+                        VBottomSheetItem(
+                            onTap: () {
+                              Navigator.pop(context);
+                              VBottomSheetComponent.actionBottomSheet(
+                                context: context,
+                                actions: [
+                                  VBottomSheetItem(
+                                      onTap: () async {
+                                        Navigator.pop(context);
+                                        final photo = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.gallery);
 
-                                      if (photo == null) return;
-                                      await ref
-                                          .read(userNotfierProvider.notifier)
-                                          .updateProfilePicture(
-                                              File(photo.path));
-                                      ref.read(userNotfierProvider).whenOrNull(
-                                            error: (e, _) => context.alert(
-                                                'An error occured while uploading profile image'),
-                                            data: (_) => context.alert(
-                                                'Profile photo updated!'),
-                                          );
-                                    },
-                                    title: 'Gallery'),
-                                VBottomSheetItem(
-                                    onTap: () async {
-                                      Navigator.pop(context);
-                                      final photo = await ImagePicker()
-                                          .pickImage(
-                                              source: ImageSource.camera);
+                                        if (photo == null) return;
+                                        await ref
+                                            .read(userNotfierProvider.notifier)
+                                            .updateProfilePicture(
+                                                File(photo.path));
+                                        ref
+                                            .read(userNotfierProvider)
+                                            .whenOrNull(
+                                              error: (e, _) => context.alert(
+                                                  'An error occured while uploading profile image'),
+                                              data: (_) => context.alert(
+                                                  'Profile photo updated!'),
+                                            );
+                                      },
+                                      title: 'Gallery'),
+                                  VBottomSheetItem(
+                                      onTap: () async {
+                                        Navigator.pop(context);
+                                        final photo = await ImagePicker()
+                                            .pickImage(
+                                                source: ImageSource.camera);
 
-                                      if (photo == null) return;
-                                      await ref
-                                          .read(userNotfierProvider.notifier)
-                                          .updateProfilePicture(
-                                              File(photo.path));
-                                      ref.read(userNotfierProvider).whenOrNull(
-                                            error: (e, _) => context.alert(
-                                                'An error occured while uploading profile image'),
-                                            data: (_) => context.alert(
-                                                'Profile photo updated!'),
-                                          );
-                                    },
-                                    title: 'Camera'),
-                              ],
-                            );
-                            Navigator.pop(context);
-                          },
-                          title: 'Update Picture')
-                    ],
-                  );
-                },
-                child: ProfilePictureWidget(
-                  profilePicture: user != null
-                      ? user?.profilePictureUrl
-                      : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-                  username: user != null
-                      ? user?.username ?? '--'
-                      : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                  updating: user != null
-                      ? false
-                      : ref.watch(userNotfierProvider).isLoading,
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user != null
+                                        if (photo == null) return;
+                                        await ref
+                                            .read(userNotfierProvider.notifier)
+                                            .updateProfilePicture(
+                                                File(photo.path));
+                                        ref
+                                            .read(userNotfierProvider)
+                                            .whenOrNull(
+                                              error: (e, _) => context.alert(
+                                                  'An error occured while uploading profile image'),
+                                              data: (_) => context.alert(
+                                                  'Profile photo updated!'),
+                                            );
+                                      },
+                                      title: 'Camera'),
+                                ],
+                              );
+                            },
+                            title: 'Update Picture')
+                      ],
+                    );
+                  },
+                  child: ProfilePictureWidget(
+                    profilePicture: user != null
+                        ? user?.profilePictureUrl
+                        : ref
+                            .watch(userProvider)
+                            .valueOrNull
+                            ?.profilePictureUrl,
+                    username: user != null
                         ? user?.username ?? '--'
                         : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).textTheme.bodyMedium?.color),
+                    updating: user != null
+                        ? false
+                        : ref.watch(userNotfierProvider).isLoading,
+                    width: 70,
+                    height: 70,
                   ),
-                  3.verticalSpacing,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Ratings(),
-                      const SizedBox(
-                        width: 4,
+                      Text(
+                        user != null
+                            ? user?.username ?? '--'
+                            : ref.watch(userProvider).valueOrNull?.username ??
+                                '--',
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600,
+                            // fontSize
+                            color:
+                                Theme.of(context).textTheme.bodyMedium?.color),
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Text(
-                          "(300)",
+                      6.verticalSpacing,
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Ratings(),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: Text(
+                              "(300)",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: PreluraColors.activeColor),
+                            ),
+                          ),
+                        ],
+                      ),
+                      6.verticalSpacing,
+                      Text(
+                          user?.location?.locationName ??
+                              "Exeter, United Kingdom",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
-                              ?.copyWith(color: PreluraColors.activeColor),
-                        ),
-                      ),
+                              ?.copyWith(fontWeight: FontWeight.w500)),
                     ],
                   ),
-                  3.verticalSpacing,
-                  Text(user?.location?.locationName ?? "Exeter, United Kingdom",
-                      style: Theme.of(context).textTheme.bodyMedium),
-                ],
-              ),
-              if (context.router.current.name == UserProfileDetailsRoute.name ||
-                  context.router.current.name == ProfileDetailsRoute.name) ...[
-                Spacer(),
-                if (user?.isFollowing != null) ...[
-                  if (user?.isFollowing == true) ...[
-                    GestureDetector(
-                        onTap: () async {
-                          HapticFeedback.lightImpact();
-                          final notifier =
-                              ref.read(unFollowUserProvider.notifier);
-                          final result = await notifier.unFollowUser(user!.id);
-                          if (result) {
-                            context.alert("Unfollwed ${user?.username}");
-                          }
-                          ref.invalidate(
-                              otherUserProfile(user?.username ?? ""));
-                          ref.invalidate(userProvider);
-                          log("unfollowing");
-
-                          return;
-                        },
-                        child: Icon(Icons.person_sharp,
-                            color: PreluraColors.activeColor)),
-                  ],
-                  if (user?.isFollowing == false) ...[
-                    GestureDetector(
-                        onTap: () async {
-                          HapticFeedback.lightImpact();
-                          final result = await ref
-                              .refresh(followUserProvider(user!.id).future);
-
-                          if (result) {
-                            context.alert("Following ${user?.username}");
+                ),
+                if (context.router.current.name ==
+                        UserProfileDetailsRoute.name ||
+                    context.router.current.name ==
+                        ProfileDetailsRoute.name) ...[
+                  Spacer(),
+                  if (user?.isFollowing != null) ...[
+                    if (user?.isFollowing == true) ...[
+                      GestureDetector(
+                          onTap: () async {
+                            HapticFeedback.lightImpact();
+                            final notifier =
+                                ref.read(unFollowUserProvider.notifier);
+                            final result =
+                                await notifier.unFollowUser(user!.id);
+                            if (result) {
+                              context.alert("Unfollwed ${user?.username}");
+                            }
                             ref.invalidate(
                                 otherUserProfile(user?.username ?? ""));
                             ref.invalidate(userProvider);
-                          }
-                          log("following");
-                          return;
-                        },
-                        child: Icon(Icons.person_add_alt_sharp))
+                            log("unfollowing");
+
+                            return;
+                          },
+                          child: Icon(Icons.person_sharp,
+                              color: PreluraColors.activeColor)),
+                    ],
+                    if (user?.isFollowing == false) ...[
+                      GestureDetector(
+                          onTap: () async {
+                            HapticFeedback.lightImpact();
+                            final result = await ref
+                                .refresh(followUserProvider(user!.id).future);
+
+                            if (result) {
+                              context.alert("Following ${user?.username}");
+                              ref.invalidate(
+                                  otherUserProfile(user?.username ?? ""));
+                              ref.invalidate(userProvider);
+                            }
+                            log("following");
+                            return;
+                          },
+                          child: Icon(Icons.person_add_alt_sharp))
+                    ],
+                    10.horizontalSpacing,
                   ],
-                  10.horizontalSpacing,
-                ],
-                RenderSvg(
-                    svgPath: PreluraIcons.forward_icon_svg,
-                    svgHeight: 20,
-                    svgWidth: 20,
-                    color: PreluraColors.primaryColor)
-              ]
-            ]));
+                  RenderSvg(
+                      svgPath: PreluraIcons.forward_icon_svg,
+                      svgHeight: 20,
+                      svgWidth: 20,
+                      color: PreluraColors.primaryColor)
+                ]
+              ]));
+    });
   }
 }

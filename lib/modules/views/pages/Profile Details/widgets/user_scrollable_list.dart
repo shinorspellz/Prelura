@@ -84,9 +84,9 @@ Widget _buildItem(BuildContext context,
             child: Text(
               numbers ?? "0",
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w700,
-                    fontSize: 16.sp,
+                    fontSize: 20.sp,
                   ),
             ),
           ),
