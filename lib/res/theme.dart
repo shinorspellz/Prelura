@@ -6,7 +6,6 @@ import 'typography/typography.dart';
 
 class PreluraTheme {
   static ThemeData get lightMode => ThemeData(
-    
         useMaterial3: false,
         brightness: Brightness.light,
         highlightColor: Colors.transparent,
@@ -164,10 +163,10 @@ class PreluraTheme {
         ),
       );
 
-  static ThemeData get darkTheme => ThemeData.dark(
+  static ThemeData get darkTheme => ThemeData(
+        fontFamily: PreluraTypography1.primaryfontName,
         useMaterial3: false,
-      ).copyWith(
-        brightness: Brightness.dark,
+
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         // splashFactory: Colors.transparent,
@@ -182,6 +181,7 @@ class PreluraTheme {
           surfaceVariant: PreluraColors.surfaceVariantLight.withOpacity(0.2),
           surfaceContainerHighest: PreluraColors.surfaceVariantLight.withOpacity(0.2),
           onSurfaceVariant: PreluraColors.onSurfaceVariantLight.withOpacity(0.25),
+          brightness: Brightness.dark,
         ),
         scaffoldBackgroundColor: PreluraColors.darkScaffoldBackround,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -205,7 +205,7 @@ class PreluraTheme {
         primaryColor: PreluraColors.darkPrimaryColorWhite,
         // primarySwatch: PreluraColors.vModelprimarySwatch,
         indicatorColor: PreluraColors.white,
-        // fontFamily: PreluraDarkTheme.primaryfontName,
+
         switchTheme: ThemeData.light().switchTheme.copyWith(
           trackColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
             if (states.contains(WidgetState.selected)) {
@@ -251,30 +251,7 @@ class PreluraTheme {
         ),
         appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.blackScaffoldBackround, elevation: 0),
         iconTheme: const IconThemeData(color: PreluraColors.darkPrimaryColorWhite),
-        textTheme: const TextTheme(
-                // displayLarge: PreluraDarkTheme.normalTextStyle,
-                // displayMedium: PreluraDarkTheme.mediumTextStyle,
-                // displaySmall: PreluraDarkTheme.smallTextStyle,
-                // titleLarge: PreluraDarkTheme.normalTextStyle,
-                // titleMedium: PreluraDarkTheme.normalTextStyle,
-                // titleSmall: PreluraDarkTheme.normalTextStyle,
-                // bodyLarge: PreluraTypography1.normalTextStyle,
-                // bodyMedium: PreluraDarkTheme.mediumTextStyle,
-                // bodySmall: PreluraDarkTheme.smallTextStyle,
-                // bodyLarge: ThemeData.dark().textTheme.bodyLarge?.copyWith(
-                //       color: PreluraColors.darkOnPrimaryColor,
-                //       fontFamily: PreluraDarkTheme.primaryfontName,
-                //     ),
-                // bodyMedium: ThemeData.dark().textTheme.bodyMedium?.copyWith(
-                //       color: PreluraColors.darkOnPrimaryColor,
-                //       fontFamily: PreluraDarkTheme.primaryfontName,
-                //     ),
-                // bodySmall: ThemeData.dark().textTheme.bodySmall?.copyWith(
-                //       color: PreluraColors.darkOnPrimaryColor,
-                //       fontFamily: PreluraDarkTheme.primaryfontName,
-                //     ),
-                )
-            .apply(
+        textTheme: const TextTheme().apply(
           fontFamily: PreluraTypography1.primaryfontName,
           bodyColor: PreluraColors.darkOnPrimaryColor,
           displayColor: PreluraColors.darkOnPrimaryColor,
@@ -297,18 +274,7 @@ class PreluraTheme {
             fontFamily: PreluraDarkTheme.primaryfontName,
           ),
         ),
-        // switchTheme: ThemeData.dark().switchTheme.copyWith(
-        //   trackColor:
-        //       WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-        //     if (states.contains(WidgetState.selected)) {
-        //       return PreluraColors.darkSecondaryButtonColor;
-        //     }
-        //     if (states.contains(WidgetState.disabled)) {
-        //       return PreluraColors.darkSecondaryButtonColor.withOpacity(0.3);
-        //     }
-        //     return Colors.grey.withOpacity(.48);
-        //   }),
-        // ),
+
         pageTransitionsTheme: PageTransitionsTheme(
           builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
             TargetPlatform.values,

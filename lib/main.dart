@@ -46,8 +46,7 @@ class MyApp extends ConsumerWidget {
     ref.watch(notificationProvider);
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Stripe.publishableKey =
-          'pk_test_51MUB2yBHdb5MeEk7eRdKhqG5CZSExTI1ChtUs6vCkGyWod8Jw6weYt1jeSMDJ2xD4m79Dj62aA3YELPAuuqyxFyV000cHayfJo';
+      Stripe.publishableKey = 'pk_test_51MUB2yBHdb5MeEk7eRdKhqG5CZSExTI1ChtUs6vCkGyWod8Jw6weYt1jeSMDJ2xD4m79Dj62aA3YELPAuuqyxFyV000cHayfJo';
       FlutterNativeSplash.remove();
     });
     return Sizer(
@@ -56,7 +55,7 @@ class MyApp extends ConsumerWidget {
           title: 'Prelura App',
           debugShowCheckedModeBanner: false,
           theme: PreluraTheme.lightMode,
-          darkTheme: PreluraTheme.darkTheme,
+          darkTheme: PreluraTheme.darkTheme.copyWith(textTheme: TextTheme()),
           themeMode: themeMode == ThemeMode.dark ? themeMode : ThemeMode.system,
           routerConfig: ref.watch(router).config(
                 //this line of code listens to the authstate provider
