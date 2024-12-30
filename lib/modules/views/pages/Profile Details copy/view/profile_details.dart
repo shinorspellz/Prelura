@@ -90,8 +90,8 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
               onTap: () => context.pushRoute(MenuRoute()),
               child: RenderSvg(
                 svgPath: PreluraIcons.menu_svg,
-                svgHeight: 18,
-                svgWidth: 18,
+                svgHeight: 21,
+                svgWidth: 21,
               )),
           10.horizontalSpacing,
         ],

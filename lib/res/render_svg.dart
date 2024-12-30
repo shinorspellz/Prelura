@@ -77,8 +77,8 @@ class NormalRenderSvgWithColor extends StatelessWidget {
       svgPath,
       color: color,
       fit: BoxFit.contain,
-      height: svgHeight ?? 24,
-      width: svgWidth ?? 24,
+      height: svgHeight ?? 164,
+      width: svgWidth ?? 16,
     );
   }
 }
@@ -114,6 +114,8 @@ class RenderSvgWithColor2 extends StatelessWidget {
       svgPath,
       fit: BoxFit.contain,
       color: color ?? Theme.of(context).primaryColor,
+      height: 16,
+      width: 16,
     );
   }
 }

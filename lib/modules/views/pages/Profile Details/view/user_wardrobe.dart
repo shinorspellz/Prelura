@@ -106,14 +106,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             if (widget.username != null)
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(
                   user: user,
                 ),
               )
             else
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(),
               ),
             Container(
@@ -129,7 +129,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         children: [
                           Text(
                             user?.bio ?? '',
-                            style: Theme.of(context).textTheme.bodyMedium,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 16),
                         ],
@@ -325,8 +328,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             ),
                             2.horizontalSpacing,
                             // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            Icon(Icons.filter_list_sharp,
-                                color: PreluraColors.primaryColor, size: 17)
+                            RenderSvgWithColor2(
+                              svgPath: PreluraIcons.filter_icon_svg,
+                              color: PreluraColors.activeColor,
+                            )
                           ]),
                           Row(children: [
                             Text(

@@ -109,6 +109,7 @@ flutter:
     - assets/svgs/men/
     - assets/svgs/women/
     - assets/svgs/kids/
+    - assets/fonts/
 
   fonts:
     - family: Inter
