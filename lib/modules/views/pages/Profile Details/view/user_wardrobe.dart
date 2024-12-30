@@ -7,13 +7,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
-import 'package:prelura_app/modules/model/product/user%20product%20grouping/user_product_grouping.dart';
+import 'package:prelura_app/modules/model/product/user_product_grouping/user_product_grouping.dart';
 import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
@@ -342,9 +343,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             cancelButton: true,
                             minWidth: 50.w,
                             hidePrefix: true,
+                            onChanged: (value) {
+                              ref.read(userProductSearchQuery.notifier).state = value;
+                            },
                             onCancel: () {
                               isActive = false;
                               setState(() {});
+                              ref.invalidate(userProductSearchQuery);
                             },
                           ),
                         )

@@ -62,17 +62,21 @@ final toggleLikeProductProvider = FutureProvider.autoDispose.family<bool, int>((
   return result!;
 });
 
-final userProductFilter = StateProvider<Input$ProductFiltersInput?>((ref) => null);
+final userProductFilter = StateProvider.autoDispose<Input$ProductFiltersInput?>((ref) => null);
+
+final userProductSearchQuery = StateProvider.autoDispose<String?>((ref) => null);
 
 final userProduct = FutureProvider.family<List<ProductModel>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final filters = ref.watch(userProductFilter);
+  final searchQuery = ref.watch(userProductSearchQuery);
 
   final result = await repo.getUserProduct(
     username: username,
     pageCount: 1000,
     filters: filters,
+    search: searchQuery,
   );
 
   return result.reversed.toList();

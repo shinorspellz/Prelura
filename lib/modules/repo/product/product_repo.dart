@@ -10,7 +10,7 @@ import 'package:prelura_app/modules/model/product/order/order_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
-import '../../model/product/user product grouping/user_product_grouping.dart';
+import '../../model/product/user_product_grouping/user_product_grouping.dart';
 
 class ProductRepo {
   final GraphQLClient _client;

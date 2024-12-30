@@ -31821,6 +31821,13 @@ const documentNodeQueryUserProductGrouping = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'name'),
             alias: null,
             arguments: [],
@@ -31994,6 +32001,7 @@ extension ClientExtension$Query$UserProductGrouping on graphql.GraphQLClient {
 
 class Query$UserProductGrouping$userProductGrouping {
   Query$UserProductGrouping$userProductGrouping({
+    this.id,
     this.name,
     this.count,
     this.$__typename = 'CategoryGroupType',
@@ -32001,15 +32009,19 @@ class Query$UserProductGrouping$userProductGrouping {
 
   factory Query$UserProductGrouping$userProductGrouping.fromJson(
       Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$name = json['name'];
     final l$count = json['count'];
     final l$$__typename = json['__typename'];
     return Query$UserProductGrouping$userProductGrouping(
+      id: (l$id as int?),
       name: (l$name as String?),
       count: (l$count as int?),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final int? id;
 
   final String? name;
 
@@ -32019,6 +32031,8 @@ class Query$UserProductGrouping$userProductGrouping {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
     final l$count = count;
@@ -32030,10 +32044,12 @@ class Query$UserProductGrouping$userProductGrouping {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$name = name;
     final l$count = count;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$name,
       l$count,
       l$$__typename,
@@ -32047,6 +32063,11 @@ class Query$UserProductGrouping$userProductGrouping {
     }
     if (other is! Query$UserProductGrouping$userProductGrouping ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
@@ -32089,6 +32110,7 @@ abstract class CopyWith$Query$UserProductGrouping$userProductGrouping<TRes> {
       _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping;
 
   TRes call({
+    int? id,
     String? name,
     int? count,
     String? $__typename,
@@ -32109,11 +32131,13 @@ class _CopyWithImpl$Query$UserProductGrouping$userProductGrouping<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
     Object? name = _undefined,
     Object? count = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserProductGrouping$userProductGrouping(
+        id: id == _undefined ? _instance.id : (id as int?),
         name: name == _undefined ? _instance.name : (name as String?),
         count: count == _undefined ? _instance.count : (count as int?),
         $__typename: $__typename == _undefined || $__typename == null
@@ -32129,6 +32153,7 @@ class _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping<TRes>
   TRes _res;
 
   call({
+    int? id,
     String? name,
     int? count,
     String? $__typename,
