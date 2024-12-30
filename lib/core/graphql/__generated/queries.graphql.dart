@@ -31434,6 +31434,664 @@ class _CopyWithStubImpl$Query$Notifications$notifications$sender<TRes>
       _res;
 }
 
+class Variables$Query$UserProductGrouping {
+  factory Variables$Query$UserProductGrouping({
+    required int userId,
+    required Enum$ProductGroupingEnum groupBy,
+  }) =>
+      Variables$Query$UserProductGrouping._({
+        r'userId': userId,
+        r'groupBy': groupBy,
+      });
+
+  Variables$Query$UserProductGrouping._(this._$data);
+
+  factory Variables$Query$UserProductGrouping.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$userId = data['userId'];
+    result$data['userId'] = (l$userId as int);
+    final l$groupBy = data['groupBy'];
+    result$data['groupBy'] =
+        fromJson$Enum$ProductGroupingEnum((l$groupBy as String));
+    return Variables$Query$UserProductGrouping._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get userId => (_$data['userId'] as int);
+
+  Enum$ProductGroupingEnum get groupBy =>
+      (_$data['groupBy'] as Enum$ProductGroupingEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$userId = userId;
+    result$data['userId'] = l$userId;
+    final l$groupBy = groupBy;
+    result$data['groupBy'] = toJson$Enum$ProductGroupingEnum(l$groupBy);
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$UserProductGrouping<
+          Variables$Query$UserProductGrouping>
+      get copyWith => CopyWith$Variables$Query$UserProductGrouping(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$UserProductGrouping ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userId = userId;
+    final lOther$userId = other.userId;
+    if (l$userId != lOther$userId) {
+      return false;
+    }
+    final l$groupBy = groupBy;
+    final lOther$groupBy = other.groupBy;
+    if (l$groupBy != lOther$groupBy) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$userId = userId;
+    final l$groupBy = groupBy;
+    return Object.hashAll([
+      l$userId,
+      l$groupBy,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$UserProductGrouping<TRes> {
+  factory CopyWith$Variables$Query$UserProductGrouping(
+    Variables$Query$UserProductGrouping instance,
+    TRes Function(Variables$Query$UserProductGrouping) then,
+  ) = _CopyWithImpl$Variables$Query$UserProductGrouping;
+
+  factory CopyWith$Variables$Query$UserProductGrouping.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$UserProductGrouping;
+
+  TRes call({
+    int? userId,
+    Enum$ProductGroupingEnum? groupBy,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$UserProductGrouping<TRes>
+    implements CopyWith$Variables$Query$UserProductGrouping<TRes> {
+  _CopyWithImpl$Variables$Query$UserProductGrouping(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$UserProductGrouping _instance;
+
+  final TRes Function(Variables$Query$UserProductGrouping) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userId = _undefined,
+    Object? groupBy = _undefined,
+  }) =>
+      _then(Variables$Query$UserProductGrouping._({
+        ..._instance._$data,
+        if (userId != _undefined && userId != null) 'userId': (userId as int),
+        if (groupBy != _undefined && groupBy != null)
+          'groupBy': (groupBy as Enum$ProductGroupingEnum),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$UserProductGrouping<TRes>
+    implements CopyWith$Variables$Query$UserProductGrouping<TRes> {
+  _CopyWithStubImpl$Variables$Query$UserProductGrouping(this._res);
+
+  TRes _res;
+
+  call({
+    int? userId,
+    Enum$ProductGroupingEnum? groupBy,
+  }) =>
+      _res;
+}
+
+class Query$UserProductGrouping {
+  Query$UserProductGrouping({
+    this.userProductGrouping,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$UserProductGrouping.fromJson(Map<String, dynamic> json) {
+    final l$userProductGrouping = json['userProductGrouping'];
+    final l$$__typename = json['__typename'];
+    return Query$UserProductGrouping(
+      userProductGrouping: (l$userProductGrouping as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$UserProductGrouping$userProductGrouping.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$UserProductGrouping$userProductGrouping?>?
+      userProductGrouping;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userProductGrouping = userProductGrouping;
+    _resultData['userProductGrouping'] =
+        l$userProductGrouping?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userProductGrouping = userProductGrouping;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userProductGrouping == null
+          ? null
+          : Object.hashAll(l$userProductGrouping.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserProductGrouping ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userProductGrouping = userProductGrouping;
+    final lOther$userProductGrouping = other.userProductGrouping;
+    if (l$userProductGrouping != null && lOther$userProductGrouping != null) {
+      if (l$userProductGrouping.length != lOther$userProductGrouping.length) {
+        return false;
+      }
+      for (int i = 0; i < l$userProductGrouping.length; i++) {
+        final l$userProductGrouping$entry = l$userProductGrouping[i];
+        final lOther$userProductGrouping$entry = lOther$userProductGrouping[i];
+        if (l$userProductGrouping$entry != lOther$userProductGrouping$entry) {
+          return false;
+        }
+      }
+    } else if (l$userProductGrouping != lOther$userProductGrouping) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserProductGrouping
+    on Query$UserProductGrouping {
+  CopyWith$Query$UserProductGrouping<Query$UserProductGrouping> get copyWith =>
+      CopyWith$Query$UserProductGrouping(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$UserProductGrouping<TRes> {
+  factory CopyWith$Query$UserProductGrouping(
+    Query$UserProductGrouping instance,
+    TRes Function(Query$UserProductGrouping) then,
+  ) = _CopyWithImpl$Query$UserProductGrouping;
+
+  factory CopyWith$Query$UserProductGrouping.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProductGrouping;
+
+  TRes call({
+    List<Query$UserProductGrouping$userProductGrouping?>? userProductGrouping,
+    String? $__typename,
+  });
+  TRes userProductGrouping(
+      Iterable<Query$UserProductGrouping$userProductGrouping?>? Function(
+              Iterable<
+                  CopyWith$Query$UserProductGrouping$userProductGrouping<
+                      Query$UserProductGrouping$userProductGrouping>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$UserProductGrouping<TRes>
+    implements CopyWith$Query$UserProductGrouping<TRes> {
+  _CopyWithImpl$Query$UserProductGrouping(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserProductGrouping _instance;
+
+  final TRes Function(Query$UserProductGrouping) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userProductGrouping = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserProductGrouping(
+        userProductGrouping: userProductGrouping == _undefined
+            ? _instance.userProductGrouping
+            : (userProductGrouping
+                as List<Query$UserProductGrouping$userProductGrouping?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes userProductGrouping(
+          Iterable<Query$UserProductGrouping$userProductGrouping?>? Function(
+                  Iterable<
+                      CopyWith$Query$UserProductGrouping$userProductGrouping<
+                          Query$UserProductGrouping$userProductGrouping>?>?)
+              _fn) =>
+      call(
+          userProductGrouping:
+              _fn(_instance.userProductGrouping?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$UserProductGrouping$userProductGrouping(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$UserProductGrouping<TRes>
+    implements CopyWith$Query$UserProductGrouping<TRes> {
+  _CopyWithStubImpl$Query$UserProductGrouping(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$UserProductGrouping$userProductGrouping?>? userProductGrouping,
+    String? $__typename,
+  }) =>
+      _res;
+
+  userProductGrouping(_fn) => _res;
+}
+
+const documentNodeQueryUserProductGrouping = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'UserProductGrouping'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'userId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'groupBy')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ProductGroupingEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userProductGrouping'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'userId'),
+            value: VariableNode(name: NameNode(value: 'userId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'groupBy'),
+            value: VariableNode(name: NameNode(value: 'groupBy')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'count'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$UserProductGrouping _parserFn$Query$UserProductGrouping(
+        Map<String, dynamic> data) =>
+    Query$UserProductGrouping.fromJson(data);
+typedef OnQueryComplete$Query$UserProductGrouping = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$UserProductGrouping?,
+);
+
+class Options$Query$UserProductGrouping
+    extends graphql.QueryOptions<Query$UserProductGrouping> {
+  Options$Query$UserProductGrouping({
+    String? operationName,
+    required Variables$Query$UserProductGrouping variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserProductGrouping? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$UserProductGrouping? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$UserProductGrouping(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryUserProductGrouping,
+          parserFn: _parserFn$Query$UserProductGrouping,
+        );
+
+  final OnQueryComplete$Query$UserProductGrouping? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$UserProductGrouping
+    extends graphql.WatchQueryOptions<Query$UserProductGrouping> {
+  WatchOptions$Query$UserProductGrouping({
+    String? operationName,
+    required Variables$Query$UserProductGrouping variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserProductGrouping? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryUserProductGrouping,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$UserProductGrouping,
+        );
+}
+
+class FetchMoreOptions$Query$UserProductGrouping
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$UserProductGrouping({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$UserProductGrouping variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryUserProductGrouping,
+        );
+}
+
+extension ClientExtension$Query$UserProductGrouping on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$UserProductGrouping>>
+      query$UserProductGrouping(
+              Options$Query$UserProductGrouping options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$UserProductGrouping>
+      watchQuery$UserProductGrouping(
+              WatchOptions$Query$UserProductGrouping options) =>
+          this.watchQuery(options);
+  void writeQuery$UserProductGrouping({
+    required Query$UserProductGrouping data,
+    required Variables$Query$UserProductGrouping variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryUserProductGrouping),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$UserProductGrouping? readQuery$UserProductGrouping({
+    required Variables$Query$UserProductGrouping variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation:
+            graphql.Operation(document: documentNodeQueryUserProductGrouping),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$UserProductGrouping.fromJson(result);
+  }
+}
+
+class Query$UserProductGrouping$userProductGrouping {
+  Query$UserProductGrouping$userProductGrouping({
+    this.name,
+    this.count,
+    this.$__typename = 'CategoryGroupType',
+  });
+
+  factory Query$UserProductGrouping$userProductGrouping.fromJson(
+      Map<String, dynamic> json) {
+    final l$name = json['name'];
+    final l$count = json['count'];
+    final l$$__typename = json['__typename'];
+    return Query$UserProductGrouping$userProductGrouping(
+      name: (l$name as String?),
+      count: (l$count as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? name;
+
+  final int? count;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$count = count;
+    _resultData['count'] = l$count;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$name = name;
+    final l$count = count;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$name,
+      l$count,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserProductGrouping$userProductGrouping ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$count = count;
+    final lOther$count = other.count;
+    if (l$count != lOther$count) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserProductGrouping$userProductGrouping
+    on Query$UserProductGrouping$userProductGrouping {
+  CopyWith$Query$UserProductGrouping$userProductGrouping<
+          Query$UserProductGrouping$userProductGrouping>
+      get copyWith => CopyWith$Query$UserProductGrouping$userProductGrouping(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserProductGrouping$userProductGrouping<TRes> {
+  factory CopyWith$Query$UserProductGrouping$userProductGrouping(
+    Query$UserProductGrouping$userProductGrouping instance,
+    TRes Function(Query$UserProductGrouping$userProductGrouping) then,
+  ) = _CopyWithImpl$Query$UserProductGrouping$userProductGrouping;
+
+  factory CopyWith$Query$UserProductGrouping$userProductGrouping.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping;
+
+  TRes call({
+    String? name,
+    int? count,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserProductGrouping$userProductGrouping<TRes>
+    implements CopyWith$Query$UserProductGrouping$userProductGrouping<TRes> {
+  _CopyWithImpl$Query$UserProductGrouping$userProductGrouping(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserProductGrouping$userProductGrouping _instance;
+
+  final TRes Function(Query$UserProductGrouping$userProductGrouping) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? name = _undefined,
+    Object? count = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserProductGrouping$userProductGrouping(
+        name: name == _undefined ? _instance.name : (name as String?),
+        count: count == _undefined ? _instance.count : (count as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping<TRes>
+    implements CopyWith$Query$UserProductGrouping$userProductGrouping<TRes> {
+  _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping(this._res);
+
+  TRes _res;
+
+  call({
+    String? name,
+    int? count,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Query$NotificationPreference {
   Query$NotificationPreference({
     this.notificationPreference,

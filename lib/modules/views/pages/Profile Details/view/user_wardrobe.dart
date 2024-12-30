@@ -13,6 +13,7 @@ import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
+import 'package:prelura_app/modules/model/product/user%20product%20grouping/user_product_grouping.dart';
 import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
@@ -95,14 +96,16 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         .watch((widget.username != null
             ? otherUserProfile(widget.username!)
             : userProvider))
-        .value;
+        .valueOrNull;
     bool isCurrentUser = widget.username == null;
-    final List<CategoryModel> categories;
-    categories = ref
-        .watch(categoryProvider)
-        .value!
-        .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
-        .toList();
+    final List<CategoryGroupType> categories;
+    final value =
+        ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
+    categories = value == null
+        ? []
+        : value
+            .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
+            .toList();
 
     return SmartRefresher(
       controller: _refreshController,
@@ -397,7 +400,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
                         return MenuCard(
                           title: cat.name,
-                          textColor: PreluraColors.grey,
+                          sideTextColor: PreluraColors.grey,
+                          sideText:
+                              "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
                           trailingIcon: RenderSvg(
                               svgPath: PreluraIcons.arrowDown_svg,
                               svgHeight: 16,
@@ -442,7 +447,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     color: PreluraColors.primaryColor)),
                           if (isActive)
                             AnimatedContainer(
-                              width: 70.w,
+                              width: 54.5.w,
                               color: Colors.transparent,
                               alignment: Alignment.centerRight,
                               duration: const Duration(milliseconds: 150),
@@ -454,6 +459,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 autofocus: true,
                                 cancelButton: true,
                                 minWidth: 50.w,
+                                hidePrefix: true,
                                 onCancel: () {
                                   isActive = false;
                                   setState(() {});
@@ -462,7 +468,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             )
                         ]),
                   ),
-                  UserPopularBrand(),
+                  UserPopularBrand(
+                    userId: user?.id,
+                  ),
 
                   // const Divider(),
                   // Padding(
@@ -603,7 +611,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: ref.watch(userProduct(user?.username)).when(
-                          skipLoadingOnRefresh: false,
                           data: (products) => DisplaySection(
                             products: products,
                             isInProduct: false,

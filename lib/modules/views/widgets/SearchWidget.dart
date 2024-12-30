@@ -35,6 +35,7 @@ class Searchwidget extends StatefulWidget {
   final VoidCallback? onCancel;
   final ValueChanged<bool>? onFocused;
   final EdgeInsets? padding;
+  final bool hidePrefix;
 
   const Searchwidget(
       {super.key,
@@ -66,7 +67,8 @@ class Searchwidget extends StatefulWidget {
       required this.cancelButton,
       this.onCancel,
       this.padding,
-      this.onFocused});
+      this.onFocused,
+      this.hidePrefix = false});
 
   @override
   State<Searchwidget> createState() => _SearchwidgetState();
@@ -261,10 +263,12 @@ class _SearchwidgetState extends State<Searchwidget> {
                   suffixIconConstraints:
                       const BoxConstraints(maxHeight: 20, maxWidth: 24),
 
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Theme.of(context).iconTheme.color,
-                  ), //widget.prefixIcon,
+                  prefixIcon: widget.hidePrefix
+                      ? null
+                      : Icon(
+                          Icons.search,
+                          color: Theme.of(context).iconTheme.color,
+                        ), //widget.prefixIcon,
                   suffixStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: PreluraColors.boldGreyText,
                         fontWeight: FontWeight.w700,
@@ -287,7 +291,7 @@ class _SearchwidgetState extends State<Searchwidget> {
         ),
         if (widget.cancelButton)
           AnimatedContainer(
-            width: showCancel ? 70 : 0,
+            width: showCancel ? 60 : 0,
             height: showCancel ? 30 : 0,
             color: Colors.transparent,
             alignment: Alignment.centerRight,
@@ -321,10 +325,10 @@ class _SearchwidgetState extends State<Searchwidget> {
               ),
             ),
           ),
-        if (!widget.cancelButton)
-          const SizedBox(
-            width: 70,
-          )
+        // if (!widget.cancelButton)
+        //   const SizedBox(
+        //     width: 70,
+        //   )
       ]),
     );
   }
