@@ -20,7 +20,7 @@ class UserScrollableList extends ConsumerWidget {
     final noOfFollowing = user?.noOfFollowing ?? 0;
     return Container(
       margin: EdgeInsets.only(top: 16),
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.only(top: 8, right: 8, bottom: 8),
       decoration: BoxDecoration(
           border: Border(
         bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
@@ -28,21 +28,24 @@ class UserScrollableList extends ConsumerWidget {
       )),
       child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.zero,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
               _buildItem(context,
                   title: listingCount == 1 ? "Listing" : "Listings",
                   numbers: user?.listing?.toString(),
                   onTap: () {}),
+              16.horizontalSpacing,
               _buildItem(context,
                   title: 'Following',
                   numbers: user?.noOfFollowing.toString(), onTap: () {
                 context.router
                     .push(FollowingRoute(username: user?.username ?? ""));
               }),
+              16.horizontalSpacing,
               _buildItem(context,
                   title: (user?.noOfFollowers != null &&
                           (noOfFollowing > 1 ||
@@ -53,8 +56,12 @@ class UserScrollableList extends ConsumerWidget {
                 context.router
                     .push(FollowersRoute(username: user?.username ?? ""));
               }),
+              16.horizontalSpacing,
               _buildItem(context,
                   title: 'Reviews', numbers: "300", onTap: () {}),
+              16.horizontalSpacing,
+              _buildItem(context,
+                  title: "Ratings", numbers: "4.95", onTap: () {})
             ],
           )),
     );
@@ -69,21 +76,28 @@ Widget _buildItem(BuildContext context,
     onTap: onTap,
     child: Container(
       // color: Colors.red,
-      width: 25.w,
+      width: 25.4.w,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            numbers ?? "0",
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.sp,
-                ),
+          Align(
+            child: Text(
+              numbers ?? "0",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.sp,
+                  ),
+            ),
           ),
           5.verticalSpacing,
-          Text(
-            title,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+          Align(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+            ),
           ),
         ],
       ),

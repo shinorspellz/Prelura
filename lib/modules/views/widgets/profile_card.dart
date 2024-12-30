@@ -43,7 +43,6 @@ class ProfileCardWidget extends ConsumerWidget {
                     actions: [
                       VBottomSheetItem(
                           onTap: () {
-                            Navigator.pop(context);
                             VBottomSheetComponent.actionBottomSheet(
                               context: context,
                               actions: [
@@ -89,6 +88,7 @@ class ProfileCardWidget extends ConsumerWidget {
                                     title: 'Camera'),
                               ],
                             );
+                            Navigator.pop(context);
                           },
                           title: 'Update Picture')
                     ],

@@ -325,8 +325,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             ),
                             2.horizontalSpacing,
                             // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            Icon(Icons.filter_list_sharp,
-                                color: PreluraColors.primaryColor, size: 17)
+                            RenderSvgWithColor2(
+                              svgPath: PreluraIcons.filter_icon_svg,
+                              color: PreluraColors.activeColor,
+                            )
                           ]),
                           Row(children: [
                             Text(
