@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql/client.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -106,6 +107,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         : value
             .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
             .toList();
+
+    final color = PreluraColors.jobDetailGrey.withOpacity(0.7);
+    final fontWeight = FontWeight.w400;
 
     return SmartRefresher(
       controller: _refreshController,
@@ -572,36 +576,103 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(children: [
-                            Text(
-                              "Filter",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
-                            ),
-                            2.horizontalSpacing,
-                            // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            RenderSvgWithColor2(
-                              svgPath: PreluraIcons.filter_icon_svg,
-                              color: PreluraColors.activeColor,
-                            )
-                          ]),
-                          Row(children: [
-                            Text(
-                              "Sort",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
-                            ),
-                            2.horizontalSpacing,
-                            RenderSvg(
-                                svgPath: PreluraIcons.sort_icon_svg,
+                          GestureDetector(
+                            onTap: () {
+                              VBottomSheetComponent.actionBottomSheet(
+                                context: context,
+                                actions: [
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Category"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Size"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Brand"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Condition"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Colour"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Price"),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {}, title: "Material"),
+                                  // VBottomSheetItem(onTap: (Context){}, title: "Category"),
+                                ],
+                              );
+                            },
+                            child: Row(children: [
+                              Text(
+                                "Filter",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: PreluraColors.grey),
+                              ),
+                              2.horizontalSpacing,
+                              // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
+                              RenderSvgWithColor2(
+                                svgPath: PreluraIcons.filter_icon_svg,
                                 color: PreluraColors.activeColor,
-                                svgHeight: 16,
-                                svgWidth: 16)
-                          ])
+                              )
+                            ]),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              VBottomSheetComponent.actionBottomSheet(
+                                context: context,
+                                customHeader: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Sort",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 17.sp),
+                                  ),
+                                ),
+                                actions: [
+                                  VBottomSheetItem(
+                                      onTap: (Context) {},
+                                      title: "Relevance",
+                                      textColor: color,
+                                      textWeight: fontWeight),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {},
+                                      title: "Newest First",
+                                      textColor: color,
+                                      textWeight: fontWeight),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {},
+                                      title: "Price Ascending",
+                                      textColor: color,
+                                      textWeight: fontWeight),
+                                  VBottomSheetItem(
+                                      onTap: (Context) {},
+                                      title: "Price Desending",
+                                      textColor: color,
+                                      textWeight: fontWeight),
+
+                                  // VBottomSheetItem(onTap: (Context){}, title: "Category"),
+                                ],
+                              );
+                            },
+                            child: Row(children: [
+                              Text(
+                                "Sort",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: PreluraColors.grey),
+                              ),
+                              2.horizontalSpacing,
+                              RenderSvg(
+                                  svgPath: PreluraIcons.sort_icon_svg,
+                                  color: PreluraColors.activeColor,
+                                  svgHeight: 16,
+                                  svgWidth: 16)
+                            ]),
+                          )
                         ]),
                   ),
                   const SizedBox(
