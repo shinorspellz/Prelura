@@ -125,6 +125,51 @@ query Product($id: Int!) {
   }
 }
 
+query RecentlyViewedproducts {
+  recentlyViewedProducts {
+    id
+    name
+    description
+    category {
+      id
+      name
+    }
+    subCategory {
+      id
+      name
+    }
+    seller {
+      id
+      username
+      profilePictureUrl
+    }
+    condition
+    discountPrice
+    size
+    condition
+    price
+    parcelSize
+    views
+    likes
+    userLiked
+    imagesUrl
+    createdAt
+    updatedAt
+    likes
+    color
+    style
+    materials {
+      id
+      name
+    }
+    customBrand
+    brand {
+      id
+      name
+    }
+  }
+}
+
 query UserProducts(
   $search: String
   $username: String
