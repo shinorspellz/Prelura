@@ -40,7 +40,21 @@ import '../../../widgets/app_button.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
+import '../widgets/show_filter_modal.dart';
 import '../widgets/user_popular_brand.dart';
+
+enum UserFilterTypes {
+  size('Size'),
+  brand('Brand'),
+  condition('Condition'),
+  // category('Category'),
+  style('Style');
+  // color('Color');
+
+  const UserFilterTypes(this.simpleName);
+
+  final String simpleName;
+}
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -94,11 +108,20 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
     bool isCurrentUser = widget.username == null;
     final List<CategoryGroupType> categories;
-    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
-    categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
+    final value =
+        ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
+    categories = value == null
+        ? []
+        : value
+            .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
+            .toList();
 
     final color = PreluraColors.jobDetailGrey.withOpacity(0.7);
     final fontWeight = FontWeight.w400;
@@ -114,7 +137,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -132,7 +156,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       clipBehavior: Clip.none,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 12),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -140,7 +165,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               Expanded(
                                 child: Text(
                                   user?.bio ?? '',
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(fontWeight: FontWeight.w500),
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -167,32 +195,73 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           VBottomSheetItem(
                                               onTap: (context) {
                                                 Navigator.pop(context);
-                                                VBottomSheetComponent.actionBottomSheet(
+                                                VBottomSheetComponent
+                                                    .actionBottomSheet(
                                                   context: context,
                                                   actions: [
                                                     VBottomSheetItem(
                                                         onTap: (context) async {
-                                                          Navigator.pop(context);
-                                                          final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                          Navigator.pop(
+                                                              context);
+                                                          final photo =
+                                                              await ImagePicker()
+                                                                  .pickImage(
+                                                                      source: ImageSource
+                                                                          .gallery);
 
-                                                          if (photo == null) return;
-                                                          await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                          ref.read(userNotfierProvider).whenOrNull(
-                                                                error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                                data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                          if (photo == null)
+                                                            return;
+                                                          await ref
+                                                              .read(
+                                                                  userNotfierProvider
+                                                                      .notifier)
+                                                              .updateProfilePicture(
+                                                                  File(photo
+                                                                      .path));
+                                                          ref
+                                                              .read(
+                                                                  userNotfierProvider)
+                                                              .whenOrNull(
+                                                                error: (e, _) =>
+                                                                    context.alert(
+                                                                        'An error occured while uploading profile image'),
+                                                                data: (_) => HelperFunction
+                                                                    .showToast(
+                                                                        message:
+                                                                            'Profile photo updated!'),
                                                               );
                                                         },
                                                         title: 'Gallery'),
                                                     VBottomSheetItem(
                                                         onTap: (context) async {
-                                                          Navigator.pop(context);
-                                                          final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                          Navigator.pop(
+                                                              context);
+                                                          final photo =
+                                                              await ImagePicker()
+                                                                  .pickImage(
+                                                                      source: ImageSource
+                                                                          .camera);
 
-                                                          if (photo == null) return;
-                                                          await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                          ref.read(userNotfierProvider).whenOrNull(
-                                                                error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                                data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                          if (photo == null)
+                                                            return;
+                                                          await ref
+                                                              .read(
+                                                                  userNotfierProvider
+                                                                      .notifier)
+                                                              .updateProfilePicture(
+                                                                  File(photo
+                                                                      .path));
+                                                          ref
+                                                              .read(
+                                                                  userNotfierProvider)
+                                                              .whenOrNull(
+                                                                error: (e, _) =>
+                                                                    context.alert(
+                                                                        'An error occured while uploading profile image'),
+                                                                data: (_) => HelperFunction
+                                                                    .showToast(
+                                                                        message:
+                                                                            'Profile photo updated!'),
                                                               );
                                                         },
                                                         title: 'Camera'),
@@ -206,36 +275,80 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                 showDialog(
                                                   context: context,
                                                   builder: (context) {
-                                                    final controller = TextEditingController(text: user?.bio);
+                                                    final controller =
+                                                        TextEditingController(
+                                                            text: user?.bio);
                                                     return AlertDialog(
-                                                      title: const Text('Update Bio'),
+                                                      title: const Text(
+                                                          'Update Bio'),
                                                       content: Column(
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           PreluraAuthTextField(
                                                             label: 'Bio',
-                                                            labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                            hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                            controller: controller,
+                                                            labelStyle: Theme
+                                                                    .of(context)
+                                                                .textTheme
+                                                                .bodyMedium
+                                                                ?.copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
+                                                            hintStyle: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodyMedium
+                                                                ?.copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
+                                                            controller:
+                                                                controller,
                                                             maxLines: null,
                                                           ),
                                                           10.verticalSpacing,
-                                                          Consumer(builder: (context, ref, _) {
+                                                          Consumer(builder:
+                                                              (context, ref,
+                                                                  _) {
                                                             return PreluraButtonWithLoader(
-                                                              showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
-                                                              onPressed: () async {
-                                                                await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
-                                                                ref.read(userNotfierProvider).whenOrNull(
-                                                                      error: (e, _) => context.alert('An error occured while updating'),
-                                                                      data: (_) {
-                                                                        Navigator.pop(context);
-                                                                        HelperFunction.context = context;
-                                                                        HelperFunction.showToast(message: 'Bio updated!');
+                                                              showLoadingIndicator: ref
+                                                                  .watch(
+                                                                      userNotfierProvider)
+                                                                  .isLoading,
+                                                              onPressed:
+                                                                  () async {
+                                                                await ref
+                                                                    .read(userNotfierProvider
+                                                                        .notifier)
+                                                                    .updateProfile(
+                                                                        bio: controller
+                                                                            .text);
+                                                                ref
+                                                                    .read(
+                                                                        userNotfierProvider)
+                                                                    .whenOrNull(
+                                                                      error: (e,
+                                                                              _) =>
+                                                                          context
+                                                                              .alert('An error occured while updating'),
+                                                                      data:
+                                                                          (_) {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        HelperFunction.context =
+                                                                            context;
+                                                                        HelperFunction.showToast(
+                                                                            message:
+                                                                                'Bio updated!');
                                                                       },
                                                                     );
                                                               },
-                                                              buttonTitle: 'Update',
+                                                              buttonTitle:
+                                                                  'Update',
                                                               // width: MediaQuery.sizeOf(context).width,
                                                             );
                                                           })
@@ -272,7 +385,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     user: user,
                   ),
                   MenuCard(
-                      icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
+                      icon: isSelected
+                          ? Icon(Icons.arrow_back_ios_rounded,
+                              size: 18, color: PreluraColors.primaryColor)
+                          : null,
                       title: selectedItem.isNotEmpty
                           ? "Viewing"
                           : widget.username != null
@@ -285,8 +401,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       trailingIcon: isSelected
                           ? null
                           : selectedItem.isNotEmpty
-                              ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
-                              : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
+                              ? Icon(Icons.cancel_rounded,
+                                  color: PreluraColors.grey)
+                              : Icon(Icons.arrow_forward_ios_rounded,
+                                  color: PreluraColors.grey, size: 18),
                       onTap: () {
                         isSelected = !isSelected;
                         selectedItem = "";
@@ -303,61 +421,80 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         return MenuCard(
                           title: cat.name,
                           sideTextColor: PreluraColors.grey,
-                          sideText: "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
-                          trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                          sideText:
+                              "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
+                          trailingIcon: RenderSvg(
+                              svgPath: PreluraIcons.arrowDown_svg,
+                              svgHeight: 16,
+                              svgWidth: 16,
+                              color: PreluraColors.grey),
                           onTap: () {
                             selectedItem = cat.name;
                             isSelected = false;
                             setState(() {});
-                            ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
+                            ref.read(userProductFilter.notifier).state =
+                                Input$ProductFiltersInput(category: cat.id);
                           },
                         );
                       },
                     )
                   ],
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Text(
-                        widget.username != null ? "Brands from this seller" : "Top Brands",
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
-                      ),
-                      // RenderSvgWithColor2(
-                      //     svgPath: PreluraIcons.search_glass_svg),
-                      // ],
-                      if (!isActive)
-                        GestureDetector(
-                            onTap: () {
-                              isActive = true;
-                              setState(() {});
-                            },
-                            child: Icon(Icons.search, color: PreluraColors.primaryColor)),
-                      if (isActive)
-                        AnimatedContainer(
-                          width: 54.5.w,
-                          color: Colors.transparent,
-                          alignment: Alignment.centerRight,
-                          duration: const Duration(milliseconds: 150),
-                          child: Searchwidget(
-                            obscureText: false,
-                            shouldReadOnly: false,
-                            enabled: true,
-                            showInputBorder: true,
-                            autofocus: true,
-                            cancelButton: true,
-                            minWidth: 50.w,
-                            hidePrefix: true,
-                            onChanged: (value) {
-                              ref.read(userProductSearchQuery.notifier).state = value;
-                            },
-                            onCancel: () {
-                              isActive = false;
-                              setState(() {});
-                              ref.invalidate(userProductSearchQuery);
-                            },
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 6),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            widget.username != null
+                                ? "Brands from this seller"
+                                : "Top Brands",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: PreluraColors.grey),
                           ),
-                        )
-                    ]),
+                          // RenderSvgWithColor2(
+                          //     svgPath: PreluraIcons.search_glass_svg),
+                          // ],
+                          if (!isActive)
+                            GestureDetector(
+                                onTap: () {
+                                  isActive = true;
+                                  setState(() {});
+                                },
+                                child: Icon(Icons.search,
+                                    color: PreluraColors.primaryColor)),
+                          if (isActive)
+                            AnimatedContainer(
+                              width: 54.5.w,
+                              color: Colors.transparent,
+                              alignment: Alignment.centerRight,
+                              duration: const Duration(milliseconds: 150),
+                              child: Searchwidget(
+                                obscureText: false,
+                                shouldReadOnly: false,
+                                enabled: true,
+                                showInputBorder: true,
+                                autofocus: true,
+                                cancelButton: true,
+                                minWidth: 50.w,
+                                hidePrefix: true,
+                                onChanged: (value) {
+                                  ref
+                                      .read(userProductSearchQuery.notifier)
+                                      .state = value;
+                                },
+                                onCancel: () {
+                                  isActive = false;
+                                  setState(() {});
+                                  ref.invalidate(userProductSearchQuery);
+                                },
+                              ),
+                            )
+                        ]),
                   ),
                   UserPopularBrand(
                     userId: user?.id,
@@ -459,42 +596,133 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   // ),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(children: [
-                            Text(
-                              "Filter",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                VBottomSheetComponent.actionBottomSheet(
+                                  customHeader: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Filter",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                    ),
+                                  ),
+                                  context: context,
+                                  actions: [
+                                    ...UserFilterTypes.values.map((e) {
+                                      return VBottomSheetItem(
+                                        onTap: (context) {
+                                          Navigator.pop(context);
+                                          showFilterModal(context, e, ref);
+                                        },
+                                        title: e.simpleName,
+                                        textColor: color,
+                                        textWeight: fontWeight,
+                                      );
+                                    }).toList(),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Colour",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Price",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Material",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+
+                                    // VBottomSheetItem(onTap: (Context){}, title: "Category"),
+                                  ],
+                                );
+                              },
+                              child: Row(children: [
+                                Text(
+                                  "Filter",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: PreluraColors.grey),
+                                ),
+                                2.horizontalSpacing,
+                                // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
+                                RenderSvgWithColor2(
+                                  svgPath: PreluraIcons.filter_icon_svg,
+                                  color: PreluraColors.activeColor,
+                                )
+                              ]),
                             ),
-                            2.horizontalSpacing,
-                            // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            RenderSvgWithColor2(
-                              svgPath: PreluraIcons.filter_icon_svg,
-                              color: PreluraColors.activeColor,
+                            GestureDetector(
+                              onTap: () {
+                                VBottomSheetComponent.actionBottomSheet(
+                                  context: context,
+                                  customHeader: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Sort",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                    ),
+                                  ),
+                                  actions: [
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Relevance",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Newest First",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Price Ascending",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+                                    VBottomSheetItem(
+                                        onTap: (Context) {},
+                                        title: "Price Desending",
+                                        textColor: color,
+                                        textWeight: fontWeight),
+
+                                    // VBottomSheetItem(onTap: (Context){}, title: "Category"),
+                                  ],
+                                );
+                              },
+                              child: Row(children: [
+                                Text(
+                                  "Sort",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(color: PreluraColors.grey),
+                                ),
+                                2.horizontalSpacing,
+                                RenderSvg(
+                                    svgPath: PreluraIcons.sort_icon_svg,
+                                    color: PreluraColors.activeColor,
+                                    svgHeight: 16,
+                                    svgWidth: 16)
+                              ]),
                             )
-                          ]),
-                          Row(children: [
-                            Text(
-                              "Sort",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
-                            ),
-                            2.horizontalSpacing,
-                            RenderSvg(
-                                svgPath: PreluraIcons.sort_icon_svg,
-                                color: PreluraColors.activeColor,
-                                svgHeight: 16,
-                                svgWidth: 16)
-                          ])
-                        ]),
-                  ),
+                          ])),
                   const SizedBox(
                     height: 20,
                   ),
