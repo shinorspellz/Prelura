@@ -306,9 +306,6 @@ mutation CreateOrder($productId: Int!, $quantity: Int) {
   createOrder(productId: $productId, quantity: $quantity) {
     order {
       id
-      product {
-        id
-      }
       quantity
       priceTotal
       shippingFee

@@ -175,12 +175,14 @@ query UserProducts(
   $username: String
   $pageCount: Int
   $pageNumber: Int
+  $filters: ProductFiltersInput
 ) {
   userProducts(
     search: $search
     username: $username
     pageCount: $pageCount
     pageNumber: $pageNumber
+    filters: $filters
   ) {
     id
     name
@@ -661,8 +663,10 @@ query Notifications($pageCount: Int, $pageNumber: Int) {
 }
 query UserProductGrouping($userId: Int!, $groupBy: ProductGroupingEnum!) {
   userProductGrouping(userId: $userId, groupBy: $groupBy) {
-  name
-  count}
+    id
+    name
+    count
+  }
 }
 
 query NotificationPreference {

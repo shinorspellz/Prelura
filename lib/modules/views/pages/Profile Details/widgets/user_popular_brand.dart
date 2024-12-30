@@ -17,50 +17,37 @@ class UserPopularBrand extends ConsumerWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          ...ref
-              .watch(userProductGroupingByBrandProvider(userId ?? 0))
-              .maybeWhen(
-                  orElse: () {
-                    return List.generate(
-                        10,
-                        (_) => Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 6.0),
-                              child: ShimmerBox(
-                                height: 28,
-                                width: 100,
-                                radius: 5,
-                              ),
-                            ));
-                  },
-                  data: (data) => data.map(
-                        (brand) => Padding(
+          ...ref.watch(userProductGroupingByBrandProvider(userId ?? 0)).maybeWhen(
+              orElse: () {
+                return List.generate(
+                    10,
+                    (_) => Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 10),
-                              decoration: BoxDecoration(
-                                  color: PreluraColors.activeColor
-                                      .withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(
-                                      color: PreluraColors.activeColor,
-                                      width: 1)),
-                              child: Text(
-                                brand.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        color: PreluraColors.white,
-                                        fontWeight: FontWeight.w700),
-                              ),
-                            ),
+                          child: ShimmerBox(
+                            height: 28,
+                            width: 100,
+                            radius: 5,
+                          ),
+                        ));
+              },
+              // error: (e, _) => [Text(e.toString())],
+              data: (data) => data.map(
+                    (brand) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                          decoration:
+                              BoxDecoration(color: PreluraColors.activeColor.withOpacity(0.3), borderRadius: BorderRadius.circular(6), border: Border.all(color: PreluraColors.activeColor, width: 1)),
+                          child: Text(
+                            brand.name,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.white, fontWeight: FontWeight.w700),
                           ),
                         ),
-                      ))
+                      ),
+                    ),
+                  ))
         ],
       ),
     );
