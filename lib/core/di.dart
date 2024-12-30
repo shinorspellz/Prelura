@@ -16,6 +16,7 @@ import 'package:prelura_app/modules/repo/auth_repo/auth_repo.dart';
 import 'package:prelura_app/modules/repo/chat_repo/chat_repo.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 import 'package:prelura_app/modules/repo/network_repo.dart';
+import 'package:prelura_app/modules/repo/product/payment_repo.dart';
 import 'package:prelura_app/modules/repo/product/product_repo.dart';
 import 'package:prelura_app/modules/repo/user/user_repo.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
@@ -162,8 +163,7 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) =>
-      AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
+  (ref) => AuthRepo(ref.watch(graphqlClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
@@ -192,4 +192,8 @@ final chatRepo = Provider(
 
 final notificationRepo = Provider(
   (ref) => NotificationRepo(ref.watch(graphqlClient)),
+);
+
+final paymentRepo = Provider(
+  (ref) => PaymentRepo(ref.watch(graphqlClient)),
 );

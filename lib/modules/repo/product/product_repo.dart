@@ -6,10 +6,11 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/order/order_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
-import '../../model/product/user product grouping/user_product_grouping.dart';
+import '../../model/product/user_product_grouping/user_product_grouping.dart';
 
 class ProductRepo {
   final GraphQLClient _client;
@@ -32,6 +33,44 @@ class ProductRepo {
       log(response.exception.toString(), name: 'ProductRepo');
       throw 'An error occured';
     }
+  }
+
+  Future<void> cancelOrder(int orderId) async {
+    final response = await _client.mutate$CancelOrder(
+      Options$Mutation$CancelOrder(
+        variables: Variables$Mutation$CancelOrder(orderId: orderId),
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<OrderModel> orderProduct({required int productId, int qty = 1}) async {
+    final response = await _client.mutate$CreateOrder(
+      Options$Mutation$CreateOrder(
+        variables: Variables$Mutation$CreateOrder(productId: productId, quantity: qty),
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return OrderModel.fromJson(response.parsedData!.createOrder!.order!.toJson());
   }
 
   Future<void> updateProduct(Variables$Mutation$UpdateProduct params) async {
@@ -95,11 +134,7 @@ class ProductRepo {
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<ProductModel>> getUserProduct(
-      {String? username,
-      String? search,
-      int? pageCount,
-      int? pageNumber}) async {
+  Future<List<ProductModel>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber, Input$ProductFiltersInput? filters}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -107,6 +142,7 @@ class ProductRepo {
         search: search,
         pageCount: pageCount,
         pageNumber: pageNumber,
+        filters: filters,
       )),
     );
 
@@ -124,9 +160,7 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProducts!
-        .map((x) => ProductModel.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.userProducts!.map((x) => ProductModel.fromJson(x!.toJson())).toList();
   }
 
   Future<List<ProductModel>> getRecentlyViewedProducts() async {
@@ -148,24 +182,12 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.recentlyViewedProducts!
-        .map((x) => ProductModel.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.recentlyViewedProducts!.map((x) => ProductModel.fromJson(x!.toJson())).toList();
   }
 
-  Future<Query$AllProducts> getAllProducts(
-      {String? username,
-      String? search,
-      int? pageCount,
-      int? pageNumber,
-      Input$ProductFiltersInput? filters}) async {
+  Future<Query$AllProducts> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber, Input$ProductFiltersInput? filters}) async {
     final response = await _client.query$AllProducts(
-      Options$Query$AllProducts(
-          variables: Variables$Query$AllProducts(
-              search: search,
-              pageCount: pageCount,
-              pageNumber: pageNumber,
-              filters: filters)),
+      Options$Query$AllProducts(variables: Variables$Query$AllProducts(search: search, pageCount: pageCount, pageNumber: pageNumber, filters: filters)),
     );
 
     if (response.hasException) {
@@ -185,8 +207,7 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<Query$FilterProductsByPrice> filterProductByPrice(
-      {required double price, int? pageCount, int? pageNumber}) async {
+  Future<Query$FilterProductsByPrice> filterProductByPrice({required double price, int? pageCount, int? pageNumber}) async {
     final response = await _client.query$FilterProductsByPrice(
       Options$Query$FilterProductsByPrice(
           variables: Variables$Query$FilterProductsByPrice(
@@ -235,9 +256,7 @@ class ProductRepo {
       throw 'An error occured here';
     }
 
-    return response.parsedData!.likedProducts!
-        .map((x) => ProductModel.fromJson((x!.product)!.toJson()))
-        .toList();
+    return response.parsedData!.likedProducts!.map((x) => ProductModel.fromJson((x!.product)!.toJson())).toList();
   }
 
   Future<bool?> toggleLikeProduct(int productId) async {
@@ -285,13 +304,10 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.categories!
-        .map((x) => CategoryModel.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!.categories!.map((x) => CategoryModel.fromJson(x!.toJson())).toList();
   }
 
-  Future<Query$Brands> getBrands(
-      {String? search, int? pageNumber, int? pageCount}) async {
+  Future<Query$Brands> getBrands({String? search, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$Brands(
       Options$Query$Brands(
           variables: Variables$Query$Brands(
@@ -320,8 +336,7 @@ class ProductRepo {
 
   Future<List<Brand>> getPopularBrands(int id) async {
     final response = await _client.query$PopularBrands(
-      Options$Query$PopularBrands(
-          variables: Variables$Query$PopularBrands(top: id)),
+      Options$Query$PopularBrands(variables: Variables$Query$PopularBrands(top: id)),
     );
 
     if (response.hasException) {
@@ -338,13 +353,10 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.popularBrands!
-        .map((e) => Brand.fromJson(e!.toJson()))
-        .toList();
+    return response.parsedData!.popularBrands!.map((e) => Brand.fromJson(e!.toJson())).toList();
   }
 
-  Future<Query$Materials> getMaterial(
-      {String? search, int? pageNumber, int? pageCount}) async {
+  Future<Query$Materials> getMaterial({String? search, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$Materials(
       Options$Query$Materials(
           variables: Variables$Query$Materials(
@@ -371,11 +383,7 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<List<ProductModel>> similarProduct(
-      {int? productId,
-      int? categoryId,
-      int? pageNumber,
-      int? pageCount}) async {
+  Future<List<ProductModel>> similarProduct({int? productId, int? categoryId, int? pageNumber, int? pageCount}) async {
     final response = await _client.query$SimilarProducts(
       Options$Query$SimilarProducts(
           variables: Variables$Query$SimilarProducts(
@@ -400,17 +408,11 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.similarProducts!
-        .map((x) => ProductModel.fromJson((x!).toJson()))
-        .toList();
+    return response.parsedData!.similarProducts!.map((x) => ProductModel.fromJson((x!).toJson())).toList();
   }
 
-  Future<List<CategoryGroupType>> getUserProductGrouping(
-      {required int userId, required Enum$ProductGroupingEnum groupBy}) async {
-    final response = await _client.query$UserProductGrouping(
-        Options$Query$UserProductGrouping(
-            variables: Variables$Query$UserProductGrouping(
-                userId: userId, groupBy: groupBy)));
+  Future<List<CategoryGroupType>> getUserProductGrouping({required int userId, required Enum$ProductGroupingEnum groupBy}) async {
+    final response = await _client.query$UserProductGrouping(Options$Query$UserProductGrouping(variables: Variables$Query$UserProductGrouping(userId: userId, groupBy: groupBy)));
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
@@ -425,8 +427,6 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.userProductGrouping!
-        .map((x) => CategoryGroupType.fromJson((x!).toJson()))
-        .toList();
+    return response.parsedData!.userProductGrouping!.map((x) => CategoryGroupType.fromJson((x!).toJson())).toList();
   }
 }

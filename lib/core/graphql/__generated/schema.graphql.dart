@@ -2476,6 +2476,43 @@ Enum$SizeEnum fromJson$Enum$SizeEnum(String value) {
   }
 }
 
+enum Enum$SortEnum {
+  NEWEST,
+  PRICE_ASC,
+  PRICE_DESC,
+  $unknown;
+
+  factory Enum$SortEnum.fromJson(String value) => fromJson$Enum$SortEnum(value);
+
+  String toJson() => toJson$Enum$SortEnum(this);
+}
+
+String toJson$Enum$SortEnum(Enum$SortEnum e) {
+  switch (e) {
+    case Enum$SortEnum.NEWEST:
+      return r'NEWEST';
+    case Enum$SortEnum.PRICE_ASC:
+      return r'PRICE_ASC';
+    case Enum$SortEnum.PRICE_DESC:
+      return r'PRICE_DESC';
+    case Enum$SortEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SortEnum fromJson$Enum$SortEnum(String value) {
+  switch (value) {
+    case r'NEWEST':
+      return Enum$SortEnum.NEWEST;
+    case r'PRICE_ASC':
+      return Enum$SortEnum.PRICE_ASC;
+    case r'PRICE_DESC':
+      return Enum$SortEnum.PRICE_DESC;
+    default:
+      return Enum$SortEnum.$unknown;
+  }
+}
+
 enum Enum$StyleEnum {
   WORKWEAR,
   WORKOUT,

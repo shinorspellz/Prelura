@@ -7992,12 +7992,14 @@ class Variables$Query$UserProducts {
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   }) =>
       Variables$Query$UserProducts._({
         if (search != null) r'search': search,
         if (username != null) r'username': username,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
+        if (filters != null) r'filters': filters,
       });
 
   Variables$Query$UserProducts._(this._$data);
@@ -8020,6 +8022,13 @@ class Variables$Query$UserProducts {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
+    if (data.containsKey('filters')) {
+      final l$filters = data['filters'];
+      result$data['filters'] = l$filters == null
+          ? null
+          : Input$ProductFiltersInput.fromJson(
+              (l$filters as Map<String, dynamic>));
+    }
     return Variables$Query$UserProducts._(result$data);
   }
 
@@ -8032,6 +8041,9 @@ class Variables$Query$UserProducts {
   int? get pageCount => (_$data['pageCount'] as int?);
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Input$ProductFiltersInput? get filters =>
+      (_$data['filters'] as Input$ProductFiltersInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -8050,6 +8062,10 @@ class Variables$Query$UserProducts {
     if (_$data.containsKey('pageNumber')) {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
+    }
+    if (_$data.containsKey('filters')) {
+      final l$filters = filters;
+      result$data['filters'] = l$filters?.toJson();
     }
     return result$data;
   }
@@ -8104,6 +8120,14 @@ class Variables$Query$UserProducts {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
+    final l$filters = filters;
+    final lOther$filters = other.filters;
+    if (_$data.containsKey('filters') != other._$data.containsKey('filters')) {
+      return false;
+    }
+    if (l$filters != lOther$filters) {
+      return false;
+    }
     return true;
   }
 
@@ -8113,11 +8137,13 @@ class Variables$Query$UserProducts {
     final l$username = username;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
+    final l$filters = filters;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('username') ? l$username : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+      _$data.containsKey('filters') ? l$filters : const {},
     ]);
   }
 }
@@ -8136,6 +8162,7 @@ abstract class CopyWith$Variables$Query$UserProducts<TRes> {
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   });
 }
 
@@ -8157,6 +8184,7 @@ class _CopyWithImpl$Variables$Query$UserProducts<TRes>
     Object? username = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
+    Object? filters = _undefined,
   }) =>
       _then(Variables$Query$UserProducts._({
         ..._instance._$data,
@@ -8164,6 +8192,8 @@ class _CopyWithImpl$Variables$Query$UserProducts<TRes>
         if (username != _undefined) 'username': (username as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+        if (filters != _undefined)
+          'filters': (filters as Input$ProductFiltersInput?),
       }));
 }
 
@@ -8178,6 +8208,7 @@ class _CopyWithStubImpl$Variables$Query$UserProducts<TRes>
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   }) =>
       _res;
 }
@@ -8387,6 +8418,15 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'filters')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ProductFiltersInput'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -8409,6 +8449,10 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'filters'),
+            value: VariableNode(name: NameNode(value: 'filters')),
           ),
         ],
         directives: [],
@@ -31777,6 +31821,13 @@ const documentNodeQueryUserProductGrouping = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'name'),
             alias: null,
             arguments: [],
@@ -31950,6 +32001,7 @@ extension ClientExtension$Query$UserProductGrouping on graphql.GraphQLClient {
 
 class Query$UserProductGrouping$userProductGrouping {
   Query$UserProductGrouping$userProductGrouping({
+    this.id,
     this.name,
     this.count,
     this.$__typename = 'CategoryGroupType',
@@ -31957,15 +32009,19 @@ class Query$UserProductGrouping$userProductGrouping {
 
   factory Query$UserProductGrouping$userProductGrouping.fromJson(
       Map<String, dynamic> json) {
+    final l$id = json['id'];
     final l$name = json['name'];
     final l$count = json['count'];
     final l$$__typename = json['__typename'];
     return Query$UserProductGrouping$userProductGrouping(
+      id: (l$id as int?),
       name: (l$name as String?),
       count: (l$count as int?),
       $__typename: (l$$__typename as String),
     );
   }
+
+  final int? id;
 
   final String? name;
 
@@ -31975,6 +32031,8 @@ class Query$UserProductGrouping$userProductGrouping {
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
     final l$count = count;
@@ -31986,10 +32044,12 @@ class Query$UserProductGrouping$userProductGrouping {
 
   @override
   int get hashCode {
+    final l$id = id;
     final l$name = name;
     final l$count = count;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$id,
       l$name,
       l$count,
       l$$__typename,
@@ -32003,6 +32063,11 @@ class Query$UserProductGrouping$userProductGrouping {
     }
     if (other is! Query$UserProductGrouping$userProductGrouping ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$name = name;
@@ -32045,6 +32110,7 @@ abstract class CopyWith$Query$UserProductGrouping$userProductGrouping<TRes> {
       _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping;
 
   TRes call({
+    int? id,
     String? name,
     int? count,
     String? $__typename,
@@ -32065,11 +32131,13 @@ class _CopyWithImpl$Query$UserProductGrouping$userProductGrouping<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? id = _undefined,
     Object? name = _undefined,
     Object? count = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserProductGrouping$userProductGrouping(
+        id: id == _undefined ? _instance.id : (id as int?),
         name: name == _undefined ? _instance.name : (name as String?),
         count: count == _undefined ? _instance.count : (count as int?),
         $__typename: $__typename == _undefined || $__typename == null
@@ -32085,6 +32153,7 @@ class _CopyWithStubImpl$Query$UserProductGrouping$userProductGrouping<TRes>
   TRes _res;
 
   call({
+    int? id,
     String? name,
     int? count,
     String? $__typename,
