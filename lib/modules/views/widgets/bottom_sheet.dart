@@ -142,7 +142,7 @@ class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProv
                           highlightColor: Colors.transparent,
                           splashColor: Colors.transparent,
                           overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-                          onTap: widget.actions![index].onTap,
+                          onTap: () => widget.actions![index].onTap(context),
                           child: Container(
                             height: 52,
                             color: Colors.transparent,
@@ -234,7 +234,7 @@ Future<T?> _showCustomModalBottomSheet<T>(
 class VBottomSheetItem {
   final Widget? icon;
   final Widget? endIcon;
-  final VoidCallback onTap;
+  final Function(BuildContext) onTap;
   final String title;
   final Color? textColor;
   final FontWeight? textWeight;

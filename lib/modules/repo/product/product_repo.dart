@@ -121,6 +121,28 @@ class ProductRepo {
     return response.parsedData!.userProducts!.map((x) => ProductModel.fromJson(x!.toJson())).toList();
   }
 
+  Future<List<ProductModel>> getRecentlyViewedProducts() async {
+    final response = await _client.query$RecentlyViewedproducts(
+      Options$Query$RecentlyViewedproducts(),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.recentlyViewedProducts!.map((x) => ProductModel.fromJson(x!.toJson())).toList();
+  }
+
   Future<Query$AllProducts> getAllProducts({String? username, String? search, int? pageCount, int? pageNumber, Input$ProductFiltersInput? filters}) async {
     final response = await _client.query$AllProducts(
       Options$Query$AllProducts(variables: Variables$Query$AllProducts(search: search, pageCount: pageCount, pageNumber: pageNumber, filters: filters)),

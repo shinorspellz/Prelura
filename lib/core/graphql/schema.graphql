@@ -1,132 +1,8 @@
-type Query {
-  getBannerForCurrentSeason: String
-  payment(paymentId: Int!): [PaymentType]
-  conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
-  conversations: [ConversationType]
-  archivedConversations: [ConversationType]
-  conversationTotalNumber: Int
-  notifications(pageCount: Int, pageNumber: Int): [NotificationType]
-  notificationPreference: NotificationPreferenceType
-  notificationsTotalNumber: Int
-  allProducts(filters: ProductFiltersInput, search: String, pageCount: Int, pageNumber: Int): [ProductType]
-  userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
-  product(id: Int!): ProductType
-  likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
-  categories: [CategoryTypes]
-  brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
-  popularBrands(top: Int!): [BrandType]
-  materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
-  similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
-  filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
-  allProductsTotalNumber: Int
-  brandsTotalNumber: Int
-  filterProductsByPriceTotalNumber: Int
-  likedProductsTotalNumber: Int
-  materialsTotalNumber: Int
-  similarProductsTotalNumber: Int
-  viewMe: UserType
-  getUser(username: String!): UserType
-  searchUsers(search: String!): [UserType]
-  following(
-    """Username of the user to get followings"""
-    username: String
-    search: String
-    latestFirst: Boolean
-    pageCount: Int
-    pageNumber: Int
-  ): [UserType]
-  followers(
-    """Username of the user to get followers"""
-    username: String
-    search: String
-    latestFirst: Boolean
-    pageCount: Int
-    pageNumber: Int
-  ): [UserType]
-  blockedUsers(search: String, pageCount: Int, pageNumber: Int): [BlockedUserType]
-  followingTotalNumber: Int
-  followersTotalNumber: Int
-  blockedUsersTotalNumber: Int
-}
-
-type PaymentType {
-  id: ID!
-  order: OrderType!
-  user: UserNode
-  paymentMethod: PaymentsPaymentPaymentMethodChoices!
-  paymentRef: String
-  paymentIntentId: String
-  paymentStatus: PaymentsPaymentPaymentStatusChoices!
-  paymentAmount: Decimal!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type OrderType {
-  id: ID!
-  user: UserNode
-  product: ProductType!
-  quantity: Int!
-  priceTotal: Decimal!
-  shippingFee: Decimal!
-  status: ProductsOrderStatusChoices!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  paymentSet: [PaymentType!]!
-}
-
-type UserNode implements Node {
-  """The ID of the object"""
-  id: ID!
-  firstName: String!
-  lastName: String
-  username: String!
-  email: String
-  bio: String
-  profilePictureUrl: String
-  thumbnailUrl: String
-  gender: AccountsUserGenderChoices
-  phoneNumber: JSONString!
-  country: String
-  postcode: String
-  isActive: Boolean!
-  isStaff: Boolean!
-  isVerified: Boolean!
-  isBanned: Boolean!
-  deleted: Boolean!
-  views: Int!
-  displayName: String
-  blueTickVerified: Boolean!
-  dob: Date
-  dobChangeCount: Int!
-  use2fa: Boolean!
-  dateJoined: DateTime!
-  lastLogin: DateTime
-  inWaitlist: Boolean!
-  useGoogleAuthenticator: Boolean!
-  gASecret: String
-  usernameLastUpdated: DateTime
-  fcmTokens: [String!]!
-  meta: JSONString!
-  products: [ProductType!]!
-  orderSet: [OrderType!]!
-  sentNotifications: [NotificationType!]!
-  notificationPreferences: NotificationPreferenceType
-  participant1: [ConversationType!]!
-  participant2: [ConversationType!]!
-  messageSender: [MessageType!]!
-  paymentSet: [PaymentType!]!
-  pk: Int
-  archived: Boolean
-  verified: Boolean
-  secondaryEmail: String
-}
-
-"""An object with an ID"""
-interface Node {
-  """The ID of the object"""
-  id: ID!
-}
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
 
 """An enumeration."""
 enum AccountsUserGenderChoices {
@@ -140,13 +16,141 @@ enum AccountsUserGenderChoices {
   ANY
 }
 
-"""
-Allows use of a JSON String for input / output from the GraphQL schema.
+type AdminLogin {
+  user: AdminUserType
+  token: String
+  restToken: String
+}
 
-Use of this type is *not recommended* as you lose the benefits of having a defined, static
-schema (one of the key benefits of GraphQL).
-"""
-scalar JSONString
+type AdminUserType {
+  id: Int
+  username: String
+  email: String
+  firstName: String
+  lastName: String
+  profilePictureUrl: String
+  thumbnailUrl: String
+  gender: String
+  displayName: String
+  dateJoined: DateTime
+  lastLogin: DateTime
+  fullName: String
+  phone: PhoneType
+  location: LocationType
+  bio: String
+}
+
+type ArchiveConversation {
+  message: String
+}
+
+type BlockedUserType {
+  id: Int
+  username: String
+  firstName: String
+  lastName: String
+  displayName: String
+  label: String
+  isVerified: Boolean
+  blueTickVerified: Boolean
+  thumbnailUrl: String
+  profilePictureUrl: String
+}
+
+type BlockUserMutation {
+  success: Boolean
+  message: String
+}
+
+type BrandType {
+  id: Int
+  name: String
+}
+
+type CancelOrder {
+  success: Boolean
+}
+
+type CategoryGroupType {
+  name: String
+  count: Int
+}
+
+type CategoryType {
+  id: Int
+  name: String
+}
+
+type CategoryTypes {
+  id: ID!
+  name: String!
+  subCategory: [SubCategoryType]
+}
+
+"""An enumeration."""
+enum ChatsMessageAttachmentTypeChoices {
+  """PICTURE"""
+  PICTURE
+
+  """VIDEO"""
+  VIDEO
+
+  """AUDIO"""
+  AUDIO
+
+  """ZIP"""
+  ZIP
+}
+
+enum ConditionEnum {
+  NEW_WITH_TAGS
+  LIKE_NEW
+  USED
+  HEAVILY_USED
+}
+
+type ConfirmPayment {
+  paymentStatus: String
+}
+
+type ConversationType {
+  id: ID!
+  name: String!
+  disableResponse: Boolean!
+  createdAt: DateTime!
+  lastModified: DateTime!
+  deleted: Boolean!
+  participant1Deleted: Boolean!
+  participant2Deleted: Boolean!
+  recipient: UserType
+  lastMessage: MessageType
+  unreadMessagesCount: Int
+}
+
+type CreateBanner {
+  message: String
+  success: Boolean
+}
+
+type CreateChat {
+  chat: ConversationType
+}
+
+type CreateOrder {
+  success: Boolean
+  order: OrderType
+}
+
+type CreatePaymentIntent {
+  clientSecret: String
+  paymentRef: String
+}
+
+type CreateProduct {
+  success: Boolean
+  message: String
+  product: ProductType
+}
 
 """
 The `Date` scalar type represents a Date
@@ -162,54 +166,101 @@ value as specified by
 """
 scalar DateTime
 
-type ProductType {
-  id: ID!
-  name: String!
-  seller: UserType
-  description: String!
-  category: CategoryType
-  subCategory: SubCategoryType
-  size: ProductsProductSizeChoices
-  style: ProductsProductStyleChoices
-  parcelSize: ProductsProductParcelSizeChoices
-  condition: ProductsProductConditionChoices
-  price: Float
-  views: Int!
-  likes: Int!
-  discountPrice: Decimal
-  imagesUrl: [JSONString!]!
-  status: ProductsProductStatusChoices!
-  materials: [BrandType]
-  color: [String!]!
-  brand: BrandType
-  customBrand: String
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  orderSet: [OrderType!]!
-  userLiked: Boolean
+"""The `Decimal` scalar type represents a python Decimal."""
+scalar Decimal
+
+type DeleteConversation {
+  message: String
 }
 
-type UserType {
-  id: Int
-  firstName: String
-  lastName: String
-  username: String
-  email: String
-  bio: String
-  location: LocationType
-  profilePictureUrl: String
-  thumbnailUrl: String
-  gender: String
-  displayName: String
-  dob: DateTime
-  dateJoined: DateTime
-  lastLogin: DateTime
-  fullName: String
-  phone: PhoneType
-  listing: Int
-  isFollowing: Boolean
-  noOfFollowing: Int
-  noOfFollowers: Int
+type DeleteMediaFiles {
+  success: Boolean
+}
+
+type DeleteMessage {
+  message: String
+}
+
+type DeleteNotification {
+  success: Boolean
+}
+
+type DeleteProduct {
+  success: Boolean
+  message: String
+}
+
+"""
+
+    Errors messages and codes mapped to
+    fields or non fields errors.
+    Example:
+    {
+        field_name: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        other_field: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ],
+        nonFieldErrors: [
+            {
+                "message": "error message",
+                "code": "error_code"
+            }
+        ]
+    }
+    
+"""
+scalar ExpectedErrorType
+
+enum FileTypeEnum {
+  BANNER
+  PRODUCT
+  PROFILE_PICTURE
+}
+
+type FollowUser {
+  success: Boolean
+}
+
+"""
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+input ImagesInputType {
+  url: String!
+  thumbnail: String!
+}
+
+"""
+Allows use of a JSON String for input / output from the GraphQL schema.
+
+Use of this type is *not recommended* as you lose the benefits of having a defined, static
+schema (one of the key benefits of GraphQL).
+"""
+scalar JSONString
+
+type LikedProductType {
+  product: ProductType
+}
+
+type LikeProduct {
+  success: Boolean
+}
+
+input LocationInputType {
+  latitude: String
+  longitude: String
+  locationName: String
 }
 
 type LocationType {
@@ -218,20 +269,424 @@ type LocationType {
   locationName: String
 }
 
+type LoginMutation {
+  user: UserType
+  token: String
+  restToken: String
+}
+
+type LogoutMutation {
+  message: String
+}
+
+type MessageType {
+  id: ID!
+  sender: UserType
+  text: String!
+  attachment: String
+  attachmentType: ChatsMessageAttachmentTypeChoices
+  conversation: ConversationType
+  createdAt: DateTime!
+  read: Boolean!
+  deleted: Boolean!
+  isItem: Boolean!
+  itemId: Int
+  replyTo: MessageType
+  itemType: String
+  replies: [MessageType!]!
+  senderName: String
+  receiverProfile: String
+}
+
+type Mutation {
+  upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
+  deleteMediaFiles(fileUrls: [String], filetype: FileTypeEnum!): DeleteMediaFiles
+  adminLogin(password: String!, username: String!): AdminLogin
+  createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
+  createPaymentIntent(orderId: Int!, paymentMethod: PaymentMethodEnum!): CreatePaymentIntent
+
+  """Confirm a payment"""
+  confirmPayment(paymentRef: String!): ConfirmPayment
+  createChat(recipient: String!): CreateChat
+  deleteMessage(messageId: Int!): DeleteMessage
+  deleteConversation(conversationId: Int!): DeleteConversation
+  archiveConversation(conversationId: Int!): ArchiveConversation
+  unarchiveConversation(conversationId: Int!): UnarchiveConversation
+  updateReadMessages(messageIds: [Int]!): UpdateReadMessages
+
+  """Read notification"""
+  readNotification(notificationId: Int): ReadNotification
+
+  """Delete notification"""
+  deleteNotification(notificationId: Int!): DeleteNotification
+
+  """update user notification preferences"""
+  updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
+  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
+  deleteProduct(productId: Int!): DeleteProduct
+  likeProduct(productId: Int!): LikeProduct
+  createOrder(productId: Int!, quantity: Int): CreateOrder
+  cancelOrder(orderId: Int!): CancelOrder
+  login(password: String!, username: String): LoginMutation
+  logout: LogoutMutation
+  updateProfile(
+    bio: String
+    country: String
+    displayName: String
+    dob: Date
+    fcmToken: String
+    firstName: String
+    gender: String
+    lastName: String
+    location: LocationInputType
+
+    """
+    The one-time password (OTP) code that the user must provide to verify their
+    identity and update their phone number. The OTP code is sent to the user's
+    registered phone number, and it is valid for 5 minutes. The user must enter
+    the correct OTP code in order for the phone number update to be successful.
+    """
+    otp: String
+    phoneNumber: PhoneInputType
+    postcode: String
+    profilePicture: ProfilePictureInputType
+    use2fa: Boolean
+    username: String
+  ): UpdateUserMutation
+  followUser(followedId: Int!): FollowUser
+  blockUnblock(blockUser: Boolean!, userId: Int!): BlockUserMutation
+  unfollowUser(followedId: Int!): UnfollowUser
+  rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
+
+  """
+  Register user with fields defined in the settings.
+  
+  If the email field of the user model is part of the
+  registration fields (default), check if there is
+  no user with that email or as a secondary email.
+  
+  If it exists, it does not register the user,
+  even if the email field is not defined as unique
+  (default of the default django user model).
+  
+  When creating the user, it also creates a `UserStatus`
+  related to that user, making it possible to track
+  if the user is archived, verified and has a secondary
+  email.
+  
+  Send account verification email.
+  
+  If allowed to not verified users login, return token.
+  """
+  register(displayName: String, dob: Date, email: String!, username: String!, firstName: String!, lastName: String!, password1: String!, password2: String!): NewRegister
+
+  """
+  Obtain JSON web token for given user.
+  
+  Allow to perform login with different fields,
+  and secondary email if set. The fields are
+  defined on settings.
+  
+  Not verified users can login by default. This
+  can be changes on settings.
+  
+  If user is archived, make it unarchive and
+  return `unarchiving=True` on output.
+  """
+  tokenAuth(password: String!, email: String, username: String): NewObtainJSONWebToken
+
+  """
+  Update user model fields, defined on settings.
+  
+  User must be verified.
+  """
+  updateAccount(firstName: String, lastName: String): UpdateAccount
+
+  """
+  Sends activation email.
+  
+  It is called resend because theoretically
+  the first activation email was sent when
+  the user registered.
+  
+  If there is no user with the requested email,
+  a successful response is returned.
+  """
+  resendActivationEmail(email: String!): ResendActivationEmail
+
+  """
+  Change user password without old password.
+  
+  Receive the token that was sent by email.
+  
+  If token and new passwords are valid, update
+  user password and in case of using refresh
+  tokens, revoke all of them.
+  
+  Also, if user has not been verified yet, verify it.
+  """
+  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
+}
+
+"""
+Obtain JSON web token for given user.
+
+Allow to perform login with different fields,
+and secondary email if set. The fields are
+defined on settings.
+
+Not verified users can login by default. This
+can be changes on settings.
+
+If user is archived, make it unarchive and
+return `unarchiving=True` on output.
+"""
+type NewObtainJSONWebToken {
+  payload: GenericScalar
+  refreshExpiresIn: Int
+  errors: ExpectedErrorType
+  success: Boolean
+  user: UserNode
+  unarchiving: Boolean
+  restToken: String
+  use2fa: Boolean
+  useGoogleAuthenticator: Boolean
+  token: String!
+}
+
+"""
+Register user with fields defined in the settings.
+
+If the email field of the user model is part of the
+registration fields (default), check if there is
+no user with that email or as a secondary email.
+
+If it exists, it does not register the user,
+even if the email field is not defined as unique
+(default of the default django user model).
+
+When creating the user, it also creates a `UserStatus`
+related to that user, making it possible to track
+if the user is archived, verified and has a secondary
+email.
+
+Send account verification email.
+
+If allowed to not verified users login, return token.
+"""
+type NewRegister {
+  errors: ExpectedErrorType
+  success: Boolean
+}
+
+"""An object with an ID"""
+interface Node {
+  """The ID of the object"""
+  id: ID!
+}
+
+type NotificationPreferenceType {
+  user: UserType
+  isPushNotification: Boolean!
+  isEmailNotification: Boolean!
+  inappNotifications: JSONString!
+  emailNotifications: JSONString!
+}
+
+input NotificationsPreferenceInputType {
+  likes: Boolean
+  newFollowers: Boolean
+  profileView: Boolean
+  messages: Boolean
+}
+
+type NotificationType {
+  id: ID!
+  sender: SenderType
+  message: String!
+  model: String!
+  modelId: String!
+  modelGroup: String
+  isRead: Boolean!
+  delivered: Boolean!
+  deleted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  meta: JSONString
+}
+
+type OrderType {
+  id: ID!
+  user: UserNode
+  product: ProductType!
+  quantity: Int!
+  priceTotal: Decimal!
+  shippingFee: Decimal!
+  status: ProductsOrderStatusChoices!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  paymentSet: [PaymentType!]!
+}
+
+enum ParcelSizeEnum {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+"""
+Change user password without old password.
+
+Receive the token that was sent by email.
+
+If token and new passwords are valid, update
+user password and in case of using refresh
+tokens, revoke all of them.
+
+Also, if user has not been verified yet, verify it.
+"""
+type PasswordReset {
+  errors: ExpectedErrorType
+  success: Boolean
+}
+
+enum PaymentMethodEnum {
+  BANK_TRANSFER
+  CARD
+  STRIPE
+  APPLE_PAY
+  GOOGLE_PAY
+}
+
+"""An enumeration."""
+enum PaymentsPaymentPaymentMethodChoices {
+  """Bank Transfer"""
+  BANK_TRANSFER
+
+  """Card"""
+  CARD
+
+  """Stripe"""
+  STRIPE
+
+  """Apple Pay"""
+  APPLE_PAY
+
+  """Google Pay"""
+  GOOGLE_PAY
+}
+
+"""An enumeration."""
+enum PaymentsPaymentPaymentStatusChoices {
+  """PENDING"""
+  PENDING
+
+  """SUCCESSFUL"""
+  SUCCESSFUL
+
+  """REFUNDED"""
+  REFUNDED
+
+  """FAILED"""
+  FAILED
+
+  """CANCELLED"""
+  CANCELLED
+}
+
+type PaymentType {
+  id: ID!
+  order: OrderType!
+  user: UserNode
+  paymentMethod: PaymentsPaymentPaymentMethodChoices!
+  paymentRef: String
+  paymentIntentId: String
+  paymentStatus: PaymentsPaymentPaymentStatusChoices!
+  paymentAmount: Decimal!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input PhoneInputType {
+  countryCode: String!
+  number: String!
+  completed: String
+}
+
 type PhoneType {
   countryCode: String
   number: String
   completed: String
 }
 
-type CategoryType {
-  id: Int
+input ProductFiltersInput {
   name: String
+  brand: Int
+  category: Int
+  customBrand: String
+  subCategory: Int
+  price: Float
+  status: ProductStatusEnum
+  size: SizeEnum
+  style: StyleEnum
+  condition: ConditionEnum
+  discountPrice: Boolean
+  hashtags: [String]
 }
 
-type SubCategoryType {
-  id: Int
-  name: String
+enum ProductGroupingEnum {
+  BRAND
+  CATEGORY
+  TOP_BRAND
+}
+
+"""An enumeration."""
+enum ProductsOrderStatusChoices {
+  """PENDING"""
+  PENDING
+
+  """CONFIRMED"""
+  CONFIRMED
+
+  """SHIPPED"""
+  SHIPPED
+
+  """DELIVERED"""
+  DELIVERED
+
+  """CANCELLED"""
+  CANCELLED
+
+  """REFUNDED"""
+  REFUNDED
+}
+
+"""An enumeration."""
+enum ProductsProductConditionChoices {
+  """New with tags"""
+  NEW_WITH_TAGS
+
+  """Like new"""
+  LIKE_NEW
+
+  """Used"""
+  USED
+
+  """Heavily used"""
+  HEAVILY_USED
+}
+
+"""An enumeration."""
+enum ProductsProductParcelSizeChoices {
+  """Small"""
+  SMALL
+
+  """Medium"""
+  MEDIUM
+
+  """Large"""
+  LARGE
 }
 
 """An enumeration."""
@@ -319,6 +774,18 @@ enum ProductsProductSizeChoices {
 
   """One size"""
   ONE_SIZE
+}
+
+"""An enumeration."""
+enum ProductsProductStatusChoices {
+  """ACTIVE"""
+  ACTIVE
+
+  """INACTIVE"""
+  INACTIVE
+
+  """SOLD"""
+  SOLD
 }
 
 """An enumeration."""
@@ -480,199 +947,233 @@ enum ProductsProductStyleChoices {
   CHRISTMAS
 }
 
-"""An enumeration."""
-enum ProductsProductParcelSizeChoices {
-  """Small"""
-  SMALL
-
-  """Medium"""
-  MEDIUM
-
-  """Large"""
-  LARGE
-}
-
-"""An enumeration."""
-enum ProductsProductConditionChoices {
-  """New with tags"""
-  NEW_WITH_TAGS
-
-  """Like new"""
-  LIKE_NEW
-
-  """Used"""
-  USED
-
-  """Heavily used"""
-  HEAVILY_USED
-}
-
-"""The `Decimal` scalar type represents a python Decimal."""
-scalar Decimal
-
-"""An enumeration."""
-enum ProductsProductStatusChoices {
-  """ACTIVE"""
+enum ProductStatusEnum {
   ACTIVE
-
-  """INACTIVE"""
   INACTIVE
-
-  """SOLD"""
   SOLD
 }
 
-type BrandType {
-  id: Int
-  name: String
-}
-
-type NotificationType {
+type ProductType {
   id: ID!
-  sender: SenderType
-  message: String!
-  model: String!
-  modelId: String!
-  modelGroup: String
-  isRead: Boolean!
-  delivered: Boolean!
-  deleted: Boolean!
+  name: String!
+  seller: UserType
+  description: String!
+  category: CategoryType
+  subCategory: SubCategoryType
+  size: ProductsProductSizeChoices
+  style: ProductsProductStyleChoices
+  parcelSize: ProductsProductParcelSizeChoices
+  condition: ProductsProductConditionChoices
+  price: Float
+  views: Int!
+  likes: Int!
+  discountPrice: Decimal
+  imagesUrl: [JSONString!]!
+  status: ProductsProductStatusChoices!
+  materials: [BrandType]
+  color: [String!]!
+  brand: BrandType
+  customBrand: String
+  hashtags: JSONString!
   createdAt: DateTime!
   updatedAt: DateTime!
-  meta: JSONString
+  orderSet: [OrderType!]!
+  userLiked: Boolean
+}
+
+input ProfilePictureInputType {
+  profilePictureUrl: String
+  thumbnailUrl: String
+}
+
+type Query {
+  getBannerForCurrentSeason: String
+  payment(paymentId: Int!): [PaymentType]
+  conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
+  conversations: [ConversationType]
+  archivedConversations: [ConversationType]
+  conversationTotalNumber: Int
+  notifications(pageCount: Int, pageNumber: Int): [NotificationType]
+  notificationPreference: NotificationPreferenceType
+  notificationsTotalNumber: Int
+
+  """
+  
+      This method is responsible for retrieving a paginated list of products
+  based on optional filtering and search criteria. 
+      The results can be filtered by various product attributes such as name, category, brand, price, condition, and more.
+  
+      Parameters:
+      - `page_count`: The number of products to return per page (optional).
+      - `page_number`: The page number for pagination (optional).
+      - `filters`: A dictionary of optional filters that can be applied to the product search. 
+        Possible keys in the `filters` dictionary include:
+        - `name`: Filter products by name.
+        - `brand`: Filter products by brand ID.
+        - `category`: Filter products by category ID.
+        - `custom_brand`: Filter products by custom brand.
+        - `sub_category`: Filter products by sub-category ID.
+        - `price`: Filter products by price (less than or equal to the provided price).
+        - `condition`: Filter products by condition (e.g., "new", "used").
+        - `size`: Filter products by size.
+        - `style`: Filter products by style.
+        - `status`: Filter products by status (e.g., "available", "out of stock").
+        - `discount_price`: Filter products with a discount price.
+        - `hashtags`: Filter products that contain specific hashtags.
+      - `search`: A string to search for in the product name.
+  
+      Returns:
+      - A paginated list of products matching the filters and search criteria.
+      - `pagination_result`: A tuple containing:
+        - `result`: A list of products for the current page.
+        - `total_pages`: Total number of pages based on the current `page_count`.
+        - `total_items`: Total number of products matching the filters and search criteria.
+  
+      This method also handles pagination of the results to ensure efficient retrieval of large datasets.
+      
+  """
+  allProducts(filters: ProductFiltersInput, search: String, pageCount: Int, pageNumber: Int): [ProductType]
+
+  """
+  
+      This method retrieves a paginated list of products associated with a
+  specific user (either the logged-in user or a user identified by username).
+      The products can be filtered by a search term (name) and are excluded if marked as deleted.
+  
+      Parameters:
+      - `page_count`: The number of products to return per page (optional).
+      - `page_number`: The page number for pagination (optional).
+      - `username`: The username of the seller to filter products by. If not provided, it will use the logged-in user.
+      - `search`: A string to search for in the product name (optional).
+  
+      Returns:
+      - A paginated list of products for the specified user.
+  
+      This method also handles pagination of the results to ensure efficient retrieval of large datasets. 
+      The method will return a list of products that match the filters and pagination settings.
+      
+  """
+  userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
+
+  """
+  
+      Retrieves a grouped list of products based on the specified `group_by` parameter.
+  
+      This method allows the user to retrieve products grouped by various categories or brands. 
+      The available grouping options are:
+  
+      - **CATEGORY**: Groups products by their category (e.g., Men, Women, Kids).
+      - **BRAND**: Groups products by their brand (e.g., Nike, Adidas). If the
+  brand is `None`, the `custom_brand` field is used.
+      - **TOP_BRAND**: Retrieves the top 10 brands based on the number of products a user has in each brand.
+  
+      Parameters:
+      - `user_id`: The ID of the user whose products are being grouped.
+      - `group_by`: The criteria to group the products. Possible values are:
+          - `ProductGroupingEnum.CATEGORY`: Group by product category.
+          - `ProductGroupingEnum.BRAND`: Group by brand name.
+          - `ProductGroupingEnum.TOP_BRAND`: Retrieve the top 10 brands by product count.
+  
+      Returns:
+      - A list of `CategoryGroupType` objects, each containing the name of the
+  group and the count of products in that group.
+      
+  """
+  userProductGrouping(userId: Int!, groupBy: ProductGroupingEnum!): [CategoryGroupType]
+
+  """
+  
+      This method retrieves a specific product by its ID for the logged-in user.
+  It ensures that only products that are not deleted are returned. 
+      If the product exists and the user is authorized, it will increment the
+  product's views if the logged-in user hasn't viewed it before.
+  
+      Parameters:
+      - `id`: The ID of the product to retrieve.
+  
+      Returns:
+      - The `Product` object corresponding to the given ID if it exists and is not deleted, otherwise raises an error.
+      
+  """
+  product(id: Int!): ProductType
+  likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
+  categories: [CategoryTypes]
+  brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  popularBrands(top: Int!): [BrandType]
+  materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]
+  recentlyViewedProducts: [ProductType]
+  filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
+  allProductsTotalNumber: Int
+  brandsTotalNumber: Int
+  filterProductsByPriceTotalNumber: Int
+  likedProductsTotalNumber: Int
+  materialsTotalNumber: Int
+  similarProductsTotalNumber: Int
+  viewMe: UserType
+  getUser(username: String!): UserType
+  searchUsers(search: String!): [UserType]
+  following(
+    """Username of the user to get followings"""
+    username: String
+    search: String
+    latestFirst: Boolean
+    pageCount: Int
+    pageNumber: Int
+  ): [UserType]
+  followers(
+    """Username of the user to get followers"""
+    username: String
+    search: String
+    latestFirst: Boolean
+    pageCount: Int
+    pageNumber: Int
+  ): [UserType]
+  blockedUsers(search: String, pageCount: Int, pageNumber: Int): [BlockedUserType]
+  followingTotalNumber: Int
+  followersTotalNumber: Int
+  blockedUsersTotalNumber: Int
+}
+
+type RateUser {
+  success: Boolean
+  message: String
+}
+
+type ReadNotification {
+  success: Boolean
+}
+
+"""
+Sends activation email.
+
+It is called resend because theoretically
+the first activation email was sent when
+the user registered.
+
+If there is no user with the requested email,
+a successful response is returned.
+"""
+type ResendActivationEmail {
+  errors: ExpectedErrorType
+  success: Boolean
+}
+
+enum SeasonEnum {
+  CHRISTMAS
+  HALLOWEEN
+  SUMMER
+  WINTER
+  SPRING
+  AUTUMN
+  BLACK_FRIDAY
+  EASTER
 }
 
 type SenderType {
   username: String
   thumbnailUrl: String
   profilePictureUrl: String
-}
-
-type NotificationPreferenceType {
-  user: UserType
-  isPushNotification: Boolean!
-  isEmailNotification: Boolean!
-  inappNotifications: JSONString!
-  emailNotifications: JSONString!
-}
-
-type ConversationType {
-  id: ID!
-  name: String!
-  disableResponse: Boolean!
-  createdAt: DateTime!
-  lastModified: DateTime!
-  deleted: Boolean!
-  participant1Deleted: Boolean!
-  participant2Deleted: Boolean!
-  recipient: UserType
-  lastMessage: MessageType
-  unreadMessagesCount: Int
-}
-
-type MessageType {
-  id: ID!
-  sender: UserType
-  text: String!
-  attachment: String
-  attachmentType: ChatsMessageAttachmentTypeChoices
-  conversation: ConversationType
-  createdAt: DateTime!
-  read: Boolean!
-  deleted: Boolean!
-  isItem: Boolean!
-  itemId: Int
-  replyTo: MessageType
-  itemType: String
-  replies: [MessageType!]!
-  senderName: String
-  receiverProfile: String
-}
-
-"""An enumeration."""
-enum ChatsMessageAttachmentTypeChoices {
-  """PICTURE"""
-  PICTURE
-
-  """VIDEO"""
-  VIDEO
-
-  """AUDIO"""
-  AUDIO
-
-  """ZIP"""
-  ZIP
-}
-
-"""An enumeration."""
-enum ProductsOrderStatusChoices {
-  """PENDING"""
-  PENDING
-
-  """CONFIRMED"""
-  CONFIRMED
-
-  """SHIPPED"""
-  SHIPPED
-
-  """DELIVERED"""
-  DELIVERED
-
-  """CANCELLED"""
-  CANCELLED
-
-  """REFUNDED"""
-  REFUNDED
-}
-
-"""An enumeration."""
-enum PaymentsPaymentPaymentMethodChoices {
-  """Bank Transfer"""
-  BANK_TRANSFER
-
-  """Card"""
-  CARD
-
-  """Stripe"""
-  STRIPE
-}
-
-"""An enumeration."""
-enum PaymentsPaymentPaymentStatusChoices {
-  """PENDING"""
-  PENDING
-
-  """SUCCESSFUL"""
-  SUCCESSFUL
-
-  """REFUNDED"""
-  REFUNDED
-
-  """FAILED"""
-  FAILED
-
-  """CANCELLED"""
-  CANCELLED
-}
-
-input ProductFiltersInput {
-  name: String
-  brand: Int
-  category: Int
-  customBrand: String
-  subCategory: Int
-  price: Float
-  status: ProductStatusEnum
-  size: SizeEnum
-  style: StyleEnum
-  condition: ConditionEnum
-  discountPrice: Boolean
-}
-
-enum ProductStatusEnum {
-  ACTIVE
-  INACTIVE
-  SOLD
 }
 
 enum SizeEnum {
@@ -761,264 +1262,26 @@ enum StyleEnum {
   CHRISTMAS
 }
 
-enum ConditionEnum {
-  NEW_WITH_TAGS
-  LIKE_NEW
-  USED
-  HEAVILY_USED
-}
-
-type LikedProductType {
-  product: ProductType
-}
-
-type CategoryTypes {
-  id: ID!
-  name: String!
-  subCategory: [SubCategoryType]
-}
-
-type BlockedUserType {
+type SubCategoryType {
   id: Int
-  username: String
-  firstName: String
-  lastName: String
-  displayName: String
-  label: String
-  isVerified: Boolean
-  blueTickVerified: Boolean
-  thumbnailUrl: String
-  profilePictureUrl: String
-}
-
-type Mutation {
-  upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
-  deleteMediaFiles(fileUrls: [String], filetype: FileTypeEnum!): DeleteMediaFiles
-  adminLogin(password: String!, username: String!): AdminLogin
-  createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
-  createPaymentIntent(orderId: Int!): CreatePaymentIntent
-
-  """Confirm a payment"""
-  confirmPayment(paymentRef: String!): ConfirmPayment
-  createChat(recipient: String!): CreateChat
-  deleteMessage(messageId: Int!): DeleteMessage
-  deleteConversation(conversationId: Int!): DeleteConversation
-  archiveConversation(conversationId: Int!): ArchiveConversation
-  unarchiveConversation(conversationId: Int!): UnarchiveConversation
-  updateReadMessages(messageIds: [Int]!): UpdateReadMessages
-
-  """Read notification"""
-  readNotification(notificationId: Int): ReadNotification
-
-  """Delete notification"""
-  deleteNotification(notificationId: Int!): DeleteNotification
-
-  """update user notification preferences"""
-  updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
-  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
-  deleteProduct(productId: Int!): DeleteProduct
-  likeProduct(productId: Int!): LikeProduct
-  createOrder(productId: Int!, quantity: Int): CreateOrder
-  cancelOrder(orderId: Int!): CancelOrder
-  login(password: String!, username: String): LoginMutation
-  logout: LogoutMutation
-  updateProfile(
-    bio: String
-    country: String
-    displayName: String
-    dob: Date
-    fcmToken: String
-    firstName: String
-    gender: String
-    lastName: String
-    location: LocationInputType
-
-    """
-    The one-time password (OTP) code that the user must provide to verify their identity and update their phone number. The OTP code is sent to the user's registered phone number, and it is valid for 5 minutes. The user must enter the correct OTP code in order for the phone number update to be successful.
-    """
-    otp: String
-    phoneNumber: PhoneInputType
-    postcode: String
-    profilePicture: ProfilePictureInputType
-    use2fa: Boolean
-    username: String
-  ): UpdateUserMutation
-  followUser(followedId: Int!): FollowUser
-  blockUnblock(blockUser: Boolean!, userId: Int!): BlockUserMutation
-  unfollowUser(followedId: Int!): UnfollowUser
-  rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
-
-  """
-  Register user with fields defined in the settings.
-  
-  If the email field of the user model is part of the
-  registration fields (default), check if there is
-  no user with that email or as a secondary email.
-  
-  If it exists, it does not register the user,
-  even if the email field is not defined as unique
-  (default of the default django user model).
-  
-  When creating the user, it also creates a `UserStatus`
-  related to that user, making it possible to track
-  if the user is archived, verified and has a secondary
-  email.
-  
-  Send account verification email.
-  
-  If allowed to not verified users login, return token.
-  """
-  register(displayName: String, dob: Date, email: String!, username: String!, firstName: String!, lastName: String!, password1: String!, password2: String!): NewRegister
-
-  """
-  Obtain JSON web token for given user.
-  
-  Allow to perform login with different fields,
-  and secondary email if set. The fields are
-  defined on settings.
-  
-  Not verified users can login by default. This
-  can be changes on settings.
-  
-  If user is archived, make it unarchive and
-  return `unarchiving=True` on output.
-  """
-  tokenAuth(password: String!, email: String, username: String): NewObtainJSONWebToken
-
-  """
-  Update user model fields, defined on settings.
-  
-  User must be verified.
-  """
-  updateAccount(firstName: String, lastName: String): UpdateAccount
-
-  """
-  Sends activation email.
-  
-  It is called resend because theoretically
-  the first activation email was sent when
-  the user registered.
-  
-  If there is no user with the requested email,
-  a successful response is returned.
-  """
-  resendActivationEmail(email: String!): ResendActivationEmail
-
-  """
-  Change user password without old password.
-  
-  Receive the token that was sent by email.
-  
-  If token and new passwords are valid, update
-  user password and in case of using refresh
-  tokens, revoke all of them.
-  
-  Also, if user has not been verified yet, verify it.
-  """
-  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
-}
-
-type UploadPictures {
-  baseUrl: String
-  data: [JSONString]
-  success: Boolean
-}
-
-"""
-Create scalar that ignores normal serialization/deserialization, since
-that will be handled by the multipart request spec
-"""
-scalar Upload
-
-enum FileTypeEnum {
-  BANNER
-  PRODUCT
-  PROFILE_PICTURE
-}
-
-type DeleteMediaFiles {
-  success: Boolean
-}
-
-type AdminLogin {
-  user: AdminUserType
-  token: String
-  restToken: String
-}
-
-type AdminUserType {
-  id: Int
-  username: String
-  email: String
-  firstName: String
-  lastName: String
-  profilePictureUrl: String
-  thumbnailUrl: String
-  gender: String
-  displayName: String
-  dateJoined: DateTime
-  lastLogin: DateTime
-  fullName: String
-  phone: PhoneType
-  location: LocationType
-  bio: String
-}
-
-type CreateBanner {
-  message: String
-  success: Boolean
-}
-
-enum SeasonEnum {
-  CHRISTMAS
-  HALLOWEEN
-  SUMMER
-  WINTER
-  SPRING
-  AUTUMN
-  BLACK_FRIDAY
-  EASTER
-}
-
-type CreatePaymentIntent {
-  clientSecret: String
-}
-
-type ConfirmPayment {
-  paymentStatus: String
-}
-
-type CreateChat {
-  chat: ConversationType
-}
-
-type DeleteMessage {
-  message: String
-}
-
-type DeleteConversation {
-  message: String
-}
-
-type ArchiveConversation {
-  message: String
+  name: String
 }
 
 type UnarchiveConversation {
   message: String
 }
 
-type UpdateReadMessages {
-  success: Boolean
-  updatedCount: Int
-}
-
-type ReadNotification {
+type UnfollowUser {
   success: Boolean
 }
 
-type DeleteNotification {
+"""
+Update user model fields, defined on settings.
+
+User must be verified.
+"""
+type UpdateAccount {
+  errors: ExpectedErrorType
   success: Boolean
 }
 
@@ -1038,62 +1301,15 @@ type UpdateNotificationPreference {
   notificationPreference: NotificationPreferenceType
 }
 
-input NotificationsPreferenceInputType {
-  likes: Boolean
-  newFollowers: Boolean
-  profileView: Boolean
-  messages: Boolean
-}
-
-type CreateProduct {
-  success: Boolean
-  message: String
-  product: ProductType
-}
-
-input ImagesInputType {
-  url: String!
-  thumbnail: String!
-}
-
-enum ParcelSizeEnum {
-  SMALL
-  MEDIUM
-  LARGE
-}
-
 type UpdateProduct {
   success: Boolean
   message: String
   product: ProductType
 }
 
-type DeleteProduct {
+type UpdateReadMessages {
   success: Boolean
-  message: String
-}
-
-type LikeProduct {
-  success: Boolean
-}
-
-type CreateOrder {
-  success: Boolean
-  order: OrderType
-}
-
-type CancelOrder {
-  success: Boolean
-}
-
-type LoginMutation {
-  user: UserType
-  token: String
-  restToken: String
-}
-
-type LogoutMutation {
-  message: String
+  updatedCount: Int
 }
 
 type UpdateUserMutation {
@@ -1103,140 +1319,85 @@ type UpdateUserMutation {
   restToken: String
 }
 
-input LocationInputType {
-  latitude: String
-  longitude: String
-  locationName: String
+"""
+Create scalar that ignores normal serialization/deserialization, since
+that will be handled by the multipart request spec
+"""
+scalar Upload
+
+type UploadPictures {
+  baseUrl: String
+  data: [JSONString]
+  success: Boolean
 }
 
-input PhoneInputType {
-  countryCode: String!
-  number: String!
-  completed: String
-}
-
-input ProfilePictureInputType {
+type UserNode implements Node {
+  """The ID of the object"""
+  id: ID!
+  firstName: String!
+  lastName: String
+  username: String!
+  email: String
+  bio: String
   profilePictureUrl: String
   thumbnailUrl: String
+  gender: AccountsUserGenderChoices
+  phoneNumber: JSONString!
+  country: String
+  postcode: String
+  isActive: Boolean!
+  isStaff: Boolean!
+  isVerified: Boolean!
+  isBanned: Boolean!
+  deleted: Boolean!
+  views: Int!
+  displayName: String
+  blueTickVerified: Boolean!
+  dob: Date
+  dobChangeCount: Int!
+  use2fa: Boolean!
+  dateJoined: DateTime!
+  lastLogin: DateTime
+  inWaitlist: Boolean!
+  useGoogleAuthenticator: Boolean!
+  gASecret: String
+  usernameLastUpdated: DateTime
+  fcmTokens: [String!]!
+  meta: JSONString!
+  products: [ProductType!]!
+  orderSet: [OrderType!]!
+  sentNotifications: [NotificationType!]!
+  notificationPreferences: NotificationPreferenceType
+  participant1: [ConversationType!]!
+  participant2: [ConversationType!]!
+  messageSender: [MessageType!]!
+  paymentSet: [PaymentType!]!
+  pk: Int
+  archived: Boolean
+  verified: Boolean
+  secondaryEmail: String
 }
 
-type FollowUser {
-  success: Boolean
+type UserType {
+  id: Int
+  firstName: String
+  lastName: String
+  username: String
+  email: String
+  bio: String
+  location: LocationType
+  profilePictureUrl: String
+  thumbnailUrl: String
+  gender: String
+  displayName: String
+  dob: DateTime
+  dateJoined: DateTime
+  lastLogin: DateTime
+  fullName: String
+  phone: PhoneType
+  listing: Int
+  isFollowing: Boolean
+  noOfFollowing: Int
+  noOfFollowers: Int
 }
 
-type BlockUserMutation {
-  success: Boolean
-  message: String
-}
-
-type UnfollowUser {
-  success: Boolean
-}
-
-type RateUser {
-  success: Boolean
-  message: String
-}
-
-"""
-Register user with fields defined in the settings.
-
-If the email field of the user model is part of the
-registration fields (default), check if there is
-no user with that email or as a secondary email.
-
-If it exists, it does not register the user,
-even if the email field is not defined as unique
-(default of the default django user model).
-
-When creating the user, it also creates a `UserStatus`
-related to that user, making it possible to track
-if the user is archived, verified and has a secondary
-email.
-
-Send account verification email.
-
-If allowed to not verified users login, return token.
-"""
-type NewRegister {
-  errors: ExpectedErrorType
-  success: Boolean
-  token: String
-}
-
-"\n    Errors messages and codes mapped to\n    fields or non fields errors.\n    Example:\n    {\n        field_name: [\n            {\n                \"message\": \"error message\",\n                \"code\": \"error_code\"\n            }\n        ],\n        other_field: [\n            {\n                \"message\": \"error message\",\n                \"code\": \"error_code\"\n            }\n        ],\n        nonFieldErrors: [\n            {\n                \"message\": \"error message\",\n                \"code\": \"error_code\"\n            }\n        ]\n    }\n    "
-scalar ExpectedErrorType
-
-"""
-Obtain JSON web token for given user.
-
-Allow to perform login with different fields,
-and secondary email if set. The fields are
-defined on settings.
-
-Not verified users can login by default. This
-can be changes on settings.
-
-If user is archived, make it unarchive and
-return `unarchiving=True` on output.
-"""
-type NewObtainJSONWebToken {
-  payload: GenericScalar
-  refreshExpiresIn: Int
-  errors: ExpectedErrorType
-  success: Boolean
-  user: UserNode
-  unarchiving: Boolean
-  restToken: String
-  use2fa: Boolean
-  useGoogleAuthenticator: Boolean
-  token: String!
-}
-
-"""
-The `GenericScalar` scalar type represents a generic
-GraphQL scalar value that could be:
-String, Boolean, Int, Float, List or Object.
-"""
-scalar GenericScalar
-
-"""
-Update user model fields, defined on settings.
-
-User must be verified.
-"""
-type UpdateAccount {
-  errors: ExpectedErrorType
-  success: Boolean
-}
-
-"""
-Sends activation email.
-
-It is called resend because theoretically
-the first activation email was sent when
-the user registered.
-
-If there is no user with the requested email,
-a successful response is returned.
-"""
-type ResendActivationEmail {
-  errors: ExpectedErrorType
-  success: Boolean
-}
-
-"""
-Change user password without old password.
-
-Receive the token that was sent by email.
-
-If token and new passwords are valid, update
-user password and in case of using refresh
-tokens, revoke all of them.
-
-Also, if user has not been verified yet, verify it.
-"""
-type PasswordReset {
-  errors: ExpectedErrorType
-  success: Boolean
-}
