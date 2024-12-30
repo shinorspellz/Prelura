@@ -37,13 +37,16 @@ class VBottomSheetComponent {
         transitionAnimationController: transitionAnimationController,
         useSafeArea: true,
         useRootNavigator: useRootNavigator,
-        builder: (context) => Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
-          VBottomSheetWidget(
-            customChild: child,
-            removeSidePadding: removeSidePadding,
-            showBottomDivider: showBottomDivider,
-          )
-        ]),
+        builder: (context) => Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              VBottomSheetWidget(
+                customChild: child,
+                removeSidePadding: removeSidePadding,
+                showBottomDivider: showBottomDivider,
+              )
+            ]),
       );
 
   static Future customStatefulBottomSheet({
@@ -93,7 +96,8 @@ class VBottomSheetWidget extends StatefulWidget {
   State<VBottomSheetWidget> createState() => _VBottomSheetWidgetState();
 }
 
-class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProviderStateMixin {
+class _VBottomSheetWidgetState extends State<VBottomSheetWidget>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 600),
     vsync: this,
