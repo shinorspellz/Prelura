@@ -10,6 +10,8 @@ import 'package:prelura_app/modules/model/product/order/order_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
+import '../../model/product/user product grouping/user_product_grouping.dart';
+
 class ProductRepo {
   final GraphQLClient _client;
 
@@ -407,5 +409,24 @@ class ProductRepo {
     }
 
     return response.parsedData!.similarProducts!.map((x) => ProductModel.fromJson((x!).toJson())).toList();
+  }
+
+  Future<List<CategoryGroupType>> getUserProductGrouping({required int userId, required Enum$ProductGroupingEnum groupBy}) async {
+    final response = await _client.query$UserProductGrouping(Options$Query$UserProductGrouping(variables: Variables$Query$UserProductGrouping(userId: userId, groupBy: groupBy)));
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.userProductGrouping!.map((x) => CategoryGroupType.fromJson((x!).toJson())).toList();
   }
 }

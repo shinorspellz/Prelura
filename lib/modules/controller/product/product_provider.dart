@@ -819,3 +819,17 @@ class KidsProductController extends FamilyAsyncNotifier<List<ProductModel>, (Inp
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+
+final userProductGroupingByBrandProvider = FutureProvider.family((ref, int userId) async {
+  final repo = ref.watch(productRepo);
+  final result = await repo.getUserProductGrouping(userId: userId, groupBy: Enum$ProductGroupingEnum.BRAND);
+
+  return result;
+});
+
+final userProductGroupingByCategoryProvider = FutureProvider.family((ref, int userId) async {
+  final repo = ref.watch(productRepo);
+  final result = await repo.getUserProductGrouping(userId: userId, groupBy: Enum$ProductGroupingEnum.CATEGORY);
+
+  return result;
+});

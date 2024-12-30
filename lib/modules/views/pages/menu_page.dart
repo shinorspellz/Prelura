@@ -25,6 +25,7 @@ class MenuPage extends ConsumerWidget {
     final controller = MenuPage.menuScrollController;
     final themeNotifier = ref.read(themeNotifierProvider.notifier);
     final themeMode = ref.watch(themeNotifierProvider);
+    final user = ref.watch(userProvider).valueOrNull;
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -49,7 +50,9 @@ class MenuPage extends ConsumerWidget {
               children: [
                 Text(
                   "Dark Mode",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(
                   swicthValue: themeMode == ThemeMode.dark,
@@ -79,6 +82,16 @@ class MenuPage extends ConsumerWidget {
               context.pushRoute(BalanceRoute());
             },
           ),
+          if (user?.listing != null)
+            if (user!.listing!.toInt() > 0)
+              MenuCard(
+                title: "Shop Value",
+                icon: const Icon(Icons.show_chart_sharp),
+                rightArrow: false,
+                onTap: () {
+                  // context.pushRoute(BalanceRoute());
+                },
+              ),
           // MenuCard(
           //     // profilePic: false,
           //     title: "My Profile",
@@ -102,7 +115,12 @@ class MenuPage extends ConsumerWidget {
               onTap: () {
                 context.router.push(const MyFavouriteRoute());
               }),
-          MenuCard(title: "Discounts", subtitle: "off", rightArrow: false, icon: const Icon(Icons.info_outlined), onTap: () {}),
+          MenuCard(
+              title: "Discounts",
+              subtitle: "off",
+              rightArrow: false,
+              icon: const Icon(Icons.info_outlined),
+              onTap: () {}),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
@@ -123,7 +141,11 @@ class MenuPage extends ConsumerWidget {
               onTap: () {
                 context.router.push(const SettingRoute());
               }),
-          MenuCard(title: "Help Centre", icon: const Icon(Icons.question_mark_rounded), rightArrow: false, onTap: () {}),
+          MenuCard(
+              title: "Help Centre",
+              icon: const Icon(Icons.question_mark_rounded),
+              rightArrow: false,
+              onTap: () {}),
           MenuCard(
               title: "About Prelura",
               icon: const Icon(Icons.info_outlined),

@@ -57,8 +57,9 @@ class UserScrollableList extends ConsumerWidget {
                     .push(FollowersRoute(username: user?.username ?? ""));
               }),
               16.horizontalSpacing,
-              _buildItem(context,
-                  title: 'Reviews', numbers: "300", onTap: () {}),
+              _buildItem(context, title: 'Reviews', numbers: "300", onTap: () {
+                context.router.push(ReviewRoute());
+              }),
               16.horizontalSpacing,
               _buildItem(context,
                   title: "Ratings", numbers: "4.95", onTap: () {})
@@ -86,7 +87,7 @@ Widget _buildItem(BuildContext context,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w700,
-                    fontSize: 20.sp,
+                    fontSize: 20,
                   ),
             ),
           ),
