@@ -18,8 +18,8 @@ enum AccountsUserGenderChoices {
 
 type AdminLogin {
   user: AdminUserType
+  message: String
   token: String
-  restToken: String
 }
 
 type AdminUserType {
@@ -526,7 +526,6 @@ type OrderType {
   status: ProductsOrderStatusChoices!
   createdAt: DateTime!
   updatedAt: DateTime!
-  paymentSet: [PaymentType!]!
 }
 
 enum ParcelSizeEnum {
@@ -1032,7 +1031,7 @@ type Query {
       This method also handles pagination of the results to ensure efficient retrieval of large datasets.
       
   """
-  allProducts(filters: ProductFiltersInput, search: String, pageCount: Int, pageNumber: Int): [ProductType]
+  allProducts(filters: ProductFiltersInput, sort: SortEnum, search: String, pageCount: Int, pageNumber: Int): [ProductType]
 
   """
   
@@ -1053,7 +1052,7 @@ type Query {
       The method will return a list of products that match the filters and pagination settings.
       
   """
-  userProducts(search: String, username: String, pageCount: Int, pageNumber: Int): [ProductType]
+  userProducts(search: String, username: String, filters: ProductFiltersInput, sort: SortEnum, pageCount: Int, pageNumber: Int): [ProductType]
 
   """
   
@@ -1205,6 +1204,12 @@ enum SizeEnum {
   EU44
   EU46
   ONE_SIZE
+}
+
+enum SortEnum {
+  NEWEST
+  PRICE_ASC
+  PRICE_DESC
 }
 
 enum StyleEnum {

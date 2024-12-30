@@ -7992,12 +7992,14 @@ class Variables$Query$UserProducts {
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   }) =>
       Variables$Query$UserProducts._({
         if (search != null) r'search': search,
         if (username != null) r'username': username,
         if (pageCount != null) r'pageCount': pageCount,
         if (pageNumber != null) r'pageNumber': pageNumber,
+        if (filters != null) r'filters': filters,
       });
 
   Variables$Query$UserProducts._(this._$data);
@@ -8020,6 +8022,13 @@ class Variables$Query$UserProducts {
       final l$pageNumber = data['pageNumber'];
       result$data['pageNumber'] = (l$pageNumber as int?);
     }
+    if (data.containsKey('filters')) {
+      final l$filters = data['filters'];
+      result$data['filters'] = l$filters == null
+          ? null
+          : Input$ProductFiltersInput.fromJson(
+              (l$filters as Map<String, dynamic>));
+    }
     return Variables$Query$UserProducts._(result$data);
   }
 
@@ -8032,6 +8041,9 @@ class Variables$Query$UserProducts {
   int? get pageCount => (_$data['pageCount'] as int?);
 
   int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Input$ProductFiltersInput? get filters =>
+      (_$data['filters'] as Input$ProductFiltersInput?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -8050,6 +8062,10 @@ class Variables$Query$UserProducts {
     if (_$data.containsKey('pageNumber')) {
       final l$pageNumber = pageNumber;
       result$data['pageNumber'] = l$pageNumber;
+    }
+    if (_$data.containsKey('filters')) {
+      final l$filters = filters;
+      result$data['filters'] = l$filters?.toJson();
     }
     return result$data;
   }
@@ -8104,6 +8120,14 @@ class Variables$Query$UserProducts {
     if (l$pageNumber != lOther$pageNumber) {
       return false;
     }
+    final l$filters = filters;
+    final lOther$filters = other.filters;
+    if (_$data.containsKey('filters') != other._$data.containsKey('filters')) {
+      return false;
+    }
+    if (l$filters != lOther$filters) {
+      return false;
+    }
     return true;
   }
 
@@ -8113,11 +8137,13 @@ class Variables$Query$UserProducts {
     final l$username = username;
     final l$pageCount = pageCount;
     final l$pageNumber = pageNumber;
+    final l$filters = filters;
     return Object.hashAll([
       _$data.containsKey('search') ? l$search : const {},
       _$data.containsKey('username') ? l$username : const {},
       _$data.containsKey('pageCount') ? l$pageCount : const {},
       _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+      _$data.containsKey('filters') ? l$filters : const {},
     ]);
   }
 }
@@ -8136,6 +8162,7 @@ abstract class CopyWith$Variables$Query$UserProducts<TRes> {
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   });
 }
 
@@ -8157,6 +8184,7 @@ class _CopyWithImpl$Variables$Query$UserProducts<TRes>
     Object? username = _undefined,
     Object? pageCount = _undefined,
     Object? pageNumber = _undefined,
+    Object? filters = _undefined,
   }) =>
       _then(Variables$Query$UserProducts._({
         ..._instance._$data,
@@ -8164,6 +8192,8 @@ class _CopyWithImpl$Variables$Query$UserProducts<TRes>
         if (username != _undefined) 'username': (username as String?),
         if (pageCount != _undefined) 'pageCount': (pageCount as int?),
         if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+        if (filters != _undefined)
+          'filters': (filters as Input$ProductFiltersInput?),
       }));
 }
 
@@ -8178,6 +8208,7 @@ class _CopyWithStubImpl$Variables$Query$UserProducts<TRes>
     String? username,
     int? pageCount,
     int? pageNumber,
+    Input$ProductFiltersInput? filters,
   }) =>
       _res;
 }
@@ -8387,6 +8418,15 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'filters')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ProductFiltersInput'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -8409,6 +8449,10 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'pageNumber'),
             value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'filters'),
+            value: VariableNode(name: NameNode(value: 'filters')),
           ),
         ],
         directives: [],

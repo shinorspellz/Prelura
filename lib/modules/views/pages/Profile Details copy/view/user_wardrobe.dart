@@ -69,13 +69,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
   @override
   Widget build(BuildContext context) {
-    final user = ref
-        .watch((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .valueOrNull;
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
     bool isCurrentUser = widget.username == null;
-    print(user);
 
     return SmartRefresher(
       controller: _refreshController,
@@ -88,8 +83,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -114,10 +108,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                                user?.location?.locationName ??
-                                    "Exeter, United Kingdom",
-                                style: Theme.of(context).textTheme.bodyMedium),
+                            Text(user?.location?.locationName ?? "Exeter, United Kingdom", style: Theme.of(context).textTheme.bodyMedium),
                           ],
                         ),
                         const SizedBox(
@@ -132,38 +123,21 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () {
-                                context.router.push(
-                                    FollowersRoute(username: user!.username));
+                                context.router.push(FollowersRoute(username: user!.username));
                               },
                               child: Text.rich(TextSpan(
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      context.router.push(FollowersRoute(
-                                          username: user!.username));
+                                      context.router.push(FollowersRoute(username: user!.username));
                                     },
                                   text: user?.noOfFollowers.toString() ?? '--',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: Theme.of(context).textTheme.bodySmall?.color,
                                       ),
                                   children: [
                                     TextSpan(
-                                      text: (user != null &&
-                                              (user.noOfFollowers!.toInt() >
-                                                      1 ||
-                                                  user.noOfFollowers!.toInt() ==
-                                                      0))
-                                          ? " followers"
-                                          : " follower,",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
+                                      text: (user != null && (user.noOfFollowers!.toInt() > 1 || user.noOfFollowers!.toInt() == 0)) ? " followers" : " follower,",
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
                                     ),
@@ -172,27 +146,17 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             const SizedBox(width: 6),
                             GestureDetector(
                               onTap: () {
-                                context.router.push(
-                                    FollowingRoute(username: user!.username));
+                                context.router.push(FollowingRoute(username: user!.username));
                               },
                               child: Text.rich(TextSpan(
                                   text: user?.noOfFollowing.toString() ?? '--',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.color,
+                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        color: Theme.of(context).textTheme.bodySmall?.color,
                                       ),
                                   children: [
                                     TextSpan(
                                       text: " following",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
                                     ),
@@ -210,8 +174,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               size: 16,
                             ),
                             const SizedBox(width: 8),
-                            Text("Usually ships within 1 day",
-                                style: Theme.of(context).textTheme.bodyMedium),
+                            Text("Usually ships within 1 day", style: Theme.of(context).textTheme.bodyMedium),
                           ],
                         ),
                         const SizedBox(
@@ -237,11 +200,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               },
                               child: Text(
                                 "reviews",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                        color: PreluraColors.activeColor),
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.activeColor),
                               ),
                             ),
                           ],
@@ -275,23 +234,18 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           child: AppButton(
                             onTap: () async {
                               if (isCurrentUser) {
-                                Share.shareUri(Uri.parse(
-                                    'https://prelura.com/${user?.username}'));
+                                Share.shareUri(Uri.parse('https://prelura.com/${user?.username}'));
                                 return;
                               }
-                              if (!isCurrentUser &&
-                                  user?.isFollowing! == false) {
-                                final result = await ref.refresh(
-                                    followUserProvider(user!.id).future);
+                              if (!isCurrentUser && user?.isFollowing! == false) {
+                                final result = await ref.refresh(followUserProvider(user!.id).future);
 
                                 if (result) {
                                   context.alert("Following ${user.username}");
-                                  ref.invalidate(
-                                      otherUserProfile(widget.username!));
+                                  ref.invalidate(otherUserProfile(widget.username!));
                                   ref.invalidate(userProvider);
                                 }
                               }
-                              ;
                               HapticFeedback.lightImpact();
                             },
                             text: isCurrentUser

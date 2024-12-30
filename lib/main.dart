@@ -25,6 +25,7 @@ void main() async {
   await dotenv.load(fileName: '.env');
   await Hive.initFlutter();
   await Hive.openBox('settings');
+  Stripe.publishableKey = 'pk_test_51QZLUu2LCwCAAIPiQaNscHb0rfE53OokrEEboDTJWn6BxMsGTib5S6u4rMflxm7RWnSK213nOeUj5uTYcpBykNmB00MDeN70RI';
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -46,7 +47,6 @@ class MyApp extends ConsumerWidget {
     ref.watch(notificationProvider);
     // Remove splash screen after determining auth state
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Stripe.publishableKey = 'pk_test_51MUB2yBHdb5MeEk7eRdKhqG5CZSExTI1ChtUs6vCkGyWod8Jw6weYt1jeSMDJ2xD4m79Dj62aA3YELPAuuqyxFyV000cHayfJo';
       FlutterNativeSplash.remove();
     });
     return Sizer(

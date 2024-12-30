@@ -6,6 +6,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/model/product/categories/category_model.dart';
+import 'package:prelura_app/modules/model/product/order/order_model.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/repo/file_upload_repo.dart';
 
@@ -30,6 +31,44 @@ class ProductRepo {
       log(response.exception.toString(), name: 'ProductRepo');
       throw 'An error occured';
     }
+  }
+
+  Future<void> cancelOrder(int orderId) async {
+    final response = await _client.mutate$CancelOrder(
+      Options$Mutation$CancelOrder(
+        variables: Variables$Mutation$CancelOrder(orderId: orderId),
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<OrderModel> orderProduct({required int productId, int qty = 1}) async {
+    final response = await _client.mutate$CreateOrder(
+      Options$Mutation$CreateOrder(
+        variables: Variables$Mutation$CreateOrder(productId: productId, quantity: qty),
+      ),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(error, name: 'ProductRepo');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return OrderModel.fromJson(response.parsedData!.createOrder!.order!.toJson());
   }
 
   Future<void> updateProduct(Variables$Mutation$UpdateProduct params) async {
@@ -93,7 +132,7 @@ class ProductRepo {
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }
 
-  Future<List<ProductModel>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber}) async {
+  Future<List<ProductModel>> getUserProduct({String? username, String? search, int? pageCount, int? pageNumber, Input$ProductFiltersInput? filters}) async {
     final response = await _client.query$UserProducts(
       Options$Query$UserProducts(
           variables: Variables$Query$UserProducts(
@@ -101,6 +140,7 @@ class ProductRepo {
         search: search,
         pageCount: pageCount,
         pageNumber: pageNumber,
+        filters: filters,
       )),
     );
 

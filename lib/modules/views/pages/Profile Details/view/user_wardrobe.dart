@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
@@ -81,18 +82,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref
-        .watch((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .value;
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).value;
     bool isCurrentUser = widget.username == null;
-    final List<CategoryModel> categories;
-    categories = ref
-        .watch(categoryProvider)
-        .value!
-        .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
-        .toList();
+    final List<CategoryModel?> categories = ref.watch(userProduct(user?.username)).valueOrNull?.map((product) => product.category).toSet().toList() ?? [];
 
     return SmartRefresher(
       controller: _refreshController,
@@ -105,8 +97,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -121,18 +112,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 children: [
                   if (user?.bio != null)
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             user?.bio ?? '',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(fontWeight: FontWeight.w500),
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 16),
                         ],
@@ -144,10 +131,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     user: user,
                   ),
                   MenuCard(
-                      icon: isSelected
-                          ? Icon(Icons.arrow_back_ios_rounded,
-                              size: 18, color: PreluraColors.primaryColor)
-                          : null,
+                      icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
                       title: selectedItem.isNotEmpty
                           ? "Viewing"
                           : widget.username != null
@@ -160,14 +144,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       trailingIcon: isSelected
                           ? null
                           : selectedItem.isNotEmpty
-                              ? Icon(Icons.cancel_rounded,
-                                  color: PreluraColors.grey)
-                              : Icon(Icons.arrow_forward_ios_rounded,
-                                  color: PreluraColors.grey, size: 18),
+                              ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
+                              : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
                       onTap: () {
                         isSelected = !isSelected;
                         selectedItem = "";
                         setState(() {});
+                        ref.invalidate(userProductFilter);
                       }),
                   if (isSelected) ...[
                     ListView.builder(
@@ -176,45 +159,34 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       itemBuilder: (_, index) {
                         final cat = categories[index];
 
+                        if (cat == null) return Container();
+
                         return MenuCard(
                           title: cat.name,
                           textColor: PreluraColors.grey,
-                          trailingIcon: RenderSvg(
-                              svgPath: PreluraIcons.arrowDown_svg,
-                              svgHeight: 16,
-                              svgWidth: 16,
-                              color: PreluraColors.grey),
+                          trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
                           onTap: () {
                             selectedItem = cat.name;
                             isSelected = false;
                             setState(() {});
+                            ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
                           },
                         );
                       },
                     )
                   ],
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 6),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            widget.username != null
-                                ? "Brands from this seller"
-                                : "Top Brands",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    color: PreluraColors.grey),
-                          ),
-                          //   RenderSvgWithColor2(
-                          //       svgPath: PreluraIcons.search_glass_svg)
-                          // ],
-                          Icon(Icons.search, color: PreluraColors.primaryColor)
-                        ]),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Text(
+                        widget.username != null ? "Brands from this seller" : "Top Brands",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
+                      ),
+                      //   RenderSvgWithColor2(
+                      //       svgPath: PreluraIcons.search_glass_svg)
+                      // ],
+                      Icon(Icons.search, color: PreluraColors.primaryColor)
+                    ]),
                   ),
                   UserPopularBrand(),
 
@@ -315,40 +287,28 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(children: [
-                            Text(
-                              "Filter",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
-                            ),
-                            2.horizontalSpacing,
-                            // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                            RenderSvgWithColor2(
-                              svgPath: PreluraIcons.filter_icon_svg,
-                              color: PreluraColors.activeColor,
-                            )
-                          ]),
-                          Row(children: [
-                            Text(
-                              "Sort",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: PreluraColors.grey),
-                            ),
-                            2.horizontalSpacing,
-                            RenderSvg(
-                                svgPath: PreluraIcons.sort_icon_svg,
-                                color: PreluraColors.activeColor,
-                                svgHeight: 16,
-                                svgWidth: 16)
-                          ])
-                        ]),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Row(children: [
+                        Text(
+                          "Filter",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.grey),
+                        ),
+                        2.horizontalSpacing,
+                        // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
+                        RenderSvgWithColor2(
+                          svgPath: PreluraIcons.filter_icon_svg,
+                          color: PreluraColors.activeColor,
+                        )
+                      ]),
+                      Row(children: [
+                        Text(
+                          "Sort",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.grey),
+                        ),
+                        2.horizontalSpacing,
+                        RenderSvg(svgPath: PreluraIcons.sort_icon_svg, color: PreluraColors.activeColor, svgHeight: 16, svgWidth: 16)
+                      ])
+                    ]),
                   ),
                   const SizedBox(
                     height: 20,
