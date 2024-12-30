@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
@@ -6,8 +7,9 @@ import 'package:prelura_app/modules/views/widgets/rating.dart';
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
 
-class ReviewTab extends StatelessWidget {
-  const ReviewTab({super.key});
+@RoutePage()
+class ReviewScreen extends StatelessWidget {
+  const ReviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

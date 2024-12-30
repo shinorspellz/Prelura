@@ -37,13 +37,16 @@ class VBottomSheetComponent {
         transitionAnimationController: transitionAnimationController,
         useSafeArea: true,
         useRootNavigator: useRootNavigator,
-        builder: (context) => Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
-          VBottomSheetWidget(
-            customChild: child,
-            removeSidePadding: removeSidePadding,
-            showBottomDivider: showBottomDivider,
-          )
-        ]),
+        builder: (context) => Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              VBottomSheetWidget(
+                customChild: child,
+                removeSidePadding: removeSidePadding,
+                showBottomDivider: showBottomDivider,
+              )
+            ]),
       );
 
   static Future customStatefulBottomSheet({
@@ -93,7 +96,8 @@ class VBottomSheetWidget extends StatefulWidget {
   State<VBottomSheetWidget> createState() => _VBottomSheetWidgetState();
 }
 
-class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProviderStateMixin {
+class _VBottomSheetWidgetState extends State<VBottomSheetWidget>
+    with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 600),
     vsync: this,
@@ -122,66 +126,88 @@ class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProv
       ),
       child: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
-        child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
-          15.verticalSpacing,
-          const Align(alignment: Alignment.center, child: VWidgetsModalPill()),
-          SingleChildScrollView(
-            physics: const ScrollPhysics(),
-            child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
-              if (widget.customHeader != null) widget.customHeader!,
-              if (widget.actions != null) ...[
-                Flexible(
-                  child: ListView.separated(
-                    physics: const ScrollPhysics(),
-                    itemCount: widget.actions!.length,
-                    padding: const EdgeInsets.only(
-                      top: 15,
-                    ),
-                    shrinkWrap: true,
-                    itemBuilder: ((context, index) => InkWell(
-                          highlightColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-                          onTap: widget.actions![index].onTap,
-                          child: Container(
-                            height: 52,
-                            color: Colors.transparent,
-                            alignment: Alignment.centerLeft,
-                            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                              if (widget.actions![index].icon != null) ...[
-                                widget.actions![index].icon!,
-                                addHorizontalSpacing(16),
-                              ],
-                              Text(
-                                widget.actions![index].title,
-                                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                                      fontWeight: widget.actions![index].textWeight ?? FontWeight.w600,
-                                      color: widget.actions![index].textColor ?? Theme.of(context).primaryColor,
-                                      fontSize: 16,
-                                    ),
-                              ),
-                              if (widget.actions![index].endIcon != null) ...[
-                                Spacer(),
-                                widget.actions![index].endIcon!,
-                                10.horizontalSpacing,
-                              ]
-                            ]),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              15.verticalSpacing,
+              const Align(
+                  alignment: Alignment.center, child: VWidgetsModalPill()),
+              SingleChildScrollView(
+                physics: const ScrollPhysics(),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      if (widget.customHeader != null) widget.customHeader!,
+                      if (widget.actions != null) ...[
+                        Flexible(
+                          child: ListView.separated(
+                            physics: const ScrollPhysics(),
+                            itemCount: widget.actions!.length,
+                            padding: const EdgeInsets.only(
+                              top: 15,
+                            ),
+                            shrinkWrap: true,
+                            itemBuilder: ((context, index) => InkWell(
+                                  highlightColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  overlayColor: const WidgetStatePropertyAll(
+                                      Colors.transparent),
+                                  onTap: widget.actions![index].onTap,
+                                  child: Container(
+                                    height: 52,
+                                    color: Colors.transparent,
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          if (widget.actions![index].icon !=
+                                              null) ...[
+                                            widget.actions![index].icon!,
+                                            addHorizontalSpacing(16),
+                                          ],
+                                          Text(
+                                            widget.actions![index].title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displayLarge!
+                                                .copyWith(
+                                                  fontWeight: widget
+                                                          .actions![index]
+                                                          .textWeight ??
+                                                      FontWeight.w600,
+                                                  color: widget.actions![index]
+                                                          .textColor ??
+                                                      Theme.of(context)
+                                                          .primaryColor,
+                                                  fontSize: 16,
+                                                ),
+                                          ),
+                                          if (widget.actions![index].endIcon !=
+                                              null) ...[
+                                            Spacer(),
+                                            widget.actions![index].endIcon!,
+                                            10.horizontalSpacing,
+                                          ]
+                                        ]),
+                                  ),
+                                )),
+                            separatorBuilder: (context, index) => const Divider(
+                              height: 0,
+                            ),
                           ),
-                        )),
-                    separatorBuilder: (context, index) => const Divider(
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ],
-              if (widget.customChild != null) ...[
-                widget.customChild!,
-              ],
+                        ),
+                      ],
+                      if (widget.customChild != null) ...[
+                        widget.customChild!,
+                      ],
+                    ]),
+              ),
+              if (widget.showBottomDivider) const Divider(height: 0),
+              // addVerticalSpacing(10),
             ]),
-          ),
-          if (widget.showBottomDivider) const Divider(height: 0),
-          // addVerticalSpacing(10),
-        ]),
       ),
     );
   }

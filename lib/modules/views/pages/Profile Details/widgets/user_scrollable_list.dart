@@ -86,7 +86,7 @@ Widget _buildItem(BuildContext context,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w700,
-                    fontSize: 20.sp,
+                    fontSize: 20,
                   ),
             ),
           ),
