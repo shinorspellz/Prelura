@@ -29,7 +29,7 @@ class UserScrollableList extends ConsumerWidget {
       child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -73,7 +73,7 @@ Widget _buildItem(BuildContext context,
       child: Column(
         children: [
           Text(
-            numbers ?? "",
+            numbers ?? "0",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                   fontSize: 16.sp,
