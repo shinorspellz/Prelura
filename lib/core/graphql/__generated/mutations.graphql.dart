@@ -15382,3 +15382,2685 @@ class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotification
   }) =>
       _res;
 }
+
+class Variables$Mutation$CreateOrder {
+  factory Variables$Mutation$CreateOrder({
+    required int productId,
+    int? quantity,
+  }) =>
+      Variables$Mutation$CreateOrder._({
+        r'productId': productId,
+        if (quantity != null) r'quantity': quantity,
+      });
+
+  Variables$Mutation$CreateOrder._(this._$data);
+
+  factory Variables$Mutation$CreateOrder.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$productId = data['productId'];
+    result$data['productId'] = (l$productId as int);
+    if (data.containsKey('quantity')) {
+      final l$quantity = data['quantity'];
+      result$data['quantity'] = (l$quantity as int?);
+    }
+    return Variables$Mutation$CreateOrder._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get productId => (_$data['productId'] as int);
+
+  int? get quantity => (_$data['quantity'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$productId = productId;
+    result$data['productId'] = l$productId;
+    if (_$data.containsKey('quantity')) {
+      final l$quantity = quantity;
+      result$data['quantity'] = l$quantity;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CreateOrder<Variables$Mutation$CreateOrder>
+      get copyWith => CopyWith$Variables$Mutation$CreateOrder(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CreateOrder ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$productId = productId;
+    final lOther$productId = other.productId;
+    if (l$productId != lOther$productId) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (_$data.containsKey('quantity') !=
+        other._$data.containsKey('quantity')) {
+      return false;
+    }
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$productId = productId;
+    final l$quantity = quantity;
+    return Object.hashAll([
+      l$productId,
+      _$data.containsKey('quantity') ? l$quantity : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
+  factory CopyWith$Variables$Mutation$CreateOrder(
+    Variables$Mutation$CreateOrder instance,
+    TRes Function(Variables$Mutation$CreateOrder) then,
+  ) = _CopyWithImpl$Variables$Mutation$CreateOrder;
+
+  factory CopyWith$Variables$Mutation$CreateOrder.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CreateOrder;
+
+  TRes call({
+    int? productId,
+    int? quantity,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
+    implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
+  _CopyWithImpl$Variables$Mutation$CreateOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CreateOrder _instance;
+
+  final TRes Function(Variables$Mutation$CreateOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? productId = _undefined,
+    Object? quantity = _undefined,
+  }) =>
+      _then(Variables$Mutation$CreateOrder._({
+        ..._instance._$data,
+        if (productId != _undefined && productId != null)
+          'productId': (productId as int),
+        if (quantity != _undefined) 'quantity': (quantity as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes>
+    implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CreateOrder(this._res);
+
+  TRes _res;
+
+  call({
+    int? productId,
+    int? quantity,
+  }) =>
+      _res;
+}
+
+class Mutation$CreateOrder {
+  Mutation$CreateOrder({
+    this.createOrder,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$CreateOrder.fromJson(Map<String, dynamic> json) {
+    final l$createOrder = json['createOrder'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder(
+      createOrder: l$createOrder == null
+          ? null
+          : Mutation$CreateOrder$createOrder.fromJson(
+              (l$createOrder as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreateOrder$createOrder? createOrder;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createOrder = createOrder;
+    _resultData['createOrder'] = l$createOrder?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createOrder = createOrder;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createOrder,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createOrder = createOrder;
+    final lOther$createOrder = other.createOrder;
+    if (l$createOrder != lOther$createOrder) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder on Mutation$CreateOrder {
+  CopyWith$Mutation$CreateOrder<Mutation$CreateOrder> get copyWith =>
+      CopyWith$Mutation$CreateOrder(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$CreateOrder<TRes> {
+  factory CopyWith$Mutation$CreateOrder(
+    Mutation$CreateOrder instance,
+    TRes Function(Mutation$CreateOrder) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder;
+
+  factory CopyWith$Mutation$CreateOrder.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder;
+
+  TRes call({
+    Mutation$CreateOrder$createOrder? createOrder,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder;
+}
+
+class _CopyWithImpl$Mutation$CreateOrder<TRes>
+    implements CopyWith$Mutation$CreateOrder<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder _instance;
+
+  final TRes Function(Mutation$CreateOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createOrder = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder(
+        createOrder: createOrder == _undefined
+            ? _instance.createOrder
+            : (createOrder as Mutation$CreateOrder$createOrder?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder {
+    final local$createOrder = _instance.createOrder;
+    return local$createOrder == null
+        ? CopyWith$Mutation$CreateOrder$createOrder.stub(_then(_instance))
+        : CopyWith$Mutation$CreateOrder$createOrder(
+            local$createOrder, (e) => call(createOrder: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
+    implements CopyWith$Mutation$CreateOrder<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreateOrder$createOrder? createOrder,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder =>
+      CopyWith$Mutation$CreateOrder$createOrder.stub(_res);
+}
+
+const documentNodeMutationCreateOrder = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateOrder'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'productId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'quantity')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'createOrder'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'productId'),
+            value: VariableNode(name: NameNode(value: 'productId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'quantity'),
+            value: VariableNode(name: NameNode(value: 'quantity')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'order'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'product'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'priceTotal'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'shippingFee'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'status'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updatedAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$CreateOrder _parserFn$Mutation$CreateOrder(
+        Map<String, dynamic> data) =>
+    Mutation$CreateOrder.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreateOrder = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$CreateOrder?,
+);
+
+class Options$Mutation$CreateOrder
+    extends graphql.MutationOptions<Mutation$CreateOrder> {
+  Options$Mutation$CreateOrder({
+    String? operationName,
+    required Variables$Mutation$CreateOrder variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateOrder? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreateOrder? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreateOrder>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$CreateOrder(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationCreateOrder,
+          parserFn: _parserFn$Mutation$CreateOrder,
+        );
+
+  final OnMutationCompleted$Mutation$CreateOrder? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$CreateOrder
+    extends graphql.WatchQueryOptions<Mutation$CreateOrder> {
+  WatchOptions$Mutation$CreateOrder({
+    String? operationName,
+    required Variables$Mutation$CreateOrder variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateOrder? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationCreateOrder,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$CreateOrder,
+        );
+}
+
+extension ClientExtension$Mutation$CreateOrder on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreateOrder>> mutate$CreateOrder(
+          Options$Mutation$CreateOrder options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateOrder> watchMutation$CreateOrder(
+          WatchOptions$Mutation$CreateOrder options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$CreateOrder$createOrder {
+  Mutation$CreateOrder$createOrder({
+    this.order,
+    this.$__typename = 'CreateOrder',
+  });
+
+  factory Mutation$CreateOrder$createOrder.fromJson(Map<String, dynamic> json) {
+    final l$order = json['order'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$createOrder(
+      order: l$order == null
+          ? null
+          : Mutation$CreateOrder$createOrder$order.fromJson(
+              (l$order as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreateOrder$createOrder$order? order;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$order = order;
+    _resultData['order'] = l$order?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$order = order;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$order,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder$createOrder ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$order = order;
+    final lOther$order = other.order;
+    if (l$order != lOther$order) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$createOrder
+    on Mutation$CreateOrder$createOrder {
+  CopyWith$Mutation$CreateOrder$createOrder<Mutation$CreateOrder$createOrder>
+      get copyWith => CopyWith$Mutation$CreateOrder$createOrder(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$createOrder<TRes> {
+  factory CopyWith$Mutation$CreateOrder$createOrder(
+    Mutation$CreateOrder$createOrder instance,
+    TRes Function(Mutation$CreateOrder$createOrder) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$createOrder;
+
+  factory CopyWith$Mutation$CreateOrder$createOrder.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$createOrder;
+
+  TRes call({
+    Mutation$CreateOrder$createOrder$order? order,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order;
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$createOrder<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$createOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$createOrder _instance;
+
+  final TRes Function(Mutation$CreateOrder$createOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? order = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$createOrder(
+        order: order == _undefined
+            ? _instance.order
+            : (order as Mutation$CreateOrder$createOrder$order?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order {
+    final local$order = _instance.order;
+    return local$order == null
+        ? CopyWith$Mutation$CreateOrder$createOrder$order.stub(_then(_instance))
+        : CopyWith$Mutation$CreateOrder$createOrder$order(
+            local$order, (e) => call(order: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$createOrder(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreateOrder$createOrder$order? order,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order =>
+      CopyWith$Mutation$CreateOrder$createOrder$order.stub(_res);
+}
+
+class Mutation$CreateOrder$createOrder$order {
+  Mutation$CreateOrder$createOrder$order({
+    required this.id,
+    required this.product,
+    required this.quantity,
+    required this.priceTotal,
+    required this.shippingFee,
+    required this.status,
+    required this.createdAt,
+    required this.updatedAt,
+    this.$__typename = 'OrderType',
+  });
+
+  factory Mutation$CreateOrder$createOrder$order.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$product = json['product'];
+    final l$quantity = json['quantity'];
+    final l$priceTotal = json['priceTotal'];
+    final l$shippingFee = json['shippingFee'];
+    final l$status = json['status'];
+    final l$createdAt = json['createdAt'];
+    final l$updatedAt = json['updatedAt'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$createOrder$order(
+      id: (l$id as String),
+      product: Mutation$CreateOrder$createOrder$order$product.fromJson(
+          (l$product as Map<String, dynamic>)),
+      quantity: (l$quantity as int),
+      priceTotal: (l$priceTotal as String),
+      shippingFee: (l$shippingFee as String),
+      status: fromJson$Enum$ProductsOrderStatusChoices((l$status as String)),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final Mutation$CreateOrder$createOrder$order$product product;
+
+  final int quantity;
+
+  final String priceTotal;
+
+  final String shippingFee;
+
+  final Enum$ProductsOrderStatusChoices status;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$product = product;
+    _resultData['product'] = l$product.toJson();
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$priceTotal = priceTotal;
+    _resultData['priceTotal'] = l$priceTotal;
+    final l$shippingFee = shippingFee;
+    _resultData['shippingFee'] = l$shippingFee;
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsOrderStatusChoices(l$status);
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$product = product;
+    final l$quantity = quantity;
+    final l$priceTotal = priceTotal;
+    final l$shippingFee = shippingFee;
+    final l$status = status;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$product,
+      l$quantity,
+      l$priceTotal,
+      l$shippingFee,
+      l$status,
+      l$createdAt,
+      l$updatedAt,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder$createOrder$order ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$product = product;
+    final lOther$product = other.product;
+    if (l$product != lOther$product) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$priceTotal = priceTotal;
+    final lOther$priceTotal = other.priceTotal;
+    if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$shippingFee = shippingFee;
+    final lOther$shippingFee = other.shippingFee;
+    if (l$shippingFee != lOther$shippingFee) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$createOrder$order
+    on Mutation$CreateOrder$createOrder$order {
+  CopyWith$Mutation$CreateOrder$createOrder$order<
+          Mutation$CreateOrder$createOrder$order>
+      get copyWith => CopyWith$Mutation$CreateOrder$createOrder$order(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
+  factory CopyWith$Mutation$CreateOrder$createOrder$order(
+    Mutation$CreateOrder$createOrder$order instance,
+    TRes Function(Mutation$CreateOrder$createOrder$order) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$createOrder$order;
+
+  factory CopyWith$Mutation$CreateOrder$createOrder$order.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order;
+
+  TRes call({
+    String? id,
+    Mutation$CreateOrder$createOrder$order$product? product,
+    int? quantity,
+    String? priceTotal,
+    String? shippingFee,
+    Enum$ProductsOrderStatusChoices? status,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> get product;
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$createOrder$order(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$createOrder$order _instance;
+
+  final TRes Function(Mutation$CreateOrder$createOrder$order) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? product = _undefined,
+    Object? quantity = _undefined,
+    Object? priceTotal = _undefined,
+    Object? shippingFee = _undefined,
+    Object? status = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$createOrder$order(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        product: product == _undefined || product == null
+            ? _instance.product
+            : (product as Mutation$CreateOrder$createOrder$order$product),
+        quantity: quantity == _undefined || quantity == null
+            ? _instance.quantity
+            : (quantity as int),
+        priceTotal: priceTotal == _undefined || priceTotal == null
+            ? _instance.priceTotal
+            : (priceTotal as String),
+        shippingFee: shippingFee == _undefined || shippingFee == null
+            ? _instance.shippingFee
+            : (shippingFee as String),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsOrderStatusChoices),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> get product {
+    final local$product = _instance.product;
+    return CopyWith$Mutation$CreateOrder$createOrder$order$product(
+        local$product, (e) => call(product: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    Mutation$CreateOrder$createOrder$order$product? product,
+    int? quantity,
+    String? priceTotal,
+    String? shippingFee,
+    Enum$ProductsOrderStatusChoices? status,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> get product =>
+      CopyWith$Mutation$CreateOrder$createOrder$order$product.stub(_res);
+}
+
+class Mutation$CreateOrder$createOrder$order$product {
+  Mutation$CreateOrder$createOrder$order$product({
+    required this.id,
+    this.$__typename = 'ProductType',
+  });
+
+  factory Mutation$CreateOrder$createOrder$order$product.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$createOrder$order$product(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder$createOrder$order$product ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$createOrder$order$product
+    on Mutation$CreateOrder$createOrder$order$product {
+  CopyWith$Mutation$CreateOrder$createOrder$order$product<
+          Mutation$CreateOrder$createOrder$order$product>
+      get copyWith => CopyWith$Mutation$CreateOrder$createOrder$order$product(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> {
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$product(
+    Mutation$CreateOrder$createOrder$order$product instance,
+    TRes Function(Mutation$CreateOrder$createOrder$order$product) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$createOrder$order$product;
+
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$product.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$product;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$createOrder$order$product<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$createOrder$order$product(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$createOrder$order$product _instance;
+
+  final TRes Function(Mutation$CreateOrder$createOrder$order$product) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$createOrder$order$product(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$product<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order$product<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$product(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$CancelOrder {
+  factory Variables$Mutation$CancelOrder({required int orderId}) =>
+      Variables$Mutation$CancelOrder._({
+        r'orderId': orderId,
+      });
+
+  Variables$Mutation$CancelOrder._(this._$data);
+
+  factory Variables$Mutation$CancelOrder.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$orderId = data['orderId'];
+    result$data['orderId'] = (l$orderId as int);
+    return Variables$Mutation$CancelOrder._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get orderId => (_$data['orderId'] as int);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$orderId = orderId;
+    result$data['orderId'] = l$orderId;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CancelOrder<Variables$Mutation$CancelOrder>
+      get copyWith => CopyWith$Variables$Mutation$CancelOrder(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CancelOrder ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (l$orderId != lOther$orderId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$orderId = orderId;
+    return Object.hashAll([l$orderId]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CancelOrder<TRes> {
+  factory CopyWith$Variables$Mutation$CancelOrder(
+    Variables$Mutation$CancelOrder instance,
+    TRes Function(Variables$Mutation$CancelOrder) then,
+  ) = _CopyWithImpl$Variables$Mutation$CancelOrder;
+
+  factory CopyWith$Variables$Mutation$CancelOrder.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CancelOrder;
+
+  TRes call({int? orderId});
+}
+
+class _CopyWithImpl$Variables$Mutation$CancelOrder<TRes>
+    implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
+  _CopyWithImpl$Variables$Mutation$CancelOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CancelOrder _instance;
+
+  final TRes Function(Variables$Mutation$CancelOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? orderId = _undefined}) =>
+      _then(Variables$Mutation$CancelOrder._({
+        ..._instance._$data,
+        if (orderId != _undefined && orderId != null)
+          'orderId': (orderId as int),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CancelOrder<TRes>
+    implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CancelOrder(this._res);
+
+  TRes _res;
+
+  call({int? orderId}) => _res;
+}
+
+class Mutation$CancelOrder {
+  Mutation$CancelOrder({
+    this.cancelOrder,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$CancelOrder.fromJson(Map<String, dynamic> json) {
+    final l$cancelOrder = json['cancelOrder'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CancelOrder(
+      cancelOrder: l$cancelOrder == null
+          ? null
+          : Mutation$CancelOrder$cancelOrder.fromJson(
+              (l$cancelOrder as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CancelOrder$cancelOrder? cancelOrder;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$cancelOrder = cancelOrder;
+    _resultData['cancelOrder'] = l$cancelOrder?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$cancelOrder = cancelOrder;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$cancelOrder,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CancelOrder || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$cancelOrder = cancelOrder;
+    final lOther$cancelOrder = other.cancelOrder;
+    if (l$cancelOrder != lOther$cancelOrder) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CancelOrder on Mutation$CancelOrder {
+  CopyWith$Mutation$CancelOrder<Mutation$CancelOrder> get copyWith =>
+      CopyWith$Mutation$CancelOrder(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$CancelOrder<TRes> {
+  factory CopyWith$Mutation$CancelOrder(
+    Mutation$CancelOrder instance,
+    TRes Function(Mutation$CancelOrder) then,
+  ) = _CopyWithImpl$Mutation$CancelOrder;
+
+  factory CopyWith$Mutation$CancelOrder.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CancelOrder;
+
+  TRes call({
+    Mutation$CancelOrder$cancelOrder? cancelOrder,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder;
+}
+
+class _CopyWithImpl$Mutation$CancelOrder<TRes>
+    implements CopyWith$Mutation$CancelOrder<TRes> {
+  _CopyWithImpl$Mutation$CancelOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CancelOrder _instance;
+
+  final TRes Function(Mutation$CancelOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? cancelOrder = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CancelOrder(
+        cancelOrder: cancelOrder == _undefined
+            ? _instance.cancelOrder
+            : (cancelOrder as Mutation$CancelOrder$cancelOrder?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder {
+    final local$cancelOrder = _instance.cancelOrder;
+    return local$cancelOrder == null
+        ? CopyWith$Mutation$CancelOrder$cancelOrder.stub(_then(_instance))
+        : CopyWith$Mutation$CancelOrder$cancelOrder(
+            local$cancelOrder, (e) => call(cancelOrder: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CancelOrder<TRes>
+    implements CopyWith$Mutation$CancelOrder<TRes> {
+  _CopyWithStubImpl$Mutation$CancelOrder(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CancelOrder$cancelOrder? cancelOrder,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder =>
+      CopyWith$Mutation$CancelOrder$cancelOrder.stub(_res);
+}
+
+const documentNodeMutationCancelOrder = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CancelOrder'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'orderId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'cancelOrder'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'orderId'),
+            value: VariableNode(name: NameNode(value: 'orderId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$CancelOrder _parserFn$Mutation$CancelOrder(
+        Map<String, dynamic> data) =>
+    Mutation$CancelOrder.fromJson(data);
+typedef OnMutationCompleted$Mutation$CancelOrder = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$CancelOrder?,
+);
+
+class Options$Mutation$CancelOrder
+    extends graphql.MutationOptions<Mutation$CancelOrder> {
+  Options$Mutation$CancelOrder({
+    String? operationName,
+    required Variables$Mutation$CancelOrder variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CancelOrder? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CancelOrder? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CancelOrder>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$CancelOrder(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationCancelOrder,
+          parserFn: _parserFn$Mutation$CancelOrder,
+        );
+
+  final OnMutationCompleted$Mutation$CancelOrder? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$CancelOrder
+    extends graphql.WatchQueryOptions<Mutation$CancelOrder> {
+  WatchOptions$Mutation$CancelOrder({
+    String? operationName,
+    required Variables$Mutation$CancelOrder variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CancelOrder? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationCancelOrder,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$CancelOrder,
+        );
+}
+
+extension ClientExtension$Mutation$CancelOrder on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CancelOrder>> mutate$CancelOrder(
+          Options$Mutation$CancelOrder options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CancelOrder> watchMutation$CancelOrder(
+          WatchOptions$Mutation$CancelOrder options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$CancelOrder$cancelOrder {
+  Mutation$CancelOrder$cancelOrder({
+    this.success,
+    this.$__typename = 'CancelOrder',
+  });
+
+  factory Mutation$CancelOrder$cancelOrder.fromJson(Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CancelOrder$cancelOrder(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CancelOrder$cancelOrder ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CancelOrder$cancelOrder
+    on Mutation$CancelOrder$cancelOrder {
+  CopyWith$Mutation$CancelOrder$cancelOrder<Mutation$CancelOrder$cancelOrder>
+      get copyWith => CopyWith$Mutation$CancelOrder$cancelOrder(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
+  factory CopyWith$Mutation$CancelOrder$cancelOrder(
+    Mutation$CancelOrder$cancelOrder instance,
+    TRes Function(Mutation$CancelOrder$cancelOrder) then,
+  ) = _CopyWithImpl$Mutation$CancelOrder$cancelOrder;
+
+  factory CopyWith$Mutation$CancelOrder$cancelOrder.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CancelOrder$cancelOrder<TRes>
+    implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
+  _CopyWithImpl$Mutation$CancelOrder$cancelOrder(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CancelOrder$cancelOrder _instance;
+
+  final TRes Function(Mutation$CancelOrder$cancelOrder) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CancelOrder$cancelOrder(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder<TRes>
+    implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
+  _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$CreatePaymentIntent {
+  factory Variables$Mutation$CreatePaymentIntent({
+    required int orderId,
+    required Enum$PaymentMethodEnum paymentMethod,
+  }) =>
+      Variables$Mutation$CreatePaymentIntent._({
+        r'orderId': orderId,
+        r'paymentMethod': paymentMethod,
+      });
+
+  Variables$Mutation$CreatePaymentIntent._(this._$data);
+
+  factory Variables$Mutation$CreatePaymentIntent.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$orderId = data['orderId'];
+    result$data['orderId'] = (l$orderId as int);
+    final l$paymentMethod = data['paymentMethod'];
+    result$data['paymentMethod'] =
+        fromJson$Enum$PaymentMethodEnum((l$paymentMethod as String));
+    return Variables$Mutation$CreatePaymentIntent._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int get orderId => (_$data['orderId'] as int);
+
+  Enum$PaymentMethodEnum get paymentMethod =>
+      (_$data['paymentMethod'] as Enum$PaymentMethodEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$orderId = orderId;
+    result$data['orderId'] = l$orderId;
+    final l$paymentMethod = paymentMethod;
+    result$data['paymentMethod'] =
+        toJson$Enum$PaymentMethodEnum(l$paymentMethod);
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CreatePaymentIntent<
+          Variables$Mutation$CreatePaymentIntent>
+      get copyWith => CopyWith$Variables$Mutation$CreatePaymentIntent(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CreatePaymentIntent ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$orderId = orderId;
+    final lOther$orderId = other.orderId;
+    if (l$orderId != lOther$orderId) {
+      return false;
+    }
+    final l$paymentMethod = paymentMethod;
+    final lOther$paymentMethod = other.paymentMethod;
+    if (l$paymentMethod != lOther$paymentMethod) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$orderId = orderId;
+    final l$paymentMethod = paymentMethod;
+    return Object.hashAll([
+      l$orderId,
+      l$paymentMethod,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
+  factory CopyWith$Variables$Mutation$CreatePaymentIntent(
+    Variables$Mutation$CreatePaymentIntent instance,
+    TRes Function(Variables$Mutation$CreatePaymentIntent) then,
+  ) = _CopyWithImpl$Variables$Mutation$CreatePaymentIntent;
+
+  factory CopyWith$Variables$Mutation$CreatePaymentIntent.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent;
+
+  TRes call({
+    int? orderId,
+    Enum$PaymentMethodEnum? paymentMethod,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$CreatePaymentIntent<TRes>
+    implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
+  _CopyWithImpl$Variables$Mutation$CreatePaymentIntent(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CreatePaymentIntent _instance;
+
+  final TRes Function(Variables$Mutation$CreatePaymentIntent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? orderId = _undefined,
+    Object? paymentMethod = _undefined,
+  }) =>
+      _then(Variables$Mutation$CreatePaymentIntent._({
+        ..._instance._$data,
+        if (orderId != _undefined && orderId != null)
+          'orderId': (orderId as int),
+        if (paymentMethod != _undefined && paymentMethod != null)
+          'paymentMethod': (paymentMethod as Enum$PaymentMethodEnum),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent<TRes>
+    implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent(this._res);
+
+  TRes _res;
+
+  call({
+    int? orderId,
+    Enum$PaymentMethodEnum? paymentMethod,
+  }) =>
+      _res;
+}
+
+class Mutation$CreatePaymentIntent {
+  Mutation$CreatePaymentIntent({
+    this.createPaymentIntent,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$CreatePaymentIntent.fromJson(Map<String, dynamic> json) {
+    final l$createPaymentIntent = json['createPaymentIntent'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreatePaymentIntent(
+      createPaymentIntent: l$createPaymentIntent == null
+          ? null
+          : Mutation$CreatePaymentIntent$createPaymentIntent.fromJson(
+              (l$createPaymentIntent as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreatePaymentIntent$createPaymentIntent? createPaymentIntent;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createPaymentIntent = createPaymentIntent;
+    _resultData['createPaymentIntent'] = l$createPaymentIntent?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createPaymentIntent = createPaymentIntent;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createPaymentIntent,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreatePaymentIntent ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createPaymentIntent = createPaymentIntent;
+    final lOther$createPaymentIntent = other.createPaymentIntent;
+    if (l$createPaymentIntent != lOther$createPaymentIntent) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreatePaymentIntent
+    on Mutation$CreatePaymentIntent {
+  CopyWith$Mutation$CreatePaymentIntent<Mutation$CreatePaymentIntent>
+      get copyWith => CopyWith$Mutation$CreatePaymentIntent(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreatePaymentIntent<TRes> {
+  factory CopyWith$Mutation$CreatePaymentIntent(
+    Mutation$CreatePaymentIntent instance,
+    TRes Function(Mutation$CreatePaymentIntent) then,
+  ) = _CopyWithImpl$Mutation$CreatePaymentIntent;
+
+  factory CopyWith$Mutation$CreatePaymentIntent.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreatePaymentIntent;
+
+  TRes call({
+    Mutation$CreatePaymentIntent$createPaymentIntent? createPaymentIntent,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
+      get createPaymentIntent;
+}
+
+class _CopyWithImpl$Mutation$CreatePaymentIntent<TRes>
+    implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
+  _CopyWithImpl$Mutation$CreatePaymentIntent(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreatePaymentIntent _instance;
+
+  final TRes Function(Mutation$CreatePaymentIntent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createPaymentIntent = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreatePaymentIntent(
+        createPaymentIntent: createPaymentIntent == _undefined
+            ? _instance.createPaymentIntent
+            : (createPaymentIntent
+                as Mutation$CreatePaymentIntent$createPaymentIntent?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
+      get createPaymentIntent {
+    final local$createPaymentIntent = _instance.createPaymentIntent;
+    return local$createPaymentIntent == null
+        ? CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
+            local$createPaymentIntent, (e) => call(createPaymentIntent: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreatePaymentIntent<TRes>
+    implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
+  _CopyWithStubImpl$Mutation$CreatePaymentIntent(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreatePaymentIntent$createPaymentIntent? createPaymentIntent,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
+      get createPaymentIntent =>
+          CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(_res);
+}
+
+const documentNodeMutationCreatePaymentIntent = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreatePaymentIntent'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'orderId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'paymentMethod')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'PaymentMethodEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'createPaymentIntent'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'orderId'),
+            value: VariableNode(name: NameNode(value: 'orderId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'paymentMethod'),
+            value: VariableNode(name: NameNode(value: 'paymentMethod')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'clientSecret'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'paymentRef'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$CreatePaymentIntent _parserFn$Mutation$CreatePaymentIntent(
+        Map<String, dynamic> data) =>
+    Mutation$CreatePaymentIntent.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreatePaymentIntent = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$CreatePaymentIntent?,
+);
+
+class Options$Mutation$CreatePaymentIntent
+    extends graphql.MutationOptions<Mutation$CreatePaymentIntent> {
+  Options$Mutation$CreatePaymentIntent({
+    String? operationName,
+    required Variables$Mutation$CreatePaymentIntent variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreatePaymentIntent? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreatePaymentIntent? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreatePaymentIntent>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$CreatePaymentIntent(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationCreatePaymentIntent,
+          parserFn: _parserFn$Mutation$CreatePaymentIntent,
+        );
+
+  final OnMutationCompleted$Mutation$CreatePaymentIntent? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$CreatePaymentIntent
+    extends graphql.WatchQueryOptions<Mutation$CreatePaymentIntent> {
+  WatchOptions$Mutation$CreatePaymentIntent({
+    String? operationName,
+    required Variables$Mutation$CreatePaymentIntent variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreatePaymentIntent? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationCreatePaymentIntent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$CreatePaymentIntent,
+        );
+}
+
+extension ClientExtension$Mutation$CreatePaymentIntent
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreatePaymentIntent>>
+      mutate$CreatePaymentIntent(
+              Options$Mutation$CreatePaymentIntent options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreatePaymentIntent>
+      watchMutation$CreatePaymentIntent(
+              WatchOptions$Mutation$CreatePaymentIntent options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$CreatePaymentIntent$createPaymentIntent {
+  Mutation$CreatePaymentIntent$createPaymentIntent({
+    this.clientSecret,
+    this.paymentRef,
+    this.$__typename = 'CreatePaymentIntent',
+  });
+
+  factory Mutation$CreatePaymentIntent$createPaymentIntent.fromJson(
+      Map<String, dynamic> json) {
+    final l$clientSecret = json['clientSecret'];
+    final l$paymentRef = json['paymentRef'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreatePaymentIntent$createPaymentIntent(
+      clientSecret: (l$clientSecret as String?),
+      paymentRef: (l$paymentRef as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? clientSecret;
+
+  final String? paymentRef;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$clientSecret = clientSecret;
+    _resultData['clientSecret'] = l$clientSecret;
+    final l$paymentRef = paymentRef;
+    _resultData['paymentRef'] = l$paymentRef;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$clientSecret = clientSecret;
+    final l$paymentRef = paymentRef;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$clientSecret,
+      l$paymentRef,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreatePaymentIntent$createPaymentIntent ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$clientSecret = clientSecret;
+    final lOther$clientSecret = other.clientSecret;
+    if (l$clientSecret != lOther$clientSecret) {
+      return false;
+    }
+    final l$paymentRef = paymentRef;
+    final lOther$paymentRef = other.paymentRef;
+    if (l$paymentRef != lOther$paymentRef) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreatePaymentIntent$createPaymentIntent
+    on Mutation$CreatePaymentIntent$createPaymentIntent {
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<
+          Mutation$CreatePaymentIntent$createPaymentIntent>
+      get copyWith => CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
+  factory CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
+    Mutation$CreatePaymentIntent$createPaymentIntent instance,
+    TRes Function(Mutation$CreatePaymentIntent$createPaymentIntent) then,
+  ) = _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent;
+
+  factory CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent;
+
+  TRes call({
+    String? clientSecret,
+    String? paymentRef,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
+    implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
+  _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreatePaymentIntent$createPaymentIntent _instance;
+
+  final TRes Function(Mutation$CreatePaymentIntent$createPaymentIntent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? clientSecret = _undefined,
+    Object? paymentRef = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreatePaymentIntent$createPaymentIntent(
+        clientSecret: clientSecret == _undefined
+            ? _instance.clientSecret
+            : (clientSecret as String?),
+        paymentRef: paymentRef == _undefined
+            ? _instance.paymentRef
+            : (paymentRef as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
+    implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
+  _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent(this._res);
+
+  TRes _res;
+
+  call({
+    String? clientSecret,
+    String? paymentRef,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$ConfirmPayment {
+  factory Variables$Mutation$ConfirmPayment({required String paymentRef}) =>
+      Variables$Mutation$ConfirmPayment._({
+        r'paymentRef': paymentRef,
+      });
+
+  Variables$Mutation$ConfirmPayment._(this._$data);
+
+  factory Variables$Mutation$ConfirmPayment.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$paymentRef = data['paymentRef'];
+    result$data['paymentRef'] = (l$paymentRef as String);
+    return Variables$Mutation$ConfirmPayment._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get paymentRef => (_$data['paymentRef'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$paymentRef = paymentRef;
+    result$data['paymentRef'] = l$paymentRef;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$ConfirmPayment<Variables$Mutation$ConfirmPayment>
+      get copyWith => CopyWith$Variables$Mutation$ConfirmPayment(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$ConfirmPayment ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$paymentRef = paymentRef;
+    final lOther$paymentRef = other.paymentRef;
+    if (l$paymentRef != lOther$paymentRef) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$paymentRef = paymentRef;
+    return Object.hashAll([l$paymentRef]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
+  factory CopyWith$Variables$Mutation$ConfirmPayment(
+    Variables$Mutation$ConfirmPayment instance,
+    TRes Function(Variables$Mutation$ConfirmPayment) then,
+  ) = _CopyWithImpl$Variables$Mutation$ConfirmPayment;
+
+  factory CopyWith$Variables$Mutation$ConfirmPayment.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$ConfirmPayment;
+
+  TRes call({String? paymentRef});
+}
+
+class _CopyWithImpl$Variables$Mutation$ConfirmPayment<TRes>
+    implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
+  _CopyWithImpl$Variables$Mutation$ConfirmPayment(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$ConfirmPayment _instance;
+
+  final TRes Function(Variables$Mutation$ConfirmPayment) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? paymentRef = _undefined}) =>
+      _then(Variables$Mutation$ConfirmPayment._({
+        ..._instance._$data,
+        if (paymentRef != _undefined && paymentRef != null)
+          'paymentRef': (paymentRef as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$ConfirmPayment<TRes>
+    implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$ConfirmPayment(this._res);
+
+  TRes _res;
+
+  call({String? paymentRef}) => _res;
+}
+
+class Mutation$ConfirmPayment {
+  Mutation$ConfirmPayment({
+    this.confirmPayment,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$ConfirmPayment.fromJson(Map<String, dynamic> json) {
+    final l$confirmPayment = json['confirmPayment'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ConfirmPayment(
+      confirmPayment: l$confirmPayment == null
+          ? null
+          : Mutation$ConfirmPayment$confirmPayment.fromJson(
+              (l$confirmPayment as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$ConfirmPayment$confirmPayment? confirmPayment;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$confirmPayment = confirmPayment;
+    _resultData['confirmPayment'] = l$confirmPayment?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$confirmPayment = confirmPayment;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$confirmPayment,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ConfirmPayment || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$confirmPayment = confirmPayment;
+    final lOther$confirmPayment = other.confirmPayment;
+    if (l$confirmPayment != lOther$confirmPayment) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ConfirmPayment on Mutation$ConfirmPayment {
+  CopyWith$Mutation$ConfirmPayment<Mutation$ConfirmPayment> get copyWith =>
+      CopyWith$Mutation$ConfirmPayment(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$ConfirmPayment<TRes> {
+  factory CopyWith$Mutation$ConfirmPayment(
+    Mutation$ConfirmPayment instance,
+    TRes Function(Mutation$ConfirmPayment) then,
+  ) = _CopyWithImpl$Mutation$ConfirmPayment;
+
+  factory CopyWith$Mutation$ConfirmPayment.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ConfirmPayment;
+
+  TRes call({
+    Mutation$ConfirmPayment$confirmPayment? confirmPayment,
+    String? $__typename,
+  });
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment;
+}
+
+class _CopyWithImpl$Mutation$ConfirmPayment<TRes>
+    implements CopyWith$Mutation$ConfirmPayment<TRes> {
+  _CopyWithImpl$Mutation$ConfirmPayment(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ConfirmPayment _instance;
+
+  final TRes Function(Mutation$ConfirmPayment) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? confirmPayment = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ConfirmPayment(
+        confirmPayment: confirmPayment == _undefined
+            ? _instance.confirmPayment
+            : (confirmPayment as Mutation$ConfirmPayment$confirmPayment?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment {
+    final local$confirmPayment = _instance.confirmPayment;
+    return local$confirmPayment == null
+        ? CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(_then(_instance))
+        : CopyWith$Mutation$ConfirmPayment$confirmPayment(
+            local$confirmPayment, (e) => call(confirmPayment: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ConfirmPayment<TRes>
+    implements CopyWith$Mutation$ConfirmPayment<TRes> {
+  _CopyWithStubImpl$Mutation$ConfirmPayment(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$ConfirmPayment$confirmPayment? confirmPayment,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment =>
+      CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(_res);
+}
+
+const documentNodeMutationConfirmPayment = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'ConfirmPayment'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'paymentRef')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'confirmPayment'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'paymentRef'),
+            value: VariableNode(name: NameNode(value: 'paymentRef')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'paymentStatus'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$ConfirmPayment _parserFn$Mutation$ConfirmPayment(
+        Map<String, dynamic> data) =>
+    Mutation$ConfirmPayment.fromJson(data);
+typedef OnMutationCompleted$Mutation$ConfirmPayment = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$ConfirmPayment?,
+);
+
+class Options$Mutation$ConfirmPayment
+    extends graphql.MutationOptions<Mutation$ConfirmPayment> {
+  Options$Mutation$ConfirmPayment({
+    String? operationName,
+    required Variables$Mutation$ConfirmPayment variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ConfirmPayment? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$ConfirmPayment? onCompleted,
+    graphql.OnMutationUpdate<Mutation$ConfirmPayment>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$ConfirmPayment(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationConfirmPayment,
+          parserFn: _parserFn$Mutation$ConfirmPayment,
+        );
+
+  final OnMutationCompleted$Mutation$ConfirmPayment? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$ConfirmPayment
+    extends graphql.WatchQueryOptions<Mutation$ConfirmPayment> {
+  WatchOptions$Mutation$ConfirmPayment({
+    String? operationName,
+    required Variables$Mutation$ConfirmPayment variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$ConfirmPayment? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationConfirmPayment,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$ConfirmPayment,
+        );
+}
+
+extension ClientExtension$Mutation$ConfirmPayment on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ConfirmPayment>> mutate$ConfirmPayment(
+          Options$Mutation$ConfirmPayment options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ConfirmPayment> watchMutation$ConfirmPayment(
+          WatchOptions$Mutation$ConfirmPayment options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$ConfirmPayment$confirmPayment {
+  Mutation$ConfirmPayment$confirmPayment({
+    this.paymentStatus,
+    this.$__typename = 'ConfirmPayment',
+  });
+
+  factory Mutation$ConfirmPayment$confirmPayment.fromJson(
+      Map<String, dynamic> json) {
+    final l$paymentStatus = json['paymentStatus'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ConfirmPayment$confirmPayment(
+      paymentStatus: (l$paymentStatus as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? paymentStatus;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$paymentStatus = paymentStatus;
+    _resultData['paymentStatus'] = l$paymentStatus;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$paymentStatus = paymentStatus;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$paymentStatus,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ConfirmPayment$confirmPayment ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$paymentStatus = paymentStatus;
+    final lOther$paymentStatus = other.paymentStatus;
+    if (l$paymentStatus != lOther$paymentStatus) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ConfirmPayment$confirmPayment
+    on Mutation$ConfirmPayment$confirmPayment {
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<
+          Mutation$ConfirmPayment$confirmPayment>
+      get copyWith => CopyWith$Mutation$ConfirmPayment$confirmPayment(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
+  factory CopyWith$Mutation$ConfirmPayment$confirmPayment(
+    Mutation$ConfirmPayment$confirmPayment instance,
+    TRes Function(Mutation$ConfirmPayment$confirmPayment) then,
+  ) = _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment;
+
+  factory CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment;
+
+  TRes call({
+    String? paymentStatus,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
+    implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
+  _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ConfirmPayment$confirmPayment _instance;
+
+  final TRes Function(Mutation$ConfirmPayment$confirmPayment) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? paymentStatus = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ConfirmPayment$confirmPayment(
+        paymentStatus: paymentStatus == _undefined
+            ? _instance.paymentStatus
+            : (paymentStatus as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
+    implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
+  _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment(this._res);
+
+  TRes _res;
+
+  call({
+    String? paymentStatus,
+    String? $__typename,
+  }) =>
+      _res;
+}

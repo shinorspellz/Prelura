@@ -301,3 +301,42 @@ mutation UpdateNotificationPreference(
     }
   }
 }
+
+mutation CreateOrder($productId: Int!, $quantity: Int) {
+  createOrder(productId: $productId, quantity: $quantity) {
+    order {
+      id
+      product {
+        id
+      }
+      quantity
+      priceTotal
+      shippingFee
+      status
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation CancelOrder($orderId: Int!) {
+  cancelOrder(orderId: $orderId) {
+    success
+  }
+}
+
+mutation CreatePaymentIntent(
+  $orderId: Int!
+  $paymentMethod: PaymentMethodEnum!
+) {
+  createPaymentIntent(orderId: $orderId, paymentMethod: $paymentMethod) {
+    clientSecret
+    paymentRef
+  }
+}
+
+mutation ConfirmPayment($paymentRef: String!) {
+  confirmPayment(paymentRef: $paymentRef) {
+    paymentStatus
+  }
+}
