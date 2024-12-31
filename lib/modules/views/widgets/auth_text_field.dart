@@ -36,6 +36,8 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final int? maxLines;
   final TextInputAction? textInputAction;
   final bool isDescription;
+  final EdgeInsets? padding;
+  final double? height;
 
   /// formats the textfeild to a password version
   final bool isPassword;
@@ -67,10 +69,13 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.isPassword = false,
       this.maxLines = 1,
       this.textInputAction,
+      this.padding,
+      this.height,
       this.isDescription = false});
 
   @override
-  ConsumerState<PreluraAuthTextField> createState() => _VWidgetsLoginTextFieldState();
+  ConsumerState<PreluraAuthTextField> createState() =>
+      _VWidgetsLoginTextFieldState();
 }
 
 class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
@@ -104,7 +109,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
 
   @override
   Widget build(BuildContext context) {
-    bool showGradient = widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
+    bool showGradient =
+        widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false;
     return Column(children: [
       Container(
         padding: const EdgeInsets.all(2),
@@ -112,8 +118,11 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
           borderRadius: BorderRadius.circular(8),
         ),
         constraints: BoxConstraints(
-          minHeight: widget.minLines != null ? widget.minLines! * 20.0 : 50.0,
-          maxHeight: widget.minLines != null ? double.infinity : 50.0,
+          minHeight: widget.minLines != null
+              ? widget.minLines! * 20.0
+              : widget.height ?? 50.0,
+          maxHeight:
+              widget.minLines != null ? double.infinity : widget.height ?? 50.0,
         ),
         child: GestureDetector(
           onTap: widget.onTap,
@@ -136,7 +145,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               onSaved: widget.onSaved,
               enabled: widget.enabled,
               cursorHeight: 15,
-              textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
+              textCapitalization:
+                  widget.textCapitalization ?? TextCapitalization.none,
 
               focusNode: widget.focusNode ?? focusNodeZZZ,
               onChanged: (text) {
@@ -157,7 +167,12 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               keyboardType: widget.keyboardType,
               obscureText: obscureText,
               obscuringCharacter: '*',
-              inputFormatters: widget.isDescription ? [] : [widget.formatter ?? FilteringTextInputFormatter.singleLineFormatter],
+              inputFormatters: widget.isDescription
+                  ? []
+                  : [
+                      widget.formatter ??
+                          FilteringTextInputFormatter.singleLineFormatter
+                    ],
               // onFieldSubmitted: (value) {
               //   if (widget.textInputAction != TextInputAction.newline) {
               //     widget.focusNode?.unfocus();
@@ -186,28 +201,33 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               readOnly: widget.shouldReadOnly,
               decoration: UIConstants.instance
                   .inputDecoration(
-                    labelText: widget.label,
-                    labelStyle: widget.labelStyle,
-                    context,
-                    hasFocus: widget.focusNode?.hasFocus ?? focusNodeZZZ?.hasFocus ?? false,
-                    hintText: widget.hintText,
-                    suffixIcon: widget.suffixIcon,
-                    contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 16),
-                  )
+                      labelText: widget.label,
+                      labelStyle: widget.labelStyle,
+                      context,
+                      hasFocus: widget.focusNode?.hasFocus ??
+                          focusNodeZZZ?.hasFocus ??
+                          false,
+                      hintText: widget.hintText,
+                      suffixIcon: widget.suffixIcon,
+                      contentPadding: widget.padding)
                   .copyWith(
                     focusedBorder: showGradient
                         ? OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: PreluraColors.primaryColor, width: 1.25),
+                            borderSide: BorderSide(
+                                color: PreluraColors.primaryColor, width: 1.25),
                           )
                         : null,
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
                             padding: EdgeInsets.zero,
-                            onPressed: () => setState(() => obscureText = !obscureText),
+                            onPressed: () =>
+                                setState(() => obscureText = !obscureText),
                             icon: Icon(
-                              obscureText ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+                              obscureText
+                                  ? Icons.visibility_rounded
+                                  : Icons.visibility_off_rounded,
                             ),
                           ),
                   ),
@@ -231,7 +251,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     return TextEditingValue(
       text: capitalize(newValue.text),
       selection: newValue.selection,

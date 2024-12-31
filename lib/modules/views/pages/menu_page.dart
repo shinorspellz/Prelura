@@ -116,11 +116,13 @@ class MenuPage extends ConsumerWidget {
                 context.router.push(const MyFavouriteRoute());
               }),
           MenuCard(
-              title: "Discounts",
+              title: "Multi-buy discounts",
               subtitle: "off",
               rightArrow: false,
               icon: const Icon(Icons.info_outlined),
-              onTap: () {}),
+              onTap: () {
+                context.router.push(MultiBuyDiscountRoute());
+              }),
           MenuCard(
               title: "Invite Friend",
               icon: const Icon(Icons.person_add_sharp),
