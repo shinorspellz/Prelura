@@ -176,6 +176,7 @@ query UserProducts(
   $pageCount: Int
   $pageNumber: Int
   $filters: ProductFiltersInput
+  $sort : SortEnum
 ) {
   userProducts(
     search: $search
@@ -183,6 +184,7 @@ query UserProducts(
     pageCount: $pageCount
     pageNumber: $pageNumber
     filters: $filters
+    sort: $sort
   ) {
     id
     name

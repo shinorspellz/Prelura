@@ -12,86 +12,122 @@ import '../../../../model/product/product_model.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../view/user_wardrobe.dart';
 
-void showFilterModal(
-    BuildContext context, UserFilterTypes filterType, WidgetRef ref) {
-  final filterNotifier = ref.watch(filterUserProductProvider.notifier);
-  // final List<String> selectedOptions =
-  //     ref.watch(searchFilterProvider)[filterType] ?? [];
-  // final tempSelections = [...selectedOptions];
-  // print(tempSelections);
+class FilterModal extends ConsumerStatefulWidget {
+  final UserFilterTypes filterType;
+  final int? userId;
+  static final ScrollController filterScrollController = ScrollController();
+  const FilterModal({Key? key, required this.filterType, required this.userId})
+      : super(key: key);
 
-  final filterOptions = {
-    UserFilterTypes.size: Enum$SizeEnum.values
-        .where((e) => e != Enum$SizeEnum.$unknown)
-        .map((e) => e.name)
-        .toList(),
-    UserFilterTypes.style: Enum$StyleEnum.values
-        .where((e) => e != Enum$StyleEnum.$unknown)
-        .map((e) => e.name)
-        .toList(),
-    UserFilterTypes.brand:
-        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
-            [],
-    UserFilterTypes.condition:
-        ConditionsEnum.values.map((e) => e.simpleName).toList(),
-    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
-  };
-  String? selectedOptions = ref.read(filterUserProductProvider)[filterType];
+  @override
+  ConsumerState<FilterModal> createState() => _FilterModalState();
+}
 
+class _FilterModalState extends ConsumerState<FilterModal> {
+  String? selectedOption;
+  final controller = FilterModal.filterScrollController;
+
+  @override
+  void initState() {
+    selectedOption = ref.read(filterUserProductProvider)[widget.filterType];
+    log(selectedOption.toString());
+    controller.addListener(() {
+      // setState(() => autoScroll = false);
+      final maxScroll = controller.position.maxScrollExtent;
+      final currentScroll = controller.position.pixels;
+      final delta = MediaQuery.sizeOf(context).height * 0.2;
+      if (maxScroll - currentScroll <= delta) {
+        log("here");
+        ref.read(brandsProvider.notifier).fetchMoreData();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final filterNotifier = ref.watch(filterUserProductProvider.notifier);
+    final filterOptions = {
+      UserFilterTypes.size: Enum$SizeEnum.values
+          .where((e) => e != Enum$SizeEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      UserFilterTypes.style: Enum$StyleEnum.values
+          .where((e) => e != Enum$StyleEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      UserFilterTypes.brand: ref
+              .watch(userProductGroupingByBrandProvider(
+                  (widget.userId ?? 0, Enum$ProductGroupingEnum.BRAND)))
+              .valueOrNull
+              ?.map((e) => e.name)
+              .toList() ??
+          [],
+      UserFilterTypes.condition:
+          ConditionsEnum.values.map((e) => e.simpleName).toList(),
+    };
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 500),
+      child: ListView(
+        controller: controller,
+        shrinkWrap: true,
+        children: filterOptions[widget.filterType]!
+            .map((e) => Column(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        filterNotifier.updateFilter(
+                            widget.filterType, e, widget.userId!);
+                        setState(() {
+                          selectedOption = e;
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            e.replaceAll("_", " "),
+                            style: context.textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                          Radio(
+                            value: e,
+                            groupValue: selectedOption,
+                            onChanged: (value) {
+                              filterNotifier.updateFilter(
+                                  widget.filterType, value!, widget.userId!);
+                              setState(() {
+                                selectedOption = value;
+                              });
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                  ],
+                ))
+            .toList(),
+      ),
+    );
+  }
+}
+
+void showFilterModal(BuildContext context, UserFilterTypes filterType,
+    WidgetRef ref, int? userId) {
   VBottomSheetComponent.customBottomSheet(
     context: context,
-    child: StatefulBuilder(builder: (context, setState) {
-      return Consumer(
-          builder: (context, ref, _) => ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 500,
-                  // minHeight: 250,
-                ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: filterOptions[filterType]!
-                      .map((e) => Column(
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  filterNotifier.updateFilter(filterType, e);
-                                  setState(() {
-                                    selectedOptions = e;
-                                  });
-
-                                  Navigator.pop(context);
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(e.replaceAll("_", " "),
-                                        style: context.textTheme.bodyLarge
-                                            ?.copyWith(
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    Spacer(),
-                                    Radio(
-                                        value: e,
-                                        groupValue:
-                                            selectedOptions, //selectedOptions,
-                                        onChanged: (value) {
-                                          filterNotifier.updateFilter(
-                                              filterType, value!);
-                                          setState(() {
-                                            selectedOptions = value;
-                                          });
-
-                                          Navigator.pop(context);
-                                        }),
-                                  ],
-                                ),
-                              ),
-                              Divider()
-                            ],
-                          ))
-                      .toList(),
-                ),
-              ));
-    }),
+    child: FilterModal(filterType: filterType, userId: userId),
   );
 }
 
@@ -106,10 +142,10 @@ class FilterUserProductNotifier
   FilterUserProductNotifier(this.ref) : super({});
 
   // Update filter to only allow one entry in the state
-  void updateFilter(UserFilterTypes filterType, String value) {
+  void updateFilter(UserFilterTypes filterType, String value, int userId) {
     state = {filterType: value}; // Replace state with a single entry
     log(state.toString());
-    _updateProductFiltersInput(filterType, value);
+    _updateProductFiltersInput(filterType, value, userId);
     ref.invalidate(searchProductProvider);
   }
 
@@ -120,13 +156,15 @@ class FilterUserProductNotifier
     ref.invalidate(searchProductProvider);
   }
 
-  void _updateProductFiltersInput(UserFilterTypes filterType, String value) {
+  void _updateProductFiltersInput(
+      UserFilterTypes filterType, String value, int userId) {
     // Ensure currentFilters is never null
     final currentFilters =
         ref.read(userProductFilter) ?? Input$ProductFiltersInput();
     if (filterType == UserFilterTypes.brand) {
       final brandId = ref
-          .watch(brandsProvider)
+          .watch(userProductGroupingByBrandProvider(
+              (userId ?? 0, Enum$ProductGroupingEnum.BRAND)))
           .valueOrNull
           ?.where((e) => e.name == value)
           .firstOrNull;

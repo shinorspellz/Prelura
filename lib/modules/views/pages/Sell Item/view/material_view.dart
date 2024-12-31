@@ -85,161 +85,140 @@ class _MaterialSelectionScreenState
         appbarTitle: "Material (recommended)",
       ),
       body: ref.watch(materialsProvider).when(
-            data: (materials) => Stack(
-              children: [
-                CustomScrollView(
-                  controller: controller,
-                  slivers: [
-                    SliverPersistentHeader(
-                        pinned: true, // Keeps it static
-                        delegate: StaticSliverDelegate(
-                          child: Container(
-                              margin: EdgeInsets.zero,
-                              padding: const EdgeInsets.only(
-                                  top: 16, left: 15, right: 15),
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Searchwidget(
-                                      padding: EdgeInsets.zero,
-                                      hintText: "Find a brand",
-                                      obscureText: false,
-                                      shouldReadOnly: false,
-                                      enabled: true,
-                                      showInputBorder: true,
-                                      autofocus: false,
-                                      cancelButton: true,
-                                      onChanged: (val) {
-                                        searchQuery = val;
-                                        setState(() {});
-                                      },
-                                    ),
-                                    addVerticalSpacing(15),
-                                  ])),
-                        )),
-                    if (searchQuery.isNotEmpty) ...[
-                      ref.watch(searchMaterial(searchQuery)).when(
-                            data: (searchMaterials) => SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  final isSelected = selectedMaterials
-                                      .contains(searchMaterials[index]);
-                                  return PreluraCheckBox(
-                                    isChecked: isSelected,
-                                    onChanged: (isChecked) {
-                                      setState(() {
-                                        if (selectedMaterials.length < 3) {
-                                          if (isChecked == true) {
-                                            selectedMaterials
-                                                .add(searchMaterials[index]);
-                                          } else {
-                                            selectedMaterials
-                                                .remove(searchMaterials[index]);
-                                          }
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                "You can only select up to 2 colours.",
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor: Colors.red,
-                                            ),
-                                          );
-                                        }
-                                      });
-                                    },
-                                    title: searchMaterials[index].name,
-                                  );
-                                },
-                                childCount: searchMaterials.length,
-                              ),
-                            ),
-                            error: (e, _) => SliverToBoxAdapter(
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(e.toString()),
-                                    TextButton.icon(
-                                      onPressed: () {},
-                                      label: const Text('Retry'),
-                                      icon: const Icon(Icons.refresh_rounded),
-                                    ),
-                                  ],
+            data: (materials) => CustomScrollView(
+              controller: controller,
+              slivers: [
+                SliverPersistentHeader(
+                    pinned: true, // Keeps it static
+                    delegate: StaticSliverDelegate(
+                      child: Container(
+                          margin: EdgeInsets.zero,
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 15, right: 15),
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Searchwidget(
+                                  padding: EdgeInsets.zero,
+                                  hintText: "Find a brand",
+                                  obscureText: false,
+                                  shouldReadOnly: false,
+                                  enabled: true,
+                                  showInputBorder: true,
+                                  autofocus: false,
+                                  cancelButton: true,
+                                  onChanged: (val) {
+                                    searchQuery = val;
+                                    setState(() {});
+                                  },
                                 ),
-                              ),
-                            ),
-                            loading: () => const SliverToBoxAdapter(
-                              child: LoadingWidget(),
+                                addVerticalSpacing(15),
+                              ])),
+                    )),
+                if (searchQuery.isNotEmpty) ...[
+                  ref.watch(searchMaterial(searchQuery)).when(
+                        data: (searchMaterials) => SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              final isSelected = selectedMaterials
+                                  .contains(searchMaterials[index]);
+                              return PreluraCheckBox(
+                                isChecked: isSelected,
+                                onChanged: (isChecked) {
+                                  setState(() {
+                                    if (selectedMaterials.length < 3) {
+                                      if (isChecked == true) {
+                                        selectedMaterials
+                                            .add(searchMaterials[index]);
+                                      } else {
+                                        selectedMaterials
+                                            .remove(searchMaterials[index]);
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            "You can only select up to 2 colours.",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.red,
+                                        ),
+                                      );
+                                    }
+                                  });
+                                },
+                                title: searchMaterials[index].name,
+                              );
+                            },
+                            childCount: searchMaterials.length,
+                          ),
+                        ),
+                        error: (e, _) => SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {},
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
                             ),
                           ),
-                    ] else
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            final isSelected =
-                                selectedMaterials.contains(materials[index]);
-                            return PreluraCheckBox(
-                              isChecked: isSelected,
-                              onChanged: (isChecked) {
-                                setState(() {
-                                  if (selectedMaterials.length >= 3 &&
-                                      isChecked) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          "You can only select up to 2 colours.",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        backgroundColor: Colors.red,
-                                      ),
-                                    );
-                                  }
-                                  if (isChecked == true &&
-                                      selectedMaterials.length < 3) {
-                                    selectedMaterials.add(materials[index]);
-                                  }
-                                  if (!isChecked) {
-                                    selectedMaterials.remove(materials[index]);
-                                  }
-                                });
-                              },
-                              title: materials[index].name,
-                            );
-                          },
-                          childCount: materials.length,
+                        ),
+                        loading: () => const SliverToBoxAdapter(
+                          child: LoadingWidget(),
                         ),
                       ),
-                    if (ref.watch(materialsProvider.notifier).canLoadMore())
-                      if (searchQuery.isEmpty)
-                        const SliverToBoxAdapter(
-                          child: PaginationLoadingIndicator(),
-                        ),
-                  ],
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  left: 0,
-                  child: Container(
-                    width: 100.w,
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 32.0),
-                    child: AppButton(
-                      onTap: () {
-                        notifier.updateSelectedMaterials(selectedMaterials);
-                        context.router.popForced();
+                ] else
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        final isSelected =
+                            selectedMaterials.contains(materials[index]);
+                        return PreluraCheckBox(
+                          isChecked: isSelected,
+                          onChanged: (isChecked) {
+                            setState(() {
+                              if (selectedMaterials.length >= 3 && isChecked) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      "You can only select up to 2 colours.",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                );
+                              }
+                              if (isChecked == true &&
+                                  selectedMaterials.length < 3) {
+                                selectedMaterials.add(materials[index]);
+                              }
+                              if (!isChecked) {
+                                selectedMaterials.remove(materials[index]);
+                              }
+                            });
+                          },
+                          title: materials[index].name,
+                        );
                       },
-                      text: "Done",
+                      childCount: materials.length,
                     ),
                   ),
-                )
+                if (ref.watch(materialsProvider.notifier).canLoadMore())
+                  if (searchQuery.isEmpty)
+                    const SliverToBoxAdapter(
+                      child: PaginationLoadingIndicator(),
+                    ),
+                SliverPadding(padding: EdgeInsets.all(40))
               ],
             ),
             error: (e, _) => Center(
@@ -258,6 +237,18 @@ class _MaterialSelectionScreenState
             ),
             loading: () => GridMenuCardShimmer(),
           ),
+      bottomSheet: Container(
+        width: 100.w,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 32.0),
+        child: AppButton(
+          onTap: () {
+            notifier.updateSelectedMaterials(selectedMaterials);
+            context.router.popForced();
+          },
+          text: "Done",
+        ),
+      ),
     );
   }
 }

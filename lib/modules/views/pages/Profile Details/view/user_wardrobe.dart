@@ -14,11 +14,13 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/model/product/user_product_grouping/user_product_grouping.dart';
 import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
+import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
@@ -72,6 +74,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool isActive = false;
   final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
+  @override
+  void initState() {
+    super.initState();
+    final user = ref
+        .read((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .value;
+
+    ref.read(userProductGroupingByBrandProvider(
+        (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
+  }
+
   Future<void> _onRefresh() async {
     try {
       if (widget.username != null) {
@@ -112,14 +127,20 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
     bool isCurrentUser = widget.username == null;
     final List<CategoryGroupType> categories;
-    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
-    categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
-
-    final color = PreluraColors.jobDetailGrey.withOpacity(0.7);
-    final fontWeight = FontWeight.w400;
+    final value =
+        ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
+    categories = value == null
+        ? []
+        : value
+            .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
+            .toList();
 
     return SmartRefresher(
       controller: _refreshController,
@@ -132,7 +153,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -149,7 +171,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     clipBehavior: Clip.none,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 12),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -157,7 +180,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             Expanded(
                               child: Text(
                                 user?.bio ?? '',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w500),
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -184,32 +210,73 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                         VBottomSheetItem(
                                             onTap: (context) {
                                               Navigator.pop(context);
-                                              VBottomSheetComponent.actionBottomSheet(
+                                              VBottomSheetComponent
+                                                  .actionBottomSheet(
                                                 context: context,
                                                 actions: [
                                                   VBottomSheetItem(
                                                       onTap: (context) async {
                                                         Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .gallery);
 
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
                                                             );
                                                       },
                                                       title: 'Gallery'),
                                                   VBottomSheetItem(
                                                       onTap: (context) async {
                                                         Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .camera);
 
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
                                                             );
                                                       },
                                                       title: 'Camera'),
@@ -223,36 +290,79 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                               showDialog(
                                                 context: context,
                                                 builder: (context) {
-                                                  final controller = TextEditingController(text: user?.bio);
+                                                  final controller =
+                                                      TextEditingController(
+                                                          text: user?.bio);
                                                   return AlertDialog(
-                                                    title: const Text('Update Bio'),
+                                                    title: const Text(
+                                                        'Update Bio'),
                                                     content: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         PreluraAuthTextField(
                                                           label: 'Bio',
-                                                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          controller: controller,
+                                                          labelStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          hintStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          controller:
+                                                              controller,
                                                           maxLines: null,
                                                         ),
                                                         10.verticalSpacing,
-                                                        Consumer(builder: (context, ref, _) {
+                                                        Consumer(builder:
+                                                            (context, ref, _) {
                                                           return PreluraButtonWithLoader(
-                                                            showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
-                                                            onPressed: () async {
-                                                              await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
-                                                              ref.read(userNotfierProvider).whenOrNull(
-                                                                    error: (e, _) => context.alert('An error occured while updating'),
+                                                            showLoadingIndicator: ref
+                                                                .watch(
+                                                                    userNotfierProvider)
+                                                                .isLoading,
+                                                            onPressed:
+                                                                () async {
+                                                              await ref
+                                                                  .read(userNotfierProvider
+                                                                      .notifier)
+                                                                  .updateProfile(
+                                                                      bio: controller
+                                                                          .text);
+                                                              ref
+                                                                  .read(
+                                                                      userNotfierProvider)
+                                                                  .whenOrNull(
+                                                                    error: (e,
+                                                                            _) =>
+                                                                        context.alert(
+                                                                            'An error occured while updating'),
                                                                     data: (_) {
-                                                                      Navigator.pop(context);
-                                                                      HelperFunction.context = context;
-                                                                      HelperFunction.showToast(message: 'Bio updated!');
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      HelperFunction
+                                                                              .context =
+                                                                          context;
+                                                                      HelperFunction.showToast(
+                                                                          message:
+                                                                              'Bio updated!');
                                                                     },
                                                                   );
                                                             },
-                                                            buttonTitle: 'Update',
+                                                            buttonTitle:
+                                                                'Update',
                                                             // width: MediaQuery.sizeOf(context).width,
                                                           );
                                                         })
@@ -290,7 +400,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 ),
                 if (!isSelected)
                   MenuCard(
-                      icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
+                      icon: isSelected
+                          ? Icon(Icons.arrow_back_ios_rounded,
+                              size: 18, color: PreluraColors.primaryColor)
+                          : null,
                       title: selectedItem.isNotEmpty
                           ? "Viewing"
                           : widget.username != null
@@ -304,8 +417,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       trailingIcon: isSelected
                           ? null
                           : selectedItem.isNotEmpty
-                              ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
-                              : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
+                              ? Icon(Icons.cancel_rounded,
+                                  color: PreluraColors.grey)
+                              : Icon(Icons.arrow_forward_ios_rounded,
+                                  color: PreluraColors.grey, size: 18),
                       onTap: () {
                         isSelected = !isSelected;
                         selectedItem = "";
@@ -316,7 +431,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 else
                   ExpansionTile(
                     title: Text(
-                      widget.username != null ? 'Categories from this seller' : "Categories",
+                      widget.username != null
+                          ? 'Categories from this seller'
+                          : "Categories",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600,
                             color: PreluraColors.grey,
@@ -325,7 +442,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
                     childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                     minTileHeight: 30,
-                    onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                    onExpansionChanged: (expanded) =>
+                        setState(() => expandedCategories = expanded),
                     controller: controller,
                     expansionAnimationStyle: AnimationStyle(
                       duration: Duration(milliseconds: 300),
@@ -341,13 +459,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 title: e.name,
                                 sideTextColor: PreluraColors.grey,
                                 // borderbottom: true,
-                                sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                                sideText:
+                                    "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                trailingIcon: RenderSvg(
+                                    svgPath: PreluraIcons.arrowDown_svg,
+                                    svgHeight: 16,
+                                    svgWidth: 16,
+                                    color: PreluraColors.grey),
                                 onTap: () {
                                   selectedItem = e.name;
                                   isSelected = false;
                                   setState(() {});
-                                  ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: e.id);
+                                  ref.read(userProductFilter.notifier).state =
+                                      Input$ProductFiltersInput(category: e.id);
                                   controller.collapse();
                                 },
                               ),
@@ -384,48 +508,61 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 //   )
                 // ],
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(
-                      widget.username != null ? "Brands from this seller" : "Top Brands",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
-                    ),
-                    // RenderSvgWithColor2(
-                    //     svgPath: PreluraIcons.search_glass_svg),
-                    // ],
-                    if (!isActive)
-                      GestureDetector(
-                          onTap: () {
-                            isActive = true;
-                            setState(() {});
-                          },
-                          child: Icon(Icons.search, color: PreluraColors.primaryColor)),
-                    if (isActive)
-                      AnimatedContainer(
-                        width: 54.5.w,
-                        color: Colors.transparent,
-                        alignment: Alignment.centerRight,
-                        duration: const Duration(milliseconds: 150),
-                        child: Searchwidget(
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: true,
-                          cancelButton: true,
-                          minWidth: 50.w,
-                          hidePrefix: true,
-                          onChanged: (value) {
-                            ref.read(userProductSearchQuery.notifier).state = value;
-                          },
-                          onCancel: () {
-                            isActive = false;
-                            setState(() {});
-                            ref.invalidate(userProductSearchQuery);
-                          },
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.username != null
+                              ? "Brands from this seller"
+                              : "Top Brands",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: PreluraColors.grey),
                         ),
-                      )
-                  ]),
+                        // RenderSvgWithColor2(
+                        //     svgPath: PreluraIcons.search_glass_svg),
+                        // ],
+                        if (!isActive)
+                          GestureDetector(
+                              onTap: () {
+                                isActive = true;
+                                setState(() {});
+                              },
+                              child: Icon(Icons.search,
+                                  color: PreluraColors.primaryColor)),
+                        if (isActive)
+                          AnimatedContainer(
+                            width: 54.5.w,
+                            color: Colors.transparent,
+                            alignment: Alignment.centerRight,
+                            duration: const Duration(milliseconds: 150),
+                            child: Searchwidget(
+                              obscureText: false,
+                              shouldReadOnly: false,
+                              enabled: true,
+                              showInputBorder: true,
+                              autofocus: true,
+                              cancelButton: true,
+                              minWidth: 50.w,
+                              hidePrefix: true,
+                              onChanged: (value) {
+                                ref
+                                    .read(userProductSearchQuery.notifier)
+                                    .state = value;
+                              },
+                              onCancel: () {
+                                isActive = false;
+                                setState(() {});
+                                ref.invalidate(userProductSearchQuery);
+                              },
+                            ),
+                          )
+                      ]),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -434,183 +571,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   ),
                 ),
 
-                // const Divider(),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: AppButton(
-                //           loading: ref.watch(conversationProvider).isLoading,
-                //           onTap: () async {
-                //             HapticFeedback.lightImpact();
-                //             if (isCurrentUser) {
-                //               context.pushRoute(SellItemRoute());
-                //             } else {
-                //               await ref
-                //                   .read(conversationProvider.notifier)
-                //                   .createChat(user!.username);
-                //               ref.read(conversationProvider).whenOrNull(
-                //                   error: (e, _) => context.alert(
-                //                       'Failed to message ${user.username}'),
-                //                   data: (conv) {
-                //                     log('$conv');
-                //                     final currentConv = conv.firstWhere((e) =>
-                //                         e.recipient.username ==
-                //                         user.username);
-                //                     context.pushRoute(
-                //                       ChatRoute(
-                //                         id: currentConv.id,
-                //                         username:
-                //                             currentConv.recipient.username,
-                //                         avatarUrl: currentConv
-                //                             .recipient.profilePictureUrl,
-                //                       ),
-                //                     );
-                //                   });
-                //               // context.pushRoute(ChatScreen(username, message, time, avatarUrl))
-                //             }
-                //           },
-                //           text: isCurrentUser ? "Upload" : "Message",
-                //           textColor: PreluraColors.activeColor,
-                //           bgColor: Theme.of(context).scaffoldBackgroundColor,
-                //         ),
-                //       ),
-                //       const SizedBox(width: 8),
-                //       Expanded(
-                //         child: AppButton(
-                //           onTap: () async {
-                //             HapticFeedback.lightImpact();
-                //             if (isCurrentUser) {
-                //               Share.shareUri(Uri.parse(
-                //                   'https://prelura.com/${user?.username}'));
-                //               return;
-                //             }
+                FilterAndSort(
+                  userId: user?.id,
+                ),
 
-                //             if (!isCurrentUser &&
-                //                 user?.isFollowing! == false) {
-                //               final result = await ref.refresh(
-                //                   followUserProvider(user!.id).future);
+                const SizedBox(
+                  height: 20,
+                ),
 
-                //               if (result) {
-                //                 context.alert("Following ${user.username}");
-                //                 ref.invalidate(
-                //                     otherUserProfile(widget.username!));
-                //                 ref.invalidate(userProvider);
-                //               }
-                //               log("following");
-                //               return;
-                //             }
-                //             if (!isCurrentUser && user?.isFollowing == true) {
-                //               final notifier =
-                //                   ref.read(unFollowUserProvider.notifier);
-                //               final result =
-                //                   await notifier.unFollowUser(user!.id);
-                //               if (result) {
-                //                 context.alert("Unfollwed ${user.username}");
-                //               }
-                //               ref.invalidate(
-                //                   otherUserProfile(widget.username!));
-                //               ref.invalidate(userProvider);
-                //               log("unfollowing");
-
-                //               return;
-                //             }
-                //           },
-                //           text: isCurrentUser
-                //               ? "Share"
-                //               : (user != null && user.isFollowing!)
-                //                   ? "Following"
-                //                   : "Follow",
-                //           textColor: PreluraColors.white,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      GestureDetector(
-                        onTap: () {
-                          VBottomSheetComponent.actionBottomSheet(
-                            customHeader: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Filter",
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                              ),
-                            ),
-                            context: context,
-                            actions: [
-                              ...UserFilterTypes.values.map((e) {
-                                return VBottomSheetItem(
-                                  onTap: (context) {
-                                    Navigator.pop(context);
-                                    showFilterModal(context, e, ref);
-                                  },
-                                  title: e.simpleName,
-                                  textColor: color,
-                                  textWeight: fontWeight,
-                                );
-                              }),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Colour", textColor: color, textWeight: fontWeight),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Price", textColor: color, textWeight: fontWeight),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Material", textColor: color, textWeight: fontWeight),
-
-                              // VBottomSheetItem(onTap: (Context){}, title: "Category"),
-                            ],
-                          );
-                        },
-                        child: Row(children: [
-                          Text(
-                            "Filter",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.grey),
-                          ),
-                          2.horizontalSpacing,
-                          // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                          RenderSvgWithColor2(
-                            svgPath: PreluraIcons.filter_icon_svg,
-                            color: PreluraColors.activeColor,
-                          )
-                        ]),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          VBottomSheetComponent.actionBottomSheet(
-                            context: context,
-                            customHeader: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Sort",
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                              ),
-                            ),
-                            actions: [
-                              VBottomSheetItem(onTap: (Context) {}, title: "Relevance", textColor: color, textWeight: fontWeight),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Newest First", textColor: color, textWeight: fontWeight),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Price Ascending", textColor: color, textWeight: fontWeight),
-                              VBottomSheetItem(onTap: (Context) {}, title: "Price Desending", textColor: color, textWeight: fontWeight),
-
-                              // VBottomSheetItem(onTap: (Context){}, title: "Category"),
-                            ],
-                          );
-                        },
-                        child: Row(children: [
-                          Text(
-                            "Sort",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.grey),
-                          ),
-                          2.horizontalSpacing,
-                          RenderSvg(svgPath: PreluraIcons.sort_icon_svg, color: PreluraColors.activeColor, svgHeight: 16, svgWidth: 16)
-                        ]),
-                      )
-                    ])),
                 const SizedBox(
                   height: 20,
                 ),
