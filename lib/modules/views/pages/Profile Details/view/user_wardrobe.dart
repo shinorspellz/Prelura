@@ -296,7 +296,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 UserScrollableList(
                   user: user,
                 ),
-                if (!isSelected)
+                if (selectedItem.isNotEmpty)
                   MenuCard(
                       icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
                       title: selectedItem.isNotEmpty
@@ -332,13 +332,12 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     ),
                     tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
                     childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                    minTileHeight: 35,
+                    minTileHeight: 40,
                     onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
                     controller: controller,
-                    showTrailingIcon: false,
-                    // expansionAnimationStyle: AnimationStyle(
-                    //   duration: Duration(milliseconds: 300),
-                    // ),
+                    expansionAnimationStyle: AnimationStyle(
+                      duration: Duration(milliseconds: 300),
+                    ),
                     children: categories
                         .map(
                           (e) => Column(
@@ -365,9 +364,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         )
                         .toList(),
                   ),
-                if (!expandedCategories && isSelected)
+                if (!expandedCategories)
                   Divider(
-                    thickness: 2,
+                    thickness: 1,
                   ),
 
                 // if (isSelected) ...[
