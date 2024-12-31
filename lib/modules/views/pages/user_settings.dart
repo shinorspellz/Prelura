@@ -17,7 +17,11 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List menuItem1 = [
-      MenuCard(title: "Vacation Mode", onTap: () {}),
+      MenuCard(
+          title: "Vacation Mode",
+          onTap: () {
+            context.router.push(HolidayModeRoute());
+          }),
       MenuCard(
           title: "Profile details",
           onTap: () {
