@@ -136,6 +136,7 @@ class ShopValueScreen extends ConsumerWidget {
                 ),
               ),
               SizedBox(width: 8),
+              //@Mr Hassan, help me do the vertical dicider as it is not displaying. Thanks 
               Column(
                 children: [
                   VerticalDivider(
