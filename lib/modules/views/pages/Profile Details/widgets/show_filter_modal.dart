@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/modules/model/product/product_model.dart';
 
 import '../../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../controller/product/brands_provider.dart';
@@ -108,6 +109,7 @@ class FilterUserProductNotifier
   void updateFilter(UserFilterTypes filterType, String value) {
     state = {filterType: value}; // Replace state with a single entry
     log(state.toString());
+    _updateProductFiltersInput(filterType, value);
     ref.invalidate(searchProductProvider);
   }
 
@@ -116,5 +118,50 @@ class FilterUserProductNotifier
     state = {};
     log("Filters cleared");
     ref.invalidate(searchProductProvider);
+  }
+
+  void _updateProductFiltersInput(UserFilterTypes filterType, String value) {
+    // Ensure currentFilters is never null
+    final currentFilters =
+        ref.read(userProductFilter) ?? Input$ProductFiltersInput();
+    if (filterType == UserFilterTypes.brand) {
+      final brandId = ref
+          .watch(brandsProvider)
+          .valueOrNull
+          ?.where((e) => e.name == value)
+          .firstOrNull;
+      ref.read(userProductFilter.notifier).state =
+          Input$ProductFiltersInput(brand: brandId?.id);
+      ;
+      return;
+    }
+
+    if (filterType == UserFilterTypes.size) {
+      ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(
+          size: Enum$SizeEnum.values.firstWhere((e) => e.name == value));
+      return;
+    }
+    // // Update only the relevant field in the filter
+    // final updatedFilters = currentFilters.copyWith(
+    //   brand: filterType == UserFilterTypes.brand
+    //       ? int.tryParse(value)
+    //       : currentFilters.brand,
+    //   size: filterType == UserFilterTypes.size
+    //       ? Enum$SizeEnum.values.firstWhere((e) => e.name == value,
+    //           orElse: () => currentFilters.size!)
+    //       : currentFilters.size,
+    //   style: filterType == UserFilterTypes.style
+    //       ? Enum$StyleEnum.values.firstWhere((e) => e.name == value,
+    //           orElse: () => currentFilters.style!)
+    //       : currentFilters.style,
+    //   condition: filterType == UserFilterTypes.condition
+    //       ? ConditionsEnum.values.firstWhere((e) => e.name == value,
+    //           orElse: () => currentFilters.condition!)
+    //       : currentFilters.condition,
+    // );
+
+    // // Update the userProductFilterProvider state with updatedFilters
+    // ref.read(userProductFilter.notifier).state = updatedFilters;
+    // log("ProductFiltersInput updated: ${updatedFilters.toJson()}");
   }
 }
