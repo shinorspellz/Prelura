@@ -9,7 +9,7 @@ part of 'user_product_grouping.dart';
 _$CategoryGroupTypeImpl _$$CategoryGroupTypeImplFromJson(
         Map<String, dynamic> json) =>
     _$CategoryGroupTypeImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       count: (json['count'] as num).toInt(),
     );

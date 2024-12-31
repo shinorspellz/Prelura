@@ -20,7 +20,7 @@ CategoryGroupType _$CategoryGroupTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoryGroupType {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
 
@@ -40,7 +40,7 @@ abstract class $CategoryGroupTypeCopyWith<$Res> {
           CategoryGroupType value, $Res Function(CategoryGroupType) then) =
       _$CategoryGroupTypeCopyWithImpl<$Res, CategoryGroupType>;
   @useResult
-  $Res call({int id, String name, int count});
+  $Res call({int? id, String name, int count});
 }
 
 /// @nodoc
@@ -58,15 +58,15 @@ class _$CategoryGroupTypeCopyWithImpl<$Res, $Val extends CategoryGroupType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? count = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -87,7 +87,7 @@ abstract class _$$CategoryGroupTypeImplCopyWith<$Res>
       __$$CategoryGroupTypeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, int count});
+  $Res call({int? id, String name, int count});
 }
 
 /// @nodoc
@@ -103,15 +103,15 @@ class __$$CategoryGroupTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? count = null,
   }) {
     return _then(_$CategoryGroupTypeImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ class _$CategoryGroupTypeImpl implements _CategoryGroupType {
       _$$CategoryGroupTypeImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String name;
   @override
@@ -178,7 +178,7 @@ class _$CategoryGroupTypeImpl implements _CategoryGroupType {
 
 abstract class _CategoryGroupType implements CategoryGroupType {
   const factory _CategoryGroupType(
-      {required final int id,
+      {required final int? id,
       required final String name,
       required final int count}) = _$CategoryGroupTypeImpl;
 
@@ -186,7 +186,7 @@ abstract class _CategoryGroupType implements CategoryGroupType {
       _$CategoryGroupTypeImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get name;
   @override
