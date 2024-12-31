@@ -1,17 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
-  const ProfilePictureWidget(
-      {super.key,
-      this.profilePicture,
-      this.username,
-      this.updating = false,
-      this.height,
-      this.width,
-      this.borderColor});
+  const ProfilePictureWidget({super.key, this.profilePicture, this.username, this.updating = false, this.height, this.width, this.borderColor});
 
   final String? profilePicture;
   final String? username;
@@ -26,8 +20,7 @@ class ProfilePictureWidget extends StatelessWidget {
       return Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border:
-              Border.all(color: borderColor ?? Colors.transparent, width: 2),
+          border: Border.all(color: borderColor ?? Colors.transparent, width: 2),
         ),
         child: CircleAvatar(
           radius: height != null ? height! / 2 : 25,
@@ -37,7 +30,13 @@ class ProfilePictureWidget extends StatelessWidget {
                   width: width != null ? height! / 2 : 25,
                   child: LoadingWidget(),
                 )
-              : Text(username?.split('').first.toUpperCase() ?? '--'),
+              : Text(
+                  username?.split('').first.toUpperCase() ?? '--',
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black,
+                  ),
+                ),
         ),
       );
     }
@@ -49,14 +48,11 @@ class ProfilePictureWidget extends StatelessWidget {
           width: height ?? 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border:
-                Border.all(color: borderColor ?? Colors.transparent, width: 2),
+            border: Border.all(color: borderColor ?? Colors.transparent, width: 2),
             image: DecorationImage(
               image: CachedNetworkImageProvider(profilePicture!),
               fit: BoxFit.cover,
-              colorFilter: updating
-                  ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver)
-                  : null,
+              colorFilter: updating ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver) : null,
             ),
           ),
         ),

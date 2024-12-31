@@ -187,7 +187,6 @@ class PreluraTheme {
         ),
         scaffoldBackgroundColor: PreluraColors.darkScaffoldBackround,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-
         dividerColor: PreluraColors.darkOnSurfaceColor.withOpacity(0.1),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: PreluraColors.white.withOpacity(.8),
