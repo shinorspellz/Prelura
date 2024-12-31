@@ -332,12 +332,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     ),
                     tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
                     childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                    minTileHeight: 30,
+                    minTileHeight: 35,
                     onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
                     controller: controller,
-                    expansionAnimationStyle: AnimationStyle(
-                      duration: Duration(milliseconds: 300),
-                    ),
+                    showTrailingIcon: false,
+                    // expansionAnimationStyle: AnimationStyle(
+                    //   duration: Duration(milliseconds: 300),
+                    // ),
                     children: categories
                         .map(
                           (e) => Column(
@@ -348,7 +349,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               MenuCard(
                                 title: e.name,
                                 sideTextColor: PreluraColors.grey,
-                                // borderbottom: true,
+                                borderbottom: false,
                                 sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
                                 trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
                                 onTap: () {
