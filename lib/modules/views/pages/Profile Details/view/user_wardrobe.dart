@@ -13,11 +13,13 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/modules/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/modules/controller/product/brands_provider.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/model/product/user_product_grouping/user_product_grouping.dart';
 import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
+import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
@@ -71,6 +73,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool isActive = false;
   final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
+  @override
+  void initState() {
+    super.initState();
+    final user = ref
+        .read((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .value;
+
+    ref.read(userProductGroupingByBrandProvider(
+        (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
+  }
+
   Future<void> _onRefresh() async {
     try {
       if (widget.username != null) {
@@ -122,9 +137,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         : value
             .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
             .toList();
-
-    final color = PreluraColors.jobDetailGrey.withOpacity(0.7);
-    final fontWeight = FontWeight.w400;
 
     return SmartRefresher(
       controller: _refreshController,
@@ -594,135 +606,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   //     ],
                   //   ),
                   // ),
+                  FilterAndSort(
+                    userId: user?.id,
+                  ),
 
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                VBottomSheetComponent.actionBottomSheet(
-                                  customHeader: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Filter",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                    ),
-                                  ),
-                                  context: context,
-                                  actions: [
-                                    ...UserFilterTypes.values.map((e) {
-                                      return VBottomSheetItem(
-                                        onTap: (context) {
-                                          Navigator.pop(context);
-                                          showFilterModal(context, e, ref);
-                                        },
-                                        title: e.simpleName,
-                                        textColor: color,
-                                        textWeight: fontWeight,
-                                      );
-                                    }).toList(),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Colour",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Price",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Material",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-
-                                    // VBottomSheetItem(onTap: (Context){}, title: "Category"),
-                                  ],
-                                );
-                              },
-                              child: Row(children: [
-                                Text(
-                                  "Filter",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(color: PreluraColors.grey),
-                                ),
-                                2.horizontalSpacing,
-                                // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-                                RenderSvgWithColor2(
-                                  svgPath: PreluraIcons.filter_icon_svg,
-                                  color: PreluraColors.activeColor,
-                                )
-                              ]),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                VBottomSheetComponent.actionBottomSheet(
-                                  context: context,
-                                  customHeader: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Sort",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                    ),
-                                  ),
-                                  actions: [
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Relevance",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Newest First",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Price Ascending",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-                                    VBottomSheetItem(
-                                        onTap: (Context) {},
-                                        title: "Price Desending",
-                                        textColor: color,
-                                        textWeight: fontWeight),
-
-                                    // VBottomSheetItem(onTap: (Context){}, title: "Category"),
-                                  ],
-                                );
-                              },
-                              child: Row(children: [
-                                Text(
-                                  "Sort",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(color: PreluraColors.grey),
-                                ),
-                                2.horizontalSpacing,
-                                RenderSvg(
-                                    svgPath: PreluraIcons.sort_icon_svg,
-                                    color: PreluraColors.activeColor,
-                                    svgHeight: 16,
-                                    svgWidth: 16)
-                              ]),
-                            )
-                          ])),
                   const SizedBox(
                     height: 20,
                   ),

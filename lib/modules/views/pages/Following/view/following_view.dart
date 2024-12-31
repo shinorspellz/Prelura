@@ -131,7 +131,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
                 child: following.when(
                   data: (followersList) {
                     if (followersList.isEmpty) {
-                      return const Center(child: Text("No Network Yet."));
+                      return const Center(child: Text("No Followers found."));
                     }
                     return ListView.builder(
                       itemCount: followersList.length,

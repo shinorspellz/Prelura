@@ -16,13 +16,13 @@ import '../provider/sell_item_provider.dart';
 @RoutePage()
 class BrandSelectionPage extends ConsumerStatefulWidget {
   const BrandSelectionPage({super.key});
-
+  static final ScrollController brandScrollController = ScrollController();
   @override
   ConsumerState<BrandSelectionPage> createState() => _BrandSelectionPageState();
 }
 
 class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
-  final controller = ScrollController();
+  final controller = BrandSelectionPage.brandScrollController;
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
 
   @override
   void dispose() {
-    controller.dispose();
+    // controller.dispose();
     super.dispose();
   }
 
