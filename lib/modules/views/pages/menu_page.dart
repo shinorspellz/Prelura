@@ -14,6 +14,7 @@ import 'package:prelura_app/res/helper_function.dart';
 
 import '../../controller/theme_notifier.dart';
 import 'Profile Details/provider/tab_controller.dart';
+import 'Settings/view/multi_buy_discount.dart';
 
 @RoutePage()
 class MenuPage extends ConsumerWidget {
@@ -117,7 +118,7 @@ class MenuPage extends ConsumerWidget {
               }),
           MenuCard(
               title: "Multi-buy discounts",
-              subtitle: "off",
+              subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
               rightArrow: false,
               icon: const Icon(Icons.info_outlined),
               onTap: () {
