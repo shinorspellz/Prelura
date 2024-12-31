@@ -10,9 +10,11 @@ import 'package:prelura_app/modules/views/pages/Profile%20Details/view/user_ward
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:prelura_app/modules/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../widgets/profile_picture.dart';
@@ -24,12 +26,10 @@ class ProfileDetailsScreen extends ConsumerStatefulWidget {
   final String username;
 
   @override
-  ConsumerState<ProfileDetailsScreen> createState() =>
-      _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -47,8 +47,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index !=
-          ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -66,8 +65,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     final user = ref.watch(otherUserProfile(widget.username)).valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index =
-          currentIndex; // Sync tab index if changed externally
+      _tabController.index = currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(
@@ -75,8 +73,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: user?.username ?? "--",
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         // leadingIcon: IconButton(
@@ -84,10 +81,29 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
         //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
         //   onPressed: () => context.router.popForced(),
         // ),
-        // trailingIcon: [
-        //   GestureDetector(onTap: () => context.pushRoute(ProfileRoute()), child: Icon(Icons.menu_sharp)),
-        //   10.horizontalSpacing,
-        // ],
+        trailingIcon: [
+          GestureDetector(
+            onTap: () => VBottomSheetComponent.actionBottomSheet(
+              context: context,
+              actions: [
+                VBottomSheetItem(
+                    onTap: (context) {
+                      Navigator.pop(context);
+                      Share.shareUri(Uri.parse('https://prelura.com/${widget.username}'));
+                    },
+                    title: 'Share profile'),
+                VBottomSheetItem(
+                    onTap: (context) {
+                      Navigator.pop(context);
+                    },
+                    title: 'Report',
+                    textColor: PreluraColors.error),
+              ],
+            ),
+            child: Icon(Icons.more_vert_rounded),
+          ),
+          10.horizontalSpacing,
+        ],
       ),
       // body: Column(
       //   children: [
