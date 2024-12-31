@@ -89,7 +89,7 @@ class MenuPage extends ConsumerWidget {
                 icon: const Icon(Icons.show_chart_sharp),
                 rightArrow: false,
                 onTap: () {
-                  // context.pushRoute(BalanceRoute());
+                  context.pushRoute(ShopValueRoute());
                 },
               ),
           // MenuCard(

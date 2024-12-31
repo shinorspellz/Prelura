@@ -153,7 +153,9 @@ class FilterAndSort extends ConsumerWidget {
               Text(
                 "Sort",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: PreluraColors.grey, fontWeight: FontWeight.w600),
+                      color: PreluraColors.grey,
+                      fontWeight: FontWeight.w900,
+                    ),
               ),
               2.horizontalSpacing,
               RenderSvg(
