@@ -166,7 +166,9 @@ class PreluraTheme {
   static ThemeData get darkTheme => ThemeData(
         fontFamily: PreluraTypography1.primaryfontName,
         useMaterial3: false,
-
+        expansionTileTheme: ExpansionTileThemeData(
+          iconColor: PreluraColors.grey,
+        ),
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         // splashFactory: Colors.transparent,
