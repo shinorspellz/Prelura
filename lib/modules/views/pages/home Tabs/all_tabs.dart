@@ -94,6 +94,19 @@ class HomeAllTab extends ConsumerWidget {
                     ),
                     itemCount: products.length,
                   ),
+                  loading: () => ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      mockData.length,
+                      (_) => Container(
+                        // height: 220,
+                        width: 180,
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                      ),
+                    ),
+                  ),
                   orElse: () => ListView(
                     scrollDirection: Axis.horizontal,
                     children: List.generate(

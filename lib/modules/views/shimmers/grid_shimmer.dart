@@ -6,7 +6,7 @@ import 'package:sizer/sizer.dart';
 Widget GridShimmer({Axis? scrollDirection}) {
   return GridView.builder(
       shrinkWrap: true,
-      padding: EdgeInsets.all(16),
+      // padding: EdgeInsets.all(16),
       physics: const BouncingScrollPhysics(),
       scrollDirection: scrollDirection ?? Axis.vertical,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

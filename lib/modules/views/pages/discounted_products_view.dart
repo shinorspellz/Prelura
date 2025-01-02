@@ -146,7 +146,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                           ),
                         );
                       },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer()),
+                      loading: () => SliverToBoxAdapter(
+                          child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GridShimmer(),
+                      )),
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
                 // if (ref
