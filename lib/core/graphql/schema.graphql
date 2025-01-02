@@ -360,6 +360,20 @@ type Mutation {
   blockUnblock(blockUser: Boolean!, userId: Int!): BlockUserMutation
   unfollowUser(followedId: Int!): UnfollowUser
   rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
+  resetPassword(email: String): ResetPassword
+
+  """
+  Change user password without old password.
+  
+  Receive the token that was sent by email.
+  
+  If token and new passwords are valid, update
+  user password and in case of using refresh
+  tokens, revoke all of them.
+  
+  Also, if user has not been verified yet, verify it.
+  """
+  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
 
   """
   Register user with fields defined in the settings.
@@ -416,19 +430,6 @@ type Mutation {
   a successful response is returned.
   """
   resendActivationEmail(email: String!): ResendActivationEmail
-
-  """
-  Change user password without old password.
-  
-  Receive the token that was sent by email.
-  
-  If token and new passwords are valid, update
-  user password and in case of using refresh
-  tokens, revoke all of them.
-  
-  Also, if user has not been verified yet, verify it.
-  """
-  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
 }
 
 """
@@ -639,6 +640,7 @@ input ProductFiltersInput {
 enum ProductGroupingEnum {
   BRAND
   CATEGORY
+  SUB_CATEGORY
   TOP_BRAND
 }
 
@@ -1158,6 +1160,10 @@ a successful response is returned.
 type ResendActivationEmail {
   errors: ExpectedErrorType
   success: Boolean
+}
+
+type ResetPassword {
+  message: String
 }
 
 enum SeasonEnum {

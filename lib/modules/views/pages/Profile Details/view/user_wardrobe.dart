@@ -121,14 +121,30 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool expandedCategories = false;
   final ExpansionTileController controller = ExpansionTileController();
 
+  List<CategoryGroupType> subCategoriesIntersection(CategoryGroupType e, int userId) {
+    List<CategoryGroupType> result = [];
+    final subCategories = ref.watch(categoryProvider).valueOrNull?.where((x) => x.name.toLowerCase() == e.name.toLowerCase()).firstOrNull?.subCategory ?? [];
+    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(userId)).valueOrNull ?? [];
+    // ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0));
+    for (var subCat in subCategories) {
+      for (var groupSub in userSubCategories) {
+        if (subCat.name == groupSub.name) {
+          result.add(groupSub);
+        }
+      }
+    }
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
     final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
-    bool isCurrentUser = widget.username == null;
-    final List<CategoryGroupType> categories;
-    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).value;
-    categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
+
+    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).valueOrNull;
+    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
+    final List<CategoryGroupType> categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
 
     return SmartRefresher(
       controller: _refreshController,
@@ -153,7 +169,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
               ),
             Column(
               children: [
-                if (user?.bio != null)
+                if (user.bio != null)
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
@@ -165,7 +181,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           children: [
                             Expanded(
                               child: Text(
-                                user?.bio ?? '',
+                                user.bio ?? '',
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
                               ),
                             ),
@@ -233,7 +249,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                               showDialog(
                                                 context: context,
                                                 builder: (context) {
-                                                  final controller = TextEditingController(text: user?.bio);
+                                                  final controller = TextEditingController(text: user.bio);
                                                   return AlertDialog(
                                                     title: const Text('Update Bio'),
                                                     content: Column(
@@ -341,33 +357,100 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       duration: Duration(milliseconds: 300),
                     ),
                     children: categories
-                        .map(
-                          (e) => Column(
-                            children: [
-                              Divider(
-                                thickness: 2,
-                              ),
-                              MenuCard(
-                                title: e.name,
-                                sideTextColor: PreluraColors.grey,
-                                borderbottom: false,
-                                sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                                onTap: () {
-                                  selectedItem = e.name;
-                                  isSelected = false;
-                                  setState(() {});
-                                  ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+                        .map((e) => Container(
+                              decoration: BoxDecoration(
+                                  border: Border.symmetric(
+                                horizontal: BorderSide(
+                                  color: context.theme.dividerColor,
+                                  width: 1,
+                                ),
+                              )),
+                              child: ExpansionTile(
+                                  title: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                      text: e.name,
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: PreluraColors.grey,
+                                          ),
+                                    )
+                                  ])),
+                                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                                  minTileHeight: 38,
+                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                                  // controller: controller,
+                                  expansionAnimationStyle: AnimationStyle(
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                  children:
+                                      // ref
+                                      //         .watch(categoryProvider)
+                                      //         .valueOrNull
+                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+                                      //         .firstOrNull
+                                      //         ?.subCategory
+                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
+                                      //         .toSet()
+                                      //         .intersection((userSubCategories ?? []).toSet())
+                                      subCategoriesIntersection(e, user.id)
+                                              .map(
+                                                (x) => Column(
+                                                  children: [
+                                                    Divider(
+                                                      thickness: 2,
+                                                    ),
+                                                    MenuCard(
+                                                      title: x.name,
+                                                      sideTextColor: PreluraColors.grey,
+                                                      borderbottom: false,
+                                                      // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                                      trailingIcon: Container(
+                                                        height: 15,
+                                                        width: 15,
+                                                        padding: EdgeInsets.all(3),
+                                                        decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          border: Border.all(
+                                                            width: 2,
+                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
+                                                          ),
+                                                        ),
+                                                        child: Container(
+                                                          height: 15,
+                                                          width: 15,
+                                                          decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                                                      onTap: () {
+                                                        selectedItem = x.name;
+                                                        isSelected = false;
+                                                        setState(() {});
+                                                        ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
 
-                                  controller.collapse();
-                                },
-                              ),
-                            ],
-                          ),
-                        )
+                                                        controller.collapse();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                              .toList() ??
+                                          []),
+                            ))
                         .toList(),
                   ),
-                if (!expandedCategories)
+                if (!expandedCategories && selectedItem.isEmpty)
                   Divider(
                     thickness: 1,
                   ),
@@ -441,12 +524,12 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: UserPopularBrand(
-                    userId: user?.id,
+                    userId: user.id,
                   ),
                 ),
 
                 FilterAndSort(
-                  userId: user?.id,
+                  userId: user.id,
                 ),
 
                 const SizedBox(
@@ -459,14 +542,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: ref.watch(userProduct(user?.username)).when(
+                  child: ref.watch(userProduct(user.username)).when(
                         skipLoadingOnRefresh: false,
                         data: (products) => DisplaySection(
                           products: products,
                           isInProduct: false,
                         ),
                         error: (e, _) {
-                          log("$_");
                           return Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
