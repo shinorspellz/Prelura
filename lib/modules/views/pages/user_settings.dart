@@ -34,7 +34,11 @@ class SettingScreen extends StatelessWidget {
           }),
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
-      MenuCard(title: "Security", onTap: () {}),
+      MenuCard(
+          title: "Security",
+          onTap: () {
+            context.router.push(SecurityMenuRoute()); 
+          }),
     ];
 
     List menuItem2 = [

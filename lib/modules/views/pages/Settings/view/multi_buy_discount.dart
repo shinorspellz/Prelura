@@ -6,8 +6,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../widgets/app_bar.dart';
-import '../../../widgets/app_button_with_loader.dart';
-import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/switch_with_text.dart';
 
 final isSelectedProvider = StateProvider((ref) => false);

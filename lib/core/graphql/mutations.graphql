@@ -154,7 +154,8 @@ mutation UpdateProfile(
   $use2fa: Boolean
   $username: String
   $location: LocationInputType
-  $fcmToken: String
+  $fcmToken: String,
+  $isVacationMode: Boolean,
 ) {
   updateProfile(
     bio: $bio
@@ -172,6 +173,7 @@ mutation UpdateProfile(
     username: $username
     location: $location
     fcmToken: $fcmToken
+    isVacationMode : $isVacationMode
   ) {
     message
   }
@@ -335,5 +337,14 @@ mutation CreatePaymentIntent(
 mutation ConfirmPayment($paymentRef: String!) {
   confirmPayment(paymentRef: $paymentRef) {
     paymentStatus
+  }
+}
+mutation PasswordReset(
+  $newpassword: String!
+  $token: String!
+){
+  passwordReset(newPassword1:$newpassword, newPassword2: $newpassword, token: $token ){
+    errors,
+    success
   }
 }

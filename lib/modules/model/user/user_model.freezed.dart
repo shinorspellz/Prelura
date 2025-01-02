@@ -36,6 +36,7 @@ mixin _$UserModel {
   int? get listing => throw _privateConstructorUsedError;
   PhoneModel? get phone => throw _privateConstructorUsedError;
   LocationInputType? get location => throw _privateConstructorUsedError;
+  bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
   int? get noOfFollowing => throw _privateConstructorUsedError;
@@ -72,6 +73,7 @@ abstract class $UserModelCopyWith<$Res> {
       int? listing,
       PhoneModel? phone,
       LocationInputType? location,
+      bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
       int? noOfFollowing});
@@ -111,6 +113,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? listing = freezed,
     Object? phone = freezed,
     Object? location = freezed,
+    Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
     Object? noOfFollowing = freezed,
@@ -180,6 +183,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationInputType?,
+      isVacationMode: freezed == isVacationMode
+          ? _value.isVacationMode
+          : isVacationMode // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isFollowing: freezed == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -249,6 +256,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       int? listing,
       PhoneModel? phone,
       LocationInputType? location,
+      bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
       int? noOfFollowing});
@@ -288,6 +296,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? listing = freezed,
     Object? phone = freezed,
     Object? location = freezed,
+    Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
     Object? noOfFollowing = freezed,
@@ -357,6 +366,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LocationInputType?,
+      isVacationMode: freezed == isVacationMode
+          ? _value.isVacationMode
+          : isVacationMode // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isFollowing: freezed == isFollowing
           ? _value.isFollowing
           : isFollowing // ignore: cast_nullable_to_non_nullable
@@ -393,6 +406,7 @@ class _$UserModelImpl implements _UserModel {
       this.listing,
       this.phone,
       this.location,
+      this.isVacationMode,
       this.isFollowing,
       this.noOfFollowers,
       this.noOfFollowing});
@@ -433,6 +447,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   final LocationInputType? location;
   @override
+  final bool? isVacationMode;
+  @override
   final bool? isFollowing;
   @override
   final int? noOfFollowers;
@@ -441,7 +457,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -474,6 +490,8 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.isVacationMode, isVacationMode) ||
+                other.isVacationMode == isVacationMode) &&
             (identical(other.isFollowing, isFollowing) ||
                 other.isFollowing == isFollowing) &&
             (identical(other.noOfFollowers, noOfFollowers) ||
@@ -502,6 +520,7 @@ class _$UserModelImpl implements _UserModel {
         listing,
         phone,
         location,
+        isVacationMode,
         isFollowing,
         noOfFollowers,
         noOfFollowing
@@ -541,6 +560,7 @@ abstract class _UserModel implements UserModel {
       final int? listing,
       final PhoneModel? phone,
       final LocationInputType? location,
+      final bool? isVacationMode,
       final bool? isFollowing,
       final int? noOfFollowers,
       final int? noOfFollowing}) = _$UserModelImpl;
@@ -580,6 +600,8 @@ abstract class _UserModel implements UserModel {
   PhoneModel? get phone;
   @override
   LocationInputType? get location;
+  @override
+  bool? get isVacationMode;
   @override
   bool? get isFollowing;
   @override

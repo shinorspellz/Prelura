@@ -23,6 +23,7 @@ class UserModel with _$UserModel {
       int? listing,
       PhoneModel? phone,
       LocationInputType? location,
+      bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
       int? noOfFollowing}) = _UserModel;

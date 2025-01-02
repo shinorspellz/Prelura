@@ -201,6 +201,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ReviewRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ShopValueRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: MultiBuyDiscountRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: ResetPasswordRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: SecurityMenuRoute.page, guards: [AuthGuard(_ref)]),
       ];
 }
 

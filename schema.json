@@ -214,7 +214,7 @@
           },
           {
             "name": "allProducts",
-            "description": null,
+            "description": "\n    This method is responsible for retrieving a paginated list of products based on optional filtering and search criteria. \n    The results can be filtered by various product attributes such as name, category, brand, price, condition, and more.\n\n    Parameters:\n    - `page_count`: The number of products to return per page (optional).\n    - `page_number`: The page number for pagination (optional).\n    - `filters`: A dictionary of optional filters that can be applied to the product search. \n      Possible keys in the `filters` dictionary include:\n      - `name`: Filter products by name.\n      - `brand`: Filter products by brand ID.\n      - `category`: Filter products by category ID.\n      - `custom_brand`: Filter products by custom brand.\n      - `sub_category`: Filter products by sub-category ID.\n      - `price`: Filter products by price (less than or equal to the provided price).\n      - `condition`: Filter products by condition (e.g., \"new\", \"used\").\n      - `size`: Filter products by size.\n      - `style`: Filter products by style.\n      - `status`: Filter products by status (e.g., \"available\", \"out of stock\").\n      - `discount_price`: Filter products with a discount price.\n      - `hashtags`: Filter products that contain specific hashtags.\n    - `search`: A string to search for in the product name.\n\n    Returns:\n    - A paginated list of products matching the filters and search criteria.\n    - `pagination_result`: A tuple containing:\n      - `result`: A list of products for the current page.\n      - `total_pages`: Total number of pages based on the current `page_count`.\n      - `total_items`: Total number of products matching the filters and search criteria.\n\n    This method also handles pagination of the results to ensure efficient retrieval of large datasets.\n    ",
             "args": [
               {
                 "name": "filters",
@@ -222,6 +222,16 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "ProductFiltersInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "sort",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SortEnum",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -271,7 +281,7 @@
           },
           {
             "name": "userProducts",
-            "description": null,
+            "description": "\n    This method retrieves a paginated list of products associated with a specific user (either the logged-in user or a user identified by username).\n    The products can be filtered by a search term (name) and are excluded if marked as deleted.\n\n    Parameters:\n    - `page_count`: The number of products to return per page (optional).\n    - `page_number`: The page number for pagination (optional).\n    - `username`: The username of the seller to filter products by. If not provided, it will use the logged-in user.\n    - `search`: A string to search for in the product name (optional).\n\n    Returns:\n    - A paginated list of products for the specified user.\n\n    This method also handles pagination of the results to ensure efficient retrieval of large datasets. \n    The method will return a list of products that match the filters and pagination settings.\n    ",
             "args": [
               {
                 "name": "search",
@@ -289,6 +299,26 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "filters",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProductFiltersInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "sort",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SortEnum",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -327,8 +357,53 @@
             "deprecationReason": null
           },
           {
+            "name": "userProductGrouping",
+            "description": "\n    Retrieves a grouped list of products based on the specified `group_by` parameter.\n\n    This method allows the user to retrieve products grouped by various categories or brands. \n    The available grouping options are:\n\n    - **CATEGORY**: Groups products by their category (e.g., Men, Women, Kids).\n    - **BRAND**: Groups products by their brand (e.g., Nike, Adidas). If the brand is `None`, the `custom_brand` field is used.\n    - **TOP_BRAND**: Retrieves the top 10 brands based on the number of products a user has in each brand.\n\n    Parameters:\n    - `user_id`: The ID of the user whose products are being grouped.\n    - `group_by`: The criteria to group the products. Possible values are:\n        - `ProductGroupingEnum.CATEGORY`: Group by product category.\n        - `ProductGroupingEnum.BRAND`: Group by brand name.\n        - `ProductGroupingEnum.TOP_BRAND`: Retrieve the top 10 brands by product count.\n\n    Returns:\n    - A list of `CategoryGroupType` objects, each containing the name of the group and the count of products in that group.\n    ",
+            "args": [
+              {
+                "name": "userId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "groupBy",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "ProductGroupingEnum",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CategoryGroupType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "product",
-            "description": null,
+            "description": "\n    This method retrieves a specific product by its ID for the logged-in user. It ensures that only products that are not deleted are returned. \n    If the product exists and the user is authorized, it will increment the product's views if the logged-in user hasn't viewed it before.\n\n    Parameters:\n    - `id`: The ID of the product to retrieve.\n\n    Returns:\n    - The `Product` object corresponding to the given ID if it exists and is not deleted, otherwise raises an error.\n    ",
             "args": [
               {
                 "name": "id",
@@ -576,6 +651,22 @@
                 "defaultValue": null
               }
             ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ProductType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "recentlyViewedProducts",
+            "description": null,
+            "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -1337,30 +1428,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "paymentSet",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "PaymentType",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -1725,6 +1792,22 @@
               "kind": "SCALAR",
               "name": "DateTime",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isVacationMode",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2465,6 +2548,22 @@
             "deprecationReason": null
           },
           {
+            "name": "hashtags",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "JSONString",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt",
             "description": null,
             "args": [],
@@ -2742,6 +2841,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "isVacationMode",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4449,6 +4560,18 @@
             "description": "Stripe",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "APPLE_PAY",
+            "description": "Apple Pay",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOOGLE_PAY",
+            "description": "Google Pay",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -4607,6 +4730,20 @@
               "kind": "SCALAR",
               "name": "Boolean",
               "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "hashtags",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null
           }
@@ -5182,6 +5319,111 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "SortEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "NEWEST",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRICE_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "PRICE_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ProductGroupingEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "BRAND",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CATEGORY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TOP_BRAND",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CategoryGroupType",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "count",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "LikedProductType",
         "description": null,
@@ -5612,6 +5854,20 @@
                   "ofType": {
                     "kind": "SCALAR",
                     "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "paymentMethod",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "PaymentMethodEnum",
                     "ofType": null
                   }
                 },
@@ -6560,6 +6816,16 @@
                 "defaultValue": null
               },
               {
+                "name": "isVacationMode",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "lastName",
                 "description": null,
                 "type": {
@@ -7214,7 +7480,7 @@
             "deprecationReason": null
           },
           {
-            "name": "token",
+            "name": "message",
             "description": null,
             "args": [],
             "type": {
@@ -7226,7 +7492,7 @@
             "deprecationReason": null
           },
           {
-            "name": "restToken",
+            "name": "token",
             "description": null,
             "args": [],
             "type": {
@@ -7529,12 +7795,65 @@
         "possibleTypes": null
       },
       {
+        "kind": "ENUM",
+        "name": "PaymentMethodEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "BANK_TRANSFER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CARD",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "STRIPE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "APPLE_PAY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOOGLE_PAY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "CreatePaymentIntent",
         "description": null,
         "fields": [
           {
             "name": "clientSecret",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paymentRef",
             "description": null,
             "args": [],
             "type": {
