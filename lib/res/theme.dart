@@ -58,7 +58,12 @@ class PreluraTheme {
         iconTheme: const IconThemeData(
           color: Colors.black, // PreluraColors.primaryColor,
         ),
-        appBarTheme: const AppBarTheme(backgroundColor: PreluraColors.appBarBackgroundColor, elevation: 0),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: PreluraColors.appBarBackgroundColor,
+            elevation: 0,
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            )),
         textTheme: const TextTheme(
                 // displayLarge: PreluraTypography1.normalTextStyle,
                 // displayMedium: PreluraTypography1.mediumTextStyle,

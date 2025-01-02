@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 
 import '../../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../controller/product/brands_provider.dart';
@@ -13,11 +15,10 @@ import '../../../widgets/bottom_sheet.dart';
 import '../view/user_wardrobe.dart';
 
 class FilterModal extends ConsumerStatefulWidget {
-  final UserFilterTypes filterType;
+  final FilterTypes filterType;
   final int? userId;
   static final ScrollController filterScrollController = ScrollController();
-  const FilterModal({Key? key, required this.filterType, required this.userId})
-      : super(key: key);
+  const FilterModal({super.key, required this.filterType, required this.userId});
 
   @override
   ConsumerState<FilterModal> createState() => _FilterModalState();
@@ -54,23 +55,10 @@ class _FilterModalState extends ConsumerState<FilterModal> {
   Widget build(BuildContext context) {
     final filterNotifier = ref.watch(filterUserProductProvider.notifier);
     final filterOptions = {
-      UserFilterTypes.size: Enum$SizeEnum.values
-          .where((e) => e != Enum$SizeEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      UserFilterTypes.style: Enum$StyleEnum.values
-          .where((e) => e != Enum$StyleEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      UserFilterTypes.brand: ref
-              .watch(userProductGroupingByBrandProvider(
-                  (widget.userId ?? 0, Enum$ProductGroupingEnum.BRAND)))
-              .valueOrNull
-              ?.map((e) => e.name)
-              .toList() ??
-          [],
-      UserFilterTypes.condition:
-          ConditionsEnum.values.map((e) => e.simpleName).toList(),
+      FilterTypes.size: Enum$SizeEnum.values.where((e) => e != Enum$SizeEnum.$unknown).map((e) => e.name).toList(),
+      FilterTypes.style: Enum$StyleEnum.values.where((e) => e != Enum$StyleEnum.$unknown).map((e) => e.name).toList(),
+      FilterTypes.brand: ref.watch(userProductGroupingByBrandProvider((widget.userId ?? 0, Enum$ProductGroupingEnum.BRAND))).valueOrNull?.map((e) => e.name).toList() ?? [],
+      FilterTypes.condition: ConditionsEnum.values.map((e) => e.simpleName).toList(),
     };
 
     return ConstrainedBox(
@@ -83,8 +71,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                   children: [
                     InkWell(
                       onTap: () {
-                        filterNotifier.updateFilter(
-                            widget.filterType, e, widget.userId!);
+                        filterNotifier.updateFilter(widget.filterType, e);
                         setState(() {
                           selectedOption = e;
                         });
@@ -103,8 +90,7 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                             value: e,
                             groupValue: selectedOption,
                             onChanged: (value) {
-                              filterNotifier.updateFilter(
-                                  widget.filterType, value!, widget.userId!);
+                              filterNotifier.updateFilter(widget.filterType, value!);
                               setState(() {
                                 selectedOption = value;
                               });
@@ -123,83 +109,9 @@ class _FilterModalState extends ConsumerState<FilterModal> {
   }
 }
 
-void showFilterModal(BuildContext context, UserFilterTypes filterType,
-    WidgetRef ref, int? userId) {
+void showFilterModal(BuildContext context, FilterTypes filterType, WidgetRef ref, int? userId) {
   VBottomSheetComponent.customBottomSheet(
     context: context,
     child: FilterModal(filterType: filterType, userId: userId),
   );
-}
-
-final filterUserProductProvider = StateNotifierProvider<
-    FilterUserProductNotifier, Map<UserFilterTypes, String>>((ref) {
-  return FilterUserProductNotifier(ref);
-});
-
-class FilterUserProductNotifier
-    extends StateNotifier<Map<UserFilterTypes, String>> {
-  final Ref ref;
-  FilterUserProductNotifier(this.ref) : super({});
-
-  // Update filter to only allow one entry in the state
-  void updateFilter(UserFilterTypes filterType, String value, int userId) {
-    state = {filterType: value}; // Replace state with a single entry
-    log(state.toString());
-    _updateProductFiltersInput(filterType, value, userId);
-    ref.invalidate(searchProductProvider);
-  }
-
-  // Clear filter (reset state to empty)
-  void clearFilter() {
-    state = {};
-    log("Filters cleared");
-    ref.invalidate(searchProductProvider);
-  }
-
-  void _updateProductFiltersInput(
-      UserFilterTypes filterType, String value, int userId) {
-    // Ensure currentFilters is never null
-    final currentFilters =
-        ref.read(userProductFilter) ?? Input$ProductFiltersInput();
-    if (filterType == UserFilterTypes.brand) {
-      final brandId = ref
-          .watch(userProductGroupingByBrandProvider(
-              (userId ?? 0, Enum$ProductGroupingEnum.BRAND)))
-          .valueOrNull
-          ?.where((e) => e.name == value)
-          .firstOrNull;
-      ref.read(userProductFilter.notifier).state =
-          Input$ProductFiltersInput(brand: brandId?.id);
-      ;
-      return;
-    }
-
-    if (filterType == UserFilterTypes.size) {
-      ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(
-          size: Enum$SizeEnum.values.firstWhere((e) => e.name == value));
-      return;
-    }
-    // // Update only the relevant field in the filter
-    // final updatedFilters = currentFilters.copyWith(
-    //   brand: filterType == UserFilterTypes.brand
-    //       ? int.tryParse(value)
-    //       : currentFilters.brand,
-    //   size: filterType == UserFilterTypes.size
-    //       ? Enum$SizeEnum.values.firstWhere((e) => e.name == value,
-    //           orElse: () => currentFilters.size!)
-    //       : currentFilters.size,
-    //   style: filterType == UserFilterTypes.style
-    //       ? Enum$StyleEnum.values.firstWhere((e) => e.name == value,
-    //           orElse: () => currentFilters.style!)
-    //       : currentFilters.style,
-    //   condition: filterType == UserFilterTypes.condition
-    //       ? ConditionsEnum.values.firstWhere((e) => e.name == value,
-    //           orElse: () => currentFilters.condition!)
-    //       : currentFilters.condition,
-    // );
-
-    // // Update the userProductFilterProvider state with updatedFilters
-    // ref.read(userProductFilter.notifier).state = updatedFilters;
-    // log("ProductFiltersInput updated: ${updatedFilters.toJson()}");
-  }
 }

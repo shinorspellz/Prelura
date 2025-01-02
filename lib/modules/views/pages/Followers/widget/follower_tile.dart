@@ -6,6 +6,7 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
+import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import '../../../../../core/router/router.gr.dart';
 import '../../../../../res/colors.dart';
@@ -48,15 +49,19 @@ class FollowerTile extends ConsumerWidget {
             )),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundImage: follower.profilePictureUrl != null ? NetworkImage(follower.profilePictureUrl!) : null,
-              child: follower.profilePictureUrl == null
-                  ? Text(
-                      follower.username[0].toUpperCase(),
-                      style: TextStyle(color: context.isDarkMode ? Colors.white : Colors.black),
-                    )
-                  : null,
+            ProfilePictureWidget(
+              profilePicture: follower.profilePictureUrl,
+              username: follower.username,
             ),
+            // CircleAvatar(
+            //   backgroundImage: follower.profilePictureUrl != null ? NetworkImage(follower.profilePictureUrl!) : null,
+            //   child: follower.profilePictureUrl == null
+            //       ? Text(
+            //           follower.username[0].toUpperCase(),
+            //           style: TextStyle(color: context.isDarkMode ? Colors.white : Colors.black),
+            //         )
+            //       : null,
+            // ),
             const SizedBox(width: 16),
             Expanded(
               child: Column(

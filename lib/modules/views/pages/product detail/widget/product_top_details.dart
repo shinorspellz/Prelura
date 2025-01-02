@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/utils.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
@@ -100,6 +101,22 @@ class ProductTopDetails extends ConsumerWidget {
                             fontWeight: FontWeight.w600,
                           ),
                     ),
+                    10.horizontalSpacing,
+                    Container(
+                      // height: 30,
+                      // width: 50,
+                      decoration: BoxDecoration(
+                        color: 'fc0001'.fromHex.withOpacity(0.5),
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      // alignment: Alignment.center,
+                      child: Text(
+                        ' ${double.parse(product.discountPrice!).toInt()}%',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    )
                   ]
                   // Text(
                   //   "£${product.price}",

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/res/ui_constants.dart';
 
 import '../../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../../res/colors.dart';
@@ -12,7 +16,7 @@ import '../view/user_wardrobe.dart';
 import 'show_filter_modal.dart';
 
 class FilterAndSort extends ConsumerWidget {
-  const FilterAndSort({Key? key, required this.userId}) : super(key: key);
+  const FilterAndSort({super.key, required this.userId});
   final int? userId;
 
   @override
@@ -23,8 +27,7 @@ class FilterAndSort extends ConsumerWidget {
     final sortList = Enum$SortEnum.values;
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
             onTap: () {
               VBottomSheetComponent.actionBottomSheet(
@@ -39,32 +42,43 @@ class FilterAndSort extends ConsumerWidget {
                 ),
                 context: context,
                 actions: [
-                  ...UserFilterTypes.values.map((e) {
+                  ...FilterTypes.values.map((e) {
                     return VBottomSheetItem(
                       onTap: (context) {
                         Navigator.pop(context);
                         showFilterModal(context, e, ref, userId);
                       },
                       title: e.simpleName,
-                      textColor: color,
-                      textWeight: fontWeight,
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        color: ref.watch(filterUserProductProvider).containsKey(e) ? Colors.white : color,
+                        fontWeight: ref.watch(filterUserProductProvider).containsKey(e) ? FontWeight.w900 : fontWeight,
+                      ),
                     );
-                  }).toList(),
+                  }),
                   VBottomSheetItem(
-                      onTap: (Context) {},
-                      title: "Colour",
-                      textColor: color,
-                      textWeight: fontWeight),
+                    onTap: (Context) {},
+                    title: "Colour",
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      color: color,
+                      fontWeight: fontWeight,
+                    ),
+                  ),
                   VBottomSheetItem(
-                      onTap: (Context) {},
-                      title: "Price",
-                      textColor: color,
-                      textWeight: fontWeight),
+                    onTap: (Context) {},
+                    title: "Price",
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      color: color,
+                      fontWeight: fontWeight,
+                    ),
+                  ),
                   VBottomSheetItem(
-                      onTap: (Context) {},
-                      title: "Material",
-                      textColor: color,
-                      textWeight: fontWeight),
+                    onTap: (Context) {},
+                    title: "Material",
+                    style: context.textTheme.bodyLarge?.copyWith(
+                      color: color,
+                      fontWeight: fontWeight,
+                    ),
+                  ),
 
                   // VBottomSheetItem(onTap: (Context){}, title: "Category"),
                 ],
@@ -80,11 +94,7 @@ class FilterAndSort extends ConsumerWidget {
               ),
               4.horizontalSpacing,
               // RenderSvg(svgPath: PreluraIcons.fil, svgHeight: 18, svgWidth:18)
-              RenderSvg(
-                  svgPath: PreluraIcons.filter_icon_svg,
-                  color: PreluraColors.activeColor,
-                  svgHeight: 16,
-                  svgWidth: 16)
+              RenderSvg(svgPath: PreluraIcons.filter_icon_svg, color: PreluraColors.activeColor, svgHeight: 16, svgWidth: 16)
             ]),
           ),
           GestureDetector(
@@ -113,36 +123,27 @@ class FilterAndSort extends ConsumerWidget {
                       onTap: (context) {
                         Navigator.pop(context);
 
-                        ref.read(userProductSort.notifier).state =
-                            Enum$SortEnum.NEWEST;
+                        ref.read(userProductSort.notifier).state = Enum$SortEnum.NEWEST;
                       },
                       title: "Newest First",
-                      textColor: sortValue == Enum$SortEnum.NEWEST.name
-                          ? PreluraColors.greyColorButton
-                          : color,
+                      textColor: sortValue == Enum$SortEnum.NEWEST.name ? PreluraColors.greyColorButton : color,
                       textWeight: fontWeight),
                   VBottomSheetItem(
                       onTap: (context) {
                         Navigator.pop(context);
 
-                        ref.read(userProductSort.notifier).state =
-                            Enum$SortEnum.PRICE_DESC;
+                        ref.read(userProductSort.notifier).state = Enum$SortEnum.PRICE_DESC;
                       },
                       title: "Price Ascending",
-                      textColor: sortValue == Enum$SortEnum.PRICE_DESC.name
-                          ? PreluraColors.greyColorButton
-                          : color,
+                      textColor: sortValue == Enum$SortEnum.PRICE_DESC.name ? PreluraColors.greyColorButton : color,
                       textWeight: fontWeight),
                   VBottomSheetItem(
                       onTap: (context) {
                         Navigator.pop(context);
-                        ref.read(userProductSort.notifier).state =
-                            Enum$SortEnum.PRICE_ASC;
+                        ref.read(userProductSort.notifier).state = Enum$SortEnum.PRICE_ASC;
                       },
                       title: "Price Desending",
-                      textColor: sortValue == Enum$SortEnum.PRICE_ASC.name
-                          ? PreluraColors.greyColorButton
-                          : color,
+                      textColor: sortValue == Enum$SortEnum.PRICE_ASC.name ? PreluraColors.greyColorButton : color,
                       textWeight: fontWeight),
 
                   // VBottomSheetItem(onTap: (Context){}, title: "Category"),
@@ -158,11 +159,7 @@ class FilterAndSort extends ConsumerWidget {
                     ),
               ),
               2.horizontalSpacing,
-              RenderSvg(
-                  svgPath: PreluraIcons.sort_icon_svg,
-                  color: PreluraColors.activeColor,
-                  svgHeight: 16,
-                  svgWidth: 16)
+              RenderSvg(svgPath: PreluraIcons.sort_icon_svg, color: PreluraColors.activeColor, svgHeight: 16, svgWidth: 16)
             ]),
           )
         ])); // Hello world

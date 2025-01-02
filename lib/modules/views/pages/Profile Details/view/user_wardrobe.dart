@@ -22,6 +22,8 @@ import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/provider/tab_controller.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/modules/views/pages/Profile%20Details/widgets/user_scrollable_list.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
 import 'package:prelura_app/modules/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
@@ -46,18 +48,18 @@ import '../../../widgets/bottom_sheet.dart';
 import '../widgets/show_filter_modal.dart';
 import '../widgets/user_popular_brand.dart';
 
-enum UserFilterTypes {
-  size('Size'),
-  brand('Brand'),
-  condition('Condition'),
-  // category('Category'),
-  style('Style');
-  // color('Color');
+// enum UserFilterTypes {
+//   size('Size'),
+//   brand('Brand'),
+//   condition('Condition'),
+//   // category('Category'),
+//   style('Style');
+//   // color('Color');
 
-  const UserFilterTypes(this.simpleName);
+//   const UserFilterTypes(this.simpleName);
 
-  final String simpleName;
-}
+//   final String simpleName;
+// }
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -319,7 +321,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         selectedItem = "";
                         expandedCategories = false;
                         setState(() {});
-                        ref.invalidate(userProductFilter);
+                        ref.invalidate(filterUserProductProvider);
                       })
                 else
                   ExpansionTile(
@@ -355,7 +357,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   selectedItem = e.name;
                                   isSelected = false;
                                   setState(() {});
-                                  ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: e.id);
+                                  ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+
                                   controller.collapse();
                                 },
                               ),
@@ -457,6 +460,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ref.watch(userProduct(user?.username)).when(
+                        skipLoadingOnRefresh: false,
                         data: (products) => DisplaySection(
                           products: products,
                           isInProduct: false,
