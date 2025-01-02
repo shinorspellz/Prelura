@@ -71,7 +71,7 @@ class HomeAllTab extends ConsumerWidget {
               loading: () => GridShimmer()),
         ] else ...[
           Divider(thickness: 1, color: PreluraColors.primaryColor),
-          _buildSectionTitle(
+          _sectionTitle(
             'Recently viewed ',
             "",
             context,
@@ -305,6 +305,34 @@ Widget _buildSectionTitle(
         const SizedBox(
           height: 10,
         ),
+      ],
+    ),
+  );
+}
+
+Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          MainTitle,
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+        ),
+        GestureDetector(
+          onTap: onTap,
+          child: Text("See All",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.primaryColor)),
+        )
       ],
     ),
   );
