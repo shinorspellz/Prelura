@@ -868,3 +868,10 @@ final userProductGroupingByCategoryProvider = FutureProvider.family((ref, int us
 
   return result;
 });
+
+final userProductGroupingBySubCategoryProvider = FutureProvider.family((ref, int userId) async {
+  final repo = ref.watch(productRepo);
+  final result = await repo.getUserProductGrouping(userId: userId, groupBy: Enum$ProductGroupingEnum.SUB_CATEGORY);
+
+  return result;
+});
