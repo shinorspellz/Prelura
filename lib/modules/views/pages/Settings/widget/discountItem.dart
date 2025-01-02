@@ -53,9 +53,10 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       PreluraAuthTextField(
+                        textAlign: TextAlign.center,
                         hintText: "0",
                         keyboardType: TextInputType.number,
-                        maxLength: 3,
+                        maxLength: 2,
                         prefixIcon: Icon(Icons.percent),
                         textInputAction: TextInputAction.done,
                         controller: _controller,
@@ -66,14 +67,9 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                           setState(() {
                             String numericValue =
                                 newValue.replaceAll(RegExp(r'[^0-9]'), '');
-                            if (numericValue.isEmpty) {
-                              numericValue = '0';
-                            }
+
                             value = numericValue;
                             _controller.text = value;
-
-                            _controller.selection = TextSelection.fromPosition(
-                                TextPosition(offset: _controller.text.length));
                           });
                         },
                         minWidth: 50,

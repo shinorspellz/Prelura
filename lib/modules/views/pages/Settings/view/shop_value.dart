@@ -47,7 +47,8 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "Shop Value",
@@ -69,7 +70,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     count: currentShopValue,
                     formatToCurrency: true,
                     duration: Duration(milliseconds: 900),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(color: PreluraColors.grey),
                   ),
                   // Text(
                   //   "10000".formatToPounds,
@@ -89,7 +93,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w500,
                         )),
-                Text("Pending : £1000", style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                Text("Pending : £1000",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: PreluraColors.primaryColor)),
               ],
             ),
           ),
@@ -100,7 +107,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                 formatToCurrency: true,
                 duration: Duration(milliseconds: 600),
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w800,
                     )),
             // Text("1030.66",
             //     style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -121,7 +128,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
           ),
           Padding(
               padding: EdgeInsets.all(16),
-              child: Text("625 Transaction completed", style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor))),
+              child: Text("625 Transaction completed",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: PreluraColors.primaryColor))),
           Divider(
             thickness: 1.5,
           ),
@@ -135,9 +145,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     children: [
                       Text('Earnings this month',
                           textAlign: TextAlign.end,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              )),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  )),
                       SizedBox(height: 48),
                       Center(
                         child: Align(
@@ -146,9 +157,8 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                             formatToCurrency: true,
                             duration: Duration(milliseconds: 600),
                             style: TextStyle(
-                              color: Colors.white,
                               fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           // Text(
@@ -164,44 +174,51 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                        child: Text('More',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(width: 8),
+              // SizedBox(width: 8),
               //@Mr Hassan, help me do the vertical dicider as it is not displaying. Thanks
-              Column(
-                children: [
-                  VerticalDivider(
-                    color: Colors.white, // Divider color
-                    width: 30,
-                    thickness: 20, // Thickness of the divider line
-                    indent: 10, // Space before the divider
-                    endIndent: 10, // Space after the divider
-                  ),
-                ],
+              Container(
+                height: 170,
+                child: VerticalDivider(
+                  color: Theme.of(context).dividerColor,
+                  thickness: 1.5, // Thickness of the divider line
+                ),
               ),
-              SizedBox(width: 8),
+              // SizedBox(width: 8),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     children: [
-                      Text('Total Earnings',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              )),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text('Total Earnings',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                )),
+                      ),
                       SizedBox(height: 48),
                       AnimatedCount(
                         count: earningThisMonth,
                         formatToCurrency: true,
                         duration: Duration(milliseconds: 600),
                         style: TextStyle(
-                          color: Colors.white,
                           fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       // Text(
@@ -215,7 +232,13 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                        child: Text('More',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),

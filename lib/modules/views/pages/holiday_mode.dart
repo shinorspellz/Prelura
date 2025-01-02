@@ -1,17 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/modules/controller/user/user_controller.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/primary_switch.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../res/colors.dart';
+import '../../../res/helper_function.dart';
 
 @RoutePage()
-class HolidayModeScreen extends StatelessWidget {
+class HolidayModeScreen extends ConsumerWidget {
   const HolidayModeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isVacationMode = ref.watch(userProvider).value?.isVacationMode;
     return Scaffold(
       appBar: PreluraAppBar(
         centerTitle: true,
@@ -42,7 +47,24 @@ class HolidayModeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                PreluraSwitch(swicthValue: true, onChanged: (value) {}),
+                PreluraSwitch(
+                    swicthValue: isVacationMode ?? false,
+                    onChanged: (value) async {
+                      await ref
+                          .read(userNotfierProvider.notifier)
+                          .updateProfile(isVacationMode: value);
+                      ref.read(userNotfierProvider).whenOrNull(
+                            error: (e, _) => context
+                                .alert('An error occured while updating'),
+                            data: (_) {
+                              ref.invalidate(userProvider);
+                              ref.refresh(userProvider.future);
+                              HelperFunction.context = context;
+                              HelperFunction.showToast(
+                                  message: 'Vacation Mode updated!');
+                            },
+                          );
+                    }),
               ],
             ),
           ),

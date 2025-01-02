@@ -27,7 +27,8 @@ final searchUserProvider = FutureProvider.family((ref, String query) async {
   return result;
 });
 
-final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username) async {
+final otherUserProfile =
+    FutureProvider.family<UserModel, String>((ref, username) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getUser(username);
@@ -35,7 +36,8 @@ final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username
   return result;
 });
 
-final userNotfierProvider = AsyncNotifierProvider<_UserController, void>(_UserController.new);
+final userNotfierProvider =
+    AsyncNotifierProvider<_UserController, void>(_UserController.new);
 
 class _UserController extends AsyncNotifier<void> {
   late final _repo = ref.read(userRepo);
@@ -44,7 +46,8 @@ class _UserController extends AsyncNotifier<void> {
   @override
   Future<void> build() async {}
 
-  Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files, Enum$FileTypeEnum type) async {
+  Future<List<Input$ImagesInputType>> _uploadMedia(
+      List<File> files, Enum$FileTypeEnum type) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
       type,
@@ -82,21 +85,21 @@ class _UserController extends AsyncNotifier<void> {
     );
   }
 
-  Future<void> updateProfile({
-    String? bio,
-    String? country,
-    String? displayName,
-    DateTime? dob,
-    String? firstName,
-    String? gender,
-    String? lastName,
-    String? otp,
-    Input$PhoneInputType? phoneNumber,
-    String? postCode,
-    String? username,
-    Input$LocationInputType? location,
-    String? fcmToken,
-  }) async {
+  Future<void> updateProfile(
+      {String? bio,
+      String? country,
+      String? displayName,
+      DateTime? dob,
+      String? firstName,
+      String? gender,
+      String? lastName,
+      String? otp,
+      Input$PhoneInputType? phoneNumber,
+      String? postCode,
+      String? username,
+      Input$LocationInputType? location,
+      String? fcmToken,
+      bool? isVacationMode}) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(
@@ -116,6 +119,7 @@ class _UserController extends AsyncNotifier<void> {
             username: username,
             location: location,
             fcmToken: fcmToken,
+            isVacationMode: isVacationMode,
           ),
         );
 
@@ -133,10 +137,16 @@ class FollowerQuery {
   final int? pageCount;
   final String username;
 
-  FollowerQuery({required this.username, this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
+  FollowerQuery(
+      {required this.username,
+      this.query,
+      this.latestFirst,
+      this.page = 1,
+      this.pageCount = 20});
 }
 
-final followersProvider = FutureProvider.family((ref, FollowerQuery params) async {
+final followersProvider =
+    FutureProvider.family((ref, FollowerQuery params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -150,7 +160,8 @@ final followersProvider = FutureProvider.family((ref, FollowerQuery params) asyn
   return result;
 });
 
-final followingProvider = FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
+final followingProvider =
+    FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -164,7 +175,8 @@ final followingProvider = FutureProvider.family<List<UserModel>, FollowerQuery>(
   return Future.value(result);
 });
 
-final followUserProvider = FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
+final followUserProvider =
+    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
   final repo = ref.watch(networkRepo);
 
   // Fetch followers based on parameters

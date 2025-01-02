@@ -328,6 +328,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'isVacationMode'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -481,6 +488,7 @@ class Query$ViewMe$viewMe {
     this.noOfFollowing,
     this.noOfFollowers,
     this.phone,
+    this.isVacationMode,
     this.$__typename = 'UserType',
   });
 
@@ -503,6 +511,7 @@ class Query$ViewMe$viewMe {
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
     final l$phone = json['phone'];
+    final l$isVacationMode = json['isVacationMode'];
     final l$$__typename = json['__typename'];
     return Query$ViewMe$viewMe(
       id: (l$id as int?),
@@ -532,6 +541,7 @@ class Query$ViewMe$viewMe {
           ? null
           : Query$ViewMe$viewMe$phone.fromJson(
               (l$phone as Map<String, dynamic>)),
+      isVacationMode: (l$isVacationMode as bool?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -571,6 +581,8 @@ class Query$ViewMe$viewMe {
   final int? noOfFollowers;
 
   final Query$ViewMe$viewMe$phone? phone;
+
+  final bool? isVacationMode;
 
   final String $__typename;
 
@@ -612,6 +624,8 @@ class Query$ViewMe$viewMe {
     _resultData['noOfFollowers'] = l$noOfFollowers;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
+    final l$isVacationMode = isVacationMode;
+    _resultData['isVacationMode'] = l$isVacationMode;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -637,6 +651,7 @@ class Query$ViewMe$viewMe {
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
     final l$phone = phone;
+    final l$isVacationMode = isVacationMode;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -657,6 +672,7 @@ class Query$ViewMe$viewMe {
       l$noOfFollowing,
       l$noOfFollowers,
       l$phone,
+      l$isVacationMode,
       l$$__typename,
     ]);
   }
@@ -759,6 +775,11 @@ class Query$ViewMe$viewMe {
     if (l$phone != lOther$phone) {
       return false;
     }
+    final l$isVacationMode = isVacationMode;
+    final lOther$isVacationMode = other.isVacationMode;
+    if (l$isVacationMode != lOther$isVacationMode) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -804,6 +825,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     int? noOfFollowing,
     int? noOfFollowers,
     Query$ViewMe$viewMe$phone? phone,
+    bool? isVacationMode,
     String? $__typename,
   });
   CopyWith$Query$ViewMe$viewMe$location<TRes> get location;
@@ -842,6 +864,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
     Object? phone = _undefined,
+    Object? isVacationMode = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$ViewMe$viewMe(
@@ -884,6 +907,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$ViewMe$viewMe$phone?),
+        isVacationMode: isVacationMode == _undefined
+            ? _instance.isVacationMode
+            : (isVacationMode as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -931,6 +957,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     int? noOfFollowing,
     int? noOfFollowers,
     Query$ViewMe$viewMe$phone? phone,
+    bool? isVacationMode,
     String? $__typename,
   }) =>
       _res;
@@ -6326,6 +6353,13 @@ const documentNodeQueryRecentlyViewedproducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'hashtags'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -6497,6 +6531,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     this.materials,
     this.customBrand,
     this.brand,
+    required this.hashtags,
     this.$__typename = 'ProductType',
   });
 
@@ -6524,6 +6559,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$materials = json['materials'];
     final l$customBrand = json['customBrand'];
     final l$brand = json['brand'];
+    final l$hashtags = json['hashtags'];
     final l$$__typename = json['__typename'];
     return Query$RecentlyViewedproducts$recentlyViewedProducts(
       id: (l$id as String),
@@ -6576,6 +6612,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
           ? null
           : Query$RecentlyViewedproducts$recentlyViewedProducts$brand.fromJson(
               (l$brand as Map<String, dynamic>)),
+      hashtags: (l$hashtags as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -6625,6 +6662,8 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
   final String? customBrand;
 
   final Query$RecentlyViewedproducts$recentlyViewedProducts$brand? brand;
+
+  final String hashtags;
 
   final String $__typename;
 
@@ -6681,6 +6720,8 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     _resultData['customBrand'] = l$customBrand;
     final l$brand = brand;
     _resultData['brand'] = l$brand?.toJson();
+    final l$hashtags = hashtags;
+    _resultData['hashtags'] = l$hashtags;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -6710,6 +6751,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$materials = materials;
     final l$customBrand = customBrand;
     final l$brand = brand;
+    final l$hashtags = hashtags;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -6734,6 +6776,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$customBrand,
       l$brand,
+      l$hashtags,
       l$$__typename,
     ]);
   }
@@ -6882,6 +6925,11 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     if (l$brand != lOther$brand) {
       return false;
     }
+    final l$hashtags = hashtags;
+    final lOther$hashtags = other.hashtags;
+    if (l$hashtags != lOther$hashtags) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -6938,6 +6986,7 @@ abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts<
         materials,
     String? customBrand,
     Query$RecentlyViewedproducts$recentlyViewedProducts$brand? brand,
+    String? hashtags,
     String? $__typename,
   });
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$category<TRes>
@@ -6994,6 +7043,7 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
     Object? materials = _undefined,
     Object? customBrand = _undefined,
     Object? brand = _undefined,
+    Object? hashtags = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$RecentlyViewedproducts$recentlyViewedProducts(
@@ -7064,6 +7114,9 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             ? _instance.brand
             : (brand
                 as Query$RecentlyViewedproducts$recentlyViewedProducts$brand?),
+        hashtags: hashtags == _undefined || hashtags == null
+            ? _instance.hashtags
+            : (hashtags as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -7158,6 +7211,7 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<
         materials,
     String? customBrand,
     Query$RecentlyViewedproducts$recentlyViewedProducts$brand? brand,
+    String? hashtags,
     String? $__typename,
   }) =>
       _res;
