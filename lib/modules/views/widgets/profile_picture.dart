@@ -24,6 +24,7 @@ class ProfilePictureWidget extends StatelessWidget {
         ),
         child: CircleAvatar(
           radius: height != null ? height! / 2 : 25,
+          backgroundColor: Colors.grey[600],
           child: updating
               ? SizedBox(
                   height: height != null ? height! / 2 : 25,
@@ -34,7 +35,7 @@ class ProfilePictureWidget extends StatelessWidget {
                   username?.split('').first.toUpperCase() ?? '--',
                   style: context.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
         ),
