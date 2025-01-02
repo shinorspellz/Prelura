@@ -1041,3 +1041,11 @@ class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
     return (state.value?.length ?? 0) < _totalItems;
   }
 }
+
+final userProductGroupingBySubCategoryProvider = FutureProvider.family((ref, int userId) async {
+  final repo = ref.watch(productRepo);
+  final result = await repo.getUserProductGrouping(userId: userId, groupBy: Enum$ProductGroupingEnum.SUB_CATEGORY);
+
+  return result;
+});
+
