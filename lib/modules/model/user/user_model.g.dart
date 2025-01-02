@@ -33,6 +33,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : LocationInputType.fromJson(
               json['location'] as Map<String, dynamic>),
+      isVacationMode: json['isVacationMode'] as bool?,
       isFollowing: json['isFollowing'] as bool?,
       noOfFollowers: (json['noOfFollowers'] as num?)?.toInt(),
       noOfFollowing: (json['noOfFollowing'] as num?)?.toInt(),
@@ -56,6 +57,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'listing': instance.listing,
       'phone': instance.phone,
       'location': instance.location,
+      'isVacationMode': instance.isVacationMode,
       'isFollowing': instance.isFollowing,
       'noOfFollowers': instance.noOfFollowers,
       'noOfFollowing': instance.noOfFollowing,

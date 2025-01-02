@@ -25,6 +25,7 @@ query ViewMe {
       number
       countryCode
     }
+    isVacationMode
   }
 }
 query SearchUser($search: String!) {
@@ -167,6 +168,7 @@ query RecentlyViewedproducts {
       id
       name
     }
+    hashtags
   }
 }
 

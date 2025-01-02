@@ -38,6 +38,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final bool isDescription;
   final EdgeInsets? padding;
   final double? height;
+  final TextAlign? textAlign;
 
   /// formats the textfeild to a password version
   final bool isPassword;
@@ -71,6 +72,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.textInputAction,
       this.padding,
       this.height,
+      this.textAlign,
       this.isDescription = false});
 
   @override
@@ -137,6 +139,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
             child: TextFormField(
               textInputAction: widget.textInputAction,
               autocorrect: false,
+              textAlign: widget.textAlign ?? TextAlign.start,
               enableSuggestions: false,
               minLines: widget.minLines ?? 1,
               controller: widget.controller,

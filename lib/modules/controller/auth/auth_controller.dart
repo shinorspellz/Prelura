@@ -58,6 +58,14 @@ class _AuthController extends AsyncNotifier<void> {
         ));
   }
 
+  Future<void> resetPassword({required newPassword}) async {
+    state = const AsyncLoading();
+
+    state = await AsyncValue.guard(() async {
+      await _repo.resetPassword(newPassword);
+    });
+  }
+
   Future<void> logout() async {
     state = const AsyncLoading();
 

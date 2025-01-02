@@ -339,6 +339,7 @@ type Mutation {
     fcmToken: String
     firstName: String
     gender: String
+    isVacationMode: Boolean
     lastName: String
     location: LocationInputType
 
@@ -1364,6 +1365,7 @@ type UserNode implements Node {
   use2fa: Boolean!
   dateJoined: DateTime!
   lastLogin: DateTime
+  isVacationMode: Boolean!
   inWaitlist: Boolean!
   useGoogleAuthenticator: Boolean!
   gASecret: String
@@ -1402,6 +1404,7 @@ type UserType {
   fullName: String
   phone: PhoneType
   listing: Int
+  isVacationMode: Boolean
   isFollowing: Boolean
   noOfFollowing: Int
   noOfFollowers: Int

@@ -5973,6 +5973,7 @@ class Variables$Mutation$UpdateProfile {
     String? username,
     Input$LocationInputType? location,
     String? fcmToken,
+    bool? isVacationMode,
   }) =>
       Variables$Mutation$UpdateProfile._({
         if (bio != null) r'bio': bio,
@@ -5990,6 +5991,7 @@ class Variables$Mutation$UpdateProfile {
         if (username != null) r'username': username,
         if (location != null) r'location': location,
         if (fcmToken != null) r'fcmToken': fcmToken,
+        if (isVacationMode != null) r'isVacationMode': isVacationMode,
       });
 
   Variables$Mutation$UpdateProfile._(this._$data);
@@ -6066,6 +6068,10 @@ class Variables$Mutation$UpdateProfile {
       final l$fcmToken = data['fcmToken'];
       result$data['fcmToken'] = (l$fcmToken as String?);
     }
+    if (data.containsKey('isVacationMode')) {
+      final l$isVacationMode = data['isVacationMode'];
+      result$data['isVacationMode'] = (l$isVacationMode as bool?);
+    }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
 
@@ -6103,6 +6109,8 @@ class Variables$Mutation$UpdateProfile {
       (_$data['location'] as Input$LocationInputType?);
 
   String? get fcmToken => (_$data['fcmToken'] as String?);
+
+  bool? get isVacationMode => (_$data['isVacationMode'] as bool?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -6165,6 +6173,10 @@ class Variables$Mutation$UpdateProfile {
     if (_$data.containsKey('fcmToken')) {
       final l$fcmToken = fcmToken;
       result$data['fcmToken'] = l$fcmToken;
+    }
+    if (_$data.containsKey('isVacationMode')) {
+      final l$isVacationMode = isVacationMode;
+      result$data['isVacationMode'] = l$isVacationMode;
     }
     return result$data;
   }
@@ -6313,6 +6325,15 @@ class Variables$Mutation$UpdateProfile {
     if (l$fcmToken != lOther$fcmToken) {
       return false;
     }
+    final l$isVacationMode = isVacationMode;
+    final lOther$isVacationMode = other.isVacationMode;
+    if (_$data.containsKey('isVacationMode') !=
+        other._$data.containsKey('isVacationMode')) {
+      return false;
+    }
+    if (l$isVacationMode != lOther$isVacationMode) {
+      return false;
+    }
     return true;
   }
 
@@ -6333,6 +6354,7 @@ class Variables$Mutation$UpdateProfile {
     final l$username = username;
     final l$location = location;
     final l$fcmToken = fcmToken;
+    final l$isVacationMode = isVacationMode;
     return Object.hashAll([
       _$data.containsKey('bio') ? l$bio : const {},
       _$data.containsKey('country') ? l$country : const {},
@@ -6349,6 +6371,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('username') ? l$username : const {},
       _$data.containsKey('location') ? l$location : const {},
       _$data.containsKey('fcmToken') ? l$fcmToken : const {},
+      _$data.containsKey('isVacationMode') ? l$isVacationMode : const {},
     ]);
   }
 }
@@ -6378,6 +6401,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     String? username,
     Input$LocationInputType? location,
     String? fcmToken,
+    bool? isVacationMode,
   });
 }
 
@@ -6410,6 +6434,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? username = _undefined,
     Object? location = _undefined,
     Object? fcmToken = _undefined,
+    Object? isVacationMode = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProfile._({
         ..._instance._$data,
@@ -6431,6 +6456,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (location != _undefined)
           'location': (location as Input$LocationInputType?),
         if (fcmToken != _undefined) 'fcmToken': (fcmToken as String?),
+        if (isVacationMode != _undefined)
+          'isVacationMode': (isVacationMode as bool?),
       }));
 }
 
@@ -6456,6 +6483,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     String? username,
     Input$LocationInputType? location,
     String? fcmToken,
+    bool? isVacationMode,
   }) =>
       _res;
 }
@@ -6738,6 +6766,15 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isVacationMode')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -6804,6 +6841,10 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'fcmToken'),
             value: VariableNode(name: NameNode(value: 'fcmToken')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'isVacationMode'),
+            value: VariableNode(name: NameNode(value: 'isVacationMode')),
           ),
         ],
         directives: [],
@@ -17881,6 +17922,592 @@ class _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
 
   call({
     String? paymentStatus,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Mutation$PasswordReset {
+  factory Variables$Mutation$PasswordReset({
+    required String newpassword,
+    required String token,
+  }) =>
+      Variables$Mutation$PasswordReset._({
+        r'newpassword': newpassword,
+        r'token': token,
+      });
+
+  Variables$Mutation$PasswordReset._(this._$data);
+
+  factory Variables$Mutation$PasswordReset.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$newpassword = data['newpassword'];
+    result$data['newpassword'] = (l$newpassword as String);
+    final l$token = data['token'];
+    result$data['token'] = (l$token as String);
+    return Variables$Mutation$PasswordReset._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get newpassword => (_$data['newpassword'] as String);
+
+  String get token => (_$data['token'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$newpassword = newpassword;
+    result$data['newpassword'] = l$newpassword;
+    final l$token = token;
+    result$data['token'] = l$token;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$PasswordReset<Variables$Mutation$PasswordReset>
+      get copyWith => CopyWith$Variables$Mutation$PasswordReset(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$PasswordReset ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$newpassword = newpassword;
+    final lOther$newpassword = other.newpassword;
+    if (l$newpassword != lOther$newpassword) {
+      return false;
+    }
+    final l$token = token;
+    final lOther$token = other.token;
+    if (l$token != lOther$token) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$newpassword = newpassword;
+    final l$token = token;
+    return Object.hashAll([
+      l$newpassword,
+      l$token,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$PasswordReset<TRes> {
+  factory CopyWith$Variables$Mutation$PasswordReset(
+    Variables$Mutation$PasswordReset instance,
+    TRes Function(Variables$Mutation$PasswordReset) then,
+  ) = _CopyWithImpl$Variables$Mutation$PasswordReset;
+
+  factory CopyWith$Variables$Mutation$PasswordReset.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$PasswordReset;
+
+  TRes call({
+    String? newpassword,
+    String? token,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$PasswordReset<TRes>
+    implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
+  _CopyWithImpl$Variables$Mutation$PasswordReset(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$PasswordReset _instance;
+
+  final TRes Function(Variables$Mutation$PasswordReset) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? newpassword = _undefined,
+    Object? token = _undefined,
+  }) =>
+      _then(Variables$Mutation$PasswordReset._({
+        ..._instance._$data,
+        if (newpassword != _undefined && newpassword != null)
+          'newpassword': (newpassword as String),
+        if (token != _undefined && token != null) 'token': (token as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$PasswordReset<TRes>
+    implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$PasswordReset(this._res);
+
+  TRes _res;
+
+  call({
+    String? newpassword,
+    String? token,
+  }) =>
+      _res;
+}
+
+class Mutation$PasswordReset {
+  Mutation$PasswordReset({
+    this.passwordReset,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$PasswordReset.fromJson(Map<String, dynamic> json) {
+    final l$passwordReset = json['passwordReset'];
+    final l$$__typename = json['__typename'];
+    return Mutation$PasswordReset(
+      passwordReset: l$passwordReset == null
+          ? null
+          : Mutation$PasswordReset$passwordReset.fromJson(
+              (l$passwordReset as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$PasswordReset$passwordReset? passwordReset;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$passwordReset = passwordReset;
+    _resultData['passwordReset'] = l$passwordReset?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$passwordReset = passwordReset;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$passwordReset,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$PasswordReset || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$passwordReset = passwordReset;
+    final lOther$passwordReset = other.passwordReset;
+    if (l$passwordReset != lOther$passwordReset) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$PasswordReset on Mutation$PasswordReset {
+  CopyWith$Mutation$PasswordReset<Mutation$PasswordReset> get copyWith =>
+      CopyWith$Mutation$PasswordReset(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$PasswordReset<TRes> {
+  factory CopyWith$Mutation$PasswordReset(
+    Mutation$PasswordReset instance,
+    TRes Function(Mutation$PasswordReset) then,
+  ) = _CopyWithImpl$Mutation$PasswordReset;
+
+  factory CopyWith$Mutation$PasswordReset.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$PasswordReset;
+
+  TRes call({
+    Mutation$PasswordReset$passwordReset? passwordReset,
+    String? $__typename,
+  });
+  CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset;
+}
+
+class _CopyWithImpl$Mutation$PasswordReset<TRes>
+    implements CopyWith$Mutation$PasswordReset<TRes> {
+  _CopyWithImpl$Mutation$PasswordReset(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$PasswordReset _instance;
+
+  final TRes Function(Mutation$PasswordReset) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? passwordReset = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$PasswordReset(
+        passwordReset: passwordReset == _undefined
+            ? _instance.passwordReset
+            : (passwordReset as Mutation$PasswordReset$passwordReset?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset {
+    final local$passwordReset = _instance.passwordReset;
+    return local$passwordReset == null
+        ? CopyWith$Mutation$PasswordReset$passwordReset.stub(_then(_instance))
+        : CopyWith$Mutation$PasswordReset$passwordReset(
+            local$passwordReset, (e) => call(passwordReset: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$PasswordReset<TRes>
+    implements CopyWith$Mutation$PasswordReset<TRes> {
+  _CopyWithStubImpl$Mutation$PasswordReset(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$PasswordReset$passwordReset? passwordReset,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset =>
+      CopyWith$Mutation$PasswordReset$passwordReset.stub(_res);
+}
+
+const documentNodeMutationPasswordReset = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'PasswordReset'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'newpassword')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'token')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'passwordReset'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'newPassword1'),
+            value: VariableNode(name: NameNode(value: 'newpassword')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'newPassword2'),
+            value: VariableNode(name: NameNode(value: 'newpassword')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'token'),
+            value: VariableNode(name: NameNode(value: 'token')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'errors'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$PasswordReset _parserFn$Mutation$PasswordReset(
+        Map<String, dynamic> data) =>
+    Mutation$PasswordReset.fromJson(data);
+typedef OnMutationCompleted$Mutation$PasswordReset = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$PasswordReset?,
+);
+
+class Options$Mutation$PasswordReset
+    extends graphql.MutationOptions<Mutation$PasswordReset> {
+  Options$Mutation$PasswordReset({
+    String? operationName,
+    required Variables$Mutation$PasswordReset variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$PasswordReset? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$PasswordReset? onCompleted,
+    graphql.OnMutationUpdate<Mutation$PasswordReset>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$PasswordReset(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationPasswordReset,
+          parserFn: _parserFn$Mutation$PasswordReset,
+        );
+
+  final OnMutationCompleted$Mutation$PasswordReset? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$PasswordReset
+    extends graphql.WatchQueryOptions<Mutation$PasswordReset> {
+  WatchOptions$Mutation$PasswordReset({
+    String? operationName,
+    required Variables$Mutation$PasswordReset variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$PasswordReset? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationPasswordReset,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$PasswordReset,
+        );
+}
+
+extension ClientExtension$Mutation$PasswordReset on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$PasswordReset>> mutate$PasswordReset(
+          Options$Mutation$PasswordReset options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$PasswordReset> watchMutation$PasswordReset(
+          WatchOptions$Mutation$PasswordReset options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$PasswordReset$passwordReset {
+  Mutation$PasswordReset$passwordReset({
+    this.errors,
+    this.success,
+    this.$__typename = 'PasswordReset',
+  });
+
+  factory Mutation$PasswordReset$passwordReset.fromJson(
+      Map<String, dynamic> json) {
+    final l$errors = json['errors'];
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$PasswordReset$passwordReset(
+      errors: (l$errors as Map<String, dynamic>?),
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Map<String, dynamic>? errors;
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$errors = errors;
+    _resultData['errors'] = l$errors;
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$errors = errors;
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$errors,
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$PasswordReset$passwordReset ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$errors = errors;
+    final lOther$errors = other.errors;
+    if (l$errors != lOther$errors) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$PasswordReset$passwordReset
+    on Mutation$PasswordReset$passwordReset {
+  CopyWith$Mutation$PasswordReset$passwordReset<
+          Mutation$PasswordReset$passwordReset>
+      get copyWith => CopyWith$Mutation$PasswordReset$passwordReset(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
+  factory CopyWith$Mutation$PasswordReset$passwordReset(
+    Mutation$PasswordReset$passwordReset instance,
+    TRes Function(Mutation$PasswordReset$passwordReset) then,
+  ) = _CopyWithImpl$Mutation$PasswordReset$passwordReset;
+
+  factory CopyWith$Mutation$PasswordReset$passwordReset.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$PasswordReset$passwordReset;
+
+  TRes call({
+    Map<String, dynamic>? errors,
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$PasswordReset$passwordReset<TRes>
+    implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
+  _CopyWithImpl$Mutation$PasswordReset$passwordReset(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$PasswordReset$passwordReset _instance;
+
+  final TRes Function(Mutation$PasswordReset$passwordReset) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? errors = _undefined,
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$PasswordReset$passwordReset(
+        errors: errors == _undefined
+            ? _instance.errors
+            : (errors as Map<String, dynamic>?),
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$PasswordReset$passwordReset<TRes>
+    implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
+  _CopyWithStubImpl$Mutation$PasswordReset$passwordReset(this._res);
+
+  TRes _res;
+
+  call({
+    Map<String, dynamic>? errors,
+    bool? success,
     String? $__typename,
   }) =>
       _res;
