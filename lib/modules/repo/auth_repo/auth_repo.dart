@@ -155,12 +155,31 @@ class AuthRepo {
     return stream;
   }
 
-  Future<bool> resetPassword(String newPassword) async {
+  Future<String?> requestEmailOtp(String email) async {
+    final response = await _client.mutate$ResetPassword(
+      Options$Mutation$ResetPassword(
+        variables: Variables$Mutation$ResetPassword(
+          email: email,
+        ),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'AuthMutation');
+      throw 'An error occured';
+    }
+    return response.parsedData!.resetPassword!.message;
+  }
+
+  Future<bool> resetPassword(String newPassword, String token) async {
     final response = await _client.mutate$PasswordReset(
       Options$Mutation$PasswordReset(
         variables: Variables$Mutation$PasswordReset(
           newpassword: newPassword,
-          token: getToken!,
+          token: token,
         ),
       ),
     );

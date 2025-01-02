@@ -348,3 +348,9 @@ mutation PasswordReset(
     success
   }
 }
+
+mutation ResetPassword($email: String){
+  resetPassword(email: $email){
+    message
+  }
+}

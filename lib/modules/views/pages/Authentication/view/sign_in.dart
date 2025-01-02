@@ -102,7 +102,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(ForgotPasswordRoute());
+                        },
                         child: Text(
                           "Forgot Password ?",
                           style: mcontext.textTheme.bodyLarge!.copyWith(

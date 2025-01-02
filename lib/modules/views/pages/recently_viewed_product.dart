@@ -1,20 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 
-import '../../../res/colors.dart';
 import '../../controller/product/product_provider.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import '../widgets/gap.dart';
-import 'Sell Item/view/brand_view.dart';
 
 @RoutePage()
-class DiscountedProductsView extends ConsumerStatefulWidget {
-  const DiscountedProductsView(
+class RecentlyViewedProductScreen extends ConsumerStatefulWidget {
+  const RecentlyViewedProductScreen(
       {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
   final int? id;
@@ -23,11 +20,13 @@ class DiscountedProductsView extends ConsumerStatefulWidget {
   static final ScrollController scrollController = ScrollController();
 
   @override
-  _ProductsByBrandPageState createState() => _ProductsByBrandPageState();
+  _RecentlyViewedProductScreenState createState() =>
+      _RecentlyViewedProductScreenState();
 }
 
-class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
-  final controller = DiscountedProductsView.scrollController;
+class _RecentlyViewedProductScreenState
+    extends ConsumerState<RecentlyViewedProductScreen> {
+  final controller = RecentlyViewedProductScreen.scrollController;
 
   @override
   void initState() {
@@ -63,11 +62,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "On Sale",
+        appbarTitle: "Recently Viewed",
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(discountedProductsProvider.future);
+          await ref.refresh(recentlyViewedProductsProvider.future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -106,17 +105,18 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                     ),
                   )),
                 ),
-                ref.watch(discountedProductsProvider).maybeWhen(
+                ref.watch(recentlyViewedProductsProvider).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) => SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        padding:
+                            EdgeInsets.only(left: 16, right: 16, bottom: 16),
                         sliver: SliverGrid.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
-                            childAspectRatio: 0.50,
+                            childAspectRatio: 0.49,
                           ),
                           itemCount: products.take(6).length,
                           itemBuilder: (context, index) {
@@ -146,11 +146,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                           ),
                         );
                       },
-                      loading: () => SliverToBoxAdapter(
-                          child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridShimmer(),
-                      )),
+                      loading: () => SliverToBoxAdapter(child: GridShimmer()),
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
                 // if (ref

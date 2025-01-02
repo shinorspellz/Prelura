@@ -70,6 +70,59 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => GridShimmer()),
         ] else ...[
+          Divider(thickness: 1, color: PreluraColors.primaryColor),
+          _sectionTitle(
+            'Recently viewed ',
+            "",
+            context,
+            onTap: () => context.pushRoute(
+              RecentlyViewedProductRoute(title: "", id: 0),
+            ),
+          ),
+          AspectRatio(
+            aspectRatio: 1.0,
+            // height: 320,
+            // width: MediaQuery.sizeOf(context).width,
+            child: ref.watch(recentlyViewedProductsProvider).maybeWhen(
+                  data: (products) => ListView.separated(
+                    padding: EdgeInsets.only(left: 15),
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (context, index) => 10.horizontalSpacing,
+                    itemBuilder: (context, index) => SizedBox(
+                      width: 180,
+                      child: ProductCard(product: products[index]),
+                    ),
+                    itemCount: products.length,
+                  ),
+                  loading: () => ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      mockData.length,
+                      (_) => Container(
+                        // height: 220,
+                        width: 180,
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                      ),
+                    ),
+                  ),
+                  orElse: () => ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      mockData.length,
+                      (_) => Container(
+                        // height: 220,
+                        width: 180,
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                      ),
+                    ),
+                  ),
+                ),
+          ),
+          Divider(thickness: 1, color: PreluraColors.primaryColor),
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                 error: (e, _) {
@@ -252,6 +305,34 @@ Widget _buildSectionTitle(
         const SizedBox(
           height: 10,
         ),
+      ],
+    ),
+  );
+}
+
+Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          MainTitle,
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+        ),
+        GestureDetector(
+          onTap: onTap,
+          child: Text("See All",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.primaryColor)),
+        )
       ],
     ),
   );
