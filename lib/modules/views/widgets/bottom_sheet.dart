@@ -37,16 +37,13 @@ class VBottomSheetComponent {
         transitionAnimationController: transitionAnimationController,
         useSafeArea: true,
         useRootNavigator: useRootNavigator,
-        builder: (context) => Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              VBottomSheetWidget(
-                customChild: child,
-                removeSidePadding: removeSidePadding,
-                showBottomDivider: showBottomDivider,
-              )
-            ]),
+        builder: (context) => Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.start, children: [
+          VBottomSheetWidget(
+            customChild: child,
+            removeSidePadding: removeSidePadding,
+            showBottomDivider: showBottomDivider,
+          )
+        ]),
       );
 
   static Future customStatefulBottomSheet({
@@ -96,8 +93,7 @@ class VBottomSheetWidget extends StatefulWidget {
   State<VBottomSheetWidget> createState() => _VBottomSheetWidgetState();
 }
 
-class _VBottomSheetWidgetState extends State<VBottomSheetWidget>
-    with TickerProviderStateMixin {
+class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(milliseconds: 600),
     vsync: this,
@@ -158,11 +154,12 @@ class _VBottomSheetWidgetState extends State<VBottomSheetWidget>
                               ],
                               Text(
                                 widget.actions![index].title,
-                                style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                                      fontWeight: widget.actions![index].textWeight ?? FontWeight.w600,
-                                      color: widget.actions![index].textColor ?? Theme.of(context).primaryColor,
-                                      fontSize: 16,
-                                    ),
+                                style: widget.actions![index].style ??
+                                    Theme.of(context).textTheme.displayLarge!.copyWith(
+                                          fontWeight: widget.actions![index].textWeight ?? FontWeight.w600,
+                                          color: widget.actions![index].textColor ?? Theme.of(context).primaryColor,
+                                          fontSize: 16,
+                                        ),
                               ),
                               if (widget.actions![index].endIcon != null) ...[
                                 Spacer(),
@@ -240,16 +237,20 @@ class VBottomSheetItem {
   final Widget? endIcon;
   final Function(BuildContext) onTap;
   final String title;
+  @Deprecated('Use style instead')
   final Color? textColor;
+  @Deprecated('Use style instead')
   final FontWeight? textWeight;
+  final TextStyle? style;
 
   VBottomSheetItem({
     this.icon,
     required this.onTap,
     required this.title,
-    this.textColor,
-    this.textWeight,
+    @Deprecated('Use style instead') this.textColor,
+    @Deprecated('Use style instead') this.textWeight,
     this.endIcon,
+    this.style,
   });
 }
 
