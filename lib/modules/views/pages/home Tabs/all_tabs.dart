@@ -70,6 +70,46 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => GridShimmer()),
         ] else ...[
+          Divider(thickness: 1, color: PreluraColors.primaryColor),
+          _buildSectionTitle(
+            'Recently viewed ',
+            "",
+            context,
+            onTap: () => context.pushRoute(
+              RecentlyViewedProductRoute(title: "", id: 0),
+            ),
+          ),
+          AspectRatio(
+            aspectRatio: 1.0,
+            // height: 320,
+            // width: MediaQuery.sizeOf(context).width,
+            child: ref.watch(recentlyViewedProductsProvider).maybeWhen(
+                  data: (products) => ListView.separated(
+                    padding: EdgeInsets.only(left: 15),
+                    scrollDirection: Axis.horizontal,
+                    separatorBuilder: (context, index) => 10.horizontalSpacing,
+                    itemBuilder: (context, index) => SizedBox(
+                      width: 180,
+                      child: ProductCard(product: products[index]),
+                    ),
+                    itemCount: products.length,
+                  ),
+                  orElse: () => ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(
+                      mockData.length,
+                      (_) => Container(
+                        // height: 220,
+                        width: 180,
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                      ),
+                    ),
+                  ),
+                ),
+          ),
+          Divider(thickness: 1, color: PreluraColors.primaryColor),
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                 error: (e, _) {

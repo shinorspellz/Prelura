@@ -23,6 +23,8 @@ class AppRouter extends RootStackRouter {
             page: LoginRoute.page,
             initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
+        AutoRoute(page: ForgotPasswordRoute.page),
+        AutoRoute(page: NewPasswordRoute.page),
         AutoRoute(
             page: AppStartupRoute.page,
             initial: _ref.read(authStateProvider).requireValue),
@@ -203,6 +205,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: MultiBuyDiscountRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ResetPasswordRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: SecurityMenuRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: RecentlyViewedProductRoute.page, guards: [AuthGuard(_ref)]),
       ];
 }
 

@@ -175,16 +175,26 @@ final followingProvider =
   return Future.value(result);
 });
 
-final followUserProvider =
-    FutureProvider.autoDispose.family<bool, int>((ref, userId) async {
-  final repo = ref.watch(networkRepo);
+class FollowerUserNotifier extends AsyncNotifier<bool> {
+  late final NetworkRepo repo;
 
-  // Fetch followers based on parameters
-  final result = await repo.followUser(userId);
-  print("result is $result");
+  @override
+  FutureOr<bool> build() async {
+    repo = ref.watch(networkRepo); // Initialize dependencies
+    return false;
+  }
 
-  return result;
-});
+  Future<bool> followUser(int userId) async {
+    state = AsyncValue.loading();
+    final result = await repo.followUser(userId);
+    state = AsyncValue.data(result); // Update the state
+    return result;
+  }
+}
+
+final followUserProvider = AsyncNotifierProvider<FollowerUserNotifier, bool>(
+  FollowerUserNotifier.new,
+);
 
 // @AYOPELUMI you dont put these actions in future provider instead use them in notifier provider classes
 // @AYOPELUMI future provider is only used in get requests
@@ -201,6 +211,7 @@ class UnFollowUserNotifier extends AsyncNotifier<bool> {
 
   // Async function to unfollow a user
   Future<bool> unFollowUser(int userId) async {
+    state = AsyncValue.loading();
     final result = await repo.unFollowUser(userId);
     state = AsyncValue.data(result); // Update the state
     return result;

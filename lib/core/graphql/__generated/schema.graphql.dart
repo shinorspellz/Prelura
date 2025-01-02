@@ -1548,6 +1548,7 @@ Enum$PaymentsPaymentPaymentStatusChoices
 enum Enum$ProductGroupingEnum {
   BRAND,
   CATEGORY,
+  SUB_CATEGORY,
   TOP_BRAND,
   $unknown;
 
@@ -1563,6 +1564,8 @@ String toJson$Enum$ProductGroupingEnum(Enum$ProductGroupingEnum e) {
       return r'BRAND';
     case Enum$ProductGroupingEnum.CATEGORY:
       return r'CATEGORY';
+    case Enum$ProductGroupingEnum.SUB_CATEGORY:
+      return r'SUB_CATEGORY';
     case Enum$ProductGroupingEnum.TOP_BRAND:
       return r'TOP_BRAND';
     case Enum$ProductGroupingEnum.$unknown:
@@ -1576,6 +1579,8 @@ Enum$ProductGroupingEnum fromJson$Enum$ProductGroupingEnum(String value) {
       return Enum$ProductGroupingEnum.BRAND;
     case r'CATEGORY':
       return Enum$ProductGroupingEnum.CATEGORY;
+    case r'SUB_CATEGORY':
+      return Enum$ProductGroupingEnum.SUB_CATEGORY;
     case r'TOP_BRAND':
       return Enum$ProductGroupingEnum.TOP_BRAND;
     default:

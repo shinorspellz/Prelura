@@ -5368,6 +5368,12 @@
             "deprecationReason": null
           },
           {
+            "name": "SUB_CATEGORY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "TOP_BRAND",
             "description": null,
             "isDeprecated": false,
@@ -7065,6 +7071,84 @@
             "deprecationReason": null
           },
           {
+            "name": "resetPassword",
+            "description": null,
+            "args": [
+              {
+                "name": "email",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ResetPassword",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "passwordReset",
+            "description": "Change user password without old password.\n\nReceive the token that was sent by email.\n\nIf token and new passwords are valid, update\nuser password and in case of using refresh\ntokens, revoke all of them.\n\nAlso, if user has not been verified yet, verify it.",
+            "args": [
+              {
+                "name": "token",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "newPassword1",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "newPassword2",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PasswordReset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "register",
             "description": "Register user with fields defined in the settings.\n\nIf the email field of the user model is part of the\nregistration fields (default), check if there is\nno user with that email or as a secondary email.\n\nIf it exists, it does not register the user,\neven if the email field is not defined as unique\n(default of the default django user model).\n\nWhen creating the user, it also creates a `UserStatus`\nrelated to that user, making it possible to track\nif the user is archived, verified and has a secondary\nemail.\n\nSend account verification email.\n\nIf allowed to not verified users login, return token.",
             "args": [
@@ -7283,61 +7367,6 @@
             "type": {
               "kind": "OBJECT",
               "name": "ResendActivationEmail",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "passwordReset",
-            "description": "Change user password without old password.\n\nReceive the token that was sent by email.\n\nIf token and new passwords are valid, update\nuser password and in case of using refresh\ntokens, revoke all of them.\n\nAlso, if user has not been verified yet, verify it.",
-            "args": [
-              {
-                "name": "token",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "newPassword1",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "newPassword2",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "OBJECT",
-              "name": "PasswordReset",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8821,8 +8850,31 @@
       },
       {
         "kind": "OBJECT",
-        "name": "NewRegister",
-        "description": "Register user with fields defined in the settings.\n\nIf the email field of the user model is part of the\nregistration fields (default), check if there is\nno user with that email or as a secondary email.\n\nIf it exists, it does not register the user,\neven if the email field is not defined as unique\n(default of the default django user model).\n\nWhen creating the user, it also creates a `UserStatus`\nrelated to that user, making it possible to track\nif the user is archived, verified and has a secondary\nemail.\n\nSend account verification email.\n\nIf allowed to not verified users login, return token.",
+        "name": "ResetPassword",
+        "description": null,
+        "fields": [
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PasswordReset",
+        "description": "Change user password without old password.\n\nReceive the token that was sent by email.\n\nIf token and new passwords are valid, update\nuser password and in case of using refresh\ntokens, revoke all of them.\n\nAlso, if user has not been verified yet, verify it.",
         "fields": [
           {
             "name": "errors",
@@ -8861,6 +8913,41 @@
         "fields": null,
         "inputFields": null,
         "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "NewRegister",
+        "description": "Register user with fields defined in the settings.\n\nIf the email field of the user model is part of the\nregistration fields (default), check if there is\nno user with that email or as a secondary email.\n\nIf it exists, it does not register the user,\neven if the email field is not defined as unique\n(default of the default django user model).\n\nWhen creating the user, it also creates a `UserStatus`\nrelated to that user, making it possible to track\nif the user is archived, verified and has a secondary\nemail.\n\nSend account verification email.\n\nIf allowed to not verified users login, return token.",
+        "fields": [
+          {
+            "name": "errors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "ExpectedErrorType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "success",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -9048,41 +9135,6 @@
         "kind": "OBJECT",
         "name": "ResendActivationEmail",
         "description": "Sends activation email.\n\nIt is called resend because theoretically\nthe first activation email was sent when\nthe user registered.\n\nIf there is no user with the requested email,\na successful response is returned.",
-        "fields": [
-          {
-            "name": "errors",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "ExpectedErrorType",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "success",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "PasswordReset",
-        "description": "Change user password without old password.\n\nReceive the token that was sent by email.\n\nIf token and new passwords are valid, update\nuser password and in case of using refresh\ntokens, revoke all of them.\n\nAlso, if user has not been verified yet, verify it.",
         "fields": [
           {
             "name": "errors",

@@ -459,10 +459,12 @@ class ProductRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-        throw error;
+        log(error, name: "UserProductGrouping Error");
       }
-      log(response.exception.toString(), name: 'ProductRepo');
-      throw 'An error occured';
+      log(response.exception.toString(), name: 'grouping error');
+      response.data?.keys.forEach((element) {
+        log(element, name: "UserProductGrouping Error");
+      });
     }
 
     if (response.parsedData == null) {

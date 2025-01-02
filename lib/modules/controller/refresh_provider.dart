@@ -16,6 +16,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     state = true;
     ref.refresh(allProductProvider(null).future).then((_) => state = false);
     ref.refresh(filterProductByPriceProvider(15).future);
+    ref.refresh(recentlyViewedProductsProvider.future);
     final category = ref.watch(categoryProvider).valueOrNull;
     if (category != null) {
       final matchingCategory = category.firstWhere((e) => e.name == name);
