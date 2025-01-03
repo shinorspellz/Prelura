@@ -536,49 +536,51 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       ),
 
                       20.verticalSpacing,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Featured',
-                              style: context.textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            10.verticalSpacing,
-                            ref.watch(userProduct(user.username)).when(
-                                  skipLoadingOnRefresh: false,
-                                  data: (products) => DisplaySection(
-                                    products: products.where((e) => e.isFeatured ?? false).toList(),
-                                    isInProduct: false,
-                                  ),
-                                  error: (e, _) {
-                                    return Center(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(e.toString()),
-                                          TextButton.icon(
-                                            onPressed: () {
-                                              // log(e.toString(), stackTrace: _);
-                                              ref.invalidate(userProduct);
-                                            },
-                                            label: const Text('Retry'),
-                                            icon: const Icon(Icons.refresh_rounded),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  loading: () => GridShimmer(),
+                      if (ref.watch(userProduct(user.username)).valueOrNull?.where((e) => e.isFeatured ?? false).toList().isNotEmpty ?? false) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Featured',
+                                style: context.textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.w600,
                                 ),
-                            10.verticalSpacing,
-                          ],
+                              ),
+                              10.verticalSpacing,
+                              ref.watch(userProduct(user.username)).when(
+                                    skipLoadingOnRefresh: false,
+                                    data: (products) => DisplaySection(
+                                      products: products.where((e) => e.isFeatured ?? false).toList(),
+                                      isInProduct: false,
+                                    ),
+                                    error: (e, _) {
+                                      return Center(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(e.toString()),
+                                            TextButton.icon(
+                                              onPressed: () {
+                                                // log(e.toString(), stackTrace: _);
+                                                ref.invalidate(userProduct);
+                                              },
+                                              label: const Text('Retry'),
+                                              icon: const Icon(Icons.refresh_rounded),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                    loading: () => GridShimmer(),
+                                  ),
+                              10.verticalSpacing,
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
 
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
