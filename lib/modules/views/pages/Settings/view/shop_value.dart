@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/utils/currency_format.dart';
+import 'package:prelura_app/modules/controller/user/user_earnings_controller.dart';
 import 'package:prelura_app/modules/views/pages/animated_counter.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
@@ -44,11 +45,12 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userEarinings = ref.watch(userEarningsProvider).valueOrNull;
+
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "Shop Value",
@@ -67,13 +69,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                           )),
                   16.horizontalSpacing,
                   AnimatedCount(
-                    count: currentShopValue,
+                    count: userEarinings?.networth.toInt() ?? 0, //currentShopValue,
                     formatToCurrency: true,
                     duration: Duration(milliseconds: 900),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(color: PreluraColors.grey),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
                   ),
                   // Text(
                   //   "10000".formatToPounds,
@@ -93,17 +92,15 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w500,
                         )),
-                Text("Pending : £1000",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: PreluraColors.primaryColor)),
+                Text("Pending : ${(userEarinings?.pendingPayments.value ?? 0).toString().formatToPounds}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
               ],
             ),
           ),
           Padding(
             padding: EdgeInsets.all(64),
             child: AnimatedCount(
-                count: balance,
+                count: userEarinings?.completedPayments.value ?? 0,
                 formatToCurrency: true,
                 duration: Duration(milliseconds: 600),
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
@@ -128,10 +125,8 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
           ),
           Padding(
               padding: EdgeInsets.all(16),
-              child: Text("625 Transaction completed",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: PreluraColors.primaryColor))),
+              child: Text("${userEarinings?.totalEarnings.quantity ?? 0} Transaction completed",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor))),
           Divider(
             thickness: 1.5,
           ),
@@ -145,15 +140,14 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     children: [
                       Text('Earnings this month',
                           textAlign: TextAlign.end,
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  )),
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              )),
                       SizedBox(height: 48),
                       Center(
                         child: Align(
                           child: AnimatedCount(
-                            count: earningThisMonth,
+                            count: userEarinings?.earningsInMonth.value.toInt() ?? 0,
                             formatToCurrency: true,
                             duration: Duration(milliseconds: 600),
                             style: TextStyle(
@@ -174,13 +168,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color: PreluraColors.primaryColor)),
+                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),
@@ -188,7 +176,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
               ),
               // SizedBox(width: 8),
               //@Mr Hassan, help me do the vertical dicider as it is not displaying. Thanks
-              Container(
+              SizedBox(
                 height: 170,
                 child: VerticalDivider(
                   color: Theme.of(context).dividerColor,
@@ -204,16 +192,13 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text('Total Earnings',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall
-                                ?.copyWith(
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.w500,
                                 )),
                       ),
                       SizedBox(height: 48),
                       AnimatedCount(
-                        count: earningThisMonth,
+                        count: userEarinings?.totalEarnings.value.toInt() ?? 0,
                         formatToCurrency: true,
                         duration: Duration(milliseconds: 600),
                         style: TextStyle(
@@ -232,13 +217,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                    color: PreluraColors.primaryColor)),
+                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),

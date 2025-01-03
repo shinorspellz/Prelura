@@ -38,11 +38,14 @@ class MessageCard extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // User Avatar
-            ProfilePictureWidget(
-              height: 40,
-              width: 40,
-              profilePicture: model.recipient.profilePictureUrl,
-              username: model.recipient.username,
+            GestureDetector(
+              onTap: () => context.router.push(ProfileDetailsRoute(username: model.recipient.username)),
+              child: ProfilePictureWidget(
+                height: 40,
+                width: 40,
+                profilePicture: model.recipient.profilePictureUrl,
+                username: model.recipient.username,
+              ),
             ),
             const SizedBox(width: 15),
             Expanded(
@@ -52,18 +55,13 @@ class MessageCard extends StatelessWidget {
                 children: [
                   Text(
                     model.recipient.username,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
                     Text(
                       model.lastMessage!.text,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall?.copyWith(fontWeight: FontWeight.w400),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
                     ),
                   ]
 

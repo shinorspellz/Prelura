@@ -66,7 +66,7 @@ class FilterUserProductNotifier extends StateNotifier<Map<FilterTypes, String>> 
   // Clear filter (reset state to empty)
   void clearFilter() {
     state = {};
-    log("Filters cleared");
+    ref.invalidate(userProduct);
     ref.invalidate(searchProductProvider);
   }
 

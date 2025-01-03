@@ -18,6 +18,7 @@ import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
 import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
+import 'package:prelura_app/modules/views/widgets/show_animated_dialog.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../res/colors.dart';
@@ -39,7 +40,17 @@ class ProfileCardWidget extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: () {
-                if (user != null) return;
+                if (user != null) {
+                  showAnimatedDialog(
+                      child: ProfilePictureWidget(
+                        profilePicture: user != null ? user?.profilePictureUrl : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+                        username: user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
+                        height: 250,
+                        width: 250,
+                      ),
+                      context: context);
+                  return;
+                }
                 VBottomSheetComponent.actionBottomSheet(
                   context: context,
                   actions: [
@@ -52,36 +63,26 @@ class ProfileCardWidget extends ConsumerWidget {
                               VBottomSheetItem(
                                   onTap: (context) async {
                                     Navigator.pop(context);
-                                    final photo = await ImagePicker()
-                                        .pickImage(source: ImageSource.gallery);
+                                    final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
 
                                     if (photo == null) return;
-                                    await ref
-                                        .read(userNotfierProvider.notifier)
-                                        .updateProfilePicture(File(photo.path));
+                                    await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
                                     ref.read(userNotfierProvider).whenOrNull(
-                                          error: (e, _) => context.alert(
-                                              'An error occured while uploading profile image'),
-                                          data: (_) => context
-                                              .alert('Profile photo updated!'),
+                                          error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                          data: (_) => context.alert('Profile photo updated!'),
                                         );
                                   },
                                   title: 'Gallery'),
                               VBottomSheetItem(
                                   onTap: (context) async {
                                     Navigator.pop(context);
-                                    final photo = await ImagePicker()
-                                        .pickImage(source: ImageSource.camera);
+                                    final photo = await ImagePicker().pickImage(source: ImageSource.camera);
 
                                     if (photo == null) return;
-                                    await ref
-                                        .read(userNotfierProvider.notifier)
-                                        .updateProfilePicture(File(photo.path));
+                                    await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
                                     ref.read(userNotfierProvider).whenOrNull(
-                                          error: (e, _) => context.alert(
-                                              'An error occured while uploading profile image'),
-                                          data: (_) => context
-                                              .alert('Profile photo updated!'),
+                                          error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                          data: (_) => context.alert('Profile photo updated!'),
                                         );
                                   },
                                   title: 'Camera'),
@@ -93,15 +94,9 @@ class ProfileCardWidget extends ConsumerWidget {
                 );
               },
               child: ProfilePictureWidget(
-                profilePicture: user != null
-                    ? user?.profilePictureUrl
-                    : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-                username: user != null
-                    ? user?.username ?? '--'
-                    : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                updating: user != null
-                    ? false
-                    : ref.watch(userNotfierProvider).isLoading,
+                profilePicture: user != null ? user?.profilePictureUrl : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
+                username: user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
+                updating: user != null ? false : ref.watch(userNotfierProvider).isLoading,
               ),
             ),
             const SizedBox(
@@ -112,12 +107,8 @@ class ProfileCardWidget extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  user != null
-                      ? user?.username ?? '--'
-                      : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyMedium?.color),
+                  user != null ? user?.username ?? '--' : ref.watch(userProvider).valueOrNull?.username ?? '--',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 3.verticalSpacing,
                 Row(
@@ -132,21 +123,16 @@ class ProfileCardWidget extends ConsumerWidget {
                       onTap: () {},
                       child: Text(
                         "(300)",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: PreluraColors.activeColor),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.activeColor),
                       ),
                     ),
                   ],
                 ),
                 3.verticalSpacing,
-                Text(user?.location?.locationName ?? "Exeter, United Kingdom",
-                    style: Theme.of(context).textTheme.bodyMedium),
+                Text(user?.location?.locationName ?? "Exeter, United Kingdom", style: Theme.of(context).textTheme.bodyMedium),
               ],
             ),
-            if (context.router.current.name == UserProfileDetailsRoute.name ||
-                context.router.current.name == ProfileDetailsRoute.name) ...[
+            if (context.router.current.name == UserProfileDetailsRoute.name || context.router.current.name == ProfileDetailsRoute.name) ...[
               Spacer(),
               if (user?.isFollowing != null) ...[
                 if (user?.isFollowing == true) ...[
@@ -154,21 +140,17 @@ class ProfileCardWidget extends ConsumerWidget {
                       data: (data) => GestureDetector(
                           onTap: () async {
                             HapticFeedback.lightImpact();
-                            final result = await ref
-                                .read(unFollowUserProvider.notifier)
-                                .unFollowUser(user!.id);
+                            final result = await ref.read(unFollowUserProvider.notifier).unFollowUser(user!.id);
 
                             if (result) {
                               context.alert("Unfollowed ${user?.username}");
-                              ref.invalidate(
-                                  otherUserProfile(user?.username ?? ""));
+                              ref.invalidate(otherUserProfile(user?.username ?? ""));
                               ref.invalidate(userProvider);
                             }
                             log("following");
                             return;
                           },
-                          child: Icon(Icons.person_sharp,
-                              color: PreluraColors.primaryColor)),
+                          child: Icon(Icons.person_sharp, color: PreluraColors.primaryColor)),
                       error: (error, _) => SizedBox.shrink(),
                       loading: () => LoadingWidget())
                 ],
@@ -177,14 +159,11 @@ class ProfileCardWidget extends ConsumerWidget {
                       data: (data) => GestureDetector(
                           onTap: () async {
                             HapticFeedback.lightImpact();
-                            final result = await ref
-                                .read(followUserProvider.notifier)
-                                .followUser(user!.id);
+                            final result = await ref.read(followUserProvider.notifier).followUser(user!.id);
 
                             if (result) {
                               context.alert("Following ${user?.username}");
-                              ref.invalidate(
-                                  otherUserProfile(user?.username ?? ""));
+                              ref.invalidate(otherUserProfile(user?.username ?? ""));
                               ref.invalidate(userProvider);
                             }
                             log("following");
@@ -200,14 +179,9 @@ class ProfileCardWidget extends ConsumerWidget {
                   onTap: () async {
                     HapticFeedback.lightImpact();
 
-                    Share.shareUri(
-                        Uri.parse('https://prelura.com/${user?.username}'));
+                    Share.shareUri(Uri.parse('https://prelura.com/${user?.username}'));
                   },
-                  child: RenderSvg(
-                      svgPath: PreluraIcons.forward_icon_svg,
-                      svgHeight: 20,
-                      svgWidth: 20,
-                      color: PreluraColors.primaryColor))
+                  child: RenderSvg(svgPath: PreluraIcons.forward_icon_svg, svgHeight: 20, svgWidth: 20, color: PreluraColors.primaryColor))
             ]
           ],
         ));

@@ -23,7 +23,7 @@ class UserScrollableList extends ConsumerWidget {
       padding: EdgeInsets.only(top: 8, right: 8, bottom: 8),
       decoration: BoxDecoration(
           border: Border(
-        bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
+        // bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
         top: BorderSide(color: Theme.of(context).dividerColor, width: 1),
       )),
       child: SingleChildScrollView(
@@ -34,48 +34,32 @@ class UserScrollableList extends ConsumerWidget {
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.max,
             children: [
-              _buildItem(context,
-                  title: listingCount == 1 ? "Listing" : "Listings",
-                  numbers: user?.listing?.toString(),
-                  onTap: () {}),
+              _buildItem(context, title: listingCount == 1 ? "Listing" : "Listings", numbers: user?.listing?.toString(), onTap: () {}),
               16.horizontalSpacing,
-              _buildItem(context,
-                  title: 'Following',
-                  numbers: user?.noOfFollowing.toString(), onTap: () {
-                context.router
-                    .push(FollowingRoute(username: user?.username ?? ""));
+              _buildItem(context, title: 'Following', numbers: user?.noOfFollowing.toString(), onTap: () {
+                context.router.push(FollowingRoute(username: user?.username ?? ""));
               }),
               16.horizontalSpacing,
               _buildItem(context,
-                  title: (user?.noOfFollowers != null &&
-                          (noOfFollowing > 1 ||
-                              user?.noOfFollowers?.toInt() == 0))
-                      ? " Followers"
-                      : " Follower",
-                  numbers: user?.noOfFollowers.toString(), onTap: () {
-                context.router
-                    .push(FollowersRoute(username: user?.username ?? ""));
+                  title: (user?.noOfFollowers != null && (noOfFollowing > 1 || user?.noOfFollowers?.toInt() == 0)) ? " Followers" : " Follower", numbers: user?.noOfFollowers.toString(), onTap: () {
+                context.router.push(FollowersRoute(username: user?.username ?? ""));
               }),
               16.horizontalSpacing,
               _buildItem(context, title: 'Reviews', numbers: "300", onTap: () {
                 context.router.push(ReviewRoute());
               }),
               16.horizontalSpacing,
-              _buildItem(context,
-                  title: "Ratings", numbers: "4.95", onTap: () {})
+              _buildItem(context, title: "Ratings", numbers: "4.95", onTap: () {})
             ],
           )),
     );
   }
 }
 
-Widget _buildItem(BuildContext context,
-    {required String title,
-    required String? numbers,
-    required Function() onTap}) {
+Widget _buildItem(BuildContext context, {required String title, required String? numbers, required Function() onTap}) {
   return GestureDetector(
     onTap: onTap,
-    child: Container(
+    child: SizedBox(
       // color: Colors.red,
       width: 25.4.w,
       child: Column(
@@ -96,8 +80,7 @@ Widget _buildItem(BuildContext context,
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
             ),
           ),
         ],

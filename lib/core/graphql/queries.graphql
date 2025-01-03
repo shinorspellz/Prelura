@@ -692,3 +692,25 @@ query NotificationPreference {
     emailNotifications
   }
 }
+
+query UserEarnings {
+  userEarnings {
+    networth
+    pendingPayments {
+      quantity
+      value
+    }
+    completedPayments {
+      quantity
+      value
+    }
+    earningsInMonth {
+      quantity
+      value
+    }
+    totalEarnings {
+      quantity
+      value
+    }
+  }
+}

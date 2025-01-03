@@ -79,14 +79,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   void initState() {
     super.initState();
-    final user = ref
-        .read((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .value;
+    final user = ref.read((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).value;
 
-    ref.read(userProductGroupingByBrandProvider(
-        (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
+    ref.read(userProductGroupingByBrandProvider((user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
   }
 
   Future<void> _onRefresh() async {
@@ -126,20 +121,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool expandedCategories = false;
   final ExpansionTileController controller = ExpansionTileController();
 
-  List<CategoryGroupType> subCategoriesIntersection(
-      CategoryGroupType e, int userId) {
+  List<CategoryGroupType> subCategoriesIntersection(CategoryGroupType e, int userId) {
     List<CategoryGroupType> result = [];
-    final subCategories = ref
-            .watch(categoryProvider)
-            .valueOrNull
-            ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-            .firstOrNull
-            ?.subCategory ??
-        [];
-    final userSubCategories = ref
-            .watch(userProductGroupingBySubCategoryProvider(userId))
-            .valueOrNull ??
-        [];
+    final subCategories = ref.watch(categoryProvider).valueOrNull?.where((x) => x.name.toLowerCase() == e.name.toLowerCase()).firstOrNull?.subCategory ?? [];
+    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(userId)).valueOrNull ?? [];
     // ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0));
     for (var subCat in subCategories) {
       for (var groupSub in userSubCategories) {
@@ -155,23 +140,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null
-        ? otherUserProfile(widget.username!)
-        : userProvider));
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider));
 
     return user.maybeWhen(
         orElse: () => LoadingWidget(),
         data: (user) {
-          final value = ref
-              .watch(userProductGroupingByCategoryProvider(user.id))
-              .valueOrNull;
+          final value = ref.watch(userProductGroupingByCategoryProvider(user.id)).valueOrNull;
           // final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
-          final List<CategoryGroupType> categories = value == null
-              ? []
-              : value
-                  .where((word) =>
-                      !wordsToRemove.contains(word.name.toLowerCase()))
-                  .toList();
+          final List<CategoryGroupType> categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
 
           return SmartRefresher(
             controller: _refreshController,
@@ -184,8 +160,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 children: [
                   if (widget.username != null)
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                       child: ProfileCardWidget(
                         user: user,
                       ),
@@ -202,8 +177,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           clipBehavior: Clip.none,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 12),
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -211,11 +185,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   Expanded(
                                     child: Text(
                                       user.bio ?? '',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              fontWeight: FontWeight.w500),
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -237,82 +207,38 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     : GestureDetector(
                                         onTap: () {
                                           // VBottomSheetComponent.customBottomSheet(context: context, child: child)
-                                          VBottomSheetComponent
-                                              .actionBottomSheet(
+                                          VBottomSheetComponent.actionBottomSheet(
                                             context: context,
                                             actions: [
                                               VBottomSheetItem(
                                                   onTap: (context) {
                                                     Navigator.pop(context);
-                                                    VBottomSheetComponent
-                                                        .actionBottomSheet(
+                                                    VBottomSheetComponent.actionBottomSheet(
                                                       context: context,
                                                       actions: [
                                                         VBottomSheetItem(
-                                                            onTap:
-                                                                (context) async {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              final photo =
-                                                                  await ImagePicker()
-                                                                      .pickImage(
-                                                                          source:
-                                                                              ImageSource.gallery);
+                                                            onTap: (context) async {
+                                                              Navigator.pop(context);
+                                                              final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                                                              if (photo == null)
-                                                                return;
-                                                              await ref
-                                                                  .read(userNotfierProvider
-                                                                      .notifier)
-                                                                  .updateProfilePicture(
-                                                                      File(photo
-                                                                          .path));
-                                                              ref
-                                                                  .read(
-                                                                      userNotfierProvider)
-                                                                  .whenOrNull(
-                                                                    error: (e,
-                                                                            _) =>
-                                                                        context.alert(
-                                                                            'An error occured while uploading profile image'),
-                                                                    data: (_) =>
-                                                                        HelperFunction.showToast(
-                                                                            message:
-                                                                                'Profile photo updated!'),
+                                                              if (photo == null) return;
+                                                              await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                                              ref.read(userNotfierProvider).whenOrNull(
+                                                                    error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                                                    data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
                                                                   );
                                                             },
                                                             title: 'Gallery'),
                                                         VBottomSheetItem(
-                                                            onTap:
-                                                                (context) async {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              final photo =
-                                                                  await ImagePicker()
-                                                                      .pickImage(
-                                                                          source:
-                                                                              ImageSource.camera);
+                                                            onTap: (context) async {
+                                                              Navigator.pop(context);
+                                                              final photo = await ImagePicker().pickImage(source: ImageSource.camera);
 
-                                                              if (photo == null)
-                                                                return;
-                                                              await ref
-                                                                  .read(userNotfierProvider
-                                                                      .notifier)
-                                                                  .updateProfilePicture(
-                                                                      File(photo
-                                                                          .path));
-                                                              ref
-                                                                  .read(
-                                                                      userNotfierProvider)
-                                                                  .whenOrNull(
-                                                                    error: (e,
-                                                                            _) =>
-                                                                        context.alert(
-                                                                            'An error occured while uploading profile image'),
-                                                                    data: (_) =>
-                                                                        HelperFunction.showToast(
-                                                                            message:
-                                                                                'Profile photo updated!'),
+                                                              if (photo == null) return;
+                                                              await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                                              ref.read(userNotfierProvider).whenOrNull(
+                                                                    error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                                                    data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
                                                                   );
                                                             },
                                                             title: 'Camera'),
@@ -326,74 +252,36 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                     showDialog(
                                                       context: context,
                                                       builder: (context) {
-                                                        final controller =
-                                                            TextEditingController(
-                                                                text: user.bio);
+                                                        final controller = TextEditingController(text: user.bio);
                                                         return AlertDialog(
-                                                          title: const Text(
-                                                              'Update Bio'),
+                                                          title: const Text('Update Bio'),
                                                           content: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
                                                             children: [
                                                               PreluraAuthTextField(
                                                                 label: 'Bio',
-                                                                labelStyle: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium
-                                                                    ?.copyWith(
-                                                                        fontWeight:
-                                                                            FontWeight.w400),
-                                                                hintStyle: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium
-                                                                    ?.copyWith(
-                                                                        fontWeight:
-                                                                            FontWeight.w400),
-                                                                controller:
-                                                                    controller,
+                                                                labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                                                                hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                                                                controller: controller,
                                                                 maxLines: null,
                                                               ),
                                                               10.verticalSpacing,
-                                                              Consumer(builder:
-                                                                  (context, ref,
-                                                                      _) {
+                                                              Consumer(builder: (context, ref, _) {
                                                                 return PreluraButtonWithLoader(
-                                                                  showLoadingIndicator: ref
-                                                                      .watch(
-                                                                          userNotfierProvider)
-                                                                      .isLoading,
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await ref
-                                                                        .read(userNotfierProvider
-                                                                            .notifier)
-                                                                        .updateProfile(
-                                                                            bio:
-                                                                                controller.text);
-                                                                    ref
-                                                                        .read(
-                                                                            userNotfierProvider)
-                                                                        .whenOrNull(
-                                                                          error: (e, _) =>
-                                                                              context.alert('An error occured while updating'),
-                                                                          data:
-                                                                              (_) {
+                                                                  showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
+                                                                  onPressed: () async {
+                                                                    await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
+                                                                    ref.read(userNotfierProvider).whenOrNull(
+                                                                          error: (e, _) => context.alert('An error occured while updating'),
+                                                                          data: (_) {
                                                                             Navigator.pop(context);
-                                                                            HelperFunction.context =
-                                                                                context;
+                                                                            HelperFunction.context = context;
                                                                             HelperFunction.showToast(message: 'Bio updated!');
                                                                           },
                                                                         );
                                                                   },
-                                                                  buttonTitle:
-                                                                      'Update',
+                                                                  buttonTitle: 'Update',
                                                                   // width: MediaQuery.sizeOf(context).width,
                                                                 );
                                                               })
@@ -431,17 +319,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       ),
                       if (selectedItem.isNotEmpty)
                         MenuCard(
-                            icon: isSelected
-                                ? Icon(Icons.arrow_back_ios_rounded,
-                                    size: 18, color: PreluraColors.primaryColor)
-                                : null,
+                            icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
                             title: selectedItem.isNotEmpty
                                 ? "Viewing"
                                 : widget.username != null
                                     ? 'Categories from this seller'
                                     : "Categories",
-                            sideText:
-                                selectedItem.isNotEmpty ? selectedItem : null,
+                            sideText: selectedItem.isNotEmpty ? selectedItem : null,
                             sideTextColor: PreluraColors.primaryColor,
                             textColor: PreluraColors.grey,
                             rightArrow: !isSelected,
@@ -449,10 +333,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             trailingIcon: isSelected
                                 ? null
                                 : selectedItem.isNotEmpty
-                                    ? Icon(Icons.cancel_rounded,
-                                        color: PreluraColors.grey)
-                                    : Icon(Icons.arrow_forward_ios_rounded,
-                                        color: PreluraColors.grey, size: 18),
+                                    ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
+                                    : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
                             onTap: () {
                               isSelected = !isSelected;
                               selectedItem = "";
@@ -463,168 +345,112 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       else
                         ExpansionTile(
                           title: Text(
-                            widget.username != null
-                                ? 'Categories from this seller'
-                                : "Categories",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
+                            widget.username != null ? 'Categories from this seller' : "Categories",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                   fontWeight: FontWeight.w600,
                                   color: PreluraColors.grey,
                                 ),
                           ),
-                          tilePadding:
-                              EdgeInsets.only(right: 15, left: 15, top: 10),
+                          tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
                           childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                           minTileHeight: 40,
-                          onExpansionChanged: (expanded) =>
-                              setState(() => expandedCategories = expanded),
+                          onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
                           controller: controller,
                           expansionAnimationStyle: AnimationStyle(
                             duration: Duration(milliseconds: 300),
                           ),
                           children: categories
-                              .map((e) => Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.symmetric(
-                                      horizontal: BorderSide(
-                                        color: context.theme.dividerColor,
-                                        width: 1,
-                                      ),
-                                    )),
-                                    child: ExpansionTile(
-                                        title: RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                            text: e.name,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                              .map((e) => ExpansionTile(
+                                  title: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                      text: e.name,
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w600,
                                           ),
-                                          TextSpan(
-                                            text:
-                                                " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                  fontWeight: FontWeight.w400,
-                                                  color: PreluraColors.grey,
+                                    ),
+                                    TextSpan(
+                                      text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: PreluraColors.grey,
+                                          ),
+                                    )
+                                  ])),
+                                  collapsedShape: Border(
+                                    top: BorderSide(width: 1, color: context.theme.dividerColor),
+                                    bottom: BorderSide.none,
+                                  ),
+                                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                                  minTileHeight: 38,
+                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                                  // controller: controller,
+                                  expansionAnimationStyle: AnimationStyle(
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                  children:
+                                      // ref
+                                      //         .watch(categoryProvider)
+                                      //         .valueOrNull
+                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+                                      //         .firstOrNull
+                                      //         ?.subCategory
+                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
+                                      //         .toSet()
+                                      //         .intersection((userSubCategories ?? []).toSet())
+                                      subCategoriesIntersection(e, user.id)
+                                          .map(
+                                            (x) => Column(
+                                              children: [
+                                                Divider(
+                                                  thickness: 0.8,
                                                 ),
-                                          )
-                                        ])),
-                                        tilePadding: EdgeInsets.only(
-                                            right: 15,
-                                            left: 15,
-                                            top: 8,
-                                            bottom: 8),
-                                        // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                                        minTileHeight: 38,
-                                        // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                                        // controller: controller,
-                                        expansionAnimationStyle: AnimationStyle(
-                                          duration: Duration(milliseconds: 300),
-                                        ),
-                                        children:
-                                            // ref
-                                            //         .watch(categoryProvider)
-                                            //         .valueOrNull
-                                            //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-                                            //         .firstOrNull
-                                            //         ?.subCategory
-                                            //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
-                                            //         .toSet()
-                                            //         .intersection((userSubCategories ?? []).toSet())
-                                            subCategoriesIntersection(
-                                                        e, user.id)
-                                                    .map(
-                                                      (x) => Column(
-                                                        children: [
-                                                          Divider(
-                                                            thickness: 2,
-                                                          ),
-                                                          MenuCard(
-                                                            title: x.name,
-                                                            sideTextColor:
-                                                                PreluraColors
-                                                                    .grey,
-                                                            borderbottom: false,
-                                                            // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                                            trailingIcon:
-                                                                Container(
-                                                              height: 15,
-                                                              width: 15,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(3),
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                border:
-                                                                    Border.all(
-                                                                  width: 2,
-                                                                  color: selectedItem ==
-                                                                          x.name
-                                                                      ? Theme.of(
-                                                                              context)
-                                                                          .primaryColor
-                                                                      : Colors
-                                                                          .grey,
-                                                                ),
-                                                              ),
-                                                              child: Container(
-                                                                height: 15,
-                                                                width: 15,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                  color: selectedItem ==
-                                                                          x.name
-                                                                      ? Theme.of(
-                                                                              context)
-                                                                          .primaryColor
-                                                                      : Colors
-                                                                          .transparent,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                                                            onTap: () {
-                                                              selectedItem =
-                                                                  x.name;
-                                                              isSelected =
-                                                                  false;
-                                                              setState(() {});
-                                                              ref
-                                                                  .read(filterUserProductProvider
-                                                                      .notifier)
-                                                                  .updateFilter(
-                                                                      FilterTypes
-                                                                          .category,
-                                                                      e.name);
-
-                                                              controller
-                                                                  .collapse();
-                                                            },
-                                                          ),
-                                                        ],
+                                                MenuCard(
+                                                  title: x.name,
+                                                  sideTextColor: PreluraColors.grey,
+                                                  borderbottom: false,
+                                                  // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                                  trailingIcon: Container(
+                                                    height: 15,
+                                                    width: 15,
+                                                    padding: EdgeInsets.all(3),
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        width: 2,
+                                                        color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
                                                       ),
-                                                    )
-                                                    .toList() ??
-                                                []),
-                                  ))
+                                                    ),
+                                                    child: Container(
+                                                      height: 15,
+                                                      width: 15,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                                                  onTap: () {
+                                                    selectedItem = x.name;
+                                                    isSelected = false;
+                                                    setState(() {});
+                                                    ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+
+                                                    controller.collapse();
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                          .toList()))
                               .toList(),
                         ),
-                      if (!expandedCategories && selectedItem.isEmpty)
-                        Divider(
-                          thickness: 1,
-                        ),
+                      // if (!expandedCategories && selectedItem.isEmpty)
+                      //   Divider(
+                      //     thickness: 1,
+                      //   ),
 
                       // if (isSelected) ...[
                       //   ListView.builder(
@@ -649,61 +475,48 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       //   )
                       // ],
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 6),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.username != null
-                                    ? "Brands from this seller"
-                                    : "Top Brands",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: PreluraColors.grey),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                          Text(
+                            widget.username != null ? "Brands from this seller" : "Top Brands",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
+                          ),
+                          // RenderSvgWithColor2(
+                          //     svgPath: PreluraIcons.search_glass_svg),
+                          // ],
+                          if (!isActive)
+                            GestureDetector(
+                                onTap: () {
+                                  isActive = true;
+                                  setState(() {});
+                                },
+                                child: Icon(Icons.search, color: PreluraColors.primaryColor)),
+                          if (isActive)
+                            AnimatedContainer(
+                              width: 54.5.w,
+                              color: Colors.transparent,
+                              alignment: Alignment.centerRight,
+                              duration: const Duration(milliseconds: 150),
+                              child: Searchwidget(
+                                obscureText: false,
+                                shouldReadOnly: false,
+                                enabled: true,
+                                showInputBorder: true,
+                                autofocus: true,
+                                cancelButton: true,
+                                minWidth: 50.w,
+                                hidePrefix: true,
+                                onChanged: (value) {
+                                  ref.read(userProductSearchQuery.notifier).state = value;
+                                },
+                                onCancel: () {
+                                  isActive = false;
+                                  setState(() {});
+                                  ref.invalidate(userProductSearchQuery);
+                                },
                               ),
-                              // RenderSvgWithColor2(
-                              //     svgPath: PreluraIcons.search_glass_svg),
-                              // ],
-                              if (!isActive)
-                                GestureDetector(
-                                    onTap: () {
-                                      isActive = true;
-                                      setState(() {});
-                                    },
-                                    child: Icon(Icons.search,
-                                        color: PreluraColors.primaryColor)),
-                              if (isActive)
-                                AnimatedContainer(
-                                  width: 54.5.w,
-                                  color: Colors.transparent,
-                                  alignment: Alignment.centerRight,
-                                  duration: const Duration(milliseconds: 150),
-                                  child: Searchwidget(
-                                    obscureText: false,
-                                    shouldReadOnly: false,
-                                    enabled: true,
-                                    showInputBorder: true,
-                                    autofocus: true,
-                                    cancelButton: true,
-                                    minWidth: 50.w,
-                                    hidePrefix: true,
-                                    onChanged: (value) {
-                                      ref
-                                          .read(userProductSearchQuery.notifier)
-                                          .state = value;
-                                    },
-                                    onCancel: () {
-                                      isActive = false;
-                                      setState(() {});
-                                      ref.invalidate(userProductSearchQuery);
-                                    },
-                                  ),
-                                )
-                            ]),
+                            )
+                        ]),
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -717,13 +530,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       ),
 
                       20.verticalSpacing,
-                      if (ref
-                              .watch(userProduct(user.username))
-                              .valueOrNull
-                              ?.where((e) => e.isFeatured ?? false)
-                              .toList()
-                              .isNotEmpty ??
-                          false) ...[
+                      if (ref.watch(userProduct(user.username)).valueOrNull?.where((e) => e.isFeatured ?? false).toList().isNotEmpty ?? false) ...[
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
@@ -739,16 +546,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               ref.watch(userProduct(user.username)).when(
                                     skipLoadingOnRefresh: false,
                                     data: (products) => DisplaySection(
-                                      products: products
-                                          .where((e) => e.isFeatured ?? false)
-                                          .toList(),
+                                      products: products.where((e) => e.isFeatured ?? false).toList(),
                                       isInProduct: false,
                                     ),
                                     error: (e, _) {
                                       return Center(
                                         child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(e.toString()),
@@ -758,8 +562,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                 ref.invalidate(userProduct);
                                               },
                                               label: const Text('Retry'),
-                                              icon: const Icon(
-                                                  Icons.refresh_rounded),
+                                              icon: const Icon(Icons.refresh_rounded),
                                             ),
                                           ],
                                         ),
