@@ -196,9 +196,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
           10.verticalSpacing,
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
-            child: TabBarView(
-              controller: _tabController,
-              children: [
+            child: TabBarView(controller: _tabController, children: [
               userAsyncValue.when(
                   skipLoadingOnRefresh: false,
                   data: (data) => Container(
@@ -245,23 +243,38 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                           separatorBuilder: (_, index) => 8.verticalSpacing,
                           itemBuilder: (_, index) => UsersShimmer(),
                         ),
-                        data: (users) => ListView.separated(
-                          itemCount: users.length,
-                          separatorBuilder: (_, index) => 8.verticalSpacing,
-                          itemBuilder: (_, index) => GestureDetector(
-                            onTap: () {
-                              if (user?.username == users[index].username) {
-                                context.router.push(ProfileNavigationRoute());
-                              } else {
-                                context.router.push(ProfileDetailsRoute(
-                                    username: users[index].username));
-                              }
-                            },
-                            child: ProfileCardWidget(
-                              user: users[index],
-                            ),
-                          ),
-                        ),
+                        data: (users) => users.isEmpty
+                            ? SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.7,
+                                child: const Center(
+                                  child: Text('No results found'),
+                                ),
+                              )
+                            : ListView.separated(
+                                itemCount: users.length,
+                                separatorBuilder: (_, index) =>
+                                    8.verticalSpacing,
+                                itemBuilder: (_, index) => GestureDetector(
+                                  onTap: () {
+                                    log("here");
+                                    if (user?.username ==
+                                        users[index].username) {
+                                      final tabRouter =
+                                          AutoTabsRouter.of(context);
+                                      tabRouter.setActiveIndex(3);
+                                      // context.router
+                                      //     .push(ProfileNavigationRoute());
+                                    } else {
+                                      context.router.push(ProfileDetailsRoute(
+                                          username: users[index].username));
+                                    }
+                                  },
+                                  child: ProfileCardWidget(
+                                    user: users[index],
+                                  ),
+                                ),
+                              ),
                       ))
             ]),
           )
