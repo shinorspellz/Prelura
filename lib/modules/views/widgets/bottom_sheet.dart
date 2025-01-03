@@ -10,6 +10,7 @@ class VBottomSheetComponent {
     bool showBottomSheet = true,
     required List<VBottomSheetItem> actions,
     Widget? customHeader,
+    Widget Function(BuildContext)? customFooter,
   }) {
     return _showCustomModalBottomSheet<T>(
       context: context,
@@ -18,6 +19,7 @@ class VBottomSheetComponent {
         actions: actions,
         showBottomDivider: showBottomSheet,
         customHeader: customHeader,
+        customFooter: customFooter,
       ),
     );
   }
@@ -83,11 +85,13 @@ class VBottomSheetWidget extends StatefulWidget {
     required this.showBottomDivider,
     this.removeSidePadding = false,
     this.customHeader,
+    this.customFooter,
   });
   final List<VBottomSheetItem>? actions;
   final Widget? customChild;
   final bool showBottomDivider, removeSidePadding;
   final Widget? customHeader;
+  final Widget Function(BuildContext)? customFooter;
 
   @override
   State<VBottomSheetWidget> createState() => _VBottomSheetWidgetState();
@@ -174,6 +178,7 @@ class _VBottomSheetWidgetState extends State<VBottomSheetWidget> with TickerProv
                     ),
                   ),
                 ),
+                if (widget.customFooter != null) widget.customFooter!(context),
               ],
               if (widget.customChild != null) ...[
                 widget.customChild!,

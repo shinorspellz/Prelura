@@ -360,103 +360,97 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             duration: Duration(milliseconds: 300),
                           ),
                           children: categories
-                              .map((e) => Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.symmetric(
-                                      horizontal: BorderSide(
-                                        color: context.theme.dividerColor,
-                                        width: 1,
-                                      ),
-                                    )),
-                                    child: ExpansionTile(
-                                        title: RichText(
-                                            text: TextSpan(children: [
-                                          TextSpan(
-                                            text: e.name,
-                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                              .map((e) => ExpansionTile(
+                                  title: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                      text: e.name,
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w600,
                                           ),
-                                          TextSpan(
-                                            text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                                  fontWeight: FontWeight.w400,
-                                                  color: PreluraColors.grey,
+                                    ),
+                                    TextSpan(
+                                      text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: PreluraColors.grey,
+                                          ),
+                                    )
+                                  ])),
+                                  collapsedShape: Border(
+                                    top: BorderSide(width: 1, color: context.theme.dividerColor),
+                                    bottom: BorderSide.none,
+                                  ),
+                                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                                  minTileHeight: 38,
+                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                                  // controller: controller,
+                                  expansionAnimationStyle: AnimationStyle(
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                  children:
+                                      // ref
+                                      //         .watch(categoryProvider)
+                                      //         .valueOrNull
+                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+                                      //         .firstOrNull
+                                      //         ?.subCategory
+                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
+                                      //         .toSet()
+                                      //         .intersection((userSubCategories ?? []).toSet())
+                                      subCategoriesIntersection(e, user.id)
+                                          .map(
+                                            (x) => Column(
+                                              children: [
+                                                Divider(
+                                                  thickness: 0.8,
                                                 ),
-                                          )
-                                        ])),
-                                        tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
-                                        // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                                        minTileHeight: 38,
-                                        // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                                        // controller: controller,
-                                        expansionAnimationStyle: AnimationStyle(
-                                          duration: Duration(milliseconds: 300),
-                                        ),
-                                        children:
-                                            // ref
-                                            //         .watch(categoryProvider)
-                                            //         .valueOrNull
-                                            //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-                                            //         .firstOrNull
-                                            //         ?.subCategory
-                                            //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
-                                            //         .toSet()
-                                            //         .intersection((userSubCategories ?? []).toSet())
-                                            subCategoriesIntersection(e, user.id)
-                                                    .map(
-                                                      (x) => Column(
-                                                        children: [
-                                                          Divider(
-                                                            thickness: 2,
-                                                          ),
-                                                          MenuCard(
-                                                            title: x.name,
-                                                            sideTextColor: PreluraColors.grey,
-                                                            borderbottom: false,
-                                                            // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                                            trailingIcon: Container(
-                                                              height: 15,
-                                                              width: 15,
-                                                              padding: EdgeInsets.all(3),
-                                                              decoration: BoxDecoration(
-                                                                shape: BoxShape.circle,
-                                                                border: Border.all(
-                                                                  width: 2,
-                                                                  color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
-                                                                ),
-                                                              ),
-                                                              child: Container(
-                                                                height: 15,
-                                                                width: 15,
-                                                                decoration: BoxDecoration(
-                                                                  shape: BoxShape.circle,
-                                                                  color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                                                            onTap: () {
-                                                              selectedItem = x.name;
-                                                              isSelected = false;
-                                                              setState(() {});
-                                                              ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
-
-                                                              controller.collapse();
-                                                            },
-                                                          ),
-                                                        ],
+                                                MenuCard(
+                                                  title: x.name,
+                                                  sideTextColor: PreluraColors.grey,
+                                                  borderbottom: false,
+                                                  // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                                  trailingIcon: Container(
+                                                    height: 15,
+                                                    width: 15,
+                                                    padding: EdgeInsets.all(3),
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        width: 2,
+                                                        color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
                                                       ),
-                                                    )
-                                                    .toList() ??
-                                                []),
-                                  ))
+                                                    ),
+                                                    child: Container(
+                                                      height: 15,
+                                                      width: 15,
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                                                  onTap: () {
+                                                    selectedItem = x.name;
+                                                    isSelected = false;
+                                                    setState(() {});
+                                                    ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+
+                                                    controller.collapse();
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                          .toList()))
                               .toList(),
                         ),
-                      if (!expandedCategories && selectedItem.isEmpty)
-                        Divider(
-                          thickness: 1,
-                        ),
+                      // if (!expandedCategories && selectedItem.isEmpty)
+                      //   Divider(
+                      //     thickness: 1,
+                      //   ),
 
                       // if (isSelected) ...[
                       //   ListView.builder(

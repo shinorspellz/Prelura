@@ -38,10 +38,14 @@ class MessageCard extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // User Avatar
-            ProfilePictureWidget(
-              height: 40,
-              width: 40,
-              profilePicture: model.recipient.profilePictureUrl,
+            GestureDetector(
+              onTap: () => context.router.push(ProfileDetailsRoute(username: model.recipient.username)),
+              child: ProfilePictureWidget(
+                height: 40,
+                width: 40,
+                profilePicture: model.recipient.profilePictureUrl,
+                username: model.recipient.username,
+              ),
             ),
             const SizedBox(width: 15),
             Expanded(
