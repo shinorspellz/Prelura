@@ -4,6 +4,7 @@ import 'package:graphql/client.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
+import 'package:prelura_app/modules/model/user/earnings/earnings_model.dart';
 import 'package:prelura_app/modules/model/user/user_model.dart';
 
 class UserRepo {
@@ -94,6 +95,39 @@ class UserRepo {
         stackTrace: stackTrace,
       );
       throw Exception('Failed to parse user data.');
+    }
+  }
+
+  Future<EarningsModel> getUserEarning() async {
+    final response = await _client.query$UserEarnings(
+      Options$Query$UserEarnings(),
+    );
+
+    // Handle GraphQL exceptions
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw Exception(error); // Wrap the error in an Exception
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw Exception('An error occurred while performing the search.');
+    }
+
+    // Handle missing parsed data
+    if (response.parsedData == null) {
+      log('Missing response data', name: 'UserRepo');
+      throw Exception('No users found.');
+    }
+
+    try {
+      return EarningsModel.fromJson(response.parsedData!.userEarnings!.toJson());
+    } catch (e, stackTrace) {
+      log(
+        'Error parsing data: $e',
+        name: 'UserRepo',
+        stackTrace: stackTrace,
+      );
+      throw Exception('Failed to parse data.');
     }
   }
 

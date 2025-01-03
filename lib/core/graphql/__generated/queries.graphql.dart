@@ -33206,3 +33206,1283 @@ class _CopyWithStubImpl$Query$NotificationPreference$notificationPreference$user
   }) =>
       _res;
 }
+
+class Query$UserEarnings {
+  Query$UserEarnings({
+    this.userEarnings,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$UserEarnings.fromJson(Map<String, dynamic> json) {
+    final l$userEarnings = json['userEarnings'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings(
+      userEarnings: l$userEarnings == null
+          ? null
+          : Query$UserEarnings$userEarnings.fromJson(
+              (l$userEarnings as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$UserEarnings$userEarnings? userEarnings;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userEarnings = userEarnings;
+    _resultData['userEarnings'] = l$userEarnings?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userEarnings = userEarnings;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userEarnings,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userEarnings = userEarnings;
+    final lOther$userEarnings = other.userEarnings;
+    if (l$userEarnings != lOther$userEarnings) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings on Query$UserEarnings {
+  CopyWith$Query$UserEarnings<Query$UserEarnings> get copyWith =>
+      CopyWith$Query$UserEarnings(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$UserEarnings<TRes> {
+  factory CopyWith$Query$UserEarnings(
+    Query$UserEarnings instance,
+    TRes Function(Query$UserEarnings) then,
+  ) = _CopyWithImpl$Query$UserEarnings;
+
+  factory CopyWith$Query$UserEarnings.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings;
+
+  TRes call({
+    Query$UserEarnings$userEarnings? userEarnings,
+    String? $__typename,
+  });
+  CopyWith$Query$UserEarnings$userEarnings<TRes> get userEarnings;
+}
+
+class _CopyWithImpl$Query$UserEarnings<TRes>
+    implements CopyWith$Query$UserEarnings<TRes> {
+  _CopyWithImpl$Query$UserEarnings(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings _instance;
+
+  final TRes Function(Query$UserEarnings) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userEarnings = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings(
+        userEarnings: userEarnings == _undefined
+            ? _instance.userEarnings
+            : (userEarnings as Query$UserEarnings$userEarnings?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$UserEarnings$userEarnings<TRes> get userEarnings {
+    final local$userEarnings = _instance.userEarnings;
+    return local$userEarnings == null
+        ? CopyWith$Query$UserEarnings$userEarnings.stub(_then(_instance))
+        : CopyWith$Query$UserEarnings$userEarnings(
+            local$userEarnings, (e) => call(userEarnings: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$UserEarnings<TRes>
+    implements CopyWith$Query$UserEarnings<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings(this._res);
+
+  TRes _res;
+
+  call({
+    Query$UserEarnings$userEarnings? userEarnings,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$UserEarnings$userEarnings<TRes> get userEarnings =>
+      CopyWith$Query$UserEarnings$userEarnings.stub(_res);
+}
+
+const documentNodeQueryUserEarnings = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'UserEarnings'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userEarnings'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'networth'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'pendingPayments'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'value'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'completedPayments'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'value'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'earningsInMonth'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'value'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'totalEarnings'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'quantity'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'value'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$UserEarnings _parserFn$Query$UserEarnings(Map<String, dynamic> data) =>
+    Query$UserEarnings.fromJson(data);
+typedef OnQueryComplete$Query$UserEarnings = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$UserEarnings?,
+);
+
+class Options$Query$UserEarnings
+    extends graphql.QueryOptions<Query$UserEarnings> {
+  Options$Query$UserEarnings({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserEarnings? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$UserEarnings? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$UserEarnings(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryUserEarnings,
+          parserFn: _parserFn$Query$UserEarnings,
+        );
+
+  final OnQueryComplete$Query$UserEarnings? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$UserEarnings
+    extends graphql.WatchQueryOptions<Query$UserEarnings> {
+  WatchOptions$Query$UserEarnings({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserEarnings? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryUserEarnings,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$UserEarnings,
+        );
+}
+
+class FetchMoreOptions$Query$UserEarnings extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$UserEarnings(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryUserEarnings,
+        );
+}
+
+extension ClientExtension$Query$UserEarnings on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$UserEarnings>> query$UserEarnings(
+          [Options$Query$UserEarnings? options]) async =>
+      await this.query(options ?? Options$Query$UserEarnings());
+  graphql.ObservableQuery<Query$UserEarnings> watchQuery$UserEarnings(
+          [WatchOptions$Query$UserEarnings? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$UserEarnings());
+  void writeQuery$UserEarnings({
+    required Query$UserEarnings data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryUserEarnings)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$UserEarnings? readQuery$UserEarnings({bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryUserEarnings)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$UserEarnings.fromJson(result);
+  }
+}
+
+class Query$UserEarnings$userEarnings {
+  Query$UserEarnings$userEarnings({
+    this.networth,
+    this.pendingPayments,
+    this.completedPayments,
+    this.earningsInMonth,
+    this.totalEarnings,
+    this.$__typename = 'EarningType',
+  });
+
+  factory Query$UserEarnings$userEarnings.fromJson(Map<String, dynamic> json) {
+    final l$networth = json['networth'];
+    final l$pendingPayments = json['pendingPayments'];
+    final l$completedPayments = json['completedPayments'];
+    final l$earningsInMonth = json['earningsInMonth'];
+    final l$totalEarnings = json['totalEarnings'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings$userEarnings(
+      networth: (l$networth as num?)?.toDouble(),
+      pendingPayments: l$pendingPayments == null
+          ? null
+          : Query$UserEarnings$userEarnings$pendingPayments.fromJson(
+              (l$pendingPayments as Map<String, dynamic>)),
+      completedPayments: l$completedPayments == null
+          ? null
+          : Query$UserEarnings$userEarnings$completedPayments.fromJson(
+              (l$completedPayments as Map<String, dynamic>)),
+      earningsInMonth: l$earningsInMonth == null
+          ? null
+          : Query$UserEarnings$userEarnings$earningsInMonth.fromJson(
+              (l$earningsInMonth as Map<String, dynamic>)),
+      totalEarnings: l$totalEarnings == null
+          ? null
+          : Query$UserEarnings$userEarnings$totalEarnings.fromJson(
+              (l$totalEarnings as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final double? networth;
+
+  final Query$UserEarnings$userEarnings$pendingPayments? pendingPayments;
+
+  final Query$UserEarnings$userEarnings$completedPayments? completedPayments;
+
+  final Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth;
+
+  final Query$UserEarnings$userEarnings$totalEarnings? totalEarnings;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$networth = networth;
+    _resultData['networth'] = l$networth;
+    final l$pendingPayments = pendingPayments;
+    _resultData['pendingPayments'] = l$pendingPayments?.toJson();
+    final l$completedPayments = completedPayments;
+    _resultData['completedPayments'] = l$completedPayments?.toJson();
+    final l$earningsInMonth = earningsInMonth;
+    _resultData['earningsInMonth'] = l$earningsInMonth?.toJson();
+    final l$totalEarnings = totalEarnings;
+    _resultData['totalEarnings'] = l$totalEarnings?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$networth = networth;
+    final l$pendingPayments = pendingPayments;
+    final l$completedPayments = completedPayments;
+    final l$earningsInMonth = earningsInMonth;
+    final l$totalEarnings = totalEarnings;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$networth,
+      l$pendingPayments,
+      l$completedPayments,
+      l$earningsInMonth,
+      l$totalEarnings,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings$userEarnings ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$networth = networth;
+    final lOther$networth = other.networth;
+    if (l$networth != lOther$networth) {
+      return false;
+    }
+    final l$pendingPayments = pendingPayments;
+    final lOther$pendingPayments = other.pendingPayments;
+    if (l$pendingPayments != lOther$pendingPayments) {
+      return false;
+    }
+    final l$completedPayments = completedPayments;
+    final lOther$completedPayments = other.completedPayments;
+    if (l$completedPayments != lOther$completedPayments) {
+      return false;
+    }
+    final l$earningsInMonth = earningsInMonth;
+    final lOther$earningsInMonth = other.earningsInMonth;
+    if (l$earningsInMonth != lOther$earningsInMonth) {
+      return false;
+    }
+    final l$totalEarnings = totalEarnings;
+    final lOther$totalEarnings = other.totalEarnings;
+    if (l$totalEarnings != lOther$totalEarnings) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings$userEarnings
+    on Query$UserEarnings$userEarnings {
+  CopyWith$Query$UserEarnings$userEarnings<Query$UserEarnings$userEarnings>
+      get copyWith => CopyWith$Query$UserEarnings$userEarnings(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserEarnings$userEarnings<TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings(
+    Query$UserEarnings$userEarnings instance,
+    TRes Function(Query$UserEarnings$userEarnings) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings;
+
+  factory CopyWith$Query$UserEarnings$userEarnings.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings;
+
+  TRes call({
+    double? networth,
+    Query$UserEarnings$userEarnings$pendingPayments? pendingPayments,
+    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
+    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
+    Query$UserEarnings$userEarnings$totalEarnings? totalEarnings,
+    String? $__typename,
+  });
+  CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes>
+      get pendingPayments;
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments;
+  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+      get earningsInMonth;
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+      get totalEarnings;
+}
+
+class _CopyWithImpl$Query$UserEarnings$userEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings$userEarnings _instance;
+
+  final TRes Function(Query$UserEarnings$userEarnings) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? networth = _undefined,
+    Object? pendingPayments = _undefined,
+    Object? completedPayments = _undefined,
+    Object? earningsInMonth = _undefined,
+    Object? totalEarnings = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings$userEarnings(
+        networth:
+            networth == _undefined ? _instance.networth : (networth as double?),
+        pendingPayments: pendingPayments == _undefined
+            ? _instance.pendingPayments
+            : (pendingPayments
+                as Query$UserEarnings$userEarnings$pendingPayments?),
+        completedPayments: completedPayments == _undefined
+            ? _instance.completedPayments
+            : (completedPayments
+                as Query$UserEarnings$userEarnings$completedPayments?),
+        earningsInMonth: earningsInMonth == _undefined
+            ? _instance.earningsInMonth
+            : (earningsInMonth
+                as Query$UserEarnings$userEarnings$earningsInMonth?),
+        totalEarnings: totalEarnings == _undefined
+            ? _instance.totalEarnings
+            : (totalEarnings as Query$UserEarnings$userEarnings$totalEarnings?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes>
+      get pendingPayments {
+    final local$pendingPayments = _instance.pendingPayments;
+    return local$pendingPayments == null
+        ? CopyWith$Query$UserEarnings$userEarnings$pendingPayments.stub(
+            _then(_instance))
+        : CopyWith$Query$UserEarnings$userEarnings$pendingPayments(
+            local$pendingPayments, (e) => call(pendingPayments: e));
+  }
+
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments {
+    final local$completedPayments = _instance.completedPayments;
+    return local$completedPayments == null
+        ? CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
+            _then(_instance))
+        : CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+            local$completedPayments, (e) => call(completedPayments: e));
+  }
+
+  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+      get earningsInMonth {
+    final local$earningsInMonth = _instance.earningsInMonth;
+    return local$earningsInMonth == null
+        ? CopyWith$Query$UserEarnings$userEarnings$earningsInMonth.stub(
+            _then(_instance))
+        : CopyWith$Query$UserEarnings$userEarnings$earningsInMonth(
+            local$earningsInMonth, (e) => call(earningsInMonth: e));
+  }
+
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+      get totalEarnings {
+    final local$totalEarnings = _instance.totalEarnings;
+    return local$totalEarnings == null
+        ? CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
+            _then(_instance))
+        : CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+            local$totalEarnings, (e) => call(totalEarnings: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings(this._res);
+
+  TRes _res;
+
+  call({
+    double? networth,
+    Query$UserEarnings$userEarnings$pendingPayments? pendingPayments,
+    Query$UserEarnings$userEarnings$completedPayments? completedPayments,
+    Query$UserEarnings$userEarnings$earningsInMonth? earningsInMonth,
+    Query$UserEarnings$userEarnings$totalEarnings? totalEarnings,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes>
+      get pendingPayments =>
+          CopyWith$Query$UserEarnings$userEarnings$pendingPayments.stub(_res);
+
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes>
+      get completedPayments =>
+          CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(_res);
+
+  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+      get earningsInMonth =>
+          CopyWith$Query$UserEarnings$userEarnings$earningsInMonth.stub(_res);
+
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+      get totalEarnings =>
+          CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(_res);
+}
+
+class Query$UserEarnings$userEarnings$pendingPayments {
+  Query$UserEarnings$userEarnings$pendingPayments({
+    this.quantity,
+    this.value,
+    this.$__typename = 'QuantityValuePair',
+  });
+
+  factory Query$UserEarnings$userEarnings$pendingPayments.fromJson(
+      Map<String, dynamic> json) {
+    final l$quantity = json['quantity'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings$userEarnings$pendingPayments(
+      quantity: (l$quantity as int?),
+      value: (l$value as num?)?.toDouble(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? quantity;
+
+  final double? value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$quantity = quantity;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$quantity,
+      l$value,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings$userEarnings$pendingPayments ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings$userEarnings$pendingPayments
+    on Query$UserEarnings$userEarnings$pendingPayments {
+  CopyWith$Query$UserEarnings$userEarnings$pendingPayments<
+          Query$UserEarnings$userEarnings$pendingPayments>
+      get copyWith => CopyWith$Query$UserEarnings$userEarnings$pendingPayments(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$pendingPayments(
+    Query$UserEarnings$userEarnings$pendingPayments instance,
+    TRes Function(Query$UserEarnings$userEarnings$pendingPayments) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$pendingPayments;
+
+  factory CopyWith$Query$UserEarnings$userEarnings$pendingPayments.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$pendingPayments;
+
+  TRes call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserEarnings$userEarnings$pendingPayments<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$pendingPayments(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings$userEarnings$pendingPayments _instance;
+
+  final TRes Function(Query$UserEarnings$userEarnings$pendingPayments) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? quantity = _undefined,
+    Object? value = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings$userEarnings$pendingPayments(
+        quantity:
+            quantity == _undefined ? _instance.quantity : (quantity as int?),
+        value: value == _undefined ? _instance.value : (value as double?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$pendingPayments<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$pendingPayments<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$pendingPayments(this._res);
+
+  TRes _res;
+
+  call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserEarnings$userEarnings$completedPayments {
+  Query$UserEarnings$userEarnings$completedPayments({
+    this.quantity,
+    this.value,
+    this.$__typename = 'QuantityValuePair',
+  });
+
+  factory Query$UserEarnings$userEarnings$completedPayments.fromJson(
+      Map<String, dynamic> json) {
+    final l$quantity = json['quantity'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings$userEarnings$completedPayments(
+      quantity: (l$quantity as int?),
+      value: (l$value as num?)?.toDouble(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? quantity;
+
+  final double? value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$quantity = quantity;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$quantity,
+      l$value,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings$userEarnings$completedPayments ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings$userEarnings$completedPayments
+    on Query$UserEarnings$userEarnings$completedPayments {
+  CopyWith$Query$UserEarnings$userEarnings$completedPayments<
+          Query$UserEarnings$userEarnings$completedPayments>
+      get copyWith =>
+          CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserEarnings$userEarnings$completedPayments<
+    TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments(
+    Query$UserEarnings$userEarnings$completedPayments instance,
+    TRes Function(Query$UserEarnings$userEarnings$completedPayments) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments;
+
+  factory CopyWith$Query$UserEarnings$userEarnings$completedPayments.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments;
+
+  TRes call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
+    implements
+        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$completedPayments(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings$userEarnings$completedPayments _instance;
+
+  final TRes Function(Query$UserEarnings$userEarnings$completedPayments) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? quantity = _undefined,
+    Object? value = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings$userEarnings$completedPayments(
+        quantity:
+            quantity == _undefined ? _instance.quantity : (quantity as int?),
+        value: value == _undefined ? _instance.value : (value as double?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments<TRes>
+    implements
+        CopyWith$Query$UserEarnings$userEarnings$completedPayments<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$completedPayments(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserEarnings$userEarnings$earningsInMonth {
+  Query$UserEarnings$userEarnings$earningsInMonth({
+    this.quantity,
+    this.value,
+    this.$__typename = 'QuantityValuePair',
+  });
+
+  factory Query$UserEarnings$userEarnings$earningsInMonth.fromJson(
+      Map<String, dynamic> json) {
+    final l$quantity = json['quantity'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings$userEarnings$earningsInMonth(
+      quantity: (l$quantity as int?),
+      value: (l$value as num?)?.toDouble(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? quantity;
+
+  final double? value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$quantity = quantity;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$quantity,
+      l$value,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings$userEarnings$earningsInMonth ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings$userEarnings$earningsInMonth
+    on Query$UserEarnings$userEarnings$earningsInMonth {
+  CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<
+          Query$UserEarnings$userEarnings$earningsInMonth>
+      get copyWith => CopyWith$Query$UserEarnings$userEarnings$earningsInMonth(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$earningsInMonth(
+    Query$UserEarnings$userEarnings$earningsInMonth instance,
+    TRes Function(Query$UserEarnings$userEarnings$earningsInMonth) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$earningsInMonth;
+
+  factory CopyWith$Query$UserEarnings$userEarnings$earningsInMonth.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$earningsInMonth;
+
+  TRes call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$earningsInMonth(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings$userEarnings$earningsInMonth _instance;
+
+  final TRes Function(Query$UserEarnings$userEarnings$earningsInMonth) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? quantity = _undefined,
+    Object? value = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings$userEarnings$earningsInMonth(
+        quantity:
+            quantity == _undefined ? _instance.quantity : (quantity as int?),
+        value: value == _undefined ? _instance.value : (value as double?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$earningsInMonth<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$earningsInMonth<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$earningsInMonth(this._res);
+
+  TRes _res;
+
+  call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserEarnings$userEarnings$totalEarnings {
+  Query$UserEarnings$userEarnings$totalEarnings({
+    this.quantity,
+    this.value,
+    this.$__typename = 'QuantityValuePair',
+  });
+
+  factory Query$UserEarnings$userEarnings$totalEarnings.fromJson(
+      Map<String, dynamic> json) {
+    final l$quantity = json['quantity'];
+    final l$value = json['value'];
+    final l$$__typename = json['__typename'];
+    return Query$UserEarnings$userEarnings$totalEarnings(
+      quantity: (l$quantity as int?),
+      value: (l$value as num?)?.toDouble(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? quantity;
+
+  final double? value;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$value = value;
+    _resultData['value'] = l$value;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$quantity = quantity;
+    final l$value = value;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$quantity,
+      l$value,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserEarnings$userEarnings$totalEarnings ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$value = value;
+    final lOther$value = other.value;
+    if (l$value != lOther$value) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserEarnings$userEarnings$totalEarnings
+    on Query$UserEarnings$userEarnings$totalEarnings {
+  CopyWith$Query$UserEarnings$userEarnings$totalEarnings<
+          Query$UserEarnings$userEarnings$totalEarnings>
+      get copyWith => CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings(
+    Query$UserEarnings$userEarnings$totalEarnings instance,
+    TRes Function(Query$UserEarnings$userEarnings$totalEarnings) then,
+  ) = _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings;
+
+  factory CopyWith$Query$UserEarnings$userEarnings$totalEarnings.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings;
+
+  TRes call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  _CopyWithImpl$Query$UserEarnings$userEarnings$totalEarnings(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserEarnings$userEarnings$totalEarnings _instance;
+
+  final TRes Function(Query$UserEarnings$userEarnings$totalEarnings) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? quantity = _undefined,
+    Object? value = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserEarnings$userEarnings$totalEarnings(
+        quantity:
+            quantity == _undefined ? _instance.quantity : (quantity as int?),
+        value: value == _undefined ? _instance.value : (value as double?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
+    implements CopyWith$Query$UserEarnings$userEarnings$totalEarnings<TRes> {
+  _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings(this._res);
+
+  TRes _res;
+
+  call({
+    int? quantity,
+    double? value,
+    String? $__typename,
+  }) =>
+      _res;
+}
