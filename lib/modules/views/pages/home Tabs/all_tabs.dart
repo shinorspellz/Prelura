@@ -113,8 +113,10 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => Column(
                     children: [
+                      16.verticalSpacing,
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
                         child: CustomShimmer(
                             child: Container(
                                 height: 40,
@@ -166,18 +168,62 @@ class HomeAllTab extends ConsumerWidget {
                       ),
                     ],
                   ),
-              orElse: () => ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      mockData.length,
-                      (_) => Container(
-                        // height: 220,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+              orElse: () => Column(
+                    children: [
+                      16.verticalSpacing,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
+                        child: CustomShimmer(
+                            child: Container(
+                                height: 40,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    16.horizontalSpacing,
+                                    Container(
+                                      height: 40,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ],
+                                ))),
                       ),
-                    ),
+                      16.verticalSpacing,
+                      AspectRatio(
+                        aspectRatio: 1.1,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: List.generate(
+                            mockData.length,
+                            (_) => Container(
+                              // height: 220,
+                              width: 180,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              child:
+                                  const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   )),
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
