@@ -341,11 +341,11 @@ mutation ConfirmPayment($paymentRef: String!) {
 }
 mutation PasswordReset(
   $newpassword: String!
+  $email: String!
   $token: String!
 ){
-  passwordReset(newPassword1:$newpassword, newPassword2: $newpassword, token: $token ){
-    errors,
-    success
+  passwordReset(password:$newpassword, email: $email, code: $token ){
+   message
   }
 }
 

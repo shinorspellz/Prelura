@@ -79,9 +79,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   void initState() {
     super.initState();
-    final user = ref.read((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).value;
+    final user = ref
+        .read((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .value;
 
-    ref.read(userProductGroupingByBrandProvider((user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
+    ref.read(userProductGroupingByBrandProvider(
+        (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
   }
 
   Future<void> _onRefresh() async {
@@ -121,10 +126,20 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool expandedCategories = false;
   final ExpansionTileController controller = ExpansionTileController();
 
-  List<CategoryGroupType> subCategoriesIntersection(CategoryGroupType e, int userId) {
+  List<CategoryGroupType> subCategoriesIntersection(
+      CategoryGroupType e, int userId) {
     List<CategoryGroupType> result = [];
-    final subCategories = ref.watch(categoryProvider).valueOrNull?.where((x) => x.name.toLowerCase() == e.name.toLowerCase()).firstOrNull?.subCategory ?? [];
-    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(userId)).valueOrNull ?? [];
+    final subCategories = ref
+            .watch(categoryProvider)
+            .valueOrNull
+            ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+            .firstOrNull
+            ?.subCategory ??
+        [];
+    final userSubCategories = ref
+            .watch(userProductGroupingBySubCategoryProvider(userId))
+            .valueOrNull ??
+        [];
     // ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0));
     for (var subCat in subCategories) {
       for (var groupSub in userSubCategories) {
@@ -140,11 +155,23 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
 
-    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).valueOrNull;
-    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
-    final List<CategoryGroupType> categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
+    final value = ref
+        .watch(userProductGroupingByCategoryProvider(user?.id ?? 0))
+        .valueOrNull;
+    final userSubCategories = ref
+        .watch(userProductGroupingBySubCategoryProvider(user!.id))
+        .valueOrNull;
+    final List<CategoryGroupType> categories = value == null
+        ? []
+        : value
+            .where((word) => !wordsToRemove.contains(word.name.toLowerCase()))
+            .toList();
 
     return SmartRefresher(
       controller: _refreshController,
@@ -157,7 +184,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           children: [
             if (widget.username != null)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 child: ProfileCardWidget(
                   user: user,
                 ),
@@ -174,7 +202,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     clipBehavior: Clip.none,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 12),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -182,7 +211,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             Expanded(
                               child: Text(
                                 user.bio ?? '',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w500),
                               ),
                             ),
                             const SizedBox(height: 16),
@@ -210,32 +242,73 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                         VBottomSheetItem(
                                             onTap: (context) {
                                               Navigator.pop(context);
-                                              VBottomSheetComponent.actionBottomSheet(
+                                              VBottomSheetComponent
+                                                  .actionBottomSheet(
                                                 context: context,
                                                 actions: [
                                                   VBottomSheetItem(
                                                       onTap: (context) async {
                                                         Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .gallery);
 
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
                                                             );
                                                       },
                                                       title: 'Gallery'),
                                                   VBottomSheetItem(
                                                       onTap: (context) async {
                                                         Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .camera);
 
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
                                                             );
                                                       },
                                                       title: 'Camera'),
@@ -249,36 +322,79 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                               showDialog(
                                                 context: context,
                                                 builder: (context) {
-                                                  final controller = TextEditingController(text: user.bio);
+                                                  final controller =
+                                                      TextEditingController(
+                                                          text: user.bio);
                                                   return AlertDialog(
-                                                    title: const Text('Update Bio'),
+                                                    title: const Text(
+                                                        'Update Bio'),
                                                     content: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         PreluraAuthTextField(
                                                           label: 'Bio',
-                                                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          controller: controller,
+                                                          labelStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          hintStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          controller:
+                                                              controller,
                                                           maxLines: null,
                                                         ),
                                                         10.verticalSpacing,
-                                                        Consumer(builder: (context, ref, _) {
+                                                        Consumer(builder:
+                                                            (context, ref, _) {
                                                           return PreluraButtonWithLoader(
-                                                            showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
-                                                            onPressed: () async {
-                                                              await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
-                                                              ref.read(userNotfierProvider).whenOrNull(
-                                                                    error: (e, _) => context.alert('An error occured while updating'),
+                                                            showLoadingIndicator: ref
+                                                                .watch(
+                                                                    userNotfierProvider)
+                                                                .isLoading,
+                                                            onPressed:
+                                                                () async {
+                                                              await ref
+                                                                  .read(userNotfierProvider
+                                                                      .notifier)
+                                                                  .updateProfile(
+                                                                      bio: controller
+                                                                          .text);
+                                                              ref
+                                                                  .read(
+                                                                      userNotfierProvider)
+                                                                  .whenOrNull(
+                                                                    error: (e,
+                                                                            _) =>
+                                                                        context.alert(
+                                                                            'An error occured while updating'),
                                                                     data: (_) {
-                                                                      Navigator.pop(context);
-                                                                      HelperFunction.context = context;
-                                                                      HelperFunction.showToast(message: 'Bio updated!');
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      HelperFunction
+                                                                              .context =
+                                                                          context;
+                                                                      HelperFunction.showToast(
+                                                                          message:
+                                                                              'Bio updated!');
                                                                     },
                                                                   );
                                                             },
-                                                            buttonTitle: 'Update',
+                                                            buttonTitle:
+                                                                'Update',
                                                             // width: MediaQuery.sizeOf(context).width,
                                                           );
                                                         })
@@ -316,7 +432,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 ),
                 if (selectedItem.isNotEmpty)
                   MenuCard(
-                      icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
+                      icon: isSelected
+                          ? Icon(Icons.arrow_back_ios_rounded,
+                              size: 18, color: PreluraColors.primaryColor)
+                          : null,
                       title: selectedItem.isNotEmpty
                           ? "Viewing"
                           : widget.username != null
@@ -330,8 +449,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       trailingIcon: isSelected
                           ? null
                           : selectedItem.isNotEmpty
-                              ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
-                              : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
+                              ? Icon(Icons.cancel_rounded,
+                                  color: PreluraColors.grey)
+                              : Icon(Icons.arrow_forward_ios_rounded,
+                                  color: PreluraColors.grey, size: 18),
                       onTap: () {
                         isSelected = !isSelected;
                         selectedItem = "";
@@ -342,7 +463,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 else
                   ExpansionTile(
                     title: Text(
-                      widget.username != null ? 'Categories from this seller' : "Categories",
+                      widget.username != null
+                          ? 'Categories from this seller'
+                          : "Categories",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600,
                             color: PreluraColors.grey,
@@ -351,7 +474,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
                     childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                     minTileHeight: 40,
-                    onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                    onExpansionChanged: (expanded) =>
+                        setState(() => expandedCategories = expanded),
                     controller: controller,
                     expansionAnimationStyle: AnimationStyle(
                       duration: Duration(milliseconds: 300),
@@ -370,19 +494,27 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       text: TextSpan(children: [
                                     TextSpan(
                                       text: e.name,
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                     TextSpan(
-                                      text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      text:
+                                          " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
                                             fontWeight: FontWeight.w400,
                                             color: PreluraColors.grey,
                                           ),
                                     )
                                   ])),
-                                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                                  tilePadding: EdgeInsets.only(
+                                      right: 15, left: 15, top: 8, bottom: 8),
                                   // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                                   minTileHeight: 38,
                                   // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
@@ -409,26 +541,43 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                     ),
                                                     MenuCard(
                                                       title: x.name,
-                                                      sideTextColor: PreluraColors.grey,
+                                                      sideTextColor:
+                                                          PreluraColors.grey,
                                                       borderbottom: false,
                                                       // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
                                                       trailingIcon: Container(
                                                         height: 15,
                                                         width: 15,
-                                                        padding: EdgeInsets.all(3),
-                                                        decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
+                                                        padding:
+                                                            EdgeInsets.all(3),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
                                                           border: Border.all(
                                                             width: 2,
-                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
+                                                            color: selectedItem ==
+                                                                    x.name
+                                                                ? Theme.of(
+                                                                        context)
+                                                                    .primaryColor
+                                                                : Colors.grey,
                                                           ),
                                                         ),
                                                         child: Container(
                                                           height: 15,
                                                           width: 15,
-                                                          decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color: selectedItem ==
+                                                                    x.name
+                                                                ? Theme.of(
+                                                                        context)
+                                                                    .primaryColor
+                                                                : Colors
+                                                                    .transparent,
                                                           ),
                                                         ),
                                                       ),
@@ -437,7 +586,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                         selectedItem = x.name;
                                                         isSelected = false;
                                                         setState(() {});
-                                                        ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+                                                        ref
+                                                            .read(
+                                                                filterUserProductProvider
+                                                                    .notifier)
+                                                            .updateFilter(
+                                                                FilterTypes
+                                                                    .category,
+                                                                e.name);
 
                                                         controller.collapse();
                                                       },
@@ -478,48 +634,61 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                 //   )
                 // ],
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(
-                      widget.username != null ? "Brands from this seller" : "Top Brands",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
-                    ),
-                    // RenderSvgWithColor2(
-                    //     svgPath: PreluraIcons.search_glass_svg),
-                    // ],
-                    if (!isActive)
-                      GestureDetector(
-                          onTap: () {
-                            isActive = true;
-                            setState(() {});
-                          },
-                          child: Icon(Icons.search, color: PreluraColors.primaryColor)),
-                    if (isActive)
-                      AnimatedContainer(
-                        width: 54.5.w,
-                        color: Colors.transparent,
-                        alignment: Alignment.centerRight,
-                        duration: const Duration(milliseconds: 150),
-                        child: Searchwidget(
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: true,
-                          cancelButton: true,
-                          minWidth: 50.w,
-                          hidePrefix: true,
-                          onChanged: (value) {
-                            ref.read(userProductSearchQuery.notifier).state = value;
-                          },
-                          onCancel: () {
-                            isActive = false;
-                            setState(() {});
-                            ref.invalidate(userProductSearchQuery);
-                          },
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.username != null
+                              ? "Brands from this seller"
+                              : "Top Brands",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: PreluraColors.grey),
                         ),
-                      )
-                  ]),
+                        // RenderSvgWithColor2(
+                        //     svgPath: PreluraIcons.search_glass_svg),
+                        // ],
+                        if (!isActive)
+                          GestureDetector(
+                              onTap: () {
+                                isActive = true;
+                                setState(() {});
+                              },
+                              child: Icon(Icons.search,
+                                  color: PreluraColors.primaryColor)),
+                        if (isActive)
+                          AnimatedContainer(
+                            width: 54.5.w,
+                            color: Colors.transparent,
+                            alignment: Alignment.centerRight,
+                            duration: const Duration(milliseconds: 150),
+                            child: Searchwidget(
+                              obscureText: false,
+                              shouldReadOnly: false,
+                              enabled: true,
+                              showInputBorder: true,
+                              autofocus: true,
+                              cancelButton: true,
+                              minWidth: 50.w,
+                              hidePrefix: true,
+                              onChanged: (value) {
+                                ref
+                                    .read(userProductSearchQuery.notifier)
+                                    .state = value;
+                              },
+                              onCancel: () {
+                                isActive = false;
+                                setState(() {});
+                                ref.invalidate(userProductSearchQuery);
+                              },
+                            ),
+                          )
+                      ]),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,

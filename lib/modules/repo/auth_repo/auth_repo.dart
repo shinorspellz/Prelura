@@ -174,23 +174,18 @@ class AuthRepo {
     return response.parsedData!.resetPassword!.message;
   }
 
-  Future<bool> resetPassword(String newPassword, String token) async {
+  Future<bool> resetPassword(
+      String newPassword, String token, String email) async {
     final response = await _client.mutate$PasswordReset(
       Options$Mutation$PasswordReset(
         variables: Variables$Mutation$PasswordReset(
+          email: email,
           newpassword: newPassword,
           token: token,
         ),
       ),
     );
     if (response.parsedData != null) {
-      if (response.parsedData?.passwordReset?.errors != null) {
-        final errors = response.parsedData?.passwordReset?.errors;
-        if (errors?.containsKey('newpassword') ?? false) {
-          throw errors?['newpassword'][0] ?? 'An error occured';
-        }
-        throw 'An error occured';
-      }
       return true;
     }
     if (response.hasException) {
@@ -203,6 +198,6 @@ class AuthRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData?.passwordReset?.success ?? false;
+    return response.parsedData?.passwordReset?.message != null;
   }
 }

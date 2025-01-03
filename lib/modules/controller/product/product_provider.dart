@@ -993,59 +993,53 @@ final userProductGroupingByCategoryProvider =
   return result;
 });
 
-final recentlyViewedProductsProvider =
-    AsyncNotifierProvider<DiscountProductsController, List<ProductModel>>(
-        DiscountProductsController.new);
+// // Provider for recently viewed products
+// final recentlyViewedProductsProvider =
+//     AsyncNotifierProvider<RecentlyViewedProductNotifier, List<ProductModel>>(
+//         RecentlyViewedProductNotifier.new);
 
-class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
-  late final _repository = ref.read(productRepo);
+// // Notifier for managing recently viewed products
+// class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
+//   late final _repository = ref.read(productRepo);
 
-  static const int _pageSize = 15;
-  int _currentPage = 1;
-  int _totalItems = 0;
+//   @override
+//   Future<List<ProductModel>> build() async {
+//     return _fetchProducts();
+//   }
 
-  @override
-  Future<List<ProductModel>> build() async {
-    return _fetchProducts(page: 1);
-  }
+//   Future<List<ProductModel>> _fetchProducts() async {
+//     try {
+//       // Fetch the raw response
+//       final response = await _repository.getRecentlyViewedProducts();
 
-  Future<List<ProductModel>> _fetchProducts({required int page}) async {
-    try {
-      final response = await _repository.getRecentlyViewedProducts();
+//       // Map response to ProductModel list
+//       final products =
+//           response.map((e) => ProductModel.fromJson(e.toJson())).toList();
 
-      _totalItems = response.length ?? 0;
-      final newProducts =
-          response.map((e) => ProductModel.fromJson(e!.toJson())).toList();
+//       // Update state with fetched products
+//       state = AsyncData(products);
 
-      if (page == 1) {
-        state = AsyncData(newProducts);
-      } else {
-        final currentProducts = state.value ?? [];
-        state = AsyncData([...currentProducts, ...newProducts]);
-      }
-      _currentPage = page;
-      return state.value!;
-    } catch (e, stackTrace) {
-      state = AsyncError(e, stackTrace);
-      return [];
-    }
-  }
+//       return products;
+//     } catch (e, stackTrace) {
+//       // Handle errors
+//       state = AsyncError(e, stackTrace);
+//       return [];
+//     }
+//   }
+// }
 
-  Future<void> fetchMoreProducts() async {
-    if (canLoadMore()) {
-      await _fetchProducts(page: _currentPage + 1);
-    }
-  }
-
-  bool canLoadMore() {
-    return (state.value?.length ?? 0) < _totalItems;
-  }
-}
-
-final userProductGroupingBySubCategoryProvider = FutureProvider.family((ref, int userId) async {
+final recentlyViewedProductsProvider = FutureProvider((ref) async {
   final repo = ref.watch(productRepo);
-  final result = await repo.getUserProductGrouping(userId: userId, groupBy: Enum$ProductGroupingEnum.SUB_CATEGORY);
+  final result = await repo.getRecentlyViewedProducts();
 
   return result;
 });
 
+final userProductGroupingBySubCategoryProvider =
+    FutureProvider.family((ref, int userId) async {
+  final repo = ref.watch(productRepo);
+  final result = await repo.getUserProductGrouping(
+      userId: userId, groupBy: Enum$ProductGroupingEnum.SUB_CATEGORY);
+
+  return result;
+});
