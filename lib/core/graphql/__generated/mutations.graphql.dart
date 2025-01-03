@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
-import 'package:prelura_app/modules/model/product/product_model.dart'
-    as EnumImport$ConditionEnum;
+import 'package:prelura_app/modules/model/product/product_model.dart' as EnumImport$ConditionEnum;
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -47,8 +46,7 @@ class Variables$Mutation$Login {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$Login<Variables$Mutation$Login> get copyWith =>
-      CopyWith$Variables$Mutation$Login(
+  CopyWith$Variables$Mutation$Login<Variables$Mutation$Login> get copyWith => CopyWith$Variables$Mutation$Login(
         this,
         (i) => i,
       );
@@ -58,8 +56,7 @@ class Variables$Mutation$Login {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$Login ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$Login || runtimeType != other.runtimeType) {
       return false;
     }
     final l$password = password;
@@ -69,8 +66,7 @@ class Variables$Mutation$Login {
     }
     final l$username = username;
     final lOther$username = other.username;
-    if (_$data.containsKey('username') !=
-        other._$data.containsKey('username')) {
+    if (_$data.containsKey('username') != other._$data.containsKey('username')) {
       return false;
     }
     if (l$username != lOther$username) {
@@ -96,8 +92,7 @@ abstract class CopyWith$Variables$Mutation$Login<TRes> {
     TRes Function(Variables$Mutation$Login) then,
   ) = _CopyWithImpl$Variables$Mutation$Login;
 
-  factory CopyWith$Variables$Mutation$Login.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$Login;
+  factory CopyWith$Variables$Mutation$Login.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$Login;
 
   TRes call({
     String? password,
@@ -105,8 +100,7 @@ abstract class CopyWith$Variables$Mutation$Login<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$Login<TRes>
-    implements CopyWith$Variables$Mutation$Login<TRes> {
+class _CopyWithImpl$Variables$Mutation$Login<TRes> implements CopyWith$Variables$Mutation$Login<TRes> {
   _CopyWithImpl$Variables$Mutation$Login(
     this._instance,
     this._then,
@@ -124,14 +118,12 @@ class _CopyWithImpl$Variables$Mutation$Login<TRes>
   }) =>
       _then(Variables$Mutation$Login._({
         ..._instance._$data,
-        if (password != _undefined && password != null)
-          'password': (password as String),
+        if (password != _undefined && password != null) 'password': (password as String),
         if (username != _undefined) 'username': (username as String?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$Login<TRes>
-    implements CopyWith$Variables$Mutation$Login<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$Login<TRes> implements CopyWith$Variables$Mutation$Login<TRes> {
   _CopyWithStubImpl$Variables$Mutation$Login(this._res);
 
   TRes _res;
@@ -153,9 +145,7 @@ class Mutation$Login {
     final l$login = json['login'];
     final l$$__typename = json['__typename'];
     return Mutation$Login(
-      login: l$login == null
-          ? null
-          : Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
+      login: l$login == null ? null : Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -206,8 +196,7 @@ class Mutation$Login {
 }
 
 extension UtilityExtension$Mutation$Login on Mutation$Login {
-  CopyWith$Mutation$Login<Mutation$Login> get copyWith =>
-      CopyWith$Mutation$Login(
+  CopyWith$Mutation$Login<Mutation$Login> get copyWith => CopyWith$Mutation$Login(
         this,
         (i) => i,
       );
@@ -219,8 +208,7 @@ abstract class CopyWith$Mutation$Login<TRes> {
     TRes Function(Mutation$Login) then,
   ) = _CopyWithImpl$Mutation$Login;
 
-  factory CopyWith$Mutation$Login.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Login;
+  factory CopyWith$Mutation$Login.stub(TRes res) = _CopyWithStubImpl$Mutation$Login;
 
   TRes call({
     Mutation$Login$login? login,
@@ -229,8 +217,7 @@ abstract class CopyWith$Mutation$Login<TRes> {
   CopyWith$Mutation$Login$login<TRes> get login;
 }
 
-class _CopyWithImpl$Mutation$Login<TRes>
-    implements CopyWith$Mutation$Login<TRes> {
+class _CopyWithImpl$Mutation$Login<TRes> implements CopyWith$Mutation$Login<TRes> {
   _CopyWithImpl$Mutation$Login(
     this._instance,
     this._then,
@@ -247,24 +234,17 @@ class _CopyWithImpl$Mutation$Login<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login(
-        login: login == _undefined
-            ? _instance.login
-            : (login as Mutation$Login$login?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        login: login == _undefined ? _instance.login : (login as Mutation$Login$login?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$Login$login<TRes> get login {
     final local$login = _instance.login;
-    return local$login == null
-        ? CopyWith$Mutation$Login$login.stub(_then(_instance))
-        : CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
+    return local$login == null ? CopyWith$Mutation$Login$login.stub(_then(_instance)) : CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Login<TRes>
-    implements CopyWith$Mutation$Login<TRes> {
+class _CopyWithStubImpl$Mutation$Login<TRes> implements CopyWith$Mutation$Login<TRes> {
   _CopyWithStubImpl$Mutation$Login(this._res);
 
   TRes _res;
@@ -275,8 +255,7 @@ class _CopyWithStubImpl$Mutation$Login<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$Login$login<TRes> get login =>
-      CopyWith$Mutation$Login$login.stub(_res);
+  CopyWith$Mutation$Login$login<TRes> get login => CopyWith$Mutation$Login$login.stub(_res);
 }
 
 const documentNodeMutationLogin = DocumentNode(definitions: [
@@ -382,8 +361,7 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Login _parserFn$Mutation$Login(Map<String, dynamic> data) =>
-    Mutation$Login.fromJson(data);
+Mutation$Login _parserFn$Mutation$Login(Map<String, dynamic> data) => Mutation$Login.fromJson(data);
 typedef OnMutationCompleted$Mutation$Login = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Login?,
@@ -427,15 +405,12 @@ class Options$Mutation$Login extends graphql.MutationOptions<Mutation$Login> {
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Login
-    extends graphql.WatchQueryOptions<Mutation$Login> {
+class WatchOptions$Mutation$Login extends graphql.WatchQueryOptions<Mutation$Login> {
   WatchOptions$Mutation$Login({
     String? operationName,
     required Variables$Mutation$Login variables,
@@ -467,12 +442,8 @@ class WatchOptions$Mutation$Login
 }
 
 extension ClientExtension$Mutation$Login on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Login>> mutate$Login(
-          Options$Mutation$Login options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$Login> watchMutation$Login(
-          WatchOptions$Mutation$Login options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$Login>> mutate$Login(Options$Mutation$Login options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$Login> watchMutation$Login(WatchOptions$Mutation$Login options) => this.watchMutation(options);
 }
 
 class Mutation$Login$login {
@@ -491,10 +462,7 @@ class Mutation$Login$login {
     return Mutation$Login$login(
       restToken: (l$restToken as String?),
       token: (l$token as String?),
-      user: l$user == null
-          ? null
-          : Mutation$Login$login$user.fromJson(
-              (l$user as Map<String, dynamic>)),
+      user: l$user == null ? null : Mutation$Login$login$user.fromJson((l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -567,8 +535,7 @@ class Mutation$Login$login {
 }
 
 extension UtilityExtension$Mutation$Login$login on Mutation$Login$login {
-  CopyWith$Mutation$Login$login<Mutation$Login$login> get copyWith =>
-      CopyWith$Mutation$Login$login(
+  CopyWith$Mutation$Login$login<Mutation$Login$login> get copyWith => CopyWith$Mutation$Login$login(
         this,
         (i) => i,
       );
@@ -580,8 +547,7 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
     TRes Function(Mutation$Login$login) then,
   ) = _CopyWithImpl$Mutation$Login$login;
 
-  factory CopyWith$Mutation$Login$login.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Login$login;
+  factory CopyWith$Mutation$Login$login.stub(TRes res) = _CopyWithStubImpl$Mutation$Login$login;
 
   TRes call({
     String? restToken,
@@ -592,8 +558,7 @@ abstract class CopyWith$Mutation$Login$login<TRes> {
   CopyWith$Mutation$Login$login$user<TRes> get user;
 }
 
-class _CopyWithImpl$Mutation$Login$login<TRes>
-    implements CopyWith$Mutation$Login$login<TRes> {
+class _CopyWithImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Login$login<TRes> {
   _CopyWithImpl$Mutation$Login$login(
     this._instance,
     this._then,
@@ -612,28 +577,19 @@ class _CopyWithImpl$Mutation$Login$login<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login$login(
-        restToken: restToken == _undefined
-            ? _instance.restToken
-            : (restToken as String?),
+        restToken: restToken == _undefined ? _instance.restToken : (restToken as String?),
         token: token == _undefined ? _instance.token : (token as String?),
-        user: user == _undefined
-            ? _instance.user
-            : (user as Mutation$Login$login$user?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        user: user == _undefined ? _instance.user : (user as Mutation$Login$login$user?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$Login$login$user<TRes> get user {
     final local$user = _instance.user;
-    return local$user == null
-        ? CopyWith$Mutation$Login$login$user.stub(_then(_instance))
-        : CopyWith$Mutation$Login$login$user(local$user, (e) => call(user: e));
+    return local$user == null ? CopyWith$Mutation$Login$login$user.stub(_then(_instance)) : CopyWith$Mutation$Login$login$user(local$user, (e) => call(user: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Login$login<TRes>
-    implements CopyWith$Mutation$Login$login<TRes> {
+class _CopyWithStubImpl$Mutation$Login$login<TRes> implements CopyWith$Mutation$Login$login<TRes> {
   _CopyWithStubImpl$Mutation$Login$login(this._res);
 
   TRes _res;
@@ -646,8 +602,7 @@ class _CopyWithStubImpl$Mutation$Login$login<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$Login$login$user<TRes> get user =>
-      CopyWith$Mutation$Login$login$user.stub(_res);
+  CopyWith$Mutation$Login$login$user<TRes> get user => CopyWith$Mutation$Login$login$user.stub(_res);
 }
 
 class Mutation$Login$login$user {
@@ -702,8 +657,7 @@ class Mutation$Login$login$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$Login$login$user ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$Login$login$user || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -725,10 +679,8 @@ class Mutation$Login$login$user {
   }
 }
 
-extension UtilityExtension$Mutation$Login$login$user
-    on Mutation$Login$login$user {
-  CopyWith$Mutation$Login$login$user<Mutation$Login$login$user> get copyWith =>
-      CopyWith$Mutation$Login$login$user(
+extension UtilityExtension$Mutation$Login$login$user on Mutation$Login$login$user {
+  CopyWith$Mutation$Login$login$user<Mutation$Login$login$user> get copyWith => CopyWith$Mutation$Login$login$user(
         this,
         (i) => i,
       );
@@ -740,8 +692,7 @@ abstract class CopyWith$Mutation$Login$login$user<TRes> {
     TRes Function(Mutation$Login$login$user) then,
   ) = _CopyWithImpl$Mutation$Login$login$user;
 
-  factory CopyWith$Mutation$Login$login$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Login$login$user;
+  factory CopyWith$Mutation$Login$login$user.stub(TRes res) = _CopyWithStubImpl$Mutation$Login$login$user;
 
   TRes call({
     int? id,
@@ -750,8 +701,7 @@ abstract class CopyWith$Mutation$Login$login$user<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Login$login$user<TRes>
-    implements CopyWith$Mutation$Login$login$user<TRes> {
+class _CopyWithImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation$Login$login$user<TRes> {
   _CopyWithImpl$Mutation$Login$login$user(
     this._instance,
     this._then,
@@ -770,16 +720,12 @@ class _CopyWithImpl$Mutation$Login$login$user<TRes>
   }) =>
       _then(Mutation$Login$login$user(
         id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        username: username == _undefined ? _instance.username : (username as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Login$login$user<TRes>
-    implements CopyWith$Mutation$Login$login$user<TRes> {
+class _CopyWithStubImpl$Mutation$Login$login$user<TRes> implements CopyWith$Mutation$Login$login$user<TRes> {
   _CopyWithStubImpl$Mutation$Login$login$user(this._res);
 
   TRes _res;
@@ -824,8 +770,7 @@ class Variables$Mutation$Register {
     }
     if (data.containsKey('dob')) {
       final l$dob = data['dob'];
-      result$data['dob'] =
-          l$dob == null ? null : DateTime.parse((l$dob as String));
+      result$data['dob'] = l$dob == null ? null : DateTime.parse((l$dob as String));
     }
     final l$email = data['email'];
     result$data['email'] = (l$email as String);
@@ -885,25 +830,22 @@ class Variables$Mutation$Register {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$Register<Variables$Mutation$Register>
-      get copyWith => CopyWith$Variables$Mutation$Register(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$Register<Variables$Mutation$Register> get copyWith => CopyWith$Variables$Mutation$Register(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$Register ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$Register || runtimeType != other.runtimeType) {
       return false;
     }
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
-    if (_$data.containsKey('displayName') !=
-        other._$data.containsKey('displayName')) {
+    if (_$data.containsKey('displayName') != other._$data.containsKey('displayName')) {
       return false;
     }
     if (l$displayName != lOther$displayName) {
@@ -979,8 +921,7 @@ abstract class CopyWith$Variables$Mutation$Register<TRes> {
     TRes Function(Variables$Mutation$Register) then,
   ) = _CopyWithImpl$Variables$Mutation$Register;
 
-  factory CopyWith$Variables$Mutation$Register.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$Register;
+  factory CopyWith$Variables$Mutation$Register.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$Register;
 
   TRes call({
     String? displayName,
@@ -994,8 +935,7 @@ abstract class CopyWith$Variables$Mutation$Register<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$Register<TRes>
-    implements CopyWith$Variables$Mutation$Register<TRes> {
+class _CopyWithImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variables$Mutation$Register<TRes> {
   _CopyWithImpl$Variables$Mutation$Register(
     this._instance,
     this._then,
@@ -1022,21 +962,15 @@ class _CopyWithImpl$Variables$Mutation$Register<TRes>
         if (displayName != _undefined) 'displayName': (displayName as String?),
         if (dob != _undefined) 'dob': (dob as DateTime?),
         if (email != _undefined && email != null) 'email': (email as String),
-        if (firstName != _undefined && firstName != null)
-          'firstName': (firstName as String),
-        if (lastName != _undefined && lastName != null)
-          'lastName': (lastName as String),
-        if (password1 != _undefined && password1 != null)
-          'password1': (password1 as String),
-        if (password2 != _undefined && password2 != null)
-          'password2': (password2 as String),
-        if (username != _undefined && username != null)
-          'username': (username as String),
+        if (firstName != _undefined && firstName != null) 'firstName': (firstName as String),
+        if (lastName != _undefined && lastName != null) 'lastName': (lastName as String),
+        if (password1 != _undefined && password1 != null) 'password1': (password1 as String),
+        if (password2 != _undefined && password2 != null) 'password2': (password2 as String),
+        if (username != _undefined && username != null) 'username': (username as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$Register<TRes>
-    implements CopyWith$Variables$Mutation$Register<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$Register<TRes> implements CopyWith$Variables$Mutation$Register<TRes> {
   _CopyWithStubImpl$Variables$Mutation$Register(this._res);
 
   TRes _res;
@@ -1064,10 +998,7 @@ class Mutation$Register {
     final l$register = json['register'];
     final l$$__typename = json['__typename'];
     return Mutation$Register(
-      register: l$register == null
-          ? null
-          : Mutation$Register$register.fromJson(
-              (l$register as Map<String, dynamic>)),
+      register: l$register == null ? null : Mutation$Register$register.fromJson((l$register as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1118,8 +1049,7 @@ class Mutation$Register {
 }
 
 extension UtilityExtension$Mutation$Register on Mutation$Register {
-  CopyWith$Mutation$Register<Mutation$Register> get copyWith =>
-      CopyWith$Mutation$Register(
+  CopyWith$Mutation$Register<Mutation$Register> get copyWith => CopyWith$Mutation$Register(
         this,
         (i) => i,
       );
@@ -1131,8 +1061,7 @@ abstract class CopyWith$Mutation$Register<TRes> {
     TRes Function(Mutation$Register) then,
   ) = _CopyWithImpl$Mutation$Register;
 
-  factory CopyWith$Mutation$Register.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Register;
+  factory CopyWith$Mutation$Register.stub(TRes res) = _CopyWithStubImpl$Mutation$Register;
 
   TRes call({
     Mutation$Register$register? register,
@@ -1141,8 +1070,7 @@ abstract class CopyWith$Mutation$Register<TRes> {
   CopyWith$Mutation$Register$register<TRes> get register;
 }
 
-class _CopyWithImpl$Mutation$Register<TRes>
-    implements CopyWith$Mutation$Register<TRes> {
+class _CopyWithImpl$Mutation$Register<TRes> implements CopyWith$Mutation$Register<TRes> {
   _CopyWithImpl$Mutation$Register(
     this._instance,
     this._then,
@@ -1159,25 +1087,17 @@ class _CopyWithImpl$Mutation$Register<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Register(
-        register: register == _undefined
-            ? _instance.register
-            : (register as Mutation$Register$register?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        register: register == _undefined ? _instance.register : (register as Mutation$Register$register?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$Register$register<TRes> get register {
     final local$register = _instance.register;
-    return local$register == null
-        ? CopyWith$Mutation$Register$register.stub(_then(_instance))
-        : CopyWith$Mutation$Register$register(
-            local$register, (e) => call(register: e));
+    return local$register == null ? CopyWith$Mutation$Register$register.stub(_then(_instance)) : CopyWith$Mutation$Register$register(local$register, (e) => call(register: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Register<TRes>
-    implements CopyWith$Mutation$Register<TRes> {
+class _CopyWithStubImpl$Mutation$Register<TRes> implements CopyWith$Mutation$Register<TRes> {
   _CopyWithStubImpl$Mutation$Register(this._res);
 
   TRes _res;
@@ -1188,8 +1108,7 @@ class _CopyWithStubImpl$Mutation$Register<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$Register$register<TRes> get register =>
-      CopyWith$Mutation$Register$register.stub(_res);
+  CopyWith$Mutation$Register$register<TRes> get register => CopyWith$Mutation$Register$register.stub(_res);
 }
 
 const documentNodeMutationRegister = DocumentNode(definitions: [
@@ -1344,15 +1263,13 @@ const documentNodeMutationRegister = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Register _parserFn$Mutation$Register(Map<String, dynamic> data) =>
-    Mutation$Register.fromJson(data);
+Mutation$Register _parserFn$Mutation$Register(Map<String, dynamic> data) => Mutation$Register.fromJson(data);
 typedef OnMutationCompleted$Mutation$Register = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Register?,
 );
 
-class Options$Mutation$Register
-    extends graphql.MutationOptions<Mutation$Register> {
+class Options$Mutation$Register extends graphql.MutationOptions<Mutation$Register> {
   Options$Mutation$Register({
     String? operationName,
     required Variables$Mutation$Register variables,
@@ -1390,15 +1307,12 @@ class Options$Mutation$Register
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Register
-    extends graphql.WatchQueryOptions<Mutation$Register> {
+class WatchOptions$Mutation$Register extends graphql.WatchQueryOptions<Mutation$Register> {
   WatchOptions$Mutation$Register({
     String? operationName,
     required Variables$Mutation$Register variables,
@@ -1430,12 +1344,8 @@ class WatchOptions$Mutation$Register
 }
 
 extension ClientExtension$Mutation$Register on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Register>> mutate$Register(
-          Options$Mutation$Register options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$Register> watchMutation$Register(
-          WatchOptions$Mutation$Register options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$Register>> mutate$Register(Options$Mutation$Register options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$Register> watchMutation$Register(WatchOptions$Mutation$Register options) => this.watchMutation(options);
 }
 
 class Mutation$Register$register {
@@ -1490,8 +1400,7 @@ class Mutation$Register$register {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$Register$register ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$Register$register || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -1513,13 +1422,11 @@ class Mutation$Register$register {
   }
 }
 
-extension UtilityExtension$Mutation$Register$register
-    on Mutation$Register$register {
-  CopyWith$Mutation$Register$register<Mutation$Register$register>
-      get copyWith => CopyWith$Mutation$Register$register(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$Register$register on Mutation$Register$register {
+  CopyWith$Mutation$Register$register<Mutation$Register$register> get copyWith => CopyWith$Mutation$Register$register(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$Register$register<TRes> {
@@ -1528,8 +1435,7 @@ abstract class CopyWith$Mutation$Register$register<TRes> {
     TRes Function(Mutation$Register$register) then,
   ) = _CopyWithImpl$Mutation$Register$register;
 
-  factory CopyWith$Mutation$Register$register.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Register$register;
+  factory CopyWith$Mutation$Register$register.stub(TRes res) = _CopyWithStubImpl$Mutation$Register$register;
 
   TRes call({
     bool? success,
@@ -1538,8 +1444,7 @@ abstract class CopyWith$Mutation$Register$register<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Register$register<TRes>
-    implements CopyWith$Mutation$Register$register<TRes> {
+class _CopyWithImpl$Mutation$Register$register<TRes> implements CopyWith$Mutation$Register$register<TRes> {
   _CopyWithImpl$Mutation$Register$register(
     this._instance,
     this._then,
@@ -1558,17 +1463,12 @@ class _CopyWithImpl$Mutation$Register$register<TRes>
   }) =>
       _then(Mutation$Register$register(
         success: success == _undefined ? _instance.success : (success as bool?),
-        errors: errors == _undefined
-            ? _instance.errors
-            : (errors as Map<String, dynamic>?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        errors: errors == _undefined ? _instance.errors : (errors as Map<String, dynamic>?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Register$register<TRes>
-    implements CopyWith$Mutation$Register$register<TRes> {
+class _CopyWithStubImpl$Mutation$Register$register<TRes> implements CopyWith$Mutation$Register$register<TRes> {
   _CopyWithStubImpl$Mutation$Register$register(this._res);
 
   TRes _res;
@@ -1591,9 +1491,7 @@ class Mutation$Logout {
     final l$logout = json['logout'];
     final l$$__typename = json['__typename'];
     return Mutation$Logout(
-      logout: l$logout == null
-          ? null
-          : Mutation$Logout$logout.fromJson((l$logout as Map<String, dynamic>)),
+      logout: l$logout == null ? null : Mutation$Logout$logout.fromJson((l$logout as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1644,8 +1542,7 @@ class Mutation$Logout {
 }
 
 extension UtilityExtension$Mutation$Logout on Mutation$Logout {
-  CopyWith$Mutation$Logout<Mutation$Logout> get copyWith =>
-      CopyWith$Mutation$Logout(
+  CopyWith$Mutation$Logout<Mutation$Logout> get copyWith => CopyWith$Mutation$Logout(
         this,
         (i) => i,
       );
@@ -1657,8 +1554,7 @@ abstract class CopyWith$Mutation$Logout<TRes> {
     TRes Function(Mutation$Logout) then,
   ) = _CopyWithImpl$Mutation$Logout;
 
-  factory CopyWith$Mutation$Logout.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Logout;
+  factory CopyWith$Mutation$Logout.stub(TRes res) = _CopyWithStubImpl$Mutation$Logout;
 
   TRes call({
     Mutation$Logout$logout? logout,
@@ -1667,8 +1563,7 @@ abstract class CopyWith$Mutation$Logout<TRes> {
   CopyWith$Mutation$Logout$logout<TRes> get logout;
 }
 
-class _CopyWithImpl$Mutation$Logout<TRes>
-    implements CopyWith$Mutation$Logout<TRes> {
+class _CopyWithImpl$Mutation$Logout<TRes> implements CopyWith$Mutation$Logout<TRes> {
   _CopyWithImpl$Mutation$Logout(
     this._instance,
     this._then,
@@ -1685,24 +1580,17 @@ class _CopyWithImpl$Mutation$Logout<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Logout(
-        logout: logout == _undefined
-            ? _instance.logout
-            : (logout as Mutation$Logout$logout?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        logout: logout == _undefined ? _instance.logout : (logout as Mutation$Logout$logout?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$Logout$logout<TRes> get logout {
     final local$logout = _instance.logout;
-    return local$logout == null
-        ? CopyWith$Mutation$Logout$logout.stub(_then(_instance))
-        : CopyWith$Mutation$Logout$logout(local$logout, (e) => call(logout: e));
+    return local$logout == null ? CopyWith$Mutation$Logout$logout.stub(_then(_instance)) : CopyWith$Mutation$Logout$logout(local$logout, (e) => call(logout: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$Logout<TRes>
-    implements CopyWith$Mutation$Logout<TRes> {
+class _CopyWithStubImpl$Mutation$Logout<TRes> implements CopyWith$Mutation$Logout<TRes> {
   _CopyWithStubImpl$Mutation$Logout(this._res);
 
   TRes _res;
@@ -1713,8 +1601,7 @@ class _CopyWithStubImpl$Mutation$Logout<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$Logout$logout<TRes> get logout =>
-      CopyWith$Mutation$Logout$logout.stub(_res);
+  CopyWith$Mutation$Logout$logout<TRes> get logout => CopyWith$Mutation$Logout$logout.stub(_res);
 }
 
 const documentNodeMutationLogout = DocumentNode(definitions: [
@@ -1756,8 +1643,7 @@ const documentNodeMutationLogout = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$Logout _parserFn$Mutation$Logout(Map<String, dynamic> data) =>
-    Mutation$Logout.fromJson(data);
+Mutation$Logout _parserFn$Mutation$Logout(Map<String, dynamic> data) => Mutation$Logout.fromJson(data);
 typedef OnMutationCompleted$Mutation$Logout = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$Logout?,
@@ -1799,15 +1685,12 @@ class Options$Mutation$Logout extends graphql.MutationOptions<Mutation$Logout> {
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$Logout
-    extends graphql.WatchQueryOptions<Mutation$Logout> {
+class WatchOptions$Mutation$Logout extends graphql.WatchQueryOptions<Mutation$Logout> {
   WatchOptions$Mutation$Logout({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
@@ -1837,12 +1720,8 @@ class WatchOptions$Mutation$Logout
 }
 
 extension ClientExtension$Mutation$Logout on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$Logout>> mutate$Logout(
-          [Options$Mutation$Logout? options]) async =>
-      await this.mutate(options ?? Options$Mutation$Logout());
-  graphql.ObservableQuery<Mutation$Logout> watchMutation$Logout(
-          [WatchOptions$Mutation$Logout? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$Logout());
+  Future<graphql.QueryResult<Mutation$Logout>> mutate$Logout([Options$Mutation$Logout? options]) async => await this.mutate(options ?? Options$Mutation$Logout());
+  graphql.ObservableQuery<Mutation$Logout> watchMutation$Logout([WatchOptions$Mutation$Logout? options]) => this.watchMutation(options ?? WatchOptions$Mutation$Logout());
 }
 
 class Mutation$Logout$logout {
@@ -1906,8 +1785,7 @@ class Mutation$Logout$logout {
 }
 
 extension UtilityExtension$Mutation$Logout$logout on Mutation$Logout$logout {
-  CopyWith$Mutation$Logout$logout<Mutation$Logout$logout> get copyWith =>
-      CopyWith$Mutation$Logout$logout(
+  CopyWith$Mutation$Logout$logout<Mutation$Logout$logout> get copyWith => CopyWith$Mutation$Logout$logout(
         this,
         (i) => i,
       );
@@ -1919,8 +1797,7 @@ abstract class CopyWith$Mutation$Logout$logout<TRes> {
     TRes Function(Mutation$Logout$logout) then,
   ) = _CopyWithImpl$Mutation$Logout$logout;
 
-  factory CopyWith$Mutation$Logout$logout.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$Logout$logout;
+  factory CopyWith$Mutation$Logout$logout.stub(TRes res) = _CopyWithStubImpl$Mutation$Logout$logout;
 
   TRes call({
     String? message,
@@ -1928,8 +1805,7 @@ abstract class CopyWith$Mutation$Logout$logout<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$Logout$logout<TRes>
-    implements CopyWith$Mutation$Logout$logout<TRes> {
+class _CopyWithImpl$Mutation$Logout$logout<TRes> implements CopyWith$Mutation$Logout$logout<TRes> {
   _CopyWithImpl$Mutation$Logout$logout(
     this._instance,
     this._then,
@@ -1946,16 +1822,12 @@ class _CopyWithImpl$Mutation$Logout$logout<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Logout$logout(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$Logout$logout<TRes>
-    implements CopyWith$Mutation$Logout$logout<TRes> {
+class _CopyWithStubImpl$Mutation$Logout$logout<TRes> implements CopyWith$Mutation$Logout$logout<TRes> {
   _CopyWithStubImpl$Mutation$Logout$logout(this._res);
 
   TRes _res;
@@ -2015,19 +1887,17 @@ class Variables$Mutation$TokenAuth {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$TokenAuth<Variables$Mutation$TokenAuth>
-      get copyWith => CopyWith$Variables$Mutation$TokenAuth(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$TokenAuth<Variables$Mutation$TokenAuth> get copyWith => CopyWith$Variables$Mutation$TokenAuth(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$TokenAuth ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$TokenAuth || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -2070,8 +1940,7 @@ abstract class CopyWith$Variables$Mutation$TokenAuth<TRes> {
     TRes Function(Variables$Mutation$TokenAuth) then,
   ) = _CopyWithImpl$Variables$Mutation$TokenAuth;
 
-  factory CopyWith$Variables$Mutation$TokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$TokenAuth;
+  factory CopyWith$Variables$Mutation$TokenAuth.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$TokenAuth;
 
   TRes call({
     String? email,
@@ -2080,8 +1949,7 @@ abstract class CopyWith$Variables$Mutation$TokenAuth<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes>
-    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
+class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
   _CopyWithImpl$Variables$Mutation$TokenAuth(
     this._instance,
     this._then,
@@ -2101,15 +1969,12 @@ class _CopyWithImpl$Variables$Mutation$TokenAuth<TRes>
       _then(Variables$Mutation$TokenAuth._({
         ..._instance._$data,
         if (email != _undefined) 'email': (email as String?),
-        if (password != _undefined && password != null)
-          'password': (password as String),
-        if (username != _undefined && username != null)
-          'username': (username as String),
+        if (password != _undefined && password != null) 'password': (password as String),
+        if (username != _undefined && username != null) 'username': (username as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$TokenAuth<TRes>
-    implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$TokenAuth<TRes> implements CopyWith$Variables$Mutation$TokenAuth<TRes> {
   _CopyWithStubImpl$Variables$Mutation$TokenAuth(this._res);
 
   TRes _res;
@@ -2132,10 +1997,7 @@ class Mutation$TokenAuth {
     final l$tokenAuth = json['tokenAuth'];
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth(
-      tokenAuth: l$tokenAuth == null
-          ? null
-          : Mutation$TokenAuth$tokenAuth.fromJson(
-              (l$tokenAuth as Map<String, dynamic>)),
+      tokenAuth: l$tokenAuth == null ? null : Mutation$TokenAuth$tokenAuth.fromJson((l$tokenAuth as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2186,8 +2048,7 @@ class Mutation$TokenAuth {
 }
 
 extension UtilityExtension$Mutation$TokenAuth on Mutation$TokenAuth {
-  CopyWith$Mutation$TokenAuth<Mutation$TokenAuth> get copyWith =>
-      CopyWith$Mutation$TokenAuth(
+  CopyWith$Mutation$TokenAuth<Mutation$TokenAuth> get copyWith => CopyWith$Mutation$TokenAuth(
         this,
         (i) => i,
       );
@@ -2199,8 +2060,7 @@ abstract class CopyWith$Mutation$TokenAuth<TRes> {
     TRes Function(Mutation$TokenAuth) then,
   ) = _CopyWithImpl$Mutation$TokenAuth;
 
-  factory CopyWith$Mutation$TokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$TokenAuth;
+  factory CopyWith$Mutation$TokenAuth.stub(TRes res) = _CopyWithStubImpl$Mutation$TokenAuth;
 
   TRes call({
     Mutation$TokenAuth$tokenAuth? tokenAuth,
@@ -2209,8 +2069,7 @@ abstract class CopyWith$Mutation$TokenAuth<TRes> {
   CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth;
 }
 
-class _CopyWithImpl$Mutation$TokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth<TRes> {
+class _CopyWithImpl$Mutation$TokenAuth<TRes> implements CopyWith$Mutation$TokenAuth<TRes> {
   _CopyWithImpl$Mutation$TokenAuth(
     this._instance,
     this._then,
@@ -2227,25 +2086,17 @@ class _CopyWithImpl$Mutation$TokenAuth<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TokenAuth(
-        tokenAuth: tokenAuth == _undefined
-            ? _instance.tokenAuth
-            : (tokenAuth as Mutation$TokenAuth$tokenAuth?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        tokenAuth: tokenAuth == _undefined ? _instance.tokenAuth : (tokenAuth as Mutation$TokenAuth$tokenAuth?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth {
     final local$tokenAuth = _instance.tokenAuth;
-    return local$tokenAuth == null
-        ? CopyWith$Mutation$TokenAuth$tokenAuth.stub(_then(_instance))
-        : CopyWith$Mutation$TokenAuth$tokenAuth(
-            local$tokenAuth, (e) => call(tokenAuth: e));
+    return local$tokenAuth == null ? CopyWith$Mutation$TokenAuth$tokenAuth.stub(_then(_instance)) : CopyWith$Mutation$TokenAuth$tokenAuth(local$tokenAuth, (e) => call(tokenAuth: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth<TRes> {
+class _CopyWithStubImpl$Mutation$TokenAuth<TRes> implements CopyWith$Mutation$TokenAuth<TRes> {
   _CopyWithStubImpl$Mutation$TokenAuth(this._res);
 
   TRes _res;
@@ -2256,8 +2107,7 @@ class _CopyWithStubImpl$Mutation$TokenAuth<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth =>
-      CopyWith$Mutation$TokenAuth$tokenAuth.stub(_res);
+  CopyWith$Mutation$TokenAuth$tokenAuth<TRes> get tokenAuth => CopyWith$Mutation$TokenAuth$tokenAuth.stub(_res);
 }
 
 const documentNodeMutationTokenAuth = DocumentNode(definitions: [
@@ -2354,15 +2204,13 @@ const documentNodeMutationTokenAuth = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$TokenAuth _parserFn$Mutation$TokenAuth(Map<String, dynamic> data) =>
-    Mutation$TokenAuth.fromJson(data);
+Mutation$TokenAuth _parserFn$Mutation$TokenAuth(Map<String, dynamic> data) => Mutation$TokenAuth.fromJson(data);
 typedef OnMutationCompleted$Mutation$TokenAuth = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$TokenAuth?,
 );
 
-class Options$Mutation$TokenAuth
-    extends graphql.MutationOptions<Mutation$TokenAuth> {
+class Options$Mutation$TokenAuth extends graphql.MutationOptions<Mutation$TokenAuth> {
   Options$Mutation$TokenAuth({
     String? operationName,
     required Variables$Mutation$TokenAuth variables,
@@ -2400,15 +2248,12 @@ class Options$Mutation$TokenAuth
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$TokenAuth
-    extends graphql.WatchQueryOptions<Mutation$TokenAuth> {
+class WatchOptions$Mutation$TokenAuth extends graphql.WatchQueryOptions<Mutation$TokenAuth> {
   WatchOptions$Mutation$TokenAuth({
     String? operationName,
     required Variables$Mutation$TokenAuth variables,
@@ -2440,12 +2285,8 @@ class WatchOptions$Mutation$TokenAuth
 }
 
 extension ClientExtension$Mutation$TokenAuth on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$TokenAuth>> mutate$TokenAuth(
-          Options$Mutation$TokenAuth options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$TokenAuth> watchMutation$TokenAuth(
-          WatchOptions$Mutation$TokenAuth options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$TokenAuth>> mutate$TokenAuth(Options$Mutation$TokenAuth options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$TokenAuth> watchMutation$TokenAuth(WatchOptions$Mutation$TokenAuth options) => this.watchMutation(options);
 }
 
 class Mutation$TokenAuth$tokenAuth {
@@ -2463,7 +2304,7 @@ class Mutation$TokenAuth$tokenAuth {
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth$tokenAuth(
       token: (l$token as String),
-      payload: (l$payload as dynamic?),
+      payload: (l$payload as dynamic),
       refreshExpiresIn: (l$refreshExpiresIn as int?),
       $__typename: (l$$__typename as String),
     );
@@ -2471,7 +2312,7 @@ class Mutation$TokenAuth$tokenAuth {
 
   final String token;
 
-  final dynamic? payload;
+  final dynamic payload;
 
   final int? refreshExpiresIn;
 
@@ -2509,8 +2350,7 @@ class Mutation$TokenAuth$tokenAuth {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$TokenAuth$tokenAuth ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$TokenAuth$tokenAuth || runtimeType != other.runtimeType) {
       return false;
     }
     final l$token = token;
@@ -2537,13 +2377,11 @@ class Mutation$TokenAuth$tokenAuth {
   }
 }
 
-extension UtilityExtension$Mutation$TokenAuth$tokenAuth
-    on Mutation$TokenAuth$tokenAuth {
-  CopyWith$Mutation$TokenAuth$tokenAuth<Mutation$TokenAuth$tokenAuth>
-      get copyWith => CopyWith$Mutation$TokenAuth$tokenAuth(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$TokenAuth$tokenAuth on Mutation$TokenAuth$tokenAuth {
+  CopyWith$Mutation$TokenAuth$tokenAuth<Mutation$TokenAuth$tokenAuth> get copyWith => CopyWith$Mutation$TokenAuth$tokenAuth(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
@@ -2552,19 +2390,17 @@ abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
     TRes Function(Mutation$TokenAuth$tokenAuth) then,
   ) = _CopyWithImpl$Mutation$TokenAuth$tokenAuth;
 
-  factory CopyWith$Mutation$TokenAuth$tokenAuth.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth;
+  factory CopyWith$Mutation$TokenAuth$tokenAuth.stub(TRes res) = _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth;
 
   TRes call({
     String? token,
-    dynamic? payload,
+    dynamic payload,
     int? refreshExpiresIn,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
+class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
   _CopyWithImpl$Mutation$TokenAuth$tokenAuth(
     this._instance,
     this._then,
@@ -2583,29 +2419,21 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$TokenAuth$tokenAuth(
-        token: token == _undefined || token == null
-            ? _instance.token
-            : (token as String),
-        payload:
-            payload == _undefined ? _instance.payload : (payload as dynamic?),
-        refreshExpiresIn: refreshExpiresIn == _undefined
-            ? _instance.refreshExpiresIn
-            : (refreshExpiresIn as int?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        token: token == _undefined || token == null ? _instance.token : (token as String),
+        payload: payload == _undefined ? _instance.payload : (payload as dynamic),
+        refreshExpiresIn: refreshExpiresIn == _undefined ? _instance.refreshExpiresIn : (refreshExpiresIn as int?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
-    implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
+class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes> implements CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
   _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth(this._res);
 
   TRes _res;
 
   call({
     String? token,
-    dynamic? payload,
+    dynamic payload,
     int? refreshExpiresIn,
     String? $__typename,
   }) =>
@@ -2629,6 +2457,7 @@ class Variables$Mutation$CreateProduct {
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   }) =>
       Variables$Mutation$CreateProduct._({
         r'category': category,
@@ -2646,6 +2475,7 @@ class Variables$Mutation$CreateProduct {
         if (materials != null) r'materials': materials,
         if (style != null) r'style': style,
         if (customBrand != null) r'customBrand': customBrand,
+        if (isFeatured != null) r'isFeatured': isFeatured,
       });
 
   Variables$Mutation$CreateProduct._(this._$data);
@@ -2656,25 +2486,17 @@ class Variables$Mutation$CreateProduct {
     result$data['category'] = (l$category as int);
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
-              (l$condition as String));
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue((l$condition as String));
     }
     final l$description = data['description'];
     result$data['description'] = (l$description as String);
     final l$imageUrl = data['imageUrl'];
-    result$data['imageUrl'] = (l$imageUrl as List<dynamic>)
-        .map((e) => e == null
-            ? null
-            : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
-        .toList();
+    result$data['imageUrl'] = (l$imageUrl as List<dynamic>).map((e) => e == null ? null : Input$ImagesInputType.fromJson((e as Map<String, dynamic>))).toList();
     final l$price = data['price'];
     result$data['price'] = (l$price as num).toDouble();
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] = l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     final l$subCategory = data['subCategory'];
     result$data['subCategory'] = (l$subCategory as int);
@@ -2682,9 +2504,7 @@ class Variables$Mutation$CreateProduct {
     result$data['name'] = (l$name as String);
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
-      result$data['parcelSize'] = l$parcelSize == null
-          ? null
-          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+      result$data['parcelSize'] = l$parcelSize == null ? null : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
     }
     if (data.containsKey('discount')) {
       final l$discount = data['discount'];
@@ -2692,8 +2512,7 @@ class Variables$Mutation$CreateProduct {
     }
     if (data.containsKey('color')) {
       final l$color = data['color'];
-      result$data['color'] =
-          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+      result$data['color'] = (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
     }
     if (data.containsKey('brand')) {
       final l$brand = data['brand'];
@@ -2701,17 +2520,19 @@ class Variables$Mutation$CreateProduct {
     }
     if (data.containsKey('materials')) {
       final l$materials = data['materials'];
-      result$data['materials'] =
-          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+      result$data['materials'] = (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
-      result$data['style'] =
-          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+      result$data['style'] = l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
     }
     if (data.containsKey('customBrand')) {
       final l$customBrand = data['customBrand'];
       result$data['customBrand'] = (l$customBrand as String?);
+    }
+    if (data.containsKey('isFeatured')) {
+      final l$isFeatured = data['isFeatured'];
+      result$data['isFeatured'] = (l$isFeatured as bool?);
     }
     return Variables$Mutation$CreateProduct._(result$data);
   }
@@ -2720,13 +2541,11 @@ class Variables$Mutation$CreateProduct {
 
   int get category => (_$data['category'] as int);
 
-  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
-      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition => (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   String get description => (_$data['description'] as String);
 
-  List<Input$ImagesInputType?> get imageUrl =>
-      (_$data['imageUrl'] as List<Input$ImagesInputType?>);
+  List<Input$ImagesInputType?> get imageUrl => (_$data['imageUrl'] as List<Input$ImagesInputType?>);
 
   double get price => (_$data['price'] as double);
 
@@ -2736,8 +2555,7 @@ class Variables$Mutation$CreateProduct {
 
   String get name => (_$data['name'] as String);
 
-  Enum$ParcelSizeEnum? get parcelSize =>
-      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+  Enum$ParcelSizeEnum? get parcelSize => (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
   double? get discount => (_$data['discount'] as double?);
 
@@ -2751,16 +2569,15 @@ class Variables$Mutation$CreateProduct {
 
   String? get customBrand => (_$data['customBrand'] as String?);
 
+  bool? get isFeatured => (_$data['isFeatured'] as bool?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$category = category;
     result$data['category'] = l$category;
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
-              l$condition);
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(l$condition);
     }
     final l$description = description;
     result$data['description'] = l$description;
@@ -2770,8 +2587,7 @@ class Variables$Mutation$CreateProduct {
     result$data['price'] = l$price;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+      result$data['size'] = l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     final l$subCategory = subCategory;
     result$data['subCategory'] = l$subCategory;
@@ -2779,9 +2595,7 @@ class Variables$Mutation$CreateProduct {
     result$data['name'] = l$name;
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
-      result$data['parcelSize'] = l$parcelSize == null
-          ? null
-          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+      result$data['parcelSize'] = l$parcelSize == null ? null : toJson$Enum$ParcelSizeEnum(l$parcelSize);
     }
     if (_$data.containsKey('discount')) {
       final l$discount = discount;
@@ -2801,29 +2615,30 @@ class Variables$Mutation$CreateProduct {
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
-      result$data['style'] =
-          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+      result$data['style'] = l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     if (_$data.containsKey('customBrand')) {
       final l$customBrand = customBrand;
       result$data['customBrand'] = l$customBrand;
     }
+    if (_$data.containsKey('isFeatured')) {
+      final l$isFeatured = isFeatured;
+      result$data['isFeatured'] = l$isFeatured;
+    }
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CreateProduct<Variables$Mutation$CreateProduct>
-      get copyWith => CopyWith$Variables$Mutation$CreateProduct(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$CreateProduct<Variables$Mutation$CreateProduct> get copyWith => CopyWith$Variables$Mutation$CreateProduct(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CreateProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CreateProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$category = category;
@@ -2833,8 +2648,7 @@ class Variables$Mutation$CreateProduct {
     }
     final l$condition = condition;
     final lOther$condition = other.condition;
-    if (_$data.containsKey('condition') !=
-        other._$data.containsKey('condition')) {
+    if (_$data.containsKey('condition') != other._$data.containsKey('condition')) {
       return false;
     }
     if (l$condition != lOther$condition) {
@@ -2882,8 +2696,7 @@ class Variables$Mutation$CreateProduct {
     }
     final l$parcelSize = parcelSize;
     final lOther$parcelSize = other.parcelSize;
-    if (_$data.containsKey('parcelSize') !=
-        other._$data.containsKey('parcelSize')) {
+    if (_$data.containsKey('parcelSize') != other._$data.containsKey('parcelSize')) {
       return false;
     }
     if (l$parcelSize != lOther$parcelSize) {
@@ -2891,8 +2704,7 @@ class Variables$Mutation$CreateProduct {
     }
     final l$discount = discount;
     final lOther$discount = other.discount;
-    if (_$data.containsKey('discount') !=
-        other._$data.containsKey('discount')) {
+    if (_$data.containsKey('discount') != other._$data.containsKey('discount')) {
       return false;
     }
     if (l$discount != lOther$discount) {
@@ -2927,8 +2739,7 @@ class Variables$Mutation$CreateProduct {
     }
     final l$materials = materials;
     final lOther$materials = other.materials;
-    if (_$data.containsKey('materials') !=
-        other._$data.containsKey('materials')) {
+    if (_$data.containsKey('materials') != other._$data.containsKey('materials')) {
       return false;
     }
     if (l$materials != null && lOther$materials != null) {
@@ -2955,11 +2766,18 @@ class Variables$Mutation$CreateProduct {
     }
     final l$customBrand = customBrand;
     final lOther$customBrand = other.customBrand;
-    if (_$data.containsKey('customBrand') !=
-        other._$data.containsKey('customBrand')) {
+    if (_$data.containsKey('customBrand') != other._$data.containsKey('customBrand')) {
       return false;
     }
     if (l$customBrand != lOther$customBrand) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (_$data.containsKey('isFeatured') != other._$data.containsKey('isFeatured')) {
+      return false;
+    }
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     return true;
@@ -2982,6 +2800,7 @@ class Variables$Mutation$CreateProduct {
     final l$materials = materials;
     final l$style = style;
     final l$customBrand = customBrand;
+    final l$isFeatured = isFeatured;
     return Object.hashAll([
       l$category,
       _$data.containsKey('condition') ? l$condition : const {},
@@ -3006,6 +2825,7 @@ class Variables$Mutation$CreateProduct {
           : const {},
       _$data.containsKey('style') ? l$style : const {},
       _$data.containsKey('customBrand') ? l$customBrand : const {},
+      _$data.containsKey('isFeatured') ? l$isFeatured : const {},
     ]);
   }
 }
@@ -3016,8 +2836,7 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     TRes Function(Variables$Mutation$CreateProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$CreateProduct;
 
-  factory CopyWith$Variables$Mutation$CreateProduct.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CreateProduct;
+  factory CopyWith$Variables$Mutation$CreateProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CreateProduct;
 
   TRes call({
     int? category,
@@ -3035,11 +2854,11 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
-    implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$CreateProduct(
     this._instance,
     this._then,
@@ -3067,35 +2886,30 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? materials = _undefined,
     Object? style = _undefined,
     Object? customBrand = _undefined,
+    Object? isFeatured = _undefined,
   }) =>
       _then(Variables$Mutation$CreateProduct._({
         ..._instance._$data,
-        if (category != _undefined && category != null)
-          'category': (category as int),
-        if (condition != _undefined)
-          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
-        if (description != _undefined && description != null)
-          'description': (description as String),
-        if (imageUrl != _undefined && imageUrl != null)
-          'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
+        if (category != _undefined && category != null) 'category': (category as int),
+        if (condition != _undefined) 'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (description != _undefined && description != null) 'description': (description as String),
+        if (imageUrl != _undefined && imageUrl != null) 'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
         if (price != _undefined && price != null) 'price': (price as double),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
-        if (subCategory != _undefined && subCategory != null)
-          'subCategory': (subCategory as int),
+        if (subCategory != _undefined && subCategory != null) 'subCategory': (subCategory as int),
         if (name != _undefined && name != null) 'name': (name as String),
-        if (parcelSize != _undefined)
-          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (parcelSize != _undefined) 'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (materials != _undefined) 'materials': (materials as List<int?>?),
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
         if (customBrand != _undefined) 'customBrand': (customBrand as String?),
+        if (isFeatured != _undefined) 'isFeatured': (isFeatured as bool?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
-    implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes> implements CopyWith$Variables$Mutation$CreateProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateProduct(this._res);
 
   TRes _res;
@@ -3116,6 +2930,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   }) =>
       _res;
 }
@@ -3130,10 +2945,7 @@ class Mutation$CreateProduct {
     final l$createProduct = json['createProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateProduct(
-      createProduct: l$createProduct == null
-          ? null
-          : Mutation$CreateProduct$createProduct.fromJson(
-              (l$createProduct as Map<String, dynamic>)),
+      createProduct: l$createProduct == null ? null : Mutation$CreateProduct$createProduct.fromJson((l$createProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3184,8 +2996,7 @@ class Mutation$CreateProduct {
 }
 
 extension UtilityExtension$Mutation$CreateProduct on Mutation$CreateProduct {
-  CopyWith$Mutation$CreateProduct<Mutation$CreateProduct> get copyWith =>
-      CopyWith$Mutation$CreateProduct(
+  CopyWith$Mutation$CreateProduct<Mutation$CreateProduct> get copyWith => CopyWith$Mutation$CreateProduct(
         this,
         (i) => i,
       );
@@ -3197,8 +3008,7 @@ abstract class CopyWith$Mutation$CreateProduct<TRes> {
     TRes Function(Mutation$CreateProduct) then,
   ) = _CopyWithImpl$Mutation$CreateProduct;
 
-  factory CopyWith$Mutation$CreateProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct;
+  factory CopyWith$Mutation$CreateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateProduct;
 
   TRes call({
     Mutation$CreateProduct$createProduct? createProduct,
@@ -3207,8 +3017,7 @@ abstract class CopyWith$Mutation$CreateProduct<TRes> {
   CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct;
 }
 
-class _CopyWithImpl$Mutation$CreateProduct<TRes>
-    implements CopyWith$Mutation$CreateProduct<TRes> {
+class _CopyWithImpl$Mutation$CreateProduct<TRes> implements CopyWith$Mutation$CreateProduct<TRes> {
   _CopyWithImpl$Mutation$CreateProduct(
     this._instance,
     this._then,
@@ -3225,25 +3034,19 @@ class _CopyWithImpl$Mutation$CreateProduct<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateProduct(
-        createProduct: createProduct == _undefined
-            ? _instance.createProduct
-            : (createProduct as Mutation$CreateProduct$createProduct?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        createProduct: createProduct == _undefined ? _instance.createProduct : (createProduct as Mutation$CreateProduct$createProduct?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct {
     final local$createProduct = _instance.createProduct;
     return local$createProduct == null
         ? CopyWith$Mutation$CreateProduct$createProduct.stub(_then(_instance))
-        : CopyWith$Mutation$CreateProduct$createProduct(
-            local$createProduct, (e) => call(createProduct: e));
+        : CopyWith$Mutation$CreateProduct$createProduct(local$createProduct, (e) => call(createProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateProduct<TRes>
-    implements CopyWith$Mutation$CreateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$CreateProduct<TRes> implements CopyWith$Mutation$CreateProduct<TRes> {
   _CopyWithStubImpl$Mutation$CreateProduct(this._res);
 
   TRes _res;
@@ -3254,8 +3057,7 @@ class _CopyWithStubImpl$Mutation$CreateProduct<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct =>
-      CopyWith$Mutation$CreateProduct$createProduct.stub(_res);
+  CopyWith$Mutation$CreateProduct$createProduct<TRes> get createProduct => CopyWith$Mutation$CreateProduct$createProduct.stub(_res);
 }
 
 const documentNodeMutationCreateProduct = DocumentNode(definitions: [
@@ -3407,6 +3209,15 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isFeatured')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -3474,6 +3285,10 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
             name: NameNode(value: 'customBrand'),
             value: VariableNode(name: NameNode(value: 'customBrand')),
           ),
+          ArgumentNode(
+            name: NameNode(value: 'isFeatured'),
+            value: VariableNode(name: NameNode(value: 'isFeatured')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -3510,16 +3325,13 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CreateProduct _parserFn$Mutation$CreateProduct(
-        Map<String, dynamic> data) =>
-    Mutation$CreateProduct.fromJson(data);
+Mutation$CreateProduct _parserFn$Mutation$CreateProduct(Map<String, dynamic> data) => Mutation$CreateProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$CreateProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CreateProduct?,
 );
 
-class Options$Mutation$CreateProduct
-    extends graphql.MutationOptions<Mutation$CreateProduct> {
+class Options$Mutation$CreateProduct extends graphql.MutationOptions<Mutation$CreateProduct> {
   Options$Mutation$CreateProduct({
     String? operationName,
     required Variables$Mutation$CreateProduct variables,
@@ -3545,9 +3357,7 @@ class Options$Mutation$CreateProduct
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$CreateProduct(data),
+                    data == null ? null : _parserFn$Mutation$CreateProduct(data),
                   ),
           update: update,
           onError: onError,
@@ -3559,15 +3369,12 @@ class Options$Mutation$CreateProduct
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CreateProduct
-    extends graphql.WatchQueryOptions<Mutation$CreateProduct> {
+class WatchOptions$Mutation$CreateProduct extends graphql.WatchQueryOptions<Mutation$CreateProduct> {
   WatchOptions$Mutation$CreateProduct({
     String? operationName,
     required Variables$Mutation$CreateProduct variables,
@@ -3599,12 +3406,8 @@ class WatchOptions$Mutation$CreateProduct
 }
 
 extension ClientExtension$Mutation$CreateProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreateProduct>> mutate$CreateProduct(
-          Options$Mutation$CreateProduct options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$CreateProduct> watchMutation$CreateProduct(
-          WatchOptions$Mutation$CreateProduct options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$CreateProduct>> mutate$CreateProduct(Options$Mutation$CreateProduct options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateProduct> watchMutation$CreateProduct(WatchOptions$Mutation$CreateProduct options) => this.watchMutation(options);
 }
 
 class Mutation$CreateProduct$createProduct {
@@ -3614,8 +3417,7 @@ class Mutation$CreateProduct$createProduct {
     this.$__typename = 'CreateProduct',
   });
 
-  factory Mutation$CreateProduct$createProduct.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateProduct$createProduct.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -3660,8 +3462,7 @@ class Mutation$CreateProduct$createProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateProduct$createProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateProduct$createProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -3683,14 +3484,11 @@ class Mutation$CreateProduct$createProduct {
   }
 }
 
-extension UtilityExtension$Mutation$CreateProduct$createProduct
-    on Mutation$CreateProduct$createProduct {
-  CopyWith$Mutation$CreateProduct$createProduct<
-          Mutation$CreateProduct$createProduct>
-      get copyWith => CopyWith$Mutation$CreateProduct$createProduct(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateProduct$createProduct on Mutation$CreateProduct$createProduct {
+  CopyWith$Mutation$CreateProduct$createProduct<Mutation$CreateProduct$createProduct> get copyWith => CopyWith$Mutation$CreateProduct$createProduct(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
@@ -3699,8 +3497,7 @@ abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
     TRes Function(Mutation$CreateProduct$createProduct) then,
   ) = _CopyWithImpl$Mutation$CreateProduct$createProduct;
 
-  factory CopyWith$Mutation$CreateProduct$createProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateProduct$createProduct;
+  factory CopyWith$Mutation$CreateProduct$createProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateProduct$createProduct;
 
   TRes call({
     bool? success,
@@ -3709,8 +3506,7 @@ abstract class CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes>
-    implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
+class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   _CopyWithImpl$Mutation$CreateProduct$createProduct(
     this._instance,
     this._then,
@@ -3729,16 +3525,12 @@ class _CopyWithImpl$Mutation$CreateProduct$createProduct<TRes>
   }) =>
       _then(Mutation$CreateProduct$createProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
-    implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
+class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes> implements CopyWith$Mutation$CreateProduct$createProduct<TRes> {
   _CopyWithStubImpl$Mutation$CreateProduct$createProduct(this._res);
 
   TRes _res;
@@ -3752,8 +3544,7 @@ class _CopyWithStubImpl$Mutation$CreateProduct$createProduct<TRes>
 }
 
 class Variables$Mutation$likeProduct {
-  factory Variables$Mutation$likeProduct({required int productId}) =>
-      Variables$Mutation$likeProduct._({
+  factory Variables$Mutation$likeProduct({required int productId}) => Variables$Mutation$likeProduct._({
         r'productId': productId,
       });
 
@@ -3777,19 +3568,17 @@ class Variables$Mutation$likeProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$likeProduct<Variables$Mutation$likeProduct>
-      get copyWith => CopyWith$Variables$Mutation$likeProduct(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$likeProduct<Variables$Mutation$likeProduct> get copyWith => CopyWith$Variables$Mutation$likeProduct(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$likeProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$likeProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$productId = productId;
@@ -3813,14 +3602,12 @@ abstract class CopyWith$Variables$Mutation$likeProduct<TRes> {
     TRes Function(Variables$Mutation$likeProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$likeProduct;
 
-  factory CopyWith$Variables$Mutation$likeProduct.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$likeProduct;
+  factory CopyWith$Variables$Mutation$likeProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$likeProduct;
 
   TRes call({int? productId});
 }
 
-class _CopyWithImpl$Variables$Mutation$likeProduct<TRes>
-    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$likeProduct<TRes> implements CopyWith$Variables$Mutation$likeProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$likeProduct(
     this._instance,
     this._then,
@@ -3832,16 +3619,13 @@ class _CopyWithImpl$Variables$Mutation$likeProduct<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? productId = _undefined}) =>
-      _then(Variables$Mutation$likeProduct._({
+  TRes call({Object? productId = _undefined}) => _then(Variables$Mutation$likeProduct._({
         ..._instance._$data,
-        if (productId != _undefined && productId != null)
-          'productId': (productId as int),
+        if (productId != _undefined && productId != null) 'productId': (productId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$likeProduct<TRes>
-    implements CopyWith$Variables$Mutation$likeProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$likeProduct<TRes> implements CopyWith$Variables$Mutation$likeProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$likeProduct(this._res);
 
   TRes _res;
@@ -3859,10 +3643,7 @@ class Mutation$likeProduct {
     final l$likeProduct = json['likeProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$likeProduct(
-      likeProduct: l$likeProduct == null
-          ? null
-          : Mutation$likeProduct$likeProduct.fromJson(
-              (l$likeProduct as Map<String, dynamic>)),
+      likeProduct: l$likeProduct == null ? null : Mutation$likeProduct$likeProduct.fromJson((l$likeProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -3913,8 +3694,7 @@ class Mutation$likeProduct {
 }
 
 extension UtilityExtension$Mutation$likeProduct on Mutation$likeProduct {
-  CopyWith$Mutation$likeProduct<Mutation$likeProduct> get copyWith =>
-      CopyWith$Mutation$likeProduct(
+  CopyWith$Mutation$likeProduct<Mutation$likeProduct> get copyWith => CopyWith$Mutation$likeProduct(
         this,
         (i) => i,
       );
@@ -3926,8 +3706,7 @@ abstract class CopyWith$Mutation$likeProduct<TRes> {
     TRes Function(Mutation$likeProduct) then,
   ) = _CopyWithImpl$Mutation$likeProduct;
 
-  factory CopyWith$Mutation$likeProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$likeProduct;
+  factory CopyWith$Mutation$likeProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$likeProduct;
 
   TRes call({
     Mutation$likeProduct$likeProduct? likeProduct,
@@ -3936,8 +3715,7 @@ abstract class CopyWith$Mutation$likeProduct<TRes> {
   CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct;
 }
 
-class _CopyWithImpl$Mutation$likeProduct<TRes>
-    implements CopyWith$Mutation$likeProduct<TRes> {
+class _CopyWithImpl$Mutation$likeProduct<TRes> implements CopyWith$Mutation$likeProduct<TRes> {
   _CopyWithImpl$Mutation$likeProduct(
     this._instance,
     this._then,
@@ -3954,25 +3732,17 @@ class _CopyWithImpl$Mutation$likeProduct<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$likeProduct(
-        likeProduct: likeProduct == _undefined
-            ? _instance.likeProduct
-            : (likeProduct as Mutation$likeProduct$likeProduct?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        likeProduct: likeProduct == _undefined ? _instance.likeProduct : (likeProduct as Mutation$likeProduct$likeProduct?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct {
     final local$likeProduct = _instance.likeProduct;
-    return local$likeProduct == null
-        ? CopyWith$Mutation$likeProduct$likeProduct.stub(_then(_instance))
-        : CopyWith$Mutation$likeProduct$likeProduct(
-            local$likeProduct, (e) => call(likeProduct: e));
+    return local$likeProduct == null ? CopyWith$Mutation$likeProduct$likeProduct.stub(_then(_instance)) : CopyWith$Mutation$likeProduct$likeProduct(local$likeProduct, (e) => call(likeProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$likeProduct<TRes>
-    implements CopyWith$Mutation$likeProduct<TRes> {
+class _CopyWithStubImpl$Mutation$likeProduct<TRes> implements CopyWith$Mutation$likeProduct<TRes> {
   _CopyWithStubImpl$Mutation$likeProduct(this._res);
 
   TRes _res;
@@ -3983,8 +3753,7 @@ class _CopyWithStubImpl$Mutation$likeProduct<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct =>
-      CopyWith$Mutation$likeProduct$likeProduct.stub(_res);
+  CopyWith$Mutation$likeProduct$likeProduct<TRes> get likeProduct => CopyWith$Mutation$likeProduct$likeProduct.stub(_res);
 }
 
 const documentNodeMutationlikeProduct = DocumentNode(definitions: [
@@ -4041,16 +3810,13 @@ const documentNodeMutationlikeProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$likeProduct _parserFn$Mutation$likeProduct(
-        Map<String, dynamic> data) =>
-    Mutation$likeProduct.fromJson(data);
+Mutation$likeProduct _parserFn$Mutation$likeProduct(Map<String, dynamic> data) => Mutation$likeProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$likeProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$likeProduct?,
 );
 
-class Options$Mutation$likeProduct
-    extends graphql.MutationOptions<Mutation$likeProduct> {
+class Options$Mutation$likeProduct extends graphql.MutationOptions<Mutation$likeProduct> {
   Options$Mutation$likeProduct({
     String? operationName,
     required Variables$Mutation$likeProduct variables,
@@ -4088,15 +3854,12 @@ class Options$Mutation$likeProduct
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$likeProduct
-    extends graphql.WatchQueryOptions<Mutation$likeProduct> {
+class WatchOptions$Mutation$likeProduct extends graphql.WatchQueryOptions<Mutation$likeProduct> {
   WatchOptions$Mutation$likeProduct({
     String? operationName,
     required Variables$Mutation$likeProduct variables,
@@ -4128,12 +3891,8 @@ class WatchOptions$Mutation$likeProduct
 }
 
 extension ClientExtension$Mutation$likeProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$likeProduct>> mutate$likeProduct(
-          Options$Mutation$likeProduct options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$likeProduct> watchMutation$likeProduct(
-          WatchOptions$Mutation$likeProduct options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$likeProduct>> mutate$likeProduct(Options$Mutation$likeProduct options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$likeProduct> watchMutation$likeProduct(WatchOptions$Mutation$likeProduct options) => this.watchMutation(options);
 }
 
 class Mutation$likeProduct$likeProduct {
@@ -4179,8 +3938,7 @@ class Mutation$likeProduct$likeProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$likeProduct$likeProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$likeProduct$likeProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -4197,13 +3955,11 @@ class Mutation$likeProduct$likeProduct {
   }
 }
 
-extension UtilityExtension$Mutation$likeProduct$likeProduct
-    on Mutation$likeProduct$likeProduct {
-  CopyWith$Mutation$likeProduct$likeProduct<Mutation$likeProduct$likeProduct>
-      get copyWith => CopyWith$Mutation$likeProduct$likeProduct(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$likeProduct$likeProduct on Mutation$likeProduct$likeProduct {
+  CopyWith$Mutation$likeProduct$likeProduct<Mutation$likeProduct$likeProduct> get copyWith => CopyWith$Mutation$likeProduct$likeProduct(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
@@ -4212,8 +3968,7 @@ abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
     TRes Function(Mutation$likeProduct$likeProduct) then,
   ) = _CopyWithImpl$Mutation$likeProduct$likeProduct;
 
-  factory CopyWith$Mutation$likeProduct$likeProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$likeProduct$likeProduct;
+  factory CopyWith$Mutation$likeProduct$likeProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$likeProduct$likeProduct;
 
   TRes call({
     bool? success,
@@ -4221,8 +3976,7 @@ abstract class CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes>
-    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes> implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   _CopyWithImpl$Mutation$likeProduct$likeProduct(
     this._instance,
     this._then,
@@ -4240,14 +3994,11 @@ class _CopyWithImpl$Mutation$likeProduct$likeProduct<TRes>
   }) =>
       _then(Mutation$likeProduct$likeProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$likeProduct$likeProduct<TRes>
-    implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
+class _CopyWithStubImpl$Mutation$likeProduct$likeProduct<TRes> implements CopyWith$Mutation$likeProduct$likeProduct<TRes> {
   _CopyWithStubImpl$Mutation$likeProduct$likeProduct(this._res);
 
   TRes _res;
@@ -4276,6 +4027,7 @@ class Variables$Mutation$UpdateProduct {
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   }) =>
       Variables$Mutation$UpdateProduct._({
         if (category != null) r'category': category,
@@ -4293,6 +4045,7 @@ class Variables$Mutation$UpdateProduct {
         if (materials != null) r'materials': materials,
         if (style != null) r'style': style,
         if (customBrand != null) r'customBrand': customBrand,
+        if (isFeatured != null) r'isFeatured': isFeatured,
       });
 
   Variables$Mutation$UpdateProduct._(this._$data);
@@ -4305,10 +4058,7 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('condition')) {
       final l$condition = data['condition'];
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue(
-              (l$condition as String));
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionByApiValue((l$condition as String));
     }
     if (data.containsKey('description')) {
       final l$description = data['description'];
@@ -4324,9 +4074,7 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
-      result$data['parcelSize'] = l$parcelSize == null
-          ? null
-          : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
+      result$data['parcelSize'] = l$parcelSize == null ? null : fromJson$Enum$ParcelSizeEnum((l$parcelSize as String));
     }
     if (data.containsKey('price')) {
       final l$price = data['price'];
@@ -4336,8 +4084,7 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = (l$productId as int);
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] = l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     if (data.containsKey('subCategory')) {
       final l$subCategory = data['subCategory'];
@@ -4345,8 +4092,7 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('color')) {
       final l$color = data['color'];
-      result$data['color'] =
-          (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
+      result$data['color'] = (l$color as List<dynamic>?)?.map((e) => (e as String?)).toList();
     }
     if (data.containsKey('brand')) {
       final l$brand = data['brand'];
@@ -4354,17 +4100,19 @@ class Variables$Mutation$UpdateProduct {
     }
     if (data.containsKey('materials')) {
       final l$materials = data['materials'];
-      result$data['materials'] =
-          (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
+      result$data['materials'] = (l$materials as List<dynamic>?)?.map((e) => (e as int?)).toList();
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
-      result$data['style'] =
-          l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
+      result$data['style'] = l$style == null ? null : fromJson$Enum$StyleEnum((l$style as String));
     }
     if (data.containsKey('customBrand')) {
       final l$customBrand = data['customBrand'];
       result$data['customBrand'] = (l$customBrand as String?);
+    }
+    if (data.containsKey('isFeatured')) {
+      final l$isFeatured = data['isFeatured'];
+      result$data['isFeatured'] = (l$isFeatured as bool?);
     }
     return Variables$Mutation$UpdateProduct._(result$data);
   }
@@ -4373,8 +4121,7 @@ class Variables$Mutation$UpdateProduct {
 
   int? get category => (_$data['category'] as int?);
 
-  EnumImport$ConditionEnum.ConditionsEnum? get condition =>
-      (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
+  EnumImport$ConditionEnum.ConditionsEnum? get condition => (_$data['condition'] as EnumImport$ConditionEnum.ConditionsEnum?);
 
   String? get description => (_$data['description'] as String?);
 
@@ -4382,8 +4129,7 @@ class Variables$Mutation$UpdateProduct {
 
   String? get name => (_$data['name'] as String?);
 
-  Enum$ParcelSizeEnum? get parcelSize =>
-      (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
+  Enum$ParcelSizeEnum? get parcelSize => (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
   double? get price => (_$data['price'] as double?);
 
@@ -4403,6 +4149,8 @@ class Variables$Mutation$UpdateProduct {
 
   String? get customBrand => (_$data['customBrand'] as String?);
 
+  bool? get isFeatured => (_$data['isFeatured'] as bool?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('category')) {
@@ -4411,10 +4159,7 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('condition')) {
       final l$condition = condition;
-      result$data['condition'] = l$condition == null
-          ? null
-          : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(
-              l$condition);
+      result$data['condition'] = l$condition == null ? null : EnumImport$ConditionEnum.ConditionsEnum.conditionToApiValue(l$condition);
     }
     if (_$data.containsKey('description')) {
       final l$description = description;
@@ -4430,9 +4175,7 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
-      result$data['parcelSize'] = l$parcelSize == null
-          ? null
-          : toJson$Enum$ParcelSizeEnum(l$parcelSize);
+      result$data['parcelSize'] = l$parcelSize == null ? null : toJson$Enum$ParcelSizeEnum(l$parcelSize);
     }
     if (_$data.containsKey('price')) {
       final l$price = price;
@@ -4442,8 +4185,7 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = l$productId;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+      result$data['size'] = l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     if (_$data.containsKey('subCategory')) {
       final l$subCategory = subCategory;
@@ -4463,35 +4205,35 @@ class Variables$Mutation$UpdateProduct {
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
-      result$data['style'] =
-          l$style == null ? null : toJson$Enum$StyleEnum(l$style);
+      result$data['style'] = l$style == null ? null : toJson$Enum$StyleEnum(l$style);
     }
     if (_$data.containsKey('customBrand')) {
       final l$customBrand = customBrand;
       result$data['customBrand'] = l$customBrand;
     }
+    if (_$data.containsKey('isFeatured')) {
+      final l$isFeatured = isFeatured;
+      result$data['isFeatured'] = l$isFeatured;
+    }
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateProduct<Variables$Mutation$UpdateProduct>
-      get copyWith => CopyWith$Variables$Mutation$UpdateProduct(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UpdateProduct<Variables$Mutation$UpdateProduct> get copyWith => CopyWith$Variables$Mutation$UpdateProduct(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$category = category;
     final lOther$category = other.category;
-    if (_$data.containsKey('category') !=
-        other._$data.containsKey('category')) {
+    if (_$data.containsKey('category') != other._$data.containsKey('category')) {
       return false;
     }
     if (l$category != lOther$category) {
@@ -4499,8 +4241,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$condition = condition;
     final lOther$condition = other.condition;
-    if (_$data.containsKey('condition') !=
-        other._$data.containsKey('condition')) {
+    if (_$data.containsKey('condition') != other._$data.containsKey('condition')) {
       return false;
     }
     if (l$condition != lOther$condition) {
@@ -4508,8 +4249,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
+    if (_$data.containsKey('description') != other._$data.containsKey('description')) {
       return false;
     }
     if (l$description != lOther$description) {
@@ -4517,8 +4257,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$discount = discount;
     final lOther$discount = other.discount;
-    if (_$data.containsKey('discount') !=
-        other._$data.containsKey('discount')) {
+    if (_$data.containsKey('discount') != other._$data.containsKey('discount')) {
       return false;
     }
     if (l$discount != lOther$discount) {
@@ -4534,8 +4273,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$parcelSize = parcelSize;
     final lOther$parcelSize = other.parcelSize;
-    if (_$data.containsKey('parcelSize') !=
-        other._$data.containsKey('parcelSize')) {
+    if (_$data.containsKey('parcelSize') != other._$data.containsKey('parcelSize')) {
       return false;
     }
     if (l$parcelSize != lOther$parcelSize) {
@@ -4564,8 +4302,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$subCategory = subCategory;
     final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') !=
-        other._$data.containsKey('subCategory')) {
+    if (_$data.containsKey('subCategory') != other._$data.containsKey('subCategory')) {
       return false;
     }
     if (l$subCategory != lOther$subCategory) {
@@ -4600,8 +4337,7 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$materials = materials;
     final lOther$materials = other.materials;
-    if (_$data.containsKey('materials') !=
-        other._$data.containsKey('materials')) {
+    if (_$data.containsKey('materials') != other._$data.containsKey('materials')) {
       return false;
     }
     if (l$materials != null && lOther$materials != null) {
@@ -4628,11 +4364,18 @@ class Variables$Mutation$UpdateProduct {
     }
     final l$customBrand = customBrand;
     final lOther$customBrand = other.customBrand;
-    if (_$data.containsKey('customBrand') !=
-        other._$data.containsKey('customBrand')) {
+    if (_$data.containsKey('customBrand') != other._$data.containsKey('customBrand')) {
       return false;
     }
     if (l$customBrand != lOther$customBrand) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (_$data.containsKey('isFeatured') != other._$data.containsKey('isFeatured')) {
+      return false;
+    }
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     return true;
@@ -4655,6 +4398,7 @@ class Variables$Mutation$UpdateProduct {
     final l$materials = materials;
     final l$style = style;
     final l$customBrand = customBrand;
+    final l$isFeatured = isFeatured;
     return Object.hashAll([
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -4679,6 +4423,7 @@ class Variables$Mutation$UpdateProduct {
           : const {},
       _$data.containsKey('style') ? l$style : const {},
       _$data.containsKey('customBrand') ? l$customBrand : const {},
+      _$data.containsKey('isFeatured') ? l$isFeatured : const {},
     ]);
   }
 }
@@ -4689,8 +4434,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     TRes Function(Variables$Mutation$UpdateProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateProduct;
 
-  factory CopyWith$Variables$Mutation$UpdateProduct.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UpdateProduct;
+  factory CopyWith$Variables$Mutation$UpdateProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateProduct;
 
   TRes call({
     int? category,
@@ -4708,11 +4452,11 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
-    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateProduct(
     this._instance,
     this._then,
@@ -4740,20 +4484,18 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? materials = _undefined,
     Object? style = _undefined,
     Object? customBrand = _undefined,
+    Object? isFeatured = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProduct._({
         ..._instance._$data,
         if (category != _undefined) 'category': (category as int?),
-        if (condition != _undefined)
-          'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
+        if (condition != _undefined) 'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
         if (description != _undefined) 'description': (description as String?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (name != _undefined) 'name': (name as String?),
-        if (parcelSize != _undefined)
-          'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
+        if (parcelSize != _undefined) 'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (price != _undefined) 'price': (price as double?),
-        if (productId != _undefined && productId != null)
-          'productId': (productId as int),
+        if (productId != _undefined && productId != null) 'productId': (productId as int),
         if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (color != _undefined) 'color': (color as List<String?>?),
@@ -4761,11 +4503,11 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (materials != _undefined) 'materials': (materials as List<int?>?),
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
         if (customBrand != _undefined) 'customBrand': (customBrand as String?),
+        if (isFeatured != _undefined) 'isFeatured': (isFeatured as bool?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
-    implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes> implements CopyWith$Variables$Mutation$UpdateProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateProduct(this._res);
 
   TRes _res;
@@ -4786,6 +4528,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     List<int?>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool? isFeatured,
   }) =>
       _res;
 }
@@ -4800,10 +4543,7 @@ class Mutation$UpdateProduct {
     final l$updateProduct = json['updateProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProduct(
-      updateProduct: l$updateProduct == null
-          ? null
-          : Mutation$UpdateProduct$updateProduct.fromJson(
-              (l$updateProduct as Map<String, dynamic>)),
+      updateProduct: l$updateProduct == null ? null : Mutation$UpdateProduct$updateProduct.fromJson((l$updateProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -4854,8 +4594,7 @@ class Mutation$UpdateProduct {
 }
 
 extension UtilityExtension$Mutation$UpdateProduct on Mutation$UpdateProduct {
-  CopyWith$Mutation$UpdateProduct<Mutation$UpdateProduct> get copyWith =>
-      CopyWith$Mutation$UpdateProduct(
+  CopyWith$Mutation$UpdateProduct<Mutation$UpdateProduct> get copyWith => CopyWith$Mutation$UpdateProduct(
         this,
         (i) => i,
       );
@@ -4867,8 +4606,7 @@ abstract class CopyWith$Mutation$UpdateProduct<TRes> {
     TRes Function(Mutation$UpdateProduct) then,
   ) = _CopyWithImpl$Mutation$UpdateProduct;
 
-  factory CopyWith$Mutation$UpdateProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateProduct;
+  factory CopyWith$Mutation$UpdateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProduct;
 
   TRes call({
     Mutation$UpdateProduct$updateProduct? updateProduct,
@@ -4877,8 +4615,7 @@ abstract class CopyWith$Mutation$UpdateProduct<TRes> {
   CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct;
 }
 
-class _CopyWithImpl$Mutation$UpdateProduct<TRes>
-    implements CopyWith$Mutation$UpdateProduct<TRes> {
+class _CopyWithImpl$Mutation$UpdateProduct<TRes> implements CopyWith$Mutation$UpdateProduct<TRes> {
   _CopyWithImpl$Mutation$UpdateProduct(
     this._instance,
     this._then,
@@ -4895,25 +4632,19 @@ class _CopyWithImpl$Mutation$UpdateProduct<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProduct(
-        updateProduct: updateProduct == _undefined
-            ? _instance.updateProduct
-            : (updateProduct as Mutation$UpdateProduct$updateProduct?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        updateProduct: updateProduct == _undefined ? _instance.updateProduct : (updateProduct as Mutation$UpdateProduct$updateProduct?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct {
     final local$updateProduct = _instance.updateProduct;
     return local$updateProduct == null
         ? CopyWith$Mutation$UpdateProduct$updateProduct.stub(_then(_instance))
-        : CopyWith$Mutation$UpdateProduct$updateProduct(
-            local$updateProduct, (e) => call(updateProduct: e));
+        : CopyWith$Mutation$UpdateProduct$updateProduct(local$updateProduct, (e) => call(updateProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProduct<TRes>
-    implements CopyWith$Mutation$UpdateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProduct<TRes> implements CopyWith$Mutation$UpdateProduct<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProduct(this._res);
 
   TRes _res;
@@ -4924,8 +4655,7 @@ class _CopyWithStubImpl$Mutation$UpdateProduct<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct =>
-      CopyWith$Mutation$UpdateProduct$updateProduct.stub(_res);
+  CopyWith$Mutation$UpdateProduct$updateProduct<TRes> get updateProduct => CopyWith$Mutation$UpdateProduct$updateProduct.stub(_res);
 }
 
 const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
@@ -5074,6 +4804,15 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'isFeatured')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -5141,6 +4880,10 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
             name: NameNode(value: 'customBrand'),
             value: VariableNode(name: NameNode(value: 'customBrand')),
           ),
+          ArgumentNode(
+            name: NameNode(value: 'isFeatured'),
+            value: VariableNode(name: NameNode(value: 'isFeatured')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -5177,16 +4920,13 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UpdateProduct _parserFn$Mutation$UpdateProduct(
-        Map<String, dynamic> data) =>
-    Mutation$UpdateProduct.fromJson(data);
+Mutation$UpdateProduct _parserFn$Mutation$UpdateProduct(Map<String, dynamic> data) => Mutation$UpdateProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateProduct?,
 );
 
-class Options$Mutation$UpdateProduct
-    extends graphql.MutationOptions<Mutation$UpdateProduct> {
+class Options$Mutation$UpdateProduct extends graphql.MutationOptions<Mutation$UpdateProduct> {
   Options$Mutation$UpdateProduct({
     String? operationName,
     required Variables$Mutation$UpdateProduct variables,
@@ -5212,9 +4952,7 @@ class Options$Mutation$UpdateProduct
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$UpdateProduct(data),
+                    data == null ? null : _parserFn$Mutation$UpdateProduct(data),
                   ),
           update: update,
           onError: onError,
@@ -5226,15 +4964,12 @@ class Options$Mutation$UpdateProduct
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateProduct
-    extends graphql.WatchQueryOptions<Mutation$UpdateProduct> {
+class WatchOptions$Mutation$UpdateProduct extends graphql.WatchQueryOptions<Mutation$UpdateProduct> {
   WatchOptions$Mutation$UpdateProduct({
     String? operationName,
     required Variables$Mutation$UpdateProduct variables,
@@ -5266,12 +5001,8 @@ class WatchOptions$Mutation$UpdateProduct
 }
 
 extension ClientExtension$Mutation$UpdateProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateProduct>> mutate$UpdateProduct(
-          Options$Mutation$UpdateProduct options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$UpdateProduct> watchMutation$UpdateProduct(
-          WatchOptions$Mutation$UpdateProduct options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$UpdateProduct>> mutate$UpdateProduct(Options$Mutation$UpdateProduct options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateProduct> watchMutation$UpdateProduct(WatchOptions$Mutation$UpdateProduct options) => this.watchMutation(options);
 }
 
 class Mutation$UpdateProduct$updateProduct {
@@ -5281,8 +5012,7 @@ class Mutation$UpdateProduct$updateProduct {
     this.$__typename = 'UpdateProduct',
   });
 
-  factory Mutation$UpdateProduct$updateProduct.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateProduct$updateProduct.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -5327,8 +5057,7 @@ class Mutation$UpdateProduct$updateProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateProduct$updateProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateProduct$updateProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -5350,14 +5079,11 @@ class Mutation$UpdateProduct$updateProduct {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateProduct$updateProduct
-    on Mutation$UpdateProduct$updateProduct {
-  CopyWith$Mutation$UpdateProduct$updateProduct<
-          Mutation$UpdateProduct$updateProduct>
-      get copyWith => CopyWith$Mutation$UpdateProduct$updateProduct(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateProduct$updateProduct on Mutation$UpdateProduct$updateProduct {
+  CopyWith$Mutation$UpdateProduct$updateProduct<Mutation$UpdateProduct$updateProduct> get copyWith => CopyWith$Mutation$UpdateProduct$updateProduct(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
@@ -5366,8 +5092,7 @@ abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
     TRes Function(Mutation$UpdateProduct$updateProduct) then,
   ) = _CopyWithImpl$Mutation$UpdateProduct$updateProduct;
 
-  factory CopyWith$Mutation$UpdateProduct$updateProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct;
+  factory CopyWith$Mutation$UpdateProduct$updateProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct;
 
   TRes call({
     bool? success,
@@ -5376,8 +5101,7 @@ abstract class CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes>
-    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   _CopyWithImpl$Mutation$UpdateProduct$updateProduct(
     this._instance,
     this._then,
@@ -5396,16 +5120,12 @@ class _CopyWithImpl$Mutation$UpdateProduct$updateProduct<TRes>
   }) =>
       _then(Mutation$UpdateProduct$updateProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes>
-    implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes> implements CopyWith$Mutation$UpdateProduct$updateProduct<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct(this._res);
 
   TRes _res;
@@ -5419,8 +5139,7 @@ class _CopyWithStubImpl$Mutation$UpdateProduct$updateProduct<TRes>
 }
 
 class Variables$Mutation$DeleteProduct {
-  factory Variables$Mutation$DeleteProduct({required int productId}) =>
-      Variables$Mutation$DeleteProduct._({
+  factory Variables$Mutation$DeleteProduct({required int productId}) => Variables$Mutation$DeleteProduct._({
         r'productId': productId,
       });
 
@@ -5444,19 +5163,17 @@ class Variables$Mutation$DeleteProduct {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$DeleteProduct<Variables$Mutation$DeleteProduct>
-      get copyWith => CopyWith$Variables$Mutation$DeleteProduct(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$DeleteProduct<Variables$Mutation$DeleteProduct> get copyWith => CopyWith$Variables$Mutation$DeleteProduct(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$DeleteProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$DeleteProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$productId = productId;
@@ -5480,14 +5197,12 @@ abstract class CopyWith$Variables$Mutation$DeleteProduct<TRes> {
     TRes Function(Variables$Mutation$DeleteProduct) then,
   ) = _CopyWithImpl$Variables$Mutation$DeleteProduct;
 
-  factory CopyWith$Variables$Mutation$DeleteProduct.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$DeleteProduct;
+  factory CopyWith$Variables$Mutation$DeleteProduct.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$DeleteProduct;
 
   TRes call({int? productId});
 }
 
-class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes>
-    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes> implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
   _CopyWithImpl$Variables$Mutation$DeleteProduct(
     this._instance,
     this._then,
@@ -5499,16 +5214,13 @@ class _CopyWithImpl$Variables$Mutation$DeleteProduct<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? productId = _undefined}) =>
-      _then(Variables$Mutation$DeleteProduct._({
+  TRes call({Object? productId = _undefined}) => _then(Variables$Mutation$DeleteProduct._({
         ..._instance._$data,
-        if (productId != _undefined && productId != null)
-          'productId': (productId as int),
+        if (productId != _undefined && productId != null) 'productId': (productId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$DeleteProduct<TRes>
-    implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$DeleteProduct<TRes> implements CopyWith$Variables$Mutation$DeleteProduct<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteProduct(this._res);
 
   TRes _res;
@@ -5526,10 +5238,7 @@ class Mutation$DeleteProduct {
     final l$deleteProduct = json['deleteProduct'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteProduct(
-      deleteProduct: l$deleteProduct == null
-          ? null
-          : Mutation$DeleteProduct$deleteProduct.fromJson(
-              (l$deleteProduct as Map<String, dynamic>)),
+      deleteProduct: l$deleteProduct == null ? null : Mutation$DeleteProduct$deleteProduct.fromJson((l$deleteProduct as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5580,8 +5289,7 @@ class Mutation$DeleteProduct {
 }
 
 extension UtilityExtension$Mutation$DeleteProduct on Mutation$DeleteProduct {
-  CopyWith$Mutation$DeleteProduct<Mutation$DeleteProduct> get copyWith =>
-      CopyWith$Mutation$DeleteProduct(
+  CopyWith$Mutation$DeleteProduct<Mutation$DeleteProduct> get copyWith => CopyWith$Mutation$DeleteProduct(
         this,
         (i) => i,
       );
@@ -5593,8 +5301,7 @@ abstract class CopyWith$Mutation$DeleteProduct<TRes> {
     TRes Function(Mutation$DeleteProduct) then,
   ) = _CopyWithImpl$Mutation$DeleteProduct;
 
-  factory CopyWith$Mutation$DeleteProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteProduct;
+  factory CopyWith$Mutation$DeleteProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteProduct;
 
   TRes call({
     Mutation$DeleteProduct$deleteProduct? deleteProduct,
@@ -5603,8 +5310,7 @@ abstract class CopyWith$Mutation$DeleteProduct<TRes> {
   CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct;
 }
 
-class _CopyWithImpl$Mutation$DeleteProduct<TRes>
-    implements CopyWith$Mutation$DeleteProduct<TRes> {
+class _CopyWithImpl$Mutation$DeleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct<TRes> {
   _CopyWithImpl$Mutation$DeleteProduct(
     this._instance,
     this._then,
@@ -5621,25 +5327,19 @@ class _CopyWithImpl$Mutation$DeleteProduct<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteProduct(
-        deleteProduct: deleteProduct == _undefined
-            ? _instance.deleteProduct
-            : (deleteProduct as Mutation$DeleteProduct$deleteProduct?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        deleteProduct: deleteProduct == _undefined ? _instance.deleteProduct : (deleteProduct as Mutation$DeleteProduct$deleteProduct?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct {
     final local$deleteProduct = _instance.deleteProduct;
     return local$deleteProduct == null
         ? CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_then(_instance))
-        : CopyWith$Mutation$DeleteProduct$deleteProduct(
-            local$deleteProduct, (e) => call(deleteProduct: e));
+        : CopyWith$Mutation$DeleteProduct$deleteProduct(local$deleteProduct, (e) => call(deleteProduct: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$DeleteProduct<TRes>
-    implements CopyWith$Mutation$DeleteProduct<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct<TRes> {
   _CopyWithStubImpl$Mutation$DeleteProduct(this._res);
 
   TRes _res;
@@ -5650,8 +5350,7 @@ class _CopyWithStubImpl$Mutation$DeleteProduct<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct =>
-      CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_res);
+  CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> get deleteProduct => CopyWith$Mutation$DeleteProduct$deleteProduct.stub(_res);
 }
 
 const documentNodeMutationDeleteProduct = DocumentNode(definitions: [
@@ -5715,16 +5414,13 @@ const documentNodeMutationDeleteProduct = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$DeleteProduct _parserFn$Mutation$DeleteProduct(
-        Map<String, dynamic> data) =>
-    Mutation$DeleteProduct.fromJson(data);
+Mutation$DeleteProduct _parserFn$Mutation$DeleteProduct(Map<String, dynamic> data) => Mutation$DeleteProduct.fromJson(data);
 typedef OnMutationCompleted$Mutation$DeleteProduct = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$DeleteProduct?,
 );
 
-class Options$Mutation$DeleteProduct
-    extends graphql.MutationOptions<Mutation$DeleteProduct> {
+class Options$Mutation$DeleteProduct extends graphql.MutationOptions<Mutation$DeleteProduct> {
   Options$Mutation$DeleteProduct({
     String? operationName,
     required Variables$Mutation$DeleteProduct variables,
@@ -5750,9 +5446,7 @@ class Options$Mutation$DeleteProduct
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$DeleteProduct(data),
+                    data == null ? null : _parserFn$Mutation$DeleteProduct(data),
                   ),
           update: update,
           onError: onError,
@@ -5764,15 +5458,12 @@ class Options$Mutation$DeleteProduct
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$DeleteProduct
-    extends graphql.WatchQueryOptions<Mutation$DeleteProduct> {
+class WatchOptions$Mutation$DeleteProduct extends graphql.WatchQueryOptions<Mutation$DeleteProduct> {
   WatchOptions$Mutation$DeleteProduct({
     String? operationName,
     required Variables$Mutation$DeleteProduct variables,
@@ -5804,12 +5495,8 @@ class WatchOptions$Mutation$DeleteProduct
 }
 
 extension ClientExtension$Mutation$DeleteProduct on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$DeleteProduct>> mutate$DeleteProduct(
-          Options$Mutation$DeleteProduct options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$DeleteProduct> watchMutation$DeleteProduct(
-          WatchOptions$Mutation$DeleteProduct options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$DeleteProduct>> mutate$DeleteProduct(Options$Mutation$DeleteProduct options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteProduct> watchMutation$DeleteProduct(WatchOptions$Mutation$DeleteProduct options) => this.watchMutation(options);
 }
 
 class Mutation$DeleteProduct$deleteProduct {
@@ -5819,8 +5506,7 @@ class Mutation$DeleteProduct$deleteProduct {
     this.$__typename = 'DeleteProduct',
   });
 
-  factory Mutation$DeleteProduct$deleteProduct.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$DeleteProduct$deleteProduct.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
@@ -5865,8 +5551,7 @@ class Mutation$DeleteProduct$deleteProduct {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteProduct$deleteProduct ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteProduct$deleteProduct || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -5888,14 +5573,11 @@ class Mutation$DeleteProduct$deleteProduct {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteProduct$deleteProduct
-    on Mutation$DeleteProduct$deleteProduct {
-  CopyWith$Mutation$DeleteProduct$deleteProduct<
-          Mutation$DeleteProduct$deleteProduct>
-      get copyWith => CopyWith$Mutation$DeleteProduct$deleteProduct(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteProduct$deleteProduct on Mutation$DeleteProduct$deleteProduct {
+  CopyWith$Mutation$DeleteProduct$deleteProduct<Mutation$DeleteProduct$deleteProduct> get copyWith => CopyWith$Mutation$DeleteProduct$deleteProduct(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
@@ -5904,8 +5586,7 @@ abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
     TRes Function(Mutation$DeleteProduct$deleteProduct) then,
   ) = _CopyWithImpl$Mutation$DeleteProduct$deleteProduct;
 
-  factory CopyWith$Mutation$DeleteProduct$deleteProduct.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct;
+  factory CopyWith$Mutation$DeleteProduct$deleteProduct.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct;
 
   TRes call({
     bool? success,
@@ -5914,8 +5595,7 @@ abstract class CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes>
-    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   _CopyWithImpl$Mutation$DeleteProduct$deleteProduct(
     this._instance,
     this._then,
@@ -5934,16 +5614,12 @@ class _CopyWithImpl$Mutation$DeleteProduct$deleteProduct<TRes>
   }) =>
       _then(Mutation$DeleteProduct$deleteProduct(
         success: success == _undefined ? _instance.success : (success as bool?),
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes>
-    implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct<TRes> implements CopyWith$Mutation$DeleteProduct$deleteProduct<TRes> {
   _CopyWithStubImpl$Mutation$DeleteProduct$deleteProduct(this._res);
 
   TRes _res;
@@ -6012,8 +5688,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('dob')) {
       final l$dob = data['dob'];
-      result$data['dob'] =
-          l$dob == null ? null : DateTime.parse((l$dob as String));
+      result$data['dob'] = l$dob == null ? null : DateTime.parse((l$dob as String));
     }
     if (data.containsKey('firstName')) {
       final l$firstName = data['firstName'];
@@ -6033,10 +5708,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('phoneNumber')) {
       final l$phoneNumber = data['phoneNumber'];
-      result$data['phoneNumber'] = l$phoneNumber == null
-          ? null
-          : Input$PhoneInputType.fromJson(
-              (l$phoneNumber as Map<String, dynamic>));
+      result$data['phoneNumber'] = l$phoneNumber == null ? null : Input$PhoneInputType.fromJson((l$phoneNumber as Map<String, dynamic>));
     }
     if (data.containsKey('postCode')) {
       final l$postCode = data['postCode'];
@@ -6044,10 +5716,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('profilePicture')) {
       final l$profilePicture = data['profilePicture'];
-      result$data['profilePicture'] = l$profilePicture == null
-          ? null
-          : Input$ProfilePictureInputType.fromJson(
-              (l$profilePicture as Map<String, dynamic>));
+      result$data['profilePicture'] = l$profilePicture == null ? null : Input$ProfilePictureInputType.fromJson((l$profilePicture as Map<String, dynamic>));
     }
     if (data.containsKey('use2fa')) {
       final l$use2fa = data['use2fa'];
@@ -6059,10 +5728,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('location')) {
       final l$location = data['location'];
-      result$data['location'] = l$location == null
-          ? null
-          : Input$LocationInputType.fromJson(
-              (l$location as Map<String, dynamic>));
+      result$data['location'] = l$location == null ? null : Input$LocationInputType.fromJson((l$location as Map<String, dynamic>));
     }
     if (data.containsKey('fcmToken')) {
       final l$fcmToken = data['fcmToken'];
@@ -6093,20 +5759,17 @@ class Variables$Mutation$UpdateProfile {
 
   String? get otp => (_$data['otp'] as String?);
 
-  Input$PhoneInputType? get phoneNumber =>
-      (_$data['phoneNumber'] as Input$PhoneInputType?);
+  Input$PhoneInputType? get phoneNumber => (_$data['phoneNumber'] as Input$PhoneInputType?);
 
   String? get postCode => (_$data['postCode'] as String?);
 
-  Input$ProfilePictureInputType? get profilePicture =>
-      (_$data['profilePicture'] as Input$ProfilePictureInputType?);
+  Input$ProfilePictureInputType? get profilePicture => (_$data['profilePicture'] as Input$ProfilePictureInputType?);
 
   bool? get use2fa => (_$data['use2fa'] as bool?);
 
   String? get username => (_$data['username'] as String?);
 
-  Input$LocationInputType? get location =>
-      (_$data['location'] as Input$LocationInputType?);
+  Input$LocationInputType? get location => (_$data['location'] as Input$LocationInputType?);
 
   String? get fcmToken => (_$data['fcmToken'] as String?);
 
@@ -6181,19 +5844,17 @@ class Variables$Mutation$UpdateProfile {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateProfile<Variables$Mutation$UpdateProfile>
-      get copyWith => CopyWith$Variables$Mutation$UpdateProfile(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UpdateProfile<Variables$Mutation$UpdateProfile> get copyWith => CopyWith$Variables$Mutation$UpdateProfile(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateProfile ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateProfile || runtimeType != other.runtimeType) {
       return false;
     }
     final l$bio = bio;
@@ -6214,8 +5875,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
-    if (_$data.containsKey('displayName') !=
-        other._$data.containsKey('displayName')) {
+    if (_$data.containsKey('displayName') != other._$data.containsKey('displayName')) {
       return false;
     }
     if (l$displayName != lOther$displayName) {
@@ -6231,8 +5891,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$firstName = firstName;
     final lOther$firstName = other.firstName;
-    if (_$data.containsKey('firstName') !=
-        other._$data.containsKey('firstName')) {
+    if (_$data.containsKey('firstName') != other._$data.containsKey('firstName')) {
       return false;
     }
     if (l$firstName != lOther$firstName) {
@@ -6248,8 +5907,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$lastName = lastName;
     final lOther$lastName = other.lastName;
-    if (_$data.containsKey('lastName') !=
-        other._$data.containsKey('lastName')) {
+    if (_$data.containsKey('lastName') != other._$data.containsKey('lastName')) {
       return false;
     }
     if (l$lastName != lOther$lastName) {
@@ -6265,8 +5923,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$phoneNumber = phoneNumber;
     final lOther$phoneNumber = other.phoneNumber;
-    if (_$data.containsKey('phoneNumber') !=
-        other._$data.containsKey('phoneNumber')) {
+    if (_$data.containsKey('phoneNumber') != other._$data.containsKey('phoneNumber')) {
       return false;
     }
     if (l$phoneNumber != lOther$phoneNumber) {
@@ -6274,8 +5931,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$postCode = postCode;
     final lOther$postCode = other.postCode;
-    if (_$data.containsKey('postCode') !=
-        other._$data.containsKey('postCode')) {
+    if (_$data.containsKey('postCode') != other._$data.containsKey('postCode')) {
       return false;
     }
     if (l$postCode != lOther$postCode) {
@@ -6283,8 +5939,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$profilePicture = profilePicture;
     final lOther$profilePicture = other.profilePicture;
-    if (_$data.containsKey('profilePicture') !=
-        other._$data.containsKey('profilePicture')) {
+    if (_$data.containsKey('profilePicture') != other._$data.containsKey('profilePicture')) {
       return false;
     }
     if (l$profilePicture != lOther$profilePicture) {
@@ -6300,8 +5955,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$username = username;
     final lOther$username = other.username;
-    if (_$data.containsKey('username') !=
-        other._$data.containsKey('username')) {
+    if (_$data.containsKey('username') != other._$data.containsKey('username')) {
       return false;
     }
     if (l$username != lOther$username) {
@@ -6309,8 +5963,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$location = location;
     final lOther$location = other.location;
-    if (_$data.containsKey('location') !=
-        other._$data.containsKey('location')) {
+    if (_$data.containsKey('location') != other._$data.containsKey('location')) {
       return false;
     }
     if (l$location != lOther$location) {
@@ -6318,8 +5971,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$fcmToken = fcmToken;
     final lOther$fcmToken = other.fcmToken;
-    if (_$data.containsKey('fcmToken') !=
-        other._$data.containsKey('fcmToken')) {
+    if (_$data.containsKey('fcmToken') != other._$data.containsKey('fcmToken')) {
       return false;
     }
     if (l$fcmToken != lOther$fcmToken) {
@@ -6327,8 +5979,7 @@ class Variables$Mutation$UpdateProfile {
     }
     final l$isVacationMode = isVacationMode;
     final lOther$isVacationMode = other.isVacationMode;
-    if (_$data.containsKey('isVacationMode') !=
-        other._$data.containsKey('isVacationMode')) {
+    if (_$data.containsKey('isVacationMode') != other._$data.containsKey('isVacationMode')) {
       return false;
     }
     if (l$isVacationMode != lOther$isVacationMode) {
@@ -6382,8 +6033,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     TRes Function(Variables$Mutation$UpdateProfile) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateProfile;
 
-  factory CopyWith$Variables$Mutation$UpdateProfile.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UpdateProfile;
+  factory CopyWith$Variables$Mutation$UpdateProfile.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateProfile;
 
   TRes call({
     String? bio,
@@ -6405,8 +6055,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
-    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateProfile(
     this._instance,
     this._then,
@@ -6446,23 +6095,18 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (gender != _undefined) 'gender': (gender as String?),
         if (lastName != _undefined) 'lastName': (lastName as String?),
         if (otp != _undefined) 'otp': (otp as String?),
-        if (phoneNumber != _undefined)
-          'phoneNumber': (phoneNumber as Input$PhoneInputType?),
+        if (phoneNumber != _undefined) 'phoneNumber': (phoneNumber as Input$PhoneInputType?),
         if (postCode != _undefined) 'postCode': (postCode as String?),
-        if (profilePicture != _undefined)
-          'profilePicture': (profilePicture as Input$ProfilePictureInputType?),
+        if (profilePicture != _undefined) 'profilePicture': (profilePicture as Input$ProfilePictureInputType?),
         if (use2fa != _undefined) 'use2fa': (use2fa as bool?),
         if (username != _undefined) 'username': (username as String?),
-        if (location != _undefined)
-          'location': (location as Input$LocationInputType?),
+        if (location != _undefined) 'location': (location as Input$LocationInputType?),
         if (fcmToken != _undefined) 'fcmToken': (fcmToken as String?),
-        if (isVacationMode != _undefined)
-          'isVacationMode': (isVacationMode as bool?),
+        if (isVacationMode != _undefined) 'isVacationMode': (isVacationMode as bool?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
-    implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes> implements CopyWith$Variables$Mutation$UpdateProfile<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateProfile(this._res);
 
   TRes _res;
@@ -6498,10 +6142,7 @@ class Mutation$UpdateProfile {
     final l$updateProfile = json['updateProfile'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProfile(
-      updateProfile: l$updateProfile == null
-          ? null
-          : Mutation$UpdateProfile$updateProfile.fromJson(
-              (l$updateProfile as Map<String, dynamic>)),
+      updateProfile: l$updateProfile == null ? null : Mutation$UpdateProfile$updateProfile.fromJson((l$updateProfile as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -6552,8 +6193,7 @@ class Mutation$UpdateProfile {
 }
 
 extension UtilityExtension$Mutation$UpdateProfile on Mutation$UpdateProfile {
-  CopyWith$Mutation$UpdateProfile<Mutation$UpdateProfile> get copyWith =>
-      CopyWith$Mutation$UpdateProfile(
+  CopyWith$Mutation$UpdateProfile<Mutation$UpdateProfile> get copyWith => CopyWith$Mutation$UpdateProfile(
         this,
         (i) => i,
       );
@@ -6565,8 +6205,7 @@ abstract class CopyWith$Mutation$UpdateProfile<TRes> {
     TRes Function(Mutation$UpdateProfile) then,
   ) = _CopyWithImpl$Mutation$UpdateProfile;
 
-  factory CopyWith$Mutation$UpdateProfile.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateProfile;
+  factory CopyWith$Mutation$UpdateProfile.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProfile;
 
   TRes call({
     Mutation$UpdateProfile$updateProfile? updateProfile,
@@ -6575,8 +6214,7 @@ abstract class CopyWith$Mutation$UpdateProfile<TRes> {
   CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile;
 }
 
-class _CopyWithImpl$Mutation$UpdateProfile<TRes>
-    implements CopyWith$Mutation$UpdateProfile<TRes> {
+class _CopyWithImpl$Mutation$UpdateProfile<TRes> implements CopyWith$Mutation$UpdateProfile<TRes> {
   _CopyWithImpl$Mutation$UpdateProfile(
     this._instance,
     this._then,
@@ -6593,25 +6231,19 @@ class _CopyWithImpl$Mutation$UpdateProfile<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProfile(
-        updateProfile: updateProfile == _undefined
-            ? _instance.updateProfile
-            : (updateProfile as Mutation$UpdateProfile$updateProfile?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        updateProfile: updateProfile == _undefined ? _instance.updateProfile : (updateProfile as Mutation$UpdateProfile$updateProfile?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile {
     final local$updateProfile = _instance.updateProfile;
     return local$updateProfile == null
         ? CopyWith$Mutation$UpdateProfile$updateProfile.stub(_then(_instance))
-        : CopyWith$Mutation$UpdateProfile$updateProfile(
-            local$updateProfile, (e) => call(updateProfile: e));
+        : CopyWith$Mutation$UpdateProfile$updateProfile(local$updateProfile, (e) => call(updateProfile: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProfile<TRes>
-    implements CopyWith$Mutation$UpdateProfile<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProfile<TRes> implements CopyWith$Mutation$UpdateProfile<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProfile(this._res);
 
   TRes _res;
@@ -6622,8 +6254,7 @@ class _CopyWithStubImpl$Mutation$UpdateProfile<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile =>
-      CopyWith$Mutation$UpdateProfile$updateProfile.stub(_res);
+  CopyWith$Mutation$UpdateProfile$updateProfile<TRes> get updateProfile => CopyWith$Mutation$UpdateProfile$updateProfile.stub(_res);
 }
 
 const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
@@ -6875,16 +6506,13 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UpdateProfile _parserFn$Mutation$UpdateProfile(
-        Map<String, dynamic> data) =>
-    Mutation$UpdateProfile.fromJson(data);
+Mutation$UpdateProfile _parserFn$Mutation$UpdateProfile(Map<String, dynamic> data) => Mutation$UpdateProfile.fromJson(data);
 typedef OnMutationCompleted$Mutation$UpdateProfile = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateProfile?,
 );
 
-class Options$Mutation$UpdateProfile
-    extends graphql.MutationOptions<Mutation$UpdateProfile> {
+class Options$Mutation$UpdateProfile extends graphql.MutationOptions<Mutation$UpdateProfile> {
   Options$Mutation$UpdateProfile({
     String? operationName,
     Variables$Mutation$UpdateProfile? variables,
@@ -6910,9 +6538,7 @@ class Options$Mutation$UpdateProfile
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$UpdateProfile(data),
+                    data == null ? null : _parserFn$Mutation$UpdateProfile(data),
                   ),
           update: update,
           onError: onError,
@@ -6924,15 +6550,12 @@ class Options$Mutation$UpdateProfile
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateProfile
-    extends graphql.WatchQueryOptions<Mutation$UpdateProfile> {
+class WatchOptions$Mutation$UpdateProfile extends graphql.WatchQueryOptions<Mutation$UpdateProfile> {
   WatchOptions$Mutation$UpdateProfile({
     String? operationName,
     Variables$Mutation$UpdateProfile? variables,
@@ -6964,12 +6587,8 @@ class WatchOptions$Mutation$UpdateProfile
 }
 
 extension ClientExtension$Mutation$UpdateProfile on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateProfile>> mutate$UpdateProfile(
-          [Options$Mutation$UpdateProfile? options]) async =>
-      await this.mutate(options ?? Options$Mutation$UpdateProfile());
-  graphql.ObservableQuery<Mutation$UpdateProfile> watchMutation$UpdateProfile(
-          [WatchOptions$Mutation$UpdateProfile? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$UpdateProfile());
+  Future<graphql.QueryResult<Mutation$UpdateProfile>> mutate$UpdateProfile([Options$Mutation$UpdateProfile? options]) async => await this.mutate(options ?? Options$Mutation$UpdateProfile());
+  graphql.ObservableQuery<Mutation$UpdateProfile> watchMutation$UpdateProfile([WatchOptions$Mutation$UpdateProfile? options]) => this.watchMutation(options ?? WatchOptions$Mutation$UpdateProfile());
 }
 
 class Mutation$UpdateProfile$updateProfile {
@@ -6978,8 +6597,7 @@ class Mutation$UpdateProfile$updateProfile {
     this.$__typename = 'UpdateUserMutation',
   });
 
-  factory Mutation$UpdateProfile$updateProfile.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateProfile$updateProfile.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateProfile$updateProfile(
@@ -7016,8 +6634,7 @@ class Mutation$UpdateProfile$updateProfile {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateProfile$updateProfile ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateProfile$updateProfile || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -7034,14 +6651,11 @@ class Mutation$UpdateProfile$updateProfile {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateProfile$updateProfile
-    on Mutation$UpdateProfile$updateProfile {
-  CopyWith$Mutation$UpdateProfile$updateProfile<
-          Mutation$UpdateProfile$updateProfile>
-      get copyWith => CopyWith$Mutation$UpdateProfile$updateProfile(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateProfile$updateProfile on Mutation$UpdateProfile$updateProfile {
+  CopyWith$Mutation$UpdateProfile$updateProfile<Mutation$UpdateProfile$updateProfile> get copyWith => CopyWith$Mutation$UpdateProfile$updateProfile(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
@@ -7050,8 +6664,7 @@ abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
     TRes Function(Mutation$UpdateProfile$updateProfile) then,
   ) = _CopyWithImpl$Mutation$UpdateProfile$updateProfile;
 
-  factory CopyWith$Mutation$UpdateProfile$updateProfile.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile;
+  factory CopyWith$Mutation$UpdateProfile$updateProfile.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile;
 
   TRes call({
     String? message,
@@ -7059,8 +6672,7 @@ abstract class CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes>
-    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes> implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   _CopyWithImpl$Mutation$UpdateProfile$updateProfile(
     this._instance,
     this._then,
@@ -7077,16 +6689,12 @@ class _CopyWithImpl$Mutation$UpdateProfile$updateProfile<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateProfile$updateProfile(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes>
-    implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes> implements CopyWith$Mutation$UpdateProfile$updateProfile<TRes> {
   _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile(this._res);
 
   TRes _res;
@@ -7099,8 +6707,7 @@ class _CopyWithStubImpl$Mutation$UpdateProfile$updateProfile<TRes>
 }
 
 class Variables$Mutation$followUser {
-  factory Variables$Mutation$followUser({required int followedId}) =>
-      Variables$Mutation$followUser._({
+  factory Variables$Mutation$followUser({required int followedId}) => Variables$Mutation$followUser._({
         r'followedId': followedId,
       });
 
@@ -7124,19 +6731,17 @@ class Variables$Mutation$followUser {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$followUser<Variables$Mutation$followUser>
-      get copyWith => CopyWith$Variables$Mutation$followUser(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$followUser<Variables$Mutation$followUser> get copyWith => CopyWith$Variables$Mutation$followUser(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$followUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$followUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$followedId = followedId;
@@ -7160,14 +6765,12 @@ abstract class CopyWith$Variables$Mutation$followUser<TRes> {
     TRes Function(Variables$Mutation$followUser) then,
   ) = _CopyWithImpl$Variables$Mutation$followUser;
 
-  factory CopyWith$Variables$Mutation$followUser.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$followUser;
+  factory CopyWith$Variables$Mutation$followUser.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$followUser;
 
   TRes call({int? followedId});
 }
 
-class _CopyWithImpl$Variables$Mutation$followUser<TRes>
-    implements CopyWith$Variables$Mutation$followUser<TRes> {
+class _CopyWithImpl$Variables$Mutation$followUser<TRes> implements CopyWith$Variables$Mutation$followUser<TRes> {
   _CopyWithImpl$Variables$Mutation$followUser(
     this._instance,
     this._then,
@@ -7179,16 +6782,13 @@ class _CopyWithImpl$Variables$Mutation$followUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? followedId = _undefined}) =>
-      _then(Variables$Mutation$followUser._({
+  TRes call({Object? followedId = _undefined}) => _then(Variables$Mutation$followUser._({
         ..._instance._$data,
-        if (followedId != _undefined && followedId != null)
-          'followedId': (followedId as int),
+        if (followedId != _undefined && followedId != null) 'followedId': (followedId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$followUser<TRes>
-    implements CopyWith$Variables$Mutation$followUser<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$followUser<TRes> implements CopyWith$Variables$Mutation$followUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$followUser(this._res);
 
   TRes _res;
@@ -7206,10 +6806,7 @@ class Mutation$followUser {
     final l$followUser = json['followUser'];
     final l$$__typename = json['__typename'];
     return Mutation$followUser(
-      followUser: l$followUser == null
-          ? null
-          : Mutation$followUser$followUser.fromJson(
-              (l$followUser as Map<String, dynamic>)),
+      followUser: l$followUser == null ? null : Mutation$followUser$followUser.fromJson((l$followUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -7260,8 +6857,7 @@ class Mutation$followUser {
 }
 
 extension UtilityExtension$Mutation$followUser on Mutation$followUser {
-  CopyWith$Mutation$followUser<Mutation$followUser> get copyWith =>
-      CopyWith$Mutation$followUser(
+  CopyWith$Mutation$followUser<Mutation$followUser> get copyWith => CopyWith$Mutation$followUser(
         this,
         (i) => i,
       );
@@ -7273,8 +6869,7 @@ abstract class CopyWith$Mutation$followUser<TRes> {
     TRes Function(Mutation$followUser) then,
   ) = _CopyWithImpl$Mutation$followUser;
 
-  factory CopyWith$Mutation$followUser.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$followUser;
+  factory CopyWith$Mutation$followUser.stub(TRes res) = _CopyWithStubImpl$Mutation$followUser;
 
   TRes call({
     Mutation$followUser$followUser? followUser,
@@ -7283,8 +6878,7 @@ abstract class CopyWith$Mutation$followUser<TRes> {
   CopyWith$Mutation$followUser$followUser<TRes> get followUser;
 }
 
-class _CopyWithImpl$Mutation$followUser<TRes>
-    implements CopyWith$Mutation$followUser<TRes> {
+class _CopyWithImpl$Mutation$followUser<TRes> implements CopyWith$Mutation$followUser<TRes> {
   _CopyWithImpl$Mutation$followUser(
     this._instance,
     this._then,
@@ -7301,25 +6895,17 @@ class _CopyWithImpl$Mutation$followUser<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$followUser(
-        followUser: followUser == _undefined
-            ? _instance.followUser
-            : (followUser as Mutation$followUser$followUser?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        followUser: followUser == _undefined ? _instance.followUser : (followUser as Mutation$followUser$followUser?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$followUser$followUser<TRes> get followUser {
     final local$followUser = _instance.followUser;
-    return local$followUser == null
-        ? CopyWith$Mutation$followUser$followUser.stub(_then(_instance))
-        : CopyWith$Mutation$followUser$followUser(
-            local$followUser, (e) => call(followUser: e));
+    return local$followUser == null ? CopyWith$Mutation$followUser$followUser.stub(_then(_instance)) : CopyWith$Mutation$followUser$followUser(local$followUser, (e) => call(followUser: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$followUser<TRes>
-    implements CopyWith$Mutation$followUser<TRes> {
+class _CopyWithStubImpl$Mutation$followUser<TRes> implements CopyWith$Mutation$followUser<TRes> {
   _CopyWithStubImpl$Mutation$followUser(this._res);
 
   TRes _res;
@@ -7330,8 +6916,7 @@ class _CopyWithStubImpl$Mutation$followUser<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$followUser$followUser<TRes> get followUser =>
-      CopyWith$Mutation$followUser$followUser.stub(_res);
+  CopyWith$Mutation$followUser$followUser<TRes> get followUser => CopyWith$Mutation$followUser$followUser.stub(_res);
 }
 
 const documentNodeMutationfollowUser = DocumentNode(definitions: [
@@ -7388,15 +6973,13 @@ const documentNodeMutationfollowUser = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$followUser _parserFn$Mutation$followUser(Map<String, dynamic> data) =>
-    Mutation$followUser.fromJson(data);
+Mutation$followUser _parserFn$Mutation$followUser(Map<String, dynamic> data) => Mutation$followUser.fromJson(data);
 typedef OnMutationCompleted$Mutation$followUser = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$followUser?,
 );
 
-class Options$Mutation$followUser
-    extends graphql.MutationOptions<Mutation$followUser> {
+class Options$Mutation$followUser extends graphql.MutationOptions<Mutation$followUser> {
   Options$Mutation$followUser({
     String? operationName,
     required Variables$Mutation$followUser variables,
@@ -7434,15 +7017,12 @@ class Options$Mutation$followUser
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$followUser
-    extends graphql.WatchQueryOptions<Mutation$followUser> {
+class WatchOptions$Mutation$followUser extends graphql.WatchQueryOptions<Mutation$followUser> {
   WatchOptions$Mutation$followUser({
     String? operationName,
     required Variables$Mutation$followUser variables,
@@ -7474,12 +7054,8 @@ class WatchOptions$Mutation$followUser
 }
 
 extension ClientExtension$Mutation$followUser on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$followUser>> mutate$followUser(
-          Options$Mutation$followUser options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$followUser> watchMutation$followUser(
-          WatchOptions$Mutation$followUser options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$followUser>> mutate$followUser(Options$Mutation$followUser options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$followUser> watchMutation$followUser(WatchOptions$Mutation$followUser options) => this.watchMutation(options);
 }
 
 class Mutation$followUser$followUser {
@@ -7525,8 +7101,7 @@ class Mutation$followUser$followUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$followUser$followUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$followUser$followUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -7543,13 +7118,11 @@ class Mutation$followUser$followUser {
   }
 }
 
-extension UtilityExtension$Mutation$followUser$followUser
-    on Mutation$followUser$followUser {
-  CopyWith$Mutation$followUser$followUser<Mutation$followUser$followUser>
-      get copyWith => CopyWith$Mutation$followUser$followUser(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$followUser$followUser on Mutation$followUser$followUser {
+  CopyWith$Mutation$followUser$followUser<Mutation$followUser$followUser> get copyWith => CopyWith$Mutation$followUser$followUser(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$followUser$followUser<TRes> {
@@ -7558,8 +7131,7 @@ abstract class CopyWith$Mutation$followUser$followUser<TRes> {
     TRes Function(Mutation$followUser$followUser) then,
   ) = _CopyWithImpl$Mutation$followUser$followUser;
 
-  factory CopyWith$Mutation$followUser$followUser.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$followUser$followUser;
+  factory CopyWith$Mutation$followUser$followUser.stub(TRes res) = _CopyWithStubImpl$Mutation$followUser$followUser;
 
   TRes call({
     bool? success,
@@ -7567,8 +7139,7 @@ abstract class CopyWith$Mutation$followUser$followUser<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$followUser$followUser<TRes>
-    implements CopyWith$Mutation$followUser$followUser<TRes> {
+class _CopyWithImpl$Mutation$followUser$followUser<TRes> implements CopyWith$Mutation$followUser$followUser<TRes> {
   _CopyWithImpl$Mutation$followUser$followUser(
     this._instance,
     this._then,
@@ -7586,14 +7157,11 @@ class _CopyWithImpl$Mutation$followUser$followUser<TRes>
   }) =>
       _then(Mutation$followUser$followUser(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$followUser$followUser<TRes>
-    implements CopyWith$Mutation$followUser$followUser<TRes> {
+class _CopyWithStubImpl$Mutation$followUser$followUser<TRes> implements CopyWith$Mutation$followUser$followUser<TRes> {
   _CopyWithStubImpl$Mutation$followUser$followUser(this._res);
 
   TRes _res;
@@ -7606,8 +7174,7 @@ class _CopyWithStubImpl$Mutation$followUser$followUser<TRes>
 }
 
 class Variables$Mutation$unfollowUser {
-  factory Variables$Mutation$unfollowUser({required int followedId}) =>
-      Variables$Mutation$unfollowUser._({
+  factory Variables$Mutation$unfollowUser({required int followedId}) => Variables$Mutation$unfollowUser._({
         r'followedId': followedId,
       });
 
@@ -7631,19 +7198,17 @@ class Variables$Mutation$unfollowUser {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$unfollowUser<Variables$Mutation$unfollowUser>
-      get copyWith => CopyWith$Variables$Mutation$unfollowUser(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$unfollowUser<Variables$Mutation$unfollowUser> get copyWith => CopyWith$Variables$Mutation$unfollowUser(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$unfollowUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$unfollowUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$followedId = followedId;
@@ -7667,14 +7232,12 @@ abstract class CopyWith$Variables$Mutation$unfollowUser<TRes> {
     TRes Function(Variables$Mutation$unfollowUser) then,
   ) = _CopyWithImpl$Variables$Mutation$unfollowUser;
 
-  factory CopyWith$Variables$Mutation$unfollowUser.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$unfollowUser;
+  factory CopyWith$Variables$Mutation$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$unfollowUser;
 
   TRes call({int? followedId});
 }
 
-class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes>
-    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes> implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
   _CopyWithImpl$Variables$Mutation$unfollowUser(
     this._instance,
     this._then,
@@ -7686,16 +7249,13 @@ class _CopyWithImpl$Variables$Mutation$unfollowUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? followedId = _undefined}) =>
-      _then(Variables$Mutation$unfollowUser._({
+  TRes call({Object? followedId = _undefined}) => _then(Variables$Mutation$unfollowUser._({
         ..._instance._$data,
-        if (followedId != _undefined && followedId != null)
-          'followedId': (followedId as int),
+        if (followedId != _undefined && followedId != null) 'followedId': (followedId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$unfollowUser<TRes>
-    implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$unfollowUser<TRes> implements CopyWith$Variables$Mutation$unfollowUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$unfollowUser(this._res);
 
   TRes _res;
@@ -7713,10 +7273,7 @@ class Mutation$unfollowUser {
     final l$unfollowUser = json['unfollowUser'];
     final l$$__typename = json['__typename'];
     return Mutation$unfollowUser(
-      unfollowUser: l$unfollowUser == null
-          ? null
-          : Mutation$unfollowUser$unfollowUser.fromJson(
-              (l$unfollowUser as Map<String, dynamic>)),
+      unfollowUser: l$unfollowUser == null ? null : Mutation$unfollowUser$unfollowUser.fromJson((l$unfollowUser as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -7767,8 +7324,7 @@ class Mutation$unfollowUser {
 }
 
 extension UtilityExtension$Mutation$unfollowUser on Mutation$unfollowUser {
-  CopyWith$Mutation$unfollowUser<Mutation$unfollowUser> get copyWith =>
-      CopyWith$Mutation$unfollowUser(
+  CopyWith$Mutation$unfollowUser<Mutation$unfollowUser> get copyWith => CopyWith$Mutation$unfollowUser(
         this,
         (i) => i,
       );
@@ -7780,8 +7336,7 @@ abstract class CopyWith$Mutation$unfollowUser<TRes> {
     TRes Function(Mutation$unfollowUser) then,
   ) = _CopyWithImpl$Mutation$unfollowUser;
 
-  factory CopyWith$Mutation$unfollowUser.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$unfollowUser;
+  factory CopyWith$Mutation$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Mutation$unfollowUser;
 
   TRes call({
     Mutation$unfollowUser$unfollowUser? unfollowUser,
@@ -7790,8 +7345,7 @@ abstract class CopyWith$Mutation$unfollowUser<TRes> {
   CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser;
 }
 
-class _CopyWithImpl$Mutation$unfollowUser<TRes>
-    implements CopyWith$Mutation$unfollowUser<TRes> {
+class _CopyWithImpl$Mutation$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser<TRes> {
   _CopyWithImpl$Mutation$unfollowUser(
     this._instance,
     this._then,
@@ -7808,25 +7362,19 @@ class _CopyWithImpl$Mutation$unfollowUser<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$unfollowUser(
-        unfollowUser: unfollowUser == _undefined
-            ? _instance.unfollowUser
-            : (unfollowUser as Mutation$unfollowUser$unfollowUser?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        unfollowUser: unfollowUser == _undefined ? _instance.unfollowUser : (unfollowUser as Mutation$unfollowUser$unfollowUser?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser {
     final local$unfollowUser = _instance.unfollowUser;
     return local$unfollowUser == null
         ? CopyWith$Mutation$unfollowUser$unfollowUser.stub(_then(_instance))
-        : CopyWith$Mutation$unfollowUser$unfollowUser(
-            local$unfollowUser, (e) => call(unfollowUser: e));
+        : CopyWith$Mutation$unfollowUser$unfollowUser(local$unfollowUser, (e) => call(unfollowUser: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$unfollowUser<TRes>
-    implements CopyWith$Mutation$unfollowUser<TRes> {
+class _CopyWithStubImpl$Mutation$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser<TRes> {
   _CopyWithStubImpl$Mutation$unfollowUser(this._res);
 
   TRes _res;
@@ -7837,8 +7385,7 @@ class _CopyWithStubImpl$Mutation$unfollowUser<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser =>
-      CopyWith$Mutation$unfollowUser$unfollowUser.stub(_res);
+  CopyWith$Mutation$unfollowUser$unfollowUser<TRes> get unfollowUser => CopyWith$Mutation$unfollowUser$unfollowUser.stub(_res);
 }
 
 const documentNodeMutationunfollowUser = DocumentNode(definitions: [
@@ -7895,16 +7442,13 @@ const documentNodeMutationunfollowUser = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$unfollowUser _parserFn$Mutation$unfollowUser(
-        Map<String, dynamic> data) =>
-    Mutation$unfollowUser.fromJson(data);
+Mutation$unfollowUser _parserFn$Mutation$unfollowUser(Map<String, dynamic> data) => Mutation$unfollowUser.fromJson(data);
 typedef OnMutationCompleted$Mutation$unfollowUser = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$unfollowUser?,
 );
 
-class Options$Mutation$unfollowUser
-    extends graphql.MutationOptions<Mutation$unfollowUser> {
+class Options$Mutation$unfollowUser extends graphql.MutationOptions<Mutation$unfollowUser> {
   Options$Mutation$unfollowUser({
     String? operationName,
     required Variables$Mutation$unfollowUser variables,
@@ -7942,15 +7486,12 @@ class Options$Mutation$unfollowUser
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$unfollowUser
-    extends graphql.WatchQueryOptions<Mutation$unfollowUser> {
+class WatchOptions$Mutation$unfollowUser extends graphql.WatchQueryOptions<Mutation$unfollowUser> {
   WatchOptions$Mutation$unfollowUser({
     String? operationName,
     required Variables$Mutation$unfollowUser variables,
@@ -7982,12 +7523,8 @@ class WatchOptions$Mutation$unfollowUser
 }
 
 extension ClientExtension$Mutation$unfollowUser on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$unfollowUser>> mutate$unfollowUser(
-          Options$Mutation$unfollowUser options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$unfollowUser> watchMutation$unfollowUser(
-          WatchOptions$Mutation$unfollowUser options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$unfollowUser>> mutate$unfollowUser(Options$Mutation$unfollowUser options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$unfollowUser> watchMutation$unfollowUser(WatchOptions$Mutation$unfollowUser options) => this.watchMutation(options);
 }
 
 class Mutation$unfollowUser$unfollowUser {
@@ -7996,8 +7533,7 @@ class Mutation$unfollowUser$unfollowUser {
     this.$__typename = 'UnfollowUser',
   });
 
-  factory Mutation$unfollowUser$unfollowUser.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$unfollowUser$unfollowUser.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$unfollowUser$unfollowUser(
@@ -8034,8 +7570,7 @@ class Mutation$unfollowUser$unfollowUser {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$unfollowUser$unfollowUser ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$unfollowUser$unfollowUser || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -8052,14 +7587,11 @@ class Mutation$unfollowUser$unfollowUser {
   }
 }
 
-extension UtilityExtension$Mutation$unfollowUser$unfollowUser
-    on Mutation$unfollowUser$unfollowUser {
-  CopyWith$Mutation$unfollowUser$unfollowUser<
-          Mutation$unfollowUser$unfollowUser>
-      get copyWith => CopyWith$Mutation$unfollowUser$unfollowUser(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$unfollowUser$unfollowUser on Mutation$unfollowUser$unfollowUser {
+  CopyWith$Mutation$unfollowUser$unfollowUser<Mutation$unfollowUser$unfollowUser> get copyWith => CopyWith$Mutation$unfollowUser$unfollowUser(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
@@ -8068,8 +7600,7 @@ abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
     TRes Function(Mutation$unfollowUser$unfollowUser) then,
   ) = _CopyWithImpl$Mutation$unfollowUser$unfollowUser;
 
-  factory CopyWith$Mutation$unfollowUser$unfollowUser.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser;
+  factory CopyWith$Mutation$unfollowUser$unfollowUser.stub(TRes res) = _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser;
 
   TRes call({
     bool? success,
@@ -8077,8 +7608,7 @@ abstract class CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes>
-    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   _CopyWithImpl$Mutation$unfollowUser$unfollowUser(
     this._instance,
     this._then,
@@ -8096,14 +7626,11 @@ class _CopyWithImpl$Mutation$unfollowUser$unfollowUser<TRes>
   }) =>
       _then(Mutation$unfollowUser$unfollowUser(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes>
-    implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
+class _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser<TRes> implements CopyWith$Mutation$unfollowUser$unfollowUser<TRes> {
   _CopyWithStubImpl$Mutation$unfollowUser$unfollowUser(this._res);
 
   TRes _res;
@@ -8130,11 +7657,9 @@ class Variables$Mutation$UploadFile {
   factory Variables$Mutation$UploadFile.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$files = data['files'];
-    result$data['files'] =
-        (l$files as List<dynamic>).map((e) => (e as MultipartFile?)).toList();
+    result$data['files'] = (l$files as List<dynamic>).map((e) => (e as MultipartFile?)).toList();
     final l$fileType = data['fileType'];
-    result$data['fileType'] =
-        fromJson$Enum$FileTypeEnum((l$fileType as String));
+    result$data['fileType'] = fromJson$Enum$FileTypeEnum((l$fileType as String));
     return Variables$Mutation$UploadFile._(result$data);
   }
 
@@ -8153,19 +7678,17 @@ class Variables$Mutation$UploadFile {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UploadFile<Variables$Mutation$UploadFile>
-      get copyWith => CopyWith$Variables$Mutation$UploadFile(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UploadFile<Variables$Mutation$UploadFile> get copyWith => CopyWith$Variables$Mutation$UploadFile(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UploadFile ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UploadFile || runtimeType != other.runtimeType) {
       return false;
     }
     final l$files = files;
@@ -8205,8 +7728,7 @@ abstract class CopyWith$Variables$Mutation$UploadFile<TRes> {
     TRes Function(Variables$Mutation$UploadFile) then,
   ) = _CopyWithImpl$Variables$Mutation$UploadFile;
 
-  factory CopyWith$Variables$Mutation$UploadFile.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UploadFile;
+  factory CopyWith$Variables$Mutation$UploadFile.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UploadFile;
 
   TRes call({
     List<MultipartFile?>? files,
@@ -8214,8 +7736,7 @@ abstract class CopyWith$Variables$Mutation$UploadFile<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UploadFile<TRes>
-    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+class _CopyWithImpl$Variables$Mutation$UploadFile<TRes> implements CopyWith$Variables$Mutation$UploadFile<TRes> {
   _CopyWithImpl$Variables$Mutation$UploadFile(
     this._instance,
     this._then,
@@ -8233,15 +7754,12 @@ class _CopyWithImpl$Variables$Mutation$UploadFile<TRes>
   }) =>
       _then(Variables$Mutation$UploadFile._({
         ..._instance._$data,
-        if (files != _undefined && files != null)
-          'files': (files as List<MultipartFile?>),
-        if (fileType != _undefined && fileType != null)
-          'fileType': (fileType as Enum$FileTypeEnum),
+        if (files != _undefined && files != null) 'files': (files as List<MultipartFile?>),
+        if (fileType != _undefined && fileType != null) 'fileType': (fileType as Enum$FileTypeEnum),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UploadFile<TRes>
-    implements CopyWith$Variables$Mutation$UploadFile<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UploadFile<TRes> implements CopyWith$Variables$Mutation$UploadFile<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UploadFile(this._res);
 
   TRes _res;
@@ -8263,10 +7781,7 @@ class Mutation$UploadFile {
     final l$upload = json['upload'];
     final l$$__typename = json['__typename'];
     return Mutation$UploadFile(
-      upload: l$upload == null
-          ? null
-          : Mutation$UploadFile$upload.fromJson(
-              (l$upload as Map<String, dynamic>)),
+      upload: l$upload == null ? null : Mutation$UploadFile$upload.fromJson((l$upload as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -8317,8 +7832,7 @@ class Mutation$UploadFile {
 }
 
 extension UtilityExtension$Mutation$UploadFile on Mutation$UploadFile {
-  CopyWith$Mutation$UploadFile<Mutation$UploadFile> get copyWith =>
-      CopyWith$Mutation$UploadFile(
+  CopyWith$Mutation$UploadFile<Mutation$UploadFile> get copyWith => CopyWith$Mutation$UploadFile(
         this,
         (i) => i,
       );
@@ -8330,8 +7844,7 @@ abstract class CopyWith$Mutation$UploadFile<TRes> {
     TRes Function(Mutation$UploadFile) then,
   ) = _CopyWithImpl$Mutation$UploadFile;
 
-  factory CopyWith$Mutation$UploadFile.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UploadFile;
+  factory CopyWith$Mutation$UploadFile.stub(TRes res) = _CopyWithStubImpl$Mutation$UploadFile;
 
   TRes call({
     Mutation$UploadFile$upload? upload,
@@ -8340,8 +7853,7 @@ abstract class CopyWith$Mutation$UploadFile<TRes> {
   CopyWith$Mutation$UploadFile$upload<TRes> get upload;
 }
 
-class _CopyWithImpl$Mutation$UploadFile<TRes>
-    implements CopyWith$Mutation$UploadFile<TRes> {
+class _CopyWithImpl$Mutation$UploadFile<TRes> implements CopyWith$Mutation$UploadFile<TRes> {
   _CopyWithImpl$Mutation$UploadFile(
     this._instance,
     this._then,
@@ -8358,25 +7870,17 @@ class _CopyWithImpl$Mutation$UploadFile<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UploadFile(
-        upload: upload == _undefined
-            ? _instance.upload
-            : (upload as Mutation$UploadFile$upload?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        upload: upload == _undefined ? _instance.upload : (upload as Mutation$UploadFile$upload?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$UploadFile$upload<TRes> get upload {
     final local$upload = _instance.upload;
-    return local$upload == null
-        ? CopyWith$Mutation$UploadFile$upload.stub(_then(_instance))
-        : CopyWith$Mutation$UploadFile$upload(
-            local$upload, (e) => call(upload: e));
+    return local$upload == null ? CopyWith$Mutation$UploadFile$upload.stub(_then(_instance)) : CopyWith$Mutation$UploadFile$upload(local$upload, (e) => call(upload: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UploadFile<TRes>
-    implements CopyWith$Mutation$UploadFile<TRes> {
+class _CopyWithStubImpl$Mutation$UploadFile<TRes> implements CopyWith$Mutation$UploadFile<TRes> {
   _CopyWithStubImpl$Mutation$UploadFile(this._res);
 
   TRes _res;
@@ -8387,8 +7891,7 @@ class _CopyWithStubImpl$Mutation$UploadFile<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$UploadFile$upload<TRes> get upload =>
-      CopyWith$Mutation$UploadFile$upload.stub(_res);
+  CopyWith$Mutation$UploadFile$upload<TRes> get upload => CopyWith$Mutation$UploadFile$upload.stub(_res);
 }
 
 const documentNodeMutationUploadFile = DocumentNode(definitions: [
@@ -8468,15 +7971,13 @@ const documentNodeMutationUploadFile = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UploadFile _parserFn$Mutation$UploadFile(Map<String, dynamic> data) =>
-    Mutation$UploadFile.fromJson(data);
+Mutation$UploadFile _parserFn$Mutation$UploadFile(Map<String, dynamic> data) => Mutation$UploadFile.fromJson(data);
 typedef OnMutationCompleted$Mutation$UploadFile = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UploadFile?,
 );
 
-class Options$Mutation$UploadFile
-    extends graphql.MutationOptions<Mutation$UploadFile> {
+class Options$Mutation$UploadFile extends graphql.MutationOptions<Mutation$UploadFile> {
   Options$Mutation$UploadFile({
     String? operationName,
     required Variables$Mutation$UploadFile variables,
@@ -8514,15 +8015,12 @@ class Options$Mutation$UploadFile
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UploadFile
-    extends graphql.WatchQueryOptions<Mutation$UploadFile> {
+class WatchOptions$Mutation$UploadFile extends graphql.WatchQueryOptions<Mutation$UploadFile> {
   WatchOptions$Mutation$UploadFile({
     String? operationName,
     required Variables$Mutation$UploadFile variables,
@@ -8554,12 +8052,8 @@ class WatchOptions$Mutation$UploadFile
 }
 
 extension ClientExtension$Mutation$UploadFile on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UploadFile>> mutate$UploadFile(
-          Options$Mutation$UploadFile options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$UploadFile> watchMutation$UploadFile(
-          WatchOptions$Mutation$UploadFile options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$UploadFile>> mutate$UploadFile(Options$Mutation$UploadFile options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UploadFile> watchMutation$UploadFile(WatchOptions$Mutation$UploadFile options) => this.watchMutation(options);
 }
 
 class Mutation$UploadFile$upload {
@@ -8614,8 +8108,7 @@ class Mutation$UploadFile$upload {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UploadFile$upload ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UploadFile$upload || runtimeType != other.runtimeType) {
       return false;
     }
     final l$baseUrl = baseUrl;
@@ -8648,13 +8141,11 @@ class Mutation$UploadFile$upload {
   }
 }
 
-extension UtilityExtension$Mutation$UploadFile$upload
-    on Mutation$UploadFile$upload {
-  CopyWith$Mutation$UploadFile$upload<Mutation$UploadFile$upload>
-      get copyWith => CopyWith$Mutation$UploadFile$upload(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UploadFile$upload on Mutation$UploadFile$upload {
+  CopyWith$Mutation$UploadFile$upload<Mutation$UploadFile$upload> get copyWith => CopyWith$Mutation$UploadFile$upload(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
@@ -8663,8 +8154,7 @@ abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
     TRes Function(Mutation$UploadFile$upload) then,
   ) = _CopyWithImpl$Mutation$UploadFile$upload;
 
-  factory CopyWith$Mutation$UploadFile$upload.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UploadFile$upload;
+  factory CopyWith$Mutation$UploadFile$upload.stub(TRes res) = _CopyWithStubImpl$Mutation$UploadFile$upload;
 
   TRes call({
     String? baseUrl,
@@ -8673,8 +8163,7 @@ abstract class CopyWith$Mutation$UploadFile$upload<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UploadFile$upload<TRes>
-    implements CopyWith$Mutation$UploadFile$upload<TRes> {
+class _CopyWithImpl$Mutation$UploadFile$upload<TRes> implements CopyWith$Mutation$UploadFile$upload<TRes> {
   _CopyWithImpl$Mutation$UploadFile$upload(
     this._instance,
     this._then,
@@ -8692,17 +8181,13 @@ class _CopyWithImpl$Mutation$UploadFile$upload<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UploadFile$upload(
-        baseUrl:
-            baseUrl == _undefined ? _instance.baseUrl : (baseUrl as String?),
+        baseUrl: baseUrl == _undefined ? _instance.baseUrl : (baseUrl as String?),
         data: data == _undefined ? _instance.data : (data as List<String?>?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
-    implements CopyWith$Mutation$UploadFile$upload<TRes> {
+class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes> implements CopyWith$Mutation$UploadFile$upload<TRes> {
   _CopyWithStubImpl$Mutation$UploadFile$upload(this._res);
 
   TRes _res;
@@ -8716,8 +8201,7 @@ class _CopyWithStubImpl$Mutation$UploadFile$upload<TRes>
 }
 
 class Variables$Mutation$CreateChat {
-  factory Variables$Mutation$CreateChat({required String recipient}) =>
-      Variables$Mutation$CreateChat._({
+  factory Variables$Mutation$CreateChat({required String recipient}) => Variables$Mutation$CreateChat._({
         r'recipient': recipient,
       });
 
@@ -8741,19 +8225,17 @@ class Variables$Mutation$CreateChat {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CreateChat<Variables$Mutation$CreateChat>
-      get copyWith => CopyWith$Variables$Mutation$CreateChat(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$CreateChat<Variables$Mutation$CreateChat> get copyWith => CopyWith$Variables$Mutation$CreateChat(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CreateChat ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CreateChat || runtimeType != other.runtimeType) {
       return false;
     }
     final l$recipient = recipient;
@@ -8777,14 +8259,12 @@ abstract class CopyWith$Variables$Mutation$CreateChat<TRes> {
     TRes Function(Variables$Mutation$CreateChat) then,
   ) = _CopyWithImpl$Variables$Mutation$CreateChat;
 
-  factory CopyWith$Variables$Mutation$CreateChat.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CreateChat;
+  factory CopyWith$Variables$Mutation$CreateChat.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CreateChat;
 
   TRes call({String? recipient});
 }
 
-class _CopyWithImpl$Variables$Mutation$CreateChat<TRes>
-    implements CopyWith$Variables$Mutation$CreateChat<TRes> {
+class _CopyWithImpl$Variables$Mutation$CreateChat<TRes> implements CopyWith$Variables$Mutation$CreateChat<TRes> {
   _CopyWithImpl$Variables$Mutation$CreateChat(
     this._instance,
     this._then,
@@ -8796,16 +8276,13 @@ class _CopyWithImpl$Variables$Mutation$CreateChat<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? recipient = _undefined}) =>
-      _then(Variables$Mutation$CreateChat._({
+  TRes call({Object? recipient = _undefined}) => _then(Variables$Mutation$CreateChat._({
         ..._instance._$data,
-        if (recipient != _undefined && recipient != null)
-          'recipient': (recipient as String),
+        if (recipient != _undefined && recipient != null) 'recipient': (recipient as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CreateChat<TRes>
-    implements CopyWith$Variables$Mutation$CreateChat<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CreateChat<TRes> implements CopyWith$Variables$Mutation$CreateChat<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateChat(this._res);
 
   TRes _res;
@@ -8823,10 +8300,7 @@ class Mutation$CreateChat {
     final l$createChat = json['createChat'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateChat(
-      createChat: l$createChat == null
-          ? null
-          : Mutation$CreateChat$createChat.fromJson(
-              (l$createChat as Map<String, dynamic>)),
+      createChat: l$createChat == null ? null : Mutation$CreateChat$createChat.fromJson((l$createChat as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -8877,8 +8351,7 @@ class Mutation$CreateChat {
 }
 
 extension UtilityExtension$Mutation$CreateChat on Mutation$CreateChat {
-  CopyWith$Mutation$CreateChat<Mutation$CreateChat> get copyWith =>
-      CopyWith$Mutation$CreateChat(
+  CopyWith$Mutation$CreateChat<Mutation$CreateChat> get copyWith => CopyWith$Mutation$CreateChat(
         this,
         (i) => i,
       );
@@ -8890,8 +8363,7 @@ abstract class CopyWith$Mutation$CreateChat<TRes> {
     TRes Function(Mutation$CreateChat) then,
   ) = _CopyWithImpl$Mutation$CreateChat;
 
-  factory CopyWith$Mutation$CreateChat.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat;
+  factory CopyWith$Mutation$CreateChat.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat;
 
   TRes call({
     Mutation$CreateChat$createChat? createChat,
@@ -8900,8 +8372,7 @@ abstract class CopyWith$Mutation$CreateChat<TRes> {
   CopyWith$Mutation$CreateChat$createChat<TRes> get createChat;
 }
 
-class _CopyWithImpl$Mutation$CreateChat<TRes>
-    implements CopyWith$Mutation$CreateChat<TRes> {
+class _CopyWithImpl$Mutation$CreateChat<TRes> implements CopyWith$Mutation$CreateChat<TRes> {
   _CopyWithImpl$Mutation$CreateChat(
     this._instance,
     this._then,
@@ -8918,25 +8389,17 @@ class _CopyWithImpl$Mutation$CreateChat<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateChat(
-        createChat: createChat == _undefined
-            ? _instance.createChat
-            : (createChat as Mutation$CreateChat$createChat?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        createChat: createChat == _undefined ? _instance.createChat : (createChat as Mutation$CreateChat$createChat?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateChat$createChat<TRes> get createChat {
     final local$createChat = _instance.createChat;
-    return local$createChat == null
-        ? CopyWith$Mutation$CreateChat$createChat.stub(_then(_instance))
-        : CopyWith$Mutation$CreateChat$createChat(
-            local$createChat, (e) => call(createChat: e));
+    return local$createChat == null ? CopyWith$Mutation$CreateChat$createChat.stub(_then(_instance)) : CopyWith$Mutation$CreateChat$createChat(local$createChat, (e) => call(createChat: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat<TRes>
-    implements CopyWith$Mutation$CreateChat<TRes> {
+class _CopyWithStubImpl$Mutation$CreateChat<TRes> implements CopyWith$Mutation$CreateChat<TRes> {
   _CopyWithStubImpl$Mutation$CreateChat(this._res);
 
   TRes _res;
@@ -8947,8 +8410,7 @@ class _CopyWithStubImpl$Mutation$CreateChat<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateChat$createChat<TRes> get createChat =>
-      CopyWith$Mutation$CreateChat$createChat.stub(_res);
+  CopyWith$Mutation$CreateChat$createChat<TRes> get createChat => CopyWith$Mutation$CreateChat$createChat.stub(_res);
 }
 
 const documentNodeMutationCreateChat = DocumentNode(definitions: [
@@ -9219,15 +8681,13 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CreateChat _parserFn$Mutation$CreateChat(Map<String, dynamic> data) =>
-    Mutation$CreateChat.fromJson(data);
+Mutation$CreateChat _parserFn$Mutation$CreateChat(Map<String, dynamic> data) => Mutation$CreateChat.fromJson(data);
 typedef OnMutationCompleted$Mutation$CreateChat = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CreateChat?,
 );
 
-class Options$Mutation$CreateChat
-    extends graphql.MutationOptions<Mutation$CreateChat> {
+class Options$Mutation$CreateChat extends graphql.MutationOptions<Mutation$CreateChat> {
   Options$Mutation$CreateChat({
     String? operationName,
     required Variables$Mutation$CreateChat variables,
@@ -9265,15 +8725,12 @@ class Options$Mutation$CreateChat
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CreateChat
-    extends graphql.WatchQueryOptions<Mutation$CreateChat> {
+class WatchOptions$Mutation$CreateChat extends graphql.WatchQueryOptions<Mutation$CreateChat> {
   WatchOptions$Mutation$CreateChat({
     String? operationName,
     required Variables$Mutation$CreateChat variables,
@@ -9305,12 +8762,8 @@ class WatchOptions$Mutation$CreateChat
 }
 
 extension ClientExtension$Mutation$CreateChat on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreateChat>> mutate$CreateChat(
-          Options$Mutation$CreateChat options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$CreateChat> watchMutation$CreateChat(
-          WatchOptions$Mutation$CreateChat options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$CreateChat>> mutate$CreateChat(Options$Mutation$CreateChat options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateChat> watchMutation$CreateChat(WatchOptions$Mutation$CreateChat options) => this.watchMutation(options);
 }
 
 class Mutation$CreateChat$createChat {
@@ -9323,10 +8776,7 @@ class Mutation$CreateChat$createChat {
     final l$chat = json['chat'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateChat$createChat(
-      chat: l$chat == null
-          ? null
-          : Mutation$CreateChat$createChat$chat.fromJson(
-              (l$chat as Map<String, dynamic>)),
+      chat: l$chat == null ? null : Mutation$CreateChat$createChat$chat.fromJson((l$chat as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -9359,8 +8809,7 @@ class Mutation$CreateChat$createChat {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateChat$createChat ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateChat$createChat || runtimeType != other.runtimeType) {
       return false;
     }
     final l$chat = chat;
@@ -9377,13 +8826,11 @@ class Mutation$CreateChat$createChat {
   }
 }
 
-extension UtilityExtension$Mutation$CreateChat$createChat
-    on Mutation$CreateChat$createChat {
-  CopyWith$Mutation$CreateChat$createChat<Mutation$CreateChat$createChat>
-      get copyWith => CopyWith$Mutation$CreateChat$createChat(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateChat$createChat on Mutation$CreateChat$createChat {
+  CopyWith$Mutation$CreateChat$createChat<Mutation$CreateChat$createChat> get copyWith => CopyWith$Mutation$CreateChat$createChat(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateChat$createChat<TRes> {
@@ -9392,8 +8839,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat<TRes> {
     TRes Function(Mutation$CreateChat$createChat) then,
   ) = _CopyWithImpl$Mutation$CreateChat$createChat;
 
-  factory CopyWith$Mutation$CreateChat$createChat.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat$createChat;
+  factory CopyWith$Mutation$CreateChat$createChat.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat$createChat;
 
   TRes call({
     Mutation$CreateChat$createChat$chat? chat,
@@ -9402,8 +8848,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat<TRes> {
   CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat;
 }
 
-class _CopyWithImpl$Mutation$CreateChat$createChat<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat<TRes> {
+class _CopyWithImpl$Mutation$CreateChat$createChat<TRes> implements CopyWith$Mutation$CreateChat$createChat<TRes> {
   _CopyWithImpl$Mutation$CreateChat$createChat(
     this._instance,
     this._then,
@@ -9420,25 +8865,17 @@ class _CopyWithImpl$Mutation$CreateChat$createChat<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateChat$createChat(
-        chat: chat == _undefined
-            ? _instance.chat
-            : (chat as Mutation$CreateChat$createChat$chat?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        chat: chat == _undefined ? _instance.chat : (chat as Mutation$CreateChat$createChat$chat?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat {
     final local$chat = _instance.chat;
-    return local$chat == null
-        ? CopyWith$Mutation$CreateChat$createChat$chat.stub(_then(_instance))
-        : CopyWith$Mutation$CreateChat$createChat$chat(
-            local$chat, (e) => call(chat: e));
+    return local$chat == null ? CopyWith$Mutation$CreateChat$createChat$chat.stub(_then(_instance)) : CopyWith$Mutation$CreateChat$createChat$chat(local$chat, (e) => call(chat: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat$createChat<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat<TRes> {
+class _CopyWithStubImpl$Mutation$CreateChat$createChat<TRes> implements CopyWith$Mutation$CreateChat$createChat<TRes> {
   _CopyWithStubImpl$Mutation$CreateChat$createChat(this._res);
 
   TRes _res;
@@ -9449,8 +8886,7 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat =>
-      CopyWith$Mutation$CreateChat$createChat$chat.stub(_res);
+  CopyWith$Mutation$CreateChat$createChat$chat<TRes> get chat => CopyWith$Mutation$CreateChat$createChat$chat.stub(_res);
 }
 
 class Mutation$CreateChat$createChat$chat {
@@ -9469,8 +8905,7 @@ class Mutation$CreateChat$createChat$chat {
     this.$__typename = 'ConversationType',
   });
 
-  factory Mutation$CreateChat$createChat$chat.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateChat$createChat$chat.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$disableResponse = json['disableResponse'];
@@ -9493,14 +8928,8 @@ class Mutation$CreateChat$createChat$chat {
       participant1Deleted: (l$participant1Deleted as bool),
       participant2Deleted: (l$participant2Deleted as bool),
       unreadMessagesCount: (l$unreadMessagesCount as int?),
-      recipient: l$recipient == null
-          ? null
-          : Mutation$CreateChat$createChat$chat$recipient.fromJson(
-              (l$recipient as Map<String, dynamic>)),
-      lastMessage: l$lastMessage == null
-          ? null
-          : Mutation$CreateChat$createChat$chat$lastMessage.fromJson(
-              (l$lastMessage as Map<String, dynamic>)),
+      recipient: l$recipient == null ? null : Mutation$CreateChat$createChat$chat$recipient.fromJson((l$recipient as Map<String, dynamic>)),
+      lastMessage: l$lastMessage == null ? null : Mutation$CreateChat$createChat$chat$lastMessage.fromJson((l$lastMessage as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -9593,8 +9022,7 @@ class Mutation$CreateChat$createChat$chat {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateChat$createChat$chat ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateChat$createChat$chat || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -9661,14 +9089,11 @@ class Mutation$CreateChat$createChat$chat {
   }
 }
 
-extension UtilityExtension$Mutation$CreateChat$createChat$chat
-    on Mutation$CreateChat$createChat$chat {
-  CopyWith$Mutation$CreateChat$createChat$chat<
-          Mutation$CreateChat$createChat$chat>
-      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateChat$createChat$chat on Mutation$CreateChat$createChat$chat {
+  CopyWith$Mutation$CreateChat$createChat$chat<Mutation$CreateChat$createChat$chat> get copyWith => CopyWith$Mutation$CreateChat$createChat$chat(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
@@ -9677,8 +9102,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
     TRes Function(Mutation$CreateChat$createChat$chat) then,
   ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat;
 
-  factory CopyWith$Mutation$CreateChat$createChat$chat.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat;
+  factory CopyWith$Mutation$CreateChat$createChat$chat.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat$createChat$chat;
 
   TRes call({
     String? id,
@@ -9695,12 +9119,10 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
     String? $__typename,
   });
   CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient;
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
-      get lastMessage;
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> get lastMessage;
 }
 
-class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
   _CopyWithImpl$Mutation$CreateChat$createChat$chat(
     this._instance,
     this._then,
@@ -9728,66 +9150,35 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
   }) =>
       _then(Mutation$CreateChat$createChat$chat(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        disableResponse:
-            disableResponse == _undefined || disableResponse == null
-                ? _instance.disableResponse
-                : (disableResponse as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        lastModified: lastModified == _undefined || lastModified == null
-            ? _instance.lastModified
-            : (lastModified as DateTime),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
-        participant1Deleted:
-            participant1Deleted == _undefined || participant1Deleted == null
-                ? _instance.participant1Deleted
-                : (participant1Deleted as bool),
-        participant2Deleted:
-            participant2Deleted == _undefined || participant2Deleted == null
-                ? _instance.participant2Deleted
-                : (participant2Deleted as bool),
-        unreadMessagesCount: unreadMessagesCount == _undefined
-            ? _instance.unreadMessagesCount
-            : (unreadMessagesCount as int?),
-        recipient: recipient == _undefined
-            ? _instance.recipient
-            : (recipient as Mutation$CreateChat$createChat$chat$recipient?),
-        lastMessage: lastMessage == _undefined
-            ? _instance.lastMessage
-            : (lastMessage as Mutation$CreateChat$createChat$chat$lastMessage?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        name: name == _undefined || name == null ? _instance.name : (name as String),
+        disableResponse: disableResponse == _undefined || disableResponse == null ? _instance.disableResponse : (disableResponse as bool),
+        createdAt: createdAt == _undefined || createdAt == null ? _instance.createdAt : (createdAt as DateTime),
+        lastModified: lastModified == _undefined || lastModified == null ? _instance.lastModified : (lastModified as DateTime),
+        deleted: deleted == _undefined || deleted == null ? _instance.deleted : (deleted as bool),
+        participant1Deleted: participant1Deleted == _undefined || participant1Deleted == null ? _instance.participant1Deleted : (participant1Deleted as bool),
+        participant2Deleted: participant2Deleted == _undefined || participant2Deleted == null ? _instance.participant2Deleted : (participant2Deleted as bool),
+        unreadMessagesCount: unreadMessagesCount == _undefined ? _instance.unreadMessagesCount : (unreadMessagesCount as int?),
+        recipient: recipient == _undefined ? _instance.recipient : (recipient as Mutation$CreateChat$createChat$chat$recipient?),
+        lastMessage: lastMessage == _undefined ? _instance.lastMessage : (lastMessage as Mutation$CreateChat$createChat$chat$lastMessage?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient {
     final local$recipient = _instance.recipient;
     return local$recipient == null
-        ? CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreateChat$createChat$chat$recipient(
-            local$recipient, (e) => call(recipient: e));
+        ? CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(_then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$recipient(local$recipient, (e) => call(recipient: e));
   }
 
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
-      get lastMessage {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> get lastMessage {
     final local$lastMessage = _instance.lastMessage;
     return local$lastMessage == null
-        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
-            local$lastMessage, (e) => call(lastMessage: e));
+        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(_then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(local$lastMessage, (e) => call(lastMessage: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
   _CopyWithStubImpl$Mutation$CreateChat$createChat$chat(this._res);
 
   TRes _res;
@@ -9808,12 +9199,9 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient =>
-      CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(_res);
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> get recipient => CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(_res);
 
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
-      get lastMessage =>
-          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(_res);
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> get lastMessage => CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(_res);
 }
 
 class Mutation$CreateChat$createChat$chat$recipient {
@@ -9826,8 +9214,7 @@ class Mutation$CreateChat$createChat$chat$recipient {
     this.$__typename = 'UserType',
   });
 
-  factory Mutation$CreateChat$createChat$chat$recipient.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateChat$createChat$chat$recipient.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
     final l$displayName = json['displayName'];
@@ -9896,8 +9283,7 @@ class Mutation$CreateChat$createChat$chat$recipient {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateChat$createChat$chat$recipient ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateChat$createChat$chat$recipient || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -9934,14 +9320,11 @@ class Mutation$CreateChat$createChat$chat$recipient {
   }
 }
 
-extension UtilityExtension$Mutation$CreateChat$createChat$chat$recipient
-    on Mutation$CreateChat$createChat$chat$recipient {
-  CopyWith$Mutation$CreateChat$createChat$chat$recipient<
-          Mutation$CreateChat$createChat$chat$recipient>
-      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$recipient(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$recipient on Mutation$CreateChat$createChat$chat$recipient {
+  CopyWith$Mutation$CreateChat$createChat$chat$recipient<Mutation$CreateChat$createChat$chat$recipient> get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$recipient(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
@@ -9950,9 +9333,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
     TRes Function(Mutation$CreateChat$createChat$chat$recipient) then,
   ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient;
 
-  factory CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient;
+  factory CopyWith$Mutation$CreateChat$createChat$chat$recipient.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient;
 
   TRes call({
     int? id,
@@ -9964,8 +9345,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
   _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient(
     this._instance,
     this._then,
@@ -9987,25 +9367,15 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat$recipient<TRes>
   }) =>
       _then(Mutation$CreateChat$createChat$chat$recipient(
         id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        displayName: displayName == _undefined
-            ? _instance.displayName
-            : (displayName as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        username: username == _undefined ? _instance.username : (username as String?),
+        displayName: displayName == _undefined ? _instance.displayName : (displayName as String?),
+        profilePictureUrl: profilePictureUrl == _undefined ? _instance.profilePictureUrl : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined ? _instance.thumbnailUrl : (thumbnailUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$recipient<TRes> {
   _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$recipient(this._res);
 
   TRes _res;
@@ -10031,8 +9401,7 @@ class Mutation$CreateChat$createChat$chat$lastMessage {
     this.$__typename = 'MessageType',
   });
 
-  factory Mutation$CreateChat$createChat$chat$lastMessage.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateChat$createChat$chat$lastMessage.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$text = json['text'];
     final l$attachment = json['attachment'];
@@ -10043,14 +9412,8 @@ class Mutation$CreateChat$createChat$chat$lastMessage {
       id: (l$id as String),
       text: (l$text as String),
       attachment: (l$attachment as String?),
-      attachmentType: l$attachmentType == null
-          ? null
-          : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
-              (l$attachmentType as String)),
-      sender: l$sender == null
-          ? null
-          : Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(
-              (l$sender as Map<String, dynamic>)),
+      attachmentType: l$attachmentType == null ? null : fromJson$Enum$ChatsMessageAttachmentTypeChoices((l$attachmentType as String)),
+      sender: l$sender == null ? null : Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson((l$sender as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -10076,9 +9439,7 @@ class Mutation$CreateChat$createChat$chat$lastMessage {
     final l$attachment = attachment;
     _resultData['attachment'] = l$attachment;
     final l$attachmentType = attachmentType;
-    _resultData['attachmentType'] = l$attachmentType == null
-        ? null
-        : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
+    _resultData['attachmentType'] = l$attachmentType == null ? null : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
     final l$sender = sender;
     _resultData['sender'] = l$sender?.toJson();
     final l$$__typename = $__typename;
@@ -10109,8 +9470,7 @@ class Mutation$CreateChat$createChat$chat$lastMessage {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateChat$createChat$chat$lastMessage ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateChat$createChat$chat$lastMessage || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -10147,14 +9507,11 @@ class Mutation$CreateChat$createChat$chat$lastMessage {
   }
 }
 
-extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage
-    on Mutation$CreateChat$createChat$chat$lastMessage {
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<
-          Mutation$CreateChat$createChat$chat$lastMessage>
-      get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage on Mutation$CreateChat$createChat$chat$lastMessage {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<Mutation$CreateChat$createChat$chat$lastMessage> get copyWith => CopyWith$Mutation$CreateChat$createChat$chat$lastMessage(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
@@ -10163,9 +9520,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
     TRes Function(Mutation$CreateChat$createChat$chat$lastMessage) then,
   ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage;
 
-  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage;
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage;
 
   TRes call({
     String? id,
@@ -10175,12 +9530,10 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
     Mutation$CreateChat$createChat$chat$lastMessage$sender? sender,
     String? $__typename,
   });
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
-      get sender;
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> get sender;
 }
 
-class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
   _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage(
     this._instance,
     this._then,
@@ -10202,37 +9555,22 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
   }) =>
       _then(Mutation$CreateChat$createChat$chat$lastMessage(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        text: text == _undefined || text == null
-            ? _instance.text
-            : (text as String),
-        attachment: attachment == _undefined
-            ? _instance.attachment
-            : (attachment as String?),
-        attachmentType: attachmentType == _undefined
-            ? _instance.attachmentType
-            : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
-        sender: sender == _undefined
-            ? _instance.sender
-            : (sender
-                as Mutation$CreateChat$createChat$chat$lastMessage$sender?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        text: text == _undefined || text == null ? _instance.text : (text as String),
+        attachment: attachment == _undefined ? _instance.attachment : (attachment as String?),
+        attachmentType: attachmentType == _undefined ? _instance.attachmentType : (attachmentType as Enum$ChatsMessageAttachmentTypeChoices?),
+        sender: sender == _undefined ? _instance.sender : (sender as Mutation$CreateChat$createChat$chat$lastMessage$sender?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
-      get sender {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> get sender {
     final local$sender = _instance.sender;
     return local$sender == null
-        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
-            local$sender, (e) => call(sender: e));
+        ? CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(_then(_instance))
+        : CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(local$sender, (e) => call(sender: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
-    implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage<TRes> {
   _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage(this._res);
 
   TRes _res;
@@ -10247,10 +9585,7 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
-      get sender =>
-          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
-              _res);
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> get sender => CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(_res);
 }
 
 class Mutation$CreateChat$createChat$chat$lastMessage$sender {
@@ -10263,8 +9598,7 @@ class Mutation$CreateChat$createChat$chat$lastMessage$sender {
     this.$__typename = 'UserType',
   });
 
-  factory Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateChat$createChat$chat$lastMessage$sender.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
     final l$profilePictureUrl = json['profilePictureUrl'];
@@ -10333,8 +9667,7 @@ class Mutation$CreateChat$createChat$chat$lastMessage$sender {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateChat$createChat$chat$lastMessage$sender ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateChat$createChat$chat$lastMessage$sender || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -10371,27 +9704,21 @@ class Mutation$CreateChat$createChat$chat$lastMessage$sender {
   }
 }
 
-extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage$sender
-    on Mutation$CreateChat$createChat$chat$lastMessage$sender {
-  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
-          Mutation$CreateChat$createChat$chat$lastMessage$sender>
-      get copyWith =>
-          CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateChat$createChat$chat$lastMessage$sender on Mutation$CreateChat$createChat$chat$lastMessage$sender {
+  CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<Mutation$CreateChat$createChat$chat$lastMessage$sender> get copyWith =>
+      CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
+        this,
+        (i) => i,
+      );
 }
 
-abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
-    TRes> {
+abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
   factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender(
     Mutation$CreateChat$createChat$chat$lastMessage$sender instance,
     TRes Function(Mutation$CreateChat$createChat$chat$lastMessage$sender) then,
   ) = _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
 
-  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
+  factory CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender;
 
   TRes call({
     int? id,
@@ -10403,9 +9730,7 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<
   });
 }
 
-class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
-    implements
-        CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
+class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
   _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender(
     this._instance,
     this._then,
@@ -10413,8 +9738,7 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
 
   final Mutation$CreateChat$createChat$chat$lastMessage$sender _instance;
 
-  final TRes Function(Mutation$CreateChat$createChat$chat$lastMessage$sender)
-      _then;
+  final TRes Function(Mutation$CreateChat$createChat$chat$lastMessage$sender) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -10428,29 +9752,16 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes>
   }) =>
       _then(Mutation$CreateChat$createChat$chat$lastMessage$sender(
         id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        displayName: displayName == _undefined
-            ? _instance.displayName
-            : (displayName as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        username: username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined ? _instance.profilePictureUrl : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined ? _instance.thumbnailUrl : (thumbnailUrl as String?),
+        displayName: displayName == _undefined ? _instance.displayName : (displayName as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<
-        TRes>
-    implements
-        CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
-  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender(
-      this._res);
+class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> implements CopyWith$Mutation$CreateChat$createChat$chat$lastMessage$sender<TRes> {
+  _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender(this._res);
 
   TRes _res;
 
@@ -10466,8 +9777,7 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat$lastMessage$sender<
 }
 
 class Variables$Mutation$DeleteMessage {
-  factory Variables$Mutation$DeleteMessage({required int messageId}) =>
-      Variables$Mutation$DeleteMessage._({
+  factory Variables$Mutation$DeleteMessage({required int messageId}) => Variables$Mutation$DeleteMessage._({
         r'messageId': messageId,
       });
 
@@ -10491,19 +9801,17 @@ class Variables$Mutation$DeleteMessage {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$DeleteMessage<Variables$Mutation$DeleteMessage>
-      get copyWith => CopyWith$Variables$Mutation$DeleteMessage(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$DeleteMessage<Variables$Mutation$DeleteMessage> get copyWith => CopyWith$Variables$Mutation$DeleteMessage(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$DeleteMessage ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$DeleteMessage || runtimeType != other.runtimeType) {
       return false;
     }
     final l$messageId = messageId;
@@ -10527,14 +9835,12 @@ abstract class CopyWith$Variables$Mutation$DeleteMessage<TRes> {
     TRes Function(Variables$Mutation$DeleteMessage) then,
   ) = _CopyWithImpl$Variables$Mutation$DeleteMessage;
 
-  factory CopyWith$Variables$Mutation$DeleteMessage.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$DeleteMessage;
+  factory CopyWith$Variables$Mutation$DeleteMessage.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$DeleteMessage;
 
   TRes call({int? messageId});
 }
 
-class _CopyWithImpl$Variables$Mutation$DeleteMessage<TRes>
-    implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
+class _CopyWithImpl$Variables$Mutation$DeleteMessage<TRes> implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
   _CopyWithImpl$Variables$Mutation$DeleteMessage(
     this._instance,
     this._then,
@@ -10546,16 +9852,13 @@ class _CopyWithImpl$Variables$Mutation$DeleteMessage<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? messageId = _undefined}) =>
-      _then(Variables$Mutation$DeleteMessage._({
+  TRes call({Object? messageId = _undefined}) => _then(Variables$Mutation$DeleteMessage._({
         ..._instance._$data,
-        if (messageId != _undefined && messageId != null)
-          'messageId': (messageId as int),
+        if (messageId != _undefined && messageId != null) 'messageId': (messageId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$DeleteMessage<TRes>
-    implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$DeleteMessage<TRes> implements CopyWith$Variables$Mutation$DeleteMessage<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteMessage(this._res);
 
   TRes _res;
@@ -10573,10 +9876,7 @@ class Mutation$DeleteMessage {
     final l$deleteMessage = json['deleteMessage'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteMessage(
-      deleteMessage: l$deleteMessage == null
-          ? null
-          : Mutation$DeleteMessage$deleteMessage.fromJson(
-              (l$deleteMessage as Map<String, dynamic>)),
+      deleteMessage: l$deleteMessage == null ? null : Mutation$DeleteMessage$deleteMessage.fromJson((l$deleteMessage as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -10627,8 +9927,7 @@ class Mutation$DeleteMessage {
 }
 
 extension UtilityExtension$Mutation$DeleteMessage on Mutation$DeleteMessage {
-  CopyWith$Mutation$DeleteMessage<Mutation$DeleteMessage> get copyWith =>
-      CopyWith$Mutation$DeleteMessage(
+  CopyWith$Mutation$DeleteMessage<Mutation$DeleteMessage> get copyWith => CopyWith$Mutation$DeleteMessage(
         this,
         (i) => i,
       );
@@ -10640,8 +9939,7 @@ abstract class CopyWith$Mutation$DeleteMessage<TRes> {
     TRes Function(Mutation$DeleteMessage) then,
   ) = _CopyWithImpl$Mutation$DeleteMessage;
 
-  factory CopyWith$Mutation$DeleteMessage.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteMessage;
+  factory CopyWith$Mutation$DeleteMessage.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteMessage;
 
   TRes call({
     Mutation$DeleteMessage$deleteMessage? deleteMessage,
@@ -10650,8 +9948,7 @@ abstract class CopyWith$Mutation$DeleteMessage<TRes> {
   CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage;
 }
 
-class _CopyWithImpl$Mutation$DeleteMessage<TRes>
-    implements CopyWith$Mutation$DeleteMessage<TRes> {
+class _CopyWithImpl$Mutation$DeleteMessage<TRes> implements CopyWith$Mutation$DeleteMessage<TRes> {
   _CopyWithImpl$Mutation$DeleteMessage(
     this._instance,
     this._then,
@@ -10668,25 +9965,19 @@ class _CopyWithImpl$Mutation$DeleteMessage<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteMessage(
-        deleteMessage: deleteMessage == _undefined
-            ? _instance.deleteMessage
-            : (deleteMessage as Mutation$DeleteMessage$deleteMessage?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        deleteMessage: deleteMessage == _undefined ? _instance.deleteMessage : (deleteMessage as Mutation$DeleteMessage$deleteMessage?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage {
     final local$deleteMessage = _instance.deleteMessage;
     return local$deleteMessage == null
         ? CopyWith$Mutation$DeleteMessage$deleteMessage.stub(_then(_instance))
-        : CopyWith$Mutation$DeleteMessage$deleteMessage(
-            local$deleteMessage, (e) => call(deleteMessage: e));
+        : CopyWith$Mutation$DeleteMessage$deleteMessage(local$deleteMessage, (e) => call(deleteMessage: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$DeleteMessage<TRes>
-    implements CopyWith$Mutation$DeleteMessage<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteMessage<TRes> implements CopyWith$Mutation$DeleteMessage<TRes> {
   _CopyWithStubImpl$Mutation$DeleteMessage(this._res);
 
   TRes _res;
@@ -10697,8 +9988,7 @@ class _CopyWithStubImpl$Mutation$DeleteMessage<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage =>
-      CopyWith$Mutation$DeleteMessage$deleteMessage.stub(_res);
+  CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> get deleteMessage => CopyWith$Mutation$DeleteMessage$deleteMessage.stub(_res);
 }
 
 const documentNodeMutationDeleteMessage = DocumentNode(definitions: [
@@ -10755,16 +10045,13 @@ const documentNodeMutationDeleteMessage = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$DeleteMessage _parserFn$Mutation$DeleteMessage(
-        Map<String, dynamic> data) =>
-    Mutation$DeleteMessage.fromJson(data);
+Mutation$DeleteMessage _parserFn$Mutation$DeleteMessage(Map<String, dynamic> data) => Mutation$DeleteMessage.fromJson(data);
 typedef OnMutationCompleted$Mutation$DeleteMessage = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$DeleteMessage?,
 );
 
-class Options$Mutation$DeleteMessage
-    extends graphql.MutationOptions<Mutation$DeleteMessage> {
+class Options$Mutation$DeleteMessage extends graphql.MutationOptions<Mutation$DeleteMessage> {
   Options$Mutation$DeleteMessage({
     String? operationName,
     required Variables$Mutation$DeleteMessage variables,
@@ -10790,9 +10077,7 @@ class Options$Mutation$DeleteMessage
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$DeleteMessage(data),
+                    data == null ? null : _parserFn$Mutation$DeleteMessage(data),
                   ),
           update: update,
           onError: onError,
@@ -10804,15 +10089,12 @@ class Options$Mutation$DeleteMessage
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$DeleteMessage
-    extends graphql.WatchQueryOptions<Mutation$DeleteMessage> {
+class WatchOptions$Mutation$DeleteMessage extends graphql.WatchQueryOptions<Mutation$DeleteMessage> {
   WatchOptions$Mutation$DeleteMessage({
     String? operationName,
     required Variables$Mutation$DeleteMessage variables,
@@ -10844,12 +10126,8 @@ class WatchOptions$Mutation$DeleteMessage
 }
 
 extension ClientExtension$Mutation$DeleteMessage on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$DeleteMessage>> mutate$DeleteMessage(
-          Options$Mutation$DeleteMessage options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$DeleteMessage> watchMutation$DeleteMessage(
-          WatchOptions$Mutation$DeleteMessage options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$DeleteMessage>> mutate$DeleteMessage(Options$Mutation$DeleteMessage options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteMessage> watchMutation$DeleteMessage(WatchOptions$Mutation$DeleteMessage options) => this.watchMutation(options);
 }
 
 class Mutation$DeleteMessage$deleteMessage {
@@ -10858,8 +10136,7 @@ class Mutation$DeleteMessage$deleteMessage {
     this.$__typename = 'DeleteMessage',
   });
 
-  factory Mutation$DeleteMessage$deleteMessage.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$DeleteMessage$deleteMessage.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteMessage$deleteMessage(
@@ -10896,8 +10173,7 @@ class Mutation$DeleteMessage$deleteMessage {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteMessage$deleteMessage ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteMessage$deleteMessage || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -10914,14 +10190,11 @@ class Mutation$DeleteMessage$deleteMessage {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteMessage$deleteMessage
-    on Mutation$DeleteMessage$deleteMessage {
-  CopyWith$Mutation$DeleteMessage$deleteMessage<
-          Mutation$DeleteMessage$deleteMessage>
-      get copyWith => CopyWith$Mutation$DeleteMessage$deleteMessage(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteMessage$deleteMessage on Mutation$DeleteMessage$deleteMessage {
+  CopyWith$Mutation$DeleteMessage$deleteMessage<Mutation$DeleteMessage$deleteMessage> get copyWith => CopyWith$Mutation$DeleteMessage$deleteMessage(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
@@ -10930,8 +10203,7 @@ abstract class CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
     TRes Function(Mutation$DeleteMessage$deleteMessage) then,
   ) = _CopyWithImpl$Mutation$DeleteMessage$deleteMessage;
 
-  factory CopyWith$Mutation$DeleteMessage$deleteMessage.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage;
+  factory CopyWith$Mutation$DeleteMessage$deleteMessage.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage;
 
   TRes call({
     String? message,
@@ -10939,8 +10211,7 @@ abstract class CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$DeleteMessage$deleteMessage<TRes>
-    implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
+class _CopyWithImpl$Mutation$DeleteMessage$deleteMessage<TRes> implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
   _CopyWithImpl$Mutation$DeleteMessage$deleteMessage(
     this._instance,
     this._then,
@@ -10957,16 +10228,12 @@ class _CopyWithImpl$Mutation$DeleteMessage$deleteMessage<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteMessage$deleteMessage(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage<TRes>
-    implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage<TRes> implements CopyWith$Mutation$DeleteMessage$deleteMessage<TRes> {
   _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage(this._res);
 
   TRes _res;
@@ -10979,16 +10246,13 @@ class _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage<TRes>
 }
 
 class Variables$Mutation$DeleteConversation {
-  factory Variables$Mutation$DeleteConversation(
-          {required int conversationId}) =>
-      Variables$Mutation$DeleteConversation._({
+  factory Variables$Mutation$DeleteConversation({required int conversationId}) => Variables$Mutation$DeleteConversation._({
         r'conversationId': conversationId,
       });
 
   Variables$Mutation$DeleteConversation._(this._$data);
 
-  factory Variables$Mutation$DeleteConversation.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$DeleteConversation.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$conversationId = data['conversationId'];
     result$data['conversationId'] = (l$conversationId as int);
@@ -11006,20 +10270,17 @@ class Variables$Mutation$DeleteConversation {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$DeleteConversation<
-          Variables$Mutation$DeleteConversation>
-      get copyWith => CopyWith$Variables$Mutation$DeleteConversation(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$DeleteConversation<Variables$Mutation$DeleteConversation> get copyWith => CopyWith$Variables$Mutation$DeleteConversation(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$DeleteConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$DeleteConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$conversationId = conversationId;
@@ -11043,14 +10304,12 @@ abstract class CopyWith$Variables$Mutation$DeleteConversation<TRes> {
     TRes Function(Variables$Mutation$DeleteConversation) then,
   ) = _CopyWithImpl$Variables$Mutation$DeleteConversation;
 
-  factory CopyWith$Variables$Mutation$DeleteConversation.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$DeleteConversation;
+  factory CopyWith$Variables$Mutation$DeleteConversation.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$DeleteConversation;
 
   TRes call({int? conversationId});
 }
 
-class _CopyWithImpl$Variables$Mutation$DeleteConversation<TRes>
-    implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
+class _CopyWithImpl$Variables$Mutation$DeleteConversation<TRes> implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
   _CopyWithImpl$Variables$Mutation$DeleteConversation(
     this._instance,
     this._then,
@@ -11062,16 +10321,13 @@ class _CopyWithImpl$Variables$Mutation$DeleteConversation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? conversationId = _undefined}) =>
-      _then(Variables$Mutation$DeleteConversation._({
+  TRes call({Object? conversationId = _undefined}) => _then(Variables$Mutation$DeleteConversation._({
         ..._instance._$data,
-        if (conversationId != _undefined && conversationId != null)
-          'conversationId': (conversationId as int),
+        if (conversationId != _undefined && conversationId != null) 'conversationId': (conversationId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$DeleteConversation<TRes>
-    implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$DeleteConversation<TRes> implements CopyWith$Variables$Mutation$DeleteConversation<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteConversation(this._res);
 
   TRes _res;
@@ -11089,10 +10345,7 @@ class Mutation$DeleteConversation {
     final l$deleteConversation = json['deleteConversation'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteConversation(
-      deleteConversation: l$deleteConversation == null
-          ? null
-          : Mutation$DeleteConversation$deleteConversation.fromJson(
-              (l$deleteConversation as Map<String, dynamic>)),
+      deleteConversation: l$deleteConversation == null ? null : Mutation$DeleteConversation$deleteConversation.fromJson((l$deleteConversation as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -11125,8 +10378,7 @@ class Mutation$DeleteConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$deleteConversation = deleteConversation;
@@ -11143,13 +10395,11 @@ class Mutation$DeleteConversation {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteConversation
-    on Mutation$DeleteConversation {
-  CopyWith$Mutation$DeleteConversation<Mutation$DeleteConversation>
-      get copyWith => CopyWith$Mutation$DeleteConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteConversation on Mutation$DeleteConversation {
+  CopyWith$Mutation$DeleteConversation<Mutation$DeleteConversation> get copyWith => CopyWith$Mutation$DeleteConversation(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteConversation<TRes> {
@@ -11158,19 +10408,16 @@ abstract class CopyWith$Mutation$DeleteConversation<TRes> {
     TRes Function(Mutation$DeleteConversation) then,
   ) = _CopyWithImpl$Mutation$DeleteConversation;
 
-  factory CopyWith$Mutation$DeleteConversation.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteConversation;
+  factory CopyWith$Mutation$DeleteConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteConversation;
 
   TRes call({
     Mutation$DeleteConversation$deleteConversation? deleteConversation,
     String? $__typename,
   });
-  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
-      get deleteConversation;
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> get deleteConversation;
 }
 
-class _CopyWithImpl$Mutation$DeleteConversation<TRes>
-    implements CopyWith$Mutation$DeleteConversation<TRes> {
+class _CopyWithImpl$Mutation$DeleteConversation<TRes> implements CopyWith$Mutation$DeleteConversation<TRes> {
   _CopyWithImpl$Mutation$DeleteConversation(
     this._instance,
     this._then,
@@ -11187,28 +10434,19 @@ class _CopyWithImpl$Mutation$DeleteConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteConversation(
-        deleteConversation: deleteConversation == _undefined
-            ? _instance.deleteConversation
-            : (deleteConversation
-                as Mutation$DeleteConversation$deleteConversation?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        deleteConversation: deleteConversation == _undefined ? _instance.deleteConversation : (deleteConversation as Mutation$DeleteConversation$deleteConversation?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
-      get deleteConversation {
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> get deleteConversation {
     final local$deleteConversation = _instance.deleteConversation;
     return local$deleteConversation == null
-        ? CopyWith$Mutation$DeleteConversation$deleteConversation.stub(
-            _then(_instance))
-        : CopyWith$Mutation$DeleteConversation$deleteConversation(
-            local$deleteConversation, (e) => call(deleteConversation: e));
+        ? CopyWith$Mutation$DeleteConversation$deleteConversation.stub(_then(_instance))
+        : CopyWith$Mutation$DeleteConversation$deleteConversation(local$deleteConversation, (e) => call(deleteConversation: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$DeleteConversation<TRes>
-    implements CopyWith$Mutation$DeleteConversation<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteConversation<TRes> implements CopyWith$Mutation$DeleteConversation<TRes> {
   _CopyWithStubImpl$Mutation$DeleteConversation(this._res);
 
   TRes _res;
@@ -11219,9 +10457,7 @@ class _CopyWithStubImpl$Mutation$DeleteConversation<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes>
-      get deleteConversation =>
-          CopyWith$Mutation$DeleteConversation$deleteConversation.stub(_res);
+  CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> get deleteConversation => CopyWith$Mutation$DeleteConversation$deleteConversation.stub(_res);
 }
 
 const documentNodeMutationDeleteConversation = DocumentNode(definitions: [
@@ -11278,17 +10514,13 @@ const documentNodeMutationDeleteConversation = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$DeleteConversation _parserFn$Mutation$DeleteConversation(
-        Map<String, dynamic> data) =>
-    Mutation$DeleteConversation.fromJson(data);
-typedef OnMutationCompleted$Mutation$DeleteConversation = FutureOr<void>
-    Function(
+Mutation$DeleteConversation _parserFn$Mutation$DeleteConversation(Map<String, dynamic> data) => Mutation$DeleteConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteConversation = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$DeleteConversation?,
 );
 
-class Options$Mutation$DeleteConversation
-    extends graphql.MutationOptions<Mutation$DeleteConversation> {
+class Options$Mutation$DeleteConversation extends graphql.MutationOptions<Mutation$DeleteConversation> {
   Options$Mutation$DeleteConversation({
     String? operationName,
     required Variables$Mutation$DeleteConversation variables,
@@ -11314,9 +10546,7 @@ class Options$Mutation$DeleteConversation
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$DeleteConversation(data),
+                    data == null ? null : _parserFn$Mutation$DeleteConversation(data),
                   ),
           update: update,
           onError: onError,
@@ -11328,15 +10558,12 @@ class Options$Mutation$DeleteConversation
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$DeleteConversation
-    extends graphql.WatchQueryOptions<Mutation$DeleteConversation> {
+class WatchOptions$Mutation$DeleteConversation extends graphql.WatchQueryOptions<Mutation$DeleteConversation> {
   WatchOptions$Mutation$DeleteConversation({
     String? operationName,
     required Variables$Mutation$DeleteConversation variables,
@@ -11368,14 +10595,8 @@ class WatchOptions$Mutation$DeleteConversation
 }
 
 extension ClientExtension$Mutation$DeleteConversation on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$DeleteConversation>>
-      mutate$DeleteConversation(
-              Options$Mutation$DeleteConversation options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$DeleteConversation>
-      watchMutation$DeleteConversation(
-              WatchOptions$Mutation$DeleteConversation options) =>
-          this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$DeleteConversation>> mutate$DeleteConversation(Options$Mutation$DeleteConversation options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteConversation> watchMutation$DeleteConversation(WatchOptions$Mutation$DeleteConversation options) => this.watchMutation(options);
 }
 
 class Mutation$DeleteConversation$deleteConversation {
@@ -11384,8 +10605,7 @@ class Mutation$DeleteConversation$deleteConversation {
     this.$__typename = 'DeleteConversation',
   });
 
-  factory Mutation$DeleteConversation$deleteConversation.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$DeleteConversation$deleteConversation.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteConversation$deleteConversation(
@@ -11422,8 +10642,7 @@ class Mutation$DeleteConversation$deleteConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteConversation$deleteConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteConversation$deleteConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -11440,14 +10659,11 @@ class Mutation$DeleteConversation$deleteConversation {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteConversation$deleteConversation
-    on Mutation$DeleteConversation$deleteConversation {
-  CopyWith$Mutation$DeleteConversation$deleteConversation<
-          Mutation$DeleteConversation$deleteConversation>
-      get copyWith => CopyWith$Mutation$DeleteConversation$deleteConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteConversation$deleteConversation on Mutation$DeleteConversation$deleteConversation {
+  CopyWith$Mutation$DeleteConversation$deleteConversation<Mutation$DeleteConversation$deleteConversation> get copyWith => CopyWith$Mutation$DeleteConversation$deleteConversation(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
@@ -11456,9 +10672,7 @@ abstract class CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
     TRes Function(Mutation$DeleteConversation$deleteConversation) then,
   ) = _CopyWithImpl$Mutation$DeleteConversation$deleteConversation;
 
-  factory CopyWith$Mutation$DeleteConversation$deleteConversation.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation;
+  factory CopyWith$Mutation$DeleteConversation$deleteConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation;
 
   TRes call({
     String? message,
@@ -11466,8 +10680,7 @@ abstract class CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$DeleteConversation$deleteConversation<TRes>
-    implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
+class _CopyWithImpl$Mutation$DeleteConversation$deleteConversation<TRes> implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
   _CopyWithImpl$Mutation$DeleteConversation$deleteConversation(
     this._instance,
     this._then,
@@ -11484,16 +10697,12 @@ class _CopyWithImpl$Mutation$DeleteConversation$deleteConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteConversation$deleteConversation(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation<TRes>
-    implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation<TRes> implements CopyWith$Mutation$DeleteConversation$deleteConversation<TRes> {
   _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation(this._res);
 
   TRes _res;
@@ -11506,16 +10715,13 @@ class _CopyWithStubImpl$Mutation$DeleteConversation$deleteConversation<TRes>
 }
 
 class Variables$Mutation$ArchiveConversation {
-  factory Variables$Mutation$ArchiveConversation(
-          {required int conversationId}) =>
-      Variables$Mutation$ArchiveConversation._({
+  factory Variables$Mutation$ArchiveConversation({required int conversationId}) => Variables$Mutation$ArchiveConversation._({
         r'conversationId': conversationId,
       });
 
   Variables$Mutation$ArchiveConversation._(this._$data);
 
-  factory Variables$Mutation$ArchiveConversation.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$ArchiveConversation.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$conversationId = data['conversationId'];
     result$data['conversationId'] = (l$conversationId as int);
@@ -11533,20 +10739,17 @@ class Variables$Mutation$ArchiveConversation {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$ArchiveConversation<
-          Variables$Mutation$ArchiveConversation>
-      get copyWith => CopyWith$Variables$Mutation$ArchiveConversation(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$ArchiveConversation<Variables$Mutation$ArchiveConversation> get copyWith => CopyWith$Variables$Mutation$ArchiveConversation(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$ArchiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$ArchiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$conversationId = conversationId;
@@ -11570,14 +10773,12 @@ abstract class CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
     TRes Function(Variables$Mutation$ArchiveConversation) then,
   ) = _CopyWithImpl$Variables$Mutation$ArchiveConversation;
 
-  factory CopyWith$Variables$Mutation$ArchiveConversation.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$ArchiveConversation;
+  factory CopyWith$Variables$Mutation$ArchiveConversation.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$ArchiveConversation;
 
   TRes call({int? conversationId});
 }
 
-class _CopyWithImpl$Variables$Mutation$ArchiveConversation<TRes>
-    implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
+class _CopyWithImpl$Variables$Mutation$ArchiveConversation<TRes> implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
   _CopyWithImpl$Variables$Mutation$ArchiveConversation(
     this._instance,
     this._then,
@@ -11589,16 +10790,13 @@ class _CopyWithImpl$Variables$Mutation$ArchiveConversation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? conversationId = _undefined}) =>
-      _then(Variables$Mutation$ArchiveConversation._({
+  TRes call({Object? conversationId = _undefined}) => _then(Variables$Mutation$ArchiveConversation._({
         ..._instance._$data,
-        if (conversationId != _undefined && conversationId != null)
-          'conversationId': (conversationId as int),
+        if (conversationId != _undefined && conversationId != null) 'conversationId': (conversationId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$ArchiveConversation<TRes>
-    implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$ArchiveConversation<TRes> implements CopyWith$Variables$Mutation$ArchiveConversation<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ArchiveConversation(this._res);
 
   TRes _res;
@@ -11616,10 +10814,7 @@ class Mutation$ArchiveConversation {
     final l$archiveConversation = json['archiveConversation'];
     final l$$__typename = json['__typename'];
     return Mutation$ArchiveConversation(
-      archiveConversation: l$archiveConversation == null
-          ? null
-          : Mutation$ArchiveConversation$archiveConversation.fromJson(
-              (l$archiveConversation as Map<String, dynamic>)),
+      archiveConversation: l$archiveConversation == null ? null : Mutation$ArchiveConversation$archiveConversation.fromJson((l$archiveConversation as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -11652,8 +10847,7 @@ class Mutation$ArchiveConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ArchiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ArchiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$archiveConversation = archiveConversation;
@@ -11670,13 +10864,11 @@ class Mutation$ArchiveConversation {
   }
 }
 
-extension UtilityExtension$Mutation$ArchiveConversation
-    on Mutation$ArchiveConversation {
-  CopyWith$Mutation$ArchiveConversation<Mutation$ArchiveConversation>
-      get copyWith => CopyWith$Mutation$ArchiveConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$ArchiveConversation on Mutation$ArchiveConversation {
+  CopyWith$Mutation$ArchiveConversation<Mutation$ArchiveConversation> get copyWith => CopyWith$Mutation$ArchiveConversation(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$ArchiveConversation<TRes> {
@@ -11685,19 +10877,16 @@ abstract class CopyWith$Mutation$ArchiveConversation<TRes> {
     TRes Function(Mutation$ArchiveConversation) then,
   ) = _CopyWithImpl$Mutation$ArchiveConversation;
 
-  factory CopyWith$Mutation$ArchiveConversation.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ArchiveConversation;
+  factory CopyWith$Mutation$ArchiveConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$ArchiveConversation;
 
   TRes call({
     Mutation$ArchiveConversation$archiveConversation? archiveConversation,
     String? $__typename,
   });
-  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
-      get archiveConversation;
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> get archiveConversation;
 }
 
-class _CopyWithImpl$Mutation$ArchiveConversation<TRes>
-    implements CopyWith$Mutation$ArchiveConversation<TRes> {
+class _CopyWithImpl$Mutation$ArchiveConversation<TRes> implements CopyWith$Mutation$ArchiveConversation<TRes> {
   _CopyWithImpl$Mutation$ArchiveConversation(
     this._instance,
     this._then,
@@ -11714,28 +10903,19 @@ class _CopyWithImpl$Mutation$ArchiveConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ArchiveConversation(
-        archiveConversation: archiveConversation == _undefined
-            ? _instance.archiveConversation
-            : (archiveConversation
-                as Mutation$ArchiveConversation$archiveConversation?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        archiveConversation: archiveConversation == _undefined ? _instance.archiveConversation : (archiveConversation as Mutation$ArchiveConversation$archiveConversation?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
-      get archiveConversation {
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> get archiveConversation {
     final local$archiveConversation = _instance.archiveConversation;
     return local$archiveConversation == null
-        ? CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(
-            _then(_instance))
-        : CopyWith$Mutation$ArchiveConversation$archiveConversation(
-            local$archiveConversation, (e) => call(archiveConversation: e));
+        ? CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(_then(_instance))
+        : CopyWith$Mutation$ArchiveConversation$archiveConversation(local$archiveConversation, (e) => call(archiveConversation: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ArchiveConversation<TRes>
-    implements CopyWith$Mutation$ArchiveConversation<TRes> {
+class _CopyWithStubImpl$Mutation$ArchiveConversation<TRes> implements CopyWith$Mutation$ArchiveConversation<TRes> {
   _CopyWithStubImpl$Mutation$ArchiveConversation(this._res);
 
   TRes _res;
@@ -11746,9 +10926,7 @@ class _CopyWithStubImpl$Mutation$ArchiveConversation<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes>
-      get archiveConversation =>
-          CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(_res);
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> get archiveConversation => CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(_res);
 }
 
 const documentNodeMutationArchiveConversation = DocumentNode(definitions: [
@@ -11805,17 +10983,13 @@ const documentNodeMutationArchiveConversation = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$ArchiveConversation _parserFn$Mutation$ArchiveConversation(
-        Map<String, dynamic> data) =>
-    Mutation$ArchiveConversation.fromJson(data);
-typedef OnMutationCompleted$Mutation$ArchiveConversation = FutureOr<void>
-    Function(
+Mutation$ArchiveConversation _parserFn$Mutation$ArchiveConversation(Map<String, dynamic> data) => Mutation$ArchiveConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$ArchiveConversation = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$ArchiveConversation?,
 );
 
-class Options$Mutation$ArchiveConversation
-    extends graphql.MutationOptions<Mutation$ArchiveConversation> {
+class Options$Mutation$ArchiveConversation extends graphql.MutationOptions<Mutation$ArchiveConversation> {
   Options$Mutation$ArchiveConversation({
     String? operationName,
     required Variables$Mutation$ArchiveConversation variables,
@@ -11841,9 +11015,7 @@ class Options$Mutation$ArchiveConversation
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$ArchiveConversation(data),
+                    data == null ? null : _parserFn$Mutation$ArchiveConversation(data),
                   ),
           update: update,
           onError: onError,
@@ -11855,15 +11027,12 @@ class Options$Mutation$ArchiveConversation
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$ArchiveConversation
-    extends graphql.WatchQueryOptions<Mutation$ArchiveConversation> {
+class WatchOptions$Mutation$ArchiveConversation extends graphql.WatchQueryOptions<Mutation$ArchiveConversation> {
   WatchOptions$Mutation$ArchiveConversation({
     String? operationName,
     required Variables$Mutation$ArchiveConversation variables,
@@ -11894,16 +11063,9 @@ class WatchOptions$Mutation$ArchiveConversation
         );
 }
 
-extension ClientExtension$Mutation$ArchiveConversation
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$ArchiveConversation>>
-      mutate$ArchiveConversation(
-              Options$Mutation$ArchiveConversation options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$ArchiveConversation>
-      watchMutation$ArchiveConversation(
-              WatchOptions$Mutation$ArchiveConversation options) =>
-          this.watchMutation(options);
+extension ClientExtension$Mutation$ArchiveConversation on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$ArchiveConversation>> mutate$ArchiveConversation(Options$Mutation$ArchiveConversation options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ArchiveConversation> watchMutation$ArchiveConversation(WatchOptions$Mutation$ArchiveConversation options) => this.watchMutation(options);
 }
 
 class Mutation$ArchiveConversation$archiveConversation {
@@ -11912,8 +11074,7 @@ class Mutation$ArchiveConversation$archiveConversation {
     this.$__typename = 'ArchiveConversation',
   });
 
-  factory Mutation$ArchiveConversation$archiveConversation.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$ArchiveConversation$archiveConversation.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$ArchiveConversation$archiveConversation(
@@ -11950,8 +11111,7 @@ class Mutation$ArchiveConversation$archiveConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ArchiveConversation$archiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ArchiveConversation$archiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -11968,14 +11128,11 @@ class Mutation$ArchiveConversation$archiveConversation {
   }
 }
 
-extension UtilityExtension$Mutation$ArchiveConversation$archiveConversation
-    on Mutation$ArchiveConversation$archiveConversation {
-  CopyWith$Mutation$ArchiveConversation$archiveConversation<
-          Mutation$ArchiveConversation$archiveConversation>
-      get copyWith => CopyWith$Mutation$ArchiveConversation$archiveConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$ArchiveConversation$archiveConversation on Mutation$ArchiveConversation$archiveConversation {
+  CopyWith$Mutation$ArchiveConversation$archiveConversation<Mutation$ArchiveConversation$archiveConversation> get copyWith => CopyWith$Mutation$ArchiveConversation$archiveConversation(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
@@ -11984,9 +11141,7 @@ abstract class CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
     TRes Function(Mutation$ArchiveConversation$archiveConversation) then,
   ) = _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation;
 
-  factory CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation;
+  factory CopyWith$Mutation$ArchiveConversation$archiveConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation;
 
   TRes call({
     String? message,
@@ -11994,8 +11149,7 @@ abstract class CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
-    implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
+class _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation<TRes> implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
   _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation(
     this._instance,
     this._then,
@@ -12012,16 +11166,12 @@ class _CopyWithImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ArchiveConversation$archiveConversation(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
-    implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
+class _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation<TRes> implements CopyWith$Mutation$ArchiveConversation$archiveConversation<TRes> {
   _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation(this._res);
 
   TRes _res;
@@ -12034,16 +11184,13 @@ class _CopyWithStubImpl$Mutation$ArchiveConversation$archiveConversation<TRes>
 }
 
 class Variables$Mutation$UnArchiveConversation {
-  factory Variables$Mutation$UnArchiveConversation(
-          {required int conversationId}) =>
-      Variables$Mutation$UnArchiveConversation._({
+  factory Variables$Mutation$UnArchiveConversation({required int conversationId}) => Variables$Mutation$UnArchiveConversation._({
         r'conversationId': conversationId,
       });
 
   Variables$Mutation$UnArchiveConversation._(this._$data);
 
-  factory Variables$Mutation$UnArchiveConversation.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$UnArchiveConversation.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$conversationId = data['conversationId'];
     result$data['conversationId'] = (l$conversationId as int);
@@ -12061,20 +11208,17 @@ class Variables$Mutation$UnArchiveConversation {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UnArchiveConversation<
-          Variables$Mutation$UnArchiveConversation>
-      get copyWith => CopyWith$Variables$Mutation$UnArchiveConversation(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UnArchiveConversation<Variables$Mutation$UnArchiveConversation> get copyWith => CopyWith$Variables$Mutation$UnArchiveConversation(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UnArchiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UnArchiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$conversationId = conversationId;
@@ -12098,14 +11242,12 @@ abstract class CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
     TRes Function(Variables$Mutation$UnArchiveConversation) then,
   ) = _CopyWithImpl$Variables$Mutation$UnArchiveConversation;
 
-  factory CopyWith$Variables$Mutation$UnArchiveConversation.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation;
+  factory CopyWith$Variables$Mutation$UnArchiveConversation.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation;
 
   TRes call({int? conversationId});
 }
 
-class _CopyWithImpl$Variables$Mutation$UnArchiveConversation<TRes>
-    implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
+class _CopyWithImpl$Variables$Mutation$UnArchiveConversation<TRes> implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
   _CopyWithImpl$Variables$Mutation$UnArchiveConversation(
     this._instance,
     this._then,
@@ -12117,16 +11259,13 @@ class _CopyWithImpl$Variables$Mutation$UnArchiveConversation<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? conversationId = _undefined}) =>
-      _then(Variables$Mutation$UnArchiveConversation._({
+  TRes call({Object? conversationId = _undefined}) => _then(Variables$Mutation$UnArchiveConversation._({
         ..._instance._$data,
-        if (conversationId != _undefined && conversationId != null)
-          'conversationId': (conversationId as int),
+        if (conversationId != _undefined && conversationId != null) 'conversationId': (conversationId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation<TRes>
-    implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation<TRes> implements CopyWith$Variables$Mutation$UnArchiveConversation<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UnArchiveConversation(this._res);
 
   TRes _res;
@@ -12144,16 +11283,12 @@ class Mutation$UnArchiveConversation {
     final l$unarchiveConversation = json['unarchiveConversation'];
     final l$$__typename = json['__typename'];
     return Mutation$UnArchiveConversation(
-      unarchiveConversation: l$unarchiveConversation == null
-          ? null
-          : Mutation$UnArchiveConversation$unarchiveConversation.fromJson(
-              (l$unarchiveConversation as Map<String, dynamic>)),
+      unarchiveConversation: l$unarchiveConversation == null ? null : Mutation$UnArchiveConversation$unarchiveConversation.fromJson((l$unarchiveConversation as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$UnArchiveConversation$unarchiveConversation?
-      unarchiveConversation;
+  final Mutation$UnArchiveConversation$unarchiveConversation? unarchiveConversation;
 
   final String $__typename;
 
@@ -12181,8 +11316,7 @@ class Mutation$UnArchiveConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UnArchiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UnArchiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$unarchiveConversation = unarchiveConversation;
@@ -12199,13 +11333,11 @@ class Mutation$UnArchiveConversation {
   }
 }
 
-extension UtilityExtension$Mutation$UnArchiveConversation
-    on Mutation$UnArchiveConversation {
-  CopyWith$Mutation$UnArchiveConversation<Mutation$UnArchiveConversation>
-      get copyWith => CopyWith$Mutation$UnArchiveConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UnArchiveConversation on Mutation$UnArchiveConversation {
+  CopyWith$Mutation$UnArchiveConversation<Mutation$UnArchiveConversation> get copyWith => CopyWith$Mutation$UnArchiveConversation(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UnArchiveConversation<TRes> {
@@ -12214,19 +11346,16 @@ abstract class CopyWith$Mutation$UnArchiveConversation<TRes> {
     TRes Function(Mutation$UnArchiveConversation) then,
   ) = _CopyWithImpl$Mutation$UnArchiveConversation;
 
-  factory CopyWith$Mutation$UnArchiveConversation.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UnArchiveConversation;
+  factory CopyWith$Mutation$UnArchiveConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$UnArchiveConversation;
 
   TRes call({
     Mutation$UnArchiveConversation$unarchiveConversation? unarchiveConversation,
     String? $__typename,
   });
-  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
-      get unarchiveConversation;
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> get unarchiveConversation;
 }
 
-class _CopyWithImpl$Mutation$UnArchiveConversation<TRes>
-    implements CopyWith$Mutation$UnArchiveConversation<TRes> {
+class _CopyWithImpl$Mutation$UnArchiveConversation<TRes> implements CopyWith$Mutation$UnArchiveConversation<TRes> {
   _CopyWithImpl$Mutation$UnArchiveConversation(
     this._instance,
     this._then,
@@ -12243,28 +11372,19 @@ class _CopyWithImpl$Mutation$UnArchiveConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UnArchiveConversation(
-        unarchiveConversation: unarchiveConversation == _undefined
-            ? _instance.unarchiveConversation
-            : (unarchiveConversation
-                as Mutation$UnArchiveConversation$unarchiveConversation?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        unarchiveConversation: unarchiveConversation == _undefined ? _instance.unarchiveConversation : (unarchiveConversation as Mutation$UnArchiveConversation$unarchiveConversation?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
-      get unarchiveConversation {
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> get unarchiveConversation {
     final local$unarchiveConversation = _instance.unarchiveConversation;
     return local$unarchiveConversation == null
-        ? CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
-            _then(_instance))
-        : CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
-            local$unarchiveConversation, (e) => call(unarchiveConversation: e));
+        ? CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(_then(_instance))
+        : CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(local$unarchiveConversation, (e) => call(unarchiveConversation: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UnArchiveConversation<TRes>
-    implements CopyWith$Mutation$UnArchiveConversation<TRes> {
+class _CopyWithStubImpl$Mutation$UnArchiveConversation<TRes> implements CopyWith$Mutation$UnArchiveConversation<TRes> {
   _CopyWithStubImpl$Mutation$UnArchiveConversation(this._res);
 
   TRes _res;
@@ -12275,10 +11395,7 @@ class _CopyWithStubImpl$Mutation$UnArchiveConversation<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
-      get unarchiveConversation =>
-          CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
-              _res);
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> get unarchiveConversation => CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(_res);
 }
 
 const documentNodeMutationUnArchiveConversation = DocumentNode(definitions: [
@@ -12335,17 +11452,13 @@ const documentNodeMutationUnArchiveConversation = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UnArchiveConversation _parserFn$Mutation$UnArchiveConversation(
-        Map<String, dynamic> data) =>
-    Mutation$UnArchiveConversation.fromJson(data);
-typedef OnMutationCompleted$Mutation$UnArchiveConversation = FutureOr<void>
-    Function(
+Mutation$UnArchiveConversation _parserFn$Mutation$UnArchiveConversation(Map<String, dynamic> data) => Mutation$UnArchiveConversation.fromJson(data);
+typedef OnMutationCompleted$Mutation$UnArchiveConversation = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UnArchiveConversation?,
 );
 
-class Options$Mutation$UnArchiveConversation
-    extends graphql.MutationOptions<Mutation$UnArchiveConversation> {
+class Options$Mutation$UnArchiveConversation extends graphql.MutationOptions<Mutation$UnArchiveConversation> {
   Options$Mutation$UnArchiveConversation({
     String? operationName,
     required Variables$Mutation$UnArchiveConversation variables,
@@ -12371,9 +11484,7 @@ class Options$Mutation$UnArchiveConversation
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$UnArchiveConversation(data),
+                    data == null ? null : _parserFn$Mutation$UnArchiveConversation(data),
                   ),
           update: update,
           onError: onError,
@@ -12381,20 +11492,16 @@ class Options$Mutation$UnArchiveConversation
           parserFn: _parserFn$Mutation$UnArchiveConversation,
         );
 
-  final OnMutationCompleted$Mutation$UnArchiveConversation?
-      onCompletedWithParsed;
+  final OnMutationCompleted$Mutation$UnArchiveConversation? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UnArchiveConversation
-    extends graphql.WatchQueryOptions<Mutation$UnArchiveConversation> {
+class WatchOptions$Mutation$UnArchiveConversation extends graphql.WatchQueryOptions<Mutation$UnArchiveConversation> {
   WatchOptions$Mutation$UnArchiveConversation({
     String? operationName,
     required Variables$Mutation$UnArchiveConversation variables,
@@ -12425,16 +11532,9 @@ class WatchOptions$Mutation$UnArchiveConversation
         );
 }
 
-extension ClientExtension$Mutation$UnArchiveConversation
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UnArchiveConversation>>
-      mutate$UnArchiveConversation(
-              Options$Mutation$UnArchiveConversation options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$UnArchiveConversation>
-      watchMutation$UnArchiveConversation(
-              WatchOptions$Mutation$UnArchiveConversation options) =>
-          this.watchMutation(options);
+extension ClientExtension$Mutation$UnArchiveConversation on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UnArchiveConversation>> mutate$UnArchiveConversation(Options$Mutation$UnArchiveConversation options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UnArchiveConversation> watchMutation$UnArchiveConversation(WatchOptions$Mutation$UnArchiveConversation options) => this.watchMutation(options);
 }
 
 class Mutation$UnArchiveConversation$unarchiveConversation {
@@ -12443,8 +11543,7 @@ class Mutation$UnArchiveConversation$unarchiveConversation {
     this.$__typename = 'UnarchiveConversation',
   });
 
-  factory Mutation$UnArchiveConversation$unarchiveConversation.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UnArchiveConversation$unarchiveConversation.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$UnArchiveConversation$unarchiveConversation(
@@ -12481,8 +11580,7 @@ class Mutation$UnArchiveConversation$unarchiveConversation {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UnArchiveConversation$unarchiveConversation ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UnArchiveConversation$unarchiveConversation || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -12499,27 +11597,20 @@ class Mutation$UnArchiveConversation$unarchiveConversation {
   }
 }
 
-extension UtilityExtension$Mutation$UnArchiveConversation$unarchiveConversation
-    on Mutation$UnArchiveConversation$unarchiveConversation {
-  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<
-          Mutation$UnArchiveConversation$unarchiveConversation>
-      get copyWith =>
-          CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UnArchiveConversation$unarchiveConversation on Mutation$UnArchiveConversation$unarchiveConversation {
+  CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<Mutation$UnArchiveConversation$unarchiveConversation> get copyWith => CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
+        this,
+        (i) => i,
+      );
 }
 
-abstract class CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<
-    TRes> {
+abstract class CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
   factory CopyWith$Mutation$UnArchiveConversation$unarchiveConversation(
     Mutation$UnArchiveConversation$unarchiveConversation instance,
     TRes Function(Mutation$UnArchiveConversation$unarchiveConversation) then,
   ) = _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation;
 
-  factory CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation;
+  factory CopyWith$Mutation$UnArchiveConversation$unarchiveConversation.stub(TRes res) = _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation;
 
   TRes call({
     String? message,
@@ -12527,9 +11618,7 @@ abstract class CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<
   });
 }
 
-class _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
-    implements
-        CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
+class _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes> implements CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
   _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation(
     this._instance,
     this._then,
@@ -12537,8 +11626,7 @@ class _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
 
   final Mutation$UnArchiveConversation$unarchiveConversation _instance;
 
-  final TRes Function(Mutation$UnArchiveConversation$unarchiveConversation)
-      _then;
+  final TRes Function(Mutation$UnArchiveConversation$unarchiveConversation) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -12547,20 +11635,13 @@ class _CopyWithImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UnArchiveConversation$unarchiveConversation(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation<
-        TRes>
-    implements
-        CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
-  _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation(
-      this._res);
+class _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation<TRes> implements CopyWith$Mutation$UnArchiveConversation$unarchiveConversation<TRes> {
+  _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation(this._res);
 
   TRes _res;
 
@@ -12572,20 +11653,16 @@ class _CopyWithStubImpl$Mutation$UnArchiveConversation$unarchiveConversation<
 }
 
 class Variables$Mutation$UpdateReadMessages {
-  factory Variables$Mutation$UpdateReadMessages(
-          {required List<int?> messageIds}) =>
-      Variables$Mutation$UpdateReadMessages._({
+  factory Variables$Mutation$UpdateReadMessages({required List<int?> messageIds}) => Variables$Mutation$UpdateReadMessages._({
         r'messageIds': messageIds,
       });
 
   Variables$Mutation$UpdateReadMessages._(this._$data);
 
-  factory Variables$Mutation$UpdateReadMessages.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$UpdateReadMessages.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$messageIds = data['messageIds'];
-    result$data['messageIds'] =
-        (l$messageIds as List<dynamic>).map((e) => (e as int?)).toList();
+    result$data['messageIds'] = (l$messageIds as List<dynamic>).map((e) => (e as int?)).toList();
     return Variables$Mutation$UpdateReadMessages._(result$data);
   }
 
@@ -12600,20 +11677,17 @@ class Variables$Mutation$UpdateReadMessages {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateReadMessages<
-          Variables$Mutation$UpdateReadMessages>
-      get copyWith => CopyWith$Variables$Mutation$UpdateReadMessages(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UpdateReadMessages<Variables$Mutation$UpdateReadMessages> get copyWith => CopyWith$Variables$Mutation$UpdateReadMessages(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateReadMessages ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateReadMessages || runtimeType != other.runtimeType) {
       return false;
     }
     final l$messageIds = messageIds;
@@ -12644,14 +11718,12 @@ abstract class CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
     TRes Function(Variables$Mutation$UpdateReadMessages) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateReadMessages;
 
-  factory CopyWith$Variables$Mutation$UpdateReadMessages.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages;
+  factory CopyWith$Variables$Mutation$UpdateReadMessages.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages;
 
   TRes call({List<int?>? messageIds});
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateReadMessages<TRes>
-    implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateReadMessages<TRes> implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateReadMessages(
     this._instance,
     this._then,
@@ -12663,16 +11735,13 @@ class _CopyWithImpl$Variables$Mutation$UpdateReadMessages<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? messageIds = _undefined}) =>
-      _then(Variables$Mutation$UpdateReadMessages._({
+  TRes call({Object? messageIds = _undefined}) => _then(Variables$Mutation$UpdateReadMessages._({
         ..._instance._$data,
-        if (messageIds != _undefined && messageIds != null)
-          'messageIds': (messageIds as List<int?>),
+        if (messageIds != _undefined && messageIds != null) 'messageIds': (messageIds as List<int?>),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages<TRes>
-    implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages<TRes> implements CopyWith$Variables$Mutation$UpdateReadMessages<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateReadMessages(this._res);
 
   TRes _res;
@@ -12690,10 +11759,7 @@ class Mutation$UpdateReadMessages {
     final l$updateReadMessages = json['updateReadMessages'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateReadMessages(
-      updateReadMessages: l$updateReadMessages == null
-          ? null
-          : Mutation$UpdateReadMessages$updateReadMessages.fromJson(
-              (l$updateReadMessages as Map<String, dynamic>)),
+      updateReadMessages: l$updateReadMessages == null ? null : Mutation$UpdateReadMessages$updateReadMessages.fromJson((l$updateReadMessages as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -12726,8 +11792,7 @@ class Mutation$UpdateReadMessages {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateReadMessages ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateReadMessages || runtimeType != other.runtimeType) {
       return false;
     }
     final l$updateReadMessages = updateReadMessages;
@@ -12744,13 +11809,11 @@ class Mutation$UpdateReadMessages {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateReadMessages
-    on Mutation$UpdateReadMessages {
-  CopyWith$Mutation$UpdateReadMessages<Mutation$UpdateReadMessages>
-      get copyWith => CopyWith$Mutation$UpdateReadMessages(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateReadMessages on Mutation$UpdateReadMessages {
+  CopyWith$Mutation$UpdateReadMessages<Mutation$UpdateReadMessages> get copyWith => CopyWith$Mutation$UpdateReadMessages(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UpdateReadMessages<TRes> {
@@ -12759,19 +11822,16 @@ abstract class CopyWith$Mutation$UpdateReadMessages<TRes> {
     TRes Function(Mutation$UpdateReadMessages) then,
   ) = _CopyWithImpl$Mutation$UpdateReadMessages;
 
-  factory CopyWith$Mutation$UpdateReadMessages.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateReadMessages;
+  factory CopyWith$Mutation$UpdateReadMessages.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateReadMessages;
 
   TRes call({
     Mutation$UpdateReadMessages$updateReadMessages? updateReadMessages,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
-      get updateReadMessages;
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> get updateReadMessages;
 }
 
-class _CopyWithImpl$Mutation$UpdateReadMessages<TRes>
-    implements CopyWith$Mutation$UpdateReadMessages<TRes> {
+class _CopyWithImpl$Mutation$UpdateReadMessages<TRes> implements CopyWith$Mutation$UpdateReadMessages<TRes> {
   _CopyWithImpl$Mutation$UpdateReadMessages(
     this._instance,
     this._then,
@@ -12788,28 +11848,19 @@ class _CopyWithImpl$Mutation$UpdateReadMessages<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateReadMessages(
-        updateReadMessages: updateReadMessages == _undefined
-            ? _instance.updateReadMessages
-            : (updateReadMessages
-                as Mutation$UpdateReadMessages$updateReadMessages?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        updateReadMessages: updateReadMessages == _undefined ? _instance.updateReadMessages : (updateReadMessages as Mutation$UpdateReadMessages$updateReadMessages?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
-      get updateReadMessages {
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> get updateReadMessages {
     final local$updateReadMessages = _instance.updateReadMessages;
     return local$updateReadMessages == null
-        ? CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(
-            _then(_instance))
-        : CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
-            local$updateReadMessages, (e) => call(updateReadMessages: e));
+        ? CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateReadMessages$updateReadMessages(local$updateReadMessages, (e) => call(updateReadMessages: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateReadMessages<TRes>
-    implements CopyWith$Mutation$UpdateReadMessages<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateReadMessages<TRes> implements CopyWith$Mutation$UpdateReadMessages<TRes> {
   _CopyWithStubImpl$Mutation$UpdateReadMessages(this._res);
 
   TRes _res;
@@ -12820,9 +11871,7 @@ class _CopyWithStubImpl$Mutation$UpdateReadMessages<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes>
-      get updateReadMessages =>
-          CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(_res);
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> get updateReadMessages => CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(_res);
 }
 
 const documentNodeMutationUpdateReadMessages = DocumentNode(definitions: [
@@ -12882,17 +11931,13 @@ const documentNodeMutationUpdateReadMessages = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$UpdateReadMessages _parserFn$Mutation$UpdateReadMessages(
-        Map<String, dynamic> data) =>
-    Mutation$UpdateReadMessages.fromJson(data);
-typedef OnMutationCompleted$Mutation$UpdateReadMessages = FutureOr<void>
-    Function(
+Mutation$UpdateReadMessages _parserFn$Mutation$UpdateReadMessages(Map<String, dynamic> data) => Mutation$UpdateReadMessages.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateReadMessages = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateReadMessages?,
 );
 
-class Options$Mutation$UpdateReadMessages
-    extends graphql.MutationOptions<Mutation$UpdateReadMessages> {
+class Options$Mutation$UpdateReadMessages extends graphql.MutationOptions<Mutation$UpdateReadMessages> {
   Options$Mutation$UpdateReadMessages({
     String? operationName,
     required Variables$Mutation$UpdateReadMessages variables,
@@ -12918,9 +11963,7 @@ class Options$Mutation$UpdateReadMessages
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$UpdateReadMessages(data),
+                    data == null ? null : _parserFn$Mutation$UpdateReadMessages(data),
                   ),
           update: update,
           onError: onError,
@@ -12932,15 +11975,12 @@ class Options$Mutation$UpdateReadMessages
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateReadMessages
-    extends graphql.WatchQueryOptions<Mutation$UpdateReadMessages> {
+class WatchOptions$Mutation$UpdateReadMessages extends graphql.WatchQueryOptions<Mutation$UpdateReadMessages> {
   WatchOptions$Mutation$UpdateReadMessages({
     String? operationName,
     required Variables$Mutation$UpdateReadMessages variables,
@@ -12972,14 +12012,8 @@ class WatchOptions$Mutation$UpdateReadMessages
 }
 
 extension ClientExtension$Mutation$UpdateReadMessages on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateReadMessages>>
-      mutate$UpdateReadMessages(
-              Options$Mutation$UpdateReadMessages options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$UpdateReadMessages>
-      watchMutation$UpdateReadMessages(
-              WatchOptions$Mutation$UpdateReadMessages options) =>
-          this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$UpdateReadMessages>> mutate$UpdateReadMessages(Options$Mutation$UpdateReadMessages options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateReadMessages> watchMutation$UpdateReadMessages(WatchOptions$Mutation$UpdateReadMessages options) => this.watchMutation(options);
 }
 
 class Mutation$UpdateReadMessages$updateReadMessages {
@@ -12988,8 +12022,7 @@ class Mutation$UpdateReadMessages$updateReadMessages {
     this.$__typename = 'UpdateReadMessages',
   });
 
-  factory Mutation$UpdateReadMessages$updateReadMessages.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateReadMessages$updateReadMessages.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateReadMessages$updateReadMessages(
@@ -13026,8 +12059,7 @@ class Mutation$UpdateReadMessages$updateReadMessages {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateReadMessages$updateReadMessages ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateReadMessages$updateReadMessages || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -13044,14 +12076,11 @@ class Mutation$UpdateReadMessages$updateReadMessages {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateReadMessages$updateReadMessages
-    on Mutation$UpdateReadMessages$updateReadMessages {
-  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<
-          Mutation$UpdateReadMessages$updateReadMessages>
-      get copyWith => CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateReadMessages$updateReadMessages on Mutation$UpdateReadMessages$updateReadMessages {
+  CopyWith$Mutation$UpdateReadMessages$updateReadMessages<Mutation$UpdateReadMessages$updateReadMessages> get copyWith => CopyWith$Mutation$UpdateReadMessages$updateReadMessages(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
@@ -13060,9 +12089,7 @@ abstract class CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
     TRes Function(Mutation$UpdateReadMessages$updateReadMessages) then,
   ) = _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages;
 
-  factory CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages;
+  factory CopyWith$Mutation$UpdateReadMessages$updateReadMessages.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages;
 
   TRes call({
     bool? success,
@@ -13070,8 +12097,7 @@ abstract class CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
-    implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
+class _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes> implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
   _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages(
     this._instance,
     this._then,
@@ -13089,14 +12115,11 @@ class _CopyWithImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
   }) =>
       _then(Mutation$UpdateReadMessages$updateReadMessages(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
-    implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes> implements CopyWith$Mutation$UpdateReadMessages$updateReadMessages<TRes> {
   _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages(this._res);
 
   TRes _res;
@@ -13109,15 +12132,13 @@ class _CopyWithStubImpl$Mutation$UpdateReadMessages$updateReadMessages<TRes>
 }
 
 class Variables$Mutation$ReadNotification {
-  factory Variables$Mutation$ReadNotification({int? notificationId}) =>
-      Variables$Mutation$ReadNotification._({
+  factory Variables$Mutation$ReadNotification({int? notificationId}) => Variables$Mutation$ReadNotification._({
         if (notificationId != null) r'notificationId': notificationId,
       });
 
   Variables$Mutation$ReadNotification._(this._$data);
 
-  factory Variables$Mutation$ReadNotification.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$ReadNotification.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('notificationId')) {
       final l$notificationId = data['notificationId'];
@@ -13139,26 +12160,22 @@ class Variables$Mutation$ReadNotification {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$ReadNotification<
-          Variables$Mutation$ReadNotification>
-      get copyWith => CopyWith$Variables$Mutation$ReadNotification(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$ReadNotification<Variables$Mutation$ReadNotification> get copyWith => CopyWith$Variables$Mutation$ReadNotification(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$ReadNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$ReadNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$notificationId = notificationId;
     final lOther$notificationId = other.notificationId;
-    if (_$data.containsKey('notificationId') !=
-        other._$data.containsKey('notificationId')) {
+    if (_$data.containsKey('notificationId') != other._$data.containsKey('notificationId')) {
       return false;
     }
     if (l$notificationId != lOther$notificationId) {
@@ -13170,8 +12187,7 @@ class Variables$Mutation$ReadNotification {
   @override
   int get hashCode {
     final l$notificationId = notificationId;
-    return Object.hashAll(
-        [_$data.containsKey('notificationId') ? l$notificationId : const {}]);
+    return Object.hashAll([_$data.containsKey('notificationId') ? l$notificationId : const {}]);
   }
 }
 
@@ -13181,14 +12197,12 @@ abstract class CopyWith$Variables$Mutation$ReadNotification<TRes> {
     TRes Function(Variables$Mutation$ReadNotification) then,
   ) = _CopyWithImpl$Variables$Mutation$ReadNotification;
 
-  factory CopyWith$Variables$Mutation$ReadNotification.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$ReadNotification;
+  factory CopyWith$Variables$Mutation$ReadNotification.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$ReadNotification;
 
   TRes call({int? notificationId});
 }
 
-class _CopyWithImpl$Variables$Mutation$ReadNotification<TRes>
-    implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
+class _CopyWithImpl$Variables$Mutation$ReadNotification<TRes> implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
   _CopyWithImpl$Variables$Mutation$ReadNotification(
     this._instance,
     this._then,
@@ -13200,16 +12214,13 @@ class _CopyWithImpl$Variables$Mutation$ReadNotification<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? notificationId = _undefined}) =>
-      _then(Variables$Mutation$ReadNotification._({
+  TRes call({Object? notificationId = _undefined}) => _then(Variables$Mutation$ReadNotification._({
         ..._instance._$data,
-        if (notificationId != _undefined)
-          'notificationId': (notificationId as int?),
+        if (notificationId != _undefined) 'notificationId': (notificationId as int?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$ReadNotification<TRes>
-    implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$ReadNotification<TRes> implements CopyWith$Variables$Mutation$ReadNotification<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ReadNotification(this._res);
 
   TRes _res;
@@ -13227,10 +12238,7 @@ class Mutation$ReadNotification {
     final l$readNotification = json['readNotification'];
     final l$$__typename = json['__typename'];
     return Mutation$ReadNotification(
-      readNotification: l$readNotification == null
-          ? null
-          : Mutation$ReadNotification$readNotification.fromJson(
-              (l$readNotification as Map<String, dynamic>)),
+      readNotification: l$readNotification == null ? null : Mutation$ReadNotification$readNotification.fromJson((l$readNotification as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -13263,8 +12271,7 @@ class Mutation$ReadNotification {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ReadNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ReadNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$readNotification = readNotification;
@@ -13281,10 +12288,8 @@ class Mutation$ReadNotification {
   }
 }
 
-extension UtilityExtension$Mutation$ReadNotification
-    on Mutation$ReadNotification {
-  CopyWith$Mutation$ReadNotification<Mutation$ReadNotification> get copyWith =>
-      CopyWith$Mutation$ReadNotification(
+extension UtilityExtension$Mutation$ReadNotification on Mutation$ReadNotification {
+  CopyWith$Mutation$ReadNotification<Mutation$ReadNotification> get copyWith => CopyWith$Mutation$ReadNotification(
         this,
         (i) => i,
       );
@@ -13296,19 +12301,16 @@ abstract class CopyWith$Mutation$ReadNotification<TRes> {
     TRes Function(Mutation$ReadNotification) then,
   ) = _CopyWithImpl$Mutation$ReadNotification;
 
-  factory CopyWith$Mutation$ReadNotification.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ReadNotification;
+  factory CopyWith$Mutation$ReadNotification.stub(TRes res) = _CopyWithStubImpl$Mutation$ReadNotification;
 
   TRes call({
     Mutation$ReadNotification$readNotification? readNotification,
     String? $__typename,
   });
-  CopyWith$Mutation$ReadNotification$readNotification<TRes>
-      get readNotification;
+  CopyWith$Mutation$ReadNotification$readNotification<TRes> get readNotification;
 }
 
-class _CopyWithImpl$Mutation$ReadNotification<TRes>
-    implements CopyWith$Mutation$ReadNotification<TRes> {
+class _CopyWithImpl$Mutation$ReadNotification<TRes> implements CopyWith$Mutation$ReadNotification<TRes> {
   _CopyWithImpl$Mutation$ReadNotification(
     this._instance,
     this._then,
@@ -13325,27 +12327,19 @@ class _CopyWithImpl$Mutation$ReadNotification<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ReadNotification(
-        readNotification: readNotification == _undefined
-            ? _instance.readNotification
-            : (readNotification as Mutation$ReadNotification$readNotification?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        readNotification: readNotification == _undefined ? _instance.readNotification : (readNotification as Mutation$ReadNotification$readNotification?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ReadNotification$readNotification<TRes>
-      get readNotification {
+  CopyWith$Mutation$ReadNotification$readNotification<TRes> get readNotification {
     final local$readNotification = _instance.readNotification;
     return local$readNotification == null
-        ? CopyWith$Mutation$ReadNotification$readNotification.stub(
-            _then(_instance))
-        : CopyWith$Mutation$ReadNotification$readNotification(
-            local$readNotification, (e) => call(readNotification: e));
+        ? CopyWith$Mutation$ReadNotification$readNotification.stub(_then(_instance))
+        : CopyWith$Mutation$ReadNotification$readNotification(local$readNotification, (e) => call(readNotification: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ReadNotification<TRes>
-    implements CopyWith$Mutation$ReadNotification<TRes> {
+class _CopyWithStubImpl$Mutation$ReadNotification<TRes> implements CopyWith$Mutation$ReadNotification<TRes> {
   _CopyWithStubImpl$Mutation$ReadNotification(this._res);
 
   TRes _res;
@@ -13356,9 +12350,7 @@ class _CopyWithStubImpl$Mutation$ReadNotification<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$ReadNotification$readNotification<TRes>
-      get readNotification =>
-          CopyWith$Mutation$ReadNotification$readNotification.stub(_res);
+  CopyWith$Mutation$ReadNotification$readNotification<TRes> get readNotification => CopyWith$Mutation$ReadNotification$readNotification.stub(_res);
 }
 
 const documentNodeMutationReadNotification = DocumentNode(definitions: [
@@ -13415,16 +12407,13 @@ const documentNodeMutationReadNotification = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$ReadNotification _parserFn$Mutation$ReadNotification(
-        Map<String, dynamic> data) =>
-    Mutation$ReadNotification.fromJson(data);
+Mutation$ReadNotification _parserFn$Mutation$ReadNotification(Map<String, dynamic> data) => Mutation$ReadNotification.fromJson(data);
 typedef OnMutationCompleted$Mutation$ReadNotification = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$ReadNotification?,
 );
 
-class Options$Mutation$ReadNotification
-    extends graphql.MutationOptions<Mutation$ReadNotification> {
+class Options$Mutation$ReadNotification extends graphql.MutationOptions<Mutation$ReadNotification> {
   Options$Mutation$ReadNotification({
     String? operationName,
     Variables$Mutation$ReadNotification? variables,
@@ -13450,9 +12439,7 @@ class Options$Mutation$ReadNotification
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$ReadNotification(data),
+                    data == null ? null : _parserFn$Mutation$ReadNotification(data),
                   ),
           update: update,
           onError: onError,
@@ -13464,15 +12451,12 @@ class Options$Mutation$ReadNotification
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$ReadNotification
-    extends graphql.WatchQueryOptions<Mutation$ReadNotification> {
+class WatchOptions$Mutation$ReadNotification extends graphql.WatchQueryOptions<Mutation$ReadNotification> {
   WatchOptions$Mutation$ReadNotification({
     String? operationName,
     Variables$Mutation$ReadNotification? variables,
@@ -13504,13 +12488,9 @@ class WatchOptions$Mutation$ReadNotification
 }
 
 extension ClientExtension$Mutation$ReadNotification on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$ReadNotification>>
-      mutate$ReadNotification(
-              [Options$Mutation$ReadNotification? options]) async =>
-          await this.mutate(options ?? Options$Mutation$ReadNotification());
-  graphql.ObservableQuery<
-      Mutation$ReadNotification> watchMutation$ReadNotification(
-          [WatchOptions$Mutation$ReadNotification? options]) =>
+  Future<graphql.QueryResult<Mutation$ReadNotification>> mutate$ReadNotification([Options$Mutation$ReadNotification? options]) async =>
+      await this.mutate(options ?? Options$Mutation$ReadNotification());
+  graphql.ObservableQuery<Mutation$ReadNotification> watchMutation$ReadNotification([WatchOptions$Mutation$ReadNotification? options]) =>
       this.watchMutation(options ?? WatchOptions$Mutation$ReadNotification());
 }
 
@@ -13520,8 +12500,7 @@ class Mutation$ReadNotification$readNotification {
     this.$__typename = 'ReadNotification',
   });
 
-  factory Mutation$ReadNotification$readNotification.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$ReadNotification$readNotification.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$ReadNotification$readNotification(
@@ -13558,8 +12537,7 @@ class Mutation$ReadNotification$readNotification {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ReadNotification$readNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ReadNotification$readNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -13576,14 +12554,11 @@ class Mutation$ReadNotification$readNotification {
   }
 }
 
-extension UtilityExtension$Mutation$ReadNotification$readNotification
-    on Mutation$ReadNotification$readNotification {
-  CopyWith$Mutation$ReadNotification$readNotification<
-          Mutation$ReadNotification$readNotification>
-      get copyWith => CopyWith$Mutation$ReadNotification$readNotification(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$ReadNotification$readNotification on Mutation$ReadNotification$readNotification {
+  CopyWith$Mutation$ReadNotification$readNotification<Mutation$ReadNotification$readNotification> get copyWith => CopyWith$Mutation$ReadNotification$readNotification(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$ReadNotification$readNotification<TRes> {
@@ -13592,8 +12567,7 @@ abstract class CopyWith$Mutation$ReadNotification$readNotification<TRes> {
     TRes Function(Mutation$ReadNotification$readNotification) then,
   ) = _CopyWithImpl$Mutation$ReadNotification$readNotification;
 
-  factory CopyWith$Mutation$ReadNotification$readNotification.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ReadNotification$readNotification;
+  factory CopyWith$Mutation$ReadNotification$readNotification.stub(TRes res) = _CopyWithStubImpl$Mutation$ReadNotification$readNotification;
 
   TRes call({
     bool? success,
@@ -13601,8 +12575,7 @@ abstract class CopyWith$Mutation$ReadNotification$readNotification<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ReadNotification$readNotification<TRes>
-    implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
+class _CopyWithImpl$Mutation$ReadNotification$readNotification<TRes> implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
   _CopyWithImpl$Mutation$ReadNotification$readNotification(
     this._instance,
     this._then,
@@ -13620,14 +12593,11 @@ class _CopyWithImpl$Mutation$ReadNotification$readNotification<TRes>
   }) =>
       _then(Mutation$ReadNotification$readNotification(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ReadNotification$readNotification<TRes>
-    implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
+class _CopyWithStubImpl$Mutation$ReadNotification$readNotification<TRes> implements CopyWith$Mutation$ReadNotification$readNotification<TRes> {
   _CopyWithStubImpl$Mutation$ReadNotification$readNotification(this._res);
 
   TRes _res;
@@ -13640,16 +12610,13 @@ class _CopyWithStubImpl$Mutation$ReadNotification$readNotification<TRes>
 }
 
 class Variables$Mutation$DeleteNotification {
-  factory Variables$Mutation$DeleteNotification(
-          {required int notificationId}) =>
-      Variables$Mutation$DeleteNotification._({
+  factory Variables$Mutation$DeleteNotification({required int notificationId}) => Variables$Mutation$DeleteNotification._({
         r'notificationId': notificationId,
       });
 
   Variables$Mutation$DeleteNotification._(this._$data);
 
-  factory Variables$Mutation$DeleteNotification.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$DeleteNotification.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$notificationId = data['notificationId'];
     result$data['notificationId'] = (l$notificationId as int);
@@ -13667,20 +12634,17 @@ class Variables$Mutation$DeleteNotification {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$DeleteNotification<
-          Variables$Mutation$DeleteNotification>
-      get copyWith => CopyWith$Variables$Mutation$DeleteNotification(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$DeleteNotification<Variables$Mutation$DeleteNotification> get copyWith => CopyWith$Variables$Mutation$DeleteNotification(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$DeleteNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$DeleteNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$notificationId = notificationId;
@@ -13704,14 +12668,12 @@ abstract class CopyWith$Variables$Mutation$DeleteNotification<TRes> {
     TRes Function(Variables$Mutation$DeleteNotification) then,
   ) = _CopyWithImpl$Variables$Mutation$DeleteNotification;
 
-  factory CopyWith$Variables$Mutation$DeleteNotification.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$DeleteNotification;
+  factory CopyWith$Variables$Mutation$DeleteNotification.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$DeleteNotification;
 
   TRes call({int? notificationId});
 }
 
-class _CopyWithImpl$Variables$Mutation$DeleteNotification<TRes>
-    implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
+class _CopyWithImpl$Variables$Mutation$DeleteNotification<TRes> implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
   _CopyWithImpl$Variables$Mutation$DeleteNotification(
     this._instance,
     this._then,
@@ -13723,16 +12685,13 @@ class _CopyWithImpl$Variables$Mutation$DeleteNotification<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? notificationId = _undefined}) =>
-      _then(Variables$Mutation$DeleteNotification._({
+  TRes call({Object? notificationId = _undefined}) => _then(Variables$Mutation$DeleteNotification._({
         ..._instance._$data,
-        if (notificationId != _undefined && notificationId != null)
-          'notificationId': (notificationId as int),
+        if (notificationId != _undefined && notificationId != null) 'notificationId': (notificationId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$DeleteNotification<TRes>
-    implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$DeleteNotification<TRes> implements CopyWith$Variables$Mutation$DeleteNotification<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteNotification(this._res);
 
   TRes _res;
@@ -13750,10 +12709,7 @@ class Mutation$DeleteNotification {
     final l$deleteNotification = json['deleteNotification'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteNotification(
-      deleteNotification: l$deleteNotification == null
-          ? null
-          : Mutation$DeleteNotification$deleteNotification.fromJson(
-              (l$deleteNotification as Map<String, dynamic>)),
+      deleteNotification: l$deleteNotification == null ? null : Mutation$DeleteNotification$deleteNotification.fromJson((l$deleteNotification as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -13786,8 +12742,7 @@ class Mutation$DeleteNotification {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$deleteNotification = deleteNotification;
@@ -13804,13 +12759,11 @@ class Mutation$DeleteNotification {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteNotification
-    on Mutation$DeleteNotification {
-  CopyWith$Mutation$DeleteNotification<Mutation$DeleteNotification>
-      get copyWith => CopyWith$Mutation$DeleteNotification(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteNotification on Mutation$DeleteNotification {
+  CopyWith$Mutation$DeleteNotification<Mutation$DeleteNotification> get copyWith => CopyWith$Mutation$DeleteNotification(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteNotification<TRes> {
@@ -13819,19 +12772,16 @@ abstract class CopyWith$Mutation$DeleteNotification<TRes> {
     TRes Function(Mutation$DeleteNotification) then,
   ) = _CopyWithImpl$Mutation$DeleteNotification;
 
-  factory CopyWith$Mutation$DeleteNotification.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteNotification;
+  factory CopyWith$Mutation$DeleteNotification.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteNotification;
 
   TRes call({
     Mutation$DeleteNotification$deleteNotification? deleteNotification,
     String? $__typename,
   });
-  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
-      get deleteNotification;
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> get deleteNotification;
 }
 
-class _CopyWithImpl$Mutation$DeleteNotification<TRes>
-    implements CopyWith$Mutation$DeleteNotification<TRes> {
+class _CopyWithImpl$Mutation$DeleteNotification<TRes> implements CopyWith$Mutation$DeleteNotification<TRes> {
   _CopyWithImpl$Mutation$DeleteNotification(
     this._instance,
     this._then,
@@ -13848,28 +12798,19 @@ class _CopyWithImpl$Mutation$DeleteNotification<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$DeleteNotification(
-        deleteNotification: deleteNotification == _undefined
-            ? _instance.deleteNotification
-            : (deleteNotification
-                as Mutation$DeleteNotification$deleteNotification?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        deleteNotification: deleteNotification == _undefined ? _instance.deleteNotification : (deleteNotification as Mutation$DeleteNotification$deleteNotification?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
-      get deleteNotification {
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> get deleteNotification {
     final local$deleteNotification = _instance.deleteNotification;
     return local$deleteNotification == null
-        ? CopyWith$Mutation$DeleteNotification$deleteNotification.stub(
-            _then(_instance))
-        : CopyWith$Mutation$DeleteNotification$deleteNotification(
-            local$deleteNotification, (e) => call(deleteNotification: e));
+        ? CopyWith$Mutation$DeleteNotification$deleteNotification.stub(_then(_instance))
+        : CopyWith$Mutation$DeleteNotification$deleteNotification(local$deleteNotification, (e) => call(deleteNotification: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$DeleteNotification<TRes>
-    implements CopyWith$Mutation$DeleteNotification<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteNotification<TRes> implements CopyWith$Mutation$DeleteNotification<TRes> {
   _CopyWithStubImpl$Mutation$DeleteNotification(this._res);
 
   TRes _res;
@@ -13880,9 +12821,7 @@ class _CopyWithStubImpl$Mutation$DeleteNotification<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes>
-      get deleteNotification =>
-          CopyWith$Mutation$DeleteNotification$deleteNotification.stub(_res);
+  CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> get deleteNotification => CopyWith$Mutation$DeleteNotification$deleteNotification.stub(_res);
 }
 
 const documentNodeMutationDeleteNotification = DocumentNode(definitions: [
@@ -13939,17 +12878,13 @@ const documentNodeMutationDeleteNotification = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$DeleteNotification _parserFn$Mutation$DeleteNotification(
-        Map<String, dynamic> data) =>
-    Mutation$DeleteNotification.fromJson(data);
-typedef OnMutationCompleted$Mutation$DeleteNotification = FutureOr<void>
-    Function(
+Mutation$DeleteNotification _parserFn$Mutation$DeleteNotification(Map<String, dynamic> data) => Mutation$DeleteNotification.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteNotification = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$DeleteNotification?,
 );
 
-class Options$Mutation$DeleteNotification
-    extends graphql.MutationOptions<Mutation$DeleteNotification> {
+class Options$Mutation$DeleteNotification extends graphql.MutationOptions<Mutation$DeleteNotification> {
   Options$Mutation$DeleteNotification({
     String? operationName,
     required Variables$Mutation$DeleteNotification variables,
@@ -13975,9 +12910,7 @@ class Options$Mutation$DeleteNotification
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$DeleteNotification(data),
+                    data == null ? null : _parserFn$Mutation$DeleteNotification(data),
                   ),
           update: update,
           onError: onError,
@@ -13989,15 +12922,12 @@ class Options$Mutation$DeleteNotification
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$DeleteNotification
-    extends graphql.WatchQueryOptions<Mutation$DeleteNotification> {
+class WatchOptions$Mutation$DeleteNotification extends graphql.WatchQueryOptions<Mutation$DeleteNotification> {
   WatchOptions$Mutation$DeleteNotification({
     String? operationName,
     required Variables$Mutation$DeleteNotification variables,
@@ -14029,14 +12959,8 @@ class WatchOptions$Mutation$DeleteNotification
 }
 
 extension ClientExtension$Mutation$DeleteNotification on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$DeleteNotification>>
-      mutate$DeleteNotification(
-              Options$Mutation$DeleteNotification options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$DeleteNotification>
-      watchMutation$DeleteNotification(
-              WatchOptions$Mutation$DeleteNotification options) =>
-          this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$DeleteNotification>> mutate$DeleteNotification(Options$Mutation$DeleteNotification options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$DeleteNotification> watchMutation$DeleteNotification(WatchOptions$Mutation$DeleteNotification options) => this.watchMutation(options);
 }
 
 class Mutation$DeleteNotification$deleteNotification {
@@ -14045,8 +12969,7 @@ class Mutation$DeleteNotification$deleteNotification {
     this.$__typename = 'DeleteNotification',
   });
 
-  factory Mutation$DeleteNotification$deleteNotification.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$DeleteNotification$deleteNotification.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$DeleteNotification$deleteNotification(
@@ -14083,8 +13006,7 @@ class Mutation$DeleteNotification$deleteNotification {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$DeleteNotification$deleteNotification ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$DeleteNotification$deleteNotification || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -14101,14 +13023,11 @@ class Mutation$DeleteNotification$deleteNotification {
   }
 }
 
-extension UtilityExtension$Mutation$DeleteNotification$deleteNotification
-    on Mutation$DeleteNotification$deleteNotification {
-  CopyWith$Mutation$DeleteNotification$deleteNotification<
-          Mutation$DeleteNotification$deleteNotification>
-      get copyWith => CopyWith$Mutation$DeleteNotification$deleteNotification(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$DeleteNotification$deleteNotification on Mutation$DeleteNotification$deleteNotification {
+  CopyWith$Mutation$DeleteNotification$deleteNotification<Mutation$DeleteNotification$deleteNotification> get copyWith => CopyWith$Mutation$DeleteNotification$deleteNotification(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
@@ -14117,9 +13036,7 @@ abstract class CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
     TRes Function(Mutation$DeleteNotification$deleteNotification) then,
   ) = _CopyWithImpl$Mutation$DeleteNotification$deleteNotification;
 
-  factory CopyWith$Mutation$DeleteNotification$deleteNotification.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification;
+  factory CopyWith$Mutation$DeleteNotification$deleteNotification.stub(TRes res) = _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification;
 
   TRes call({
     bool? success,
@@ -14127,8 +13044,7 @@ abstract class CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$DeleteNotification$deleteNotification<TRes>
-    implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
+class _CopyWithImpl$Mutation$DeleteNotification$deleteNotification<TRes> implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
   _CopyWithImpl$Mutation$DeleteNotification$deleteNotification(
     this._instance,
     this._then,
@@ -14146,14 +13062,11 @@ class _CopyWithImpl$Mutation$DeleteNotification$deleteNotification<TRes>
   }) =>
       _then(Mutation$DeleteNotification$deleteNotification(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification<TRes>
-    implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
+class _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification<TRes> implements CopyWith$Mutation$DeleteNotification$deleteNotification<TRes> {
   _CopyWithStubImpl$Mutation$DeleteNotification$deleteNotification(this._res);
 
   TRes _res;
@@ -14183,22 +13096,15 @@ class Variables$Mutation$UpdateNotificationPreference {
 
   Variables$Mutation$UpdateNotificationPreference._(this._$data);
 
-  factory Variables$Mutation$UpdateNotificationPreference.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$UpdateNotificationPreference.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     if (data.containsKey('emailNotification')) {
       final l$emailNotification = data['emailNotification'];
-      result$data['emailNotification'] = l$emailNotification == null
-          ? null
-          : Input$NotificationsPreferenceInputType.fromJson(
-              (l$emailNotification as Map<String, dynamic>));
+      result$data['emailNotification'] = l$emailNotification == null ? null : Input$NotificationsPreferenceInputType.fromJson((l$emailNotification as Map<String, dynamic>));
     }
     if (data.containsKey('inappNotification')) {
       final l$inappNotification = data['inappNotification'];
-      result$data['inappNotification'] = l$inappNotification == null
-          ? null
-          : Input$NotificationsPreferenceInputType.fromJson(
-              (l$inappNotification as Map<String, dynamic>));
+      result$data['inappNotification'] = l$inappNotification == null ? null : Input$NotificationsPreferenceInputType.fromJson((l$inappNotification as Map<String, dynamic>));
     }
     final l$isEmailNotification = data['isEmailNotification'];
     result$data['isEmailNotification'] = (l$isEmailNotification as bool);
@@ -14211,11 +13117,9 @@ class Variables$Mutation$UpdateNotificationPreference {
 
   Map<String, dynamic> _$data;
 
-  Input$NotificationsPreferenceInputType? get emailNotification =>
-      (_$data['emailNotification'] as Input$NotificationsPreferenceInputType?);
+  Input$NotificationsPreferenceInputType? get emailNotification => (_$data['emailNotification'] as Input$NotificationsPreferenceInputType?);
 
-  Input$NotificationsPreferenceInputType? get inappNotification =>
-      (_$data['inappNotification'] as Input$NotificationsPreferenceInputType?);
+  Input$NotificationsPreferenceInputType? get inappNotification => (_$data['inappNotification'] as Input$NotificationsPreferenceInputType?);
 
   bool get isEmailNotification => (_$data['isEmailNotification'] as bool);
 
@@ -14242,26 +13146,22 @@ class Variables$Mutation$UpdateNotificationPreference {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$UpdateNotificationPreference<
-          Variables$Mutation$UpdateNotificationPreference>
-      get copyWith => CopyWith$Variables$Mutation$UpdateNotificationPreference(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$UpdateNotificationPreference<Variables$Mutation$UpdateNotificationPreference> get copyWith => CopyWith$Variables$Mutation$UpdateNotificationPreference(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$UpdateNotificationPreference ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$UpdateNotificationPreference || runtimeType != other.runtimeType) {
       return false;
     }
     final l$emailNotification = emailNotification;
     final lOther$emailNotification = other.emailNotification;
-    if (_$data.containsKey('emailNotification') !=
-        other._$data.containsKey('emailNotification')) {
+    if (_$data.containsKey('emailNotification') != other._$data.containsKey('emailNotification')) {
       return false;
     }
     if (l$emailNotification != lOther$emailNotification) {
@@ -14269,8 +13169,7 @@ class Variables$Mutation$UpdateNotificationPreference {
     }
     final l$inappNotification = inappNotification;
     final lOther$inappNotification = other.inappNotification;
-    if (_$data.containsKey('inappNotification') !=
-        other._$data.containsKey('inappNotification')) {
+    if (_$data.containsKey('inappNotification') != other._$data.containsKey('inappNotification')) {
       return false;
     }
     if (l$inappNotification != lOther$inappNotification) {
@@ -14317,9 +13216,7 @@ abstract class CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
     TRes Function(Variables$Mutation$UpdateNotificationPreference) then,
   ) = _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference;
 
-  factory CopyWith$Variables$Mutation$UpdateNotificationPreference.stub(
-          TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference;
+  factory CopyWith$Variables$Mutation$UpdateNotificationPreference.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference;
 
   TRes call({
     Input$NotificationsPreferenceInputType? emailNotification,
@@ -14330,8 +13227,7 @@ abstract class CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference<TRes>
-    implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
+class _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference<TRes> implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
   _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference(
     this._instance,
     this._then,
@@ -14352,23 +13248,15 @@ class _CopyWithImpl$Variables$Mutation$UpdateNotificationPreference<TRes>
   }) =>
       _then(Variables$Mutation$UpdateNotificationPreference._({
         ..._instance._$data,
-        if (emailNotification != _undefined)
-          'emailNotification':
-              (emailNotification as Input$NotificationsPreferenceInputType?),
-        if (inappNotification != _undefined)
-          'inappNotification':
-              (inappNotification as Input$NotificationsPreferenceInputType?),
-        if (isEmailNotification != _undefined && isEmailNotification != null)
-          'isEmailNotification': (isEmailNotification as bool),
-        if (isPushNotification != _undefined && isPushNotification != null)
-          'isPushNotification': (isPushNotification as bool),
-        if (isSilentModeOn != _undefined && isSilentModeOn != null)
-          'isSilentModeOn': (isSilentModeOn as bool),
+        if (emailNotification != _undefined) 'emailNotification': (emailNotification as Input$NotificationsPreferenceInputType?),
+        if (inappNotification != _undefined) 'inappNotification': (inappNotification as Input$NotificationsPreferenceInputType?),
+        if (isEmailNotification != _undefined && isEmailNotification != null) 'isEmailNotification': (isEmailNotification as bool),
+        if (isPushNotification != _undefined && isPushNotification != null) 'isPushNotification': (isPushNotification as bool),
+        if (isSilentModeOn != _undefined && isSilentModeOn != null) 'isSilentModeOn': (isSilentModeOn as bool),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference<TRes>
-    implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference<TRes> implements CopyWith$Variables$Mutation$UpdateNotificationPreference<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateNotificationPreference(this._res);
 
   TRes _res;
@@ -14389,30 +13277,24 @@ class Mutation$UpdateNotificationPreference {
     this.$__typename = 'Mutation',
   });
 
-  factory Mutation$UpdateNotificationPreference.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateNotificationPreference.fromJson(Map<String, dynamic> json) {
     final l$updateNotificationPreference = json['updateNotificationPreference'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateNotificationPreference(
-      updateNotificationPreference: l$updateNotificationPreference == null
-          ? null
-          : Mutation$UpdateNotificationPreference$updateNotificationPreference
-              .fromJson(
-                  (l$updateNotificationPreference as Map<String, dynamic>)),
+      updateNotificationPreference:
+          l$updateNotificationPreference == null ? null : Mutation$UpdateNotificationPreference$updateNotificationPreference.fromJson((l$updateNotificationPreference as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference?
-      updateNotificationPreference;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference? updateNotificationPreference;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$updateNotificationPreference = updateNotificationPreference;
-    _resultData['updateNotificationPreference'] =
-        l$updateNotificationPreference?.toJson();
+    _resultData['updateNotificationPreference'] = l$updateNotificationPreference?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -14433,13 +13315,11 @@ class Mutation$UpdateNotificationPreference {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$UpdateNotificationPreference ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateNotificationPreference || runtimeType != other.runtimeType) {
       return false;
     }
     final l$updateNotificationPreference = updateNotificationPreference;
-    final lOther$updateNotificationPreference =
-        other.updateNotificationPreference;
+    final lOther$updateNotificationPreference = other.updateNotificationPreference;
     if (l$updateNotificationPreference != lOther$updateNotificationPreference) {
       return false;
     }
@@ -14452,14 +13332,11 @@ class Mutation$UpdateNotificationPreference {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateNotificationPreference
-    on Mutation$UpdateNotificationPreference {
-  CopyWith$Mutation$UpdateNotificationPreference<
-          Mutation$UpdateNotificationPreference>
-      get copyWith => CopyWith$Mutation$UpdateNotificationPreference(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateNotificationPreference on Mutation$UpdateNotificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference<Mutation$UpdateNotificationPreference> get copyWith => CopyWith$Mutation$UpdateNotificationPreference(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$UpdateNotificationPreference<TRes> {
@@ -14468,20 +13345,16 @@ abstract class CopyWith$Mutation$UpdateNotificationPreference<TRes> {
     TRes Function(Mutation$UpdateNotificationPreference) then,
   ) = _CopyWithImpl$Mutation$UpdateNotificationPreference;
 
-  factory CopyWith$Mutation$UpdateNotificationPreference.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateNotificationPreference;
+  factory CopyWith$Mutation$UpdateNotificationPreference.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateNotificationPreference;
 
   TRes call({
-    Mutation$UpdateNotificationPreference$updateNotificationPreference?
-        updateNotificationPreference,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference? updateNotificationPreference,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-      TRes> get updateNotificationPreference;
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> get updateNotificationPreference;
 }
 
-class _CopyWithImpl$Mutation$UpdateNotificationPreference<TRes>
-    implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
+class _CopyWithImpl$Mutation$UpdateNotificationPreference<TRes> implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
   _CopyWithImpl$Mutation$UpdateNotificationPreference(
     this._instance,
     this._then,
@@ -14498,50 +13371,35 @@ class _CopyWithImpl$Mutation$UpdateNotificationPreference<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateNotificationPreference(
-        updateNotificationPreference: updateNotificationPreference == _undefined
-            ? _instance.updateNotificationPreference
-            : (updateNotificationPreference
-                as Mutation$UpdateNotificationPreference$updateNotificationPreference?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        updateNotificationPreference:
+            updateNotificationPreference == _undefined ? _instance.updateNotificationPreference : (updateNotificationPreference as Mutation$UpdateNotificationPreference$updateNotificationPreference?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-      TRes> get updateNotificationPreference {
-    final local$updateNotificationPreference =
-        _instance.updateNotificationPreference;
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> get updateNotificationPreference {
+    final local$updateNotificationPreference = _instance.updateNotificationPreference;
     return local$updateNotificationPreference == null
-        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference
-            .stub(_then(_instance))
-        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
-            local$updateNotificationPreference,
-            (e) => call(updateNotificationPreference: e));
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(local$updateNotificationPreference, (e) => call(updateNotificationPreference: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateNotificationPreference<TRes>
-    implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference<TRes> implements CopyWith$Mutation$UpdateNotificationPreference<TRes> {
   _CopyWithStubImpl$Mutation$UpdateNotificationPreference(this._res);
 
   TRes _res;
 
   call({
-    Mutation$UpdateNotificationPreference$updateNotificationPreference?
-        updateNotificationPreference,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference? updateNotificationPreference,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-          TRes>
-      get updateNotificationPreference =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference
-              .stub(_res);
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> get updateNotificationPreference =>
+      CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference.stub(_res);
 }
 
-const documentNodeMutationUpdateNotificationPreference =
-    DocumentNode(definitions: [
+const documentNodeMutationUpdateNotificationPreference = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
     name: NameNode(value: 'UpdateNotificationPreference'),
@@ -14719,18 +13577,13 @@ const documentNodeMutationUpdateNotificationPreference =
     ]),
   ),
 ]);
-Mutation$UpdateNotificationPreference
-    _parserFn$Mutation$UpdateNotificationPreference(
-            Map<String, dynamic> data) =>
-        Mutation$UpdateNotificationPreference.fromJson(data);
-typedef OnMutationCompleted$Mutation$UpdateNotificationPreference
-    = FutureOr<void> Function(
+Mutation$UpdateNotificationPreference _parserFn$Mutation$UpdateNotificationPreference(Map<String, dynamic> data) => Mutation$UpdateNotificationPreference.fromJson(data);
+typedef OnMutationCompleted$Mutation$UpdateNotificationPreference = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$UpdateNotificationPreference?,
 );
 
-class Options$Mutation$UpdateNotificationPreference
-    extends graphql.MutationOptions<Mutation$UpdateNotificationPreference> {
+class Options$Mutation$UpdateNotificationPreference extends graphql.MutationOptions<Mutation$UpdateNotificationPreference> {
   Options$Mutation$UpdateNotificationPreference({
     String? operationName,
     required Variables$Mutation$UpdateNotificationPreference variables,
@@ -14756,9 +13609,7 @@ class Options$Mutation$UpdateNotificationPreference
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$UpdateNotificationPreference(data),
+                    data == null ? null : _parserFn$Mutation$UpdateNotificationPreference(data),
                   ),
           update: update,
           onError: onError,
@@ -14766,20 +13617,16 @@ class Options$Mutation$UpdateNotificationPreference
           parserFn: _parserFn$Mutation$UpdateNotificationPreference,
         );
 
-  final OnMutationCompleted$Mutation$UpdateNotificationPreference?
-      onCompletedWithParsed;
+  final OnMutationCompleted$Mutation$UpdateNotificationPreference? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$UpdateNotificationPreference
-    extends graphql.WatchQueryOptions<Mutation$UpdateNotificationPreference> {
+class WatchOptions$Mutation$UpdateNotificationPreference extends graphql.WatchQueryOptions<Mutation$UpdateNotificationPreference> {
   WatchOptions$Mutation$UpdateNotificationPreference({
     String? operationName,
     required Variables$Mutation$UpdateNotificationPreference variables,
@@ -14810,16 +13657,9 @@ class WatchOptions$Mutation$UpdateNotificationPreference
         );
 }
 
-extension ClientExtension$Mutation$UpdateNotificationPreference
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$UpdateNotificationPreference>>
-      mutate$UpdateNotificationPreference(
-              Options$Mutation$UpdateNotificationPreference options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$UpdateNotificationPreference>
-      watchMutation$UpdateNotificationPreference(
-              WatchOptions$Mutation$UpdateNotificationPreference options) =>
-          this.watchMutation(options);
+extension ClientExtension$Mutation$UpdateNotificationPreference on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$UpdateNotificationPreference>> mutate$UpdateNotificationPreference(Options$Mutation$UpdateNotificationPreference options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$UpdateNotificationPreference> watchMutation$UpdateNotificationPreference(WatchOptions$Mutation$UpdateNotificationPreference options) => this.watchMutation(options);
 }
 
 class Mutation$UpdateNotificationPreference$updateNotificationPreference {
@@ -14829,8 +13669,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
     this.$__typename = 'UpdateNotificationPreference',
   });
 
-  factory Mutation$UpdateNotificationPreference$updateNotificationPreference.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference.fromJson(Map<String, dynamic> json) {
     final l$success = json['success'];
     final l$notificationPreference = json['notificationPreference'];
     final l$$__typename = json['__typename'];
@@ -14838,16 +13677,14 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
       success: (l$success as bool?),
       notificationPreference: l$notificationPreference == null
           ? null
-          : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
-              .fromJson((l$notificationPreference as Map<String, dynamic>)),
+          : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.fromJson((l$notificationPreference as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final bool? success;
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
-      notificationPreference;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference? notificationPreference;
 
   final String $__typename;
 
@@ -14879,9 +13716,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
     if (identical(this, other)) {
       return true;
     }
-    if (other
-            is! Mutation$UpdateNotificationPreference$updateNotificationPreference ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateNotificationPreference$updateNotificationPreference || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -14903,55 +13738,39 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference {
   }
 }
 
-extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference
-    on Mutation$UpdateNotificationPreference$updateNotificationPreference {
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-          Mutation$UpdateNotificationPreference$updateNotificationPreference>
-      get copyWith =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference on Mutation$UpdateNotificationPreference$updateNotificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<Mutation$UpdateNotificationPreference$updateNotificationPreference> get copyWith =>
+      CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
+        this,
+        (i) => i,
+      );
 }
 
-abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-    TRes> {
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> {
   factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference(
     Mutation$UpdateNotificationPreference$updateNotificationPreference instance,
-    TRes Function(
-            Mutation$UpdateNotificationPreference$updateNotificationPreference)
-        then,
+    TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference) then,
   ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference;
 
-  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference;
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference.stub(TRes res) = _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference;
 
   TRes call({
     bool? success,
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
-        notificationPreference,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference? notificationPreference,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-      TRes> get notificationPreference;
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> get notificationPreference;
 }
 
-class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-            TRes> {
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> {
   _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference(
     this._instance,
     this._then,
   );
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference
-      _instance;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference _instance;
 
-  final TRes Function(
-      Mutation$UpdateNotificationPreference$updateNotificationPreference) _then;
+  final TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -14964,48 +13783,32 @@ class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPref
         success: success == _undefined ? _instance.success : (success as bool?),
         notificationPreference: notificationPreference == _undefined
             ? _instance.notificationPreference
-            : (notificationPreference
-                as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+            : (notificationPreference as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-      TRes> get notificationPreference {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> get notificationPreference {
     final local$notificationPreference = _instance.notificationPreference;
     return local$notificationPreference == null
-        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
-            .stub(_then(_instance))
-        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
-            local$notificationPreference,
-            (e) => call(notificationPreference: e));
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(local$notificationPreference, (e) => call(notificationPreference: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<
-            TRes> {
-  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference(
-      this._res);
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference(this._res);
 
   TRes _res;
 
   call({
     bool? success,
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference?
-        notificationPreference,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference? notificationPreference,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-          TRes>
-      get notificationPreference =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
-              .stub(_res);
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> get notificationPreference =>
+      CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.stub(_res);
 }
 
 class Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference {
@@ -15018,8 +13821,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     this.$__typename = 'NotificationPreferenceType',
   });
 
-  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.fromJson(Map<String, dynamic> json) {
     final l$user = json['user'];
     final l$isPushNotification = json['isPushNotification'];
     final l$isEmailNotification = json['isEmailNotification'];
@@ -15027,10 +13829,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     final l$emailNotifications = json['emailNotifications'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
-      user: l$user == null
-          ? null
-          : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
-              .fromJson((l$user as Map<String, dynamic>)),
+      user: l$user == null ? null : Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.fromJson((l$user as Map<String, dynamic>)),
       isPushNotification: (l$isPushNotification as bool),
       isEmailNotification: (l$isEmailNotification as bool),
       inappNotifications: (l$inappNotifications as String),
@@ -15039,8 +13838,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     );
   }
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
-      user;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user? user;
 
   final bool isPushNotification;
 
@@ -15092,9 +13890,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     if (identical(this, other)) {
       return true;
     }
-    if (other
-            is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference || runtimeType != other.runtimeType) {
       return false;
     }
     final l$user = user;
@@ -15133,58 +13929,43 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
 
 extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
     on Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference {
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference>
-      get copyWith =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference>
+      get copyWith => CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-    TRes> {
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> {
   factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
-        instance,
-    TRes Function(
-            Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference)
-        then,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference instance,
+    TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference) then,
   ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference;
 
-  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.stub(
-          TRes res) =
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference.stub(TRes res) =
       _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference;
 
   TRes call({
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
-        user,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user? user,
     bool? isPushNotification,
     bool? isEmailNotification,
     String? inappNotifications,
     String? emailNotifications,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-      TRes> get user;
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> get user;
 }
 
-class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-            TRes> {
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> {
   _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
     this._instance,
     this._then,
   );
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference
-      _instance;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference _instance;
 
-  final TRes Function(
-          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference)
-      _then;
+  final TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -15196,57 +13977,31 @@ class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPref
     Object? emailNotifications = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(
-          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
-        user: user == _undefined
-            ? _instance.user
-            : (user
-                as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?),
-        isPushNotification:
-            isPushNotification == _undefined || isPushNotification == null
-                ? _instance.isPushNotification
-                : (isPushNotification as bool),
-        isEmailNotification:
-            isEmailNotification == _undefined || isEmailNotification == null
-                ? _instance.isEmailNotification
-                : (isEmailNotification as bool),
-        inappNotifications:
-            inappNotifications == _undefined || inappNotifications == null
-                ? _instance.inappNotifications
-                : (inappNotifications as String),
-        emailNotifications:
-            emailNotifications == _undefined || emailNotifications == null
-                ? _instance.emailNotifications
-                : (emailNotifications as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+      _then(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
+        user: user == _undefined ? _instance.user : (user as Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?),
+        isPushNotification: isPushNotification == _undefined || isPushNotification == null ? _instance.isPushNotification : (isPushNotification as bool),
+        isEmailNotification: isEmailNotification == _undefined || isEmailNotification == null ? _instance.isEmailNotification : (isEmailNotification as bool),
+        inappNotifications: inappNotifications == _undefined || inappNotifications == null ? _instance.inappNotifications : (inappNotifications as String),
+        emailNotifications: emailNotifications == _undefined || emailNotifications == null ? _instance.emailNotifications : (emailNotifications as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-      TRes> get user {
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
-        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
-            .stub(_then(_instance))
-        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
-            local$user, (e) => call(user: e));
+        ? CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.stub(_then(_instance))
+        : CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(local$user, (e) => call(user: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<
-            TRes> {
-  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(
-      this._res);
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference(this._res);
 
   TRes _res;
 
   call({
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user?
-        user,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user? user,
     bool? isPushNotification,
     bool? isEmailNotification,
     String? inappNotifications,
@@ -15255,11 +14010,8 @@ class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotification
   }) =>
       _res;
 
-  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-          TRes>
-      get user =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
-              .stub(_res);
+  CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> get user =>
+      CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.stub(_res);
 }
 
 class Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user {
@@ -15269,8 +14021,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     this.$__typename = 'UserType',
   });
 
-  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$username = json['username'];
     final l$$__typename = json['__typename'];
@@ -15315,9 +14066,7 @@ class Mutation$UpdateNotificationPreference$updateNotificationPreference$notific
     if (identical(this, other)) {
       return true;
     }
-    if (other
-            is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -15343,25 +14092,19 @@ extension UtilityExtension$Mutation$UpdateNotificationPreference$updateNotificat
     on Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user {
   CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
           Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user>
-      get copyWith =>
-          CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+      get copyWith => CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-    TRes> {
+abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> {
   factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
-    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
-        instance,
-    TRes Function(
-            Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user)
-        then,
+    Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user instance,
+    TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user) then,
   ) = _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user;
 
-  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.stub(
-          TRes res) =
+  factory CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user.stub(TRes res) =
       _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user;
 
   TRes call({
@@ -15371,22 +14114,16 @@ abstract class CopyWith$Mutation$UpdateNotificationPreference$updateNotification
   });
 }
 
-class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-            TRes> {
+class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> {
   _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
     this._instance,
     this._then,
   );
 
-  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user
-      _instance;
+  final Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user _instance;
 
-  final TRes Function(
-          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user)
-      _then;
+  final TRes Function(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -15395,24 +14132,16 @@ class _CopyWithImpl$Mutation$UpdateNotificationPreference$updateNotificationPref
     Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(
-          Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
+      _then(Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
         id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        username: username == _undefined ? _instance.username : (username as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-        TRes>
-    implements
-        CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<
-            TRes> {
-  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(
-      this._res);
+class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes>
+    implements CopyWith$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user<TRes> {
+  _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotificationPreference$notificationPreference$user(this._res);
 
   TRes _res;
 
@@ -15464,19 +14193,17 @@ class Variables$Mutation$CreateOrder {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CreateOrder<Variables$Mutation$CreateOrder>
-      get copyWith => CopyWith$Variables$Mutation$CreateOrder(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$CreateOrder<Variables$Mutation$CreateOrder> get copyWith => CopyWith$Variables$Mutation$CreateOrder(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CreateOrder ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CreateOrder || runtimeType != other.runtimeType) {
       return false;
     }
     final l$productId = productId;
@@ -15486,8 +14213,7 @@ class Variables$Mutation$CreateOrder {
     }
     final l$quantity = quantity;
     final lOther$quantity = other.quantity;
-    if (_$data.containsKey('quantity') !=
-        other._$data.containsKey('quantity')) {
+    if (_$data.containsKey('quantity') != other._$data.containsKey('quantity')) {
       return false;
     }
     if (l$quantity != lOther$quantity) {
@@ -15513,8 +14239,7 @@ abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
     TRes Function(Variables$Mutation$CreateOrder) then,
   ) = _CopyWithImpl$Variables$Mutation$CreateOrder;
 
-  factory CopyWith$Variables$Mutation$CreateOrder.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CreateOrder;
+  factory CopyWith$Variables$Mutation$CreateOrder.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CreateOrder;
 
   TRes call({
     int? productId,
@@ -15522,8 +14247,7 @@ abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
-    implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
+class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes> implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
   _CopyWithImpl$Variables$Mutation$CreateOrder(
     this._instance,
     this._then,
@@ -15541,14 +14265,12 @@ class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
   }) =>
       _then(Variables$Mutation$CreateOrder._({
         ..._instance._$data,
-        if (productId != _undefined && productId != null)
-          'productId': (productId as int),
+        if (productId != _undefined && productId != null) 'productId': (productId as int),
         if (quantity != _undefined) 'quantity': (quantity as int?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes>
-    implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes> implements CopyWith$Variables$Mutation$CreateOrder<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateOrder(this._res);
 
   TRes _res;
@@ -15570,10 +14292,7 @@ class Mutation$CreateOrder {
     final l$createOrder = json['createOrder'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateOrder(
-      createOrder: l$createOrder == null
-          ? null
-          : Mutation$CreateOrder$createOrder.fromJson(
-              (l$createOrder as Map<String, dynamic>)),
+      createOrder: l$createOrder == null ? null : Mutation$CreateOrder$createOrder.fromJson((l$createOrder as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -15624,8 +14343,7 @@ class Mutation$CreateOrder {
 }
 
 extension UtilityExtension$Mutation$CreateOrder on Mutation$CreateOrder {
-  CopyWith$Mutation$CreateOrder<Mutation$CreateOrder> get copyWith =>
-      CopyWith$Mutation$CreateOrder(
+  CopyWith$Mutation$CreateOrder<Mutation$CreateOrder> get copyWith => CopyWith$Mutation$CreateOrder(
         this,
         (i) => i,
       );
@@ -15637,8 +14355,7 @@ abstract class CopyWith$Mutation$CreateOrder<TRes> {
     TRes Function(Mutation$CreateOrder) then,
   ) = _CopyWithImpl$Mutation$CreateOrder;
 
-  factory CopyWith$Mutation$CreateOrder.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateOrder;
+  factory CopyWith$Mutation$CreateOrder.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateOrder;
 
   TRes call({
     Mutation$CreateOrder$createOrder? createOrder,
@@ -15647,8 +14364,7 @@ abstract class CopyWith$Mutation$CreateOrder<TRes> {
   CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder;
 }
 
-class _CopyWithImpl$Mutation$CreateOrder<TRes>
-    implements CopyWith$Mutation$CreateOrder<TRes> {
+class _CopyWithImpl$Mutation$CreateOrder<TRes> implements CopyWith$Mutation$CreateOrder<TRes> {
   _CopyWithImpl$Mutation$CreateOrder(
     this._instance,
     this._then,
@@ -15665,25 +14381,17 @@ class _CopyWithImpl$Mutation$CreateOrder<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateOrder(
-        createOrder: createOrder == _undefined
-            ? _instance.createOrder
-            : (createOrder as Mutation$CreateOrder$createOrder?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        createOrder: createOrder == _undefined ? _instance.createOrder : (createOrder as Mutation$CreateOrder$createOrder?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder {
     final local$createOrder = _instance.createOrder;
-    return local$createOrder == null
-        ? CopyWith$Mutation$CreateOrder$createOrder.stub(_then(_instance))
-        : CopyWith$Mutation$CreateOrder$createOrder(
-            local$createOrder, (e) => call(createOrder: e));
+    return local$createOrder == null ? CopyWith$Mutation$CreateOrder$createOrder.stub(_then(_instance)) : CopyWith$Mutation$CreateOrder$createOrder(local$createOrder, (e) => call(createOrder: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
-    implements CopyWith$Mutation$CreateOrder<TRes> {
+class _CopyWithStubImpl$Mutation$CreateOrder<TRes> implements CopyWith$Mutation$CreateOrder<TRes> {
   _CopyWithStubImpl$Mutation$CreateOrder(this._res);
 
   TRes _res;
@@ -15694,8 +14402,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder =>
-      CopyWith$Mutation$CreateOrder$createOrder.stub(_res);
+  CopyWith$Mutation$CreateOrder$createOrder<TRes> get createOrder => CopyWith$Mutation$CreateOrder$createOrder.stub(_res);
 }
 
 const documentNodeMutationCreateOrder = DocumentNode(definitions: [
@@ -15822,16 +14529,13 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CreateOrder _parserFn$Mutation$CreateOrder(
-        Map<String, dynamic> data) =>
-    Mutation$CreateOrder.fromJson(data);
+Mutation$CreateOrder _parserFn$Mutation$CreateOrder(Map<String, dynamic> data) => Mutation$CreateOrder.fromJson(data);
 typedef OnMutationCompleted$Mutation$CreateOrder = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CreateOrder?,
 );
 
-class Options$Mutation$CreateOrder
-    extends graphql.MutationOptions<Mutation$CreateOrder> {
+class Options$Mutation$CreateOrder extends graphql.MutationOptions<Mutation$CreateOrder> {
   Options$Mutation$CreateOrder({
     String? operationName,
     required Variables$Mutation$CreateOrder variables,
@@ -15869,15 +14573,12 @@ class Options$Mutation$CreateOrder
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CreateOrder
-    extends graphql.WatchQueryOptions<Mutation$CreateOrder> {
+class WatchOptions$Mutation$CreateOrder extends graphql.WatchQueryOptions<Mutation$CreateOrder> {
   WatchOptions$Mutation$CreateOrder({
     String? operationName,
     required Variables$Mutation$CreateOrder variables,
@@ -15909,12 +14610,8 @@ class WatchOptions$Mutation$CreateOrder
 }
 
 extension ClientExtension$Mutation$CreateOrder on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreateOrder>> mutate$CreateOrder(
-          Options$Mutation$CreateOrder options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$CreateOrder> watchMutation$CreateOrder(
-          WatchOptions$Mutation$CreateOrder options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$CreateOrder>> mutate$CreateOrder(Options$Mutation$CreateOrder options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateOrder> watchMutation$CreateOrder(WatchOptions$Mutation$CreateOrder options) => this.watchMutation(options);
 }
 
 class Mutation$CreateOrder$createOrder {
@@ -15927,10 +14624,7 @@ class Mutation$CreateOrder$createOrder {
     final l$order = json['order'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateOrder$createOrder(
-      order: l$order == null
-          ? null
-          : Mutation$CreateOrder$createOrder$order.fromJson(
-              (l$order as Map<String, dynamic>)),
+      order: l$order == null ? null : Mutation$CreateOrder$createOrder$order.fromJson((l$order as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -15963,8 +14657,7 @@ class Mutation$CreateOrder$createOrder {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateOrder$createOrder ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateOrder$createOrder || runtimeType != other.runtimeType) {
       return false;
     }
     final l$order = order;
@@ -15981,13 +14674,11 @@ class Mutation$CreateOrder$createOrder {
   }
 }
 
-extension UtilityExtension$Mutation$CreateOrder$createOrder
-    on Mutation$CreateOrder$createOrder {
-  CopyWith$Mutation$CreateOrder$createOrder<Mutation$CreateOrder$createOrder>
-      get copyWith => CopyWith$Mutation$CreateOrder$createOrder(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateOrder$createOrder on Mutation$CreateOrder$createOrder {
+  CopyWith$Mutation$CreateOrder$createOrder<Mutation$CreateOrder$createOrder> get copyWith => CopyWith$Mutation$CreateOrder$createOrder(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateOrder$createOrder<TRes> {
@@ -15996,8 +14687,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder<TRes> {
     TRes Function(Mutation$CreateOrder$createOrder) then,
   ) = _CopyWithImpl$Mutation$CreateOrder$createOrder;
 
-  factory CopyWith$Mutation$CreateOrder$createOrder.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateOrder$createOrder;
+  factory CopyWith$Mutation$CreateOrder$createOrder.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateOrder$createOrder;
 
   TRes call({
     Mutation$CreateOrder$createOrder$order? order,
@@ -16006,8 +14696,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder<TRes> {
   CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order;
 }
 
-class _CopyWithImpl$Mutation$CreateOrder$createOrder<TRes>
-    implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
+class _CopyWithImpl$Mutation$CreateOrder$createOrder<TRes> implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
   _CopyWithImpl$Mutation$CreateOrder$createOrder(
     this._instance,
     this._then,
@@ -16024,25 +14713,17 @@ class _CopyWithImpl$Mutation$CreateOrder$createOrder<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateOrder$createOrder(
-        order: order == _undefined
-            ? _instance.order
-            : (order as Mutation$CreateOrder$createOrder$order?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        order: order == _undefined ? _instance.order : (order as Mutation$CreateOrder$createOrder$order?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order {
     final local$order = _instance.order;
-    return local$order == null
-        ? CopyWith$Mutation$CreateOrder$createOrder$order.stub(_then(_instance))
-        : CopyWith$Mutation$CreateOrder$createOrder$order(
-            local$order, (e) => call(order: e));
+    return local$order == null ? CopyWith$Mutation$CreateOrder$createOrder$order.stub(_then(_instance)) : CopyWith$Mutation$CreateOrder$createOrder$order(local$order, (e) => call(order: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes>
-    implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes> implements CopyWith$Mutation$CreateOrder$createOrder<TRes> {
   _CopyWithStubImpl$Mutation$CreateOrder$createOrder(this._res);
 
   TRes _res;
@@ -16053,8 +14734,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order =>
-      CopyWith$Mutation$CreateOrder$createOrder$order.stub(_res);
+  CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order => CopyWith$Mutation$CreateOrder$createOrder$order.stub(_res);
 }
 
 class Mutation$CreateOrder$createOrder$order {
@@ -16069,8 +14749,7 @@ class Mutation$CreateOrder$createOrder$order {
     this.$__typename = 'OrderType',
   });
 
-  factory Mutation$CreateOrder$createOrder$order.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreateOrder$createOrder$order.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$quantity = json['quantity'];
     final l$priceTotal = json['priceTotal'];
@@ -16155,8 +14834,7 @@ class Mutation$CreateOrder$createOrder$order {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateOrder$createOrder$order ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreateOrder$createOrder$order || runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -16203,14 +14881,11 @@ class Mutation$CreateOrder$createOrder$order {
   }
 }
 
-extension UtilityExtension$Mutation$CreateOrder$createOrder$order
-    on Mutation$CreateOrder$createOrder$order {
-  CopyWith$Mutation$CreateOrder$createOrder$order<
-          Mutation$CreateOrder$createOrder$order>
-      get copyWith => CopyWith$Mutation$CreateOrder$createOrder$order(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreateOrder$createOrder$order on Mutation$CreateOrder$createOrder$order {
+  CopyWith$Mutation$CreateOrder$createOrder$order<Mutation$CreateOrder$createOrder$order> get copyWith => CopyWith$Mutation$CreateOrder$createOrder$order(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
@@ -16219,8 +14894,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
     TRes Function(Mutation$CreateOrder$createOrder$order) then,
   ) = _CopyWithImpl$Mutation$CreateOrder$createOrder$order;
 
-  factory CopyWith$Mutation$CreateOrder$createOrder$order.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order;
+  factory CopyWith$Mutation$CreateOrder$createOrder$order.stub(TRes res) = _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order;
 
   TRes call({
     String? id,
@@ -16234,8 +14908,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
-    implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
+class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes> implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
   _CopyWithImpl$Mutation$CreateOrder$createOrder$order(
     this._instance,
     this._then,
@@ -16259,32 +14932,17 @@ class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
   }) =>
       _then(Mutation$CreateOrder$createOrder$order(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        quantity: quantity == _undefined || quantity == null
-            ? _instance.quantity
-            : (quantity as int),
-        priceTotal: priceTotal == _undefined || priceTotal == null
-            ? _instance.priceTotal
-            : (priceTotal as String),
-        shippingFee: shippingFee == _undefined || shippingFee == null
-            ? _instance.shippingFee
-            : (shippingFee as String),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsOrderStatusChoices),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        updatedAt: updatedAt == _undefined || updatedAt == null
-            ? _instance.updatedAt
-            : (updatedAt as DateTime),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        quantity: quantity == _undefined || quantity == null ? _instance.quantity : (quantity as int),
+        priceTotal: priceTotal == _undefined || priceTotal == null ? _instance.priceTotal : (priceTotal as String),
+        shippingFee: shippingFee == _undefined || shippingFee == null ? _instance.shippingFee : (shippingFee as String),
+        status: status == _undefined || status == null ? _instance.status : (status as Enum$ProductsOrderStatusChoices),
+        createdAt: createdAt == _undefined || createdAt == null ? _instance.createdAt : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null ? _instance.updatedAt : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
-    implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes> implements CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
   _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order(this._res);
 
   TRes _res;
@@ -16303,8 +14961,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
 }
 
 class Variables$Mutation$CancelOrder {
-  factory Variables$Mutation$CancelOrder({required int orderId}) =>
-      Variables$Mutation$CancelOrder._({
+  factory Variables$Mutation$CancelOrder({required int orderId}) => Variables$Mutation$CancelOrder._({
         r'orderId': orderId,
       });
 
@@ -16328,19 +14985,17 @@ class Variables$Mutation$CancelOrder {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CancelOrder<Variables$Mutation$CancelOrder>
-      get copyWith => CopyWith$Variables$Mutation$CancelOrder(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$CancelOrder<Variables$Mutation$CancelOrder> get copyWith => CopyWith$Variables$Mutation$CancelOrder(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CancelOrder ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CancelOrder || runtimeType != other.runtimeType) {
       return false;
     }
     final l$orderId = orderId;
@@ -16364,14 +15019,12 @@ abstract class CopyWith$Variables$Mutation$CancelOrder<TRes> {
     TRes Function(Variables$Mutation$CancelOrder) then,
   ) = _CopyWithImpl$Variables$Mutation$CancelOrder;
 
-  factory CopyWith$Variables$Mutation$CancelOrder.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CancelOrder;
+  factory CopyWith$Variables$Mutation$CancelOrder.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CancelOrder;
 
   TRes call({int? orderId});
 }
 
-class _CopyWithImpl$Variables$Mutation$CancelOrder<TRes>
-    implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
+class _CopyWithImpl$Variables$Mutation$CancelOrder<TRes> implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
   _CopyWithImpl$Variables$Mutation$CancelOrder(
     this._instance,
     this._then,
@@ -16383,16 +15036,13 @@ class _CopyWithImpl$Variables$Mutation$CancelOrder<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? orderId = _undefined}) =>
-      _then(Variables$Mutation$CancelOrder._({
+  TRes call({Object? orderId = _undefined}) => _then(Variables$Mutation$CancelOrder._({
         ..._instance._$data,
-        if (orderId != _undefined && orderId != null)
-          'orderId': (orderId as int),
+        if (orderId != _undefined && orderId != null) 'orderId': (orderId as int),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CancelOrder<TRes>
-    implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CancelOrder<TRes> implements CopyWith$Variables$Mutation$CancelOrder<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CancelOrder(this._res);
 
   TRes _res;
@@ -16410,10 +15060,7 @@ class Mutation$CancelOrder {
     final l$cancelOrder = json['cancelOrder'];
     final l$$__typename = json['__typename'];
     return Mutation$CancelOrder(
-      cancelOrder: l$cancelOrder == null
-          ? null
-          : Mutation$CancelOrder$cancelOrder.fromJson(
-              (l$cancelOrder as Map<String, dynamic>)),
+      cancelOrder: l$cancelOrder == null ? null : Mutation$CancelOrder$cancelOrder.fromJson((l$cancelOrder as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -16464,8 +15111,7 @@ class Mutation$CancelOrder {
 }
 
 extension UtilityExtension$Mutation$CancelOrder on Mutation$CancelOrder {
-  CopyWith$Mutation$CancelOrder<Mutation$CancelOrder> get copyWith =>
-      CopyWith$Mutation$CancelOrder(
+  CopyWith$Mutation$CancelOrder<Mutation$CancelOrder> get copyWith => CopyWith$Mutation$CancelOrder(
         this,
         (i) => i,
       );
@@ -16477,8 +15123,7 @@ abstract class CopyWith$Mutation$CancelOrder<TRes> {
     TRes Function(Mutation$CancelOrder) then,
   ) = _CopyWithImpl$Mutation$CancelOrder;
 
-  factory CopyWith$Mutation$CancelOrder.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CancelOrder;
+  factory CopyWith$Mutation$CancelOrder.stub(TRes res) = _CopyWithStubImpl$Mutation$CancelOrder;
 
   TRes call({
     Mutation$CancelOrder$cancelOrder? cancelOrder,
@@ -16487,8 +15132,7 @@ abstract class CopyWith$Mutation$CancelOrder<TRes> {
   CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder;
 }
 
-class _CopyWithImpl$Mutation$CancelOrder<TRes>
-    implements CopyWith$Mutation$CancelOrder<TRes> {
+class _CopyWithImpl$Mutation$CancelOrder<TRes> implements CopyWith$Mutation$CancelOrder<TRes> {
   _CopyWithImpl$Mutation$CancelOrder(
     this._instance,
     this._then,
@@ -16505,25 +15149,17 @@ class _CopyWithImpl$Mutation$CancelOrder<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CancelOrder(
-        cancelOrder: cancelOrder == _undefined
-            ? _instance.cancelOrder
-            : (cancelOrder as Mutation$CancelOrder$cancelOrder?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        cancelOrder: cancelOrder == _undefined ? _instance.cancelOrder : (cancelOrder as Mutation$CancelOrder$cancelOrder?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder {
     final local$cancelOrder = _instance.cancelOrder;
-    return local$cancelOrder == null
-        ? CopyWith$Mutation$CancelOrder$cancelOrder.stub(_then(_instance))
-        : CopyWith$Mutation$CancelOrder$cancelOrder(
-            local$cancelOrder, (e) => call(cancelOrder: e));
+    return local$cancelOrder == null ? CopyWith$Mutation$CancelOrder$cancelOrder.stub(_then(_instance)) : CopyWith$Mutation$CancelOrder$cancelOrder(local$cancelOrder, (e) => call(cancelOrder: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CancelOrder<TRes>
-    implements CopyWith$Mutation$CancelOrder<TRes> {
+class _CopyWithStubImpl$Mutation$CancelOrder<TRes> implements CopyWith$Mutation$CancelOrder<TRes> {
   _CopyWithStubImpl$Mutation$CancelOrder(this._res);
 
   TRes _res;
@@ -16534,8 +15170,7 @@ class _CopyWithStubImpl$Mutation$CancelOrder<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder =>
-      CopyWith$Mutation$CancelOrder$cancelOrder.stub(_res);
+  CopyWith$Mutation$CancelOrder$cancelOrder<TRes> get cancelOrder => CopyWith$Mutation$CancelOrder$cancelOrder.stub(_res);
 }
 
 const documentNodeMutationCancelOrder = DocumentNode(definitions: [
@@ -16592,16 +15227,13 @@ const documentNodeMutationCancelOrder = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CancelOrder _parserFn$Mutation$CancelOrder(
-        Map<String, dynamic> data) =>
-    Mutation$CancelOrder.fromJson(data);
+Mutation$CancelOrder _parserFn$Mutation$CancelOrder(Map<String, dynamic> data) => Mutation$CancelOrder.fromJson(data);
 typedef OnMutationCompleted$Mutation$CancelOrder = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CancelOrder?,
 );
 
-class Options$Mutation$CancelOrder
-    extends graphql.MutationOptions<Mutation$CancelOrder> {
+class Options$Mutation$CancelOrder extends graphql.MutationOptions<Mutation$CancelOrder> {
   Options$Mutation$CancelOrder({
     String? operationName,
     required Variables$Mutation$CancelOrder variables,
@@ -16639,15 +15271,12 @@ class Options$Mutation$CancelOrder
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CancelOrder
-    extends graphql.WatchQueryOptions<Mutation$CancelOrder> {
+class WatchOptions$Mutation$CancelOrder extends graphql.WatchQueryOptions<Mutation$CancelOrder> {
   WatchOptions$Mutation$CancelOrder({
     String? operationName,
     required Variables$Mutation$CancelOrder variables,
@@ -16679,12 +15308,8 @@ class WatchOptions$Mutation$CancelOrder
 }
 
 extension ClientExtension$Mutation$CancelOrder on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CancelOrder>> mutate$CancelOrder(
-          Options$Mutation$CancelOrder options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$CancelOrder> watchMutation$CancelOrder(
-          WatchOptions$Mutation$CancelOrder options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$CancelOrder>> mutate$CancelOrder(Options$Mutation$CancelOrder options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CancelOrder> watchMutation$CancelOrder(WatchOptions$Mutation$CancelOrder options) => this.watchMutation(options);
 }
 
 class Mutation$CancelOrder$cancelOrder {
@@ -16730,8 +15355,7 @@ class Mutation$CancelOrder$cancelOrder {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CancelOrder$cancelOrder ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CancelOrder$cancelOrder || runtimeType != other.runtimeType) {
       return false;
     }
     final l$success = success;
@@ -16748,13 +15372,11 @@ class Mutation$CancelOrder$cancelOrder {
   }
 }
 
-extension UtilityExtension$Mutation$CancelOrder$cancelOrder
-    on Mutation$CancelOrder$cancelOrder {
-  CopyWith$Mutation$CancelOrder$cancelOrder<Mutation$CancelOrder$cancelOrder>
-      get copyWith => CopyWith$Mutation$CancelOrder$cancelOrder(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CancelOrder$cancelOrder on Mutation$CancelOrder$cancelOrder {
+  CopyWith$Mutation$CancelOrder$cancelOrder<Mutation$CancelOrder$cancelOrder> get copyWith => CopyWith$Mutation$CancelOrder$cancelOrder(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
@@ -16763,8 +15385,7 @@ abstract class CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
     TRes Function(Mutation$CancelOrder$cancelOrder) then,
   ) = _CopyWithImpl$Mutation$CancelOrder$cancelOrder;
 
-  factory CopyWith$Mutation$CancelOrder$cancelOrder.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder;
+  factory CopyWith$Mutation$CancelOrder$cancelOrder.stub(TRes res) = _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder;
 
   TRes call({
     bool? success,
@@ -16772,8 +15393,7 @@ abstract class CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CancelOrder$cancelOrder<TRes>
-    implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
+class _CopyWithImpl$Mutation$CancelOrder$cancelOrder<TRes> implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
   _CopyWithImpl$Mutation$CancelOrder$cancelOrder(
     this._instance,
     this._then,
@@ -16791,14 +15411,11 @@ class _CopyWithImpl$Mutation$CancelOrder$cancelOrder<TRes>
   }) =>
       _then(Mutation$CancelOrder$cancelOrder(
         success: success == _undefined ? _instance.success : (success as bool?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder<TRes>
-    implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
+class _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder<TRes> implements CopyWith$Mutation$CancelOrder$cancelOrder<TRes> {
   _CopyWithStubImpl$Mutation$CancelOrder$cancelOrder(this._res);
 
   TRes _res;
@@ -16822,14 +15439,12 @@ class Variables$Mutation$CreatePaymentIntent {
 
   Variables$Mutation$CreatePaymentIntent._(this._$data);
 
-  factory Variables$Mutation$CreatePaymentIntent.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$CreatePaymentIntent.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$orderId = data['orderId'];
     result$data['orderId'] = (l$orderId as int);
     final l$paymentMethod = data['paymentMethod'];
-    result$data['paymentMethod'] =
-        fromJson$Enum$PaymentMethodEnum((l$paymentMethod as String));
+    result$data['paymentMethod'] = fromJson$Enum$PaymentMethodEnum((l$paymentMethod as String));
     return Variables$Mutation$CreatePaymentIntent._(result$data);
   }
 
@@ -16837,33 +15452,28 @@ class Variables$Mutation$CreatePaymentIntent {
 
   int get orderId => (_$data['orderId'] as int);
 
-  Enum$PaymentMethodEnum get paymentMethod =>
-      (_$data['paymentMethod'] as Enum$PaymentMethodEnum);
+  Enum$PaymentMethodEnum get paymentMethod => (_$data['paymentMethod'] as Enum$PaymentMethodEnum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$orderId = orderId;
     result$data['orderId'] = l$orderId;
     final l$paymentMethod = paymentMethod;
-    result$data['paymentMethod'] =
-        toJson$Enum$PaymentMethodEnum(l$paymentMethod);
+    result$data['paymentMethod'] = toJson$Enum$PaymentMethodEnum(l$paymentMethod);
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$CreatePaymentIntent<
-          Variables$Mutation$CreatePaymentIntent>
-      get copyWith => CopyWith$Variables$Mutation$CreatePaymentIntent(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$CreatePaymentIntent<Variables$Mutation$CreatePaymentIntent> get copyWith => CopyWith$Variables$Mutation$CreatePaymentIntent(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$CreatePaymentIntent ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$CreatePaymentIntent || runtimeType != other.runtimeType) {
       return false;
     }
     final l$orderId = orderId;
@@ -16896,8 +15506,7 @@ abstract class CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
     TRes Function(Variables$Mutation$CreatePaymentIntent) then,
   ) = _CopyWithImpl$Variables$Mutation$CreatePaymentIntent;
 
-  factory CopyWith$Variables$Mutation$CreatePaymentIntent.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent;
+  factory CopyWith$Variables$Mutation$CreatePaymentIntent.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent;
 
   TRes call({
     int? orderId,
@@ -16905,8 +15514,7 @@ abstract class CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$CreatePaymentIntent<TRes>
-    implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
+class _CopyWithImpl$Variables$Mutation$CreatePaymentIntent<TRes> implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
   _CopyWithImpl$Variables$Mutation$CreatePaymentIntent(
     this._instance,
     this._then,
@@ -16924,15 +15532,12 @@ class _CopyWithImpl$Variables$Mutation$CreatePaymentIntent<TRes>
   }) =>
       _then(Variables$Mutation$CreatePaymentIntent._({
         ..._instance._$data,
-        if (orderId != _undefined && orderId != null)
-          'orderId': (orderId as int),
-        if (paymentMethod != _undefined && paymentMethod != null)
-          'paymentMethod': (paymentMethod as Enum$PaymentMethodEnum),
+        if (orderId != _undefined && orderId != null) 'orderId': (orderId as int),
+        if (paymentMethod != _undefined && paymentMethod != null) 'paymentMethod': (paymentMethod as Enum$PaymentMethodEnum),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent<TRes>
-    implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent<TRes> implements CopyWith$Variables$Mutation$CreatePaymentIntent<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreatePaymentIntent(this._res);
 
   TRes _res;
@@ -16954,10 +15559,7 @@ class Mutation$CreatePaymentIntent {
     final l$createPaymentIntent = json['createPaymentIntent'];
     final l$$__typename = json['__typename'];
     return Mutation$CreatePaymentIntent(
-      createPaymentIntent: l$createPaymentIntent == null
-          ? null
-          : Mutation$CreatePaymentIntent$createPaymentIntent.fromJson(
-              (l$createPaymentIntent as Map<String, dynamic>)),
+      createPaymentIntent: l$createPaymentIntent == null ? null : Mutation$CreatePaymentIntent$createPaymentIntent.fromJson((l$createPaymentIntent as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -16990,8 +15592,7 @@ class Mutation$CreatePaymentIntent {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreatePaymentIntent ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreatePaymentIntent || runtimeType != other.runtimeType) {
       return false;
     }
     final l$createPaymentIntent = createPaymentIntent;
@@ -17008,13 +15609,11 @@ class Mutation$CreatePaymentIntent {
   }
 }
 
-extension UtilityExtension$Mutation$CreatePaymentIntent
-    on Mutation$CreatePaymentIntent {
-  CopyWith$Mutation$CreatePaymentIntent<Mutation$CreatePaymentIntent>
-      get copyWith => CopyWith$Mutation$CreatePaymentIntent(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreatePaymentIntent on Mutation$CreatePaymentIntent {
+  CopyWith$Mutation$CreatePaymentIntent<Mutation$CreatePaymentIntent> get copyWith => CopyWith$Mutation$CreatePaymentIntent(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreatePaymentIntent<TRes> {
@@ -17023,19 +15622,16 @@ abstract class CopyWith$Mutation$CreatePaymentIntent<TRes> {
     TRes Function(Mutation$CreatePaymentIntent) then,
   ) = _CopyWithImpl$Mutation$CreatePaymentIntent;
 
-  factory CopyWith$Mutation$CreatePaymentIntent.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreatePaymentIntent;
+  factory CopyWith$Mutation$CreatePaymentIntent.stub(TRes res) = _CopyWithStubImpl$Mutation$CreatePaymentIntent;
 
   TRes call({
     Mutation$CreatePaymentIntent$createPaymentIntent? createPaymentIntent,
     String? $__typename,
   });
-  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
-      get createPaymentIntent;
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> get createPaymentIntent;
 }
 
-class _CopyWithImpl$Mutation$CreatePaymentIntent<TRes>
-    implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
+class _CopyWithImpl$Mutation$CreatePaymentIntent<TRes> implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
   _CopyWithImpl$Mutation$CreatePaymentIntent(
     this._instance,
     this._then,
@@ -17052,28 +15648,19 @@ class _CopyWithImpl$Mutation$CreatePaymentIntent<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreatePaymentIntent(
-        createPaymentIntent: createPaymentIntent == _undefined
-            ? _instance.createPaymentIntent
-            : (createPaymentIntent
-                as Mutation$CreatePaymentIntent$createPaymentIntent?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        createPaymentIntent: createPaymentIntent == _undefined ? _instance.createPaymentIntent : (createPaymentIntent as Mutation$CreatePaymentIntent$createPaymentIntent?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
-  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
-      get createPaymentIntent {
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> get createPaymentIntent {
     final local$createPaymentIntent = _instance.createPaymentIntent;
     return local$createPaymentIntent == null
-        ? CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(
-            _then(_instance))
-        : CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
-            local$createPaymentIntent, (e) => call(createPaymentIntent: e));
+        ? CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(_then(_instance))
+        : CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(local$createPaymentIntent, (e) => call(createPaymentIntent: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$CreatePaymentIntent<TRes>
-    implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
+class _CopyWithStubImpl$Mutation$CreatePaymentIntent<TRes> implements CopyWith$Mutation$CreatePaymentIntent<TRes> {
   _CopyWithStubImpl$Mutation$CreatePaymentIntent(this._res);
 
   TRes _res;
@@ -17084,9 +15671,7 @@ class _CopyWithStubImpl$Mutation$CreatePaymentIntent<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
-      get createPaymentIntent =>
-          CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(_res);
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> get createPaymentIntent => CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(_res);
 }
 
 const documentNodeMutationCreatePaymentIntent = DocumentNode(definitions: [
@@ -17163,17 +15748,13 @@ const documentNodeMutationCreatePaymentIntent = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$CreatePaymentIntent _parserFn$Mutation$CreatePaymentIntent(
-        Map<String, dynamic> data) =>
-    Mutation$CreatePaymentIntent.fromJson(data);
-typedef OnMutationCompleted$Mutation$CreatePaymentIntent = FutureOr<void>
-    Function(
+Mutation$CreatePaymentIntent _parserFn$Mutation$CreatePaymentIntent(Map<String, dynamic> data) => Mutation$CreatePaymentIntent.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreatePaymentIntent = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$CreatePaymentIntent?,
 );
 
-class Options$Mutation$CreatePaymentIntent
-    extends graphql.MutationOptions<Mutation$CreatePaymentIntent> {
+class Options$Mutation$CreatePaymentIntent extends graphql.MutationOptions<Mutation$CreatePaymentIntent> {
   Options$Mutation$CreatePaymentIntent({
     String? operationName,
     required Variables$Mutation$CreatePaymentIntent variables,
@@ -17199,9 +15780,7 @@ class Options$Mutation$CreatePaymentIntent
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$CreatePaymentIntent(data),
+                    data == null ? null : _parserFn$Mutation$CreatePaymentIntent(data),
                   ),
           update: update,
           onError: onError,
@@ -17213,15 +15792,12 @@ class Options$Mutation$CreatePaymentIntent
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$CreatePaymentIntent
-    extends graphql.WatchQueryOptions<Mutation$CreatePaymentIntent> {
+class WatchOptions$Mutation$CreatePaymentIntent extends graphql.WatchQueryOptions<Mutation$CreatePaymentIntent> {
   WatchOptions$Mutation$CreatePaymentIntent({
     String? operationName,
     required Variables$Mutation$CreatePaymentIntent variables,
@@ -17252,16 +15828,9 @@ class WatchOptions$Mutation$CreatePaymentIntent
         );
 }
 
-extension ClientExtension$Mutation$CreatePaymentIntent
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreatePaymentIntent>>
-      mutate$CreatePaymentIntent(
-              Options$Mutation$CreatePaymentIntent options) async =>
-          await this.mutate(options);
-  graphql.ObservableQuery<Mutation$CreatePaymentIntent>
-      watchMutation$CreatePaymentIntent(
-              WatchOptions$Mutation$CreatePaymentIntent options) =>
-          this.watchMutation(options);
+extension ClientExtension$Mutation$CreatePaymentIntent on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreatePaymentIntent>> mutate$CreatePaymentIntent(Options$Mutation$CreatePaymentIntent options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreatePaymentIntent> watchMutation$CreatePaymentIntent(WatchOptions$Mutation$CreatePaymentIntent options) => this.watchMutation(options);
 }
 
 class Mutation$CreatePaymentIntent$createPaymentIntent {
@@ -17271,8 +15840,7 @@ class Mutation$CreatePaymentIntent$createPaymentIntent {
     this.$__typename = 'CreatePaymentIntent',
   });
 
-  factory Mutation$CreatePaymentIntent$createPaymentIntent.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$CreatePaymentIntent$createPaymentIntent.fromJson(Map<String, dynamic> json) {
     final l$clientSecret = json['clientSecret'];
     final l$paymentRef = json['paymentRef'];
     final l$$__typename = json['__typename'];
@@ -17317,8 +15885,7 @@ class Mutation$CreatePaymentIntent$createPaymentIntent {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreatePaymentIntent$createPaymentIntent ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$CreatePaymentIntent$createPaymentIntent || runtimeType != other.runtimeType) {
       return false;
     }
     final l$clientSecret = clientSecret;
@@ -17340,14 +15907,11 @@ class Mutation$CreatePaymentIntent$createPaymentIntent {
   }
 }
 
-extension UtilityExtension$Mutation$CreatePaymentIntent$createPaymentIntent
-    on Mutation$CreatePaymentIntent$createPaymentIntent {
-  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<
-          Mutation$CreatePaymentIntent$createPaymentIntent>
-      get copyWith => CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$CreatePaymentIntent$createPaymentIntent on Mutation$CreatePaymentIntent$createPaymentIntent {
+  CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<Mutation$CreatePaymentIntent$createPaymentIntent> get copyWith => CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
@@ -17356,9 +15920,7 @@ abstract class CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
     TRes Function(Mutation$CreatePaymentIntent$createPaymentIntent) then,
   ) = _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent;
 
-  factory CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(
-          TRes res) =
-      _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent;
+  factory CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent.stub(TRes res) = _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent;
 
   TRes call({
     String? clientSecret,
@@ -17367,8 +15929,7 @@ abstract class CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
-    implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
+class _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
   _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent(
     this._instance,
     this._then,
@@ -17386,20 +15947,13 @@ class _CopyWithImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreatePaymentIntent$createPaymentIntent(
-        clientSecret: clientSecret == _undefined
-            ? _instance.clientSecret
-            : (clientSecret as String?),
-        paymentRef: paymentRef == _undefined
-            ? _instance.paymentRef
-            : (paymentRef as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        clientSecret: clientSecret == _undefined ? _instance.clientSecret : (clientSecret as String?),
+        paymentRef: paymentRef == _undefined ? _instance.paymentRef : (paymentRef as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
-    implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
+class _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> implements CopyWith$Mutation$CreatePaymentIntent$createPaymentIntent<TRes> {
   _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent(this._res);
 
   TRes _res;
@@ -17413,15 +15967,13 @@ class _CopyWithStubImpl$Mutation$CreatePaymentIntent$createPaymentIntent<TRes>
 }
 
 class Variables$Mutation$ConfirmPayment {
-  factory Variables$Mutation$ConfirmPayment({required String paymentRef}) =>
-      Variables$Mutation$ConfirmPayment._({
+  factory Variables$Mutation$ConfirmPayment({required String paymentRef}) => Variables$Mutation$ConfirmPayment._({
         r'paymentRef': paymentRef,
       });
 
   Variables$Mutation$ConfirmPayment._(this._$data);
 
-  factory Variables$Mutation$ConfirmPayment.fromJson(
-      Map<String, dynamic> data) {
+  factory Variables$Mutation$ConfirmPayment.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$paymentRef = data['paymentRef'];
     result$data['paymentRef'] = (l$paymentRef as String);
@@ -17439,19 +15991,17 @@ class Variables$Mutation$ConfirmPayment {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$ConfirmPayment<Variables$Mutation$ConfirmPayment>
-      get copyWith => CopyWith$Variables$Mutation$ConfirmPayment(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$ConfirmPayment<Variables$Mutation$ConfirmPayment> get copyWith => CopyWith$Variables$Mutation$ConfirmPayment(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$ConfirmPayment ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$ConfirmPayment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$paymentRef = paymentRef;
@@ -17475,14 +16025,12 @@ abstract class CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
     TRes Function(Variables$Mutation$ConfirmPayment) then,
   ) = _CopyWithImpl$Variables$Mutation$ConfirmPayment;
 
-  factory CopyWith$Variables$Mutation$ConfirmPayment.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$ConfirmPayment;
+  factory CopyWith$Variables$Mutation$ConfirmPayment.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$ConfirmPayment;
 
   TRes call({String? paymentRef});
 }
 
-class _CopyWithImpl$Variables$Mutation$ConfirmPayment<TRes>
-    implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
+class _CopyWithImpl$Variables$Mutation$ConfirmPayment<TRes> implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
   _CopyWithImpl$Variables$Mutation$ConfirmPayment(
     this._instance,
     this._then,
@@ -17494,16 +16042,13 @@ class _CopyWithImpl$Variables$Mutation$ConfirmPayment<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? paymentRef = _undefined}) =>
-      _then(Variables$Mutation$ConfirmPayment._({
+  TRes call({Object? paymentRef = _undefined}) => _then(Variables$Mutation$ConfirmPayment._({
         ..._instance._$data,
-        if (paymentRef != _undefined && paymentRef != null)
-          'paymentRef': (paymentRef as String),
+        if (paymentRef != _undefined && paymentRef != null) 'paymentRef': (paymentRef as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$ConfirmPayment<TRes>
-    implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$ConfirmPayment<TRes> implements CopyWith$Variables$Mutation$ConfirmPayment<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ConfirmPayment(this._res);
 
   TRes _res;
@@ -17521,10 +16066,7 @@ class Mutation$ConfirmPayment {
     final l$confirmPayment = json['confirmPayment'];
     final l$$__typename = json['__typename'];
     return Mutation$ConfirmPayment(
-      confirmPayment: l$confirmPayment == null
-          ? null
-          : Mutation$ConfirmPayment$confirmPayment.fromJson(
-              (l$confirmPayment as Map<String, dynamic>)),
+      confirmPayment: l$confirmPayment == null ? null : Mutation$ConfirmPayment$confirmPayment.fromJson((l$confirmPayment as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -17575,8 +16117,7 @@ class Mutation$ConfirmPayment {
 }
 
 extension UtilityExtension$Mutation$ConfirmPayment on Mutation$ConfirmPayment {
-  CopyWith$Mutation$ConfirmPayment<Mutation$ConfirmPayment> get copyWith =>
-      CopyWith$Mutation$ConfirmPayment(
+  CopyWith$Mutation$ConfirmPayment<Mutation$ConfirmPayment> get copyWith => CopyWith$Mutation$ConfirmPayment(
         this,
         (i) => i,
       );
@@ -17588,8 +16129,7 @@ abstract class CopyWith$Mutation$ConfirmPayment<TRes> {
     TRes Function(Mutation$ConfirmPayment) then,
   ) = _CopyWithImpl$Mutation$ConfirmPayment;
 
-  factory CopyWith$Mutation$ConfirmPayment.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ConfirmPayment;
+  factory CopyWith$Mutation$ConfirmPayment.stub(TRes res) = _CopyWithStubImpl$Mutation$ConfirmPayment;
 
   TRes call({
     Mutation$ConfirmPayment$confirmPayment? confirmPayment,
@@ -17598,8 +16138,7 @@ abstract class CopyWith$Mutation$ConfirmPayment<TRes> {
   CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment;
 }
 
-class _CopyWithImpl$Mutation$ConfirmPayment<TRes>
-    implements CopyWith$Mutation$ConfirmPayment<TRes> {
+class _CopyWithImpl$Mutation$ConfirmPayment<TRes> implements CopyWith$Mutation$ConfirmPayment<TRes> {
   _CopyWithImpl$Mutation$ConfirmPayment(
     this._instance,
     this._then,
@@ -17616,25 +16155,19 @@ class _CopyWithImpl$Mutation$ConfirmPayment<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ConfirmPayment(
-        confirmPayment: confirmPayment == _undefined
-            ? _instance.confirmPayment
-            : (confirmPayment as Mutation$ConfirmPayment$confirmPayment?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        confirmPayment: confirmPayment == _undefined ? _instance.confirmPayment : (confirmPayment as Mutation$ConfirmPayment$confirmPayment?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment {
     final local$confirmPayment = _instance.confirmPayment;
     return local$confirmPayment == null
         ? CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(_then(_instance))
-        : CopyWith$Mutation$ConfirmPayment$confirmPayment(
-            local$confirmPayment, (e) => call(confirmPayment: e));
+        : CopyWith$Mutation$ConfirmPayment$confirmPayment(local$confirmPayment, (e) => call(confirmPayment: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ConfirmPayment<TRes>
-    implements CopyWith$Mutation$ConfirmPayment<TRes> {
+class _CopyWithStubImpl$Mutation$ConfirmPayment<TRes> implements CopyWith$Mutation$ConfirmPayment<TRes> {
   _CopyWithStubImpl$Mutation$ConfirmPayment(this._res);
 
   TRes _res;
@@ -17645,8 +16178,7 @@ class _CopyWithStubImpl$Mutation$ConfirmPayment<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment =>
-      CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(_res);
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> get confirmPayment => CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(_res);
 }
 
 const documentNodeMutationConfirmPayment = DocumentNode(definitions: [
@@ -17703,16 +16235,13 @@ const documentNodeMutationConfirmPayment = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$ConfirmPayment _parserFn$Mutation$ConfirmPayment(
-        Map<String, dynamic> data) =>
-    Mutation$ConfirmPayment.fromJson(data);
+Mutation$ConfirmPayment _parserFn$Mutation$ConfirmPayment(Map<String, dynamic> data) => Mutation$ConfirmPayment.fromJson(data);
 typedef OnMutationCompleted$Mutation$ConfirmPayment = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$ConfirmPayment?,
 );
 
-class Options$Mutation$ConfirmPayment
-    extends graphql.MutationOptions<Mutation$ConfirmPayment> {
+class Options$Mutation$ConfirmPayment extends graphql.MutationOptions<Mutation$ConfirmPayment> {
   Options$Mutation$ConfirmPayment({
     String? operationName,
     required Variables$Mutation$ConfirmPayment variables,
@@ -17738,9 +16267,7 @@ class Options$Mutation$ConfirmPayment
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$ConfirmPayment(data),
+                    data == null ? null : _parserFn$Mutation$ConfirmPayment(data),
                   ),
           update: update,
           onError: onError,
@@ -17752,15 +16279,12 @@ class Options$Mutation$ConfirmPayment
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$ConfirmPayment
-    extends graphql.WatchQueryOptions<Mutation$ConfirmPayment> {
+class WatchOptions$Mutation$ConfirmPayment extends graphql.WatchQueryOptions<Mutation$ConfirmPayment> {
   WatchOptions$Mutation$ConfirmPayment({
     String? operationName,
     required Variables$Mutation$ConfirmPayment variables,
@@ -17792,12 +16316,8 @@ class WatchOptions$Mutation$ConfirmPayment
 }
 
 extension ClientExtension$Mutation$ConfirmPayment on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$ConfirmPayment>> mutate$ConfirmPayment(
-          Options$Mutation$ConfirmPayment options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$ConfirmPayment> watchMutation$ConfirmPayment(
-          WatchOptions$Mutation$ConfirmPayment options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$ConfirmPayment>> mutate$ConfirmPayment(Options$Mutation$ConfirmPayment options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$ConfirmPayment> watchMutation$ConfirmPayment(WatchOptions$Mutation$ConfirmPayment options) => this.watchMutation(options);
 }
 
 class Mutation$ConfirmPayment$confirmPayment {
@@ -17806,8 +16326,7 @@ class Mutation$ConfirmPayment$confirmPayment {
     this.$__typename = 'ConfirmPayment',
   });
 
-  factory Mutation$ConfirmPayment$confirmPayment.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$ConfirmPayment$confirmPayment.fromJson(Map<String, dynamic> json) {
     final l$paymentStatus = json['paymentStatus'];
     final l$$__typename = json['__typename'];
     return Mutation$ConfirmPayment$confirmPayment(
@@ -17844,8 +16363,7 @@ class Mutation$ConfirmPayment$confirmPayment {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ConfirmPayment$confirmPayment ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ConfirmPayment$confirmPayment || runtimeType != other.runtimeType) {
       return false;
     }
     final l$paymentStatus = paymentStatus;
@@ -17862,14 +16380,11 @@ class Mutation$ConfirmPayment$confirmPayment {
   }
 }
 
-extension UtilityExtension$Mutation$ConfirmPayment$confirmPayment
-    on Mutation$ConfirmPayment$confirmPayment {
-  CopyWith$Mutation$ConfirmPayment$confirmPayment<
-          Mutation$ConfirmPayment$confirmPayment>
-      get copyWith => CopyWith$Mutation$ConfirmPayment$confirmPayment(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$ConfirmPayment$confirmPayment on Mutation$ConfirmPayment$confirmPayment {
+  CopyWith$Mutation$ConfirmPayment$confirmPayment<Mutation$ConfirmPayment$confirmPayment> get copyWith => CopyWith$Mutation$ConfirmPayment$confirmPayment(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
@@ -17878,8 +16393,7 @@ abstract class CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
     TRes Function(Mutation$ConfirmPayment$confirmPayment) then,
   ) = _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment;
 
-  factory CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment;
+  factory CopyWith$Mutation$ConfirmPayment$confirmPayment.stub(TRes res) = _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment;
 
   TRes call({
     String? paymentStatus,
@@ -17887,8 +16401,7 @@ abstract class CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
-    implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
+class _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment<TRes> implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
   _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment(
     this._instance,
     this._then,
@@ -17905,17 +16418,12 @@ class _CopyWithImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ConfirmPayment$confirmPayment(
-        paymentStatus: paymentStatus == _undefined
-            ? _instance.paymentStatus
-            : (paymentStatus as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        paymentStatus: paymentStatus == _undefined ? _instance.paymentStatus : (paymentStatus as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment<TRes>
-    implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
+class _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment<TRes> implements CopyWith$Mutation$ConfirmPayment$confirmPayment<TRes> {
   _CopyWithStubImpl$Mutation$ConfirmPayment$confirmPayment(this._res);
 
   TRes _res;
@@ -17971,19 +16479,17 @@ class Variables$Mutation$PasswordReset {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$PasswordReset<Variables$Mutation$PasswordReset>
-      get copyWith => CopyWith$Variables$Mutation$PasswordReset(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$PasswordReset<Variables$Mutation$PasswordReset> get copyWith => CopyWith$Variables$Mutation$PasswordReset(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$PasswordReset ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$PasswordReset || runtimeType != other.runtimeType) {
       return false;
     }
     final l$newpassword = newpassword;
@@ -18023,8 +16529,7 @@ abstract class CopyWith$Variables$Mutation$PasswordReset<TRes> {
     TRes Function(Variables$Mutation$PasswordReset) then,
   ) = _CopyWithImpl$Variables$Mutation$PasswordReset;
 
-  factory CopyWith$Variables$Mutation$PasswordReset.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$PasswordReset;
+  factory CopyWith$Variables$Mutation$PasswordReset.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$PasswordReset;
 
   TRes call({
     String? newpassword,
@@ -18033,8 +16538,7 @@ abstract class CopyWith$Variables$Mutation$PasswordReset<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$PasswordReset<TRes>
-    implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
+class _CopyWithImpl$Variables$Mutation$PasswordReset<TRes> implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
   _CopyWithImpl$Variables$Mutation$PasswordReset(
     this._instance,
     this._then,
@@ -18053,15 +16557,13 @@ class _CopyWithImpl$Variables$Mutation$PasswordReset<TRes>
   }) =>
       _then(Variables$Mutation$PasswordReset._({
         ..._instance._$data,
-        if (newpassword != _undefined && newpassword != null)
-          'newpassword': (newpassword as String),
+        if (newpassword != _undefined && newpassword != null) 'newpassword': (newpassword as String),
         if (email != _undefined && email != null) 'email': (email as String),
         if (token != _undefined && token != null) 'token': (token as String),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$PasswordReset<TRes>
-    implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$PasswordReset<TRes> implements CopyWith$Variables$Mutation$PasswordReset<TRes> {
   _CopyWithStubImpl$Variables$Mutation$PasswordReset(this._res);
 
   TRes _res;
@@ -18084,10 +16586,7 @@ class Mutation$PasswordReset {
     final l$passwordReset = json['passwordReset'];
     final l$$__typename = json['__typename'];
     return Mutation$PasswordReset(
-      passwordReset: l$passwordReset == null
-          ? null
-          : Mutation$PasswordReset$passwordReset.fromJson(
-              (l$passwordReset as Map<String, dynamic>)),
+      passwordReset: l$passwordReset == null ? null : Mutation$PasswordReset$passwordReset.fromJson((l$passwordReset as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -18138,8 +16637,7 @@ class Mutation$PasswordReset {
 }
 
 extension UtilityExtension$Mutation$PasswordReset on Mutation$PasswordReset {
-  CopyWith$Mutation$PasswordReset<Mutation$PasswordReset> get copyWith =>
-      CopyWith$Mutation$PasswordReset(
+  CopyWith$Mutation$PasswordReset<Mutation$PasswordReset> get copyWith => CopyWith$Mutation$PasswordReset(
         this,
         (i) => i,
       );
@@ -18151,8 +16649,7 @@ abstract class CopyWith$Mutation$PasswordReset<TRes> {
     TRes Function(Mutation$PasswordReset) then,
   ) = _CopyWithImpl$Mutation$PasswordReset;
 
-  factory CopyWith$Mutation$PasswordReset.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$PasswordReset;
+  factory CopyWith$Mutation$PasswordReset.stub(TRes res) = _CopyWithStubImpl$Mutation$PasswordReset;
 
   TRes call({
     Mutation$PasswordReset$passwordReset? passwordReset,
@@ -18161,8 +16658,7 @@ abstract class CopyWith$Mutation$PasswordReset<TRes> {
   CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset;
 }
 
-class _CopyWithImpl$Mutation$PasswordReset<TRes>
-    implements CopyWith$Mutation$PasswordReset<TRes> {
+class _CopyWithImpl$Mutation$PasswordReset<TRes> implements CopyWith$Mutation$PasswordReset<TRes> {
   _CopyWithImpl$Mutation$PasswordReset(
     this._instance,
     this._then,
@@ -18179,25 +16675,19 @@ class _CopyWithImpl$Mutation$PasswordReset<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$PasswordReset(
-        passwordReset: passwordReset == _undefined
-            ? _instance.passwordReset
-            : (passwordReset as Mutation$PasswordReset$passwordReset?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        passwordReset: passwordReset == _undefined ? _instance.passwordReset : (passwordReset as Mutation$PasswordReset$passwordReset?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset {
     final local$passwordReset = _instance.passwordReset;
     return local$passwordReset == null
         ? CopyWith$Mutation$PasswordReset$passwordReset.stub(_then(_instance))
-        : CopyWith$Mutation$PasswordReset$passwordReset(
-            local$passwordReset, (e) => call(passwordReset: e));
+        : CopyWith$Mutation$PasswordReset$passwordReset(local$passwordReset, (e) => call(passwordReset: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$PasswordReset<TRes>
-    implements CopyWith$Mutation$PasswordReset<TRes> {
+class _CopyWithStubImpl$Mutation$PasswordReset<TRes> implements CopyWith$Mutation$PasswordReset<TRes> {
   _CopyWithStubImpl$Mutation$PasswordReset(this._res);
 
   TRes _res;
@@ -18208,8 +16698,7 @@ class _CopyWithStubImpl$Mutation$PasswordReset<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset =>
-      CopyWith$Mutation$PasswordReset$passwordReset.stub(_res);
+  CopyWith$Mutation$PasswordReset$passwordReset<TRes> get passwordReset => CopyWith$Mutation$PasswordReset$passwordReset.stub(_res);
 }
 
 const documentNodeMutationPasswordReset = DocumentNode(definitions: [
@@ -18292,16 +16781,13 @@ const documentNodeMutationPasswordReset = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$PasswordReset _parserFn$Mutation$PasswordReset(
-        Map<String, dynamic> data) =>
-    Mutation$PasswordReset.fromJson(data);
+Mutation$PasswordReset _parserFn$Mutation$PasswordReset(Map<String, dynamic> data) => Mutation$PasswordReset.fromJson(data);
 typedef OnMutationCompleted$Mutation$PasswordReset = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$PasswordReset?,
 );
 
-class Options$Mutation$PasswordReset
-    extends graphql.MutationOptions<Mutation$PasswordReset> {
+class Options$Mutation$PasswordReset extends graphql.MutationOptions<Mutation$PasswordReset> {
   Options$Mutation$PasswordReset({
     String? operationName,
     required Variables$Mutation$PasswordReset variables,
@@ -18327,9 +16813,7 @@ class Options$Mutation$PasswordReset
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$PasswordReset(data),
+                    data == null ? null : _parserFn$Mutation$PasswordReset(data),
                   ),
           update: update,
           onError: onError,
@@ -18341,15 +16825,12 @@ class Options$Mutation$PasswordReset
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$PasswordReset
-    extends graphql.WatchQueryOptions<Mutation$PasswordReset> {
+class WatchOptions$Mutation$PasswordReset extends graphql.WatchQueryOptions<Mutation$PasswordReset> {
   WatchOptions$Mutation$PasswordReset({
     String? operationName,
     required Variables$Mutation$PasswordReset variables,
@@ -18381,12 +16862,8 @@ class WatchOptions$Mutation$PasswordReset
 }
 
 extension ClientExtension$Mutation$PasswordReset on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$PasswordReset>> mutate$PasswordReset(
-          Options$Mutation$PasswordReset options) async =>
-      await this.mutate(options);
-  graphql.ObservableQuery<Mutation$PasswordReset> watchMutation$PasswordReset(
-          WatchOptions$Mutation$PasswordReset options) =>
-      this.watchMutation(options);
+  Future<graphql.QueryResult<Mutation$PasswordReset>> mutate$PasswordReset(Options$Mutation$PasswordReset options) async => await this.mutate(options);
+  graphql.ObservableQuery<Mutation$PasswordReset> watchMutation$PasswordReset(WatchOptions$Mutation$PasswordReset options) => this.watchMutation(options);
 }
 
 class Mutation$PasswordReset$passwordReset {
@@ -18395,8 +16872,7 @@ class Mutation$PasswordReset$passwordReset {
     this.$__typename = 'PasswordReset',
   });
 
-  factory Mutation$PasswordReset$passwordReset.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$PasswordReset$passwordReset.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$PasswordReset$passwordReset(
@@ -18433,8 +16909,7 @@ class Mutation$PasswordReset$passwordReset {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$PasswordReset$passwordReset ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$PasswordReset$passwordReset || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -18451,14 +16926,11 @@ class Mutation$PasswordReset$passwordReset {
   }
 }
 
-extension UtilityExtension$Mutation$PasswordReset$passwordReset
-    on Mutation$PasswordReset$passwordReset {
-  CopyWith$Mutation$PasswordReset$passwordReset<
-          Mutation$PasswordReset$passwordReset>
-      get copyWith => CopyWith$Mutation$PasswordReset$passwordReset(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$PasswordReset$passwordReset on Mutation$PasswordReset$passwordReset {
+  CopyWith$Mutation$PasswordReset$passwordReset<Mutation$PasswordReset$passwordReset> get copyWith => CopyWith$Mutation$PasswordReset$passwordReset(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
@@ -18467,8 +16939,7 @@ abstract class CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
     TRes Function(Mutation$PasswordReset$passwordReset) then,
   ) = _CopyWithImpl$Mutation$PasswordReset$passwordReset;
 
-  factory CopyWith$Mutation$PasswordReset$passwordReset.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$PasswordReset$passwordReset;
+  factory CopyWith$Mutation$PasswordReset$passwordReset.stub(TRes res) = _CopyWithStubImpl$Mutation$PasswordReset$passwordReset;
 
   TRes call({
     String? message,
@@ -18476,8 +16947,7 @@ abstract class CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$PasswordReset$passwordReset<TRes>
-    implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
+class _CopyWithImpl$Mutation$PasswordReset$passwordReset<TRes> implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
   _CopyWithImpl$Mutation$PasswordReset$passwordReset(
     this._instance,
     this._then,
@@ -18494,16 +16964,12 @@ class _CopyWithImpl$Mutation$PasswordReset$passwordReset<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$PasswordReset$passwordReset(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$PasswordReset$passwordReset<TRes>
-    implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
+class _CopyWithStubImpl$Mutation$PasswordReset$passwordReset<TRes> implements CopyWith$Mutation$PasswordReset$passwordReset<TRes> {
   _CopyWithStubImpl$Mutation$PasswordReset$passwordReset(this._res);
 
   TRes _res;
@@ -18516,8 +16982,7 @@ class _CopyWithStubImpl$Mutation$PasswordReset$passwordReset<TRes>
 }
 
 class Variables$Mutation$ResetPassword {
-  factory Variables$Mutation$ResetPassword({String? email}) =>
-      Variables$Mutation$ResetPassword._({
+  factory Variables$Mutation$ResetPassword({String? email}) => Variables$Mutation$ResetPassword._({
         if (email != null) r'email': email,
       });
 
@@ -18545,19 +17010,17 @@ class Variables$Mutation$ResetPassword {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$ResetPassword<Variables$Mutation$ResetPassword>
-      get copyWith => CopyWith$Variables$Mutation$ResetPassword(
-            this,
-            (i) => i,
-          );
+  CopyWith$Variables$Mutation$ResetPassword<Variables$Mutation$ResetPassword> get copyWith => CopyWith$Variables$Mutation$ResetPassword(
+        this,
+        (i) => i,
+      );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$ResetPassword ||
-        runtimeType != other.runtimeType) {
+    if (other is! Variables$Mutation$ResetPassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$email = email;
@@ -18584,14 +17047,12 @@ abstract class CopyWith$Variables$Mutation$ResetPassword<TRes> {
     TRes Function(Variables$Mutation$ResetPassword) then,
   ) = _CopyWithImpl$Variables$Mutation$ResetPassword;
 
-  factory CopyWith$Variables$Mutation$ResetPassword.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$ResetPassword;
+  factory CopyWith$Variables$Mutation$ResetPassword.stub(TRes res) = _CopyWithStubImpl$Variables$Mutation$ResetPassword;
 
   TRes call({String? email});
 }
 
-class _CopyWithImpl$Variables$Mutation$ResetPassword<TRes>
-    implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
+class _CopyWithImpl$Variables$Mutation$ResetPassword<TRes> implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
   _CopyWithImpl$Variables$Mutation$ResetPassword(
     this._instance,
     this._then,
@@ -18603,15 +17064,13 @@ class _CopyWithImpl$Variables$Mutation$ResetPassword<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? email = _undefined}) =>
-      _then(Variables$Mutation$ResetPassword._({
+  TRes call({Object? email = _undefined}) => _then(Variables$Mutation$ResetPassword._({
         ..._instance._$data,
         if (email != _undefined) 'email': (email as String?),
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$ResetPassword<TRes>
-    implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
+class _CopyWithStubImpl$Variables$Mutation$ResetPassword<TRes> implements CopyWith$Variables$Mutation$ResetPassword<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ResetPassword(this._res);
 
   TRes _res;
@@ -18629,10 +17088,7 @@ class Mutation$ResetPassword {
     final l$resetPassword = json['resetPassword'];
     final l$$__typename = json['__typename'];
     return Mutation$ResetPassword(
-      resetPassword: l$resetPassword == null
-          ? null
-          : Mutation$ResetPassword$resetPassword.fromJson(
-              (l$resetPassword as Map<String, dynamic>)),
+      resetPassword: l$resetPassword == null ? null : Mutation$ResetPassword$resetPassword.fromJson((l$resetPassword as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -18683,8 +17139,7 @@ class Mutation$ResetPassword {
 }
 
 extension UtilityExtension$Mutation$ResetPassword on Mutation$ResetPassword {
-  CopyWith$Mutation$ResetPassword<Mutation$ResetPassword> get copyWith =>
-      CopyWith$Mutation$ResetPassword(
+  CopyWith$Mutation$ResetPassword<Mutation$ResetPassword> get copyWith => CopyWith$Mutation$ResetPassword(
         this,
         (i) => i,
       );
@@ -18696,8 +17151,7 @@ abstract class CopyWith$Mutation$ResetPassword<TRes> {
     TRes Function(Mutation$ResetPassword) then,
   ) = _CopyWithImpl$Mutation$ResetPassword;
 
-  factory CopyWith$Mutation$ResetPassword.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ResetPassword;
+  factory CopyWith$Mutation$ResetPassword.stub(TRes res) = _CopyWithStubImpl$Mutation$ResetPassword;
 
   TRes call({
     Mutation$ResetPassword$resetPassword? resetPassword,
@@ -18706,8 +17160,7 @@ abstract class CopyWith$Mutation$ResetPassword<TRes> {
   CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword;
 }
 
-class _CopyWithImpl$Mutation$ResetPassword<TRes>
-    implements CopyWith$Mutation$ResetPassword<TRes> {
+class _CopyWithImpl$Mutation$ResetPassword<TRes> implements CopyWith$Mutation$ResetPassword<TRes> {
   _CopyWithImpl$Mutation$ResetPassword(
     this._instance,
     this._then,
@@ -18724,25 +17177,19 @@ class _CopyWithImpl$Mutation$ResetPassword<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ResetPassword(
-        resetPassword: resetPassword == _undefined
-            ? _instance.resetPassword
-            : (resetPassword as Mutation$ResetPassword$resetPassword?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        resetPassword: resetPassword == _undefined ? _instance.resetPassword : (resetPassword as Mutation$ResetPassword$resetPassword?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 
   CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword {
     final local$resetPassword = _instance.resetPassword;
     return local$resetPassword == null
         ? CopyWith$Mutation$ResetPassword$resetPassword.stub(_then(_instance))
-        : CopyWith$Mutation$ResetPassword$resetPassword(
-            local$resetPassword, (e) => call(resetPassword: e));
+        : CopyWith$Mutation$ResetPassword$resetPassword(local$resetPassword, (e) => call(resetPassword: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ResetPassword<TRes>
-    implements CopyWith$Mutation$ResetPassword<TRes> {
+class _CopyWithStubImpl$Mutation$ResetPassword<TRes> implements CopyWith$Mutation$ResetPassword<TRes> {
   _CopyWithStubImpl$Mutation$ResetPassword(this._res);
 
   TRes _res;
@@ -18753,8 +17200,7 @@ class _CopyWithStubImpl$Mutation$ResetPassword<TRes>
   }) =>
       _res;
 
-  CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword =>
-      CopyWith$Mutation$ResetPassword$resetPassword.stub(_res);
+  CopyWith$Mutation$ResetPassword$resetPassword<TRes> get resetPassword => CopyWith$Mutation$ResetPassword$resetPassword.stub(_res);
 }
 
 const documentNodeMutationResetPassword = DocumentNode(definitions: [
@@ -18811,16 +17257,13 @@ const documentNodeMutationResetPassword = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$ResetPassword _parserFn$Mutation$ResetPassword(
-        Map<String, dynamic> data) =>
-    Mutation$ResetPassword.fromJson(data);
+Mutation$ResetPassword _parserFn$Mutation$ResetPassword(Map<String, dynamic> data) => Mutation$ResetPassword.fromJson(data);
 typedef OnMutationCompleted$Mutation$ResetPassword = FutureOr<void> Function(
   Map<String, dynamic>?,
   Mutation$ResetPassword?,
 );
 
-class Options$Mutation$ResetPassword
-    extends graphql.MutationOptions<Mutation$ResetPassword> {
+class Options$Mutation$ResetPassword extends graphql.MutationOptions<Mutation$ResetPassword> {
   Options$Mutation$ResetPassword({
     String? operationName,
     Variables$Mutation$ResetPassword? variables,
@@ -18846,9 +17289,7 @@ class Options$Mutation$ResetPassword
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null
-                        ? null
-                        : _parserFn$Mutation$ResetPassword(data),
+                    data == null ? null : _parserFn$Mutation$ResetPassword(data),
                   ),
           update: update,
           onError: onError,
@@ -18860,15 +17301,12 @@ class Options$Mutation$ResetPassword
 
   @override
   List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
+        ...super.onCompleted == null ? super.properties : super.properties.where((property) => property != onCompleted),
         onCompletedWithParsed,
       ];
 }
 
-class WatchOptions$Mutation$ResetPassword
-    extends graphql.WatchQueryOptions<Mutation$ResetPassword> {
+class WatchOptions$Mutation$ResetPassword extends graphql.WatchQueryOptions<Mutation$ResetPassword> {
   WatchOptions$Mutation$ResetPassword({
     String? operationName,
     Variables$Mutation$ResetPassword? variables,
@@ -18900,12 +17338,8 @@ class WatchOptions$Mutation$ResetPassword
 }
 
 extension ClientExtension$Mutation$ResetPassword on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$ResetPassword>> mutate$ResetPassword(
-          [Options$Mutation$ResetPassword? options]) async =>
-      await this.mutate(options ?? Options$Mutation$ResetPassword());
-  graphql.ObservableQuery<Mutation$ResetPassword> watchMutation$ResetPassword(
-          [WatchOptions$Mutation$ResetPassword? options]) =>
-      this.watchMutation(options ?? WatchOptions$Mutation$ResetPassword());
+  Future<graphql.QueryResult<Mutation$ResetPassword>> mutate$ResetPassword([Options$Mutation$ResetPassword? options]) async => await this.mutate(options ?? Options$Mutation$ResetPassword());
+  graphql.ObservableQuery<Mutation$ResetPassword> watchMutation$ResetPassword([WatchOptions$Mutation$ResetPassword? options]) => this.watchMutation(options ?? WatchOptions$Mutation$ResetPassword());
 }
 
 class Mutation$ResetPassword$resetPassword {
@@ -18914,8 +17348,7 @@ class Mutation$ResetPassword$resetPassword {
     this.$__typename = 'ResetPassword',
   });
 
-  factory Mutation$ResetPassword$resetPassword.fromJson(
-      Map<String, dynamic> json) {
+  factory Mutation$ResetPassword$resetPassword.fromJson(Map<String, dynamic> json) {
     final l$message = json['message'];
     final l$$__typename = json['__typename'];
     return Mutation$ResetPassword$resetPassword(
@@ -18952,8 +17385,7 @@ class Mutation$ResetPassword$resetPassword {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ResetPassword$resetPassword ||
-        runtimeType != other.runtimeType) {
+    if (other is! Mutation$ResetPassword$resetPassword || runtimeType != other.runtimeType) {
       return false;
     }
     final l$message = message;
@@ -18970,14 +17402,11 @@ class Mutation$ResetPassword$resetPassword {
   }
 }
 
-extension UtilityExtension$Mutation$ResetPassword$resetPassword
-    on Mutation$ResetPassword$resetPassword {
-  CopyWith$Mutation$ResetPassword$resetPassword<
-          Mutation$ResetPassword$resetPassword>
-      get copyWith => CopyWith$Mutation$ResetPassword$resetPassword(
-            this,
-            (i) => i,
-          );
+extension UtilityExtension$Mutation$ResetPassword$resetPassword on Mutation$ResetPassword$resetPassword {
+  CopyWith$Mutation$ResetPassword$resetPassword<Mutation$ResetPassword$resetPassword> get copyWith => CopyWith$Mutation$ResetPassword$resetPassword(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
@@ -18986,8 +17415,7 @@ abstract class CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
     TRes Function(Mutation$ResetPassword$resetPassword) then,
   ) = _CopyWithImpl$Mutation$ResetPassword$resetPassword;
 
-  factory CopyWith$Mutation$ResetPassword$resetPassword.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ResetPassword$resetPassword;
+  factory CopyWith$Mutation$ResetPassword$resetPassword.stub(TRes res) = _CopyWithStubImpl$Mutation$ResetPassword$resetPassword;
 
   TRes call({
     String? message,
@@ -18995,8 +17423,7 @@ abstract class CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ResetPassword$resetPassword<TRes>
-    implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
+class _CopyWithImpl$Mutation$ResetPassword$resetPassword<TRes> implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
   _CopyWithImpl$Mutation$ResetPassword$resetPassword(
     this._instance,
     this._then,
@@ -19013,16 +17440,12 @@ class _CopyWithImpl$Mutation$ResetPassword$resetPassword<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ResetPassword$resetPassword(
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
+        message: message == _undefined ? _instance.message : (message as String?),
+        $__typename: $__typename == _undefined || $__typename == null ? _instance.$__typename : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword<TRes>
-    implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
+class _CopyWithStubImpl$Mutation$ResetPassword$resetPassword<TRes> implements CopyWith$Mutation$ResetPassword$resetPassword<TRes> {
   _CopyWithStubImpl$Mutation$ResetPassword$resetPassword(this._res);
 
   TRes _res;

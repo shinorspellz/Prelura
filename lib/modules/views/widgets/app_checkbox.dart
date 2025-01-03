@@ -16,28 +16,30 @@ class PreluraCheckBox extends StatelessWidget {
   final String? subtitle;
   final Widget? titleWidget;
   final Icon? icon;
+  final TextStyle? style;
 
-  const PreluraCheckBox(
-      {super.key,
-      required this.isChecked,
-      required this.onChanged,
-      this.size = 20.0,
-      this.activeColor = PreluraColors.primaryColor,
-      this.inactiveColor = Colors.grey,
-      this.borderRadius = BorderRadius.zero,
-      required this.title,
-      this.subtitle,
-      this.icon,
-      this.colorName,
-      this.titleWidget});
+  const PreluraCheckBox({
+    super.key,
+    required this.isChecked,
+    required this.onChanged,
+    this.size = 20.0,
+    this.activeColor = PreluraColors.primaryColor,
+    this.inactiveColor = Colors.grey,
+    this.borderRadius = BorderRadius.zero,
+    required this.title,
+    this.subtitle,
+    this.icon,
+    this.colorName,
+    this.titleWidget,
+    this.style,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onChanged(!isChecked), // Toggle the state when tapped
       child: Container(
-        padding:
-            const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
+        padding: const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
@@ -78,20 +80,16 @@ class PreluraCheckBox extends StatelessWidget {
                       ] else ...[
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                          style: style ?? Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                       if (subtitle != null) ...[
                         const SizedBox(height: 6),
                         Text(
                           subtitle!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w300),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
                           overflow: TextOverflow.ellipsis, // Handle overflow
-                          maxLines:
-                              4, // Limit the number of lines for the subtitle
+                          maxLines: 4, // Limit the number of lines for the subtitle
                         ),
                       ]
                     ],

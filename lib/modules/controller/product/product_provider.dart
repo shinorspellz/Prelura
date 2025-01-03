@@ -237,6 +237,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     List<int>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool isFeatured = false,
   }) async {
     state = const AsyncLoading();
 
@@ -259,6 +260,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           materials: materials,
           style: style,
           customBrand: customBrand,
+          isFeatured: isFeatured,
         ),
       );
       ref.invalidate(userProduct);
@@ -282,6 +284,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     List<int>? materials,
     Enum$StyleEnum? style,
     String? customBrand,
+    bool isFeatured = false,
   }) async {
     state = const AsyncLoading();
 
@@ -306,6 +309,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           materials: materials,
           style: style,
           customBrand: customBrand,
+          isFeatured: isFeatured,
         ),
       );
       ref.invalidate(userProduct);
@@ -993,10 +997,9 @@ final userProductGroupingByCategoryProvider =
   return result;
 });
 
-// // Provider for recently viewed products
 // final recentlyViewedProductsProvider =
-//     AsyncNotifierProvider<RecentlyViewedProductNotifier, List<ProductModel>>(
-//         RecentlyViewedProductNotifier.new);
+//     AsyncNotifierProvider<DiscountProductsController, List<ProductModel>>(
+//         DiscountProductsController.new);
 
 // // Notifier for managing recently viewed products
 // class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
@@ -1025,6 +1028,11 @@ final userProductGroupingByCategoryProvider =
 //       state = AsyncError(e, stackTrace);
 //       return [];
 //     }
+//   }
+// }
+
+//   bool canLoadMore() {
+//     return (state.value?.length ?? 0) < _totalItems;
 //   }
 // }
 

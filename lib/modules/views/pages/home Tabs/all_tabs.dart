@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 import '../../../../res/colors.dart';
@@ -14,8 +15,7 @@ import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
 
 class HomeAllTab extends ConsumerWidget {
-  const HomeAllTab(
-      {super.key, required this.searchQuery, required this.controller});
+  const HomeAllTab({super.key, required this.searchQuery, required this.controller});
   final String searchQuery;
   final ScrollController controller;
 
@@ -33,8 +33,7 @@ class HomeAllTab extends ConsumerWidget {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -117,8 +116,7 @@ class HomeAllTab extends ConsumerWidget {
                         // height: 220,
                         width: 180,
                         margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
                   ),
@@ -130,8 +128,7 @@ class HomeAllTab extends ConsumerWidget {
                         // height: 220,
                         width: 180,
                         margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
                   )),
@@ -162,13 +159,11 @@ class HomeAllTab extends ConsumerWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,
                   ),
-                  child: LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
+                  child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
                     return GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
@@ -176,8 +171,7 @@ class HomeAllTab extends ConsumerWidget {
                       ),
                       itemCount: products.take(6).length,
                       itemBuilder: (context, index) {
-                        return ProductCard(
-                            product: products.take(6).toList()[index]);
+                        return ProductCard(product: products.take(6).toList()[index]);
                       },
                     );
                   }),
@@ -216,8 +210,7 @@ class HomeAllTab extends ConsumerWidget {
                         // height: 220,
                         width: 180,
                         margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
                   ),
@@ -234,8 +227,7 @@ class HomeAllTab extends ConsumerWidget {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -274,9 +266,7 @@ class HomeAllTab extends ConsumerWidget {
   }
 }
 
-Widget _buildSectionTitle(
-    String MainTitle, String subtitle, BuildContext context,
-    {VoidCallback? onTap}) {
+Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
     child: Column(
@@ -285,10 +275,9 @@ Widget _buildSectionTitle(
         Text(
           MainTitle,
           textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+          style: context.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(
           height: 1,
@@ -299,18 +288,11 @@ Widget _buildSectionTitle(
             Text(
               subtitle,
               textAlign: TextAlign.left,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.greyColor),
             ),
             GestureDetector(
               onTap: onTap,
-              child: Text("See All",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: PreluraColors.primaryColor)),
+              child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
             )
           ],
         ),
@@ -322,8 +304,7 @@ Widget _buildSectionTitle(
   );
 }
 
-Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
-    {VoidCallback? onTap}) {
+Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
     child: Row(
@@ -332,18 +313,13 @@ Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
         Text(
           MainTitle,
           textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+          style: context.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w500,
+          ),
         ),
         GestureDetector(
           onTap: onTap,
-          child: Text("See All",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: PreluraColors.primaryColor)),
+          child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
         )
       ],
     ),

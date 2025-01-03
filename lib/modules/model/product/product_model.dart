@@ -36,6 +36,7 @@ class ProductModel with _$ProductModel {
     final List<MaterialModel>? materials,
     final Enum$StyleEnum? style,
     final String? customBrand,
+    final bool? isFeatured,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);

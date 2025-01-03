@@ -3,7 +3,14 @@ import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_vi
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({super.key, this.height = 25, this.color, this.text, this.textStyle, this.strokeWidth});
+  const LoadingWidget({
+    super.key,
+    this.height = 25,
+    this.color,
+    this.text,
+    this.textStyle,
+    this.strokeWidth,
+  });
   final double height;
   final Color? color;
   final String? text;
