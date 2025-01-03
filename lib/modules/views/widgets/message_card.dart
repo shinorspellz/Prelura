@@ -63,8 +63,7 @@ class MessageCard extends StatelessWidget {
                       model.lastMessage!.text,
                       style: Theme.of(context)
                           .textTheme
-                          .bodySmall
-                          ?.copyWith(fontWeight: FontWeight.w400),
+                          .bodySmall?.copyWith(fontWeight: FontWeight.w400),
                     ),
                   ]
 

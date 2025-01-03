@@ -24,7 +24,7 @@ class FilterAndSort extends ConsumerWidget {
     final color = context.isDarkMode
         ? PreluraColors.jobDetailGrey.withOpacity(0.7)
         : PreluraColors.black.withOpacity(0.6);
-    final fontWeight = FontWeight.w400;
+    final fontWeight = FontWeight.w600;
     final selectedColor = context.isDarkMode
         ? PreluraColors.greyColorButton
         : PreluraColors.black;
@@ -44,7 +44,7 @@ class FilterAndSort extends ConsumerWidget {
                   child: Text(
                     "Filter",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                 ),
@@ -124,7 +124,7 @@ class FilterAndSort extends ConsumerWidget {
                   child: Text(
                     "Sort",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                 ),
