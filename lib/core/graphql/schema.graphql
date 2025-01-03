@@ -170,6 +170,19 @@ scalar DateTime
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
 
+"""
+Delete account permanently or make `user.is_active=False`.
+
+The behavior is defined on settings.
+Anyway user refresh tokens are revoked.
+
+User must be verified and confirm password.
+"""
+type DeleteAccount {
+  errors: ExpectedErrorType
+  success: Boolean
+}
+
 type DeleteConversation {
   message: String
 }
@@ -189,6 +202,14 @@ type DeleteNotification {
 type DeleteProduct {
   success: Boolean
   message: String
+}
+
+type EarningType {
+  networth: Float
+  pendingPayments: QuantityValuePair
+  completedPayments: QuantityValuePair
+  earningsInMonth: QuantityValuePair
+  totalEarnings: QuantityValuePair
 }
 
 """
@@ -323,8 +344,8 @@ type Mutation {
 
   """update user notification preferences"""
   updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
-  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
+  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, isFeatured: Boolean, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   createOrder(productId: Int!, quantity: Int): CreateOrder
@@ -361,19 +382,7 @@ type Mutation {
   unfollowUser(followedId: Int!): UnfollowUser
   rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
   resetPassword(email: String): ResetPassword
-
-  """
-  Change user password without old password.
-  
-  Receive the token that was sent by email.
-  
-  If token and new passwords are valid, update
-  user password and in case of using refresh
-  tokens, revoke all of them.
-  
-  Also, if user has not been verified yet, verify it.
-  """
-  passwordReset(token: String!, newPassword1: String!, newPassword2: String!): PasswordReset
+  passwordReset(code: String!, email: String!, password: String!): PasswordReset
 
   """
   Register user with fields defined in the settings.
@@ -430,6 +439,23 @@ type Mutation {
   a successful response is returned.
   """
   resendActivationEmail(email: String!): ResendActivationEmail
+
+  """
+  Change account password when user knows the old password.
+  
+  A new token and refresh token are sent. User must be verified.
+  """
+  passwordChange(oldPassword: String!, newPassword1: String!, newPassword2: String!): PasswordChange
+
+  """
+  Delete account permanently or make `user.is_active=False`.
+  
+  The behavior is defined on settings.
+  Anyway user refresh tokens are revoked.
+  
+  User must be verified and confirm password.
+  """
+  deleteAccount(password: String!): DeleteAccount
 }
 
 """
@@ -538,19 +564,21 @@ enum ParcelSizeEnum {
 }
 
 """
-Change user password without old password.
+Change account password when user knows the old password.
 
-Receive the token that was sent by email.
-
-If token and new passwords are valid, update
-user password and in case of using refresh
-tokens, revoke all of them.
-
-Also, if user has not been verified yet, verify it.
+A new token and refresh token are sent. User must be verified.
 """
-type PasswordReset {
+type PasswordChange {
   errors: ExpectedErrorType
   success: Boolean
+  token: String
+}
+
+type PasswordReset {
+  message: String
+  token: String
+  restToken: String
+  user: UserType
 }
 
 enum PaymentMethodEnum {
@@ -978,9 +1006,9 @@ type ProductType {
   brand: BrandType
   customBrand: String
   hashtags: JSONString!
+  isFeatured: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  orderSet: [OrderType!]!
   userLiked: Boolean
 }
 
@@ -989,9 +1017,15 @@ input ProfilePictureInputType {
   thumbnailUrl: String
 }
 
+type QuantityValuePair {
+  quantity: Int
+  value: Float
+}
+
 type Query {
   getBannerForCurrentSeason: String
   payment(paymentId: Int!): [PaymentType]
+  userEarnings(usernameId: Int): EarningType
   conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
   conversations: [ConversationType]
   archivedConversations: [ConversationType]

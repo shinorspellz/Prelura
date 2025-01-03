@@ -140,441 +140,482 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider));
 
-    final value = ref.watch(userProductGroupingByCategoryProvider(user?.id ?? 0)).valueOrNull;
-    final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
-    final List<CategoryGroupType> categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
+    return user.maybeWhen(
+        orElse: () => LoadingWidget(),
+        data: (user) {
+          final value = ref.watch(userProductGroupingByCategoryProvider(user.id)).valueOrNull;
+          // final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
+          final List<CategoryGroupType> categories = value == null ? [] : value.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
 
-    return SmartRefresher(
-      controller: _refreshController,
-      onRefresh: _onRefresh,
-      onLoading: _onLoading,
-      enablePullDown: true,
-      enablePullUp: false,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            if (widget.username != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                child: ProfileCardWidget(
-                  user: user,
-                ),
-              )
-            else
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                child: ProfileCardWidget(),
-              ),
-            Column(
-              children: [
-                if (user.bio != null)
-                  Stack(
-                    clipBehavior: Clip.none,
+          return SmartRefresher(
+            controller: _refreshController,
+            onRefresh: _onRefresh,
+            onLoading: _onLoading,
+            enablePullDown: true,
+            enablePullUp: false,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  if (widget.username != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                      child: ProfileCardWidget(
+                        user: user,
+                      ),
+                    )
+                  else
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                      child: ProfileCardWidget(),
+                    ),
+                  Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                      if (user.bio != null)
+                        Stack(
+                          clipBehavior: Clip.none,
                           children: [
-                            Expanded(
-                              child: Text(
-                                user.bio ?? '',
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      user.bio ?? '',
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            Positioned(
+                              top: -20,
+                              right: 10,
+                              child: CircleAvatar(
+                                radius: 16,
+                                backgroundColor: PreluraColors.activeColor,
+                                child: ref.watch(userNotfierProvider).isLoading
+                                    ? const SizedBox(
+                                        height: 16,
+                                        width: 16,
+                                        child: LoadingWidget(),
+                                      )
+                                    : GestureDetector(
+                                        onTap: () {
+                                          // VBottomSheetComponent.customBottomSheet(context: context, child: child)
+                                          VBottomSheetComponent.actionBottomSheet(
+                                            context: context,
+                                            actions: [
+                                              VBottomSheetItem(
+                                                  onTap: (context) {
+                                                    Navigator.pop(context);
+                                                    VBottomSheetComponent.actionBottomSheet(
+                                                      context: context,
+                                                      actions: [
+                                                        VBottomSheetItem(
+                                                            onTap: (context) async {
+                                                              Navigator.pop(context);
+                                                              final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+                                                              if (photo == null) return;
+                                                              await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                                              ref.read(userNotfierProvider).whenOrNull(
+                                                                    error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                                                    data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                                  );
+                                                            },
+                                                            title: 'Gallery'),
+                                                        VBottomSheetItem(
+                                                            onTap: (context) async {
+                                                              Navigator.pop(context);
+                                                              final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+
+                                                              if (photo == null) return;
+                                                              await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
+                                                              ref.read(userNotfierProvider).whenOrNull(
+                                                                    error: (e, _) => context.alert('An error occured while uploading profile image'),
+                                                                    data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                                  );
+                                                            },
+                                                            title: 'Camera'),
+                                                      ],
+                                                    );
+                                                  },
+                                                  title: 'Update Picture'),
+                                              VBottomSheetItem(
+                                                  onTap: (context) {
+                                                    Navigator.pop(context);
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        final controller = TextEditingController(text: user.bio);
+                                                        return AlertDialog(
+                                                          title: const Text('Update Bio'),
+                                                          content: Column(
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              PreluraAuthTextField(
+                                                                label: 'Bio',
+                                                                labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                                                                hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
+                                                                controller: controller,
+                                                                maxLines: null,
+                                                              ),
+                                                              10.verticalSpacing,
+                                                              Consumer(builder: (context, ref, _) {
+                                                                return PreluraButtonWithLoader(
+                                                                  showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
+                                                                  onPressed: () async {
+                                                                    await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
+                                                                    ref.read(userNotfierProvider).whenOrNull(
+                                                                          error: (e, _) => context.alert('An error occured while updating'),
+                                                                          data: (_) {
+                                                                            Navigator.pop(context);
+                                                                            HelperFunction.context = context;
+                                                                            HelperFunction.showToast(message: 'Bio updated!');
+                                                                          },
+                                                                        );
+                                                                  },
+                                                                  buttonTitle: 'Update',
+                                                                  // width: MediaQuery.sizeOf(context).width,
+                                                                );
+                                                              })
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                  title: 'Update Bio')
+                                            ],
+                                          );
+                                        },
+                                        child: SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          // decoration: BoxDecoration(
+                                          //   shape: BoxShape.circle,
+                                          // ),
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.white,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                              ),
+                            )
+                          ],
+                        ),
+
+                      // Social and Additional Info Section
+                      UserScrollableList(
+                        user: user,
+                      ),
+                      if (selectedItem.isNotEmpty)
+                        MenuCard(
+                            icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
+                            title: selectedItem.isNotEmpty
+                                ? "Viewing"
+                                : widget.username != null
+                                    ? 'Categories from this seller'
+                                    : "Categories",
+                            sideText: selectedItem.isNotEmpty ? selectedItem : null,
+                            sideTextColor: PreluraColors.primaryColor,
+                            textColor: PreluraColors.grey,
+                            rightArrow: !isSelected,
+                            // borderbottom: false,
+                            trailingIcon: isSelected
+                                ? null
+                                : selectedItem.isNotEmpty
+                                    ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
+                                    : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
+                            onTap: () {
+                              isSelected = !isSelected;
+                              selectedItem = "";
+                              expandedCategories = false;
+                              setState(() {});
+                              ref.invalidate(filterUserProductProvider);
+                            })
+                      else
+                        ExpansionTile(
+                          title: Text(
+                            widget.username != null ? 'Categories from this seller' : "Categories",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: PreluraColors.grey,
+                                ),
+                          ),
+                          tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
+                          childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                          minTileHeight: 40,
+                          onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                          controller: controller,
+                          expansionAnimationStyle: AnimationStyle(
+                            duration: Duration(milliseconds: 300),
+                          ),
+                          children: categories
+                              .map((e) => Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.symmetric(
+                                      horizontal: BorderSide(
+                                        color: context.theme.dividerColor,
+                                        width: 1,
+                                      ),
+                                    )),
+                                    child: ExpansionTile(
+                                        title: RichText(
+                                            text: TextSpan(children: [
+                                          TextSpan(
+                                            text: e.name,
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
+                                          TextSpan(
+                                            text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                                  fontWeight: FontWeight.w400,
+                                                  color: PreluraColors.grey,
+                                                ),
+                                          )
+                                        ])),
+                                        tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                                        // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                                        minTileHeight: 38,
+                                        // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                                        // controller: controller,
+                                        expansionAnimationStyle: AnimationStyle(
+                                          duration: Duration(milliseconds: 300),
+                                        ),
+                                        children:
+                                            // ref
+                                            //         .watch(categoryProvider)
+                                            //         .valueOrNull
+                                            //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+                                            //         .firstOrNull
+                                            //         ?.subCategory
+                                            //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
+                                            //         .toSet()
+                                            //         .intersection((userSubCategories ?? []).toSet())
+                                            subCategoriesIntersection(e, user.id)
+                                                    .map(
+                                                      (x) => Column(
+                                                        children: [
+                                                          Divider(
+                                                            thickness: 2,
+                                                          ),
+                                                          MenuCard(
+                                                            title: x.name,
+                                                            sideTextColor: PreluraColors.grey,
+                                                            borderbottom: false,
+                                                            // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                                            trailingIcon: Container(
+                                                              height: 15,
+                                                              width: 15,
+                                                              padding: EdgeInsets.all(3),
+                                                              decoration: BoxDecoration(
+                                                                shape: BoxShape.circle,
+                                                                border: Border.all(
+                                                                  width: 2,
+                                                                  color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
+                                                                ),
+                                                              ),
+                                                              child: Container(
+                                                                height: 15,
+                                                                width: 15,
+                                                                decoration: BoxDecoration(
+                                                                  shape: BoxShape.circle,
+                                                                  color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                                                            onTap: () {
+                                                              selectedItem = x.name;
+                                                              isSelected = false;
+                                                              setState(() {});
+                                                              ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
+
+                                                              controller.collapse();
+                                                            },
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                    .toList() ??
+                                                []),
+                                  ))
+                              .toList(),
+                        ),
+                      if (!expandedCategories && selectedItem.isEmpty)
+                        Divider(
+                          thickness: 1,
+                        ),
+
+                      // if (isSelected) ...[
+                      //   ListView.builder(
+                      //     shrinkWrap: true,
+                      //     itemCount: categories.length,
+                      //     itemBuilder: (_, index) {
+                      //       final cat = categories[index];
+
+                      //       return MenuCard(
+                      //         title: cat.name,
+                      //         sideTextColor: PreluraColors.grey,
+                      //         sideText: "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
+                      //         trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                      //         onTap: () {
+                      //           selectedItem = cat.name;
+                      //           isSelected = false;
+                      //           setState(() {});
+                      //           ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
+                      //         },
+                      //       );
+                      //     },
+                      //   )
+                      // ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
+                        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                          Text(
+                            widget.username != null ? "Brands from this seller" : "Top Brands",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
+                          ),
+                          // RenderSvgWithColor2(
+                          //     svgPath: PreluraIcons.search_glass_svg),
+                          // ],
+                          if (!isActive)
+                            GestureDetector(
+                                onTap: () {
+                                  isActive = true;
+                                  setState(() {});
+                                },
+                                child: Icon(Icons.search, color: PreluraColors.primaryColor)),
+                          if (isActive)
+                            AnimatedContainer(
+                              width: 54.5.w,
+                              color: Colors.transparent,
+                              alignment: Alignment.centerRight,
+                              duration: const Duration(milliseconds: 150),
+                              child: Searchwidget(
+                                obscureText: false,
+                                shouldReadOnly: false,
+                                enabled: true,
+                                showInputBorder: true,
+                                autofocus: true,
+                                cancelButton: true,
+                                minWidth: 50.w,
+                                hidePrefix: true,
+                                onChanged: (value) {
+                                  ref.read(userProductSearchQuery.notifier).state = value;
+                                },
+                                onCancel: () {
+                                  isActive = false;
+                                  setState(() {});
+                                  ref.invalidate(userProductSearchQuery);
+                                },
+                              ),
+                            )
+                        ]),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: UserPopularBrand(
+                          userId: user.id,
+                        ),
+                      ),
+
+                      FilterAndSort(
+                        userId: user.id,
+                      ),
+
+                      20.verticalSpacing,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Featured',
+                              style: context.textTheme.titleLarge?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            10.verticalSpacing,
+                            ref.watch(userProduct(user.username)).when(
+                                  skipLoadingOnRefresh: false,
+                                  data: (products) => DisplaySection(
+                                    products: products.where((e) => e.isFeatured ?? false).toList(),
+                                    isInProduct: false,
+                                  ),
+                                  error: (e, _) {
+                                    return Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(e.toString()),
+                                          TextButton.icon(
+                                            onPressed: () {
+                                              // log(e.toString(), stackTrace: _);
+                                              ref.invalidate(userProduct);
+                                            },
+                                            label: const Text('Retry'),
+                                            icon: const Icon(Icons.refresh_rounded),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  loading: () => GridShimmer(),
+                                ),
+                            10.verticalSpacing,
                           ],
                         ),
                       ),
-                      Positioned(
-                        top: -20,
-                        right: 10,
-                        child: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: PreluraColors.activeColor,
-                          child: ref.watch(userNotfierProvider).isLoading
-                              ? const SizedBox(
-                                  height: 16,
-                                  width: 16,
-                                  child: LoadingWidget(),
-                                )
-                              : GestureDetector(
-                                  onTap: () {
-                                    // VBottomSheetComponent.customBottomSheet(context: context, child: child)
-                                    VBottomSheetComponent.actionBottomSheet(
-                                      context: context,
-                                      actions: [
-                                        VBottomSheetItem(
-                                            onTap: (context) {
-                                              Navigator.pop(context);
-                                              VBottomSheetComponent.actionBottomSheet(
-                                                context: context,
-                                                actions: [
-                                                  VBottomSheetItem(
-                                                      onTap: (context) async {
-                                                        Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
-                                                            );
-                                                      },
-                                                      title: 'Gallery'),
-                                                  VBottomSheetItem(
-                                                      onTap: (context) async {
-                                                        Navigator.pop(context);
-                                                        final photo = await ImagePicker().pickImage(source: ImageSource.camera);
-
-                                                        if (photo == null) return;
-                                                        await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                        ref.read(userNotfierProvider).whenOrNull(
-                                                              error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                              data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
-                                                            );
-                                                      },
-                                                      title: 'Camera'),
-                                                ],
-                                              );
-                                            },
-                                            title: 'Update Picture'),
-                                        VBottomSheetItem(
-                                            onTap: (context) {
-                                              Navigator.pop(context);
-                                              showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  final controller = TextEditingController(text: user.bio);
-                                                  return AlertDialog(
-                                                    title: const Text('Update Bio'),
-                                                    content: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        PreluraAuthTextField(
-                                                          label: 'Bio',
-                                                          labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
-                                                          controller: controller,
-                                                          maxLines: null,
-                                                        ),
-                                                        10.verticalSpacing,
-                                                        Consumer(builder: (context, ref, _) {
-                                                          return PreluraButtonWithLoader(
-                                                            showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
-                                                            onPressed: () async {
-                                                              await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
-                                                              ref.read(userNotfierProvider).whenOrNull(
-                                                                    error: (e, _) => context.alert('An error occured while updating'),
-                                                                    data: (_) {
-                                                                      Navigator.pop(context);
-                                                                      HelperFunction.context = context;
-                                                                      HelperFunction.showToast(message: 'Bio updated!');
-                                                                    },
-                                                                  );
-                                                            },
-                                                            buttonTitle: 'Update',
-                                                            // width: MediaQuery.sizeOf(context).width,
-                                                          );
-                                                        })
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            title: 'Update Bio')
-                                      ],
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    // decoration: BoxDecoration(
-                                    //   shape: BoxShape.circle,
-                                    // ),
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Colors.white,
-                                      size: 16,
-                                    ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: ref.watch(userProduct(user.username)).when(
+                              skipLoadingOnRefresh: false,
+                              data: (products) => DisplaySection(
+                                products: products,
+                                isInProduct: false,
+                              ),
+                              error: (e, _) {
+                                return Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(e.toString()),
+                                      TextButton.icon(
+                                        onPressed: () {
+                                          // log(e.toString(), stackTrace: _);
+                                          ref.invalidate(userProduct);
+                                        },
+                                        label: const Text('Retry'),
+                                        icon: const Icon(Icons.refresh_rounded),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                        ),
+                                );
+                              },
+                              loading: () => GridShimmer(),
+                            ),
                       )
                     ],
                   ),
-
-                // Social and Additional Info Section
-                UserScrollableList(
-                  user: user,
-                ),
-                if (selectedItem.isNotEmpty)
-                  MenuCard(
-                      icon: isSelected ? Icon(Icons.arrow_back_ios_rounded, size: 18, color: PreluraColors.primaryColor) : null,
-                      title: selectedItem.isNotEmpty
-                          ? "Viewing"
-                          : widget.username != null
-                              ? 'Categories from this seller'
-                              : "Categories",
-                      sideText: selectedItem.isNotEmpty ? selectedItem : null,
-                      sideTextColor: PreluraColors.primaryColor,
-                      textColor: PreluraColors.grey,
-                      rightArrow: !isSelected,
-                      // borderbottom: false,
-                      trailingIcon: isSelected
-                          ? null
-                          : selectedItem.isNotEmpty
-                              ? Icon(Icons.cancel_rounded, color: PreluraColors.grey)
-                              : Icon(Icons.arrow_forward_ios_rounded, color: PreluraColors.grey, size: 18),
-                      onTap: () {
-                        isSelected = !isSelected;
-                        selectedItem = "";
-                        expandedCategories = false;
-                        setState(() {});
-                        ref.invalidate(filterUserProductProvider);
-                      })
-                else
-                  ExpansionTile(
-                    title: Text(
-                      widget.username != null ? 'Categories from this seller' : "Categories",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: PreluraColors.grey,
-                          ),
-                    ),
-                    tilePadding: EdgeInsets.only(right: 15, left: 15, top: 10),
-                    childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                    minTileHeight: 40,
-                    onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                    controller: controller,
-                    expansionAnimationStyle: AnimationStyle(
-                      duration: Duration(milliseconds: 300),
-                    ),
-                    children: categories
-                        .map((e) => Container(
-                              decoration: BoxDecoration(
-                                  border: Border.symmetric(
-                                horizontal: BorderSide(
-                                  color: context.theme.dividerColor,
-                                  width: 1,
-                                ),
-                              )),
-                              child: ExpansionTile(
-                                  title: RichText(
-                                      text: TextSpan(children: [
-                                    TextSpan(
-                                      text: e.name,
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                    TextSpan(
-                                      text: " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                            fontWeight: FontWeight.w400,
-                                            color: PreluraColors.grey,
-                                          ),
-                                    )
-                                  ])),
-                                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
-                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                                  minTileHeight: 38,
-                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                                  // controller: controller,
-                                  expansionAnimationStyle: AnimationStyle(
-                                    duration: Duration(milliseconds: 300),
-                                  ),
-                                  children:
-                                      // ref
-                                      //         .watch(categoryProvider)
-                                      //         .valueOrNull
-                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-                                      //         .firstOrNull
-                                      //         ?.subCategory
-                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
-                                      //         .toSet()
-                                      //         .intersection((userSubCategories ?? []).toSet())
-                                      subCategoriesIntersection(e, user.id)
-                                              .map(
-                                                (x) => Column(
-                                                  children: [
-                                                    Divider(
-                                                      thickness: 2,
-                                                    ),
-                                                    MenuCard(
-                                                      title: x.name,
-                                                      sideTextColor: PreluraColors.grey,
-                                                      borderbottom: false,
-                                                      // sideText: "(${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                                      trailingIcon: Container(
-                                                        height: 15,
-                                                        width: 15,
-                                                        padding: EdgeInsets.all(3),
-                                                        decoration: BoxDecoration(
-                                                          shape: BoxShape.circle,
-                                                          border: Border.all(
-                                                            width: 2,
-                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.grey,
-                                                          ),
-                                                        ),
-                                                        child: Container(
-                                                          height: 15,
-                                                          width: 15,
-                                                          decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: selectedItem == x.name ? Theme.of(context).primaryColor : Colors.transparent,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      // RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                                                      onTap: () {
-                                                        selectedItem = x.name;
-                                                        isSelected = false;
-                                                        setState(() {});
-                                                        ref.read(filterUserProductProvider.notifier).updateFilter(FilterTypes.category, e.name);
-
-                                                        controller.collapse();
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                              .toList() ??
-                                          []),
-                            ))
-                        .toList(),
-                  ),
-                if (!expandedCategories && selectedItem.isEmpty)
-                  Divider(
-                    thickness: 1,
-                  ),
-
-                // if (isSelected) ...[
-                //   ListView.builder(
-                //     shrinkWrap: true,
-                //     itemCount: categories.length,
-                //     itemBuilder: (_, index) {
-                //       final cat = categories[index];
-
-                //       return MenuCard(
-                //         title: cat.name,
-                //         sideTextColor: PreluraColors.grey,
-                //         sideText: "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
-                //         trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                //         onTap: () {
-                //           selectedItem = cat.name;
-                //           isSelected = false;
-                //           setState(() {});
-                //           ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
-                //         },
-                //       );
-                //     },
-                //   )
-                // ],
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                    Text(
-                      widget.username != null ? "Brands from this seller" : "Top Brands",
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: PreluraColors.grey),
-                    ),
-                    // RenderSvgWithColor2(
-                    //     svgPath: PreluraIcons.search_glass_svg),
-                    // ],
-                    if (!isActive)
-                      GestureDetector(
-                          onTap: () {
-                            isActive = true;
-                            setState(() {});
-                          },
-                          child: Icon(Icons.search, color: PreluraColors.primaryColor)),
-                    if (isActive)
-                      AnimatedContainer(
-                        width: 54.5.w,
-                        color: Colors.transparent,
-                        alignment: Alignment.centerRight,
-                        duration: const Duration(milliseconds: 150),
-                        child: Searchwidget(
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: true,
-                          cancelButton: true,
-                          minWidth: 50.w,
-                          hidePrefix: true,
-                          onChanged: (value) {
-                            ref.read(userProductSearchQuery.notifier).state = value;
-                          },
-                          onCancel: () {
-                            isActive = false;
-                            setState(() {});
-                            ref.invalidate(userProductSearchQuery);
-                          },
-                        ),
-                      )
-                  ]),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: UserPopularBrand(
-                    userId: user.id,
-                  ),
-                ),
-
-                FilterAndSort(
-                  userId: user.id,
-                ),
-
-                const SizedBox(
-                  height: 20,
-                ),
-
-                const SizedBox(
-                  height: 20,
-                ),
-
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: ref.watch(userProduct(user.username)).when(
-                        skipLoadingOnRefresh: false,
-                        data: (products) => DisplaySection(
-                          products: products,
-                          isInProduct: false,
-                        ),
-                        error: (e, _) {
-                          return Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(userProduct);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        loading: () => GridShimmer(),
-                      ),
-                )
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 }

@@ -87,6 +87,7 @@ query Product($id: Int!) {
     id
     name
     description
+    isFeatured
     category {
       id
       name
@@ -131,6 +132,7 @@ query RecentlyViewedproducts {
     id
     name
     description
+    isFeatured
     category {
       id
       name
@@ -178,7 +180,7 @@ query UserProducts(
   $pageCount: Int
   $pageNumber: Int
   $filters: ProductFiltersInput
-  $sort : SortEnum
+  $sort: SortEnum
 ) {
   userProducts(
     search: $search
@@ -191,6 +193,7 @@ query UserProducts(
     id
     name
     description
+    isFeatured
     category {
       id
       name
@@ -271,6 +274,7 @@ query AllProducts(
     likes
     color
     style
+    isFeatured
     materials {
       id
       name
@@ -313,6 +317,7 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
         id
         username
       }
+      isFeatured
       condition
       discountPrice
       size
@@ -375,6 +380,7 @@ query SimilarProducts(
       id
       name
     }
+    isFeatured
     subCategory {
       id
       name
@@ -492,6 +498,7 @@ query FilterProductsByPrice(
     id
     name
     description
+    isFeatured
     category {
       id
       name

@@ -44,8 +44,7 @@ class AuthRepo {
     }
 
     // checks if any data is available in the mutation
-    if (mutation.parsedData?.login?.token == null ||
-        mutation.parsedData?.login?.restToken == null) {
+    if (mutation.parsedData?.login?.token == null || mutation.parsedData?.login?.restToken == null) {
       throw const CacheFailure();
     }
     log("token is ${mutation.parsedData!.login!.token!}");
@@ -57,8 +56,7 @@ class AuthRepo {
 
     log('Bearer ${mutation.parsedData?.login?.token}', name: 'AuthMutation');
     log('Rest ${mutation.parsedData!.login!.restToken}', name: 'AuthMutation');
-    log('Username ${mutation.parsedData!.login!.user!.username}',
-        name: 'AuthMutation');
+    log('Username ${mutation.parsedData!.login!.user!.username}', name: 'AuthMutation');
 
     // invalidate graphql client to use the version with with a beare token
     _ref.invalidate(graphqlClient);
@@ -175,34 +173,35 @@ class AuthRepo {
   }
 
   Future<bool> resetPassword(String newPassword, String token) async {
-    final response = await _client.mutate$PasswordReset(
-      Options$Mutation$PasswordReset(
-        variables: Variables$Mutation$PasswordReset(
-          newpassword: newPassword,
-          token: token,
-        ),
-      ),
-    );
-    if (response.parsedData != null) {
-      if (response.parsedData?.passwordReset?.errors != null) {
-        final errors = response.parsedData?.passwordReset?.errors;
-        if (errors?.containsKey('newpassword') ?? false) {
-          throw errors?['newpassword'][0] ?? 'An error occured';
-        }
-        throw 'An error occured';
-      }
-      return true;
-    }
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        log(response.exception.toString(), name: 'AuthMutation');
-        throw error;
-      }
-      log(response.exception.toString(), name: 'AuthMutation');
-      throw 'An error occured';
-    }
+    // final response = await _client.mutate$PasswordReset(
+    //   Options$Mutation$PasswordReset(
+    //     variables: Variables$Mutation$PasswordReset(
+    //       newpassword: newPassword,
+    //       token: token,
+    //     ),
+    //   ),
+    // );
+    // if (response.parsedData != null) {
+    //   if (response.parsedData?.passwordReset?.errors != null) {
+    //     final errors = response.parsedData?.passwordReset?.errors;
+    //     if (errors?.containsKey('newpassword') ?? false) {
+    //       throw errors?['newpassword'][0] ?? 'An error occured';
+    //     }
+    //     throw 'An error occured';
+    //   }
+    //   return true;
+    // }
+    // if (response.hasException) {
+    //   if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+    //     final error = response.exception!.graphqlErrors.first.message;
+    //     log(response.exception.toString(), name: 'AuthMutation');
+    //     throw error;
+    //   }
+    //   log(response.exception.toString(), name: 'AuthMutation');
+    //   throw 'An error occured';
+    // }
 
-    return response.parsedData?.passwordReset?.success ?? false;
+    // return response.parsedData?.passwordReset?.success ?? false;
+    return false;
   }
 }

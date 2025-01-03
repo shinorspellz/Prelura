@@ -64,6 +64,7 @@ mutation CreateProduct(
   $materials: [Int]
   $style: StyleEnum
   $customBrand: String
+  $isFeatured: Boolean
 ) {
   createProduct(
     category: $category
@@ -81,6 +82,7 @@ mutation CreateProduct(
     materials: $materials
     style: $style
     customBrand: $customBrand
+    isFeatured: $isFeatured
   ) {
     success
     message
@@ -109,6 +111,7 @@ mutation UpdateProduct(
   $materials: [Int]
   $style: StyleEnum
   $customBrand: String
+  $isFeatured: Boolean
 ) {
   updateProduct(
     category: $category
@@ -126,6 +129,7 @@ mutation UpdateProduct(
     materials: $materials
     style: $style
     customBrand: $customBrand
+    isFeatured: $isFeatured
   ) {
     success
     message
@@ -154,8 +158,8 @@ mutation UpdateProfile(
   $use2fa: Boolean
   $username: String
   $location: LocationInputType
-  $fcmToken: String,
-  $isVacationMode: Boolean,
+  $fcmToken: String
+  $isVacationMode: Boolean
 ) {
   updateProfile(
     bio: $bio
@@ -173,7 +177,7 @@ mutation UpdateProfile(
     username: $username
     location: $location
     fcmToken: $fcmToken
-    isVacationMode : $isVacationMode
+    isVacationMode: $isVacationMode
   ) {
     message
   }
@@ -339,18 +343,18 @@ mutation ConfirmPayment($paymentRef: String!) {
     paymentStatus
   }
 }
-mutation PasswordReset(
-  $newpassword: String!
-  $token: String!
-){
-  passwordReset(newPassword1:$newpassword, newPassword2: $newpassword, token: $token ){
-    errors,
-    success
-  }
-}
+# mutation PasswordReset(
+#   $newpassword: String!
+#   $token: String!
+# ){
+#   passwordReset(newPassword1:$newpassword, newPassword2: $newpassword, token: $token ){
+#     errors,
+#     success
+#   }
+# }
 
-mutation ResetPassword($email: String){
-  resetPassword(email: $email){
+mutation ResetPassword($email: String) {
+  resetPassword(email: $email) {
     message
   }
 }

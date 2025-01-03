@@ -26,12 +26,10 @@ class UserProfileDetailsScreen extends ConsumerStatefulWidget {
   final String? username;
 
   @override
-  ConsumerState<UserProfileDetailsScreen> createState() =>
-      _ProfileDetailsScreenState();
+  ConsumerState<UserProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
-    with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -49,8 +47,7 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index !=
-          ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -65,15 +62,10 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref
-        .watch((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .valueOrNull;
+    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index =
-          currentIndex; // Sync tab index if changed externally
+      _tabController.index = currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(
@@ -174,7 +166,11 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
       //   ],
       // ),
 
-      body: UserWardrobe(),
+      body: user == null
+          ? LoadingWidget(
+              height: 50,
+            )
+          : UserWardrobe(),
     );
   }
 }

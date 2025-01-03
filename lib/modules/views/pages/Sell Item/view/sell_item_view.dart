@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/model/product/product_model.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/provider/condition_provider.dart';
 import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/app_button.dart';
+import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/menu_card.dart';
@@ -331,6 +333,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         ),
                       ],
                     )),
+
+                PreluraCheckBox(
+                  isChecked: state.isFeatured,
+                  onChanged: (value) => notifier.updateFeatured(value),
+                  title: 'Feature',
+                  style: context.textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 // const SizedBox(height: 8),
                 MenuCard(
                   title: "Category",
@@ -517,6 +528,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               style: state.style,
                               discount: state.discount == null ? null : double.parse(state.discount!),
                               customBrand: state.customBrand,
+                              isFeatured: state.isFeatured,
                             );
                         ref.read(productProvider).whenOrNull(
                               error: (e, _) => context.alert(e.toString()),
@@ -547,6 +559,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             style: state.style,
                             discount: state.discount == null ? null : double.parse(state.discount!),
                             customBrand: state.customBrand,
+                            isFeatured: state.isFeatured,
                           );
                       ref.read(productProvider).whenOrNull(
                         error: (e, _) {
