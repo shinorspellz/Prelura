@@ -73,7 +73,7 @@ class _NewPasswordScreenState extends ConsumerState<NewPasswordScreen> {
 
       await ref
           .read(authProvider.notifier)
-          .resetPassword(newPassword: newPassword, token: otp);
+          .resetPassword(newPassword: newPassword, token: otp, email: "");
       ref.read(authProvider).whenOrNull(
             error: (e, _) => context.alert(e.toString()),
             data: (_) {

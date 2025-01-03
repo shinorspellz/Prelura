@@ -25,7 +25,8 @@ class InboxScreen extends StatefulWidget {
   State<InboxScreen> createState() => _InboxScreenState();
 }
 
-class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStateMixin {
+class _InboxScreenState extends State<InboxScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -80,8 +81,12 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: _tabController.index == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
-                                width: _tabController.index == entry.key ? 2.0 : 1.0,
+                                color: _tabController.index == entry.key
+                                    ? PreluraColors.activeColor
+                                    : PreluraColors.greyColor.withOpacity(0.5),
+                                width: _tabController.index == entry.key
+                                    ? 2.0
+                                    : 1.0,
                               ),
                             ),
                           ),
@@ -89,7 +94,12 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
                             entry.value,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: _tabController.index == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
+                              color: _tabController.index == entry.key
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.color
+                                  : PreluraColors.greyLightColor,
                             ),
                           ),
                         ),
@@ -148,7 +158,9 @@ class ChatsTab extends ConsumerWidget {
                   endActionPane: ActionPane(motion: DrawerMotion(), children: [
                     SlidableAction(
                       onPressed: (context) {
-                        ref.read(conversationProvider.notifier).deleteConversation(conv.id);
+                        ref
+                            .read(conversationProvider.notifier)
+                            .deleteConversation(conv.id);
                       },
                       backgroundColor: Color(0xFFFE4A49),
                       foregroundColor: Colors.white,

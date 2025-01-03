@@ -47,7 +47,7 @@ class PreluraColors {
   static Color lightText = const Color(0xFFAAAAAA);
   static Color blueTextColor = const Color(0xff0078FF);
   static Color boldGreyText = const Color(0xFF666666);
-  static Color switchOffColor = const Color(0xFFE9E9EA);
+  static Color  switchOffColor = const Color(0xFFE9E9EA);
   static Color greyDeepText = const Color(0xFF3E3E3E);
   static Color contractBackgroundColor = const Color(0xffF6F6F6);
   static const MaterialColor vModelprimarySwatch = MaterialColor(

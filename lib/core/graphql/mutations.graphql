@@ -343,15 +343,15 @@ mutation ConfirmPayment($paymentRef: String!) {
     paymentStatus
   }
 }
-# mutation PasswordReset(
-#   $newpassword: String!
-#   $token: String!
-# ){
-#   passwordReset(newPassword1:$newpassword, newPassword2: $newpassword, token: $token ){
-#     errors,
-#     success
-#   }
-# }
+mutation PasswordReset(
+  $newpassword: String!
+  $email: String!
+  $token: String!
+) {
+  passwordReset(password: $newpassword, email: $email, code: $token) {
+    message
+  }
+}
 
 mutation ResetPassword($email: String) {
   resetPassword(email: $email) {

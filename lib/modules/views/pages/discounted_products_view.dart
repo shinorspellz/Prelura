@@ -118,10 +118,9 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                             mainAxisSpacing: 10,
                             childAspectRatio: 0.50,
                           ),
-                          itemCount: products.take(6).length,
+                          itemCount: products.length,
                           itemBuilder: (context, index) {
-                            return ProductCard(
-                                product: products.take(6).toList()[index]);
+                            return ProductCard(product: products[index]);
                           },
                         ),
                       ),

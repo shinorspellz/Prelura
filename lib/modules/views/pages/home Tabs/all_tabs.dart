@@ -69,31 +69,46 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => GridShimmer()),
         ] else ...[
-          Divider(thickness: 1, color: PreluraColors.primaryColor),
-          _sectionTitle(
-            'Recently viewed ',
-            "",
-            context,
-            onTap: () => context.pushRoute(
-              RecentlyViewedProductRoute(title: "", id: 0),
-            ),
-          ),
-          AspectRatio(
-            aspectRatio: 1.0,
-            // height: 320,
-            // width: MediaQuery.sizeOf(context).width,
-            child: ref.watch(recentlyViewedProductsProvider).maybeWhen(
-                  data: (products) => ListView.separated(
-                    padding: EdgeInsets.only(left: 15),
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => 10.horizontalSpacing,
-                    itemBuilder: (context, index) => SizedBox(
-                      width: 180,
-                      child: ProductCard(product: products[index]),
-                    ),
-                    itemCount: products.length,
-                  ),
-                  loading: () => ListView(
+          ref.watch(recentlyViewedProductsProvider).maybeWhen(
+              data: (products) {
+                log(products.length.toString());
+                return products.isEmpty
+                    ? SizedBox.shrink()
+                    : Column(
+                        children: [
+                          Divider(
+                              thickness: 1, color: PreluraColors.primaryColor),
+                          _sectionTitle(
+                            'Recently viewed ',
+                            "",
+                            context,
+                            onTap: () => context.pushRoute(
+                              RecentlyViewedProductRoute(title: "", id: 0),
+                            ),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 1.1,
+                            // height: 320,
+                            // width: MediaQuery.sizeOf(context).width,
+                            child: ListView.separated(
+                              padding: EdgeInsets.only(left: 15),
+                              scrollDirection: Axis.horizontal,
+                              separatorBuilder: (context, index) =>
+                                  10.horizontalSpacing,
+                              itemBuilder: (context, index) => SizedBox(
+                                width: 180,
+                                child: ProductCard(product: products[index]),
+                              ),
+                              itemCount: products.length,
+                            ),
+                          ),
+                          Divider(
+                              thickness: 1, color: PreluraColors.primaryColor),
+                          16.verticalSpacing,
+                        ],
+                      );
+              },
+              loading: () => ListView(
                     scrollDirection: Axis.horizontal,
                     children: List.generate(
                       mockData.length,
@@ -105,7 +120,7 @@ class HomeAllTab extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  orElse: () => ListView(
+              orElse: () => ListView(
                     scrollDirection: Axis.horizontal,
                     children: List.generate(
                       mockData.length,
@@ -116,10 +131,7 @@ class HomeAllTab extends ConsumerWidget {
                         child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
-                  ),
-                ),
-          ),
-          Divider(thickness: 1, color: PreluraColors.primaryColor),
+                  )),
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                 error: (e, _) {

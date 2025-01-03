@@ -41,7 +41,7 @@ enum FilterTypes {
   final String simpleName;
 }
 
-class LiveSearchPage extends ConsumerWidget {
+class LiveSearchPage extends ConsumerStatefulWidget {
   const LiveSearchPage({
     super.key,
     this.scrollable = false,
@@ -49,7 +49,34 @@ class LiveSearchPage extends ConsumerWidget {
   final bool scrollable;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LiveSearchPage> createState() => _InboxScreenState();
+}
+
+class _InboxScreenState extends ConsumerState<LiveSearchPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+
+    // Add a listener to sync tab changes
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        setState(() {}); // Trigger UI update for custom tabs
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // final searchResults = ref.watch(filteredResultsProvider);
     final filters = ref.watch(searchFilterProvider);
     final state = ref.watch(searchFilterProvider.notifier);
@@ -123,14 +150,55 @@ class LiveSearchPage extends ConsumerWidget {
               ],
             ),
           ),
-          TabBar(tabs: [
-            Tab(text: 'Products'),
-            Tab(text: 'Members'),
-          ]),
+          Row(
+            children: ["Products", "Members"]
+                .asMap()
+                .entries
+                .map(
+                  (entry) => Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        _tabController.animateTo(entry.key);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          top: 12,
+                          bottom: 18,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: _tabController.index == entry.key
+                                  ? PreluraColors.activeColor
+                                  : PreluraColors.greyColor.withOpacity(0.5),
+                              width:
+                                  _tabController.index == entry.key ? 2.0 : 1.0,
+                            ),
+                          ),
+                        ),
+                        child: Text(
+                          entry.value,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: _tabController.index == entry.key
+                                ? Theme.of(context).textTheme.bodyMedium?.color
+                                : PreluraColors.greyLightColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
           10.verticalSpacing,
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
-            child: TabBarView(children: [
+            child: TabBarView(
+              controller: _tabController,
+              children: [
               userAsyncValue.when(
                   skipLoadingOnRefresh: false,
                   data: (data) => Container(

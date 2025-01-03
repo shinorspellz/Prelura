@@ -172,36 +172,29 @@ class AuthRepo {
     return response.parsedData!.resetPassword!.message;
   }
 
-  Future<bool> resetPassword(String newPassword, String token) async {
-    // final response = await _client.mutate$PasswordReset(
-    //   Options$Mutation$PasswordReset(
-    //     variables: Variables$Mutation$PasswordReset(
-    //       newpassword: newPassword,
-    //       token: token,
-    //     ),
-    //   ),
-    // );
-    // if (response.parsedData != null) {
-    //   if (response.parsedData?.passwordReset?.errors != null) {
-    //     final errors = response.parsedData?.passwordReset?.errors;
-    //     if (errors?.containsKey('newpassword') ?? false) {
-    //       throw errors?['newpassword'][0] ?? 'An error occured';
-    //     }
-    //     throw 'An error occured';
-    //   }
-    //   return true;
-    // }
-    // if (response.hasException) {
-    //   if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-    //     final error = response.exception!.graphqlErrors.first.message;
-    //     log(response.exception.toString(), name: 'AuthMutation');
-    //     throw error;
-    //   }
-    //   log(response.exception.toString(), name: 'AuthMutation');
-    //   throw 'An error occured';
-    // }
+  Future<bool> resetPassword(String newPassword, String token, String email) async {
+    final response = await _client.mutate$PasswordReset(
+      Options$Mutation$PasswordReset(
+        variables: Variables$Mutation$PasswordReset(
+          email: email,
+          newpassword: newPassword,
+          token: token,
+        ),
+      ),
+    );
+    if (response.parsedData != null) {
+      return true;
+    }
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        log(response.exception.toString(), name: 'AuthMutation');
+        throw error;
+      }
+      log(response.exception.toString(), name: 'AuthMutation');
+      throw 'An error occured';
+    }
 
-    // return response.parsedData?.passwordReset?.success ?? false;
-    return false;
+    return response.parsedData?.passwordReset?.message != null;
   }
 }
