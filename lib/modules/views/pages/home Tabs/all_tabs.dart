@@ -11,11 +11,13 @@ import '../../../../res/colors.dart';
 import '../../../../shared/mock_data.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../../controller/refresh_provider.dart';
+import '../../shimmers/custom_shimmer.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
 
 class HomeAllTab extends ConsumerWidget {
-  const HomeAllTab({super.key, required this.searchQuery, required this.controller});
+  const HomeAllTab(
+      {super.key, required this.searchQuery, required this.controller});
   final String searchQuery;
   final ScrollController controller;
 
@@ -33,7 +35,8 @@ class HomeAllTab extends ConsumerWidget {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -108,29 +111,119 @@ class HomeAllTab extends ConsumerWidget {
                         ],
                       );
               },
-              loading: () => ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      mockData.length,
-                      (_) => Container(
-                        // height: 220,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+              loading: () => Column(
+                    children: [
+                      16.verticalSpacing,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
+                        child: CustomShimmer(
+                            child: Container(
+                                height: 40,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    16.horizontalSpacing,
+                                    Container(
+                                      height: 40,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ],
+                                ))),
                       ),
-                    ),
+                      16.verticalSpacing,
+                      AspectRatio(
+                        aspectRatio: 1.1,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: List.generate(
+                            mockData.length,
+                            (_) => Container(
+                              // height: 220,
+                              width: 180,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              child:
+                                  const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-              orElse: () => ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      mockData.length,
-                      (_) => Container(
-                        // height: 220,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+              orElse: () => Column(
+                    children: [
+                      16.verticalSpacing,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
+                        child: CustomShimmer(
+                            child: Container(
+                                height: 40,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    16.horizontalSpacing,
+                                    Container(
+                                      height: 40,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ],
+                                ))),
                       ),
-                    ),
+                      16.verticalSpacing,
+                      AspectRatio(
+                        aspectRatio: 1.1,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: List.generate(
+                            mockData.length,
+                            (_) => Container(
+                              // height: 220,
+                              width: 180,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              child:
+                                  const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   )),
           ref.watch(allProductProvider(null)).maybeWhen(
                 // skipLoadingOnRefresh: !ref.watch(refreshingHome),
@@ -159,11 +252,13 @@ class HomeAllTab extends ConsumerWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,
                   ),
-                  child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                  child: LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
                     return GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
@@ -171,7 +266,8 @@ class HomeAllTab extends ConsumerWidget {
                       ),
                       itemCount: products.take(6).length,
                       itemBuilder: (context, index) {
-                        return ProductCard(product: products.take(6).toList()[index]);
+                        return ProductCard(
+                            product: products.take(6).toList()[index]);
                       },
                     );
                   }),
@@ -210,7 +306,8 @@ class HomeAllTab extends ConsumerWidget {
                         // height: 220,
                         width: 180,
                         margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
                   ),
@@ -227,7 +324,8 @@ class HomeAllTab extends ConsumerWidget {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -266,7 +364,9 @@ class HomeAllTab extends ConsumerWidget {
   }
 }
 
-Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+Widget _buildSectionTitle(
+    String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
     child: Column(
@@ -288,11 +388,18 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
             Text(
               subtitle,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
             GestureDetector(
               onTap: onTap,
-              child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
+              child: Text("See All",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: PreluraColors.primaryColor)),
             )
           ],
         ),
@@ -304,7 +411,8 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
   );
 }
 
-Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
     child: Row(
@@ -319,7 +427,11 @@ Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context, {V
         ),
         GestureDetector(
           onTap: onTap,
-          child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
+          child: Text("See All",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.primaryColor)),
         )
       ],
     ),

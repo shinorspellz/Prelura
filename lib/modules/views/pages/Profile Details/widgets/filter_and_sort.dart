@@ -22,10 +22,15 @@ class FilterAndSort extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final color = context.isDarkMode ? PreluraColors.jobDetailGrey.withOpacity(0.7) : PreluraColors.black.withOpacity(0.6);
-    final fontWeight = FontWeight.w400;
-    final selectedColor = context.isDarkMode ? PreluraColors.greyColorButton : PreluraColors.black;
-    final selectedFontWeight = context.isDarkMode ? fontWeight : FontWeight.w600;
+    final color = context.isDarkMode
+        ? PreluraColors.jobDetailGrey.withOpacity(0.7)
+        : PreluraColors.black.withOpacity(0.6);
+    final fontWeight = FontWeight.w600;
+    final selectedColor = context.isDarkMode
+        ? PreluraColors.greyColorButton
+        : PreluraColors.black;
+    final selectedFontWeight =
+        context.isDarkMode ? fontWeight : FontWeight.w600;
     final sortValue = ref.watch(userProductSort).name;
     final sortList = Enum$SortEnum.values;
     return Padding(
@@ -39,7 +44,7 @@ class FilterAndSort extends ConsumerWidget {
                   child: Text(
                     "Filter",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                 ),
@@ -117,7 +122,7 @@ class FilterAndSort extends ConsumerWidget {
                   child: Text(
                     "Sort",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                 ),
