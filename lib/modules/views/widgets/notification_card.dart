@@ -7,6 +7,7 @@ import 'package:prelura_app/modules/controller/notification_provider.dart';
 import 'package:prelura_app/modules/model/notification/notification_model.dart';
 import 'package:prelura_app/modules/views/pages/product%20detail/provider/product_detail_provider.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
+import 'package:prelura_app/res/username.dart';
 
 class NotificationCard extends ConsumerWidget {
   const NotificationCard({
@@ -111,19 +112,42 @@ class NotificationCard extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Text(
-                          notification.message,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  fontWeight: notification.isRead!
-                                      ? FontWeight.w200
-                                      : FontWeight.w400),
-                        ),
-                      ),
+                          child: HighlightUserName(
+                              isRead: notification.isRead ?? false,
+                              username: notification.sender.username,
+                              message: notification.message)
+
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       notification.message.split(" ").first,
+                          //       overflow: TextOverflow.ellipsis,
+                          //       maxLines: 2,
+                          //       style: Theme.of(context)
+                          //           .textTheme
+                          //           .bodyMedium
+                          //           ?.copyWith(
+                          //               fontWeight: notification.isRead!
+                          //                   ? FontWeight.w500
+                          //                   : FontWeight.w700),
+                          //     ),
+                          //     Text(
+                          //       extractMessageWithoutUsername(
+                          //           notification.sender.username,
+                          //           notification.message),
+                          //       overflow: TextOverflow.ellipsis,
+                          //       maxLines: 2,
+                          //       style: Theme.of(context)
+                          //           .textTheme
+                          //           .bodyMedium
+                          //           ?.copyWith(
+                          //               fontWeight: notification.isRead!
+                          //                   ? FontWeight.w200
+                          //                   : FontWeight.w400),
+                          //     ),
+                          //   ],
+                          // ),
+                          ),
                       const SizedBox(width: 10), // Add spacing before time
                       // Time
                       Text(
@@ -143,5 +167,13 @@ class NotificationCard extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  String extractMessageWithoutUsername(String username, String message) {
+    if (message.startsWith(username)) {
+      // Remove the username and trim any extra spaces
+      return message.substring(username.length);
+    }
+    return message; // Return the full message if it doesn't start with the username
   }
 }

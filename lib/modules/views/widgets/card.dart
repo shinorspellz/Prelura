@@ -207,7 +207,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     addHorizontalSpacing(8),
                     Text(
                       widget.product.seller.username,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w400, fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w500, fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color),
                     ),
                   ],
                 ),

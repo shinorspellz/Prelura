@@ -167,7 +167,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     )
                   else
                     const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                      padding: EdgeInsets.fromLTRB(15, 20, 15, 10),
                       child: ProfileCardWidget(),
                     ),
                   Column(
