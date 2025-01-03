@@ -3,6 +3,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/modules/views/pages/home.dart';
 
 import '../../core/graphql/__generated/schema.graphql.dart';
+import 'notification_provider.dart';
 
 final homeRefreshProvider = StateNotifierProvider<_HomeRefreshNotfier, bool>(
     (ref) => _HomeRefreshNotfier(ref));
@@ -16,7 +17,9 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     state = true;
     ref.refresh(allProductProvider(null).future).then((_) => state = false);
     ref.refresh(filterProductByPriceProvider(15).future);
-    ref.refresh(recentlyViewedProductsProvider.future);
+    ref.invalidate(recentlyViewedProductsProvider);
+    ref.refresh(notificationProvider.future);
+
     final category = ref.watch(categoryProvider).valueOrNull;
     if (category != null) {
       final matchingCategory = category.firstWhere((e) => e.name == name);

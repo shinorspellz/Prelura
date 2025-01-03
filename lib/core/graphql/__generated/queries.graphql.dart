@@ -4078,6 +4078,13 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'category'),
             alias: null,
             arguments: [],
@@ -4488,6 +4495,7 @@ class Query$Product$product {
     required this.id,
     required this.name,
     required this.description,
+    required this.isFeatured,
     this.category,
     this.subCategory,
     this.seller,
@@ -4514,6 +4522,7 @@ class Query$Product$product {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$description = json['description'];
+    final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
@@ -4538,6 +4547,7 @@ class Query$Product$product {
       id: (l$id as String),
       name: (l$name as String),
       description: (l$description as String),
+      isFeatured: (l$isFeatured as bool),
       category: l$category == null
           ? null
           : Query$Product$product$category.fromJson(
@@ -4595,6 +4605,8 @@ class Query$Product$product {
 
   final String description;
 
+  final bool isFeatured;
+
   final Query$Product$product$category? category;
 
   final Query$Product$product$subCategory? subCategory;
@@ -4643,6 +4655,8 @@ class Query$Product$product {
     _resultData['name'] = l$name;
     final l$description = description;
     _resultData['description'] = l$description;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
@@ -4698,6 +4712,7 @@ class Query$Product$product {
     final l$id = id;
     final l$name = name;
     final l$description = description;
+    final l$isFeatured = isFeatured;
     final l$category = category;
     final l$subCategory = subCategory;
     final l$seller = seller;
@@ -4722,6 +4737,7 @@ class Query$Product$product {
       l$id,
       l$name,
       l$description,
+      l$isFeatured,
       l$category,
       l$subCategory,
       l$seller,
@@ -4766,6 +4782,11 @@ class Query$Product$product {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$category = category;
@@ -4918,6 +4939,7 @@ abstract class CopyWith$Query$Product$product<TRes> {
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$Product$product$category? category,
     Query$Product$product$subCategory? subCategory,
     Query$Product$product$seller? seller,
@@ -4968,6 +4990,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? id = _undefined,
     Object? name = _undefined,
     Object? description = _undefined,
+    Object? isFeatured = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
@@ -4997,6 +5020,9 @@ class _CopyWithImpl$Query$Product$product<TRes>
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         category: category == _undefined
             ? _instance.category
             : (category as Query$Product$product$category?),
@@ -5114,6 +5140,7 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$Product$product$category? category,
     Query$Product$product$subCategory? subCategory,
     Query$Product$product$seller? seller,
@@ -6089,6 +6116,13 @@ const documentNodeQueryRecentlyViewedproducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'category'),
             alias: null,
             arguments: [],
@@ -6512,6 +6546,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     required this.id,
     required this.name,
     required this.description,
+    required this.isFeatured,
     this.category,
     this.subCategory,
     this.seller,
@@ -6540,6 +6575,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$description = json['description'];
+    final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
@@ -6565,6 +6601,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
       id: (l$id as String),
       name: (l$name as String),
       description: (l$description as String),
+      isFeatured: (l$isFeatured as bool),
       category: l$category == null
           ? null
           : Query$RecentlyViewedproducts$recentlyViewedProducts$category
@@ -6623,6 +6660,8 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
 
   final String description;
 
+  final bool isFeatured;
+
   final Query$RecentlyViewedproducts$recentlyViewedProducts$category? category;
 
   final Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
@@ -6675,6 +6714,8 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     _resultData['name'] = l$name;
     final l$description = description;
     _resultData['description'] = l$description;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
@@ -6732,6 +6773,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$id = id;
     final l$name = name;
     final l$description = description;
+    final l$isFeatured = isFeatured;
     final l$category = category;
     final l$subCategory = subCategory;
     final l$seller = seller;
@@ -6757,6 +6799,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
       l$id,
       l$name,
       l$description,
+      l$isFeatured,
       l$category,
       l$subCategory,
       l$seller,
@@ -6803,6 +6846,11 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$category = category;
@@ -6965,6 +7013,7 @@ abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts<
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$RecentlyViewedproducts$recentlyViewedProducts$category? category,
     Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
         subCategory,
@@ -7024,6 +7073,7 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
     Object? id = _undefined,
     Object? name = _undefined,
     Object? description = _undefined,
+    Object? isFeatured = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
@@ -7054,6 +7104,9 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         category: category == _undefined
             ? _instance.category
             : (category
@@ -7190,6 +7243,7 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$RecentlyViewedproducts$recentlyViewedProducts$category? category,
     Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
         subCategory,
@@ -8574,6 +8628,13 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'category'),
             alias: null,
             arguments: [],
@@ -8978,6 +9039,7 @@ class Query$UserProducts$userProducts {
     required this.id,
     required this.name,
     required this.description,
+    required this.isFeatured,
     this.category,
     this.subCategory,
     this.seller,
@@ -9004,6 +9066,7 @@ class Query$UserProducts$userProducts {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$description = json['description'];
+    final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
@@ -9028,6 +9091,7 @@ class Query$UserProducts$userProducts {
       id: (l$id as String),
       name: (l$name as String),
       description: (l$description as String),
+      isFeatured: (l$isFeatured as bool),
       category: l$category == null
           ? null
           : Query$UserProducts$userProducts$category.fromJson(
@@ -9085,6 +9149,8 @@ class Query$UserProducts$userProducts {
 
   final String description;
 
+  final bool isFeatured;
+
   final Query$UserProducts$userProducts$category? category;
 
   final Query$UserProducts$userProducts$subCategory? subCategory;
@@ -9133,6 +9199,8 @@ class Query$UserProducts$userProducts {
     _resultData['name'] = l$name;
     final l$description = description;
     _resultData['description'] = l$description;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
@@ -9188,6 +9256,7 @@ class Query$UserProducts$userProducts {
     final l$id = id;
     final l$name = name;
     final l$description = description;
+    final l$isFeatured = isFeatured;
     final l$category = category;
     final l$subCategory = subCategory;
     final l$seller = seller;
@@ -9212,6 +9281,7 @@ class Query$UserProducts$userProducts {
       l$id,
       l$name,
       l$description,
+      l$isFeatured,
       l$category,
       l$subCategory,
       l$seller,
@@ -9257,6 +9327,11 @@ class Query$UserProducts$userProducts {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$category = category;
@@ -9410,6 +9485,7 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$UserProducts$userProducts$category? category,
     Query$UserProducts$userProducts$subCategory? subCategory,
     Query$UserProducts$userProducts$seller? seller,
@@ -9460,6 +9536,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? id = _undefined,
     Object? name = _undefined,
     Object? description = _undefined,
+    Object? isFeatured = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
@@ -9489,6 +9566,9 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         category: category == _undefined
             ? _instance.category
             : (category as Query$UserProducts$userProducts$category?),
@@ -9608,6 +9688,7 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$UserProducts$userProducts$category? category,
     Query$UserProducts$userProducts$subCategory? subCategory,
     Query$UserProducts$userProducts$seller? seller,
@@ -11034,6 +11115,13 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'materials'),
             alias: null,
             arguments: [],
@@ -11276,6 +11364,7 @@ class Query$AllProducts$allProducts {
     required this.updatedAt,
     required this.color,
     this.style,
+    required this.isFeatured,
     this.materials,
     this.customBrand,
     this.brand,
@@ -11302,6 +11391,7 @@ class Query$AllProducts$allProducts {
     final l$updatedAt = json['updatedAt'];
     final l$color = json['color'];
     final l$style = json['style'];
+    final l$isFeatured = json['isFeatured'];
     final l$materials = json['materials'];
     final l$customBrand = json['customBrand'];
     final l$brand = json['brand'];
@@ -11346,6 +11436,7 @@ class Query$AllProducts$allProducts {
       style: l$style == null
           ? null
           : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
+      isFeatured: (l$isFeatured as bool),
       materials: (l$materials as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -11398,6 +11489,8 @@ class Query$AllProducts$allProducts {
   final List<String> color;
 
   final Enum$ProductsProductStyleChoices? style;
+
+  final bool isFeatured;
 
   final List<Query$AllProducts$allProducts$materials?>? materials;
 
@@ -11454,6 +11547,8 @@ class Query$AllProducts$allProducts {
     _resultData['style'] = l$style == null
         ? null
         : toJson$Enum$ProductsProductStyleChoices(l$style);
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$materials = materials;
     _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
     final l$customBrand = customBrand;
@@ -11486,6 +11581,7 @@ class Query$AllProducts$allProducts {
     final l$updatedAt = updatedAt;
     final l$color = color;
     final l$style = style;
+    final l$isFeatured = isFeatured;
     final l$materials = materials;
     final l$customBrand = customBrand;
     final l$brand = brand;
@@ -11510,6 +11606,7 @@ class Query$AllProducts$allProducts {
       l$updatedAt,
       Object.hashAll(l$color.map((v) => v)),
       l$style,
+      l$isFeatured,
       l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
       l$customBrand,
       l$brand,
@@ -11635,6 +11732,11 @@ class Query$AllProducts$allProducts {
     if (l$style != lOther$style) {
       return false;
     }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
+      return false;
+    }
     final l$materials = materials;
     final lOther$materials = other.materials;
     if (l$materials != null && lOther$materials != null) {
@@ -11708,6 +11810,7 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     DateTime? updatedAt,
     List<String>? color,
     Enum$ProductsProductStyleChoices? style,
+    bool? isFeatured,
     List<Query$AllProducts$allProducts$materials?>? materials,
     String? customBrand,
     Query$AllProducts$allProducts$brand? brand,
@@ -11758,6 +11861,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? updatedAt = _undefined,
     Object? color = _undefined,
     Object? style = _undefined,
+    Object? isFeatured = _undefined,
     Object? materials = _undefined,
     Object? customBrand = _undefined,
     Object? brand = _undefined,
@@ -11817,6 +11921,9 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         style: style == _undefined
             ? _instance.style
             : (style as Enum$ProductsProductStyleChoices?),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         materials: materials == _undefined
             ? _instance.materials
             : (materials as List<Query$AllProducts$allProducts$materials?>?),
@@ -11905,6 +12012,7 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     DateTime? updatedAt,
     List<String>? color,
     Enum$ProductsProductStyleChoices? style,
+    bool? isFeatured,
     List<Query$AllProducts$allProducts$materials?>? materials,
     String? customBrand,
     Query$AllProducts$allProducts$brand? brand,
@@ -13825,6 +13933,13 @@ const documentNodeQuerylikedProducts = DocumentNode(definitions: [
                 ]),
               ),
               FieldNode(
+                name: NameNode(value: 'isFeatured'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'condition'),
                 alias: null,
                 arguments: [],
@@ -14297,6 +14412,7 @@ class Query$likedProducts$likedProducts$product {
     this.category,
     this.subCategory,
     this.seller,
+    required this.isFeatured,
     this.condition,
     this.discountPrice,
     this.size,
@@ -14323,6 +14439,7 @@ class Query$likedProducts$likedProducts$product {
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
+    final l$isFeatured = json['isFeatured'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
     final l$size = json['size'];
@@ -14355,6 +14472,7 @@ class Query$likedProducts$likedProducts$product {
           ? null
           : Query$likedProducts$likedProducts$product$seller.fromJson(
               (l$seller as Map<String, dynamic>)),
+      isFeatured: (l$isFeatured as bool),
       condition: l$condition == null
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
@@ -14405,6 +14523,8 @@ class Query$likedProducts$likedProducts$product {
 
   final Query$likedProducts$likedProducts$product$seller? seller;
 
+  final bool isFeatured;
+
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
@@ -14451,6 +14571,8 @@ class Query$likedProducts$likedProducts$product {
     _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$condition = condition;
     _resultData['condition'] = l$condition == null
         ? null
@@ -14501,6 +14623,7 @@ class Query$likedProducts$likedProducts$product {
     final l$category = category;
     final l$subCategory = subCategory;
     final l$seller = seller;
+    final l$isFeatured = isFeatured;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
     final l$size = size;
@@ -14524,6 +14647,7 @@ class Query$likedProducts$likedProducts$product {
       l$category,
       l$subCategory,
       l$seller,
+      l$isFeatured,
       l$condition,
       l$discountPrice,
       l$size,
@@ -14580,6 +14704,11 @@ class Query$likedProducts$likedProducts$product {
     final l$seller = seller;
     final lOther$seller = other.seller;
     if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$condition = condition;
@@ -14717,6 +14846,7 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     Query$likedProducts$likedProducts$product$category? category,
     Query$likedProducts$likedProducts$product$subCategory? subCategory,
     Query$likedProducts$likedProducts$product$seller? seller,
+    bool? isFeatured,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
@@ -14768,6 +14898,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
     Object? category = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
+    Object? isFeatured = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
     Object? size = _undefined,
@@ -14803,6 +14934,9 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$likedProducts$likedProducts$product$seller?),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
@@ -14918,6 +15052,7 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     Query$likedProducts$likedProducts$product$category? category,
     Query$likedProducts$likedProducts$product$subCategory? subCategory,
     Query$likedProducts$likedProducts$product$seller? seller,
+    bool? isFeatured,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
     Enum$ProductsProductSizeChoices? size,
@@ -17594,6 +17729,13 @@ const documentNodeQuerySimilarProducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'subCategory'),
             alias: null,
             arguments: [],
@@ -17973,6 +18115,7 @@ class Query$SimilarProducts$similarProducts {
     required this.name,
     required this.description,
     this.category,
+    required this.isFeatured,
     this.subCategory,
     this.seller,
     this.condition,
@@ -17999,6 +18142,7 @@ class Query$SimilarProducts$similarProducts {
     final l$name = json['name'];
     final l$description = json['description'];
     final l$category = json['category'];
+    final l$isFeatured = json['isFeatured'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
@@ -18025,6 +18169,7 @@ class Query$SimilarProducts$similarProducts {
           ? null
           : Query$SimilarProducts$similarProducts$category.fromJson(
               (l$category as Map<String, dynamic>)),
+      isFeatured: (l$isFeatured as bool),
       subCategory: l$subCategory == null
           ? null
           : Query$SimilarProducts$similarProducts$subCategory.fromJson(
@@ -18079,6 +18224,8 @@ class Query$SimilarProducts$similarProducts {
 
   final Query$SimilarProducts$similarProducts$category? category;
 
+  final bool isFeatured;
+
   final Query$SimilarProducts$similarProducts$subCategory? subCategory;
 
   final Query$SimilarProducts$similarProducts$seller? seller;
@@ -18125,6 +18272,8 @@ class Query$SimilarProducts$similarProducts {
     _resultData['description'] = l$description;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$subCategory = subCategory;
     _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
@@ -18177,6 +18326,7 @@ class Query$SimilarProducts$similarProducts {
     final l$name = name;
     final l$description = description;
     final l$category = category;
+    final l$isFeatured = isFeatured;
     final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
@@ -18200,6 +18350,7 @@ class Query$SimilarProducts$similarProducts {
       l$name,
       l$description,
       l$category,
+      l$isFeatured,
       l$subCategory,
       l$seller,
       l$condition,
@@ -18248,6 +18399,11 @@ class Query$SimilarProducts$similarProducts {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$subCategory = subCategory;
@@ -18393,6 +18549,7 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     String? name,
     String? description,
     Query$SimilarProducts$similarProducts$category? category,
+    bool? isFeatured,
     Query$SimilarProducts$similarProducts$subCategory? subCategory,
     Query$SimilarProducts$similarProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
@@ -18443,6 +18600,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
     Object? name = _undefined,
     Object? description = _undefined,
     Object? category = _undefined,
+    Object? isFeatured = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
@@ -18473,6 +18631,9 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
         category: category == _undefined
             ? _instance.category
             : (category as Query$SimilarProducts$similarProducts$category?),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         subCategory: subCategory == _undefined
             ? _instance.subCategory
             : (subCategory
@@ -18592,6 +18753,7 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
     String? name,
     String? description,
     Query$SimilarProducts$similarProducts$category? category,
+    bool? isFeatured,
     Query$SimilarProducts$similarProducts$subCategory? subCategory,
     Query$SimilarProducts$similarProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
@@ -22977,6 +23139,13 @@ const documentNodeQueryFilterProductsByPrice = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'category'),
             alias: null,
             arguments: [],
@@ -23396,6 +23565,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     required this.id,
     required this.name,
     required this.description,
+    required this.isFeatured,
     this.category,
     this.subCategory,
     this.seller,
@@ -23421,6 +23591,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$description = json['description'];
+    final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
     final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
@@ -23443,6 +23614,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       id: (l$id as String),
       name: (l$name as String),
       description: (l$description as String),
+      isFeatured: (l$isFeatured as bool),
       category: l$category == null
           ? null
           : Query$FilterProductsByPrice$filterProductsByPrice$category.fromJson(
@@ -23496,6 +23668,8 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
 
   final String description;
 
+  final bool isFeatured;
+
   final Query$FilterProductsByPrice$filterProductsByPrice$category? category;
 
   final Query$FilterProductsByPrice$filterProductsByPrice$subCategory?
@@ -23542,6 +23716,8 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     _resultData['name'] = l$name;
     final l$description = description;
     _resultData['description'] = l$description;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
     final l$subCategory = subCategory;
@@ -23591,6 +23767,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$id = id;
     final l$name = name;
     final l$description = description;
+    final l$isFeatured = isFeatured;
     final l$category = category;
     final l$subCategory = subCategory;
     final l$seller = seller;
@@ -23613,6 +23790,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       l$id,
       l$name,
       l$description,
+      l$isFeatured,
       l$category,
       l$subCategory,
       l$seller,
@@ -23656,6 +23834,11 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$description = description;
     final lOther$description = other.description;
     if (l$description != lOther$description) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
       return false;
     }
     final l$category = category;
@@ -23803,6 +23986,7 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$FilterProductsByPrice$filterProductsByPrice$category? category,
     Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
     Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,
@@ -23857,6 +24041,7 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     Object? id = _undefined,
     Object? name = _undefined,
     Object? description = _undefined,
+    Object? isFeatured = _undefined,
     Object? category = _undefined,
     Object? subCategory = _undefined,
     Object? seller = _undefined,
@@ -23884,6 +24069,9 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
         description: description == _undefined || description == null
             ? _instance.description
             : (description as String),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
         category: category == _undefined
             ? _instance.category
             : (category
@@ -24010,6 +24198,7 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     String? id,
     String? name,
     String? description,
+    bool? isFeatured,
     Query$FilterProductsByPrice$filterProductsByPrice$category? category,
     Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
     Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,

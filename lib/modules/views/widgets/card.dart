@@ -196,6 +196,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
     final user = ref.watch(userProvider).valueOrNull;
     return GestureDetector(
       onTap: () {
+        ref.invalidate(recentlyViewedProductsProvider);
         context.router
             .push(ProductDetailRoute(productId: int.parse(widget.product.id)));
       },

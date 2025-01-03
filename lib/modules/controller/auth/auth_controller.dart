@@ -59,11 +59,13 @@ class _AuthController extends AsyncNotifier<void> {
   }
 
   Future<void> resetPassword(
-      {required String newPassword, required String token}) async {
+      {required String newPassword,
+      required String token,
+      required email}) async {
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
-      await _repo.resetPassword(newPassword, token);
+      await _repo.resetPassword(newPassword, token, email);
     });
   }
 

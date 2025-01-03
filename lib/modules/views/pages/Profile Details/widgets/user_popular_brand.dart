@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
+import 'package:prelura_app/res/context_entension.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../controller/product/brands_provider.dart';
@@ -45,8 +46,11 @@ class UserPopularBrand extends ConsumerWidget {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 10),
                               decoration: BoxDecoration(
-                                  color: PreluraColors.activeColor
-                                      .withOpacity(0.3),
+                                  color: context.isDarkMode
+                                      ? PreluraColors.activeColor
+                                          .withOpacity(0.3)
+                                      : PreluraColors.activeColor
+                                          .withOpacity(0.7),
                                   borderRadius: BorderRadius.circular(6),
                                   border: Border.all(
                                       color: PreluraColors.activeColor,

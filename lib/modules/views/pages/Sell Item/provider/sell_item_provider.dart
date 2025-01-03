@@ -23,57 +23,62 @@ class SellItemState {
   final ConditionsEnum? selectedCondition;
   final Enum$StyleEnum? style;
   final String? customBrand;
+  final bool isFeatured;
 
-  SellItemState({
-    this.images = const [],
-    this.title = '',
-    this.description = '',
-    this.category,
-    this.subCategory,
-    this.parcel,
-    this.brand,
-    this.size,
-    this.selectedCondition,
-    this.price,
-    this.selectedColors = const [],
-    this.selectedMaterials = const [],
-    this.style,
-    this.discount,
-    this.customBrand,
-  });
+  SellItemState(
+      {this.images = const [],
+      this.title = '',
+      this.description = '',
+      this.category,
+      this.subCategory,
+      this.parcel,
+      this.brand,
+      this.size,
+      this.selectedCondition,
+      this.price,
+      this.selectedColors = const [],
+      this.selectedMaterials = const [],
+      this.style,
+      this.discount,
+      this.customBrand,
+      this.isFeatured = false});
 
-  SellItemState copyWith(
-      {List<XFile>? images,
-      String? title,
-      String? description,
-      CategoryModel? category,
-      CategoryModel? subCategory,
-      Enum$ParcelSizeEnum? parcel,
-      List<String>? selectedColors,
-      List<MaterialModel>? selectedMaterials,
-      Brand? brand,
-      Enum$SizeEnum? size,
-      String? price,
-      String? discount,
-      Enum$StyleEnum? style,
-      ConditionsEnum? selectedCondition,
-      String? customBrand}) {
+  SellItemState copyWith({
+    List<XFile>? images,
+    String? title,
+    String? description,
+    CategoryModel? category,
+    CategoryModel? subCategory,
+    Enum$ParcelSizeEnum? parcel,
+    List<String>? selectedColors,
+    List<MaterialModel>? selectedMaterials,
+    Brand? brand,
+    Enum$SizeEnum? size,
+    String? price,
+    String? discount,
+    Enum$StyleEnum? style,
+    ConditionsEnum? selectedCondition,
+    String? customBrand,
+    bool? isFeatured,
+  }) {
     return SellItemState(
-        images: images ?? this.images,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        category: category ?? this.category,
-        subCategory: subCategory ?? this.subCategory,
-        parcel: parcel ?? this.parcel,
-        size: size ?? this.size,
-        brand: brand ?? this.brand,
-        price: price ?? this.price,
-        selectedColors: selectedColors ?? this.selectedColors,
-        selectedCondition: selectedCondition ?? this.selectedCondition,
-        selectedMaterials: selectedMaterials ?? this.selectedMaterials,
-        style: style ?? this.style,
-        discount: discount ?? this.discount,
-        customBrand: customBrand ?? this.customBrand);
+      images: images ?? this.images,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      category: category ?? this.category,
+      subCategory: subCategory ?? this.subCategory,
+      parcel: parcel ?? this.parcel,
+      size: size ?? this.size,
+      brand: brand ?? this.brand,
+      price: price ?? this.price,
+      selectedColors: selectedColors ?? this.selectedColors,
+      selectedCondition: selectedCondition ?? this.selectedCondition,
+      selectedMaterials: selectedMaterials ?? this.selectedMaterials,
+      style: style ?? this.style,
+      discount: discount ?? this.discount,
+      customBrand: customBrand ?? this.customBrand,
+      isFeatured: isFeatured ?? this.isFeatured,
+    );
   }
 
   @override
@@ -133,6 +138,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = SellItemState();
   }
 
+  void updateFeatured(bool isFeatured) {
+    state = state.copyWith(isFeatured: isFeatured);
+  }
+
   // Update description
   void updateDescription(String description) {
     state = state.copyWith(description: description);
@@ -182,20 +191,22 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   void productToItem(ProductModel product) {
     state = state.copyWith(
-        title: product.name,
-        description: product.description,
-        category: product.category,
-        subCategory: product.subCategory,
-        parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-        size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
-        price: product.price.toString(),
-        selectedCondition: product.condition,
-        brand: product.brand,
-        selectedColors: product.color,
-        selectedMaterials: product.materials,
-        style: product.style,
-        discount: product.discountPrice.toString(),
-        customBrand: product.customBrand);
+      title: product.name,
+      description: product.description,
+      category: product.category,
+      subCategory: product.subCategory,
+      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
+      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+      price: product.price.toString(),
+      selectedCondition: product.condition,
+      brand: product.brand,
+      selectedColors: product.color,
+      selectedMaterials: product.materials,
+      style: product.style,
+      discount: product.discountPrice.toString(),
+      customBrand: product.customBrand,
+      isFeatured: product.isFeatured,
+    );
   }
 
   // Add or remove a color

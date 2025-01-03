@@ -70,94 +70,92 @@ class _RecentlyViewedProductScreenState
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0),
-            child: CustomScrollView(
-              controller: controller,
-              slivers: [
-                SliverPersistentHeader(
-                  pinned: true, // Keeps it static
-                  delegate: StaticSliverDelegate(
-                      child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Searchwidget(
-                          padding: EdgeInsets.zero,
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          hintText: "Search for items and members",
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: false,
-                          cancelButton: true,
-                          onChanged: (val) {
-                            searchQuery = val;
-                            setState(() {});
-                          },
-                        ),
-                        addVerticalSpacing(12),
-                      ],
-                    ),
-                  )),
-                ),
-                ref.watch(recentlyViewedProductsProvider).maybeWhen(
-                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                      data: (products) => SliverPadding(
-                        padding:
-                            EdgeInsets.only(left: 16, right: 16, bottom: 16),
-                        sliver: SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.49,
-                          ),
-                          itemCount: products.take(6).length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(
-                                product: products.take(6).toList()[index]);
-                          },
-                        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: CustomScrollView(
+            controller: controller,
+            slivers: [
+              SliverPersistentHeader(
+                pinned: true, // Keeps it static
+                delegate: StaticSliverDelegate(
+                    child: Container(
+                  padding:
+                      const EdgeInsets.only(top: 16, left: 15, right: 15),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Searchwidget(
+                        padding: EdgeInsets.zero,
+                        obscureText: false,
+                        shouldReadOnly: false,
+                        hintText: "Search for items and members",
+                        enabled: true,
+                        showInputBorder: true,
+                        autofocus: false,
+                        cancelButton: true,
+                        onChanged: (val) {
+                          searchQuery = val;
+                          setState(() {});
+                        },
                       ),
-                      error: (e, _) {
-                        return SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(filteredProductProvider);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer()),
-                      orElse: () => SliverToBoxAdapter(child: Container()),
+                      addVerticalSpacing(12),
+                    ],
+                  ),
+                )),
+              ),
+              ref.watch(recentlyViewedProductsProvider).maybeWhen(
+                    // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                    data: (products) => SliverPadding(
+                      padding:
+                          EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                      sliver: SliverGrid.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.49,
+                        ),
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          return ProductCard(
+                              product: products[index]);
+                        },
+                      ),
                     ),
-                // if (ref
-                //     .watch(discountedProductsProvider.notifier)
-                //     .canLoadMore())
-                //   if (!ref.watch(discountedProductsProvider).isLoading)
-                //     const SliverToBoxAdapter(
-                //       child: PaginationLoadingIndicator(),
-                //     )
-              ],
-            ),
+                    error: (e, _) {
+                      return SliverToBoxAdapter(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(e.toString()),
+                              TextButton.icon(
+                                onPressed: () {
+                                  // log(e.toString(), stackTrace: _);
+                                  ref.invalidate(filteredProductProvider);
+                                },
+                                label: const Text('Retry'),
+                                icon: const Icon(Icons.refresh_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    loading: () => SliverToBoxAdapter(child: GridShimmer()),
+                    orElse: () => SliverToBoxAdapter(child: Container()),
+                  ),
+              // if (ref
+              //     .watch(discountedProductsProvider.notifier)
+              //     .canLoadMore())
+              //   if (!ref.watch(discountedProductsProvider).isLoading)
+              //     const SliverToBoxAdapter(
+              //       child: PaginationLoadingIndicator(),
+              //     )
+            ],
           ),
         ),
       ),

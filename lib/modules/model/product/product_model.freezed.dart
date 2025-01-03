@@ -46,6 +46,7 @@ mixin _$ProductModel {
   List<MaterialModel>? get materials => throw _privateConstructorUsedError;
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
   String? get customBrand => throw _privateConstructorUsedError;
+  bool? get isFeatured => throw _privateConstructorUsedError;
 
   /// Serializes this ProductModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -86,7 +87,8 @@ abstract class $ProductModelCopyWith<$Res> {
       Brand? brand,
       List<MaterialModel>? materials,
       Enum$StyleEnum? style,
-      String? customBrand});
+      String? customBrand,
+      bool? isFeatured});
 
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
@@ -132,6 +134,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? materials = freezed,
     Object? style = freezed,
     Object? customBrand = freezed,
+    Object? isFeatured = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -226,6 +229,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.customBrand
           : customBrand // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFeatured: freezed == isFeatured
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -313,7 +320,8 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       Brand? brand,
       List<MaterialModel>? materials,
       Enum$StyleEnum? style,
-      String? customBrand});
+      String? customBrand,
+      bool? isFeatured});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -361,6 +369,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? materials = freezed,
     Object? style = freezed,
     Object? customBrand = freezed,
+    Object? isFeatured = freezed,
   }) {
     return _then(_$ProductModelImpl(
       id: null == id
@@ -455,6 +464,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.customBrand
           : customBrand // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFeatured: freezed == isFeatured
+          ? _value.isFeatured
+          : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -485,7 +498,8 @@ class _$ProductModelImpl implements _ProductModel {
       required this.brand,
       final List<MaterialModel>? materials,
       this.style,
-      this.customBrand})
+      this.customBrand,
+      this.isFeatured})
       : _imagesUrl = imagesUrl,
         _color = color,
         _materials = materials;
@@ -562,10 +576,12 @@ class _$ProductModelImpl implements _ProductModel {
   final Enum$StyleEnum? style;
   @override
   final String? customBrand;
+  @override
+  final bool? isFeatured;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand)';
+    return 'ProductModel(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
   }
 
   @override
@@ -608,7 +624,9 @@ class _$ProductModelImpl implements _ProductModel {
                 .equals(other._materials, _materials) &&
             (identical(other.style, style) || other.style == style) &&
             (identical(other.customBrand, customBrand) ||
-                other.customBrand == customBrand));
+                other.customBrand == customBrand) &&
+            (identical(other.isFeatured, isFeatured) ||
+                other.isFeatured == isFeatured));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -637,7 +655,8 @@ class _$ProductModelImpl implements _ProductModel {
         brand,
         const DeepCollectionEquality().hash(_materials),
         style,
-        customBrand
+        customBrand,
+        isFeatured
       ]);
 
   /// Create a copy of ProductModel
@@ -680,7 +699,8 @@ abstract class _ProductModel implements ProductModel {
       required final Brand? brand,
       final List<MaterialModel>? materials,
       final Enum$StyleEnum? style,
-      final String? customBrand}) = _$ProductModelImpl;
+      final String? customBrand,
+      final bool? isFeatured}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
@@ -732,6 +752,8 @@ abstract class _ProductModel implements ProductModel {
   Enum$StyleEnum? get style;
   @override
   String? get customBrand;
+  @override
+  bool? get isFeatured;
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
