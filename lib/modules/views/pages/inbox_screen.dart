@@ -53,68 +53,68 @@ class _InboxScreenState extends State<InboxScreen>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: PreluraAppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          centerTitle: true,
-          appbarTitle: "Inbox",
-          trailingIcon: const [],
-        ),
-        body: Column(
-          children: [
-            Row(
-              children: ["Messages", "Notifications"]
-                  .asMap()
-                  .entries
-                  .map(
-                    (entry) => Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          _tabController.animateTo(entry.key);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            left: 10,
-                            right: 10,
-                            top: 12,
-                            bottom: 18,
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: _tabController.index == entry.key
-                                    ? PreluraColors.activeColor
-                                    : PreluraColors.greyColor.withOpacity(0.5),
-                                width: _tabController.index == entry.key
-                                    ? 2.0
-                                    : 1.0,
+        body: SafeArea(
+          minimum: EdgeInsets.only(
+            top: 20,
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: ["Messages", "Notifications"]
+                    .asMap()
+                    .entries
+                    .map(
+                      (entry) => Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            _tabController.animateTo(entry.key);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                              top: 12,
+                              bottom: 18,
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: _tabController.index == entry.key
+                                      ? PreluraColors.activeColor
+                                      : PreluraColors.greyColor
+                                          .withOpacity(0.5),
+                                  width: _tabController.index == entry.key
+                                      ? 2.0
+                                      : 1.0,
+                                ),
                               ),
                             ),
-                          ),
-                          child: Text(
-                            entry.value,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: _tabController.index == entry.key
-                                  ? Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.color
-                                  : PreluraColors.greyLightColor,
+                            child: Text(
+                              entry.value,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: _tabController.index == entry.key
+                                    ? Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.color
+                                    : PreluraColors.greyLightColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                  .toList(),
-            ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [ChatsTab(), NotificationsTab()],
+                    )
+                    .toList(),
               ),
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [ChatsTab(), NotificationsTab()],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

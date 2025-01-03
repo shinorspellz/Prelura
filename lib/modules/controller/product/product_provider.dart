@@ -1028,7 +1028,7 @@ final userProductGroupingByCategoryProvider =
 //   }
 // }
 
-final recentlyViewedProductsProvider = FutureProvider((ref) async {
+final recentlyViewedProductsProvider = FutureProvider.autoDispose((ref) async {
   final repo = ref.watch(productRepo);
   final result = await repo.getRecentlyViewedProducts();
 
