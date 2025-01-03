@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
+import 'package:prelura_app/res/context_entension.dart';
 
 class HighlightUserName extends StatelessWidget {
   final String username;
@@ -12,10 +14,12 @@ class HighlightUserName extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium
-            ?.copyWith(fontWeight: isRead! ? FontWeight.w200 : FontWeight.w400),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontWeight: isRead!
+                ? context.isDarkMode
+                    ? FontWeight.w200
+                    : FontWeight.w300
+                : FontWeight.w400),
         children: _highlightUsernameInMessage(username, message, context),
       ),
     );

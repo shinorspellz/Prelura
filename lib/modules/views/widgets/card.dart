@@ -230,7 +230,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     Text(
                       widget.product.seller.username,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           fontSize: 12,
                           color: Theme.of(context).textTheme.bodyMedium?.color),
                     ),
