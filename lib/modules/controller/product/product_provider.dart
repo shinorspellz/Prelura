@@ -997,51 +997,53 @@ final userProductGroupingByCategoryProvider =
   return result;
 });
 
-// final recentlyViewedProductsProvider =
-//     AsyncNotifierProvider<DiscountProductsController, List<ProductModel>>(
-//         DiscountProductsController.new);
+final recentlyViewedProductsProvider =
+    AsyncNotifierProvider<RecentlyViewedProductNotifier, List<ProductModel>>(
+        RecentlyViewedProductNotifier.new);
 
-// // Notifier for managing recently viewed products
-// class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
-//   late final _repository = ref.read(productRepo);
+// Notifier for managing recently viewed products
+class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
+  late final _repository = ref.read(productRepo);
 
-//   @override
-//   Future<List<ProductModel>> build() async {
-//     return _fetchProducts();
-//   }
+  @override
+  Future<List<ProductModel>> build() async {
+    state = const AsyncLoading();
+    return _fetchProducts();
+  }
 
-//   Future<List<ProductModel>> _fetchProducts() async {
-//     try {
-//       // Fetch the raw response
-//       final response = await _repository.getRecentlyViewedProducts();
+  Future<List<ProductModel>> _fetchProducts() async {
+    try {
+      // Fetch the raw response
+      final response = await _repository.getRecentlyViewedProducts();
+      log(response.toString());
 
-//       // Map response to ProductModel list
-//       final products =
-//           response.map((e) => ProductModel.fromJson(e.toJson())).toList();
+      // Map response to ProductModel list
+      final products = await response.recentlyViewedProducts!
+          .map((e) => ProductModel.fromJson(e!.toJson()))
+          .toList();
+      log(products.toString());
+      // Update state with fetched products
+      state = AsyncValue.data(products);
 
-//       // Update state with fetched products
-//       state = AsyncData(products);
+      return state.value!;
+    } catch (e, stackTrace) {
+      // Handle errors
+      state = AsyncError(e, stackTrace);
+      return [];
+    }
+  }
 
-//       return products;
-//     } catch (e, stackTrace) {
-//       // Handle errors
-//       state = AsyncError(e, stackTrace);
-//       return [];
-//     }
-//   }
-// }
+  // bool canLoadMore() {
+  //   return (state.value?.length ?? 0) < _totalItems;
+  // }
+}
 
-//   bool canLoadMore() {
-//     return (state.value?.length ?? 0) < _totalItems;
-//   }
-// }
+// final recentlyViewedProductsProvider = FutureProvider.autoDispose((ref) async {
+//   final repo = ref.watch(productRepo);
+//   final result = await repo.getRecentlyViewedProducts();
 
-final recentlyViewedProductsProvider = FutureProvider.autoDispose((ref) async {
-  final repo = ref.watch(productRepo);
-  final result = await repo.getRecentlyViewedProducts();
-
-  return result;
-});
+//   return result;
+// });
 
 final userProductGroupingBySubCategoryProvider =
     FutureProvider.family((ref, int userId) async {

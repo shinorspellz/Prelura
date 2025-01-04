@@ -174,7 +174,7 @@ class ProductRepo {
         .toList();
   }
 
-  Future<List<ProductModel>> getRecentlyViewedProducts() async {
+  Future<Query$RecentlyViewedproducts> getRecentlyViewedProducts() async {
     final response = await _client.query$RecentlyViewedproducts(
       Options$Query$RecentlyViewedproducts(),
     );
@@ -193,9 +193,7 @@ class ProductRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.recentlyViewedProducts!
-        .map((x) => ProductModel.fromJson(x!.toJson()))
-        .toList();
+    return response.parsedData!;
   }
 
   Future<Query$AllProducts> getAllProducts(

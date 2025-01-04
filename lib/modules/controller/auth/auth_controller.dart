@@ -58,25 +58,6 @@ class _AuthController extends AsyncNotifier<void> {
         ));
   }
 
-  Future<void> resetPassword(
-      {required String newPassword,
-      required String token,
-      required email}) async {
-    state = const AsyncLoading();
-
-    state = await AsyncValue.guard(() async {
-      await _repo.resetPassword(newPassword, token, email);
-    });
-  }
-
-  Future<void> requestEmailOtp(String email) async {
-    state = const AsyncLoading();
-
-    state = await AsyncValue.guard(() async {
-      await _repo.requestEmailOtp(email);
-    });
-  }
-
   Future<void> logout() async {
     state = const AsyncLoading();
 
@@ -87,18 +68,35 @@ class _AuthController extends AsyncNotifier<void> {
 }
 
 final forgotPasswordProvider =
-    AsyncNotifierProvider<_AuthController, void>(_AuthController.new);
+    AsyncNotifierProvider<ForgotPasswordNotifier, String?>(
+        ForgotPasswordNotifier.new);
 
-class ForgotPasswordNotifier extends AsyncNotifier<void> {
+class ForgotPasswordNotifier extends AsyncNotifier<String?> {
   late final _repo = ref.read(authRepo);
 
   @override
-  FutureOr build() {}
-  Future<void> requestEmailOtp(String email) async {
-    state = const AsyncLoading();
+  Future<String?> build() async {
+    return null;
+  }
 
-    state = await AsyncValue.data(() async {
+  Future<void> requestEmailOtp(String email) async {
+    state = const AsyncLoading(); // Indicate loading state.
+
+    state = await AsyncValue.guard(() async {
       await _repo.requestEmailOtp(email);
     });
+
+    // Optional: Log or handle additional actions on success/failure.
+  }
+
+  Future<String> resetPassword(
+      {required String newPassword,
+      required String token,
+      required email}) async {
+    state = const AsyncLoading();
+
+    state =
+        await AsyncData(await _repo.resetPassword(newPassword, token, email));
+    return state.value!;
   }
 }

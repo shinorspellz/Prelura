@@ -882,10 +882,17 @@ class MyOrderRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i29.NewPasswordScreen]
-class NewPasswordRoute extends _i59.PageRouteInfo<void> {
-  const NewPasswordRoute({List<_i59.PageRouteInfo>? children})
-      : super(
+class NewPasswordRoute extends _i59.PageRouteInfo<NewPasswordRouteArgs> {
+  NewPasswordRoute({
+    _i61.Key? key,
+    required String email,
+    List<_i59.PageRouteInfo>? children,
+  }) : super(
           NewPasswordRoute.name,
+          args: NewPasswordRouteArgs(
+            key: key,
+            email: email,
+          ),
           initialChildren: children,
         );
 
@@ -894,9 +901,29 @@ class NewPasswordRoute extends _i59.PageRouteInfo<void> {
   static _i59.PageInfo page = _i59.PageInfo(
     name,
     builder: (data) {
-      return const _i29.NewPasswordScreen();
+      final args = data.argsAs<NewPasswordRouteArgs>();
+      return _i29.NewPasswordScreen(
+        key: args.key,
+        email: args.email,
+      );
     },
   );
+}
+
+class NewPasswordRouteArgs {
+  const NewPasswordRouteArgs({
+    this.key,
+    required this.email,
+  });
+
+  final _i61.Key? key;
+
+  final String email;
+
+  @override
+  String toString() {
+    return 'NewPasswordRouteArgs{key: $key, email: $email}';
+  }
 }
 
 /// generated route for
