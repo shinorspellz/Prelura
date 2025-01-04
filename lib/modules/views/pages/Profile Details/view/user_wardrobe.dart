@@ -538,6 +538,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       subCategoriesIntersection(e, user.id)
                                           .map(
                                             (x) => PreluraCheckBox(
+                                                sideText:
+                                                    " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
+                                                sideTextColor:
+                                                    PreluraColors.grey,
                                                 isChecked:
                                                     selectedItem == x.name,
                                                 style: Theme.of(context)
