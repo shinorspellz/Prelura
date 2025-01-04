@@ -316,6 +316,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
     String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
     VBottomSheetComponent.customBottomSheet(
+      removeSidePadding: true,
       context: context,
       child: StatefulBuilder(builder: (context, setState) {
         return Consumer(
@@ -327,44 +328,17 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                   child: ListView(
                     shrinkWrap: true,
                     children: filterOptions[filterType]!
-                        .map((e) => Column(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    filterNotifier.updateFilter(filterType, e);
-                                    setState(() {
-                                      selectedOptions = e;
-                                    });
+                        .map((e) => PreluraCheckBox(
+                            isChecked: selectedOptions == e,
+                            onChanged: (value) {
+                              filterNotifier.updateFilter(filterType, e!);
+                              setState(() {
+                                selectedOptions = e;
+                              });
 
-                                    Navigator.pop(context);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(e.replaceAll("_", " "),
-                                          style: context.textTheme.bodyLarge
-                                              ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                      Spacer(),
-                                      Radio(
-                                          value: e,
-                                          groupValue:
-                                              selectedOptions, //selectedOptions,
-                                          onChanged: (value) {
-                                            filterNotifier.updateFilter(
-                                                filterType, value!);
-                                            setState(() {
-                                              selectedOptions = value;
-                                            });
-
-                                            Navigator.pop(context);
-                                          }),
-                                    ],
-                                  ),
-                                ),
-                                Divider()
-                              ],
-                            ))
+                              Navigator.pop(context);
+                            },
+                            title: e.replaceAll("_", " ")))
                         .toList(),
                   ),
                 ));

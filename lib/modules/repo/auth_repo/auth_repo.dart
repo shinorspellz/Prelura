@@ -44,7 +44,8 @@ class AuthRepo {
     }
 
     // checks if any data is available in the mutation
-    if (mutation.parsedData?.login?.token == null || mutation.parsedData?.login?.restToken == null) {
+    if (mutation.parsedData?.login?.token == null ||
+        mutation.parsedData?.login?.restToken == null) {
       throw const CacheFailure();
     }
     log("token is ${mutation.parsedData!.login!.token!}");
@@ -56,7 +57,8 @@ class AuthRepo {
 
     log('Bearer ${mutation.parsedData?.login?.token}', name: 'AuthMutation');
     log('Rest ${mutation.parsedData!.login!.restToken}', name: 'AuthMutation');
-    log('Username ${mutation.parsedData!.login!.user!.username}', name: 'AuthMutation');
+    log('Username ${mutation.parsedData!.login!.user!.username}',
+        name: 'AuthMutation');
 
     // invalidate graphql client to use the version with with a beare token
     _ref.invalidate(graphqlClient);
@@ -169,10 +171,12 @@ class AuthRepo {
       log(response.exception.toString(), name: 'AuthMutation');
       throw 'An error occured';
     }
-    return response.parsedData!.resetPassword!.message;
+    return response.parsedData!.resetPassword?.message;
   }
 
-  Future<bool> resetPassword(String newPassword, String token, String email) async {
+  Future<String> resetPassword(
+      String newPassword, String token, String email) async {
+    log('newPassword: $newPassword, token: $token, email: $email');
     final response = await _client.mutate$PasswordReset(
       Options$Mutation$PasswordReset(
         variables: Variables$Mutation$PasswordReset(
@@ -182,9 +186,7 @@ class AuthRepo {
         ),
       ),
     );
-    if (response.parsedData != null) {
-      return true;
-    }
+
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
@@ -195,6 +197,6 @@ class AuthRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData?.passwordReset?.message != null;
+    return response.parsedData!.passwordReset!.message.toString();
   }
 }

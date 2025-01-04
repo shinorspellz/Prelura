@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +7,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../../res/helper_function.dart';
 import '../../../../controller/auth/auth_controller.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/auth_text_field.dart';
@@ -13,7 +16,8 @@ import '../../../widgets/gap.dart';
 
 @RoutePage()
 class NewPasswordScreen extends ConsumerStatefulWidget {
-  const NewPasswordScreen({super.key});
+  const NewPasswordScreen({super.key, required this.email});
+  final String email;
 
   @override
   ConsumerState<NewPasswordScreen> createState() => _NewPasswordScreenState();
@@ -37,6 +41,11 @@ class _NewPasswordScreenState extends ConsumerState<NewPasswordScreen> {
           : value.length < 8
               ? "Password must be at least 8 characters"
               : null;
+      confirmPasswordError = _confirmPasswordController.text.isNotEmpty
+          ? value != _confirmPasswordController.text
+              ? "Passwords do not match"
+              : null
+          : null;
     });
   }
 
@@ -55,7 +64,7 @@ class _NewPasswordScreenState extends ConsumerState<NewPasswordScreen> {
       otpError = value.isEmpty
           ? "Please enter the OTP"
           : value.length != 6
-              ? "OTP must be 4 digits"
+              ? "OTP must be 6 digits"
               : null;
     });
   }
@@ -71,12 +80,16 @@ class _NewPasswordScreenState extends ConsumerState<NewPasswordScreen> {
       final newPassword = _newPasswordController.text;
       final otp = _otpController.text;
 
-      await ref
-          .read(authProvider.notifier)
-          .resetPassword(newPassword: newPassword, token: otp, email: "");
-      ref.read(authProvider).whenOrNull(
+      await ref.read(forgotPasswordProvider.notifier).resetPassword(
+          newPassword: newPassword, token: otp, email: widget.email.trim());
+      ref.read(forgotPasswordProvider).whenOrNull(
             error: (e, _) => context.alert(e.toString()),
-            data: (_) {
+            data: (data) async {
+              log(data.toString());
+              HelperFunction.context = context;
+              HelperFunction.showToast(
+                  message: '$data, login with your new pass word' ?? "");
+              await Future.delayed(const Duration(seconds: 3));
               context.router.replaceAll([LoginRoute()]);
             },
           );
@@ -150,6 +163,7 @@ class _NewPasswordScreenState extends ConsumerState<NewPasswordScreen> {
                   ),
                 Spacer(),
                 AppButton(
+                  loading: ref.watch(forgotPasswordProvider).isLoading,
                   onTap: _resetPassword,
                   text: "Reset Password",
                   width: 100.w,
