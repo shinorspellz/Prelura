@@ -98,7 +98,7 @@ class PreluraCheckBox extends StatelessWidget {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         color: sideTextColor ??
                                             Theme.of(context)
                                                 .textTheme
