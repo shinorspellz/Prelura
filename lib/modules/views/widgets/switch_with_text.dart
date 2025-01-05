@@ -76,6 +76,7 @@ class PreluraSwitchWithText extends StatelessWidget {
                               .textTheme
                               .bodyMedium!
                               .copyWith(
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                   color: Theme.of(context)
                                       .textTheme

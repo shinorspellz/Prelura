@@ -88,7 +88,12 @@ class PreluraCheckBox extends StatelessWidget {
                             Text(
                               title,
                               style: style ??
-                                  Theme.of(context).textTheme.bodyMedium,
+                                  Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontSize: 16,
+                                      ),
                             ),
                             6.horizontalSpacing,
                             if (sideText != null)
@@ -98,6 +103,7 @@ class PreluraCheckBox extends StatelessWidget {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w400,
                                         color: sideTextColor ??
                                             Theme.of(context)
@@ -112,10 +118,11 @@ class PreluraCheckBox extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(
                           subtitle!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w300),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 16,
+                                  ),
                           overflow: TextOverflow.ellipsis, // Handle overflow
                           maxLines:
                               4, // Limit the number of lines for the subtitle

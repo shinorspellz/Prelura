@@ -71,12 +71,16 @@ class FollowerTile extends ConsumerWidget {
                 children: [
                   Text(
                     follower.fullName ?? follower.username,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     follower.username,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: 16,
+                    ),
                   ),
                 ],
               ),

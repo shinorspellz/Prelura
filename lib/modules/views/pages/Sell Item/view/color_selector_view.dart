@@ -115,10 +115,10 @@ class ColorSelectorScreen extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     "Done",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: PreluraColors.white),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: PreluraColors.white,
+                          fontSize: 16,
+                        ),
                   ),
                 ),
               ),

@@ -121,7 +121,12 @@ class _ProductFilterPageState
                               child: Center(
                                 child: Text(
                                   "No products found",
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontSize: 16,
+                                      ),
                                 ),
                               ),
                             ),

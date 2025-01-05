@@ -103,7 +103,7 @@ class _OrderSubTabsState extends ConsumerState<OrderSubTabs>
         child: Text(
           labels[index],
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 16,
             color: isSelected
                 ? PreluraColors.activeColor
                 : Theme.of(context).textTheme.bodyMedium?.color,

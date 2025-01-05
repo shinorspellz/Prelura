@@ -60,7 +60,9 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
               child: Text(
                   "Allow your customers to get exclusive discount when they buy multiple items from your shop.",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600, color: PreluraColors.grey))),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: PreluraColors.grey))),
           if (ref.watch(isSelectedProvider)) ...[
             DiscountItem(
               title: "2-4 items",

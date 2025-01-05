@@ -53,6 +53,7 @@ class MenuPage extends ConsumerWidget {
                   "Dark Mode",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.w600,
+                      fontSize: 16,
                       color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(

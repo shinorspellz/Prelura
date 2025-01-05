@@ -65,6 +65,7 @@ class ProductTopDetails extends ConsumerWidget {
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.purple,
                           fontWeight: FontWeight.w400,
+                          fontSize: 16,
                         ),
                   ),
                 ],
@@ -96,6 +97,7 @@ class ProductTopDetails extends ConsumerWidget {
                                   : Colors.white30
                               : null,
                           fontWeight: FontWeight.w600,
+                          fontSize: 16,
                         ),
                   ),
                   if (product.discountPrice != null) ...[
@@ -107,6 +109,7 @@ class ProductTopDetails extends ConsumerWidget {
                       )}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
                     ),
                     10.horizontalSpacing,
@@ -123,6 +126,7 @@ class ProductTopDetails extends ConsumerWidget {
                         ' ${double.parse(product.discountPrice!).toInt()}%',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             ),
                       ),
                     )
@@ -235,10 +239,11 @@ class ProductTopDetails extends ConsumerWidget {
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
                         ),
                       ),
                       Row(
@@ -249,7 +254,10 @@ class ProductTopDetails extends ConsumerWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
-                                .copyWith(fontWeight: FontWeight.w400),
+                                .copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16,
+                                ),
                           ),
                         ],
                       )

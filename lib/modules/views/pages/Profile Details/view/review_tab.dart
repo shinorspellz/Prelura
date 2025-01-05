@@ -54,7 +54,9 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Member reviews (54)",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: 16,
+                            )),
                     const Row(
                       children: [
                         Text("5.0"),
@@ -73,7 +75,9 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Automatic reviews (54)",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: 16,
+                            )),
                     const Row(
                       children: [
                         Text("5.0"),
@@ -97,7 +101,7 @@ class ReviewScreen extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium
-                    ?.copyWith(color: PreluraColors.activeColor)),
+                    ?.copyWith(fontSize: 16, color: PreluraColors.activeColor)),
           ),
           const Divider(
             thickness: 1,

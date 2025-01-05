@@ -62,10 +62,10 @@ class OrderCard extends StatelessWidget {
                 children: [
                   Text(
                     order.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
                   ),
                   const SizedBox(height: 5),
                   Text(

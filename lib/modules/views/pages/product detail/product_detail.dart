@@ -566,7 +566,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                   ),
                   Text(
                     "Save on postage",
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontSize: 16,
+                        ),
                   ),
                 ],
               ),

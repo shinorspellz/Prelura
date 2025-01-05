@@ -64,7 +64,7 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
               ),
               unselectedLabelStyle: TextStyle(
                   fontWeight: FontWeight.normal,
-                  fontSize: 14,
+                  fontSize: 16,
                   color: Theme.of(context).textTheme.bodyMedium?.color),
               tabs: const [
                 Tab(
