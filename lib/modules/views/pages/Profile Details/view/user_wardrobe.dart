@@ -436,7 +436,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       UserScrollableList(
                         user: user,
                       ),
-                      if (selectedItem.isNotEmpty)
+                      if (selectedItem.isNotEmpty) ...[
+                        Divider(
+                          thickness: 1,
+                        ),
                         MenuCard(
                             icon: isSelected
                                 ? Icon(Icons.arrow_back_ios_rounded,
@@ -467,28 +470,54 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               setState(() {});
                               ref.invalidate(filterUserProductProvider);
                             })
-                      else
+                      ] else
                         ExpansionTile(
-                          title: Text(
-                            widget.username != null
-                                ? 'Categories from this seller'
-                                : "Categories",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  fontSize: getDefaultSize(),
-                                  fontWeight: FontWeight.w600,
-                                  color: PreluraColors.grey,
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Text(
+                                  widget.username != null
+                                      ? 'Categories from this seller'
+                                      : "Categories",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontSize: getDefaultSize(),
+                                        fontWeight: FontWeight.w600,
+                                        color: PreluraColors.grey,
+                                      ),
                                 ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 20.0),
+                                child: Icon(
+                                  expandedCategories
+                                      ? Icons.keyboard_arrow_up_rounded
+                                      : Icons.keyboard_arrow_down_rounded,
+                                  weight: 500,
+                                  color: context.isDarkMode
+                                      ? PreluraColors.white
+                                      : PreluraColors.primaryColor,
+                                ),
+                              )
+                            ],
                           ),
-                          tilePadding:
-                              EdgeInsets.only(right: 15, left: 15, top: 10),
+                          tilePadding: EdgeInsets.only(top: 10),
                           childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                           minTileHeight: 40,
+                          showTrailingIcon: false,
                           onExpansionChanged: (expanded) =>
                               setState(() => expandedCategories = expanded),
                           controller: controller,
+                          collapsedShape: Border(
+                            bottom: BorderSide(
+                                width: 1, color: context.theme.dividerColor),
+                            top: BorderSide(
+                                width: 1, color: context.theme.dividerColor),
+                          ),
                           expansionAnimationStyle: AnimationStyle(
                             duration: Duration(milliseconds: 300),
                           ),
@@ -547,7 +576,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       subCategoriesIntersection(e, user.id)
                                           .map(
                                             (x) => PreluraCheckBox(
-                                                icon: Icon(Icons.remove_sharp),
+                                                icon: Icon(Icons.remove_sharp,
+                                                    size: 16,
+                                                    color: PreluraColors.grey),
                                                 sideText:
                                                     " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
                                                 sideTextColor:
