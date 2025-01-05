@@ -5,10 +5,9 @@ part 'failures.freezed.dart';
 @freezed
 class Failure with _$Failure implements Exception {
   const Failure._();
-
   const factory Failure.connectionFailure(String message) = ConnectionFailure;
-  const factory Failure.requestFailure(String message, int code, [StackTrace? stackTrace]) = RequestFailure;
-  const factory Failure.cacheFailure({String? message}) = CacheFailure;
+  const factory Failure.requestFailure(String message, [StackTrace? stackTrace]) = RequestFailure;
+  const factory Failure.cacheFailure({String? message, StackTrace? stackTrace}) = CacheFailure;
   const factory Failure.jsonParseFailure([StackTrace? stackTrace]) = JsonParseFailure;
 
   const factory Failure.unknownFailure(String message, [StackTrace? stackTrace]) = UnknownFailure;
@@ -19,7 +18,7 @@ extension Error on Object {
     final e = this;
     if (e is RequestFailure) {
       // logger.e(e.message, stackTrace: e.stackTrace);
-      return RequestFailure(e.message, e.code, e.stackTrace);
+      return RequestFailure(e.message, e.stackTrace);
     }
     if (e is ConnectionFailure) {
       // logger.e(e.message);
