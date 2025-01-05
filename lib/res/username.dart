@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
-import 'package:prelura_app/res/context_entension.dart';
+import 'package:prelura_app/core/utils/theme.dart';
+
+import 'colors.dart';
 
 class HighlightUserName extends StatelessWidget {
   final String username;
@@ -12,22 +13,22 @@ class HighlightUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = context.isDarkMode;
     return RichText(
       text: TextSpan(
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            fontSize: 16,
-            fontWeight: isRead!
-                ? context.isDarkMode
-                    ? FontWeight.w200
-                    : FontWeight.w300
-                : FontWeight.w400),
+              fontWeight: FontWeight.w500,
+              color: !isRead
+                  ? Theme.of(context).textTheme.bodyMedium?.color
+                  : PreluraColors.grey,
+            ),
         children: _highlightUsernameInMessage(username, message, context),
       ),
     );
   }
 
   List<TextSpan> _highlightUsernameInMessage(
-      String username, String message, context) {
+      String username, String message, BuildContext context) {
     final List<TextSpan> spans = [];
     final pattern = RegExp(username, caseSensitive: false);
 
@@ -42,8 +43,9 @@ class HighlightUserName extends StatelessWidget {
       spans.add(TextSpan(
         text: message.substring(match.start, match.end),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            fontSize: 16,
-            fontWeight: isRead! ? FontWeight.w500 : FontWeight.w700),
+            color:
+                context.isDarkMode ? PreluraColors.white : PreluraColors.black,
+            fontWeight: FontWeight.w700),
       ));
 
       start = match.end;

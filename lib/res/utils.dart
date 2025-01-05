@@ -8,6 +8,10 @@ void dismissKeyboard() {
   FocusManager.instance.primaryFocus?.unfocus();
 }
 
+double getDefaultSize() {
+  return 14.0;
+}
+
 class NetworkUtility {
   static Future<String?> fetchUrl(Uri uri,
       {Map<String, String>? headers}) async {
@@ -71,7 +75,6 @@ Future<Position> determinePosition() async {
       desiredAccuracy: LocationAccuracy.high);
 }
 
-
 String formatDynamicString(String input) {
   final doubleValue = double.tryParse(input);
   if (doubleValue == null) {
@@ -84,9 +87,11 @@ String formatDynamicString(String input) {
   }
 
   // Convert to a string and remove trailing zeros
-  String formatted = doubleValue.toStringAsFixed(10); // Arbitrary high precision
+  String formatted =
+      doubleValue.toStringAsFixed(10); // Arbitrary high precision
   formatted = formatted.replaceAll(RegExp(r'0+$'), ''); // Remove trailing zeros
-  formatted = formatted.replaceAll(RegExp(r'\.$'), ''); // Remove trailing decimal point
+  formatted =
+      formatted.replaceAll(RegExp(r'\.$'), ''); // Remove trailing decimal point
 
   return formatted;
 }

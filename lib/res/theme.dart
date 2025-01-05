@@ -69,43 +69,44 @@ class PreluraTheme {
               color: Colors.black,
             )),
         textTheme: TextTheme(
-          // displayLarge: PreluraTypography1.normalTextStyle,
-          // displayMedium: PreluraTypography1.mediumTextStyle,
-          // displaySmall: PreluraTypography1.smallTextStyle,
-          // titleLarge: PreluraTypography1.normalTextStyle,
-          // titleMedium: PreluraTypography1.normalTextStyle,
-          // titleSmall: PreluraTypography1.normalTextStyle,
-          // labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
-          //       color: Colors.black, // PreluraColors.primaryColor,
-          //       fontFamily: PreluraTypography1.primaryfontName,
-          //     ),
-          // labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
-          //       color: Colors.black, // PreluraColors.primaryColor,
-          //       fontFamily: PreluraTypography1.primaryfontName,
-          //     ),
-          // labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
-          //       color: Colors.black, // PreluraColors.primaryColor,
-          //       fontFamily: PreluraTypography1.primaryfontName,
-          //     ),
-          // // bodyLarge: PreluraTypography1.normalTextStyle,
-          // // bodyMedium: PreluraTypography1.mediumTextStyle,
-          // // bodySmall: PreluraTypography1.smallTextStyle,
-          // bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
-          //       color: Colors.black, // PreluraColors.primaryColor,
-          //       fontFamily: PreluraTypography1.primaryfontName,
-          //     ),
-          // // ?.copyWith(color: Colors.amber),
-          bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
-                fontSize: 16,
-              ),
-          // // ?.copyWith(color: Colors.amber),
-          // bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
-          //       color: Colors.black, // PreluraColors.primaryColor,
-          //       fontSize: 10.sp,
-          //       fontFamily: PreluraTypography1.primaryfontName,
-          //     ),
-          // ?.copyWith(color: Colors.amber),
-        ).apply(
+                // displayLarge: PreluraTypography1.normalTextStyle,
+                // displayMedium: PreluraTypography1.mediumTextStyle,
+                // displaySmall: PreluraTypography1.smallTextStyle,
+                // titleLarge: PreluraTypography1.normalTextStyle,
+                // titleMedium: PreluraTypography1.normalTextStyle,
+                // titleSmall: PreluraTypography1.normalTextStyle,
+                // labelSmall: ThemeData.light().textTheme.labelSmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelMedium: ThemeData.light().textTheme.labelMedium?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // labelLarge: ThemeData.light().textTheme.labelLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // bodyLarge: PreluraTypography1.normalTextStyle,
+                // // bodyMedium: PreluraTypography1.mediumTextStyle,
+                // // bodySmall: PreluraTypography1.smallTextStyle,
+                // bodyLarge: ThemeData.light().textTheme.bodyLarge?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
+                //       fontSize: 16,
+                //     ),
+                // // ?.copyWith(color: Colors.amber),
+                // bodySmall: ThemeData.light().textTheme.bodySmall?.copyWith(
+                //       color: Colors.black, // PreluraColors.primaryColor,
+                //       fontSize: 10.sp,
+                //       fontFamily: PreluraTypography1.primaryfontName,
+                //     ),
+                // ?.copyWith(color: Colors.amber),
+                )
+            .apply(
           fontFamily: PreluraTypography1.primaryfontName,
           bodyColor: Colors.black,
           displayColor: Colors.black,
@@ -311,7 +312,7 @@ class PreluraTheme {
           fontFamily: PreluraTypography1.primaryfontName,
           bodyColor: PreluraColors.darkOnPrimaryColor,
           displayColor: PreluraColors.darkOnPrimaryColor,
-        
+
           // bodyMedium: ThemeData.light().textTheme.bodyMedium?.copyWith(
           //       fontSize: 16,
           //     ),

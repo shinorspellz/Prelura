@@ -16,6 +16,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/context_entension.dart';
 
+import '../../../../../res/utils.dart';
 import '../../../widgets/app_bar.dart';
 
 final chatProvider = StateNotifierProvider<ChatNotifier, List<ChatMessage>>(
@@ -194,7 +195,7 @@ class RecieverTextWidget extends StatelessWidget {
       child: Text(
         chat.text,
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontSize: 16,
+              fontSize: getDefaultSize(),
             ),
       ),
     );
@@ -247,8 +248,8 @@ class SenderTextWidget extends ConsumerWidget {
           child: Text(
             chat.text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontSize: 16,
-            ),
+                  fontSize: getDefaultSize(),
+                ),
           ),
         ),
       ),

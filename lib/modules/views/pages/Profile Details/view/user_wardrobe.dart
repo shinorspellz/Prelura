@@ -40,6 +40,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../res/colors.dart';
 import '../../../../../res/helper_function.dart';
 import '../../../../../res/images.dart';
+import '../../../../../res/utils.dart';
 import '../../../../model/product/categories/category_model.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button.dart';
@@ -216,7 +217,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium
                                           ?.copyWith(
-                                              fontSize: 16,
+                                              fontSize: getDefaultSize(),
                                               fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -476,7 +477,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 .textTheme
                                 .bodyMedium!
                                 .copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                   fontWeight: FontWeight.w600,
                                   color: PreluraColors.grey,
                                 ),
@@ -501,7 +502,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                            fontSize: 16,
+                                            fontSize: getDefaultSize(),
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
@@ -512,7 +513,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
-                                            fontSize: 16,
+                                            fontSize: getDefaultSize(),
                                             fontWeight: FontWeight.w400,
                                             color: PreluraColors.grey,
                                           ),
@@ -557,7 +558,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                     .textTheme
                                                     .bodyMedium!
                                                     .copyWith(
-                                                      fontSize: 16,
+                                                      fontSize:
+                                                          getDefaultSize(),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -621,7 +623,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
-                                        fontSize: 16,
+                                        fontSize: getDefaultSize(),
                                         fontWeight: FontWeight.w600,
                                         color: PreluraColors.grey),
                               ),

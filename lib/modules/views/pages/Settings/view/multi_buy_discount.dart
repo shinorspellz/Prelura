@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/views/pages/Settings/widget/discountItem.dar
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/switch_with_text.dart';
 
@@ -60,7 +61,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
               child: Text(
                   "Allow your customers to get exclusive discount when they buy multiple items from your shop.",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                       fontWeight: FontWeight.w600,
                       color: PreluraColors.grey))),
           if (ref.watch(isSelectedProvider)) ...[

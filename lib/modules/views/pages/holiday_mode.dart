@@ -9,6 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/helper_function.dart';
+import '../../../res/utils.dart';
 
 @RoutePage()
 class HolidayModeScreen extends ConsumerWidget {
@@ -80,7 +81,7 @@ class HolidayModeScreen extends ConsumerWidget {
               child: Text(
                   "Note: Turning on vacation will hide your items from all catalogues",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                       fontWeight: FontWeight.w600,
                       color: PreluraColors.grey))),
         ]),

@@ -3,6 +3,7 @@ import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../res/colors.dart';
+import '../../../res/utils.dart';
 
 class PreluraCheckBox extends StatelessWidget {
   final bool isChecked; // Current state of the checkbox
@@ -92,7 +93,7 @@ class PreluraCheckBox extends StatelessWidget {
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                        fontSize: 16,
+                                        fontSize: getDefaultSize(),
                                       ),
                             ),
                             6.horizontalSpacing,
@@ -103,7 +104,7 @@ class PreluraCheckBox extends StatelessWidget {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
-                                        fontSize: 16,
+                                        fontSize: getDefaultSize(),
                                         fontWeight: FontWeight.w400,
                                         color: sideTextColor ??
                                             Theme.of(context)
@@ -121,7 +122,7 @@ class PreluraCheckBox extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontWeight: FontWeight.w300,
-                                    fontSize: 16,
+                                    fontSize: getDefaultSize(),
                                   ),
                           overflow: TextOverflow.ellipsis, // Handle overflow
                           maxLines:

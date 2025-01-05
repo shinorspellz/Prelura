@@ -27,6 +27,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
 import '../../../../res/images.dart';
+import '../../../../res/utils.dart';
 import '../../../../shared/card_model.dart';
 import '../../shimmers/product_details_shimmer.dart';
 import '../../widgets/card.dart';
@@ -567,7 +568,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                   Text(
                     "Save on postage",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 16,
+                          fontSize: getDefaultSize(),
                         ),
                   ),
                 ],

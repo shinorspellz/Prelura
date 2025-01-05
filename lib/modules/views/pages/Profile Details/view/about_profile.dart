@@ -19,6 +19,7 @@ import 'package:prelura_app/res/helper_function.dart';
 
 import '../../../../../core/router/router.gr.dart';
 import '../../../../../res/images.dart';
+import '../../../../../res/utils.dart';
 
 class AboutProfile extends ConsumerWidget {
   const AboutProfile({super.key, this.username});
@@ -182,7 +183,8 @@ class AboutProfile extends ConsumerWidget {
                                                           .textTheme
                                                           .bodyMedium
                                                           ?.copyWith(
-                                                              fontSize: 16,
+                                                              fontSize:
+                                                                  getDefaultSize(),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400),
@@ -191,7 +193,8 @@ class AboutProfile extends ConsumerWidget {
                                                           .textTheme
                                                           .bodyMedium
                                                           ?.copyWith(
-                                                              fontSize: 16,
+                                                              fontSize:
+                                                                  getDefaultSize(),
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400),
@@ -275,7 +278,7 @@ class AboutProfile extends ConsumerWidget {
                     Text(
                       user?.bio ?? '',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: 16,
+                            fontSize: getDefaultSize(),
                           ),
                     ),
                     const SizedBox(height: 16),
@@ -322,7 +325,7 @@ class AboutProfile extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodySmall
@@ -339,7 +342,7 @@ class AboutProfile extends ConsumerWidget {
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                      fontSize: 16,
+                                      fontSize: getDefaultSize(),
                                       color: PreluraColors.activeColor,
                                     ),
                               ),
@@ -357,7 +360,7 @@ class AboutProfile extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodySmall
@@ -370,7 +373,7 @@ class AboutProfile extends ConsumerWidget {
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                      fontSize: 16,
+                                      fontSize: getDefaultSize(),
                                       color: PreluraColors.activeColor,
                                     ),
                               ),
