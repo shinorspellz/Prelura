@@ -211,7 +211,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.copyWith(color: PreluraColors.primaryColor),
+                                  ?.copyWith(color: PreluraColors.primaryColor, fontSize: 16,),
                             ),
                           ),
                           ListView.builder(

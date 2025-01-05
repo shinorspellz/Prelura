@@ -308,6 +308,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery, S
                 child: Text(
                   tabs[index],
                   style: TextStyle(
+                    fontSize: 16,
                     color: selectedTab == index ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyColor,
                     fontWeight: selectedTab == index ? FontWeight.bold : FontWeight.normal,
                   ),

@@ -370,14 +370,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     return Theme.of(context)
         .textTheme
         .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
   }
 
   TextStyle? _hintStyle(BuildContext context) {
     return Theme.of(context)
         .textTheme
         .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
   }
 }
 

@@ -216,6 +216,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium
                                           ?.copyWith(
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -348,6 +349,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                                     .textTheme
                                                                     .bodyMedium
                                                                     ?.copyWith(
+                                                                        fontSize:
+                                                                            16,
                                                                         fontWeight:
                                                                             FontWeight.w400),
                                                                 hintStyle: Theme.of(
@@ -355,6 +358,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                                     .textTheme
                                                                     .bodyMedium
                                                                     ?.copyWith(
+                                                                        fontSize:
+                                                                            16,
                                                                         fontWeight:
                                                                             FontWeight.w400),
                                                                 controller:
@@ -471,6 +476,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 .textTheme
                                 .bodyMedium!
                                 .copyWith(
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                   color: PreluraColors.grey,
                                 ),
@@ -495,6 +501,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
+                                            fontSize: 16,
                                             fontWeight: FontWeight.w600,
                                           ),
                                     ),
@@ -505,6 +512,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           .textTheme
                                           .bodyMedium!
                                           .copyWith(
+                                            fontSize: 16,
                                             fontWeight: FontWeight.w400,
                                             color: PreluraColors.grey,
                                           ),
@@ -549,6 +557,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                     .textTheme
                                                     .bodyMedium!
                                                     .copyWith(
+                                                      fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -612,6 +621,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     .textTheme
                                     .bodyMedium!
                                     .copyWith(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w600,
                                         color: PreluraColors.grey),
                               ),

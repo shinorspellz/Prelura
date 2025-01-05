@@ -76,7 +76,9 @@ class _MoreProductGridViewState extends State<MoreProductGridView> with SingleTi
                 ),
                 Text(
                   "Save on postage",
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: 16,
+                  ),
                 ),
               ],
             ),

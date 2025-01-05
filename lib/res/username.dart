@@ -15,6 +15,7 @@ class HighlightUserName extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontSize: 16,
             fontWeight: isRead!
                 ? context.isDarkMode
                     ? FontWeight.w200
@@ -40,10 +41,9 @@ class HighlightUserName extends StatelessWidget {
       // Add the matched username with a different style
       spans.add(TextSpan(
         text: message.substring(match.start, match.end),
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium
-            ?.copyWith(fontWeight: isRead! ? FontWeight.w500 : FontWeight.w700),
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontSize: 16,
+            fontWeight: isRead! ? FontWeight.w500 : FontWeight.w700),
       ));
 
       start = match.end;

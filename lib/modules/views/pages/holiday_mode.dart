@@ -80,7 +80,9 @@ class HolidayModeScreen extends ConsumerWidget {
               child: Text(
                   "Note: Turning on vacation will hide your items from all catalogues",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w600, color: PreluraColors.grey))),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: PreluraColors.grey))),
         ]),
       ),
     );

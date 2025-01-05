@@ -40,7 +40,9 @@ class SizeSelectionPage extends ConsumerWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Select a size\nMatch the size to the item’s label.',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: 16,
+                  ),
             ),
           ),
           Padding(

@@ -182,6 +182,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                           entry.value,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            fontSize: 16,
                             color: _tabController.index == entry.key
                                 ? Theme.of(context).textTheme.bodyMedium?.color
                                 : PreluraColors.greyLightColor,
