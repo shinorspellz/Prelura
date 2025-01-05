@@ -6,6 +6,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 
 import '../../../../../res/logs.dart';
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -121,7 +122,12 @@ class _ProductFilterPageState
                               child: Center(
                                 child: Text(
                                   "No products found",
-                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontSize: getDefaultSize(),
+                                      ),
                                 ),
                               ),
                             ),

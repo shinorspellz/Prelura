@@ -48,13 +48,12 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           );
       HelperFunction.context = context;
       HelperFunction.showToast(message: "Email sent successfully");
-     
-      ref.read(forgotPasswordProvider).whenOrNull(
-            error: (e, _) => context.alert(e.toString()),
-            data: (_) {
-              context.router.replaceAll([const NewPasswordRoute()]);
-            },
-          );
+
+      ref.read(forgotPasswordProvider).whenData(
+        (_) {
+          context.router.replaceAll([NewPasswordRoute(email: email.trim())]);
+        },
+      );
 
       debugPrint('Valid Email: $email');
     }

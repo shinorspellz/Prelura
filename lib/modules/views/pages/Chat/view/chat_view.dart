@@ -16,6 +16,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/context_entension.dart';
 
+import '../../../../../res/utils.dart';
 import '../../../widgets/app_bar.dart';
 
 final chatProvider = StateNotifierProvider<ChatNotifier, List<ChatMessage>>(
@@ -33,9 +34,13 @@ class ChatNotifier extends StateNotifier<List<ChatMessage>> {
   ChatNotifier()
       : super([
           ChatMessage(message: "Hello! How are you?", isSentByUser: false),
-          ChatMessage(message: "I'm good, thanks! How about you?", isSentByUser: true),
-          ChatMessage(message: "I'm doing great! What's new?", isSentByUser: false),
-          ChatMessage(message: "Not much, just working on a Flutter project.", isSentByUser: true),
+          ChatMessage(
+              message: "I'm good, thanks! How about you?", isSentByUser: true),
+          ChatMessage(
+              message: "I'm doing great! What's new?", isSentByUser: false),
+          ChatMessage(
+              message: "Not much, just working on a Flutter project.",
+              isSentByUser: true),
         ]);
 
   void sendMessage(String message) {
@@ -68,20 +73,26 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         appbarTitle: username,
         trailingIcon: [
           IconButton(
-            icon: Icon(Icons.info_outline, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.info_outline,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () {},
           ),
         ],
       ),
       bottomNavigationBar: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
-        padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom + 20, left: 10, right: 25, top: 10),
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(context).bottom + 20,
+            left: 10,
+            right: 25,
+            top: 10),
         child: Row(
           children: [
             InkWell(
@@ -129,13 +140,20 @@ class ChatScreen extends ConsumerWidget {
             ref.watch(messagesProvider(id)).maybeWhen(
                   data: (messages) => ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+                    physics:
+                        const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
                     itemCount: messages.length,
                     reverse: true,
                     itemBuilder: (context, index) {
                       final chat = messages[index];
                       final isSender = chat.sender.username != username;
-                      return Align(alignment: isSender ? Alignment.bottomRight : Alignment.bottomLeft, child: isSender ? SenderTextWidget(chat: chat, id: id) : RecieverTextWidget(chat: chat));
+                      return Align(
+                          alignment: isSender
+                              ? Alignment.bottomRight
+                              : Alignment.bottomLeft,
+                          child: isSender
+                              ? SenderTextWidget(chat: chat, id: id)
+                              : RecieverTextWidget(chat: chat));
                     },
                   ),
                   orElse: () => Center(
@@ -176,7 +194,9 @@ class RecieverTextWidget extends StatelessWidget {
       ),
       child: Text(
         chat.text,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              fontSize: getDefaultSize(),
+            ),
       ),
     );
   }
@@ -220,12 +240,16 @@ class SenderTextWidget extends ConsumerWidget {
             maxWidth: MediaQuery.sizeOf(context).width / 1.4,
           ),
           decoration: BoxDecoration(
-            color: context.isDarkMode ? PreluraColors.blueColor9D : PreluraColors.greyLightColor,
+            color: context.isDarkMode
+                ? PreluraColors.blueColor9D
+                : PreluraColors.greyLightColor,
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
             chat.text,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: getDefaultSize(),
+                ),
           ),
         ),
       ),

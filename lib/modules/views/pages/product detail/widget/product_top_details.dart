@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/utils.dart';
 import 'package:prelura_app/modules/controller/product/product_provider.dart';
@@ -17,6 +20,8 @@ import 'package:sizer/sizer.dart';
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
 import '../../../../../res/render_svg.dart';
+import '../../../../../res/utils.dart';
+import '../../../../controller/chat/conversations_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/rating.dart';
@@ -65,6 +70,7 @@ class ProductTopDetails extends ConsumerWidget {
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.purple,
                           fontWeight: FontWeight.w400,
+                          fontSize: getDefaultSize(),
                         ),
                   ),
                 ],
@@ -96,6 +102,7 @@ class ProductTopDetails extends ConsumerWidget {
                                   : Colors.white30
                               : null,
                           fontWeight: FontWeight.w600,
+                          fontSize: getDefaultSize(),
                         ),
                   ),
                   if (product.discountPrice != null) ...[
@@ -107,6 +114,7 @@ class ProductTopDetails extends ConsumerWidget {
                       )}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
+                            fontSize: getDefaultSize(),
                           ),
                     ),
                     10.horizontalSpacing,
@@ -123,6 +131,7 @@ class ProductTopDetails extends ConsumerWidget {
                         ' ${double.parse(product.discountPrice!).toInt()}%',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
+                              fontSize: getDefaultSize(),
                             ),
                       ),
                     )
@@ -235,10 +244,11 @@ class ProductTopDetails extends ConsumerWidget {
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(fontWeight: FontWeight.bold),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: getDefaultSize(),
+                                  ),
                         ),
                       ),
                       Row(
@@ -249,7 +259,10 @@ class ProductTopDetails extends ConsumerWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
-                                .copyWith(fontWeight: FontWeight.w400),
+                                .copyWith(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getDefaultSize(),
+                                ),
                           ),
                         ],
                       )
@@ -258,9 +271,31 @@ class ProductTopDetails extends ConsumerWidget {
                 ],
               ),
 
-              const RenderSvgWithColor2(
-                color: PreluraColors.activeColor,
-                svgPath: PreluraIcons.askAQuestion,
+              GestureDetector(
+                onTap: () async {
+                  await ref
+                      .read(conversationProvider.notifier)
+                      .createChat(product.seller.username);
+                  ref.read(conversationProvider).whenOrNull(
+                      error: (e, _) => context.alert(
+                          'Failed to message ${product.seller.username}'),
+                      data: (conv) {
+                        log('$conv');
+                        final currentConv = conv.firstWhere((e) =>
+                            e.recipient.username == product.seller.username);
+                        context.pushRoute(
+                          ChatRoute(
+                            id: currentConv.id,
+                            username: currentConv.recipient.username,
+                            avatarUrl: currentConv.recipient.profilePictureUrl,
+                          ),
+                        );
+                      });
+                },
+                child: RenderSvg(
+                  color: PreluraColors.activeColor,
+                  svgPath: PreluraIcons.askAQuestion,
+                ),
               ),
               // ElevatedButton(
               //   onPressed: () {

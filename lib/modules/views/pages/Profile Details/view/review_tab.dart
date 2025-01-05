@@ -7,6 +7,7 @@ import 'package:prelura_app/modules/views/widgets/rating.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
+import '../../../../../res/utils.dart';
 
 @RoutePage()
 class ReviewScreen extends StatelessWidget {
@@ -54,7 +55,9 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Member reviews (54)",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: getDefaultSize(),
+                            )),
                     const Row(
                       children: [
                         Text("5.0"),
@@ -73,7 +76,9 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Automatic reviews (54)",
-                        style: Theme.of(context).textTheme.bodyMedium),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: getDefaultSize(),
+                            )),
                     const Row(
                       children: [
                         Text("5.0"),
@@ -94,10 +99,9 @@ class ReviewScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Text("How reviews work",
                 textAlign: TextAlign.left,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: PreluraColors.activeColor)),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(),
+                    color: PreluraColors.activeColor)),
           ),
           const Divider(
             thickness: 1,

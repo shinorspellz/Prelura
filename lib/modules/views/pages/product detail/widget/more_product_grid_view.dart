@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 import 'package:prelura_app/modules/views/widgets/display_section.dart';
 
+import '../../../../../res/utils.dart';
+
 class MoreProductGridView extends StatefulWidget {
   const MoreProductGridView({super.key});
 
@@ -9,7 +11,8 @@ class MoreProductGridView extends StatefulWidget {
   _MoreProductGridViewState createState() => _MoreProductGridViewState();
 }
 
-class _MoreProductGridViewState extends State<MoreProductGridView> with SingleTickerProviderStateMixin {
+class _MoreProductGridViewState extends State<MoreProductGridView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -76,7 +79,9 @@ class _MoreProductGridViewState extends State<MoreProductGridView> with SingleTi
                 ),
                 Text(
                   "Save on postage",
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: getDefaultSize(),
+                      ),
                 ),
               ],
             ),

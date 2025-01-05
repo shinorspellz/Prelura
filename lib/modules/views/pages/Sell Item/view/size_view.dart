@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/gesture_navigator.dart';
 import '../provider/brand_provider.dart';
@@ -40,7 +41,9 @@ class SizeSelectionPage extends ConsumerWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Select a size\nMatch the size to the item’s label.',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(),
+                  ),
             ),
           ),
           Padding(

@@ -177,6 +177,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                   enabled: true,
                   minLines: 5,
                   maxLines: null,
+                  isDescription: true,
                   maxLength: MaxDescription,
                   onChanged: (value) {
                     setState(
@@ -343,11 +344,13 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     required String hintText,
     void Function(String)? onChanged,
     TextEditingController? controller,
+    Function(String?)? onSaved,
     bool enabled = true,
+    isDescription = false,
     int? minLines,
     int? maxLength,
     int? maxLines,
-    TextInputAction? textInputAction,
+    TextInputAction? textInputAction = TextInputAction.done,
     TextInputType? keyboardType,
   }) {
     return PreluraAuthTextField(
@@ -363,6 +366,10 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       maxLines: maxLines,
       textInputAction: textInputAction,
       keyboardType: keyboardType,
+      isDescription: isDescription,
+      onSaved: (value) {
+        dismissKeyboard();
+      },
     );
   }
 
@@ -370,14 +377,14 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     return Theme.of(context)
         .textTheme
         .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 14);
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
   }
 
   TextStyle? _hintStyle(BuildContext context) {
     return Theme.of(context)
         .textTheme
         .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 18);
+        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
   }
 }
 

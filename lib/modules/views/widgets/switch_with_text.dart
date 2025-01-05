@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/modules/views/widgets/primary_switch.dart';
 
+import '../../../res/utils.dart';
+
 class PreluraSwitchWithText extends StatelessWidget {
   final String titleText;
   final bool? value;
@@ -76,6 +78,7 @@ class PreluraSwitchWithText extends StatelessWidget {
                               .textTheme
                               .bodyMedium!
                               .copyWith(
+                                  fontSize: getDefaultSize(),
                                   fontWeight: FontWeight.w600,
                                   color: Theme.of(context)
                                       .textTheme

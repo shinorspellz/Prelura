@@ -10,17 +10,21 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
+import '../../../../../res/utils.dart';
+
 @RoutePage()
 class AccountSettingScreen extends ConsumerStatefulWidget {
   const AccountSettingScreen({super.key});
 
   @override
-  ConsumerState<AccountSettingScreen> createState() => _AccountSettingScreenState();
+  ConsumerState<AccountSettingScreen> createState() =>
+      _AccountSettingScreenState();
 }
 
 class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   DateTime? selectedDate;
-  TextEditingController get fullName => TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  TextEditingController get fullName =>
+      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
   String? selectedGender;
 
   @override
@@ -31,7 +35,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
       appBar: PreluraAppBar(
         appbarTitle: 'Account settings',
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         trailingIcon: [
@@ -55,15 +60,25 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
               // Change phone number logic
             }, context, placeholder: 'Add Phone number'),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
               child: Text(
                 'Your phone number will only be used to help you log in. It won’t be made public or used for marketing purposes.',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Colors.grey),
               ),
             ),
-            buildEditableField(context, 'Full Name', user?.fullName ?? '', (value) {}, controller: fullName),
+            buildEditableField(
+                context, 'Full Name', user?.fullName ?? '', (value) {},
+                controller: fullName),
             const SizedBox(height: 20),
-            buildDropdownField(context, 'Gender', (selectedGender ?? user?.gender), ['Male', 'Female', 'Other'], (value) {
+            buildDropdownField(
+                context,
+                'Gender',
+                (selectedGender ?? user?.gender),
+                ['Male', 'Female', 'Other'], (value) {
               setState(() => selectedGender = value);
               // ref
               //     .read(userProvider.notifier)
@@ -74,7 +89,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                 context,
                 'Birthday',
                 (selectedDate ?? user?.dob) != null
-                    ? DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format((selectedDate ?? user!.dob!)) //user.birthday!.toString()
+                    ? DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(
+                        (selectedDate ??
+                            user!.dob!)) //user.birthday!.toString()
                     : 'mm/dd/yyyy', (value) {
               // Implement date picker here
             }, onTap: () async {
@@ -96,12 +113,16 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
             buildSectionHeader('', 'Facebook', false, () {
               // Facebook linking logic
             }, context, isLink: true),
-            buildSectionHeader('', 'Google', false, () {}, context, isLink: true),
+            buildSectionHeader('', 'Google', false, () {}, context,
+                isLink: true),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Link to your other accounts to become a trusted, verified member.',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: Colors.grey),
               ),
             ),
           ],
@@ -134,12 +155,20 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(value ?? placeholder ?? '', style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+            Text(value ?? placeholder ?? '',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: getDefaultSize(),
+                    )),
             addVerticalSpacing(4),
             if (verified && !isLink) ...[
               Row(
                 children: [
-                  Text("verified", style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300)),
+                  Text("verified",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: getDefaultSize(),
+                          )),
                   addHorizontalSpacing(10),
                   const Icon(
                     Icons.check,
@@ -161,7 +190,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                     : value == null
                         ? 'Add'
                         : 'Change',
-            textColor: isLink ? (verified ? Colors.grey : Colors.blue) : Colors.blue,
+            textColor:
+                isLink ? (verified ? Colors.grey : Colors.blue) : Colors.blue,
             bgColor: Theme.of(context).scaffoldBackgroundColor,
           ),
         ],
@@ -196,7 +226,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
     );
   }
 
-  Widget buildDropdownField(BuildContext context, String label, String? value, List<String> options, ValueChanged<String?> onChanged) {
+  Widget buildDropdownField(BuildContext context, String label, String? value,
+      List<String> options, ValueChanged<String?> onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(

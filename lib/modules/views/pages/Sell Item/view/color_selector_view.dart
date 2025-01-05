@@ -7,6 +7,7 @@ import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/gesture_navigator.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../provider/color_selector_provider.dart';
 import '../provider/sell_item_provider.dart';
 
@@ -115,10 +116,10 @@ class ColorSelectorScreen extends ConsumerWidget {
                 child: Center(
                   child: Text(
                     "Done",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: PreluraColors.white),
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: PreluraColors.white,
+                          fontSize: getDefaultSize(),
+                        ),
                   ),
                 ),
               ),

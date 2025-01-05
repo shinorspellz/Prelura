@@ -18,6 +18,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
@@ -182,6 +183,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                           entry.value,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            fontSize: getDefaultSize(),
                             color: _tabController.index == entry.key
                                 ? Theme.of(context).textTheme.bodyMedium?.color
                                 : PreluraColors.greyLightColor,
@@ -316,6 +318,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
     String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
     VBottomSheetComponent.customBottomSheet(
+      removeSidePadding: true,
       context: context,
       child: StatefulBuilder(builder: (context, setState) {
         return Consumer(
@@ -327,44 +330,17 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                   child: ListView(
                     shrinkWrap: true,
                     children: filterOptions[filterType]!
-                        .map((e) => Column(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    filterNotifier.updateFilter(filterType, e);
-                                    setState(() {
-                                      selectedOptions = e;
-                                    });
+                        .map((e) => PreluraCheckBox(
+                            isChecked: selectedOptions == e,
+                            onChanged: (value) {
+                              filterNotifier.updateFilter(filterType, e!);
+                              setState(() {
+                                selectedOptions = e;
+                              });
 
-                                    Navigator.pop(context);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Text(e.replaceAll("_", " "),
-                                          style: context.textTheme.bodyLarge
-                                              ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                      Spacer(),
-                                      Radio(
-                                          value: e,
-                                          groupValue:
-                                              selectedOptions, //selectedOptions,
-                                          onChanged: (value) {
-                                            filterNotifier.updateFilter(
-                                                filterType, value!);
-                                            setState(() {
-                                              selectedOptions = value;
-                                            });
-
-                                            Navigator.pop(context);
-                                          }),
-                                    ],
-                                  ),
-                                ),
-                                Divider()
-                              ],
-                            ))
+                              Navigator.pop(context);
+                            },
+                            title: e.replaceAll("_", " ")))
                         .toList(),
                   ),
                 ));

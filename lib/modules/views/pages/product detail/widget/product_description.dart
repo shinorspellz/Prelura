@@ -14,6 +14,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/hashtag.dart';
+import '../../../../../res/utils.dart';
 import '../provider/product_detail_provider.dart';
 
 final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
@@ -48,6 +49,7 @@ class ProductDescription extends ConsumerWidget {
                   "Description",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w500,
+                        fontSize: getDefaultSize(),
                       ),
                 ),
                 const SizedBox(
@@ -55,23 +57,36 @@ class ProductDescription extends ConsumerWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    ref.read(isDescriptionExpandedProvider.notifier).state = !isDescriptionExpanded;
+                    ref.read(isDescriptionExpandedProvider.notifier).state =
+                        !isDescriptionExpanded;
                   },
                   child: Text.rich(
                     TextSpan(
                       children: [
                         ...buildHashtagText(
-                          isDescriptionExpanded ? product.description : truncatedDescription,
+                          isDescriptionExpanded
+                              ? product.description
+                              : truncatedDescription,
                           Theme.of(context).textTheme.bodyMedium,
-                          Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.activeColor, fontWeight: FontWeight.bold),
+                          Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: getDefaultSize(),
+                              color: PreluraColors.activeColor,
+                              fontWeight: FontWeight.bold),
                           (hashtag) {
-                            context.pushRoute(ProductByHashtagRoute(hashtag: hashtag));
+                            context.pushRoute(
+                                ProductByHashtagRoute(hashtag: hashtag));
                           },
                         ),
                         if (shouldShowSeeMore)
                           TextSpan(
-                            text: isDescriptionExpanded ? " See less" : " See more",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            text: isDescriptionExpanded
+                                ? " See less"
+                                : " See more",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  fontSize: getDefaultSize(),
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -89,21 +104,31 @@ class ProductDescription extends ConsumerWidget {
             height: 2,
             thickness: 1,
           ),
-          if (product.category != null) _buildInfoRow("Category", product.category!.name, context),
-          if (product.subCategory != null) _buildInfoRow("Sub Category", product.subCategory!.name, context),
-          if (product.style != null) _buildInfoRow("Style", product.style!.name.replaceAll("_", " ").toLowerCase(), context),
+          if (product.category != null)
+            _buildInfoRow("Category", product.category!.name, context),
+          if (product.subCategory != null)
+            _buildInfoRow("Sub Category", product.subCategory!.name, context),
+          // if (product.style != null)
+          //   _buildInfoRow(
+          //       "Style",
+          //       product.style!.name.replaceAll("_", " ").toLowerCase(),
+          //       context),
           if (product.materials != null)
             if (product.materials!.isNotEmpty)
               _buildInfoRow(
-                "MaterialModel",
+                "Material",
                 product.materials!.map((e) => e.name).join(', '),
                 context,
               ),
 
-          if (product.size != null) _buildInfoRow("Size", product.size!.name.replaceAll('_', ' '), context),
-          if (product.condition != null) _buildInfoRow("Condition", product.condition!.simpleName, context),
+          if (product.size != null)
+            _buildInfoRow(
+                "Size", product.size!.name.replaceAll('_', ' '), context),
+          if (product.condition != null)
+            _buildInfoRow("Condition", product.condition!.simpleName, context),
           _buildInfoRow("Views", product.views.toString(), context),
-          _buildInfoRow("Uploaded", DateFormat.yMMMMEEEEd().format(product.createdAt), context),
+          _buildInfoRow("Uploaded",
+              DateFormat.yMMMMEEEEd().format(product.createdAt), context),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
             decoration: BoxDecoration(
@@ -120,11 +145,15 @@ class ProductDescription extends ConsumerWidget {
                   "Postage",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
+                        fontSize: getDefaultSize(),
                       ),
                 ),
                 Text(
                   "Postage: From £${dummy.postageCost.toStringAsFixed(2)}",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.purple),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: getDefaultSize(),
+                      fontWeight: FontWeight.w500,
+                      color: Colors.purple),
                 ),
               ],
             ),
@@ -236,7 +265,8 @@ class ProductDescription extends ConsumerWidget {
     return description;
   }
 
-  Widget _buildInfoRow(String label, String value, context, {TextStyle? style}) {
+  Widget _buildInfoRow(String label, String value, context,
+      {TextStyle? style}) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 22.0, horizontal: 16),
       decoration: BoxDecoration(
@@ -252,12 +282,15 @@ class ProductDescription extends ConsumerWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontSize: getDefaultSize(),
                   fontWeight: FontWeight.w500,
                 ),
           ),
           Text(
             value,
-            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
+            style: style ??
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(), color: PreluraColors.greyColor),
           ),
         ],
       ),

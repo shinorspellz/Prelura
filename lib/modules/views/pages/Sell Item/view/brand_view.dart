@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../../../shimmers/grid_menu_card_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../provider/sell_item_provider.dart';
@@ -211,7 +212,10 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
-                                  ?.copyWith(color: PreluraColors.primaryColor),
+                                  ?.copyWith(
+                                    color: PreluraColors.primaryColor,
+                                    fontSize: getDefaultSize(),
+                                  ),
                             ),
                           ),
                           ListView.builder(
@@ -276,10 +280,11 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                         padding: EdgeInsets.all(16.0),
                         child: Text(
                           "Suggested Brands",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(color: PreluraColors.primaryColor),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: PreluraColors.primaryColor,
+                                    fontSize: getDefaultSize(),
+                                  ),
                         ),
                       ),
                       ListView.builder(

@@ -12,6 +12,7 @@ import 'package:prelura_app/modules/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/helper_function.dart';
 
+import '../../../res/utils.dart';
 import '../../controller/theme_notifier.dart';
 import 'Profile Details/provider/tab_controller.dart';
 import 'Settings/view/multi_buy_discount.dart';
@@ -53,6 +54,7 @@ class MenuPage extends ConsumerWidget {
                   "Dark Mode",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontWeight: FontWeight.w600,
+                      fontSize: getDefaultSize(),
                       color: Theme.of(context).textTheme.bodyMedium?.color),
                 ),
                 PreluraSwitch(
@@ -75,7 +77,10 @@ class MenuPage extends ConsumerWidget {
           //     }),
           MenuCard(
             title: "Balance",
-            icon: const Icon(Icons.wallet_outlined),
+            icon: Icon(
+              Icons.wallet_outlined,
+              color: PreluraColors.grey,
+            ),
             subtitle: '£0.00',
             subtitleColor: PreluraColors.activeColor,
             rightArrow: false,
@@ -87,7 +92,10 @@ class MenuPage extends ConsumerWidget {
             if (user!.listing!.toInt() > 0)
               MenuCard(
                 title: "Shop Value",
-                icon: const Icon(Icons.show_chart_sharp),
+                icon: Icon(
+                  Icons.show_chart_sharp,
+                  color: PreluraColors.grey,
+                ),
                 rightArrow: false,
                 onTap: () {
                   context.pushRoute(ShopValueRoute());
@@ -104,14 +112,20 @@ class MenuPage extends ConsumerWidget {
           // const LiveCard(),
           MenuCard(
               title: "Orders",
-              icon: const Icon(Icons.info_outlined),
+              icon: Icon(
+                Icons.info_outlined,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {
                 context.router.push(const MyOrderRoute());
               }),
           MenuCard(
               title: "Favourites",
-              icon: const Icon(Icons.favorite_border_outlined),
+              icon: Icon(
+                Icons.favorite_border_outlined,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {
                 context.router.push(const MyFavouriteRoute());
@@ -120,13 +134,19 @@ class MenuPage extends ConsumerWidget {
               title: "Multi-buy discounts",
               subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
               rightArrow: false,
-              icon: const Icon(Icons.info_outlined),
+              icon: Icon(
+                Icons.info_outlined,
+                color: PreluraColors.grey,
+              ),
               onTap: () {
                 context.router.push(MultiBuyDiscountRoute());
               }),
           MenuCard(
               title: "Invite Friend",
-              icon: const Icon(Icons.person_add_sharp),
+              icon: Icon(
+                Icons.person_add_sharp,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {
                 // context.router.push(const SellItemRoute());
@@ -139,19 +159,28 @@ class MenuPage extends ConsumerWidget {
           //     }),
           MenuCard(
               title: "Settings",
-              icon: const Icon(Icons.settings),
+              icon: Icon(
+                Icons.settings,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {
                 context.router.push(const SettingRoute());
               }),
           MenuCard(
               title: "Help Centre",
-              icon: const Icon(Icons.question_mark_rounded),
+              icon: Icon(
+                Icons.question_mark_rounded,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {}),
           MenuCard(
               title: "About Prelura",
-              icon: const Icon(Icons.info_outlined),
+              icon: Icon(
+                Icons.info_outlined,
+                color: PreluraColors.grey,
+              ),
               rightArrow: false,
               onTap: () {
                 context.router.push(const AboutPreluraMenuRoute());
