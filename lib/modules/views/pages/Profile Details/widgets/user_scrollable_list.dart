@@ -9,6 +9,7 @@ import 'package:prelura_app/modules/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 
 class UserScrollableList extends ConsumerWidget {
   const UserScrollableList({super.key, required this.user});
@@ -80,7 +81,7 @@ Widget _buildItem(BuildContext context, {required String title, required String?
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16,fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getDefaultSize(),fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
             ),
           ),
         ],

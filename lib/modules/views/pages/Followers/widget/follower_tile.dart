@@ -10,6 +10,7 @@ import 'package:prelura_app/modules/views/widgets/profile_picture.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import '../../../../../core/router/router.gr.dart';
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../../Following/view/following_view.dart';
 import '../model/model.dart';
 import '../view/followers_view.dart';
@@ -72,15 +73,15 @@ class FollowerTile extends ConsumerWidget {
                   Text(
                     follower.fullName ?? follower.username,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 16,
-                    ),
+                          fontSize: getDefaultSize(),
+                        ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     follower.username,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 16,
-                    ),
+                          fontSize: getDefaultSize(),
+                        ),
                   ),
                 ],
               ),

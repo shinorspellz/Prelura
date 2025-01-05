@@ -18,6 +18,7 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../res/utils.dart';
 import '../../../controller/payment_controller.dart';
 import '../../widgets/profile_picture.dart';
 
@@ -60,7 +61,7 @@ class PaymentScreen extends ConsumerWidget {
               child: Text("Address",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w300,
-                        fontSize: 16,
+                        fontSize: getDefaultSize(),
                       )),
             ),
             MenuCard(
@@ -166,7 +167,7 @@ class PaymentScreen extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                 )),
                         GestureDetector(
                           // padding: EdgeInsets.zero,
@@ -193,7 +194,7 @@ class PaymentScreen extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                 )),
                       ],
                     ),
@@ -212,7 +213,7 @@ class PaymentScreen extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                 )),
                       ],
                     ),
@@ -231,7 +232,7 @@ class PaymentScreen extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                 )),
                       ],
                     ),
@@ -248,7 +249,7 @@ class PaymentScreen extends ConsumerWidget {
               child: Text("Your Contact details",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w300,
-                        fontSize: 16,
+                        fontSize: getDefaultSize(),
                       )),
             ),
             MenuCard(

@@ -18,6 +18,7 @@ import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 import 'package:prelura_app/modules/views/widgets/profile_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
@@ -182,7 +183,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                           entry.value,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: getDefaultSize(),
                             color: _tabController.index == entry.key
                                 ? Theme.of(context).textTheme.bodyMedium?.color
                                 : PreluraColors.greyLightColor,

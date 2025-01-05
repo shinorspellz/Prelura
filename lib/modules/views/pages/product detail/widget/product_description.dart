@@ -14,6 +14,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../res/hashtag.dart';
+import '../../../../../res/utils.dart';
 import '../provider/product_detail_provider.dart';
 
 final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
@@ -48,7 +49,7 @@ class ProductDescription extends ConsumerWidget {
                   "Description",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w500,
-                        fontSize: 16,
+                        fontSize: getDefaultSize(),
                       ),
                 ),
                 const SizedBox(
@@ -68,7 +69,7 @@ class ProductDescription extends ConsumerWidget {
                               : truncatedDescription,
                           Theme.of(context).textTheme.bodyMedium,
                           Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontSize: 16,
+                              fontSize: getDefaultSize(),
                               color: PreluraColors.activeColor,
                               fontWeight: FontWeight.bold),
                           (hashtag) {
@@ -85,7 +86,7 @@ class ProductDescription extends ConsumerWidget {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  fontSize: 16,
+                                  fontSize: getDefaultSize(),
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -144,13 +145,13 @@ class ProductDescription extends ConsumerWidget {
                   "Postage",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
-                        fontSize: 16,
+                        fontSize: getDefaultSize(),
                       ),
                 ),
                 Text(
                   "Postage: From £${dummy.postageCost.toStringAsFixed(2)}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                       fontWeight: FontWeight.w500,
                       color: Colors.purple),
                 ),
@@ -281,17 +282,15 @@ class ProductDescription extends ConsumerWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontSize: 16,
+                  fontSize: getDefaultSize(),
                   fontWeight: FontWeight.w500,
                 ),
           ),
           Text(
             value,
             style: style ??
-                Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontSize: 16, color: PreluraColors.greyColor),
+                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(), color: PreluraColors.greyColor),
           ),
         ],
       ),

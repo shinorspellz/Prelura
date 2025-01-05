@@ -6,6 +6,7 @@ import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
 
 import '../../../../../res/logs.dart';
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -125,7 +126,7 @@ class _ProductFilterPageState
                                       .textTheme
                                       .bodyMedium
                                       ?.copyWith(
-                                        fontSize: 16,
+                                        fontSize: getDefaultSize(),
                                       ),
                                 ),
                               ),

@@ -10,6 +10,8 @@ import 'package:prelura_app/modules/views/widgets/app_button.dart';
 import 'package:prelura_app/modules/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
+import '../../../../../res/utils.dart';
+
 @RoutePage()
 class AccountSettingScreen extends ConsumerStatefulWidget {
   const AccountSettingScreen({super.key});
@@ -156,7 +158,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
             Text(value ?? placeholder ?? '',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                     )),
             addVerticalSpacing(4),
             if (verified && !isLink) ...[
@@ -165,7 +167,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                   Text("verified",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w300,
-                            fontSize: 16,
+                            fontSize: getDefaultSize(),
                           )),
                   addHorizontalSpacing(10),
                   const Icon(

@@ -299,7 +299,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               widget.product.name.trim(),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
-                    fontSize: 16,
+                    fontSize: getDefaultSize(),
                   ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -309,7 +309,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                 widget.product.condition!.simpleName,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: PreluraColors.greyColor,
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                     ),
               ),
               const SizedBox(height: 8),
@@ -319,7 +319,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                 Text(
                   "£ ${formatDynamicString(widget.product.price.toString())}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: 16,
+                        fontSize: getDefaultSize(),
                         decoration: widget.product.discountPrice != null
                             ? TextDecoration.lineThrough
                             : null,
@@ -341,7 +341,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     ).toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: getDefaultSize(),
                         ),
                   ),
                 ],
@@ -360,7 +360,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: getDefaultSize(),
                           ),
                     ),
                   )

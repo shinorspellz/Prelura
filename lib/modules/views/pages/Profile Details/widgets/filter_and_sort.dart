@@ -11,6 +11,7 @@ import '../../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../../res/colors.dart';
 import '../../../../../res/images.dart';
 import '../../../../../res/render_svg.dart';
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../view/user_wardrobe.dart';
@@ -113,7 +114,7 @@ class FilterAndSort extends ConsumerWidget {
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: PreluraColors.grey,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                     ),
               ),
               4.horizontalSpacing,
@@ -207,7 +208,7 @@ class FilterAndSort extends ConsumerWidget {
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: PreluraColors.grey,
                       fontWeight: FontWeight.w600,
-                      fontSize: 16,
+                      fontSize: getDefaultSize(),
                     ),
               ),
               2.horizontalSpacing,

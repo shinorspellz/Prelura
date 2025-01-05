@@ -5,6 +5,7 @@ import 'package:prelura_app/modules/controller/product/product_provider.dart';
 import 'package:prelura_app/res/context_entension.dart';
 
 import '../../../../../res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../../../../controller/product/brands_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 
@@ -61,7 +62,7 @@ class UserPopularBrand extends ConsumerWidget {
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                        fontSize: 16,
+                                        fontSize: getDefaultSize(),
                                         color: PreluraColors.white,
                                         fontWeight: FontWeight.w700),
                               ),

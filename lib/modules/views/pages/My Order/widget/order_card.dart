@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/res/colors.dart';
+import '../../../../../res/utils.dart';
 import '../model/order_model.dart';
 
 class OrderCard extends StatelessWidget {
@@ -64,7 +65,7 @@ class OrderCard extends StatelessWidget {
                     order.title,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: getDefaultSize(),
                         ),
                   ),
                   const SizedBox(height: 5),
