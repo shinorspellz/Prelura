@@ -22,6 +22,7 @@ import 'package:sizer/sizer.dart';
 import '../../res/utils.dart';
 import '../../controller/product/product_provider.dart';
 import '../../controller/user/user_controller.dart';
+import '../shimmers/grid_shimmer.dart';
 import 'profile_picture.dart';
 
 class DisplayCard extends StatefulWidget {
@@ -66,7 +67,8 @@ class _DisplayCardState extends State<DisplayCard> {
           children: [
             // Wrap the Stack inside a ClipRRect to constrain the image
             ClipRRect(
-              borderRadius: BorderRadius.circular(6), // Optional: rounded corners
+              borderRadius:
+                  BorderRadius.circular(6), // Optional: rounded corners
               child: Stack(
                 children: [
                   Image.asset(
@@ -81,18 +83,28 @@ class _DisplayCardState extends State<DisplayCard> {
                     child: GestureDetector(
                       onTap: _toggleFavorite,
                       child: Container(
-                        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 8, right: 8),
+                        padding: const EdgeInsets.only(
+                            top: 5, bottom: 5, left: 8, right: 8),
                         decoration: BoxDecoration(
                           color: PreluraColors.blackCardColor,
-                          borderRadius: BorderRadius.circular(8), // Circular radius
+                          borderRadius:
+                              BorderRadius.circular(8), // Circular radius
                         ),
                         child: Row(
                           children: [
-                            Icon(_isFavorite ? Icons.favorite : Icons.favorite_border_outlined, size: 17, color: PreluraColors.white),
+                            Icon(
+                                _isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                size: 17,
+                                color: PreluraColors.white),
                             const SizedBox(width: 2),
                             Text(
                               _favoriteCount > 0 ? '$_favoriteCount' : "",
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: PreluraColors.white),
                             ),
                           ],
                         ),
@@ -102,14 +114,18 @@ class _DisplayCardState extends State<DisplayCard> {
                 ],
               ),
             ),
-            const SizedBox(height: 8), // Optional: Add space between image and text
+            const SizedBox(
+                height: 8), // Optional: Add space between image and text
             Text(
               widget.itemData.title,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
               widget.itemData.condition,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
             const SizedBox(height: 8),
             Text(
@@ -117,8 +133,13 @@ class _DisplayCardState extends State<DisplayCard> {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              widget.itemData.discount != null ? "£ ${widget.itemData.discount}" : "",
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PreluraColors.activeColor),
+              widget.itemData.discount != null
+                  ? "£ ${widget.itemData.discount}"
+                  : "",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium!
+                  .copyWith(color: PreluraColors.activeColor),
             ),
           ],
         ),
@@ -177,7 +198,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
     return GestureDetector(
       onTap: () {
         ref.invalidate(recentlyViewedProductsProvider);
-        context.router.push(ProductDetailRoute(productId: int.parse(widget.product.id)));
+        context.router
+            .push(ProductDetailRoute(productId: int.parse(widget.product.id)));
       },
       child: Container(
         width: double.infinity,
@@ -193,7 +215,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                   if (user?.username == widget.product.seller.username) {
                     context.router.push(UserProfileDetailsRoute());
                   } else {
-                    context.router.push(ProfileDetailsRoute(username: widget.product.seller.username));
+                    context.router.push(ProfileDetailsRoute(
+                        username: widget.product.seller.username));
                   }
                 },
                 child: Row(
@@ -208,7 +231,10 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     addHorizontalSpacing(8),
                     Text(
                       widget.product.seller.username,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.w500, fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Theme.of(context).textTheme.bodyMedium?.color),
                     ),
                   ],
                 ),
@@ -224,6 +250,14 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     height: 27.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    placeholder: (context, url) {
+                      return ShimmerBox(
+                        height: 27.h,
+                        width: double.infinity,
+                      );
+                    },
+                    fadeInDuration: Duration.zero,
+                    fadeOutDuration: Duration.zero,
                   ),
                   Positioned(
                     bottom: 12,
@@ -231,7 +265,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     child: GestureDetector(
                       onTap: _toggleFavourite, // Use the toggle method
                       child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 8),
                         decoration: BoxDecoration(
                           color: PreluraColors.blackCardColor,
                           borderRadius: BorderRadius.circular(8),
@@ -239,14 +274,19 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                         child: Row(
                           children: [
                             Icon(
-                              userLiked ? Icons.favorite : Icons.favorite_border_outlined,
+                              userLiked
+                                  ? Icons.favorite
+                                  : Icons.favorite_border_outlined,
                               size: 17,
                               color: PreluraColors.white,
                             ),
                             const SizedBox(width: 2),
                             Text(
                               likeCount.isNegative ? '0' : likeCount.toString(),
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.white),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: PreluraColors.white),
                             ),
                           ],
                         ),
@@ -257,7 +297,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               ),
             ),
             const SizedBox(height: 8),
-            if (widget.product.brand != null || widget.product.customBrand != null) ...[
+            if (widget.product.brand != null ||
+                widget.product.customBrand != null) ...[
               BrandTextWidget(
                 brand: widget.product.brand,
                 customBrand: widget.product.customBrand,
@@ -289,7 +330,9 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                   "£ ${formatDynamicString(widget.product.price.toString())}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontSize: getDefaultSize(),
-                        decoration: widget.product.discountPrice != null ? TextDecoration.lineThrough : null,
+                        decoration: widget.product.discountPrice != null
+                            ? TextDecoration.lineThrough
+                            : null,
                         color: widget.product.discountPrice != null
                             ? !context.isDarkMode
                                 ? Colors.grey
@@ -303,7 +346,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                   Text(
                     "£ ${formatDynamicString(calculateDiscountedAmount(
                       price: widget.product.price,
-                      discount: double.parse(widget.product.discountPrice!).toInt(),
+                      discount:
+                          double.parse(widget.product.discountPrice!).toInt(),
                     ).toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
