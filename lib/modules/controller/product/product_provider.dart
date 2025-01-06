@@ -169,6 +169,7 @@ final getProductProvider =
   final repo = ref.watch(productRepo);
 
   final result = await repo.getProduct(id);
+  ref.invalidate(recentlyViewedProductsProvider);
 
   return result;
 });

@@ -122,7 +122,7 @@ class ProductTopDetails extends ConsumerWidget {
                       // height: 30,
                       // width: 50,
                       decoration: BoxDecoration(
-                        color: '8d100f'.fromHex.withOpacity(0.5),
+                        color: '8d100f'.fromHex,
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -132,6 +132,7 @@ class ProductTopDetails extends ConsumerWidget {
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               fontSize: getDefaultSize(),
+                              color: Colors.white,
                             ),
                       ),
                     )

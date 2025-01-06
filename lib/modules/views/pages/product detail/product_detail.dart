@@ -63,6 +63,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+
     setState(() {
       // _favoriteCount = product.likes ?? 0;
     });
@@ -84,13 +85,13 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
     return RefreshIndicator(
       onRefresh: () async {
         ref.refresh(getProductProvider(widget.productId).future);
+        ref.invalidate(recentlyViewedProductsProvider);
       },
       child: Scaffold(
         body: ref.watch(getProductProvider(widget.productId)).when(
               data: (product) {
                 bool isCurrentUser = product.seller.username ==
                     ref.read(userProvider).valueOrNull?.username;
-                // ref.refresh(recentlyViewedProductsProvider.future);
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,

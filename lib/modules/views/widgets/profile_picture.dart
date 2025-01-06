@@ -5,7 +5,15 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/modules/views/widgets/loading_widget.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
-  const ProfilePictureWidget({super.key, this.profilePicture, this.username, this.updating = false, this.height, this.width, this.borderColor});
+  const ProfilePictureWidget(
+      {super.key,
+      this.profilePicture,
+      this.username,
+      this.updating = false,
+      this.height,
+      this.width,
+      this.allowBorder = true,
+      this.borderColor});
 
   final String? profilePicture;
   final String? username;
@@ -13,6 +21,7 @@ class ProfilePictureWidget extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? borderColor;
+  final bool allowBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +29,9 @@ class ProfilePictureWidget extends StatelessWidget {
       return Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: borderColor ?? Colors.transparent, width: 2),
+          border: allowBorder
+              ? Border.all(color: borderColor ?? Colors.transparent, width: 2)
+              : null,
         ),
         child: CircleAvatar(
           radius: height != null ? height! / 2 : 25,
@@ -49,11 +60,14 @@ class ProfilePictureWidget extends StatelessWidget {
           width: height ?? 50,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            border: Border.all(color: borderColor ?? Colors.transparent, width: 2),
+            border:
+                Border.all(color: borderColor ?? Colors.transparent, width: 2),
             image: DecorationImage(
               image: CachedNetworkImageProvider(profilePicture!),
               fit: BoxFit.cover,
-              colorFilter: updating ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver) : null,
+              colorFilter: updating
+                  ? const ColorFilter.mode(Colors.black45, BlendMode.srcOver)
+                  : null,
             ),
           ),
         ),

@@ -504,6 +504,12 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         return;
                       }
 
+                      if (!notifier.validateInputs()) {
+                        HelperFunction.showToast(
+                            message:
+                                'Both title and description of product are requuired');
+                        return;
+                      }
                       if (state.category == null) {
                         HelperFunction.showToast(
                             message: 'Select an item category to proceed.');
@@ -514,13 +520,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             message: 'Select an item sub category to proceed.');
                         return;
                       }
-                      // if (state.size == null) {
-                      //   HelperFunction.showToast(message: 'Select an size category to proceed.');
-                      //   return;
-                      // }
-                      if (state.price == null || state.price == '0') {
+                      if (state.brand == null && state.customBrand == null) {
                         HelperFunction.showToast(
-                            message: 'Price is required for product.');
+                            message:
+                                'A `brand` or `Custom brand` is required for product.');
+                        return;
+                      }
+                      if (state.size == null && widget.product == null) {
+                        HelperFunction.showToast(
+                            message: 'Select an size to proceed.');
                         return;
                       }
                       if (state.selectedCondition == null) {
@@ -528,14 +536,19 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             message: 'Condition is required for product.');
                         return;
                       }
-                      if (state.parcel == null) {
-                        HelperFunction.showToast(
-                            message: 'Parcel size is required for product.');
-                        return;
-                      }
                       if (state.selectedColors.isEmpty) {
                         HelperFunction.showToast(
                             message: 'Colors are required for product.');
+                        return;
+                      }
+                      if (state.price == null || state.price == '0') {
+                        HelperFunction.showToast(
+                            message: 'Price is required for product.');
+                        return;
+                      }
+                      if (state.parcel == null) {
+                        HelperFunction.showToast(
+                            message: 'Parcel size is required for product.');
                         return;
                       }
                       // if (state.selectedMaterials.isEmpty) {
@@ -543,23 +556,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       //   return;
                       // }
 
-                      if (state.brand == null && state.customBrand == null) {
-                        HelperFunction.showToast(
-                            message:
-                                'A `brand` or `Custom brand` is required for product.');
-                        return;
-                      }
                       // if (state.selectedColors.) {
                       //   context.alert('Parcel size is required for product.');
                       //   return;
                       // }
 
-                      if (!notifier.validateInputs()) {
-                        HelperFunction.showToast(
-                            message:
-                                'Both title and description of product are requuired');
-                        return;
-                      }
                       if (widget.product != null) {
                         await ref.read(productProvider.notifier).updateProduct(
                               productId: int.parse(widget.product!.id),
@@ -605,7 +606,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             condition: state.selectedCondition!,
                             parcelSize: state.parcel,
                             images: files,
-                            size: state.size,
+                            size: state.size!,
                             category: int.parse(state.category!.id.toString()),
                             subCategory:
                                 int.parse(state.subCategory!.id.toString()),
