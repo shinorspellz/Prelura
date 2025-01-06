@@ -1000,7 +1000,6 @@ final recentlyViewedProductsProvider =
     AsyncNotifierProvider<RecentlyViewedProductNotifier, List<ProductModel>>(
         RecentlyViewedProductNotifier.new);
 
-// Notifier for managing recently viewed products
 class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
   late final _repository = ref.read(productRepo);
 
@@ -1012,21 +1011,16 @@ class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
 
   Future<List<ProductModel>> _fetchProducts() async {
     try {
-      // Fetch the raw response
       final response = await _repository.getRecentlyViewedProducts();
-      log(response.toString());
 
-      // Map response to ProductModel list
       final products = await response.recentlyViewedProducts!
           .map((e) => ProductModel.fromJson(e!.toJson()))
           .toList();
-      log(products.toString());
-      // Update state with fetched products
+
       state = AsyncValue.data(products);
 
       return state.value!;
     } catch (e, stackTrace) {
-      // Handle errors
       state = AsyncError(e, stackTrace);
       return [];
     }
