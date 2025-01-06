@@ -13,7 +13,7 @@ targets:
               type: ConditionsEnum
               fromJsonFunctionName: ConditionsEnum.conditionByApiValue
               toJsonFunctionName: ConditionsEnum.conditionToApiValue
-              import: package:prelura_app/modules/model/product/product_model.dart
+              import: package:prelura_app/model/product/product_model.dart
           scalars:
             ExpectedErrorType:
               type: Map<String, dynamic>

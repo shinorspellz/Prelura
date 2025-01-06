@@ -181,7 +181,10 @@ final productRepo = Provider(
 
 /// Product Repository for any dependency
 final userRepo = Provider(
-  (ref) => UserRepo(ref.watch(graphqlClient)),
+  (ref) => UserRepo(
+    ref.watch(graphqlClient),
+    ref.watch(hive).requireValue,
+  ),
 );
 
 final networkRepo = Provider(

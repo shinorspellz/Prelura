@@ -358,3 +358,19 @@ mutation ResetPassword($email: String) {
     message
   }
 }
+
+mutation ChangeEmail($email: String) {
+  changeEmail(email: $email) {
+    message
+  }
+}
+
+mutation VerifyEmail($code: String!, $email: String!) {
+  verifyEmail(code: $code, email: $email) {
+    token
+    restToken
+    user {
+      username
+    }
+  }
+}

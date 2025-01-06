@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
@@ -44,15 +45,16 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
   late TextEditingController locationController = TextEditingController(text: ref.read(userProvider).valueOrNull?.location?.locationName);
-  TextEditingController get name => TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
-  TextEditingController get username => TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
-  TextEditingController get email => TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+  late TextEditingController name = TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  late TextEditingController username = TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
+  late TextEditingController email = TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
   final bio = TextEditingController();
   final int MaxDescription = 300;
   @override
   void initState() {
     getLongLat(showDialog: true);
     bio.text = ref.read(userProvider).valueOrNull?.bio ?? "";
+    email.addListener(() => setState(() {}));
     super.initState();
   }
 
@@ -90,7 +92,6 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   Future<void> getLongLat({bool showDialog = false}) async {
     // Position getPosition = await determinePosition();
     await determinePosition().then((value) {
-      print("value $value");
       lat = value.latitude;
       long = value.longitude;
       return null;
@@ -101,7 +102,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       });
       if (showDialog) {
         final String newError = error.toString();
-        print('888^^^0000 $newError');
+
         if (newError.contains('denied')) {
           await _showEnableLocationPopup(context,
               title: "Permission Access",
@@ -109,7 +110,6 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                   "while on this page.",
               positiveCallback: Geolocator.openAppSettings);
         } else if (newError.contains('disabled')) {
-          print(" it is true");
           await _showEnableLocationPopup(context,
               title: "Location Disabled",
               description: 'Prelura requires location access for the proper functioning of '
@@ -117,7 +117,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
               positiveCallback: Geolocator.openLocationSettings);
         }
       }
-      print('888^^^0000 $error');
+
       // return HelperFunction.showToast(message: error.toString() as String);
     });
   }
@@ -125,7 +125,8 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   @override
   Widget build(BuildContext context) {
     final obscureText = ref.watch(obscureTextProvider);
-    print(bio.text.length);
+
+    bool modifiedEmail = email.text.trim() != ref.read(userProvider).valueOrNull?.email;
 
     return Portal(
       child: Scaffold(
@@ -154,6 +155,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 label: 'Username',
                 hintText: 'e.g. prelura_app',
                 controller: username,
+                enabled: false,
               ),
               addVerticalSpacing(16),
               Column(children: [
@@ -191,7 +193,6 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                 label: 'Email',
                 hintText: 'e.g. app@prelura.com',
                 controller: email,
-                enabled: false,
               ),
               addVerticalSpacing(16),
               // PreluraAuthTextField(
@@ -258,9 +259,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                   context.alert('Location cannot be empty');
                   return;
                 }
-                setState(() {
-                  isLoading = true;
-                });
+                setState(() => isLoading = true);
 
                 if ((long == 0.0 && lat == 0.0)) {
                   await getLongLat(showDialog: true);
@@ -268,6 +267,16 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
 
                 if (long == 0.0 || lat == 0.0) {
                   throw Exception('Invalid location coordinates');
+                }
+
+                if (modifiedEmail) {
+                  await ref.read(userNotfierProvider.notifier).changeEmail(email.text);
+                  ref.read(userNotfierProvider).whenOrNull(
+                        error: (e, _) => context.alert(e.toString()),
+                        data: (_) => context.pushRoute(VerifyEmailRoute(email: email.text)),
+                      );
+                  setState(() => isLoading = false);
+                  return;
                 }
 
                 await ref.read(userNotfierProvider.notifier).updateProfile(
@@ -278,7 +287,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
                     ),
                     firstName: name.text.isEmpty ? null : name.text.split(' ')[0],
                     lastName: name.text.isEmpty ? null : name.text.split(' ')[1],
-                    username: username.text == ref.read(userProvider).valueOrNull?.username ? null : username.text,
+                    // username: username.text == ref.read(userProvider).valueOrNull?.username ? null : username.text,
                     bio: bio.text.isEmpty ? ref.read(userProvider).valueOrNull?.username : bio.text);
 
                 ref.read(userNotfierProvider).whenOrNull(
