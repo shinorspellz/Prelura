@@ -303,7 +303,7 @@ class PreluraTheme {
         dialogTheme: const DialogTheme(
           backgroundColor: PreluraColors.darkScaffoldBackround,
         ),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
             backgroundColor: PreluraColors.blackScaffoldBackround,
             elevation: 0),
         iconTheme:

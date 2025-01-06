@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/app_startup.dart';
+import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 import '../../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -25,52 +27,66 @@ class _StylePageState extends ConsumerState<StylePage> {
 
     // Filter the styles based on the search query
     final filteredStyles = Enum$StyleEnum.values
-        .where((style) => style != Enum$StyleEnum.$unknown) // Exclude unknown value
-        .where((style) => style.name.replaceAll('_', ' ').toLowerCase().contains(searchQuery.toLowerCase())) // Match search query
+        .where((style) =>
+            style != Enum$StyleEnum.$unknown) // Exclude unknown value
+        .where((style) => style.name
+            .replaceAll('_', ' ')
+            .toLowerCase()
+            .contains(searchQuery.toLowerCase())) // Match search query
         .toList()
       ..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
 
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
         appbarTitle: "Style",
       ),
       body: Scrollbar(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Searchwidget(
-                hintText: "Find a style",
-                obscureText: false,
-                shouldReadOnly: false,
-                // padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                enabled: true,
-                showInputBorder: true,
-                autofocus: false,
-                cancelButton: true,
-                onChanged: (val) {
-                  setState(() {
-                    searchQuery = val; // Update the search query
-                  });
-                },
-              ),
-              ...filteredStyles.map((style) {
-                return PreluraCheckBox(
-                  title: style.name[0].toUpperCase() + style.name.substring(1).replaceAll('_', " ").toLowerCase(),
-                  isChecked: style.name == selectedParcel?.name,
-                  onChanged: (value) {
-                    ref.read(sellItemProvider.notifier).selectStyle(style);
-                    context.router.popForced();
-                  },
-                );
-              }),
-            ],
-          ),
+        child: Column(
+          children: [
+            16.verticalSpacing,
+            Searchwidget(
+              hintText: "Find a style",
+              obscureText: false,
+              shouldReadOnly: false,
+              // padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              enabled: true,
+              showInputBorder: true,
+              autofocus: false,
+              cancelButton: true,
+              onChanged: (val) {
+                setState(() {
+                  searchQuery = val; // Update the search query
+                });
+              },
+            ),
+            16.verticalSpacing,
+            Expanded(
+                child: ListView.builder(
+                    itemCount: filteredStyles.length,
+                    itemBuilder: (context, index) {
+                      final style = filteredStyles[index];
+                      return PreluraCheckBox(
+                        title: style.name[0].toUpperCase() +
+                            style.name
+                                .substring(1)
+                                .replaceAll('_', " ")
+                                .toLowerCase(),
+                        isChecked: style.name == selectedParcel?.name,
+                        onChanged: (value) {
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .selectStyle(style);
+                          context.router.popForced();
+                        },
+                      );
+                    }))
+          ],
         ),
       ),
     );

@@ -18,11 +18,6 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List menuItem1 = [
       MenuCard(
-          title: "Vacation Mode",
-          onTap: () {
-            context.router.push(HolidayModeRoute());
-          }),
-      MenuCard(
           title: "Profile details",
           onTap: () {
             context.router.push(const ProfileSettingRoute());
@@ -37,7 +32,7 @@ class SettingScreen extends StatelessWidget {
       MenuCard(
           title: "Security",
           onTap: () {
-            context.router.push(SecurityMenuRoute()); 
+            context.router.push(SecurityMenuRoute());
           }),
     ];
 

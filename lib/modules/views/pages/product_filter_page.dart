@@ -6,7 +6,6 @@ import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart
 import 'package:prelura_app/modules/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/modules/views/widgets/app_bar.dart';
 import 'package:prelura_app/modules/views/widgets/card.dart';
-import 'package:prelura_app/modules/views/widgets/display_section.dart';
 import 'package:prelura_app/modules/views/widgets/gap.dart';
 
 @RoutePage()
@@ -93,7 +92,29 @@ class _ProductPriceFilterPageState
                     ],
                   ),
                 ),
-                orElse: () => GridShimmer(),
+                orElse: () => SliverToBoxAdapter(child: GridShimmer()),
+                error: (e, _) {
+                  return SliverToBoxAdapter(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.8,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(e.toString()),
+                          TextButton.icon(
+                            onPressed: () {
+                              // log(e.toString(), stackTrace: _);
+                              ref.invalidate(filteredProductProvider);
+                            },
+                            label: const Text('Retry'),
+                            icon: const Icon(Icons.refresh_rounded),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
         ),
       ]),

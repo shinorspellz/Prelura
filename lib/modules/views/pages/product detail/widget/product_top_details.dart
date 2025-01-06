@@ -122,7 +122,7 @@ class ProductTopDetails extends ConsumerWidget {
                       // height: 30,
                       // width: 50,
                       decoration: BoxDecoration(
-                        color: 'fc0001'.fromHex.withOpacity(0.5),
+                        color: '8d100f'.fromHex.withOpacity(0.5),
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),

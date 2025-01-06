@@ -94,6 +94,7 @@ class PreluraCheckBox extends StatelessWidget {
                                       .bodyMedium!
                                       .copyWith(
                                         fontSize: getDefaultSize(),
+                                        fontWeight: FontWeight.w600,  
                                       ),
                             ),
                             6.horizontalSpacing,

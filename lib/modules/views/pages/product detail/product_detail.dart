@@ -90,7 +90,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
               data: (product) {
                 bool isCurrentUser = product.seller.username ==
                     ref.read(userProvider).valueOrNull?.username;
-                ref.refresh(recentlyViewedProductsProvider.future);
+                // ref.refresh(recentlyViewedProductsProvider.future);
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,
