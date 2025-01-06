@@ -85,6 +85,11 @@ class MenuPage extends ConsumerWidget {
               context.pushRoute(BalanceRoute());
             },
           ),
+          MenuCard(
+              title: "Vacation Mode",
+              onTap: () {
+                context.router.push(HolidayModeRoute());
+              }),
           if (user?.listing != null)
             if (user!.listing!.toInt() > 0)
               MenuCard(

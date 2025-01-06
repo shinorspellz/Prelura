@@ -9,6 +9,8 @@ import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/ui_constants.dart';
 
+import '../../../res/colors.dart';
+
 class FullScreenImage extends StatefulWidget {
   final List<XFile> imagePath; // Local image files
   final List<ProductBanners> imageUrl; // Network image URLs
@@ -42,7 +44,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
               child: IconButton(
                   icon: Icon(
                     Icons.close,
-                    color: Theme.of(context).iconTheme.color,
+                    color: PreluraColors.white,
                   ),
                   onPressed: () {
                     context.router.popForced();
