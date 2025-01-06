@@ -10,8 +10,8 @@ class PreluraColors {
   static const Color bottomNavIndicatiorColor = Color(0xFFFD4A40);
   static const Color appBarBackgroundColor = Color(0xFFF0F3FF);
   static const Color darkIconColor = Color(0xFFFFFFFF);
-  static const Color darkScaffoldBackround = Color(0xFF1e1e1e);
-  static const Color blackScaffoldBackround = Colors.black;
+  static const Color darkScaffoldBackround = Color(0xFF1E1E1E);
+  static const Color blackScaffoldBackround = Color(0xFF1E1E1E);
   static const Color darkButtonColor = Colors.purple; //background: #37474F;
   static Color blackUpdated = '0C0F12'.fromHex;
   static Color blackButtonColorUpdated = '1A4577'.fromHex;
@@ -47,7 +47,7 @@ class PreluraColors {
   static Color lightText = const Color(0xFFAAAAAA);
   static Color blueTextColor = const Color(0xff0078FF);
   static Color boldGreyText = const Color(0xFF666666);
-  static Color  switchOffColor = const Color(0xFFE9E9EA);
+  static Color switchOffColor = const Color(0xFFE9E9EA);
   static Color greyDeepText = const Color(0xFF3E3E3E);
   static Color contractBackgroundColor = const Color(0xffF6F6F6);
   static const MaterialColor vModelprimarySwatch = MaterialColor(
@@ -89,7 +89,7 @@ class PreluraColors {
   static const Color blackButtonColor = Color(0xFF503C3B);
 
   static const Color blueColor9D = Color(0xFF82909D);
-  static const Color darkPrimaryColor = Color(0xFF37474F);
+  static const Color darkPrimaryColor = Color(0xFF1E1E1E);
   static const Color darkOnSurfaceColor = Color(0xFFD7D7D7);
   static const Color darkOnPrimaryColor = Color(0xFFDDDDDD);
 

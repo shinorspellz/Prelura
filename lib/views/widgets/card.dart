@@ -179,7 +179,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
         ref.invalidate(recentlyViewedProductsProvider);
         context.router.push(ProductDetailRoute(productId: int.parse(widget.product.id)));
       },
-      child: SizedBox(
+      child: Container(
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -203,6 +203,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                       username: widget.product.seller.username,
                       width: 20,
                       height: 20,
+                      allowBorder: false,
                     ),
                     addHorizontalSpacing(8),
                     Text(
