@@ -2,9 +2,11 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:prelura_app/core/errors/failures.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:graphql/client.dart';
 
 class SocketChannel {
   /// Constructor that initializes the websocket connection with the provided [url]
@@ -113,5 +115,48 @@ class SocketChannel {
     log('Socket Channel closed', name: 'SocketChannel');
     _isManuallyClosed = true;
     _sink.close();
+  }
+}
+
+class ClientOperation<T> {
+  ClientOperation(this.operate);
+  final Future<QueryResult<T>> Function(GraphQLClient client) operate;
+}
+
+class GraphqlCL {
+  final GraphQLClient _client;
+
+  GraphqlCL(this._client);
+
+  Future<T> executeGraphQL<T>({
+    required ClientOperation<T> operation,
+    Failure Function(OperationException)? customError,
+    String? operationName,
+  }) async {
+    try {
+      final response = await operation.operate(_client);
+
+      if (response.hasException) {
+        if (customError != null) {
+          throw customError(response.exception!);
+        }
+        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+          final error = response.exception!.graphqlErrors.first.message;
+          log(error, name: operationName ?? 'GraphQL', stackTrace: response.exception?.originalStackTrace);
+          throw RequestFailure(error, response.exception?.originalStackTrace);
+        }
+        log(response.exception.toString(), name: operationName ?? 'GraphQL');
+        throw const UnknownFailure('Unknown GraphQL error occurred');
+      }
+
+      if (response.parsedData == null) {
+        throw JsonParseFailure();
+      }
+
+      return response.parsedData!;
+    } catch (e, stackTrace) {
+      RequestFailure(e.toString(), stackTrace);
+      rethrow;
+    }
   }
 }

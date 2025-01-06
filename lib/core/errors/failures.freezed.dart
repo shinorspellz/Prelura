@@ -19,9 +19,10 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
@@ -30,9 +31,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) =>
@@ -40,9 +40,8 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),
@@ -168,9 +167,10 @@ class _$ConnectionFailureImpl extends ConnectionFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
@@ -182,9 +182,8 @@ class _$ConnectionFailureImpl extends ConnectionFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) {
@@ -195,9 +194,8 @@ class _$ConnectionFailureImpl extends ConnectionFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),
@@ -269,7 +267,7 @@ abstract class _$$RequestFailureImplCopyWith<$Res> {
           $Res Function(_$RequestFailureImpl) then) =
       __$$RequestFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, int code, StackTrace? stackTrace});
+  $Res call({String message, StackTrace? stackTrace});
 }
 
 /// @nodoc
@@ -286,7 +284,6 @@ class __$$RequestFailureImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
-    Object? code = null,
     Object? stackTrace = freezed,
   }) {
     return _then(_$RequestFailureImpl(
@@ -294,10 +291,6 @@ class __$$RequestFailureImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
       freezed == stackTrace
           ? _value.stackTrace
           : stackTrace // ignore: cast_nullable_to_non_nullable
@@ -309,19 +302,16 @@ class __$$RequestFailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RequestFailureImpl extends RequestFailure {
-  const _$RequestFailureImpl(this.message, this.code, [this.stackTrace])
-      : super._();
+  const _$RequestFailureImpl(this.message, [this.stackTrace]) : super._();
 
   @override
   final String message;
-  @override
-  final int code;
   @override
   final StackTrace? stackTrace;
 
   @override
   String toString() {
-    return 'Failure.requestFailure(message: $message, code: $code, stackTrace: $stackTrace)';
+    return 'Failure.requestFailure(message: $message, stackTrace: $stackTrace)';
   }
 
   @override
@@ -330,13 +320,12 @@ class _$RequestFailureImpl extends RequestFailure {
         (other.runtimeType == runtimeType &&
             other is _$RequestFailureImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.code, code) || other.code == code) &&
             (identical(other.stackTrace, stackTrace) ||
                 other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, code, stackTrace);
+  int get hashCode => Object.hash(runtimeType, message, stackTrace);
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
@@ -351,42 +340,41 @@ class _$RequestFailureImpl extends RequestFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
   }) {
-    return requestFailure(message, code, stackTrace);
+    return requestFailure(message, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) {
-    return requestFailure?.call(message, code, stackTrace);
+    return requestFailure?.call(message, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),
   }) {
     if (requestFailure != null) {
-      return requestFailure(message, code, stackTrace);
+      return requestFailure(message, stackTrace);
     }
     return orElse();
   }
@@ -433,12 +421,11 @@ class _$RequestFailureImpl extends RequestFailure {
 }
 
 abstract class RequestFailure extends Failure {
-  const factory RequestFailure(final String message, final int code,
+  const factory RequestFailure(final String message,
       [final StackTrace? stackTrace]) = _$RequestFailureImpl;
   const RequestFailure._() : super._();
 
   String get message;
-  int get code;
   StackTrace? get stackTrace;
 
   /// Create a copy of Failure
@@ -454,7 +441,7 @@ abstract class _$$CacheFailureImplCopyWith<$Res> {
           _$CacheFailureImpl value, $Res Function(_$CacheFailureImpl) then) =
       __$$CacheFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? message});
+  $Res call({String? message, StackTrace? stackTrace});
 }
 
 /// @nodoc
@@ -471,12 +458,17 @@ class __$$CacheFailureImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_$CacheFailureImpl(
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
     ));
   }
 }
@@ -484,14 +476,16 @@ class __$$CacheFailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CacheFailureImpl extends CacheFailure {
-  const _$CacheFailureImpl({this.message}) : super._();
+  const _$CacheFailureImpl({this.message, this.stackTrace}) : super._();
 
   @override
   final String? message;
+  @override
+  final StackTrace? stackTrace;
 
   @override
   String toString() {
-    return 'Failure.cacheFailure(message: $message)';
+    return 'Failure.cacheFailure(message: $message, stackTrace: $stackTrace)';
   }
 
   @override
@@ -499,11 +493,13 @@ class _$CacheFailureImpl extends CacheFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CacheFailureImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, stackTrace);
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
@@ -517,42 +513,41 @@ class _$CacheFailureImpl extends CacheFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
   }) {
-    return cacheFailure(message);
+    return cacheFailure(message, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) {
-    return cacheFailure?.call(message);
+    return cacheFailure?.call(message, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),
   }) {
     if (cacheFailure != null) {
-      return cacheFailure(message);
+      return cacheFailure(message, stackTrace);
     }
     return orElse();
   }
@@ -599,10 +594,13 @@ class _$CacheFailureImpl extends CacheFailure {
 }
 
 abstract class CacheFailure extends Failure {
-  const factory CacheFailure({final String? message}) = _$CacheFailureImpl;
+  const factory CacheFailure(
+      {final String? message,
+      final StackTrace? stackTrace}) = _$CacheFailureImpl;
   const CacheFailure._() : super._();
 
   String? get message;
+  StackTrace? get stackTrace;
 
   /// Create a copy of Failure
   /// with the given fields replaced by the non-null parameter values.
@@ -682,9 +680,10 @@ class _$JsonParseFailureImpl extends JsonParseFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
@@ -696,9 +695,8 @@ class _$JsonParseFailureImpl extends JsonParseFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) {
@@ -709,9 +707,8 @@ class _$JsonParseFailureImpl extends JsonParseFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),
@@ -856,9 +853,10 @@ class _$UnknownFailureImpl extends UnknownFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) connectionFailure,
-    required TResult Function(String message, int code, StackTrace? stackTrace)
+    required TResult Function(String message, StackTrace? stackTrace)
         requestFailure,
-    required TResult Function(String? message) cacheFailure,
+    required TResult Function(String? message, StackTrace? stackTrace)
+        cacheFailure,
     required TResult Function(StackTrace? stackTrace) jsonParseFailure,
     required TResult Function(String message, StackTrace? stackTrace)
         unknownFailure,
@@ -870,9 +868,8 @@ class _$UnknownFailureImpl extends UnknownFailure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String message)? connectionFailure,
-    TResult? Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult? Function(String? message)? cacheFailure,
+    TResult? Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult? Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult? Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult? Function(String message, StackTrace? stackTrace)? unknownFailure,
   }) {
@@ -883,9 +880,8 @@ class _$UnknownFailureImpl extends UnknownFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? connectionFailure,
-    TResult Function(String message, int code, StackTrace? stackTrace)?
-        requestFailure,
-    TResult Function(String? message)? cacheFailure,
+    TResult Function(String message, StackTrace? stackTrace)? requestFailure,
+    TResult Function(String? message, StackTrace? stackTrace)? cacheFailure,
     TResult Function(StackTrace? stackTrace)? jsonParseFailure,
     TResult Function(String message, StackTrace? stackTrace)? unknownFailure,
     required TResult orElse(),

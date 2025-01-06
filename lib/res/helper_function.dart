@@ -4,7 +4,7 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:sizer/sizer.dart';
 
-import '../modules/views/widgets/gap.dart';
+import '../views/widgets/gap.dart';
 import 'render_svg.dart';
 
 class HelperFunction {
@@ -36,7 +36,7 @@ class HelperFunction {
             Expanded(
               child: Text(
                 message ?? "",
-                style: Theme.of(context!).textTheme.bodyMedium!.copyWith(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: PreluraColors.white,
                       fontWeight: FontWeight.w500,
                       fontSize: 16,
@@ -53,10 +53,8 @@ class HelperFunction {
   }
 
   double getBottomInsets() {
-    if (MediaQuery.of(context!).viewInsets.bottom >
-        MediaQuery.of(context!).viewPadding.bottom) {
-      return MediaQuery.of(context!).viewInsets.bottom -
-          MediaQuery.of(context!).viewPadding.bottom;
+    if (MediaQuery.of(context!).viewInsets.bottom > MediaQuery.of(context!).viewPadding.bottom) {
+      return MediaQuery.of(context!).viewInsets.bottom - MediaQuery.of(context!).viewPadding.bottom;
     }
     return 0;
   }
