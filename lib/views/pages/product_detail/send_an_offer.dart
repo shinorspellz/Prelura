@@ -174,9 +174,11 @@ class SendAnOfferScreen extends ConsumerWidget {
             32.verticalSpacing,
             Row(
               children: [
-                SuggestionButton(price: '£40', discount: '-5%'),
+                SuggestionButton(
+                    price: '£40', discount: '-5%', context: context),
                 16.horizontalSpacing,
-                SuggestionButton(price: '£42.5', discount: '-10%'),
+                SuggestionButton(
+                    price: '£42.5', discount: '-10%', context: context),
               ],
             ),
             24.verticalSpacing,
@@ -195,7 +197,10 @@ class SendAnOfferScreen extends ConsumerWidget {
     );
   }
 
-  Widget SuggestionButton({required String price, required String discount}) {
+  Widget SuggestionButton(
+      {required String price,
+      required String discount,
+      required BuildContext context}) {
     return Container(
       width: 43.w,
       padding: EdgeInsets.symmetric(vertical: 13, horizontal: 16),
@@ -219,7 +224,9 @@ class SendAnOfferScreen extends ConsumerWidget {
             style: TextStyle(
               fontSize: getDefaultSize(),
               fontWeight: FontWeight.bold,
-              color: Color(0xffcb89cf),
+              color: context.isDarkMode
+                  ? Color(0xffcb89cf)
+                  : PreluraColors.primaryColor,
             ),
           ),
         ],
