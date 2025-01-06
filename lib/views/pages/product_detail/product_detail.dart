@@ -220,7 +220,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                             children: [
                               Expanded(
                                 child: AppButton(
-                                  onTap: () {},
+                                  onTap: () {
+                                    context.router.push(
+                                        SendAnOfferRoute(product: product));
+                                  },
                                   text: "Make an Offer",
                                   bgColor:
                                       Theme.of(context).scaffoldBackgroundColor,
@@ -289,6 +292,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                 return ShimmerBox(
                                                   height: 550,
                                                   width: double.infinity,
+                                                  radius: 0,
                                                 );
                                               },
                                               fadeInDuration: Duration.zero,

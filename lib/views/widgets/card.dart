@@ -306,7 +306,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               // 10.verticalSpacing,
             ],
             Text(
-              widget.product.name.trim(),
+              capitalizeEachWord(widget.product.name.trim()),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                     fontSize: getDefaultSize(),

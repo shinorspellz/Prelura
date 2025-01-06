@@ -7,23 +7,27 @@ import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/colors.dart';
 
 class BrandTextWidget extends StatelessWidget {
-  BrandTextWidget({super.key, this.brand, this.customBrand});
+  BrandTextWidget({super.key, this.brand, this.customBrand, this.fontSize});
   final Brand? brand;
   String? customBrand;
+  double? fontSize;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (brand == null && customBrand == null) return;
-        context.pushRoute(ProductsByBrandRoute(title: brand?.name, id: (brand?.id)?.toInt(), customBrand: customBrand));
+        context.pushRoute(ProductsByBrandRoute(
+            title: brand?.name,
+            id: (brand?.id)?.toInt(),
+            customBrand: customBrand));
       },
       child: Text(
         customBrand ?? brand?.name ?? '',
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: PreluraColors.activeColor,
-              fontWeight: FontWeight.w500,
-            ),
+            color: PreluraColors.activeColor,
+            fontWeight: FontWeight.w500,
+            fontSize: fontSize),
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
