@@ -12,113 +12,67 @@ import 'package:auto_route/auto_route.dart' as _i59;
 import 'package:flutter/cupertino.dart' as _i60;
 import 'package:flutter/foundation.dart' as _i64;
 import 'package:flutter/material.dart' as _i61;
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart'
-    as _i62;
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart' as _i62;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
-import 'package:prelura_app/modules/model/product/categories/category_model.dart'
-    as _i65;
-import 'package:prelura_app/modules/model/product/product_model.dart' as _i63;
-import 'package:prelura_app/modules/views/pages/about_prelura_menu.dart' as _i1;
-import 'package:prelura_app/modules/views/pages/auth_page.dart' as _i4;
-import 'package:prelura_app/modules/views/pages/Authentication/view/forgot_password.dart'
-    as _i17;
-import 'package:prelura_app/modules/views/pages/Authentication/view/new_password.dart'
-    as _i29;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_in.dart'
-    as _i23;
-import 'package:prelura_app/modules/views/pages/Authentication/view/sign_up.dart'
-    as _i52;
-import 'package:prelura_app/modules/views/pages/balance_page.dart' as _i5;
-import 'package:prelura_app/modules/views/pages/Chat/view/chat_view.dart'
-    as _i8;
-import 'package:prelura_app/modules/views/pages/discounted_products_view.dart'
-    as _i13;
-import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/product_by_christmas.dart'
-    as _i9;
-import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/product_by_party.dart'
-    as _i32;
-import 'package:prelura_app/modules/views/pages/Filtered%20Products/Products%20by%20Styles/products_by_vintage.dart'
-    as _i58;
-import 'package:prelura_app/modules/views/pages/Followers/view/followers_view.dart'
-    as _i15;
-import 'package:prelura_app/modules/views/pages/Following/view/following_view.dart'
-    as _i16;
-import 'package:prelura_app/modules/views/pages/holiday_mode.dart' as _i18;
-import 'package:prelura_app/modules/views/pages/home.dart' as _i20;
-import 'package:prelura_app/modules/views/pages/home_navigation.dart' as _i19;
-import 'package:prelura_app/modules/views/pages/inbox_screen.dart' as _i21;
-import 'package:prelura_app/modules/views/pages/legal_information.dart' as _i22;
-import 'package:prelura_app/modules/views/pages/menu_page.dart' as _i25;
-import 'package:prelura_app/modules/views/pages/My%20Order/view/my_order_screen.dart'
-    as _i28;
-import 'package:prelura_app/modules/views/pages/my_favourite.dart' as _i27;
-import 'package:prelura_app/modules/views/pages/Payment/payment_view.dart'
-    as _i33;
-import 'package:prelura_app/modules/views/pages/product%20detail/product_detail.dart'
-    as _i36;
-import 'package:prelura_app/modules/views/pages/product_by_filters.dart'
-    as _i14;
-import 'package:prelura_app/modules/views/pages/product_by_hashtag_page.dart'
-    as _i35;
-import 'package:prelura_app/modules/views/pages/product_filter_page.dart'
-    as _i38;
-import 'package:prelura_app/modules/views/pages/products_by_brand.dart' as _i39;
-import 'package:prelura_app/modules/views/pages/Profile%20Details%20copy/view/profile_details.dart'
-    as _i57;
-import 'package:prelura_app/modules/views/pages/Profile%20Details/view/profile_details.dart'
-    as _i40;
-import 'package:prelura_app/modules/views/pages/Profile%20Details/view/review_tab.dart'
-    as _i45;
-import 'package:prelura_app/modules/views/pages/profile_navigation_screen.dart'
-    as _i41;
-import 'package:prelura_app/modules/views/pages/recently_viewed_product.dart'
-    as _i43;
-import 'package:prelura_app/modules/views/pages/search_screen.dart' as _i46;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/brand_view.dart'
-    as _i6;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/category_view.dart'
-    as _i7;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/color_selector_view.dart'
-    as _i10;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/condition_view.dart'
-    as _i11;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/discount_page.dart'
-    as _i12;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/material_view.dart'
-    as _i24;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/parcel_view.dart'
-    as _i31;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/price_view.dart'
-    as _i34;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_list_view.dart'
-    as _i37;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/product_sub_category.dart'
-    as _i55;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sell_item_view.dart'
-    as _i48;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/size_view.dart'
-    as _i53;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/style_page.dart'
-    as _i54;
-import 'package:prelura_app/modules/views/pages/Sell%20Item/view/sub_category_view.dart'
-    as _i56;
-import 'package:prelura_app/modules/views/pages/sell_item_navigation.dart'
-    as _i49;
-import 'package:prelura_app/modules/views/pages/Settings/view/account_setting_view.dart'
-    as _i2;
-import 'package:prelura_app/modules/views/pages/Settings/view/multi_buy_discount.dart'
-    as _i26;
-import 'package:prelura_app/modules/views/pages/Settings/view/notification_setting.dart'
-    as _i30;
-import 'package:prelura_app/modules/views/pages/Settings/view/profile_setting_view.dart'
-    as _i42;
-import 'package:prelura_app/modules/views/pages/Settings/view/reset_password.dart'
-    as _i44;
-import 'package:prelura_app/modules/views/pages/Settings/view/security_menu.dart'
-    as _i47;
-import 'package:prelura_app/modules/views/pages/Settings/view/shop_value.dart'
-    as _i51;
-import 'package:prelura_app/modules/views/pages/user_settings.dart' as _i50;
+import 'package:prelura_app/model/product/categories/category_model.dart' as _i65;
+import 'package:prelura_app/model/product/product_model.dart' as _i63;
+import 'package:prelura_app/views/pages/about_prelura_menu.dart' as _i1;
+import 'package:prelura_app/views/pages/auth_page.dart' as _i4;
+import 'package:prelura_app/views/pages/authentication/forgot_password.dart' as _i17;
+import 'package:prelura_app/views/pages/authentication/new_password.dart' as _i29;
+import 'package:prelura_app/views/pages/authentication/sign_in.dart' as _i23;
+import 'package:prelura_app/views/pages/authentication/sign_up.dart' as _i52;
+import 'package:prelura_app/views/pages/balance_page.dart' as _i5;
+import 'package:prelura_app/views/pages/chat/chat_view.dart' as _i8;
+import 'package:prelura_app/views/pages/discounted_products_view.dart' as _i13;
+import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_christmas.dart' as _i9;
+import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_party.dart' as _i32;
+import 'package:prelura_app/views/pages/filtered_products/product_by_sales/products_by_vintage.dart' as _i58;
+import 'package:prelura_app/views/pages/followers/view/followers_view.dart' as _i15;
+import 'package:prelura_app/views/pages/Following/view/following_view.dart' as _i16;
+import 'package:prelura_app/views/pages/holiday_mode.dart' as _i18;
+import 'package:prelura_app/views/pages/home.dart' as _i20;
+import 'package:prelura_app/views/pages/home_navigation.dart' as _i19;
+import 'package:prelura_app/views/pages/inbox_screen.dart' as _i21;
+import 'package:prelura_app/views/pages/legal_information.dart' as _i22;
+import 'package:prelura_app/views/pages/menu_page.dart' as _i25;
+import 'package:prelura_app/views/pages/my_order/view/my_order_screen.dart' as _i28;
+import 'package:prelura_app/views/pages/my_favourite.dart' as _i27;
+import 'package:prelura_app/views/pages/payment/payment_view.dart' as _i33;
+import 'package:prelura_app/views/pages/product_detail/product_detail.dart' as _i36;
+import 'package:prelura_app/views/pages/filtered_products/product_by_filters.dart' as _i14;
+import 'package:prelura_app/views/pages/filtered_products/product_by_hashtag_page.dart' as _i35;
+import 'package:prelura_app/views/pages/filtered_products/product_filter_page.dart' as _i38;
+import 'package:prelura_app/views/pages/filtered_products/products_by_brand.dart' as _i39;
+import 'package:prelura_app/views/pages/profile_details_copy/view/profile_details.dart' as _i57;
+import 'package:prelura_app/views/pages/profile_details/view/profile_details.dart' as _i40;
+import 'package:prelura_app/views/pages/profile_details/view/review_tab.dart' as _i45;
+import 'package:prelura_app/views/pages/profile_navigation_screen.dart' as _i41;
+import 'package:prelura_app/views/pages/recently_viewed_product.dart' as _i43;
+import 'package:prelura_app/views/pages/search_screen.dart' as _i46;
+import 'package:prelura_app/views/pages/sell_item/brand_view.dart' as _i6;
+import 'package:prelura_app/views/pages/sell_item/category_view.dart' as _i7;
+import 'package:prelura_app/views/pages/sell_item/color_selector_view.dart' as _i10;
+import 'package:prelura_app/views/pages/sell_item/condition_view.dart' as _i11;
+import 'package:prelura_app/views/pages/sell_item/discount_page.dart' as _i12;
+import 'package:prelura_app/views/pages/sell_item/material_view.dart' as _i24;
+import 'package:prelura_app/views/pages/sell_item/parcel_view.dart' as _i31;
+import 'package:prelura_app/views/pages/sell_item/price_view.dart' as _i34;
+import 'package:prelura_app/views/pages/sell_item/product_list_view.dart' as _i37;
+import 'package:prelura_app/views/pages/sell_item/product_sub_category.dart' as _i55;
+import 'package:prelura_app/views/pages/sell_item/sell_item_view.dart' as _i48;
+import 'package:prelura_app/views/pages/sell_item/size_view.dart' as _i53;
+import 'package:prelura_app/views/pages/sell_item/style_page.dart' as _i54;
+import 'package:prelura_app/views/pages/sell_item/sub_category_view.dart' as _i56;
+import 'package:prelura_app/views/pages/sell_item_navigation.dart' as _i49;
+import 'package:prelura_app/views/pages/settings/account_setting_view.dart' as _i2;
+import 'package:prelura_app/views/pages/settings/multi_buy_discount.dart' as _i26;
+import 'package:prelura_app/views/pages/settings/notification_setting.dart' as _i30;
+import 'package:prelura_app/views/pages/settings/profile_setting_view.dart' as _i42;
+import 'package:prelura_app/views/pages/settings/reset_password.dart' as _i44;
+import 'package:prelura_app/views/pages/settings/security_menu.dart' as _i47;
+import 'package:prelura_app/views/pages/settings/shop_value.dart' as _i51;
+import 'package:prelura_app/views/pages/user_settings.dart' as _i50;
 
 /// generated route for
 /// [_i1.AboutPreluraMenuScreen]
@@ -313,8 +267,7 @@ class ChatRouteArgs {
 
 /// generated route for
 /// [_i9.ChristmasFilteredProductScreen]
-class ChristmasFilteredProductRoute
-    extends _i59.PageRouteInfo<ChristmasFilteredProductRouteArgs> {
+class ChristmasFilteredProductRoute extends _i59.PageRouteInfo<ChristmasFilteredProductRouteArgs> {
   ChristmasFilteredProductRoute({
     _i61.Key? key,
     required _i62.Enum$StyleEnum style,
@@ -417,8 +370,7 @@ class DiscountRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i13.DiscountedProductsView]
-class DiscountedProductsView
-    extends _i59.PageRouteInfo<DiscountedProductsViewArgs> {
+class DiscountedProductsView extends _i59.PageRouteInfo<DiscountedProductsViewArgs> {
   DiscountedProductsView({
     _i61.Key? key,
     required String? title,
@@ -759,8 +711,7 @@ class LoginRoute extends _i59.PageRouteInfo<LoginRouteArgs> {
   static _i59.PageInfo page = _i59.PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      final args = data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
       return _i23.LoginScreen(
         key: args.key,
         onLoginResult: args.onLoginResult,
@@ -928,8 +879,7 @@ class NewPasswordRouteArgs {
 
 /// generated route for
 /// [_i30.NotificationSettingScreen]
-class NotificationSettingRoute
-    extends _i59.PageRouteInfo<NotificationSettingRouteArgs> {
+class NotificationSettingRoute extends _i59.PageRouteInfo<NotificationSettingRouteArgs> {
   NotificationSettingRoute({
     _i61.Key? key,
     required String title,
@@ -1078,8 +1028,7 @@ class PriceRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i35.ProductByHashtagPage]
-class ProductByHashtagRoute
-    extends _i59.PageRouteInfo<ProductByHashtagRouteArgs> {
+class ProductByHashtagRoute extends _i59.PageRouteInfo<ProductByHashtagRouteArgs> {
   ProductByHashtagRoute({
     _i64.Key? key,
     required String hashtag,
@@ -1190,8 +1139,7 @@ class ProductListRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i38.ProductPriceFilterPage]
-class ProductPriceFilterRoute
-    extends _i59.PageRouteInfo<ProductPriceFilterRouteArgs> {
+class ProductPriceFilterRoute extends _i59.PageRouteInfo<ProductPriceFilterRouteArgs> {
   ProductPriceFilterRoute({
     _i61.Key? key,
     required String title,
@@ -1237,8 +1185,7 @@ class ProductPriceFilterRouteArgs {
 
 /// generated route for
 /// [_i39.ProductsByBrandPage]
-class ProductsByBrandRoute
-    extends _i59.PageRouteInfo<ProductsByBrandRouteArgs> {
+class ProductsByBrandRoute extends _i59.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
     _i61.Key? key,
     required String? title,
@@ -1380,8 +1327,7 @@ class ProfileSettingRoute extends _i59.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i43.RecentlyViewedProductScreen]
-class RecentlyViewedProductRoute
-    extends _i59.PageRouteInfo<RecentlyViewedProductRouteArgs> {
+class RecentlyViewedProductRoute extends _i59.PageRouteInfo<RecentlyViewedProductRouteArgs> {
   RecentlyViewedProductRoute({
     _i61.Key? key,
     required String? title,
@@ -1534,8 +1480,7 @@ class SellItemRoute extends _i59.PageRouteInfo<SellItemRouteArgs> {
   static _i59.PageInfo page = _i59.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SellItemRouteArgs>(
-          orElse: () => const SellItemRouteArgs());
+      final args = data.argsAs<SellItemRouteArgs>(orElse: () => const SellItemRouteArgs());
       return _i48.SellItemScreen(
         key: args.key,
         product: args.product,
@@ -1747,8 +1692,7 @@ class SubCategoryRouteArgs {
 
 /// generated route for
 /// [_i57.UserProfileDetailsScreen]
-class UserProfileDetailsRoute
-    extends _i59.PageRouteInfo<UserProfileDetailsRouteArgs> {
+class UserProfileDetailsRoute extends _i59.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
     _i60.Key? key,
     String? username,
@@ -1767,8 +1711,7 @@ class UserProfileDetailsRoute
   static _i59.PageInfo page = _i59.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UserProfileDetailsRouteArgs>(
-          orElse: () => const UserProfileDetailsRouteArgs());
+      final args = data.argsAs<UserProfileDetailsRouteArgs>(orElse: () => const UserProfileDetailsRouteArgs());
       return _i57.UserProfileDetailsScreen(
         key: args.key,
         username: args.username,
@@ -1795,8 +1738,7 @@ class UserProfileDetailsRouteArgs {
 
 /// generated route for
 /// [_i58.VintageFilteredProductScreen]
-class VintageFilteredProductRoute
-    extends _i59.PageRouteInfo<VintageFilteredProductRouteArgs> {
+class VintageFilteredProductRoute extends _i59.PageRouteInfo<VintageFilteredProductRouteArgs> {
   VintageFilteredProductRoute({
     _i61.Key? key,
     required _i62.Enum$StyleEnum style,
