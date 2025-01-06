@@ -8,14 +8,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/modules/controller/product/brands_provider.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
-import 'package:prelura_app/modules/model/product/product_model.dart';
-import 'package:prelura_app/modules/views/pages/Search%20Result/provider/search_provider.dart';
-import 'package:prelura_app/modules/views/pages/Search%20Result/view/search_result.dart';
-
+import '../../../controller/product/brands_provider.dart';
 import '../../../model/product/product_model.dart';
-import '../../model/product/user_product_grouping/user_product_grouping.dart';
+import '../../../model/product/user_product_grouping/user_product_grouping.dart';
+import '../../../views/pages/search_result/provider/search_provider.dart';
+import '../../../views/pages/search_result/view/search_result.dart';
 
 // final allProductProvider = FutureProvider((ref) async {
 //   log('Triggered All Product Provider Getting Product.....');

@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
-import 'package:prelura_app/modules/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../widgets/SearchWidget.dart';
