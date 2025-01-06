@@ -124,6 +124,23 @@ class _UserController extends AsyncNotifier<void> {
       },
     );
   }
+
+  Future<void> changeEmail(String email) async {
+    state = AsyncLoading();
+
+    state = await AsyncValue.guard(() async {
+      await _repo.changeEmail(email);
+    });
+  }
+
+  Future<void> verifyEmail(String code, String email) async {
+    state = AsyncLoading();
+
+    state = await AsyncValue.guard(() async {
+      await _repo.verifyEmail(code, email);
+      await ref.refresh(userProvider.future);
+    });
+  }
 }
 
 //

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
+import 'package:hive/hive.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
@@ -10,7 +11,9 @@ import 'package:prelura_app/model/user/user_model.dart';
 class UserRepo {
   final GraphQLClient _client;
 
-  UserRepo(this._client);
+  final Box _cacheBox;
+
+  UserRepo(this._client, this._cacheBox);
 
   Future<UserModel> getMe() async {
     final response = await _client.query$ViewMe(
@@ -146,6 +149,50 @@ class UserRepo {
       log(response.exception.toString(), name: 'UserRepo');
       throw 'An error occured';
     }
+  }
+
+  Future<void> changeEmail(String email) async {
+    final response = await _client.mutate$ChangeEmail(Options$Mutation$ChangeEmail(
+      variables: Variables$Mutation$ChangeEmail(email: email),
+    ));
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+  }
+
+  Future<void> verifyEmail(String code, String email) async {
+    final response = await _client.mutate$VerifyEmail(Options$Mutation$VerifyEmail(
+      variables: Variables$Mutation$VerifyEmail(code: code, email: email),
+    ));
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      throw 'Invalid response';
+    }
+
+    final verifiyInfo = response.parsedData!.verifyEmail!;
+
+    _store(verifiyInfo.token!, verifiyInfo.restToken!, verifiyInfo.user!.username!);
+  }
+
+  /// Cache all required data neccesary for user session like [token], [restToken] & [username]
+  Future<void> _store(String token, String restToken, String username) async {
+    await _cacheBox.put('AUTH_TOKEN', token);
+    await _cacheBox.put('REST_TOKEN', restToken);
+    await _cacheBox.put('USERNAME', username);
   }
 }
 

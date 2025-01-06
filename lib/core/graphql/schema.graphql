@@ -88,6 +88,10 @@ type CategoryTypes {
   subCategory: [SubCategoryType]
 }
 
+type ChangeEmail {
+  message: String
+}
+
 """An enumeration."""
 enum ChatsMessageAttachmentTypeChoices {
   """PICTURE"""
@@ -383,6 +387,12 @@ type Mutation {
   rateUser(comment: String!, rating: Int!, userId: Int!): RateUser
   resetPassword(email: String): ResetPassword
   passwordReset(code: String!, email: String!, password: String!): PasswordReset
+
+  """Change email address"""
+  changeEmail(email: String): ChangeEmail
+
+  """Verify email address"""
+  verifyEmail(code: String!, email: String!): VerifyEmail
 
   """
   Register user with fields defined in the settings.
@@ -1448,5 +1458,12 @@ type UserType {
   isFollowing: Boolean
   noOfFollowing: Int
   noOfFollowers: Int
+}
+
+type VerifyEmail {
+  message: String
+  token: String
+  restToken: String
+  user: UserType
 }
 

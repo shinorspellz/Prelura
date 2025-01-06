@@ -139,11 +139,6 @@ class _$ConnectionFailureImpl extends ConnectionFailure {
   final String message;
 
   @override
-  String toString() {
-    return 'Failure.connectionFailure(message: $message)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -308,11 +303,6 @@ class _$RequestFailureImpl extends RequestFailure {
   final String message;
   @override
   final StackTrace? stackTrace;
-
-  @override
-  String toString() {
-    return 'Failure.requestFailure(message: $message, stackTrace: $stackTrace)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -484,11 +474,6 @@ class _$CacheFailureImpl extends CacheFailure {
   final StackTrace? stackTrace;
 
   @override
-  String toString() {
-    return 'Failure.cacheFailure(message: $message, stackTrace: $stackTrace)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -649,11 +634,6 @@ class _$JsonParseFailureImpl extends JsonParseFailure {
 
   @override
   final StackTrace? stackTrace;
-
-  @override
-  String toString() {
-    return 'Failure.jsonParseFailure(stackTrace: $stackTrace)';
-  }
 
   @override
   bool operator ==(Object other) {
@@ -821,11 +801,6 @@ class _$UnknownFailureImpl extends UnknownFailure {
   final String message;
   @override
   final StackTrace? stackTrace;
-
-  @override
-  String toString() {
-    return 'Failure.unknownFailure(message: $message, stackTrace: $stackTrace)';
-  }
 
   @override
   bool operator ==(Object other) {
