@@ -19,11 +19,15 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LoginRoute.page, initial: !_ref.read(authStateProvider).requireValue),
+        AutoRoute(
+            page: LoginRoute.page,
+            initial: !_ref.read(authStateProvider).requireValue),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: NewPasswordRoute.page),
-        AutoRoute(page: AppStartupRoute.page, initial: _ref.read(authStateProvider).requireValue),
+        AutoRoute(
+            page: AppStartupRoute.page,
+            initial: _ref.read(authStateProvider).requireValue),
         AutoRoute(
             guards: [AuthGuard(_ref)],
             page: AuthRoute.page,
@@ -68,7 +72,8 @@ class AppRouter extends RootStackRouter {
           page: StyleRoute.page,
           guards: [AuthGuard(_ref)],
         ),
-        AutoRoute(page: NotificationSettingRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: NotificationSettingRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(
           page: ProductPriceFilterRoute.page,
           guards: [AuthGuard(_ref)],
@@ -187,17 +192,24 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(page: PaymentRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(page: VintageFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(page: PartyFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(page: ChristmasFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: VintageFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: PartyFilteredProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: ChristmasFilteredProductRoute.page,
+            guards: [AuthGuard(_ref)]),
         AutoRoute(page: ProductByHashtagRoute.page),
         AutoRoute(page: ReviewRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ShopValueRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: MultiBuyDiscountRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: ResetPasswordRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: SecurityMenuRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(page: RecentlyViewedProductRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(
+            page: RecentlyViewedProductRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: VerifyEmailRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: AppearanceMenuRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: SendAnOfferRoute.page, guards: [AuthGuard(_ref)]),
       ];
 }
 
@@ -261,7 +273,8 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = !_isHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !_isHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -295,7 +308,9 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = previousRoute == null || !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          previousRoute == null ||
+              !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
     });
   }
 
@@ -311,19 +326,24 @@ class AppRouterObserver extends AutoRouterObserver {
     ];
 
     Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state = !_isTabHidden(route, parentRoutes, hiddenRoutes);
+      ref.read(showBottomNavBarProvider.notifier).state =
+          !_isTabHidden(route, parentRoutes, hiddenRoutes);
     });
   }
 
-  bool _isHidden(Route<dynamic> route, List<String> parentRoutes, List<String> hiddenRoutes) {
+  bool _isHidden(Route<dynamic> route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.settings.name;
-    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName?.startsWith(parent) == true);
   }
 
-  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes, List<String> hiddenRoutes) {
+  bool _isTabHidden(TabPageRoute route, List<String> parentRoutes,
+      List<String> hiddenRoutes) {
     // Check if the current route or its parent should hide the bottom nav
     final routeName = route.name;
-    return hiddenRoutes.contains(routeName) || parentRoutes.any((parent) => routeName.startsWith(parent) == true);
+    return hiddenRoutes.contains(routeName) ||
+        parentRoutes.any((parent) => routeName.startsWith(parent) == true);
   }
 }

@@ -25,8 +25,6 @@ class MenuPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = MenuPage.menuScrollController;
-    final themeNotifier = ref.read(themeNotifierProvider.notifier);
-    final themeMode = ref.watch(themeNotifierProvider);
     final user = ref.watch(userProvider).valueOrNull;
 
     return Scaffold(
@@ -37,32 +35,6 @@ class MenuPage extends ConsumerWidget {
       body: SingleChildScrollView(
         controller: controller,
         child: Column(children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                border: Border(
-                    bottom: BorderSide(
-                  color: Theme.of(context).dividerColor,
-                  // Use the theme's divider color
-                  width: 1.0,
-                ))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Dark Mode",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, fontSize: getDefaultSize(), color: Theme.of(context).textTheme.bodyMedium?.color),
-                ),
-                PreluraSwitch(
-                  swicthValue: themeMode == ThemeMode.dark,
-                  onChanged: (value) {
-                    themeNotifier.toggleThemeMode();
-                  },
-                ),
-              ],
-            ),
-          ),
           // MenuCard(
           //     title: "Wardrobe",
           //     icon: const Icon(Icons.wallet),
@@ -72,21 +44,22 @@ class MenuPage extends ConsumerWidget {
           //       Navigator.pop(context);
           //       // context.router.push(ProfileDetailsRoute());
           //     }),
-          MenuCard(
-            title: "Balance",
-            icon: Icon(
-              Icons.wallet_outlined,
-              color: PreluraColors.grey,
-            ),
-            subtitle: '£0.00',
-            subtitleColor: PreluraColors.activeColor,
-            rightArrow: false,
-            onTap: () {
-              context.pushRoute(BalanceRoute());
-            },
-          ),
+          // MenuCard(
+          //   title: "Balance",
+          //   icon: Icon(
+          //     Icons.wallet_outlined,
+          //     color: PreluraColors.grey,
+          //   ),
+          //   subtitle: '£0.00',
+          //   subtitleColor: PreluraColors.activeColor,
+          //   rightArrow: false,
+          //   onTap: () {
+          //     context.pushRoute(BalanceRoute());
+          //   },
+          // ),
           MenuCard(
               title: "Vacation Mode",
+              rightArrow: false,
               onTap: () {
                 context.router.push(HolidayModeRoute());
               }),

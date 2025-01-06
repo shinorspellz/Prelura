@@ -43,8 +43,8 @@ class ProductTopDetails extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            product.name,
+          Text( 
+            capitalizeEachWord(product.name),
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
