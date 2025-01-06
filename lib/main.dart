@@ -10,13 +10,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/firebase_options.dart';
-import 'package:prelura_app/modules/controller/auth/auth_controller.dart';
-import 'package:prelura_app/modules/controller/notification_provider.dart';
+import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/res/theme.dart';
 import 'package:sizer/sizer.dart';
 
 import 'core/notification_service.dart';
-import 'modules/controller/theme_notifier.dart';
+import 'controller/theme_notifier.dart';
 import 'res/firebase_options.dart';
 
 void main() async {

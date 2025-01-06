@@ -130,12 +130,16 @@ class GraphqlCL {
 
   Future<T> executeGraphQL<T>({
     required ClientOperation<T> operation,
+    Failure Function(OperationException)? customError,
     String? operationName,
   }) async {
     try {
       final response = await operation.operate(_client);
 
       if (response.hasException) {
+        if (customError != null) {
+          throw customError(response.exception!);
+        }
         if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
           final error = response.exception!.graphqlErrors.first.message;
           log(error, name: operationName ?? 'GraphQL', stackTrace: response.exception?.originalStackTrace);
@@ -143,6 +147,10 @@ class GraphqlCL {
         }
         log(response.exception.toString(), name: operationName ?? 'GraphQL');
         throw const UnknownFailure('Unknown GraphQL error occurred');
+      }
+
+      if (response.parsedData == null) {
+        throw JsonParseFailure();
       }
 
       return response.parsedData!;

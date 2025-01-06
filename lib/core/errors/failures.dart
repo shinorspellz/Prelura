@@ -11,6 +11,17 @@ class Failure with _$Failure implements Exception {
   const factory Failure.jsonParseFailure([StackTrace? stackTrace]) = JsonParseFailure;
 
   const factory Failure.unknownFailure(String message, [StackTrace? stackTrace]) = UnknownFailure;
+
+  @override
+  String toString() {
+    return when(
+      connectionFailure: (e) => e,
+      requestFailure: (e, _) => e,
+      cacheFailure: (e, _) => e ?? 'An error occured loading cached data',
+      jsonParseFailure: (_) => 'An error occured parsing data from the server',
+      unknownFailure: (e, _) => e,
+    );
+  }
 }
 
 extension Error on Object {
