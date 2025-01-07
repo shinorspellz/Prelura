@@ -11,7 +11,7 @@ import '../../../shimmers/grid_shimmer.dart';
 
 class UserPopularBrand extends ConsumerWidget {
   const UserPopularBrand({super.key, required this.userId});
-  final int? userId;
+  final int userId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SingleChildScrollView(
@@ -21,7 +21,7 @@ class UserPopularBrand extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...ref.watch(userProductGroupingByBrandProvider((userId ?? 0, null))).maybeWhen(
+          ...ref.watch(userProductGroupingByBrandProvider((userId, null))).maybeWhen(
               orElse: () {
                 return List.generate(
                     10,
