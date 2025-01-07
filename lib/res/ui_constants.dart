@@ -32,6 +32,7 @@ class UIConstants {
       bool showCounter = false,
       bool enabled = true,
       bool showCurrency = false,
+      bool showPrimaryBorder = false,
       BorderRadius? borderRadius,
       int? minLines}) {
     return InputDecoration(
@@ -96,10 +97,12 @@ class UIConstants {
               borderRadius ?? const BorderRadius.all(Radius.circular(8))),
       enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: context.isDarkMode
-                ? PreluraColors.white.withOpacity(0.5)
-                : Theme.of(context)
-                    .dividerColor, //Theme.of(context).primaryColor,
+            color: showPrimaryBorder
+                ? PreluraColors.primaryColor
+                : context.isDarkMode
+                    ? PreluraColors.white.withOpacity(0.5)
+                    : Theme.of(context)
+                        .dividerColor, //Theme.of(context).primaryColor,
             width: 1.25,
           ),
           borderRadius:

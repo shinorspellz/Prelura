@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
@@ -8,8 +9,17 @@ void dismissKeyboard() {
   FocusManager.instance.primaryFocus?.unfocus();
 }
 
-double getDefaultSize() {
-  return 14.0;
+double getDefaultSize({double? size}) {
+  return size ?? 14.0;
+}
+
+String capitalizeEachWord(String text) {
+  return text
+      .split(' ')
+      .map((word) => word.isNotEmpty
+          ? '${word[0].toUpperCase()}${word.substring(1).toLowerCase()}'
+          : '')
+      .join(' ');
 }
 
 class NetworkUtility {
