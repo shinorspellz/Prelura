@@ -224,7 +224,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                     context.router.push(
                                         SendAnOfferRoute(product: product));
                                   },
-                                  text: "Make an Offer",
+                                  text: "Send an Offer",
                                   bgColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   borderColor: Colors.purple,

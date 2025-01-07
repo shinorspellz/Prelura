@@ -40,6 +40,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final double? height;
   final TextAlign? textAlign;
   final bool showPrimaryBorder;
+  final bool showBorder;
 
   /// formats the textfeild to a password version
   final bool isPassword;
@@ -74,6 +75,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.padding,
       this.height,
       this.textAlign,
+      this.showBorder = true,
       this.showPrimaryBorder = false,
       this.isDescription = false});
 
@@ -119,7 +121,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
       Container(
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: widget.showBorder ? BorderRadius.circular(8) : null,
         ),
         constraints: BoxConstraints(
           minHeight: widget.minLines != null
@@ -135,7 +137,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
             width: widget.minWidth ?? 100.0.w,
 
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: widget.showBorder ? BorderRadius.circular(8) : null,
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: TextFormField(
@@ -213,17 +215,21 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
                           focusNodeZZZ?.hasFocus ??
                           false,
                       hintText: widget.hintText,
+                      showBorder: widget.showBorder,
                       showPrimaryBorder: widget.showPrimaryBorder,
                       suffixIcon: widget.suffixIcon,
                       contentPadding: widget.padding)
                   .copyWith(
-                    focusedBorder: showGradient
-                        ? OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: PreluraColors.primaryColor, width: 1.25),
-                          )
-                        : null,
+                    focusedBorder: widget.showBorder
+                        ? showGradient
+                            ? OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(
+                                    color: PreluraColors.primaryColor,
+                                    width: 1.25),
+                              )
+                            : null
+                        : InputBorder.none,
                     suffixIcon: !widget.isPassword
                         ? widget.suffixIcon
                         : IconButton(
@@ -268,5 +274,37 @@ class UpperCaseTextFormatter extends TextInputFormatter {
 
 String capitalize(String value) {
   if (value.trim().isEmpty) return "";
-  return "${value[0].toUpperCase()}${value.substring(1).toLowerCase()}";
+
+  // Split the input into words
+  List<String> words = value.split(' ');
+
+  // Process each word
+  for (int i = 0; i < words.length; i++) {
+    words[i] = _capitalizeWord(words[i]);
+  }
+
+  // Join the words back into a single string
+  return words.join(' ');
+}
+
+String _capitalizeWord(String word) {
+  // If the word is empty, return it as is
+  if (word.isEmpty) return word;
+
+  // Capitalize the first letter
+  String result = word[0].toUpperCase();
+  int capCount = 1;
+
+  // Process the rest of the word
+  for (int i = 1; i < word.length; i++) {
+    // If we have less than 3 consecutive capitalized letters, capitalize this letter
+    if (capCount < 2 && word[i].toUpperCase() == word[i]) {
+      result += word[i].toUpperCase();
+      capCount++;
+    } else {
+      result += word[i].toLowerCase();
+    }
+  }
+
+  return result;
 }

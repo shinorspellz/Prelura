@@ -29,7 +29,7 @@ class MenuCard extends StatelessWidget {
   final String? additionalText;
   final String? sideText;
   final Color? sideTextColor;
-  final Icon? icon;
+  final Widget? icon;
   final Function onTap;
   final bool profilePic;
   final Widget? widget;
@@ -50,7 +50,9 @@ class MenuCard extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
             bottom: BorderSide(
-              color: borderbottom ? Theme.of(context).dividerColor : Colors.transparent, // Use the theme's divider color
+              color: borderbottom
+                  ? Theme.of(context).dividerColor
+                  : Colors.transparent, // Use the theme's divider color
               width: 1.0,
             ),
           ),
@@ -66,7 +68,8 @@ class MenuCard extends StatelessWidget {
                   children: [
                     if (profilePic) ...[
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(25), // Circular border radius (since height and width are 60)
+                        borderRadius: BorderRadius.circular(
+                            25), // Circular border radius (since height and width are 60)
                         child: Image.asset(
                           PreluraIcons.Image,
                           fit: BoxFit.cover,
@@ -100,16 +103,32 @@ class MenuCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     title,
-                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
                                           fontWeight: FontWeight.w600,
-                                          color: textColor ?? Theme.of(context).textTheme.bodyMedium?.color,
+                                          color: textColor ??
+                                              Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium
+                                                  ?.color,
                                         ),
                                   ),
                                   6.horizontalSpacing,
                                   if (sideText != null)
                                     Text(
                                       sideText ?? "",
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, color: sideTextColor ?? Theme.of(context).textTheme.bodyMedium?.color),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              color: sideTextColor ??
+                                                  Theme.of(context)
+                                                      .textTheme
+                                                      .bodyMedium
+                                                      ?.color),
                                     )
                                 ],
                               ),
@@ -117,7 +136,10 @@ class MenuCard extends StatelessWidget {
                               if (additionalText != null)
                                 Text(
                                   additionalText ?? "",
-                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
                                         fontWeight: FontWeight.w400,
                                       ),
                                 )
@@ -128,9 +150,16 @@ class MenuCard extends StatelessWidget {
                               subtitle != null
                                   ? Text(
                                       subtitle ?? "",
-                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
                                             fontWeight: FontWeight.w400,
-                                            color: subtitleColor ?? Theme.of(context).textTheme.bodyMedium?.color,
+                                            color: subtitleColor ??
+                                                Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.color,
                                           ),
                                     )
                                   : SizedBox.shrink(),
@@ -144,7 +173,8 @@ class MenuCard extends StatelessWidget {
                                   Icon(
                                     Icons.arrow_forward_ios_rounded,
                                     size: 18,
-                                    color: iconColor ?? Theme.of(context).iconTheme.color,
+                                    color: iconColor ??
+                                        Theme.of(context).iconTheme.color,
                                   ),
                                 ]
                               ]

@@ -18,6 +18,7 @@ import 'package:prelura_app/views/widgets/date_picker.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'package:prelura_app/res/utils.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
@@ -27,7 +28,7 @@ import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/app_checkbox.dart';
 import 'profile_setting_view.dart';
 
-enum Gender { Male, Female, Other }
+enum Gender { Male, Female }
 
 @RoutePage()
 class AccountSettingScreen extends ConsumerStatefulWidget {
@@ -278,7 +279,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text: " :  ${gender?.name}" ?? " ",
+                      text: " :  ${gender?.name == null ? "" : gender?.name}" ??
+                          " ",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             fontWeight: FontWeight.w400,
@@ -338,7 +340,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text: " :  ${selectedSize?.name}" ?? "",
+                      text:
+                          " :  ${selectedSize?.name == null ? "" : selectedSize?.name}" ??
+                              "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             fontWeight: FontWeight.w400,

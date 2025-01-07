@@ -34,7 +34,8 @@ class SellItemState with _$SellItemState {
     @Default(false) bool isFeatured,
   }) = _SellItemState;
 
-  factory SellItemState.fromJson(Map<String, dynamic> json) => _$SellItemStateFromJson(json);
+  factory SellItemState.fromJson(Map<String, dynamic> json) =>
+      _$SellItemStateFromJson(json);
 
   // SellItemState(
   //     {this.images = const [],
@@ -219,8 +220,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       description: product.description,
       category: product.category,
       subCategory: product.subCategory,
-      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+      parcel: product.parcelSize != null
+          ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
+          : null,
+      size: product.size != null
+          ? Enum$SizeEnum.fromJson(product.size!.toJson())
+          : null,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,
@@ -273,7 +278,9 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections.where((m) => m != material).toList() // Remove material
+          ? currentSelections
+              .where((m) => m != material)
+              .toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),
@@ -306,7 +313,9 @@ final sellItemProvider = StateNotifierProvider<SellItemNotifier, SellItemState>(
   (ref) => SellItemNotifier(),
 );
 
-final sellItemDraftProvider = AsyncNotifierProvider<SellItemDraftProvider, List<SellItemState>>(SellItemDraftProvider.new);
+final sellItemDraftProvider =
+    AsyncNotifierProvider<SellItemDraftProvider, List<SellItemState>>(
+        SellItemDraftProvider.new);
 
 class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
   late final cacheBox = ref.read(hive).requireValue;

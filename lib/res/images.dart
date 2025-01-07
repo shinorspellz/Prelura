@@ -77,6 +77,8 @@ class PreluraIcons {
   static const String search_glass_svg = "assets/svgs/search_glass.svg";
   static const String sort_icon_svg = "assets/svgs/sort_icon.svg";
   static const String filter_icon_svg = "assets/svgs/filter_icon.svg";
+  static const String vacation_mode_svg = "assets/svgs/holiday vacation.svg";
+  static const String discount_svg = "assets/svgs/discount.svg";
 
   //category
   static const String men_svg = "assets/svgs/men.svg";
