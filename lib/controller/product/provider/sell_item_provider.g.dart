@@ -10,7 +10,7 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
     _$SellItemStateImpl(
       images: json['images'] == null
           ? const []
-          : const XFileConverter().fromJson(json['images'] as List<String>),
+          : const XFileConverter().fromJson(json['images'] as List),
       title: json['title'] as String,
       description: json['description'] as String,
       category: json['category'] == null
