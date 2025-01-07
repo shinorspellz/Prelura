@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
+import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
@@ -267,7 +268,8 @@ class SearchScreen extends ConsumerWidget {
                   // if (value.isEmpty) return;
                   ref.read(activeSearchProvider.notifier).state = true;
 
-                  ref.read(searchQueryProvider.notifier).state = value;
+                  // ref.read(searchQueryProvider.notifier).state = value;
+                  ref.read(searchHistoryQueryProvider.notifier).state = value;
                 },
                 onCancel: () {
                   ref.read(activeSearchProvider.notifier).state = false;
