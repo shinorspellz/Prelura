@@ -165,7 +165,6 @@ final networkClient = Provider(
 
 final hive = FutureProvider((ref) async {
   await Hive.initFlutter();
-  Hive.registerAdapter(SellItemState.fromJson);
 
   final hive = await Hive.openBox('cache');
 
