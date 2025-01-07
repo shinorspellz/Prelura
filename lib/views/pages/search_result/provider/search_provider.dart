@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
-final searchFilterProvider = StateNotifierProvider<SearchFilterNotifier, Map<FilterTypes, String>>((ref) {
+final searchFilterProvider =
+    StateNotifierProvider<SearchFilterNotifier, Map<FilterTypes, String>>(
+        (ref) {
   return SearchFilterNotifier(ref);
 });
 
@@ -46,11 +48,13 @@ class SearchFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 }
 
 // @AYOPELUMI move this to a new provider file
-final filterUserProductProvider = StateNotifierProvider<FilterUserProductNotifier, Map<FilterTypes, String>>((ref) {
+final filterUserProductProvider = StateNotifierProvider.autoDispose<
+    FilterUserProductNotifier, Map<FilterTypes, String>>((ref) {
   return FilterUserProductNotifier(ref);
 });
 
-class FilterUserProductNotifier extends StateNotifier<Map<FilterTypes, String>> {
+class FilterUserProductNotifier
+    extends StateNotifier<Map<FilterTypes, String>> {
   final Ref ref;
   FilterUserProductNotifier(this.ref) : super({});
 
@@ -70,7 +74,8 @@ class FilterUserProductNotifier extends StateNotifier<Map<FilterTypes, String>> 
     ref.invalidate(searchProductProvider);
   }
 
-  void _updateProductFiltersInput(FilterTypes filterType, String value, int userId) {
+  void _updateProductFiltersInput(
+      FilterTypes filterType, String value, int userId) {
     // // Ensure currentFilters is never null
     // final currentFilters = ref.read(userProductFilter) ?? Input$ProductFiltersInput();
     // if (filterType == FilterTypes.brand) {

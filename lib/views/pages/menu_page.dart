@@ -12,6 +12,8 @@ import 'package:prelura_app/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/helper_function.dart';
 
+import '../../res/images.dart';
+import '../../res/render_svg.dart';
 import '../../res/utils.dart';
 import '../../controller/theme_notifier.dart';
 import 'profile_details/provider/tab_controller.dart';
@@ -57,12 +59,7 @@ class MenuPage extends ConsumerWidget {
           //     context.pushRoute(BalanceRoute());
           //   },
           // ),
-          MenuCard(
-              title: "Vacation Mode",
-              rightArrow: false,
-              onTap: () {
-                context.router.push(HolidayModeRoute());
-              }),
+
           if (user?.listing != null)
             if (user!.listing!.toInt() > 0)
               MenuCard(
@@ -109,12 +106,21 @@ class MenuPage extends ConsumerWidget {
               title: "Multi-buy discounts",
               subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
               rightArrow: false,
-              icon: Icon(
-                Icons.info_outlined,
+              icon: RenderSvg(
+                  svgPath: PreluraIcons.discount_svg,
+                  color: PreluraColors.grey),
+              onTap: () {
+                context.router.push(MultiBuyDiscountRoute());
+              }),
+          MenuCard(
+              title: "Vacation Mode",
+              rightArrow: false,
+              icon: RenderSvg(
+                svgPath: PreluraIcons.vacation_mode_svg,
                 color: PreluraColors.grey,
               ),
               onTap: () {
-                context.router.push(MultiBuyDiscountRoute());
+                context.router.push(HolidayModeRoute());
               }),
           MenuCard(
               title: "Invite Friend",

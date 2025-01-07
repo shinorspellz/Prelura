@@ -23,6 +23,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/render_svg.dart';
+import '../../../res/utils.dart';
 import '../../widgets/full_screen_image.dart';
 import '../auth_page.dart';
 import '../../../controller/product/provider/brand_provider.dart';
@@ -353,7 +354,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       children: [
                         PreluraAuthTextField(
                           label: 'Title',
-                          textCapitalization: TextCapitalization.sentences,
+                          textCapitalization: TextCapitalization.words,
                           formatter: UpperCaseTextFormatter(),
                           labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w400),
                           hintText: 'e.g. White COS Jumper',
@@ -646,9 +647,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               width: 25,
                               child: LoadingWidget(),
                             )
-                          : const Text(
+                          : Text(
                               'Upload',
-                              style: TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 16, color: PreluraColors.white),
                             ),
                     ),
                   ),

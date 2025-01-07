@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
@@ -18,7 +21,7 @@ class DiscountItem extends ConsumerStatefulWidget {
 class _EditSaveExampleState extends ConsumerState<DiscountItem> {
   bool isEditing = false;
   final TextEditingController _controller = TextEditingController();
-  String value = "0";
+  String value = "0%";
 
   @override
   void initState() {
@@ -42,7 +45,10 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
               children: [
                 Text(
                   widget.title,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600, fontSize: 12.sp),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(fontWeight: FontWeight.w600, fontSize: 12.sp),
                 ),
                 Container(
                   // color: Colors.red,
@@ -53,18 +59,32 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                         textAlign: TextAlign.center,
                         hintText: "0",
                         keyboardType: TextInputType.number,
-                        maxLength: 2,
+                        maxLength: 3,
                         prefixIcon: Icon(Icons.percent),
                         textInputAction: TextInputAction.done,
                         controller: _controller,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 7),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6, vertical: 7),
                         onChanged: (newValue) {
                           setState(() {
-                            String numericValue = newValue.replaceAll(RegExp(r'[^0-9]'), '');
+                            String numericValue =
+                                newValue.replaceAll(RegExp(r'[^0-9]'), '');
+                            log(numericValue);
+                            if (numericValue.isEmpty) {
+                              value = "0";
+                            } else {
+                              value = numericValue.length > 1
+                                  ? numericValue.replaceFirst(
+                                      RegExp(r'^0+'), '')
+                                  : numericValue;
+                            }
 
-                            value = numericValue;
-                            _controller.text = value;
+                            _controller.value = TextEditingValue(
+                              text: "$value%",
+                              selection: TextSelection.collapsed(
+                                  offset: "$value%".length - 1),
+                            );
                           });
                         },
                         minWidth: 50,
@@ -72,6 +92,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                       ),
                       PreluraButtonWithLoader(
                         onPressed: () {
+                          HapticFeedback.lightImpact();
                           setState(() {
                             if (isEditing) {}
                             isEditing = !isEditing;
@@ -80,8 +101,13 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                         buttonTitle: isEditing ? "Done" : "Edit",
                         showLoadingIndicator: false,
                         buttonColor: Colors.transparent,
-                        buttonTitleTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: PreluraColors.primaryColor, fontWeight: FontWeight.w500),
-                        butttonWidth: 50,
+                        buttonTitleTextStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(
+                                color: PreluraColors.primaryColor,
+                                fontWeight: FontWeight.w500),
+                        butttonWidth: 70,
                         newButtonHeight: 25,
                       ),
                     ],
