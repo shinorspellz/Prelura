@@ -59,7 +59,7 @@ class FilterUserProductNotifier
   FilterUserProductNotifier(this.ref) : super({});
 
   // Update filter to only allow one entry in the state
-  void updateFilter(FilterTypes filterType, String value) {
+  void updateFilter(FilterTypes filterType, String value, String? username) {
     // state = {filterType: value}; // Replace state with a single entry
     // log(state.toString());
     // _updateProductFiltersInput(filterType, value, userId);
