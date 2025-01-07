@@ -19,6 +19,7 @@ import 'package:prelura_app/repo/file_upload_repo.dart';
 import 'package:prelura_app/repo/network_repo.dart';
 import 'package:prelura_app/repo/product/payment_repo.dart';
 import 'package:prelura_app/repo/product/product_repo.dart';
+import 'package:prelura_app/repo/search_repo.dart';
 import 'package:prelura_app/repo/user/user_repo.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
@@ -207,4 +208,8 @@ final notificationRepo = Provider(
 
 final paymentRepo = Provider(
   (ref) => PaymentRepo(ref.watch(graphqlClient)),
+);
+
+final searchHistoryRepo = Provider(
+  (ref) => SearchHistoryRepo(ref.watch(networkClient)),
 );

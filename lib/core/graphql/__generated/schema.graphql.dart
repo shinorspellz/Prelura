@@ -2,6 +2,135 @@
 import 'package:prelura_app/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
 
+class Input$BannerInputType {
+  factory Input$BannerInputType({
+    required String url,
+    required Enum$BannerActionInputEnum action,
+  }) =>
+      Input$BannerInputType._({
+        r'url': url,
+        r'action': action,
+      });
+
+  Input$BannerInputType._(this._$data);
+
+  factory Input$BannerInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$url = data['url'];
+    result$data['url'] = (l$url as String);
+    final l$action = data['action'];
+    result$data['action'] =
+        fromJson$Enum$BannerActionInputEnum((l$action as String));
+    return Input$BannerInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get url => (_$data['url'] as String);
+
+  Enum$BannerActionInputEnum get action =>
+      (_$data['action'] as Enum$BannerActionInputEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$url = url;
+    result$data['url'] = l$url;
+    final l$action = action;
+    result$data['action'] = toJson$Enum$BannerActionInputEnum(l$action);
+    return result$data;
+  }
+
+  CopyWith$Input$BannerInputType<Input$BannerInputType> get copyWith =>
+      CopyWith$Input$BannerInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$BannerInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$url = url;
+    final lOther$url = other.url;
+    if (l$url != lOther$url) {
+      return false;
+    }
+    final l$action = action;
+    final lOther$action = other.action;
+    if (l$action != lOther$action) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$url = url;
+    final l$action = action;
+    return Object.hashAll([
+      l$url,
+      l$action,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$BannerInputType<TRes> {
+  factory CopyWith$Input$BannerInputType(
+    Input$BannerInputType instance,
+    TRes Function(Input$BannerInputType) then,
+  ) = _CopyWithImpl$Input$BannerInputType;
+
+  factory CopyWith$Input$BannerInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$BannerInputType;
+
+  TRes call({
+    String? url,
+    Enum$BannerActionInputEnum? action,
+  });
+}
+
+class _CopyWithImpl$Input$BannerInputType<TRes>
+    implements CopyWith$Input$BannerInputType<TRes> {
+  _CopyWithImpl$Input$BannerInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$BannerInputType _instance;
+
+  final TRes Function(Input$BannerInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? url = _undefined,
+    Object? action = _undefined,
+  }) =>
+      _then(Input$BannerInputType._({
+        ..._instance._$data,
+        if (url != _undefined && url != null) 'url': (url as String),
+        if (action != _undefined && action != null)
+          'action': (action as Enum$BannerActionInputEnum),
+      }));
+}
+
+class _CopyWithStubImpl$Input$BannerInputType<TRes>
+    implements CopyWith$Input$BannerInputType<TRes> {
+  _CopyWithStubImpl$Input$BannerInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? url,
+    Enum$BannerActionInputEnum? action,
+  }) =>
+      _res;
+}
+
 class Input$ImagesInputType {
   factory Input$ImagesInputType({
     required String url,
@@ -1276,6 +1405,39 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
   }
 }
 
+enum Enum$BannerActionInputEnum {
+  ADD,
+  REMOVE,
+  $unknown;
+
+  factory Enum$BannerActionInputEnum.fromJson(String value) =>
+      fromJson$Enum$BannerActionInputEnum(value);
+
+  String toJson() => toJson$Enum$BannerActionInputEnum(this);
+}
+
+String toJson$Enum$BannerActionInputEnum(Enum$BannerActionInputEnum e) {
+  switch (e) {
+    case Enum$BannerActionInputEnum.ADD:
+      return r'ADD';
+    case Enum$BannerActionInputEnum.REMOVE:
+      return r'REMOVE';
+    case Enum$BannerActionInputEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$BannerActionInputEnum fromJson$Enum$BannerActionInputEnum(String value) {
+  switch (value) {
+    case r'ADD':
+      return Enum$BannerActionInputEnum.ADD;
+    case r'REMOVE':
+      return Enum$BannerActionInputEnum.REMOVE;
+    default:
+      return Enum$BannerActionInputEnum.$unknown;
+  }
+}
+
 enum Enum$ChatsMessageAttachmentTypeChoices {
   PICTURE,
   VIDEO,
@@ -1986,6 +2148,7 @@ enum Enum$ProductsProductStyleChoices {
   SLIM_FIT,
   RELAXED_FIT,
   CHRISTMAS,
+  SCHOOL_UNIFORMS,
   $unknown;
 
   factory Enum$ProductsProductStyleChoices.fromJson(String value) =>
@@ -2101,6 +2264,8 @@ String toJson$Enum$ProductsProductStyleChoices(
       return r'RELAXED_FIT';
     case Enum$ProductsProductStyleChoices.CHRISTMAS:
       return r'CHRISTMAS';
+    case Enum$ProductsProductStyleChoices.SCHOOL_UNIFORMS:
+      return r'SCHOOL_UNIFORMS';
     case Enum$ProductsProductStyleChoices.$unknown:
       return r'$unknown';
   }
@@ -2213,6 +2378,8 @@ Enum$ProductsProductStyleChoices fromJson$Enum$ProductsProductStyleChoices(
       return Enum$ProductsProductStyleChoices.RELAXED_FIT;
     case r'CHRISTMAS':
       return Enum$ProductsProductStyleChoices.CHRISTMAS;
+    case r'SCHOOL_UNIFORMS':
+      return Enum$ProductsProductStyleChoices.SCHOOL_UNIFORMS;
     default:
       return Enum$ProductsProductStyleChoices.$unknown;
   }
@@ -2253,6 +2420,39 @@ Enum$ProductStatusEnum fromJson$Enum$ProductStatusEnum(String value) {
       return Enum$ProductStatusEnum.SOLD;
     default:
       return Enum$ProductStatusEnum.$unknown;
+  }
+}
+
+enum Enum$SearchTypeEnum {
+  USER,
+  PRODUCT,
+  $unknown;
+
+  factory Enum$SearchTypeEnum.fromJson(String value) =>
+      fromJson$Enum$SearchTypeEnum(value);
+
+  String toJson() => toJson$Enum$SearchTypeEnum(this);
+}
+
+String toJson$Enum$SearchTypeEnum(Enum$SearchTypeEnum e) {
+  switch (e) {
+    case Enum$SearchTypeEnum.USER:
+      return r'USER';
+    case Enum$SearchTypeEnum.PRODUCT:
+      return r'PRODUCT';
+    case Enum$SearchTypeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SearchTypeEnum fromJson$Enum$SearchTypeEnum(String value) {
+  switch (value) {
+    case r'USER':
+      return Enum$SearchTypeEnum.USER;
+    case r'PRODUCT':
+      return Enum$SearchTypeEnum.PRODUCT;
+    default:
+      return Enum$SearchTypeEnum.$unknown;
   }
 }
 
@@ -2571,6 +2771,7 @@ enum Enum$StyleEnum {
   SLIM_FIT,
   RELAXED_FIT,
   CHRISTMAS,
+  SCHOOL_UNIFORMS,
   $unknown;
 
   factory Enum$StyleEnum.fromJson(String value) =>
@@ -2685,6 +2886,8 @@ String toJson$Enum$StyleEnum(Enum$StyleEnum e) {
       return r'RELAXED_FIT';
     case Enum$StyleEnum.CHRISTMAS:
       return r'CHRISTMAS';
+    case Enum$StyleEnum.SCHOOL_UNIFORMS:
+      return r'SCHOOL_UNIFORMS';
     case Enum$StyleEnum.$unknown:
       return r'$unknown';
   }
@@ -2796,6 +2999,8 @@ Enum$StyleEnum fromJson$Enum$StyleEnum(String value) {
       return Enum$StyleEnum.RELAXED_FIT;
     case r'CHRISTMAS':
       return Enum$StyleEnum.CHRISTMAS;
+    case r'SCHOOL_UNIFORMS':
+      return Enum$StyleEnum.SCHOOL_UNIFORMS;
     default:
       return Enum$StyleEnum.$unknown;
   }

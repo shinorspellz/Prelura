@@ -296,7 +296,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                         .map((e) => PreluraCheckBox(
                             isChecked: selectedOptions == e,
                             onChanged: (value) {
-                              filterNotifier.updateFilter(filterType, e!);
+                              filterNotifier.updateFilter(filterType, e);
                               setState(() {
                                 selectedOptions = e;
                               });

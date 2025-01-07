@@ -34486,3 +34486,2110 @@ class _CopyWithStubImpl$Query$UserEarnings$userEarnings$totalEarnings<TRes>
   }) =>
       _res;
 }
+
+class Variables$Query$UserSearchHistory {
+  factory Variables$Query$UserSearchHistory({
+    Enum$SearchTypeEnum? searchType,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$UserSearchHistory._({
+        if (searchType != null) r'searchType': searchType,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$UserSearchHistory._(this._$data);
+
+  factory Variables$Query$UserSearchHistory.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('searchType')) {
+      final l$searchType = data['searchType'];
+      result$data['searchType'] = l$searchType == null
+          ? null
+          : fromJson$Enum$SearchTypeEnum((l$searchType as String));
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$UserSearchHistory._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SearchTypeEnum? get searchType =>
+      (_$data['searchType'] as Enum$SearchTypeEnum?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('searchType')) {
+      final l$searchType = searchType;
+      result$data['searchType'] = l$searchType == null
+          ? null
+          : toJson$Enum$SearchTypeEnum(l$searchType);
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$UserSearchHistory<Variables$Query$UserSearchHistory>
+      get copyWith => CopyWith$Variables$Query$UserSearchHistory(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$UserSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchType = searchType;
+    final lOther$searchType = other.searchType;
+    if (_$data.containsKey('searchType') !=
+        other._$data.containsKey('searchType')) {
+      return false;
+    }
+    if (l$searchType != lOther$searchType) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchType = searchType;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('searchType') ? l$searchType : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$UserSearchHistory<TRes> {
+  factory CopyWith$Variables$Query$UserSearchHistory(
+    Variables$Query$UserSearchHistory instance,
+    TRes Function(Variables$Query$UserSearchHistory) then,
+  ) = _CopyWithImpl$Variables$Query$UserSearchHistory;
+
+  factory CopyWith$Variables$Query$UserSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$UserSearchHistory;
+
+  TRes call({
+    Enum$SearchTypeEnum? searchType,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$UserSearchHistory<TRes>
+    implements CopyWith$Variables$Query$UserSearchHistory<TRes> {
+  _CopyWithImpl$Variables$Query$UserSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$UserSearchHistory _instance;
+
+  final TRes Function(Variables$Query$UserSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchType = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$UserSearchHistory._({
+        ..._instance._$data,
+        if (searchType != _undefined)
+          'searchType': (searchType as Enum$SearchTypeEnum?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$UserSearchHistory<TRes>
+    implements CopyWith$Variables$Query$UserSearchHistory<TRes> {
+  _CopyWithStubImpl$Variables$Query$UserSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$SearchTypeEnum? searchType,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$UserSearchHistory {
+  Query$UserSearchHistory({
+    this.userSearchHistory,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$UserSearchHistory.fromJson(Map<String, dynamic> json) {
+    final l$userSearchHistory = json['userSearchHistory'];
+    final l$$__typename = json['__typename'];
+    return Query$UserSearchHistory(
+      userSearchHistory: (l$userSearchHistory as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$UserSearchHistory$userSearchHistory.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$UserSearchHistory$userSearchHistory?>? userSearchHistory;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userSearchHistory = userSearchHistory;
+    _resultData['userSearchHistory'] =
+        l$userSearchHistory?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userSearchHistory = userSearchHistory;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userSearchHistory == null
+          ? null
+          : Object.hashAll(l$userSearchHistory.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserSearchHistory || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userSearchHistory = userSearchHistory;
+    final lOther$userSearchHistory = other.userSearchHistory;
+    if (l$userSearchHistory != null && lOther$userSearchHistory != null) {
+      if (l$userSearchHistory.length != lOther$userSearchHistory.length) {
+        return false;
+      }
+      for (int i = 0; i < l$userSearchHistory.length; i++) {
+        final l$userSearchHistory$entry = l$userSearchHistory[i];
+        final lOther$userSearchHistory$entry = lOther$userSearchHistory[i];
+        if (l$userSearchHistory$entry != lOther$userSearchHistory$entry) {
+          return false;
+        }
+      }
+    } else if (l$userSearchHistory != lOther$userSearchHistory) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserSearchHistory on Query$UserSearchHistory {
+  CopyWith$Query$UserSearchHistory<Query$UserSearchHistory> get copyWith =>
+      CopyWith$Query$UserSearchHistory(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$UserSearchHistory<TRes> {
+  factory CopyWith$Query$UserSearchHistory(
+    Query$UserSearchHistory instance,
+    TRes Function(Query$UserSearchHistory) then,
+  ) = _CopyWithImpl$Query$UserSearchHistory;
+
+  factory CopyWith$Query$UserSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserSearchHistory;
+
+  TRes call({
+    List<Query$UserSearchHistory$userSearchHistory?>? userSearchHistory,
+    String? $__typename,
+  });
+  TRes userSearchHistory(
+      Iterable<Query$UserSearchHistory$userSearchHistory?>? Function(
+              Iterable<
+                  CopyWith$Query$UserSearchHistory$userSearchHistory<
+                      Query$UserSearchHistory$userSearchHistory>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$UserSearchHistory<TRes>
+    implements CopyWith$Query$UserSearchHistory<TRes> {
+  _CopyWithImpl$Query$UserSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserSearchHistory _instance;
+
+  final TRes Function(Query$UserSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userSearchHistory = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserSearchHistory(
+        userSearchHistory: userSearchHistory == _undefined
+            ? _instance.userSearchHistory
+            : (userSearchHistory
+                as List<Query$UserSearchHistory$userSearchHistory?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes userSearchHistory(
+          Iterable<Query$UserSearchHistory$userSearchHistory?>? Function(
+                  Iterable<
+                      CopyWith$Query$UserSearchHistory$userSearchHistory<
+                          Query$UserSearchHistory$userSearchHistory>?>?)
+              _fn) =>
+      call(
+          userSearchHistory:
+              _fn(_instance.userSearchHistory?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$UserSearchHistory$userSearchHistory(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$UserSearchHistory<TRes>
+    implements CopyWith$Query$UserSearchHistory<TRes> {
+  _CopyWithStubImpl$Query$UserSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$UserSearchHistory$userSearchHistory?>? userSearchHistory,
+    String? $__typename,
+  }) =>
+      _res;
+
+  userSearchHistory(_fn) => _res;
+}
+
+const documentNodeQueryUserSearchHistory = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'UserSearchHistory'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'searchType')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SearchTypeEnum'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userSearchHistory'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'searchType'),
+            value: VariableNode(name: NameNode(value: 'searchType')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'query'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'timestamp'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'searchType'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'searchCount'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastSearched'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$UserSearchHistory _parserFn$Query$UserSearchHistory(
+        Map<String, dynamic> data) =>
+    Query$UserSearchHistory.fromJson(data);
+typedef OnQueryComplete$Query$UserSearchHistory = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$UserSearchHistory?,
+);
+
+class Options$Query$UserSearchHistory
+    extends graphql.QueryOptions<Query$UserSearchHistory> {
+  Options$Query$UserSearchHistory({
+    String? operationName,
+    Variables$Query$UserSearchHistory? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserSearchHistory? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$UserSearchHistory? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$UserSearchHistory(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryUserSearchHistory,
+          parserFn: _parserFn$Query$UserSearchHistory,
+        );
+
+  final OnQueryComplete$Query$UserSearchHistory? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$UserSearchHistory
+    extends graphql.WatchQueryOptions<Query$UserSearchHistory> {
+  WatchOptions$Query$UserSearchHistory({
+    String? operationName,
+    Variables$Query$UserSearchHistory? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserSearchHistory? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryUserSearchHistory,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$UserSearchHistory,
+        );
+}
+
+class FetchMoreOptions$Query$UserSearchHistory
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$UserSearchHistory({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$UserSearchHistory? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryUserSearchHistory,
+        );
+}
+
+extension ClientExtension$Query$UserSearchHistory on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$UserSearchHistory>> query$UserSearchHistory(
+          [Options$Query$UserSearchHistory? options]) async =>
+      await this.query(options ?? Options$Query$UserSearchHistory());
+  graphql.ObservableQuery<Query$UserSearchHistory> watchQuery$UserSearchHistory(
+          [WatchOptions$Query$UserSearchHistory? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$UserSearchHistory());
+  void writeQuery$UserSearchHistory({
+    required Query$UserSearchHistory data,
+    Variables$Query$UserSearchHistory? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryUserSearchHistory),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$UserSearchHistory? readQuery$UserSearchHistory({
+    Variables$Query$UserSearchHistory? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation:
+            graphql.Operation(document: documentNodeQueryUserSearchHistory),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$UserSearchHistory.fromJson(result);
+  }
+}
+
+class Query$UserSearchHistory$userSearchHistory {
+  Query$UserSearchHistory$userSearchHistory({
+    required this.id,
+    required this.query,
+    required this.timestamp,
+    this.searchType,
+    required this.searchCount,
+    required this.lastSearched,
+    this.$__typename = 'SearchHistoryType',
+  });
+
+  factory Query$UserSearchHistory$userSearchHistory.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$query = json['query'];
+    final l$timestamp = json['timestamp'];
+    final l$searchType = json['searchType'];
+    final l$searchCount = json['searchCount'];
+    final l$lastSearched = json['lastSearched'];
+    final l$$__typename = json['__typename'];
+    return Query$UserSearchHistory$userSearchHistory(
+      id: (l$id as String),
+      query: (l$query as String),
+      timestamp: DateTime.parse((l$timestamp as String)),
+      searchType: (l$searchType as String?),
+      searchCount: (l$searchCount as int),
+      lastSearched: DateTime.parse((l$lastSearched as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String query;
+
+  final DateTime timestamp;
+
+  final String? searchType;
+
+  final int searchCount;
+
+  final DateTime lastSearched;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$query = query;
+    _resultData['query'] = l$query;
+    final l$timestamp = timestamp;
+    _resultData['timestamp'] = l$timestamp.toIso8601String();
+    final l$searchType = searchType;
+    _resultData['searchType'] = l$searchType;
+    final l$searchCount = searchCount;
+    _resultData['searchCount'] = l$searchCount;
+    final l$lastSearched = lastSearched;
+    _resultData['lastSearched'] = l$lastSearched.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$query = query;
+    final l$timestamp = timestamp;
+    final l$searchType = searchType;
+    final l$searchCount = searchCount;
+    final l$lastSearched = lastSearched;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$query,
+      l$timestamp,
+      l$searchType,
+      l$searchCount,
+      l$lastSearched,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserSearchHistory$userSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$query = query;
+    final lOther$query = other.query;
+    if (l$query != lOther$query) {
+      return false;
+    }
+    final l$timestamp = timestamp;
+    final lOther$timestamp = other.timestamp;
+    if (l$timestamp != lOther$timestamp) {
+      return false;
+    }
+    final l$searchType = searchType;
+    final lOther$searchType = other.searchType;
+    if (l$searchType != lOther$searchType) {
+      return false;
+    }
+    final l$searchCount = searchCount;
+    final lOther$searchCount = other.searchCount;
+    if (l$searchCount != lOther$searchCount) {
+      return false;
+    }
+    final l$lastSearched = lastSearched;
+    final lOther$lastSearched = other.lastSearched;
+    if (l$lastSearched != lOther$lastSearched) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserSearchHistory$userSearchHistory
+    on Query$UserSearchHistory$userSearchHistory {
+  CopyWith$Query$UserSearchHistory$userSearchHistory<
+          Query$UserSearchHistory$userSearchHistory>
+      get copyWith => CopyWith$Query$UserSearchHistory$userSearchHistory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserSearchHistory$userSearchHistory<TRes> {
+  factory CopyWith$Query$UserSearchHistory$userSearchHistory(
+    Query$UserSearchHistory$userSearchHistory instance,
+    TRes Function(Query$UserSearchHistory$userSearchHistory) then,
+  ) = _CopyWithImpl$Query$UserSearchHistory$userSearchHistory;
+
+  factory CopyWith$Query$UserSearchHistory$userSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserSearchHistory$userSearchHistory;
+
+  TRes call({
+    String? id,
+    String? query,
+    DateTime? timestamp,
+    String? searchType,
+    int? searchCount,
+    DateTime? lastSearched,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserSearchHistory$userSearchHistory<TRes>
+    implements CopyWith$Query$UserSearchHistory$userSearchHistory<TRes> {
+  _CopyWithImpl$Query$UserSearchHistory$userSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserSearchHistory$userSearchHistory _instance;
+
+  final TRes Function(Query$UserSearchHistory$userSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? query = _undefined,
+    Object? timestamp = _undefined,
+    Object? searchType = _undefined,
+    Object? searchCount = _undefined,
+    Object? lastSearched = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserSearchHistory$userSearchHistory(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        query: query == _undefined || query == null
+            ? _instance.query
+            : (query as String),
+        timestamp: timestamp == _undefined || timestamp == null
+            ? _instance.timestamp
+            : (timestamp as DateTime),
+        searchType: searchType == _undefined
+            ? _instance.searchType
+            : (searchType as String?),
+        searchCount: searchCount == _undefined || searchCount == null
+            ? _instance.searchCount
+            : (searchCount as int),
+        lastSearched: lastSearched == _undefined || lastSearched == null
+            ? _instance.lastSearched
+            : (lastSearched as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserSearchHistory$userSearchHistory<TRes>
+    implements CopyWith$Query$UserSearchHistory$userSearchHistory<TRes> {
+  _CopyWithStubImpl$Query$UserSearchHistory$userSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? query,
+    DateTime? timestamp,
+    String? searchType,
+    int? searchCount,
+    DateTime? lastSearched,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$RecommendedSearchHistory {
+  factory Variables$Query$RecommendedSearchHistory({
+    required Enum$SearchTypeEnum searchType,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$RecommendedSearchHistory._({
+        r'searchType': searchType,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$RecommendedSearchHistory._(this._$data);
+
+  factory Variables$Query$RecommendedSearchHistory.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$searchType = data['searchType'];
+    result$data['searchType'] =
+        fromJson$Enum$SearchTypeEnum((l$searchType as String));
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$RecommendedSearchHistory._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SearchTypeEnum get searchType =>
+      (_$data['searchType'] as Enum$SearchTypeEnum);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$searchType = searchType;
+    result$data['searchType'] = toJson$Enum$SearchTypeEnum(l$searchType);
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$RecommendedSearchHistory<
+          Variables$Query$RecommendedSearchHistory>
+      get copyWith => CopyWith$Variables$Query$RecommendedSearchHistory(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$RecommendedSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchType = searchType;
+    final lOther$searchType = other.searchType;
+    if (l$searchType != lOther$searchType) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchType = searchType;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      l$searchType,
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$RecommendedSearchHistory<TRes> {
+  factory CopyWith$Variables$Query$RecommendedSearchHistory(
+    Variables$Query$RecommendedSearchHistory instance,
+    TRes Function(Variables$Query$RecommendedSearchHistory) then,
+  ) = _CopyWithImpl$Variables$Query$RecommendedSearchHistory;
+
+  factory CopyWith$Variables$Query$RecommendedSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$RecommendedSearchHistory;
+
+  TRes call({
+    Enum$SearchTypeEnum? searchType,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$RecommendedSearchHistory<TRes>
+    implements CopyWith$Variables$Query$RecommendedSearchHistory<TRes> {
+  _CopyWithImpl$Variables$Query$RecommendedSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$RecommendedSearchHistory _instance;
+
+  final TRes Function(Variables$Query$RecommendedSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchType = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$RecommendedSearchHistory._({
+        ..._instance._$data,
+        if (searchType != _undefined && searchType != null)
+          'searchType': (searchType as Enum$SearchTypeEnum),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$RecommendedSearchHistory<TRes>
+    implements CopyWith$Variables$Query$RecommendedSearchHistory<TRes> {
+  _CopyWithStubImpl$Variables$Query$RecommendedSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$SearchTypeEnum? searchType,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$RecommendedSearchHistory {
+  Query$RecommendedSearchHistory({
+    this.recommendedSearchHistory,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$RecommendedSearchHistory.fromJson(Map<String, dynamic> json) {
+    final l$recommendedSearchHistory = json['recommendedSearchHistory'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSearchHistory(
+      recommendedSearchHistory: (l$recommendedSearchHistory as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$RecommendedSearchHistory$recommendedSearchHistory
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$RecommendedSearchHistory$recommendedSearchHistory?>?
+      recommendedSearchHistory;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$recommendedSearchHistory = recommendedSearchHistory;
+    _resultData['recommendedSearchHistory'] =
+        l$recommendedSearchHistory?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$recommendedSearchHistory = recommendedSearchHistory;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$recommendedSearchHistory == null
+          ? null
+          : Object.hashAll(l$recommendedSearchHistory.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$recommendedSearchHistory = recommendedSearchHistory;
+    final lOther$recommendedSearchHistory = other.recommendedSearchHistory;
+    if (l$recommendedSearchHistory != null &&
+        lOther$recommendedSearchHistory != null) {
+      if (l$recommendedSearchHistory.length !=
+          lOther$recommendedSearchHistory.length) {
+        return false;
+      }
+      for (int i = 0; i < l$recommendedSearchHistory.length; i++) {
+        final l$recommendedSearchHistory$entry = l$recommendedSearchHistory[i];
+        final lOther$recommendedSearchHistory$entry =
+            lOther$recommendedSearchHistory[i];
+        if (l$recommendedSearchHistory$entry !=
+            lOther$recommendedSearchHistory$entry) {
+          return false;
+        }
+      }
+    } else if (l$recommendedSearchHistory != lOther$recommendedSearchHistory) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSearchHistory
+    on Query$RecommendedSearchHistory {
+  CopyWith$Query$RecommendedSearchHistory<Query$RecommendedSearchHistory>
+      get copyWith => CopyWith$Query$RecommendedSearchHistory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSearchHistory<TRes> {
+  factory CopyWith$Query$RecommendedSearchHistory(
+    Query$RecommendedSearchHistory instance,
+    TRes Function(Query$RecommendedSearchHistory) then,
+  ) = _CopyWithImpl$Query$RecommendedSearchHistory;
+
+  factory CopyWith$Query$RecommendedSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSearchHistory;
+
+  TRes call({
+    List<Query$RecommendedSearchHistory$recommendedSearchHistory?>?
+        recommendedSearchHistory,
+    String? $__typename,
+  });
+  TRes recommendedSearchHistory(
+      Iterable<Query$RecommendedSearchHistory$recommendedSearchHistory?>? Function(
+              Iterable<
+                  CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<
+                      Query$RecommendedSearchHistory$recommendedSearchHistory>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$RecommendedSearchHistory<TRes>
+    implements CopyWith$Query$RecommendedSearchHistory<TRes> {
+  _CopyWithImpl$Query$RecommendedSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSearchHistory _instance;
+
+  final TRes Function(Query$RecommendedSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? recommendedSearchHistory = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSearchHistory(
+        recommendedSearchHistory: recommendedSearchHistory == _undefined
+            ? _instance.recommendedSearchHistory
+            : (recommendedSearchHistory as List<
+                Query$RecommendedSearchHistory$recommendedSearchHistory?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes recommendedSearchHistory(
+          Iterable<Query$RecommendedSearchHistory$recommendedSearchHistory?>? Function(
+                  Iterable<
+                      CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<
+                          Query$RecommendedSearchHistory$recommendedSearchHistory>?>?)
+              _fn) =>
+      call(
+          recommendedSearchHistory:
+              _fn(_instance.recommendedSearchHistory?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$RecommendedSearchHistory<TRes>
+    implements CopyWith$Query$RecommendedSearchHistory<TRes> {
+  _CopyWithStubImpl$Query$RecommendedSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$RecommendedSearchHistory$recommendedSearchHistory?>?
+        recommendedSearchHistory,
+    String? $__typename,
+  }) =>
+      _res;
+
+  recommendedSearchHistory(_fn) => _res;
+}
+
+const documentNodeQueryRecommendedSearchHistory = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'RecommendedSearchHistory'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'searchType')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SearchTypeEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'recommendedSearchHistory'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'searchType'),
+            value: VariableNode(name: NameNode(value: 'searchType')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'query'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'timestamp'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'searchType'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'searchCount'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'lastSearched'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$RecommendedSearchHistory _parserFn$Query$RecommendedSearchHistory(
+        Map<String, dynamic> data) =>
+    Query$RecommendedSearchHistory.fromJson(data);
+typedef OnQueryComplete$Query$RecommendedSearchHistory = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Query$RecommendedSearchHistory?,
+);
+
+class Options$Query$RecommendedSearchHistory
+    extends graphql.QueryOptions<Query$RecommendedSearchHistory> {
+  Options$Query$RecommendedSearchHistory({
+    String? operationName,
+    required Variables$Query$RecommendedSearchHistory variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$RecommendedSearchHistory? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$RecommendedSearchHistory? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$RecommendedSearchHistory(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryRecommendedSearchHistory,
+          parserFn: _parserFn$Query$RecommendedSearchHistory,
+        );
+
+  final OnQueryComplete$Query$RecommendedSearchHistory? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$RecommendedSearchHistory
+    extends graphql.WatchQueryOptions<Query$RecommendedSearchHistory> {
+  WatchOptions$Query$RecommendedSearchHistory({
+    String? operationName,
+    required Variables$Query$RecommendedSearchHistory variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$RecommendedSearchHistory? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryRecommendedSearchHistory,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$RecommendedSearchHistory,
+        );
+}
+
+class FetchMoreOptions$Query$RecommendedSearchHistory
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$RecommendedSearchHistory({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$RecommendedSearchHistory variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQueryRecommendedSearchHistory,
+        );
+}
+
+extension ClientExtension$Query$RecommendedSearchHistory
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$RecommendedSearchHistory>>
+      query$RecommendedSearchHistory(
+              Options$Query$RecommendedSearchHistory options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$RecommendedSearchHistory>
+      watchQuery$RecommendedSearchHistory(
+              WatchOptions$Query$RecommendedSearchHistory options) =>
+          this.watchQuery(options);
+  void writeQuery$RecommendedSearchHistory({
+    required Query$RecommendedSearchHistory data,
+    required Variables$Query$RecommendedSearchHistory variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryRecommendedSearchHistory),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$RecommendedSearchHistory? readQuery$RecommendedSearchHistory({
+    required Variables$Query$RecommendedSearchHistory variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(
+            document: documentNodeQueryRecommendedSearchHistory),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$RecommendedSearchHistory.fromJson(result);
+  }
+}
+
+class Query$RecommendedSearchHistory$recommendedSearchHistory {
+  Query$RecommendedSearchHistory$recommendedSearchHistory({
+    required this.id,
+    required this.query,
+    required this.timestamp,
+    this.searchType,
+    required this.searchCount,
+    required this.lastSearched,
+    this.$__typename = 'SearchHistoryType',
+  });
+
+  factory Query$RecommendedSearchHistory$recommendedSearchHistory.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$query = json['query'];
+    final l$timestamp = json['timestamp'];
+    final l$searchType = json['searchType'];
+    final l$searchCount = json['searchCount'];
+    final l$lastSearched = json['lastSearched'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSearchHistory$recommendedSearchHistory(
+      id: (l$id as String),
+      query: (l$query as String),
+      timestamp: DateTime.parse((l$timestamp as String)),
+      searchType: (l$searchType as String?),
+      searchCount: (l$searchCount as int),
+      lastSearched: DateTime.parse((l$lastSearched as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String query;
+
+  final DateTime timestamp;
+
+  final String? searchType;
+
+  final int searchCount;
+
+  final DateTime lastSearched;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$query = query;
+    _resultData['query'] = l$query;
+    final l$timestamp = timestamp;
+    _resultData['timestamp'] = l$timestamp.toIso8601String();
+    final l$searchType = searchType;
+    _resultData['searchType'] = l$searchType;
+    final l$searchCount = searchCount;
+    _resultData['searchCount'] = l$searchCount;
+    final l$lastSearched = lastSearched;
+    _resultData['lastSearched'] = l$lastSearched.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$query = query;
+    final l$timestamp = timestamp;
+    final l$searchType = searchType;
+    final l$searchCount = searchCount;
+    final l$lastSearched = lastSearched;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$query,
+      l$timestamp,
+      l$searchType,
+      l$searchCount,
+      l$lastSearched,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSearchHistory$recommendedSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$query = query;
+    final lOther$query = other.query;
+    if (l$query != lOther$query) {
+      return false;
+    }
+    final l$timestamp = timestamp;
+    final lOther$timestamp = other.timestamp;
+    if (l$timestamp != lOther$timestamp) {
+      return false;
+    }
+    final l$searchType = searchType;
+    final lOther$searchType = other.searchType;
+    if (l$searchType != lOther$searchType) {
+      return false;
+    }
+    final l$searchCount = searchCount;
+    final lOther$searchCount = other.searchCount;
+    if (l$searchCount != lOther$searchCount) {
+      return false;
+    }
+    final l$lastSearched = lastSearched;
+    final lOther$lastSearched = other.lastSearched;
+    if (l$lastSearched != lOther$lastSearched) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSearchHistory$recommendedSearchHistory
+    on Query$RecommendedSearchHistory$recommendedSearchHistory {
+  CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<
+          Query$RecommendedSearchHistory$recommendedSearchHistory>
+      get copyWith =>
+          CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<
+    TRes> {
+  factory CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory(
+    Query$RecommendedSearchHistory$recommendedSearchHistory instance,
+    TRes Function(Query$RecommendedSearchHistory$recommendedSearchHistory) then,
+  ) = _CopyWithImpl$Query$RecommendedSearchHistory$recommendedSearchHistory;
+
+  factory CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSearchHistory$recommendedSearchHistory;
+
+  TRes call({
+    String? id,
+    String? query,
+    DateTime? timestamp,
+    String? searchType,
+    int? searchCount,
+    DateTime? lastSearched,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$RecommendedSearchHistory$recommendedSearchHistory<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<TRes> {
+  _CopyWithImpl$Query$RecommendedSearchHistory$recommendedSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSearchHistory$recommendedSearchHistory _instance;
+
+  final TRes Function(Query$RecommendedSearchHistory$recommendedSearchHistory)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? query = _undefined,
+    Object? timestamp = _undefined,
+    Object? searchType = _undefined,
+    Object? searchCount = _undefined,
+    Object? lastSearched = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSearchHistory$recommendedSearchHistory(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        query: query == _undefined || query == null
+            ? _instance.query
+            : (query as String),
+        timestamp: timestamp == _undefined || timestamp == null
+            ? _instance.timestamp
+            : (timestamp as DateTime),
+        searchType: searchType == _undefined
+            ? _instance.searchType
+            : (searchType as String?),
+        searchCount: searchCount == _undefined || searchCount == null
+            ? _instance.searchCount
+            : (searchCount as int),
+        lastSearched: lastSearched == _undefined || lastSearched == null
+            ? _instance.lastSearched
+            : (lastSearched as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$RecommendedSearchHistory$recommendedSearchHistory<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSearchHistory$recommendedSearchHistory<TRes> {
+  _CopyWithStubImpl$Query$RecommendedSearchHistory$recommendedSearchHistory(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? query,
+    DateTime? timestamp,
+    String? searchType,
+    int? searchCount,
+    DateTime? lastSearched,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$SearchHistory {
+  factory Variables$Query$SearchHistory({
+    required Enum$SearchTypeEnum searchType,
+    required String searchTerm,
+  }) =>
+      Variables$Query$SearchHistory._({
+        r'searchType': searchType,
+        r'searchTerm': searchTerm,
+      });
+
+  Variables$Query$SearchHistory._(this._$data);
+
+  factory Variables$Query$SearchHistory.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$searchType = data['searchType'];
+    result$data['searchType'] =
+        fromJson$Enum$SearchTypeEnum((l$searchType as String));
+    final l$searchTerm = data['searchTerm'];
+    result$data['searchTerm'] = (l$searchTerm as String);
+    return Variables$Query$SearchHistory._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$SearchTypeEnum get searchType =>
+      (_$data['searchType'] as Enum$SearchTypeEnum);
+
+  String get searchTerm => (_$data['searchTerm'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$searchType = searchType;
+    result$data['searchType'] = toJson$Enum$SearchTypeEnum(l$searchType);
+    final l$searchTerm = searchTerm;
+    result$data['searchTerm'] = l$searchTerm;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$SearchHistory<Variables$Query$SearchHistory>
+      get copyWith => CopyWith$Variables$Query$SearchHistory(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$SearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchType = searchType;
+    final lOther$searchType = other.searchType;
+    if (l$searchType != lOther$searchType) {
+      return false;
+    }
+    final l$searchTerm = searchTerm;
+    final lOther$searchTerm = other.searchTerm;
+    if (l$searchTerm != lOther$searchTerm) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchType = searchType;
+    final l$searchTerm = searchTerm;
+    return Object.hashAll([
+      l$searchType,
+      l$searchTerm,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$SearchHistory<TRes> {
+  factory CopyWith$Variables$Query$SearchHistory(
+    Variables$Query$SearchHistory instance,
+    TRes Function(Variables$Query$SearchHistory) then,
+  ) = _CopyWithImpl$Variables$Query$SearchHistory;
+
+  factory CopyWith$Variables$Query$SearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$SearchHistory;
+
+  TRes call({
+    Enum$SearchTypeEnum? searchType,
+    String? searchTerm,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$SearchHistory<TRes>
+    implements CopyWith$Variables$Query$SearchHistory<TRes> {
+  _CopyWithImpl$Variables$Query$SearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$SearchHistory _instance;
+
+  final TRes Function(Variables$Query$SearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchType = _undefined,
+    Object? searchTerm = _undefined,
+  }) =>
+      _then(Variables$Query$SearchHistory._({
+        ..._instance._$data,
+        if (searchType != _undefined && searchType != null)
+          'searchType': (searchType as Enum$SearchTypeEnum),
+        if (searchTerm != _undefined && searchTerm != null)
+          'searchTerm': (searchTerm as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$SearchHistory<TRes>
+    implements CopyWith$Variables$Query$SearchHistory<TRes> {
+  _CopyWithStubImpl$Variables$Query$SearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$SearchTypeEnum? searchType,
+    String? searchTerm,
+  }) =>
+      _res;
+}
+
+class Query$SearchHistory {
+  Query$SearchHistory({
+    this.searchHistory,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$SearchHistory.fromJson(Map<String, dynamic> json) {
+    final l$searchHistory = json['searchHistory'];
+    final l$$__typename = json['__typename'];
+    return Query$SearchHistory(
+      searchHistory: (l$searchHistory as List<dynamic>?)
+          ?.map((e) => (e as String?))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<String?>? searchHistory;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$searchHistory = searchHistory;
+    _resultData['searchHistory'] = l$searchHistory?.map((e) => e).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchHistory = searchHistory;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$searchHistory == null
+          ? null
+          : Object.hashAll(l$searchHistory.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SearchHistory || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchHistory = searchHistory;
+    final lOther$searchHistory = other.searchHistory;
+    if (l$searchHistory != null && lOther$searchHistory != null) {
+      if (l$searchHistory.length != lOther$searchHistory.length) {
+        return false;
+      }
+      for (int i = 0; i < l$searchHistory.length; i++) {
+        final l$searchHistory$entry = l$searchHistory[i];
+        final lOther$searchHistory$entry = lOther$searchHistory[i];
+        if (l$searchHistory$entry != lOther$searchHistory$entry) {
+          return false;
+        }
+      }
+    } else if (l$searchHistory != lOther$searchHistory) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SearchHistory on Query$SearchHistory {
+  CopyWith$Query$SearchHistory<Query$SearchHistory> get copyWith =>
+      CopyWith$Query$SearchHistory(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$SearchHistory<TRes> {
+  factory CopyWith$Query$SearchHistory(
+    Query$SearchHistory instance,
+    TRes Function(Query$SearchHistory) then,
+  ) = _CopyWithImpl$Query$SearchHistory;
+
+  factory CopyWith$Query$SearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Query$SearchHistory;
+
+  TRes call({
+    List<String?>? searchHistory,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$SearchHistory<TRes>
+    implements CopyWith$Query$SearchHistory<TRes> {
+  _CopyWithImpl$Query$SearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SearchHistory _instance;
+
+  final TRes Function(Query$SearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchHistory = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$SearchHistory(
+        searchHistory: searchHistory == _undefined
+            ? _instance.searchHistory
+            : (searchHistory as List<String?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$SearchHistory<TRes>
+    implements CopyWith$Query$SearchHistory<TRes> {
+  _CopyWithStubImpl$Query$SearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    List<String?>? searchHistory,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeQuerySearchHistory = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'SearchHistory'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'searchType')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'SearchTypeEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'searchTerm')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'searchHistory'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'searchType'),
+            value: VariableNode(name: NameNode(value: 'searchType')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'searchTerm'),
+            value: VariableNode(name: NameNode(value: 'searchTerm')),
+          ),
+        ],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$SearchHistory _parserFn$Query$SearchHistory(Map<String, dynamic> data) =>
+    Query$SearchHistory.fromJson(data);
+typedef OnQueryComplete$Query$SearchHistory = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$SearchHistory?,
+);
+
+class Options$Query$SearchHistory
+    extends graphql.QueryOptions<Query$SearchHistory> {
+  Options$Query$SearchHistory({
+    String? operationName,
+    required Variables$Query$SearchHistory variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$SearchHistory? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$SearchHistory? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$SearchHistory(data),
+                  ),
+          onError: onError,
+          document: documentNodeQuerySearchHistory,
+          parserFn: _parserFn$Query$SearchHistory,
+        );
+
+  final OnQueryComplete$Query$SearchHistory? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$SearchHistory
+    extends graphql.WatchQueryOptions<Query$SearchHistory> {
+  WatchOptions$Query$SearchHistory({
+    String? operationName,
+    required Variables$Query$SearchHistory variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$SearchHistory? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQuerySearchHistory,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$SearchHistory,
+        );
+}
+
+class FetchMoreOptions$Query$SearchHistory extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$SearchHistory({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$SearchHistory variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerySearchHistory,
+        );
+}
+
+extension ClientExtension$Query$SearchHistory on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$SearchHistory>> query$SearchHistory(
+          Options$Query$SearchHistory options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$SearchHistory> watchQuery$SearchHistory(
+          WatchOptions$Query$SearchHistory options) =>
+      this.watchQuery(options);
+  void writeQuery$SearchHistory({
+    required Query$SearchHistory data,
+    required Variables$Query$SearchHistory variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQuerySearchHistory),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$SearchHistory? readQuery$SearchHistory({
+    required Variables$Query$SearchHistory variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerySearchHistory),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$SearchHistory.fromJson(result);
+  }
+}
