@@ -714,3 +714,45 @@ query UserEarnings {
     }
   }
 }
+
+query UserSearchHistory(
+  $searchType: SearchTypeEnum
+  $pageCount: Int
+  $pageNumber: Int
+) {
+  userSearchHistory(
+    searchType: $searchType
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+  ) {
+    id
+    query
+    timestamp
+    searchType
+    searchCount
+    lastSearched
+  }
+}
+
+query RecommendedSearchHistory(
+  $searchType: SearchTypeEnum!
+  $pageCount: Int
+  $pageNumber: Int
+) {
+  recommendedSearchHistory(
+    searchType: $searchType
+    pageCount: $pageCount
+    pageNumber: $pageNumber
+  ) {
+    id
+    query
+    timestamp
+    searchType
+    searchCount
+    lastSearched
+  }
+}
+
+query SearchHistory($searchType: SearchTypeEnum!, $searchTerm: String!) {
+  searchHistory(searchType: $searchType, searchTerm: $searchTerm)
+}

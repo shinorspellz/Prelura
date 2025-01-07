@@ -16,6 +16,18 @@ enum AccountsUserGenderChoices {
   ANY
 }
 
+type AdminBannerType {
+  id: Int
+  title: String
+  season: String
+  bannerUrl: [String]
+  isActive: Boolean
+  createdBy: AdminUserType
+  updatedBy: AdminUserType
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
 type AdminLogin {
   user: AdminUserType
   message: String
@@ -42,6 +54,26 @@ type AdminUserType {
 
 type ArchiveConversation {
   message: String
+}
+
+enum BannerActionInputEnum {
+  ADD
+  REMOVE
+}
+
+input BannerInputType {
+  url: String!
+
+  """Action to perform on banner_url: 'ADD' or 'REMOVE'"""
+  action: BannerActionInputEnum!
+}
+
+type BannerType {
+  id: Int
+  title: String
+  season: String
+  bannerUrl: [String]
+  isActive: Boolean
 }
 
 type BlockedUserType {
@@ -187,6 +219,11 @@ type DeleteAccount {
   success: Boolean
 }
 
+type DeleteBanner {
+  message: String
+  success: Boolean
+}
+
 type DeleteConversation {
   message: String
 }
@@ -204,6 +241,11 @@ type DeleteNotification {
 }
 
 type DeleteProduct {
+  success: Boolean
+  message: String
+}
+
+type DeleteSearchHistory {
   success: Boolean
   message: String
 }
@@ -329,6 +371,8 @@ type Mutation {
   deleteMediaFiles(fileUrls: [String], filetype: FileTypeEnum!): DeleteMediaFiles
   adminLogin(password: String!, username: String!): AdminLogin
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
+  updateBanner(banner: BannerInputType, id: ID!, isActive: Boolean, season: SeasonEnum, title: String): UpdateBanner
+  deleteBanner(id: ID!): DeleteBanner
   createPaymentIntent(orderId: Int!, paymentMethod: PaymentMethodEnum!): CreatePaymentIntent
 
   """Confirm a payment"""
@@ -393,6 +437,7 @@ type Mutation {
 
   """Verify email address"""
   verifyEmail(code: String!, email: String!): VerifyEmail
+  deleteSearchHistory(clearAll: Boolean = false, searchId: ID!): DeleteSearchHistory
 
   """
   Register user with fields defined in the settings.
@@ -986,6 +1031,9 @@ enum ProductsProductStyleChoices {
 
   """Christmas"""
   CHRISTMAS
+
+  """School Uniforms"""
+  SCHOOL_UNIFORMS
 }
 
 enum ProductStatusEnum {
@@ -1034,6 +1082,7 @@ type QuantityValuePair {
 
 type Query {
   getBannerForCurrentSeason: String
+  banners: [AdminBannerType]
   payment(paymentId: Int!): [PaymentType]
   userEarnings(usernameId: Int): EarningType
   conversation(id: ID!, pageCount: Int, pageNumber: Int): [MessageType]
@@ -1080,6 +1129,7 @@ type Query {
       
   """
   allProducts(filters: ProductFiltersInput, sort: SortEnum, search: String, pageCount: Int, pageNumber: Int): [ProductType]
+  banner: BannerType
 
   """
   
@@ -1177,9 +1227,13 @@ type Query {
     pageNumber: Int
   ): [UserType]
   blockedUsers(search: String, pageCount: Int, pageNumber: Int): [BlockedUserType]
+  userSearchHistory(searchType: SearchTypeEnum, pageCount: Int, pageNumber: Int): [SearchHistoryType]
+  recommendedSearchHistory(searchType: SearchTypeEnum!, pageCount: Int, pageNumber: Int): [SearchHistoryType]
+  searchHistory(searchTerm: String!, searchType: SearchTypeEnum!): [String]
   followingTotalNumber: Int
   followersTotalNumber: Int
   blockedUsersTotalNumber: Int
+  userSearchHistoryTotalNumber: Int
 }
 
 type RateUser {
@@ -1208,6 +1262,20 @@ type ResendActivationEmail {
 
 type ResetPassword {
   message: String
+}
+
+type SearchHistoryType {
+  id: ID!
+  query: String!
+  timestamp: DateTime!
+  searchType: String
+  searchCount: Int!
+  lastSearched: DateTime!
+}
+
+enum SearchTypeEnum {
+  USER
+  PRODUCT
 }
 
 enum SeasonEnum {
@@ -1317,6 +1385,7 @@ enum StyleEnum {
   SLIM_FIT
   RELAXED_FIT
   CHRISTMAS
+  SCHOOL_UNIFORMS
 }
 
 type SubCategoryType {
@@ -1339,6 +1408,11 @@ User must be verified.
 """
 type UpdateAccount {
   errors: ExpectedErrorType
+  success: Boolean
+}
+
+type UpdateBanner {
+  message: String
   success: Boolean
 }
 
@@ -1422,6 +1496,7 @@ type UserNode implements Node {
   usernameLastUpdated: DateTime
   fcmTokens: [String!]!
   meta: JSONString!
+  searchhistorySet: [SearchHistoryType!]!
   products: [ProductType!]!
   orderSet: [OrderType!]!
   sentNotifications: [NotificationType!]!

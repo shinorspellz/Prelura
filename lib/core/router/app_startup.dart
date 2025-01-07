@@ -4,8 +4,10 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/assets.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/views/pages/auth_page.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -90,7 +92,7 @@ class _StartUpLoadingWidget extends StatelessWidget {
       backgroundColor: context.isDarkMode ? "0d0f12".fromHex : null,
       body: Column(
         children: [
-          const Spacer(),
+          const Spacer(flex: 2),
           55.verticalSpacing,
           Transform.scale(
             scale: 0.75,
@@ -98,12 +100,17 @@ class _StartUpLoadingWidget extends StatelessWidget {
           ),
           const Spacer(),
           SafeArea(
-            top: false,
-            child: Transform.scale(
-              scale: 1.2,
-              child: const LoadingWidget(),
-            ),
-          ),
+              top: false,
+              child: Lottie.asset(
+                AnimationAssets.laundry,
+                height: 80,
+                width: 80,
+              )
+              // Transform.scale(
+              //   scale: 1.2,
+              //   child: const LoadingWidget(),
+              // ),
+              ),
           10.verticalSpacing,
         ],
       ),
