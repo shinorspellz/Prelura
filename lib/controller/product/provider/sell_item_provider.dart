@@ -1,13 +1,17 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
-class SellItemState {
+@HiveType(typeId: 0)
+class SellItemState extends HiveObject {
   final List<XFile> images;
   final String title;
   final String description;
@@ -281,3 +285,22 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 final sellItemProvider = StateNotifierProvider<SellItemNotifier, SellItemState>(
   (ref) => SellItemNotifier(),
 );
+
+final sellItemDraftProvider = AsyncNotifierProvider<SellItemDraftProvider, List<SellItemState>>(SellItemDraftProvider.new);
+
+class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
+  late final cacheBox = ref.read(hive).requireValue;
+
+  @override
+  FutureOr<List<SellItemState>> build() async {
+    final results = cacheBox.get('drafts', defaultValue: []);
+    return results as List<SellItemState>;
+  }
+
+  void addDraft(SellItemState item) {
+    cacheBox.put('drafts', [
+      ...?state.value,
+      item,
+    ]);
+  }
+}

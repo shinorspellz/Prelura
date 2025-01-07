@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
@@ -164,6 +165,7 @@ final networkClient = Provider(
 
 final hive = FutureProvider((ref) async {
   await Hive.initFlutter();
+  Hive.registerAdapter(SellItemState.fromJson);
 
   final hive = await Hive.openBox('cache');
 

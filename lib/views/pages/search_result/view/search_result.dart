@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
@@ -15,6 +16,7 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
+import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/views/widgets/profile_card.dart';
 import 'package:prelura_app/res/colors.dart';
 
@@ -184,39 +186,48 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
             child: TabBarView(controller: _tabController, children: [
-              userAsyncValue.when(
-                  skipLoadingOnRefresh: false,
-                  data: (data) => Container(
-                        child: data.isEmpty
-                            ? SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.7,
-                                child: const Center(
-                                  child: Text('No results found'),
+              if (query.isEmpty)
+                ref.watch(userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT)).maybeWhen(
+                    data: (prediction) => Column(
+                          children: prediction.map((e) {
+                            return MenuCard(title: e.toString(), onTap: () {});
+                          }).toList(),
+                        ),
+                    orElse: () => LoadingWidget())
+              else
+                userAsyncValue.when(
+                    skipLoadingOnRefresh: false,
+                    data: (data) => Container(
+                          child: data.isEmpty
+                              ? SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.7,
+                                  child: const Center(
+                                    child: Text('No results found'),
+                                  ),
+                                )
+                              : GridView.builder(
+                                  // shrinkWrap: true,
+                                  // physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.all(8.0),
+                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    childAspectRatio: 0.50,
+                                  ),
+                                  itemCount: data.length,
+                                  itemBuilder: (context, index) {
+                                    return ProductCard(
+                                      product: data[index],
+                                    );
+                                  },
                                 ),
-                              )
-                            : GridView.builder(
-                                // shrinkWrap: true,
-                                // physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.all(8.0),
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
-                                ),
-                                itemCount: data.length,
-                                itemBuilder: (context, index) {
-                                  return ProductCard(
-                                    product: data[index],
-                                  );
-                                },
-                              ),
-                      ),
-                  loading: () => GridShimmer(),
-                  error: (error, stack) {
-                    log(error.toString(), stackTrace: stack);
-                    return Center(child: Text('Error: $error'));
-                  }),
+                        ),
+                    loading: () => GridShimmer(),
+                    error: (error, stack) {
+                      log(error.toString(), stackTrace: stack);
+                      return Center(child: Text('Error: $error'));
+                    }),
 
               ///Member search
 

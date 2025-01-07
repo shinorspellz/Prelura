@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +14,7 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
+import 'package:prelura_app/views/widgets/date_picker.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'package:prelura_app/res/utils.dart';
@@ -31,28 +34,23 @@ class AccountSettingScreen extends ConsumerStatefulWidget {
   const AccountSettingScreen({super.key});
 
   @override
-  ConsumerState<AccountSettingScreen> createState() =>
-      _AccountSettingScreenState();
+  ConsumerState<AccountSettingScreen> createState() => _AccountSettingScreenState();
 }
 
 class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   DateTime? selectedDate;
-  TextEditingController get fullName =>
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  TextEditingController get fullName => TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
   String? selectedGender;
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
-  late TextEditingController locationController = TextEditingController(
-      text: ref.read(userProvider).valueOrNull?.location?.locationName);
-  late TextEditingController name =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
-  late TextEditingController username =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
-  late TextEditingController email =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+  late TextEditingController locationController = TextEditingController(text: ref.read(userProvider).valueOrNull?.location?.locationName);
+  late TextEditingController name = TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+  late TextEditingController username = TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
+  late TextEditingController email = TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+  late TextEditingController dob = TextEditingController();
   final bio = TextEditingController();
   final int MaxDescription = 300;
-  Gender? gender = null;
+  Gender? gender;
   Enum$SizeEnum? selectedSize;
   bool isExpanded = false;
   bool isStyleExpanded = false;
@@ -78,16 +76,14 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   }
 
   void placeAutoComplete(String query) async {
-    Uri uri =
-        Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
+    Uri uri = Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
       "input": query,
       "key": apiKey,
     });
     String? response = await NetworkUtility.fetchUrl(uri);
 
     if (response != null) {
-      PlaceAutocompleteResponse result =
-          PlaceAutocompleteResponse.parseAutocompleteResult(response);
+      PlaceAutocompleteResponse result = PlaceAutocompleteResponse.parseAutocompleteResult(response);
 
       if (result.predictions != null) {
         setState(() {
@@ -117,15 +113,13 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
         if (newError.contains('denied')) {
           await showEnableLocationPopup(context,
               title: "Permission Access",
-              description:
-                  "Prelura requires permission for location access to function "
+              description: "Prelura requires permission for location access to function "
                   "while on this page.",
               positiveCallback: Geolocator.openAppSettings);
         } else if (newError.contains('disabled')) {
           await showEnableLocationPopup(context,
               title: "Location Disabled",
-              description:
-                  'Prelura requires location access for the proper functioning of '
+              description: 'Prelura requires location access for the proper functioning of '
                   'app. Please enable device location.',
               positiveCallback: Geolocator.openLocationSettings);
         }
@@ -138,15 +132,13 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(userProvider).valueOrNull;
-    bool modifiedEmail =
-        email.text.trim() != ref.read(userProvider).valueOrNull?.email;
+    bool modifiedEmail = email.text.trim() != ref.read(userProvider).valueOrNull?.email;
 
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: 'Account settings',
         leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         trailingIcon: [
@@ -171,11 +163,25 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
               controller: name,
             ),
             addVerticalSpacing(16),
-            buildAuthTextField(context,
+            GestureDetector(
+              onTap: () {
+                showPreluraDatePicker(
+                  context: context,
+                  onSelect: (date) {
+                    if (date == null) return;
+                    dob.text = DateFormat(DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY).format(date);
+                  },
+                );
+              },
+              child: buildAuthTextField(
+                context,
                 label: 'Date of Birth',
                 hintText: '2024-11-16',
-                // controller: email,
-                keyboardType: TextInputType.datetime),
+                controller: dob,
+                keyboardType: TextInputType.datetime,
+                enabled: false,
+              ),
+            ),
             addVerticalSpacing(16),
             buildAuthTextField(
               context,
@@ -241,8 +247,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                   itemBuilder: (context, index) => LocationListTile(
                     press: () {
                       setState(() {
-                        locationController.text =
-                            placePredictions[index].description!;
+                        locationController.text = placePredictions[index].description!;
                         placePredictions = [];
                       });
                     },
@@ -259,9 +264,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   width: 1,
-                  color: context.isDarkMode
-                      ? PreluraColors.white.withOpacity(0.5)
-                      : Theme.of(context).dividerColor,
+                  color: context.isDarkMode ? PreluraColors.white.withOpacity(0.5) : Theme.of(context).dividerColor,
                 ),
               ),
               child: ExpansionTile(
@@ -283,8 +286,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     )
                   ])),
-                  tilePadding:
-                      EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
                   // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                   minTileHeight: 30,
                   // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
@@ -300,10 +302,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                               sideText: " ",
                               sideTextColor: PreluraColors.grey,
                               isChecked: gender?.name == x.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
+                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: getDefaultSize(),
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -325,9 +324,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   width: 1,
-                  color: context.isDarkMode
-                      ? PreluraColors.white.withOpacity(0.5)
-                      : Theme.of(context).dividerColor,
+                  color: context.isDarkMode ? PreluraColors.white.withOpacity(0.5) : Theme.of(context).dividerColor,
                 ),
               ),
               child: ExpansionTile(
@@ -349,8 +346,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     )
                   ])),
-                  tilePadding:
-                      EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                  tilePadding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
                   // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
                   minTileHeight: 30,
                   // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
@@ -366,11 +362,10 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           sideText: " ",
                           sideTextColor: PreluraColors.grey,
                           isChecked: gender?.name == x.name,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontSize: getDefaultSize(),
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                fontSize: getDefaultSize(),
+                                fontWeight: FontWeight.w600,
+                              ),
                           onChanged: (value) {
                             selectedSize = x;
                             setState(() {});
@@ -588,8 +583,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                     : value == null
                         ? 'Add'
                         : 'Change',
-            textColor:
-                isLink ? (verified ? Colors.grey : Colors.blue) : Colors.blue,
+            textColor: isLink ? (verified ? Colors.grey : Colors.blue) : Colors.blue,
             bgColor: Theme.of(context).scaffoldBackgroundColor,
           ),
         ],
@@ -624,8 +618,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
     );
   }
 
-  Widget buildDropdownField(BuildContext context, String label, String? value,
-      List<String> options, ValueChanged<String?> onChanged) {
+  Widget buildDropdownField(BuildContext context, String label, String? value, List<String> options, ValueChanged<String?> onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
