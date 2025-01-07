@@ -22,6 +22,7 @@ import 'package:prelura_app/repo/product/payment_repo.dart';
 import 'package:prelura_app/repo/product/product_repo.dart';
 import 'package:prelura_app/repo/search_repo.dart';
 import 'package:prelura_app/repo/user/user_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
 
@@ -34,6 +35,7 @@ Future<ProviderContainer> initializeDependencies() async {
     await Future.wait(
       [
         container.read(hive.future),
+        container.read(sharedPrefs.future),
         // container.read(_rHttp.future),
       ],
     );
@@ -163,8 +165,11 @@ final networkClient = Provider(
   },
 );
 
+final sharedPrefs = FutureProvider((ref) => SharedPreferences.getInstance());
+
 final hive = FutureProvider((ref) async {
   await Hive.initFlutter();
+  // Hive.registerAdapter(SellItemState);
 
   final hive = await Hive.openBox('cache');
 

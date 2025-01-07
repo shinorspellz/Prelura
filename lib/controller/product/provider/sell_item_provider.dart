@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -114,17 +115,17 @@ class SellItemState with _$SellItemState {
   // int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
 }
 
-class XFileConverter implements JsonConverter<List<XFile>, List<String>> {
+class XFileConverter implements JsonConverter<List<XFile>, List<dynamic>> {
   const XFileConverter();
 
   @override
-  List<XFile> fromJson(List<String> items) {
+  List<XFile> fromJson(List<dynamic> items) {
     final files = items.map((e) => XFile(e)).toList();
     return files;
   }
 
   @override
-  List<String> toJson(List<XFile> files) => files.map((e) => e.path).toList();
+  List<dynamic> toJson(List<XFile> files) => files.map((e) => e.path).toList();
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -152,6 +153,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(
       images: currentImages.where((c) => c != id).toList(),
     );
+  }
+
+  void setStateToDraft(SellItemState draft) {
+    state = draft;
   }
 
   // Update title
@@ -318,19 +323,20 @@ final sellItemDraftProvider =
         SellItemDraftProvider.new);
 
 class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
-  late final cacheBox = ref.read(hive).requireValue;
+  late final cacheBox = ref.read(sharedPrefs).requireValue;
 
   @override
-  FutureOr<List<SellItemState>> build() async {
-    final results = cacheBox.get('drafts', defaultValue: []) as List;
-    log(results.toString(), name: 'Drafts');
-    return results.map((e) => SellItemState.fromJson(e)).toList();
+  FutureOr<List<SellItemState>> build() {
+    final results = cacheBox.getStringList('drafts');
+    // log(results.toString(), name: 'Drafts');
+    return results?.map((e) => SellItemState.fromJson(jsonDecode(e))).toList() ?? [];
   }
 
-  void addDraft(SellItemState item) {
-    cacheBox.put('drafts', [
-      ...?state.value?.map((e) => e.toJson()),
-      item.toJson(),
+  void addDraft(SellItemState item) async {
+    await cacheBox.setStringList('drafts', [
+      ...?state.value?.map((e) => jsonEncode(e.toJson())),
+      jsonEncode(item.toJson()),
     ]);
+    ref.invalidateSelf();
   }
 }
