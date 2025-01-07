@@ -76,6 +76,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   bool isSelected = false;
   String selectedItem = "";
   bool isActive = false;
+  bool isBrandActive = false;
   final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
   @override
@@ -470,8 +471,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               isSelected = !isSelected;
                               selectedItem = "";
                               expandedCategories = false;
+                              isBrandActive = false;
                               setState(() {});
                               ref.invalidate(filterUserProductProvider);
+                              ref.invalidate(userSubCategoryProvider);
                             })
                       ] else
                         ExpansionTile(
@@ -601,6 +604,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                 onChanged: (value) {
                                                   selectedItem = x.name;
                                                   isSelected = false;
+                                                  isBrandActive = true;
                                                   setState(() {});
                                                   ref
                                                       .read(
@@ -608,7 +612,13 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                               .notifier)
                                                       .updateFilter(
                                                           FilterTypes.category,
-                                                          e.name);
+                                                          e.name,
+                                                          user.username);
+                                                  ref
+                                                      .read(
+                                                          userSubCategoryProvider
+                                                              .notifier)
+                                                      .state = x.id;
 
                                                   controller.collapse();
                                                 },
@@ -705,14 +715,25 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: UserPopularBrand(
+                            onCancel: () {
+                              isSelected = !isSelected;
+                              selectedItem = "";
+                              ref.read(userId.notifier).state = null;
+                              isBrandActive = false;
+                              expandedCategories = false;
+                              setState(() {});
+                            },
+                            onTap: () {
+                              isBrandActive = true;
+                              ref.read(userId.notifier).state = user.id;
+                              setState(() {});
+                            },
                             userId: user.id,
                             username: user.username,
-                            isSelected: selectedItem.isNotEmpty),
+                            isSelected: isBrandActive),
                       ),
 
-                      FilterAndSort(
-                        userId: user.id,
-                      ),
+                      FilterAndSort(userId: user.id, username: user.username),
 
                       20.verticalSpacing,
                       if (ref

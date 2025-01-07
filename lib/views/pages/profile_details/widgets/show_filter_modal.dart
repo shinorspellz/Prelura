@@ -18,8 +18,13 @@ import '../view/user_wardrobe.dart';
 class FilterModal extends ConsumerStatefulWidget {
   final FilterTypes filterType;
   final int? userId;
+  final String? username;
   static final ScrollController filterScrollController = ScrollController();
-  const FilterModal({super.key, required this.filterType, required this.userId});
+  const FilterModal(
+      {super.key,
+      required this.filterType,
+      required this.userId,
+      required this.username});
 
   @override
   ConsumerState<FilterModal> createState() => _FilterModalState();
@@ -56,10 +61,23 @@ class _FilterModalState extends ConsumerState<FilterModal> {
   Widget build(BuildContext context) {
     final filterNotifier = ref.watch(filterUserProductProvider.notifier);
     final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values.where((e) => e != Enum$SizeEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.style: Enum$StyleEnum.values.where((e) => e != Enum$StyleEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.brand: ref.watch(userProductGroupingByBrandProvider((widget.userId ?? 0, Enum$ProductGroupingEnum.BRAND))).valueOrNull?.map((e) => e.name).toList() ?? [],
-      FilterTypes.condition: ConditionsEnum.values.map((e) => e.simpleName).toList(),
+      FilterTypes.size: Enum$SizeEnum.values
+          .where((e) => e != Enum$SizeEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.style: Enum$StyleEnum.values
+          .where((e) => e != Enum$StyleEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.brand: ref
+              .watch(userProductGroupingByBrandProvider(
+                  (widget.userId ?? 0, Enum$ProductGroupingEnum.BRAND)))
+              .valueOrNull
+              ?.map((e) => e.name)
+              .toList() ??
+          [],
+      FilterTypes.condition:
+          ConditionsEnum.values.map((e) => e.simpleName).toList(),
     };
 
     return ConstrainedBox(
@@ -73,7 +91,8 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 title: e.replaceAll("_", " "),
                 isChecked: selectedOption == e,
                 onChanged: (value) {
-                  filterNotifier.updateFilter(widget.filterType, e);
+                  filterNotifier.updateFilter(
+                      widget.filterType, e, widget.username);
                   setState(() {
                     selectedOption = e;
                   });
@@ -87,10 +106,12 @@ class _FilterModalState extends ConsumerState<FilterModal> {
   }
 }
 
-void showFilterModal(BuildContext context, FilterTypes filterType, WidgetRef ref, int? userId) {
+void showFilterModal(BuildContext context, FilterTypes filterType,
+    WidgetRef ref, int? userId, String? username) {
   VBottomSheetComponent.customBottomSheet(
     context: context,
     removeSidePadding: true,
-    child: FilterModal(filterType: filterType, userId: userId),
+    child:
+        FilterModal(filterType: filterType, userId: userId, username: username),
   );
 }

@@ -97,15 +97,17 @@ final toggleLikeProductProvider =
 // final userProductFilter = StateProvider.autoDispose<FilterTypes?>((ref) => null);
 final userProductSort =
     StateProvider.autoDispose<Enum$SortEnum>((ref) => Enum$SortEnum.NEWEST);
-
+final userId = StateProvider.autoDispose<int?>((ref) => null);
 final userProductSearchQuery =
     StateProvider.autoDispose<String?>((ref) => null);
+final userSubCategoryProvider = StateProvider.autoDispose<int?>((ref) => null);
 
 final userProduct =
     FutureProvider.family<List<ProductModel>, String?>((ref, username) async {
   final repo = ref.watch(productRepo);
 
   final filters = ref.watch(filterUserProductProvider);
+  log(filters.toString(), name: 'userProductFilter');
 
   final brandFilter = filters.entries
       .where((e) => e.key == FilterTypes.brand)
@@ -128,8 +130,11 @@ final userProduct =
       .firstOrNull
       ?.value;
 
+  log(brandFilter.toString(), name: 'brandFilter');
+
   final brand = ref
-      .watch(brandsProvider)
+      .watch(userProductGroupingByBrandProvider(
+          (ref.watch(userId) ?? 0, Enum$ProductGroupingEnum.BRAND)))
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
@@ -152,12 +157,12 @@ final userProduct =
     username: username,
     pageCount: 1000,
     filters: Input$ProductFiltersInput(
-      brand: brand?.id,
-      size: size,
-      condition: condition,
-      style: style,
-      category: category?.id == null ? null : int.tryParse(category?.id),
-    ),
+        brand: brand?.id,
+        size: size,
+        condition: condition,
+        style: style,
+        category: category?.id == null ? null : int.tryParse(category?.id),
+        subCategory: ref.watch(userSubCategoryProvider)),
     search: searchQuery,
     sort: sort,
   );
@@ -177,8 +182,15 @@ final getProductProvider =
 final userBrandProvider =
     FutureProvider.family<List<Brand?>, String>((ref, id) async {
   final repo = ref.watch(userProduct(id));
-
-  return repo.value!.map((product) => product.brand).toList();
+  final Set<Brand> uniqueBrands = {};
+  for (final product in repo.value ?? []) {
+    if (product.brand != null) {
+      uniqueBrands.add(product.brand!);
+    } else if (product.customBrand != null) {
+      uniqueBrands.add(Brand(id: 0, name: product.customBrand!));
+    }
+  }
+  return uniqueBrands.toList();
 });
 final userFavouriteProduct = FutureProvider.autoDispose((ref) async {
   final repo = ref.watch(productRepo);
@@ -975,7 +987,12 @@ class KidsProductController extends FamilyAsyncNotifier<List<ProductModel>,
   }
 }
 
-final userProductGroupingByBrandProvider = FutureProvider.family<List<CategoryGroupType>, (int userId, Enum$ProductGroupingEnum? brand)>((ref, tuple, [Enum$ProductGroupingEnum? brand]) async {
+final userProductGroupingByBrandProvider = FutureProvider.family<
+    List<CategoryGroupType>,
+    (
+      int userId,
+      Enum$ProductGroupingEnum? brand
+    )>((ref, tuple, [Enum$ProductGroupingEnum? brand]) async {
   final repo = ref.watch(productRepo);
   final userId = tuple.$1; // Assuming the tuple holds userId in $1
   final brand = tuple.$2; // Assuming the tuple holds brand in $2
