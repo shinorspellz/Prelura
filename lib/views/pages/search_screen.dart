@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
+import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
@@ -26,7 +27,7 @@ import '../widgets/menu_card.dart';
 import 'search_result/provider/filter_provider.dart';
 import 'search_result/view/search_result.dart';
 
-final ActiveSearchProvider = StateProvider<bool>((ref) => false);
+final activeSearchProvider = StateProvider<bool>((ref) => false);
 
 @RoutePage()
 class SearchScreen extends ConsumerWidget {
@@ -34,7 +35,7 @@ class SearchScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(ActiveSearchProvider);
+    final state = ref.watch(activeSearchProvider);
     return SafeArea(
       child: Stack(
         children: [
@@ -260,13 +261,18 @@ class SearchScreen extends ConsumerWidget {
                 hintText: "Search for items or members",
                 obscureText: false,
                 shouldReadOnly: false,
+                onFocused: (val) {
+                  ref.read(activeSearchProvider.notifier).state = val;
+                },
                 onChanged: (value) {
-                  ref.read(ActiveSearchProvider.notifier).state = true;
+                  // if (value.isEmpty) return;
+                  ref.read(activeSearchProvider.notifier).state = true;
 
-                  ref.read(searchQueryProvider.notifier).state = value;
+                  // ref.read(searchQueryProvider.notifier).state = value;
+                  ref.read(searchHistoryQueryProvider.notifier).state = value;
                 },
                 onCancel: () {
-                  ref.read(ActiveSearchProvider.notifier).state = false;
+                  ref.read(activeSearchProvider.notifier).state = false;
                   ref.read(searchFilterProvider.notifier).clearAllFilters();
                 },
                 enabled: true,

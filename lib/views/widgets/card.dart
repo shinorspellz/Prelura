@@ -373,7 +373,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                             fontSize: getDefaultSize(),
                           ),
                     ),
-                  )
+                  ),
+                4.horizontalSpacing
               ],
             ),
             // if (widget.product.seller.username == user?.username &&

@@ -975,12 +975,7 @@ class KidsProductController extends FamilyAsyncNotifier<List<ProductModel>,
   }
 }
 
-final userProductGroupingByBrandProvider = FutureProvider.family<
-    List<CategoryGroupType>,
-    (
-      int,
-      Enum$ProductGroupingEnum?
-    )>((ref, tuple, [Enum$ProductGroupingEnum? brand]) async {
+final userProductGroupingByBrandProvider = FutureProvider.family<List<CategoryGroupType>, (int userId, Enum$ProductGroupingEnum? brand)>((ref, tuple, [Enum$ProductGroupingEnum? brand]) async {
   final repo = ref.watch(productRepo);
   final userId = tuple.$1; // Assuming the tuple holds userId in $1
   final brand = tuple.$2; // Assuming the tuple holds brand in $2

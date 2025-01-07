@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
@@ -19,6 +20,7 @@ import 'package:prelura_app/repo/file_upload_repo.dart';
 import 'package:prelura_app/repo/network_repo.dart';
 import 'package:prelura_app/repo/product/payment_repo.dart';
 import 'package:prelura_app/repo/product/product_repo.dart';
+import 'package:prelura_app/repo/search_repo.dart';
 import 'package:prelura_app/repo/user/user_repo.dart';
 import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 import 'package:talker_dio_logger/talker_dio_logger_settings.dart';
@@ -207,4 +209,8 @@ final notificationRepo = Provider(
 
 final paymentRepo = Provider(
   (ref) => PaymentRepo(ref.watch(graphqlClient)),
+);
+
+final searchHistoryRepo = Provider(
+  (ref) => SearchHistoryRepo(ref.watch(networkClient)),
 );

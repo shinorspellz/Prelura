@@ -1,122 +1,134 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
-import '../../../res/utils.dart';
+part 'sell_item_provider.freezed.dart';
+part 'sell_item_provider.g.dart';
 
-class SellItemState {
-  final List<XFile> images;
-  final String title;
-  final String description;
-  final CategoryModel? category;
-  final CategoryModel? subCategory;
-  final Enum$ParcelSizeEnum? parcel;
-  final List<String> selectedColors;
-  final List<MaterialModel> selectedMaterials;
-  final Brand? brand;
-  final Enum$SizeEnum? size;
-  final String? price;
-  final String? discount;
-  final ConditionsEnum? selectedCondition;
-  final Enum$StyleEnum? style;
-  final String? customBrand;
-  final bool isFeatured;
-
-  SellItemState(
-      {this.images = const [],
-      this.title = '',
-      this.description = '',
-      this.category,
-      this.subCategory,
-      this.parcel,
-      this.brand,
-      this.size,
-      this.selectedCondition,
-      this.price,
-      this.selectedColors = const [],
-      this.selectedMaterials = const [],
-      this.style,
-      this.discount,
-      this.customBrand,
-      this.isFeatured = false});
-
-  SellItemState copyWith({
-    List<XFile>? images,
-    String? title,
-    String? description,
+@freezed
+class SellItemState with _$SellItemState {
+  const factory SellItemState({
+    @XFileConverter() @Default([]) List<XFile> images,
+    required String title,
+    required String description,
     CategoryModel? category,
     CategoryModel? subCategory,
     Enum$ParcelSizeEnum? parcel,
-    List<String>? selectedColors,
-    List<MaterialModel>? selectedMaterials,
+    @Default([]) List<String> selectedColors,
+    @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
     Enum$SizeEnum? size,
     String? price,
     String? discount,
-    Enum$StyleEnum? style,
     ConditionsEnum? selectedCondition,
+    Enum$StyleEnum? style,
     String? customBrand,
-    bool? isFeatured,
-  }) {
-    return SellItemState(
-      images: images ?? this.images,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      category: category ?? this.category,
-      subCategory: subCategory ?? this.subCategory,
-      parcel: parcel ?? this.parcel,
-      size: size ?? this.size,
-      brand: brand ?? this.brand,
-      price: price ?? this.price,
-      selectedColors: selectedColors ?? this.selectedColors,
-      selectedCondition: selectedCondition ?? this.selectedCondition,
-      selectedMaterials: selectedMaterials ?? this.selectedMaterials,
-      style: style ?? this.style,
-      discount: discount ?? this.discount,
-      customBrand: customBrand ?? this.customBrand,
-      isFeatured: isFeatured ?? this.isFeatured,
-    );
+    @Default(false) bool isFeatured,
+  }) = _SellItemState;
+
+  factory SellItemState.fromJson(Map<String, dynamic> json) =>
+      _$SellItemStateFromJson(json);
+
+  // SellItemState(
+  //     {this.images = const [],
+  //     this.title = '',
+  //     this.description = '',
+  //     this.category,
+  //     this.subCategory,
+  //     this.parcel,
+  //     this.brand,
+  //     this.size,
+  //     this.selectedCondition,
+  //     this.price,
+  //     this.selectedColors = const [],
+  //     this.selectedMaterials = const [],
+  //     this.style,
+  //     this.discount,
+  //     this.customBrand,
+  //     this.isFeatured = false});
+
+  // SellItemState copyWith({
+  //   List<XFile>? images,
+  //   String? title,
+  //   String? description,
+  //   CategoryModel? category,
+  //   CategoryModel? subCategory,
+  //   Enum$ParcelSizeEnum? parcel,
+  //   List<String>? selectedColors,
+  //   List<MaterialModel>? selectedMaterials,
+  //   Brand? brand,
+  //   Enum$SizeEnum? size,
+  //   String? price,
+  //   String? discount,
+  //   Enum$StyleEnum? style,
+  //   ConditionsEnum? selectedCondition,
+  //   String? customBrand,
+  //   bool? isFeatured,
+  // }) {
+  //   return SellItemState(
+  //     images: images ?? this.images,
+  //     title: title ?? this.title,
+  //     description: description ?? this.description,
+  //     category: category ?? this.category,
+  //     subCategory: subCategory ?? this.subCategory,
+  //     parcel: parcel ?? this.parcel,
+  //     size: size ?? this.size,
+  //     brand: brand ?? this.brand,
+  //     price: price ?? this.price,
+  //     selectedColors: selectedColors ?? this.selectedColors,
+  //     selectedCondition: selectedCondition ?? this.selectedCondition,
+  //     selectedMaterials: selectedMaterials ?? this.selectedMaterials,
+  //     style: style ?? this.style,
+  //     discount: discount ?? this.discount,
+  //     customBrand: customBrand ?? this.customBrand,
+  //     isFeatured: isFeatured ?? this.isFeatured,
+  //   );
+  // }
+
+  // @override
+  // bool operator ==(Object other) {
+  //   if (identical(this, other)) return true;
+  //   if (other is! SellItemState) return false;
+  //   return images.length == other.images.length &&
+  //       title == other.title &&
+  //       description == other.description &&
+  //       category == other.category &&
+  //       price == other.price &&
+  //       parcel == other.parcel &&
+  //       brand == other.brand &&
+  //       size == other.size &&
+  //       selectedColors == other.selectedColors &&
+  //       selectedCondition == other.selectedCondition &&
+  //       selectedMaterials == other.selectedMaterials;
+  // }
+
+  // @override
+  // int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
+}
+
+class XFileConverter implements JsonConverter<List<XFile>, List<String>> {
+  const XFileConverter();
+
+  @override
+  List<XFile> fromJson(List<String> items) {
+    final files = items.map((e) => XFile(e)).toList();
+    return files;
   }
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! SellItemState) return false;
-    return images.length == other.images.length &&
-        title == other.title &&
-        description == other.description &&
-        category == other.category &&
-        price == other.price &&
-        parcel == other.parcel &&
-        brand == other.brand &&
-        size == other.size &&
-        selectedColors == other.selectedColors &&
-        selectedCondition == other.selectedCondition &&
-        selectedMaterials == other.selectedMaterials;
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      title,
-      description,
-      category,
-      images.length,
-      selectedColors.length,
-      selectedCondition,
-      selectedMaterials.length,
-      parcel,
-      price,
-      size,
-      brand);
+  List<String> toJson(List<XFile> files) => files.map((e) => e.path).toList();
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
-  SellItemNotifier() : super(SellItemState()) {
+  SellItemNotifier() : super(SellItemState(title: '', description: '')) {
     _initialState = state;
   }
 
@@ -144,11 +156,11 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   // Update title
   void updateTitle(String title) {
-    state = state.copyWith(title: capitalizeEachWord(title));
+    state = state.copyWith(title: title);
   }
 
   void resetState() {
-    state = SellItemState();
+    state = SellItemState(title: '', description: '');
   }
 
   void updateFeatured(bool isFeatured) {
@@ -217,12 +229,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,
-      selectedColors: product.color,
-      selectedMaterials: product.materials,
+      selectedColors: product.color ?? [],
+      selectedMaterials: product.materials ?? [],
       style: product.style,
       discount: product.discountPrice.toString(),
       customBrand: product.customBrand,
-      isFeatured: product.isFeatured,
+      isFeatured: product.isFeatured ?? false,
     );
   }
 
@@ -300,3 +312,25 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 final sellItemProvider = StateNotifierProvider<SellItemNotifier, SellItemState>(
   (ref) => SellItemNotifier(),
 );
+
+final sellItemDraftProvider =
+    AsyncNotifierProvider<SellItemDraftProvider, List<SellItemState>>(
+        SellItemDraftProvider.new);
+
+class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
+  late final cacheBox = ref.read(hive).requireValue;
+
+  @override
+  FutureOr<List<SellItemState>> build() async {
+    final results = cacheBox.get('drafts', defaultValue: []) as List;
+    log(results.toString(), name: 'Drafts');
+    return results.map((e) => SellItemState.fromJson(e)).toList();
+  }
+
+  void addDraft(SellItemState item) {
+    cacheBox.put('drafts', [
+      ...?state.value?.map((e) => e.toJson()),
+      item.toJson(),
+    ]);
+  }
+}

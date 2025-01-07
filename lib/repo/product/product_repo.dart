@@ -413,7 +413,9 @@ class ProductRepo {
   }
 
   Future<List<CategoryGroupType>> getUserProductGrouping({required int userId, required Enum$ProductGroupingEnum groupBy}) async {
-    final response = await _client.query$UserProductGrouping(Options$Query$UserProductGrouping(variables: Variables$Query$UserProductGrouping(userId: userId, groupBy: groupBy)));
+    final response = await _client.query$UserProductGrouping(Options$Query$UserProductGrouping(
+      variables: Variables$Query$UserProductGrouping(userId: userId, groupBy: groupBy),
+    ));
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
