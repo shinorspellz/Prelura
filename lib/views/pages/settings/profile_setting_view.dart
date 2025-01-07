@@ -346,58 +346,61 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
       ),
     );
   }
-
-
 }
 
 Widget buildAuthTextField(
-    BuildContext context, {
-    required String label,
-    required String hintText,
-    void Function(String)? onChanged,
-    TextEditingController? controller,
-    Function(String?)? onSaved,
-    bool enabled = true,
-    isDescription = false,
-    int? minLines,
-    int? maxLength,
-    int? maxLines,
-    TextInputAction? textInputAction = TextInputAction.done,
-    TextInputType? keyboardType,
-  }) {
-    return PreluraAuthTextField(
-      label: label,
-      labelStyle: _labelStyle(context),
-      hintText: hintText,
-      hintStyle: _hintStyle(context),
-      onChanged: onChanged,
-      controller: controller,
-      enabled: enabled,
-      minLines: minLines,
-      maxLength: maxLength,
-      maxLines: maxLines,
-      textInputAction: textInputAction,
-      keyboardType: keyboardType,
-      isDescription: isDescription,
-      onSaved: (value) {
-        dismissKeyboard();
-      },
-    );
-  }
+  BuildContext context, {
+  required String label,
+  required String hintText,
+  void Function(String)? onChanged,
+  TextEditingController? controller,
+  Function(String?)? onSaved,
+  Function()? onTap,
+  bool enabled = true,
+  isDescription = false,
+  bool showBorder = true,
+  
+  int? minLines,
+  int? maxLength,
+  int? maxLines,
+  TextInputAction? textInputAction = TextInputAction.done,
+  TextInputType? keyboardType,
+}) {
+  return PreluraAuthTextField(
+    onTap: onTap,
+    label: label,
+    labelStyle: _labelStyle(context),
+    hintText: hintText,
+    hintStyle: _hintStyle(context),
+    onChanged: onChanged,
+    controller: controller,
+    enabled: enabled,
+    minLines: minLines,
+    maxLength: maxLength,
+    maxLines: maxLines,
+    textInputAction: textInputAction,
+    keyboardType: keyboardType,
+    showBorder: showBorder,
+    isDescription: isDescription,
+    onSaved: (value) {
+      dismissKeyboard();
+    },
+  );
+}
 
-    TextStyle? _labelStyle(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
-  }
+TextStyle? _labelStyle(BuildContext context) {
+  return Theme.of(context)
+      .textTheme
+      .bodyMedium
+      ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
+}
 
-  TextStyle? _hintStyle(BuildContext context) {
-    return Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
-  }
+TextStyle? _hintStyle(BuildContext context) {
+  return Theme.of(context)
+      .textTheme
+      .bodyMedium
+      ?.copyWith(fontWeight: FontWeight.w400, fontSize: 16);
+}
 
 class PlaceAutocompleteResponse {
   final String? status;

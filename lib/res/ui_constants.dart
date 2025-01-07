@@ -33,6 +33,7 @@ class UIConstants {
       bool enabled = true,
       bool showCurrency = false,
       bool showPrimaryBorder = false,
+      bool showBorder = true,
       BorderRadius? borderRadius,
       int? minLines}) {
     return InputDecoration(
@@ -86,35 +87,43 @@ class UIConstants {
       contentPadding:
           contentPadding ?? const EdgeInsets.fromLTRB(12, 12, 12, 12),
       border: InputBorder.none,
-      focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: context.isDarkMode
-                ? PreluraColors.white.withOpacity(0.5)
-                : PreluraColors.white.withOpacity(0.5),
-            width: 1.25,
-          ),
-          borderRadius:
-              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
-      enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: showPrimaryBorder
-                ? PreluraColors.primaryColor
-                : context.isDarkMode
+      focusedBorder: showBorder
+          ? OutlineInputBorder(
+              borderSide: BorderSide(
+                color: context.isDarkMode
                     ? PreluraColors.white.withOpacity(0.5)
-                    : Theme.of(context)
-                        .dividerColor, //Theme.of(context).primaryColor,
-            width: 1.25,
-          ),
-          borderRadius:
-              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
-      focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1.25),
-          borderRadius:
-              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
-      errorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red, width: 1.25),
-          borderRadius:
-              borderRadius ?? const BorderRadius.all(Radius.circular(8))),
+                    : PreluraColors.white.withOpacity(0.5),
+                width: 1.25,
+              ),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(8)))
+          : InputBorder.none,
+      enabledBorder: showBorder
+          ? OutlineInputBorder(
+              borderSide: BorderSide(
+                color: showPrimaryBorder
+                    ? PreluraColors.primaryColor
+                    : context.isDarkMode
+                        ? PreluraColors.white.withOpacity(0.5)
+                        : Theme.of(context)
+                            .dividerColor, //Theme.of(context).primaryColor,
+                width: 1.25,
+              ),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(8)))
+          : InputBorder.none,
+      focusedErrorBorder: showBorder
+          ? OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red, width: 1.25),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(8)))
+          : InputBorder.none,
+      errorBorder: showBorder
+          ? OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red, width: 1.25),
+              borderRadius:
+                  borderRadius ?? const BorderRadius.all(Radius.circular(8)))
+          : InputBorder.none,
     );
   }
 }

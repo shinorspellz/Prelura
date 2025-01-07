@@ -7,6 +7,8 @@ import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
+import '../../../res/utils.dart';
+
 class SellItemState {
   final List<XFile> images;
   final String title;
@@ -99,7 +101,18 @@ class SellItemState {
   }
 
   @override
-  int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
+  int get hashCode => Object.hash(
+      title,
+      description,
+      category,
+      images.length,
+      selectedColors.length,
+      selectedCondition,
+      selectedMaterials.length,
+      parcel,
+      price,
+      size,
+      brand);
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
@@ -131,7 +144,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   // Update title
   void updateTitle(String title) {
-    state = state.copyWith(title: title);
+    state = state.copyWith(title: capitalizeEachWord(title));
   }
 
   void resetState() {
@@ -195,8 +208,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       description: product.description,
       category: product.category,
       subCategory: product.subCategory,
-      parcel: product.parcelSize != null ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson()) : null,
-      size: product.size != null ? Enum$SizeEnum.fromJson(product.size!.toJson()) : null,
+      parcel: product.parcelSize != null
+          ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
+          : null,
+      size: product.size != null
+          ? Enum$SizeEnum.fromJson(product.size!.toJson())
+          : null,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,
@@ -249,7 +266,9 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
     state = state.copyWith(
       selectedMaterials: isSelected
-          ? currentSelections.where((m) => m != material).toList() // Remove material
+          ? currentSelections
+              .where((m) => m != material)
+              .toList() // Remove material
           : (currentSelections.length < maxMaterialSelections
               ? [...currentSelections, material] // Add material if under limit
               : currentSelections),

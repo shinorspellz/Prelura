@@ -15,6 +15,7 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'package:prelura_app/res/utils.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
@@ -24,7 +25,7 @@ import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/app_checkbox.dart';
 import 'profile_setting_view.dart';
 
-enum Gender { Male, Female, Other }
+enum Gender { Male, Female }
 
 @RoutePage()
 class AccountSettingScreen extends ConsumerStatefulWidget {
@@ -50,6 +51,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
       TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
   late TextEditingController email =
       TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+  late TextEditingController dob = TextEditingController(
+      text: ref.read(userProvider).valueOrNull?.dob.toString());
+
   final bio = TextEditingController();
   final int MaxDescription = 300;
   Gender? gender = null;
@@ -171,11 +175,55 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
               controller: name,
             ),
             addVerticalSpacing(16),
-            buildAuthTextField(context,
-                label: 'Date of Birth',
-                hintText: '2024-11-16',
-                // controller: email,
-                keyboardType: TextInputType.datetime),
+            // buildAuthTextField(context,
+            //     label: 'Date of Birth', hintText: '2024-11-16',
+            //     // controller: email,
+            //     onTap: () async {
+            //   DateTime? pickedDate = await showDatePicker(
+            //     context: context,
+            //     initialDate: DateTime.now(),
+            //     firstDate: DateTime(1900),
+            //     lastDate: DateTime(2101),
+            //   );
+            // }, keyboardType: TextInputType.datetime),
+            GestureDetector(
+              onTap: () async {
+                DateTime? pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2101),
+                );
+
+                if (pickedDate != null) {
+                  String formattedDate =
+                      DateFormat('yyyy-MM-dd').format(pickedDate);
+                  setState(() {
+                    dob.text = formattedDate;
+                  });
+                }
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 1,
+                    color: context.isDarkMode
+                        ? PreluraColors.white.withOpacity(0.5)
+                        : Theme.of(context).dividerColor,
+                  ),
+                ),
+                child: buildAuthTextField(
+                  context,
+                  showBorder: false,
+                  enabled: false,
+                  label: 'Date of Birth',
+                  hintText:
+                      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}',
+                  controller: dob,
+                ),
+              ),
+            ),
             addVerticalSpacing(16),
             buildAuthTextField(
               context,
@@ -275,7 +323,8 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text: " :  ${gender?.name}" ?? " ",
+                      text: " :  ${gender?.name == null ? "" : gender?.name}" ??
+                          " ",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             fontWeight: FontWeight.w400,
@@ -341,7 +390,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text: " :  ${selectedSize?.name}" ?? "",
+                      text:
+                          " :  ${selectedSize?.name == null ? "" : selectedSize?.name}" ??
+                              "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             fontWeight: FontWeight.w400,
