@@ -11,8 +11,14 @@ import '../../../widgets/auth_text_field.dart'; // for 12.sp
 
 // Assuming you have the PreluraAuthTextField and PreluraButtonWithLoader defined
 class DiscountItem extends ConsumerStatefulWidget {
-  const DiscountItem({super.key, required this.title});
+  DiscountItem(
+      {super.key,
+      required this.title,
+      required this.isEditing,
+      required this.percentageValue});
   final String title;
+  final bool isEditing;
+  StateProvider<String?> percentageValue;
 
   @override
   _EditSaveExampleState createState() => _EditSaveExampleState();
@@ -26,7 +32,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
   @override
   void initState() {
     super.initState();
-    _controller.text = value;
+    _controller.text = ref.read(widget.percentageValue) ?? "0%";
   }
 
   @override
@@ -80,6 +86,8 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                                   : numericValue;
                             }
 
+                            ref.read(widget.percentageValue.notifier).state =
+                                "$value%";
                             _controller.value = TextEditingValue(
                               text: "$value%",
                               selection: TextSelection.collapsed(
@@ -88,28 +96,28 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                           });
                         },
                         minWidth: 50,
-                        enabled: isEditing,
+                        enabled: widget.isEditing,
                       ),
-                      PreluraButtonWithLoader(
-                        onPressed: () {
-                          HapticFeedback.lightImpact();
-                          setState(() {
-                            if (isEditing) {}
-                            isEditing = !isEditing;
-                          });
-                        },
-                        buttonTitle: isEditing ? "Done" : "Edit",
-                        showLoadingIndicator: false,
-                        buttonColor: Colors.transparent,
-                        buttonTitleTextStyle: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(
-                                color: PreluraColors.primaryColor,
-                                fontWeight: FontWeight.w500),
-                        butttonWidth: 70,
-                        newButtonHeight: 25,
-                      ),
+                      // PreluraButtonWithLoader(
+                      //   onPressed: () {
+                      //     HapticFeedback.lightImpact();
+                      //     setState(() {
+                      //       if (isEditing) {}
+                      //       isEditing = !isEditing;
+                      //     });
+                      //   },
+                      //   buttonTitle: isEditing ? "Done" : "Edit",
+                      //   showLoadingIndicator: false,
+                      //   buttonColor: Colors.transparent,
+                      //   buttonTitleTextStyle: Theme.of(context)
+                      //       .textTheme
+                      //       .bodyMedium
+                      //       ?.copyWith(
+                      //           color: PreluraColors.primaryColor,
+                      //           fontWeight: FontWeight.w500),
+                      //   butttonWidth: 70,
+                      //   newButtonHeight: 25,
+                      // ),
                     ],
                   ),
                 ),
