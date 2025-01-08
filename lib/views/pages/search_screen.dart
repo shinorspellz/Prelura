@@ -318,7 +318,7 @@ class SearchScreen extends ConsumerWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, bottom: 24),
+            padding: EdgeInsets.only(top: 20, bottom: 12),
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Searchwidget(
                 hintText: "Search for items or members",

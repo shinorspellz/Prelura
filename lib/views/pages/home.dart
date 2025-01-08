@@ -274,11 +274,10 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   StaticSliverDelegate({required this.child});
 
   @override
-  double get minExtent => 110.8;
+  double get minExtent => 102.8;
 
   @override
-  double get maxExtent => 122.8;
-
+  double get maxExtent => 102.8;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -297,7 +296,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
 
   return Builder(builder: (context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+      padding: const EdgeInsets.fromLTRB(8.0, 3, 8, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(tabs.length, (index) {
