@@ -3,7 +3,8 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
-final brandsProvider = AsyncNotifierProvider<_BrandController, List<Brand>>(_BrandController.new);
+final brandsProvider =
+    AsyncNotifierProvider<_BrandController, List<Brand>>(_BrandController.new);
 
 class _BrandController extends AsyncNotifier<List<Brand>> {
   late final _repository = ref.read(productRepo);
@@ -34,7 +35,8 @@ class _BrandController extends AsyncNotifier<List<Brand>> {
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -78,7 +80,7 @@ final searchBrand = FutureProvider.family.autoDispose<List<Brand>, String>(
 final popularBrandsProvider = FutureProvider((ref) async {
   final repo = ref.watch(productRepo);
 
-  final result = await repo.getPopularBrands(20);
+  final result = await repo.getPopularBrands(1000);
 
   return result;
 });

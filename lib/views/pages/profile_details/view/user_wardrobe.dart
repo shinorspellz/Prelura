@@ -212,9 +212,11 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           backgroundColor: PreluraColors.activeColor,
                           child: ref.watch(userNotfierProvider).isLoading
                               ? const SizedBox(
-                                  height: 16,
-                                  width: 16,
-                                  child: LoadingWidget(),
+                                  height: 10,
+                                  width: 10,
+                                  child: LoadingWidget(
+                                    height: 10,
+                                  ),
                                 )
                               : GestureDetector(
                                   onTap: () {

@@ -55,14 +55,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ref.read(allProductProvider(null).notifier).fetchMoreData();
         final selectedId = ref.watch(selectedIdProvider);
 
-        ref
-            .read(filteredProductProvider((
-              Input$ProductFiltersInput(
-                category: selectedId, // Use the extracted value directly
-              ),
-              searchQuery
-            )).notifier)
-            .fetchMoreData();
+        if (ref.watch(selectedTabProvider) != 0 &&
+            ref.watch(selectedTabProvider) != 1) {
+          ref
+              .read(filteredProductProvider((
+                Input$ProductFiltersInput(
+                  category: selectedId, // Use the extracted value directly
+                ),
+                searchQuery
+              )).notifier)
+              .fetchMoreData();
+        }
       }
     });
     super.initState();
@@ -84,13 +87,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       required bool canLoadMore,
       required bool isLoading,
     }) {
-      return canLoadMore && !isLoading ? const SliverToBoxAdapter(child: PaginationLoadingIndicator()) : const SliverToBoxAdapter(); // Empty placeholder if no indicator
+      return canLoadMore && !isLoading
+          ? const SliverToBoxAdapter(child: PaginationLoadingIndicator())
+          : const SliverToBoxAdapter(); // Empty placeholder if no indicator
     }
 
 // Inside the `CustomScrollView` slivers
     SliverToBoxAdapter paginationIndicator;
 
-    if (ref.watch(selectedTabProvider) != 0 && ref.watch(selectedTabProvider) != 1) {
+    if (ref.watch(selectedTabProvider) != 0 &&
+        ref.watch(selectedTabProvider) != 1) {
       final selectedId = ref.watch(selectedIdProvider);
       log("i am here");
       paginationIndicator = buildPaginationIndicator(
@@ -111,6 +117,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               )))
               .isLoading);
     } else {
+      log("i am here");
       paginationIndicator = buildPaginationIndicator(
         canLoadMore: ref.watch(allProductProvider(null).notifier).canLoadMore(),
         isLoading: ref.watch(allProductProvider(null)).isLoading,
@@ -123,7 +130,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 0),
           child: RefreshIndicator(
             onRefresh: () async {
-              ref.read(homeRefreshProvider.notifier).refreshHome(ref.read(selectedNameProvider), searchQuery);
+              ref
+                  .read(homeRefreshProvider.notifier)
+                  .refreshHome(ref.read(selectedNameProvider), searchQuery);
             },
             child: CustomScrollView(
               controller: controller,
@@ -135,12 +144,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 15, left: 2, right: 15),
+                            padding: const EdgeInsets.only(
+                                top: 15, left: 2, right: 15),
                             child: Transform.scale(
                               scale: 6,
                               child: GestureDetector(
                                 onTap: () {
-                                  ref.read(homeRefreshProvider.notifier).refreshHome('', '');
+                                  ref
+                                      .read(homeRefreshProvider.notifier)
+                                      .refreshHome('', '');
                                 },
                                 child: Image.asset(
                                   PreluraIcons.splash,
@@ -154,7 +166,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: GestureDetector(
-                              onTap: () => context.pushRoute(const MyFavouriteRoute()),
+                              onTap: () =>
+                                  context.pushRoute(const MyFavouriteRoute()),
                               child: const Icon(
                                 Icons.favorite,
                                 size: 30,
@@ -172,7 +185,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +206,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           },
                         ),
                         addVerticalSpacing(12),
-                        _buildTabs(ref, selectedTab, context, searchQuery, controller)
+                        _buildTabs(
+                            ref, selectedTab, context, searchQuery, controller)
                       ],
                     ),
                   )),
@@ -265,7 +280,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 122.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
@@ -275,7 +291,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery, ScrollController controller) {
+Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
+    ScrollController controller) {
   final tabs = ["All", "Premium Brands", "Women", "Men", "Kids"];
 
   return Builder(builder: (context) {
@@ -295,21 +312,33 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery, S
                 curve: Curves.easeInOut,
               );
               if (category != null) {
-                final matchingCategory = category.where((e) => e.name == tabs[index]).firstOrNull;
+                final matchingCategory =
+                    category.where((e) => e.name == tabs[index]).firstOrNull;
                 if (matchingCategory != null) {
-                  ref.read(selectedIdProvider.notifier).state = int.parse(matchingCategory.id);
+                  ref.read(selectedIdProvider.notifier).state =
+                      int.parse(matchingCategory.id);
                 }
               }
             },
             child: Container(
               padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
-              decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1, color: selectedTab == index ? PreluraColors.activeColor : Colors.transparent))),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          width: 1,
+                          color: selectedTab == index
+                              ? PreluraColors.activeColor
+                              : Colors.transparent))),
               child: Center(
                 child: Text(
                   tabs[index],
                   style: TextStyle(
-                    color: selectedTab == index ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyColor,
-                    fontWeight: selectedTab == index ? FontWeight.bold : FontWeight.normal,
+                    color: selectedTab == index
+                        ? Theme.of(context).textTheme.bodyMedium?.color
+                        : PreluraColors.greyColor,
+                    fontWeight: selectedTab == index
+                        ? FontWeight.bold
+                        : FontWeight.normal,
                   ),
                 ),
               ),

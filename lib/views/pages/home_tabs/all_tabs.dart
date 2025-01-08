@@ -14,9 +14,11 @@ import '../../../controller/refresh_provider.dart';
 import '../../shimmers/custom_shimmer.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
+import '../../widgets/popular_brands.dart';
 
 class HomeAllTab extends ConsumerWidget {
-  const HomeAllTab({super.key, required this.searchQuery, required this.controller});
+  const HomeAllTab(
+      {super.key, required this.searchQuery, required this.controller});
   final String searchQuery;
   final ScrollController controller;
 
@@ -34,7 +36,8 @@ class HomeAllTab extends ConsumerWidget {
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -77,7 +80,8 @@ class HomeAllTab extends ConsumerWidget {
                     ? SizedBox.shrink()
                     : Column(
                         children: [
-                          Divider(thickness: 1, color: PreluraColors.primaryColor),
+                          Divider(
+                              thickness: 1, color: PreluraColors.primaryColor),
                           _sectionTitle(
                             'Recently viewed ',
                             "",
@@ -93,7 +97,8 @@ class HomeAllTab extends ConsumerWidget {
                             child: ListView.separated(
                               padding: EdgeInsets.only(left: 15),
                               scrollDirection: Axis.horizontal,
-                              separatorBuilder: (context, index) => 10.horizontalSpacing,
+                              separatorBuilder: (context, index) =>
+                                  10.horizontalSpacing,
                               itemBuilder: (context, index) => SizedBox(
                                 width: 180,
                                 child: ProductCard(product: products[index]),
@@ -101,7 +106,8 @@ class HomeAllTab extends ConsumerWidget {
                               itemCount: products.length,
                             ),
                           ),
-                          Divider(thickness: 1, color: PreluraColors.primaryColor),
+                          Divider(
+                              thickness: 1, color: PreluraColors.primaryColor),
                           16.verticalSpacing,
                         ],
                       );
@@ -110,7 +116,8 @@ class HomeAllTab extends ConsumerWidget {
                     children: [
                       16.verticalSpacing,
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
                         child: CustomShimmer(
                             child: Container(
                                 height: 40,
@@ -120,7 +127,8 @@ class HomeAllTab extends ConsumerWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
                                       height: 50,
@@ -153,7 +161,8 @@ class HomeAllTab extends ConsumerWidget {
                               // height: 220,
                               width: 180,
                               margin: const EdgeInsets.symmetric(horizontal: 5),
-                              child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                              child:
+                                  const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                             ),
                           ),
                         ),
@@ -164,7 +173,8 @@ class HomeAllTab extends ConsumerWidget {
                     children: [
                       16.verticalSpacing,
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
                         child: CustomShimmer(
                             child: Container(
                                 height: 40,
@@ -174,7 +184,8 @@ class HomeAllTab extends ConsumerWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
                                       height: 50,
@@ -207,7 +218,8 @@ class HomeAllTab extends ConsumerWidget {
                               // height: 220,
                               width: 180,
                               margin: const EdgeInsets.symmetric(horizontal: 5),
-                              child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                              child:
+                                  const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                             ),
                           ),
                         ),
@@ -241,11 +253,13 @@ class HomeAllTab extends ConsumerWidget {
                   padding: EdgeInsets.symmetric(
                     horizontal: 15,
                   ),
-                  child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                  child: LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
                     return GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10,
@@ -253,7 +267,8 @@ class HomeAllTab extends ConsumerWidget {
                       ),
                       itemCount: products.take(6).length,
                       itemBuilder: (context, index) {
-                        return ProductCard(product: products.take(6).toList()[index]);
+                        return ProductCard(
+                            product: products.take(6).toList()[index]);
                       },
                     );
                   }),
@@ -292,7 +307,8 @@ class HomeAllTab extends ConsumerWidget {
                         // height: 220,
                         width: 180,
                         margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                        child:
+                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                       ),
                     ),
                   ),
@@ -302,53 +318,83 @@ class HomeAllTab extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
             child: ref.watch(allProductProvider(null)).when(
-                skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
-                data: (products) {
-                  if (products.length < 6) return Container();
-                  final clippedProducts = products.sublist(6);
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio: 0.50,
-                    ),
-                    itemCount: clippedProducts.length,
-                    itemBuilder: (context, index) {
-                      return ProductCard(product: clippedProducts[index]);
-                    },
-                  );
-                },
-                error: (e, _) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(e.toString()),
-                        TextButton.icon(
-                          onPressed: () {
-                            // log(e.toString(), stackTrace: _);
-                            ref.invalidate(allProductProvider);
-                          },
-                          label: const Text('Retry'),
-                          icon: const Icon(Icons.refresh_rounded),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                loading: () => GridShimmer()),
-          ),
+                  skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
+                  data: (products) {
+                    if (products.length < 16) return Container();
+
+                    final clippedProducts = products.sublist(16);
+                    final chunkedProducts = List.generate(
+                      (clippedProducts.length / 10).ceil(),
+                      (i) => clippedProducts.skip(i * 10).take(10).toList(),
+                    );
+
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: chunkedProducts.length,
+                      itemBuilder: (context, chunkIndex) {
+                        return Column(
+                          children: [
+                            // GridView for the current chunk of 10 products
+                            GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 0.50,
+                              ),
+                              itemCount: chunkedProducts[chunkIndex].length,
+                              itemBuilder: (context, productIndex) {
+                                return ProductCard(
+                                    product: chunkedProducts[chunkIndex]
+                                        [productIndex]);
+                              },
+                            ),
+                            // Popular Brands widget after every 10 products
+                            if (chunkIndex < chunkedProducts.length - 1)
+                              PopularBrands(
+                                startIndex:
+                                    chunkIndex * 5, // Dynamic start index
+                                limit: 5,
+                              ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  error: (e, _) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(e.toString()),
+                          TextButton.icon(
+                            onPressed: () {
+                              ref.invalidate(allProductProvider);
+                            },
+                            label: const Text('Retry'),
+                            icon: const Icon(Icons.refresh_rounded),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                  loading: () => GridShimmer(),
+                ),
+          )
         ],
       ]),
     );
   }
 }
 
-Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+Widget _buildSectionTitle(
+    String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
     child: Column(
@@ -370,11 +416,18 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
             Text(
               subtitle,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
             GestureDetector(
               onTap: onTap,
-              child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
+              child: Text("See All",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: PreluraColors.primaryColor)),
             )
           ],
         ),
@@ -386,7 +439,8 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
   );
 }
 
-Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
     child: Row(
@@ -401,7 +455,11 @@ Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context, {V
         ),
         GestureDetector(
           onTap: onTap,
-          child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
+          child: Text("See All",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.primaryColor)),
         )
       ],
     ),
