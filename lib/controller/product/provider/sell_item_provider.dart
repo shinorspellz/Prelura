@@ -148,6 +148,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(images: [...state.images, ...pickedImages]);
   }
 
+  void updateImage(List<XFile> images) {
+    state = state.copyWith(images: [...images]);
+  }
+
   void deleteImage(XFile id) {
     final currentImages = state.images;
     state = state.copyWith(
@@ -329,7 +333,10 @@ class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
   FutureOr<List<SellItemState>> build() {
     final results = cacheBox.getStringList('drafts');
     // log(results.toString(), name: 'Drafts');
-    return results?.map((e) => SellItemState.fromJson(jsonDecode(e))).toList() ?? [];
+    return results
+            ?.map((e) => SellItemState.fromJson(jsonDecode(e)))
+            .toList() ??
+        [];
   }
 
   void addDraft(SellItemState item) async {

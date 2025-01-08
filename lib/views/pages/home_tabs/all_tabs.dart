@@ -80,8 +80,6 @@ class HomeAllTab extends ConsumerWidget {
                     ? SizedBox.shrink()
                     : Column(
                         children: [
-                          Divider(
-                              thickness: 1, color: PreluraColors.primaryColor),
                           _sectionTitle(
                             'Recently viewed ',
                             "",

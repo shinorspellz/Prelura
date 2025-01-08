@@ -19,6 +19,7 @@ import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/images.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../res/colors.dart';
@@ -43,6 +44,22 @@ class SellItemScreen extends ConsumerStatefulWidget {
 class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   @override
   void initState() {
+    dismissKeyboard();
+    _descriptionfocusNode.unfocus();
+    titlefocusNode.unfocus();
+    _descriptionfocusNode.addListener(() {
+      if (!_descriptionfocusNode.hasFocus) {
+        // Optionally hide the keyboard if focus is lost
+        FocusScope.of(context).unfocus();
+      }
+    });
+    titlefocusNode.addListener(() {
+      if (!titlefocusNode.hasFocus) {
+        // Optionally hide the keyboard if focus is lost
+        FocusScope.of(context).unfocus();
+      }
+    });
+
     if (widget.product != null) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) {
@@ -65,6 +82,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   void dispose() {
     titleController.dispose();
     descController.dispose();
+    _descriptionfocusNode.dispose();
+    titlefocusNode.dispose();
     super.dispose();
   }
 
@@ -84,6 +103,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
       canPop: true,
       onPopInvokedWithResult: (_, __) {
         notifier.resetState();
+        _descriptionfocusNode.unfocus();
+        titlefocusNode.unfocus();
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -266,12 +287,19 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               scrollDirection: Axis.horizontal,
                               physics: const NeverScrollableScrollPhysics(),
                               onReorder: (int oldIndex, int newIndex) {
+                                log('oldIndex: $oldIndex');
+                                log('newIndex: $newIndex');
                                 setState(() {
+                                  final List<XFile> mutableImages =
+                                      List.from(state.images);
                                   if (oldIndex < newIndex) {
                                     newIndex -= 1;
                                   }
-                                  final item = state.images.removeAt(oldIndex);
-                                  state.images.insert(newIndex, item);
+                                  final item = mutableImages.removeAt(oldIndex);
+                                  mutableImages.insert(newIndex, item);
+                                  ref
+                                      .read(sellItemProvider.notifier)
+                                      .updateImage(mutableImages);
                                 });
                               },
                               children: state.images
@@ -393,6 +421,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               ?.copyWith(fontWeight: FontWeight.w400),
                           onChanged: notifier.updateTitle,
                           controller: titleController,
+                          focusNode: titlefocusNode,
                           // textInputAction: TextInputActio,
                         ),
                         const SizedBox(height: 8),
@@ -439,6 +468,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   rightArrow: false,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const CategoryRoute());
                   },
                 ),
@@ -448,6 +479,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle: state.customBrand ?? state.brand?.name,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const BrandSelectionRoute());
                   },
                 ),
@@ -459,6 +492,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     subtitle: state.size?.name.replaceAll('_', ' '),
                     subtitleColor: PreluraColors.greyColor,
                     onTap: () {
+                      dismissKeyboard();
+
                       context.router.push(const SizeSelectionRoute());
                     },
                   ),
@@ -466,6 +501,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   title: 'Measurements (Recommended)',
                   rightArrow: false,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const MaterialSelectionRoute());
                   },
                 ),
@@ -475,6 +512,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle: state.selectedCondition?.simpleName,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const ConditionRoute());
                   },
                 ),
@@ -483,12 +522,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle: state.selectedColors.join(', '),
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const ColorSelectorRoute());
                   },
                 ),
                 MenuCard(
                   title: 'Material (Recommended)',
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const MaterialSelectionRoute());
                   },
                   subtitleColor: PreluraColors.greyColor,
@@ -501,6 +544,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle:
                       state.style?.name.replaceAll("_", " ").toLowerCase(),
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const StyleRoute());
                   },
                 ),
@@ -509,6 +554,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle: state.price,
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const PriceRoute());
                   },
                 ),
@@ -517,6 +564,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitle: '${state.discount ?? 0}%',
                   subtitleColor: PreluraColors.greyColor,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const DiscountRoute());
                   },
                 ),
@@ -526,6 +575,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   subtitleColor: PreluraColors.greyColor,
                   rightArrow: false,
                   onTap: () {
+                    dismissKeyboard();
+
                     context.router.push(const ParcelRoute());
                   },
                 ),
@@ -552,60 +603,56 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () async {
+                      dismissKeyboard();
                       HelperFunction.context = context;
                       final files =
                           state.images.map((x) => File(x.path)).toList();
                       if (files.isEmpty && widget.product == null) {
-                        HelperFunction.showToast(
-                            message: 'Images are required to sell product');
+                        // HelperFunction.showToast(
+                        context.alert('Images are required to sell product');
                         return;
                       }
 
                       if (!notifier.validateInputs()) {
-                        HelperFunction.showToast(
-                            message:
-                                'Both title and description of product are requuired');
+                        context.alert(
+                            'Both title and description of product are requuired');
                         return;
                       }
                       if (state.category == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an item category to proceed.');
+                        context.alert('Select an item category to proceed.');
                         return;
                       }
                       if (state.subCategory == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an item sub category to proceed.');
+                        context
+                            .alert('Select an item sub category to proceed.');
                         return;
                       }
                       if (state.brand == null && state.customBrand == null) {
-                        HelperFunction.showToast(
-                            message:
-                                'A `brand` or `Custom brand` is required for product.');
+                        context.alert(
+                            'A `brand` or `Custom brand` is required for product.');
                         return;
                       }
                       if (state.size == null && widget.product == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an size to proceed.');
+                        context.alert('Select an size to proceed.');
                         return;
                       }
                       if (state.selectedCondition == null) {
-                        HelperFunction.showToast(
-                            message: 'Condition is required for product.');
+                        context.alert('Condition is required for product.');
                         return;
                       }
                       if (state.selectedColors.isEmpty) {
-                        HelperFunction.showToast(
-                            message: 'Colors are required for product.');
+                        context.alert('Colors are required for product.');
                         return;
                       }
+                      log(state.price.toString(),
+                          name: 'price in sell item view');
                       if (state.price == null || state.price == '0') {
-                        HelperFunction.showToast(
-                            message: 'Price is required for product.');
+                        HelperFunction.context = context;
+                        context.alert('Price is required for product.');
                         return;
                       }
                       if (state.parcel == null) {
-                        HelperFunction.showToast(
-                            message: 'Parcel size is required for product.');
+                        context.alert('Parcel size is required for product.');
                         return;
                       }
                       // if (state.selectedMaterials.isEmpty) {
