@@ -44,7 +44,8 @@ class PreluraCheckBox extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChanged(!isChecked), // Toggle the state when tapped
       child: Container(
-        padding: const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
+        padding:
+            const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
@@ -88,9 +89,12 @@ class PreluraCheckBox extends StatelessWidget {
                             Text(
                               title,
                               style: style ??
-                                  Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
                                         fontSize: getDefaultSize(),
-                                        fontWeight: FontWeight.w600,  
+                                        fontWeight: FontWeight.w600,
                                       ),
                             ),
                             6.horizontalSpacing,
@@ -100,7 +104,14 @@ class PreluraCheckBox extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!
-                                    .copyWith(fontSize: getDefaultSize(), fontWeight: FontWeight.w400, color: sideTextColor ?? Theme.of(context).textTheme.bodyMedium?.color),
+                                    .copyWith(
+                                        fontSize: getDefaultSize(),
+                                        fontWeight: FontWeight.w400,
+                                        color: sideTextColor ??
+                                            Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium
+                                                ?.color),
                               )
                           ],
                         ),
@@ -109,12 +120,14 @@ class PreluraCheckBox extends StatelessWidget {
                         const SizedBox(height: 6),
                         Text(
                           subtitle!,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.w300,
-                                fontSize: getDefaultSize(),
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: getDefaultSize(),
+                                  ),
                           overflow: TextOverflow.ellipsis, // Handle overflow
-                          maxLines: 4, // Limit the number of lines for the subtitle
+                          maxLines:
+                              4, // Limit the number of lines for the subtitle
                         ),
                       ]
                     ],
