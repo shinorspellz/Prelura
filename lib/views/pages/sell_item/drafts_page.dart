@@ -29,10 +29,10 @@ class _DraftsPageState extends ConsumerState<DraftsPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: Wrap(
-          spacing: 35,
+          spacing: 25,
           runSpacing: 10,
           crossAxisAlignment: WrapCrossAlignment.center,
-          alignment: WrapAlignment.center,
+          alignment: WrapAlignment.start,
           children: [
             // 10.verticalSpacing,
             ...drafts.map((e) => Column(
@@ -57,14 +57,20 @@ class _DraftsPageState extends ConsumerState<DraftsPage> {
                               (index) => Positioned(
                                 right: index * 5,
                                 child: Container(
-                                  height: e.images.length < 2 ? 170 : 150 + index * 10,
+                                  height: e.images.length < 2
+                                      ? 170
+                                      : 150 + index * 10,
                                   width: 130,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(color: Colors.white, width: 1.2),
+                                    border: Border.all(
+                                        color: Colors.white, width: 1.2),
                                     color: Colors.grey,
                                     image: DecorationImage(
-                                      image: FileImage(File(e.images.take(4).toList()[index].path)),
+                                      image: FileImage(File(e.images
+                                          .take(4)
+                                          .toList()[index]
+                                          .path)),
                                       fit: BoxFit.cover,
                                     ),
                                   ),

@@ -603,60 +603,56 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
                     onPressed: () async {
+                      dismissKeyboard();
                       HelperFunction.context = context;
                       final files =
                           state.images.map((x) => File(x.path)).toList();
                       if (files.isEmpty && widget.product == null) {
-                        HelperFunction.showToast(
-                            message: 'Images are required to sell product');
+                        // HelperFunction.showToast(
+                        context.alert('Images are required to sell product');
                         return;
                       }
 
                       if (!notifier.validateInputs()) {
-                        HelperFunction.showToast(
-                            message:
-                                'Both title and description of product are requuired');
+                        context.alert(
+                            'Both title and description of product are requuired');
                         return;
                       }
                       if (state.category == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an item category to proceed.');
+                        context.alert('Select an item category to proceed.');
                         return;
                       }
                       if (state.subCategory == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an item sub category to proceed.');
+                        context
+                            .alert('Select an item sub category to proceed.');
                         return;
                       }
                       if (state.brand == null && state.customBrand == null) {
-                        HelperFunction.showToast(
-                            message:
-                                'A `brand` or `Custom brand` is required for product.');
+                        context.alert(
+                            'A `brand` or `Custom brand` is required for product.');
                         return;
                       }
                       if (state.size == null && widget.product == null) {
-                        HelperFunction.showToast(
-                            message: 'Select an size to proceed.');
+                        context.alert('Select an size to proceed.');
                         return;
                       }
                       if (state.selectedCondition == null) {
-                        HelperFunction.showToast(
-                            message: 'Condition is required for product.');
+                        context.alert('Condition is required for product.');
                         return;
                       }
                       if (state.selectedColors.isEmpty) {
-                        HelperFunction.showToast(
-                            message: 'Colors are required for product.');
+                        context.alert('Colors are required for product.');
                         return;
                       }
+                      log(state.price.toString(),
+                          name: 'price in sell item view');
                       if (state.price == null || state.price == '0') {
-                        HelperFunction.showToast(
-                            message: 'Price is required for product.');
+                        HelperFunction.context = context;
+                        context.alert('Price is required for product.');
                         return;
                       }
                       if (state.parcel == null) {
-                        HelperFunction.showToast(
-                            message: 'Parcel size is required for product.');
+                        context.alert('Parcel size is required for product.');
                         return;
                       }
                       // if (state.selectedMaterials.isEmpty) {
