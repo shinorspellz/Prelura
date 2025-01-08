@@ -97,7 +97,7 @@ final toggleLikeProductProvider =
 // final userProductFilter = StateProvider.autoDispose<FilterTypes?>((ref) => null);
 final userProductSort =
     StateProvider.autoDispose<Enum$SortEnum>((ref) => Enum$SortEnum.NEWEST);
-final userId = StateProvider.autoDispose<int?>((ref) => null);
+final userIdProvider = StateProvider.autoDispose<int?>((ref) => null);
 final userProductSearchQuery =
     StateProvider.autoDispose<String?>((ref) => null);
 final userSubCategoryProvider = StateProvider.autoDispose<int?>((ref) => null);
@@ -134,7 +134,7 @@ final userProduct =
 
   final brand = ref
       .watch(userProductGroupingByBrandProvider(
-          (ref.watch(userId) ?? 0, Enum$ProductGroupingEnum.BRAND)))
+          (ref.watch(userIdProvider) ?? 0, Enum$ProductGroupingEnum.BRAND)))
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
