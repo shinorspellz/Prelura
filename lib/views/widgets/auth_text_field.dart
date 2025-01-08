@@ -99,6 +99,12 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
     if (widget.focusNode == null) {
       focusNodeZZZ = FocusNode();
       focusNodeZZZ?.addListener(addListenerToFocusNode);
+      focusNodeZZZ?.addListener(() {
+        if (!focusNodeZZZ!.hasFocus) {
+          // Optionally hide the keyboard if focus is lost
+          FocusScope.of(context).unfocus();
+        }
+      });
     } else {
       widget.focusNode?.addListener(addListenerToFocusNodeWidget);
     }

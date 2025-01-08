@@ -58,7 +58,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -73,25 +74,29 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                       delegate: StaticSliverDelegate(
                         child: Container(
                             margin: EdgeInsets.zero,
-                            padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                            padding: const EdgeInsets.only(
+                                top: 16, left: 15, right: 15),
                             color: Theme.of(context).scaffoldBackgroundColor,
-                            child: Column(mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                              Searchwidget(
-                                padding: EdgeInsets.zero,
-                                hintText: "Find a brand",
-                                obscureText: false,
-                                shouldReadOnly: false,
-                                enabled: true,
-                                showInputBorder: true,
-                                autofocus: false,
-                                cancelButton: true,
-                                onChanged: (val) {
-                                  searchQuery = val;
-                                  setState(() {});
-                                },
-                              ),
-                              addVerticalSpacing(15),
-                            ])),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Searchwidget(
+                                    padding: EdgeInsets.zero,
+                                    hintText: "Find a brand",
+                                    obscureText: false,
+                                    shouldReadOnly: false,
+                                    enabled: true,
+                                    showInputBorder: true,
+                                    autofocus: false,
+                                    cancelButton: true,
+                                    onChanged: (val) {
+                                      searchQuery = val;
+                                      setState(() {});
+                                    },
+                                  ),
+                                  addVerticalSpacing(15),
+                                ])),
                       )),
                   if (searchQuery.isNotEmpty) ...[
                     ref.watch(searchBrand(searchQuery)).when(
@@ -103,7 +108,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                   titleWidget: RichText(
                                       textAlign: TextAlign.center,
                                       text: TextSpan(
-                                          style: context.textTheme.bodyLarge?.copyWith(
+                                          style: context.textTheme.bodyLarge
+                                              ?.copyWith(
                                             color: PreluraColors.activeColor,
                                           ),
                                           children: [
@@ -111,9 +117,13 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                             TextSpan(text: ' "$searchQuery" '),
                                             TextSpan(text: 'Brand'),
                                           ])),
-                                  isChecked: ref.watch(sellItemProvider).customBrand == searchQuery,
+                                  isChecked:
+                                      ref.watch(sellItemProvider).customBrand ==
+                                          searchQuery,
                                   onChanged: (value) {
-                                    ref.read(sellItemProvider.notifier).selectCustomBrand(searchQuery);
+                                    ref
+                                        .read(sellItemProvider.notifier)
+                                        .selectCustomBrand(searchQuery);
                                     context.back();
                                   },
                                 ),
@@ -150,14 +160,18 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                 (BuildContext context, int index) {
                                   return PreluraCheckBox(
                                     title: brands[index].name,
-                                    isChecked: brands[index].name == selectedBrand?.name,
+                                    isChecked: brands[index].name ==
+                                        selectedBrand?.name,
                                     onChanged: (value) {
-                                      ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                                      ref
+                                          .read(sellItemProvider.notifier)
+                                          .selectBrand(brands[index]);
                                       context.back();
                                     },
                                   );
                                 },
-                                childCount: brands.length, // Number of items in the list
+                                childCount: brands
+                                    .length, // Number of items in the list
                               ),
                             );
                           },
@@ -169,7 +183,8 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                 children: [
                                   Text(e.toString()),
                                   TextButton.icon(
-                                    onPressed: () => ref.invalidate(brandsProvider),
+                                    onPressed: () =>
+                                        ref.invalidate(brandsProvider),
                                     label: const Text('Retry'),
                                     icon: const Icon(Icons.refresh_rounded),
                                   ),
@@ -194,7 +209,10 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                             padding: const EdgeInsets.all(16.0),
                             child: Text(
                               "All Brands",
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
                                     color: PreluraColors.primaryColor,
                                     fontSize: getDefaultSize(),
                                   ),
@@ -206,14 +224,18 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                             itemBuilder: (BuildContext context, int index) {
                               return PreluraCheckBox(
                                 title: brands[index].name,
-                                isChecked: brands[index].name == selectedBrand?.name,
+                                isChecked:
+                                    brands[index].name == selectedBrand?.name,
                                 onChanged: (value) {
-                                  ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                                  ref
+                                      .read(sellItemProvider.notifier)
+                                      .selectBrand(brands[index]);
                                   context.back();
                                 },
                               );
                             },
-                            itemCount: brands.length, // Number of items in the list
+                            itemCount:
+                                brands.length, // Number of items in the list
                           ),
                         ],
                       ),
@@ -247,7 +269,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
 
   @override
   Widget _buildSuggestedBrands(String title, Brand? selectedBrand) {
-    return ref.watch(searchBrand(title)).maybeWhen(
+    return ref.watch(searchBrand(title.split(" ")[0])).maybeWhen(
           data: (brands) {
             print(brands);
             return brands.isNotEmpty
@@ -258,10 +280,11 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                         padding: EdgeInsets.all(16.0),
                         child: Text(
                           "Suggested Brands",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: PreluraColors.primaryColor,
-                                fontSize: getDefaultSize(),
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: PreluraColors.primaryColor,
+                                    fontSize: getDefaultSize(),
+                                  ),
                         ),
                       ),
                       ListView.builder(
@@ -271,9 +294,12 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                         itemBuilder: (context, index) {
                           return PreluraCheckBox(
                             title: brands[index].name,
-                            isChecked: brands[index].name == selectedBrand?.name,
+                            isChecked:
+                                brands[index].name == selectedBrand?.name,
                             onChanged: (_) {
-                              ref.read(sellItemProvider.notifier).selectBrand(brands[index]);
+                              ref
+                                  .read(sellItemProvider.notifier)
+                                  .selectBrand(brands[index]);
                               context.router.popForced();
                             },
                           );
@@ -325,7 +351,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

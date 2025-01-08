@@ -32,6 +32,14 @@ class MenuPage extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: "Menu",
+        leadingIcon: IconButton(
+            icon: Icon(
+              Icons.close,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            onPressed: () async {
+              context.router.popForced();
+            }),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
