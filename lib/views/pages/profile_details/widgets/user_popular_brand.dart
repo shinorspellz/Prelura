@@ -31,13 +31,26 @@ class UserPopularBrand extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sortedBrands = ref.watch(userBrandProvider(username ?? " "));
 
-    bool showSorted = isSelected ?? false;
+    bool showSorted = isSelected;
     log(sortedBrands.toString(), name: "sorted Brands");
     if (showSorted) {
       return ref.watch(userBrandProvider(username ?? " ")).maybeWhen(
             orElse: () {
-              return Row(
-                children: List.generate(10, (_) => Container()),
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    10,
+                    (_) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: ShimmerBox(
+                        height: 28,
+                        width: 100,
+                        radius: 5,
+                      ),
+                    ),
+                  ),
+                ),
               );
             },
             data: (data) => data.isNotEmpty
@@ -63,14 +76,19 @@ class UserPopularBrand extends ConsumerWidget {
                                         onTap: () {
                                           if (data.length > 1) {
                                             ref
+                                                .read(userIdProvider.notifier)
+                                                .state = userId;
+                                            ref
                                                 .read(filterUserProductProvider
                                                     .notifier)
                                                 .updateFilter(
                                                     FilterTypes.brand,
                                                     brand?.name ?? "",
                                                     username);
-                                            print("rnning");
-                                            onTap();
+                                            Future.delayed(Duration(seconds: 1),
+                                                () {
+                                              onTap();
+                                            });
                                           }
                                         },
                                         child: Container(
@@ -123,7 +141,7 @@ class UserPopularBrand extends ConsumerWidget {
                     ],
                   )
                 : SizedBox(
-                    height: 20,
+                    height: 60,
                   ),
           );
     }

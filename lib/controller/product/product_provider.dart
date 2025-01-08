@@ -97,7 +97,7 @@ final toggleLikeProductProvider =
 // final userProductFilter = StateProvider.autoDispose<FilterTypes?>((ref) => null);
 final userProductSort =
     StateProvider.autoDispose<Enum$SortEnum>((ref) => Enum$SortEnum.NEWEST);
-final userId = StateProvider.autoDispose<int?>((ref) => null);
+final userIdProvider = StateProvider.autoDispose<int?>((ref) => null);
 final userProductSearchQuery =
     StateProvider.autoDispose<String?>((ref) => null);
 final userSubCategoryProvider = StateProvider.autoDispose<int?>((ref) => null);
@@ -134,7 +134,7 @@ final userProduct =
 
   final brand = ref
       .watch(userProductGroupingByBrandProvider(
-          (ref.watch(userId) ?? 0, Enum$ProductGroupingEnum.BRAND)))
+          (ref.watch(userIdProvider) ?? 0, Enum$ProductGroupingEnum.BRAND)))
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
@@ -478,7 +478,7 @@ class _AllProductController
   // List<ServicePackageModel>? services;
   final int _pageCount = 15;
   int _currentPage = 1;
-  int _brandTotalItems = 0;
+  int _brandTotalItems = 900;
   String? _query;
 
   @override
@@ -519,6 +519,14 @@ class _AllProductController
   }
 
   Future<void> fetchMoreData() async {
+    log(
+        "length of current products : ${state.valueOrNull?.length.toString()}" ??
+            '',
+        name: 'fetchMoreData');
+    log("total available item ${_brandTotalItems.toString()}",
+        name: 'fetchMoreData');
+    log("current page : ${_currentPage.toString()}", name: 'fetchMoreData');
+    log("query is $_query", name: 'fetchMoreData');
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
 
     if (canLoadMore) {
@@ -1034,13 +1042,11 @@ class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
     try {
       // Fetch the raw response
       final response = await _repository.getRecentlyViewedProducts();
-      log(response.toString());
 
       // Map response to ProductModel list
       final products = response.recentlyViewedProducts!
           .map((e) => ProductModel.fromJson(e!.toJson()))
           .toList();
-      log(products.toString());
       // Update state with fetched products
       state = AsyncValue.data(products);
 

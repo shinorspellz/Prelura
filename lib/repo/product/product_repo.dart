@@ -192,6 +192,7 @@ class ProductRepo {
     );
 
     if (response.hasException) {
+      
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
         throw error;

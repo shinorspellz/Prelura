@@ -185,22 +185,234 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  if (widget.username != null)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 20),
-                      child: ProfileCardWidget(
-                        user: user,
-                        fontWeight: FontWeight.w600,
+                  Stack(clipBehavior: Clip.none, children: [
+                    if (widget.username != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 20),
+                        child: ProfileCardWidget(
+                          user: user,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    else
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(15, 20, 15, 10),
+                        child: ProfileCardWidget(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    Positioned(
+                      bottom: -28,
+                      right: 0,
+                      child: Container(
+                        margin: EdgeInsets.all(16),
+                        child: CircleAvatar(
+                          radius: 16,
+                          backgroundColor: PreluraColors.activeColor,
+                          child: ref.watch(userNotfierProvider).isLoading
+                              ? const SizedBox(
+                                  height: 10,
+                                  width: 10,
+                                  child: LoadingWidget(
+                                    height: 10,
+                                  ),
+                                )
+                              : GestureDetector(
+                                  onTap: () {
+                                    // VBottomSheetComponent.customBottomSheet(context: context, child: child)
+                                    VBottomSheetComponent.actionBottomSheet(
+                                      context: context,
+                                      actions: [
+                                        VBottomSheetItem(
+                                            onTap: (context) {
+                                              Navigator.pop(context);
+                                              VBottomSheetComponent
+                                                  .actionBottomSheet(
+                                                context: context,
+                                                actions: [
+                                                  VBottomSheetItem(
+                                                      onTap: (context) async {
+                                                        Navigator.pop(context);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .gallery);
+
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
+                                                            );
+                                                      },
+                                                      title: 'Gallery'),
+                                                  VBottomSheetItem(
+                                                      onTap: (context) async {
+                                                        Navigator.pop(context);
+                                                        final photo =
+                                                            await ImagePicker()
+                                                                .pickImage(
+                                                                    source: ImageSource
+                                                                        .camera);
+
+                                                        if (photo == null)
+                                                          return;
+                                                        await ref
+                                                            .read(
+                                                                userNotfierProvider
+                                                                    .notifier)
+                                                            .updateProfilePicture(
+                                                                File(photo
+                                                                    .path));
+                                                        ref
+                                                            .read(
+                                                                userNotfierProvider)
+                                                            .whenOrNull(
+                                                              error: (e, _) =>
+                                                                  context.alert(
+                                                                      'An error occured while uploading profile image'),
+                                                              data: (_) =>
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Profile photo updated!'),
+                                                            );
+                                                      },
+                                                      title: 'Camera'),
+                                                ],
+                                              );
+                                            },
+                                            title: 'Update Picture'),
+                                        VBottomSheetItem(
+                                            onTap: (context) {
+                                              Navigator.pop(context);
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  final controller =
+                                                      TextEditingController(
+                                                          text: user.bio);
+                                                  return AlertDialog(
+                                                    title: const Text(
+                                                        'Update Bio'),
+                                                    content: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        PreluraAuthTextField(
+                                                          label: 'Bio',
+                                                          labelStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          hintStyle: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .bodyMedium
+                                                              ?.copyWith(
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                          controller:
+                                                              controller,
+                                                          maxLines: null,
+                                                        ),
+                                                        10.verticalSpacing,
+                                                        Consumer(builder:
+                                                            (context, ref, _) {
+                                                          return PreluraButtonWithLoader(
+                                                            showLoadingIndicator: ref
+                                                                .watch(
+                                                                    userNotfierProvider)
+                                                                .isLoading,
+                                                            onPressed:
+                                                                () async {
+                                                              await ref
+                                                                  .read(userNotfierProvider
+                                                                      .notifier)
+                                                                  .updateProfile(
+                                                                      bio: controller
+                                                                          .text);
+                                                              ref
+                                                                  .read(
+                                                                      userNotfierProvider)
+                                                                  .whenOrNull(
+                                                                    error: (e,
+                                                                            _) =>
+                                                                        context.alert(
+                                                                            'An error occured while updating'),
+                                                                    data: (_) {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      HelperFunction
+                                                                              .context =
+                                                                          context;
+                                                                      HelperFunction.showToast(
+                                                                          message:
+                                                                              'Bio updated!');
+                                                                    },
+                                                                  );
+                                                            },
+                                                            buttonTitle:
+                                                                'Update',
+                                                            // width: MediaQuery.sizeOf(context).width,
+                                                          );
+                                                        })
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                            title: 'Update Bio')
+                                      ],
+                                    );
+                                  },
+                                  child: Container(
+                                    height: 32,
+                                    width: 32,
+                                    decoration: BoxDecoration(
+                                      color: PreluraColors.primaryColor,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
+                        ),
                       ),
                     )
-                  else
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(15, 20, 15, 10),
-                      child: ProfileCardWidget(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  ]),
                   Column(
                     children: [
                       if (user.bio != null)
@@ -229,210 +441,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                 ],
                               ),
                             ),
-                            Positioned(
-                              top: -20,
-                              right: 10,
-                              child: CircleAvatar(
-                                radius: 16,
-                                backgroundColor: PreluraColors.activeColor,
-                                child: ref.watch(userNotfierProvider).isLoading
-                                    ? const SizedBox(
-                                        height: 16,
-                                        width: 16,
-                                        child: LoadingWidget(),
-                                      )
-                                    : GestureDetector(
-                                        onTap: () {
-                                          // VBottomSheetComponent.customBottomSheet(context: context, child: child)
-                                          VBottomSheetComponent
-                                              .actionBottomSheet(
-                                            context: context,
-                                            actions: [
-                                              VBottomSheetItem(
-                                                  onTap: (context) {
-                                                    Navigator.pop(context);
-                                                    VBottomSheetComponent
-                                                        .actionBottomSheet(
-                                                      context: context,
-                                                      actions: [
-                                                        VBottomSheetItem(
-                                                            onTap:
-                                                                (context) async {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              final photo =
-                                                                  await ImagePicker()
-                                                                      .pickImage(
-                                                                          source:
-                                                                              ImageSource.gallery);
-
-                                                              if (photo == null)
-                                                                return;
-                                                              await ref
-                                                                  .read(userNotfierProvider
-                                                                      .notifier)
-                                                                  .updateProfilePicture(
-                                                                      File(photo
-                                                                          .path));
-                                                              ref
-                                                                  .read(
-                                                                      userNotfierProvider)
-                                                                  .whenOrNull(
-                                                                    error: (e,
-                                                                            _) =>
-                                                                        context.alert(
-                                                                            'An error occured while uploading profile image'),
-                                                                    data: (_) =>
-                                                                        HelperFunction.showToast(
-                                                                            message:
-                                                                                'Profile photo updated!'),
-                                                                  );
-                                                            },
-                                                            title: 'Gallery'),
-                                                        VBottomSheetItem(
-                                                            onTap:
-                                                                (context) async {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              final photo =
-                                                                  await ImagePicker()
-                                                                      .pickImage(
-                                                                          source:
-                                                                              ImageSource.camera);
-
-                                                              if (photo == null)
-                                                                return;
-                                                              await ref
-                                                                  .read(userNotfierProvider
-                                                                      .notifier)
-                                                                  .updateProfilePicture(
-                                                                      File(photo
-                                                                          .path));
-                                                              ref
-                                                                  .read(
-                                                                      userNotfierProvider)
-                                                                  .whenOrNull(
-                                                                    error: (e,
-                                                                            _) =>
-                                                                        context.alert(
-                                                                            'An error occured while uploading profile image'),
-                                                                    data: (_) =>
-                                                                        HelperFunction.showToast(
-                                                                            message:
-                                                                                'Profile photo updated!'),
-                                                                  );
-                                                            },
-                                                            title: 'Camera'),
-                                                      ],
-                                                    );
-                                                  },
-                                                  title: 'Update Picture'),
-                                              VBottomSheetItem(
-                                                  onTap: (context) {
-                                                    Navigator.pop(context);
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        final controller =
-                                                            TextEditingController(
-                                                                text: user.bio);
-                                                        return AlertDialog(
-                                                          title: const Text(
-                                                              'Update Bio'),
-                                                          content: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              PreluraAuthTextField(
-                                                                label: 'Bio',
-                                                                labelStyle: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium
-                                                                    ?.copyWith(
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w400),
-                                                                hintStyle: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .bodyMedium
-                                                                    ?.copyWith(
-                                                                        fontSize:
-                                                                            16,
-                                                                        fontWeight:
-                                                                            FontWeight.w400),
-                                                                controller:
-                                                                    controller,
-                                                                maxLines: null,
-                                                              ),
-                                                              10.verticalSpacing,
-                                                              Consumer(builder:
-                                                                  (context, ref,
-                                                                      _) {
-                                                                return PreluraButtonWithLoader(
-                                                                  showLoadingIndicator: ref
-                                                                      .watch(
-                                                                          userNotfierProvider)
-                                                                      .isLoading,
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await ref
-                                                                        .read(userNotfierProvider
-                                                                            .notifier)
-                                                                        .updateProfile(
-                                                                            bio:
-                                                                                controller.text);
-                                                                    ref
-                                                                        .read(
-                                                                            userNotfierProvider)
-                                                                        .whenOrNull(
-                                                                          error: (e, _) =>
-                                                                              context.alert('An error occured while updating'),
-                                                                          data:
-                                                                              (_) {
-                                                                            Navigator.pop(context);
-                                                                            HelperFunction.context =
-                                                                                context;
-                                                                            HelperFunction.showToast(message: 'Bio updated!');
-                                                                          },
-                                                                        );
-                                                                  },
-                                                                  buttonTitle:
-                                                                      'Update',
-                                                                  // width: MediaQuery.sizeOf(context).width,
-                                                                );
-                                                              })
-                                                            ],
-                                                          ),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                  title: 'Update Bio')
-                                            ],
-                                          );
-                                        },
-                                        child: SizedBox(
-                                          height: 20,
-                                          width: 20,
-                                          // decoration: BoxDecoration(
-                                          //   shape: BoxShape.circle,
-                                          // ),
-                                          child: Icon(
-                                            Icons.edit,
-                                            color: Colors.white,
-                                            size: 16,
-                                          ),
-                                        ),
-                                      ),
-                              ),
-                            )
                           ],
                         ),
 
@@ -604,7 +612,14 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                                 onChanged: (value) {
                                                   selectedItem = x.name;
                                                   isSelected = false;
-                                                  isBrandActive = true;
+
+                                                  Future.delayed(
+                                                      Duration(
+                                                          milliseconds: 1900),
+                                                      () {
+                                                    isBrandActive = true;
+                                                    setState(() {});
+                                                  });
                                                   setState(() {});
                                                   ref
                                                       .read(
@@ -718,15 +733,17 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             onCancel: () {
                               isSelected = !isSelected;
                               selectedItem = "";
-                              ref.read(userId.notifier).state = null;
+                              ref.read(userIdProvider.notifier).state = null;
                               isBrandActive = false;
                               expandedCategories = false;
                               setState(() {});
                             },
                             onTap: () {
-                              isBrandActive = true;
-                              ref.read(userId.notifier).state = user.id;
-                              setState(() {});
+                              ref.read(userIdProvider.notifier).state = user.id;
+                              Future.delayed(Duration(seconds: 1), () {
+                                isBrandActive = true;
+                                setState(() {});
+                              });
                             },
                             userId: user.id,
                             username: user.username,
