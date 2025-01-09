@@ -11,6 +11,7 @@ import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
+import 'package:prelura_app/views/shimmers/grid_view_animation.dart';
 import 'package:prelura_app/views/shimmers/users_shimer.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -22,7 +23,6 @@ import '../../../../controller/product/product_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/card.dart';
-import '../provider/filter_provider.dart';
 import '../provider/search_provider.dart';
 
 final dialogFilterStateProvider =
@@ -77,8 +77,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
     // final searchResults = ref.watch(filteredResultsProvider);
     final filters = ref.watch(searchFilterProvider);
     final state = ref.watch(searchFilterProvider.notifier);
-    final query = ref.watch(searchQueryProvider).toLowerCase();
-    final userAsyncValue = ref.watch(searchProductProvider(query));
+    final query = ref.watch(searchTextController.notifier).state;
+    final userAsyncValue = ref.watch(searchProductProvider(query.text));
     final user = ref.watch(userProvider).valueOrNull;
 
     return DefaultTabController(
@@ -195,7 +195,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
             child: TabBarView(controller: _tabController, children: [
-              if (query.isEmpty)
+              if (query.text.isEmpty)
                 ref
                     .watch(
                         userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT))
@@ -248,7 +248,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
 
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ref.watch(searchUserProvider(query)).maybeWhen(
+                  child: ref.watch(searchUserProvider(query.text)).maybeWhen(
                         orElse: () => ListView.separated(
                           itemCount: 20,
                           separatorBuilder: (_, index) => 8.verticalSpacing,
@@ -281,8 +281,10 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                           username: users[index].username));
                                     }
                                   },
-                                  child: ProfileCardWidget(
-                                    user: users[index],
+                                  child: AnimatedGridItem(
+                                    child: ProfileCardWidget(
+                                      user: users[index],
+                                    ),
                                   ),
                                 ),
                               ),

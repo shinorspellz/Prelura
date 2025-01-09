@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
@@ -9,6 +8,12 @@ final searchFilterProvider =
         (ref) {
   return SearchFilterNotifier(ref);
 });
+
+final searchTextController = StateProvider<TextEditingController>(
+  (_) => TextEditingController(),
+);
+
+final showSearchProducts = StateProvider<bool>((_) => false);
 
 class SearchFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   final Ref ref;

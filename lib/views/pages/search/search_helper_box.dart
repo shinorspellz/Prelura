@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
+import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 class SearchHelperBox extends ConsumerWidget {
@@ -16,6 +20,7 @@ class SearchHelperBox extends ConsumerWidget {
         Enum$SearchTypeEnum.PRODUCT,
       ),
     );
+    log(":::::${searchHistories.value?.length}");
     final searchSuggestions = ref.watch(
       searchHistoryProvider(
         Enum$SearchTypeEnum.PRODUCT,
@@ -25,7 +30,7 @@ class SearchHelperBox extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
-        if (searchHistories.value?.isNotEmpty ?? false)
+        if (searchHistories.hasValue)
           Align(
             alignment: Alignment.centerRight,
             child: GestureDetector(
@@ -41,16 +46,17 @@ class SearchHelperBox extends ConsumerWidget {
             ),
           ),
         addVerticalSpacing(10),
-        if (searchQuery?.isEmpty ?? false)
+        if (searchQuery?.isEmpty ?? true)
           searchHistories.when(
             data: (searches) {
+              log(":::The data length is ${searches.length}");
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: searches.length,
+                itemCount: searches.take(10).toList().length,
                 itemBuilder: (context, index) {
                   return SearchHintItemBox(
-                    label: "Nike bag",
+                    label: searches[index].query,
                   );
                 },
               );
@@ -67,6 +73,7 @@ class SearchHelperBox extends ConsumerWidget {
         else
           searchSuggestions.when(
             data: (searches) {
+              searches.isEmpty ? searches.add(searchQuery) : null;
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -93,7 +100,7 @@ class SearchHelperBox extends ConsumerWidget {
   }
 }
 
-class SearchHintItemBox extends StatelessWidget {
+class SearchHintItemBox extends ConsumerWidget {
   final String label;
   final bool showCloseIcon;
   final Function? onClose;
@@ -105,34 +112,43 @@ class SearchHintItemBox extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      alignment: Alignment.center,
-      color: Colors.transparent,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                color: PreluraColors.greyColor,
-              ),
-            ),
-            if (showCloseIcon)
-              SvgPicture.asset(
-                "assets/icons/CloseIcon.svg",
-                height: 20,
-                colorFilter: ColorFilter.mode(
-                  PreluraColors.greyColor,
-                  BlendMode.srcIn,
+  Widget build(BuildContext context, WidgetRef ref) {
+    return GestureDetector(
+      onTap: () {
+        ref.read(searchTextController.notifier).state.text = label;
+        ref.read(showSearchProducts.notifier).state = true;
+        ref
+            .read(searchFilterProvider.notifier)
+            .updateFilter(FilterTypes.category, label);
+      },
+      child: Container(
+        height: 50,
+        width: double.infinity,
+        alignment: Alignment.center,
+        color: Colors.transparent,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: PreluraColors.greyColor,
                 ),
-              )
-          ]),
+              ),
+              if (showCloseIcon)
+                SvgPicture.asset(
+                  "assets/icons/CloseIcon.svg",
+                  height: 20,
+                  colorFilter: ColorFilter.mode(
+                    PreluraColors.greyColor,
+                    BlendMode.srcIn,
+                  ),
+                )
+            ]),
+      ),
     );
   }
 }

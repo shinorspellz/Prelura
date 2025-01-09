@@ -32,12 +32,12 @@ final recommendedSearchHistoryProvider =
 });
 
 final userSearchHistoryProvider =
-    FutureProvider.family<List<SearchHistoryModel>, Enum$SearchTypeEnum>(
-        (ref, type) async {
+    FutureProvider.family<dynamic, Enum$SearchTypeEnum>((ref, type) async {
   final repo = ref.watch(searchHistoryRepo);
-  log(":::You called the search history provider:::: ");
 
   final result = await repo.userSearchHistory(type);
 
+  log(":::You called the search history provider:::: ${result.length}");
   return result;
+  // return [];
 });
