@@ -120,6 +120,13 @@ type CategoryTypes {
   subCategory: [SubCategoryType]
 }
 
+type CategoryTypess {
+  id: ID!
+  name: String!
+  parent: CategoryTypess
+  hasChildren: Boolean
+}
+
 type ChangeEmail {
   message: String
 }
@@ -1154,6 +1161,20 @@ type Query {
 
   """
   
+      Resolves the recommended sellers for a product.
+      This method queries the Product model to aggregate the performance of sellers
+      who have active and non-deleted products. It then returns the queryset of 
+      recommended sellers.
+      Args:
+          info: GraphQL resolve info.
+      Returns:
+          QuerySet: A queryset of recommended sellers.
+      
+  """
+  recommendedSellers(pageCount: Int, pageNumber: Int): [RecommendedSellerType]
+
+  """
+  
       Retrieves a grouped list of products based on the specified `group_by` parameter.
   
       This method allows the user to retrieve products grouped by various categories or brands. 
@@ -1195,6 +1216,7 @@ type Query {
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
+  categoriess(parentId: Int): [CategoryTypess]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   popularBrands(top: Int!): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
@@ -1207,6 +1229,7 @@ type Query {
   likedProductsTotalNumber: Int
   materialsTotalNumber: Int
   similarProductsTotalNumber: Int
+  recommendedSellersTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]
@@ -1243,6 +1266,15 @@ type RateUser {
 
 type ReadNotification {
   success: Boolean
+}
+
+type RecommendedSellerType {
+  seller: UserType
+  totalSales: Decimal
+  totalShopValue: Decimal
+  productViews: Int
+  sellerScore: Float
+  activeListings: Int
 }
 
 """
