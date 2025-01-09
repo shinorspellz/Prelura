@@ -297,37 +297,34 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
   }
 }
 
-  void _showFilterModal(
-      BuildContext context, FilterTypes filterType, WidgetRef ref) {
-    final filterNotifier = ref.watch(searchFilterProvider.notifier);
-    // final List<String> selectedOptions =
-    //     ref.watch(searchFilterProvider)[filterType] ?? [];
-    // final tempSelections = [...selectedOptions];
-    // print(tempSelections);
+void ShowFilterModal(
+    BuildContext context, FilterTypes filterType, WidgetRef ref) {
+  final filterNotifier = ref.watch(searchFilterProvider.notifier);
+  // final List<String> selectedOptions =
+  //     ref.watch(searchFilterProvider)[filterType] ?? [];
+  // final tempSelections = [...selectedOptions];
+  // print(tempSelections);
 
-    final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values
-          .where((e) => e != Enum$SizeEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      FilterTypes.style: Enum$StyleEnum.values
-          .where((e) => e != Enum$StyleEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      FilterTypes.brand:
-          ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
-              [],
-      FilterTypes.category: ref
-              .watch(categoryProvider)
-              .valueOrNull
-              ?.map((e) => e.name)
-              .toList() ??
-          [],
-      FilterTypes.condition:
-          ConditionsEnum.values.map((e) => e.simpleName).toList(),
-      // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
-    };
-    String? selectedOptions = ref.read(searchFilterProvider)[filterType];
+  final filterOptions = {
+    FilterTypes.size: Enum$SizeEnum.values
+        .where((e) => e != Enum$SizeEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.style: Enum$StyleEnum.values
+        .where((e) => e != Enum$StyleEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.brand:
+        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.category:
+        ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.condition:
+        ConditionsEnum.values.map((e) => e.simpleName).toList(),
+    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
+  };
+  String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
   VBottomSheetComponent.customBottomSheet(
     removeSidePadding: true,

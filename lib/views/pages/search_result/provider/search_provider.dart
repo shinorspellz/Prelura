@@ -140,9 +140,6 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     final providerFilter = ref.read(
         filteredProductProvider((Input$ProductFiltersInput(), '')).notifier);
 
-    log("{filterType: ${filterType.name}, value: $value}");
-    log(providerFilter.currentFilter!.toJson().toString(),
-        name: "providerFilter");
     final updatedFilter = providerFilter.currentFilter?.copyWith(
         brand: filterType == FilterTypes.brand
             ? int.tryParse(value)
