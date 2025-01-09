@@ -1,25 +1,22 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
+import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/res/logs.dart';
+import 'package:prelura_app/views/pages/search/search_helper_box.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/res/logs.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../core/graphql/__generated/schema.graphql.dart';
-import '../../core/router/router.gr.dart';
-import '../../res/colors.dart';
-import '../../res/utils.dart';
-import 'search_result/view/search_result.dart';
+import '../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../core/router/router.gr.dart';
+import '../../../res/colors.dart';
+import '../../../res/utils.dart';
 
 final activeSearchProvider = StateProvider<bool>((ref) => false);
 
@@ -312,7 +309,9 @@ class SearchScreen extends ConsumerWidget {
                     ],
                   ),
                 ] else ...[
-                  LiveSearchPage()
+                  SearchHelperBox(),
+
+                  // LiveSearchPage()
                 ]
               ],
             ),
