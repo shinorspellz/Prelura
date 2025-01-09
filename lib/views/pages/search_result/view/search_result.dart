@@ -28,7 +28,8 @@ import '../../../widgets/card.dart';
 import '../provider/filter_provider.dart';
 import '../provider/search_provider.dart';
 
-final dialogFilterStateProvider = StateProvider<Map<String, List<String>>>((ref) => {});
+final dialogFilterStateProvider =
+    StateProvider<Map<String, List<String>>>((ref) => {});
 
 enum FilterTypes {
   size('Size'),
@@ -54,7 +55,8 @@ class LiveSearchPage extends ConsumerStatefulWidget {
   ConsumerState<LiveSearchPage> createState() => _InboxScreenState();
 }
 
-class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerProviderStateMixin {
+class _InboxScreenState extends ConsumerState<LiveSearchPage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -108,7 +110,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                   selected: false,
                   checkmarkColor: Theme.of(context).iconTheme.color,
                   backgroundColor: Colors.transparent, // Transparent background
-                  selectedColor: Colors.blue.withOpacity(0.1), // Light blue when selected
+                  selectedColor:
+                      Colors.blue.withOpacity(0.1), // Light blue when selected
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8), // Rounded corners
                     side: BorderSide(
@@ -121,20 +124,27 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                   return Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: FilterChip(
-                      checkmarkColor: filters.containsKey(filter) ? PreluraColors.activeColor : Theme.of(context).iconTheme.color,
-                      backgroundColor: Colors.transparent, // Transparent background
-                      selectedColor: Colors.blue.withOpacity(0.1), // Light blue when selected
+                      checkmarkColor: filters.containsKey(filter)
+                          ? PreluraColors.activeColor
+                          : Theme.of(context).iconTheme.color,
+                      backgroundColor:
+                          Colors.transparent, // Transparent background
+                      selectedColor: Colors.blue
+                          .withOpacity(0.1), // Light blue when selected
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8), // Rounded corners
+                        borderRadius:
+                            BorderRadius.circular(8), // Rounded corners
                         side: BorderSide(
-                          color: filters.containsKey(filter) ? PreluraColors.activeColor : Theme.of(context).dividerColor, // Border color
+                          color: filters.containsKey(filter)
+                              ? PreluraColors.activeColor
+                              : Theme.of(context).dividerColor, // Border color
                           width: 1.5, // Border width
                         ),
                       ),
                       label: Text(filter.simpleName),
                       onSelected: (isSelected) {
                         // Show filter dialog to select values
-                        _showFilterModal(context, filter, ref);
+                        ShowFilterModal(context, filter, ref);
                       },
                       selected: filters.containsKey(filter),
                     ),
@@ -163,8 +173,11 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                         decoration: BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                              color: _tabController.index == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
-                              width: _tabController.index == entry.key ? 2.0 : 1.0,
+                              color: _tabController.index == entry.key
+                                  ? PreluraColors.activeColor
+                                  : PreluraColors.greyColor.withOpacity(0.5),
+                              width:
+                                  _tabController.index == entry.key ? 2.0 : 1.0,
                             ),
                           ),
                         ),
@@ -173,7 +186,9 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: getDefaultSize(),
-                            color: _tabController.index == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
+                            color: _tabController.index == entry.key
+                                ? Theme.of(context).textTheme.bodyMedium?.color
+                                : PreluraColors.greyLightColor,
                           ),
                         ),
                       ),
@@ -187,20 +202,25 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
             height: MediaQuery.sizeOf(context).height / 1.58,
             child: TabBarView(controller: _tabController, children: [
               if (query.isEmpty)
-                ref.watch(userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT)).maybeWhen(
-                    data: (prediction) => Column(
-                          children: prediction.map((e) {
-                            return MenuCard(title: e.toString(), onTap: () {});
-                          }).toList(),
-                        ),
-                    orElse: () => LoadingWidget())
+                ref
+                    .watch(
+                        userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT))
+                    .maybeWhen(
+                        data: (prediction) => Column(
+                              children: prediction.map((e) {
+                                return MenuCard(
+                                    title: e.toString(), onTap: () {});
+                              }).toList(),
+                            ),
+                        orElse: () => LoadingWidget())
               else
                 userAsyncValue.when(
                     skipLoadingOnRefresh: false,
                     data: (data) => Container(
                           child: data.isEmpty
                               ? SizedBox(
-                                  height: MediaQuery.of(context).size.height * 0.7,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.7,
                                   child: const Center(
                                     child: Text('No results found'),
                                   ),
@@ -209,7 +229,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                                   // shrinkWrap: true,
                                   // physics: scrollable ? const BouncingScrollPhysics() : const NeverScrollableScrollPhysics(),
                                   padding: const EdgeInsets.all(8.0),
-                                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10,
                                     mainAxisSpacing: 10,
@@ -241,24 +262,29 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
                         ),
                         data: (users) => users.isEmpty
                             ? SizedBox(
-                                height: MediaQuery.of(context).size.height * 0.7,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.7,
                                 child: const Center(
                                   child: Text('No results found'),
                                 ),
                               )
                             : ListView.separated(
                                 itemCount: users.length,
-                                separatorBuilder: (_, index) => 8.verticalSpacing,
+                                separatorBuilder: (_, index) =>
+                                    8.verticalSpacing,
                                 itemBuilder: (_, index) => GestureDetector(
                                   onTap: () {
                                     log("here");
-                                    if (user?.username == users[index].username) {
-                                      final tabRouter = AutoTabsRouter.of(context);
+                                    if (user?.username ==
+                                        users[index].username) {
+                                      final tabRouter =
+                                          AutoTabsRouter.of(context);
                                       tabRouter.setActiveIndex(3);
                                       // context.router
                                       //     .push(ProfileNavigationRoute());
                                     } else {
-                                      context.router.push(ProfileDetailsRoute(username: users[index].username));
+                                      context.router.push(ProfileDetailsRoute(
+                                          username: users[index].username));
                                     }
                                   },
                                   child: ProfileCardWidget(
@@ -273,80 +299,92 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage> with SingleTickerP
       ),
     );
   }
+}
 
-  void _showFilterModal(BuildContext context, FilterTypes filterType, WidgetRef ref) {
-    final filterNotifier = ref.watch(searchFilterProvider.notifier);
-    // final List<String> selectedOptions =
-    //     ref.watch(searchFilterProvider)[filterType] ?? [];
-    // final tempSelections = [...selectedOptions];
-    // print(tempSelections);
+void ShowFilterModal(
+    BuildContext context, FilterTypes filterType, WidgetRef ref) {
+  final filterNotifier = ref.watch(searchFilterProvider.notifier);
+  // final List<String> selectedOptions =
+  //     ref.watch(searchFilterProvider)[filterType] ?? [];
+  // final tempSelections = [...selectedOptions];
+  // print(tempSelections);
 
-    final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values.where((e) => e != Enum$SizeEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.style: Enum$StyleEnum.values.where((e) => e != Enum$StyleEnum.$unknown).map((e) => e.name).toList(),
-      FilterTypes.brand: ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
-      FilterTypes.category: ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ?? [],
-      FilterTypes.condition: ConditionsEnum.values.map((e) => e.simpleName).toList(),
-      // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
-    };
-    String? selectedOptions = ref.read(searchFilterProvider)[filterType];
+  final filterOptions = {
+    FilterTypes.size: Enum$SizeEnum.values
+        .where((e) => e != Enum$SizeEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.style: Enum$StyleEnum.values
+        .where((e) => e != Enum$StyleEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.brand:
+        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.category:
+        ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.condition:
+        ConditionsEnum.values.map((e) => e.simpleName).toList(),
+    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
+  };
+  String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
-    VBottomSheetComponent.customBottomSheet(
-      removeSidePadding: true,
-      context: context,
-      child: StatefulBuilder(builder: (context, setState) {
-        return Consumer(
-            builder: (context, ref, _) => ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 500,
-                    // minHeight: 250,
-                  ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: filterOptions[filterType]!
-                        .map((e) => PreluraCheckBox(
-                            isChecked: selectedOptions == e,
-                            onChanged: (value) {
-                              filterNotifier.updateFilter(filterType, e);
-                              setState(() {
-                                selectedOptions = e;
-                              });
+  VBottomSheetComponent.customBottomSheet(
+    removeSidePadding: true,
+    context: context,
+    child: StatefulBuilder(builder: (context, setState) {
+      return Consumer(
+          builder: (context, ref, _) => ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 500,
+                  // minHeight: 250,
+                ),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: filterOptions[filterType]!
+                      .map((e) => PreluraCheckBox(
+                          isChecked: selectedOptions == e,
+                          onChanged: (value) {
+                            filterNotifier.updateFilter(filterType, e);
+                            setState(() {
+                              selectedOptions = e;
+                            });
 
-                              Navigator.pop(context);
-                            },
-                            title: e.replaceAll("_", " ")))
-                        .toList(),
-                  ),
-                ));
-      }),
-    );
+                            Navigator.pop(context);
+                          },
+                          title: e.replaceAll("_", " ")))
+                      .toList(),
+                ),
+              ));
+    }),
+  );
 
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return Consumer(builder: (context, WidgetRef reff, s) {
-    //         var selectedOptions = List<String>.from(reff.watch(searchFilterProvider)[filterType] ?? []);
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return Consumer(builder: (context, WidgetRef reff, s) {
+  //         var selectedOptions = List<String>.from(reff.watch(searchFilterProvider)[filterType] ?? []);
 
-    //         return AlertDialog(
-    //             title: Text('Select $filterType'),
-    //             content: SingleChildScrollView(
-    //               child: Column(
-    //                 children: filterOptions[filterType]!.map((option) {
-    //                   return PreluraCheckBox(
-    //                     title: option,
-    //                     onChanged: (isChecked) {
-    //                       if (isChecked) {
-    //                         filterNotifier.updateFilter(filterType, option);
-    //                       } else {
-    //                         filterNotifier.removeFilter(filterType, option);
-    //                       }
-    //                     },
-    //                     isChecked: selectedOptions.contains(option),
-    //                   );
-    //                 }).toList(),
-    //               ),
-    //             ));
-    //       });
-    //     });
-  }
+  //         return AlertDialog(
+  //             title: Text('Select $filterType'),
+  //             content: SingleChildScrollView(
+  //               child: Column(
+  //                 children: filterOptions[filterType]!.map((option) {
+  //                   return PreluraCheckBox(
+  //                     title: option,
+  //                     onChanged: (isChecked) {
+  //                       if (isChecked) {
+  //                         filterNotifier.updateFilter(filterType, option);
+  //                       } else {
+  //                         filterNotifier.removeFilter(filterType, option);
+  //                       }
+  //                     },
+  //                     isChecked: selectedOptions.contains(option),
+  //                   );
+  //                 }).toList(),
+  //               ),
+  //             ));
+  //       });
+  //     });
 }
