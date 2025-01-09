@@ -57,24 +57,24 @@ class _OfferCardState extends ConsumerState<OfferCard> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Row(
-            children: [
-              ProfilePictureWidget(
-                height: 60,
-                width: 60,
-                profilePicture: "",
-                username: "Ayodeji",
-              ),
-              16.horizontalSpacing,
-              HighlightUserName(
-                isRead: false,
-                highlightColor: PreluraColors.primaryColor,
-                message: "Ayodeji Offered £78",
-                username: "offered",
-              ),
-            ],
-          ),
-          12.verticalSpacing,
+          // Row(
+          //   children: [
+          //     ProfilePictureWidget(
+          //       height: 60,
+          //       width: 60,
+          //       profilePicture: "",
+          //       username: "Ayodeji",
+          //     ),
+          //     16.horizontalSpacing,
+          //     HighlightUserName(
+          //       isRead: false,
+          //       highlightColor: PreluraColors.primaryColor,
+          //       message: "Ayodeji Offered £78",
+          //       username: "offered",
+          //     ),
+          //   ],
+          // ),
+          // 12.verticalSpacing,
           OfferProductCard(),
           32.verticalSpacing,
           if (isAccepted) ...[
@@ -106,7 +106,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                     // isDisabled: isAccepted || isDeclined,
                   ),
                 ),
-                32.horizontalSpacing,
+                18.horizontalSpacing,
                 Expanded(
                   child: AppButton(
                     onTap: handleDecline,
