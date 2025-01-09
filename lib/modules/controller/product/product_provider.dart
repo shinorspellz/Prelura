@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+
 import '../../../controller/product/brands_provider.dart';
 import '../../../model/product/product_model.dart';
 import '../../../model/product/user_product_grouping/user_product_grouping.dart';
@@ -136,6 +136,7 @@ final userProduct =
       .valueOrNull
       ?.where((e) => e.name == categoryFilter)
       .firstOrNull;
+
   final size =
       Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =

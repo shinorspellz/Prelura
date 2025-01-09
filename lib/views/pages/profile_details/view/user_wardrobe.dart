@@ -1,25 +1,15 @@
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:graphql/client.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/controller/chat/conversations_provider.dart';
-import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/user_product_grouping/user_product_grouping.dart';
-import 'package:prelura_app/views/pages/chat/chat_view.dart';
-import 'package:prelura_app/views/pages/profile_details/provider/tab_controller.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
@@ -31,23 +21,15 @@ import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/views/widgets/profile_card.dart';
-import 'package:prelura_app/views/widgets/rating.dart';
-import 'package:prelura_app/res/render_svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
-import '../../../../res/images.dart';
-import 'package:prelura_app/res/utils.dart';
-import '../../../../model/product/categories/category_model.dart';
 import '../../../shimmers/grid_shimmer.dart';
-import '../../../widgets/app_button.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
-import '../widgets/show_filter_modal.dart';
 import '../widgets/user_popular_brand.dart';
 
 // enum UserFilterTypes {
@@ -763,49 +745,48 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Featured',
-                                style: context.textTheme.titleLarge?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              10.verticalSpacing,
-                              ref.watch(userProduct(user.username)).when(
-                                    skipLoadingOnRefresh: false,
-                                    data: (products) => DisplaySection(
-                                      products: products
-                                          .where((e) => e.isFeatured ?? false)
-                                          .toList(),
-                                      isInProduct: false,
-                                    ),
-                                    error: (e, _) {
-                                      return Center(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Text(e.toString()),
-                                            TextButton.icon(
-                                              onPressed: () {
-                                                // log(e.toString(), stackTrace: _);
-                                                ref.invalidate(userProduct);
-                                              },
-                                              label: const Text('Retry'),
-                                              icon: const Icon(
-                                                  Icons.refresh_rounded),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                    loading: () => GridShimmer(),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Featured',
+                                  style: context.textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
                                   ),
-                              10.verticalSpacing,
-                            ],
-                          ),
+                                ),
+                                10.verticalSpacing,
+                                ref.watch(userProduct(user.username)).when(
+                                      skipLoadingOnRefresh: false,
+                                      data: (products) => DisplaySection(
+                                        products: products
+                                            .where((e) => e.isFeatured ?? false)
+                                            .toList(),
+                                        isInProduct: false,
+                                      ),
+                                      error: (e, _) {
+                                        return Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(e.toString()),
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  // log(e.toString(), stackTrace: _);
+                                                  ref.invalidate(userProduct);
+                                                },
+                                                label: const Text('Retry'),
+                                                icon: const Icon(
+                                                    Icons.refresh_rounded),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      loading: () => GridShimmer(),
+                                    ),
+                                10.verticalSpacing,
+                              ]),
                         ),
                       ],
 

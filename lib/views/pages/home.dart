@@ -1,29 +1,19 @@
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/refresh_provider.dart';
-import 'package:prelura_app/views/pages/home_tabs/all_tabs.dart';
-import 'package:prelura_app/views/pages/filtered_products/product_by_filters.dart';
-import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
-import 'package:prelura_app/views/widgets/display_live_card.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/shared/mock_data.dart';
+import 'package:prelura_app/views/pages/home_tabs/all_tabs.dart';
+import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 
 import '../../core/graphql/__generated/schema.graphql.dart';
 import '../../model/product/product_model.dart';
-import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
-import '../widgets/card.dart';
-import '../widgets/display_section.dart';
 import '../widgets/gap.dart';
 import 'home_tabs/filter tabs.dart';
 
@@ -320,7 +310,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
               }
             },
             child: Container(
-              padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 8),
+              padding: const EdgeInsets.only(right: 10.0, left: 10, bottom: 7),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(
