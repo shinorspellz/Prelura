@@ -50,6 +50,7 @@ class _BuyerOfferCardState extends ConsumerState<BuyerOfferCard> {
           ),
           24.verticalSpacing,
           OfferProductCard(),
+          32.verticalSpacing,
           Row(
             children: [
               Expanded(

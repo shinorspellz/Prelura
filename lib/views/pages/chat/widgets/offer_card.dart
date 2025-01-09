@@ -76,7 +76,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
           ),
           12.verticalSpacing,
           OfferProductCard(),
-          20.verticalSpacing,
+          32.verticalSpacing,
           if (isAccepted) ...[
             AppButton(
               width: double.infinity,

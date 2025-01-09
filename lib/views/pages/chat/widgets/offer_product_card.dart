@@ -22,8 +22,13 @@ class OfferProductCard extends ConsumerWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: CachedNetworkImage(
+            errorWidget: (context, url, error) => Container(
+              color: PreluraColors.grey,
+              height: 25.h,
+              width: 30.w,
+            ),
             imageUrl: PreluraIcons.mugShot,
-            height: 16.h,
+            height: 21.h,
             width: 30.w,
             fit: BoxFit.cover,
             placeholder: (context, url) {
@@ -38,40 +43,44 @@ class OfferProductCard extends ConsumerWidget {
         ),
         16.horizontalSpacing,
         Container(
-          width: double.infinity,
-          height: 25.h,
+          width: 50.w,
+          height: 21.h,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 capitalizeEachWord("Liverpool FC Football Club"),
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis, // Truncate text
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!
                     .copyWith(fontWeight: FontWeight.w600, fontSize: 16),
               ),
-              12.verticalSpacing,
-              const Spacer(),
+              10.verticalSpacing,
+
               BrandTextWidget(
                 brand: Brand(name: "Nike", id: 0),
                 customBrand: null,
                 fontSize: 16,
               ),
-              12.verticalSpacing,
+              10.verticalSpacing,
               Text(
-                "Size L'}",
+                "Size L",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: PreluraColors.grey,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       fontSize: getDefaultSize(size: 16),
                     ),
               ),
               // if (widget.product.condition != null) ...[
-              12.verticalSpacing,
+              10.verticalSpacing,
+
               Text(
                 "Used but in a good condition",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: PreluraColors.greyColor,
                       fontWeight: FontWeight.w600,
