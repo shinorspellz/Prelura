@@ -18,7 +18,8 @@ class MessageModel with _$MessageModel {
     required UserModel sender,
   }) = _MessageModel;
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) => _$MessageModelFromJson(json);
+  factory MessageModel.fromJson(Map<String, dynamic> json) =>
+      _$MessageModelFromJson(json);
 
   factory MessageModel.fromSocket(Map<String, dynamic> json) => MessageModel(
         id: json["id"],

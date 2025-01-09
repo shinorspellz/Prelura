@@ -3,6 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
+import '../../../../controller/product/brands_provider.dart';
+import '../../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../../model/product/product_model.dart';
+import '../../../widgets/app_checkbox.dart';
+import '../../../widgets/bottom_sheet.dart';
+
 final searchFilterProvider =
     StateNotifierProvider<SearchFilterNotifier, Map<FilterTypes, String>>(
         (ref) {
@@ -116,4 +122,110 @@ class FilterUserProductNotifier
     // ref.read(userProductFilter.notifier).state = updatedFilters;
     // log("ProductFiltersInput updated: ${updatedFilters.toJson()}");
   }
+}
+
+final productFilterProvider = StateNotifierProvider.autoDispose<
+    ProductFilterNotifier, Map<FilterTypes, String>>((ref) {
+  return ProductFilterNotifier(ref);
+});
+
+class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
+  final Ref ref;
+  ProductFilterNotifier(this.ref) : super({});
+
+  void updateFilter(FilterTypes filterType, String value) {
+    // Update the local filter state
+    state = state..[filterType] = value;
+
+    final providerFilter = ref.read(
+        filteredProductProvider((Input$ProductFiltersInput(), '')).notifier);
+
+    final updatedFilter = providerFilter.currentFilter?.copyWith(
+        brand: filterType == FilterTypes.brand
+            ? int.tryParse(value)
+            : providerFilter.currentFilter?.brand,
+        size: filterType == FilterTypes.size
+            ? Enum$SizeEnum.values.firstWhere((e) => e.name == value)
+            : providerFilter.currentFilter?.size,
+        condition: filterType == FilterTypes.condition
+            ? ConditionsEnum.values.where((e) => e.name == value).firstOrNull
+            : providerFilter.currentFilter?.condition,
+        style: filterType == FilterTypes.style
+            ? Enum$StyleEnum.values.where((e) => e.name == value).firstOrNull
+            : providerFilter.currentFilter?.style,
+        category: filterType == FilterTypes.category
+            ? int.tryParse(ref
+                .watch(categoryProvider)
+                .valueOrNull
+                ?.where((e) => e.name == value)
+                .firstOrNull
+                ?.id)
+            : providerFilter.currentFilter?.category);
+
+    providerFilter.updateFilter(updatedFilter!);
+
+    // Invalidate the provider to trigger a rebuild
+    ref.invalidate(filteredProductProvider);
+  }
+
+  void clearFilter() {
+    state = {};
+    ref.invalidate(filteredProductProvider);
+  }
+}
+
+void ShowFilteredProductFilterModal(
+    BuildContext context, FilterTypes filterType, WidgetRef ref) {
+  final filterNotifier = ref.watch(productFilterProvider.notifier);
+
+  final filterOptions = {
+    FilterTypes.size: Enum$SizeEnum.values
+        .where((e) => e != Enum$SizeEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.style: Enum$StyleEnum.values
+        .where((e) => e != Enum$StyleEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.brand:
+        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.category:
+        ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.condition:
+        ConditionsEnum.values.map((e) => e.simpleName).toList(),
+    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
+  };
+  String? selectedOptions = ref.read(productFilterProvider)[filterType];
+
+  VBottomSheetComponent.customBottomSheet(
+    removeSidePadding: true,
+    context: context,
+    child: StatefulBuilder(builder: (context, setState) {
+      return Consumer(
+          builder: (context, ref, _) => ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 500,
+                  // minHeight: 250,
+                ),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: filterOptions[filterType]!
+                      .map((e) => PreluraCheckBox(
+                          isChecked: selectedOptions == e,
+                          onChanged: (value) {
+                            filterNotifier.updateFilter(filterType, e);
+                            setState(() {
+                              selectedOptions = e;
+                            });
+
+                            Navigator.pop(context);
+                          },
+                          title: e.replaceAll("_", " ")))
+                      .toList(),
+                ),
+              ));
+    }),
+  );
 }

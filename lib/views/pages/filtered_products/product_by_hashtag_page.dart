@@ -12,6 +12,7 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../widgets/filters_options.dart';
 import 'product_by_filters.dart';
 import '../sell_item/brand_view.dart' as brands_view;
 
@@ -93,6 +94,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             setState(() {});
                           },
                         ),
+                        FiltersOptions(),
                         12.verticalSpacing,
                       ],
                     ),
