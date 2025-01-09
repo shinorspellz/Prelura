@@ -16,6 +16,7 @@ import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/brand_text_widget.dart';
 import '../../../widgets/custom_widget.dart';
 import '../../../widgets/price_field.dart';
+import 'offer_product_card.dart';
 
 class BuyerOfferCard extends ConsumerStatefulWidget {
   const BuyerOfferCard({super.key});
@@ -39,54 +40,6 @@ class _BuyerOfferCardState extends ConsumerState<BuyerOfferCard> {
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: PreluraIcons.mugShot,
-                  height: 16.h,
-                  width: 30.w,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) {
-                    return ShimmerBox(
-                      height: 25.h,
-                      width: 30.w,
-                    );
-                  },
-                  fadeInDuration: Duration.zero,
-                  fadeOutDuration: Duration.zero,
-                ),
-              ),
-              16.horizontalSpacing,
-              Container(
-                width: 40.w,
-                height: 16.h,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      capitalizeEachWord("Liverpool FC Football Club"),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis, // Truncate text
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.w600, fontSize: 16),
-                    ),
-                    12.verticalSpacing,
-                    const Spacer(),
-                    BrandTextWidget(
-                      brand: Brand(name: "Nike", id: 0),
-                      customBrand: null,
-                      fontSize: 16,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
           20.verticalSpacing,
           AppButton(
             width: double.infinity,
@@ -96,6 +49,7 @@ class _BuyerOfferCardState extends ConsumerState<BuyerOfferCard> {
             text: "Declined",
           ),
           24.verticalSpacing,
+          OfferProductCard(),
           Row(
             children: [
               Expanded(

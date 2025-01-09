@@ -18,6 +18,7 @@ import '../../../widgets/brand_text_widget.dart';
 import '../../../widgets/custom_widget.dart';
 import '../../../widgets/profile_picture.dart';
 import '../../../widgets/show_animated_dialog.dart';
+import 'offer_product_card.dart';
 
 class OfferCard extends ConsumerStatefulWidget {
   const OfferCard({super.key});
@@ -74,59 +75,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
             ],
           ),
           12.verticalSpacing,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  errorWidget: (context, url, error) => Container(
-                    color: PreluraColors.grey,
-                    height: 25.h,
-                    width: 30.w,
-                  ),
-                  imageUrl: PreluraIcons.mugShot,
-                  height: 16.h,
-                  width: 30.w,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) {
-                    return ShimmerBox(
-                      height: 25.h,
-                      width: 30.w,
-                    );
-                  },
-                  fadeInDuration: Duration.zero,
-                  fadeOutDuration: Duration.zero,
-                ),
-              ),
-              16.horizontalSpacing,
-              Container(
-                width: 40.w,
-                height: 16.h,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      capitalizeEachWord("Liverpool FC Football Club"),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis, // Truncate text
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.w600, fontSize: 16),
-                    ),
-                    12.verticalSpacing,
-                    const Spacer(),
-                    BrandTextWidget(
-                      brand: Brand(name: "Nike", id: 0),
-                      customBrand: null,
-                      fontSize: 16,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          OfferProductCard(),
           20.verticalSpacing,
           if (isAccepted) ...[
             AppButton(
