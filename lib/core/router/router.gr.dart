@@ -71,7 +71,7 @@ import 'package:prelura_app/views/pages/profile_details_copy/view/profile_detail
     as _i60;
 import 'package:prelura_app/views/pages/profile_navigation_screen.dart' as _i43;
 import 'package:prelura_app/views/pages/recently_viewed_product.dart' as _i45;
-import 'package:prelura_app/views/pages/search_screen.dart' as _i48;
+import 'package:prelura_app/views/pages/search/search_screen.dart' as _i48;
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart' as _i7;
 import 'package:prelura_app/views/pages/sell_item/category_view.dart' as _i8;
 import 'package:prelura_app/views/pages/sell_item/color_selector_view.dart'

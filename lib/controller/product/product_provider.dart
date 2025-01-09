@@ -1,15 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/controller/product/brands_provider.dart';
-import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
@@ -31,6 +29,7 @@ final searchProductProvider =
   final repo = ref.watch(productRepo);
   final filters = ref.watch(searchFilterProvider);
 
+  log("::::You called the filter :::");
   final brandFilter = filters.entries
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull

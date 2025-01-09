@@ -1,25 +1,23 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
+import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/res/logs.dart';
+import 'package:prelura_app/views/pages/search/search_helper_box.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
+import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/res/logs.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../core/graphql/__generated/schema.graphql.dart';
-import '../../core/router/router.gr.dart';
-import '../../res/colors.dart';
-import '../../res/utils.dart';
-import 'search_result/view/search_result.dart';
+import '../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../core/router/router.gr.dart';
+import '../../../res/colors.dart';
+import '../../../res/utils.dart';
 
 final activeSearchProvider = StateProvider<bool>((ref) => false);
 
@@ -30,6 +28,7 @@ class SearchScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(activeSearchProvider);
+    final showProducts = ref.watch(showSearchProducts);
     return SafeArea(
       child: Stack(
         children: [
@@ -312,7 +311,7 @@ class SearchScreen extends ConsumerWidget {
                     ],
                   ),
                 ] else ...[
-                  LiveSearchPage()
+                  if (!showProducts) SearchHelperBox() else LiveSearchPage(),
                 ]
               ],
             ),
@@ -324,6 +323,7 @@ class SearchScreen extends ConsumerWidget {
                 hintText: "Search for items or members",
                 obscureText: false,
                 shouldReadOnly: false,
+                controller: ref.read(searchTextController),
                 onFocused: (val) {
                   ref.read(activeSearchProvider.notifier).state = val;
                 },
@@ -336,6 +336,8 @@ class SearchScreen extends ConsumerWidget {
                 },
                 onCancel: () {
                   ref.read(activeSearchProvider.notifier).state = false;
+                  ref.read(searchTextController.notifier).state.clear();
+                  ref.read(showSearchProducts.notifier).state = false;
                   ref.read(searchFilterProvider.notifier).clearAllFilters();
                 },
                 enabled: true,

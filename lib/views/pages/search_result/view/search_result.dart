@@ -3,29 +3,26 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:prelura_app/views/pages/menu_page.dart';
+import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
+import 'package:prelura_app/views/shimmers/grid_view_animation.dart';
 import 'package:prelura_app/views/shimmers/users_shimer.dart';
-import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/views/widgets/profile_card.dart';
-import 'package:prelura_app/res/colors.dart';
 
-import 'package:prelura_app/res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/card.dart';
-import '../provider/filter_provider.dart';
 import '../provider/search_provider.dart';
 
 final dialogFilterStateProvider =
@@ -45,10 +42,7 @@ enum FilterTypes {
 }
 
 class LiveSearchPage extends ConsumerStatefulWidget {
-  const LiveSearchPage({
-    super.key,
-    this.scrollable = false,
-  });
+  const LiveSearchPage({super.key, this.scrollable = false, e});
   final bool scrollable;
 
   @override
@@ -83,8 +77,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
     // final searchResults = ref.watch(filteredResultsProvider);
     final filters = ref.watch(searchFilterProvider);
     final state = ref.watch(searchFilterProvider.notifier);
-    final query = ref.watch(searchQueryProvider).toLowerCase();
-    final userAsyncValue = ref.watch(searchProductProvider(query));
+    final query = ref.watch(searchTextController.notifier).state;
+    final userAsyncValue = ref.watch(searchProductProvider(query.text));
     final user = ref.watch(userProvider).valueOrNull;
 
     return DefaultTabController(
@@ -201,7 +195,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
           SizedBox(
             height: MediaQuery.sizeOf(context).height / 1.58,
             child: TabBarView(controller: _tabController, children: [
-              if (query.isEmpty)
+              if (query.text.isEmpty)
                 ref
                     .watch(
                         userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT))
@@ -254,7 +248,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
 
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ref.watch(searchUserProvider(query)).maybeWhen(
+                  child: ref.watch(searchUserProvider(query.text)).maybeWhen(
                         orElse: () => ListView.separated(
                           itemCount: 20,
                           separatorBuilder: (_, index) => 8.verticalSpacing,
@@ -287,8 +281,10 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                           username: users[index].username));
                                     }
                                   },
-                                  child: ProfileCardWidget(
-                                    user: users[index],
+                                  child: AnimatedGridItem(
+                                    child: ProfileCardWidget(
+                                      user: users[index],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -301,34 +297,37 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
   }
 }
 
-void ShowFilterModal(
-    BuildContext context, FilterTypes filterType, WidgetRef ref) {
-  final filterNotifier = ref.watch(searchFilterProvider.notifier);
-  // final List<String> selectedOptions =
-  //     ref.watch(searchFilterProvider)[filterType] ?? [];
-  // final tempSelections = [...selectedOptions];
-  // print(tempSelections);
+  void _showFilterModal(
+      BuildContext context, FilterTypes filterType, WidgetRef ref) {
+    final filterNotifier = ref.watch(searchFilterProvider.notifier);
+    // final List<String> selectedOptions =
+    //     ref.watch(searchFilterProvider)[filterType] ?? [];
+    // final tempSelections = [...selectedOptions];
+    // print(tempSelections);
 
-  final filterOptions = {
-    FilterTypes.size: Enum$SizeEnum.values
-        .where((e) => e != Enum$SizeEnum.$unknown)
-        .map((e) => e.name)
-        .toList(),
-    FilterTypes.style: Enum$StyleEnum.values
-        .where((e) => e != Enum$StyleEnum.$unknown)
-        .map((e) => e.name)
-        .toList(),
-    FilterTypes.brand:
-        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
-            [],
-    FilterTypes.category:
-        ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
-            [],
-    FilterTypes.condition:
-        ConditionsEnum.values.map((e) => e.simpleName).toList(),
-    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
-  };
-  String? selectedOptions = ref.read(searchFilterProvider)[filterType];
+    final filterOptions = {
+      FilterTypes.size: Enum$SizeEnum.values
+          .where((e) => e != Enum$SizeEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.style: Enum$StyleEnum.values
+          .where((e) => e != Enum$StyleEnum.$unknown)
+          .map((e) => e.name)
+          .toList(),
+      FilterTypes.brand:
+          ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+              [],
+      FilterTypes.category: ref
+              .watch(categoryProvider)
+              .valueOrNull
+              ?.map((e) => e.name)
+              .toList() ??
+          [],
+      FilterTypes.condition:
+          ConditionsEnum.values.map((e) => e.simpleName).toList(),
+      // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
+    };
+    String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
   VBottomSheetComponent.customBottomSheet(
     removeSidePadding: true,
