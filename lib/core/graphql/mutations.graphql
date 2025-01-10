@@ -270,6 +270,14 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
   }
 }
 
+mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: Float) {
+  respondToOffer(action: $action, offerId: $offerId, offerPrice: $offerPrice) {
+    message
+    success
+  }
+}
+
+
 mutation DeleteConversation($conversationId: Int!) {
   deleteConversation(conversationId: $conversationId) {
     message

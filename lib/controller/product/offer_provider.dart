@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
@@ -78,6 +79,43 @@ class OfferNotifier extends StateNotifier<OfferState> {
       });
     } on Exception catch (e) {
       print('Error creating offer: $e');
+      updateOfferState({
+        "processingType": "createOffer",
+      });
+      // return false;
+    }
+  }
+
+  respondToOffer(
+    BuildContext context, {
+    required int offerId,
+    double? offerPrice,
+    required Enum$OfferActionEnum actionType,
+  }) async {
+    try {
+      updateOfferState({
+        "processingType": "respondToOffer",
+        "isProcessing": true,
+      });
+      final Mutation$RespondToOffer$respondToOffer? res =
+          await offerRepo.respondToOffer(
+        offerId: offerId,
+        offerPrice: offerPrice,
+        actionType: actionType,
+      );
+      if (res != null && res.success!) {
+        context.alert('Offer ${actionType.name} successfully');
+      } else {
+        context.alert(res?.message ?? "Failed to create offer.");
+      }
+      updateOfferState({
+        "processingType": "respondToOffer",
+      });
+    } on Exception catch (e) {
+      print('Error creating offer: $e');
+      updateOfferState({
+        "processingType": "respondToOffer",
+      });
       // return false;
     }
   }

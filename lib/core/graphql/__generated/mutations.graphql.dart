@@ -12925,6 +12925,629 @@ class _CopyWithStubImpl$Mutation$createOffer$createOffer$offer$product$seller<
       _res;
 }
 
+class Variables$Mutation$RespondToOffer {
+  factory Variables$Mutation$RespondToOffer({
+    required Enum$OfferActionEnum action,
+    required int offerId,
+    double? offerPrice,
+  }) =>
+      Variables$Mutation$RespondToOffer._({
+        r'action': action,
+        r'offerId': offerId,
+        if (offerPrice != null) r'offerPrice': offerPrice,
+      });
+
+  Variables$Mutation$RespondToOffer._(this._$data);
+
+  factory Variables$Mutation$RespondToOffer.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$action = data['action'];
+    result$data['action'] = fromJson$Enum$OfferActionEnum((l$action as String));
+    final l$offerId = data['offerId'];
+    result$data['offerId'] = (l$offerId as int);
+    if (data.containsKey('offerPrice')) {
+      final l$offerPrice = data['offerPrice'];
+      result$data['offerPrice'] = (l$offerPrice as num?)?.toDouble();
+    }
+    return Variables$Mutation$RespondToOffer._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$OfferActionEnum get action => (_$data['action'] as Enum$OfferActionEnum);
+
+  int get offerId => (_$data['offerId'] as int);
+
+  double? get offerPrice => (_$data['offerPrice'] as double?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$action = action;
+    result$data['action'] = toJson$Enum$OfferActionEnum(l$action);
+    final l$offerId = offerId;
+    result$data['offerId'] = l$offerId;
+    if (_$data.containsKey('offerPrice')) {
+      final l$offerPrice = offerPrice;
+      result$data['offerPrice'] = l$offerPrice;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$RespondToOffer<Variables$Mutation$RespondToOffer>
+      get copyWith => CopyWith$Variables$Mutation$RespondToOffer(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$RespondToOffer ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$action = action;
+    final lOther$action = other.action;
+    if (l$action != lOther$action) {
+      return false;
+    }
+    final l$offerId = offerId;
+    final lOther$offerId = other.offerId;
+    if (l$offerId != lOther$offerId) {
+      return false;
+    }
+    final l$offerPrice = offerPrice;
+    final lOther$offerPrice = other.offerPrice;
+    if (_$data.containsKey('offerPrice') !=
+        other._$data.containsKey('offerPrice')) {
+      return false;
+    }
+    if (l$offerPrice != lOther$offerPrice) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$action = action;
+    final l$offerId = offerId;
+    final l$offerPrice = offerPrice;
+    return Object.hashAll([
+      l$action,
+      l$offerId,
+      _$data.containsKey('offerPrice') ? l$offerPrice : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$RespondToOffer<TRes> {
+  factory CopyWith$Variables$Mutation$RespondToOffer(
+    Variables$Mutation$RespondToOffer instance,
+    TRes Function(Variables$Mutation$RespondToOffer) then,
+  ) = _CopyWithImpl$Variables$Mutation$RespondToOffer;
+
+  factory CopyWith$Variables$Mutation$RespondToOffer.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$RespondToOffer;
+
+  TRes call({
+    Enum$OfferActionEnum? action,
+    int? offerId,
+    double? offerPrice,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$RespondToOffer<TRes>
+    implements CopyWith$Variables$Mutation$RespondToOffer<TRes> {
+  _CopyWithImpl$Variables$Mutation$RespondToOffer(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$RespondToOffer _instance;
+
+  final TRes Function(Variables$Mutation$RespondToOffer) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? action = _undefined,
+    Object? offerId = _undefined,
+    Object? offerPrice = _undefined,
+  }) =>
+      _then(Variables$Mutation$RespondToOffer._({
+        ..._instance._$data,
+        if (action != _undefined && action != null)
+          'action': (action as Enum$OfferActionEnum),
+        if (offerId != _undefined && offerId != null)
+          'offerId': (offerId as int),
+        if (offerPrice != _undefined) 'offerPrice': (offerPrice as double?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$RespondToOffer<TRes>
+    implements CopyWith$Variables$Mutation$RespondToOffer<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$RespondToOffer(this._res);
+
+  TRes _res;
+
+  call({
+    Enum$OfferActionEnum? action,
+    int? offerId,
+    double? offerPrice,
+  }) =>
+      _res;
+}
+
+class Mutation$RespondToOffer {
+  Mutation$RespondToOffer({
+    this.respondToOffer,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$RespondToOffer.fromJson(Map<String, dynamic> json) {
+    final l$respondToOffer = json['respondToOffer'];
+    final l$$__typename = json['__typename'];
+    return Mutation$RespondToOffer(
+      respondToOffer: l$respondToOffer == null
+          ? null
+          : Mutation$RespondToOffer$respondToOffer.fromJson(
+              (l$respondToOffer as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$RespondToOffer$respondToOffer? respondToOffer;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$respondToOffer = respondToOffer;
+    _resultData['respondToOffer'] = l$respondToOffer?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$respondToOffer = respondToOffer;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$respondToOffer,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$RespondToOffer || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$respondToOffer = respondToOffer;
+    final lOther$respondToOffer = other.respondToOffer;
+    if (l$respondToOffer != lOther$respondToOffer) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RespondToOffer on Mutation$RespondToOffer {
+  CopyWith$Mutation$RespondToOffer<Mutation$RespondToOffer> get copyWith =>
+      CopyWith$Mutation$RespondToOffer(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$RespondToOffer<TRes> {
+  factory CopyWith$Mutation$RespondToOffer(
+    Mutation$RespondToOffer instance,
+    TRes Function(Mutation$RespondToOffer) then,
+  ) = _CopyWithImpl$Mutation$RespondToOffer;
+
+  factory CopyWith$Mutation$RespondToOffer.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RespondToOffer;
+
+  TRes call({
+    Mutation$RespondToOffer$respondToOffer? respondToOffer,
+    String? $__typename,
+  });
+  CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> get respondToOffer;
+}
+
+class _CopyWithImpl$Mutation$RespondToOffer<TRes>
+    implements CopyWith$Mutation$RespondToOffer<TRes> {
+  _CopyWithImpl$Mutation$RespondToOffer(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$RespondToOffer _instance;
+
+  final TRes Function(Mutation$RespondToOffer) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? respondToOffer = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$RespondToOffer(
+        respondToOffer: respondToOffer == _undefined
+            ? _instance.respondToOffer
+            : (respondToOffer as Mutation$RespondToOffer$respondToOffer?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> get respondToOffer {
+    final local$respondToOffer = _instance.respondToOffer;
+    return local$respondToOffer == null
+        ? CopyWith$Mutation$RespondToOffer$respondToOffer.stub(_then(_instance))
+        : CopyWith$Mutation$RespondToOffer$respondToOffer(
+            local$respondToOffer, (e) => call(respondToOffer: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$RespondToOffer<TRes>
+    implements CopyWith$Mutation$RespondToOffer<TRes> {
+  _CopyWithStubImpl$Mutation$RespondToOffer(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$RespondToOffer$respondToOffer? respondToOffer,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> get respondToOffer =>
+      CopyWith$Mutation$RespondToOffer$respondToOffer.stub(_res);
+}
+
+const documentNodeMutationRespondToOffer = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'RespondToOffer'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'action')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'OfferActionEnum'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offerId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'offerPrice')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Float'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'respondToOffer'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'action'),
+            value: VariableNode(name: NameNode(value: 'action')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'offerId'),
+            value: VariableNode(name: NameNode(value: 'offerId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'offerPrice'),
+            value: VariableNode(name: NameNode(value: 'offerPrice')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$RespondToOffer _parserFn$Mutation$RespondToOffer(
+        Map<String, dynamic> data) =>
+    Mutation$RespondToOffer.fromJson(data);
+typedef OnMutationCompleted$Mutation$RespondToOffer = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$RespondToOffer?,
+);
+
+class Options$Mutation$RespondToOffer
+    extends graphql.MutationOptions<Mutation$RespondToOffer> {
+  Options$Mutation$RespondToOffer({
+    String? operationName,
+    required Variables$Mutation$RespondToOffer variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RespondToOffer? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$RespondToOffer? onCompleted,
+    graphql.OnMutationUpdate<Mutation$RespondToOffer>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$RespondToOffer(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationRespondToOffer,
+          parserFn: _parserFn$Mutation$RespondToOffer,
+        );
+
+  final OnMutationCompleted$Mutation$RespondToOffer? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$RespondToOffer
+    extends graphql.WatchQueryOptions<Mutation$RespondToOffer> {
+  WatchOptions$Mutation$RespondToOffer({
+    String? operationName,
+    required Variables$Mutation$RespondToOffer variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$RespondToOffer? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationRespondToOffer,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$RespondToOffer,
+        );
+}
+
+extension ClientExtension$Mutation$RespondToOffer on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$RespondToOffer>> mutate$RespondToOffer(
+          Options$Mutation$RespondToOffer options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$RespondToOffer> watchMutation$RespondToOffer(
+          WatchOptions$Mutation$RespondToOffer options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$RespondToOffer$respondToOffer {
+  Mutation$RespondToOffer$respondToOffer({
+    this.message,
+    this.success,
+    this.$__typename = 'RespondToOffer',
+  });
+
+  factory Mutation$RespondToOffer$respondToOffer.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$RespondToOffer$respondToOffer(
+      message: (l$message as String?),
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$RespondToOffer$respondToOffer ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$RespondToOffer$respondToOffer
+    on Mutation$RespondToOffer$respondToOffer {
+  CopyWith$Mutation$RespondToOffer$respondToOffer<
+          Mutation$RespondToOffer$respondToOffer>
+      get copyWith => CopyWith$Mutation$RespondToOffer$respondToOffer(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> {
+  factory CopyWith$Mutation$RespondToOffer$respondToOffer(
+    Mutation$RespondToOffer$respondToOffer instance,
+    TRes Function(Mutation$RespondToOffer$respondToOffer) then,
+  ) = _CopyWithImpl$Mutation$RespondToOffer$respondToOffer;
+
+  factory CopyWith$Mutation$RespondToOffer$respondToOffer.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer;
+
+  TRes call({
+    String? message,
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer<TRes>
+    implements CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> {
+  _CopyWithImpl$Mutation$RespondToOffer$respondToOffer(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$RespondToOffer$respondToOffer _instance;
+
+  final TRes Function(Mutation$RespondToOffer$respondToOffer) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$RespondToOffer$respondToOffer(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer<TRes>
+    implements CopyWith$Mutation$RespondToOffer$respondToOffer<TRes> {
+  _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Mutation$DeleteConversation {
   factory Variables$Mutation$DeleteConversation(
           {required int conversationId}) =>
