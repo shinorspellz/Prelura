@@ -176,7 +176,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   delegate: StaticSliverDelegate(
                       child: Container(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -195,7 +195,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             setState(() {});
                           },
                         ),
-                        addVerticalSpacing(12),
+                        addVerticalSpacing(9),
                         _buildTabs(
                             ref, selectedTab, context, searchQuery, controller)
                       ],

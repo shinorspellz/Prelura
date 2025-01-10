@@ -35,5 +35,4 @@ final userSearchHistoryProvider =
 
   final result = await repo.userSearchHistory(type);
   return result;
-  // return [];
 });
