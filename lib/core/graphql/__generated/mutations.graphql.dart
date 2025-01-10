@@ -11058,6 +11058,617 @@ class _CopyWithStubImpl$Mutation$DeleteMessage$deleteMessage<TRes>
       _res;
 }
 
+class Variables$Mutation$DeleteSearchHistory {
+  factory Variables$Mutation$DeleteSearchHistory({
+    String? searchId,
+    bool? clearAll,
+  }) =>
+      Variables$Mutation$DeleteSearchHistory._({
+        if (searchId != null) r'searchId': searchId,
+        if (clearAll != null) r'clearAll': clearAll,
+      });
+
+  Variables$Mutation$DeleteSearchHistory._(this._$data);
+
+  factory Variables$Mutation$DeleteSearchHistory.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('searchId')) {
+      final l$searchId = data['searchId'];
+      result$data['searchId'] = (l$searchId as String?);
+    }
+    if (data.containsKey('clearAll')) {
+      final l$clearAll = data['clearAll'];
+      result$data['clearAll'] = (l$clearAll as bool?);
+    }
+    return Variables$Mutation$DeleteSearchHistory._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get searchId => (_$data['searchId'] as String?);
+
+  bool? get clearAll => (_$data['clearAll'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('searchId')) {
+      final l$searchId = searchId;
+      result$data['searchId'] = l$searchId;
+    }
+    if (_$data.containsKey('clearAll')) {
+      final l$clearAll = clearAll;
+      result$data['clearAll'] = l$clearAll;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$DeleteSearchHistory<
+          Variables$Mutation$DeleteSearchHistory>
+      get copyWith => CopyWith$Variables$Mutation$DeleteSearchHistory(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$DeleteSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$searchId = searchId;
+    final lOther$searchId = other.searchId;
+    if (_$data.containsKey('searchId') !=
+        other._$data.containsKey('searchId')) {
+      return false;
+    }
+    if (l$searchId != lOther$searchId) {
+      return false;
+    }
+    final l$clearAll = clearAll;
+    final lOther$clearAll = other.clearAll;
+    if (_$data.containsKey('clearAll') !=
+        other._$data.containsKey('clearAll')) {
+      return false;
+    }
+    if (l$clearAll != lOther$clearAll) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$searchId = searchId;
+    final l$clearAll = clearAll;
+    return Object.hashAll([
+      _$data.containsKey('searchId') ? l$searchId : const {},
+      _$data.containsKey('clearAll') ? l$clearAll : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$DeleteSearchHistory<TRes> {
+  factory CopyWith$Variables$Mutation$DeleteSearchHistory(
+    Variables$Mutation$DeleteSearchHistory instance,
+    TRes Function(Variables$Mutation$DeleteSearchHistory) then,
+  ) = _CopyWithImpl$Variables$Mutation$DeleteSearchHistory;
+
+  factory CopyWith$Variables$Mutation$DeleteSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$DeleteSearchHistory;
+
+  TRes call({
+    String? searchId,
+    bool? clearAll,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$DeleteSearchHistory<TRes>
+    implements CopyWith$Variables$Mutation$DeleteSearchHistory<TRes> {
+  _CopyWithImpl$Variables$Mutation$DeleteSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$DeleteSearchHistory _instance;
+
+  final TRes Function(Variables$Mutation$DeleteSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? searchId = _undefined,
+    Object? clearAll = _undefined,
+  }) =>
+      _then(Variables$Mutation$DeleteSearchHistory._({
+        ..._instance._$data,
+        if (searchId != _undefined) 'searchId': (searchId as String?),
+        if (clearAll != _undefined) 'clearAll': (clearAll as bool?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$DeleteSearchHistory<TRes>
+    implements CopyWith$Variables$Mutation$DeleteSearchHistory<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$DeleteSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    String? searchId,
+    bool? clearAll,
+  }) =>
+      _res;
+}
+
+class Mutation$DeleteSearchHistory {
+  Mutation$DeleteSearchHistory({
+    this.deleteSearchHistory,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeleteSearchHistory.fromJson(Map<String, dynamic> json) {
+    final l$deleteSearchHistory = json['deleteSearchHistory'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteSearchHistory(
+      deleteSearchHistory: l$deleteSearchHistory == null
+          ? null
+          : Mutation$DeleteSearchHistory$deleteSearchHistory.fromJson(
+              (l$deleteSearchHistory as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeleteSearchHistory$deleteSearchHistory? deleteSearchHistory;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deleteSearchHistory = deleteSearchHistory;
+    _resultData['deleteSearchHistory'] = l$deleteSearchHistory?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deleteSearchHistory = deleteSearchHistory;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deleteSearchHistory,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deleteSearchHistory = deleteSearchHistory;
+    final lOther$deleteSearchHistory = other.deleteSearchHistory;
+    if (l$deleteSearchHistory != lOther$deleteSearchHistory) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteSearchHistory
+    on Mutation$DeleteSearchHistory {
+  CopyWith$Mutation$DeleteSearchHistory<Mutation$DeleteSearchHistory>
+      get copyWith => CopyWith$Mutation$DeleteSearchHistory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteSearchHistory<TRes> {
+  factory CopyWith$Mutation$DeleteSearchHistory(
+    Mutation$DeleteSearchHistory instance,
+    TRes Function(Mutation$DeleteSearchHistory) then,
+  ) = _CopyWithImpl$Mutation$DeleteSearchHistory;
+
+  factory CopyWith$Mutation$DeleteSearchHistory.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteSearchHistory;
+
+  TRes call({
+    Mutation$DeleteSearchHistory$deleteSearchHistory? deleteSearchHistory,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes>
+      get deleteSearchHistory;
+}
+
+class _CopyWithImpl$Mutation$DeleteSearchHistory<TRes>
+    implements CopyWith$Mutation$DeleteSearchHistory<TRes> {
+  _CopyWithImpl$Mutation$DeleteSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteSearchHistory _instance;
+
+  final TRes Function(Mutation$DeleteSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deleteSearchHistory = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteSearchHistory(
+        deleteSearchHistory: deleteSearchHistory == _undefined
+            ? _instance.deleteSearchHistory
+            : (deleteSearchHistory
+                as Mutation$DeleteSearchHistory$deleteSearchHistory?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes>
+      get deleteSearchHistory {
+    final local$deleteSearchHistory = _instance.deleteSearchHistory;
+    return local$deleteSearchHistory == null
+        ? CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory.stub(
+            _then(_instance))
+        : CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory(
+            local$deleteSearchHistory, (e) => call(deleteSearchHistory: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeleteSearchHistory<TRes>
+    implements CopyWith$Mutation$DeleteSearchHistory<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeleteSearchHistory$deleteSearchHistory? deleteSearchHistory,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes>
+      get deleteSearchHistory =>
+          CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory.stub(_res);
+}
+
+const documentNodeMutationDeleteSearchHistory = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeleteSearchHistory'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'searchId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'clearAll')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deleteSearchHistory'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'searchId'),
+            value: VariableNode(name: NameNode(value: 'searchId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'clearAll'),
+            value: VariableNode(name: NameNode(value: 'clearAll')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'message'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeleteSearchHistory _parserFn$Mutation$DeleteSearchHistory(
+        Map<String, dynamic> data) =>
+    Mutation$DeleteSearchHistory.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeleteSearchHistory = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$DeleteSearchHistory?,
+);
+
+class Options$Mutation$DeleteSearchHistory
+    extends graphql.MutationOptions<Mutation$DeleteSearchHistory> {
+  Options$Mutation$DeleteSearchHistory({
+    String? operationName,
+    Variables$Mutation$DeleteSearchHistory? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteSearchHistory? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeleteSearchHistory? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeleteSearchHistory>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeleteSearchHistory(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeleteSearchHistory,
+          parserFn: _parserFn$Mutation$DeleteSearchHistory,
+        );
+
+  final OnMutationCompleted$Mutation$DeleteSearchHistory? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeleteSearchHistory
+    extends graphql.WatchQueryOptions<Mutation$DeleteSearchHistory> {
+  WatchOptions$Mutation$DeleteSearchHistory({
+    String? operationName,
+    Variables$Mutation$DeleteSearchHistory? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeleteSearchHistory? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeleteSearchHistory,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeleteSearchHistory,
+        );
+}
+
+extension ClientExtension$Mutation$DeleteSearchHistory
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeleteSearchHistory>>
+      mutate$DeleteSearchHistory(
+              [Options$Mutation$DeleteSearchHistory? options]) async =>
+          await this.mutate(options ?? Options$Mutation$DeleteSearchHistory());
+  graphql.ObservableQuery<Mutation$DeleteSearchHistory>
+      watchMutation$DeleteSearchHistory(
+              [WatchOptions$Mutation$DeleteSearchHistory? options]) =>
+          this.watchMutation(
+              options ?? WatchOptions$Mutation$DeleteSearchHistory());
+}
+
+class Mutation$DeleteSearchHistory$deleteSearchHistory {
+  Mutation$DeleteSearchHistory$deleteSearchHistory({
+    this.message,
+    this.success,
+    this.$__typename = 'DeleteSearchHistory',
+  });
+
+  factory Mutation$DeleteSearchHistory$deleteSearchHistory.fromJson(
+      Map<String, dynamic> json) {
+    final l$message = json['message'];
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeleteSearchHistory$deleteSearchHistory(
+      message: (l$message as String?),
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? message;
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$message = message;
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$message,
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeleteSearchHistory$deleteSearchHistory ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeleteSearchHistory$deleteSearchHistory
+    on Mutation$DeleteSearchHistory$deleteSearchHistory {
+  CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<
+          Mutation$DeleteSearchHistory$deleteSearchHistory>
+      get copyWith => CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes> {
+  factory CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory(
+    Mutation$DeleteSearchHistory$deleteSearchHistory instance,
+    TRes Function(Mutation$DeleteSearchHistory$deleteSearchHistory) then,
+  ) = _CopyWithImpl$Mutation$DeleteSearchHistory$deleteSearchHistory;
+
+  factory CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$DeleteSearchHistory$deleteSearchHistory;
+
+  TRes call({
+    String? message,
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes>
+    implements CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes> {
+  _CopyWithImpl$Mutation$DeleteSearchHistory$deleteSearchHistory(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeleteSearchHistory$deleteSearchHistory _instance;
+
+  final TRes Function(Mutation$DeleteSearchHistory$deleteSearchHistory) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? message = _undefined,
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeleteSearchHistory$deleteSearchHistory(
+        message:
+            message == _undefined ? _instance.message : (message as String?),
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes>
+    implements CopyWith$Mutation$DeleteSearchHistory$deleteSearchHistory<TRes> {
+  _CopyWithStubImpl$Mutation$DeleteSearchHistory$deleteSearchHistory(this._res);
+
+  TRes _res;
+
+  call({
+    String? message,
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Mutation$DeleteConversation {
   factory Variables$Mutation$DeleteConversation(
           {required int conversationId}) =>

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
@@ -52,8 +53,19 @@ class SearchHistoryRepo {
 
     log("::::You called update search ::::${response.userSearchHistory!.length}");
     return response.userSearchHistory!;
-    // .map((
-    // e) => SearchHistoryModel.fromJson(e!.toJson()))
-    // .toList();
+  }
+
+  Future<bool> deleteSearchHistory(String? searchId, bool? clearSearch) async {
+    final response = await _client.executeGraphQL(
+        operation: ClientOperation(
+      (cl) =>
+          cl.mutate$DeleteSearchHistory(Options$Mutation$DeleteSearchHistory(
+        variables: Variables$Mutation$DeleteSearchHistory(
+            searchId: searchId, clearAll: clearSearch),
+      )),
+    ));
+
+    log("::::You called update search ::::${response.deleteSearchHistory!.success}");
+    return response.deleteSearchHistory?.success ?? false;
   }
 }

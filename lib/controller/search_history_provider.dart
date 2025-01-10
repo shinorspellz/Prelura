@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -36,3 +38,28 @@ final userSearchHistoryProvider =
   final result = await repo.userSearchHistory(type);
   return result;
 });
+
+final deleteUserSearchHistoryProvider =
+    FutureProvider.family<bool, DeleteHistoryParams>((ref, params) async {
+  final repo = ref.watch(searchHistoryRepo);
+
+  final result =
+      await repo.deleteSearchHistory(params.searchId, params.clearAll);
+  log("::::The delete response ::: $result");
+  if (result) {
+    log("::::The delete response2 ::: $result");
+    ref.invalidate(
+      userSearchHistoryProvider(
+        Enum$SearchTypeEnum.PRODUCT,
+      ),
+    );
+  }
+  return result;
+});
+
+class DeleteHistoryParams {
+  final String? searchId;
+  final bool? clearAll;
+
+  DeleteHistoryParams({this.searchId, this.clearAll});
+}

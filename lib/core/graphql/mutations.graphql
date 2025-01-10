@@ -244,6 +244,13 @@ mutation DeleteMessage($messageId: Int!) {
   }
 }
 
+mutation DeleteSearchHistory($searchId: ID, $clearAll: Boolean) {
+  deleteSearchHistory(searchId: $searchId, clearAll: $clearAll) {
+    message
+    success
+  }
+}
+
 mutation DeleteConversation($conversationId: Int!) {
   deleteConversation(conversationId: $conversationId) {
     message

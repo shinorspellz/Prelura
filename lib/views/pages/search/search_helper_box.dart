@@ -16,7 +16,7 @@ class SearchHelperBox extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final searchHistoryCount = useState(0);
+    final ValueNotifier<int> searchHistoryCount = useState(0);
     useEffect(() {
       log("::::You called used 0");
       WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
@@ -75,6 +75,7 @@ class SearchHelperBox extends HookConsumerWidget {
                 itemBuilder: (context, index) {
                   return SearchHintItemBox(
                     label: searches[index].query,
+                    id: searches[index].id.toString(),
                   );
                 },
               );
@@ -120,11 +121,13 @@ class SearchHelperBox extends HookConsumerWidget {
 
 class SearchHintItemBox extends ConsumerWidget {
   final String label;
+  final String? id;
   final bool showCloseIcon;
   final Function? onClose;
   const SearchHintItemBox({
     super.key,
     required this.label,
+    this.id,
     this.showCloseIcon = true,
     this.onClose,
   });
@@ -157,12 +160,21 @@ class SearchHintItemBox extends ConsumerWidget {
                 ),
               ),
               if (showCloseIcon)
-                SvgPicture.asset(
-                  "assets/icons/CloseIcon.svg",
-                  height: 20,
-                  colorFilter: ColorFilter.mode(
-                    PreluraColors.greyColor,
-                    BlendMode.srcIn,
+                GestureDetector(
+                  onTap: () async {
+                    final res = ref.watch(deleteUserSearchHistoryProvider(
+                      DeleteHistoryParams(
+                        searchId: id,
+                      ),
+                    ));
+                  },
+                  child: SvgPicture.asset(
+                    "assets/icons/CloseIcon.svg",
+                    height: 20,
+                    colorFilter: ColorFilter.mode(
+                      PreluraColors.greyColor,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 )
             ]),
