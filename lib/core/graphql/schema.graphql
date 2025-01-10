@@ -176,7 +176,7 @@ type CreateChat {
 type CreateOffer {
   success: Boolean
   message: String
-  offer: OfferType
+  data: OfferReturnType
 }
 
 type CreateOrder {
@@ -612,6 +612,11 @@ enum OfferActionEnum {
   ACCEPT
   REJECT
   COUNTER
+}
+
+type OfferReturnType {
+  offer: OfferType
+  conversationId: Int
 }
 
 type OfferType {

@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
@@ -40,6 +42,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
     // Update the state
     state = state.copyWith(
       isProcessing: data['isProcessing'] ?? state.isProcessing,
+      offerState: data['offerState'] ?? state.offerState,
       processingTypes: updatedProcessingType,
     );
     log('After Update: ${state.processingTypes}');
@@ -64,19 +67,25 @@ class OfferNotifier extends StateNotifier<OfferState> {
       if (res != null && res.success!) {
         context.alert('Offer created successfully');
         //Navigating to the chat room
-        Mutation$createOffer$createOffer$offer$product$seller? userInfo =
-            res.offer!.product.seller;
-        // context.router.push(ChatRoute(
-        //   id: ,
-        //   username: userInfo?.username ?? "",
-        //   avatarUrl: userInfo?.thumbnailUrl ?? "",
-        // ));
+        final Mutation$createOffer$createOffer$data$offer$product$seller?
+            userInfo = res.data!.offer!.product.seller;
+        context.router.replace(ChatRoute(
+          id: res.data!.conversationId.toString(),
+          username: userInfo?.username ?? "",
+          avatarUrl: userInfo?.thumbnailUrl ?? "",
+        ));
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }
       updateOfferState({
         "processingType": "createOffer",
       });
+    } on OfferException catch (e) {
+      log('Offer exception: $e');
+      updateOfferState({
+        "processingType": "createOffer",
+      });
+      context.alert(e.message);
     } on Exception catch (e) {
       print('Error creating offer: $e');
       updateOfferState({
@@ -105,12 +114,19 @@ class OfferNotifier extends StateNotifier<OfferState> {
       );
       if (res != null && res.success!) {
         context.alert('Offer ${actionType.name} successfully');
+        updateOfferState({"offerState": actionType.name});
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }
       updateOfferState({
         "processingType": "respondToOffer",
       });
+    } on OfferException catch (e) {
+      log('Offer exception: $e');
+      updateOfferState({
+        "processingType": "respondToOffer",
+      });
+      context.alert(e.message);
     } on Exception catch (e) {
       print('Error creating offer: $e');
       updateOfferState({
@@ -128,20 +144,21 @@ final offerProvider = StateNotifierProvider<OfferNotifier, OfferState>((ref) {
 
 class OfferState {
   final bool isProcessing;
+  final String? offerState;
   final Set<String> processingTypes;
 
   OfferState({
     required this.isProcessing,
     required this.processingTypes,
+    this.offerState,
   });
 
-  OfferState copyWith({
-    bool? isProcessing,
-    Set<String>? processingTypes,
-  }) {
+  OfferState copyWith(
+      {bool? isProcessing, Set<String>? processingTypes, String? offerState}) {
     return OfferState(
       isProcessing: isProcessing ?? this.isProcessing,
       processingTypes: processingTypes ?? this.processingTypes,
+      offerState: offerState ?? this.offerState,
     );
   }
 }

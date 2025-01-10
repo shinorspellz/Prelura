@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -43,6 +44,9 @@ class _OfferCardState extends ConsumerState<OfferCard> {
 
   @override
   Widget build(BuildContext context) {
+    final offerState = ref.watch(offerProvider);
+    isAccepted = offerState.offerState == "Accepted";
+    isDeclined = offerState.offerState == "Declined";
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(

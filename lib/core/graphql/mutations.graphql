@@ -255,15 +255,18 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
   createOffer(offerPrice: $offerPrice, productId: $productId, message: $message) {
     message
     success
-    offer{
-      id
-      product {
-        seller {
-          id
-          username
-          displayName
-          profilePictureUrl
-          thumbnailUrl
+    data{
+      conversationId
+      offer{
+        id
+        product {
+          seller {
+            id
+            username
+            displayName
+            profilePictureUrl
+            thumbnailUrl
+          }
         }
       }
     }
