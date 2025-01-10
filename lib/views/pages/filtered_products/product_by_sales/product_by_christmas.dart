@@ -2,12 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
+import '../../../widgets/filters_options.dart';
 import '../../../widgets/gap.dart';
 import '../../sell_item/brand_view.dart';
 
@@ -22,7 +24,8 @@ class ChristmasFilteredProductScreen extends ConsumerStatefulWidget {
   _ProductFilterPageState createState() => _ProductFilterPageState();
 }
 
-class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScreen> {
+class _ProductFilterPageState
+    extends ConsumerState<ChristmasFilteredProductScreen> {
   final controller = ChristmasFilteredProductScreen.scrollController;
 
   @override
@@ -36,7 +39,7 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery)).notifier).fetchMoreData();
+        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
       }
     });
   }
@@ -54,14 +57,21 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
-          appbarTitle: widget.style.name.replaceAll('_', ' ').split(' ').map((word) => word.isNotEmpty ? word[0].toUpperCase() + word.substring(1).toLowerCase() : '').join(' ')),
+          appbarTitle: widget.style.name
+              .replaceAll('_', ' ')
+              .split(' ')
+              .map((word) => word.isNotEmpty
+                  ? word[0].toUpperCase() + word.substring(1).toLowerCase()
+                  : '')
+              .join(' ')),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery)).future);
+          await ref.refresh(filteredProductProvider(searchQuery).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -75,7 +85,8 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,6 +105,9 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
                             setState(() {});
                           },
                         ),
+                        FiltersOptions(
+                          excludedFilterTypes: [FilterTypes.style],
+                        ),
                         addVerticalSpacing(12),
                       ],
                     ),
@@ -101,7 +115,7 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery))).when(
+                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
                       data: (products) {
                         if (products.isEmpty) {
                           return SliverToBoxAdapter(
@@ -117,7 +131,8 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
                           );
                         }
                         return SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -152,8 +167,12 @@ class _ProductFilterPageState extends ConsumerState<ChristmasFilteredProductScre
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
-                if (ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery)).notifier).canLoadMore())
-                  if (!ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery))).isLoading)
+                if (ref
+                    .watch(filteredProductProvider(searchQuery).notifier)
+                    .canLoadMore())
+                  if (!ref
+                      .watch(filteredProductProvider(searchQuery))
+                      .isLoading)
                     const SliverToBoxAdapter(
                       child: PaginationLoadingIndicator(),
                     )
@@ -178,7 +197,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

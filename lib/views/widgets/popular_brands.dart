@@ -95,89 +95,87 @@ class PopularBrands extends ConsumerWidget {
             //     ))
 
             data: (brands) {
-          return ref
-              .watch(filteredProductProvider((
-                Input$ProductFiltersInput(brand: brands[startIndex].id),
-                ""
-              )))
-              .when(
-                  data: (products) {
-                    return Column(
-                      children: [
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
-                        sectionTitle(
-                          brands[startIndex].name,
-                          "",
-                          context,
-                          onTap: () => context.pushRoute(ProductsByBrandRoute(
-                              title: brands[startIndex].name,
-                              id: (brands[startIndex].id).toInt())),
+          return ref.watch(filteredProductProvider("")).when(
+              data: (products) {
+                return Column(
+                  children: [
+                    Divider(thickness: 1, color: PreluraColors.primaryColor),
+                    sectionTitle(
+                      brands[startIndex].name,
+                      "",
+                      context,
+                      onTap: () {
+                        ref
+                                .read(selectedFilteredProductProvider.notifier)
+                                .state =
+                            Input$ProductFiltersInput(
+                                brand: brands[startIndex].id);
+                        context.pushRoute(ProductsByBrandRoute(
+                            title: brands[startIndex].name,
+                            id: (brands[startIndex].id).toInt()));
+                      },
+                    ),
+                    AspectRatio(
+                      aspectRatio: 1.0,
+                      // height: 320,
+                      // width: MediaQuery.sizeOf(context).width,
+                      child: ListView.separated(
+                        padding: EdgeInsets.only(left: 15),
+                        scrollDirection: Axis.horizontal,
+                        separatorBuilder: (context, index) =>
+                            10.horizontalSpacing,
+                        itemBuilder: (context, index) => SizedBox(
+                          width: 180,
+                          child: ProductCard(product: products[index]),
                         ),
-                        AspectRatio(
-                          aspectRatio: 1.0,
-                          // height: 320,
-                          // width: MediaQuery.sizeOf(context).width,
-                          child: ListView.separated(
-                            padding: EdgeInsets.only(left: 15),
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder: (context, index) =>
-                                10.horizontalSpacing,
-                            itemBuilder: (context, index) => SizedBox(
-                              width: 180,
-                              child: ProductCard(product: products[index]),
-                            ),
-                            itemCount: products.length,
-                          ),
-                        ),
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
-                        16.verticalSpacing,
-                      ],
-                    );
-                  },
-                  loading: () => Column(children: [
-                        16.verticalSpacing,
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 16),
-                            child: CustomShimmer(
-                                child: Container(
-                                    height: 40,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      // color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
+                        itemCount: products.length,
+                      ),
+                    ),
+                    Divider(thickness: 1, color: PreluraColors.primaryColor),
+                    16.verticalSpacing,
+                  ],
+                );
+              },
+              loading: () => Column(children: [
+                    16.verticalSpacing,
+                    Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16),
+                        child: CustomShimmer(
+                            child: Container(
+                                height: 40,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  // color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: 50,
-                                          width: 150,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                        16.horizontalSpacing,
-                                        Container(
-                                          height: 40,
-                                          width: 60,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                      ],
-                                    ))))
-                      ]),
-                  error: (Object error, StackTrace stackTrace) {
-                    return Container();
-                  });
+                                    16.horizontalSpacing,
+                                    Container(
+                                      height: 40,
+                                      width: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ],
+                                ))))
+                  ]),
+              error: (Object error, StackTrace stackTrace) {
+                return Container();
+              });
         }),
       ),
     );

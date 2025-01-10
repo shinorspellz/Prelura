@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/res/context_entension.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../res/colors.dart';
@@ -93,7 +94,7 @@ class UserPopularBrand extends ConsumerWidget {
                                         },
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 10),
+                                              horizontal: 10, vertical: 10),
                                           decoration: BoxDecoration(
                                               color: context.isDarkMode
                                                   ? PreluraColors.activeColor
@@ -106,16 +107,26 @@ class UserPopularBrand extends ConsumerWidget {
                                                   color:
                                                       PreluraColors.activeColor,
                                                   width: 1)),
-                                          child: Text(
-                                            brand?.name ?? "",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(
-                                                    fontSize: getDefaultSize(),
-                                                    color: PreluraColors.white,
-                                                    fontWeight:
-                                                        FontWeight.w700),
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.check,
+                                                  size: 18,
+                                                  color: PreluraColors.white),
+                                              6.horizontalSpacing,
+                                              Text(
+                                                brand?.name ?? "",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.copyWith(
+                                                        fontSize:
+                                                            getDefaultSize(),
+                                                        color:
+                                                            PreluraColors.white,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),

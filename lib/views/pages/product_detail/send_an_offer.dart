@@ -48,7 +48,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
 
       if (inputText.isNotEmpty && inputPrice != 0.0) {
         if (inputPrice < (maxPrice * 0.6)) {
-          errorMessage = "Offer to low. Try again";
+          errorMessage = "Offer to low.";
           // textController.text = maxPrice.toStringAsFixed(2);
           // textController.selection = TextSelection.fromPosition(
           //   TextPosition(offset: textController.text.length),

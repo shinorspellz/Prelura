@@ -23,7 +23,8 @@ class PartyFilteredProductScreen extends ConsumerStatefulWidget {
   _ProductFilterPageState createState() => _ProductFilterPageState();
 }
 
-class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> {
+class _ProductFilterPageState
+    extends ConsumerState<PartyFilteredProductScreen> {
   final controller = PartyFilteredProductScreen.scrollController;
 
   @override
@@ -54,7 +55,8 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -76,7 +78,8 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,17 +108,27 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
                   sliver: ref.watch(allProductProvider(searchQuery)).when(
                       data: (products) {
                         final filteredProducts = products
-                            .where((product) => product.style?.name?.toLowerCase().contains("party") ?? false) // Safely check for "party"
+                            .where((product) =>
+                                product.style?.name
+                                    ?.toLowerCase()
+                                    .contains("party") ??
+                                false) // Safely check for "party"
                             .toList();
 
                         if (filteredProducts.isEmpty) {
+                          ref
+                              .read(allProductProvider(searchQuery).notifier)
+                              .fetchMoreData();
                           return SliverToBoxAdapter(
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.7,
                               child: Center(
                                 child: Text(
                                   "No products found",
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
                                         fontSize: getDefaultSize(),
                                       ),
                                 ),
@@ -124,7 +137,8 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
                           );
                         }
                         return SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -132,7 +146,8 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
                           ),
                           itemCount: filteredProducts.length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: filteredProducts[index]);
+                            return ProductCard(
+                                product: filteredProducts[index]);
                           },
                         );
                       },
@@ -159,7 +174,9 @@ class _ProductFilterPageState extends ConsumerState<PartyFilteredProductScreen> 
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
-                if (ref.watch(allProductProvider(searchQuery).notifier).canLoadMore())
+                if (ref
+                    .watch(allProductProvider(searchQuery).notifier)
+                    .canLoadMore())
                   if (!ref.watch(allProductProvider(searchQuery)).isLoading)
                     const SliverToBoxAdapter(
                       child: PaginationLoadingIndicator(),
@@ -185,7 +202,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

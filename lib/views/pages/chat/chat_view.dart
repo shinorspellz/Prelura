@@ -243,7 +243,7 @@ class RecieverTextWidget extends StatelessWidget {
             maxWidth: MediaQuery.sizeOf(context).width / 1.4,
           ),
           decoration: BoxDecoration(
-            border: Border.all(color: PreluraColors.grey, width: 1),
+            // border: Border.all(color: PreluraColors.grey, width: 1),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
@@ -296,7 +296,7 @@ class SenderTextWidget extends ConsumerWidget {
             maxWidth: MediaQuery.sizeOf(context).width / 1.4,
           ),
           decoration: BoxDecoration(
-            border: Border.all(color: PreluraColors.grey, width: 1),
+            // border: Border.all(color: PreluraColors.grey, width: 1),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(

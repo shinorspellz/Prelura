@@ -22,7 +22,8 @@ class VintageFilteredProductScreen extends ConsumerStatefulWidget {
   _ProductFilterPageState createState() => _ProductFilterPageState();
 }
 
-class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen> {
+class _ProductFilterPageState
+    extends ConsumerState<VintageFilteredProductScreen> {
   final controller = VintageFilteredProductScreen.scrollController;
 
   @override
@@ -36,7 +37,7 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery)).notifier).fetchMoreData();
+        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
       }
     });
   }
@@ -54,19 +55,15 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
           appbarTitle: widget.style.name),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider((
-            Input$ProductFiltersInput(
-              style: widget.style,
-            ),
-            searchQuery
-          )).future);
+          await ref.refresh(filteredProductProvider(searchQuery).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -80,7 +77,8 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,12 +102,13 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery))).maybeWhen(
+                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         sliver: SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -117,7 +116,8 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
                           ),
                           itemCount: products.take(6).length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: products.take(6).toList()[index]);
+                            return ProductCard(
+                                product: products.take(6).toList()[index]);
                           },
                         ),
                       ),
@@ -125,12 +125,14 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
                     ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery))).when(
+                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
                       data: (products) {
-                        if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                        if (products.length < 6)
+                          return SliverToBoxAdapter(child: Container());
                         final clippedProducts = products.sublist(6);
                         return SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -165,8 +167,12 @@ class _ProductFilterPageState extends ConsumerState<VintageFilteredProductScreen
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
-                if (ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery)).notifier).canLoadMore())
-                  if (!ref.watch(filteredProductProvider((Input$ProductFiltersInput(style: widget.style), searchQuery))).isLoading)
+                if (ref
+                    .watch(filteredProductProvider(searchQuery).notifier)
+                    .canLoadMore())
+                  if (!ref
+                      .watch(filteredProductProvider(searchQuery))
+                      .isLoading)
                     const SliverToBoxAdapter(
                       child: PaginationLoadingIndicator(),
                     )
@@ -191,7 +197,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

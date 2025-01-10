@@ -550,13 +550,16 @@ class _AllProductController
   }
 }
 
-final filteredProductProvider = AsyncNotifierProvider.family.autoDispose<
-    FilteredProductController,
-    List<ProductModel>,
-    (Input$ProductFiltersInput, String)>(FilteredProductController.new);
+final selectedFilteredProductProvider =
+    StateProvider<Input$ProductFiltersInput>(
+        (ref) => Input$ProductFiltersInput());
 
-class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
-    List<ProductModel>, (Input$ProductFiltersInput, String)> {
+final filteredProductProvider = AsyncNotifierProvider.family
+    .autoDispose<FilteredProductController, List<ProductModel>, String?>(
+        FilteredProductController.new);
+
+class FilteredProductController
+    extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
 
   final int _pageCount = 15;
@@ -569,18 +572,19 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
   Input$ProductFiltersInput? get currentFilter => _filter;
 
   @override
-  Future<List<ProductModel>> build(
-      (Input$ProductFiltersInput, String) arg) async {
-    final (filter, query) = arg;
+  Future<List<ProductModel>> build(String? query) async {
     state = const AsyncLoading();
     _currentPage = 1;
-    _filter = filter;
+    _filter = ref.read(selectedFilteredProductProvider);
     _query = query;
+    log(_filter!.toJson().toString(),
+        name: ' filteredProducts filter in build');
+
     // updateFilter(filter);
 
     try {
       return await _getProducts(
-        filter: filter,
+        filter: ref.watch(selectedFilteredProductProvider),
         pageNumber: _currentPage,
         query: query,
       );
@@ -590,9 +594,21 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     }
   }
 
-  void updateFilter(Input$ProductFiltersInput updatedFilter) {
+  void updateFilter(Input$ProductFiltersInput updatedFilter) async {
     _filter = updatedFilter;
-    ref.invalidateSelf();
+    log(_filter!.toJson().toString(),
+        name: ' filteredProducts filter in update ');
+    log(updatedFilter.toJson().toString(),
+        name: ' filteredProducts updated filter');
+    try {
+      final response = await _getProducts(
+        filter: _filter,
+        pageNumber: _currentPage,
+        query: _query,
+      );
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+    }
   }
 
   Future<List<ProductModel>> _getProducts({
@@ -601,6 +617,10 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     String? query,
   }) async {
     try {
+      log(_filter!.toJson().toString(),
+          name: ' filteredProducts _filter in get function');
+      log(filter!.toJson().toString(),
+          name: ' filteredProducts filter in get function');
       final result = await _repository.getAllProducts(
         pageCount: _pageCount,
         pageNumber: pageNumber,
