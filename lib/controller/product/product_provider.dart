@@ -576,7 +576,7 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     _currentPage = 1;
     _filter = filter;
     _query = query;
-    updateFilter(filter);
+    // updateFilter(filter);
 
     try {
       return await _getProducts(

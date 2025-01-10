@@ -94,7 +94,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             setState(() {});
                           },
                         ),
-                        FiltersOptions(),
+                        // FiltersOptions(),
                         12.verticalSpacing,
                       ],
                     ),
