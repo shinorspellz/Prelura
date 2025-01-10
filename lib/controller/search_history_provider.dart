@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -36,8 +34,6 @@ final userSearchHistoryProvider =
   final repo = ref.watch(searchHistoryRepo);
 
   final result = await repo.userSearchHistory(type);
-
-  log(":::You called the search history provider:::: ${result.length}");
   return result;
   // return [];
 });

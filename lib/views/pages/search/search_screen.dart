@@ -328,11 +328,15 @@ class SearchScreen extends ConsumerWidget {
                   ref.read(activeSearchProvider.notifier).state = val;
                 },
                 onChanged: (value) {
-                  // if (value.isEmpty) return;
                   ref.read(activeSearchProvider.notifier).state = true;
 
-                  // ref.read(searchQueryProvider.notifier).state = value;
                   ref.read(searchHistoryQueryProvider.notifier).state = value;
+
+                  if (ref.read(showSearchProducts) == true) {
+                    ref
+                        .read(searchFilterProvider.notifier)
+                        .updateFilter(FilterTypes.category, value);
+                  }
                 },
                 onCancel: () {
                   ref.read(activeSearchProvider.notifier).state = false;
@@ -397,27 +401,27 @@ class SearchScreen extends ConsumerWidget {
     );
   }
 
-  Widget _brandButtons(String title, context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration: BoxDecoration(
-          color: PreluraColors.activeColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w700,
-                fontSize: getDefaultSize(),
-              ),
-        ),
-      ),
-    );
-  }
+  // Widget _brandButtons(String title, context) {
+  //   return GestureDetector(
+  //     onTap: () {},
+  //     child: Container(
+  //       width: double.infinity,
+  //       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+  //       decoration: BoxDecoration(
+  //         color: PreluraColors.activeColor.withOpacity(0.1),
+  //         borderRadius: BorderRadius.circular(10),
+  //       ),
+  //       child: Text(
+  //         title,
+  //         textAlign: TextAlign.center,
+  //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+  //               fontWeight: FontWeight.w700,
+  //               fontSize: getDefaultSize(),
+  //             ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildPromoBanner(String title, String imagePath,
       {required Function() onTap}) {
@@ -443,50 +447,50 @@ class SearchScreen extends ConsumerWidget {
   }
 }
 
-Widget _buildSectionTitle(
-    String MainTitle, String subtitle, BuildContext context,
-    {VoidCallback? onTap}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          MainTitle,
-          textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
-        ),
-        const SizedBox(
-          height: 1,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              subtitle,
-              textAlign: TextAlign.left,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall
-                  ?.copyWith(color: PreluraColors.greyColor),
-            ),
-            GestureDetector(
-              onTap: onTap,
-              child: Text("See All",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: PreluraColors.primaryColor)),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
-    ),
-  );
-}
+// Widget _buildSectionTitle(
+//     String MainTitle, String subtitle, BuildContext context,
+//     {VoidCallback? onTap}) {
+//   return Padding(
+//     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//     child: Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           MainTitle,
+//           textAlign: TextAlign.left,
+//           style: Theme.of(context)
+//               .textTheme
+//               .bodyLarge
+//               ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+//         ),
+//         const SizedBox(
+//           height: 1,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Text(
+//               subtitle,
+//               textAlign: TextAlign.left,
+//               style: Theme.of(context)
+//                   .textTheme
+//                   .bodySmall
+//                   ?.copyWith(color: PreluraColors.greyColor),
+//             ),
+//             GestureDetector(
+//               onTap: onTap,
+//               child: Text("See All",
+//                   style: Theme.of(context)
+//                       .textTheme
+//                       .bodySmall
+//                       ?.copyWith(color: PreluraColors.primaryColor)),
+//             )
+//           ],
+//         ),
+//         const SizedBox(
+//           height: 10,
+//         ),
+//       ],
+//     ),
+//   );
+// }

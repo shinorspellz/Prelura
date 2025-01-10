@@ -232,8 +232,10 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                   ),
                                   itemCount: data.length,
                                   itemBuilder: (context, index) {
-                                    return ProductCard(
-                                      product: data[index],
+                                    return AnimatedGridItem(
+                                      child: ProductCard(
+                                        product: data[index],
+                                      ),
                                     );
                                   },
                                 ),

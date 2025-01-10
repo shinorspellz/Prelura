@@ -49,7 +49,7 @@ class SearchHelperBox extends ConsumerWidget {
         if (searchQuery?.isEmpty ?? true)
           searchHistories.when(
             data: (searches) {
-              log(":::The data length is ${searches.length}");
+              // log(":::The data length is ${searches.length}");
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
