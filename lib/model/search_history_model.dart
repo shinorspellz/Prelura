@@ -8,11 +8,12 @@ class SearchHistoryModel with _$SearchHistoryModel {
   const factory SearchHistoryModel({
     required String id,
     required String query,
-    required DateTime dateTime,
+    required DateTime timeline,
     required String searchType,
     required String searchCount,
     required DateTime lastSearched,
   }) = _SearchHistoryModel;
 
-  factory SearchHistoryModel.fromJson(Map<String, dynamic> json) => _$SearchHistoryModelFromJson(json);
+  factory SearchHistoryModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchHistoryModelFromJson(json);
 }

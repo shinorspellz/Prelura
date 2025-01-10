@@ -22,7 +22,7 @@ SearchHistoryModel _$SearchHistoryModelFromJson(Map<String, dynamic> json) {
 mixin _$SearchHistoryModel {
   String get id => throw _privateConstructorUsedError;
   String get query => throw _privateConstructorUsedError;
-  DateTime get dateTime => throw _privateConstructorUsedError;
+  DateTime get timeline => throw _privateConstructorUsedError;
   String get searchType => throw _privateConstructorUsedError;
   String get searchCount => throw _privateConstructorUsedError;
   DateTime get lastSearched => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $SearchHistoryModelCopyWith<$Res> {
   $Res call(
       {String id,
       String query,
-      DateTime dateTime,
+      DateTime timeline,
       String searchType,
       String searchCount,
       DateTime lastSearched});
@@ -69,7 +69,7 @@ class _$SearchHistoryModelCopyWithImpl<$Res, $Val extends SearchHistoryModel>
   $Res call({
     Object? id = null,
     Object? query = null,
-    Object? dateTime = null,
+    Object? timeline = null,
     Object? searchType = null,
     Object? searchCount = null,
     Object? lastSearched = null,
@@ -83,9 +83,9 @@ class _$SearchHistoryModelCopyWithImpl<$Res, $Val extends SearchHistoryModel>
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      timeline: null == timeline
+          ? _value.timeline
+          : timeline // ignore: cast_nullable_to_non_nullable
               as DateTime,
       searchType: null == searchType
           ? _value.searchType
@@ -114,7 +114,7 @@ abstract class _$$SearchHistoryModelImplCopyWith<$Res>
   $Res call(
       {String id,
       String query,
-      DateTime dateTime,
+      DateTime timeline,
       String searchType,
       String searchCount,
       DateTime lastSearched});
@@ -135,7 +135,7 @@ class __$$SearchHistoryModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? query = null,
-    Object? dateTime = null,
+    Object? timeline = null,
     Object? searchType = null,
     Object? searchCount = null,
     Object? lastSearched = null,
@@ -149,9 +149,9 @@ class __$$SearchHistoryModelImplCopyWithImpl<$Res>
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      timeline: null == timeline
+          ? _value.timeline
+          : timeline // ignore: cast_nullable_to_non_nullable
               as DateTime,
       searchType: null == searchType
           ? _value.searchType
@@ -175,7 +175,7 @@ class _$SearchHistoryModelImpl implements _SearchHistoryModel {
   const _$SearchHistoryModelImpl(
       {required this.id,
       required this.query,
-      required this.dateTime,
+      required this.timeline,
       required this.searchType,
       required this.searchCount,
       required this.lastSearched});
@@ -188,7 +188,7 @@ class _$SearchHistoryModelImpl implements _SearchHistoryModel {
   @override
   final String query;
   @override
-  final DateTime dateTime;
+  final DateTime timeline;
   @override
   final String searchType;
   @override
@@ -198,7 +198,7 @@ class _$SearchHistoryModelImpl implements _SearchHistoryModel {
 
   @override
   String toString() {
-    return 'SearchHistoryModel(id: $id, query: $query, dateTime: $dateTime, searchType: $searchType, searchCount: $searchCount, lastSearched: $lastSearched)';
+    return 'SearchHistoryModel(id: $id, query: $query, timeline: $timeline, searchType: $searchType, searchCount: $searchCount, lastSearched: $lastSearched)';
   }
 
   @override
@@ -208,8 +208,8 @@ class _$SearchHistoryModelImpl implements _SearchHistoryModel {
             other is _$SearchHistoryModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.query, query) || other.query == query) &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime) &&
+            (identical(other.timeline, timeline) ||
+                other.timeline == timeline) &&
             (identical(other.searchType, searchType) ||
                 other.searchType == searchType) &&
             (identical(other.searchCount, searchCount) ||
@@ -221,7 +221,7 @@ class _$SearchHistoryModelImpl implements _SearchHistoryModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, query, dateTime, searchType, searchCount, lastSearched);
+      runtimeType, id, query, timeline, searchType, searchCount, lastSearched);
 
   /// Create a copy of SearchHistoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -244,7 +244,7 @@ abstract class _SearchHistoryModel implements SearchHistoryModel {
   const factory _SearchHistoryModel(
       {required final String id,
       required final String query,
-      required final DateTime dateTime,
+      required final DateTime timeline,
       required final String searchType,
       required final String searchCount,
       required final DateTime lastSearched}) = _$SearchHistoryModelImpl;
@@ -257,7 +257,7 @@ abstract class _SearchHistoryModel implements SearchHistoryModel {
   @override
   String get query;
   @override
-  DateTime get dateTime;
+  DateTime get timeline;
   @override
   String get searchType;
   @override

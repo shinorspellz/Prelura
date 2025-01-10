@@ -159,7 +159,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   delegate: StaticSliverDelegate(
                       child: Container(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
+                        const EdgeInsets.only(top: 15, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,7 +178,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             setState(() {});
                           },
                         ),
-                        addVerticalSpacing(12),
+                        addVerticalSpacing(9),
                         _buildTabs(
                             ref, selectedTab, context, searchQuery, controller)
                       ],
@@ -269,7 +269,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
 
   return Builder(builder: (context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 3, 8, 0),
+      padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(tabs.length, (index) {

@@ -1,20 +1,32 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 
-class SearchHelperBox extends ConsumerWidget {
+class SearchHelperBox extends HookConsumerWidget {
   const SearchHelperBox({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    useEffect(() {
+      log("::::You called used 0");
+      WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+        log("::::You called used 1");
+        ref.invalidate(
+          userSearchHistoryProvider(
+            Enum$SearchTypeEnum.PRODUCT,
+          ),
+        );
+      });
+      return null;
+    }, []);
     final searchHistories = ref.watch(
       userSearchHistoryProvider(
         Enum$SearchTypeEnum.PRODUCT,
@@ -30,35 +42,48 @@ class SearchHelperBox extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
-        if (searchHistories.hasValue)
-          Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {},
-              child: Text(
-                "Clear all",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: PreluraColors.greyColor,
-                ),
-              ),
-            ),
-          ),
-        addVerticalSpacing(10),
         if (searchQuery?.isEmpty ?? true)
           searchHistories.when(
             data: (searches) {
               log(":::The data length is ${searches.length}");
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: searches.take(10).toList().length,
-                itemBuilder: (context, index) {
-                  return SearchHintItemBox(
-                    label: searches[index].query,
-                  );
-                },
+              return Column(
+                children: [
+                  if (searches.length > 0)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          ref.watch(deleteUserSearchHistoryProvider(
+                            DeleteHistoryParams(
+                              clearAll: true,
+                            ),
+                          ));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Clear all",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: PreluraColors.greyColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: searches.take(10).toList().length,
+                    itemBuilder: (context, index) {
+                      return SearchHintItemBox(
+                        label: searches[index].query,
+                        id: searches[index].id.toString(),
+                      );
+                    },
+                  ),
+                ],
               );
             },
             error: (a, b) {
@@ -102,11 +127,13 @@ class SearchHelperBox extends ConsumerWidget {
 
 class SearchHintItemBox extends ConsumerWidget {
   final String label;
+  final String? id;
   final bool showCloseIcon;
   final Function? onClose;
   const SearchHintItemBox({
     super.key,
     required this.label,
+    this.id,
     this.showCloseIcon = true,
     this.onClose,
   });
@@ -139,12 +166,21 @@ class SearchHintItemBox extends ConsumerWidget {
                 ),
               ),
               if (showCloseIcon)
-                SvgPicture.asset(
-                  "assets/icons/CloseIcon.svg",
-                  height: 20,
-                  colorFilter: ColorFilter.mode(
-                    PreluraColors.greyColor,
-                    BlendMode.srcIn,
+                GestureDetector(
+                  onTap: () async {
+                    ref.watch(deleteUserSearchHistoryProvider(
+                      DeleteHistoryParams(
+                        searchId: id,
+                      ),
+                    ));
+                  },
+                  child: SvgPicture.asset(
+                    "assets/icons/CloseIcon.svg",
+                    height: 20,
+                    colorFilter: ColorFilter.mode(
+                      PreluraColors.greyColor,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 )
             ]),
