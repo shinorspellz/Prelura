@@ -251,6 +251,13 @@ mutation DeleteSearchHistory($searchId: ID, $clearAll: Boolean) {
   }
 }
 
+mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
+  createOffer(offerPrice: $offerPrice, productId: $productId, message: $message) {
+    message
+    success
+  }
+}
+
 mutation DeleteConversation($conversationId: Int!) {
   deleteConversation(conversationId: $conversationId) {
     message

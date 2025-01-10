@@ -286,7 +286,7 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
 
   return Builder(builder: (context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 3, 8, 0),
+      padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: List.generate(tabs.length, (index) {
