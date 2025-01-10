@@ -601,7 +601,7 @@ class FilteredProductController
     log(updatedFilter.toJson().toString(),
         name: ' filteredProducts updated filter');
     try {
-      final response = await _getProducts(
+      await _getProducts(
         filter: _filter,
         pageNumber: _currentPage,
         query: _query,

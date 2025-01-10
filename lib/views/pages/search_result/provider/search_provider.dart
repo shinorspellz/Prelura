@@ -262,7 +262,11 @@ void ShowFilteredProductFilterModal(
             FilterTypes.category: ref
                     .watch(categoryProvider)
                     .valueOrNull
-                    ?.map((e) => e.name)
+                    ?.where((e) =>
+                        e.name == "Kids" ||
+                        e.name == "Women" ||
+                        e.name == "Men")
+                    .map((e) => e.name)
                     .toList() ??
                 [],
             FilterTypes.condition:

@@ -191,10 +191,10 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   StaticSliverDelegate({required this.child});
 
   @override
-  double get minExtent => 75.8;
+  double get minExtent => 148.8;
 
   @override
-  double get maxExtent => 75.8;
+  double get maxExtent => 148.8;
 
   @override
   Widget build(
