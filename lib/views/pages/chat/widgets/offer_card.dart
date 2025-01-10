@@ -1,23 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/res/username.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/price_field.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
-import '../../../../res/images.dart';
-import '../../../../res/utils.dart';
-import '../../../shimmers/grid_shimmer.dart';
-import '../../../widgets/brand_text_widget.dart';
 import '../../../widgets/custom_widget.dart';
-import '../../../widgets/profile_picture.dart';
-import '../../../widgets/show_animated_dialog.dart';
 import 'offer_product_card.dart';
 
 class OfferCard extends ConsumerStatefulWidget {
@@ -100,6 +90,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                   child: AppButton(
                     onTap: handleAccept,
                     text: isAccepted ? "Accepted" : "Accept",
+                    textColor: Colors.white,
                     bgColor: isAccepted || isDeclined
                         ? PreluraColors.primaryColor.withOpacity(0.7)
                         : PreluraColors.primaryColor,
@@ -111,6 +102,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                   child: AppButton(
                     onTap: handleDecline,
                     text: isDeclined ? "Declined" : "Decline",
+                    textColor: Colors.white,
                     bgColor: isDeclined || isAccepted
                         ? PreluraColors.primaryColor.withOpacity(0.7)
                         : PreluraColors.primaryColor,
