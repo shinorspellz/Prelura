@@ -36,8 +36,30 @@ final userSearchHistoryProvider =
   final repo = ref.watch(searchHistoryRepo);
 
   final result = await repo.userSearchHistory(type);
-
-  log(":::You called the search history provider:::: ${result.length}");
   return result;
-  // return [];
 });
+
+final deleteUserSearchHistoryProvider =
+    FutureProvider.family<bool, DeleteHistoryParams>((ref, params) async {
+  final repo = ref.watch(searchHistoryRepo);
+
+  final result =
+      await repo.deleteSearchHistory(params.searchId, params.clearAll);
+  log("::::The delete response ::: $result");
+  if (result) {
+    log("::::The delete response2 ::: $result");
+    ref.invalidate(
+      userSearchHistoryProvider(
+        Enum$SearchTypeEnum.PRODUCT,
+      ),
+    );
+  }
+  return result;
+});
+
+class DeleteHistoryParams {
+  final String? searchId;
+  final bool? clearAll;
+
+  DeleteHistoryParams({this.searchId, this.clearAll});
+}

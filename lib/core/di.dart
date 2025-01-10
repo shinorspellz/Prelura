@@ -6,18 +6,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:graphql/client.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
-import 'package:prelura_app/core/network/network.dart';
-import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/network/network.dart';
+import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/repo/auth_repo/auth_repo.dart';
 import 'package:prelura_app/repo/chat_repo/chat_repo.dart';
 import 'package:prelura_app/repo/file_upload_repo.dart';
 import 'package:prelura_app/repo/network_repo.dart';
+import 'package:prelura_app/repo/product/offer_repo.dart';
 import 'package:prelura_app/repo/product/payment_repo.dart';
 import 'package:prelura_app/repo/product/product_repo.dart';
 import 'package:prelura_app/repo/search_repo.dart';
@@ -178,7 +178,8 @@ final hive = FutureProvider((ref) async {
 
 /// Autthentication Repository for any dependency
 final authRepo = Provider(
-  (ref) => AuthRepo(ref.watch(networkClient), ref.watch(hive).requireValue, ref),
+  (ref) =>
+      AuthRepo(ref.watch(networkClient), ref.watch(hive).requireValue, ref),
 );
 
 /// Product Repository for any dependency
@@ -206,6 +207,10 @@ final fileUploadRepo = Provider(
 /// File Media upload repository for any dependency
 final chatRepo = Provider(
   (ref) => ChatRepo(ref.watch(graphqlClient)),
+);
+
+final offerRepoProvider = Provider(
+  (ref) => OfferRepo(ref.watch(graphqlClient)),
 );
 
 final notificationRepo = Provider(

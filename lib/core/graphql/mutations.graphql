@@ -244,6 +244,43 @@ mutation DeleteMessage($messageId: Int!) {
   }
 }
 
+mutation DeleteSearchHistory($searchId: ID, $clearAll: Boolean) {
+  deleteSearchHistory(searchId: $searchId, clearAll: $clearAll) {
+    message
+    success
+  }
+}
+
+mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
+  createOffer(offerPrice: $offerPrice, productId: $productId, message: $message) {
+    message
+    success
+    data{
+      conversationId
+      offer{
+        id
+        product {
+          seller {
+            id
+            username
+            displayName
+            profilePictureUrl
+            thumbnailUrl
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: Float) {
+  respondToOffer(action: $action, offerId: $offerId, offerPrice: $offerPrice) {
+    message
+    success
+  }
+}
+
+
 mutation DeleteConversation($conversationId: Int!) {
   deleteConversation(conversationId: $conversationId) {
     message

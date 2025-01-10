@@ -11,7 +11,7 @@ _$SearchHistoryModelImpl _$$SearchHistoryModelImplFromJson(
     _$SearchHistoryModelImpl(
       id: json['id'] as String,
       query: json['query'] as String,
-      dateTime: DateTime.parse(json['dateTime'] as String),
+      timeline: DateTime.parse(json['timeline'] as String),
       searchType: json['searchType'] as String,
       searchCount: json['searchCount'] as String,
       lastSearched: DateTime.parse(json['lastSearched'] as String),
@@ -22,7 +22,7 @@ Map<String, dynamic> _$$SearchHistoryModelImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'query': instance.query,
-      'dateTime': instance.dateTime.toIso8601String(),
+      'timeline': instance.timeline.toIso8601String(),
       'searchType': instance.searchType,
       'searchCount': instance.searchCount,
       'lastSearched': instance.lastSearched.toIso8601String(),

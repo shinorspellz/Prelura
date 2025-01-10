@@ -16,7 +16,6 @@ import 'package:prelura_app/views/shimmers/users_shimer.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/views/widgets/profile_card.dart';
 
 import '../../../../controller/product/product_provider.dart';
@@ -200,12 +199,24 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                     .watch(
                         userSearchHistoryProvider(Enum$SearchTypeEnum.PRODUCT))
                     .maybeWhen(
-                        data: (prediction) => Column(
-                              children: prediction.map((e) {
-                                return MenuCard(
-                                    title: e.toString(), onTap: () {});
-                              }).toList(),
-                            ),
+                        data: (prediction) {
+                          WidgetsFlutterBinding.ensureInitialized()
+                              .addPostFrameCallback((_) {
+                            ref.read(showSearchProducts.notifier).state = false;
+                            setState(() {});
+                          });
+                          return
+                              // (prediction.isEmpty)
+                              //   ?
+                              SizedBox.shrink()
+                              // : Column(
+                              //     children: prediction.map((e) {
+                              //       return MenuCard(
+                              //           title: e.toString(), onTap: () {});
+                              //     }).toList(),
+                              //   )
+                              ;
+                        },
                         orElse: () => LoadingWidget())
               else
                 userAsyncValue.when(
@@ -232,8 +243,10 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                   ),
                                   itemCount: data.length,
                                   itemBuilder: (context, index) {
-                                    return ProductCard(
-                                      product: data[index],
+                                    return AnimatedGridItem(
+                                      child: ProductCard(
+                                        product: data[index],
+                                      ),
                                     );
                                   },
                                 ),

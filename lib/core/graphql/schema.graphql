@@ -120,13 +120,6 @@ type CategoryTypes {
   subCategory: [SubCategoryType]
 }
 
-type CategoryTypess {
-  id: ID!
-  name: String!
-  parent: CategoryTypess
-  hasChildren: Boolean
-}
-
 type ChangeEmail {
   message: String
 }
@@ -178,6 +171,12 @@ type CreateBanner {
 
 type CreateChat {
   chat: ConversationType
+}
+
+type CreateOffer {
+  success: Boolean
+  message: String
+  data: OfferReturnType
 }
 
 type CreateOrder {
@@ -405,6 +404,8 @@ type Mutation {
   likeProduct(productId: Int!): LikeProduct
   createOrder(productId: Int!, quantity: Int): CreateOrder
   cancelOrder(orderId: Int!): CancelOrder
+  createOffer(message: String, offerPrice: Float!, productId: Int!): CreateOffer
+  respondToOffer(action: OfferActionEnum!, offerId: Int!, offerPrice: Float): RespondToOffer
   login(password: String!, username: String): LoginMutation
   logout: LogoutMutation
   updateProfile(
@@ -444,7 +445,7 @@ type Mutation {
 
   """Verify email address"""
   verifyEmail(code: String!, email: String!): VerifyEmail
-  deleteSearchHistory(clearAll: Boolean = false, searchId: ID!): DeleteSearchHistory
+  deleteSearchHistory(clearAll: Boolean = false, searchId: ID): DeleteSearchHistory
 
   """
   Register user with fields defined in the settings.
@@ -607,6 +608,30 @@ type NotificationType {
   meta: JSONString
 }
 
+enum OfferActionEnum {
+  ACCEPT
+  REJECT
+  COUNTER
+}
+
+type OfferReturnType {
+  offer: OfferType
+  conversationId: Int
+}
+
+type OfferType {
+  id: ID!
+  product: ProductType!
+  buyer: UserNode!
+  offerPrice: Decimal!
+  status: ProductsOfferStatusChoices!
+  message: String
+  expiresAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deleted: Boolean!
+}
+
 type OrderType {
   id: ID!
   user: UserNode
@@ -732,6 +757,24 @@ enum ProductGroupingEnum {
   CATEGORY
   SUB_CATEGORY
   TOP_BRAND
+}
+
+"""An enumeration."""
+enum ProductsOfferStatusChoices {
+  """Pending"""
+  PENDING
+
+  """Accepted"""
+  ACCEPTED
+
+  """Rejected"""
+  REJECTED
+
+  """Counter"""
+  COUNTER
+
+  """Expired"""
+  EXPIRED
 }
 
 """An enumeration."""
@@ -1074,6 +1117,7 @@ type ProductType {
   isFeatured: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
+  offers: [OfferType!]!
   userLiked: Boolean
 }
 
@@ -1216,7 +1260,6 @@ type Query {
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
-  categoriess(parentId: Int): [CategoryTypess]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   popularBrands(top: Int!): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
@@ -1293,6 +1336,11 @@ type ResendActivationEmail {
 }
 
 type ResetPassword {
+  message: String
+}
+
+type RespondToOffer {
+  success: Boolean
   message: String
 }
 
@@ -1531,6 +1579,7 @@ type UserNode implements Node {
   searchhistorySet: [SearchHistoryType!]!
   products: [ProductType!]!
   orderSet: [OrderType!]!
+  madeOffers: [OfferType!]!
   sentNotifications: [NotificationType!]!
   notificationPreferences: NotificationPreferenceType
   participant1: [ConversationType!]!

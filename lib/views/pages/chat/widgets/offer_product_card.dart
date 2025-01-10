@@ -1,14 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/images.dart';
-import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/brand_text_widget.dart';
 
 class OfferProductCard extends ConsumerWidget {
@@ -21,42 +18,47 @@ class OfferProductCard extends ConsumerWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(10),
-          child: CachedNetworkImage(
-            errorWidget: (context, url, error) => Container(
-              color: PreluraColors.grey,
-              height: 25.h,
-              width: 30.w,
-            ),
-            imageUrl: PreluraIcons.mugShot,
-            height: 21.h,
-            width: 30.w,
+          child: Image.asset(
+            PreluraIcons.Image,
+            height: 190,
+            width: 150,
             fit: BoxFit.cover,
-            placeholder: (context, url) {
-              return ShimmerBox(
-                height: 25.h,
-                width: 30.w,
-              );
-            },
-            fadeInDuration: Duration.zero,
-            fadeOutDuration: Duration.zero,
           ),
+
+          // CachedNetworkImage(
+          //   errorWidget: (context, url, error) => Container(
+          //     color: PreluraColors.grey,
+          //     height: 25.h,
+          //     width: 30.w,
+          //   ),
+          //   imageUrl: PreluraIcons.van,
+          //   height: 190,
+          //   width: 150,
+          //   fit: BoxFit.cover,
+          //   placeholder: (context, url) {
+          //     return ShimmerBox(
+          //       height: 25.h,
+          //       width: 30.w,
+          //     );
+          //   },
+          //   fadeInDuration: Duration.zero,
+          //   fadeOutDuration: Duration.zero,
+          // ),
         ),
         16.horizontalSpacing,
-        Container(
-          width: 50.w,
-          height: 21.h,
+        Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                capitalizeEachWord("Liverpool FC Football Club"),
-                maxLines: 1,
+                capitalizeEachWord("Liverpool FC Football Jersey"),
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis, // Truncate text
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(fontWeight: FontWeight.w600, fontSize: 16),
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
               ),
               10.verticalSpacing,
 
@@ -65,7 +67,7 @@ class OfferProductCard extends ConsumerWidget {
                 customBrand: null,
                 fontSize: 16,
               ),
-              10.verticalSpacing,
+              15.verticalSpacing,
               Text(
                 "Size L",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -75,7 +77,7 @@ class OfferProductCard extends ConsumerWidget {
                     ),
               ),
               // if (widget.product.condition != null) ...[
-              10.verticalSpacing,
+              15.verticalSpacing,
 
               Text(
                 "Used but in a good condition",

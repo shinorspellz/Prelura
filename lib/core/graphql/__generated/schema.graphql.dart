@@ -1521,6 +1521,44 @@ Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
   }
 }
 
+enum Enum$OfferActionEnum {
+  ACCEPT,
+  REJECT,
+  COUNTER,
+  $unknown;
+
+  factory Enum$OfferActionEnum.fromJson(String value) =>
+      fromJson$Enum$OfferActionEnum(value);
+
+  String toJson() => toJson$Enum$OfferActionEnum(this);
+}
+
+String toJson$Enum$OfferActionEnum(Enum$OfferActionEnum e) {
+  switch (e) {
+    case Enum$OfferActionEnum.ACCEPT:
+      return r'ACCEPT';
+    case Enum$OfferActionEnum.REJECT:
+      return r'REJECT';
+    case Enum$OfferActionEnum.COUNTER:
+      return r'COUNTER';
+    case Enum$OfferActionEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$OfferActionEnum fromJson$Enum$OfferActionEnum(String value) {
+  switch (value) {
+    case r'ACCEPT':
+      return Enum$OfferActionEnum.ACCEPT;
+    case r'REJECT':
+      return Enum$OfferActionEnum.REJECT;
+    case r'COUNTER':
+      return Enum$OfferActionEnum.COUNTER;
+    default:
+      return Enum$OfferActionEnum.$unknown;
+  }
+}
+
 enum Enum$ParcelSizeEnum {
   SMALL,
   MEDIUM,
@@ -1747,6 +1785,56 @@ Enum$ProductGroupingEnum fromJson$Enum$ProductGroupingEnum(String value) {
       return Enum$ProductGroupingEnum.TOP_BRAND;
     default:
       return Enum$ProductGroupingEnum.$unknown;
+  }
+}
+
+enum Enum$ProductsOfferStatusChoices {
+  PENDING,
+  ACCEPTED,
+  REJECTED,
+  COUNTER,
+  EXPIRED,
+  $unknown;
+
+  factory Enum$ProductsOfferStatusChoices.fromJson(String value) =>
+      fromJson$Enum$ProductsOfferStatusChoices(value);
+
+  String toJson() => toJson$Enum$ProductsOfferStatusChoices(this);
+}
+
+String toJson$Enum$ProductsOfferStatusChoices(
+    Enum$ProductsOfferStatusChoices e) {
+  switch (e) {
+    case Enum$ProductsOfferStatusChoices.PENDING:
+      return r'PENDING';
+    case Enum$ProductsOfferStatusChoices.ACCEPTED:
+      return r'ACCEPTED';
+    case Enum$ProductsOfferStatusChoices.REJECTED:
+      return r'REJECTED';
+    case Enum$ProductsOfferStatusChoices.COUNTER:
+      return r'COUNTER';
+    case Enum$ProductsOfferStatusChoices.EXPIRED:
+      return r'EXPIRED';
+    case Enum$ProductsOfferStatusChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductsOfferStatusChoices fromJson$Enum$ProductsOfferStatusChoices(
+    String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$ProductsOfferStatusChoices.PENDING;
+    case r'ACCEPTED':
+      return Enum$ProductsOfferStatusChoices.ACCEPTED;
+    case r'REJECTED':
+      return Enum$ProductsOfferStatusChoices.REJECTED;
+    case r'COUNTER':
+      return Enum$ProductsOfferStatusChoices.COUNTER;
+    case r'EXPIRED':
+      return Enum$ProductsOfferStatusChoices.EXPIRED;
+    default:
+      return Enum$ProductsOfferStatusChoices.$unknown;
   }
 }
 
