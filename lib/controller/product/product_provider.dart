@@ -566,6 +566,8 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
   Input$ProductFiltersInput? _filter;
   String? _query;
 
+  Input$ProductFiltersInput? get currentFilter => _filter;
+
   @override
   Future<List<ProductModel>> build(
       (Input$ProductFiltersInput, String) arg) async {
@@ -574,6 +576,7 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     _currentPage = 1;
     _filter = filter;
     _query = query;
+    // updateFilter(filter);
 
     try {
       return await _getProducts(
@@ -585,6 +588,11 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
       state = AsyncError(e, stack);
       return [];
     }
+  }
+
+  void updateFilter(Input$ProductFiltersInput updatedFilter) {
+    _filter = updatedFilter;
+    ref.invalidateSelf();
   }
 
   Future<List<ProductModel>> _getProducts({

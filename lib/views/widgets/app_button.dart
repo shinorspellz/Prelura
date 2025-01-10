@@ -51,7 +51,8 @@ class AppButton extends StatelessWidget {
   final bool centerText;
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode =
+        MediaQuery.of(context).platformBrightness == Brightness.dark;
     return GestureDetector(
       onTap: isDisabled
           ? null
@@ -61,15 +62,23 @@ class AppButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          border: Border.all(width: bgColor != null ? 1 : 0, color: bgColor == null ? borderColor ?? Colors.transparent : borderColor),
+          border: Border.all(
+              width: bgColor != null ? 1 : 0,
+              color: bgColor == null
+                  ? borderColor ?? Colors.transparent
+                  : borderColor),
           borderRadius: BorderRadius.circular(8),
-          color: isDisabled ? PreluraColors.activeColor.withOpacity(0.2) : bgColor ?? PreluraColors.activeColor,
+          color: isDisabled
+              ? PreluraColors.activeColor.withOpacity(0.2)
+              : bgColor ?? PreluraColors.activeColor,
         ),
         height: height ?? 40,
         width: width,
         child: loading
             ? LoadingWidget(
-                color: bgColor != null ? PreluraColors.primaryColor : PreluraColors.white,
+                color: bgColor != null
+                    ? PreluraColors.primaryColor
+                    : PreluraColors.white,
               )
             : Row(
                 mainAxisSize: MainAxisSize.min,
@@ -84,7 +93,7 @@ class AppButton extends StatelessWidget {
                       ? Text(
                           text!,
                           style: TextStyle(
-                            fontSize: fontSize ?? 10.sp,
+                            fontSize: fontSize ?? 16,
                             color: textColor ??
                                 (isDarkMode
                                     ? isDisabled
@@ -100,7 +109,7 @@ class AppButton extends StatelessWidget {
                           child: Text(
                             text!,
                             style: TextStyle(
-                              fontSize: fontSize ?? 10.sp,
+                              fontSize: fontSize ?? 16,
                               color: textColor ??
                                   (isDarkMode
                                       ? isDisabled

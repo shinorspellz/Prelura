@@ -7,9 +7,13 @@ class HighlightUserName extends StatelessWidget {
   final String username;
   final String message;
   final bool isRead;
+  final Color? highlightColor;
 
   HighlightUserName(
-      {required this.username, required this.message, required this.isRead});
+      {required this.username,
+      required this.message,
+      required this.isRead,
+      this.highlightColor});
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +47,11 @@ class HighlightUserName extends StatelessWidget {
       spans.add(TextSpan(
         text: message.substring(match.start, match.end),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color:
-                context.isDarkMode ? PreluraColors.white : PreluraColors.black,
+            color: highlightColor != null
+                ? highlightColor
+                : context.isDarkMode
+                    ? PreluraColors.white
+                    : PreluraColors.black,
             fontWeight: FontWeight.w700),
       ));
 

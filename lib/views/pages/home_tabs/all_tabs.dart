@@ -80,7 +80,7 @@ class HomeAllTab extends ConsumerWidget {
                     ? SizedBox.shrink()
                     : Column(
                         children: [
-                          _sectionTitle(
+                          sectionTitle(
                             'Recently viewed ',
                             "",
                             context,
@@ -314,7 +314,7 @@ class HomeAllTab extends ConsumerWidget {
           ),
           Divider(thickness: 1, color: PreluraColors.primaryColor),
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 10, right: 15),
             child: ref.watch(allProductProvider(null)).when(
                   skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
                   data: (products) {
@@ -336,6 +336,7 @@ class HomeAllTab extends ConsumerWidget {
                             // GridView for the current chunk of 10 products
                             GridView.builder(
                               shrinkWrap: true,
+                              padding: const EdgeInsets.only(left: 16),
                               physics: const NeverScrollableScrollPhysics(),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
@@ -354,8 +355,7 @@ class HomeAllTab extends ConsumerWidget {
                             // Popular Brands widget after every 10 products
                             if (chunkIndex < chunkedProducts.length - 1)
                               PopularBrands(
-                                startIndex:
-                                    chunkIndex * 5, // Dynamic start index
+                                startIndex: chunkIndex, // Dynamic start index
                                 limit: 5,
                               ),
                           ],
@@ -437,7 +437,7 @@ Widget _buildSectionTitle(
   );
 }
 
-Widget _sectionTitle(String MainTitle, String subtitle, BuildContext context,
+Widget sectionTitle(String MainTitle, String subtitle, BuildContext context,
     {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),

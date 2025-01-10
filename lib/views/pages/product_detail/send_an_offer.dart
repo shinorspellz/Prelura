@@ -21,46 +21,59 @@ import '../../widgets/app_button.dart';
 import '../../widgets/brand_text_widget.dart';
 
 @RoutePage()
-class SendAnOfferScreen extends ConsumerWidget {
+class SendAnOfferScreen extends ConsumerStatefulWidget {
   const SendAnOfferScreen({super.key, required this.product});
   final ProductModel product;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController textController = TextEditingController();
+  ConsumerState<SendAnOfferScreen> createState() => _SendAnOfferScreenState();
+}
 
-    final double maxPrice = product.discountPrice != null
+class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
+  final TextEditingController textController = TextEditingController();
+  String? errorMessage = null;
+  @override
+  Widget build(BuildContext context) {
+    final double maxPrice = widget.product.discountPrice != null
         ? calculateDiscountedAmount(
-            price: product.price,
-            discount: double.parse(product.discountPrice!).toInt(),
+            price: widget.product.price,
+            discount: double.parse(widget.product.discountPrice!).toInt(),
           )
-        : product.price;
+        : widget.product.price;
 
     textController.addListener(() {
       final inputText = textController.text;
       final inputPrice = double.tryParse(inputText) ?? 0.0;
+      log(inputPrice.toInt().toString());
 
-      // Enforce the limit
-      if (inputPrice > maxPrice) {
-        textController.text = maxPrice.toStringAsFixed(2);
-        textController.selection = TextSelection.fromPosition(
-          TextPosition(offset: textController.text.length),
-        );
+      if (inputText.isNotEmpty && inputPrice != 0.0) {
+        if (inputPrice < (maxPrice * 0.6)) {
+          errorMessage = "Offer to low. Try again";
+          // textController.text = maxPrice.toStringAsFixed(2);
+          // textController.selection = TextSelection.fromPosition(
+          //   TextPosition(offset: textController.text.length),
+          // );
+        }
+        return;
       }
+      if (inputText.isEmpty || inputPrice.toInt() == 0) {
+        errorMessage = null;
+      }
+      // setState(() {});
     });
 
-    final discountedPrice = product.discountPrice != null
+    final discountedPrice = widget.product.discountPrice != null
         ? calculateDiscountedAmount(
-            price: product.price,
-            discount: double.parse(product.discountPrice!).toInt(),
+            price: widget.product.price,
+            discount: double.parse(widget.product.discountPrice!).toInt(),
           )
         : null;
     final fivePercentDiscount = discountedPrice != null
         ? calculateDiscountedAmount(discount: 5, price: discountedPrice)
-        : calculateDiscountedAmount(discount: 5, price: product.price);
+        : calculateDiscountedAmount(discount: 5, price: widget.product.price);
     final tenPercentDiscount = discountedPrice != null
         ? calculateDiscountedAmount(discount: 10, price: discountedPrice)
-        : calculateDiscountedAmount(discount: 10, price: product.price);
+        : calculateDiscountedAmount(discount: 10, price: widget.product.price);
     return Scaffold(
       appBar: PreluraAppBar(
         centerTitle: true,
@@ -80,7 +93,7 @@ class SendAnOfferScreen extends ConsumerWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
-                    imageUrl: product.imagesUrl.first.thumbnail,
+                    imageUrl: widget.product.imagesUrl.first.thumbnail,
                     height: 21.h,
                     width: 35.w,
                     fit: BoxFit.cover,
@@ -102,7 +115,7 @@ class SendAnOfferScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          capitalizeEachWord(product.name),
+                          capitalizeEachWord(widget.product.name),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis, // Truncate text
                           style: Theme.of(context)
@@ -112,16 +125,16 @@ class SendAnOfferScreen extends ConsumerWidget {
                                   fontWeight: FontWeight.w600, fontSize: 18),
                         ),
                         12.verticalSpacing,
-                        if (product.brand != null ||
-                            product.customBrand != null)
+                        if (widget.product.brand != null ||
+                            widget.product.customBrand != null)
                           BrandTextWidget(
-                            brand: product.brand,
-                            customBrand: product.customBrand,
+                            brand: widget.product.brand,
+                            customBrand: widget.product.customBrand,
                             fontSize: 16,
                           ),
                         12.verticalSpacing,
                         Text(
-                          "Size ${product.size?.name ?? ''}",
+                          "Size ${widget.product.size?.name ?? ''}",
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: PreluraColors.grey,
@@ -129,10 +142,10 @@ class SendAnOfferScreen extends ConsumerWidget {
                                     fontSize: getDefaultSize(size: 16),
                                   ),
                         ),
-                        if (product.condition != null) ...[
+                        if (widget.product.condition != null) ...[
                           12.verticalSpacing,
                           Text(
-                            product.condition!.simpleName,
+                            widget.product.condition!.simpleName,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -148,16 +161,17 @@ class SendAnOfferScreen extends ConsumerWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              "£ ${formatDynamicString(product.price.toString())}",
+                              "£ ${formatDynamicString(widget.product.price.toString())}",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
                                   ?.copyWith(
                                     fontSize: getDefaultSize(size: 16),
-                                    decoration: product.discountPrice != null
-                                        ? TextDecoration.lineThrough
-                                        : null,
-                                    color: product.discountPrice != null
+                                    decoration:
+                                        widget.product.discountPrice != null
+                                            ? TextDecoration.lineThrough
+                                            : null,
+                                    color: widget.product.discountPrice != null
                                         ? !context.isDarkMode
                                             ? Colors.grey
                                             : Colors.white30
@@ -166,12 +180,13 @@ class SendAnOfferScreen extends ConsumerWidget {
                                   ),
                             ),
                             4.horizontalSpacing,
-                            if (product.discountPrice != null)
+                            if (widget.product.discountPrice != null)
                               // 10.horizontalSpacing,
                               Text(
                                 "£ ${formatDynamicString(calculateDiscountedAmount(
-                                  price: product.price,
-                                  discount: double.parse(product.discountPrice!)
+                                  price: widget.product.price,
+                                  discount: double.parse(
+                                          widget.product.discountPrice!)
                                       .toInt(),
                                 ).toString())}",
                                 style: Theme.of(context)
@@ -185,7 +200,7 @@ class SendAnOfferScreen extends ConsumerWidget {
                             // ],
 
                             Spacer(),
-                            if (product.discountPrice != null)
+                            if (widget.product.discountPrice != null)
                               Container(
                                 // height: 30,
                                 // width: 50,
@@ -196,7 +211,7 @@ class SendAnOfferScreen extends ConsumerWidget {
                                     horizontal: 10, vertical: 5),
                                 // alignment: Alignment.center,
                                 child: Text(
-                                  ' ${double.parse(product.discountPrice!).toInt()}%',
+                                  ' ${double.parse(widget.product.discountPrice!).toInt()}%',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -274,6 +289,21 @@ class SendAnOfferScreen extends ConsumerWidget {
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     controller: textController,
+                    onChanged: (newValue) {
+                      errorMessage = null;
+                      setState(() {});
+                      // String numericValue =
+                      //     newValue.replaceAll(RegExp(r'[^0-9]'), '');
+
+                      if (newValue.isEmpty) {
+                        textController.text = "0";
+                      } else {
+                        textController.text = newValue.length > 1
+                            ? newValue.replaceFirst(RegExp(r'^0+'), '')
+                            : newValue;
+                      }
+                    },
+                    onSaved: (value) {},
                     minWidth: 78.w,
                     padding: EdgeInsets.symmetric(vertical: 13, horizontal: 16),
                     showPrimaryBorder: true,
@@ -282,6 +312,14 @@ class SendAnOfferScreen extends ConsumerWidget {
                 ),
               ],
             ),
+            10.verticalSpacing,
+            if (errorMessage != null)
+              Text(
+                errorMessage ?? "",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(size: 12),
+                    color: PreluraColors.error),
+              ),
             32.verticalSpacing,
             AppButton(
               height: 50,

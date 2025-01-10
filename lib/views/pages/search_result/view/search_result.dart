@@ -137,7 +137,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                       label: Text(filter.simpleName),
                       onSelected: (isSelected) {
                         // Show filter dialog to select values
-                        _showFilterModal(context, filter, ref);
+                        ShowFilterModal(context, filter, ref);
                       },
                       selected: filters.containsKey(filter),
                     ),
@@ -308,95 +308,92 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
       ),
     );
   }
+}
 
-  void _showFilterModal(
-      BuildContext context, FilterTypes filterType, WidgetRef ref) {
-    final filterNotifier = ref.watch(searchFilterProvider.notifier);
-    // final List<String> selectedOptions =
-    //     ref.watch(searchFilterProvider)[filterType] ?? [];
-    // final tempSelections = [...selectedOptions];
-    // print(tempSelections);
+void ShowFilterModal(
+    BuildContext context, FilterTypes filterType, WidgetRef ref) {
+  final filterNotifier = ref.watch(searchFilterProvider.notifier);
+  // final List<String> selectedOptions =
+  //     ref.watch(searchFilterProvider)[filterType] ?? [];
+  // final tempSelections = [...selectedOptions];
+  // print(tempSelections);
 
-    final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values
-          .where((e) => e != Enum$SizeEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      FilterTypes.style: Enum$StyleEnum.values
-          .where((e) => e != Enum$StyleEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
-      FilterTypes.brand:
-          ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
-              [],
-      FilterTypes.category: ref
-              .watch(categoryProvider)
-              .valueOrNull
-              ?.map((e) => e.name)
-              .toList() ??
-          [],
-      FilterTypes.condition:
-          ConditionsEnum.values.map((e) => e.simpleName).toList(),
-      // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
-    };
-    String? selectedOptions = ref.read(searchFilterProvider)[filterType];
+  final filterOptions = {
+    FilterTypes.size: Enum$SizeEnum.values
+        .where((e) => e != Enum$SizeEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.style: Enum$StyleEnum.values
+        .where((e) => e != Enum$StyleEnum.$unknown)
+        .map((e) => e.name)
+        .toList(),
+    FilterTypes.brand:
+        ref.watch(brandsProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.category:
+        ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
+            [],
+    FilterTypes.condition:
+        ConditionsEnum.values.map((e) => e.simpleName).toList(),
+    // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
+  };
+  String? selectedOptions = ref.read(searchFilterProvider)[filterType];
 
-    VBottomSheetComponent.customBottomSheet(
-      removeSidePadding: true,
-      context: context,
-      child: StatefulBuilder(builder: (context, setState) {
-        return Consumer(
-            builder: (context, ref, _) => ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 500,
-                    // minHeight: 250,
-                  ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: filterOptions[filterType]!
-                        .map((e) => PreluraCheckBox(
-                            isChecked: selectedOptions == e,
-                            onChanged: (value) {
-                              filterNotifier.updateFilter(filterType, e);
-                              setState(() {
-                                selectedOptions = e;
-                              });
+  VBottomSheetComponent.customBottomSheet(
+    removeSidePadding: true,
+    context: context,
+    child: StatefulBuilder(builder: (context, setState) {
+      return Consumer(
+          builder: (context, ref, _) => ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: 500,
+                  // minHeight: 250,
+                ),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: filterOptions[filterType]!
+                      .map((e) => PreluraCheckBox(
+                          isChecked: selectedOptions == e,
+                          onChanged: (value) {
+                            filterNotifier.updateFilter(filterType, e);
+                            setState(() {
+                              selectedOptions = e;
+                            });
 
-                              Navigator.pop(context);
-                            },
-                            title: e.replaceAll("_", " ")))
-                        .toList(),
-                  ),
-                ));
-      }),
-    );
+                            Navigator.pop(context);
+                          },
+                          title: e.replaceAll("_", " ")))
+                      .toList(),
+                ),
+              ));
+    }),
+  );
 
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return Consumer(builder: (context, WidgetRef reff, s) {
-    //         var selectedOptions = List<String>.from(reff.watch(searchFilterProvider)[filterType] ?? []);
+  // showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return Consumer(builder: (context, WidgetRef reff, s) {
+  //         var selectedOptions = List<String>.from(reff.watch(searchFilterProvider)[filterType] ?? []);
 
-    //         return AlertDialog(
-    //             title: Text('Select $filterType'),
-    //             content: SingleChildScrollView(
-    //               child: Column(
-    //                 children: filterOptions[filterType]!.map((option) {
-    //                   return PreluraCheckBox(
-    //                     title: option,
-    //                     onChanged: (isChecked) {
-    //                       if (isChecked) {
-    //                         filterNotifier.updateFilter(filterType, option);
-    //                       } else {
-    //                         filterNotifier.removeFilter(filterType, option);
-    //                       }
-    //                     },
-    //                     isChecked: selectedOptions.contains(option),
-    //                   );
-    //                 }).toList(),
-    //               ),
-    //             ));
-    //       });
-    //     });
-  }
+  //         return AlertDialog(
+  //             title: Text('Select $filterType'),
+  //             content: SingleChildScrollView(
+  //               child: Column(
+  //                 children: filterOptions[filterType]!.map((option) {
+  //                   return PreluraCheckBox(
+  //                     title: option,
+  //                     onChanged: (isChecked) {
+  //                       if (isChecked) {
+  //                         filterNotifier.updateFilter(filterType, option);
+  //                       } else {
+  //                         filterNotifier.removeFilter(filterType, option);
+  //                       }
+  //                     },
+  //                     isChecked: selectedOptions.contains(option),
+  //                   );
+  //                 }).toList(),
+  //               ),
+  //             ));
+  //       });
+  //     });
 }

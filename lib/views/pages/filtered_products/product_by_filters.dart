@@ -10,11 +10,15 @@ import '../../../res/colors.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
+import '../../widgets/filters_options.dart';
 import '../../widgets/gap.dart';
+import '../search_result/provider/search_provider.dart';
+import '../search_result/view/search_result.dart';
 
 @RoutePage()
 class FilterProductPage extends ConsumerStatefulWidget {
-  const FilterProductPage({super.key, required this.title, required this.id, this.customBrand});
+  const FilterProductPage(
+      {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
   final int? id;
   final String? customBrand;
@@ -39,7 +43,13 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider((Input$ProductFiltersInput(category: widget.id, customBrand: widget.customBrand), searchQuery)).notifier).fetchMoreData();
+        ref
+            .read(filteredProductProvider((
+              Input$ProductFiltersInput(
+                  category: widget.id, customBrand: widget.customBrand),
+              searchQuery
+            )).notifier)
+            .fetchMoreData();
       }
     });
   }
@@ -54,10 +64,13 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    final filters = ref.watch(productFilterProvider);
+    final state = ref.watch(productFilterProvider.notifier);
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
           centerTitle: true,
@@ -119,7 +132,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,6 +152,7 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                             setState(() {});
                           },
                         ),
+                        FiltersOptions(),
                         addVerticalSpacing(12),
                       ],
                     ),
@@ -155,7 +170,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         sliver: SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -163,7 +179,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                           ),
                           itemCount: products.take(6).length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: products.take(6).toList()[index]);
+                            return ProductCard(
+                                product: products.take(6).toList()[index]);
                           },
                         ),
                       ),
@@ -180,10 +197,12 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                       )))
                       .when(
                           data: (products) {
-                            if (products.length < 6) return SliverToBoxAdapter(child: Container());
+                            if (products.length < 6)
+                              return SliverToBoxAdapter(child: Container());
                             final clippedProducts = products.sublist(6);
                             return SliverGrid.builder(
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 10,
                                 mainAxisSpacing: 10,
@@ -191,7 +210,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                               ),
                               itemCount: clippedProducts.length,
                               itemBuilder: (context, index) {
-                                return ProductCard(product: clippedProducts[index]);
+                                return ProductCard(
+                                    product: clippedProducts[index]);
                               },
                             );
                           },
@@ -216,7 +236,8 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                               ),
                             );
                           },
-                          loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                          loading: () =>
+                              SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
                     .watch(filteredProductProvider((
@@ -252,13 +273,14 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   StaticSliverDelegate({required this.child});
 
   @override
-  double get minExtent => 75.8;
+  double get minExtent => 148.8;
 
   @override
-  double get maxExtent => 75.8;
+  double get maxExtent => 148.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
