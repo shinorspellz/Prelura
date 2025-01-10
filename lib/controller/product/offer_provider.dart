@@ -62,6 +62,14 @@ class OfferNotifier extends StateNotifier<OfferState> {
       );
       if (res != null && res.success!) {
         context.alert('Offer created successfully');
+        //Navigating to the chat room
+        Mutation$createOffer$createOffer$offer$product$seller? userInfo =
+            res.offer!.product.seller;
+        // context.router.push(ChatRoute(
+        //   id: ,
+        //   username: userInfo?.username ?? "",
+        //   avatarUrl: userInfo?.thumbnailUrl ?? "",
+        // ));
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }
