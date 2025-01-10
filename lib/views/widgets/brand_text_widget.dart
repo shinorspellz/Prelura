@@ -1,22 +1,30 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/colors.dart';
 
-class BrandTextWidget extends StatelessWidget {
+import '../../controller/product/product_provider.dart';
+
+class BrandTextWidget extends ConsumerWidget {
   BrandTextWidget({super.key, this.brand, this.customBrand, this.fontSize});
   final Brand? brand;
   String? customBrand;
   double? fontSize;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
         if (brand == null && customBrand == null) return;
+        ref.read(selectedFilteredProductProvider.notifier).state =
+            Input$ProductFiltersInput(
+                brand: brand?.id, customBrand: customBrand);
+        ref.refresh(filteredProductProvider(""));
         context.pushRoute(ProductsByBrandRoute(
             title: brand?.name,
             id: (brand?.id)?.toInt(),

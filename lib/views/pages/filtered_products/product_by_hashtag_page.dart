@@ -22,7 +22,8 @@ class ProductByHashtagPage extends ConsumerStatefulWidget {
   final String hashtag;
 
   @override
-  ConsumerState<ProductByHashtagPage> createState() => _ProductByHashtagPageState();
+  ConsumerState<ProductByHashtagPage> createState() =>
+      _ProductByHashtagPageState();
 }
 
 class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
@@ -39,7 +40,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         // if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery)).notifier).fetchMoreData();
+        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
       }
     });
   }
@@ -57,11 +58,13 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: widget.hashtag,
-        leadingIcon: IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back)),
+        leadingIcon: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.arrow_back)),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery)).future);
+          await ref.refresh(filteredProductProvider(searchQuery).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -75,7 +78,8 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,18 +98,19 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             setState(() {});
                           },
                         ),
-                        // FiltersOptions(),
+                        FiltersOptions(),
                         12.verticalSpacing,
                       ],
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery))).maybeWhen(
+                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         sliver: SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -113,7 +118,8 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                           ),
                           itemCount: products.take(6).length,
                           itemBuilder: (context, index) {
-                            return ProductCard(product: products.take(6).toList()[index]);
+                            return ProductCard(
+                                product: products.take(6).toList()[index]);
                           },
                         ),
                       ),
@@ -121,22 +127,38 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                     ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery))).when(
+                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
                       data: (products) {
-                        if (products.length < 6) return SliverToBoxAdapter(child: Container());
-                        final clippedProducts = products.sublist(6);
-                        return SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.50,
-                          ),
-                          itemCount: clippedProducts.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(product: clippedProducts[index]);
-                          },
-                        );
+                        return products.isEmpty
+                            ? SliverPadding(
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                sliver: SliverToBoxAdapter(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.7,
+                                    child: Center(
+                                      child: Text(
+                                        "No products found",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            : SliverGrid.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 0.50,
+                                ),
+                                itemCount: products.length,
+                                itemBuilder: (context, index) {
+                                  return ProductCard(product: products[index]);
+                                },
+                              );
                       },
                       error: (e, _) {
                         return SliverToBoxAdapter(
@@ -161,8 +183,12 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
-                if (ref.watch(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery)).notifier).canLoadMore())
-                  if (!ref.watch(filteredProductProvider((Input$ProductFiltersInput(hashtags: [widget.hashtag]), searchQuery))).isLoading)
+                if (ref
+                    .watch(filteredProductProvider(searchQuery).notifier)
+                    .canLoadMore())
+                  if (!ref
+                      .watch(filteredProductProvider(searchQuery))
+                      .isLoading)
                     const SliverToBoxAdapter(
                       child: brands_view.PaginationLoadingIndicator(),
                     )

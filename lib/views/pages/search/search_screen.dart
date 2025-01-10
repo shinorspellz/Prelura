@@ -14,6 +14,7 @@ import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controller/product/product_provider.dart';
 import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
@@ -67,10 +68,19 @@ class SearchScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 6.0),
                                     child: GestureDetector(
-                                      onTap: () => context.pushRoute(
-                                          ProductsByBrandRoute(
-                                              title: brand.name,
-                                              id: (brand.id).toInt())),
+                                      onTap: () {
+                                        ref
+                                                .read(
+                                                    selectedFilteredProductProvider
+                                                        .notifier)
+                                                .state =
+                                            Input$ProductFiltersInput(
+                                                brand: (brand.id).toInt());
+                                        // ref.invalidate(filteredProductProvider);
+                                        context.pushRoute(ProductsByBrandRoute(
+                                            title: brand.name,
+                                            id: (brand.id).toInt()));
+                                      },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16, vertical: 10),
@@ -121,10 +131,18 @@ class SearchScreen extends ConsumerWidget {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 6.0),
                                     child: GestureDetector(
-                                      onTap: () => context.pushRoute(
-                                          ProductsByBrandRoute(
-                                              title: brand.name,
-                                              id: (brand.id).toInt())),
+                                      onTap: () {
+                                        ref
+                                                .read(
+                                                    selectedFilteredProductProvider
+                                                        .notifier)
+                                                .state =
+                                            Input$ProductFiltersInput(
+                                                brand: (brand.id).toInt());
+                                        context.pushRoute(ProductsByBrandRoute(
+                                            title: brand.name,
+                                            id: (brand.id).toInt()));
+                                      },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16, vertical: 10),
@@ -178,16 +196,25 @@ class SearchScreen extends ConsumerWidget {
                         _categoriesSection(
                             "Women", PreluraIcons.webp_women, context,
                             onTap: () {
+                          ref
+                              .read(selectedFilteredProductProvider.notifier)
+                              .state = Input$ProductFiltersInput(category: 2);
                           context.router
                               .push(FilterProductRoute(title: "Women", id: 2));
                         }),
                         _categoriesSection(
                             "Men", PreluraIcons.webp_men, context, onTap: () {
+                          ref
+                              .read(selectedFilteredProductProvider.notifier)
+                              .state = Input$ProductFiltersInput(category: 1);
                           context.router
                               .push(FilterProductRoute(title: "Men", id: 1));
                         }),
                         _categoriesSection("Kids", PreluraIcons.kids, context,
                             onTap: () {
+                          ref
+                              .read(selectedFilteredProductProvider.notifier)
+                              .state = Input$ProductFiltersInput(category: 4);
                           context.router
                               .push(FilterProductRoute(title: "Kids", id: 4));
                         }),
@@ -263,6 +290,9 @@ class SearchScreen extends ConsumerWidget {
                                     "vintage"), // Match "christmas" exactly
                       );
                       logger.d(vintageStyle);
+                      ref.read(selectedFilteredProductProvider.notifier).state =
+                          Input$ProductFiltersInput(style: vintageStyle);
+
                       context.router.push(
                           ChristmasFilteredProductRoute(style: vintageStyle));
                     },
@@ -305,6 +335,10 @@ class SearchScreen extends ConsumerWidget {
                                       "christmas"), // Match "christmas" exactly
                         );
                         logger.d(christmasStyle);
+                        ref
+                                .read(selectedFilteredProductProvider.notifier)
+                                .state =
+                            Input$ProductFiltersInput(style: christmasStyle);
                         context.router.push(ChristmasFilteredProductRoute(
                             style: christmasStyle));
                       }),

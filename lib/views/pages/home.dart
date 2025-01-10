@@ -48,12 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         if (ref.watch(selectedTabProvider) != 0 &&
             ref.watch(selectedTabProvider) != 1) {
           ref
-              .read(filteredProductProvider((
-                Input$ProductFiltersInput(
-                  category: selectedId, // Use the extracted value directly
-                ),
-                searchQuery
-              )).notifier)
+              .read(filteredProductProvider(searchQuery).notifier)
               .fetchMoreData();
         }
       }
@@ -91,21 +86,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       log("i am here");
       paginationIndicator = buildPaginationIndicator(
           canLoadMore: ref
-              .read(filteredProductProvider((
-                Input$ProductFiltersInput(
-                  category: selectedId, // Use the extracted value directly
-                ),
-                searchQuery
-              )).notifier)
+              .read(filteredProductProvider(searchQuery).notifier)
               .canLoadMore(),
-          isLoading: ref
-              .watch(filteredProductProvider((
-                Input$ProductFiltersInput(
-                  category: selectedId, // Use the extracted value directly
-                ),
-                searchQuery
-              )))
-              .isLoading);
+          isLoading: ref.watch(filteredProductProvider(searchQuery)).isLoading);
     } else {
       log("i am here");
       paginationIndicator = buildPaginationIndicator(
@@ -304,6 +287,9 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
                 final matchingCategory =
                     category.where((e) => e.name == tabs[index]).firstOrNull;
                 if (matchingCategory != null) {
+                  ref.read(selectedFilteredProductProvider.notifier).state =
+                      Input$ProductFiltersInput(
+                          category: int.parse(matchingCategory.id));
                   ref.read(selectedIdProvider.notifier).state =
                       int.parse(matchingCategory.id);
                 }

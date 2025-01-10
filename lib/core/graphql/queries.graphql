@@ -650,6 +650,10 @@ query ArchivedConversations {
     }
   }
 }
+query notificationsTotalNumber{
+  notificationsTotalNumber
+}
+
 
 query Notifications($pageCount: Int, $pageNumber: Int) {
   notifications(pageCount: $pageCount, pageNumber: $pageNumber) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,12 +8,18 @@ import '../pages/search_result/provider/search_provider.dart';
 import '../pages/search_result/view/search_result.dart';
 
 class FiltersOptions extends ConsumerWidget {
-  const FiltersOptions({super.key});
+  final List<FilterTypes> excludedFilterTypes; // List of excluded filter types
+
+  const FiltersOptions({
+    super.key,
+    this.excludedFilterTypes = const [], // Default to no exclusions
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filters = ref.watch(productFilterProvider);
     final state = ref.watch(productFilterProvider.notifier);
+    log('filters: $filters');
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -42,7 +50,9 @@ class FiltersOptions extends ConsumerWidget {
               ),
             ),
           ),
-          ...FilterTypes.values.map((filter) {
+          ...FilterTypes.values
+              .where((filter) => !excludedFilterTypes.contains(filter))
+              .map((filter) {
             return Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: FilterChip(
@@ -62,8 +72,7 @@ class FiltersOptions extends ConsumerWidget {
                   ),
                 ),
                 label: Text(filter.simpleName),
-                onSelected: (isSelected) {
-                  // Show filter dialog to select values
+                onSelected: (isSelected) async {
                   ShowFilteredProductFilterModal(context, filter, ref);
                 },
                 selected: filters.containsKey(filter),

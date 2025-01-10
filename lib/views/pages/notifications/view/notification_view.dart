@@ -24,6 +24,7 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
     super.initState();
 
     controller.addListener(() {
+      print(ref.read(notificationProvider.notifier).canLoadMore().toString());
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
@@ -53,65 +54,70 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: CustomScrollView(controller: controller, physics: AlwaysScrollableScrollPhysics(), slivers: [
-            ref.watch(notificationProvider).when(
-                data: (notifications) {
-                  log("notification length is ${notifications.length}");
-                  return notifications.isNotEmpty
-                      ? SliverPadding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          sliver: SliverList.builder(
-                            itemCount: notifications.length,
-                            itemBuilder: (context, index) {
-                              return NotificationCard(key: ValueKey(notifications[index].id), notification: notifications[index]);
-                            },
-                          ),
-                        )
-                      : SliverFillRemaining(
-                          child: Center(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [Text("No notificatons yet")],
-                            ),
-                          ),
-                        );
-                },
-                error: (e, _) {
-                  return SliverToBoxAdapter(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(e.toString()),
-                          TextButton.icon(
-                            onPressed: () {
-                              // log(e.toString(), stackTrace: _);
-                              ref.invalidate(notificationProvider);
-                            },
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                loading: () => SliverFillRemaining(
+          child: CustomScrollView(
+              controller: controller,
+              physics: AlwaysScrollableScrollPhysics(),
+              slivers: [
+                ref.watch(notificationProvider).when(
+                    data: (notifications) {
+                      log("notification length is ${notifications.length}");
+                      return notifications.isNotEmpty
+                          ? SliverPadding(
+                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              sliver: SliverList.builder(
+                                itemCount: notifications.length,
+                                itemBuilder: (context, index) {
+                                  return NotificationCard(
+                                      key: ValueKey(notifications[index].id),
+                                      notification: notifications[index]);
+                                },
+                              ),
+                            )
+                          : SliverFillRemaining(
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [Text("No notificatons yet")],
+                                ),
+                              ),
+                            );
+                    },
+                    error: (e, _) {
+                      return SliverToBoxAdapter(
                         child: Center(
-                            child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        LoadingWidget(),
-                      ],
-                    )))),
-            if (ref.watch(notificationProvider.notifier).canLoadMore())
-              if (!ref.watch(notificationProvider).isLoading)
-                SliverToBoxAdapter(
-                  child: PaginationLoadingIndicator(),
-                )
-          ]),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(e.toString()),
+                              TextButton.icon(
+                                onPressed: () {
+                                  // log(e.toString(), stackTrace: _);
+                                  ref.invalidate(notificationProvider);
+                                },
+                                label: const Text('Retry'),
+                                icon: const Icon(Icons.refresh_rounded),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    loading: () => SliverFillRemaining(
+                            child: Center(
+                                child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            LoadingWidget(),
+                          ],
+                        )))),
+                if (ref.watch(notificationProvider.notifier).canLoadMore())
+                  if (!ref.watch(notificationProvider).isLoading)
+                    SliverToBoxAdapter(
+                      child: PaginationLoadingIndicator(),
+                    )
+              ]),
         ),
       ),
     );

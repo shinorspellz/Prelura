@@ -96,10 +96,8 @@ class PopularBrands extends ConsumerWidget {
 
             data: (brands) {
           return ref
-              .watch(filteredProductProvider((
-                Input$ProductFiltersInput(brand: brands[startIndex].id),
-                ""
-              )))
+              .watch(brandfilteredProductProvider(
+                  Input$ProductFiltersInput(brand: brands[startIndex].id)))
               .when(
                   data: (products) {
                     return Column(
@@ -110,9 +108,16 @@ class PopularBrands extends ConsumerWidget {
                           brands[startIndex].name,
                           "",
                           context,
-                          onTap: () => context.pushRoute(ProductsByBrandRoute(
-                              title: brands[startIndex].name,
-                              id: (brands[startIndex].id).toInt())),
+                          onTap: () {
+                            ref
+                                    .read(selectedFilteredProductProvider.notifier)
+                                    .state =
+                                Input$ProductFiltersInput(
+                                    brand: brands[startIndex].id);
+                            context.pushRoute(ProductsByBrandRoute(
+                                title: brands[startIndex].name,
+                                id: (brands[startIndex].id).toInt()));
+                          },
                         ),
                         AspectRatio(
                           aspectRatio: 1.0,

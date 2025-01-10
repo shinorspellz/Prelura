@@ -30599,6 +30599,284 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMe
       _res;
 }
 
+class Query$NoticationsTotalNumber {
+  Query$NoticationsTotalNumber({
+    this.notificationsTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$NoticationsTotalNumber.fromJson(Map<String, dynamic> json) {
+    final l$notificationsTotalNumber = json['notificationsTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$NoticationsTotalNumber(
+      notificationsTotalNumber: (l$notificationsTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? notificationsTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    _resultData['notificationsTotalNumber'] = l$notificationsTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$notificationsTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$NoticationsTotalNumber ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$notificationsTotalNumber = notificationsTotalNumber;
+    final lOther$notificationsTotalNumber = other.notificationsTotalNumber;
+    if (l$notificationsTotalNumber != lOther$notificationsTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$NoticationsTotalNumber
+    on Query$NoticationsTotalNumber {
+  CopyWith$Query$NoticationsTotalNumber<Query$NoticationsTotalNumber>
+      get copyWith => CopyWith$Query$NoticationsTotalNumber(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$NoticationsTotalNumber<TRes> {
+  factory CopyWith$Query$NoticationsTotalNumber(
+    Query$NoticationsTotalNumber instance,
+    TRes Function(Query$NoticationsTotalNumber) then,
+  ) = _CopyWithImpl$Query$NoticationsTotalNumber;
+
+  factory CopyWith$Query$NoticationsTotalNumber.stub(TRes res) =
+      _CopyWithStubImpl$Query$NoticationsTotalNumber;
+
+  TRes call({
+    int? notificationsTotalNumber,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$NoticationsTotalNumber<TRes>
+    implements CopyWith$Query$NoticationsTotalNumber<TRes> {
+  _CopyWithImpl$Query$NoticationsTotalNumber(
+    this._instance,
+    this._then,
+  );
+
+  final Query$NoticationsTotalNumber _instance;
+
+  final TRes Function(Query$NoticationsTotalNumber) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? notificationsTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$NoticationsTotalNumber(
+        notificationsTotalNumber: notificationsTotalNumber == _undefined
+            ? _instance.notificationsTotalNumber
+            : (notificationsTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$NoticationsTotalNumber<TRes>
+    implements CopyWith$Query$NoticationsTotalNumber<TRes> {
+  _CopyWithStubImpl$Query$NoticationsTotalNumber(this._res);
+
+  TRes _res;
+
+  call({
+    int? notificationsTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeQueryNoticationsTotalNumber = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'NoticationsTotalNumber'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'notificationsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$NoticationsTotalNumber _parserFn$Query$NoticationsTotalNumber(
+        Map<String, dynamic> data) =>
+    Query$NoticationsTotalNumber.fromJson(data);
+typedef OnQueryComplete$Query$NoticationsTotalNumber = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$NoticationsTotalNumber?,
+);
+
+class Options$Query$NoticationsTotalNumber
+    extends graphql.QueryOptions<Query$NoticationsTotalNumber> {
+  Options$Query$NoticationsTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$NoticationsTotalNumber? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$NoticationsTotalNumber? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$NoticationsTotalNumber(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryNoticationsTotalNumber,
+          parserFn: _parserFn$Query$NoticationsTotalNumber,
+        );
+
+  final OnQueryComplete$Query$NoticationsTotalNumber? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$NoticationsTotalNumber
+    extends graphql.WatchQueryOptions<Query$NoticationsTotalNumber> {
+  WatchOptions$Query$NoticationsTotalNumber({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$NoticationsTotalNumber? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryNoticationsTotalNumber,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$NoticationsTotalNumber,
+        );
+}
+
+class FetchMoreOptions$Query$NoticationsTotalNumber
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$NoticationsTotalNumber(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryNoticationsTotalNumber,
+        );
+}
+
+extension ClientExtension$Query$NoticationsTotalNumber
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$NoticationsTotalNumber>>
+      query$NoticationsTotalNumber(
+              [Options$Query$NoticationsTotalNumber? options]) async =>
+          await this.query(options ?? Options$Query$NoticationsTotalNumber());
+  graphql.ObservableQuery<
+      Query$NoticationsTotalNumber> watchQuery$NoticationsTotalNumber(
+          [WatchOptions$Query$NoticationsTotalNumber? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$NoticationsTotalNumber());
+  void writeQuery$NoticationsTotalNumber({
+    required Query$NoticationsTotalNumber data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryNoticationsTotalNumber)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$NoticationsTotalNumber? readQuery$NoticationsTotalNumber(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryNoticationsTotalNumber)),
+      optimistic: optimistic,
+    );
+    return result == null
+        ? null
+        : Query$NoticationsTotalNumber.fromJson(result);
+  }
+}
+
 class Variables$Query$Notifications {
   factory Variables$Query$Notifications({
     int? pageCount,
