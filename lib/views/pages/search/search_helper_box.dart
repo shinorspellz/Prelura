@@ -9,14 +9,12 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
   const SearchHelperBox({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ValueNotifier<int> searchHistoryCount = useState(0);
     useEffect(() {
       log("::::You called used 0");
       WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
@@ -44,40 +42,48 @@ class SearchHelperBox extends HookConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
-        if (searchHistoryCount.value > 0)
-          Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Text(
-                  "Clear all",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: PreluraColors.greyColor,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        addVerticalSpacing(10),
         if (searchQuery?.isEmpty ?? true)
           searchHistories.when(
             data: (searches) {
-              searchHistoryCount.value = searches.length;
               log(":::The data length is ${searches.length}");
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: searches.take(10).toList().length,
-                itemBuilder: (context, index) {
-                  return SearchHintItemBox(
-                    label: searches[index].query,
-                    id: searches[index].id.toString(),
-                  );
-                },
+              return Column(
+                children: [
+                  if (searches.length > 0)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          ref.watch(deleteUserSearchHistoryProvider(
+                            DeleteHistoryParams(
+                              clearAll: true,
+                            ),
+                          ));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            "Clear all",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: PreluraColors.greyColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: searches.take(10).toList().length,
+                    itemBuilder: (context, index) {
+                      return SearchHintItemBox(
+                        label: searches[index].query,
+                        id: searches[index].id.toString(),
+                      );
+                    },
+                  ),
+                ],
               );
             },
             error: (a, b) {
@@ -162,7 +168,7 @@ class SearchHintItemBox extends ConsumerWidget {
               if (showCloseIcon)
                 GestureDetector(
                   onTap: () async {
-                    final res = ref.watch(deleteUserSearchHistoryProvider(
+                    ref.watch(deleteUserSearchHistoryProvider(
                       DeleteHistoryParams(
                         searchId: id,
                       ),
