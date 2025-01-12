@@ -20,7 +20,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
-  String get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
@@ -65,7 +65,7 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String name,
       String description,
       CategoryModel? category,
@@ -111,7 +111,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? category = freezed,
@@ -137,10 +137,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? isFeatured = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -298,7 +298,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {dynamic id,
       String name,
       String description,
       CategoryModel? category,
@@ -346,7 +346,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? description = null,
     Object? category = freezed,
@@ -372,10 +372,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? isFeatured = freezed,
   }) {
     return _then(_$ProductModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -508,7 +508,7 @@ class _$ProductModelImpl implements _ProductModel {
       _$$ProductModelImplFromJson(json);
 
   @override
-  final String id;
+  final dynamic id;
   @override
   final String name;
   @override
@@ -589,7 +589,7 @@ class _$ProductModelImpl implements _ProductModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProductModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -633,7 +633,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
+        const DeepCollectionEquality().hash(id),
         name,
         description,
         category,
@@ -677,7 +677,7 @@ class _$ProductModelImpl implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   factory _ProductModel(
-      {required final String id,
+      {required final dynamic id,
       required final String name,
       required final String description,
       final CategoryModel? category,
@@ -706,7 +706,7 @@ abstract class _ProductModel implements ProductModel {
       _$ProductModelImpl.fromJson;
 
   @override
-  String get id;
+  dynamic get id;
   @override
   String get name;
   @override

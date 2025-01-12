@@ -9,17 +9,17 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i63;
-import 'package:flutter/cupertino.dart' as _i64;
-import 'package:flutter/foundation.dart' as _i69;
-import 'package:flutter/material.dart' as _i65;
+import 'package:flutter/cupertino.dart' as _i69;
+import 'package:flutter/foundation.dart' as _i68;
+import 'package:flutter/material.dart' as _i64;
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart'
-    as _i67;
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart'
     as _i66;
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart'
+    as _i65;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
 import 'package:prelura_app/model/product/categories/category_model.dart'
     as _i70;
-import 'package:prelura_app/model/product/product_model.dart' as _i68;
+import 'package:prelura_app/model/product/product_model.dart' as _i67;
 import 'package:prelura_app/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/views/pages/auth_page.dart' as _i5;
 import 'package:prelura_app/views/pages/authentication/forgot_password.dart'
@@ -323,8 +323,8 @@ class ChatRouteArgs {
 class ChristmasFilteredProductRoute
     extends _i63.PageRouteInfo<ChristmasFilteredProductRouteArgs> {
   ChristmasFilteredProductRoute({
-    _i65.Key? key,
-    required _i66.Enum$StyleEnum style,
+    _i64.Key? key,
+    required _i65.Enum$StyleEnum style,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           ChristmasFilteredProductRoute.name,
@@ -355,9 +355,9 @@ class ChristmasFilteredProductRouteArgs {
     required this.style,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i66.Enum$StyleEnum style;
+  final _i65.Enum$StyleEnum style;
 
   @override
   String toString() {
@@ -427,7 +427,7 @@ class DiscountRoute extends _i63.PageRouteInfo<void> {
 class DiscountedProductsView
     extends _i63.PageRouteInfo<DiscountedProductsViewArgs> {
   DiscountedProductsView({
-    _i65.Key? key,
+    _i64.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -467,7 +467,7 @@ class DiscountedProductsViewArgs {
     this.customBrand,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String? title;
 
@@ -485,8 +485,8 @@ class DiscountedProductsViewArgs {
 /// [_i15.DraftsPage]
 class DraftsRoute extends _i63.PageRouteInfo<DraftsRouteArgs> {
   DraftsRoute({
-    _i65.Key? key,
-    required _i65.ValueChanged<_i67.SellItemState> selected,
+    _i64.Key? key,
+    required _i64.ValueChanged<_i66.SellItemState> selected,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           DraftsRoute.name,
@@ -517,9 +517,9 @@ class DraftsRouteArgs {
     required this.selected,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i65.ValueChanged<_i67.SellItemState> selected;
+  final _i64.ValueChanged<_i66.SellItemState> selected;
 
   @override
   String toString() {
@@ -531,7 +531,7 @@ class DraftsRouteArgs {
 /// [_i16.FilterProductPage]
 class FilterProductRoute extends _i63.PageRouteInfo<FilterProductRouteArgs> {
   FilterProductRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -571,7 +571,7 @@ class FilterProductRouteArgs {
     this.customBrand,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String? title;
 
@@ -590,7 +590,7 @@ class FilterProductRouteArgs {
 class FollowersRoute extends _i63.PageRouteInfo<FollowersRouteArgs> {
   FollowersRoute({
     required String username,
-    _i65.Key? key,
+    _i64.Key? key,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           FollowersRoute.name,
@@ -623,7 +623,7 @@ class FollowersRouteArgs {
 
   final String username;
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   @override
   String toString() {
@@ -635,7 +635,7 @@ class FollowersRouteArgs {
 /// [_i18.FollowingScreen]
 class FollowingRoute extends _i63.PageRouteInfo<FollowingRouteArgs> {
   FollowingRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String username,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -667,7 +667,7 @@ class FollowingRouteArgs {
     required this.username,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String username;
 
@@ -795,7 +795,7 @@ class LegalInformationRoute extends _i63.PageRouteInfo<void> {
 /// [_i25.LoginScreen]
 class LoginRoute extends _i63.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     void Function(bool)? onLoginResult,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -828,7 +828,7 @@ class LoginRouteArgs {
     this.onLoginResult,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final void Function(bool)? onLoginResult;
 
@@ -937,7 +937,7 @@ class MyOrderRoute extends _i63.PageRouteInfo<void> {
 /// [_i31.NewPasswordScreen]
 class NewPasswordRoute extends _i63.PageRouteInfo<NewPasswordRouteArgs> {
   NewPasswordRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String email,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -969,7 +969,7 @@ class NewPasswordRouteArgs {
     required this.email,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String email;
 
@@ -984,7 +984,7 @@ class NewPasswordRouteArgs {
 class NotificationSettingRoute
     extends _i63.PageRouteInfo<NotificationSettingRouteArgs> {
   NotificationSettingRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String title,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1016,7 +1016,7 @@ class NotificationSettingRouteArgs {
     required this.title,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String title;
 
@@ -1068,8 +1068,8 @@ class PartyFilteredProductRoute extends _i63.PageRouteInfo<void> {
 /// [_i35.PaymentScreen]
 class PaymentRoute extends _i63.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
-    _i65.Key? key,
-    required _i68.ProductModel product,
+    _i64.Key? key,
+    required _i67.ProductModel product,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           PaymentRoute.name,
@@ -1100,9 +1100,9 @@ class PaymentRouteArgs {
     required this.product,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i68.ProductModel product;
+  final _i67.ProductModel product;
 
   @override
   String toString() {
@@ -1134,7 +1134,7 @@ class PriceRoute extends _i63.PageRouteInfo<void> {
 class ProductByHashtagRoute
     extends _i63.PageRouteInfo<ProductByHashtagRouteArgs> {
   ProductByHashtagRoute({
-    _i69.Key? key,
+    _i68.Key? key,
     required String hashtag,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1166,7 +1166,7 @@ class ProductByHashtagRouteArgs {
     required this.hashtag,
   });
 
-  final _i69.Key? key;
+  final _i68.Key? key;
 
   final String hashtag;
 
@@ -1180,7 +1180,7 @@ class ProductByHashtagRouteArgs {
 /// [_i38.ProductDetailScreen]
 class ProductDetailRoute extends _i63.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required int productId,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1212,7 +1212,7 @@ class ProductDetailRouteArgs {
     required this.productId,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final int productId;
 
@@ -1246,7 +1246,7 @@ class ProductListRoute extends _i63.PageRouteInfo<void> {
 class ProductPriceFilterRoute
     extends _i63.PageRouteInfo<ProductPriceFilterRouteArgs> {
   ProductPriceFilterRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String title,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1278,7 +1278,7 @@ class ProductPriceFilterRouteArgs {
     required this.title,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String title;
 
@@ -1293,7 +1293,7 @@ class ProductPriceFilterRouteArgs {
 class ProductsByBrandRoute
     extends _i63.PageRouteInfo<ProductsByBrandRouteArgs> {
   ProductsByBrandRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -1333,7 +1333,7 @@ class ProductsByBrandRouteArgs {
     this.customBrand,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String? title;
 
@@ -1351,7 +1351,7 @@ class ProductsByBrandRouteArgs {
 /// [_i42.ProfileDetailsScreen]
 class ProfileDetailsRoute extends _i63.PageRouteInfo<ProfileDetailsRouteArgs> {
   ProfileDetailsRoute({
-    _i64.Key? key,
+    _i69.Key? key,
     required String username,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1383,7 +1383,7 @@ class ProfileDetailsRouteArgs {
     required this.username,
   });
 
-  final _i64.Key? key;
+  final _i69.Key? key;
 
   final String username;
 
@@ -1436,7 +1436,7 @@ class ProfileSettingRoute extends _i63.PageRouteInfo<void> {
 class RecentlyViewedProductRoute
     extends _i63.PageRouteInfo<RecentlyViewedProductRouteArgs> {
   RecentlyViewedProductRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required String? title,
     required int? id,
     String? customBrand,
@@ -1476,7 +1476,7 @@ class RecentlyViewedProductRouteArgs {
     this.customBrand,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final String? title;
 
@@ -1570,8 +1570,8 @@ class SecurityMenuRoute extends _i63.PageRouteInfo<void> {
 /// [_i50.SellItemScreen]
 class SellItemRoute extends _i63.PageRouteInfo<SellItemRouteArgs> {
   SellItemRoute({
-    _i65.Key? key,
-    _i68.ProductModel? product,
+    _i64.Key? key,
+    _i67.ProductModel? product,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           SellItemRoute.name,
@@ -1603,9 +1603,9 @@ class SellItemRouteArgs {
     this.product,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i68.ProductModel? product;
+  final _i67.ProductModel? product;
 
   @override
   String toString() {
@@ -1636,8 +1636,8 @@ class SellNavigationRoute extends _i63.PageRouteInfo<void> {
 /// [_i52.SendAnOfferScreen]
 class SendAnOfferRoute extends _i63.PageRouteInfo<SendAnOfferRouteArgs> {
   SendAnOfferRoute({
-    _i65.Key? key,
-    required _i68.ProductModel product,
+    _i64.Key? key,
+    required _i67.ProductModel product,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           SendAnOfferRoute.name,
@@ -1668,9 +1668,9 @@ class SendAnOfferRouteArgs {
     required this.product,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i68.ProductModel product;
+  final _i67.ProductModel product;
 
   @override
   String toString() {
@@ -1796,7 +1796,7 @@ class SubCategoryProductRoute extends _i63.PageRouteInfo<void> {
 /// [_i59.SubCategoryScreen]
 class SubCategoryRoute extends _i63.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
-    _i65.Key? key,
+    _i64.Key? key,
     required List<_i70.CategoryModel> subCategories,
     required String categoryName,
     List<_i63.PageRouteInfo>? children,
@@ -1832,7 +1832,7 @@ class SubCategoryRouteArgs {
     required this.categoryName,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
   final List<_i70.CategoryModel> subCategories;
 
@@ -1849,7 +1849,7 @@ class SubCategoryRouteArgs {
 class UserProfileDetailsRoute
     extends _i63.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
-    _i64.Key? key,
+    _i69.Key? key,
     String? username,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1882,7 +1882,7 @@ class UserProfileDetailsRouteArgs {
     this.username,
   });
 
-  final _i64.Key? key;
+  final _i69.Key? key;
 
   final String? username;
 
@@ -1896,7 +1896,7 @@ class UserProfileDetailsRouteArgs {
 /// [_i61.VerifyEmailPage]
 class VerifyEmailRoute extends _i63.PageRouteInfo<VerifyEmailRouteArgs> {
   VerifyEmailRoute({
-    _i69.Key? key,
+    _i68.Key? key,
     required String email,
     List<_i63.PageRouteInfo>? children,
   }) : super(
@@ -1928,7 +1928,7 @@ class VerifyEmailRouteArgs {
     required this.email,
   });
 
-  final _i69.Key? key;
+  final _i68.Key? key;
 
   final String email;
 
@@ -1943,8 +1943,8 @@ class VerifyEmailRouteArgs {
 class VintageFilteredProductRoute
     extends _i63.PageRouteInfo<VintageFilteredProductRouteArgs> {
   VintageFilteredProductRoute({
-    _i65.Key? key,
-    required _i66.Enum$StyleEnum style,
+    _i64.Key? key,
+    required _i65.Enum$StyleEnum style,
     List<_i63.PageRouteInfo>? children,
   }) : super(
           VintageFilteredProductRoute.name,
@@ -1975,9 +1975,9 @@ class VintageFilteredProductRouteArgs {
     required this.style,
   });
 
-  final _i65.Key? key;
+  final _i64.Key? key;
 
-  final _i66.Enum$StyleEnum style;
+  final _i65.Enum$StyleEnum style;
 
   @override
   String toString() {
