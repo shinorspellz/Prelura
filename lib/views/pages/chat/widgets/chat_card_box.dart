@@ -64,6 +64,8 @@ class ChatTextWidget extends ConsumerWidget {
   Widget _buildMessageContainer(BuildContext context,
       {required Alignment alignment}) {
     bool isOffer = chat.itemType == "OFFER";
+    bool isSeller = chat.itemType == "";
+
     return isOffer
         ? OfferCard(
             chatInfo: chat,

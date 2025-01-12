@@ -49,8 +49,11 @@ class OfferInfo {
         offerPrice: json["offer_price"]?.toDouble(),
         createdAt: json["created_at"],
         buyer: json["buyer"] == null ? null : Buyer.fromJson(json["buyer"]),
-        product:
-            json["product"] == null ? null : Product.fromJson(json["product"]),
+        product: json["product"] == null
+            ? null
+            : json["product"].runtimeType == String
+                ? Product.fromJson(jsonDecode(json["product"]))
+                : Product.fromJson(json["product"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -152,8 +155,10 @@ class Product {
         discountPrice: json["discount_price"],
         imagesUrl: json["images_url"] == null
             ? []
-            : List<ImagesUrl>.from(
-                json["images_url"]!.map((x) => ImagesUrl.fromJson(x))),
+            : json["images_url"].runtimeType == String
+                ? [ImagesUrl(url: json["images_url"])]
+                : List<ImagesUrl>.from(
+                    json["images_url"]!.map((x) => ImagesUrl.fromJson(x))),
         size: json["size"],
         style: json["style"],
         brand: json["brand"],

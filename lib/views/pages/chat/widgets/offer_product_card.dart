@@ -13,13 +13,16 @@ import '../../../widgets/brand_text_widget.dart';
 
 class OfferProductCard extends ConsumerWidget {
   final OfferInfo offerInfo;
+  final bool amTheSeller;
   const OfferProductCard({
     super.key,
     required this.offerInfo,
+    required this.amTheSeller,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isPending = offerInfo.status?.toLowerCase() == "pending";
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,8 +38,8 @@ class OfferProductCard extends ConsumerWidget {
               // ),
 
               SizedBox(
-            height: 100,
-            width: 90,
+            height: (!isPending && !amTheSeller) ? 190 : 100,
+            width: (!isPending && !amTheSeller) ? 150 : 90,
             child: CachedNetworkImage(
               errorWidget: (context, url, error) => Container(
                 color: PreluraColors.grey,
@@ -56,7 +59,7 @@ class OfferProductCard extends ConsumerWidget {
         ),
         10.horizontalSpacing,
         SizedBox(
-          width: 40.w,
+          width: (!isPending && !amTheSeller) ? 50.w : 40.w,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,32 +77,34 @@ class OfferProductCard extends ConsumerWidget {
                 if (offerInfo.product?.brand != null)
                   BrandTextWidget(
                     brand: Brand(
-                        name: "${offerInfo.product?.style ?? "---"}", id: 0),
+                        name: "${offerInfo.product?.brand ?? "---"}", id: 0),
                     customBrand: null,
                     fontSize: 16,
                   ),
-                // 15.verticalSpacing,
-                // Text(
-                //   "Size ${offerInfo.product?.size}",
-                //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                //         color: PreluraColors.grey,
-                //         fontWeight: FontWeight.w500,
-                //         fontSize: getDefaultSize(size: 16),
-                //       ),
-                // ),
-                // if (offerInfo.product?.condition != null) ...[
-                //   15.verticalSpacing,
-                //   Text(
-                //     "Used but in a good condition",
-                //     maxLines: 2,
-                //     overflow: TextOverflow.ellipsis,
-                //     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                //           color: PreluraColors.greyColor,
-                //           fontWeight: FontWeight.w600,
-                //           fontSize: getDefaultSize(size: 16),
-                //         ),
-                //   ),
-                // ],
+                if ((!isPending && !amTheSeller)) ...[
+                  15.verticalSpacing,
+                  Text(
+                    "Size ${offerInfo.product?.size}",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: PreluraColors.grey,
+                          fontWeight: FontWeight.w500,
+                          fontSize: getDefaultSize(size: 16),
+                        ),
+                  ),
+                  if (offerInfo.product?.condition != null) ...[
+                    15.verticalSpacing,
+                    Text(
+                      offerInfo.product?.condition ?? "",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: PreluraColors.greyColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: getDefaultSize(size: 16),
+                          ),
+                    ),
+                  ],
+                ],
               ]),
         ),
       ],

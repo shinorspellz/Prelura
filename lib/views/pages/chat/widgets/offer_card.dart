@@ -1,10 +1,15 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/username.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -19,6 +24,7 @@ import 'offer_product_card.dart';
 class OfferCard extends ConsumerStatefulWidget {
   final MessageModel chatInfo;
   final bool isSender;
+
   const OfferCard({
     super.key,
     required this.chatInfo,
@@ -32,13 +38,16 @@ class OfferCard extends ConsumerStatefulWidget {
 class _OfferCardState extends ConsumerState<OfferCard> {
   // State variables for the offer status
   OfferInfo offerInfo = OfferInfo();
+  bool amTheSeller = false;
   bool isAccepted = false;
   bool isAccepting = false;
   bool isDeclined = false;
   bool isDeclining = false;
+  UserModel? appUserInfo;
   final TextEditingController _offerController = TextEditingController();
 
   handleAccept() async {
+    if (isAccepted || isDeclined) return;
     isAccepting = true;
     setState(() {});
     await ref
@@ -55,6 +64,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   }
 
   Future<void> handleDecline() async {
+    if (isAccepted || isDeclined) return;
     isDeclining = true;
     setState(() {});
     await ref
@@ -71,38 +81,54 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     offerInfo = offerInfoFromJson(widget.chatInfo.text);
-    // log("::::The offer info:::: ${jsonEncode(offerInfo)}");
+    appUserInfo = ref.read(userProvider).value;
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      isAccepted = offerInfo.status?.toLowerCase() == "accepted";
+      isDeclined = offerInfo.status?.toLowerCase() == "rejected";
+      amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;
+      setState(() {});
+    });
+    super.initState();
+  }
 
-    final offerState = ref.watch(offerProvider);
-    isAccepted = offerState.offerState == "Accepted";
-    isDeclined = offerState.offerState == "Declined";
+  @override
+  Widget build(BuildContext context) {
+    log("::::The offer info:::: ${jsonEncode(offerInfo)}");
+    log("::::The offer info:::: $isAccepted");
+    log("::::The offer info:::: $isDeclined");
+
+    // final offerState = ref.watch(offerProvider);
+    // isAccepted = offerState.offerState == "Accepted";
+    // isDeclined = offerState.offerState == "Declined";
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          Row(
-            children: [
-              ProfilePictureWidget(
-                height: 60,
-                width: 60,
-                profilePicture: "${offerInfo.buyer?.thumbnailUrl}",
-                username: "${offerInfo.buyer?.username}",
-              ),
-              16.horizontalSpacing,
-              HighlightUserName(
-                isRead: false,
-                highlightColor: PreluraColors.primaryColor,
-                message:
-                    "${widget.isSender ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
-                username: "offered",
-              ),
-            ],
-          ),
+          if (offerInfo.status?.toLowerCase() == "pending")
+            Row(
+              children: [
+                ProfilePictureWidget(
+                  height: 60,
+                  width: 60,
+                  profilePicture: "${offerInfo.buyer?.thumbnailUrl}",
+                  username: "${offerInfo.buyer?.username}",
+                ),
+                16.horizontalSpacing,
+                HighlightUserName(
+                  isRead: false,
+                  highlightColor: PreluraColors.primaryColor,
+                  message:
+                      "${!amTheSeller ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
+                  username: "offered",
+                ),
+              ],
+            ),
           12.verticalSpacing,
           OfferProductCard(
             offerInfo: offerInfo,
+            amTheSeller: amTheSeller,
           ),
           10.verticalSpacing,
           if (isAccepted) ...[
@@ -123,7 +149,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                   .copyWith(color: PreluraColors.grey),
             )
           ] else ...[
-            if (!widget.isSender) ...[
+            if ((isDeclined || isAccepted) || !widget.isSender) ...[
               10.verticalSpacing,
               Row(
                 children: [
@@ -131,7 +157,6 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                     child: AppButton(
                       onTap: handleAccept,
                       loading: isAccepting,
-                      isDisabled: isAccepted || isDeclined,
                       text: isAccepted ? "Accepted" : "Accept",
                       textColor: Colors.white,
                       bgColor: isAccepted || isDeclined
@@ -145,7 +170,6 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                     child: AppButton(
                       onTap: handleDecline,
                       loading: isDeclining,
-                      isDisabled: isAccepted || isDeclined,
                       text: isDeclined ? "Declined" : "Decline",
                       textColor: Colors.white,
                       bgColor: isDeclined || isAccepted
@@ -165,32 +189,12 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                     .copyWith(color: PreluraColors.grey),
               )
           ],
-          if (isDeclined) ...[
+          if (isDeclined && amTheSeller) ...[
             24.verticalSpacing,
             AppButton(
               height: 45,
               width: double.infinity,
               onTap: () async {
-                // await showAnimatedDialog(
-                //     child: Container(
-                //       height: 100.h,
-                //       width: 100.w,
-                //       child: Center(
-                //         child: Material(
-                //           color: Colors.transparent,
-                //           child: Column(
-                //             children: [
-                //               PriceFieldWidget(
-                //                   textController: _offerController),
-                //               16.verticalSpacing,
-                //               AppButton(onTap: () {}, text: "Send")
-                //             ],
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //     context: context);
-
                 showCustomDialog(context,
                     child: Container(
                       padding:
@@ -218,6 +222,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                       ),
                     ));
               },
+              textColor: Colors.white,
               bgColor: PreluraColors.primaryColor,
               text: "Send a custom offer...",
             )
