@@ -210,7 +210,6 @@ mutation CreateChat($recipient: String!) {
       disableResponse
       createdAt
       lastModified
-      deleted
       participant1Deleted
       participant2Deleted
       unreadMessagesCount

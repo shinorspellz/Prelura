@@ -13,7 +13,6 @@ _$MessageModelImpl _$$MessageModelImplFromJson(Map<String, dynamic> json) =>
       attachment: json['attachment'] as String?,
       itemType: json['itemType'],
       read: json['read'] as bool,
-      deleted: json['deleted'] as bool,
       isItem: json['isItem'] as bool,
       itemId: (json['itemId'] as num?)?.toInt(),
       replyTo: json['replyTo'] == null
@@ -29,7 +28,6 @@ Map<String, dynamic> _$$MessageModelImplToJson(_$MessageModelImpl instance) =>
       'attachment': instance.attachment,
       'itemType': instance.itemType,
       'read': instance.read,
-      'deleted': instance.deleted,
       'isItem': instance.isItem,
       'itemId': instance.itemId,
       'replyTo': instance.replyTo,

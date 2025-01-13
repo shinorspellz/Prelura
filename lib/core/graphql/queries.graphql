@@ -552,7 +552,6 @@ query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
     attachment
     attachmentType
     read
-    deleted
     isItem
     itemId
     itemType
@@ -587,7 +586,6 @@ query Conversations {
     disableResponse
     createdAt
     lastModified
-    deleted
     participant1Deleted
     participant2Deleted
     unreadMessagesCount
@@ -604,7 +602,7 @@ query Conversations {
       attachment
       attachmentType
       read
-      deleted
+
       isItem
       sender {
         id
@@ -624,7 +622,6 @@ query ArchivedConversations {
     disableResponse
     createdAt
     lastModified
-    deleted
     participant1Deleted
     participant2Deleted
     unreadMessagesCount

@@ -110,6 +110,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/icons/offer.svg
+    - assets/icons/trusted.svg
     - assets/images/
     - assets/images/logo.png
     - assets/images/splash.png

@@ -1405,6 +1405,46 @@ Enum$AccountsUserGenderChoices fromJson$Enum$AccountsUserGenderChoices(
   }
 }
 
+enum Enum$AccountsUserPreferredCurrencyChoices {
+  USD,
+  EUR,
+  GBP,
+  $unknown;
+
+  factory Enum$AccountsUserPreferredCurrencyChoices.fromJson(String value) =>
+      fromJson$Enum$AccountsUserPreferredCurrencyChoices(value);
+
+  String toJson() => toJson$Enum$AccountsUserPreferredCurrencyChoices(this);
+}
+
+String toJson$Enum$AccountsUserPreferredCurrencyChoices(
+    Enum$AccountsUserPreferredCurrencyChoices e) {
+  switch (e) {
+    case Enum$AccountsUserPreferredCurrencyChoices.USD:
+      return r'USD';
+    case Enum$AccountsUserPreferredCurrencyChoices.EUR:
+      return r'EUR';
+    case Enum$AccountsUserPreferredCurrencyChoices.GBP:
+      return r'GBP';
+    case Enum$AccountsUserPreferredCurrencyChoices.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$AccountsUserPreferredCurrencyChoices
+    fromJson$Enum$AccountsUserPreferredCurrencyChoices(String value) {
+  switch (value) {
+    case r'USD':
+      return Enum$AccountsUserPreferredCurrencyChoices.USD;
+    case r'EUR':
+      return Enum$AccountsUserPreferredCurrencyChoices.EUR;
+    case r'GBP':
+      return Enum$AccountsUserPreferredCurrencyChoices.GBP;
+    default:
+      return Enum$AccountsUserPreferredCurrencyChoices.$unknown;
+  }
+}
+
 enum Enum$BannerActionInputEnum {
   ADD,
   REMOVE,
@@ -1480,6 +1520,44 @@ Enum$ChatsMessageAttachmentTypeChoices
       return Enum$ChatsMessageAttachmentTypeChoices.ZIP;
     default:
       return Enum$ChatsMessageAttachmentTypeChoices.$unknown;
+  }
+}
+
+enum Enum$CurrencyEnum {
+  USD,
+  EUR,
+  GBP,
+  $unknown;
+
+  factory Enum$CurrencyEnum.fromJson(String value) =>
+      fromJson$Enum$CurrencyEnum(value);
+
+  String toJson() => toJson$Enum$CurrencyEnum(this);
+}
+
+String toJson$Enum$CurrencyEnum(Enum$CurrencyEnum e) {
+  switch (e) {
+    case Enum$CurrencyEnum.USD:
+      return r'USD';
+    case Enum$CurrencyEnum.EUR:
+      return r'EUR';
+    case Enum$CurrencyEnum.GBP:
+      return r'GBP';
+    case Enum$CurrencyEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$CurrencyEnum fromJson$Enum$CurrencyEnum(String value) {
+  switch (value) {
+    case r'USD':
+      return Enum$CurrencyEnum.USD;
+    case r'EUR':
+      return Enum$CurrencyEnum.EUR;
+    case r'GBP':
+      return Enum$CurrencyEnum.GBP;
+    default:
+      return Enum$CurrencyEnum.$unknown;
   }
 }
 
@@ -3276,5 +3354,8 @@ Enum$__DirectiveLocation fromJson$Enum$__DirectiveLocation(String value) {
 }
 
 const possibleTypesMap = <String, Set<String>>{
-  'Node': {'UserNode'}
+  'Node': {
+    'SocialNode',
+    'UserNode',
+  }
 };

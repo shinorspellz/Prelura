@@ -14,7 +14,6 @@ _$ConversationModelImpl _$$ConversationModelImplFromJson(
       disableResponse: json['disableResponse'] as bool,
       createdAt: DateTime.parse(json['createdAt'] as String),
       lastModified: DateTime.parse(json['lastModified'] as String),
-      deleted: json['deleted'] as bool,
       unreadMessagesCount: (json['unreadMessagesCount'] as num).toInt(),
       recipient: UserModel.fromJson(json['recipient'] as Map<String, dynamic>),
       lastMessage: json['lastMessage'] == null
@@ -30,7 +29,6 @@ Map<String, dynamic> _$$ConversationModelImplToJson(
       'disableResponse': instance.disableResponse,
       'createdAt': instance.createdAt.toIso8601String(),
       'lastModified': instance.lastModified.toIso8601String(),
-      'deleted': instance.deleted,
       'unreadMessagesCount': instance.unreadMessagesCount,
       'recipient': instance.recipient,
       'lastMessage': instance.lastMessage,

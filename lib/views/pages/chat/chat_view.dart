@@ -147,7 +147,7 @@ class ChatScreen extends ConsumerWidget {
                     final lastOtherSenderMessage = messages.firstWhere(
                       (message) => message.sender.username == username,
                       orElse: () => MessageModel(
-                          deleted: false,
+                          // deleted: false,
                           id: 0,
                           sender: UserModel(id: 0, username: ''),
                           text: '',

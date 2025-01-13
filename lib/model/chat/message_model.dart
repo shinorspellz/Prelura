@@ -12,7 +12,6 @@ class MessageModel with _$MessageModel {
     String? attachment,
     itemType,
     required bool read,
-    required bool deleted,
     required bool isItem,
     int? itemId,
     MessageModel? replyTo,
@@ -30,7 +29,7 @@ class MessageModel with _$MessageModel {
         attachment: json["attachment"],
 
         read: json["read"],
-        deleted: json["deleted"],
+
         isItem: json["is_item"],
         itemId: json["item_id"],
         // itemType: json["item_type"],

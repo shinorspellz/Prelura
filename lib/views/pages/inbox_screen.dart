@@ -1,31 +1,28 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:intl/intl.dart';
-import 'package:prelura_app/core/utils/theme.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
-import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/res/ui_constants.dart';
 
 import '../../res/colors.dart';
-import '../../res/images.dart';
 import '../widgets/message_card.dart';
 import 'notifications/view/notification_view.dart';
 
 @RoutePage()
-class InboxScreen extends StatefulWidget {
+class InboxScreen extends StatefulHookConsumerWidget {
   const InboxScreen({super.key});
 
   @override
-  State<InboxScreen> createState() => _InboxScreenState();
+  ConsumerState<InboxScreen> createState() => _InboxScreenState();
 }
 
-class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStateMixin {
+class _InboxScreenState extends ConsumerState<InboxScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -49,6 +46,15 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    useEffect(
+      () {
+        WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+          ref.invalidate(conversationProvider);
+        });
+        return null;
+      },
+    );
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -78,8 +84,13 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(
-                                  color: _tabController.index == entry.key ? PreluraColors.activeColor : PreluraColors.greyColor.withOpacity(0.5),
-                                  width: _tabController.index == entry.key ? 2.0 : 1.0,
+                                  color: _tabController.index == entry.key
+                                      ? PreluraColors.activeColor
+                                      : PreluraColors.greyColor
+                                          .withOpacity(0.5),
+                                  width: _tabController.index == entry.key
+                                      ? 2.0
+                                      : 1.0,
                                 ),
                               ),
                             ),
@@ -87,7 +98,12 @@ class _InboxScreenState extends State<InboxScreen> with SingleTickerProviderStat
                               entry.value,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: _tabController.index == entry.key ? Theme.of(context).textTheme.bodyMedium?.color : PreluraColors.greyLightColor,
+                                color: _tabController.index == entry.key
+                                    ? Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.color
+                                    : PreluraColors.greyLightColor,
                               ),
                             ),
                           ),
@@ -147,7 +163,9 @@ class ChatsTab extends ConsumerWidget {
                   endActionPane: ActionPane(motion: DrawerMotion(), children: [
                     SlidableAction(
                       onPressed: (context) {
-                        ref.read(conversationProvider.notifier).deleteConversation(conv.id);
+                        ref
+                            .read(conversationProvider.notifier)
+                            .deleteConversation(conv.id);
                       },
                       backgroundColor: Color(0xFFFE4A49),
                       foregroundColor: Colors.white,

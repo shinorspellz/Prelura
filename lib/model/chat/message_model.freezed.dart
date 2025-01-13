@@ -25,7 +25,6 @@ mixin _$MessageModel {
   String? get attachment => throw _privateConstructorUsedError;
   dynamic get itemType => throw _privateConstructorUsedError;
   bool get read => throw _privateConstructorUsedError;
-  bool get deleted => throw _privateConstructorUsedError;
   bool get isItem => throw _privateConstructorUsedError;
   int? get itemId => throw _privateConstructorUsedError;
   MessageModel? get replyTo => throw _privateConstructorUsedError;
@@ -53,7 +52,6 @@ abstract class $MessageModelCopyWith<$Res> {
       String? attachment,
       dynamic itemType,
       bool read,
-      bool deleted,
       bool isItem,
       int? itemId,
       MessageModel? replyTo,
@@ -83,7 +81,6 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
     Object? attachment = freezed,
     Object? itemType = freezed,
     Object? read = null,
-    Object? deleted = null,
     Object? isItem = null,
     Object? itemId = freezed,
     Object? replyTo = freezed,
@@ -109,10 +106,6 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
       read: null == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleted: null == deleted
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
               as bool,
       isItem: null == isItem
           ? _value.isItem
@@ -172,7 +165,6 @@ abstract class _$$MessageModelImplCopyWith<$Res>
       String? attachment,
       dynamic itemType,
       bool read,
-      bool deleted,
       bool isItem,
       int? itemId,
       MessageModel? replyTo,
@@ -202,7 +194,6 @@ class __$$MessageModelImplCopyWithImpl<$Res>
     Object? attachment = freezed,
     Object? itemType = freezed,
     Object? read = null,
-    Object? deleted = null,
     Object? isItem = null,
     Object? itemId = freezed,
     Object? replyTo = freezed,
@@ -225,10 +216,6 @@ class __$$MessageModelImplCopyWithImpl<$Res>
       read: null == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleted: null == deleted
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
               as bool,
       isItem: null == isItem
           ? _value.isItem
@@ -259,7 +246,6 @@ class _$MessageModelImpl implements _MessageModel {
       this.attachment,
       this.itemType,
       required this.read,
-      required this.deleted,
       required this.isItem,
       this.itemId,
       this.replyTo,
@@ -279,8 +265,6 @@ class _$MessageModelImpl implements _MessageModel {
   @override
   final bool read;
   @override
-  final bool deleted;
-  @override
   final bool isItem;
   @override
   final int? itemId;
@@ -291,7 +275,7 @@ class _$MessageModelImpl implements _MessageModel {
 
   @override
   String toString() {
-    return 'MessageModel(id: $id, text: $text, attachment: $attachment, itemType: $itemType, read: $read, deleted: $deleted, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, sender: $sender)';
+    return 'MessageModel(id: $id, text: $text, attachment: $attachment, itemType: $itemType, read: $read, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, sender: $sender)';
   }
 
   @override
@@ -305,7 +289,6 @@ class _$MessageModelImpl implements _MessageModel {
                 other.attachment == attachment) &&
             const DeepCollectionEquality().equals(other.itemType, itemType) &&
             (identical(other.read, read) || other.read == read) &&
-            (identical(other.deleted, deleted) || other.deleted == deleted) &&
             (identical(other.isItem, isItem) || other.isItem == isItem) &&
             (identical(other.itemId, itemId) || other.itemId == itemId) &&
             (identical(other.replyTo, replyTo) || other.replyTo == replyTo) &&
@@ -321,7 +304,6 @@ class _$MessageModelImpl implements _MessageModel {
       attachment,
       const DeepCollectionEquality().hash(itemType),
       read,
-      deleted,
       isItem,
       itemId,
       replyTo,
@@ -350,7 +332,6 @@ abstract class _MessageModel implements MessageModel {
       final String? attachment,
       final dynamic itemType,
       required final bool read,
-      required final bool deleted,
       required final bool isItem,
       final int? itemId,
       final MessageModel? replyTo,
@@ -369,8 +350,6 @@ abstract class _MessageModel implements MessageModel {
   dynamic get itemType;
   @override
   bool get read;
-  @override
-  bool get deleted;
   @override
   bool get isItem;
   @override
