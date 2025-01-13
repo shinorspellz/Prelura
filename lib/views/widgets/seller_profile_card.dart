@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../model/user/user_model.dart';
@@ -19,8 +20,9 @@ class SellerProfileCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      width: double.infinity,
+      width: 140,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (user.profilePictureUrl == null) ...[
             Container(
@@ -43,8 +45,8 @@ class SellerProfileCard extends ConsumerWidget {
                 children: [
                   CachedNetworkImage(
                     imageUrl: user.profilePictureUrl ?? "",
-                    height: 16.h,
-                    width: double.infinity,
+                    height: 130,
+                    width: 130,
                     fit: BoxFit.cover,
                     placeholder: (context, url) {
                       return ShimmerBox(
@@ -59,6 +61,7 @@ class SellerProfileCard extends ConsumerWidget {
               ),
             ),
           ],
+          10.verticalSpacing,
           Text(
             user.username,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -68,10 +71,12 @@ class SellerProfileCard extends ConsumerWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
+          3.verticalSpacing,
           Text(
-            user.noOfFollowers.toString(),
+            "${user.noOfFollowers.toString()} followers",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
+                  color: PreluraColors.grey,
                   fontSize: getDefaultSize(),
                 ),
             maxLines: 1,
@@ -94,18 +99,26 @@ class SellerProfileCard extends ConsumerWidget {
               ),
             ],
           ),
+          3.verticalSpacing,
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const RenderSvg(svgPath: PreluraIcons.trusted_svg),
+              const RenderSvgWithoutColor(
+                svgPath: PreluraIcons.trusted_svg,
+                svgHeight: 18,
+                svgWidth: 18,
+              ),
               const SizedBox(
                 width: 4,
               ),
               Text(
                 "Trusted",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: PreluraColors.grey, fontWeight: FontWeight.w600),
+                      color: PreluraColors.grey,
+                      fontWeight: FontWeight.w600,
+                      fontSize: getDefaultSize(size: 12),
+                    ),
               ),
             ],
           ),

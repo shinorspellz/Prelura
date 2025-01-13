@@ -80,15 +80,15 @@ class HomeAllTab extends ConsumerWidget {
             data: (user) {
               final totalUsers = [user, user, user, user];
               return AspectRatio(
-                aspectRatio: 1.1,
+                aspectRatio: 1.4,
                 // height: 320,
                 // width: MediaQuery.sizeOf(context).width,
                 child: ListView.separated(
                   padding: EdgeInsets.only(left: 15),
                   scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => 10.horizontalSpacing,
+                  separatorBuilder: (context, index) => 20.horizontalSpacing,
                   itemBuilder: (context, index) => SizedBox(
-                    width: 180,
+                    width: 130,
                     child: SellerProfileCard(user: totalUsers[index]),
                   ),
                   itemCount: totalUsers.length,

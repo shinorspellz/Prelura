@@ -348,13 +348,13 @@ class _ProductProvider extends AsyncNotifier<void> {
   }
 
   Future<void> likeProduct(int productId, bool isLiked, likeCount) async {
-    if (ref.read(getProductProvider(productId)).hasValue) {
-      // ref.read(getProductProvider(productId)).value?.userLiked = isLiked;
-      // ref.read(getProductProvider(productId)).value?.likes = likeCount;
-    }
+    // if (ref.read(getProductProvider(productId)).hasValue) {
+    //   // ref.read(getProductProvider(productId)).value?.userLiked = isLiked;
+    //   // ref.read(getProductProvider(productId)).value?.likes = likeCount;
+    // }
     await _productRepo.toggleLikeProduct(productId);
 
-    ref.invalidate(getProductProvider(productId));
+    // ref.invalidate(getProductProvider(productId));
     // ref.invalidate(allProductProvider);
     ref.invalidate(userFavouriteProduct);
   }
