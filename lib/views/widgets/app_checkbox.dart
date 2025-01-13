@@ -77,7 +77,7 @@ class PreluraCheckBox extends StatelessWidget {
                   ),
                 ],
                 SizedBox(
-                  width: 67.w,
+                  width: 63.w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

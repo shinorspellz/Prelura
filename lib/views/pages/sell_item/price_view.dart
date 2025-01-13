@@ -140,7 +140,7 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
                 ref.watch(filteredProductProvider("")).when(
                     data: (products) {
                       return DisplaySection(
-                        products: products,
+                        products: products.take(10).toList(),
                       );
                     },
                     error: (error, _) {

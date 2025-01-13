@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
@@ -22,6 +23,7 @@ import 'package:prelura_app/res/images.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../core/utils/assets.dart';
 import '../../../res/colors.dart';
 import '../../../res/render_svg.dart';
 import '../../../res/utils.dart';
@@ -176,609 +178,643 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
           appbarTitle: 'Sell an item',
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if ((drafts?.isNotEmpty ?? false) && !selectedDraft) ...[
-                  15.verticalSpacing,
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: GestureDetector(
-                      onTap: () =>
-                          context.pushRoute(DraftsRoute(selected: (draft) {
-                        ref
-                            .read(sellItemProvider.notifier)
-                            .setStateToDraft(draft);
-                        titleController.text = draft.title;
-                        descController.text = draft.description;
-                        setState(() => selectedDraft = true);
-                      })),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Upload from drafts',
-                            style: context.textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: PreluraColors.activeColor,
-                            ),
-                          ),
-                          Spacer(),
-                          CircleAvatar(
-                            radius: 10,
-                            backgroundColor: PreluraColors.activeColor,
-                            child: Text(
-                              drafts!.length.toString(),
-                              style: context.textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  10.verticalSpacing,
-                  Divider(thickness: 2),
-                ],
-
-                if (widget.product == null && state.images.isEmpty) ...[
-                  Container(
-                    margin: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                        border: Border.all(
-                          width: 12,
-                          color: Theme.of(context).dividerColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 16),
-                    child: GestureDetector(
-                      onTap: () => notifier.addImages(),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          child: Column(
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if ((drafts?.isNotEmpty ?? false) && !selectedDraft) ...[
+                      15.verticalSpacing,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.pushRoute(DraftsRoute(selected: (draft) {
+                            ref
+                                .read(sellItemProvider.notifier)
+                                .setStateToDraft(draft);
+                            titleController.text = draft.title;
+                            descController.text = draft.description;
+                            setState(() => selectedDraft = true);
+                          })),
+                          child: Row(
                             children: [
-                              Icon(
-                                Icons.add_circle,
-                                size: 48.sp,
-                                color: PreluraColors.primaryColor,
+                              Text(
+                                'Upload from drafts',
+                                style: context.textTheme.bodyLarge?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: PreluraColors.activeColor,
+                                ),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    'Add up to 20 photos.',
-                                    style: TextStyle(
-                                        color: Colors.grey, fontSize: 14),
+                              Spacer(),
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundColor: PreluraColors.activeColor,
+                                child: Text(
+                                  drafts!.length.toString(),
+                                  style: context.textTheme.labelLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
                                   ),
-                                ],
-                              ),
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-                if (state.images.isNotEmpty) ...[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: SizedBox(
-                      height: 130,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        physics: const BouncingScrollPhysics(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ReorderableListView(
-                              shrinkWrap: true,
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.horizontal,
-                              physics: const NeverScrollableScrollPhysics(),
-                              onReorder: (int oldIndex, int newIndex) {
-                                log('oldIndex: $oldIndex');
-                                log('newIndex: $newIndex');
-                                setState(() {
-                                  final List<XFile> mutableImages =
-                                      List.from(state.images);
-                                  if (oldIndex < newIndex) {
-                                    newIndex -= 1;
-                                  }
-                                  final item = mutableImages.removeAt(oldIndex);
-                                  mutableImages.insert(newIndex, item);
-                                  ref
-                                      .read(sellItemProvider.notifier)
-                                      .updateImage(mutableImages);
-                                });
-                              },
-                              children: state.images
-                                  .asMap()
-                                  .entries
-                                  .map((image) => Row(
-                                        key: ValueKey(image),
-                                        children: [
-                                          GestureDetector(
+                      10.verticalSpacing,
+                      Divider(thickness: 2),
+                    ],
+
+                    if (widget.product == null && state.images.isEmpty) ...[
+                      Container(
+                        margin: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            border: Border.all(
+                              width: 12,
+                              color: Theme.of(context).dividerColor,
+                            ),
+                            borderRadius: BorderRadius.circular(10)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 16),
+                        child: GestureDetector(
+                          onTap: () => notifier.addImages(),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.add_circle,
+                                    size: 48.sp,
+                                    color: PreluraColors.primaryColor,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        'Add up to 20 photos.',
+                                        style: TextStyle(
+                                            color: Colors.grey, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    if (state.images.isNotEmpty) ...[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: SizedBox(
+                          height: 130,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            physics: const BouncingScrollPhysics(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ReorderableListView(
+                                  shrinkWrap: true,
+                                  padding: EdgeInsets.zero,
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  onReorder: (int oldIndex, int newIndex) {
+                                    log('oldIndex: $oldIndex');
+                                    log('newIndex: $newIndex');
+                                    setState(() {
+                                      final List<XFile> mutableImages =
+                                          List.from(state.images);
+                                      if (oldIndex < newIndex) {
+                                        newIndex -= 1;
+                                      }
+                                      final item =
+                                          mutableImages.removeAt(oldIndex);
+                                      mutableImages.insert(newIndex, item);
+                                      ref
+                                          .read(sellItemProvider.notifier)
+                                          .updateImage(mutableImages);
+                                    });
+                                  },
+                                  children: state.images
+                                      .asMap()
+                                      .entries
+                                      .map((image) => Row(
                                             key: ValueKey(image),
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      FullScreenImage(
-                                                    imagePath: state.images,
-                                                    isLocal: true,
-                                                    initialIndex: image.key,
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            child: Container(
-                                              key: ValueKey(image),
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 5),
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  color: Colors.transparent
-                                                      .withOpacity(0.1)),
-                                              child: Stack(
-                                                children: [
-                                                  ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8), // Match the Container's border radius
-                                                    child: Image.file(
-                                                      File(image.value.path),
-                                                      fit: BoxFit.cover,
-                                                      height: 142,
-                                                      width: 100,
-                                                    ),
-                                                  ),
-                                                  if (state.images
-                                                      .contains(image))
-                                                    Positioned(
-                                                      bottom: 5,
-                                                      right: 5,
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .bottomRight,
-                                                        child: InkWell(
-                                                            child: Icon(
-                                                              Icons
-                                                                  .cancel_rounded,
-                                                              color:
-                                                                  PreluraColors
-                                                                      .greyColor,
-                                                              fill: 1,
-                                                            ),
-                                                            onTap: () {
-                                                              notifier
-                                                                  .deleteImage(
-                                                                      image
-                                                                          .value);
-                                                            }),
+                                            children: [
+                                              GestureDetector(
+                                                key: ValueKey(image),
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          FullScreenImage(
+                                                        imagePath: state.images,
+                                                        isLocal: true,
+                                                        initialIndex: image.key,
                                                       ),
                                                     ),
-                                                ],
+                                                  );
+                                                },
+                                                child: Container(
+                                                  key: ValueKey(image),
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 5),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8),
+                                                      color: Colors.transparent
+                                                          .withOpacity(0.1)),
+                                                  child: Stack(
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                8), // Match the Container's border radius
+                                                        child: Image.file(
+                                                          File(
+                                                              image.value.path),
+                                                          fit: BoxFit.cover,
+                                                          height: 142,
+                                                          width: 100,
+                                                        ),
+                                                      ),
+                                                      if (state.images
+                                                          .contains(image))
+                                                        Positioned(
+                                                          bottom: 5,
+                                                          right: 5,
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .bottomRight,
+                                                            child: InkWell(
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .cancel_rounded,
+                                                                  color: PreluraColors
+                                                                      .greyColor,
+                                                                  fill: 1,
+                                                                ),
+                                                                onTap: () {
+                                                                  notifier.deleteImage(
+                                                                      image
+                                                                          .value);
+                                                                }),
+                                                          ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                          // SizedBox(
-                                          //   width: 6,
-                                          // ),
-                                        ],
-                                      ))
-                                  .toList(),
+                                              // SizedBox(
+                                              //   width: 6,
+                                              // ),
+                                            ],
+                                          ))
+                                      .toList(),
+                                ),
+                                GestureDetector(
+                                  onTap: () => notifier.addImages(),
+                                  child: Container(
+                                      width: 100,
+                                      height: 142,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.grey[400],
+                                      ),
+                                      child: Center(
+                                        child: Icon(Icons.add_circle,
+                                            size: 32.sp,
+                                            color: PreluraColors.primaryColor),
+                                      )),
+                                )
+                              ],
                             ),
-                            GestureDetector(
-                              onTap: () => notifier.addImages(),
-                              child: Container(
-                                  width: 100,
-                                  height: 142,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.grey[400],
-                                  ),
-                                  child: Center(
-                                    child: Icon(Icons.add_circle,
-                                        size: 32.sp,
-                                        color: PreluraColors.primaryColor),
-                                  )),
-                            )
+                          ),
+                        ),
+                      ),
+                    ],
+
+                    Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Column(
+                          children: [
+                            PreluraAuthTextField(
+                              label: 'Title',
+                              textCapitalization: TextCapitalization.words,
+                              formatter: UpperCaseTextFormatter(),
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w400),
+                              hintText: 'e.g. White COS Jumper',
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w400),
+                              onChanged: notifier.updateTitle,
+                              controller: titleController,
+                              focusNode: titlefocusNode,
+                              // textInputAction: TextInputActio,
+                            ),
+                            const SizedBox(height: 8),
+                            PreluraAuthTextField(
+                              label: 'Describe your item',
+                              textInputAction: TextInputAction.newline,
+
+                              keyboardType: TextInputType.multiline,
+                              focusNode: _descriptionfocusNode,
+                              labelStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 17),
+                              hintText:
+                                  'e.g. only worn a few times, true to size',
+                              minLines: 6,
+                              maxLines: null,
+                              isDescription: true,
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 18),
+                              onChanged: notifier.updateDescription,
+                              // focusNode: _descriptionfocusNode,
+                              controller: descController,
+                              // maxLines: null,
+                            ),
                           ],
-                        ),
+                        )),
+
+                    PreluraCheckBox(
+                      isChecked: state.isFeatured,
+                      onChanged: (value) => notifier.updateFeatured(value),
+                      title: 'Feature',
+                      style: context.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
+                    // const SizedBox(height: 8),
+                    MenuCard(
+                      title: "Category",
+                      subtitle: state.subCategory?.name ?? state.category?.name,
+                      rightArrow: false,
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      children: [
-                        PreluraAuthTextField(
-                          label: 'Title',
-                          textCapitalization: TextCapitalization.words,
-                          formatter: UpperCaseTextFormatter(),
-                          labelStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w400),
-                          hintText: 'e.g. White COS Jumper',
-                          hintStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w400),
-                          onChanged: notifier.updateTitle,
-                          controller: titleController,
-                          focusNode: titlefocusNode,
-                          // textInputAction: TextInputActio,
-                        ),
-                        const SizedBox(height: 8),
-                        PreluraAuthTextField(
-                          label: 'Describe your item',
-                          textInputAction: TextInputAction.newline,
+                        context.router.push(const CategoryRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Brand',
+                      rightArrow: false,
+                      subtitle: state.customBrand ?? state.brand?.name,
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                          keyboardType: TextInputType.multiline,
-                          focusNode: _descriptionfocusNode,
-                          labelStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  fontWeight: FontWeight.w400, fontSize: 17),
-                          hintText: 'e.g. only worn a few times, true to size',
-                          minLines: 6,
-                          maxLines: null,
-                          isDescription: true,
-                          hintStyle: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  fontWeight: FontWeight.w400, fontSize: 18),
-                          onChanged: notifier.updateDescription,
-                          // focusNode: _descriptionfocusNode,
-                          controller: descController,
-                          // maxLines: null,
-                        ),
-                      ],
-                    )),
+                        context.router.push(const BrandSelectionRoute());
+                      },
+                    ),
 
-                PreluraCheckBox(
-                  isChecked: state.isFeatured,
-                  onChanged: (value) => notifier.updateFeatured(value),
-                  title: 'Feature',
-                  style: context.textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                // const SizedBox(height: 8),
-                MenuCard(
-                  title: "Category",
-                  subtitle: state.subCategory?.name ?? state.category?.name,
-                  rightArrow: false,
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                    if (state.subCategory?.name != 'Accessories')
+                      MenuCard(
+                        title: 'Size',
+                        rightArrow: false,
+                        subtitle: state.size?.name.replaceAll('_', ' '),
+                        subtitleColor: PreluraColors.greyColor,
+                        onTap: () {
+                          dismissKeyboard();
 
-                    context.router.push(const CategoryRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Brand',
-                  rightArrow: false,
-                  subtitle: state.customBrand ?? state.brand?.name,
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                          context.router.push(const SizeSelectionRoute());
+                        },
+                      ),
+                    MenuCard(
+                      title: 'Measurements (Optional)',
+                      rightArrow: false,
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const BrandSelectionRoute());
-                  },
-                ),
+                        context.router.push(const MaterialSelectionRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Condition',
+                      rightArrow: false,
+                      subtitle: state.selectedCondition?.simpleName,
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                if (state.subCategory?.name != 'Accessories')
-                  MenuCard(
-                    title: 'Size',
-                    rightArrow: false,
-                    subtitle: state.size?.name.replaceAll('_', ' '),
-                    subtitleColor: PreluraColors.greyColor,
-                    onTap: () {
-                      dismissKeyboard();
+                        context.router.push(const ConditionRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Colours',
+                      subtitle: state.selectedColors.join(', '),
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                      context.router.push(const SizeSelectionRoute());
-                    },
-                  ),
-                MenuCard(
-                  title: 'Measurements (Recommended)',
-                  rightArrow: false,
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const ColorSelectorRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Material (Optional)',
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const MaterialSelectionRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Condition',
-                  rightArrow: false,
-                  subtitle: state.selectedCondition?.simpleName,
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const MaterialSelectionRoute());
+                      },
+                      subtitleColor: PreluraColors.greyColor,
+                      subtitle:
+                          '${state.selectedMaterials.map((e) => e.name).take(2).join(', ')} ${state.selectedMaterials.length > 2 ? '...' : ''}',
+                    ),
+                    MenuCard(
+                      title: 'Style (Optional)',
+                      subtitleColor: PreluraColors.greyColor,
+                      subtitle:
+                          state.style?.name.replaceAll("_", " ").toLowerCase(),
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const ConditionRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Colours',
-                  subtitle: state.selectedColors.join(', '),
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const StyleRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Price',
+                      subtitle: state.price,
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const ColorSelectorRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Material (Recommended)',
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const PriceRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Discount Price (Optional)',
+                      subtitle: '${state.discount ?? 0}%',
+                      subtitleColor: PreluraColors.greyColor,
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const MaterialSelectionRoute());
-                  },
-                  subtitleColor: PreluraColors.greyColor,
-                  subtitle:
-                      '${state.selectedMaterials.map((e) => e.name).take(2).join(', ')} ${state.selectedMaterials.length > 2 ? '...' : ''}',
-                ),
-                MenuCard(
-                  title: 'Style',
-                  subtitleColor: PreluraColors.greyColor,
-                  subtitle:
-                      state.style?.name.replaceAll("_", " ").toLowerCase(),
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const DiscountRoute());
+                      },
+                    ),
+                    MenuCard(
+                      title: 'Parcel Size',
+                      subtitle: state.parcel?.name,
+                      subtitleColor: PreluraColors.greyColor,
+                      rightArrow: false,
+                      onTap: () {
+                        dismissKeyboard();
 
-                    context.router.push(const StyleRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Price',
-                  subtitle: state.price,
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                        context.router.push(const ParcelRoute());
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'The buyer always pays for postage.',
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                      ),
+                    ),
 
-                    context.router.push(const PriceRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Discount Price',
-                  subtitle: '${state.discount ?? 0}%',
-                  subtitleColor: PreluraColors.greyColor,
-                  onTap: () {
-                    dismissKeyboard();
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     // Open additional compensation info
+                    //   },
+                    //   child: Text(
+                    //     'See compensation information for sellers',
+                    //     style: TextStyle(color: Colors.blue, fontSize: 12),
+                    //   ),
+                    // ),
 
-                    context.router.push(const DiscountRoute());
-                  },
-                ),
-                MenuCard(
-                  title: 'Parcel Size',
-                  subtitle: state.parcel?.name,
-                  subtitleColor: PreluraColors.greyColor,
-                  rightArrow: false,
-                  onTap: () {
-                    dismissKeyboard();
+                    const SizedBox(height: 32),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          dismissKeyboard();
+                          HelperFunction.context = context;
+                          final files =
+                              state.images.map((x) => File(x.path)).toList();
+                          if (files.isEmpty && widget.product == null) {
+                            // HelperFunction.showToast(
+                            context
+                                .alert('Images are required to sell product');
+                            return;
+                          }
 
-                    context.router.push(const ParcelRoute());
-                  },
-                ),
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    'The buyer always pays for postage.',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                ),
+                          if (!notifier.validateInputs()) {
+                            context.alert(
+                                'Both title and description of product are requuired');
+                            return;
+                          }
+                          if (state.category == null) {
+                            context
+                                .alert('Select an item category to proceed.');
+                            return;
+                          }
+                          if (state.subCategory == null) {
+                            context.alert(
+                                'Select an item sub category to proceed.');
+                            return;
+                          }
+                          if (state.brand == null &&
+                              state.customBrand == null) {
+                            context.alert(
+                                'A `brand` or `Custom brand` is required for product.');
+                            return;
+                          }
+                          if (state.size == null && widget.product == null) {
+                            context.alert('Select an size to proceed.');
+                            return;
+                          }
+                          if (state.selectedCondition == null) {
+                            context.alert('Condition is required for product.');
+                            return;
+                          }
+                          if (state.selectedColors.isEmpty) {
+                            context.alert('Colors are required for product.');
+                            return;
+                          }
+                          log(state.price.toString(),
+                              name: 'price in sell item view');
+                          if (state.price == null || state.price == '0') {
+                            HelperFunction.context = context;
+                            context.alert('Price is required for product.');
+                            return;
+                          }
+                          if (state.parcel == null) {
+                            context
+                                .alert('Parcel size is required for product.');
+                            return;
+                          }
+                          // if (state.selectedMaterials.isEmpty) {
+                          //   HelperFunction.showToast(message: 'Materials are required for product.');
+                          //   return;
+                          // }
 
-                // GestureDetector(
-                //   onTap: () {
-                //     // Open additional compensation info
-                //   },
-                //   child: Text(
-                //     'See compensation information for sellers',
-                //     style: TextStyle(color: Colors.blue, fontSize: 12),
-                //   ),
-                // ),
+                          // if (state.selectedColors.) {
+                          //   context.alert('Parcel size is required for product.');
+                          //   return;
+                          // }
 
-                const SizedBox(height: 32),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      dismissKeyboard();
-                      HelperFunction.context = context;
-                      final files =
-                          state.images.map((x) => File(x.path)).toList();
-                      if (files.isEmpty && widget.product == null) {
-                        // HelperFunction.showToast(
-                        context.alert('Images are required to sell product');
-                        return;
-                      }
+                          if (widget.product != null) {
+                            await ref
+                                .read(productProvider.notifier)
+                                .updateProduct(
+                                  productId: int.parse(widget.product!.id),
+                                  title: state.title,
+                                  desc: state.description,
+                                  price: double.parse(state.price!),
+                                  condition: state.selectedCondition!,
+                                  parcelSize: state.parcel,
+                                  size: state.size!,
+                                  category:
+                                      int.parse(state.category!.id.toString()),
+                                  subCategory: int.parse(
+                                      state.subCategory!.id.toString()),
+                                  color: state.selectedColors,
+                                  brandId: state.brand?.id,
+                                  materials: state.selectedMaterials
+                                      .map((e) => e.id)
+                                      .toList(),
+                                  style: state.style,
+                                  discount: state.discount == null
+                                      ? null
+                                      : double.parse(state.discount!),
+                                  customBrand: state.customBrand,
+                                  isFeatured: state.isFeatured,
+                                );
+                            ref.read(productProvider).whenOrNull(
+                                  error: (e, _) => context.alert(e.toString()),
+                                  data: (_) {
+                                    context.alert('Upload Complete!');
+                                    Navigator.pop(context);
+                                    // final tabRouter = AutoTabsRouter.of(context);
+                                    // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                                  },
+                                );
 
-                      if (!notifier.validateInputs()) {
-                        context.alert(
-                            'Both title and description of product are requuired');
-                        return;
-                      }
-                      if (state.category == null) {
-                        context.alert('Select an item category to proceed.');
-                        return;
-                      }
-                      if (state.subCategory == null) {
-                        context
-                            .alert('Select an item sub category to proceed.');
-                        return;
-                      }
-                      if (state.brand == null && state.customBrand == null) {
-                        context.alert(
-                            'A `brand` or `Custom brand` is required for product.');
-                        return;
-                      }
-                      if (state.size == null && widget.product == null) {
-                        context.alert('Select an size to proceed.');
-                        return;
-                      }
-                      if (state.selectedCondition == null) {
-                        context.alert('Condition is required for product.');
-                        return;
-                      }
-                      if (state.selectedColors.isEmpty) {
-                        context.alert('Colors are required for product.');
-                        return;
-                      }
-                      log(state.price.toString(),
-                          name: 'price in sell item view');
-                      if (state.price == null || state.price == '0') {
-                        HelperFunction.context = context;
-                        context.alert('Price is required for product.');
-                        return;
-                      }
-                      if (state.parcel == null) {
-                        context.alert('Parcel size is required for product.');
-                        return;
-                      }
-                      // if (state.selectedMaterials.isEmpty) {
-                      //   HelperFunction.showToast(message: 'Materials are required for product.');
-                      //   return;
-                      // }
+                            return;
+                          }
 
-                      // if (state.selectedColors.) {
-                      //   context.alert('Parcel size is required for product.');
-                      //   return;
-                      // }
-
-                      if (widget.product != null) {
-                        await ref.read(productProvider.notifier).updateProduct(
-                              productId: int.parse(widget.product!.id),
-                              title: state.title,
-                              desc: state.description,
-                              price: double.parse(state.price!),
-                              condition: state.selectedCondition!,
-                              parcelSize: state.parcel,
-                              size: state.size!,
-                              category:
-                                  int.parse(state.category!.id.toString()),
-                              subCategory:
-                                  int.parse(state.subCategory!.id.toString()),
-                              color: state.selectedColors,
-                              brandId: state.brand?.id,
-                              materials: state.selectedMaterials
-                                  .map((e) => e.id)
-                                  .toList(),
-                              style: state.style,
-                              discount: state.discount == null
-                                  ? null
-                                  : double.parse(state.discount!),
-                              customBrand: state.customBrand,
-                              isFeatured: state.isFeatured,
-                            );
-                        ref.read(productProvider).whenOrNull(
-                              error: (e, _) => context.alert(e.toString()),
-                              data: (_) {
-                                context.alert('Upload Complete!');
-                                Navigator.pop(context);
-                                // final tabRouter = AutoTabsRouter.of(context);
-                                // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
-                              },
-                            );
-
-                        return;
-                      }
-
-                      await ref.read(productProvider.notifier).createProduct(
-                            title: state.title,
-                            desc: state.description,
-                            price: double.parse(state.price!),
-                            condition: state.selectedCondition!,
-                            parcelSize: state.parcel,
-                            images: files,
-                            size: state.size!,
-                            category: int.parse(state.category!.id.toString()),
-                            subCategory:
-                                int.parse(state.subCategory!.id.toString()),
-                            brandId: state.brand?.id,
-                            color: state.selectedColors,
-                            materials: state.selectedMaterials
-                                .map((e) => e.id)
-                                .toList(),
-                            style: state.style,
-                            discount: state.discount == null
-                                ? null
-                                : double.parse(state.discount!),
-                            customBrand: state.customBrand,
-                            isFeatured: state.isFeatured,
+                          await ref
+                              .read(productProvider.notifier)
+                              .createProduct(
+                                title: state.title,
+                                desc: state.description,
+                                price: double.parse(state.price!),
+                                condition: state.selectedCondition!,
+                                parcelSize: state.parcel,
+                                images: files,
+                                size: state.size!,
+                                category:
+                                    int.parse(state.category!.id.toString()),
+                                subCategory:
+                                    int.parse(state.subCategory!.id.toString()),
+                                brandId: state.brand?.id,
+                                color: state.selectedColors,
+                                materials: state.selectedMaterials
+                                    .map((e) => e.id)
+                                    .toList(),
+                                style: state.style,
+                                discount: state.discount == null
+                                    ? null
+                                    : double.parse(state.discount!),
+                                customBrand: state.customBrand,
+                                isFeatured: state.isFeatured,
+                              );
+                          ref.read(productProvider).whenOrNull(
+                            error: (e, _) {
+                              log(e.toString(), stackTrace: _);
+                              context.alert(e.toString());
+                            },
+                            data: (_) {
+                              context.alert('Product created successfully');
+                              Navigator.pop(context);
+                              // final tabRouter = AutoTabsRouter.of(context);
+                              // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                            },
                           );
-                      ref.read(productProvider).whenOrNull(
-                        error: (e, _) {
-                          log(e.toString(), stackTrace: _);
-                          context.alert(e.toString());
-                        },
-                        data: (_) {
-                          context.alert('Product created successfully');
-                          Navigator.pop(context);
-                          // final tabRouter = AutoTabsRouter.of(context);
-                          // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
-                        },
-                      );
 
-                      //   await notifier.uploadItem();
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(content: Text('Item uploaded successfully!')),
-                      //   );
-                      // } else {
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(content: Text('Please fill in all required fields')),
-                      //   );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: PreluraColors.primaryColor,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                          //   await notifier.uploadItem();
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(content: Text('Item uploaded successfully!')),
+                          //   );
+                          // } else {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(content: Text('Please fill in all required fields')),
+                          //   );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: PreluraColors.primaryColor,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Center(
+                          child: ref.watch(productProvider).isLoading
+                              ? SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: LoadingWidget(
+                                    height: 20,
+                                    color: PreluraColors.white,
+                                  ),
+                                )
+                              : Text(
+                                  widget.product == null ? 'Upload' : "Update",
+                                  style: TextStyle(
+                                      fontSize: 16, color: PreluraColors.white),
+                                ),
+                        ),
                       ),
                     ),
-                    child: Center(
-                      child: ref.watch(productProvider).isLoading
-                          ? SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: LoadingWidget(
-                                height: 20,
-                                color: PreluraColors.white,
-                              ),
-                            )
-                          : Text(
-                              widget.product == null ? 'Upload' : "Update",
-                              style: TextStyle(
-                                  fontSize: 16, color: PreluraColors.white),
-                            ),
-                    ),
-                  ),
+                    const SizedBox(
+                      height: 30,
+                    )
+                  ],
                 ),
-                const SizedBox(
-                  height: 30,
-                )
-              ],
+              ),
             ),
-          ),
+            if (ref.watch(productProvider).isLoading)
+              Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                      child: Lottie.asset(
+                        AnimationAssets.laundry,
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                  ))
+          ],
         ),
       ),
     );

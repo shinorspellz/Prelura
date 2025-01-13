@@ -9,7 +9,8 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
-final discountController = StateProvider.autoDispose((ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
+final discountController = StateProvider.autoDispose(
+    (ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
 
 @RoutePage()
 class DiscountPage extends ConsumerWidget {
@@ -20,7 +21,8 @@ class DiscountPage extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         centerTitle: true,
@@ -53,7 +55,7 @@ class DiscountPage extends ConsumerWidget {
             PreluraAuthTextField(
               keyboardType: TextInputType.number,
               label: "Discount",
-              hintText: "Enter discount offer (max 95%)",
+              hintText: "Enter discount amount",
               formatter: LengthLimitingTextInputFormatter(3),
               maxLength: 2,
               controller: ref.watch(discountController),
