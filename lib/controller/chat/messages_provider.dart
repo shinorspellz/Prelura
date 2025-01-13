@@ -4,20 +4,22 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/network/network.dart';
-import 'package:prelura_app/controller/chat/conversations_provider.dart';
-import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:uuid/uuid.dart';
 
 final chatScrollController = Provider.autoDispose((ref) => ScrollController());
-final chatAnimationListState = Provider.autoDispose((ref) => GlobalKey<AnimatedListState>());
+final chatAnimationListState =
+    Provider.autoDispose((ref) => GlobalKey<AnimatedListState>());
 
-final messagesProvider = StreamNotifierProvider.family.autoDispose<_MessagesNotifier, List<MessageModel>, String>(_MessagesNotifier.new);
+final messagesProvider = StreamNotifierProvider.family
+    .autoDispose<_MessagesNotifier, List<MessageModel>, String>(
+        _MessagesNotifier.new);
 
-class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageModel>, String> {
+class _MessagesNotifier
+    extends AutoDisposeFamilyStreamNotifier<List<MessageModel>, String> {
   late final _repo = ref.read(chatRepo);
 
   final int _pageCount = 1000;
@@ -37,7 +39,8 @@ class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageMode
     ref.onDispose(() => _channel?.close());
     ref.onDispose(() => _channel = null);
 
-    _channel = SocketChannel('wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
+    _channel = SocketChannel(
+        'wss://prelura.com/ws/chat/$arg/', ref.watch(hive).requireValue);
 
     await _getMessages(id: arg, pageNumber: _currentPage);
     await for (final event in _channel!.stream) {
@@ -59,27 +62,33 @@ class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageMode
 
   /// updates the state with the latest event
   void addMessage(MessageModel newMessage) {
-    List<MessageModel> dataList = <MessageModel>{newMessage, ...state.value ?? []}.toList();
+    List<MessageModel> dataList =
+        <MessageModel>{newMessage, ...state.value ?? []}.toList();
     state = AsyncData(dataList);
   }
 
   /// sends message to via [_channel]
   Future<void> sendMessage(String message) async {
     final messageUUID = Uuid().v4();
-    _channel?.sendMessage(jsonEncode({'message': message.trim(), 'message_uuid': messageUUID}));
+    _channel?.sendMessage(
+        jsonEncode({'message': message.trim(), 'message_uuid': messageUUID}));
   }
 
   /// Retrieves the list of messages via api
   Future<void> _getMessages({required String id, int? pageNumber}) async {
-    final result = await _repo.getMessages(id: id, pageCount: _pageCount, pageNumber: pageNumber);
+    log(":::::You called the get messages ::::");
+    final result = await _repo.getMessages(
+        id: id, pageCount: _pageCount, pageNumber: pageNumber);
     _messagesTotal = result.conversationTotalNumber!;
 
-    final newState = result.conversation!.map((e) => MessageModel.fromJson(e!.toJson()));
+    final newState =
+        result.conversation!.map((e) => MessageModel.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -111,7 +120,8 @@ class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageMode
   }
 
   Future<void> deleteMessage(String id) async {
-    state = AsyncData((state.valueOrNull ?? [])..removeWhere((x) => x.id == id));
+    state =
+        AsyncData((state.valueOrNull ?? [])..removeWhere((x) => x.id == id));
 
     state = await AsyncValue.guard(() async {
       await _repo.deleteMessage(int.parse(id));
@@ -122,7 +132,9 @@ class _MessagesNotifier extends AutoDisposeFamilyStreamNotifier<List<MessageMode
   }
 }
 
-final messagesActionProvider = AsyncNotifierProvider<_MessssageActionNotifier, void>(_MessssageActionNotifier.new);
+final messagesActionProvider =
+    AsyncNotifierProvider<_MessssageActionNotifier, void>(
+        _MessssageActionNotifier.new);
 
 class _MessssageActionNotifier extends AsyncNotifier<void> {
   late final _repo = ref.read(chatRepo);

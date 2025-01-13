@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -7,12 +5,11 @@ import 'package:contentsize_tabbarview/contentsize_tabbarview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:prelura_app/views/pages/auth_page.dart';
 import 'package:prelura_app/views/pages/product_detail/widget/product_description.dart';
 import 'package:prelura_app/views/pages/product_detail/widget/product_top_details.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
@@ -20,18 +17,13 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
-import 'package:prelura_app/views/widgets/gesture_navigator.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/helper_function.dart';
-import '../../../res/images.dart';
 import '../../../res/utils.dart';
-import '../../../shared/card_model.dart';
-import '../../shimmers/custom_shimmer.dart';
 import '../../shimmers/product_details_shimmer.dart';
-import '../../widgets/card.dart';
 import '../../widgets/full_screen_image.dart';
 
 @RoutePage()
@@ -89,13 +81,28 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
       child: Scaffold(
         body: ref.watch(getProductProvider(widget.productId)).when(
               data: (product) {
-                bool isCurrentUser = product.seller.username ==
+                String? appUsername =
                     ref.read(userProvider).valueOrNull?.username;
+                bool isCurrentUser = product.seller.username == appUsername;
+                var userProducts = ref
+                    .watch(userProduct(appUsername))
+                    .valueOrNull
+                    ?.where((e) => e.isFeatured ?? false)
+                    .toList();
+                bool isPinned = product.isFeatured ?? false;
 
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,
                       actions: [
+                        if ((userProducts?.length ?? 0) >= 5)
+                          VBottomSheetItem(
+                              onTap: (context) {
+                                Navigator.pop(context);
+                              },
+                              title: isPinned
+                                  ? "Remove from pinned"
+                                  : 'Pin product'),
                         VBottomSheetItem(
                             onTap: (context) {
                               Navigator.pop(context);
@@ -591,6 +598,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 height: 35,
                 width: 120,
                 onTap: () {},
+                fontSize: 13,
                 text: "Create Bundle",
                 textColor: PreluraColors.white,
               ),

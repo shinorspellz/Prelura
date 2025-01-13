@@ -10,8 +10,8 @@ class MessageModel with _$MessageModel {
     required dynamic id,
     required String text,
     String? attachment,
+    itemType,
     required bool read,
-    required bool deleted,
     required bool isItem,
     int? itemId,
     MessageModel? replyTo,
@@ -25,10 +25,11 @@ class MessageModel with _$MessageModel {
         id: json["id"],
 
         text: json["text"],
+        itemType: json["itemType"],
         attachment: json["attachment"],
 
         read: json["read"],
-        deleted: json["deleted"],
+
         isItem: json["is_item"],
         itemId: json["item_id"],
         // itemType: json["item_type"],

@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 
-final conversationProvider = AsyncNotifierProvider<_ConversationNotifier, List<ConversationModel>>(_ConversationNotifier.new);
+final conversationProvider =
+    AsyncNotifierProvider<_ConversationNotifier, List<ConversationModel>>(
+        _ConversationNotifier.new);
 
 class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
   late final _repo = ref.read(chatRepo);
@@ -33,7 +35,8 @@ class _ConversationNotifier extends AsyncNotifier<List<ConversationModel>> {
   }
 
   Future<void> deleteConversation(String id) async {
-    state = AsyncData((state.valueOrNull ?? [])..removeWhere((x) => x.id == id));
+    state =
+        AsyncData((state.valueOrNull ?? [])..removeWhere((x) => x.id == id));
 
     state = await AsyncValue.guard(() async {
       await _repo.deleteConversation(int.parse(id));

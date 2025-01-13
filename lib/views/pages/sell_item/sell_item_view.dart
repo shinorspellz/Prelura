@@ -1,38 +1,30 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:prelura_app/controller/product/provider/condition_provider.dart';
-import 'package:prelura_app/views/pages/sell_item/discount_page.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
-import 'package:prelura_app/res/helper_function.dart';
-import 'package:prelura_app/res/images.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../core/utils/assets.dart';
 import '../../../res/colors.dart';
-import '../../../res/render_svg.dart';
 import '../../../res/utils.dart';
 import '../../widgets/full_screen_image.dart';
-import '../auth_page.dart';
-import '../../../controller/product/provider/brand_provider.dart';
-import '../../../controller/product/provider/parcel_provider.dart';
-import '../../../controller/product/provider/price_provider.dart';
-import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
 class SellItemScreen extends ConsumerStatefulWidget {

@@ -1,22 +1,13 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
-import '../../../../res/images.dart';
-import '../../../../res/utils.dart';
-import '../../../shimmers/grid_shimmer.dart';
-import '../../../widgets/brand_text_widget.dart';
 import '../../../widgets/custom_widget.dart';
 import '../../../widgets/price_field.dart';
-import 'offer_product_card.dart';
 
 class BuyerOfferCard extends ConsumerStatefulWidget {
   const BuyerOfferCard({super.key});
@@ -49,7 +40,7 @@ class _BuyerOfferCardState extends ConsumerState<BuyerOfferCard> {
             text: "Declined",
           ),
           24.verticalSpacing,
-          OfferProductCard(),
+          // OfferProductCard(),
           32.verticalSpacing,
           Row(
             children: [

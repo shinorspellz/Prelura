@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -39,7 +38,8 @@ class ProductModel with _$ProductModel {
     final bool? isFeatured,
   }) = _ProductModel;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 }
 
 @freezed
@@ -49,15 +49,18 @@ class ProductBanners with _$ProductBanners {
     required String thumbnail,
   }) = _ProductBanners;
 
-  factory ProductBanners.fromJson(Map<String, dynamic> json) => _$ProductBannersFromJson(json);
+  factory ProductBanners.fromJson(Map<String, dynamic> json) =>
+      _$ProductBannersFromJson(json);
 }
 
-class BannerConverter implements JsonConverter<List<ProductBanners>, List<String>> {
+class BannerConverter
+    implements JsonConverter<List<ProductBanners>, List<String>> {
   const BannerConverter();
 
   @override
   List<ProductBanners> fromJson(List<String> items) {
-    final banners = items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
+    final banners =
+        items.map((e) => ProductBanners.fromJson(jsonDecode(e))).toList();
     return banners;
   }
 
@@ -72,15 +75,18 @@ enum ConditionsEnum {
   ),
   LIKE_NEW(
     simpleName: 'Like New',
-    subtitle: 'A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+    subtitle:
+        'A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
   ),
   USED(
     simpleName: 'Used',
-    subtitle: 'A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing.',
+    subtitle:
+        'A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing.',
   ),
   HEAVILY_USED(
     simpleName: 'Heavily Used',
-    subtitle: 'A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+    subtitle:
+        'A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
   );
 
   const ConditionsEnum({
@@ -91,7 +97,9 @@ enum ConditionsEnum {
   final String subtitle;
 
   static ConditionsEnum conditionByApiValue(String apiValue) {
-    return ConditionsEnum.values.firstWhere((value) => value.name.toLowerCase() == apiValue.toLowerCase(), orElse: () => ConditionsEnum.USED);
+    return ConditionsEnum.values.firstWhere(
+        (value) => value.name.toLowerCase() == apiValue.toLowerCase(),
+        orElse: () => ConditionsEnum.USED);
   }
 
   static String conditionToApiValue(ConditionsEnum condition) {

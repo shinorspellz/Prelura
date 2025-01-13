@@ -26070,13 +26070,6 @@ const documentNodeQueryConversation = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'deleted'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'isItem'),
             alias: null,
             arguments: [],
@@ -26404,7 +26397,6 @@ class Query$Conversation$conversation {
     this.attachment,
     this.attachmentType,
     required this.read,
-    required this.deleted,
     required this.isItem,
     this.itemId,
     this.itemType,
@@ -26419,7 +26411,6 @@ class Query$Conversation$conversation {
     final l$attachment = json['attachment'];
     final l$attachmentType = json['attachmentType'];
     final l$read = json['read'];
-    final l$deleted = json['deleted'];
     final l$isItem = json['isItem'];
     final l$itemId = json['itemId'];
     final l$itemType = json['itemType'];
@@ -26435,7 +26426,6 @@ class Query$Conversation$conversation {
           : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
               (l$attachmentType as String)),
       read: (l$read as bool),
-      deleted: (l$deleted as bool),
       isItem: (l$isItem as bool),
       itemId: (l$itemId as int?),
       itemType: (l$itemType as String?),
@@ -26460,8 +26450,6 @@ class Query$Conversation$conversation {
   final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
 
   final bool read;
-
-  final bool deleted;
 
   final bool isItem;
 
@@ -26489,8 +26477,6 @@ class Query$Conversation$conversation {
         : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
     final l$read = read;
     _resultData['read'] = l$read;
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
     final l$isItem = isItem;
     _resultData['isItem'] = l$isItem;
     final l$itemId = itemId;
@@ -26513,7 +26499,6 @@ class Query$Conversation$conversation {
     final l$attachment = attachment;
     final l$attachmentType = attachmentType;
     final l$read = read;
-    final l$deleted = deleted;
     final l$isItem = isItem;
     final l$itemId = itemId;
     final l$itemType = itemType;
@@ -26526,7 +26511,6 @@ class Query$Conversation$conversation {
       l$attachment,
       l$attachmentType,
       l$read,
-      l$deleted,
       l$isItem,
       l$itemId,
       l$itemType,
@@ -26568,11 +26552,6 @@ class Query$Conversation$conversation {
     final l$read = read;
     final lOther$read = other.read;
     if (l$read != lOther$read) {
-      return false;
-    }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
       return false;
     }
     final l$isItem = isItem;
@@ -26633,7 +26612,6 @@ abstract class CopyWith$Query$Conversation$conversation<TRes> {
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
-    bool? deleted,
     bool? isItem,
     int? itemId,
     String? itemType,
@@ -26664,7 +26642,6 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
     Object? attachment = _undefined,
     Object? attachmentType = _undefined,
     Object? read = _undefined,
-    Object? deleted = _undefined,
     Object? isItem = _undefined,
     Object? itemId = _undefined,
     Object? itemType = _undefined,
@@ -26686,9 +26663,6 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
         read: read == _undefined || read == null
             ? _instance.read
             : (read as bool),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
         isItem: isItem == _undefined || isItem == null
             ? _instance.isItem
             : (isItem as bool),
@@ -26736,7 +26710,6 @@ class _CopyWithStubImpl$Query$Conversation$conversation<TRes>
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
-    bool? deleted,
     bool? isItem,
     int? itemId,
     String? itemType,
@@ -27601,13 +27574,6 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'deleted'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'participant1Deleted'),
             alias: null,
             arguments: [],
@@ -27714,13 +27680,6 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
               ),
               FieldNode(
                 name: NameNode(value: 'read'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'deleted'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -27937,7 +27896,6 @@ class Query$Conversations$conversations {
     required this.disableResponse,
     required this.createdAt,
     required this.lastModified,
-    required this.deleted,
     required this.participant1Deleted,
     required this.participant2Deleted,
     this.unreadMessagesCount,
@@ -27953,7 +27911,6 @@ class Query$Conversations$conversations {
     final l$disableResponse = json['disableResponse'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
-    final l$deleted = json['deleted'];
     final l$participant1Deleted = json['participant1Deleted'];
     final l$participant2Deleted = json['participant2Deleted'];
     final l$unreadMessagesCount = json['unreadMessagesCount'];
@@ -27966,7 +27923,6 @@ class Query$Conversations$conversations {
       disableResponse: (l$disableResponse as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
-      deleted: (l$deleted as bool),
       participant1Deleted: (l$participant1Deleted as bool),
       participant2Deleted: (l$participant2Deleted as bool),
       unreadMessagesCount: (l$unreadMessagesCount as int?),
@@ -27992,8 +27948,6 @@ class Query$Conversations$conversations {
 
   final DateTime lastModified;
 
-  final bool deleted;
-
   final bool participant1Deleted;
 
   final bool participant2Deleted;
@@ -28018,8 +27972,6 @@ class Query$Conversations$conversations {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
     _resultData['lastModified'] = l$lastModified.toIso8601String();
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
     final l$participant1Deleted = participant1Deleted;
     _resultData['participant1Deleted'] = l$participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
@@ -28042,7 +27994,6 @@ class Query$Conversations$conversations {
     final l$disableResponse = disableResponse;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
-    final l$deleted = deleted;
     final l$participant1Deleted = participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
     final l$unreadMessagesCount = unreadMessagesCount;
@@ -28055,7 +28006,6 @@ class Query$Conversations$conversations {
       l$disableResponse,
       l$createdAt,
       l$lastModified,
-      l$deleted,
       l$participant1Deleted,
       l$participant2Deleted,
       l$unreadMessagesCount,
@@ -28097,11 +28047,6 @@ class Query$Conversations$conversations {
     final l$lastModified = lastModified;
     final lOther$lastModified = other.lastModified;
     if (l$lastModified != lOther$lastModified) {
-      return false;
-    }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
       return false;
     }
     final l$participant1Deleted = participant1Deleted;
@@ -28162,7 +28107,6 @@ abstract class CopyWith$Query$Conversations$conversations<TRes> {
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,
@@ -28193,7 +28137,6 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
     Object? disableResponse = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
-    Object? deleted = _undefined,
     Object? participant1Deleted = _undefined,
     Object? participant2Deleted = _undefined,
     Object? unreadMessagesCount = _undefined,
@@ -28216,9 +28159,6 @@ class _CopyWithImpl$Query$Conversations$conversations<TRes>
         lastModified: lastModified == _undefined || lastModified == null
             ? _instance.lastModified
             : (lastModified as DateTime),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
         participant1Deleted:
             participant1Deleted == _undefined || participant1Deleted == null
                 ? _instance.participant1Deleted
@@ -28272,7 +28212,6 @@ class _CopyWithStubImpl$Query$Conversations$conversations<TRes>
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,
@@ -28501,7 +28440,6 @@ class Query$Conversations$conversations$lastMessage {
     this.attachment,
     this.attachmentType,
     required this.read,
-    required this.deleted,
     required this.isItem,
     this.sender,
     this.$__typename = 'MessageType',
@@ -28514,7 +28452,6 @@ class Query$Conversations$conversations$lastMessage {
     final l$attachment = json['attachment'];
     final l$attachmentType = json['attachmentType'];
     final l$read = json['read'];
-    final l$deleted = json['deleted'];
     final l$isItem = json['isItem'];
     final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
@@ -28527,7 +28464,6 @@ class Query$Conversations$conversations$lastMessage {
           : fromJson$Enum$ChatsMessageAttachmentTypeChoices(
               (l$attachmentType as String)),
       read: (l$read as bool),
-      deleted: (l$deleted as bool),
       isItem: (l$isItem as bool),
       sender: l$sender == null
           ? null
@@ -28546,8 +28482,6 @@ class Query$Conversations$conversations$lastMessage {
   final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
 
   final bool read;
-
-  final bool deleted;
 
   final bool isItem;
 
@@ -28569,8 +28503,6 @@ class Query$Conversations$conversations$lastMessage {
         : toJson$Enum$ChatsMessageAttachmentTypeChoices(l$attachmentType);
     final l$read = read;
     _resultData['read'] = l$read;
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
     final l$isItem = isItem;
     _resultData['isItem'] = l$isItem;
     final l$sender = sender;
@@ -28587,7 +28519,6 @@ class Query$Conversations$conversations$lastMessage {
     final l$attachment = attachment;
     final l$attachmentType = attachmentType;
     final l$read = read;
-    final l$deleted = deleted;
     final l$isItem = isItem;
     final l$sender = sender;
     final l$$__typename = $__typename;
@@ -28597,7 +28528,6 @@ class Query$Conversations$conversations$lastMessage {
       l$attachment,
       l$attachmentType,
       l$read,
-      l$deleted,
       l$isItem,
       l$sender,
       l$$__typename,
@@ -28636,11 +28566,6 @@ class Query$Conversations$conversations$lastMessage {
     final l$read = read;
     final lOther$read = other.read;
     if (l$read != lOther$read) {
-      return false;
-    }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
       return false;
     }
     final l$isItem = isItem;
@@ -28688,7 +28613,6 @@ abstract class CopyWith$Query$Conversations$conversations$lastMessage<TRes> {
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
-    bool? deleted,
     bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
@@ -28716,7 +28640,6 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
     Object? attachment = _undefined,
     Object? attachmentType = _undefined,
     Object? read = _undefined,
-    Object? deleted = _undefined,
     Object? isItem = _undefined,
     Object? sender = _undefined,
     Object? $__typename = _undefined,
@@ -28735,9 +28658,6 @@ class _CopyWithImpl$Query$Conversations$conversations$lastMessage<TRes>
         read: read == _undefined || read == null
             ? _instance.read
             : (read as bool),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
         isItem: isItem == _undefined || isItem == null
             ? _instance.isItem
             : (isItem as bool),
@@ -28772,7 +28692,6 @@ class _CopyWithStubImpl$Query$Conversations$conversations$lastMessage<TRes>
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     bool? read,
-    bool? deleted,
     bool? isItem,
     Query$Conversations$conversations$lastMessage$sender? sender,
     String? $__typename,
@@ -29221,13 +29140,6 @@ const documentNodeQueryArchivedConversations = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'deleted'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'participant1Deleted'),
             alias: null,
             arguments: [],
@@ -29543,7 +29455,6 @@ class Query$ArchivedConversations$archivedConversations {
     required this.disableResponse,
     required this.createdAt,
     required this.lastModified,
-    required this.deleted,
     required this.participant1Deleted,
     required this.participant2Deleted,
     this.unreadMessagesCount,
@@ -29559,7 +29470,6 @@ class Query$ArchivedConversations$archivedConversations {
     final l$disableResponse = json['disableResponse'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
-    final l$deleted = json['deleted'];
     final l$participant1Deleted = json['participant1Deleted'];
     final l$participant2Deleted = json['participant2Deleted'];
     final l$unreadMessagesCount = json['unreadMessagesCount'];
@@ -29572,7 +29482,6 @@ class Query$ArchivedConversations$archivedConversations {
       disableResponse: (l$disableResponse as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
-      deleted: (l$deleted as bool),
       participant1Deleted: (l$participant1Deleted as bool),
       participant2Deleted: (l$participant2Deleted as bool),
       unreadMessagesCount: (l$unreadMessagesCount as int?),
@@ -29597,8 +29506,6 @@ class Query$ArchivedConversations$archivedConversations {
   final DateTime createdAt;
 
   final DateTime lastModified;
-
-  final bool deleted;
 
   final bool participant1Deleted;
 
@@ -29625,8 +29532,6 @@ class Query$ArchivedConversations$archivedConversations {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
     _resultData['lastModified'] = l$lastModified.toIso8601String();
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
     final l$participant1Deleted = participant1Deleted;
     _resultData['participant1Deleted'] = l$participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
@@ -29649,7 +29554,6 @@ class Query$ArchivedConversations$archivedConversations {
     final l$disableResponse = disableResponse;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
-    final l$deleted = deleted;
     final l$participant1Deleted = participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
     final l$unreadMessagesCount = unreadMessagesCount;
@@ -29662,7 +29566,6 @@ class Query$ArchivedConversations$archivedConversations {
       l$disableResponse,
       l$createdAt,
       l$lastModified,
-      l$deleted,
       l$participant1Deleted,
       l$participant2Deleted,
       l$unreadMessagesCount,
@@ -29704,11 +29607,6 @@ class Query$ArchivedConversations$archivedConversations {
     final l$lastModified = lastModified;
     final lOther$lastModified = other.lastModified;
     if (l$lastModified != lOther$lastModified) {
-      return false;
-    }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
       return false;
     }
     final l$participant1Deleted = participant1Deleted;
@@ -29773,7 +29671,6 @@ abstract class CopyWith$Query$ArchivedConversations$archivedConversations<
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,
@@ -29807,7 +29704,6 @@ class _CopyWithImpl$Query$ArchivedConversations$archivedConversations<TRes>
     Object? disableResponse = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
-    Object? deleted = _undefined,
     Object? participant1Deleted = _undefined,
     Object? participant2Deleted = _undefined,
     Object? unreadMessagesCount = _undefined,
@@ -29830,9 +29726,6 @@ class _CopyWithImpl$Query$ArchivedConversations$archivedConversations<TRes>
         lastModified: lastModified == _undefined || lastModified == null
             ? _instance.lastModified
             : (lastModified as DateTime),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
         participant1Deleted:
             participant1Deleted == _undefined || participant1Deleted == null
                 ? _instance.participant1Deleted
@@ -29892,7 +29785,6 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations<TRes>
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,

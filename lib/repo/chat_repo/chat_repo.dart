@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
-import 'package:prelura_app/model/chat/message_model.dart';
 
 class ChatRepo {
   final GraphQLClient _client;
@@ -12,7 +12,8 @@ class ChatRepo {
   ChatRepo(this._client);
 
   Future<List<ConversationModel>> getConversation() async {
-    final response = await _client.query$Conversations(Options$Query$Conversations());
+    final response =
+        await _client.query$Conversations(Options$Query$Conversations());
 
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
@@ -28,11 +29,15 @@ class ChatRepo {
       throw 'An error occured';
     }
 
-    return response.parsedData!.conversations!.map((x) => ConversationModel.fromJson(x!.toJson())).toList();
+    return response.parsedData!.conversations!
+        .map((x) => ConversationModel.fromJson(x!.toJson()))
+        .toList();
   }
 
-  Future<Query$Conversation> getMessages({required String id, int? pageCount, int? pageNumber}) async {
-    final response = await _client.query$Conversation(Options$Query$Conversation(
+  Future<Query$Conversation> getMessages(
+      {required String id, int? pageCount, int? pageNumber}) async {
+    final response =
+        await _client.query$Conversation(Options$Query$Conversation(
       variables: Variables$Query$Conversation(
         id: id,
         pageCount: pageCount,
@@ -53,13 +58,15 @@ class ChatRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+    log(":::THE MESSAGES ARE :::::: ${jsonEncode(response.parsedData!.toJson())}");
 
     return response.parsedData!;
   }
 
   Future<ConversationModel> createChat(String recipient) async {
     final response = await _client.mutate$CreateChat(
-      Options$Mutation$CreateChat(variables: Variables$Mutation$CreateChat(recipient: recipient)),
+      Options$Mutation$CreateChat(
+          variables: Variables$Mutation$CreateChat(recipient: recipient)),
     );
 
     if (response.hasException) {
@@ -76,7 +83,8 @@ class ChatRepo {
       throw 'An error occured';
     }
 
-    return ConversationModel.fromJson(response.parsedData!.createChat!.chat!.toJson());
+    return ConversationModel.fromJson(
+        response.parsedData!.createChat!.chat!.toJson());
   }
 
   Future<void> deleteMessage(int messageId) async {

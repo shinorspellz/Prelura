@@ -25,7 +25,6 @@ mixin _$ConversationModel {
   bool get disableResponse => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get lastModified => throw _privateConstructorUsedError;
-  bool get deleted => throw _privateConstructorUsedError;
   int get unreadMessagesCount => throw _privateConstructorUsedError;
   UserModel get recipient => throw _privateConstructorUsedError;
   MessageModel? get lastMessage => throw _privateConstructorUsedError;
@@ -52,7 +51,6 @@ abstract class $ConversationModelCopyWith<$Res> {
       bool disableResponse,
       DateTime createdAt,
       DateTime lastModified,
-      bool deleted,
       int unreadMessagesCount,
       UserModel recipient,
       MessageModel? lastMessage});
@@ -81,7 +79,6 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
     Object? disableResponse = null,
     Object? createdAt = null,
     Object? lastModified = null,
-    Object? deleted = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
     Object? lastMessage = freezed,
@@ -107,10 +104,6 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      deleted: null == deleted
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
-              as bool,
       unreadMessagesCount: null == unreadMessagesCount
           ? _value.unreadMessagesCount
           : unreadMessagesCount // ignore: cast_nullable_to_non_nullable
@@ -165,7 +158,6 @@ abstract class _$$ConversationModelImplCopyWith<$Res>
       bool disableResponse,
       DateTime createdAt,
       DateTime lastModified,
-      bool deleted,
       int unreadMessagesCount,
       UserModel recipient,
       MessageModel? lastMessage});
@@ -194,7 +186,6 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
     Object? disableResponse = null,
     Object? createdAt = null,
     Object? lastModified = null,
-    Object? deleted = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
     Object? lastMessage = freezed,
@@ -220,10 +211,6 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
           ? _value.lastModified
           : lastModified // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      deleted: null == deleted
-          ? _value.deleted
-          : deleted // ignore: cast_nullable_to_non_nullable
-              as bool,
       unreadMessagesCount: null == unreadMessagesCount
           ? _value.unreadMessagesCount
           : unreadMessagesCount // ignore: cast_nullable_to_non_nullable
@@ -249,7 +236,6 @@ class _$ConversationModelImpl implements _ConversationModel {
       required this.disableResponse,
       required this.createdAt,
       required this.lastModified,
-      required this.deleted,
       required this.unreadMessagesCount,
       required this.recipient,
       required this.lastMessage});
@@ -268,8 +254,6 @@ class _$ConversationModelImpl implements _ConversationModel {
   @override
   final DateTime lastModified;
   @override
-  final bool deleted;
-  @override
   final int unreadMessagesCount;
   @override
   final UserModel recipient;
@@ -278,7 +262,7 @@ class _$ConversationModelImpl implements _ConversationModel {
 
   @override
   String toString() {
-    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, deleted: $deleted, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, lastMessage: $lastMessage)';
+    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, lastMessage: $lastMessage)';
   }
 
   @override
@@ -294,7 +278,6 @@ class _$ConversationModelImpl implements _ConversationModel {
                 other.createdAt == createdAt) &&
             (identical(other.lastModified, lastModified) ||
                 other.lastModified == lastModified) &&
-            (identical(other.deleted, deleted) || other.deleted == deleted) &&
             (identical(other.unreadMessagesCount, unreadMessagesCount) ||
                 other.unreadMessagesCount == unreadMessagesCount) &&
             (identical(other.recipient, recipient) ||
@@ -305,17 +288,8 @@ class _$ConversationModelImpl implements _ConversationModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      disableResponse,
-      createdAt,
-      lastModified,
-      deleted,
-      unreadMessagesCount,
-      recipient,
-      lastMessage);
+  int get hashCode => Object.hash(runtimeType, id, name, disableResponse,
+      createdAt, lastModified, unreadMessagesCount, recipient, lastMessage);
 
   /// Create a copy of ConversationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -341,7 +315,6 @@ abstract class _ConversationModel implements ConversationModel {
       required final bool disableResponse,
       required final DateTime createdAt,
       required final DateTime lastModified,
-      required final bool deleted,
       required final int unreadMessagesCount,
       required final UserModel recipient,
       required final MessageModel? lastMessage}) = _$ConversationModelImpl;
@@ -359,8 +332,6 @@ abstract class _ConversationModel implements ConversationModel {
   DateTime get createdAt;
   @override
   DateTime get lastModified;
-  @override
-  bool get deleted;
   @override
   int get unreadMessagesCount;
   @override
