@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -24,10 +25,12 @@ import 'offer_product_card.dart';
 class OfferCard extends ConsumerStatefulWidget {
   final MessageModel chatInfo;
   final bool isSender;
+  final String conversationId;
 
   const OfferCard({
     super.key,
     required this.chatInfo,
+    required this.conversationId,
     required this.isSender,
   });
 
@@ -60,6 +63,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
           offerId: offerInfo.id,
           actionType: Enum$OfferActionEnum.ACCEPT,
         );
+    ref.invalidate(messagesProvider(widget.conversationId));
     isAccepting = false;
     setState(() {});
   }
@@ -78,6 +82,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
           actionType: Enum$OfferActionEnum.REJECT,
         );
     isDeclining = false;
+    ref.invalidate(messagesProvider(widget.conversationId));
     setState(() {});
   }
 
@@ -96,6 +101,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
           actionType: Enum$OfferActionEnum.COUNTER,
         );
     isSendingOffer = false;
+    ref.invalidate(messagesProvider(widget.conversationId));
     setState(() {});
   }
 

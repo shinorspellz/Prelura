@@ -6,11 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/chat/widgets/chat_card_box.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
-import '../../../model/user/user_model.dart';
 import '../../widgets/app_bar.dart';
 
 // final chatProvider = StateNotifierProvider<ChatNotifier, List<ChatMessage>>(
@@ -154,10 +154,10 @@ class ChatScreen extends ConsumerWidget {
                           isItem: false,
                           read: false),
                     );
-                    log(lastOtherSenderMessage.toJson().toString(),
-                        name: 'lastOtherSenderMessage');
-                    log(messages.toString(), name: 'messages');
-                    log(username, name: 'username');
+                    // log(lastOtherSenderMessage.toJson().toString(),
+                    //     name: 'lastOtherSenderMessage');
+                    // log(messages.toString(), name: 'messages');
+                    // log(username, name: 'username');
 
                     return ListView.builder(
                       shrinkWrap: true,

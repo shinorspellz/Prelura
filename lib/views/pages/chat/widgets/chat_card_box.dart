@@ -69,6 +69,7 @@ class ChatTextWidget extends ConsumerWidget {
     return isOffer
         ? OfferCard(
             chatInfo: chat,
+            conversationId: id!,
             isSender: isSender,
           )
         // BuyerOfferCard(),

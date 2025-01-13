@@ -3,9 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/profanity/filter.dart';
-import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/res/render_svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
@@ -194,20 +191,24 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               // },
               maxLengthEnforcement: MaxLengthEnforcement.enforced,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: widget.validator,
-              // validator: (val) {
-              //   if (widget.validator == null) return;
-              //   if (val == null || val.isEmpty) {
-              //     // errorMessage = 'Enter text';
-              //   } else {
-              //     errorMessage = widget.validator != null ? widget.validator!(val) : 'Enter text';
-              //   }
+              // validator: widget.validator,
+              validator: (val) {
+                if (widget.validator == null) return;
+                if (val == null || val.isEmpty) {
+                  errorMessage = errorMessage =
+                      widget.validator != null ? widget.validator!(val) : '';
+                } else {
+                  errorMessage = widget.validator != null
+                      ? widget.validator!(val)
+                      : 'Enter text';
+                }
 
-              //   WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-              //     setState(() {});
-              //   });
-              //   return null;
-              // },
+                WidgetsFlutterBinding.ensureInitialized()
+                    .addPostFrameCallback((_) {
+                  setState(() {});
+                });
+                return null;
+              },
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 14,
                   ),
