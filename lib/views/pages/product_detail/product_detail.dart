@@ -81,13 +81,28 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
       child: Scaffold(
         body: ref.watch(getProductProvider(widget.productId)).when(
               data: (product) {
-                bool isCurrentUser = product.seller.username ==
+                String? appUsername =
                     ref.read(userProvider).valueOrNull?.username;
+                bool isCurrentUser = product.seller.username == appUsername;
+                var userProducts = ref
+                    .watch(userProduct(appUsername))
+                    .valueOrNull
+                    ?.where((e) => e.isFeatured ?? false)
+                    .toList();
+                bool isPinned = product.isFeatured ?? false;
 
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,
                       actions: [
+                        if ((userProducts?.length ?? 0) >= 5)
+                          VBottomSheetItem(
+                              onTap: (context) {
+                                Navigator.pop(context);
+                              },
+                              title: isPinned
+                                  ? "Remove from pinned"
+                                  : 'Pin product'),
                         VBottomSheetItem(
                             onTap: (context) {
                               Navigator.pop(context);
