@@ -12,7 +12,6 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
@@ -453,15 +452,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             ),
                           ],
                         )),
-
-                    PreluraCheckBox(
-                      isChecked: state.isFeatured,
-                      onChanged: (value) => notifier.updateFeatured(value),
-                      title: 'Feature',
-                      style: context.textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    //
+                    // PreluraCheckBox(
+                    //   isChecked: state.isFeatured,
+                    //   onChanged: (value) => notifier.updateFeatured(value),
+                    //   title: 'Feature',
+                    //   style: context.textTheme.bodyLarge?.copyWith(
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                     // const SizedBox(height: 8),
                     MenuCard(
                       title: "Category",

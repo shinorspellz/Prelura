@@ -158,9 +158,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                                     message:
                                                                         "product deleted successfully");
                                                             Navigator.of(
-                                                                context)
-                                                              ..pop()
-                                                              ..pop();
+                                                                    context)
+                                                                .pop();
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
                                                           },
                                                         );
                                                   },
