@@ -41,6 +41,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   bool amTheSeller = false;
   bool isAccepted = false;
   bool isAccepting = false;
+  bool isSendingOffer = false;
   bool isDeclined = false;
   bool isDeclining = false;
   UserModel? appUserInfo;
@@ -80,6 +81,24 @@ class _OfferCardState extends ConsumerState<OfferCard> {
     setState(() {});
   }
 
+  Future<void> _sendCustomOffer() async {
+    if (isSendingOffer) return;
+    isSendingOffer = true;
+    setState(() {});
+    await ref
+        .read(
+          offerProvider.notifier,
+        )
+        .respondToOffer(
+          context,
+          offerId: offerInfo.id,
+          offerPrice: double.parse(_offerController.text),
+          actionType: Enum$OfferActionEnum.COUNTER,
+        );
+    isSendingOffer = false;
+    setState(() {});
+  }
+
   @override
   void initState() {
     offerInfo = offerInfoFromJson(widget.chatInfo.text);
@@ -102,132 +121,139 @@ class _OfferCardState extends ConsumerState<OfferCard> {
     // final offerState = ref.watch(offerProvider);
     // isAccepted = offerState.offerState == "Accepted";
     // isDeclined = offerState.offerState == "Declined";
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          if (offerInfo.status?.toLowerCase() == "pending")
-            Row(
-              children: [
-                ProfilePictureWidget(
-                  height: 60,
-                  width: 60,
-                  profilePicture: "${offerInfo.buyer?.thumbnailUrl}",
-                  username: "${offerInfo.buyer?.username}",
-                ),
-                16.horizontalSpacing,
-                HighlightUserName(
-                  isRead: false,
-                  highlightColor: PreluraColors.primaryColor,
-                  message:
-                      "${!amTheSeller ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
-                  username: "offered",
-                ),
-              ],
-            ),
-          12.verticalSpacing,
-          OfferProductCard(
-            offerInfo: offerInfo,
-            amTheSeller: amTheSeller,
-          ),
-          10.verticalSpacing,
-          if (isAccepted) ...[
-            10.verticalSpacing,
-            AppButton(
-              width: double.infinity,
-              onTap: () {},
-              height: 45,
-              bgColor: PreluraColors.primaryColor.withOpacity(0.7),
-              text: "Accepted",
-            ),
-            10.verticalSpacing,
-            Text(
-              "Please wait for buyer to make a payment",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: PreluraColors.grey),
-            )
-          ] else ...[
-            if ((isDeclined || isAccepted) || !widget.isSender) ...[
-              10.verticalSpacing,
+    return Card(
+      color: Colors.transparent,
+      shadowColor: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            if (offerInfo.status?.toLowerCase() == "pending")
               Row(
                 children: [
-                  Expanded(
-                    child: AppButton(
-                      onTap: handleAccept,
-                      loading: isAccepting,
-                      text: isAccepted ? "Accepted" : "Accept",
-                      textColor: Colors.white,
-                      bgColor: isAccepted || isDeclined
-                          ? PreluraColors.primaryColor.withOpacity(0.7)
-                          : PreluraColors.primaryColor,
-                      // isDisabled: isAccepted || isDeclined,
-                    ),
+                  ProfilePictureWidget(
+                    height: 60,
+                    width: 60,
+                    profilePicture: "${offerInfo.buyer?.thumbnailUrl}",
+                    username: "${offerInfo.buyer?.username}",
                   ),
-                  18.horizontalSpacing,
-                  Expanded(
-                    child: AppButton(
-                      onTap: handleDecline,
-                      loading: isDeclining,
-                      text: isDeclined ? "Declined" : "Decline",
-                      textColor: Colors.white,
-                      bgColor: isDeclined || isAccepted
-                          ? PreluraColors.primaryColor.withOpacity(0.7)
-                          : PreluraColors.primaryColor,
-                      // isDisabled: isAccepted || isDeclined,
-                    ),
+                  16.horizontalSpacing,
+                  HighlightUserName(
+                    isRead: false,
+                    highlightColor: PreluraColors.primaryColor,
+                    message:
+                        "${!amTheSeller ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
+                    username: "offered",
                   ),
                 ],
-              )
-            ] else
+              ),
+            12.verticalSpacing,
+            OfferProductCard(
+              offerInfo: offerInfo,
+              amTheSeller: amTheSeller,
+            ),
+            10.verticalSpacing,
+            if (isAccepted) ...[
+              10.verticalSpacing,
+              AppButton(
+                width: double.infinity,
+                onTap: () {},
+                height: 45,
+                bgColor: PreluraColors.primaryColor.withOpacity(0.7),
+                text: "Accepted",
+              ),
+              10.verticalSpacing,
               Text(
-                "Please wait for the seller decision",
+                "Please wait for buyer to make a payment",
                 style: Theme.of(context)
                     .textTheme
                     .bodyMedium!
                     .copyWith(color: PreluraColors.grey),
               )
-          ],
-          if (isDeclined && amTheSeller) ...[
-            24.verticalSpacing,
-            AppButton(
-              height: 45,
-              width: double.infinity,
-              onTap: () async {
-                showCustomDialog(context,
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 26),
-                      margin: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: context.theme.scaffoldBackgroundColor,
-                          borderRadius: BorderRadius.circular(16)),
-                      child: Column(
-                        children: [
-                          PriceFieldWidget(
-                            textController: _offerController,
-                            width: 65.6.w,
-                          ),
-                          24.verticalSpacing,
-                          AppButton(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            text: "Send",
-                            width: 130,
-                            height: 45,
-                          )
-                        ],
+            ] else ...[
+              if ((isDeclined || isAccepted) || !widget.isSender) ...[
+                10.verticalSpacing,
+                Row(
+                  children: [
+                    Expanded(
+                      child: AppButton(
+                        onTap: handleAccept,
+                        loading: isAccepting,
+                        text: isAccepted ? "Accepted" : "Accept",
+                        textColor: Colors.white,
+                        bgColor: isAccepted || isDeclined
+                            ? PreluraColors.primaryColor.withOpacity(0.7)
+                            : PreluraColors.primaryColor,
+                        // isDisabled: isAccepted || isDeclined,
                       ),
-                    ));
-              },
-              textColor: Colors.white,
-              bgColor: PreluraColors.primaryColor,
-              text: "Send a custom offer...",
-            )
-          ]
-        ],
+                    ),
+                    18.horizontalSpacing,
+                    Expanded(
+                      child: AppButton(
+                        onTap: handleDecline,
+                        loading: isDeclining,
+                        text: isDeclined ? "Declined" : "Decline",
+                        textColor: Colors.white,
+                        bgColor: isDeclined || isAccepted
+                            ? PreluraColors.primaryColor.withOpacity(0.7)
+                            : PreluraColors.primaryColor,
+                        // isDisabled: isAccepted || isDeclined,
+                      ),
+                    ),
+                  ],
+                )
+              ] else
+                Text(
+                  "Offer sent, please wait for the Seller's decision",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: PreluraColors.grey),
+                )
+            ],
+            if (isDeclined && amTheSeller) ...[
+              24.verticalSpacing,
+              AppButton(
+                height: 45,
+                width: double.infinity,
+                loading: isSendingOffer,
+                onTap: () async {
+                  showCustomDialog(context,
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 16, horizontal: 26),
+                        margin: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                            color: context.theme.scaffoldBackgroundColor,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: Column(
+                          children: [
+                            PriceFieldWidget(
+                              textController: _offerController,
+                              width: 65.6.w,
+                            ),
+                            24.verticalSpacing,
+                            AppButton(
+                              onTap: () {
+                                Navigator.pop(context);
+                                log(":::The offer amount:: ${_offerController.text}");
+                                _sendCustomOffer();
+                              },
+                              text: "Send",
+                              width: 130,
+                              height: 45,
+                            )
+                          ],
+                        ),
+                      ));
+                },
+                textColor: Colors.white,
+                bgColor: PreluraColors.primaryColor,
+                text: "Send a custom offer...",
+              )
+            ]
+          ],
+        ),
       ),
     );
   }

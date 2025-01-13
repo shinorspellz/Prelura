@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -31,19 +32,6 @@ import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../widgets/user_popular_brand.dart';
-
-// enum UserFilterTypes {
-//   size('Size'),
-//   brand('Brand'),
-//   condition('Condition'),
-//   // category('Category'),
-//   style('Style');
-//   // color('Color');
-
-//   const UserFilterTypes(this.simpleName);
-
-//   final String simpleName;
-// }
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -140,16 +128,18 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   @override
   Widget build(BuildContext context) {
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
-    final user = ref.watch((widget.username != null
+    final userInfo = ref.watch((widget.username != null
         ? otherUserProfile(widget.username!)
         : userProvider));
 
-    return user.maybeWhen(
+    return userInfo.maybeWhen(
         orElse: () => LoadingWidget(),
         data: (user) {
           final value = ref
               .watch(userProductGroupingByCategoryProvider(user.id))
               .valueOrNull;
+          log(":::User location ::${user.location?.locationName}");
+          log(":::User location ::${user.username}");
           // final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
           final List<CategoryGroupType> categories = value == null
               ? []
@@ -168,22 +158,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
               child: Column(
                 children: [
                   Stack(clipBehavior: Clip.none, children: [
-                    if (widget.username != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 20),
-                        child: ProfileCardWidget(
-                          user: user,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    else
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(15, 20, 15, 10),
-                        child: ProfileCardWidget(
-                          fontWeight: FontWeight.w600,
-                        ),
+                    // if (widget.username != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 20),
+                      child: ProfileCardWidget(
+                        user: user,
+                        fontWeight: FontWeight.w600,
                       ),
+                    ),
                     Positioned(
                       bottom: -28,
                       right: 0,
