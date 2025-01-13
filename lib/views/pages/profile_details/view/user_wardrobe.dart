@@ -414,320 +414,314 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         ],
                       ),
 
-                      // Social and Additional Info Section
-                      UserScrollableList(
-                        user: user,
-                      ),
-                      if (productLength.toString().isNotEmpty) ...[
-                        if (selectedItem.isNotEmpty) ...[
-                          Divider(
-                            thickness: 1,
-                          ),
-                          MenuCard(
-                              icon: isSelected
-                                  ? Icon(Icons.arrow_back_ios_rounded,
-                                      size: 18,
-                                      color: PreluraColors.primaryColor)
-                                  : null,
-                              title: selectedItem.isNotEmpty
-                                  ? "Viewing"
-                                  : widget.username != null
+                    // Social and Additional Info Section
+                    UserScrollableList(
+                      user: user,
+                    ),
+                    if (productLength.toString().isNotEmpty) ...[
+                      if (selectedItem.isNotEmpty) ...[
+                        Divider(
+                          thickness: 1,
+                        ),
+                        MenuCard(
+                            icon: isSelected
+                                ? Icon(Icons.arrow_back_ios_rounded,
+                                    size: 18, color: PreluraColors.primaryColor)
+                                : null,
+                            title: selectedItem.isNotEmpty
+                                ? "Viewing"
+                                : widget.username != null
+                                    ? 'Categories from this seller'
+                                    : "Categories",
+                            sideText:
+                                selectedItem.isNotEmpty ? selectedItem : null,
+                            sideTextColor: PreluraColors.primaryColor,
+                            textColor: PreluraColors.grey,
+                            rightArrow: !isSelected,
+                            // borderbottom: false,
+                            trailingIcon: isSelected
+                                ? null
+                                : selectedItem.isNotEmpty
+                                    ? Icon(Icons.cancel_rounded,
+                                        color: PreluraColors.grey)
+                                    : Icon(Icons.arrow_forward_ios_rounded,
+                                        color: PreluraColors.grey, size: 18),
+                            onTap: () {
+                              isSelected = !isSelected;
+                              selectedItem = "";
+                              expandedCategories = false;
+                              isBrandActive = false;
+                              setState(() {});
+                              ref.invalidate(filterUserProductProvider);
+                              ref.invalidate(userSubCategoryProvider);
+                            })
+                      ] else
+                        ExpansionTile(
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Text(
+                                  widget.username != null
                                       ? 'Categories from this seller'
                                       : "Categories",
-                              sideText:
-                                  selectedItem.isNotEmpty ? selectedItem : null,
-                              sideTextColor: PreluraColors.primaryColor,
-                              textColor: PreluraColors.grey,
-                              rightArrow: !isSelected,
-                              // borderbottom: false,
-                              trailingIcon: isSelected
-                                  ? null
-                                  : selectedItem.isNotEmpty
-                                      ? Icon(Icons.cancel_rounded,
-                                          color: PreluraColors.grey)
-                                      : Icon(Icons.arrow_forward_ios_rounded,
-                                          color: PreluraColors.grey, size: 18),
-                              onTap: () {
-                                isSelected = !isSelected;
-                                selectedItem = "";
-                                expandedCategories = false;
-                                isBrandActive = false;
-                                setState(() {});
-                                ref.invalidate(filterUserProductProvider);
-                                ref.invalidate(userSubCategoryProvider);
-                              })
-                        ] else
-                          ExpansionTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 15.0),
-                                  child: Text(
-                                    widget.username != null
-                                        ? 'Categories from this seller'
-                                        : "Categories",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                          fontSize: getDefaultSize(),
-                                          fontWeight: FontWeight.w600,
-                                          color: PreluraColors.grey,
-                                        ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 19.0),
-                                  child: Icon(
-                                      expandedCategories
-                                          ? Icons.keyboard_arrow_up_rounded
-                                          : Icons.keyboard_arrow_down_rounded,
-                                      weight: 500,
-                                      color: PreluraColors.primaryColor,
-                                      size: 26),
-                                )
-                              ],
-                            ),
-                            tilePadding: EdgeInsets.only(top: 10),
-                            childrenPadding:
-                                EdgeInsets.symmetric(horizontal: 5),
-                            minTileHeight: 40,
-                            showTrailingIcon: false,
-                            onExpansionChanged: (expanded) =>
-                                setState(() => expandedCategories = expanded),
-                            controller: controller,
-                            collapsedShape: Border(
-                              bottom: BorderSide(
-                                  width: 1, color: context.theme.dividerColor),
-                              top: BorderSide(
-                                  width: 1, color: context.theme.dividerColor),
-                            ),
-                            expansionAnimationStyle: AnimationStyle(
-                              duration: Duration(milliseconds: 300),
-                            ),
-                            children: categories
-                                .map((e) => ExpansionTile(
-                                    iconColor: PreluraColors.primaryColor,
-                                    collapsedIconColor:
-                                        PreluraColors.primaryColor,
-                                    title: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                        text: e.name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                              fontSize: getDefaultSize(),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      TextSpan(
-                                        text:
-                                            " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                              fontSize: getDefaultSize(),
-                                              fontWeight: FontWeight.w400,
-                                              color: PreluraColors.grey,
-                                            ),
-                                      )
-                                    ])),
-                                    collapsedShape: Border(
-                                      top: BorderSide(
-                                          width: 1,
-                                          color: context.theme.dividerColor),
-                                      bottom: BorderSide.none,
-                                    ),
-                                    tilePadding: EdgeInsets.only(
-                                        right: 15, left: 15, top: 8, bottom: 8),
-                                    // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                                    minTileHeight: 38,
-                                    // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                                    // controller: controller,
-                                    expansionAnimationStyle: AnimationStyle(
-                                      duration: Duration(milliseconds: 300),
-                                    ),
-                                    children:
-                                        // ref
-                                        //         .watch(categoryProvider)
-                                        //         .valueOrNull
-                                        //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-                                        //         .firstOrNull
-                                        //         ?.subCategory
-                                        //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
-                                        //         .toSet()
-                                        //         .intersection((userSubCategories ?? []).toSet())
-                                        subCategoriesIntersection(e, user.id)
-                                            .map(
-                                              (x) => PreluraCheckBox(
-                                                  icon: Icon(Icons.remove_sharp,
-                                                      size: 16,
-                                                      color:
-                                                          PreluraColors.grey),
-                                                  sideText:
-                                                      " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
-                                                  sideTextColor:
-                                                      PreluraColors.grey,
-                                                  isChecked:
-                                                      selectedItem == x.name,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                        fontSize:
-                                                            getDefaultSize(),
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                  onChanged: (value) {
-                                                    selectedItem = x.name;
-                                                    isSelected = false;
-
-                                                    Future.delayed(
-                                                        Duration(
-                                                            milliseconds: 1900),
-                                                        () {
-                                                      isBrandActive = true;
-                                                      setState(() {});
-                                                    });
-                                                    setState(() {});
-                                                    ref
-                                                        .read(
-                                                            filterUserProductProvider
-                                                                .notifier)
-                                                        .updateFilter(
-                                                            FilterTypes
-                                                                .category,
-                                                            e.name,
-                                                            user.username);
-                                                    ref
-                                                        .read(
-                                                            userSubCategoryProvider
-                                                                .notifier)
-                                                        .state = x.id;
-
-                                                    controller.collapse();
-                                                  },
-                                                  title: x.name),
-                                            )
-                                            .toList()))
-                                .toList(),
-                          ),
-                        // if (!expandedCategories && selectedItem.isEmpty)
-                        //   Divider(
-                        //     thickness: 1,
-                        //   ),
-
-                        // if (isSelected) ...[
-                        //   ListView.builder(
-                        //     shrinkWrap: true,
-                        //     itemCount: categories.length,
-                        //     itemBuilder: (_, index) {
-                        //       final cat = categories[index];
-
-                        //       return MenuCard(
-                        //         title: cat.name,
-                        //         sideTextColor: PreluraColors.grey,
-                        //         sideText: "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
-                        //         trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
-                        //         onTap: () {
-                        //           selectedItem = cat.name;
-                        //           isSelected = false;
-                        //           setState(() {});
-                        //           ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
-                        //         },
-                        //       );
-                        //     },
-                        //   )
-                        // ],
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 6),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  widget.username != null
-                                      ? "Brands from this seller"
-                                      : "Top Brands",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                          fontSize: getDefaultSize(),
-                                          fontWeight: FontWeight.w600,
-                                          color: PreluraColors.grey),
+                                        fontSize: getDefaultSize(),
+                                        fontWeight: FontWeight.w600,
+                                        color: PreluraColors.grey,
+                                      ),
                                 ),
-                                // RenderSvgWithColor2(
-                                //     svgPath: PreluraIcons.search_glass_svg),
-                                // ],
-                                if (!isActive)
-                                  GestureDetector(
-                                      onTap: () {
-                                        isActive = true;
-                                        setState(() {});
-                                      },
-                                      child: Icon(Icons.search,
-                                          color: PreluraColors.primaryColor)),
-                                if (isActive)
-                                  AnimatedContainer(
-                                    width: 54.5.w,
-                                    color: Colors.transparent,
-                                    alignment: Alignment.centerRight,
-                                    duration: const Duration(milliseconds: 150),
-                                    child: Searchwidget(
-                                      obscureText: false,
-                                      shouldReadOnly: false,
-                                      enabled: true,
-                                      showInputBorder: true,
-                                      autofocus: true,
-                                      cancelButton: true,
-                                      minWidth: 50.w,
-                                      hidePrefix: true,
-                                      onChanged: (value) {
-                                        ref
-                                            .read(
-                                                userProductSearchQuery.notifier)
-                                            .state = value;
-                                      },
-                                      onCancel: () {
-                                        isActive = false;
-                                        setState(() {});
-                                        ref.invalidate(userProductSearchQuery);
-                                      },
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 19.0),
+                                child: Icon(
+                                    expandedCategories
+                                        ? Icons.keyboard_arrow_up_rounded
+                                        : Icons.keyboard_arrow_down_rounded,
+                                    weight: 500,
+                                    color: PreluraColors.primaryColor,
+                                    size: 26),
+                              )
+                            ],
+                          ),
+                          tilePadding: EdgeInsets.only(top: 10),
+                          childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                          minTileHeight: 40,
+                          showTrailingIcon: false,
+                          onExpansionChanged: (expanded) =>
+                              setState(() => expandedCategories = expanded),
+                          controller: controller,
+                          collapsedShape: Border(
+                            bottom: BorderSide(
+                                width: 1, color: context.theme.dividerColor),
+                            top: BorderSide(
+                                width: 1, color: context.theme.dividerColor),
+                          ),
+                          expansionAnimationStyle: AnimationStyle(
+                            duration: Duration(milliseconds: 300),
+                          ),
+                          children: categories
+                              .map((e) => ExpansionTile(
+                                  iconColor: PreluraColors.primaryColor,
+                                  collapsedIconColor:
+                                      PreluraColors.primaryColor,
+                                  title: RichText(
+                                      text: TextSpan(children: [
+                                    TextSpan(
+                                      text: e.name,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontSize: getDefaultSize(),
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                     ),
-                                  )
-                              ]),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: UserPopularBrand(
-                              onCancel: () {
-                                isSelected = !isSelected;
-                                selectedItem = "";
-                                ref.read(userIdProvider.notifier).state = null;
-                                isBrandActive = false;
-                                expandedCategories = false;
-                                setState(() {});
-                              },
-                              onTap: () {
-                                ref.read(userIdProvider.notifier).state =
-                                    user.id;
-                                Future.delayed(Duration(seconds: 1), () {
-                                  isBrandActive = true;
-                                  setState(() {});
-                                });
-                              },
-                              userId: user.id,
-                              username: user.username,
-                              isSelected: isBrandActive),
-                        ),
+                                    TextSpan(
+                                      text:
+                                          " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                            fontSize: getDefaultSize(),
+                                            fontWeight: FontWeight.w400,
+                                            color: PreluraColors.grey,
+                                          ),
+                                    )
+                                  ])),
+                                  collapsedShape: Border(
+                                    top: BorderSide(
+                                        width: 1,
+                                        color: context.theme.dividerColor),
+                                    bottom: BorderSide.none,
+                                  ),
+                                  tilePadding: EdgeInsets.only(
+                                      right: 15, left: 15, top: 8, bottom: 8),
+                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
+                                  minTileHeight: 38,
+                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
+                                  // controller: controller,
+                                  expansionAnimationStyle: AnimationStyle(
+                                    duration: Duration(milliseconds: 300),
+                                  ),
+                                  children:
+                                      // ref
+                                      //         .watch(categoryProvider)
+                                      //         .valueOrNull
+                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
+                                      //         .firstOrNull
+                                      //         ?.subCategory
+                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
+                                      //         .toSet()
+                                      //         .intersection((userSubCategories ?? []).toSet())
+                                      subCategoriesIntersection(e, user.id)
+                                          .map(
+                                            (x) => PreluraCheckBox(
+                                                icon: Icon(Icons.remove_sharp,
+                                                    size: 16,
+                                                    color: PreluraColors.grey),
+                                                sideText:
+                                                    " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
+                                                sideTextColor:
+                                                    PreluraColors.grey,
+                                                isChecked:
+                                                    selectedItem == x.name,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                      fontSize:
+                                                          getDefaultSize(),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                onChanged: (value) {
+                                                  selectedItem = x.name;
+                                                  isSelected = false;
 
-                        FilterAndSort(userId: user.id, username: user.username),
+                                                  Future.delayed(
+                                                      Duration(
+                                                          milliseconds: 1900),
+                                                      () {
+                                                    isBrandActive = true;
+                                                    setState(() {});
+                                                  });
+                                                  setState(() {});
+                                                  ref
+                                                      .read(
+                                                          filterUserProductProvider
+                                                              .notifier)
+                                                      .updateFilter(
+                                                          FilterTypes.category,
+                                                          e.name,
+                                                          user.username);
+                                                  ref
+                                                      .read(
+                                                          userSubCategoryProvider
+                                                              .notifier)
+                                                      .state = x.id;
+
+                                                  controller.collapse();
+                                                },
+                                                title: x.name),
+                                          )
+                                          .toList()))
+                              .toList(),
+                        ),
+                      // if (!expandedCategories && selectedItem.isEmpty)
+                      //   Divider(
+                      //     thickness: 1,
+                      //   ),
+
+                      // if (isSelected) ...[
+                      //   ListView.builder(
+                      //     shrinkWrap: true,
+                      //     itemCount: categories.length,
+                      //     itemBuilder: (_, index) {
+                      //       final cat = categories[index];
+
+                      //       return MenuCard(
+                      //         title: cat.name,
+                      //         sideTextColor: PreluraColors.grey,
+                      //         sideText: "(${cat.count} ${(cat.count > 1 || cat.count == 0) ? "items" : "item"})",
+                      //         trailingIcon: RenderSvg(svgPath: PreluraIcons.arrowDown_svg, svgHeight: 16, svgWidth: 16, color: PreluraColors.grey),
+                      //         onTap: () {
+                      //           selectedItem = cat.name;
+                      //           isSelected = false;
+                      //           setState(() {});
+                      //           ref.read(userProductFilter.notifier).state = Input$ProductFiltersInput(category: cat.id);
+                      //         },
+                      //       );
+                      //     },
+                      //   )
+                      // ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 6),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.username != null
+                                    ? "Brands from this seller"
+                                    : "Top Brands",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        fontSize: getDefaultSize(),
+                                        fontWeight: FontWeight.w600,
+                                        color: PreluraColors.grey),
+                              ),
+                              // RenderSvgWithColor2(
+                              //     svgPath: PreluraIcons.search_glass_svg),
+                              // ],
+                              if (!isActive)
+                                GestureDetector(
+                                    onTap: () {
+                                      isActive = true;
+                                      setState(() {});
+                                    },
+                                    child: Icon(Icons.search,
+                                        color: PreluraColors.primaryColor)),
+                              if (isActive)
+                                AnimatedContainer(
+                                  width: 54.5.w,
+                                  color: Colors.transparent,
+                                  alignment: Alignment.centerRight,
+                                  duration: const Duration(milliseconds: 150),
+                                  child: Searchwidget(
+                                    obscureText: false,
+                                    shouldReadOnly: false,
+                                    enabled: true,
+                                    showInputBorder: true,
+                                    autofocus: true,
+                                    cancelButton: true,
+                                    minWidth: 50.w,
+                                    hidePrefix: true,
+                                    onChanged: (value) {
+                                      ref
+                                          .read(userProductSearchQuery.notifier)
+                                          .state = value;
+                                    },
+                                    onCancel: () {
+                                      isActive = false;
+                                      setState(() {});
+                                      ref.invalidate(userProductSearchQuery);
+                                    },
+                                  ),
+                                )
+                            ]),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: UserPopularBrand(
+                            onCancel: () {
+                              isSelected = !isSelected;
+                              selectedItem = "";
+                              ref.read(userIdProvider.notifier).state = null;
+                              isBrandActive = false;
+                              expandedCategories = false;
+                              setState(() {});
+                            },
+                            onTap: () {
+                              ref.read(userIdProvider.notifier).state = user.id;
+                              Future.delayed(Duration(seconds: 1), () {
+                                isBrandActive = true;
+                                setState(() {});
+                              });
+                            },
+                            userId: user.id,
+                            username: user.username,
+                            isSelected: isBrandActive),
+                      ),
+
+                      FilterAndSort(userId: user.id, username: user.username),
 
                       20.verticalSpacing,
                       if (ref
@@ -816,8 +810,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             ),
                       )
                     ],
-                    
-                  ),
+                  ]),
                 ],
               ),
             ),
