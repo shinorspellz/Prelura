@@ -2,21 +2,17 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 import 'package:prelura_app/views/widgets/show_animated_dialog.dart';
 import 'package:share_plus/share_plus.dart';
@@ -179,7 +175,7 @@ class ProfileCardWidget extends ConsumerWidget {
                   ],
                 ),
                 3.verticalSpacing,
-                Text(user?.location?.locationName ?? "Exeter, United Kingdom",
+                Text(user?.location?.locationName ?? "",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: fontWeight,
                         )),

@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
+import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/res/render_svg.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
-import 'package:prelura_app/res/colors.dart';
 
 class MessageCard extends StatelessWidget {
   const MessageCard({
@@ -15,6 +20,11 @@ class MessageCard extends StatelessWidget {
   final ConversationModel model;
   @override
   Widget build(BuildContext context) {
+    log("The last message::: ${model.lastMessage?.toJson()}");
+    bool isLastMessageAnOffer =
+        model.lastMessage?.text.contains("buyer") ?? false;
+    log("The last message an offer::: $isLastMessageAnOffer");
+
     return GestureDetector(
       onTap: () {
         context.router.push(ChatRoute(
@@ -39,7 +49,8 @@ class MessageCard extends StatelessWidget {
           children: [
             // User Avatar
             GestureDetector(
-              onTap: () => context.router.push(ProfileDetailsRoute(username: model.recipient.username)),
+              onTap: () => context.router.push(
+                  ProfileDetailsRoute(username: model.recipient.username)),
               child: ProfilePictureWidget(
                 height: 40,
                 width: 40,
@@ -55,14 +66,27 @@ class MessageCard extends StatelessWidget {
                 children: [
                   Text(
                     model.recipient.username,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.w600),
                   ),
                   if (model.lastMessage?.text != null) ...[
                     // const SizedBox(height: 5),
-                    Text(
-                      model.lastMessage!.text,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
-                    ),
+                    if (isLastMessageAnOffer) ...[
+                      addVerticalSpacing(5),
+                      BuildOfferRow(
+                        text: model.lastMessage!.text,
+                        recipient: model.recipient.username,
+                      )
+                    ] else
+                      Text(
+                        model.lastMessage!.text,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontWeight: FontWeight.w400),
+                      ),
                   ]
 
                   // const SizedBox(height: 5),
@@ -92,5 +116,40 @@ class MessageCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class BuildOfferRow extends ConsumerWidget {
+  final String text;
+  final String recipient;
+  const BuildOfferRow({
+    super.key,
+    required this.text,
+    required this.recipient,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    OfferInfo offerInfo = offerInfoFromJson(text);
+    bool isSender = recipient == offerInfo.buyer?.username;
+    return Row(children: [
+      RenderSvg(
+        svgPath: 'assets/icons/offer.svg',
+        svgWidth: 16,
+        svgHeight: 16,
+      ),
+      addHorizontalSpacing(5),
+      Text(
+        offerInfo.status?.toLowerCase() == "pending"
+            ? "${!isSender ? "You" : recipient} made an offer."
+            : isSender
+                ? "You ${offerInfo.status?.toLowerCase()} $recipient offer."
+                : "$recipient ${offerInfo.status?.toLowerCase()} your offer.",
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall
+            ?.copyWith(fontWeight: FontWeight.w400),
+      ),
+    ]);
   }
 }

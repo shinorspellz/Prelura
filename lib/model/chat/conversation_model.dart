@@ -13,11 +13,11 @@ class ConversationModel with _$ConversationModel {
     required bool disableResponse,
     required DateTime createdAt,
     required DateTime lastModified,
-    required bool deleted,
     required int unreadMessagesCount,
     required UserModel recipient,
     required MessageModel? lastMessage,
   }) = _ConversationModel;
 
-  factory ConversationModel.fromJson(Map<String, dynamic> json) => _$ConversationModelFromJson(json);
+  factory ConversationModel.fromJson(Map<String, dynamic> json) =>
+      _$ConversationModelFromJson(json);
 }

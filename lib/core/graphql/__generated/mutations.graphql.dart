@@ -9101,13 +9101,6 @@ const documentNodeMutationCreateChat = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'deleted'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
                 name: NameNode(value: 'participant1Deleted'),
                 alias: null,
                 arguments: [],
@@ -9540,7 +9533,6 @@ class Mutation$CreateChat$createChat$chat {
     required this.disableResponse,
     required this.createdAt,
     required this.lastModified,
-    required this.deleted,
     required this.participant1Deleted,
     required this.participant2Deleted,
     this.unreadMessagesCount,
@@ -9556,7 +9548,6 @@ class Mutation$CreateChat$createChat$chat {
     final l$disableResponse = json['disableResponse'];
     final l$createdAt = json['createdAt'];
     final l$lastModified = json['lastModified'];
-    final l$deleted = json['deleted'];
     final l$participant1Deleted = json['participant1Deleted'];
     final l$participant2Deleted = json['participant2Deleted'];
     final l$unreadMessagesCount = json['unreadMessagesCount'];
@@ -9569,7 +9560,6 @@ class Mutation$CreateChat$createChat$chat {
       disableResponse: (l$disableResponse as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       lastModified: DateTime.parse((l$lastModified as String)),
-      deleted: (l$deleted as bool),
       participant1Deleted: (l$participant1Deleted as bool),
       participant2Deleted: (l$participant2Deleted as bool),
       unreadMessagesCount: (l$unreadMessagesCount as int?),
@@ -9595,8 +9585,6 @@ class Mutation$CreateChat$createChat$chat {
 
   final DateTime lastModified;
 
-  final bool deleted;
-
   final bool participant1Deleted;
 
   final bool participant2Deleted;
@@ -9621,8 +9609,6 @@ class Mutation$CreateChat$createChat$chat {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$lastModified = lastModified;
     _resultData['lastModified'] = l$lastModified.toIso8601String();
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
     final l$participant1Deleted = participant1Deleted;
     _resultData['participant1Deleted'] = l$participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
@@ -9645,7 +9631,6 @@ class Mutation$CreateChat$createChat$chat {
     final l$disableResponse = disableResponse;
     final l$createdAt = createdAt;
     final l$lastModified = lastModified;
-    final l$deleted = deleted;
     final l$participant1Deleted = participant1Deleted;
     final l$participant2Deleted = participant2Deleted;
     final l$unreadMessagesCount = unreadMessagesCount;
@@ -9658,7 +9643,6 @@ class Mutation$CreateChat$createChat$chat {
       l$disableResponse,
       l$createdAt,
       l$lastModified,
-      l$deleted,
       l$participant1Deleted,
       l$participant2Deleted,
       l$unreadMessagesCount,
@@ -9700,11 +9684,6 @@ class Mutation$CreateChat$createChat$chat {
     final l$lastModified = lastModified;
     final lOther$lastModified = other.lastModified;
     if (l$lastModified != lOther$lastModified) {
-      return false;
-    }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
       return false;
     }
     final l$participant1Deleted = participant1Deleted;
@@ -9766,7 +9745,6 @@ abstract class CopyWith$Mutation$CreateChat$createChat$chat<TRes> {
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,
@@ -9798,7 +9776,6 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
     Object? disableResponse = _undefined,
     Object? createdAt = _undefined,
     Object? lastModified = _undefined,
-    Object? deleted = _undefined,
     Object? participant1Deleted = _undefined,
     Object? participant2Deleted = _undefined,
     Object? unreadMessagesCount = _undefined,
@@ -9821,9 +9798,6 @@ class _CopyWithImpl$Mutation$CreateChat$createChat$chat<TRes>
         lastModified: lastModified == _undefined || lastModified == null
             ? _instance.lastModified
             : (lastModified as DateTime),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
         participant1Deleted:
             participant1Deleted == _undefined || participant1Deleted == null
                 ? _instance.participant1Deleted
@@ -9878,7 +9852,6 @@ class _CopyWithStubImpl$Mutation$CreateChat$createChat$chat<TRes>
     bool? disableResponse,
     DateTime? createdAt,
     DateTime? lastModified,
-    bool? deleted,
     bool? participant1Deleted,
     bool? participant2Deleted,
     int? unreadMessagesCount,

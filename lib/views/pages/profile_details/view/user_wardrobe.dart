@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -34,19 +35,6 @@ import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../widgets/user_popular_brand.dart';
-
-// enum UserFilterTypes {
-//   size('Size'),
-//   brand('Brand'),
-//   condition('Condition'),
-//   // category('Category'),
-//   style('Style');
-//   // color('Color');
-
-//   const UserFilterTypes(this.simpleName);
-
-//   final String simpleName;
-// }
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -156,6 +144,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           final value = ref
               .watch(userProductGroupingByCategoryProvider(user.id))
               .valueOrNull;
+          log(":::User location ::${user.location?.locationName}");
+          log(":::User location ::${user.username}");
           // final userSubCategories = ref.watch(userProductGroupingBySubCategoryProvider(user!.id)).valueOrNull;
           final List<CategoryGroupType> categories = value == null
               ? []
@@ -174,22 +164,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
               child: Column(
                 children: [
                   Stack(clipBehavior: Clip.none, children: [
-                    if (widget.username != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 20),
-                        child: ProfileCardWidget(
-                          user: user,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    else
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(15, 20, 15, 10),
-                        child: ProfileCardWidget(
-                          fontWeight: FontWeight.w600,
-                        ),
+                    // if (widget.username != null)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 20),
+                      child: ProfileCardWidget(
+                        user: user,
+                        fontWeight: FontWeight.w600,
                       ),
+                    ),
                     Positioned(
                       bottom: -28,
                       right: 0,
@@ -401,36 +384,35 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       ),
                     )
                   ]),
-                  Column(
-                    children: [
-                      if (user.bio != null)
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 12),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      user.bio ?? '',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                              fontSize: getDefaultSize(),
-                                              fontWeight: FontWeight.w500),
-                                    ),
+                  Column(children: [
+                    if (user.bio != null)
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 12),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    user.bio ?? '',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                            fontSize: getDefaultSize(),
+                                            fontWeight: FontWeight.w500),
                                   ),
-                                  const SizedBox(height: 16),
-                                ],
-                              ),
+                                ),
+                                const SizedBox(height: 16),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
 
                       // Social and Additional Info Section
                       UserScrollableList(
@@ -747,121 +729,94 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
                         FilterAndSort(userId: user.id, username: user.username),
 
-                        20.verticalSpacing,
-                        if (ref
-                                .watch(userProduct(user.username))
-                                .valueOrNull
-                                ?.where((e) => e.isFeatured ?? false)
-                                .toList()
-                                .isNotEmpty ??
-                            false) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Featured',
-                                    style:
-                                        context.textTheme.titleLarge?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  10.verticalSpacing,
-                                  ref.watch(userProduct(user.username)).when(
-                                        skipLoadingOnRefresh: false,
-                                        data: (products) => DisplaySection(
-                                          products: products
-                                              .where(
-                                                  (e) => e.isFeatured ?? false)
-                                              .toList(),
-                                          isInProduct: false,
-                                        ),
-                                        error: (e, _) {
-                                          return Center(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Text(e.toString()),
-                                                TextButton.icon(
-                                                  onPressed: () {
-                                                    // log(e.toString(), stackTrace: _);
-                                                    ref.invalidate(userProduct);
-                                                  },
-                                                  label: const Text('Retry'),
-                                                  icon: const Icon(
-                                                      Icons.refresh_rounded),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                        loading: () => GridShimmer(),
-                                      ),
-                                  10.verticalSpacing,
-                                ]),
-                          ),
-                        ],
-
+                      20.verticalSpacing,
+                      if (ref
+                              .watch(userProduct(user.username))
+                              .valueOrNull
+                              ?.where((e) => e.isFeatured ?? false)
+                              .toList()
+                              .isNotEmpty ??
+                          false) ...[
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: ref.watch(userProduct(user.username)).when(
-                                skipLoadingOnRefresh: false,
-                                data: (products) => DisplaySection(
-                                  products: products,
-                                  isInProduct: false,
-                                ),
-                                error: (e, _) {
-                                  return Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(e.toString()),
-                                        TextButton.icon(
-                                          onPressed: () {
-                                            // log(e.toString(), stackTrace: _);
-                                            ref.invalidate(userProduct);
-                                          },
-                                          label: const Text('Retry'),
-                                          icon:
-                                              const Icon(Icons.refresh_rounded),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                                loading: () => GridShimmer(),
-                              ),
-                        )
-                      ] else ...[
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.4,
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RenderSvg(
-                                svgPath: PreluraIcons.empty_box_svg,
-                                svgHeight: 60,
-                                svgWidth: 60,
-                                color: PreluraColors.grey,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Featured',
+                                  style: context.textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                10.verticalSpacing,
+                                ref.watch(userProduct(user.username)).when(
+                                      skipLoadingOnRefresh: false,
+                                      data: (products) => DisplaySection(
+                                        products: products
+                                            .where((e) => e.isFeatured ?? false)
+                                            .toList(),
+                                        isInProduct: false,
+                                      ),
+                                      error: (e, _) {
+                                        return Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(e.toString()),
+                                              TextButton.icon(
+                                                onPressed: () {
+                                                  // log(e.toString(), stackTrace: _);
+                                                  ref.invalidate(userProduct);
+                                                },
+                                                label: const Text('Retry'),
+                                                icon: const Icon(
+                                                    Icons.refresh_rounded),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      loading: () => GridShimmer(),
+                                    ),
+                                10.verticalSpacing,
+                              ]),
+                        ),
+                      ],
+
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: ref.watch(userProduct(user.username)).when(
+                              skipLoadingOnRefresh: false,
+                              data: (products) => DisplaySection(
+                                products: products,
+                                isInProduct: false,
                               ),
-                              Text(
-                                "No Products",
-                                style: context.theme.textTheme.bodyMedium
-                                    ?.copyWith(
-                                        fontSize: getDefaultSize(),
-                                        color: PreluraColors.grey,
-                                        fontWeight: FontWeight.w600),
-                              )
-                            ],
-                          ),
-                        )
-                      ]
+                              error: (e, _) {
+                                return Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(e.toString()),
+                                      TextButton.icon(
+                                        onPressed: () {
+                                          // log(e.toString(), stackTrace: _);
+                                          ref.invalidate(userProduct);
+                                        },
+                                        label: const Text('Retry'),
+                                        icon: const Icon(Icons.refresh_rounded),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              loading: () => GridShimmer(),
+                            ),
+                      )
                     ],
+                    
                   ),
                 ],
               ),

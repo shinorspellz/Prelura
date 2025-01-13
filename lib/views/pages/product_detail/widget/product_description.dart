@@ -1,22 +1,13 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:prelura_app/core/router/router.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:prelura_app/views/pages/filtered_products/product_by_hashtag_page.dart';
-import 'package:sizer/sizer.dart';
+import 'package:prelura_app/res/utils.dart';
 
-import '../../../../controller/product/product_provider.dart';
-import '../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/hashtag.dart';
-import 'package:prelura_app/res/utils.dart';
 import '../provider/product_detail_provider.dart';
 
 final isDescriptionExpandedProvider = StateProvider<bool>((ref) => false);
@@ -75,11 +66,6 @@ class ProductDescription extends ConsumerWidget {
                               color: PreluraColors.activeColor,
                               fontWeight: FontWeight.bold),
                           (hashtag) {
-                            ref
-                                .read(selectedFilteredProductProvider.notifier)
-                                .state = Input$ProductFiltersInput(hashtags: [
-                              hashtag
-                            ]);
                             context.pushRoute(
                                 ProductByHashtagRoute(hashtag: hashtag));
                           },

@@ -168,9 +168,10 @@ type ConversationType {
   disableResponse: Boolean!
   createdAt: DateTime!
   lastModified: DateTime!
-  deleted: Boolean!
   participant1Deleted: Boolean!
   participant2Deleted: Boolean!
+  isOfferConversation: Boolean!
+  offer: OfferType
   recipient: UserType
   lastMessage: MessageType
   unreadMessagesCount: Int
@@ -652,6 +653,7 @@ type OfferType {
   createdAt: DateTime!
   updatedAt: DateTime!
   deleted: Boolean!
+  conversation: [ConversationType!]!
 }
 
 type OrderType {
@@ -1662,6 +1664,7 @@ type UserNode implements Node {
   gASecret: String
   usernameLastUpdated: DateTime
   fcmTokens: [String!]!
+  preferredCurrency: AccountsUserPreferredCurrencyChoices!
   meta: JSONString!
   preferredCurrency: AccountsUserPreferredCurrencyChoices!
   searchhistorySet: [SearchHistoryType!]!

@@ -1,20 +1,14 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/main.dart';
-import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/res/utils.dart';
-import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_text_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
-import 'package:prelura_app/res/context_entension.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/gap.dart';
@@ -47,7 +41,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Form(
             key: formKey,
             child: SingleChildScrollView(
-              padding: const EdgeInsets.only(top: 40, right: 25, left: 25, bottom: 10),
+              padding: const EdgeInsets.only(
+                  top: 40, right: 25, left: 25, bottom: 10),
               child: Column(
                 children: [
                   Text(
@@ -124,7 +119,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
                       await ref.read(authProvider.notifier).login(
                             username!.trim(),
-                            password!,
+                            password!.trim(),
                           );
                       ref.read(authProvider).whenOrNull(
                             error: (e, _) => context.alert(e.toString()),
