@@ -41,7 +41,6 @@ dependencies:
   pinput: ^5.0.0
   lottie: 3.2.0
   skeletonizer: ^1.4.2
-  palette_generator: ^0.3.0
 
   graphql:
   gql_dio_link: ^1.0.1+1
@@ -116,6 +115,7 @@ flutter:
     - assets/images/logo.png
     - assets/images/splash.png
     - assets/svgs/
+    - assets/svgs/Trusted.svg
     - assets/svgs/kids/
     - assets/svgs/men/
     - assets/svgs/pin.svg
