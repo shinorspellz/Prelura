@@ -116,6 +116,7 @@ flutter:
     - assets/svgs/
     - assets/svgs/kids/
     - assets/svgs/men/
+    - assets/svgs/pin.svg
     - assets/svgs/women/
 
   fonts:

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,20 +9,17 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/core/utils/utils.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/render_svg.dart';
+import 'package:prelura_app/shared/card_model.dart';
 import 'package:prelura_app/views/widgets/brand_text_widget.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/res/ui_constants.dart';
-import 'package:prelura_app/shared/card_model.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../res/utils.dart';
 import '../../controller/product/product_provider.dart';
 import '../../controller/user/user_controller.dart';
+import '../../res/utils.dart';
 import '../shimmers/grid_shimmer.dart';
 import 'profile_picture.dart';
 
@@ -203,48 +201,49 @@ class _ProductCardState extends ConsumerState<ProductCard> {
       },
       child: Container(
         width: double.infinity,
+        color: Colors.transparent,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (widget.isSimilar) ...[
-              GestureDetector(
-                onTap: () {
-                  final user = ref.read(userProvider).valueOrNull;
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (widget.isSimilar) ...[
+                GestureDetector(
+                  onTap: () {
+                    final user = ref.read(userProvider).valueOrNull;
 
-                  if (user?.username == widget.product.seller.username) {
-                    context.router.push(UserProfileDetailsRoute());
-                  } else {
-                    context.router.push(ProfileDetailsRoute(
-                        username: widget.product.seller.username));
-                  }
-                },
-                child: Row(
-                  children: [
-                    ProfilePictureWidget(
-                      profilePicture: widget.product.seller.profilePictureUrl,
-                      username: widget.product.seller.username,
-                      width: 20,
-                      height: 20,
-                      allowBorder: false,
-                    ),
-                    addHorizontalSpacing(8),
-                    Text(
-                      widget.product.seller.username,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: Theme.of(context).textTheme.bodyMedium?.color),
-                    ),
-                  ],
+                    if (user?.username == widget.product.seller.username) {
+                      context.router.push(UserProfileDetailsRoute());
+                    } else {
+                      context.router.push(ProfileDetailsRoute(
+                          username: widget.product.seller.username));
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      ProfilePictureWidget(
+                        profilePicture: widget.product.seller.profilePictureUrl,
+                        username: widget.product.seller.username,
+                        width: 20,
+                        height: 20,
+                        allowBorder: false,
+                      ),
+                      addHorizontalSpacing(8),
+                      Text(
+                        widget.product.seller.username,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color:
+                                Theme.of(context).textTheme.bodyMedium?.color),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              addVerticalSpacing(8),
-            ],
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Stack(
-                children: [
+                addVerticalSpacing(8),
+              ],
+              ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Stack(children: [
                   CachedNetworkImage(
                     imageUrl: widget.product.imagesUrl.first.thumbnail,
                     height: 27.h,
@@ -293,112 +292,147 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            if (widget.product.brand != null ||
-                widget.product.customBrand != null) ...[
-              BrandTextWidget(
-                brand: widget.product.brand,
-                customBrand: widget.product.customBrand,
-              ),
-              // 10.verticalSpacing,
-            ],
-            Text(
-              capitalizeEachWord(widget.product.name.trim()),
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: getDefaultSize(),
-                  ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            if (widget.product.condition != null) ...[
-              Text(
-                widget.product.condition!.simpleName,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: PreluraColors.greyColor,
-                      fontSize: getDefaultSize(),
+
+                  ///
+                  ///
+                  ///
+                  if (widget.product.isFeatured ?? false)
+                    Positioned(
+                      top: 5,
+                      right: 5,
+                      child: Stack(children: [
+                        ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                            child: CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.black.withOpacity(0.5),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Center(
+                            child: RenderSvg(
+                              svgPath: "assets/svgs/pin.svg",
+                              svgHeight: 20,
+                            ),
+                          ),
+                        ),
+                      ]),
                     ),
+
+                  ///
+                  ///
+                  ///
+                ]),
               ),
               const SizedBox(height: 8),
-            ],
-            Row(
-              children: [
+              if (widget.product.brand != null ||
+                  widget.product.customBrand != null) ...[
+                BrandTextWidget(
+                  brand: widget.product.brand,
+                  customBrand: widget.product.customBrand,
+                ),
+                // 10.verticalSpacing,
+              ],
+              Text(
+                capitalizeEachWord(widget.product.name.trim()),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: getDefaultSize(),
+                    ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (widget.product.condition != null) ...[
                 Text(
-                  "£ ${formatDynamicString(widget.product.price.toString())}",
+                  widget.product.condition!.simpleName,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: PreluraColors.greyColor,
                         fontSize: getDefaultSize(),
-                        decoration: widget.product.discountPrice != null
-                            ? TextDecoration.lineThrough
-                            : null,
-                        color: widget.product.discountPrice != null
-                            ? !context.isDarkMode
-                                ? Colors.grey
-                                : Colors.white30
-                            : null,
-                        fontWeight: FontWeight.w600,
                       ),
                 ),
-                if (widget.product.discountPrice != null) ...[
-                  10.horizontalSpacing,
+                const SizedBox(height: 8),
+              ],
+              Row(
+                children: [
                   Text(
-                    "£ ${formatDynamicString(calculateDiscountedAmount(
-                      price: widget.product.price,
-                      discount:
-                          double.parse(widget.product.discountPrice!).toInt(),
-                    ).toString())}",
+                    "£ ${formatDynamicString(widget.product.price.toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
                           fontSize: getDefaultSize(),
+                          decoration: widget.product.discountPrice != null
+                              ? TextDecoration.lineThrough
+                              : null,
+                          color: widget.product.discountPrice != null
+                              ? !context.isDarkMode
+                                  ? Colors.grey
+                                  : Colors.white30
+                              : null,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
-                ],
-                Spacer(),
-                if (widget.product.discountPrice != null)
-                  Container(
-                    // height: 30,
-                    // width: 50,
-                    decoration: BoxDecoration(
-                      color: '8d100f'.fromHex,
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    // alignment: Alignment.center,
-                    child: Text(
-                      ' ${double.parse(widget.product.discountPrice!).toInt()}%',
+                  if (widget.product.discountPrice != null) ...[
+                    10.horizontalSpacing,
+                    Text(
+                      "£ ${formatDynamicString(calculateDiscountedAmount(
+                        price: widget.product.price,
+                        discount:
+                            double.parse(widget.product.discountPrice!).toInt(),
+                      ).toString())}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
                             fontSize: getDefaultSize(),
                           ),
                     ),
-                  ),
-                4.horizontalSpacing
-              ],
-            ),
-            // if (widget.product.seller.username == user?.username &&
-            //     context.router.current.name ==
-            //         UserProfileDetailsRoute.name) ...[
-            //   10.verticalSpacing,
-            //   Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       // 10.horizontalSpacing,
-            //       Icon(
-            //         Icons.remove_red_eye_outlined,
-            //         color: PreluraColors.grey,
-            //         size: 18,
-            //       ),
-            //       10.horizontalSpacing,
-            //       Text(
-            //           "${widget.product.views.toString()} ${(widget.product.views.toInt() > 1 || widget.product.views.toInt() == 0) ? "views" : "view"}",
-            //           style: Theme.of(context).textTheme.bodySmall),
-            //     ],
-            //   )
-            // ]
-          ],
-        ),
+                  ],
+                  Spacer(),
+                  if (widget.product.discountPrice != null)
+                    Container(
+                      // height: 30,
+                      // width: 50,
+                      decoration: BoxDecoration(
+                        color: '8d100f'.fromHex,
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      // alignment: Alignment.center,
+                      child: Text(
+                        ' ${double.parse(widget.product.discountPrice!).toInt()}%',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontSize: getDefaultSize(),
+                            ),
+                      ),
+                    ),
+                  4.horizontalSpacing
+                ],
+              ),
+              // if (widget.product.seller.username == user?.username &&
+              //     context.router.current.name ==
+              //         UserProfileDetailsRoute.name) ...[
+              //   10.verticalSpacing,
+              //   Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       // 10.horizontalSpacing,
+              //       Icon(
+              //         Icons.remove_red_eye_outlined,
+              //         color: PreluraColors.grey,
+              //         size: 18,
+              //       ),
+              //       10.horizontalSpacing,
+              //       Text(
+              //           "${widget.product.views.toString()} ${(widget.product.views.toInt() > 1 || widget.product.views.toInt() == 0) ? "views" : "view"}",
+              //           style: Theme.of(context).textTheme.bodySmall),
+              //     ],
+              //   )
+              // ]
+            ]),
       ),
     );
   }

@@ -11,4 +11,5 @@ class AssetsRes {
   static const String OFFER = 'assets/icons/offer.svg';
   static const String LOGO = 'assets/images/logo.png';
   static const String SPLASH = 'assets/images/splash.png';
+  static const String PIN = 'assets/svgs/pin.svg';
 }

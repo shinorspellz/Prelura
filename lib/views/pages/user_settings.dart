@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
-import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
-import 'package:prelura_app/res/colors.dart';
 
 @RoutePage()
 class SettingScreen extends StatelessWidget {
@@ -38,6 +38,11 @@ class SettingScreen extends StatelessWidget {
           title: "Security",
           onTap: () {
             context.router.push(SecurityMenuRoute());
+          }),
+      MenuCard(
+          title: "Currency settings",
+          onTap: () {
+            context.router.push(CurrencySettingRoute());
           }),
     ];
 
