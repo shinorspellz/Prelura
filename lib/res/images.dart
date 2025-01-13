@@ -80,6 +80,8 @@ class PreluraIcons {
   static const String vacation_mode_svg = "assets/svgs/holiday vacation.svg";
   static const String discount_svg = "assets/svgs/discount.svg";
 
+  static const String trusted_svg = "assets/svgs/trusted.svg";
+
   //category
   static const String men_svg = "assets/svgs/men.svg";
   static const String women_svg = "assets/svgs/women.svg";

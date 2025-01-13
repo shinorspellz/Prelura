@@ -22,6 +22,7 @@ class UserModel with _$UserModel {
       String? fullName,
       int? listing,
       PhoneModel? phone,
+      Enum$CurrencyEnum? preferredCurrency,
       LocationInputType? location,
       bool? isVacationMode,
       bool? isFollowing,

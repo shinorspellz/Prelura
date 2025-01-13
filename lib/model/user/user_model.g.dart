@@ -29,6 +29,9 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] == null
           ? null
           : PhoneModel.fromJson(json['phone'] as Map<String, dynamic>),
+      preferredCurrency: json['preferredCurrency'] == null
+          ? null
+          : Enum$CurrencyEnum.fromJson(json['preferredCurrency'] as String),
       location: json['location'] == null
           ? null
           : LocationInputType.fromJson(
@@ -56,6 +59,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'fullName': instance.fullName,
       'listing': instance.listing,
       'phone': instance.phone,
+      'preferredCurrency': instance.preferredCurrency,
       'location': instance.location,
       'isVacationMode': instance.isVacationMode,
       'isFollowing': instance.isFollowing,

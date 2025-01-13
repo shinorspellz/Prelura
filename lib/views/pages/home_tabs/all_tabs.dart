@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/views/pages/chat/widgets/seller_card.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/seller_profile_card.dart';
 
+import '../../../controller/user/user_controller.dart';
 import '../../../res/colors.dart';
 import '../../../shared/mock_data.dart';
 import '../../../controller/product/product_provider.dart';
@@ -73,6 +76,34 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => GridShimmer()),
         ] else ...[
+          ref.watch(userProvider).when(
+            data: (user) {
+              final totalUsers = [user, user, user, user];
+              return AspectRatio(
+                aspectRatio: 1.1,
+                // height: 320,
+                // width: MediaQuery.sizeOf(context).width,
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 15),
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (context, index) => 10.horizontalSpacing,
+                  itemBuilder: (context, index) => SizedBox(
+                    width: 180,
+                    child: SellerProfileCard(user: totalUsers[index]),
+                  ),
+                  itemCount: totalUsers.length,
+                ),
+              );
+            },
+            error: (error, stackTrace) {
+              // Handle error state
+              return Center(child: Text('Error: $error'));
+            },
+            loading: () {
+              // Handle loading state
+              return Center(child: CircularProgressIndicator());
+            },
+          ),
           ref.watch(recentlyViewedProductsProvider).maybeWhen(
               data: (products) {
                 log(products.length.toString());
