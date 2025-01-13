@@ -2657,6 +2657,22 @@
             "deprecationReason": null
           },
           {
+            "name": "preferredCurrency",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "AccountsUserPreferredCurrencyChoices",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "searchhistorySet",
             "description": null,
             "args": [],

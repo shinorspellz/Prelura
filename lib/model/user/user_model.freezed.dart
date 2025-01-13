@@ -35,6 +35,8 @@ mixin _$UserModel {
   String? get fullName => throw _privateConstructorUsedError;
   int? get listing => throw _privateConstructorUsedError;
   PhoneModel? get phone => throw _privateConstructorUsedError;
+  Enum$CurrencyEnum? get preferredCurrency =>
+      throw _privateConstructorUsedError;
   LocationInputType? get location => throw _privateConstructorUsedError;
   bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
@@ -72,6 +74,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? fullName,
       int? listing,
       PhoneModel? phone,
+      Enum$CurrencyEnum? preferredCurrency,
       LocationInputType? location,
       bool? isVacationMode,
       bool? isFollowing,
@@ -112,6 +115,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? fullName = freezed,
     Object? listing = freezed,
     Object? phone = freezed,
+    Object? preferredCurrency = freezed,
     Object? location = freezed,
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
@@ -179,6 +183,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneModel?,
+      preferredCurrency: freezed == preferredCurrency
+          ? _value.preferredCurrency
+          : preferredCurrency // ignore: cast_nullable_to_non_nullable
+              as Enum$CurrencyEnum?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -255,6 +263,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? fullName,
       int? listing,
       PhoneModel? phone,
+      Enum$CurrencyEnum? preferredCurrency,
       LocationInputType? location,
       bool? isVacationMode,
       bool? isFollowing,
@@ -295,6 +304,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? listing = freezed,
     Object? phone = freezed,
+    Object? preferredCurrency = freezed,
     Object? location = freezed,
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
@@ -362,6 +372,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as PhoneModel?,
+      preferredCurrency: freezed == preferredCurrency
+          ? _value.preferredCurrency
+          : preferredCurrency // ignore: cast_nullable_to_non_nullable
+              as Enum$CurrencyEnum?,
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -405,6 +419,7 @@ class _$UserModelImpl implements _UserModel {
       this.fullName,
       this.listing,
       this.phone,
+      this.preferredCurrency,
       this.location,
       this.isVacationMode,
       this.isFollowing,
@@ -445,6 +460,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   final PhoneModel? phone;
   @override
+  final Enum$CurrencyEnum? preferredCurrency;
+  @override
   final LocationInputType? location;
   @override
   final bool? isVacationMode;
@@ -457,7 +474,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -488,6 +505,8 @@ class _$UserModelImpl implements _UserModel {
                 other.fullName == fullName) &&
             (identical(other.listing, listing) || other.listing == listing) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.preferredCurrency, preferredCurrency) ||
+                other.preferredCurrency == preferredCurrency) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.isVacationMode, isVacationMode) ||
@@ -519,6 +538,7 @@ class _$UserModelImpl implements _UserModel {
         fullName,
         listing,
         phone,
+        preferredCurrency,
         location,
         isVacationMode,
         isFollowing,
@@ -559,6 +579,7 @@ abstract class _UserModel implements UserModel {
       final String? fullName,
       final int? listing,
       final PhoneModel? phone,
+      final Enum$CurrencyEnum? preferredCurrency,
       final LocationInputType? location,
       final bool? isVacationMode,
       final bool? isFollowing,
@@ -598,6 +619,8 @@ abstract class _UserModel implements UserModel {
   int? get listing;
   @override
   PhoneModel? get phone;
+  @override
+  Enum$CurrencyEnum? get preferredCurrency;
   @override
   LocationInputType? get location;
   @override

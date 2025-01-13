@@ -17,7 +17,12 @@ import '../../widgets/card.dart';
 import '../home.dart';
 
 class FilterTab extends ConsumerWidget {
-  const FilterTab({super.key, required this.searchQuery, required this.id, required this.title, required this.products});
+  const FilterTab(
+      {super.key,
+      required this.searchQuery,
+      required this.id,
+      required this.title,
+      required this.products});
   final String searchQuery;
   final String title;
   final int id;
@@ -29,87 +34,70 @@ class FilterTab extends ConsumerWidget {
       selectedIdProvider,
       (previous, next) {
         if (previous != next) {
-          ref.invalidate(filteredProductProvider((
-            Input$ProductFiltersInput(
-              category: id,
-            ),
-            searchQuery
-          )));
+          ref.invalidate(filteredProductProvider(searchQuery));
         }
       },
     );
 
     return Column(children: [
       if (searchQuery.isNotEmpty) ...[
-        ref
-            .watch(filteredProductProvider((
-              Input$ProductFiltersInput(
-                category: id,
-              ),
-              searchQuery
-            )))
-            .when(
-                data: (products) {
-                  log("total product is ${products.length}");
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.50,
-                      ),
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        return ProductCard(product: products[index]);
+        ref.watch(filteredProductProvider(searchQuery)).when(
+            data: (products) {
+              log("total product is ${products.length}");
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.50,
+                  ),
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    return ProductCard(product: products[index]);
+                  },
+                ),
+              );
+            },
+            error: (e, _) {
+              print(e);
+              log("$_");
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(e.toString()),
+                    TextButton.icon(
+                      onPressed: () {
+                        // log(e.toString(), stackTrace: _);
+                        ref.invalidate(allProductProvider(searchQuery));
                       },
+                      label: const Text('Retry'),
+                      icon: const Icon(Icons.refresh_rounded),
                     ),
-                  );
-                },
-                error: (e, _) {
-                  print(e);
-                  log("$_");
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(e.toString()),
-                        TextButton.icon(
-                          onPressed: () {
-                            // log(e.toString(), stackTrace: _);
-                            ref.invalidate(allProductProvider(searchQuery));
-                          },
-                          label: const Text('Retry'),
-                          icon: const Icon(Icons.refresh_rounded),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                loading: () => GridShimmer()),
+                  ],
+                ),
+              );
+            },
+            loading: () => GridShimmer()),
       ] else ...[
-        ref
-            .watch(filteredProductProvider((
-              Input$ProductFiltersInput(
-                category: id,
-              ),
-              searchQuery
-            )))
-            .maybeWhen(
+        ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
               // skipLoadingOnRefresh: !ref.watch(refreshingHome),
               data: (products) => Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 15,
                 ),
-                child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+                child: LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
@@ -117,7 +105,8 @@ class FilterTab extends ConsumerWidget {
                     ),
                     itemCount: products.take(6).length,
                     itemBuilder: (context, index) {
-                      return ProductCard(product: products.take(6).toList()[index]);
+                      return ProductCard(
+                          product: products.take(6).toList()[index]);
                     },
                   );
                 }),
@@ -156,7 +145,8 @@ class FilterTab extends ConsumerWidget {
                       // height: 220,
                       width: 180,
                       margin: const EdgeInsets.symmetric(horizontal: 5),
-                      child: const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                      child:
+                          const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
                     ),
                   ),
                 ),
@@ -165,60 +155,55 @@ class FilterTab extends ConsumerWidget {
         Divider(thickness: 1, color: PreluraColors.primaryColor),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-          child: ref
-              .watch(filteredProductProvider((
-                Input$ProductFiltersInput(
-                  category: id,
-                ),
-                searchQuery
-              )))
-              .when(
-                  skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
-                  data: (products) {
-                    if (products.length < 6) return Container();
-                    final clippedProducts = products.sublist(6);
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.50,
-                      ),
-                      itemCount: clippedProducts.length,
-                      itemBuilder: (context, index) {
-                        return ProductCard(product: clippedProducts[index]);
-                      },
-                    );
+          child: ref.watch(filteredProductProvider(searchQuery)).when(
+              skipLoadingOnRefresh: !ref.watch(homeRefreshProvider),
+              data: (products) {
+                if (products.length < 6) return Container();
+                final clippedProducts = products.sublist(6);
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.50,
+                  ),
+                  itemCount: clippedProducts.length,
+                  itemBuilder: (context, index) {
+                    return ProductCard(product: clippedProducts[index]);
                   },
-                  error: (e, _) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(e.toString()),
-                          TextButton.icon(
-                            onPressed: () {
-                              // log(e.toString(), stackTrace: _);
-                              ref.invalidate(allProductProvider);
-                            },
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
-                        ],
+                );
+              },
+              error: (e, _) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(e.toString()),
+                      TextButton.icon(
+                        onPressed: () {
+                          // log(e.toString(), stackTrace: _);
+                          ref.invalidate(allProductProvider);
+                        },
+                        label: const Text('Retry'),
+                        icon: const Icon(Icons.refresh_rounded),
                       ),
-                    );
-                  },
-                  loading: () => GridShimmer()),
+                    ],
+                  ),
+                );
+              },
+              loading: () => GridShimmer()),
         ),
       ],
     ]);
   }
 }
 
-Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext context, {VoidCallback? onTap}) {
+Widget _buildSectionTitle(
+    String MainTitle, String subtitle, BuildContext context,
+    {VoidCallback? onTap}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
     child: Column(
@@ -227,7 +212,10 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
         Text(
           MainTitle,
           textAlign: TextAlign.left,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontSize: 17, color: PreluraColors.primaryColor),
         ),
         const SizedBox(
           height: 1,
@@ -238,11 +226,18 @@ Widget _buildSectionTitle(String MainTitle, String subtitle, BuildContext contex
             Text(
               subtitle,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.greyColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: PreluraColors.greyColor),
             ),
             GestureDetector(
               onTap: onTap,
-              child: Text("See All", style: Theme.of(context).textTheme.bodySmall?.copyWith(color: PreluraColors.primaryColor)),
+              child: Text("See All",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall
+                      ?.copyWith(color: PreluraColors.primaryColor)),
             )
           ],
         ),

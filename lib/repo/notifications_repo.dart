@@ -12,7 +12,8 @@ class NotificationRepo {
 
   NotificationRepo(this._client);
 
-  Future<List<NotificationModel>> getNotifications({required int pageCount, required int pageNumber}) async {
+  Future<List<NotificationModel>> getNotifications(
+      {required int pageCount, required int pageNumber}) async {
     final response = await _client.query$Notifications(
       Options$Query$Notifications(
         variables: Variables$Query$Notifications(
@@ -23,7 +24,8 @@ class NotificationRepo {
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -45,7 +47,8 @@ class NotificationRepo {
     }
   }
 
-  Future<int> getNotificationsTotalNumbers(int pageCount, int pageNumber) async {
+  Future<int> getNotificationsTotalNumbers(
+      int pageCount, int pageNumber) async {
     final response = await _client.query$Notifications(
       Options$Query$Notifications(
         variables: Variables$Query$Notifications(
@@ -56,7 +59,8 @@ class NotificationRepo {
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -80,7 +84,8 @@ class NotificationRepo {
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -103,27 +108,32 @@ class NotificationRepo {
     bool? isSilentModeOn,
   }) async {
     log(notificationPreference.toString());
-    log(notificationPreference?.inappNotifications?.profileView.toString() ?? 'null');
+    log(notificationPreference?.inappNotifications?.profileView.toString() ??
+        'null');
     final response = await _client.mutate$UpdateNotificationPreference(
       Options$Mutation$UpdateNotificationPreference(
         variables: Variables$Mutation$UpdateNotificationPreference(
           isEmailNotification: notificationPreference!.isEmailNotification!,
           isPushNotification: notificationPreference.isPushNotification!,
           isSilentModeOn: isSilentModeOn ?? false,
-          emailNotification: _convertToGraphQLInput(notificationPreference.emailNotifications),
-          inappNotification: _convertToGraphQLInput(notificationPreference.inappNotifications),
+          emailNotification:
+              _convertToGraphQLInput(notificationPreference.emailNotifications),
+          inappNotification:
+              _convertToGraphQLInput(notificationPreference.inappNotifications),
         ),
       ),
     );
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       log('GraphQL Error: $error');
       log(response.exception.toString());
       throw Exception('GraphQL Error: $error');
     }
 
-    final success = response.parsedData?.updateNotificationPreference?.success ?? false;
+    final success =
+        response.parsedData?.updateNotificationPreference?.success ?? false;
     // final response  = response.parsedData?.updateNotificationPreference?.;
 
     if (!success) {
@@ -134,7 +144,8 @@ class NotificationRepo {
     return success;
   }
 
-  Input$NotificationsPreferenceInputType? _convertToGraphQLInput(NotificationsPreferenceInputType? input) {
+  Input$NotificationsPreferenceInputType? _convertToGraphQLInput(
+      NotificationsPreferenceInputType? input) {
     if (input == null) return null;
     return Input$NotificationsPreferenceInputType(
       likes: input.likes,
@@ -145,10 +156,14 @@ class NotificationRepo {
   }
 
   Future<bool> readNotification(int notificationId) async {
-    final response = await _client.mutate$ReadNotification(Options$Mutation$ReadNotification(variables: Variables$Mutation$ReadNotification(notificationId: notificationId)));
+    final response = await _client.mutate$ReadNotification(
+        Options$Mutation$ReadNotification(
+            variables: Variables$Mutation$ReadNotification(
+                notificationId: notificationId)));
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 
@@ -160,10 +175,14 @@ class NotificationRepo {
   }
 
   Future<bool> deleteNotification(int notificationId) async {
-    final response = await _client.mutate$DeleteNotification(Options$Mutation$DeleteNotification(variables: Variables$Mutation$DeleteNotification(notificationId: notificationId)));
+    final response = await _client.mutate$DeleteNotification(
+        Options$Mutation$DeleteNotification(
+            variables: Variables$Mutation$DeleteNotification(
+                notificationId: notificationId)));
 
     if (response.hasException) {
-      final error = response.exception?.graphqlErrors.first.message ?? 'Unknown GraphQL Error';
+      final error = response.exception?.graphqlErrors.first.message ??
+          'Unknown GraphQL Error';
       throw Exception('GraphQL Error: $error');
     }
 

@@ -77,7 +77,7 @@ class PreluraCheckBox extends StatelessWidget {
                   ),
                 ],
                 SizedBox(
-                  width: 60.w,
+                  width: 63.w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -88,6 +88,8 @@ class PreluraCheckBox extends StatelessWidget {
                           children: [
                             Text(
                               title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: style ??
                                   Theme.of(context)
                                       .textTheme

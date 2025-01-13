@@ -1666,6 +1666,7 @@ type UserNode implements Node {
   fcmTokens: [String!]!
   preferredCurrency: AccountsUserPreferredCurrencyChoices!
   meta: JSONString!
+  preferredCurrency: AccountsUserPreferredCurrencyChoices!
   searchhistorySet: [SearchHistoryType!]!
   socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
   products: [ProductType!]!

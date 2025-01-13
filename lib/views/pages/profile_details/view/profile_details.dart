@@ -26,10 +26,12 @@ class ProfileDetailsScreen extends ConsumerStatefulWidget {
   final String username;
 
   @override
-  ConsumerState<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+  ConsumerState<ProfileDetailsScreen> createState() =>
+      _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -47,7 +49,8 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index !=
+          ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -65,7 +68,8 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
     final user = ref.watch(otherUserProfile(widget.username)).valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index = currentIndex; // Sync tab index if changed externally
+      _tabController.index =
+          currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(
@@ -73,7 +77,8 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: user?.username ?? "--",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         // leadingIcon: IconButton(
@@ -87,9 +92,16 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen> wit
               context: context,
               actions: [
                 VBottomSheetItem(
+                  onTap: (context) {
+                    Navigator.pop(context);
+                  },
+                  title: 'Mutli-buy discounts...',
+                ),
+                VBottomSheetItem(
                     onTap: (context) {
                       Navigator.pop(context);
-                      Share.shareUri(Uri.parse('https://prelura.com/${widget.username}'));
+                      Share.shareUri(
+                          Uri.parse('https://prelura.com/${widget.username}'));
                     },
                     title: 'Share profile'),
                 VBottomSheetItem(
