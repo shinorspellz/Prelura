@@ -11,6 +11,7 @@ import 'package:prelura_app/views/widgets/seller_profile_card.dart';
 
 import '../../../controller/user/user_controller.dart';
 import '../../../res/colors.dart';
+import '../../../res/utils.dart';
 import '../../../shared/mock_data.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../../controller/refresh_provider.dart';
@@ -79,20 +80,56 @@ class HomeAllTab extends ConsumerWidget {
           ref.watch(userProvider).when(
             data: (user) {
               final totalUsers = [user, user, user, user];
-              return AspectRatio(
-                aspectRatio: 1.1,
-                // height: 320,
-                // width: MediaQuery.sizeOf(context).width,
-                child: ListView.separated(
-                  padding: EdgeInsets.only(left: 15),
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => 10.horizontalSpacing,
-                  itemBuilder: (context, index) => SizedBox(
-                    width: 180,
-                    child: SellerProfileCard(user: totalUsers[index]),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Divider(thickness: 1, color: PreluraColors.primaryColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Top Shops",
+                          textAlign: TextAlign.left,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            fontSize: getDefaultSize(size: 16),
+                          ),
+                        ),
+                        6.verticalSpacing,
+                        Text(
+                          "Buy from trusted and popular vendors",
+                          textAlign: TextAlign.left,
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: PreluraColors.grey,
+                            fontSize: getDefaultSize(),
+                          ),
+                        ),
+                        8.verticalSpacing,
+                      ],
+                    ),
                   ),
-                  itemCount: totalUsers.length,
-                ),
+                  AspectRatio(
+                    aspectRatio: 1.65,
+                    // height: 320,
+                    // width: MediaQuery.sizeOf(context).width,
+                    child: ListView.separated(
+                      padding: EdgeInsets.only(left: 15),
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (context, index) =>
+                          20.horizontalSpacing,
+                      itemBuilder: (context, index) => SizedBox(
+                        width: 130,
+                        child: SellerProfileCard(user: totalUsers[index]),
+                      ),
+                      itemCount: totalUsers.length,
+                    ),
+                  ),
+                  Divider(thickness: 1, color: PreluraColors.primaryColor),
+                ],
               );
             },
             error: (error, stackTrace) {

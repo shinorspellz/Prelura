@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:palette_generator/palette_generator.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/get_dominant_color.dart';
@@ -22,9 +24,12 @@ class ColorSelectorScreen extends ConsumerStatefulWidget {
 }
 
 class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
-  final int colorsCountToExtract = 30;
-  List<String> suggestedColorKeys = [];
+  PaletteGenerator? _paletteGenerator;
+  Color? dominantColor;
+  Color? vibrantColor;
+  Color? mutedColor;
   late List<XFile> photos;
+
   late Map<String, Color> colorOptions;
 
   @override
@@ -33,7 +38,55 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
     final sellItem = ref.read(sellItemProvider);
     photos = sellItem.images;
     colorOptions = ref.read(colorsProvider);
-    _extractColors();
+    _extractColors(photos.map((file) => file.path).toList());
+  }
+
+  Set<Color> generatedColors = {};
+  Set<Color> closestColors = {};
+  Future<void> _extractColors(List<String> imagePaths) async {
+    generatedColors = {};
+
+    for (String imagePath in imagePaths) {
+      final paletteGenerator = await PaletteGenerator.fromImageProvider(
+        FileImage(File(imagePath)),
+        size: const Size(
+            200, 200), // Optional: Limit the size for faster processing
+      );
+      if (paletteGenerator.dominantColor != null) {
+        generatedColors.add(paletteGenerator.dominantColor!.color);
+      }
+      if (paletteGenerator.vibrantColor != null) {
+        generatedColors.add(paletteGenerator.vibrantColor!.color);
+      }
+      if (paletteGenerator.mutedColor != null) {
+        generatedColors.add(paletteGenerator.mutedColor!.color);
+      }
+      ;
+    }
+
+    // Find closest colors from colorOptions
+    for (Color generatedColor in generatedColors) {
+      double minDistance = double.infinity;
+      Color? closestColor;
+
+      for (Color colorOption in colorOptions.values) {
+        double distance = ColorUtils.calculateLabDistance(
+          ColorUtils.rgbToLab(generatedColor),
+          ColorUtils.rgbToLab(colorOption),
+        );
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestColor = colorOption;
+        }
+      }
+
+      if (closestColor != null) {
+        closestColors.add(closestColor);
+      }
+    }
+
+    setState(() {});
   }
 
   @override
@@ -56,7 +109,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          _buildSuggestedColors(sellItemNotifier),
+          if (photos.isNotEmpty) _buildSuggestedColors(sellItemNotifier),
           _buildAllColorsSection(sellItemNotifier, selectedColors),
           _buildDoneButton(selectedColors),
         ],
@@ -64,77 +117,35 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
     );
   }
 
-  Future<void> _extractColors() async {
-    suggestedColorKeys.clear();
-    for (final photo in photos) {
-      try {
-        final imageBytes = await photo.readAsBytes();
-        final extractor = DominantColors(
-          bytes: imageBytes,
-          dominantColorsCount: colorsCountToExtract,
-        );
-        final dominantColors = extractor.extractDominantColors();
-
-        for (final color in dominantColors) {
-          final closestKey = _findClosestColorKey(color);
-          if (closestKey != null && !suggestedColorKeys.contains(closestKey)) {
-            suggestedColorKeys.add(closestKey);
-          }
-        }
-      } catch (_) {
-        // Handle errors gracefully
-      }
-    }
-    setState(() {});
-  }
-
-  String? _findClosestColorKey(Color targetColor) {
-    double minDistance = double.infinity;
-    String? closestKey;
-
-    final targetLab = ColorUtils.rgbToLab(targetColor);
-    colorOptions.forEach((key, value) {
-      final distance = ColorUtils.calculateLabDistance(
-          targetLab, ColorUtils.rgbToLab(value));
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestKey = key;
-      }
-    });
-    return closestKey;
-  }
-
   Widget _buildSuggestedColors(SellItemNotifier notifier) {
-    return suggestedColorKeys.isEmpty
-        ? SizedBox.shrink()
-        : Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text("Suggested Colours",
-                      style: Theme.of(context).textTheme.bodyLarge),
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  children: suggestedColorKeys.take(5).map((colorKey) {
-                    final colorValue = colorOptions[colorKey]!;
-                    final isSelected = notifier.isColorSelected(colorKey);
-                    return PreluraCheckBox(
-                      colorName: colorValue,
-                      title: colorKey,
-                      isChecked: isSelected,
-                      onChanged: (isChecked) => _handleColorToggle(
-                          notifier, colorKey, isChecked, isSelected),
-                    );
-                  }).toList(),
-                ),
-                const SizedBox(height: 16),
-              ],
-            ),
-          );
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text("Suggested Colours",
+                style: Theme.of(context).textTheme.bodyLarge),
+          ),
+          const SizedBox(height: 8),
+          ...closestColors.map((color) {
+            final colorName = colorOptions.entries
+                .firstWhere((entry) => entry.value == color)
+                .key;
+            final isSelected = notifier.isColorSelected(colorName);
+
+            return PreluraCheckBox(
+              colorName: color,
+              title: colorName,
+              isChecked: isSelected,
+              onChanged: (isChecked) => _handleColorToggle(
+                  notifier, colorName, isChecked, isSelected),
+            );
+          }).toList(),
+          const SizedBox(height: 16),
+        ],
+      ),
+    );
   }
 
   Widget _buildAllColorsSection(
@@ -148,7 +159,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
                 style: Theme.of(context).textTheme.bodyLarge),
           ),
           const SizedBox(height: 8),
-          const Divider(thickness: 2),
+          const Divider(thickness: 1),
           ...colorOptions.entries.map((entry) {
             final colorName = entry.key;
             final colorValue = entry.value;
