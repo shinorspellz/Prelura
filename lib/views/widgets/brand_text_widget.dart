@@ -11,24 +11,32 @@ import 'package:prelura_app/res/colors.dart';
 import '../../controller/product/product_provider.dart';
 
 class BrandTextWidget extends ConsumerWidget {
-  BrandTextWidget({super.key, this.brand, this.customBrand, this.fontSize});
+  BrandTextWidget(
+      {super.key,
+      this.brand,
+      this.customBrand,
+      this.fontSize,
+      this.isSelectable = true});
   final Brand? brand;
   String? customBrand;
   double? fontSize;
+  bool isSelectable;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        if (brand == null && customBrand == null) return;
-        ref.read(selectedFilteredProductProvider.notifier).state =
-            Input$ProductFiltersInput(
-                brand: brand?.id, customBrand: customBrand);
-        ref.refresh(filteredProductProvider(""));
-        context.pushRoute(ProductsByBrandRoute(
-            title: brand?.name,
-            id: (brand?.id)?.toInt(),
-            customBrand: customBrand));
+        if (isSelectable) {
+          if (brand == null && customBrand == null) return;
+          ref.read(selectedFilteredProductProvider.notifier).state =
+              Input$ProductFiltersInput(
+                  brand: brand?.id, customBrand: customBrand);
+          ref.refresh(filteredProductProvider(""));
+          context.pushRoute(ProductsByBrandRoute(
+              title: brand?.name,
+              id: (brand?.id)?.toInt(),
+              customBrand: customBrand));
+        }
       },
       child: Text(
         customBrand ?? brand?.name ?? '',

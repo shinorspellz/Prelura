@@ -31,6 +31,16 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
   void initState() {
     super.initState();
     _controller.text = ref.read(widget.percentageValue) ?? "0%";
+    _controller.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    final text = _controller.text;
+
+    // Ensure the cursor always remains after the current text
+    _controller.selection = TextSelection.fromPosition(
+      TextPosition(offset: text.length - 1),
+    );
   }
 
   @override
@@ -61,7 +71,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                     children: [
                       PreluraAuthTextField(
                         textAlign: TextAlign.center,
-                        hintText: "0",
+                        hintText: "0%",
                         keyboardType: TextInputType.number,
                         maxLength: 3,
                         prefixIcon: Icon(Icons.percent),
@@ -70,7 +80,17 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                         height: 45,
                         padding:
                             EdgeInsets.symmetric(horizontal: 6, vertical: 7),
+                        onFieldTap: () {
+                          int cursorPosition =
+                              calculateCursorPosition(_controller.text);
+
+                          _controller.selection = TextSelection.fromPosition(
+                            TextPosition(offset: cursorPosition),
+                          );
+                        },
                         onChanged: (newValue) {
+                          log(" new value : ${newValue.toString()}");
+
                           setState(() {
                             String numericValue =
                                 newValue.replaceAll(RegExp(r'[^0-9]'), '');
@@ -132,5 +152,13 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  int calculateCursorPosition(String text) {
+    if (text.isEmpty) {
+      return 0; // Start at the beginning if text is empty
+    }
+    // Example: Set cursor to the middle of the text
+    return text.length - 1.floor();
   }
 }

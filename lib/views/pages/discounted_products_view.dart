@@ -13,7 +13,8 @@ import '../widgets/gap.dart';
 
 @RoutePage()
 class DiscountedProductsView extends ConsumerStatefulWidget {
-  const DiscountedProductsView({super.key, required this.title, required this.id, this.customBrand});
+  const DiscountedProductsView(
+      {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
   final int? id;
   final String? customBrand;
@@ -56,7 +57,8 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -78,7 +80,8 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +110,8 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       data: (products) => SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         sliver: SliverGrid.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 10,
@@ -142,7 +146,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       },
                       loading: () => SliverToBoxAdapter(
                           child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: GridShimmer(),
                       )),
                       orElse: () => SliverToBoxAdapter(child: Container()),
@@ -175,7 +179,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

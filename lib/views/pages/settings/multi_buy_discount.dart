@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +30,14 @@ class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
 class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
   bool isSelected = false;
   bool isEditing = false;
+
+  @override
+  void initState() {
+    isEditing = ref.read(isSelectedProvider);
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +47,13 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                 color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
-          appbarTitle: "Multi-buy discount",
+          appbarTitle: "Multi-buy discounts ",
           centerTitle: true,
         ),
         body: Container(
             child: Column(children: [
           PreluraSwitchWithText(
-            titleText: "Multi -buy Discount",
+            titleText: "Multi-buy discounts",
             textStyle: Theme.of(context)
                 .textTheme
                 .bodySmall
@@ -54,6 +64,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
               ref.read(isSelectedProvider.notifier).state = value;
               setState(() {
                 isSelected = value;
+                isEditing = value;
               });
             },
           ),
@@ -94,6 +105,8 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
               child: AppButton(
                 onTap: () {
                   HapticFeedback.lightImpact();
+
+                  log(isEditing.toString());
                   if (ref.watch(fourItemDiscountValue) == "0%" &&
                       ref.watch(nineItemDiscountValue) == "0%" &&
                       ref.watch(aboveTenItemDiscountValue) == "0%" &&

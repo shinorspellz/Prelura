@@ -15,10 +15,12 @@ class ProductPriceFilterPage extends ConsumerStatefulWidget {
   final String title;
 
   @override
-  ConsumerState<ProductPriceFilterPage> createState() => _ProductPriceFilterPageState();
+  ConsumerState<ProductPriceFilterPage> createState() =>
+      _ProductPriceFilterPageState();
 }
 
-class _ProductPriceFilterPageState extends ConsumerState<ProductPriceFilterPage> {
+class _ProductPriceFilterPageState
+    extends ConsumerState<ProductPriceFilterPage> {
   final controller = ScrollController();
 
   @override
@@ -49,7 +51,8 @@ class _ProductPriceFilterPageState extends ConsumerState<ProductPriceFilterPage>
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
@@ -67,7 +70,8 @@ class _ProductPriceFilterPageState extends ConsumerState<ProductPriceFilterPage>
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         // controller: controller,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
@@ -79,12 +83,17 @@ class _ProductPriceFilterPageState extends ConsumerState<ProductPriceFilterPage>
                         },
                       ),
                       10.verticalSpacing,
-                      if (ref.watch(filterProductByPriceProvider(15).notifier).canLoadMore())
-                        if (!ref.watch(filterProductByPriceProvider(15)).isLoading) PaginationLoadingIndicator()
+                      if (ref
+                          .watch(filterProductByPriceProvider(15).notifier)
+                          .canLoadMore())
+                        if (!ref
+                            .watch(filterProductByPriceProvider(15))
+                            .isLoading)
+                          PaginationLoadingIndicator()
                     ],
                   ),
                 ),
-                orElse: () => GridShimmer(),
+                orElse: () => SliverToBoxAdapter(child: GridShimmer()),
               ),
         ),
       ]),

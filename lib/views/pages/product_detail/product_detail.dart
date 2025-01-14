@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -55,6 +57,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
   @override
   void initState() {
     super.initState();
+    log("in product details page");
     _tabController = TabController(length: 2, vsync: this);
     setState(() {
       // _favoriteCount = product.likes ?? 0;
@@ -158,12 +161,20 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                                 .showToast(
                                                                     message:
                                                                         "product deleted successfully");
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pop();
+
+                                                            context.router
+                                                                .popForced();
+                                                            context.router
+                                                                .popForced();
+                                                            context.router
+                                                                .popForced();
+
+                                                            // Navigator.of(
+                                                            //         context)
+                                                            //     .pop();
+                                                            // Navigator.of(
+                                                            //         context)
+                                                            //     .pop();
                                                           },
                                                         );
                                                   },

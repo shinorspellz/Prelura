@@ -750,6 +750,44 @@ query RecommendedSearchHistory(
   }
 }
 
+
 query SearchHistory($searchType: SearchTypeEnum!, $searchTerm: String!) {
   searchHistory(searchType: $searchType, searchTerm: $searchTerm)
+}
+
+query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
+  recommendedSellers(pageCount: $pageCount, pageNumber: $pageNumber) {
+    seller{
+       id
+    firstName
+    lastName
+    username
+    email
+    bio
+    profilePictureUrl
+    gender
+    displayName
+    dob
+    dateJoined
+    lastLogin
+    fullName
+    listing
+    location {
+      latitude
+      longitude
+      locationName
+    }
+    noOfFollowing
+    noOfFollowers
+    phone {
+      number
+      countryCode
+    }
+    }
+     totalSales
+  totalShopValue
+  productViews
+  sellerScore
+  activeListings 
+  }
 }

@@ -416,7 +416,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     UserScrollableList(
                       user: user,
                     ),
-                    if (productLength.toString().isNotEmpty) ...[
+                    if (productLength! > 0) ...[
                       if (selectedItem.isNotEmpty) ...[
                         buildDivider(context),
                         MenuCard(
@@ -805,7 +805,28 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               loading: () => GridShimmer(),
                             ),
                       )
-                    ],
+                    ] else ...[
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RenderSvg(
+                              svgPath: PreluraIcons.empty_box_svg,
+                              svgHeight: 60,
+                              svgWidth: 60,
+                            ),
+                            Text(
+                              "No Products",
+                              style: context.theme.textTheme.bodyMedium
+                                  ?.copyWith(
+                                      fontSize: getDefaultSize(size: 16),
+                                      fontWeight: FontWeight.w600),
+                            )
+                          ],
+                        ),
+                      )
+                    ]
                   ]),
                 ],
               ),

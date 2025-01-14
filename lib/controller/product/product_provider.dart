@@ -50,6 +50,7 @@ final searchProductProvider =
       .where((e) => e.key == FilterTypes.category)
       .firstOrNull
       ?.value;
+  log(categoryFilter.toString(), name: 'categoryFilter');
 
   final brand = ref
       .watch(brandsProvider)
@@ -67,6 +68,8 @@ final searchProductProvider =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style =
       Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
+
+  log(category.toString(), name: 'categoryFilter');
 
   final result = await repo.getAllProducts(
     search: query,
@@ -549,17 +552,46 @@ class _AllProductController
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+class ScreenState {
+  final String id;
+  final dynamic data;
+  final bool isLoading;
+  final String? error;
+
+  ScreenState({
+    required this.id,
+    this.data,
+    this.isLoading = false,
+    this.error,
+  });
+
+  ScreenState copyWith({
+    String? id,
+    dynamic data,
+    bool? isLoading,
+    String? error,
+  }) {
+    return ScreenState(
+      id: id ?? this.id,
+      data: data ?? this.data,
+      isLoading: isLoading ?? this.isLoading,
+      error: error,
+    );
+  }
+}
+
 
 final selectedFilteredProductProvider =
     StateProvider<Input$ProductFiltersInput>(
         (ref) => Input$ProductFiltersInput());
 
-final filteredProductProvider = AsyncNotifierProvider.family
-    .autoDispose<FilteredProductController, List<ProductModel>, String?>(
-        FilteredProductController.new);
+final filteredProductProvider = AsyncNotifierProvider.family<
+    FilteredProductController,
+    List<ProductModel>,
+    String?>(FilteredProductController.new);
 
 class FilteredProductController
-    extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
+    extends FamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
 
   final int _pageCount = 15;

@@ -344,29 +344,27 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                           width: 100,
                                                         ),
                                                       ),
-                                                      if (state.images
-                                                          .contains(image))
-                                                        Positioned(
-                                                          bottom: 5,
-                                                          right: 5,
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .bottomRight,
-                                                            child: InkWell(
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .cancel_rounded,
-                                                                  color: PreluraColors
-                                                                      .greyColor,
-                                                                  fill: 1,
-                                                                ),
-                                                                onTap: () {
-                                                                  notifier.deleteImage(
-                                                                      image
-                                                                          .value);
-                                                                }),
-                                                          ),
+                                                      Positioned(
+                                                        bottom: 5,
+                                                        right: 5,
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .bottomRight,
+                                                          child: InkWell(
+                                                              child: Icon(
+                                                                Icons
+                                                                    .cancel_rounded,
+                                                                color: PreluraColors
+                                                                    .greyColor,
+                                                                fill: 1,
+                                                              ),
+                                                              onTap: () {
+                                                                notifier.deleteImage(
+                                                                    image
+                                                                        .value);
+                                                              }),
                                                         ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),

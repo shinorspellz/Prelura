@@ -77,9 +77,8 @@ class HomeAllTab extends ConsumerWidget {
               },
               loading: () => GridShimmer()),
         ] else ...[
-          ref.watch(userProvider).when(
-            data: (user) {
-              final totalUsers = [user, user, user, user];
+          ref.watch(recommendedSellersProvider).when(
+            data: (users) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -103,7 +102,7 @@ class HomeAllTab extends ConsumerWidget {
                           "Buy from trusted and popular vendors",
                           textAlign: TextAlign.left,
                           style: context.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w400,
                             color: PreluraColors.grey,
                             fontSize: getDefaultSize(),
                           ),
@@ -123,9 +122,9 @@ class HomeAllTab extends ConsumerWidget {
                           20.horizontalSpacing,
                       itemBuilder: (context, index) => SizedBox(
                         width: 130,
-                        child: SellerProfileCard(user: totalUsers[index]),
+                        child: SellerProfileCard(user: users[index].seller),
                       ),
-                      itemCount: totalUsers.length,
+                      itemCount: users.length,
                     ),
                   ),
                   buildDivider(context),

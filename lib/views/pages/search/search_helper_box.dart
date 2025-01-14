@@ -11,11 +11,7 @@ import 'package:prelura_app/views/pages/search_result/provider/search_provider.d
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
-  final Function? onItemSelected;
-  const SearchHelperBox({
-    super.key,
-    this.onItemSelected,
-  });
+  const SearchHelperBox({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -152,13 +148,12 @@ class SearchHintItemBox extends ConsumerWidget {
       onTap: () {
         ref.read(searchTextController.notifier).state.text = label;
         ref.read(showSearchProducts.notifier).state = true;
-        ref
-            .read(searchFilterProvider.notifier)
-            .updateFilter(FilterTypes.category, label);
-        onItemSelected?.call();
+        // ref
+        //     .read(searchFilterProvider.notifier)
+        //     .updateFilter(FilterTypes.category, label);
       },
       child: Container(
-        height: 50,
+        height: 40,
         width: double.infinity,
         alignment: Alignment.center,
         color: Colors.transparent,

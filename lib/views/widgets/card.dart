@@ -147,9 +147,14 @@ class _DisplayCardState extends State<DisplayCard> {
 }
 
 class ProductCard extends ConsumerStatefulWidget {
-  ProductCard({super.key, required this.product, this.isSimilar = true});
+  ProductCard(
+      {super.key,
+      required this.product,
+      this.isSimilar = true,
+      this.isSelectable = true});
   ProductModel product;
   bool isSimilar;
+  bool isSelectable;
 
   @override
   ConsumerState<ProductCard> createState() => _ProductCardState();
@@ -195,9 +200,11 @@ class _ProductCardState extends ConsumerState<ProductCard> {
     final user = ref.watch(userProvider).valueOrNull;
     return GestureDetector(
       onTap: () {
-        ref.invalidate(recentlyViewedProductsProvider);
-        context.router
-            .push(ProductDetailRoute(productId: int.parse(widget.product.id)));
+        if (widget.isSelectable) {
+          ref.invalidate(recentlyViewedProductsProvider);
+          context.router.push(
+              ProductDetailRoute(productId: int.parse(widget.product.id)));
+        }
       },
       child: Container(
         width: double.infinity,
@@ -210,12 +217,13 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                 GestureDetector(
                   onTap: () {
                     final user = ref.read(userProvider).valueOrNull;
-
-                    if (user?.username == widget.product.seller.username) {
-                      context.router.push(UserProfileDetailsRoute());
-                    } else {
-                      context.router.push(ProfileDetailsRoute(
-                          username: widget.product.seller.username));
+                    if (widget.isSelectable) {
+                      if (user?.username == widget.product.seller.username) {
+                        context.router.push(UserProfileDetailsRoute());
+                      } else {
+                        context.router.push(ProfileDetailsRoute(
+                            username: widget.product.seller.username));
+                      }
                     }
                   },
                   child: Row(
@@ -262,7 +270,11 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     bottom: 12,
                     right: 12,
                     child: GestureDetector(
-                      onTap: _toggleFavourite, // Use the toggle method
+                      onTap: () {
+                        if (widget.isSelectable) {
+                          _toggleFavourite;
+                        }
+                      }, // Use the toggle method
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 5, horizontal: 8),
@@ -335,9 +347,9 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               if (widget.product.brand != null ||
                   widget.product.customBrand != null) ...[
                 BrandTextWidget(
-                  brand: widget.product.brand,
-                  customBrand: widget.product.customBrand,
-                ),
+                    brand: widget.product.brand,
+                    customBrand: widget.product.customBrand,
+                    isSelectable: widget.isSelectable),
                 // 10.verticalSpacing,
               ],
               Text(

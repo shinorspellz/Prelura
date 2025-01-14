@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/views/pages/home.dart';
 
 import '../core/graphql/__generated/schema.graphql.dart';
@@ -19,6 +20,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     ref.refresh(filterProductByPriceProvider(15).future);
     ref.invalidate(recentlyViewedProductsProvider);
     ref.refresh(notificationProvider.future);
+    ref.refresh(recommendedSellersProvider.future);
 
     final category = ref.watch(categoryProvider).valueOrNull;
     if (category != null) {

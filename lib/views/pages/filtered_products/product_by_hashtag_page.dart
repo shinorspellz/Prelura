@@ -99,7 +99,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                           },
                         ),
                         FiltersOptions(),
-                        12.verticalSpacing,
+                       
                       ],
                     ),
                   )),

@@ -6,6 +6,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/model/user/earnings/earnings_model.dart';
+import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 
 class UserRepo {
@@ -82,7 +83,8 @@ class UserRepo {
     }
 
     // Handle missing parsed data
-    if (response.parsedData == null || response.parsedData!.searchUsers == null) {
+    if (response.parsedData == null ||
+        response.parsedData!.searchUsers == null) {
       log('Missing response data', name: 'UserRepo');
       throw Exception('No users found.');
     }
@@ -90,7 +92,9 @@ class UserRepo {
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
       final usersJsonList = response.parsedData!.searchUsers!;
-      return usersJsonList.map((userJson) => UserModel.fromJson(userJson!.toJson())).toList();
+      return usersJsonList
+          .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+          .toList();
     } catch (e, stackTrace) {
       log(
         'Error parsing user data: $e',
@@ -98,6 +102,48 @@ class UserRepo {
         stackTrace: stackTrace,
       );
       throw Exception('Failed to parse user data.');
+    }
+  }
+
+  Future<List<RecommendedSellerModel>> getRecommendedSellers(
+      {required int pageNumber, required int pageCount}) async {
+    final response = await _client.query$RecommendedSellers(
+      Options$Query$RecommendedSellers(
+        variables: Variables$Query$RecommendedSellers(
+          pageCount: pageCount,
+          pageNumber: pageNumber,
+        ),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw Exception(error); // Wrap the error in an Exception
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw Exception('An error occurred while performing the search.');
+    }
+
+    // Handle missing parsed data
+    if (response.parsedData == null) {
+      log('Missing response data', name: 'UserRepo');
+      throw Exception('No Recommended users found.');
+    }
+
+    try {
+      final recommnededSellerListJson =
+          response.parsedData!.recommendedSellers!;
+      return recommnededSellerListJson
+          .map((recommendedSeller) =>
+              RecommendedSellerModel.fromJson(recommendedSeller!.toJson()))
+          .toList();
+    } catch (e, stackTrace) {
+      log(
+        'Error parsing data: $e',
+        name: 'UserRepo',
+        stackTrace: stackTrace,
+      );
+      throw Exception('Failed to parse data.');
     }
   }
 
@@ -123,7 +169,8 @@ class UserRepo {
     }
 
     try {
-      return EarningsModel.fromJson(response.parsedData!.userEarnings!.toJson());
+      return EarningsModel.fromJson(
+          response.parsedData!.userEarnings!.toJson());
     } catch (e, stackTrace) {
       log(
         'Error parsing data: $e',
@@ -152,7 +199,8 @@ class UserRepo {
   }
 
   Future<void> changeEmail(String email) async {
-    final response = await _client.mutate$ChangeEmail(Options$Mutation$ChangeEmail(
+    final response =
+        await _client.mutate$ChangeEmail(Options$Mutation$ChangeEmail(
       variables: Variables$Mutation$ChangeEmail(email: email),
     ));
 
@@ -167,7 +215,8 @@ class UserRepo {
   }
 
   Future<void> verifyEmail(String code, String email) async {
-    final response = await _client.mutate$VerifyEmail(Options$Mutation$VerifyEmail(
+    final response =
+        await _client.mutate$VerifyEmail(Options$Mutation$VerifyEmail(
       variables: Variables$Mutation$VerifyEmail(code: code, email: email),
     ));
     if (response.hasException) {
@@ -185,7 +234,8 @@ class UserRepo {
 
     final verifiyInfo = response.parsedData!.verifyEmail!;
 
-    _store(verifiyInfo.token!, verifiyInfo.restToken!, verifiyInfo.user!.username!);
+    _store(verifiyInfo.token!, verifiyInfo.restToken!,
+        verifiyInfo.user!.username!);
   }
 
   /// Cache all required data neccesary for user session like [token], [restToken] & [username]

@@ -77,7 +77,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "Material (recommended)",
+        appbarTitle: "Material (Optional)",
       ),
       body: ref.watch(materialsProvider).when(
             data: (materials) => CustomScrollView(
