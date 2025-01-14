@@ -108,16 +108,34 @@ class ProfileCardWidget extends ConsumerWidget {
                   ],
                 );
               },
-              child: ProfilePictureWidget(
-                profilePicture: user != null
-                    ? user?.profilePictureUrl
-                    : ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-                username: user != null
-                    ? user?.username ?? '--'
-                    : ref.watch(userProvider).valueOrNull?.username ?? '--',
-                updating: user != null
-                    ? false
-                    : ref.watch(userNotfierProvider).isLoading,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  ProfilePictureWidget(
+                    height: 55,
+                    width: 55,
+                    profilePicture: user != null
+                        ? user?.profilePictureUrl
+                        : ref
+                            .watch(userProvider)
+                            .valueOrNull
+                            ?.profilePictureUrl,
+                    username: user != null
+                        ? user?.username ?? '--'
+                        : ref.watch(userProvider).valueOrNull?.username ?? '--',
+                    updating: user != null
+                        ? false
+                        : ref.watch(userNotfierProvider).isLoading,
+                  ),
+                  Positioned(
+                      bottom: -2,
+                      right: 0,
+                      child: RenderSvgWithoutColor(
+                        svgPath: PreluraIcons.trusted_svg,
+                        svgHeight: 18,
+                        svgWidth: 18,
+                      ))
+                ],
               ),
             ),
             const SizedBox(
