@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:sizer/sizer.dart';
 
 import '../views/widgets/gap.dart';
-import 'render_svg.dart';
 
 class HelperFunction {
   static BuildContext? context;
+  static WidgetRef? genRef;
 
   static showToast({
     required String message,
@@ -53,8 +51,10 @@ class HelperFunction {
   }
 
   double getBottomInsets() {
-    if (MediaQuery.of(context!).viewInsets.bottom > MediaQuery.of(context!).viewPadding.bottom) {
-      return MediaQuery.of(context!).viewInsets.bottom - MediaQuery.of(context!).viewPadding.bottom;
+    if (MediaQuery.of(context!).viewInsets.bottom >
+        MediaQuery.of(context!).viewPadding.bottom) {
+      return MediaQuery.of(context!).viewInsets.bottom -
+          MediaQuery.of(context!).viewPadding.bottom;
     }
     return 0;
   }

@@ -149,7 +149,7 @@ class SearchHintItemBox extends ConsumerWidget {
         //     .updateFilter(FilterTypes.category, label);
       },
       child: Container(
-        height: 50,
+        height: 40,
         width: double.infinity,
         alignment: Alignment.center,
         color: Colors.transparent,

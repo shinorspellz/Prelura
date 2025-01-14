@@ -1,17 +1,18 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
-import '../../../res/colors.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
 import '../../widgets/filters_options.dart';
-import '../../widgets/gap.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 import 'product_by_sales/product_by_christmas.dart';
@@ -58,6 +59,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   void dispose() {
+    log(":::: I ran  from here");
+    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -66,13 +69,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = ref.watch(filteredProductProvider(searchQuery));
-    final productNotifier =
-        ref.read(filteredProductProvider(searchQuery).notifier);
-
-    final filters = ref.watch(productFilterProvider);
-    final state = ref.watch(productFilterProvider.notifier);
-
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(

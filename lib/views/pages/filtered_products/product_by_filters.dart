@@ -7,14 +7,11 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../../res/colors.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
 import '../../widgets/filters_options.dart';
-import '../../widgets/gap.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 
@@ -63,14 +60,17 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
 
   @override
   Widget build(BuildContext context) {
-    useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        ref.read(selectedFilteredProductProvider.notifier).state =
-            Input$ProductFiltersInput(category: widget.id);
-        ref.invalidate(filteredProductProvider(searchQuery));
-      });
-      return null;
-    }, []);
+    // useEffect(
+    //   () {
+    //     log("::::: You called me ::::");
+    //     WidgetsBinding.instance.addPostFrameCallback((_) {
+    //       ref.read(selectedFilteredProductProvider.notifier).state =
+    //           Input$ProductFiltersInput(category: widget.id);
+    //       ref.invalidate(filteredProductProvider(searchQuery));
+    //     });
+    //     return null;
+    //   },
+    // );
 
     final filters = ref.watch(productFilterProvider);
     final state = ref.watch(productFilterProvider.notifier);
