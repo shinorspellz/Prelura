@@ -14,6 +14,7 @@ import '../../widgets/filters_options.dart';
 import '../../widgets/gap.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
+import 'product_by_sales/product_by_christmas.dart';
 
 @RoutePage()
 class ProductsByBrandPage extends ConsumerStatefulWidget {
@@ -97,10 +98,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 slivers: [
                   SliverPersistentHeader(
                     pinned: true, // Keeps it static
-                    delegate: StaticSliverDelegate(
+                    delegate: FilteredProductStaticSliverDelegate(
                         child: Container(
                       padding:
-                          const EdgeInsets.only(top: 16, left: 15, right: 15),
+                          const EdgeInsets.only(top: 10, left: 15, right: 15),
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,28 +235,5 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         );
       }),
     );
-  }
-}
-
-class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  StaticSliverDelegate({required this.child});
-
-  @override
-  double get minExtent => 148.8;
-
-  @override
-  double get maxExtent => 148.8;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
   }
 }
