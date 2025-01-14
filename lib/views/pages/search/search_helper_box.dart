@@ -8,10 +8,10 @@ import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
-import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
-  const SearchHelperBox({super.key});
+  final Function? onItemSelected;
+  const SearchHelperBox({super.key, this.onItemSelected});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
