@@ -405,6 +405,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           children: [
                             PreluraAuthTextField(
                               label: 'Title',
+                              showSuggestions: true,
                               textCapitalization: TextCapitalization.words,
                               formatter: UpperCaseTextFormatter(),
                               labelStyle: Theme.of(context)
@@ -425,7 +426,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             PreluraAuthTextField(
                               label: 'Describe your item',
                               textInputAction: TextInputAction.newline,
-
+                              showSuggestions: true,
                               keyboardType: TextInputType.multiline,
                               focusNode: _descriptionfocusNode,
                               labelStyle: Theme.of(context)
