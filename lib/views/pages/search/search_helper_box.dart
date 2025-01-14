@@ -11,7 +11,11 @@ import 'package:prelura_app/views/pages/search_result/provider/search_provider.d
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
 class SearchHelperBox extends HookConsumerWidget {
-  const SearchHelperBox({super.key});
+  final Function? onItemSelected;
+  const SearchHelperBox({
+    super.key,
+    this.onItemSelected,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -74,12 +78,14 @@ class SearchHelperBox extends HookConsumerWidget {
                     ),
                   ListView.builder(
                     shrinkWrap: true,
+                    padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: searches.take(10).toList().length,
                     itemBuilder: (context, index) {
                       return SearchHintItemBox(
                         label: searches[index].query,
                         id: searches[index].id.toString(),
+                        onItemSelected: onItemSelected,
                       );
                     },
                   ),
@@ -101,6 +107,7 @@ class SearchHelperBox extends HookConsumerWidget {
               searches.isEmpty ? searches.add(searchQuery) : null;
               return ListView.builder(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: searches.length,
                 itemBuilder: (context, index) {
@@ -129,11 +136,12 @@ class SearchHintItemBox extends ConsumerWidget {
   final String label;
   final String? id;
   final bool showCloseIcon;
-  final Function? onClose;
+  final Function? onClose, onItemSelected;
   const SearchHintItemBox({
     super.key,
     required this.label,
     this.id,
+    this.onItemSelected,
     this.showCloseIcon = true,
     this.onClose,
   });
@@ -147,6 +155,7 @@ class SearchHintItemBox extends ConsumerWidget {
         ref
             .read(searchFilterProvider.notifier)
             .updateFilter(FilterTypes.category, label);
+        onItemSelected?.call();
       },
       child: Container(
         height: 50,
