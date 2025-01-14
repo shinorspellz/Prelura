@@ -41,9 +41,9 @@ class SearchScreen extends ConsumerWidget {
                 Divider(
                   thickness: 1,
                 ),
-                addVerticalSpacing(40),
+                addVerticalSpacing(30),
                 if (state == false) ...[
-                  addVerticalSpacing(18),
+                  addVerticalSpacing(9),
                   SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     scrollDirection: Axis.horizontal,
@@ -351,7 +351,7 @@ class SearchScreen extends ConsumerWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, bottom: 12),
+            padding: EdgeInsets.only(top: 20, bottom: 6),
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Searchwidget(
                 hintText: "Search for items or members",
@@ -367,9 +367,9 @@ class SearchScreen extends ConsumerWidget {
                   ref.read(searchHistoryQueryProvider.notifier).state = value;
 
                   if (ref.read(showSearchProducts) == true) {
-                    ref
-                        .read(searchFilterProvider.notifier)
-                        .updateFilter(FilterTypes.category, value);
+                    // ref
+                    //     .read(searchFilterProvider.notifier)
+                    //     .updateFilter(FilterTypes.category, value);
                   }
                 },
                 onCancel: () {

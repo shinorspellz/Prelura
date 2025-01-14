@@ -36,6 +36,13 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   void initState() {
     super.initState();
 
+    Future.microtask(() {
+      if (!mounted) return;
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(
+              brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
+      ref.invalidate(filteredProductProvider(searchQuery));
+    });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -115,7 +122,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                           FiltersOptions(
                             excludedFilterTypes: [FilterTypes.brand],
                           ),
-                          addVerticalSpacing(12),
                         ],
                       ),
                     )),

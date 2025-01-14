@@ -19,6 +19,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final Function(String)? onChanged;
   final Function(String?)? onSaved;
   final Function()? onTap;
+  final Function()? onFieldTap;
   final int? maxLength;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -74,7 +75,8 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.textAlign,
       this.showBorder = true,
       this.showPrimaryBorder = false,
-      this.isDescription = false});
+      this.isDescription = false,
+      this.onFieldTap});
 
   @override
   ConsumerState<PreluraAuthTextField> createState() =>
@@ -151,6 +153,7 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               minLines: widget.minLines ?? 1,
               controller: widget.controller,
               maxLength: widget.maxLength,
+              onTap: widget.onFieldTap,
               maxLines: widget.maxLines,
               onSaved: widget.onSaved,
               enabled: widget.enabled,

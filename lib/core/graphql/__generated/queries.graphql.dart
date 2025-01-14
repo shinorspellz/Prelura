@@ -30491,285 +30491,6 @@ class _CopyWithStubImpl$Query$ArchivedConversations$archivedConversations$lastMe
       _res;
 }
 
-class Query$notificationsTotalNumber {
-  Query$notificationsTotalNumber({
-    this.notificationsTotalNumber,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$notificationsTotalNumber.fromJson(Map<String, dynamic> json) {
-    final l$notificationsTotalNumber = json['notificationsTotalNumber'];
-    final l$$__typename = json['__typename'];
-    return Query$notificationsTotalNumber(
-      notificationsTotalNumber: (l$notificationsTotalNumber as int?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? notificationsTotalNumber;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$notificationsTotalNumber = notificationsTotalNumber;
-    _resultData['notificationsTotalNumber'] = l$notificationsTotalNumber;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$notificationsTotalNumber = notificationsTotalNumber;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$notificationsTotalNumber,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$notificationsTotalNumber ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$notificationsTotalNumber = notificationsTotalNumber;
-    final lOther$notificationsTotalNumber = other.notificationsTotalNumber;
-    if (l$notificationsTotalNumber != lOther$notificationsTotalNumber) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$notificationsTotalNumber
-    on Query$notificationsTotalNumber {
-  CopyWith$Query$notificationsTotalNumber<Query$notificationsTotalNumber>
-      get copyWith => CopyWith$Query$notificationsTotalNumber(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$notificationsTotalNumber<TRes> {
-  factory CopyWith$Query$notificationsTotalNumber(
-    Query$notificationsTotalNumber instance,
-    TRes Function(Query$notificationsTotalNumber) then,
-  ) = _CopyWithImpl$Query$notificationsTotalNumber;
-
-  factory CopyWith$Query$notificationsTotalNumber.stub(TRes res) =
-      _CopyWithStubImpl$Query$notificationsTotalNumber;
-
-  TRes call({
-    int? notificationsTotalNumber,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$notificationsTotalNumber<TRes>
-    implements CopyWith$Query$notificationsTotalNumber<TRes> {
-  _CopyWithImpl$Query$notificationsTotalNumber(
-    this._instance,
-    this._then,
-  );
-
-  final Query$notificationsTotalNumber _instance;
-
-  final TRes Function(Query$notificationsTotalNumber) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? notificationsTotalNumber = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$notificationsTotalNumber(
-        notificationsTotalNumber: notificationsTotalNumber == _undefined
-            ? _instance.notificationsTotalNumber
-            : (notificationsTotalNumber as int?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$notificationsTotalNumber<TRes>
-    implements CopyWith$Query$notificationsTotalNumber<TRes> {
-  _CopyWithStubImpl$Query$notificationsTotalNumber(this._res);
-
-  TRes _res;
-
-  call({
-    int? notificationsTotalNumber,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-const documentNodeQuerynotificationsTotalNumber = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'notificationsTotalNumber'),
-    variableDefinitions: [],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'notificationsTotalNumber'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$notificationsTotalNumber _parserFn$Query$notificationsTotalNumber(
-        Map<String, dynamic> data) =>
-    Query$notificationsTotalNumber.fromJson(data);
-typedef OnQueryComplete$Query$notificationsTotalNumber = FutureOr<void>
-    Function(
-  Map<String, dynamic>?,
-  Query$notificationsTotalNumber?,
-);
-
-class Options$Query$notificationsTotalNumber
-    extends graphql.QueryOptions<Query$notificationsTotalNumber> {
-  Options$Query$notificationsTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$notificationsTotalNumber? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$notificationsTotalNumber? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null
-                        ? null
-                        : _parserFn$Query$notificationsTotalNumber(data),
-                  ),
-          onError: onError,
-          document: documentNodeQuerynotificationsTotalNumber,
-          parserFn: _parserFn$Query$notificationsTotalNumber,
-        );
-
-  final OnQueryComplete$Query$notificationsTotalNumber? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$notificationsTotalNumber
-    extends graphql.WatchQueryOptions<Query$notificationsTotalNumber> {
-  WatchOptions$Query$notificationsTotalNumber({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$notificationsTotalNumber? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQuerynotificationsTotalNumber,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$notificationsTotalNumber,
-        );
-}
-
-class FetchMoreOptions$Query$notificationsTotalNumber
-    extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$notificationsTotalNumber(
-      {required graphql.UpdateQuery updateQuery})
-      : super(
-          updateQuery: updateQuery,
-          document: documentNodeQuerynotificationsTotalNumber,
-        );
-}
-
-extension ClientExtension$Query$notificationsTotalNumber
-    on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$notificationsTotalNumber>>
-      query$notificationsTotalNumber(
-              [Options$Query$notificationsTotalNumber? options]) async =>
-          await this.query(options ?? Options$Query$notificationsTotalNumber());
-  graphql.ObservableQuery<
-      Query$notificationsTotalNumber> watchQuery$notificationsTotalNumber(
-          [WatchOptions$Query$notificationsTotalNumber? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$notificationsTotalNumber());
-  void writeQuery$notificationsTotalNumber({
-    required Query$notificationsTotalNumber data,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-            operation: graphql.Operation(
-                document: documentNodeQuerynotificationsTotalNumber)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$notificationsTotalNumber? readQuery$notificationsTotalNumber(
-      {bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
-          operation: graphql.Operation(
-              document: documentNodeQuerynotificationsTotalNumber)),
-      optimistic: optimistic,
-    );
-    return result == null
-        ? null
-        : Query$notificationsTotalNumber.fromJson(result);
-  }
-}
-
 class Variables$Query$Notifications {
   factory Variables$Query$Notifications({
     int? pageCount,
@@ -36763,4 +36484,1826 @@ extension ClientExtension$Query$SearchHistory on graphql.GraphQLClient {
     );
     return result == null ? null : Query$SearchHistory.fromJson(result);
   }
+}
+
+class Variables$Query$RecommendedSellers {
+  factory Variables$Query$RecommendedSellers({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$RecommendedSellers._({
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$RecommendedSellers._(this._$data);
+
+  factory Variables$Query$RecommendedSellers.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$RecommendedSellers._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$RecommendedSellers<
+          Variables$Query$RecommendedSellers>
+      get copyWith => CopyWith$Variables$Query$RecommendedSellers(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$RecommendedSellers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$RecommendedSellers<TRes> {
+  factory CopyWith$Variables$Query$RecommendedSellers(
+    Variables$Query$RecommendedSellers instance,
+    TRes Function(Variables$Query$RecommendedSellers) then,
+  ) = _CopyWithImpl$Variables$Query$RecommendedSellers;
+
+  factory CopyWith$Variables$Query$RecommendedSellers.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$RecommendedSellers;
+
+  TRes call({
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$RecommendedSellers<TRes>
+    implements CopyWith$Variables$Query$RecommendedSellers<TRes> {
+  _CopyWithImpl$Variables$Query$RecommendedSellers(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$RecommendedSellers _instance;
+
+  final TRes Function(Variables$Query$RecommendedSellers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$RecommendedSellers._({
+        ..._instance._$data,
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$RecommendedSellers<TRes>
+    implements CopyWith$Variables$Query$RecommendedSellers<TRes> {
+  _CopyWithStubImpl$Variables$Query$RecommendedSellers(this._res);
+
+  TRes _res;
+
+  call({
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$RecommendedSellers {
+  Query$RecommendedSellers({
+    this.recommendedSellers,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$RecommendedSellers.fromJson(Map<String, dynamic> json) {
+    final l$recommendedSellers = json['recommendedSellers'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSellers(
+      recommendedSellers: (l$recommendedSellers as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$RecommendedSellers$recommendedSellers.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$RecommendedSellers$recommendedSellers?>? recommendedSellers;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$recommendedSellers = recommendedSellers;
+    _resultData['recommendedSellers'] =
+        l$recommendedSellers?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$recommendedSellers = recommendedSellers;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$recommendedSellers == null
+          ? null
+          : Object.hashAll(l$recommendedSellers.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSellers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$recommendedSellers = recommendedSellers;
+    final lOther$recommendedSellers = other.recommendedSellers;
+    if (l$recommendedSellers != null && lOther$recommendedSellers != null) {
+      if (l$recommendedSellers.length != lOther$recommendedSellers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$recommendedSellers.length; i++) {
+        final l$recommendedSellers$entry = l$recommendedSellers[i];
+        final lOther$recommendedSellers$entry = lOther$recommendedSellers[i];
+        if (l$recommendedSellers$entry != lOther$recommendedSellers$entry) {
+          return false;
+        }
+      }
+    } else if (l$recommendedSellers != lOther$recommendedSellers) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSellers
+    on Query$RecommendedSellers {
+  CopyWith$Query$RecommendedSellers<Query$RecommendedSellers> get copyWith =>
+      CopyWith$Query$RecommendedSellers(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$RecommendedSellers<TRes> {
+  factory CopyWith$Query$RecommendedSellers(
+    Query$RecommendedSellers instance,
+    TRes Function(Query$RecommendedSellers) then,
+  ) = _CopyWithImpl$Query$RecommendedSellers;
+
+  factory CopyWith$Query$RecommendedSellers.stub(TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSellers;
+
+  TRes call({
+    List<Query$RecommendedSellers$recommendedSellers?>? recommendedSellers,
+    String? $__typename,
+  });
+  TRes recommendedSellers(
+      Iterable<Query$RecommendedSellers$recommendedSellers?>? Function(
+              Iterable<
+                  CopyWith$Query$RecommendedSellers$recommendedSellers<
+                      Query$RecommendedSellers$recommendedSellers>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$RecommendedSellers<TRes>
+    implements CopyWith$Query$RecommendedSellers<TRes> {
+  _CopyWithImpl$Query$RecommendedSellers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSellers _instance;
+
+  final TRes Function(Query$RecommendedSellers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? recommendedSellers = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSellers(
+        recommendedSellers: recommendedSellers == _undefined
+            ? _instance.recommendedSellers
+            : (recommendedSellers
+                as List<Query$RecommendedSellers$recommendedSellers?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes recommendedSellers(
+          Iterable<Query$RecommendedSellers$recommendedSellers?>? Function(
+                  Iterable<
+                      CopyWith$Query$RecommendedSellers$recommendedSellers<
+                          Query$RecommendedSellers$recommendedSellers>?>?)
+              _fn) =>
+      call(
+          recommendedSellers:
+              _fn(_instance.recommendedSellers?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$RecommendedSellers$recommendedSellers(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$RecommendedSellers<TRes>
+    implements CopyWith$Query$RecommendedSellers<TRes> {
+  _CopyWithStubImpl$Query$RecommendedSellers(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$RecommendedSellers$recommendedSellers?>? recommendedSellers,
+    String? $__typename,
+  }) =>
+      _res;
+
+  recommendedSellers(_fn) => _res;
+}
+
+const documentNodeQueryRecommendedSellers = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'RecommendedSellers'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'recommendedSellers'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'seller'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'firstName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'lastName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'email'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'bio'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'gender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'displayName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'dob'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'dateJoined'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'lastLogin'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'fullName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'listing'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'location'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'latitude'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'longitude'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'locationName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'noOfFollowing'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'noOfFollowers'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'phone'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'number'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'countryCode'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'totalSales'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'totalShopValue'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'productViews'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'sellerScore'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'activeListings'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$RecommendedSellers _parserFn$Query$RecommendedSellers(
+        Map<String, dynamic> data) =>
+    Query$RecommendedSellers.fromJson(data);
+typedef OnQueryComplete$Query$RecommendedSellers = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$RecommendedSellers?,
+);
+
+class Options$Query$RecommendedSellers
+    extends graphql.QueryOptions<Query$RecommendedSellers> {
+  Options$Query$RecommendedSellers({
+    String? operationName,
+    Variables$Query$RecommendedSellers? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$RecommendedSellers? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$RecommendedSellers? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$RecommendedSellers(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryRecommendedSellers,
+          parserFn: _parserFn$Query$RecommendedSellers,
+        );
+
+  final OnQueryComplete$Query$RecommendedSellers? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$RecommendedSellers
+    extends graphql.WatchQueryOptions<Query$RecommendedSellers> {
+  WatchOptions$Query$RecommendedSellers({
+    String? operationName,
+    Variables$Query$RecommendedSellers? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$RecommendedSellers? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryRecommendedSellers,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$RecommendedSellers,
+        );
+}
+
+class FetchMoreOptions$Query$RecommendedSellers
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$RecommendedSellers({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$RecommendedSellers? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryRecommendedSellers,
+        );
+}
+
+extension ClientExtension$Query$RecommendedSellers on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$RecommendedSellers>>
+      query$RecommendedSellers(
+              [Options$Query$RecommendedSellers? options]) async =>
+          await this.query(options ?? Options$Query$RecommendedSellers());
+  graphql.ObservableQuery<Query$RecommendedSellers>
+      watchQuery$RecommendedSellers(
+              [WatchOptions$Query$RecommendedSellers? options]) =>
+          this.watchQuery(options ?? WatchOptions$Query$RecommendedSellers());
+  void writeQuery$RecommendedSellers({
+    required Query$RecommendedSellers data,
+    Variables$Query$RecommendedSellers? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryRecommendedSellers),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$RecommendedSellers? readQuery$RecommendedSellers({
+    Variables$Query$RecommendedSellers? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation:
+            graphql.Operation(document: documentNodeQueryRecommendedSellers),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$RecommendedSellers.fromJson(result);
+  }
+}
+
+class Query$RecommendedSellers$recommendedSellers {
+  Query$RecommendedSellers$recommendedSellers({
+    this.seller,
+    this.totalSales,
+    this.totalShopValue,
+    this.productViews,
+    this.sellerScore,
+    this.activeListings,
+    this.$__typename = 'RecommendedSellerType',
+  });
+
+  factory Query$RecommendedSellers$recommendedSellers.fromJson(
+      Map<String, dynamic> json) {
+    final l$seller = json['seller'];
+    final l$totalSales = json['totalSales'];
+    final l$totalShopValue = json['totalShopValue'];
+    final l$productViews = json['productViews'];
+    final l$sellerScore = json['sellerScore'];
+    final l$activeListings = json['activeListings'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSellers$recommendedSellers(
+      seller: l$seller == null
+          ? null
+          : Query$RecommendedSellers$recommendedSellers$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      totalSales: (l$totalSales as String?),
+      totalShopValue: (l$totalShopValue as String?),
+      productViews: (l$productViews as int?),
+      sellerScore: (l$sellerScore as num?)?.toDouble(),
+      activeListings: (l$activeListings as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$RecommendedSellers$recommendedSellers$seller? seller;
+
+  final String? totalSales;
+
+  final String? totalShopValue;
+
+  final int? productViews;
+
+  final double? sellerScore;
+
+  final int? activeListings;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$totalSales = totalSales;
+    _resultData['totalSales'] = l$totalSales;
+    final l$totalShopValue = totalShopValue;
+    _resultData['totalShopValue'] = l$totalShopValue;
+    final l$productViews = productViews;
+    _resultData['productViews'] = l$productViews;
+    final l$sellerScore = sellerScore;
+    _resultData['sellerScore'] = l$sellerScore;
+    final l$activeListings = activeListings;
+    _resultData['activeListings'] = l$activeListings;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$seller = seller;
+    final l$totalSales = totalSales;
+    final l$totalShopValue = totalShopValue;
+    final l$productViews = productViews;
+    final l$sellerScore = sellerScore;
+    final l$activeListings = activeListings;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$seller,
+      l$totalSales,
+      l$totalShopValue,
+      l$productViews,
+      l$sellerScore,
+      l$activeListings,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSellers$recommendedSellers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$totalSales = totalSales;
+    final lOther$totalSales = other.totalSales;
+    if (l$totalSales != lOther$totalSales) {
+      return false;
+    }
+    final l$totalShopValue = totalShopValue;
+    final lOther$totalShopValue = other.totalShopValue;
+    if (l$totalShopValue != lOther$totalShopValue) {
+      return false;
+    }
+    final l$productViews = productViews;
+    final lOther$productViews = other.productViews;
+    if (l$productViews != lOther$productViews) {
+      return false;
+    }
+    final l$sellerScore = sellerScore;
+    final lOther$sellerScore = other.sellerScore;
+    if (l$sellerScore != lOther$sellerScore) {
+      return false;
+    }
+    final l$activeListings = activeListings;
+    final lOther$activeListings = other.activeListings;
+    if (l$activeListings != lOther$activeListings) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSellers$recommendedSellers
+    on Query$RecommendedSellers$recommendedSellers {
+  CopyWith$Query$RecommendedSellers$recommendedSellers<
+          Query$RecommendedSellers$recommendedSellers>
+      get copyWith => CopyWith$Query$RecommendedSellers$recommendedSellers(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSellers$recommendedSellers<TRes> {
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers(
+    Query$RecommendedSellers$recommendedSellers instance,
+    TRes Function(Query$RecommendedSellers$recommendedSellers) then,
+  ) = _CopyWithImpl$Query$RecommendedSellers$recommendedSellers;
+
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers.stub(TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers;
+
+  TRes call({
+    Query$RecommendedSellers$recommendedSellers$seller? seller,
+    String? totalSales,
+    String? totalShopValue,
+    int? productViews,
+    double? sellerScore,
+    int? activeListings,
+    String? $__typename,
+  });
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller<TRes> get seller;
+}
+
+class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers<TRes>
+    implements CopyWith$Query$RecommendedSellers$recommendedSellers<TRes> {
+  _CopyWithImpl$Query$RecommendedSellers$recommendedSellers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSellers$recommendedSellers _instance;
+
+  final TRes Function(Query$RecommendedSellers$recommendedSellers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? seller = _undefined,
+    Object? totalSales = _undefined,
+    Object? totalShopValue = _undefined,
+    Object? productViews = _undefined,
+    Object? sellerScore = _undefined,
+    Object? activeListings = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSellers$recommendedSellers(
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$RecommendedSellers$recommendedSellers$seller?),
+        totalSales: totalSales == _undefined
+            ? _instance.totalSales
+            : (totalSales as String?),
+        totalShopValue: totalShopValue == _undefined
+            ? _instance.totalShopValue
+            : (totalShopValue as String?),
+        productViews: productViews == _undefined
+            ? _instance.productViews
+            : (productViews as int?),
+        sellerScore: sellerScore == _undefined
+            ? _instance.sellerScore
+            : (sellerScore as double?),
+        activeListings: activeListings == _undefined
+            ? _instance.activeListings
+            : (activeListings as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$RecommendedSellers$recommendedSellers$seller.stub(
+            _then(_instance))
+        : CopyWith$Query$RecommendedSellers$recommendedSellers$seller(
+            local$seller, (e) => call(seller: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers<TRes>
+    implements CopyWith$Query$RecommendedSellers$recommendedSellers<TRes> {
+  _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers(this._res);
+
+  TRes _res;
+
+  call({
+    Query$RecommendedSellers$recommendedSellers$seller? seller,
+    String? totalSales,
+    String? totalShopValue,
+    int? productViews,
+    double? sellerScore,
+    int? activeListings,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller<TRes>
+      get seller =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller.stub(
+              _res);
+}
+
+class Query$RecommendedSellers$recommendedSellers$seller {
+  Query$RecommendedSellers$recommendedSellers$seller({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.email,
+    this.bio,
+    this.profilePictureUrl,
+    this.gender,
+    this.displayName,
+    this.dob,
+    this.dateJoined,
+    this.lastLogin,
+    this.fullName,
+    this.listing,
+    this.location,
+    this.noOfFollowing,
+    this.noOfFollowers,
+    this.phone,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$RecommendedSellers$recommendedSellers$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$firstName = json['firstName'];
+    final l$lastName = json['lastName'];
+    final l$username = json['username'];
+    final l$email = json['email'];
+    final l$bio = json['bio'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$gender = json['gender'];
+    final l$displayName = json['displayName'];
+    final l$dob = json['dob'];
+    final l$dateJoined = json['dateJoined'];
+    final l$lastLogin = json['lastLogin'];
+    final l$fullName = json['fullName'];
+    final l$listing = json['listing'];
+    final l$location = json['location'];
+    final l$noOfFollowing = json['noOfFollowing'];
+    final l$noOfFollowers = json['noOfFollowers'];
+    final l$phone = json['phone'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSellers$recommendedSellers$seller(
+      id: (l$id as int?),
+      firstName: (l$firstName as String?),
+      lastName: (l$lastName as String?),
+      username: (l$username as String?),
+      email: (l$email as String?),
+      bio: (l$bio as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      gender: (l$gender as String?),
+      displayName: (l$displayName as String?),
+      dob: l$dob == null ? null : DateTime.parse((l$dob as String)),
+      dateJoined: l$dateJoined == null
+          ? null
+          : DateTime.parse((l$dateJoined as String)),
+      lastLogin:
+          l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
+      fullName: (l$fullName as String?),
+      listing: (l$listing as int?),
+      location: l$location == null
+          ? null
+          : Query$RecommendedSellers$recommendedSellers$seller$location
+              .fromJson((l$location as Map<String, dynamic>)),
+      noOfFollowing: (l$noOfFollowing as int?),
+      noOfFollowers: (l$noOfFollowers as int?),
+      phone: l$phone == null
+          ? null
+          : Query$RecommendedSellers$recommendedSellers$seller$phone.fromJson(
+              (l$phone as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? firstName;
+
+  final String? lastName;
+
+  final String? username;
+
+  final String? email;
+
+  final String? bio;
+
+  final String? profilePictureUrl;
+
+  final String? gender;
+
+  final String? displayName;
+
+  final DateTime? dob;
+
+  final DateTime? dateJoined;
+
+  final DateTime? lastLogin;
+
+  final String? fullName;
+
+  final int? listing;
+
+  final Query$RecommendedSellers$recommendedSellers$seller$location? location;
+
+  final int? noOfFollowing;
+
+  final int? noOfFollowers;
+
+  final Query$RecommendedSellers$recommendedSellers$seller$phone? phone;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$firstName = firstName;
+    _resultData['firstName'] = l$firstName;
+    final l$lastName = lastName;
+    _resultData['lastName'] = l$lastName;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$bio = bio;
+    _resultData['bio'] = l$bio;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$gender = gender;
+    _resultData['gender'] = l$gender;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$dob = dob;
+    _resultData['dob'] = l$dob?.toIso8601String();
+    final l$dateJoined = dateJoined;
+    _resultData['dateJoined'] = l$dateJoined?.toIso8601String();
+    final l$lastLogin = lastLogin;
+    _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$listing = listing;
+    _resultData['listing'] = l$listing;
+    final l$location = location;
+    _resultData['location'] = l$location?.toJson();
+    final l$noOfFollowing = noOfFollowing;
+    _resultData['noOfFollowing'] = l$noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
+    _resultData['noOfFollowers'] = l$noOfFollowers;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$firstName = firstName;
+    final l$lastName = lastName;
+    final l$username = username;
+    final l$email = email;
+    final l$bio = bio;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$gender = gender;
+    final l$displayName = displayName;
+    final l$dob = dob;
+    final l$dateJoined = dateJoined;
+    final l$lastLogin = lastLogin;
+    final l$fullName = fullName;
+    final l$listing = listing;
+    final l$location = location;
+    final l$noOfFollowing = noOfFollowing;
+    final l$noOfFollowers = noOfFollowers;
+    final l$phone = phone;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$firstName,
+      l$lastName,
+      l$username,
+      l$email,
+      l$bio,
+      l$profilePictureUrl,
+      l$gender,
+      l$displayName,
+      l$dob,
+      l$dateJoined,
+      l$lastLogin,
+      l$fullName,
+      l$listing,
+      l$location,
+      l$noOfFollowing,
+      l$noOfFollowers,
+      l$phone,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSellers$recommendedSellers$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) {
+      return false;
+    }
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$bio = bio;
+    final lOther$bio = other.bio;
+    if (l$bio != lOther$bio) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$dob = dob;
+    final lOther$dob = other.dob;
+    if (l$dob != lOther$dob) {
+      return false;
+    }
+    final l$dateJoined = dateJoined;
+    final lOther$dateJoined = other.dateJoined;
+    if (l$dateJoined != lOther$dateJoined) {
+      return false;
+    }
+    final l$lastLogin = lastLogin;
+    final lOther$lastLogin = other.lastLogin;
+    if (l$lastLogin != lOther$lastLogin) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$listing = listing;
+    final lOther$listing = other.listing;
+    if (l$listing != lOther$listing) {
+      return false;
+    }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (l$location != lOther$location) {
+      return false;
+    }
+    final l$noOfFollowing = noOfFollowing;
+    final lOther$noOfFollowing = other.noOfFollowing;
+    if (l$noOfFollowing != lOther$noOfFollowing) {
+      return false;
+    }
+    final l$noOfFollowers = noOfFollowers;
+    final lOther$noOfFollowers = other.noOfFollowers;
+    if (l$noOfFollowers != lOther$noOfFollowers) {
+      return false;
+    }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSellers$recommendedSellers$seller
+    on Query$RecommendedSellers$recommendedSellers$seller {
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller<
+          Query$RecommendedSellers$recommendedSellers$seller>
+      get copyWith =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSellers$recommendedSellers$seller<
+    TRes> {
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller(
+    Query$RecommendedSellers$recommendedSellers$seller instance,
+    TRes Function(Query$RecommendedSellers$recommendedSellers$seller) then,
+  ) = _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller;
+
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller;
+
+  TRes call({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? bio,
+    String? profilePictureUrl,
+    String? gender,
+    String? displayName,
+    DateTime? dob,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
+    String? fullName,
+    int? listing,
+    Query$RecommendedSellers$recommendedSellers$seller$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
+    Query$RecommendedSellers$recommendedSellers$seller$phone? phone,
+    String? $__typename,
+  });
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<TRes>
+      get location;
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<TRes>
+      get phone;
+}
+
+class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller<TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller<TRes> {
+  _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSellers$recommendedSellers$seller _instance;
+
+  final TRes Function(Query$RecommendedSellers$recommendedSellers$seller) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? firstName = _undefined,
+    Object? lastName = _undefined,
+    Object? username = _undefined,
+    Object? email = _undefined,
+    Object? bio = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? gender = _undefined,
+    Object? displayName = _undefined,
+    Object? dob = _undefined,
+    Object? dateJoined = _undefined,
+    Object? lastLogin = _undefined,
+    Object? fullName = _undefined,
+    Object? listing = _undefined,
+    Object? location = _undefined,
+    Object? noOfFollowing = _undefined,
+    Object? noOfFollowers = _undefined,
+    Object? phone = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSellers$recommendedSellers$seller(
+        id: id == _undefined ? _instance.id : (id as int?),
+        firstName: firstName == _undefined
+            ? _instance.firstName
+            : (firstName as String?),
+        lastName:
+            lastName == _undefined ? _instance.lastName : (lastName as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        email: email == _undefined ? _instance.email : (email as String?),
+        bio: bio == _undefined ? _instance.bio : (bio as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        gender: gender == _undefined ? _instance.gender : (gender as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        dob: dob == _undefined ? _instance.dob : (dob as DateTime?),
+        dateJoined: dateJoined == _undefined
+            ? _instance.dateJoined
+            : (dateJoined as DateTime?),
+        lastLogin: lastLogin == _undefined
+            ? _instance.lastLogin
+            : (lastLogin as DateTime?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        listing: listing == _undefined ? _instance.listing : (listing as int?),
+        location: location == _undefined
+            ? _instance.location
+            : (location
+                as Query$RecommendedSellers$recommendedSellers$seller$location?),
+        noOfFollowing: noOfFollowing == _undefined
+            ? _instance.noOfFollowing
+            : (noOfFollowing as int?),
+        noOfFollowers: noOfFollowers == _undefined
+            ? _instance.noOfFollowers
+            : (noOfFollowers as int?),
+        phone: phone == _undefined
+            ? _instance.phone
+            : (phone
+                as Query$RecommendedSellers$recommendedSellers$seller$phone?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<TRes>
+      get location {
+    final local$location = _instance.location;
+    return local$location == null
+        ? CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location
+            .stub(_then(_instance))
+        : CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location(
+            local$location, (e) => call(location: e));
+  }
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<TRes>
+      get phone {
+    final local$phone = _instance.phone;
+    return local$phone == null
+        ? CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone
+            .stub(_then(_instance))
+        : CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone(
+            local$phone, (e) => call(phone: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller<TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller<TRes> {
+  _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? firstName,
+    String? lastName,
+    String? username,
+    String? email,
+    String? bio,
+    String? profilePictureUrl,
+    String? gender,
+    String? displayName,
+    DateTime? dob,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
+    String? fullName,
+    int? listing,
+    Query$RecommendedSellers$recommendedSellers$seller$location? location,
+    int? noOfFollowing,
+    int? noOfFollowers,
+    Query$RecommendedSellers$recommendedSellers$seller$phone? phone,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<TRes>
+      get location =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location
+              .stub(_res);
+
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<TRes>
+      get phone =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone
+              .stub(_res);
+}
+
+class Query$RecommendedSellers$recommendedSellers$seller$location {
+  Query$RecommendedSellers$recommendedSellers$seller$location({
+    this.latitude,
+    this.longitude,
+    this.locationName,
+    this.$__typename = 'LocationType',
+  });
+
+  factory Query$RecommendedSellers$recommendedSellers$seller$location.fromJson(
+      Map<String, dynamic> json) {
+    final l$latitude = json['latitude'];
+    final l$longitude = json['longitude'];
+    final l$locationName = json['locationName'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSellers$recommendedSellers$seller$location(
+      latitude: (l$latitude as String?),
+      longitude: (l$longitude as String?),
+      locationName: (l$locationName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? latitude;
+
+  final String? longitude;
+
+  final String? locationName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$latitude = latitude;
+    _resultData['latitude'] = l$latitude;
+    final l$longitude = longitude;
+    _resultData['longitude'] = l$longitude;
+    final l$locationName = locationName;
+    _resultData['locationName'] = l$locationName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$latitude = latitude;
+    final l$longitude = longitude;
+    final l$locationName = locationName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$latitude,
+      l$longitude,
+      l$locationName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSellers$recommendedSellers$seller$location ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$latitude = latitude;
+    final lOther$latitude = other.latitude;
+    if (l$latitude != lOther$latitude) {
+      return false;
+    }
+    final l$longitude = longitude;
+    final lOther$longitude = other.longitude;
+    if (l$longitude != lOther$longitude) {
+      return false;
+    }
+    final l$locationName = locationName;
+    final lOther$locationName = other.locationName;
+    if (l$locationName != lOther$locationName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSellers$recommendedSellers$seller$location
+    on Query$RecommendedSellers$recommendedSellers$seller$location {
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<
+          Query$RecommendedSellers$recommendedSellers$seller$location>
+      get copyWith =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<
+    TRes> {
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location(
+    Query$RecommendedSellers$recommendedSellers$seller$location instance,
+    TRes Function(Query$RecommendedSellers$recommendedSellers$seller$location)
+        then,
+  ) = _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$location;
+
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$location;
+
+  TRes call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$location<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<
+            TRes> {
+  _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$location(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSellers$recommendedSellers$seller$location _instance;
+
+  final TRes Function(
+      Query$RecommendedSellers$recommendedSellers$seller$location) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? latitude = _undefined,
+    Object? longitude = _undefined,
+    Object? locationName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSellers$recommendedSellers$seller$location(
+        latitude:
+            latitude == _undefined ? _instance.latitude : (latitude as String?),
+        longitude: longitude == _undefined
+            ? _instance.longitude
+            : (longitude as String?),
+        locationName: locationName == _undefined
+            ? _instance.locationName
+            : (locationName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$location<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller$location<
+            TRes> {
+  _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$location(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? latitude,
+    String? longitude,
+    String? locationName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$RecommendedSellers$recommendedSellers$seller$phone {
+  Query$RecommendedSellers$recommendedSellers$seller$phone({
+    this.number,
+    this.countryCode,
+    this.$__typename = 'PhoneType',
+  });
+
+  factory Query$RecommendedSellers$recommendedSellers$seller$phone.fromJson(
+      Map<String, dynamic> json) {
+    final l$number = json['number'];
+    final l$countryCode = json['countryCode'];
+    final l$$__typename = json['__typename'];
+    return Query$RecommendedSellers$recommendedSellers$seller$phone(
+      number: (l$number as String?),
+      countryCode: (l$countryCode as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? number;
+
+  final String? countryCode;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$number = number;
+    _resultData['number'] = l$number;
+    final l$countryCode = countryCode;
+    _resultData['countryCode'] = l$countryCode;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$number = number;
+    final l$countryCode = countryCode;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$number,
+      l$countryCode,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecommendedSellers$recommendedSellers$seller$phone ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$number = number;
+    final lOther$number = other.number;
+    if (l$number != lOther$number) {
+      return false;
+    }
+    final l$countryCode = countryCode;
+    final lOther$countryCode = other.countryCode;
+    if (l$countryCode != lOther$countryCode) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecommendedSellers$recommendedSellers$seller$phone
+    on Query$RecommendedSellers$recommendedSellers$seller$phone {
+  CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<
+          Query$RecommendedSellers$recommendedSellers$seller$phone>
+      get copyWith =>
+          CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<
+    TRes> {
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone(
+    Query$RecommendedSellers$recommendedSellers$seller$phone instance,
+    TRes Function(Query$RecommendedSellers$recommendedSellers$seller$phone)
+        then,
+  ) = _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$phone;
+
+  factory CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$phone;
+
+  TRes call({
+    String? number,
+    String? countryCode,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$phone<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<
+            TRes> {
+  _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller$phone(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecommendedSellers$recommendedSellers$seller$phone _instance;
+
+  final TRes Function(Query$RecommendedSellers$recommendedSellers$seller$phone)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? number = _undefined,
+    Object? countryCode = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$RecommendedSellers$recommendedSellers$seller$phone(
+        number: number == _undefined ? _instance.number : (number as String?),
+        countryCode: countryCode == _undefined
+            ? _instance.countryCode
+            : (countryCode as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$phone<
+        TRes>
+    implements
+        CopyWith$Query$RecommendedSellers$recommendedSellers$seller$phone<
+            TRes> {
+  _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$phone(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? number,
+    String? countryCode,
+    String? $__typename,
+  }) =>
+      _res;
 }

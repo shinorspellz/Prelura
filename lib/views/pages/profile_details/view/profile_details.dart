@@ -95,7 +95,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
                   onTap: (context) {
                     Navigator.pop(context);
                   },
-                  title: 'Mutli-buy discounts...',
+                  title: 'Multi-buy discounts...',
                 ),
                 VBottomSheetItem(
                     onTap: (context) {

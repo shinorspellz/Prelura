@@ -15,12 +15,14 @@ class DisplaySection extends StatelessWidget {
     this.isScrollable = false,
     this.controller,
     this.isInProduct = true,
+    this.isSelectable = true,
   });
   final List<ProductModel>? products;
   final RefreshCallback? onRefresh;
   final bool isScrollable;
   final ScrollController? controller;
   final bool isInProduct;
+  final bool isSelectable;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class DisplaySection extends StatelessWidget {
                 child: ProductCard(
                   product: products![index],
                   isSimilar: isInProduct,
+                  isSelectable: isSelectable,
                 ),
               );
             },

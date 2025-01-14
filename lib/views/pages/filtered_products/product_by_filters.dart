@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../res/colors.dart';
 import '../../../controller/product/product_provider.dart';
@@ -16,7 +19,7 @@ import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 
 @RoutePage()
-class FilterProductPage extends ConsumerStatefulWidget {
+class FilterProductPage extends StatefulHookConsumerWidget {
   const FilterProductPage(
       {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
@@ -29,13 +32,21 @@ class FilterProductPage extends ConsumerStatefulWidget {
   _ProductFilterPageState createState() => _ProductFilterPageState();
 }
 
-class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
+class _ProductFilterPageState extends ConsumerState<FilterProductPage>
+    with AutoRouteAware {
   final controller = FilterProductPage.scrollController;
 
   @override
   void initState() {
     super.initState();
+    Future.microtask(() {
+      log("here in the microstask");
+      // Ensure the widget is still mounted
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(category: widget.id);
 
+      ref.refresh(filteredProductProvider(searchQuery));
+    });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -48,16 +59,19 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
     });
   }
 
-  @override
-  void dispose() {
-    controller.removeListener(() {}); // Ensure listener is removed
-    super.dispose();
-  }
-
   String searchQuery = '';
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(selectedFilteredProductProvider.notifier).state =
+            Input$ProductFiltersInput(category: widget.id);
+        ref.invalidate(filteredProductProvider(searchQuery));
+      });
+      return null;
+    }, []);
+
     final filters = ref.watch(productFilterProvider);
     final state = ref.watch(productFilterProvider.notifier);
     return Scaffold(
@@ -144,7 +158,6 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage> {
                         FiltersOptions(excludedFilterTypes: [
                           FilterTypes.category,
                         ]),
-                        addVerticalSpacing(12),
                       ],
                     ),
                   )),
@@ -258,10 +271,10 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   StaticSliverDelegate({required this.child});
 
   @override
-  double get minExtent => 148.8;
+  double get minExtent => 116.8;
 
   @override
-  double get maxExtent => 148.8;
+  double get maxExtent => 116.8;
 
   @override
   Widget build(

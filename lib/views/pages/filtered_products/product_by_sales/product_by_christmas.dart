@@ -31,7 +31,8 @@ class _ProductFilterPageState
   @override
   void initState() {
     super.initState();
-
+    ref.read(selectedFilteredProductProvider.notifier).state =
+        Input$ProductFiltersInput(style: widget.style);
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
