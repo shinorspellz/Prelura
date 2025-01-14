@@ -31,7 +31,12 @@ class _ProductFilterPageState
   @override
   void initState() {
     super.initState();
-
+    Future.microtask(
+      () {
+        ref.read(selectedFilteredProductProvider.notifier).state =
+            Input$ProductFiltersInput(style: widget.style);
+      },
+    );
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -83,10 +88,10 @@ class _ProductFilterPageState
               slivers: [
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
-                  delegate: StaticSliverDelegate(
+                  delegate: FilteredProductStaticSliverDelegate(
                       child: Container(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
+                        const EdgeInsets.only(top: 10, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +113,6 @@ class _ProductFilterPageState
                         FiltersOptions(
                           excludedFilterTypes: [FilterTypes.style],
                         ),
-                        addVerticalSpacing(12),
                       ],
                     ),
                   )),
@@ -185,16 +189,17 @@ class _ProductFilterPageState
   }
 }
 
-class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
+class FilteredProductStaticSliverDelegate
+    extends SliverPersistentHeaderDelegate {
   final Widget child;
 
-  StaticSliverDelegate({required this.child});
+  FilteredProductStaticSliverDelegate({required this.child});
 
   @override
-  double get minExtent => 148.8;
+  double get minExtent => 110.8;
 
   @override
-  double get maxExtent => 148.8;
+  double get maxExtent => 110.8;
 
   @override
   Widget build(

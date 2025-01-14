@@ -8,6 +8,7 @@ import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import '../../../../controller/product/brands_provider.dart';
 import '../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../model/product/product_model.dart';
+import '../../../widgets/app_button.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/bottom_sheet.dart';
 
@@ -40,7 +41,7 @@ class SearchFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
   }
 
   // Remove filter value
-  void removeFilter(String filterType, String value) {
+  void removeFilter(FilterTypes filterType, String value) {
     state.remove(filterType);
     // final currentFilters = state[filterType] ?? [];
     // final updatedFilters = currentFilters.where((item) => item != value).toList();
@@ -214,6 +215,11 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     // ref.invalidate(filteredProductProvider);
   }
 
+  void removeFilter(FilterTypes filterType) {
+    state.remove(filterType);
+    ref.refresh(filteredProductProvider("").future);
+  }
+
   void clearFilter() {
     state = {};
     ref.invalidate(filteredProductProvider);
@@ -275,28 +281,51 @@ void ShowFilteredProductFilterModal(
 
           String? selectedOptions = ref.read(productFilterProvider)[filterType];
 
-          return ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: 500,
-            ),
-            child: ListView(
-              shrinkWrap: true,
-              controller: controller,
-              children: filterOptions[filterType]!
-                  .map((e) => PreluraCheckBox(
-                        isChecked: selectedOptions == e,
-                        onChanged: (value) {
-                          filterNotifier.updateFilter(filterType, e);
-                          setState(() {
-                            selectedOptions = e;
-                          });
+          return Column(
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 500),
+                child: ListView(
+                  shrinkWrap: true,
+                  controller: controller,
+                  children: filterOptions[filterType]!
+                      .map((e) => PreluraCheckBox(
+                            isChecked: selectedOptions == e,
+                            onChanged: (value) {
+                              log("value : $value",
+                                  name: "Search product provider");
+                              if (selectedOptions == e) {
+                                filterNotifier.removeFilter(filterType);
+                                selectedOptions = null;
+                              } else {
+                                filterNotifier.updateFilter(filterType, e);
+                                setState(() {
+                                  selectedOptions = e;
+                                });
+                              }
 
-                          Navigator.pop(context);
-                        },
-                        title: e.replaceAll("_", " "),
-                      ))
-                  .toList(),
-            ),
+                              Navigator.pop(context);
+                            },
+                            title: e.replaceAll("_", " "),
+                          ))
+                      .toList(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 22, 16, 0),
+                child: AppButton(
+                    text: "Clear ${filterType.simpleName}",
+                    fontWeight: FontWeight.w500,
+                    width: double.infinity,
+                    onTap: () {
+                      filterNotifier.removeFilter(filterType);
+                      // Navigator.pop(context);
+                      setState(() {
+                        selectedOptions = null;
+                      });
+                    }),
+              )
+            ],
           );
         },
       );

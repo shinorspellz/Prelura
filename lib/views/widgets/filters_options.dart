@@ -23,7 +23,7 @@ class FiltersOptions extends ConsumerWidget {
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
       child: Row(
         children: [
           FilterChip(

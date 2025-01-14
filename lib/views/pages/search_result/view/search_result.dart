@@ -13,6 +13,7 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/shimmers/grid_view_animation.dart';
 import 'package:prelura_app/views/shimmers/users_shimer.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
@@ -86,7 +87,7 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 14),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
             child: Row(
               children: [
                 FilterChip(
@@ -344,27 +345,52 @@ void ShowFilterModal(
     context: context,
     child: StatefulBuilder(builder: (context, setState) {
       return Consumer(
-          builder: (context, ref, _) => ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: 500,
-                  // minHeight: 250,
-                ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: filterOptions[filterType]!
-                      .map((e) => PreluraCheckBox(
-                          isChecked: selectedOptions == e,
-                          onChanged: (value) {
-                            filterNotifier.updateFilter(filterType, e);
-                            setState(() {
-                              selectedOptions = e;
-                            });
+          builder: (context, ref, _) => Column(
+                children: [
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 500,
+                      // minHeight: 250,
+                    ),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: filterOptions[filterType]!
+                          .map((e) => PreluraCheckBox(
+                              isChecked: selectedOptions == e,
+                              onChanged: (value) {
+                                if (selectedOptions == e) {
+                                  filterNotifier.removeFilter(filterType, e);
+                                  setState(() {
+                                    selectedOptions = null;
+                                  });
+                                } else {
+                                  filterNotifier.updateFilter(filterType, e);
+                                  setState(() {
+                                    selectedOptions = e;
+                                  });
+                                }
 
-                            Navigator.pop(context);
-                          },
-                          title: e.replaceAll("_", " ")))
-                      .toList(),
-                ),
+                                Navigator.pop(context);
+                              },
+                              title: e.replaceAll("_", " ")))
+                          .toList(),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 22, 16, 0),
+                    child: AppButton(
+                        text: "Clear ${filterType.simpleName}",
+                        fontWeight: FontWeight.w500,
+                        width: double.infinity,
+                        onTap: () {
+                          filterNotifier.removeFilter(filterType, "");
+                          // Navigator.pop(context);
+                          setState(() {
+                            selectedOptions = null;
+                          });
+                        }),
+                  )
+                ],
               ));
     }),
   );

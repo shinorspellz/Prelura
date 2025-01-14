@@ -144,12 +144,12 @@ class SearchHintItemBox extends ConsumerWidget {
       onTap: () {
         ref.read(searchTextController.notifier).state.text = label;
         ref.read(showSearchProducts.notifier).state = true;
-        ref
-            .read(searchFilterProvider.notifier)
-            .updateFilter(FilterTypes.category, label);
+        // ref
+        //     .read(searchFilterProvider.notifier)
+        //     .updateFilter(FilterTypes.category, label);
       },
       child: Container(
-        height: 50,
+        height: 40,
         width: double.infinity,
         alignment: Alignment.center,
         color: Colors.transparent,

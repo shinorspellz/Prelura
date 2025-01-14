@@ -111,6 +111,16 @@ class MenuPage extends ConsumerWidget {
                 context.router.push(const MyFavouriteRoute());
               }),
           MenuCard(
+              title: "Settings",
+              icon: Icon(
+                Icons.settings,
+                color: PreluraColors.grey,
+              ),
+              rightArrow: false,
+              onTap: () {
+                context.router.push(const SettingRoute());
+              }),
+          MenuCard(
               title: "Multi-buy discounts",
               subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
               rightArrow: false,
@@ -146,16 +156,7 @@ class MenuPage extends ConsumerWidget {
           //     onTap: () {
           //       context.router.push(const HolidayModeRoute());
           //     }),
-          MenuCard(
-              title: "Settings",
-              icon: Icon(
-                Icons.settings,
-                color: PreluraColors.grey,
-              ),
-              rightArrow: false,
-              onTap: () {
-                context.router.push(const SettingRoute());
-              }),
+
           MenuCard(
               title: "Help Centre",
               icon: Icon(

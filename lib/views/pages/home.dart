@@ -312,8 +312,8 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
                         ? Theme.of(context).textTheme.bodyMedium?.color
                         : PreluraColors.greyColor,
                     fontWeight: selectedTab == index
-                        ? FontWeight.bold
-                        : FontWeight.normal,
+                        ? FontWeight.w600
+                        : FontWeight.w400,
                   ),
                 ),
               ),

@@ -1,19 +1,21 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
-import '../../../res/colors.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
 import '../../widgets/filters_options.dart';
-import '../../widgets/gap.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
+import 'product_by_sales/product_by_christmas.dart';
 
 @RoutePage()
 class ProductsByBrandPage extends ConsumerStatefulWidget {
@@ -36,6 +38,13 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   void initState() {
     super.initState();
 
+    Future.microtask(() {
+      if (!mounted) return;
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(
+              brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
+      ref.invalidate(filteredProductProvider(searchQuery));
+    });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -50,6 +59,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   void dispose() {
+    log(":::: I ran  from here");
+    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -58,13 +69,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = ref.watch(filteredProductProvider(searchQuery));
-    final productNotifier =
-        ref.read(filteredProductProvider(searchQuery).notifier);
-
-    final filters = ref.watch(productFilterProvider);
-    final state = ref.watch(productFilterProvider.notifier);
-
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -90,10 +94,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 slivers: [
                   SliverPersistentHeader(
                     pinned: true, // Keeps it static
-                    delegate: StaticSliverDelegate(
+                    delegate: FilteredProductStaticSliverDelegate(
                         child: Container(
                       padding:
-                          const EdgeInsets.only(top: 16, left: 15, right: 15),
+                          const EdgeInsets.only(top: 10, left: 15, right: 15),
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +119,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                           FiltersOptions(
                             excludedFilterTypes: [FilterTypes.brand],
                           ),
-                          addVerticalSpacing(12),
                         ],
                       ),
                     )),
@@ -228,28 +231,5 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         );
       }),
     );
-  }
-}
-
-class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  StaticSliverDelegate({required this.child});
-
-  @override
-  double get minExtent => 148.8;
-
-  @override
-  double get maxExtent => 148.8;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
   }
 }

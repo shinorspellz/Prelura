@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/repo/user/user_repo.dart';
 
@@ -27,7 +28,8 @@ final searchUserProvider = FutureProvider.family((ref, String query) async {
   return result;
 });
 
-final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username) async {
+final otherUserProfile =
+    FutureProvider.family<UserModel, String>((ref, username) async {
   final repo = ref.watch(userRepo);
 
   final result = repo.getUser(username);
@@ -35,7 +37,8 @@ final otherUserProfile = FutureProvider.family<UserModel, String>((ref, username
   return result;
 });
 
-final userNotfierProvider = AsyncNotifierProvider<_UserController, void>(_UserController.new);
+final userNotfierProvider =
+    AsyncNotifierProvider<_UserController, void>(_UserController.new);
 
 class _UserController extends AsyncNotifier<void> {
   late final _repo = ref.read(userRepo);
@@ -44,7 +47,8 @@ class _UserController extends AsyncNotifier<void> {
   @override
   Future<void> build() async {}
 
-  Future<List<Input$ImagesInputType>> _uploadMedia(List<File> files, Enum$FileTypeEnum type) async {
+  Future<List<Input$ImagesInputType>> _uploadMedia(
+      List<File> files, Enum$FileTypeEnum type) async {
     final upload = await _fileUploadRepo.uploadFiles(
       files,
       type,
@@ -151,10 +155,16 @@ class FollowerQuery {
   final int? pageCount;
   final String username;
 
-  FollowerQuery({required this.username, this.query, this.latestFirst, this.page = 1, this.pageCount = 20});
+  FollowerQuery(
+      {required this.username,
+      this.query,
+      this.latestFirst,
+      this.page = 1,
+      this.pageCount = 20});
 }
 
-final followersProvider = FutureProvider.family((ref, FollowerQuery params) async {
+final followersProvider =
+    FutureProvider.family((ref, FollowerQuery params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -168,7 +178,8 @@ final followersProvider = FutureProvider.family((ref, FollowerQuery params) asyn
   return result;
 });
 
-final followingProvider = FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
+final followingProvider =
+    FutureProvider.family<List<UserModel>, FollowerQuery>((ref, params) async {
   final repo = ref.watch(networkRepo);
 
   // Validate input params
@@ -249,3 +260,65 @@ final followingTotalProvider = FutureProvider((ref) async {
 
   return result;
 });
+
+final recommendedSellersProvider = AsyncNotifierProvider<
+    _RecommendedSellersController,
+    List<RecommendedSellerModel>>(_RecommendedSellersController.new);
+
+class _RecommendedSellersController
+    extends AsyncNotifier<List<RecommendedSellerModel>> {
+  late final _repository = ref.read(userRepo);
+
+  final int _pageCount = 15;
+  int _currentPage = 1;
+  int _totalItems = 0;
+
+  @override
+  Future<List<RecommendedSellerModel>> build() async {
+    state = const AsyncLoading();
+    _currentPage = 1;
+    await _getRecommendedSellers(pageNumber: _currentPage);
+    return state.value!;
+  }
+
+  Future<void> _getRecommendedSellers({required int pageNumber}) async {
+    // final sort = ref.watch(sortAllServiceProvider);
+    final result = await _repository.getRecommendedSellers(
+      pageCount: _pageCount,
+      pageNumber: pageNumber,
+    );
+
+    _totalItems = result.length;
+
+    final newState = result;
+    newState.shuffle();
+    final currentState = state.valueOrNull ?? [];
+    if (pageNumber == 1) {
+      state = AsyncData(newState.toList());
+    } else {
+      state = AsyncData([...currentState, ...newState]);
+    }
+    _currentPage = pageNumber!;
+  }
+
+  Future<void> fetchMoreData() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _totalItems;
+
+    if (canLoadMore) {
+      await _getRecommendedSellers(
+        pageNumber: _currentPage + 1,
+      );
+    }
+  }
+
+  Future<void> fetchMoreHandler() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _totalItems;
+    if (canLoadMore) {
+      await fetchMoreData();
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _totalItems;
+  }
+}

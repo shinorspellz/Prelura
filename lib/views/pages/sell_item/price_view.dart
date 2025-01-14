@@ -139,8 +139,24 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
               if (state.category != null || state.brand != null)
                 ref.watch(filteredProductProvider("")).when(
                     data: (products) {
-                      return DisplaySection(
-                        products: products.take(10).toList(),
+                      return Stack(
+                        children: [
+                          DisplaySection(
+                            products: products.take(10).toList(),
+                            isSelectable: false,
+                          ),
+                          Positioned(
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  width: double.infinity,
+                                ),
+                              ))
+                        ],
                       );
                     },
                     error: (error, _) {
