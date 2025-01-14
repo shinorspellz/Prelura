@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 
-import '../../widgets/gesture_navigator.dart';
 import '../../../controller/product/provider/product_list_provider.dart';
-import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
 class ProductListScreen extends ConsumerWidget {
@@ -19,7 +18,8 @@ class ProductListScreen extends ConsumerWidget {
       appBar: PreluraAppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           centerTitle: true,
@@ -46,9 +46,7 @@ class ProductListScreen extends ConsumerWidget {
                           },
                         ),
                       ),
-                      const Divider(
-                        thickness: 1,
-                      ),
+                      buildDivider(context),
                     ],
                   );
                 }),

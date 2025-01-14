@@ -6,17 +6,16 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:graphql/client.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as fileUtil;
 import "package:http_parser/http_parser.dart" show MediaType;
-import 'package:prelura_app/core/errors/failures.dart';
+import 'package:path/path.dart' as fileUtil;
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/core/utils/image_compressoe.dart';
 import 'package:prelura_app/model/image_upload_response_model.dart';
 
-typedef OnDownloadProgressCallback = void Function(int receivedBytes, int totalBytes);
+typedef OnDownloadProgressCallback = void Function(
+    int receivedBytes, int totalBytes);
 typedef OnUploadProgressCallback = void Function(int sentBytes, int totalBytes);
 
 class FileUploadRepo {
@@ -27,8 +26,21 @@ class FileUploadRepo {
 
   // String get _uploadUrl => 'https://uat-api.vmodel.app/images/prelura/$_getUsername/';
 
-  Future<List<Input$ImagesInputType>?> uploadFiles(List<File> files, Enum$FileTypeEnum uploadType, {OnUploadProgressCallback? onUploadProgress}) async {
-    final fps = files.map((e) => MultipartFile.fromFileSync(e.path)).toList();
+  Future<List<Input$ImagesInputType>?> uploadFiles(
+      List<File> files, Enum$FileTypeEnum uploadType,
+      {OnUploadProgressCallback? onUploadProgress}) async {
+    List<File> compressedFiles = [];
+    for (File fileInfo in files) {
+      compressedFiles.add(
+        await compressImage(
+          isPath: true,
+          imagePath: fileInfo.path,
+        ),
+      );
+    }
+
+    final fps =
+        compressedFiles.map((e) => MultipartFile.fromFileSync(e.path)).toList();
 
     final res = await _client.mutate$UploadFile(Options$Mutation$UploadFile(
       fetchPolicy: FetchPolicy.noCache,
@@ -57,11 +69,15 @@ class FileUploadRepo {
     final uploadedFilesMap = response!.upload!.data;
     String baseUrl = response.upload!.baseUrl ?? '';
     if (uploadedFilesMap!.isNotEmpty) {
-      final images = uploadedFilesMap.map((e) => ImageUploadResponseModel.fromMap(baseUrl, jsonDecode(e!))).toList();
+      final images = uploadedFilesMap
+          .map((e) => ImageUploadResponseModel.fromMap(baseUrl, jsonDecode(e!)))
+          .toList();
 
       final filesToPost = images
           .map(
-            (e) => Input$ImagesInputType(url: '${e.baseUrl}${e.image}', thumbnail: '${e.baseUrl}${e.thumbnail}'),
+            (e) => Input$ImagesInputType(
+                url: '${e.baseUrl}${e.image}',
+                thumbnail: '${e.baseUrl}${e.thumbnail}'),
           )
           .toList();
       return filesToPost;
@@ -96,7 +112,8 @@ class _FileService {
   static bool trustSelfSigned = true;
 
   static HttpClient getHttpClient() {
-    HttpClient httpClient = HttpClient()..connectionTimeout = const Duration(seconds: 10);
+    HttpClient httpClient = HttpClient()
+      ..connectionTimeout = const Duration(seconds: 10);
 
     return httpClient;
   }
@@ -147,7 +164,8 @@ class _FileService {
 
     request.contentLength = totalByteLength;
 
-    request.headers.set(HttpHeaders.contentTypeHeader, requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
+    request.headers.set(HttpHeaders.contentTypeHeader,
+        requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
     request.headers.set(HttpHeaders.authorizationHeader, 'Bearer $restToken');
 
     Stream<List<int>> streamUpload = msStream.transform(
@@ -179,7 +197,8 @@ class _FileService {
     var statusCode = httpResponse.statusCode;
 
     if (statusCode ~/ 100 != 2) {
-      throw Exception('Error uploading file, Status code: ${httpResponse.statusCode}');
+      throw Exception(
+          'Error uploading file, Status code: ${httpResponse.statusCode}');
     } else {
       final res = await readResponseAsString(httpResponse);
       return res;
@@ -227,7 +246,8 @@ class _FileService {
 
     request.contentLength = totalByteLength;
 
-    request.headers.set(HttpHeaders.contentTypeHeader, requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
+    request.headers.set(HttpHeaders.contentTypeHeader,
+        requestMultipart.headers[HttpHeaders.contentTypeHeader] as Object);
     request.headers.set(HttpHeaders.authorizationHeader, 'Token $restToken');
 
     Stream<List<int>> streamUpload = msStream.transform(
@@ -259,7 +279,8 @@ class _FileService {
     var statusCode = httpResponse.statusCode;
 
     if (statusCode ~/ 100 != 2) {
-      throw Exception('Error uploading file, Status code: ${httpResponse.statusCode}');
+      throw Exception(
+          'Error uploading file, Status code: ${httpResponse.statusCode}');
     } else {
       final res = await readResponseAsString(httpResponse);
       return res;

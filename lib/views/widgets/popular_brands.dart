@@ -1,19 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../controller/product/brands_provider.dart';
 import '../../controller/product/product_provider.dart';
 import '../../core/graphql/__generated/schema.graphql.dart';
-import '../../res/colors.dart';
-import '../../res/utils.dart';
 import '../pages/home_tabs/all_tabs.dart';
 import '../shimmers/custom_shimmer.dart';
-import '../shimmers/grid_shimmer.dart';
+import 'app_button.dart';
 import 'card.dart';
 
 class PopularBrands extends ConsumerWidget {
@@ -102,8 +98,7 @@ class PopularBrands extends ConsumerWidget {
                   data: (products) {
                     return Column(
                       children: [
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
+                        buildDivider(context),
                         sectionTitle(
                           brands[startIndex].name,
                           "",
@@ -135,8 +130,7 @@ class PopularBrands extends ConsumerWidget {
                             itemCount: products.length,
                           ),
                         ),
-                        Divider(
-                            thickness: 1, color: PreluraColors.primaryColor),
+                        buildDivider(context),
                         16.verticalSpacing,
                       ],
                     );

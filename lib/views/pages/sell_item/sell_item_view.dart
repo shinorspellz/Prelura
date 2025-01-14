@@ -12,6 +12,7 @@ import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
@@ -217,7 +218,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         ),
                       ),
                       10.verticalSpacing,
-                      Divider(thickness: 2),
+                      buildDivider(context),
                     ],
 
                     if (widget.product == null && state.images.isEmpty) ...[
@@ -403,6 +404,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           children: [
                             PreluraAuthTextField(
                               label: 'Title',
+                              showSuggestions: true,
                               textCapitalization: TextCapitalization.words,
                               formatter: UpperCaseTextFormatter(),
                               labelStyle: Theme.of(context)
@@ -423,7 +425,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                             PreluraAuthTextField(
                               label: 'Describe your item',
                               textInputAction: TextInputAction.newline,
-
+                              showSuggestions: true,
                               keyboardType: TextInputType.multiline,
                               focusNode: _descriptionfocusNode,
                               labelStyle: Theme.of(context)

@@ -28,7 +28,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final TextStyle? labelStyle;
-  final bool enabled;
+  final bool enabled, showSuggestions;
   final TextStyle? hintStyle;
   final FocusNode? focusNode;
   final int? maxLines;
@@ -53,6 +53,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
       this.formatter,
       this.onSaved,
       this.obscureText = false,
+      this.showSuggestions = false,
       this.hintText,
       this.maxLength,
       this.controller,
@@ -147,9 +148,9 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
             ),
             child: TextFormField(
               textInputAction: widget.textInputAction,
-              autocorrect: false,
+              autocorrect: widget.showSuggestions,
               textAlign: widget.textAlign ?? TextAlign.start,
-              enableSuggestions: false,
+              enableSuggestions: widget.showSuggestions,
               minLines: widget.minLines ?? 1,
               controller: widget.controller,
               maxLength: widget.maxLength,

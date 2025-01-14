@@ -1,19 +1,16 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controller/product/provider/brand_provider.dart';
+import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../res/colors.dart';
 import '../../../res/utils.dart';
 import '../../widgets/app_checkbox.dart';
-import '../../widgets/gesture_navigator.dart';
-import '../../../controller/product/provider/brand_provider.dart';
-import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
 class SizeSelectionPage extends ConsumerWidget {
@@ -29,7 +26,8 @@ class SizeSelectionPage extends ConsumerWidget {
         centerTitle: true,
         appbarTitle: "Sizes",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
       ),
@@ -67,9 +65,7 @@ class SizeSelectionPage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 6),
-          const Divider(
-            thickness: 1,
-          ),
+          buildDivider(context),
           Expanded(
             child: ListView.builder(
               itemCount: Enum$SizeEnum.values.length,
@@ -106,7 +102,8 @@ class SizeSelectionPage extends ConsumerWidget {
 }
 
 class CustomRadioButton extends StatelessWidget {
-  const CustomRadioButton({super.key, required this.isSelected, required this.onChanged});
+  const CustomRadioButton(
+      {super.key, required this.isSelected, required this.onChanged});
   final bool isSelected;
   final VoidCallback onChanged;
 
@@ -130,7 +127,9 @@ class CustomRadioButton extends StatelessWidget {
           width: 20,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+            color: isSelected
+                ? Theme.of(context).primaryColor
+                : Colors.transparent,
           ),
         ),
       ),

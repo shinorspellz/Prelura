@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/refresh_provider.dart';
+import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/views/pages/home_tabs/all_tabs.dart';
+import 'package:prelura_app/views/pages/search/search_helper_box.dart';
+import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 
 import '../../core/graphql/__generated/schema.graphql.dart';
@@ -33,6 +36,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   final controller = HomeScreen.homeScrollController;
+  bool showSearchInfoField = false;
 
   @override
   void initState() {
@@ -112,81 +116,104 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               // physics: NeverScrollableScrollPhysics(),
               slivers: [
                 SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 15, left: 2, right: 15),
-                            child: Transform.scale(
-                              scale: 6,
-                              child: GestureDetector(
-                                onTap: () {
-                                  ref
-                                      .read(homeRefreshProvider.notifier)
-                                      .refreshHome('', '');
-                                },
-                                child: Image.asset(
-                                  PreluraIcons.splash,
-                                  height: 20,
-                                  width: 120,
-                                ),
-                              ),
+                  child: Column(children: [
+                    Row(children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 15, left: 2, right: 15),
+                        child: Transform.scale(
+                          scale: 6,
+                          child: GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(homeRefreshProvider.notifier)
+                                  .refreshHome('', '');
+                            },
+                            child: Image.asset(
+                              PreluraIcons.splash,
+                              height: 20,
+                              width: 120,
                             ),
                           ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: GestureDetector(
-                              onTap: () =>
-                                  context.pushRoute(const MyFavouriteRoute()),
-                              child: const Icon(
-                                Icons.favorite,
-                                size: 30,
-                                color: PreluraColors.activeColor,
-                              ),
-                            ),
-                          ),
-                          10.horizontalSpacing,
-                        ],
+                        ),
                       ),
-                    ],
-                  ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.pushRoute(const MyFavouriteRoute()),
+                          child: const Icon(
+                            Icons.favorite,
+                            size: 30,
+                            color: PreluraColors.activeColor,
+                          ),
+                        ),
+                      ),
+                      10.horizontalSpacing,
+                    ]),
+                  ]),
                 ),
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
                       child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 15, left: 15, right: 15),
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                      left: 15,
+                      right: 15,
+                    ),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Searchwidget(
-                          padding: EdgeInsets.zero,
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          hintText: "Search items, Brands or Styles",
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: false,
-                          cancelButton: true,
-                          onChanged: (val) {
-                            searchQuery = val;
-                            setState(() {});
-                          },
-                        ),
-                        addVerticalSpacing(9),
-                        _buildTabs(
-                            ref, selectedTab, context, searchQuery, controller)
-                      ],
-                    ),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Searchwidget(
+                            padding: EdgeInsets.zero,
+                            obscureText: false,
+                            shouldReadOnly: false,
+                            hintText: "Search items, Brands or Styles",
+                            enabled: true,
+                            controller: ref.read(searchTextController),
+                            showInputBorder: true,
+                            autofocus: false,
+                            cancelButton: true,
+                            onFocused: (val) {
+                              showSearchInfoField = val;
+                              setState(() {});
+                            },
+                            onChanged: (val) {
+                              searchQuery = val;
+                              ref
+                                  .read(searchHistoryQueryProvider.notifier)
+                                  .state = val;
+                              setState(() {});
+                            },
+                          ),
+                          addVerticalSpacing(9),
+                          if (!showSearchInfoField)
+                            _buildTabs(
+                              ref,
+                              selectedTab,
+                              context,
+                              searchQuery,
+                              controller,
+                            )
+                        ]),
                   )),
                 ),
-                SliverToBoxAdapter(child: _buildTabContent(selectedTab)),
-                paginationIndicator
+                if (showSearchInfoField)
+                  SliverToBoxAdapter(
+                    child: SearchHelperBox(
+                      onItemSelected: () {
+                        showSearchInfoField = false;
+                        searchQuery = ref.read(searchTextController).text;
+                        setState(() {});
+                      },
+                    ),
+                  )
+                else
+                  SliverToBoxAdapter(child: _buildTabContent(selectedTab)),
+                if (!showSearchInfoField) paginationIndicator
               ],
             ),
           ),

@@ -330,6 +330,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                           child: Center(
                             child: RenderSvg(
                               svgPath: "assets/svgs/pin.svg",
+                              color: Colors.white,
                               svgHeight: 20,
                             ),
                           ),

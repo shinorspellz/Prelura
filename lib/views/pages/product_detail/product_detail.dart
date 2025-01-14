@@ -102,6 +102,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                           VBottomSheetItem(
                               onTap: (context) {
                                 Navigator.pop(context);
+                                _updatePinnedStatus(!isPinned, product);
                               },
                               title: isPinned
                                   ? "Remove from pinned"
@@ -734,6 +735,16 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
             )
         ],
       ),
+    );
+  }
+
+  _updatePinnedStatus(bool toPin, ProductModel product) async {
+    await ref.read(productProvider.notifier).updateProduct(
+          productId: int.parse(product.id),
+          isFeatured: toPin,
+        );
+    context.alert(
+      "product ${toPin ? "pinned" : "unpinned"} successfully",
     );
   }
 }
