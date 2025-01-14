@@ -348,4 +348,21 @@ class SellItemDraftProvider extends AsyncNotifier<List<SellItemState>> {
     ]);
     ref.invalidateSelf();
   }
+
+  void removeDraft(SellItemState e) {
+    final drafts = state.value?.where((i) => i != e).toList();
+    if (drafts != null) {
+      cacheBox.setStringList(
+          'drafts',
+          drafts
+                  .map(
+                    (e) => jsonEncode(
+                      e.toJson(),
+                    ),
+                  )
+                  .toList() ??
+              []);
+      ref.invalidateSelf();
+    }
+  }
 }

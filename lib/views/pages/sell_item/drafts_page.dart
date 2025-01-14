@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -80,12 +81,31 @@ class _DraftsPageState extends ConsumerState<DraftsPage> {
                       ),
                     ),
                     8.verticalSpacing,
-                    Text(
-                      '${e.images.length} Photos',
-                      style: context.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    Row(
+                        mainAxisSize: MainAxisSize.min,
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '${e.images.length} Photos',
+                            style: context.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          addHorizontalSpacing(30),
+                          GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(
+                                    sellItemDraftProvider.notifier,
+                                  )
+                                  .removeDraft(e);
+                            },
+                            child: SvgPicture.asset(
+                              "assets/icons/trashNew.svg",
+                              height: 20,
+                            ),
+                          ),
+                        ]),
                     Text(e.customBrand ?? e.brand?.name ?? 'Unspecified'),
                   ],
                 ))
