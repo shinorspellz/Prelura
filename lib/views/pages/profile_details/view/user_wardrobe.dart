@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ import 'package:prelura_app/views/pages/profile_details/widgets/user_scrollable_
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -28,8 +28,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
-import '../../../../res/images.dart';
-import '../../../../res/render_svg.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
@@ -420,9 +418,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     ),
                     if (productLength.toString().isNotEmpty) ...[
                       if (selectedItem.isNotEmpty) ...[
-                        Divider(
-                          thickness: 1,
-                        ),
+                        buildDivider(context),
                         MenuCard(
                             icon: isSelected
                                 ? Icon(Icons.arrow_back_ios_rounded,

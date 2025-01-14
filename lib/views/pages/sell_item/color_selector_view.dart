@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -140,7 +141,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
                 style: Theme.of(context).textTheme.bodyLarge),
           ),
           const SizedBox(height: 8),
-          const Divider(thickness: 1),
+          buildDivider(context),
           ...colorOptions.entries.map((entry) {
             final colorName = entry.key;
             final colorValue = entry.value;

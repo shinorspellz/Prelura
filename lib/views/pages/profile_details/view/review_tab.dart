@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/rating.dart';
 
 import '../../../../res/colors.dart';
 import '../../../../res/images.dart';
-import 'package:prelura_app/res/utils.dart';
 
 @RoutePage()
 class ReviewScreen extends StatelessWidget {
@@ -20,7 +19,8 @@ class ReviewScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: "Reviews",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
       ),
@@ -29,13 +29,17 @@ class ReviewScreen extends StatelessWidget {
         children: [
           // Header Section
           Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 24, right: 16, bottom: 10),
+            padding: const EdgeInsets.only(
+                left: 16.0, top: 24, right: 16, bottom: 10),
             child: Column(
               children: [
                 Text(
                   "5.0",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 48, fontWeight: FontWeight.bold),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(fontSize: 48, fontWeight: FontWeight.bold),
                 ),
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,11 +96,13 @@ class ReviewScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Text("How reviews work", textAlign: TextAlign.left, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getDefaultSize(), color: PreluraColors.activeColor)),
+            child: Text("How reviews work",
+                textAlign: TextAlign.left,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(),
+                    color: PreluraColors.activeColor)),
           ),
-          const Divider(
-            thickness: 1,
-          ),
+          buildDivider(context),
 
           // Filter Buttons
           Padding(
@@ -138,9 +144,13 @@ class ReviewScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-            color: isSelected ? PreluraColors.activeColor.withOpacity(0.4) : Theme.of(context).scaffoldBackgroundColor,
+            color: isSelected
+                ? PreluraColors.activeColor.withOpacity(0.4)
+                : Theme.of(context).scaffoldBackgroundColor,
             border: Border.all(
-              color: isSelected ? PreluraColors.activeColor.withOpacity(0.4) : PreluraColors.greyColor,
+              color: isSelected
+                  ? PreluraColors.activeColor.withOpacity(0.4)
+                  : PreluraColors.greyColor,
             ),
             borderRadius: BorderRadius.circular(8)),
         child: Text(text, style: Theme.of(context).textTheme.bodySmall),
@@ -151,7 +161,11 @@ class ReviewScreen extends StatelessWidget {
   Widget reviewCard(context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-      decoration: BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor, border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1))),
+      decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          border: Border(
+              bottom:
+                  BorderSide(color: Theme.of(context).dividerColor, width: 1))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -174,8 +188,11 @@ class ReviewScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("stacey309", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                        Text("3 hours ago", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                        Text("stacey309",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16)),
+                        Text("3 hours ago",
+                            style: TextStyle(color: Colors.grey, fontSize: 12)),
                       ],
                     ),
                     SizedBox(height: 4),

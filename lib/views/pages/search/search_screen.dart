@@ -11,6 +11,7 @@ import 'package:prelura_app/views/pages/search_result/provider/search_provider.d
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
@@ -38,9 +39,7 @@ class SearchScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Divider(
-                  thickness: 1,
-                ),
+                buildDivider(context),
                 addVerticalSpacing(40),
                 if (state == false) ...[
                   addVerticalSpacing(18),

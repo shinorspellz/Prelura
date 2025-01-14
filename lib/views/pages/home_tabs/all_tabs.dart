@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/views/pages/chat/widgets/seller_card.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/seller_profile_card.dart';
 
+import '../../../controller/product/product_provider.dart';
+import '../../../controller/refresh_provider.dart';
 import '../../../controller/user/user_controller.dart';
 import '../../../res/colors.dart';
 import '../../../res/utils.dart';
 import '../../../shared/mock_data.dart';
-import '../../../controller/product/product_provider.dart';
-import '../../../controller/refresh_provider.dart';
 import '../../shimmers/custom_shimmer.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
@@ -83,7 +83,7 @@ class HomeAllTab extends ConsumerWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(thickness: 1, color: PreluraColors.primaryColor),
+                  buildDivider(context),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15.0, vertical: 8),
@@ -128,7 +128,7 @@ class HomeAllTab extends ConsumerWidget {
                       itemCount: totalUsers.length,
                     ),
                   ),
-                  Divider(thickness: 1, color: PreluraColors.primaryColor),
+                  buildDivider(context),
                 ],
               );
             },
@@ -172,8 +172,7 @@ class HomeAllTab extends ConsumerWidget {
                               itemCount: products.length,
                             ),
                           ),
-                          Divider(
-                              thickness: 1, color: PreluraColors.primaryColor),
+                          buildDivider(context),
                           16.verticalSpacing,
                         ],
                       );
@@ -341,7 +340,7 @@ class HomeAllTab extends ConsumerWidget {
                 ),
                 orElse: () => Container(),
               ),
-          Divider(thickness: 1, color: PreluraColors.primaryColor),
+          buildDivider(context),
           _buildSectionTitle(
             'Shop Bargains',
             "Steals under £15",
@@ -380,7 +379,7 @@ class HomeAllTab extends ConsumerWidget {
                   ),
                 ),
           ),
-          Divider(thickness: 1, color: PreluraColors.primaryColor),
+          buildDivider(context),
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 15),
             child: ref.watch(allProductProvider(null)).when(

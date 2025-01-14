@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/main.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:sizer/sizer.dart';
+import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton(
@@ -127,4 +125,12 @@ class AppButton extends StatelessWidget {
       ),
     );
   }
+}
+
+Divider buildDivider(BuildContext context) {
+  return Divider(
+    thickness: 1,
+    color: Theme.of(context).dividerColor,
+    // height: 0,
+  );
 }
