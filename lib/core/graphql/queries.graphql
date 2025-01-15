@@ -311,6 +311,13 @@ query Categoriess($parentId: Int) {
   }
 }
 
+query Sizes($path: String!) {
+  sizes (path: $path){
+    id
+    name
+  }
+}
+
 query likedProducts($pageCount: Int, $pageNumber: Int) {
   likedProducts(pageCount: $pageCount, pageNumber: $pageNumber) {
     product {

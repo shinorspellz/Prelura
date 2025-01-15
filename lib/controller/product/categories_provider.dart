@@ -8,6 +8,7 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/categories/new_categories.dart';
+import 'package:prelura_app/model/product/categories/size_model.dart';
 import 'package:prelura_app/repo/product/category_repo.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
@@ -49,6 +50,8 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
     // Update the state using copyWith
     state = state.copyWith(
       isLoading: data['isLoading'] ?? state.isLoading,
+      selectedSize: data['selectedSize'] ?? state.selectedSize,
+      categorySize: data['categorySize'] ?? state.categorySize,
       selectedCategory: data['selectedCategory'] ?? state.selectedCategory,
       categoriesLog: data.containsKey("categoriesLog")
           ? updatedCategoriesLog
@@ -115,6 +118,33 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
       updateState({"isLoading": false});
     }
   }
+
+  void fetchSizes() async {
+    try {
+      final List<Query$Sizes$sizes?>? sizes = await categoriesRepo
+          .fetchSizes(state.selectedCategory?.fullPath ?? "");
+
+      if (sizes == null || sizes.isEmpty) {
+        return;
+      }
+
+      final List<Size> sizeList = sizes
+          .map(
+            (
+              size,
+            ) =>
+                Size.fromJson(size!.toJson()),
+          )
+          .toList();
+      await updateState({"categorySize": sizeList});
+      // _cacheData();
+    } on OfferException catch (e) {
+      log('Offer exception: $e');
+      // context.alert(e.message);
+    } catch (e) {
+      log('Error fetching categories: $e');
+    }
+  }
 }
 
 final categoryNotifierProvider =
@@ -126,11 +156,15 @@ final categoryNotifierProvider =
 
 class CategoriesState {
   final bool isLoading;
+  final List<Size>? categorySize;
+  final Size? selectedSize;
   final Map<String, List<Categoriess>> categoriesLog;
   final Categoriess? selectedCategory;
 
   CategoriesState({
     this.isLoading = false,
+    this.categorySize,
+    this.selectedSize,
     this.categoriesLog = const {},
     this.selectedCategory,
   });
@@ -140,9 +174,13 @@ class CategoriesState {
     bool? isLoading,
     Map<String, List<Categoriess>>? categoriesLog,
     Categoriess? selectedCategory,
+    List<Size>? categorySize,
+    Size? selectedSize,
   }) =>
       CategoriesState(
         isLoading: isLoading ?? this.isLoading,
+        selectedSize: selectedSize ?? this.selectedSize,
+        categorySize: categorySize ?? this.categorySize,
         categoriesLog: categoriesLog ?? this.categoriesLog,
         selectedCategory: selectedCategory ?? this.selectedCategory,
       );

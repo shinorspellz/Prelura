@@ -91,6 +91,11 @@ class _SubCategoryScreenState extends ConsumerState<NewSubCategoryScreen> {
                 )
                     .updateState({"selectedCategory": category});
                 ref
+                    .read(
+                      categoryNotifierProvider.notifier,
+                    )
+                    .fetchSizes();
+                ref
                     .read(sellItemProvider.notifier)
                     .updateSubCategory(CategoryModel(
                       id: category.id,

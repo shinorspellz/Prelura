@@ -38,4 +38,33 @@ class CategoriesRepo {
 
     return response.parsedData?.categoriess;
   }
+
+  Future<List<Query$Sizes$sizes?>?> fetchSizes(
+    String path,
+  ) async {
+    final response = await _client.query$Sizes(Options$Query$Sizes(
+      variables: Variables$Query$Sizes(
+        path: path,
+      ),
+    ));
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw OfferException(error);
+      }
+      log(response.exception.toString(), name: 'OfferRepo');
+      throw OfferException('An error occurred');
+    }
+
+    if (response.parsedData == null) {
+      log('Missing response', name: 'OfferRepo');
+      throw OfferException('An error occurred');
+    }
+
+    log("::::::The sizes response :: path::$path");
+    log("::::::The sizes response :: ${jsonEncode(response.parsedData)}");
+
+    return response.parsedData?.sizes;
+  }
 }

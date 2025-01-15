@@ -14310,6 +14310,583 @@ class _CopyWithStubImpl$Query$Categoriess$categoriess$parent<TRes>
       _res;
 }
 
+class Variables$Query$Sizes {
+  factory Variables$Query$Sizes({required String path}) =>
+      Variables$Query$Sizes._({
+        r'path': path,
+      });
+
+  Variables$Query$Sizes._(this._$data);
+
+  factory Variables$Query$Sizes.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$path = data['path'];
+    result$data['path'] = (l$path as String);
+    return Variables$Query$Sizes._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get path => (_$data['path'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$path = path;
+    result$data['path'] = l$path;
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Sizes<Variables$Query$Sizes> get copyWith =>
+      CopyWith$Variables$Query$Sizes(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Sizes || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$path = path;
+    final lOther$path = other.path;
+    if (l$path != lOther$path) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$path = path;
+    return Object.hashAll([l$path]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Sizes<TRes> {
+  factory CopyWith$Variables$Query$Sizes(
+    Variables$Query$Sizes instance,
+    TRes Function(Variables$Query$Sizes) then,
+  ) = _CopyWithImpl$Variables$Query$Sizes;
+
+  factory CopyWith$Variables$Query$Sizes.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Sizes;
+
+  TRes call({String? path});
+}
+
+class _CopyWithImpl$Variables$Query$Sizes<TRes>
+    implements CopyWith$Variables$Query$Sizes<TRes> {
+  _CopyWithImpl$Variables$Query$Sizes(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Sizes _instance;
+
+  final TRes Function(Variables$Query$Sizes) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? path = _undefined}) => _then(Variables$Query$Sizes._({
+        ..._instance._$data,
+        if (path != _undefined && path != null) 'path': (path as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Sizes<TRes>
+    implements CopyWith$Variables$Query$Sizes<TRes> {
+  _CopyWithStubImpl$Variables$Query$Sizes(this._res);
+
+  TRes _res;
+
+  call({String? path}) => _res;
+}
+
+class Query$Sizes {
+  Query$Sizes({
+    this.sizes,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Sizes.fromJson(Map<String, dynamic> json) {
+    final l$sizes = json['sizes'];
+    final l$$__typename = json['__typename'];
+    return Query$Sizes(
+      sizes: (l$sizes as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Sizes$sizes.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Sizes$sizes?>? sizes;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$sizes = sizes;
+    _resultData['sizes'] = l$sizes?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$sizes = sizes;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$sizes == null ? null : Object.hashAll(l$sizes.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Sizes || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$sizes = sizes;
+    final lOther$sizes = other.sizes;
+    if (l$sizes != null && lOther$sizes != null) {
+      if (l$sizes.length != lOther$sizes.length) {
+        return false;
+      }
+      for (int i = 0; i < l$sizes.length; i++) {
+        final l$sizes$entry = l$sizes[i];
+        final lOther$sizes$entry = lOther$sizes[i];
+        if (l$sizes$entry != lOther$sizes$entry) {
+          return false;
+        }
+      }
+    } else if (l$sizes != lOther$sizes) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Sizes on Query$Sizes {
+  CopyWith$Query$Sizes<Query$Sizes> get copyWith => CopyWith$Query$Sizes(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Sizes<TRes> {
+  factory CopyWith$Query$Sizes(
+    Query$Sizes instance,
+    TRes Function(Query$Sizes) then,
+  ) = _CopyWithImpl$Query$Sizes;
+
+  factory CopyWith$Query$Sizes.stub(TRes res) = _CopyWithStubImpl$Query$Sizes;
+
+  TRes call({
+    List<Query$Sizes$sizes?>? sizes,
+    String? $__typename,
+  });
+  TRes sizes(
+      Iterable<Query$Sizes$sizes?>? Function(
+              Iterable<CopyWith$Query$Sizes$sizes<Query$Sizes$sizes>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Sizes<TRes> implements CopyWith$Query$Sizes<TRes> {
+  _CopyWithImpl$Query$Sizes(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Sizes _instance;
+
+  final TRes Function(Query$Sizes) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? sizes = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Sizes(
+        sizes: sizes == _undefined
+            ? _instance.sizes
+            : (sizes as List<Query$Sizes$sizes?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes sizes(
+          Iterable<Query$Sizes$sizes?>? Function(
+                  Iterable<CopyWith$Query$Sizes$sizes<Query$Sizes$sizes>?>?)
+              _fn) =>
+      call(
+          sizes: _fn(_instance.sizes?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Sizes$sizes(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Sizes<TRes>
+    implements CopyWith$Query$Sizes<TRes> {
+  _CopyWithStubImpl$Query$Sizes(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Sizes$sizes?>? sizes,
+    String? $__typename,
+  }) =>
+      _res;
+
+  sizes(_fn) => _res;
+}
+
+const documentNodeQuerySizes = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Sizes'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'path')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'sizes'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'path'),
+            value: VariableNode(name: NameNode(value: 'path')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Sizes _parserFn$Query$Sizes(Map<String, dynamic> data) =>
+    Query$Sizes.fromJson(data);
+typedef OnQueryComplete$Query$Sizes = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Sizes?,
+);
+
+class Options$Query$Sizes extends graphql.QueryOptions<Query$Sizes> {
+  Options$Query$Sizes({
+    String? operationName,
+    required Variables$Query$Sizes variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Sizes? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Sizes? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Sizes(data),
+                  ),
+          onError: onError,
+          document: documentNodeQuerySizes,
+          parserFn: _parserFn$Query$Sizes,
+        );
+
+  final OnQueryComplete$Query$Sizes? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Sizes extends graphql.WatchQueryOptions<Query$Sizes> {
+  WatchOptions$Query$Sizes({
+    String? operationName,
+    required Variables$Query$Sizes variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Sizes? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQuerySizes,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Sizes,
+        );
+}
+
+class FetchMoreOptions$Query$Sizes extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Sizes({
+    required graphql.UpdateQuery updateQuery,
+    required Variables$Query$Sizes variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables.toJson(),
+          document: documentNodeQuerySizes,
+        );
+}
+
+extension ClientExtension$Query$Sizes on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Sizes>> query$Sizes(
+          Options$Query$Sizes options) async =>
+      await this.query(options);
+  graphql.ObservableQuery<Query$Sizes> watchQuery$Sizes(
+          WatchOptions$Query$Sizes options) =>
+      this.watchQuery(options);
+  void writeQuery$Sizes({
+    required Query$Sizes data,
+    required Variables$Query$Sizes variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQuerySizes),
+          variables: variables.toJson(),
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Sizes? readQuery$Sizes({
+    required Variables$Query$Sizes variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQuerySizes),
+        variables: variables.toJson(),
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Sizes.fromJson(result);
+  }
+}
+
+class Query$Sizes$sizes {
+  Query$Sizes$sizes({
+    this.id,
+    this.name,
+    this.$__typename = 'SizeType',
+  });
+
+  factory Query$Sizes$sizes.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Sizes$sizes(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Sizes$sizes || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Sizes$sizes on Query$Sizes$sizes {
+  CopyWith$Query$Sizes$sizes<Query$Sizes$sizes> get copyWith =>
+      CopyWith$Query$Sizes$sizes(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Sizes$sizes<TRes> {
+  factory CopyWith$Query$Sizes$sizes(
+    Query$Sizes$sizes instance,
+    TRes Function(Query$Sizes$sizes) then,
+  ) = _CopyWithImpl$Query$Sizes$sizes;
+
+  factory CopyWith$Query$Sizes$sizes.stub(TRes res) =
+      _CopyWithStubImpl$Query$Sizes$sizes;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Sizes$sizes<TRes>
+    implements CopyWith$Query$Sizes$sizes<TRes> {
+  _CopyWithImpl$Query$Sizes$sizes(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Sizes$sizes _instance;
+
+  final TRes Function(Query$Sizes$sizes) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Sizes$sizes(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Sizes$sizes<TRes>
+    implements CopyWith$Query$Sizes$sizes<TRes> {
+  _CopyWithStubImpl$Query$Sizes$sizes(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$likedProducts {
   factory Variables$Query$likedProducts({
     int? pageCount,

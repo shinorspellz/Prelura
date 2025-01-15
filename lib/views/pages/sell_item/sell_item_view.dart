@@ -495,11 +495,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       },
                     ),
 
-                    if (state.subCategory?.name != 'Accessories')
+                    if (state.subCategory?.name != 'Accessories' &&
+                        (ref
+                                .watch(categoryNotifierProvider)
+                                .categorySize
+                                ?.isNotEmpty ??
+                            false))
                       MenuCard(
                         title: 'Size',
                         rightArrow: false,
-                        subtitle: state.size?.name.replaceAll('_', ' '),
+                        subtitle: state.size?.replaceAll('_', ' '),
                         subtitleColor: PreluraColors.greyColor,
                         onTap: () {
                           dismissKeyboard();
@@ -629,11 +634,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 'Both title and description of product are requuired');
                             return;
                           }
-                          if (state.category == null) {
-                            context
-                                .alert('Select an item category to proceed.');
-                            return;
-                          }
+                          // if (state.category == null) {
+                          //   context
+                          //       .alert('Select an item category to proceed.');
+                          //   return;
+                          // }
                           if (state.subCategory == null) {
                             context.alert(
                                 'Select an item sub category to proceed.');
@@ -645,10 +650,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 'A `brand` or `Custom brand` is required for product.');
                             return;
                           }
-                          if (state.size == null && widget.product == null) {
-                            context.alert('Select an size to proceed.');
-                            return;
-                          }
+                          // if (state.size == null && widget.product == null) {
+                          //   context.alert('Select an size to proceed.');
+                          //   return;
+                          // }
                           if (state.selectedCondition == null) {
                             context.alert('Condition is required for product.');
                             return;
@@ -689,7 +694,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   price: double.parse(state.price!),
                                   condition: state.selectedCondition!,
                                   parcelSize: state.parcel,
-                                  size: state.size!,
+                                  size: state.size,
                                   category:
                                       int.parse(state.category!.id.toString()),
                                   subCategory: int.parse(
@@ -728,9 +733,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 condition: state.selectedCondition!,
                                 parcelSize: state.parcel,
                                 images: files,
-                                size: state.size!,
+                                size: state.size != null
+                                    ? ref
+                                        .read(categoryNotifierProvider)
+                                        .selectedSize!
+                                        .id
+                                        .toString()
+                                    : null,
                                 category:
-                                    int.parse(state.category!.id.toString()),
+                                    int.parse(state.subCategory!.id.toString()),
                                 subCategory:
                                     int.parse(state.subCategory!.id.toString()),
                                 brandId: state.brand?.id,
