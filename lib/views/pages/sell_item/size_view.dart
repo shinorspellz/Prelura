@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:sizer/sizer.dart';
@@ -19,6 +19,7 @@ class SizeSelectionPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedSize = ref.watch(selectedSizeProvider);
+    final categoryState = ref.watch(categoryNotifierProvider);
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -66,35 +67,50 @@ class SizeSelectionPage extends ConsumerWidget {
           ),
           const SizedBox(height: 6),
           buildDivider(context),
+          // if (categoryState.categorySize?.isNotEmpty ?? false)
           Expanded(
             child: ListView.builder(
-              itemCount: Enum$SizeEnum.values.length,
+              itemCount: categoryState.categorySize!.length,
               itemBuilder: (_, index) {
-                final value = Enum$SizeEnum.values[index];
-                if (value == Enum$SizeEnum.$unknown) return Container();
+                final value = categoryState.categorySize![index];
+                // if (value == Enum$SizeEnum.$unknown) return Container();
                 return PreluraCheckBox(
-                    title: value.name.replaceAll('_', ' '),
-
-                    // CustomRadioButton(
-                    //   isSelected: ref.watch(sellItemProvider).size?.contains(data[index]) ?? false,
-                    //   onChanged: () {
-                    //     if (ref.read(sellItemProvider).size?.contains(data[index]) ?? false) {
-                    //       ref.read(sellItemProvider.notifier).removeSize(data[index]);
-                    //     } else {
-                    //       ref.read(sellItemProvider.notifier).selectSize(data[index]);
-                    //     }
-
-                    //     log('${ref.read(sellItemProvider).size}');
-                    //   },
-                    // )
-                    isChecked: value == ref.watch(sellItemProvider).size,
+                    title: value.name!.replaceAll('_', ' '),
+                    isChecked: value.name == ref.watch(sellItemProvider).size,
                     onChanged: (size) => {
-                          ref.read(sellItemProvider.notifier).selectSize(value),
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .selectSize(value.name!),
                           context.router.popForced(),
+                          ref
+                              .read(categoryNotifierProvider.notifier)
+                              .updateState({"selectedSize": value}),
                         });
               },
             ),
-          ),
+          )
+          // else
+          //   Expanded(
+          //     child: ListView.builder(
+          //       itemCount: Enum$SizeEnum.values.length,
+          //       itemBuilder: (_, index) {
+          //         final value = Enum$SizeEnum.values[index];
+          //         // if (value == Enum$SizeEnum.$unknown) return Container();
+          //         return PreluraCheckBox(
+          //             title: value.name.replaceAll('_', ' '),
+          //             isChecked: value == ref.watch(sellItemProvider).size,
+          //             onChanged: (size) => {
+          //                   ref
+          //                       .read(sellItemProvider.notifier)
+          //                       .selectSize(value.name),
+          //               ref.read(categoryNotifierProvider.notifier).updateState({
+          //               "selectedSize": value
+          //             });
+          //                   context.router.popForced(),
+          //                 });
+          //       },
+          //     ),
+          //   ),
         ],
       ),
     );

@@ -1,10 +1,12 @@
 // ignore_for_file: type=lint
 import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:prelura_app/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
+
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -2619,7 +2621,7 @@ class Variables$Mutation$CreateProduct {
     required String description,
     required List<Input$ImagesInputType?> imageUrl,
     required double price,
-    Enum$SizeEnum? size,
+    String? size,
     required int subCategory,
     required String name,
     Enum$ParcelSizeEnum? parcelSize,
@@ -2736,7 +2738,7 @@ class Variables$Mutation$CreateProduct {
 
   double get price => (_$data['price'] as double);
 
-  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
+  String? get size => (_$data['size'] as String?);
 
   int get subCategory => (_$data['subCategory'] as int);
 
@@ -2779,7 +2781,7 @@ class Variables$Mutation$CreateProduct {
     if (_$data.containsKey('size')) {
       final l$size = size;
       result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
+          l$size == null ? null : size;
     }
     final l$subCategory = subCategory;
     result$data['subCategory'] = l$subCategory;
@@ -4309,7 +4311,7 @@ class Variables$Mutation$UpdateProduct {
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     required int productId,
-    Enum$SizeEnum? size,
+    String? size,
     int? subCategory,
     List<String?>? color,
     int? brand,
@@ -4378,8 +4380,7 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = (l$productId as int);
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] = l$size == null ? null : data['size'];
     }
     if (data.containsKey('subCategory')) {
       final l$subCategory = data['subCategory'];

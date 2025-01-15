@@ -26,7 +26,8 @@ class SellItemState with _$SellItemState {
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
-    Enum$SizeEnum? size,
+    String? size,
+    // Enum$SizeEnum? size,
     String? price,
     String? discount,
     ConditionsEnum? selectedCondition,
@@ -195,7 +196,8 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(subCategory: subCategory);
   }
 
-  void selectSize(Enum$SizeEnum size) {
+  void selectSize(String size) {
+    // void selectSize(Enum$SizeEnum size) {
     state = state.copyWith(size: size);
   }
 
@@ -234,9 +236,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,
-      size: product.size != null
-          ? Enum$SizeEnum.fromJson(product.size!.toJson())
-          : null,
+      size: product.size?.name,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,

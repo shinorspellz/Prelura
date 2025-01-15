@@ -47,9 +47,9 @@ class ProfileCardWidget extends ConsumerWidget {
                                 .valueOrNull
                                 ?.profilePictureUrl,
                         username: user != null
-                            ? user?.username ?? '--'
+                            ? user?.username ?? ''
                             : ref.watch(userProvider).valueOrNull?.username ??
-                                '--',
+                                '',
                         height: 250,
                         width: 250,
                       ),

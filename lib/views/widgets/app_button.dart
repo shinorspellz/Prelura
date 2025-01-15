@@ -61,10 +61,9 @@ class AppButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           border: Border.all(
-              width: bgColor != null ? 1 : 0,
-              color: bgColor == null
-                  ? borderColor ?? Colors.transparent
-                  : borderColor),
+            width: bgColor != null ? 1 : 0,
+            color: bgColor == null ? borderColor : borderColor,
+          ),
           borderRadius: BorderRadius.circular(8),
           color: isDisabled
               ? PreluraColors.activeColor.withOpacity(0.2)
