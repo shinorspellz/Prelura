@@ -12,6 +12,7 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
+import '../../widgets/empty_screen_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
@@ -145,14 +146,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                                       height:
                                           MediaQuery.of(context).size.height *
                                               0.7,
-                                      child: Center(
-                                        child: Text(
-                                          "No products found",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge,
-                                        ),
-                                      ),
+                                      child:EmptyScreenPlaceholder(
+                                  text: "No products found"),
                                     ),
                                   ))
                               : SliverPadding(

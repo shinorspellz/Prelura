@@ -10,6 +10,8 @@ import 'package:prelura_app/res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
+import '../../../widgets/empty_screen_placeholder.dart';
+import '../../../widgets/error_placeholder.dart';
 import '../../../widgets/gap.dart';
 import '../../sell_item/brand_view.dart';
 
@@ -122,17 +124,8 @@ class _ProductFilterPageState
                           return SliverToBoxAdapter(
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.7,
-                              child: Center(
-                                child: Text(
-                                  "No products found",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        fontSize: getDefaultSize(),
-                                      ),
-                                ),
-                              ),
+                              child: EmptyScreenPlaceholder(
+                                  text: "No products found"),
                             ),
                           );
                         }
@@ -153,23 +146,12 @@ class _ProductFilterPageState
                       },
                       error: (e, _) {
                         return SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(e.toString()),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(allProductProvider(null));
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
-                          ),
+                          child: ErrorPlaceholder(
+                          error: "Error fetching items",
+                          onTap: () {
+                            ref.refresh(allProductProvider(searchQuery));
+                          },
+                        ),
                         );
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),

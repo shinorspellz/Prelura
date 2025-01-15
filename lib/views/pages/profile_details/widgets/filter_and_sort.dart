@@ -192,7 +192,7 @@ class FilterAndSort extends ConsumerWidget {
                         ref.read(userProductSort.notifier).state =
                             Enum$SortEnum.PRICE_ASC;
                       },
-                      title: "Price Desending",
+                      title: "Price Descending",
                       textColor: sortValue == Enum$SortEnum.PRICE_ASC.name
                           ? selectedColor
                           : color,
@@ -206,7 +206,7 @@ class FilterAndSort extends ConsumerWidget {
             },
             child: Row(children: [
               Text(
-                "Sort",
+                "${getActiveSortName(ref.read(userProductSort.notifier).state)}",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: PreluraColors.grey,
                       fontWeight: FontWeight.w600,
@@ -222,5 +222,16 @@ class FilterAndSort extends ConsumerWidget {
             ]),
           )
         ])); // Hello world
+  }
+
+  String getActiveSortName(Enum$SortEnum sortValue) {
+    if (sortValue.name == Enum$SortEnum.NEWEST.name) {
+      return "Newest First";
+    }
+    if (sortValue.name == Enum$SortEnum.PRICE_DESC.name) {
+      return "Price Ascending";
+    }
+
+    return "Price Descending";
   }
 }

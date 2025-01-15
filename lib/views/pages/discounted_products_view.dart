@@ -9,6 +9,7 @@ import '../../res/colors.dart';
 import '../../controller/product/product_provider.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
+import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/gap.dart';
 
 @RoutePage()
@@ -107,22 +108,30 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                 ),
                 ref.watch(discountedProductsProvider).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                      data: (products) => SliverPadding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        sliver: SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.50,
+                      data: (products) {
+                        if (products.isEmpty) {
+                          return SliverFillRemaining(
+                            child: EmptyScreenPlaceholder(
+                                text: "No products found"),
+                          );
+                        }
+                        return SliverPadding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          sliver: SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.50,
+                            ),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(product: products[index]);
+                            },
                           ),
-                          itemCount: products.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(product: products[index]);
-                          },
-                        ),
-                      ),
+                        );
+                      },
                       error: (e, _) {
                         return SliverToBoxAdapter(
                           child: Center(
