@@ -638,86 +638,90 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       //     },
                       //   )
                       // ],
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 6),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.username != null
-                                    ? "Brands from this seller"
-                                    : "Top Brands",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: getDefaultSize(),
-                                        fontWeight: FontWeight.w600,
-                                        color: PreluraColors.grey),
-                              ),
-                              // RenderSvgWithColor2(
-                              //     svgPath: PreluraIcons.search_glass_svg),
-                              // ],
-                              if (!isActive)
-                                GestureDetector(
-                                    onTap: () {
-                                      isActive = true;
-                                      setState(() {});
-                                    },
-                                    child: Icon(Icons.search,
-                                        color: PreluraColors.primaryColor)),
-                              if (isActive)
-                                AnimatedContainer(
-                                  width: 54.5.w,
-                                  color: Colors.transparent,
-                                  alignment: Alignment.centerRight,
-                                  duration: const Duration(milliseconds: 150),
-                                  child: Searchwidget(
-                                    obscureText: false,
-                                    shouldReadOnly: false,
-                                    enabled: true,
-                                    showInputBorder: true,
-                                    autofocus: true,
-                                    cancelButton: true,
-                                    minWidth: 50.w,
-                                    hidePrefix: true,
-                                    onChanged: (value) {
-                                      ref
-                                          .read(userProductSearchQuery.notifier)
-                                          .state = value;
-                                    },
-                                    onCancel: () {
-                                      isActive = false;
-                                      setState(() {});
-                                      ref.invalidate(userProductSearchQuery);
-                                    },
-                                  ),
-                                )
-                            ]),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: UserPopularBrand(
-                            onCancel: () {
-                              isSelected = !isSelected;
-                              selectedItem = "";
-                              ref.read(userIdProvider.notifier).state = null;
-                              isBrandActive = false;
-                              expandedCategories = false;
-                              setState(() {});
-                            },
-                            onTap: () {
-                              ref.read(userIdProvider.notifier).state = user.id;
-                              Future.delayed(Duration(seconds: 1), () {
-                                isBrandActive = true;
+                      if (selectedItem.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 6),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  widget.username != null
+                                      ? "Brands from this seller"
+                                      : "Top Brands",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: getDefaultSize(),
+                                          fontWeight: FontWeight.w600,
+                                          color: PreluraColors.grey),
+                                ),
+                                // RenderSvgWithColor2(
+                                //     svgPath: PreluraIcons.search_glass_svg),
+                                // ],
+                                if (!isActive)
+                                  GestureDetector(
+                                      onTap: () {
+                                        isActive = true;
+                                        setState(() {});
+                                      },
+                                      child: Icon(Icons.search,
+                                          color: PreluraColors.primaryColor)),
+                                if (isActive)
+                                  AnimatedContainer(
+                                    width: 54.5.w,
+                                    color: Colors.transparent,
+                                    alignment: Alignment.centerRight,
+                                    duration: const Duration(milliseconds: 150),
+                                    child: Searchwidget(
+                                      obscureText: false,
+                                      shouldReadOnly: false,
+                                      enabled: true,
+                                      showInputBorder: true,
+                                      autofocus: true,
+                                      cancelButton: true,
+                                      minWidth: 50.w,
+                                      hidePrefix: true,
+                                      onChanged: (value) {
+                                        ref
+                                            .read(
+                                                userProductSearchQuery.notifier)
+                                            .state = value;
+                                      },
+                                      onCancel: () {
+                                        isActive = false;
+                                        setState(() {});
+                                        ref.invalidate(userProductSearchQuery);
+                                      },
+                                    ),
+                                  )
+                              ]),
+                        ),
+                      if (selectedItem.isEmpty)
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: UserPopularBrand(
+                              onCancel: () {
+                                isSelected = !isSelected;
+                                selectedItem = "";
+                                ref.read(userIdProvider.notifier).state = null;
+                                isBrandActive = false;
+                                expandedCategories = false;
                                 setState(() {});
-                              });
-                            },
-                            userId: user.id,
-                            username: user.username,
-                            isSelected: isBrandActive),
-                      ),
+                              },
+                              onTap: () {
+                                ref.read(userIdProvider.notifier).state =
+                                    user.id;
+                                Future.delayed(Duration(seconds: 1), () {
+                                  isBrandActive = true;
+                                  setState(() {});
+                                });
+                              },
+                              userId: user.id,
+                              username: user.username,
+                              isSelected: isBrandActive),
+                        ),
 
                       FilterAndSort(userId: user.id, username: user.username),
 
@@ -822,7 +826,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               "No Products",
                               style: context.theme.textTheme.bodyMedium
                                   ?.copyWith(
-                                    color: PreluraColors.grey,
+                                      color: PreluraColors.grey,
                                       fontSize: getDefaultSize(size: 16),
                                       fontWeight: FontWeight.w600),
                             )

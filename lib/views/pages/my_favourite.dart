@@ -13,6 +13,8 @@ import 'package:sizer/sizer.dart';
 import '../../controller/product/product_provider.dart';
 import '../shimmers/my_favorite_shimmer.dart';
 import '../widgets/SearchWidget.dart';
+import '../widgets/empty_screen_placeholder.dart';
+import '../widgets/error_placeholder.dart';
 import '../widgets/gap.dart';
 
 @RoutePage()
@@ -75,7 +77,8 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
               return products.isEmpty
                   ? SizedBox(
                       height: MediaQuery.of(context).size.height * 0.7,
-                      child: const Center(child: Text('No items')))
+                      child: EmptyScreenPlaceholder(text: "No items"),
+                    )
                   : CustomScrollView(slivers: [
                       SliverPersistentHeader(
                         pinned: true,
@@ -137,7 +140,12 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                     ]);
             },
             loading: () => MyFavoriteShimmer(),
-            error: (error, stack) => Center(child: Text('Error: $error')),
+            error: (error, stack) => ErrorPlaceholder(
+              error: "Error fetching items",
+              onTap: () {
+                ref.invalidate(userFavouriteProduct);
+              },
+            ),
           ),
         ));
   }

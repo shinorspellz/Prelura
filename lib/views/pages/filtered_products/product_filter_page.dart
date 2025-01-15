@@ -9,6 +9,8 @@ import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../widgets/error_placeholder.dart';
+
 @RoutePage()
 class ProductPriceFilterPage extends ConsumerStatefulWidget {
   const ProductPriceFilterPage({super.key, required this.title});
@@ -93,6 +95,14 @@ class _ProductPriceFilterPageState
                     ],
                   ),
                 ),
+                error: (error, _) => SliverFillRemaining(
+                    child: ErrorPlaceholder(
+                  error: "Error fetching items",
+                  onTap: () {
+                    ref.invalidate(filterProductByPriceProvider(15));
+                  },
+                )),
+                loading: () => SliverToBoxAdapter(child: GridShimmer()),
                 orElse: () => SliverToBoxAdapter(child: GridShimmer()),
               ),
         ),

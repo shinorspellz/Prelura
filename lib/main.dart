@@ -57,7 +57,7 @@ class MyApp extends ConsumerWidget {
           debugShowCheckedModeBanner: false,
           theme: PreluraTheme.lightMode,
           darkTheme: PreluraTheme.darkTheme.copyWith(textTheme: TextTheme()),
-          themeMode: themeMode == ThemeMode.dark ? themeMode : ThemeMode.system,
+          themeMode: themeMode,
           routerConfig: ref.watch(router).config(
                 //this line of code listens to the authstate provider
                 // and anytime the authstate changes the AutoRoute Guard is reevaluted

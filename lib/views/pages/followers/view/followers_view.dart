@@ -7,6 +7,7 @@ import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
+import '../../../widgets/empty_screen_placeholder.dart';
 import '../widget/follower_tile.dart';
 
 final followersqueryProvider = StateProvider<FollowerQuery>(
@@ -113,7 +114,8 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
           child: followers.when(
             data: (followersList) {
               if (followersList.isEmpty) {
-                return const Center(child: Text("No followers found."));
+                return const EmptyScreenPlaceholder(
+                    text: "No followers found.");
               }
               return Column(
                 children: [

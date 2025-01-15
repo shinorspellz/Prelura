@@ -157,49 +157,50 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
                   delegate: StaticSliverDelegate(
+                      isSearching: showSearchInfoField,
                       child: Container(
-                    padding: const EdgeInsets.only(
-                      top: 15,
-                      left: 15,
-                      right: 15,
-                    ),
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Searchwidget(
-                            padding: EdgeInsets.zero,
-                            obscureText: false,
-                            shouldReadOnly: false,
-                            hintText: "Search items, Brands or Styles",
-                            enabled: true,
-                            controller: ref.read(searchTextController),
-                            showInputBorder: true,
-                            autofocus: false,
-                            cancelButton: true,
-                            onFocused: (val) {
-                              showSearchInfoField = val;
-                              setState(() {});
-                            },
-                            onChanged: (val) {
-                              searchQuery = val;
-                              ref
-                                  .read(searchHistoryQueryProvider.notifier)
-                                  .state = val;
-                              setState(() {});
-                            },
-                          ),
-                          addVerticalSpacing(9),
-                          if (!showSearchInfoField)
-                            _buildTabs(
-                              ref,
-                              selectedTab,
-                              context,
-                              searchQuery,
-                              controller,
-                            )
-                        ]),
-                  )),
+                        padding: const EdgeInsets.only(
+                          top: 15,
+                          left: 15,
+                          right: 15,
+                        ),
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Searchwidget(
+                                padding: EdgeInsets.zero,
+                                obscureText: false,
+                                shouldReadOnly: false,
+                                hintText: "Search items, Brands or Styles",
+                                enabled: true,
+                                controller: ref.read(searchTextController),
+                                showInputBorder: true,
+                                autofocus: false,
+                                cancelButton: true,
+                                onFocused: (val) {
+                                  showSearchInfoField = val;
+                                  setState(() {});
+                                },
+                                onChanged: (val) {
+                                  searchQuery = val;
+                                  ref
+                                      .read(searchHistoryQueryProvider.notifier)
+                                      .state = val;
+                                  setState(() {});
+                                },
+                              ),
+                              addVerticalSpacing(9),
+                              if (!showSearchInfoField)
+                                _buildTabs(
+                                  ref,
+                                  selectedTab,
+                                  context,
+                                  searchQuery,
+                                  controller,
+                                )
+                            ]),
+                      )),
                 ),
                 if (showSearchInfoField)
                   SliverToBoxAdapter(
@@ -270,14 +271,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
 class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
+  final bool isSearching;
 
-  StaticSliverDelegate({required this.child});
-
-  @override
-  double get minExtent => 102.8;
+  StaticSliverDelegate({required this.child, this.isSearching = false});
 
   @override
-  double get maxExtent => 102.8;
+  double get minExtent => isSearching == true ? 68.8 : 102.8;
+
+  @override
+  double get maxExtent => isSearching ? 68.8 : 102.8;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {

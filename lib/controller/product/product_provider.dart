@@ -552,6 +552,7 @@ class _AllProductController
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+
 class ScreenState {
   final String id;
   final dynamic data;
@@ -579,7 +580,6 @@ class ScreenState {
     );
   }
 }
-
 
 final selectedFilteredProductProvider =
     StateProvider<Input$ProductFiltersInput>(

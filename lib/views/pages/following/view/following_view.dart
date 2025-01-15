@@ -8,6 +8,7 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/SearchWidget.dart';
+import '../../../widgets/empty_screen_placeholder.dart';
 import '../../followers/widget/follower_tile.dart';
 
 final followingqueryProvider = StateProvider<FollowerQuery>(
@@ -115,7 +116,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
           child: following.when(
             data: (followersList) {
               if (followersList.isEmpty) {
-                return const Center(child: Text("No Followers found."));
+                return EmptyScreenPlaceholder(text: "No followers found");
               }
               return Column(
                 children: [
@@ -146,7 +147,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
             },
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, stackTrace) {
-              return Center(child: Text("Error: ${error.toString()}"));
+              return Center(child: Text("Error loading this page"));
             },
           ),
         ),
