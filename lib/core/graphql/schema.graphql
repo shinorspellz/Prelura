@@ -132,6 +132,15 @@ type CategoryTypes {
   subCategory: [SubCategoryType]
 }
 
+type CategoryTypess {
+  id: ID!
+  name: String!
+  parent: CategoryTypess
+  children: [CategoryTypess!]!
+  hasChildren: Boolean
+  fullPath: String
+}
+
 type ChangeEmail {
   message: String
 }
@@ -1246,15 +1255,22 @@ type Query {
 
   """
   
-      Resolves the recommended sellers for a product.
-      This method queries the Product model to aggregate the performance of sellers
-      who have active and non-deleted products. It then returns the queryset of 
-      recommended sellers.
-      Args:
-          info: GraphQL resolve info.
-      Returns:
-          QuerySet: A queryset of recommended sellers.
-      
+      The seller recommendation system works by evaluating different metrics related
+      to the seller's performance over the last 30 days. Here's how it works:
+  
+      1.  Total Sales: It looks at how much the seller has sold in the last 30
+  days, focusing only on orders that were delivered.
+  
+      2.  Total Shop Value: It adds up the prices of all the seller's active products that are currently for sale.
+  
+      3.  Product Views: It counts how many times the seller’s products were viewed by customers in the last 30 days.
+  
+      4.  Active Listings: It counts how many products the seller currently has available for sale.
+  
+      5.  Seller Score: It combines all these metrics (sales, shop value, and views) into one score. 
+          The total sales are given the most weight (50%), the shop value is given a smaller weight (30%),
+          and product views are given the least weight (20%).
+  
   """
   recommendedSellers(pageCount: Int, pageNumber: Int): [RecommendedSellerType]
 
@@ -1301,6 +1317,8 @@ type Query {
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
   categories: [CategoryTypes]
+  categoriess(parentId: Int): [CategoryTypess]
+  sizes(path: String!): [SizeType]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   popularBrands(top: Int!): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
@@ -1448,6 +1466,11 @@ enum SizeEnum {
   EU44
   EU46
   ONE_SIZE
+}
+
+type SizeType {
+  id: Int
+  name: String
 }
 
 """Social Auth Mutation"""
@@ -1666,7 +1689,6 @@ type UserNode implements Node {
   fcmTokens: [String!]!
   preferredCurrency: AccountsUserPreferredCurrencyChoices!
   meta: JSONString!
-  preferredCurrency: AccountsUserPreferredCurrencyChoices!
   searchhistorySet: [SearchHistoryType!]!
   socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
   products: [ProductType!]!

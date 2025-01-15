@@ -33,9 +33,7 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
       brand: json['brand'] == null
           ? null
           : Brand.fromJson(json['brand'] as Map<String, dynamic>),
-      size: json['size'] == null
-          ? null
-          : Enum$SizeEnum.fromJson(json['size'] as String),
+      size: json['size'] as String?,
       price: json['price'] as String?,
       discount: json['discount'] as String?,
       selectedCondition: $enumDecodeNullable(

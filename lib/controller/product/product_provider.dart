@@ -247,7 +247,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     required String desc,
     required double price,
     required List<File> images,
-    required Enum$SizeEnum size,
+    String? size,
     ConditionsEnum? condition,
     required int category,
     required int subCategory,
@@ -294,7 +294,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     String? title,
     String? desc,
     double? price,
-    Enum$SizeEnum? size,
+    String? size,
     ConditionsEnum? condition,
     int? category,
     int? subCategory,
@@ -552,6 +552,7 @@ class _AllProductController
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
   }
 }
+
 class ScreenState {
   final String id;
   final dynamic data;
@@ -579,7 +580,6 @@ class ScreenState {
     );
   }
 }
-
 
 final selectedFilteredProductProvider =
     StateProvider<Input$ProductFiltersInput>(

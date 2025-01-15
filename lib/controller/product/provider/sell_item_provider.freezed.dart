@@ -31,7 +31,8 @@ mixin _$SellItemState {
   List<MaterialModel> get selectedMaterials =>
       throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
-  Enum$SizeEnum? get size => throw _privateConstructorUsedError;
+  String? get size =>
+      throw _privateConstructorUsedError; // Enum$SizeEnum? size,
   String? get price => throw _privateConstructorUsedError;
   String? get discount => throw _privateConstructorUsedError;
   ConditionsEnum? get selectedCondition => throw _privateConstructorUsedError;
@@ -65,7 +66,7 @@ abstract class $SellItemStateCopyWith<$Res> {
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      Enum$SizeEnum? size,
+      String? size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -150,7 +151,7 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as Enum$SizeEnum?,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -239,7 +240,7 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      Enum$SizeEnum? size,
+      String? size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -325,7 +326,7 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as Enum$SizeEnum?,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -423,7 +424,8 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   final Brand? brand;
   @override
-  final Enum$SizeEnum? size;
+  final String? size;
+// Enum$SizeEnum? size,
   @override
   final String? price;
   @override
@@ -523,7 +525,7 @@ abstract class _SellItemState implements SellItemState {
       final List<String> selectedColors,
       final List<MaterialModel> selectedMaterials,
       final Brand? brand,
-      final Enum$SizeEnum? size,
+      final String? size,
       final String? price,
       final String? discount,
       final ConditionsEnum? selectedCondition,
@@ -554,7 +556,7 @@ abstract class _SellItemState implements SellItemState {
   @override
   Brand? get brand;
   @override
-  Enum$SizeEnum? get size;
+  String? get size; // Enum$SizeEnum? size,
   @override
   String? get price;
   @override

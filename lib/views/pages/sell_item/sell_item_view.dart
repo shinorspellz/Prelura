@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -39,6 +40,13 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   @override
   void initState() {
     dismissKeyboard();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      ref
+          .read(
+            categoryNotifierProvider.notifier,
+          )
+          .loadDataFromCache();
+    });
     _descriptionfocusNode.unfocus();
     titlefocusNode.unfocus();
     _descriptionfocusNode.addListener(() {
@@ -470,7 +478,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       onTap: () {
                         dismissKeyboard();
 
-                        context.router.push(const CategoryRoute());
+                        context.router.push(
+                          const NewCategoryRoute(),
+                        );
                       },
                     ),
                     MenuCard(
@@ -485,11 +495,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       },
                     ),
 
-                    if (state.subCategory?.name != 'Accessories')
+                    if (state.subCategory?.name != 'Accessories' &&
+                        (ref
+                                .watch(categoryNotifierProvider)
+                                .categorySize
+                                ?.isNotEmpty ??
+                            false))
                       MenuCard(
                         title: 'Size',
                         rightArrow: false,
-                        subtitle: state.size?.name.replaceAll('_', ' '),
+                        subtitle: state.size?.replaceAll('_', ' '),
                         subtitleColor: PreluraColors.greyColor,
                         onTap: () {
                           dismissKeyboard();
@@ -619,11 +634,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 'Both title and description of product are requuired');
                             return;
                           }
-                          if (state.category == null) {
-                            context
-                                .alert('Select an item category to proceed.');
-                            return;
-                          }
+                          // if (state.category == null) {
+                          //   context
+                          //       .alert('Select an item category to proceed.');
+                          //   return;
+                          // }
                           if (state.subCategory == null) {
                             context.alert(
                                 'Select an item sub category to proceed.');
@@ -635,10 +650,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 'A `brand` or `Custom brand` is required for product.');
                             return;
                           }
-                          if (state.size == null && widget.product == null) {
-                            context.alert('Select an size to proceed.');
-                            return;
-                          }
+                          // if (state.size == null && widget.product == null) {
+                          //   context.alert('Select an size to proceed.');
+                          //   return;
+                          // }
                           if (state.selectedCondition == null) {
                             context.alert('Condition is required for product.');
                             return;
@@ -679,7 +694,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   price: double.parse(state.price!),
                                   condition: state.selectedCondition!,
                                   parcelSize: state.parcel,
-                                  size: state.size!,
+                                  size: state.size,
                                   category:
                                       int.parse(state.category!.id.toString()),
                                   subCategory: int.parse(
@@ -718,9 +733,15 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 condition: state.selectedCondition!,
                                 parcelSize: state.parcel,
                                 images: files,
-                                size: state.size!,
+                                size: state.size != null
+                                    ? ref
+                                        .read(categoryNotifierProvider)
+                                        .selectedSize!
+                                        .id
+                                        .toString()
+                                    : null,
                                 category:
-                                    int.parse(state.category!.id.toString()),
+                                    int.parse(state.subCategory!.id.toString()),
                                 subCategory:
                                     int.parse(state.subCategory!.id.toString()),
                                 brandId: state.brand?.id,
