@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/render_svg.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../res/images.dart';
 
@@ -53,7 +53,7 @@ class MenuCard extends StatelessWidget {
               color: borderbottom
                   ? Theme.of(context).dividerColor
                   : Colors.transparent, // Use the theme's divider color
-              width: 1.0,
+              width: 1,
             ),
           ),
         ),

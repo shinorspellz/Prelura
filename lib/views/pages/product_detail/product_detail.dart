@@ -87,13 +87,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 String? appUsername =
                     ref.read(userProvider).valueOrNull?.username;
                 bool isCurrentUser = product.seller.username == appUsername;
-                var userProducts = ref
-                    .watch(userProduct(appUsername))
-                    .valueOrNull
-                    ?.where((e) => e.isFeatured ?? false)
-                    .toList();
+                var userProducts =
+                    ref.watch(userProduct(appUsername)).valueOrNull;
                 bool isPinned = product.isFeatured ?? false;
-
+                log(":::The product length is :::: ${userProducts?.length}");
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,
@@ -102,6 +99,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                           VBottomSheetItem(
                               onTap: (context) {
                                 Navigator.pop(context);
+                                _updatePinnedStatus(!isPinned, product);
                               },
                               title: isPinned
                                   ? "Remove from pinned"
@@ -734,6 +732,16 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
             )
         ],
       ),
+    );
+  }
+
+  _updatePinnedStatus(bool toPin, ProductModel product) async {
+    await ref.read(productProvider.notifier).updateProduct(
+          productId: int.parse(product.id),
+          isFeatured: toPin,
+        );
+    context.alert(
+      "product ${toPin ? "pinned" : "unpinned"} successfully",
     );
   }
 }

@@ -15,13 +15,13 @@ import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../../controller/user/user_controller.dart';
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/confirmation_dialog.dart';
-import '../../widgets/places_autocomplete_field.dart';
 
 // StateNotifier for managing obscureText state
 class ObscureTextNotifier extends StateNotifier<bool> {
@@ -359,7 +359,6 @@ Widget buildAuthTextField(
   bool enabled = true,
   isDescription = false,
   bool showBorder = true,
-  
   int? minLines,
   int? maxLength,
   int? maxLines,
@@ -489,30 +488,25 @@ class LocationListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          onTap: press,
-          horizontalTitleGap: 0,
-          leading: SvgPicture.asset(
-            "assets/icons/location_pin.svg",
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).primaryColor,
-              BlendMode.srcIn,
-            ),
-          ),
-          title: Text(
-            location,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+    return Column(children: [
+      ListTile(
+        onTap: press,
+        horizontalTitleGap: 0,
+        leading: SvgPicture.asset(
+          "assets/icons/location_pin.svg",
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).primaryColor,
+            BlendMode.srcIn,
           ),
         ),
-        const Divider(
-          height: 1,
-          thickness: 1,
+        title: Text(
+          location,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         ),
-      ],
-    );
+      ),
+      buildDivider(context),
+    ]);
   }
 }
 

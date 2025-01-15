@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -11,12 +10,15 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/user_product_grouping/user_product_grouping.dart';
+import 'package:prelura_app/res/images.dart';
+import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/filter_and_sort.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -28,8 +30,6 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
-import '../../../../res/images.dart';
-import '../../../../res/render_svg.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
@@ -420,9 +420,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     ),
                     if (productLength! > 0) ...[
                       if (selectedItem.isNotEmpty) ...[
-                        Divider(
-                          thickness: 1,
-                        ),
+                        buildDivider(context),
                         MenuCard(
                             icon: isSelected
                                 ? Icon(Icons.arrow_back_ios_rounded,

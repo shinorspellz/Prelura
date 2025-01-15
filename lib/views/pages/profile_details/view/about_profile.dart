@@ -6,20 +6,19 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/res/colors.dart';
+import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/bottom_sheet.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
 
 import '../../../../core/router/router.gr.dart';
-import '../../../../res/images.dart';
-import 'package:prelura_app/res/utils.dart';
 
 class AboutProfile extends ConsumerWidget {
   const AboutProfile({super.key, this.username});
@@ -27,7 +26,9 @@ class AboutProfile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch((username != null ? otherUserProfile(username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((username != null ? otherUserProfile(username!) : userProvider))
+        .valueOrNull;
     print("user is ${user?.location?.locationName}");
 
     bool isCurrentUser = username == null;
@@ -50,9 +51,10 @@ class AboutProfile extends ConsumerWidget {
                       scale: 2,
                       child: Text(
                         user?.username.split('').first.toUpperCase() ?? '-',
-                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displayLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ),
                   )
@@ -84,32 +86,71 @@ class AboutProfile extends ConsumerWidget {
                                     VBottomSheetItem(
                                         onTap: (context) {
                                           Navigator.pop(context);
-                                          VBottomSheetComponent.actionBottomSheet(
+                                          VBottomSheetComponent
+                                              .actionBottomSheet(
                                             context: context,
                                             actions: [
                                               VBottomSheetItem(
                                                   onTap: (context) async {
                                                     Navigator.pop(context);
-                                                    final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                                    final photo =
+                                                        await ImagePicker()
+                                                            .pickImage(
+                                                                source:
+                                                                    ImageSource
+                                                                        .gallery);
 
                                                     if (photo == null) return;
-                                                    await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                    ref.read(userNotfierProvider).whenOrNull(
-                                                          error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                          data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                    await ref
+                                                        .read(
+                                                            userNotfierProvider
+                                                                .notifier)
+                                                        .updateProfilePicture(
+                                                            File(photo.path));
+                                                    ref
+                                                        .read(
+                                                            userNotfierProvider)
+                                                        .whenOrNull(
+                                                          error: (e, _) =>
+                                                              context.alert(
+                                                                  'An error occured while uploading profile image'),
+                                                          data: (_) =>
+                                                              HelperFunction
+                                                                  .showToast(
+                                                                      message:
+                                                                          'Profile photo updated!'),
                                                         );
                                                   },
                                                   title: 'Gallery'),
                                               VBottomSheetItem(
                                                   onTap: (context) async {
                                                     Navigator.pop(context);
-                                                    final photo = await ImagePicker().pickImage(source: ImageSource.camera);
+                                                    final photo =
+                                                        await ImagePicker()
+                                                            .pickImage(
+                                                                source:
+                                                                    ImageSource
+                                                                        .camera);
 
                                                     if (photo == null) return;
-                                                    await ref.read(userNotfierProvider.notifier).updateProfilePicture(File(photo.path));
-                                                    ref.read(userNotfierProvider).whenOrNull(
-                                                          error: (e, _) => context.alert('An error occured while uploading profile image'),
-                                                          data: (_) => HelperFunction.showToast(message: 'Profile photo updated!'),
+                                                    await ref
+                                                        .read(
+                                                            userNotfierProvider
+                                                                .notifier)
+                                                        .updateProfilePicture(
+                                                            File(photo.path));
+                                                    ref
+                                                        .read(
+                                                            userNotfierProvider)
+                                                        .whenOrNull(
+                                                          error: (e, _) =>
+                                                              context.alert(
+                                                                  'An error occured while uploading profile image'),
+                                                          data: (_) =>
+                                                              HelperFunction
+                                                                  .showToast(
+                                                                      message:
+                                                                          'Profile photo updated!'),
                                                         );
                                                   },
                                                   title: 'Camera'),
@@ -123,32 +164,75 @@ class AboutProfile extends ConsumerWidget {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
-                                              final controller = TextEditingController(text: user?.bio);
+                                              final controller =
+                                                  TextEditingController(
+                                                      text: user?.bio);
                                               return AlertDialog(
                                                 title: const Text('Update Bio'),
                                                 content: Column(
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     PreluraAuthTextField(
                                                       label: 'Bio',
-                                                      labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getDefaultSize(), fontWeight: FontWeight.w400),
-                                                      hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getDefaultSize(), fontWeight: FontWeight.w400),
+                                                      labelStyle: Theme.of(
+                                                              context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.copyWith(
+                                                              fontSize:
+                                                                  getDefaultSize(),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                      hintStyle: Theme.of(
+                                                              context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.copyWith(
+                                                              fontSize:
+                                                                  getDefaultSize(),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
                                                       controller: controller,
                                                       maxLines: null,
                                                     ),
                                                     10.verticalSpacing,
-                                                    Consumer(builder: (context, ref, _) {
+                                                    Consumer(builder:
+                                                        (context, ref, _) {
                                                       return PreluraButtonWithLoader(
-                                                        showLoadingIndicator: ref.watch(userNotfierProvider).isLoading,
+                                                        showLoadingIndicator: ref
+                                                            .watch(
+                                                                userNotfierProvider)
+                                                            .isLoading,
                                                         onPressed: () async {
-                                                          await ref.read(userNotfierProvider.notifier).updateProfile(bio: controller.text);
-                                                          ref.read(userNotfierProvider).whenOrNull(
-                                                                error: (e, _) => context.alert('An error occured while updating'),
+                                                          await ref
+                                                              .read(
+                                                                  userNotfierProvider
+                                                                      .notifier)
+                                                              .updateProfile(
+                                                                  bio: controller
+                                                                      .text);
+                                                          ref
+                                                              .read(
+                                                                  userNotfierProvider)
+                                                              .whenOrNull(
+                                                                error: (e, _) =>
+                                                                    context.alert(
+                                                                        'An error occured while updating'),
                                                                 data: (_) {
-                                                                  Navigator.pop(context);
-                                                                  HelperFunction.context = context;
-                                                                  HelperFunction.showToast(message: 'Bio updated!');
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  HelperFunction
+                                                                          .context =
+                                                                      context;
+                                                                  HelperFunction
+                                                                      .showToast(
+                                                                          message:
+                                                                              'Bio updated!');
                                                                 },
                                                               );
                                                         },
@@ -175,7 +259,7 @@ class AboutProfile extends ConsumerWidget {
                   )
               ],
             ),
-            const Divider(),
+            buildDivider(context),
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -207,8 +291,12 @@ class AboutProfile extends ConsumerWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        user?.location?.locationName ?? "Exeter, United Kingdom",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 16),
+                        user?.location?.locationName ??
+                            "Exeter, United Kingdom",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontSize: 16),
                       )
                     ],
                   ),
@@ -222,22 +310,37 @@ class AboutProfile extends ConsumerWidget {
                       const SizedBox(width: 8),
                       GestureDetector(
                         onTap: () {
-                          context.router.push(FollowersRoute(username: user!.username));
+                          context.router
+                              .push(FollowersRoute(username: user!.username));
                         },
                         child: Text.rich(TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                context.router.push(FollowersRoute(username: user!.username));
+                                context.router.push(
+                                    FollowersRoute(username: user!.username));
                               },
                             text: user?.noOfFollowers.toString() ?? '--',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
-                                  color: Theme.of(context).textTheme.bodySmall?.color,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
                                 ),
                             children: [
                               TextSpan(
-                                text: (user != null && (user.noOfFollowers!.toInt() > 1 || user.noOfFollowers!.toInt() == 0)) ? " followers" : " follower,",
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                text: (user != null &&
+                                        (user.noOfFollowers!.toInt() > 1 ||
+                                            user.noOfFollowers!.toInt() == 0))
+                                    ? " followers"
+                                    : " follower,",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontSize: getDefaultSize(),
                                       color: PreluraColors.activeColor,
                                     ),
@@ -247,18 +350,28 @@ class AboutProfile extends ConsumerWidget {
                       const SizedBox(width: 6),
                       GestureDetector(
                         onTap: () {
-                          context.router.push(FollowingRoute(username: user!.username));
+                          context.router
+                              .push(FollowingRoute(username: user!.username));
                         },
                         child: Text.rich(TextSpan(
                             text: user?.noOfFollowing.toString() ?? '--',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
-                                  color: Theme.of(context).textTheme.bodySmall?.color,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.color,
                                 ),
                             children: [
                               TextSpan(
                                 text: " following",
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
                                       fontSize: getDefaultSize(),
                                       color: PreluraColors.activeColor,
                                     ),
@@ -275,7 +388,8 @@ class AboutProfile extends ConsumerWidget {
                         size: 14,
                       ),
                       const SizedBox(width: 8),
-                      Text("last seen  2 hours ago", style: Theme.of(context).textTheme.bodySmall),
+                      Text("last seen  2 hours ago",
+                          style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ],

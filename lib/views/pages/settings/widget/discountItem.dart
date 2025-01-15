@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../res/colors.dart';
-import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart'; // for 12.sp
 
 // Assuming you have the PreluraAuthTextField and PreluraButtonWithLoader defined
@@ -144,9 +142,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
               ],
             ),
           ),
-          Divider(
-            thickness: 1.5,
-          )
+          buildDivider(context),
         ],
       ),
     );

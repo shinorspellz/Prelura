@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
-import 'package:prelura_app/core/utils/currency_format.dart';
 import 'package:prelura_app/controller/user/user_earnings_controller.dart';
+import 'package:prelura_app/core/utils/currency_format.dart';
 import 'package:prelura_app/views/pages/animated_counter.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -50,7 +49,8 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "Shop Value",
@@ -69,10 +69,14 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                           )),
                   16.horizontalSpacing,
                   AnimatedCount(
-                    count: userEarinings?.networth.toInt() ?? 0, //currentShopValue,
+                    count: userEarinings?.networth.toInt() ??
+                        0, //currentShopValue,
                     formatToCurrency: true,
                     duration: Duration(milliseconds: 900),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(color: PreluraColors.grey),
                   ),
                   // Text(
                   //   "10000".formatToPounds,
@@ -80,9 +84,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                   // ),
                 ],
               )),
-          Divider(
-            thickness: 1.5,
-          ),
+          buildDivider(context),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
@@ -92,8 +94,11 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w500,
                         )),
-                Text("Pending : ${(userEarinings?.pendingPayments.value ?? 0).toString().formatToPounds}",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                Text(
+                    "Pending : ${(userEarinings?.pendingPayments.value ?? 0).toString().formatToPounds}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: PreluraColors.primaryColor)),
               ],
             ),
           ),
@@ -120,16 +125,15 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
               height: 50,
             ),
           ),
-          Divider(
-            thickness: 1.5,
-          ),
+          buildDivider(context),
           Padding(
               padding: EdgeInsets.all(16),
-              child: Text("${userEarinings?.totalEarnings.quantity ?? 0} Transaction completed",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor))),
-          Divider(
-            thickness: 1.5,
-          ),
+              child: Text(
+                  "${userEarinings?.totalEarnings.quantity ?? 0} Transaction completed",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: PreluraColors.primaryColor))),
+          buildDivider(context),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -140,14 +144,17 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                     children: [
                       Text('Earnings this month',
                           textAlign: TextAlign.end,
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w500,
-                              )),
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  )),
                       SizedBox(height: 48),
                       Center(
                         child: Align(
                           child: AnimatedCount(
-                            count: userEarinings?.earningsInMonth.value.toInt() ?? 0,
+                            count:
+                                userEarinings?.earningsInMonth.value.toInt() ??
+                                    0,
                             formatToCurrency: true,
                             duration: Duration(milliseconds: 600),
                             style: TextStyle(
@@ -168,7 +175,13 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                        child: Text('More',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),
@@ -192,7 +205,10 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text('Total Earnings',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
                                   fontWeight: FontWeight.w500,
                                 )),
                       ),
@@ -217,7 +233,13 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                       SizedBox(height: 48),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text('More', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500, color: PreluraColors.primaryColor)),
+                        child: Text('More',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: PreluraColors.primaryColor)),
                       ),
                     ],
                   ),
@@ -225,9 +247,7 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
               ),
             ],
           ),
-          Divider(
-            thickness: 1.5,
-          ),
+          buildDivider(context),
           Spacer(),
           Center(
             child: Text('Help',
