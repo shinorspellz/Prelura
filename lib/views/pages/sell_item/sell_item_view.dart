@@ -470,7 +470,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       onTap: () {
                         dismissKeyboard();
 
-                        context.router.push(const CategoryRoute());
+                        context.router.push(
+                          const NewCategoryRoute(),
+                        );
                       },
                     ),
                     MenuCard(

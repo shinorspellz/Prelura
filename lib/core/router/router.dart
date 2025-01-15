@@ -190,6 +190,14 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
+          page: NewSubCategoryRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: NewCategoryRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: CurrencySettingRoute.page,
           guards: [AuthGuard(_ref)],
         ),

@@ -17,6 +17,7 @@ import 'package:prelura_app/repo/auth_repo/auth_repo.dart';
 import 'package:prelura_app/repo/chat_repo/chat_repo.dart';
 import 'package:prelura_app/repo/file_upload_repo.dart';
 import 'package:prelura_app/repo/network_repo.dart';
+import 'package:prelura_app/repo/product/category_repo.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 import 'package:prelura_app/repo/product/payment_repo.dart';
 import 'package:prelura_app/repo/product/product_repo.dart';
@@ -202,6 +203,10 @@ final networkRepo = Provider(
 /// File Media upload repository for any dependency
 final fileUploadRepo = Provider(
   (ref) => FileUploadRepo(ref.watch(graphqUploadlClient)),
+);
+
+final categoriesRepo = Provider(
+  (ref) => CategoriesRepo(ref.watch(graphqUploadlClient)),
 );
 
 /// File Media upload repository for any dependency

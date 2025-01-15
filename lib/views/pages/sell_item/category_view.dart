@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
-import 'package:prelura_app/controller/product/provider/sub_category_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
@@ -29,7 +28,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final sharedData = ref.watch(selectedCategoryNotifierProvider);
+    // final sharedData = ref.watch(selectedCategoryNotifierProvider);
     final wordsToRemove = ["electronics", "home", "entertainment", "pet care"];
 
     return Scaffold(
@@ -91,9 +90,15 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                     onTap: () {
                       ref.read(sellItemProvider.notifier).updateCategory(cat);
                       return context.router.push(
-                        SubCategoryRoute(
-                            subCategories: cat.subCategory ?? [],
-                            categoryName: cat.name),
+                        NewSubCategoryRoute(
+                          parentId: cat.id,
+                          parentName: cat.name,
+                        ),
+
+                        // SubCategoryRoute(
+                        //   subCategories: cat.subCategory ?? [],
+                        //   categoryName: cat.name,
+                        // ),
                       );
                     },
                   );
@@ -131,9 +136,13 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                                   .read(sellItemProvider.notifier)
                                   .updateCategory(cat);
                               return context.router.push(
-                                SubCategoryRoute(
-                                    subCategories: cat.subCategory ?? [],
-                                    categoryName: cat.name),
+                                NewSubCategoryRoute(
+                                  parentId: cat.id,
+                                  parentName: cat.name,
+                                ),
+                                // SubCategoryRoute(
+                                //     subCategories: cat.subCategory ?? [],
+                                //     categoryName: cat.name),
                               );
                             },
                           );

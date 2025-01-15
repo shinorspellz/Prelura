@@ -13470,6 +13470,846 @@ class _CopyWithStubImpl$Query$Categories$categories$subCategory<TRes>
       _res;
 }
 
+class Variables$Query$Categoriess {
+  factory Variables$Query$Categoriess({int? parentId}) =>
+      Variables$Query$Categoriess._({
+        if (parentId != null) r'parentId': parentId,
+      });
+
+  Variables$Query$Categoriess._(this._$data);
+
+  factory Variables$Query$Categoriess.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('parentId')) {
+      final l$parentId = data['parentId'];
+      result$data['parentId'] = (l$parentId as int?);
+    }
+    return Variables$Query$Categoriess._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get parentId => (_$data['parentId'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('parentId')) {
+      final l$parentId = parentId;
+      result$data['parentId'] = l$parentId;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$Categoriess<Variables$Query$Categoriess>
+      get copyWith => CopyWith$Variables$Query$Categoriess(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$Categoriess ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$parentId = parentId;
+    final lOther$parentId = other.parentId;
+    if (_$data.containsKey('parentId') !=
+        other._$data.containsKey('parentId')) {
+      return false;
+    }
+    if (l$parentId != lOther$parentId) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$parentId = parentId;
+    return Object.hashAll(
+        [_$data.containsKey('parentId') ? l$parentId : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$Categoriess<TRes> {
+  factory CopyWith$Variables$Query$Categoriess(
+    Variables$Query$Categoriess instance,
+    TRes Function(Variables$Query$Categoriess) then,
+  ) = _CopyWithImpl$Variables$Query$Categoriess;
+
+  factory CopyWith$Variables$Query$Categoriess.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$Categoriess;
+
+  TRes call({int? parentId});
+}
+
+class _CopyWithImpl$Variables$Query$Categoriess<TRes>
+    implements CopyWith$Variables$Query$Categoriess<TRes> {
+  _CopyWithImpl$Variables$Query$Categoriess(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$Categoriess _instance;
+
+  final TRes Function(Variables$Query$Categoriess) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? parentId = _undefined}) =>
+      _then(Variables$Query$Categoriess._({
+        ..._instance._$data,
+        if (parentId != _undefined) 'parentId': (parentId as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$Categoriess<TRes>
+    implements CopyWith$Variables$Query$Categoriess<TRes> {
+  _CopyWithStubImpl$Variables$Query$Categoriess(this._res);
+
+  TRes _res;
+
+  call({int? parentId}) => _res;
+}
+
+class Query$Categoriess {
+  Query$Categoriess({
+    this.categoriess,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$Categoriess.fromJson(Map<String, dynamic> json) {
+    final l$categoriess = json['categoriess'];
+    final l$$__typename = json['__typename'];
+    return Query$Categoriess(
+      categoriess: (l$categoriess as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$Categoriess$categoriess.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$Categoriess$categoriess?>? categoriess;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$categoriess = categoriess;
+    _resultData['categoriess'] =
+        l$categoriess?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$categoriess = categoriess;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$categoriess == null
+          ? null
+          : Object.hashAll(l$categoriess.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Categoriess || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$categoriess = categoriess;
+    final lOther$categoriess = other.categoriess;
+    if (l$categoriess != null && lOther$categoriess != null) {
+      if (l$categoriess.length != lOther$categoriess.length) {
+        return false;
+      }
+      for (int i = 0; i < l$categoriess.length; i++) {
+        final l$categoriess$entry = l$categoriess[i];
+        final lOther$categoriess$entry = lOther$categoriess[i];
+        if (l$categoriess$entry != lOther$categoriess$entry) {
+          return false;
+        }
+      }
+    } else if (l$categoriess != lOther$categoriess) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Categoriess on Query$Categoriess {
+  CopyWith$Query$Categoriess<Query$Categoriess> get copyWith =>
+      CopyWith$Query$Categoriess(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$Categoriess<TRes> {
+  factory CopyWith$Query$Categoriess(
+    Query$Categoriess instance,
+    TRes Function(Query$Categoriess) then,
+  ) = _CopyWithImpl$Query$Categoriess;
+
+  factory CopyWith$Query$Categoriess.stub(TRes res) =
+      _CopyWithStubImpl$Query$Categoriess;
+
+  TRes call({
+    List<Query$Categoriess$categoriess?>? categoriess,
+    String? $__typename,
+  });
+  TRes categoriess(
+      Iterable<Query$Categoriess$categoriess?>? Function(
+              Iterable<
+                  CopyWith$Query$Categoriess$categoriess<
+                      Query$Categoriess$categoriess>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$Categoriess<TRes>
+    implements CopyWith$Query$Categoriess<TRes> {
+  _CopyWithImpl$Query$Categoriess(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Categoriess _instance;
+
+  final TRes Function(Query$Categoriess) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? categoriess = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Categoriess(
+        categoriess: categoriess == _undefined
+            ? _instance.categoriess
+            : (categoriess as List<Query$Categoriess$categoriess?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes categoriess(
+          Iterable<Query$Categoriess$categoriess?>? Function(
+                  Iterable<
+                      CopyWith$Query$Categoriess$categoriess<
+                          Query$Categoriess$categoriess>?>?)
+              _fn) =>
+      call(
+          categoriess: _fn(_instance.categoriess?.map((e) => e == null
+              ? null
+              : CopyWith$Query$Categoriess$categoriess(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$Categoriess<TRes>
+    implements CopyWith$Query$Categoriess<TRes> {
+  _CopyWithStubImpl$Query$Categoriess(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$Categoriess$categoriess?>? categoriess,
+    String? $__typename,
+  }) =>
+      _res;
+
+  categoriess(_fn) => _res;
+}
+
+const documentNodeQueryCategoriess = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'Categoriess'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'parentId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'categoriess'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'parentId'),
+            value: VariableNode(name: NameNode(value: 'parentId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'hasChildren'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'fullPath'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'parent'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$Categoriess _parserFn$Query$Categoriess(Map<String, dynamic> data) =>
+    Query$Categoriess.fromJson(data);
+typedef OnQueryComplete$Query$Categoriess = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$Categoriess?,
+);
+
+class Options$Query$Categoriess
+    extends graphql.QueryOptions<Query$Categoriess> {
+  Options$Query$Categoriess({
+    String? operationName,
+    Variables$Query$Categoriess? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Categoriess? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$Categoriess? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$Categoriess(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryCategoriess,
+          parserFn: _parserFn$Query$Categoriess,
+        );
+
+  final OnQueryComplete$Query$Categoriess? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$Categoriess
+    extends graphql.WatchQueryOptions<Query$Categoriess> {
+  WatchOptions$Query$Categoriess({
+    String? operationName,
+    Variables$Query$Categoriess? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$Categoriess? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryCategoriess,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$Categoriess,
+        );
+}
+
+class FetchMoreOptions$Query$Categoriess extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$Categoriess({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$Categoriess? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryCategoriess,
+        );
+}
+
+extension ClientExtension$Query$Categoriess on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$Categoriess>> query$Categoriess(
+          [Options$Query$Categoriess? options]) async =>
+      await this.query(options ?? Options$Query$Categoriess());
+  graphql.ObservableQuery<Query$Categoriess> watchQuery$Categoriess(
+          [WatchOptions$Query$Categoriess? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$Categoriess());
+  void writeQuery$Categoriess({
+    required Query$Categoriess data,
+    Variables$Query$Categoriess? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryCategoriess),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$Categoriess? readQuery$Categoriess({
+    Variables$Query$Categoriess? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryCategoriess),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$Categoriess.fromJson(result);
+  }
+}
+
+class Query$Categoriess$categoriess {
+  Query$Categoriess$categoriess({
+    required this.id,
+    required this.name,
+    this.hasChildren,
+    this.fullPath,
+    this.parent,
+    this.$__typename = 'CategoryTypess',
+  });
+
+  factory Query$Categoriess$categoriess.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$hasChildren = json['hasChildren'];
+    final l$fullPath = json['fullPath'];
+    final l$parent = json['parent'];
+    final l$$__typename = json['__typename'];
+    return Query$Categoriess$categoriess(
+      id: (l$id as String),
+      name: (l$name as String),
+      hasChildren: (l$hasChildren as bool?),
+      fullPath: (l$fullPath as String?),
+      parent: l$parent == null
+          ? null
+          : Query$Categoriess$categoriess$parent.fromJson(
+              (l$parent as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String name;
+
+  final bool? hasChildren;
+
+  final String? fullPath;
+
+  final Query$Categoriess$categoriess$parent? parent;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$hasChildren = hasChildren;
+    _resultData['hasChildren'] = l$hasChildren;
+    final l$fullPath = fullPath;
+    _resultData['fullPath'] = l$fullPath;
+    final l$parent = parent;
+    _resultData['parent'] = l$parent?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$hasChildren = hasChildren;
+    final l$fullPath = fullPath;
+    final l$parent = parent;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$hasChildren,
+      l$fullPath,
+      l$parent,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Categoriess$categoriess ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$hasChildren = hasChildren;
+    final lOther$hasChildren = other.hasChildren;
+    if (l$hasChildren != lOther$hasChildren) {
+      return false;
+    }
+    final l$fullPath = fullPath;
+    final lOther$fullPath = other.fullPath;
+    if (l$fullPath != lOther$fullPath) {
+      return false;
+    }
+    final l$parent = parent;
+    final lOther$parent = other.parent;
+    if (l$parent != lOther$parent) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Categoriess$categoriess
+    on Query$Categoriess$categoriess {
+  CopyWith$Query$Categoriess$categoriess<Query$Categoriess$categoriess>
+      get copyWith => CopyWith$Query$Categoriess$categoriess(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Categoriess$categoriess<TRes> {
+  factory CopyWith$Query$Categoriess$categoriess(
+    Query$Categoriess$categoriess instance,
+    TRes Function(Query$Categoriess$categoriess) then,
+  ) = _CopyWithImpl$Query$Categoriess$categoriess;
+
+  factory CopyWith$Query$Categoriess$categoriess.stub(TRes res) =
+      _CopyWithStubImpl$Query$Categoriess$categoriess;
+
+  TRes call({
+    String? id,
+    String? name,
+    bool? hasChildren,
+    String? fullPath,
+    Query$Categoriess$categoriess$parent? parent,
+    String? $__typename,
+  });
+  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent;
+}
+
+class _CopyWithImpl$Query$Categoriess$categoriess<TRes>
+    implements CopyWith$Query$Categoriess$categoriess<TRes> {
+  _CopyWithImpl$Query$Categoriess$categoriess(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Categoriess$categoriess _instance;
+
+  final TRes Function(Query$Categoriess$categoriess) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? hasChildren = _undefined,
+    Object? fullPath = _undefined,
+    Object? parent = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Categoriess$categoriess(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        hasChildren: hasChildren == _undefined
+            ? _instance.hasChildren
+            : (hasChildren as bool?),
+        fullPath:
+            fullPath == _undefined ? _instance.fullPath : (fullPath as String?),
+        parent: parent == _undefined
+            ? _instance.parent
+            : (parent as Query$Categoriess$categoriess$parent?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent {
+    final local$parent = _instance.parent;
+    return local$parent == null
+        ? CopyWith$Query$Categoriess$categoriess$parent.stub(_then(_instance))
+        : CopyWith$Query$Categoriess$categoriess$parent(
+            local$parent, (e) => call(parent: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Categoriess$categoriess<TRes>
+    implements CopyWith$Query$Categoriess$categoriess<TRes> {
+  _CopyWithStubImpl$Query$Categoriess$categoriess(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? name,
+    bool? hasChildren,
+    String? fullPath,
+    Query$Categoriess$categoriess$parent? parent,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent =>
+      CopyWith$Query$Categoriess$categoriess$parent.stub(_res);
+}
+
+class Query$Categoriess$categoriess$parent {
+  Query$Categoriess$categoriess$parent({
+    required this.id,
+    this.$__typename = 'CategoryTypess',
+  });
+
+  factory Query$Categoriess$categoriess$parent.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$Categoriess$categoriess$parent(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Categoriess$categoriess$parent ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Categoriess$categoriess$parent
+    on Query$Categoriess$categoriess$parent {
+  CopyWith$Query$Categoriess$categoriess$parent<
+          Query$Categoriess$categoriess$parent>
+      get copyWith => CopyWith$Query$Categoriess$categoriess$parent(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Categoriess$categoriess$parent<TRes> {
+  factory CopyWith$Query$Categoriess$categoriess$parent(
+    Query$Categoriess$categoriess$parent instance,
+    TRes Function(Query$Categoriess$categoriess$parent) then,
+  ) = _CopyWithImpl$Query$Categoriess$categoriess$parent;
+
+  factory CopyWith$Query$Categoriess$categoriess$parent.stub(TRes res) =
+      _CopyWithStubImpl$Query$Categoriess$categoriess$parent;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Categoriess$categoriess$parent<TRes>
+    implements CopyWith$Query$Categoriess$categoriess$parent<TRes> {
+  _CopyWithImpl$Query$Categoriess$categoriess$parent(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Categoriess$categoriess$parent _instance;
+
+  final TRes Function(Query$Categoriess$categoriess$parent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Categoriess$categoriess$parent(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Categoriess$categoriess$parent<TRes>
+    implements CopyWith$Query$Categoriess$categoriess$parent<TRes> {
+  _CopyWithStubImpl$Query$Categoriess$categoriess$parent(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$likedProducts {
   factory Variables$Query$likedProducts({
     int? pageCount,

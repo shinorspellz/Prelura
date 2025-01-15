@@ -299,6 +299,18 @@ query Categories {
   }
 }
 
+query Categoriess($parentId: Int) {
+  categoriess (parentId: $parentId){
+    id
+    name
+    hasChildren
+    fullPath
+    parent {
+      id
+    }
+  }
+}
+
 query likedProducts($pageCount: Int, $pageNumber: Int) {
   likedProducts(pageCount: $pageCount, pageNumber: $pageNumber) {
     product {
