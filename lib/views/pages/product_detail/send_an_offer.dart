@@ -218,7 +218,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
   }
 
   void _applySuggestion(double price) {
-    textController.text = price.toString();
+    textController.text = formatDynamicString(price.toString());
     setState(() {
       canCreateOffer = true;
     });
@@ -294,6 +294,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.done,
           controller: textController,
+          formatter: DecimalTextInputFormatter(decimalRange: 2),
           onChanged: (newValue) {
             errorMessage = null;
             canCreateOffer = newValue.isNotEmpty;
@@ -304,7 +305,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
             } else {
               textController.text = newValue.length > 1
                   ? newValue.replaceFirst(RegExp(r'^0+'), '')
-                  : newValue;
+                  : newValue; // removes the prefix "0"
             }
           },
           onSaved: (value) {},
@@ -367,7 +368,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "£ $price",
+              "£ ${formatDynamicString(price)}",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: getDefaultSize(size: 16),
                     fontWeight: FontWeight.w600,

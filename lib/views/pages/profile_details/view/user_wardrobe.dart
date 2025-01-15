@@ -824,6 +824,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               "No Products",
                               style: context.theme.textTheme.bodyMedium
                                   ?.copyWith(
+                                    color: PreluraColors.grey,
                                       fontSize: getDefaultSize(size: 16),
                                       fontWeight: FontWeight.w600),
                             )

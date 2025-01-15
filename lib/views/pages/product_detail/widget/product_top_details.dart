@@ -43,11 +43,14 @@ class ProductTopDetails extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text( 
+          Text(
             capitalizeEachWord(product.name),
             maxLines: 3,
             overflow: TextOverflow.ellipsis, // Truncate text
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
           ),
           const SizedBox(height: 6),
           Column(
@@ -80,14 +83,19 @@ class ProductTopDetails extends ConsumerWidget {
                   if (product.condition != null)
                     Text(
                       product.condition!.simpleName,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500, color: PreluraColors.greyColor),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w500,
+                          color: PreluraColors.greyColor),
                     ),
                   Spacer(),
 
                   Text(
-                    "£ ${product.price}",
+                    "£ ${formatDynamicString(product.price.toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          decoration: product.discountPrice != null ? TextDecoration.lineThrough : null,
+                          decoration: product.discountPrice != null
+                              ? TextDecoration.lineThrough
+                              : null,
                           color: product.discountPrice != null
                               ? !context.isDarkMode
                                   ? Colors.grey
@@ -100,10 +108,10 @@ class ProductTopDetails extends ConsumerWidget {
                   if (product.discountPrice != null) ...[
                     10.horizontalSpacing,
                     Text(
-                      "£ ${calculateDiscountedAmount(
+                      "£ ${formatDynamicString(calculateDiscountedAmount(
                         price: product.price,
                         discount: num.parse(product.discountPrice!).toInt(),
-                      )}",
+                      ).toString())}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             fontSize: getDefaultSize(),
@@ -116,10 +124,11 @@ class ProductTopDetails extends ConsumerWidget {
                       decoration: BoxDecoration(
                         color: '8d100f'.fromHex,
                       ),
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       // alignment: Alignment.center,
                       child: Text(
-                        ' ${double.parse(product.discountPrice!).toInt()}%',
+                        ' ${formatDynamicString(double.parse(product.discountPrice!).toInt().toString())}%',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                               fontSize: getDefaultSize(),
@@ -141,7 +150,11 @@ class ProductTopDetails extends ConsumerWidget {
               if (product.color != null)
                 Row(
                   children: product.color!.map((color) {
-                    final value = ref.watch(colorsProvider).entries.where((e) => e.key == color).first;
+                    final value = ref
+                        .watch(colorsProvider)
+                        .entries
+                        .where((e) => e.key == color)
+                        .first;
                     return Row(
                       children: [
                         Container(
@@ -149,15 +162,17 @@ class ProductTopDetails extends ConsumerWidget {
                           height: 16,
                           margin: const EdgeInsets.only(right: 4),
                           decoration: BoxDecoration(
-                            color: value.value, // Assuming `color` is a valid Color object
+                            color: value
+                                .value, // Assuming `color` is a valid Color object
                             shape: BoxShape.circle,
                           ),
                         ),
                         Text(
                           value.key,
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         8.horizontalSpacing
                       ],
@@ -208,7 +223,8 @@ class ProductTopDetails extends ConsumerWidget {
                           // context.router.push(ProfileDetailsRoute());
                           // context.pushRoute(route)
                         } else {
-                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(
+                              username: product.seller.username));
                         }
                       },
                       child: ProfilePictureWidget(
@@ -224,14 +240,16 @@ class ProductTopDetails extends ConsumerWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(
+                              username: product.seller.username));
                         },
                         child: Text(
                           product.seller.username,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: getDefaultSize(),
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: getDefaultSize(),
+                                  ),
                         ),
                       ),
                       Row(
@@ -239,7 +257,10 @@ class ProductTopDetails extends ConsumerWidget {
                           const Ratings(),
                           Text(
                             "(250)",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
                                   fontWeight: FontWeight.w400,
                                   fontSize: getDefaultSize(),
                                 ),
@@ -253,12 +274,16 @@ class ProductTopDetails extends ConsumerWidget {
 
               GestureDetector(
                 onTap: () async {
-                  await ref.read(conversationProvider.notifier).createChat(product.seller.username);
+                  await ref
+                      .read(conversationProvider.notifier)
+                      .createChat(product.seller.username);
                   ref.read(conversationProvider).whenOrNull(
-                      error: (e, _) => context.alert('Failed to message ${product.seller.username}'),
+                      error: (e, _) => context.alert(
+                          'Failed to message ${product.seller.username}'),
                       data: (conv) {
                         log('$conv');
-                        final currentConv = conv.firstWhere((e) => e.recipient.username == product.seller.username);
+                        final currentConv = conv.firstWhere((e) =>
+                            e.recipient.username == product.seller.username);
                         context.pushRoute(
                           ChatRoute(
                             id: currentConv.id,

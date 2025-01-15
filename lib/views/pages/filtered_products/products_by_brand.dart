@@ -33,10 +33,12 @@ class ProductsByBrandPage extends ConsumerStatefulWidget {
 
 class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   final controller = ProductsByBrandPage.scrollController;
+  Input$ProductFiltersInput previousState = Input$ProductFiltersInput();
 
   @override
   void initState() {
     super.initState();
+    previousState = ref.read(selectedFilteredProductProvider);
 
     Future.microtask(() {
       if (!mounted) return;
@@ -60,7 +62,17 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   @override
   void dispose() {
     log(":::: I ran  from here");
-    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
+    log(HelperFunction.genRef!
+        .read(selectedFilteredProductProvider.notifier)
+        .state
+        .toJson()
+        .toString());
+    log(previousState.toJson().toString());
+    Future.microtask(() {
+      HelperFunction.genRef!
+          .read(selectedFilteredProductProvider.notifier)
+          .state = previousState;
+    });
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -96,26 +108,25 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                     pinned: true, // Keeps it static
                     delegate: FilteredProductStaticSliverDelegate(
                         child: Container(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 15, right: 15),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Searchwidget(
-                            padding: EdgeInsets.zero,
-                            obscureText: false,
-                            shouldReadOnly: false,
-                            hintText: "Search for items",
-                            enabled: true,
-                            showInputBorder: true,
-                            autofocus: false,
-                            cancelButton: true,
-                            onChanged: (val) {
-                              searchQuery = val;
-                              setState(() {});
-                            },
-                          ),
+                          // Searchwidget(
+                          //   padding: EdgeInsets.zero,
+                          //   obscureText: false,
+                          //   shouldReadOnly: false,
+                          //   hintText: "Search for items",
+                          //   enabled: true,
+                          //   showInputBorder: true,
+                          //   autofocus: false,
+                          //   cancelButton: true,
+                          //   onChanged: (val) {
+                          //     searchQuery = val;
+                          //     setState(() {});
+                          //   },
+                          // ),
                           FiltersOptions(
                             excludedFilterTypes: [FilterTypes.brand],
                           ),
@@ -231,5 +242,29 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         );
       }),
     );
+  }
+}
+
+class FilteredProductStaticSliverDelegate
+    extends SliverPersistentHeaderDelegate {
+  final Widget child;
+
+  FilteredProductStaticSliverDelegate({required this.child});
+
+  @override
+  double get minExtent => 56.0;
+
+  @override
+  double get maxExtent => 56.0;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }

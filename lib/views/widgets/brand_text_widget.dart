@@ -28,10 +28,7 @@ class BrandTextWidget extends ConsumerWidget {
       onTap: () {
         if (isSelectable) {
           if (brand == null && customBrand == null) return;
-          ref.read(selectedFilteredProductProvider.notifier).state =
-              Input$ProductFiltersInput(
-                  brand: brand?.id, customBrand: customBrand);
-          ref.refresh(filteredProductProvider(""));
+
           context.pushRoute(ProductsByBrandRoute(
               title: brand?.name,
               id: (brand?.id)?.toInt(),

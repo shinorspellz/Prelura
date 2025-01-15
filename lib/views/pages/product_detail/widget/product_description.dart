@@ -101,11 +101,11 @@ class ProductDescription extends ConsumerWidget {
             _buildInfoRow("Category", product.category!.name, context),
           if (product.subCategory != null)
             _buildInfoRow("Sub Category", product.subCategory!.name, context),
-          // if (product.style != null)
-          //   _buildInfoRow(
-          //       "Style",
-          //       product.style!.name.replaceAll("_", " ").toLowerCase(),
-          //       context),
+          if (product.style != null)
+            _buildInfoRow(
+                "Style",
+                product.style!.name.replaceAll("_", " ").toLowerCase(),
+                context),
           if (product.materials != null)
             if (product.materials!.isNotEmpty)
               _buildInfoRow(

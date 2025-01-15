@@ -145,7 +145,7 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                           padding: EdgeInsets.zero,
                           obscureText: false,
                           shouldReadOnly: false,
-                          hintText: "Search for items and members",
+                          hintText: "Search for items",
                           enabled: true,
                           showInputBorder: true,
                           autofocus: false,

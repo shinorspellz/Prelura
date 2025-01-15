@@ -255,7 +255,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                               child: const Icon(
                                 Icons.close_rounded,
                                 color: Colors.white,
-                                size: 12,
+                                size: 16,
                               )),
                         )
                       : const SizedBox.shrink(),
