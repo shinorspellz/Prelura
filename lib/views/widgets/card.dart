@@ -272,7 +272,7 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     child: GestureDetector(
                       onTap: () {
                         if (widget.isSelectable) {
-                          _toggleFavourite;
+                          _toggleFavourite();
                         }
                       }, // Use the toggle method
                       child: Container(
