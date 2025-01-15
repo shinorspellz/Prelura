@@ -314,12 +314,12 @@ void ShowFilteredProductFilterModal(
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 22, 16, 0),
                 child: AppButton(
-                    text: "Clear ${filterType.simpleName}",
-                    fontWeight: FontWeight.w500,
+                    text: "Clear",
+                    fontWeight: FontWeight.w600,
                     width: double.infinity,
                     onTap: () {
                       filterNotifier.removeFilter(filterType);
-                      // Navigator.pop(context);
+                      Navigator.pop(context);
                       setState(() {
                         selectedOptions = null;
                       });

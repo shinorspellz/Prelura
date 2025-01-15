@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
@@ -96,11 +97,38 @@ String formatDynamicString(String input) {
   }
 
   // Convert to a string and remove trailing zeros
-  String formatted =
-      doubleValue.toStringAsFixed(10); // Arbitrary high precision
+  String formatted = doubleValue.toStringAsFixed(2); // Arbitrary high precision
   formatted = formatted.replaceAll(RegExp(r'0+$'), ''); // Remove trailing zeros
   formatted =
       formatted.replaceAll(RegExp(r'\.$'), ''); // Remove trailing decimal point
 
-  return formatted;
+  return double.parse(formatted).toStringAsFixed(2);
+}
+
+class DecimalTextInputFormatter extends TextInputFormatter {
+  final int decimalRange;
+
+  DecimalTextInputFormatter({required this.decimalRange});
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final String text = newValue.text;
+
+    // Allow empty input
+    if (text.isEmpty) {
+      return newValue;
+    }
+
+    // Match a valid decimal number with at most `decimalRange` digits after the decimal point
+    final RegExp regex =
+        RegExp(r'^\d*\.?\d{0,' + decimalRange.toString() + r'}$');
+
+    if (regex.hasMatch(text)) {
+      return newValue;
+    }
+
+    // If the new input doesn't match, keep the old value
+    return oldValue;
+  }
 }

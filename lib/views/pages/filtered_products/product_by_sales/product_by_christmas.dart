@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,6 +33,7 @@ class _ProductFilterPageState
   @override
   void initState() {
     super.initState();
+    log("i am here");
     Future.microtask(
       () {
         ref.read(selectedFilteredProductProvider.notifier).state =
@@ -100,7 +103,7 @@ class _ProductFilterPageState
                           padding: EdgeInsets.zero,
                           obscureText: false,
                           shouldReadOnly: false,
-                          hintText: "Search for items and members",
+                          hintText: "Search for items",
                           enabled: true,
                           showInputBorder: true,
                           autofocus: false,

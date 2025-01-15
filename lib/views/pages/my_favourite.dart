@@ -58,7 +58,8 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
         appBar: PreluraAppBar(
           appbarTitle: "Favourite items",
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
         ),
@@ -68,15 +69,13 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
           onRefresh: _onRefresh,
           onLoading: _onLoading,
           enablePullDown: true,
-          enablePullUp: asyncFavouriteProducts.value != null
-              ? asyncFavouriteProducts.value!.isNotEmpty
-                  ? true
-                  : false
-              : false,
+          enablePullUp: false,
           child: asyncFavouriteProducts.when(
             data: (products) {
               return products.isEmpty
-                  ? SizedBox(height: MediaQuery.of(context).size.height * 0.7, child: const Center(child: Text('No Favourite Items')))
+                  ? SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      child: const Center(child: Text('No items')))
                   : CustomScrollView(slivers: [
                       SliverPersistentHeader(
                         pinned: true,
@@ -91,14 +90,18 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 12),
                                 obscureText: false,
                                 shouldReadOnly: false,
-                                hintText: "Search for products",
+                                hintText: "Search for items",
                                 enabled: true,
                                 showInputBorder: true,
                                 autofocus: false,
                                 cancelButton: true,
                                 onChanged: (val) {
                                   isSearching = val.isNotEmpty;
-                                  filter = products.where((e) => e.name.toLowerCase().contains(val.toLowerCase())).toList();
+                                  filter = products
+                                      .where((e) => e.name
+                                          .toLowerCase()
+                                          .contains(val.toLowerCase()))
+                                      .toList();
                                   setState(() {});
                                 },
                               ),
@@ -110,7 +113,8 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                       SliverPadding(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         sliver: SliverGrid(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             mainAxisSpacing: 10,
                             crossAxisSpacing: 10,
@@ -119,11 +123,14 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
                               return ProductCard(
-                                product: isSearching ? filter[index] : products[index],
+                                product: isSearching
+                                    ? filter[index]
+                                    : products[index],
                                 isSimilar: true,
                               );
                             },
-                            childCount: isSearching ? filter.length : products.length,
+                            childCount:
+                                isSearching ? filter.length : products.length,
                           ),
                         ),
                       ),
@@ -148,7 +155,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 78.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 
