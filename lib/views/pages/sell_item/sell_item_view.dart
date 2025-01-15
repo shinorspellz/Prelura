@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
+import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -39,6 +40,13 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
   @override
   void initState() {
     dismissKeyboard();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      ref
+          .read(
+            categoryNotifierProvider.notifier,
+          )
+          .loadDataFromCache();
+    });
     _descriptionfocusNode.unfocus();
     titlefocusNode.unfocus();
     _descriptionfocusNode.addListener(() {

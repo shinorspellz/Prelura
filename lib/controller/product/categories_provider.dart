@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
@@ -11,21 +13,22 @@ import 'package:prelura_app/repo/product/offer_repo.dart';
 
 class CategoryNotifier extends StateNotifier<CategoriesState> {
   final CategoriesRepo categoriesRepo;
+  final Box _cacheBox;
   final Ref ref;
-  CategoryNotifier(this.categoriesRepo, this.ref)
+  CategoryNotifier(this.categoriesRepo, this.ref, this._cacheBox)
       : super(
           CategoriesState(),
         );
 
-  void updateState(Map<String, dynamic> data) {
+  updateState(Map<String, dynamic> data) {
     // Initialize updatedCategoriesLog to hold the merged result
     Map<String, List<Categoriess>> updatedCategoriesLog =
         Map.from(state.categoriesLog);
 
     // Check if the data contains a new categoriesLog entry
-    if (data.containsKey("catLog")) {
+    if (data.containsKey("categoriesLog")) {
       final Map<String, List<Categoriess>> newCategoryLogs =
-          data['catLog'] as Map<String, List<Categoriess>>;
+          data['categoriesLog'] as Map<String, List<Categoriess>>;
 
       // Merge the new data with the stored categoriesLog
       newCategoryLogs.forEach((key, value) {
@@ -46,13 +49,39 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
     // Update the state using copyWith
     state = state.copyWith(
       isLoading: data['isLoading'] ?? state.isLoading,
-      categoriesLog: data.containsKey("catLog")
+      selectedCategory: data['selectedCategory'] ?? state.selectedCategory,
+      categoriesLog: data.containsKey("categoriesLog")
           ? updatedCategoriesLog
           : state.categoriesLog,
     );
   }
 
+  _cacheData() {
+    String payload = jsonEncode(state.toJson());
+    _cacheBox.put('categories', payload);
+    log("::::You called the cache room ::: $payload");
+  }
+
+  loadDataFromCache() {
+    final data = _cacheBox.get("categories");
+    if (data != null) {
+      updateState(
+        {
+          "categoriesLog":
+              CategoriesState.fromJson(jsonDecode(data)).categoriesLog
+        },
+      );
+    }
+  }
+
+  clearCache() {
+    _cacheBox.delete('categories');
+  }
+
   void fetchCategories(BuildContext context, int? parentId) async {
+    if (state.categoriesLog.containsKey("${parentId ?? 10000}")) {
+      return;
+    }
     try {
       updateState({"isLoading": true});
 
@@ -72,10 +101,11 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
                 Categoriess.fromJson(category!.toJson()),
           )
           .toList();
-      updateState({
+      await updateState({
         "isLoading": false,
-        "catLog": {"${parentId ?? 10000}": categoriesList},
+        "categoriesLog": {"${parentId ?? 10000}": categoriesList},
       });
+      _cacheData();
     } on OfferException catch (e) {
       updateState({"isLoading": false});
       log('Offer exception: $e');
@@ -90,25 +120,60 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
 final categoryNotifierProvider =
     StateNotifierProvider<CategoryNotifier, CategoriesState>((ref) {
   final repo = ref.read(categoriesRepo);
-  return CategoryNotifier(repo, ref);
+  final cacheBox = ref.read(hive).requireValue;
+  return CategoryNotifier(repo, ref, cacheBox);
 });
 
 class CategoriesState {
   final bool isLoading;
   final Map<String, List<Categoriess>> categoriesLog;
+  final Categoriess? selectedCategory;
 
   CategoriesState({
     this.isLoading = false,
     this.categoriesLog = const {},
+    this.selectedCategory,
   });
 
   //copyWith
   CategoriesState copyWith({
     bool? isLoading,
     Map<String, List<Categoriess>>? categoriesLog,
+    Categoriess? selectedCategory,
   }) =>
       CategoriesState(
         isLoading: isLoading ?? this.isLoading,
         categoriesLog: categoriesLog ?? this.categoriesLog,
+        selectedCategory: selectedCategory ?? this.selectedCategory,
       );
+
+  // To JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'isLoading': isLoading,
+      "selectedCategory": null,
+      'categoriesLog': categoriesLog.map(
+        (key, value) => MapEntry(
+          key,
+          value.map((category) => category.toJson()).toList(),
+        ),
+      ),
+    };
+  }
+
+  // From JSON
+  factory CategoriesState.fromJson(Map<String, dynamic> json) {
+    return CategoriesState(
+      isLoading: false,
+      selectedCategory: null,
+      categoriesLog: (json['categoriesLog'] as Map<String, dynamic>).map(
+        (key, value) => MapEntry(
+          key,
+          (value as List<dynamic>)
+              .map((category) => Categoriess.fromJson(category))
+              .toList(),
+        ),
+      ),
+    );
+  }
 }
