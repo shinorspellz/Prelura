@@ -90,7 +90,6 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 var userProducts =
                     ref.watch(userProduct(appUsername)).valueOrNull;
                 bool isPinned = product.isFeatured ?? false;
-                log(":::The product length is :::: ${userProducts?.length}");
                 void showOptionModal() =>
                     VBottomSheetComponent.actionBottomSheet(
                       context: context,
