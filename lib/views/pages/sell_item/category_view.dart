@@ -1,24 +1,18 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
-import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/controller/product/provider/sub_category_provider.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/images.dart';
 import '../../shimmers/category_shimmer.dart';
-import '../../shimmers/grid_menu_card_shimmer.dart';
-import '../../widgets/gesture_navigator.dart';
 import '../../widgets/menu_card.dart';
 
 @RoutePage()
@@ -41,7 +35,8 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -65,7 +60,12 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
               onChanged: (val) {
                 if (ref.read(categoryProvider).valueOrNull == null) return;
                 isSearching = val.isNotEmpty;
-                filter = ref.read(categoryProvider).valueOrNull!.where((e) => e.name.toLowerCase().contains(val.toLowerCase())).toList();
+                filter = ref
+                    .read(categoryProvider)
+                    .valueOrNull!
+                    .where(
+                        (e) => e.name.toLowerCase().contains(val.toLowerCase()))
+                    .toList();
                 setState(() {});
               },
             ),
@@ -76,7 +76,8 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                 itemCount: filter.length,
                 itemBuilder: (_, index) {
                   final cat = filter[index];
-                  final svgPath = PreluraIcons.getConstant(keyword: cat.name, category: null);
+                  final svgPath = PreluraIcons.getConstant(
+                      keyword: cat.name, category: null);
 
                   return MenuCard(
                     title: cat.name,
@@ -90,7 +91,9 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                     onTap: () {
                       ref.read(sellItemProvider.notifier).updateCategory(cat);
                       return context.router.push(
-                        SubCategoryRoute(subCategories: cat.subCategory ?? [], categoryName: cat.name),
+                        SubCategoryRoute(
+                            subCategories: cat.subCategory ?? [],
+                            categoryName: cat.name),
                       );
                     },
                   );
@@ -103,12 +106,16 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                     skipLoadingOnRefresh: false,
                     data: (data) {
                       final List<CategoryModel> categories;
-                      categories = data.where((word) => !wordsToRemove.contains(word.name.toLowerCase())).toList();
+                      categories = data
+                          .where((word) =>
+                              !wordsToRemove.contains(word.name.toLowerCase()))
+                          .toList();
                       return ListView.builder(
                         itemCount: categories.length,
                         itemBuilder: (_, index) {
                           final cat = categories[index];
-                          final svgPath = PreluraIcons.getConstant(keyword: cat.name, category: null);
+                          final svgPath = PreluraIcons.getConstant(
+                              keyword: cat.name, category: null);
 
                           return MenuCard(
                             title: cat.name,
@@ -120,9 +127,13 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                                   )
                                 : null,
                             onTap: () {
-                              ref.read(sellItemProvider.notifier).updateCategory(cat);
+                              ref
+                                  .read(sellItemProvider.notifier)
+                                  .updateCategory(cat);
                               return context.router.push(
-                                SubCategoryRoute(subCategories: cat.subCategory ?? [], categoryName: cat.name),
+                                SubCategoryRoute(
+                                    subCategories: cat.subCategory ?? [],
+                                    categoryName: cat.name),
                               );
                             },
                           );
