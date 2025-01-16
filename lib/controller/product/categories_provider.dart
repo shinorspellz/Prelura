@@ -47,6 +47,10 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
       });
     }
 
+    if (data.containsKey("categorySize") && data['categorySize'] == null) {
+      state.categorySize?.clear();
+    }
+
     // Update the state using copyWith
     state = state.copyWith(
       isLoading: data['isLoading'] ?? state.isLoading,

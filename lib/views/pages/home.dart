@@ -46,7 +46,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       final delta = MediaQuery.sizeOf(context).height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(allProductProvider(null).notifier).fetchMoreData();
+        ref.read(allProductProvider(null).notifier).fetchMoreData(context);
         final selectedId = ref.watch(selectedIdProvider);
 
         if (ref.watch(selectedTabProvider) != 0 &&

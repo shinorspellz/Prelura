@@ -194,7 +194,39 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
+          page: NewSubCategoryRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: UploadIdentityDocument.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: CountryRegionsView.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: DisplayCapturedDocument.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: VerifyVideo.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: SubmitVideo.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: RecordVideo.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: NewCategoryRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
+          page: VerifyYourIdentity.page,
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(

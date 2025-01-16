@@ -73,6 +73,13 @@ class _FilterModalState extends ConsumerState<FilterModal> {
               ?.map((e) => e.name)
               .toList() ??
           [],
+      FilterTypes.category: ref
+              .watch(
+                  userProductGroupingByCategoryProvider((widget.userId ?? 0)))
+              .valueOrNull
+              ?.map((e) => e.name)
+              .toList() ??
+          [],
       FilterTypes.condition:
           ConditionsEnum.values.map((e) => e.simpleName).toList(),
     };

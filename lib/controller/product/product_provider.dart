@@ -8,6 +8,7 @@ import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
@@ -520,7 +521,8 @@ class _AllProductController
     _currentPage = pageNumber!;
   }
 
-  Future<void> fetchMoreData() async {
+  int counter = 0;
+  Future<void> fetchMoreData(BuildContext context) async {
     log(
         "length of current products : ${state.valueOrNull?.length.toString()}" ??
             '',
@@ -532,21 +534,27 @@ class _AllProductController
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
 
     if (canLoadMore) {
+      counter = 0;
       ref.read(paginatingHome.notifier).state = true;
       await _getProducts(
         query: _query,
         pageNumber: _currentPage + 1,
       );
       ref.read(paginatingHome.notifier).state = false;
+    } else {
+      if (counter == 1) return;
+      counter = 1;
+      log("::::The. else session ran ::::");
+      context.alert("No more products");
     }
   }
 
-  Future<void> fetchMoreHandler() async {
-    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
-    if (canLoadMore) {
-      await fetchMoreData();
-    }
-  }
+  // Future<void> fetchMoreHandler() async {
+  //   final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  //   if (canLoadMore) {
+  //     await fetchMoreData();
+  //   }
+  // }
 
   bool canLoadMore() {
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;

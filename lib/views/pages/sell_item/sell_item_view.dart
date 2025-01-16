@@ -43,6 +43,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       ref
           .read(
+        categoryNotifierProvider.notifier,
+      )
+          .updateState({"categorySize": null});
+      ref
+          .read(
             categoryNotifierProvider.notifier,
           )
           .loadDataFromCache();

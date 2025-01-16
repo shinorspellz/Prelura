@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/ui_constants.dart';
 
+import '../../../../controller/product/product_provider.dart';
 import '../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/images.dart';
 import '../../../../res/render_svg.dart';
-import 'package:prelura_app/res/utils.dart';
-import '../../../../controller/product/product_provider.dart';
 import '../../../widgets/bottom_sheet.dart';
-import '../view/user_wardrobe.dart';
 import 'show_filter_modal.dart';
 
 class FilterAndSort extends ConsumerWidget {
