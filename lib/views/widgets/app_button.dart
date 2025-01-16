@@ -99,7 +99,7 @@ class AppButton extends StatelessWidget {
                                     : bgColor != null
                                         ? PreluraColors.activeColor
                                         : PreluraColors.white),
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w500,
                           ),
                         )
                       : Center(
@@ -115,7 +115,7 @@ class AppButton extends StatelessWidget {
                                       : bgColor != null
                                           ? PreluraColors.activeColor
                                           : PreluraColors.white),
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),

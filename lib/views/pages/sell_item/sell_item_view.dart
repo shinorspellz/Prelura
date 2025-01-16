@@ -508,7 +508,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       MenuCard(
                         title: 'Size',
                         rightArrow: false,
-                        subtitle: state.size?.replaceAll('_', ' '),
+                        subtitle: ref
+                            .read(categoryNotifierProvider)
+                            .selectedSize
+                            ?.name
+                            ?.replaceAll('_', ' '),
                         subtitleColor: PreluraColors.greyColor,
                         onTap: () {
                           dismissKeyboard();
@@ -688,6 +692,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           //   return;
                           // }
 
+                          log(state.toJson().toString());
                           if (widget.product != null) {
                             await ref
                                 .read(productProvider.notifier)
@@ -698,7 +703,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   price: double.parse(state.price!),
                                   condition: state.selectedCondition!,
                                   parcelSize: state.parcel,
-                                  size: state.size,
+                                  size: state.size?.id,
                                   category:
                                       int.parse(state.category!.id.toString()),
                                   brandId: state.brand?.id,
@@ -734,12 +739,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 condition: state.selectedCondition!,
                                 parcelSize: state.parcel,
                                 images: files,
-                                size: state.size != null
-                                    ? ref
-                                        .read(categoryNotifierProvider)
-                                        .selectedSize!
-                                        .id
-                                    : null,
+                                size: state.size?.id,
                                 category:
                                     int.parse(state.category!.id.toString()),
                                 brandId: state.brand?.id,

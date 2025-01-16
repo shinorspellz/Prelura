@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/search_history_provider.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/res/logs.dart';
 import 'package:prelura_app/views/pages/search/search_helper_box.dart';
@@ -40,7 +43,7 @@ class SearchScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildDivider(context),
-                addVerticalSpacing(40),
+                addVerticalSpacing(65),
                 if (state == false) ...[
                   addVerticalSpacing(9),
                   SingleChildScrollView(
@@ -200,22 +203,56 @@ class SearchScreen extends ConsumerWidget {
                         _categoriesSection(
                             "Women", PreluraIcons.webp_women, context,
                             onTap: () {
-                          ref
-                              .read(selectedFilteredProductProvider.notifier)
-                              .state = Input$ProductFiltersInput(category: 2);
-                          context.router
-                              .push(FilterProductRoute(title: "Women", id: 2));
+                          final category = ref
+                              .watch(categoryProvider)
+                              .valueOrNull
+                              ?.firstWhere((category) =>
+                                  category.name.toLowerCase() == "women");
+
+                          if (category != null) {
+                            final int categoryId =
+                                int.tryParse(category.id.toString()) ?? -1;
+                            log(categoryId.toString());
+                            ref
+                                    .read(selectedFilteredProductProvider.notifier)
+                                    .state =
+                                Input$ProductFiltersInput(category: categoryId);
+                            context.router.push(FilterProductRoute(
+                                title: "Women", id: categoryId));
+                          } else {
+                            log('Category not found or id is invalid.');
+                          }
                         }),
                         _categoriesSection(
                             "Men", PreluraIcons.webp_men, context, onTap: () {
-                          ref
-                              .read(selectedFilteredProductProvider.notifier)
-                              .state = Input$ProductFiltersInput(category: 1);
-                          context.router
-                              .push(FilterProductRoute(title: "Men", id: 1));
+                          final category = ref
+                              .watch(categoryProvider)
+                              .valueOrNull
+                              ?.firstWhere((category) =>
+                                  category.name.toLowerCase() == "men");
+
+                          if (category != null) {
+                            final int categoryId =
+                                int.tryParse(category.id.toString()) ?? -1;
+                            ref
+                                    .read(selectedFilteredProductProvider.notifier)
+                                    .state =
+                                Input$ProductFiltersInput(category: categoryId);
+                            context.router.push(FilterProductRoute(
+                                title: "Men", id: categoryId));
+                            log(categoryId.toString());
+                          } else {
+                            log('Category not found or id is invalid.');
+                          }
                         }),
                         _categoriesSection("Kids", PreluraIcons.kids, context,
                             onTap: () {
+                          final categoryId = ref
+                              .watch(categoryProvider)
+                              .valueOrNull
+                              ?.firstWhere((category) =>
+                                  category.name.toLowerCase() == "women")
+                              .id;
                           ref
                               .read(selectedFilteredProductProvider.notifier)
                               .state = Input$ProductFiltersInput(category: 4);
@@ -355,37 +392,59 @@ class SearchScreen extends ConsumerWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 20, bottom: 6),
+            height: 106,
             color: Theme.of(context).scaffoldBackgroundColor,
-            child: Searchwidget(
-                hintText: "Search for items or members",
-                obscureText: false,
-                shouldReadOnly: false,
-                controller: ref.read(searchTextController),
-                onFocused: (val) {
-                  ref.read(activeSearchProvider.notifier).state = val;
-                },
-                onChanged: (value) {
-                  ref.read(activeSearchProvider.notifier).state = true;
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 22.0, left: 16),
+                  child: Text(
+                    "Discover",
+                    textAlign: TextAlign.left,
+                    style: context.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 10, bottom: 6),
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Searchwidget(
+                      hintText: "Search for members",
+                      obscureText: false,
+                      shouldReadOnly: false,
+                      controller: ref.read(searchTextController),
+                      onFocused: (val) {
+                        ref.read(activeSearchProvider.notifier).state = val;
+                      },
+                      onChanged: (value) {
+                        ref.read(activeSearchProvider.notifier).state = true;
 
-                  ref.read(searchHistoryQueryProvider.notifier).state = value;
+                        ref.read(searchHistoryQueryProvider.notifier).state =
+                            value;
 
-                  if (ref.read(showSearchProducts) == true) {
-                    // ref
-                    //     .read(searchFilterProvider.notifier)
-                    //     .updateFilter(FilterTypes.category, value);
-                  }
-                },
-                onCancel: () {
-                  ref.read(activeSearchProvider.notifier).state = false;
-                  ref.read(searchTextController.notifier).state.clear();
-                  ref.read(showSearchProducts.notifier).state = false;
-                  ref.read(searchFilterProvider.notifier).clearAllFilters();
-                },
-                enabled: true,
-                showInputBorder: true,
-                autofocus: false,
-                cancelButton: true),
+                        if (ref.read(showSearchProducts) == true) {
+                          // ref
+                          //     .read(searchFilterProvider.notifier)
+                          //     .updateFilter(FilterTypes.category, value);
+                        }
+                      },
+                      onCancel: () {
+                        ref.read(activeSearchProvider.notifier).state = false;
+                        ref.read(searchTextController.notifier).state.clear();
+                        ref.read(showSearchProducts.notifier).state = false;
+                        ref
+                            .read(searchFilterProvider.notifier)
+                            .clearAllFilters();
+                      },
+                      enabled: true,
+                      showInputBorder: true,
+                      autofocus: false,
+                      cancelButton: true),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -115,7 +115,7 @@ class PopularBrands extends ConsumerWidget {
                           },
                         ),
                         AspectRatio(
-                          aspectRatio: 1.0,
+                          aspectRatio: 1.1,
                           // height: 320,
                           // width: MediaQuery.sizeOf(context).width,
                           child: ListView.separated(

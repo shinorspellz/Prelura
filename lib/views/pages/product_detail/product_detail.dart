@@ -242,6 +242,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                         SendAnOfferRoute(product: product));
                                   },
                                   text: "Send an Offer",
+                                  fontWeight: FontWeight.w500,
                                   bgColor:
                                       Theme.of(context).scaffoldBackgroundColor,
                                   borderColor: Colors.purple,
@@ -258,6 +259,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   text: "Buy now",
                                   textColor: PreluraColors.white,
                                   borderColor: Colors.purple,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -324,7 +326,12 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                   child: GestureDetector(
                                     onTap: () async {
                                       final userLiked = !product.userLiked;
+                                      log(userLiked.toString(),
+                                          name: 'userLiked');
 
+                                      setState(() {
+                                        _isFavorite = userLiked;
+                                      });
                                       await ref
                                           .read(productProvider.notifier)
                                           .likeProduct(
@@ -334,7 +341,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                                 ? product.likes + 1
                                                 : product.likes - 1,
                                           );
-
+                                      ref.invalidate(getProductProvider(
+                                          int.parse(product.id)));
                                       ref.invalidate(userProduct);
 
                                       // Update state using providers
@@ -564,7 +572,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                       TextButton.icon(
                         onPressed: () {
                           // log(e.toString(), stackTrace: _);
-                          ref.invalidate(allProductProvider);
+                          ref.invalidate(getProductProvider(widget.productId));
                         },
                         label: const Text('Retry'),
                         icon: const Icon(Icons.refresh_rounded),

@@ -29,8 +29,8 @@ enum FilterTypes {
   condition('Condition'),
   gender('Gender'),
   category('Category'),
-  style('Style');
-  // color('Color');
+  style('Style'),
+  color('Color');
 
   const FilterTypes(this.simpleName);
 
@@ -288,6 +288,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                   child: AnimatedGridItem(
                                     child: ProfileCardWidget(
                                       user: users[index],
+                                      height: 40,
+                                      width: 40,
                                     ),
                                   ),
                                 ),

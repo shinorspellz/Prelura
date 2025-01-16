@@ -85,8 +85,8 @@ Future<Position> determinePosition() async {
       desiredAccuracy: LocationAccuracy.high);
 }
 
-String formatDynamicString(String input) {
-  final doubleValue = double.tryParse(input);
+String formatDynamicString(String? input) {
+  final doubleValue = double.tryParse(input ?? "");
   if (doubleValue == null) {
     throw ArgumentError("Invalid input string: $input");
   }

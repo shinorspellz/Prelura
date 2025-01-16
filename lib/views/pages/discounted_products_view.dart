@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
+import 'package:prelura_app/views/widgets/error_placeholder.dart';
 
 import '../../controller/product/product_provider.dart';
 import '../shimmers/grid_shimmer.dart';
@@ -108,7 +109,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {
-                          return SliverFillRemaining(
+                          return SliverToBoxAdapter(
                             child: EmptyScreenPlaceholder(
                                 text: "No products found"),
                           );
@@ -132,23 +133,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       },
                       error: (e, _) {
                         return SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("an error occurred"),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.invalidate(filteredProductProvider);
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
-                          ),
+                          child: ErrorPlaceholder(
+                              error: "An error occured",
+                              onTap: () {
+                                ref.refresh(discountedProductsProvider.future);
+                              }),
                         );
                       },
                       loading: () => SliverToBoxAdapter(

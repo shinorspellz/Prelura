@@ -294,13 +294,25 @@ query Categories($parentId: Int) {
   categories (parentId: $parentId){
     id
     name
-    hasChildren
+        hasChildren
     fullPath
     parent {
       id
     }
   }
 }
+
+# query Categoriess($parentId: Int) {
+#   categoriess (parentId: $parentId){
+#     id
+#     name
+#     hasChildren
+#     fullPath
+#     parent {
+#       id
+#     }
+#   }
+# }
 
 query Sizes($path: String!) {
   sizes (path: $path){
@@ -352,6 +364,7 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       }
     }
   }
+  likedProductsTotalNumber
 }
 
 query Brands($search: String, $pageCount: Int, $pageNumber: Int) {
@@ -797,5 +810,48 @@ query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
   productViews
   sellerScore
   activeListings 
+  }
+}
+
+query FavoriteBrandProducts($topCount: Int!){
+  favoriteBrandProducts(top: $topCount){
+     id
+    name
+    description
+    isFeatured
+    category {
+      id
+      name
+    }
+    seller {
+      id
+      username
+      profilePictureUrl
+    }
+    condition
+    discountPrice
+    size{
+      id
+      name
+    }
+    condition
+    price
+    parcelSize
+    views
+    likes
+    userLiked
+    imagesUrl
+    createdAt
+    updatedAt
+    likes
+    color
+    materials {
+      id
+      name
+    }
+    brand {
+      id
+      name
+    }
   }
 }

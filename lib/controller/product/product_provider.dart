@@ -197,10 +197,11 @@ final userBrandProvider =
   }
   return uniqueBrands.toList();
 });
-final userFavouriteProduct = FutureProvider.autoDispose((ref) async {
+
+final favoriteBrandProductsProvider = FutureProvider.autoDispose((ref) async {
   final repo = ref.watch(productRepo);
 
-  final result = await repo.getMyFavouriteProduct(0);
+  final result = await repo.getFavoriteBrandProducts();
 
   return result.reversed.toList();
 });
@@ -359,7 +360,7 @@ class _ProductProvider extends AsyncNotifier<void> {
 
     // ref.invalidate(getProductProvider(productId));
     // ref.invalidate(allProductProvider);
-    ref.invalidate(userFavouriteProduct);
+    ref.invalidate(userFavouriteProductProvider);
   }
 }
 
@@ -557,34 +558,6 @@ class _AllProductController
 
   bool canLoadMore() {
     return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
-  }
-}
-
-class ScreenState {
-  final String id;
-  final dynamic data;
-  final bool isLoading;
-  final String? error;
-
-  ScreenState({
-    required this.id,
-    this.data,
-    this.isLoading = false,
-    this.error,
-  });
-
-  ScreenState copyWith({
-    String? id,
-    dynamic data,
-    bool? isLoading,
-    String? error,
-  }) {
-    return ScreenState(
-      id: id ?? this.id,
-      data: data ?? this.data,
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-    );
   }
 }
 
@@ -1144,3 +1117,73 @@ final userProductGroupingBySubCategoryProvider =
 
   return result;
 });
+
+final userFavouriteProductProvider =
+    AsyncNotifierProvider<_userFavouriteProductController, List<ProductModel>>(
+        _userFavouriteProductController.new);
+
+class _userFavouriteProductController
+    extends AsyncNotifier<List<ProductModel>> {
+  late final _repository = ref.read(productRepo);
+  // List<ServicePackageModel>? services;
+  final int _pageCount = 15;
+  int _currentPage = 1;
+  int _brandTotalItems = 0;
+
+  @override
+  Future<List<ProductModel>> build() async {
+    state = const AsyncLoading();
+    _currentPage = 1;
+    await _getProducts(pageNumber: _currentPage);
+    return state.value!;
+  }
+
+  Future<void> _getProducts({int? pageNumber}) async {
+    // final sort = ref.watch(sortAllServiceProvider);
+    final result = await _repository.getMyFavouriteProduct(
+      // query: price,
+      pageCount: _pageCount,
+      pageNumber: pageNumber,
+    );
+
+    _brandTotalItems = result.likedProductsTotalNumber!;
+
+    final newState = result.likedProducts!
+        .map((x) => ProductModel.fromJson((x!.product)!.toJson()))
+        .toList();
+    newState.shuffle();
+    final currentState = state.valueOrNull ?? [];
+    if (pageNumber == 1) {
+      state = AsyncData(newState.toList());
+    } else {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
+        return;
+      }
+
+      state = AsyncData([...currentState, ...newState]);
+    }
+    _currentPage = pageNumber!;
+  }
+
+  Future<void> fetchMoreData() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+
+    if (canLoadMore) {
+      await _getProducts(
+        pageNumber: _currentPage + 1,
+      );
+    }
+  }
+
+  Future<void> fetchMoreHandler() async {
+    final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+    if (canLoadMore) {
+      await fetchMoreData();
+    }
+  }
+
+  bool canLoadMore() {
+    return (state.valueOrNull?.length ?? 0) < _brandTotalItems;
+  }
+}
