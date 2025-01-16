@@ -20,7 +20,7 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
         );
 
   static ThemeMode _loadThemeModeFromHive(Box box) {
-    final themeIndex = box.get(_themeKey, defaultValue: ThemeMode.system.index);
+    final themeIndex = box.get(_themeKey, defaultValue: ThemeMode.light);
     return ThemeMode.values[themeIndex];
   }
 

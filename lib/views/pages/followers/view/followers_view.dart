@@ -7,6 +7,7 @@ import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
+import '../../../widgets/empty_screen_placeholder.dart';
 import '../widget/follower_tile.dart';
 
 final followersqueryProvider = StateProvider<FollowerQuery>(
@@ -50,7 +51,10 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 500), () {
       // Update the query parameters in the StateProvider
-      ref.read(followersqueryProvider.notifier).state = FollowerQuery(query: _searchController.text, latestFirst: false, username: widget.username);
+      ref.read(followersqueryProvider.notifier).state = FollowerQuery(
+          query: _searchController.text,
+          latestFirst: false,
+          username: widget.username);
     });
   }
 
@@ -63,7 +67,8 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
 
   Future<void> _onRefresh() async {
     try {
-      ref.refresh(followersProvider(ref.read(followersqueryProvider))); // Re-trigger the provider
+      ref.refresh(followersProvider(
+          ref.read(followersqueryProvider))); // Re-trigger the provider
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
       _refreshController.refreshFailed(); // Notify SmartRefresher of failure
@@ -73,7 +78,8 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
   void _onLoading() async {
     try {
       // Fetch more products from the repository
-      ref.refresh(followersProvider(ref.read(followersqueryProvider))); // Re-trigger the provider
+      ref.refresh(followersProvider(
+          ref.read(followersqueryProvider))); // Re-trigger the provider
 
       // await ref.read(productRepo).fetchMoreFavouriteProducts();
       _refreshController.loadComplete();
@@ -94,7 +100,8 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appbarTitle: "Followers",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => AutoRouter.of(context).popForced(),
         ),
       ),
@@ -104,28 +111,27 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
         onLoading: _onLoading,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: Column(
-            children: [
-              // Search Input
-              Searchwidget(
-                controller: _searchController,
-                obscureText: false,
-                shouldReadOnly: false,
-                enabled: true,
-                showInputBorder: true,
-                autofocus: false,
-                cancelButton: true,
-                hintText: "Enter a name or keyword",
-              ),
-              const SizedBox(height: 16),
-              // Result Section
-              Expanded(
-                child: followers.when(
-                  data: (followersList) {
-                    if (followersList.isEmpty) {
-                      return const Center(child: Text("No followers found."));
-                    }
-                    return ListView.builder(
+          child: followers.when(
+            data: (followersList) {
+              if (followersList.isEmpty) {
+                return const EmptyScreenPlaceholder(
+                    text: "No followers found.");
+              }
+              return Column(
+                children: [
+                  Searchwidget(
+                    controller: _searchController,
+                    obscureText: false,
+                    shouldReadOnly: false,
+                    enabled: true,
+                    showInputBorder: true,
+                    autofocus: false,
+                    cancelButton: true,
+                    hintText: "search for members",
+                  ),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: ListView.builder(
                       itemCount: followersList.length,
                       itemBuilder: (context, index) {
                         final user = followersList[index];
@@ -133,15 +139,15 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                           follower: user,
                         );
                       },
-                    );
-                  },
-                  loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (error, stackTrace) {
-                    return Center(child: Text("Error: ${error.toString()}"));
-                  },
-                ),
-              ),
-            ],
+                    ),
+                  ),
+                ],
+              );
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stackTrace) {
+              return Center(child: Text("Error: ${error.toString()}"));
+            },
           ),
         ),
       ),

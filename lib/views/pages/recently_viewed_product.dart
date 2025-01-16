@@ -7,11 +7,13 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../controller/product/product_provider.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
+import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/gap.dart';
 
 @RoutePage()
 class RecentlyViewedProductScreen extends ConsumerStatefulWidget {
-  const RecentlyViewedProductScreen({super.key, required this.title, required this.id, this.customBrand});
+  const RecentlyViewedProductScreen(
+      {super.key, required this.title, required this.id, this.customBrand});
   final String? title;
   final int? id;
   final String? customBrand;
@@ -19,10 +21,12 @@ class RecentlyViewedProductScreen extends ConsumerStatefulWidget {
   static final ScrollController scrollController = ScrollController();
 
   @override
-  _RecentlyViewedProductScreenState createState() => _RecentlyViewedProductScreenState();
+  _RecentlyViewedProductScreenState createState() =>
+      _RecentlyViewedProductScreenState();
 }
 
-class _RecentlyViewedProductScreenState extends ConsumerState<RecentlyViewedProductScreen> {
+class _RecentlyViewedProductScreenState
+    extends ConsumerState<RecentlyViewedProductScreen> {
   final controller = RecentlyViewedProductScreen.scrollController;
 
   @override
@@ -54,7 +58,8 @@ class _RecentlyViewedProductScreenState extends ConsumerState<RecentlyViewedProd
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -101,21 +106,39 @@ class _RecentlyViewedProductScreenState extends ConsumerState<RecentlyViewedProd
               ),
               ref.watch(recentlyViewedProductsProvider).maybeWhen(
                     // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                    data: (products) => SliverPadding(
-                      padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-                      sliver: SliverGrid.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 0.49,
+                    data: (products) {
+                      final filteredProducts = products
+                          .where((product) =>
+                              product.name
+                                  ?.toLowerCase()
+                                  .contains(searchQuery) ??
+                              false) // Safely check for "party"
+                          .toList();
+                      if (filteredProducts.isEmpty) {
+                        return SliverFillRemaining(
+                          child:
+                              EmptyScreenPlaceholder(text: "No products found"),
+                        );
+                      }
+                      return SliverPadding(
+                        padding:
+                            EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                        sliver: SliverGrid.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.49,
+                          ),
+                          itemCount: filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(
+                                product: filteredProducts[index]);
+                          },
                         ),
-                        itemCount: products.length,
-                        itemBuilder: (context, index) {
-                          return ProductCard(product: products[index]);
-                        },
-                      ),
-                    ),
+                      );
+                    },
                     error: (e, _) {
                       return SliverToBoxAdapter(
                         child: Padding(
@@ -174,7 +197,8 @@ class StaticSliverDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => 75.8;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return child;
   }
 

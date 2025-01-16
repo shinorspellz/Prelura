@@ -38,29 +38,44 @@ class SellerProfileCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (user.profilePictureUrl == null) ...[
-              Container(
-                height: 130,
-                width: 130,
-                color: Colors.grey[600],
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: Center(
-                    child: Text(
-                      user.username?.split('').first.toUpperCase() ?? '--',
-                      style: context.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                          fontSize: 44),
+              Stack(
+                children: [
+                  Container(
+                    height: 130,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Center(
+                        child: Text(
+                          user.username?.split('').first.toUpperCase() ?? '--',
+                          style: context.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              fontSize: 44),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                      bottom: -2,
+                      right: 0,
+                      child: RenderSvgWithoutColor(
+                        svgPath: PreluraIcons.trusted_svg,
+                        svgHeight: 18,
+                        svgWidth: 18,
+                      ))
+                ],
               )
             ] else ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: Stack(
-                  children: [
-                    CachedNetworkImage(
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: CachedNetworkImage(
                       imageUrl: user.profilePictureUrl ?? "",
                       height: 130,
                       width: 130,
@@ -74,8 +89,16 @@ class SellerProfileCard extends ConsumerWidget {
                       fadeInDuration: Duration.zero,
                       fadeOutDuration: Duration.zero,
                     ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                      bottom: -2,
+                      right: 0,
+                      child: RenderSvgWithoutColor(
+                        svgPath: PreluraIcons.trusted_svg,
+                        svgHeight: 18,
+                        svgWidth: 18,
+                      ))
+                ],
               ),
             ],
             10.verticalSpacing,
@@ -90,7 +113,7 @@ class SellerProfileCard extends ConsumerWidget {
             ),
             3.verticalSpacing,
             Text(
-              "${user.noOfFollowers.toString()} followers",
+              "${user.noOfFollowers} ${(user?.noOfFollowers != null && (user.noOfFollowing! > 1 || user?.noOfFollowers?.toInt() == 0)) ? " followers" : " follower"}",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: PreluraColors.grey,
@@ -117,28 +140,28 @@ class SellerProfileCard extends ConsumerWidget {
               ],
             ),
             3.verticalSpacing,
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const RenderSvgWithoutColor(
-                  svgPath: PreluraIcons.trusted_svg,
-                  svgHeight: 18,
-                  svgWidth: 18,
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                Text(
-                  "Trusted",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: PreluraColors.grey,
-                        fontWeight: FontWeight.w600,
-                        fontSize: getDefaultSize(size: 12),
-                      ),
-                ),
-              ],
-            ),
+            // Row(
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     const RenderSvgWithoutColor(
+            //       svgPath: PreluraIcons.trusted_svg,
+            //       svgHeight: 18,
+            //       svgWidth: 18,
+            //     ),
+            //     const SizedBox(
+            //       width: 4,
+            //     ),
+            //     Text(
+            //       "Trusted",
+            //       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            //             color: PreluraColors.grey,
+            //             fontWeight: FontWeight.w600,
+            //             fontSize: getDefaultSize(size: 12),
+            //           ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

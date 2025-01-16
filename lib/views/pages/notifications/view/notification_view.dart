@@ -6,6 +6,7 @@ import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/notification_card.dart';
 import '../../../../controller/notification_provider.dart';
+import '../../../widgets/empty_screen_placeholder.dart';
 
 class NotificationsTab extends ConsumerStatefulWidget {
   static final ScrollController scrollController = ScrollController();
@@ -74,13 +75,8 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                               ),
                             )
                           : SliverFillRemaining(
-                              child: Center(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [Text("No notificatons yet")],
-                                ),
-                              ),
+                              child: EmptyScreenPlaceholder(
+                                  text: "No notification yet"),
                             );
                     },
                     error: (e, _) {
