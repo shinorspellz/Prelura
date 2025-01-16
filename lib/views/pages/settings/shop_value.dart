@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/user/user_earnings_controller.dart';
 import 'package:prelura_app/core/utils/currency_format.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/animated_counter.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -69,7 +70,8 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
                           )),
                   16.horizontalSpacing,
                   AnimatedCount(
-                    count: userEarinings?.networth.toInt() ??
+                    count: double.parse(formatDynamicString(
+                            userEarinings!.networth.toString())) ??
                         0, //currentShopValue,
                     formatToCurrency: true,
                     duration: Duration(milliseconds: 900),

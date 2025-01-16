@@ -14200,11 +14200,13 @@ class _CopyWithStubImpl$Variables$Query$likedProducts<TRes>
 class Query$likedProducts {
   Query$likedProducts({
     this.likedProducts,
+    this.likedProductsTotalNumber,
     this.$__typename = 'Query',
   });
 
   factory Query$likedProducts.fromJson(Map<String, dynamic> json) {
     final l$likedProducts = json['likedProducts'];
+    final l$likedProductsTotalNumber = json['likedProductsTotalNumber'];
     final l$$__typename = json['__typename'];
     return Query$likedProducts(
       likedProducts: (l$likedProducts as List<dynamic>?)
@@ -14213,11 +14215,14 @@ class Query$likedProducts {
               : Query$likedProducts$likedProducts.fromJson(
                   (e as Map<String, dynamic>)))
           .toList(),
+      likedProductsTotalNumber: (l$likedProductsTotalNumber as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<Query$likedProducts$likedProducts?>? likedProducts;
+
+  final int? likedProductsTotalNumber;
 
   final String $__typename;
 
@@ -14226,6 +14231,8 @@ class Query$likedProducts {
     final l$likedProducts = likedProducts;
     _resultData['likedProducts'] =
         l$likedProducts?.map((e) => e?.toJson()).toList();
+    final l$likedProductsTotalNumber = likedProductsTotalNumber;
+    _resultData['likedProductsTotalNumber'] = l$likedProductsTotalNumber;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -14234,11 +14241,13 @@ class Query$likedProducts {
   @override
   int get hashCode {
     final l$likedProducts = likedProducts;
+    final l$likedProductsTotalNumber = likedProductsTotalNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$likedProducts == null
           ? null
           : Object.hashAll(l$likedProducts.map((v) => v)),
+      l$likedProductsTotalNumber,
       l$$__typename,
     ]);
   }
@@ -14265,6 +14274,11 @@ class Query$likedProducts {
         }
       }
     } else if (l$likedProducts != lOther$likedProducts) {
+      return false;
+    }
+    final l$likedProductsTotalNumber = likedProductsTotalNumber;
+    final lOther$likedProductsTotalNumber = other.likedProductsTotalNumber;
+    if (l$likedProductsTotalNumber != lOther$likedProductsTotalNumber) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -14295,6 +14309,7 @@ abstract class CopyWith$Query$likedProducts<TRes> {
 
   TRes call({
     List<Query$likedProducts$likedProducts?>? likedProducts,
+    int? likedProductsTotalNumber,
     String? $__typename,
   });
   TRes likedProducts(
@@ -14320,12 +14335,16 @@ class _CopyWithImpl$Query$likedProducts<TRes>
 
   TRes call({
     Object? likedProducts = _undefined,
+    Object? likedProductsTotalNumber = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$likedProducts(
         likedProducts: likedProducts == _undefined
             ? _instance.likedProducts
             : (likedProducts as List<Query$likedProducts$likedProducts?>?),
+        likedProductsTotalNumber: likedProductsTotalNumber == _undefined
+            ? _instance.likedProductsTotalNumber
+            : (likedProductsTotalNumber as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -14354,6 +14373,7 @@ class _CopyWithStubImpl$Query$likedProducts<TRes>
 
   call({
     List<Query$likedProducts$likedProducts?>? likedProducts,
+    int? likedProductsTotalNumber,
     String? $__typename,
   }) =>
       _res;
@@ -14696,6 +14716,13 @@ const documentNodeQuerylikedProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'likedProductsTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -38774,9 +38801,9 @@ class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$phone
 }
 
 class Variables$Query$FavoriteBrandProducts {
-  factory Variables$Query$FavoriteBrandProducts({int? topCount}) =>
+  factory Variables$Query$FavoriteBrandProducts({required int topCount}) =>
       Variables$Query$FavoriteBrandProducts._({
-        if (topCount != null) r'topCount': topCount,
+        r'topCount': topCount,
       });
 
   Variables$Query$FavoriteBrandProducts._(this._$data);
@@ -38784,23 +38811,19 @@ class Variables$Query$FavoriteBrandProducts {
   factory Variables$Query$FavoriteBrandProducts.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('topCount')) {
-      final l$topCount = data['topCount'];
-      result$data['topCount'] = (l$topCount as int?);
-    }
+    final l$topCount = data['topCount'];
+    result$data['topCount'] = (l$topCount as int);
     return Variables$Query$FavoriteBrandProducts._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  int? get topCount => (_$data['topCount'] as int?);
+  int get topCount => (_$data['topCount'] as int);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('topCount')) {
-      final l$topCount = topCount;
-      result$data['topCount'] = l$topCount;
-    }
+    final l$topCount = topCount;
+    result$data['topCount'] = l$topCount;
     return result$data;
   }
 
@@ -38822,10 +38845,6 @@ class Variables$Query$FavoriteBrandProducts {
     }
     final l$topCount = topCount;
     final lOther$topCount = other.topCount;
-    if (_$data.containsKey('topCount') !=
-        other._$data.containsKey('topCount')) {
-      return false;
-    }
     if (l$topCount != lOther$topCount) {
       return false;
     }
@@ -38835,8 +38854,7 @@ class Variables$Query$FavoriteBrandProducts {
   @override
   int get hashCode {
     final l$topCount = topCount;
-    return Object.hashAll(
-        [_$data.containsKey('topCount') ? l$topCount : const {}]);
+    return Object.hashAll([l$topCount]);
   }
 }
 
@@ -38868,7 +38886,8 @@ class _CopyWithImpl$Variables$Query$FavoriteBrandProducts<TRes>
   TRes call({Object? topCount = _undefined}) =>
       _then(Variables$Query$FavoriteBrandProducts._({
         ..._instance._$data,
-        if (topCount != _undefined) 'topCount': (topCount as int?),
+        if (topCount != _undefined && topCount != null)
+          'topCount': (topCount as int),
       }));
 }
 
@@ -39065,7 +39084,7 @@ const documentNodeQueryFavoriteBrandProducts = DocumentNode(definitions: [
         variable: VariableNode(name: NameNode(value: 'topCount')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
-          isNonNull: false,
+          isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -39196,7 +39215,29 @@ const documentNodeQueryFavoriteBrandProducts = DocumentNode(definitions: [
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: null,
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
           ),
           FieldNode(
             name: NameNode(value: 'condition'),
@@ -39364,7 +39405,7 @@ class Options$Query$FavoriteBrandProducts
     extends graphql.QueryOptions<Query$FavoriteBrandProducts> {
   Options$Query$FavoriteBrandProducts({
     String? operationName,
-    Variables$Query$FavoriteBrandProducts? variables,
+    required Variables$Query$FavoriteBrandProducts variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -39376,7 +39417,7 @@ class Options$Query$FavoriteBrandProducts
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -39412,7 +39453,7 @@ class WatchOptions$Query$FavoriteBrandProducts
     extends graphql.WatchQueryOptions<Query$FavoriteBrandProducts> {
   WatchOptions$Query$FavoriteBrandProducts({
     String? operationName,
-    Variables$Query$FavoriteBrandProducts? variables,
+    required Variables$Query$FavoriteBrandProducts variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
@@ -39424,7 +39465,7 @@ class WatchOptions$Query$FavoriteBrandProducts
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           operationName: operationName,
           fetchPolicy: fetchPolicy,
           errorPolicy: errorPolicy,
@@ -39444,10 +39485,10 @@ class FetchMoreOptions$Query$FavoriteBrandProducts
     extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$FavoriteBrandProducts({
     required graphql.UpdateQuery updateQuery,
-    Variables$Query$FavoriteBrandProducts? variables,
+    required Variables$Query$FavoriteBrandProducts variables,
   }) : super(
           updateQuery: updateQuery,
-          variables: variables?.toJson() ?? {},
+          variables: variables.toJson(),
           document: documentNodeQueryFavoriteBrandProducts,
         );
 }
@@ -39455,35 +39496,35 @@ class FetchMoreOptions$Query$FavoriteBrandProducts
 extension ClientExtension$Query$FavoriteBrandProducts on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$FavoriteBrandProducts>>
       query$FavoriteBrandProducts(
-              [Options$Query$FavoriteBrandProducts? options]) async =>
-          await this.query(options ?? Options$Query$FavoriteBrandProducts());
-  graphql.ObservableQuery<
-      Query$FavoriteBrandProducts> watchQuery$FavoriteBrandProducts(
-          [WatchOptions$Query$FavoriteBrandProducts? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$FavoriteBrandProducts());
+              Options$Query$FavoriteBrandProducts options) async =>
+          await this.query(options);
+  graphql.ObservableQuery<Query$FavoriteBrandProducts>
+      watchQuery$FavoriteBrandProducts(
+              WatchOptions$Query$FavoriteBrandProducts options) =>
+          this.watchQuery(options);
   void writeQuery$FavoriteBrandProducts({
     required Query$FavoriteBrandProducts data,
-    Variables$Query$FavoriteBrandProducts? variables,
+    required Variables$Query$FavoriteBrandProducts variables,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
           operation: graphql.Operation(
               document: documentNodeQueryFavoriteBrandProducts),
-          variables: variables?.toJson() ?? const {},
+          variables: variables.toJson(),
         ),
         data: data.toJson(),
         broadcast: broadcast,
       );
   Query$FavoriteBrandProducts? readQuery$FavoriteBrandProducts({
-    Variables$Query$FavoriteBrandProducts? variables,
+    required Variables$Query$FavoriteBrandProducts variables,
     bool optimistic = true,
   }) {
     final result = this.readQuery(
       graphql.Request(
         operation:
             graphql.Operation(document: documentNodeQueryFavoriteBrandProducts),
-        variables: variables?.toJson() ?? const {},
+        variables: variables.toJson(),
       ),
       optimistic: optimistic,
     );
@@ -40482,21 +40523,51 @@ class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller
 }
 
 class Query$FavoriteBrandProducts$favoriteBrandProducts$size {
-  Query$FavoriteBrandProducts$favoriteBrandProducts$size();
+  Query$FavoriteBrandProducts$favoriteBrandProducts$size({
+    this.id,
+    this.name,
+    this.$__typename = 'SizeType',
+  });
 
   factory Query$FavoriteBrandProducts$favoriteBrandProducts$size.fromJson(
       Map<String, dynamic> json) {
-    return Query$FavoriteBrandProducts$favoriteBrandProducts$size();
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
   }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
-    return Object.hashAll([]);
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -40506,6 +40577,21 @@ class Query$FavoriteBrandProducts$favoriteBrandProducts$size {
     }
     if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$size ||
         runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -40534,7 +40620,11 @@ abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
           TRes res) =
       _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size;
 
-  TRes call();
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
@@ -40552,8 +40642,18 @@ class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call() =>
-      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$size());
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
@@ -40565,7 +40665,12 @@ class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
 
   TRes _res;
 
-  call() => _res;
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$FavoriteBrandProducts$favoriteBrandProducts$materials {

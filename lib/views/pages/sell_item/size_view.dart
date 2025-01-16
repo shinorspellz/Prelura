@@ -80,7 +80,7 @@ class SizeSelectionPage extends ConsumerWidget {
                     onChanged: (size) => {
                           ref
                               .read(sellItemProvider.notifier)
-                              .selectSize(value.name!),
+                              .selectSize(value),
                           context.router.popForced(),
                           ref
                               .read(categoryNotifierProvider.notifier)

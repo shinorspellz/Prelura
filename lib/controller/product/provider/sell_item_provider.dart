@@ -11,6 +11,8 @@ import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
+import '../../../model/product/categories/size_model.dart';
+
 part 'sell_item_provider.freezed.dart';
 part 'sell_item_provider.g.dart';
 
@@ -119,7 +121,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   //   state = state.copyWith(subCategory: subCategory);
   // }
 
-  void selectSize(String size) {
+  void selectSize(Size size) {
     // void selectSize(Enum$SizeEnum size) {
     // state = state.copyWith(size: size);
   }
