@@ -92,10 +92,6 @@ query Product($id: Int!) {
       id
       name
     }
-    subCategory {
-      id
-      name
-    }
     seller {
       id
       username
@@ -134,10 +130,6 @@ query RecentlyViewedproducts {
     description
     isFeatured
     category {
-      id
-      name
-    }
-    subCategory {
       id
       name
     }
@@ -198,10 +190,6 @@ query UserProducts(
       id
       name
     }
-    subCategory {
-      id
-      name
-    }
     seller {
       id
       username
@@ -250,10 +238,6 @@ query AllProducts(
       id
       name
     }
-    subCategory {
-      id
-      name
-    }
     seller {
       id
       username
@@ -292,24 +276,25 @@ query Categories {
   categories {
     id
     name
-    subCategory {
-      id
-      name
-    }
-  }
-}
-
-query Categoriess($parentId: Int) {
-  categoriess (parentId: $parentId){
-    id
-    name
-    hasChildren
+        hasChildren
     fullPath
     parent {
       id
     }
   }
 }
+
+# query Categoriess($parentId: Int) {
+#   categoriess (parentId: $parentId){
+#     id
+#     name
+#     hasChildren
+#     fullPath
+#     parent {
+#       id
+#     }
+#   }
+# }
 
 query Sizes($path: String!) {
   sizes (path: $path){
@@ -325,10 +310,6 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       name
       description
       category {
-        id
-        name
-      }
-      subCategory {
         id
         name
       }
@@ -400,10 +381,6 @@ query SimilarProducts(
       name
     }
     isFeatured
-    subCategory {
-      id
-      name
-    }
     seller {
       id
       username
@@ -519,10 +496,6 @@ query FilterProductsByPrice(
     description
     isFeatured
     category {
-      id
-      name
-    }
-    subCategory {
       id
       name
     }
@@ -808,5 +781,45 @@ query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
   productViews
   sellerScore
   activeListings 
+  }
+}
+
+query FavoriteBrandProducts($topCount: Int){
+  favoriteBrandProducts(top: $topCount){
+     id
+    name
+    description
+    isFeatured
+    category {
+      id
+      name
+    }
+    seller {
+      id
+      username
+      profilePictureUrl
+    }
+    condition
+    discountPrice
+    size
+    condition
+    price
+    parcelSize
+    views
+    likes
+    userLiked
+    imagesUrl
+    createdAt
+    updatedAt
+    likes
+    color
+    materials {
+      id
+      name
+    }
+    brand {
+      id
+      name
+    }
   }
 }

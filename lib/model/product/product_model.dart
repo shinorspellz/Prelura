@@ -6,6 +6,8 @@ import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 
+import 'offers/offers_model.dart';
+
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
@@ -16,10 +18,9 @@ class ProductModel with _$ProductModel {
     required final String name,
     required final String description,
     final CategoryModel? category,
-    final CategoryModel? subCategory,
     required final UserModel seller,
     final String? discountPrice,
-    final Enum$ProductsProductSizeChoices? size,
+    final SizeType? size,
     final Enum$ProductsProductParcelSizeChoices? parcelSize,
     final ConditionsEnum? condition,
     required final double price,
@@ -36,6 +37,7 @@ class ProductModel with _$ProductModel {
     final Enum$StyleEnum? style,
     final String? customBrand,
     final bool? isFeatured,
+    final OfferType? offers,
   }) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -126,4 +128,14 @@ class Brand with _$Brand {
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
+}
+
+@freezed
+class SizeType with _$SizeType {
+  const factory SizeType({
+    required int id,
+    required String name,
+  }) = _SizeType;
+
+  factory SizeType.fromJson(Map<String, dynamic> json) => _$SizeTypeFromJson(json);
 }

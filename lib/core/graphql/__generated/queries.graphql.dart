@@ -4114,35 +4114,6 @@ const documentNodeQueryProduct = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -4497,7 +4468,6 @@ class Query$Product$product {
     required this.description,
     required this.isFeatured,
     this.category,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -4524,7 +4494,6 @@ class Query$Product$product {
     final l$description = json['description'];
     final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -4552,10 +4521,6 @@ class Query$Product$product {
           ? null
           : Query$Product$product$category.fromJson(
               (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$Product$product$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$Product$product$seller.fromJson(
@@ -4567,7 +4532,8 @@ class Query$Product$product {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$Product$product$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -4609,15 +4575,13 @@ class Query$Product$product {
 
   final Query$Product$product$category? category;
 
-  final Query$Product$product$subCategory? subCategory;
-
   final Query$Product$product$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$Product$product$size? size;
 
   final double? price;
 
@@ -4659,8 +4623,6 @@ class Query$Product$product {
     _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -4670,8 +4632,7 @@ class Query$Product$product {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -4714,7 +4675,6 @@ class Query$Product$product {
     final l$description = description;
     final l$isFeatured = isFeatured;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -4739,7 +4699,6 @@ class Query$Product$product {
       l$description,
       l$isFeatured,
       l$category,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -4792,11 +4751,6 @@ class Query$Product$product {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -4941,11 +4895,10 @@ abstract class CopyWith$Query$Product$product<TRes> {
     String? description,
     bool? isFeatured,
     Query$Product$product$category? category,
-    Query$Product$product$subCategory? subCategory,
     Query$Product$product$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$Product$product$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -4962,8 +4915,8 @@ abstract class CopyWith$Query$Product$product<TRes> {
     String? $__typename,
   });
   CopyWith$Query$Product$product$category<TRes> get category;
-  CopyWith$Query$Product$product$subCategory<TRes> get subCategory;
   CopyWith$Query$Product$product$seller<TRes> get seller;
+  CopyWith$Query$Product$product$size<TRes> get size;
   TRes materials(
       Iterable<Query$Product$product$materials?>? Function(
               Iterable<
@@ -4992,7 +4945,6 @@ class _CopyWithImpl$Query$Product$product<TRes>
     Object? description = _undefined,
     Object? isFeatured = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -5026,9 +4978,6 @@ class _CopyWithImpl$Query$Product$product<TRes>
         category: category == _undefined
             ? _instance.category
             : (category as Query$Product$product$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory as Query$Product$product$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$Product$product$seller?),
@@ -5040,7 +4989,7 @@ class _CopyWithImpl$Query$Product$product<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$Product$product$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -5091,20 +5040,19 @@ class _CopyWithImpl$Query$Product$product<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$Product$product$subCategory<TRes> get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$Product$product$subCategory.stub(_then(_instance))
-        : CopyWith$Query$Product$product$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$Product$product$seller<TRes> get seller {
     final local$seller = _instance.seller;
     return local$seller == null
         ? CopyWith$Query$Product$product$seller.stub(_then(_instance))
         : CopyWith$Query$Product$product$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$Product$product$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$Product$product$size.stub(_then(_instance))
+        : CopyWith$Query$Product$product$size(local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -5142,11 +5090,10 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
     String? description,
     bool? isFeatured,
     Query$Product$product$category? category,
-    Query$Product$product$subCategory? subCategory,
     Query$Product$product$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$Product$product$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -5167,11 +5114,11 @@ class _CopyWithStubImpl$Query$Product$product<TRes>
   CopyWith$Query$Product$product$category<TRes> get category =>
       CopyWith$Query$Product$product$category.stub(_res);
 
-  CopyWith$Query$Product$product$subCategory<TRes> get subCategory =>
-      CopyWith$Query$Product$product$subCategory.stub(_res);
-
   CopyWith$Query$Product$product$seller<TRes> get seller =>
       CopyWith$Query$Product$product$seller.stub(_res);
+
+  CopyWith$Query$Product$product$size<TRes> get size =>
+      CopyWith$Query$Product$product$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -5309,148 +5256,6 @@ class _CopyWithImpl$Query$Product$product$category<TRes>
 class _CopyWithStubImpl$Query$Product$product$category<TRes>
     implements CopyWith$Query$Product$product$category<TRes> {
   _CopyWithStubImpl$Query$Product$product$category(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Product$product$subCategory {
-  Query$Product$product$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$Product$product$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$Product$product$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Product$product$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Product$product$subCategory
-    on Query$Product$product$subCategory {
-  CopyWith$Query$Product$product$subCategory<Query$Product$product$subCategory>
-      get copyWith => CopyWith$Query$Product$product$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Product$product$subCategory<TRes> {
-  factory CopyWith$Query$Product$product$subCategory(
-    Query$Product$product$subCategory instance,
-    TRes Function(Query$Product$product$subCategory) then,
-  ) = _CopyWithImpl$Query$Product$product$subCategory;
-
-  factory CopyWith$Query$Product$product$subCategory.stub(TRes res) =
-      _CopyWithStubImpl$Query$Product$product$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Product$product$subCategory<TRes>
-    implements CopyWith$Query$Product$product$subCategory<TRes> {
-  _CopyWithImpl$Query$Product$product$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Product$product$subCategory _instance;
-
-  final TRes Function(Query$Product$product$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Product$product$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Product$product$subCategory<TRes>
-    implements CopyWith$Query$Product$product$subCategory<TRes> {
-  _CopyWithStubImpl$Query$Product$product$subCategory(this._res);
 
   TRes _res;
 
@@ -5622,6 +5427,82 @@ class _CopyWithStubImpl$Query$Product$product$seller<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$Product$product$size {
+  Query$Product$product$size();
+
+  factory Query$Product$product$size.fromJson(Map<String, dynamic> json) {
+    return Query$Product$product$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Product$product$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Product$product$size
+    on Query$Product$product$size {
+  CopyWith$Query$Product$product$size<Query$Product$product$size>
+      get copyWith => CopyWith$Query$Product$product$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Product$product$size<TRes> {
+  factory CopyWith$Query$Product$product$size(
+    Query$Product$product$size instance,
+    TRes Function(Query$Product$product$size) then,
+  ) = _CopyWithImpl$Query$Product$product$size;
+
+  factory CopyWith$Query$Product$product$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$Product$product$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$Product$product$size<TRes>
+    implements CopyWith$Query$Product$product$size<TRes> {
+  _CopyWithImpl$Query$Product$product$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Product$product$size _instance;
+
+  final TRes Function(Query$Product$product$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Query$Product$product$size());
+}
+
+class _CopyWithStubImpl$Query$Product$product$size<TRes>
+    implements CopyWith$Query$Product$product$size<TRes> {
+  _CopyWithStubImpl$Query$Product$product$size(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$Product$product$materials {
@@ -6152,35 +6033,6 @@ const documentNodeQueryRecentlyViewedproducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -6548,7 +6400,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     required this.description,
     required this.isFeatured,
     this.category,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -6577,7 +6428,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$description = json['description'];
     final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -6606,10 +6456,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
           ? null
           : Query$RecentlyViewedproducts$recentlyViewedProducts$category
               .fromJson((l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory
-              .fromJson((l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$RecentlyViewedproducts$recentlyViewedProducts$seller.fromJson(
@@ -6621,7 +6467,8 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$RecentlyViewedproducts$recentlyViewedProducts$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -6664,16 +6511,13 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
 
   final Query$RecentlyViewedproducts$recentlyViewedProducts$category? category;
 
-  final Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
-      subCategory;
-
   final Query$RecentlyViewedproducts$recentlyViewedProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$RecentlyViewedproducts$recentlyViewedProducts$size? size;
 
   final double? price;
 
@@ -6718,8 +6562,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -6729,8 +6571,7 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -6775,7 +6616,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$description = description;
     final l$isFeatured = isFeatured;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -6801,7 +6641,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
       l$description,
       l$isFeatured,
       l$category,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -6856,11 +6695,6 @@ class Query$RecentlyViewedproducts$recentlyViewedProducts {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -7015,12 +6849,10 @@ abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts<
     String? description,
     bool? isFeatured,
     Query$RecentlyViewedproducts$recentlyViewedProducts$category? category,
-    Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
-        subCategory,
     Query$RecentlyViewedproducts$recentlyViewedProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$RecentlyViewedproducts$recentlyViewedProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -7040,10 +6872,10 @@ abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts<
   });
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$category<TRes>
       get category;
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<TRes>
-      get subCategory;
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller<TRes>
       get seller;
+  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
+      get size;
   TRes materials(
       Iterable<Query$RecentlyViewedproducts$recentlyViewedProducts$materials?>? Function(
               Iterable<
@@ -7075,7 +6907,6 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
     Object? description = _undefined,
     Object? isFeatured = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -7111,10 +6942,6 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             ? _instance.category
             : (category
                 as Query$RecentlyViewedproducts$recentlyViewedProducts$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory
-                as Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller
@@ -7127,7 +6954,8 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size
+                as Query$RecentlyViewedproducts$recentlyViewedProducts$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -7185,16 +7013,6 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<TRes>
-      get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory
-            .stub(_then(_instance))
-        : CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller<TRes>
       get seller {
     final local$seller = _instance.seller;
@@ -7203,6 +7021,16 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             .stub(_then(_instance))
         : CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
+      get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size
+            .stub(_then(_instance))
+        : CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -7245,12 +7073,10 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<
     String? description,
     bool? isFeatured,
     Query$RecentlyViewedproducts$recentlyViewedProducts$category? category,
-    Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory?
-        subCategory,
     Query$RecentlyViewedproducts$recentlyViewedProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$RecentlyViewedproducts$recentlyViewedProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -7275,14 +7101,14 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<
           CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$category
               .stub(_res);
 
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<TRes>
-      get subCategory =>
-          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory
-              .stub(_res);
-
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller<TRes>
       get seller =>
           CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller
+              .stub(_res);
+
+  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
+      get size =>
+          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size
               .stub(_res);
 
   materials(_fn) => _res;
@@ -7437,164 +7263,6 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$cate
         CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$category<
             TRes> {
   _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$category(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory {
-  Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other
-            is! Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory
-    on Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory {
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-          Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory>
-      get copyWith =>
-          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-    TRes> {
-  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-    Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory instance,
-    TRes Function(
-            Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory)
-        then,
-  ) = _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory;
-
-  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-        TRes>
-    implements
-        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-            TRes> {
-  _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory
-      _instance;
-
-  final TRes Function(
-      Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-        TRes>
-    implements
-        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory<
-            TRes> {
-  _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$subCategory(
       this._res);
 
   TRes _res;
@@ -7781,6 +7449,97 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$sell
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$RecentlyViewedproducts$recentlyViewedProducts$size {
+  Query$RecentlyViewedproducts$recentlyViewedProducts$size();
+
+  factory Query$RecentlyViewedproducts$recentlyViewedProducts$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$RecentlyViewedproducts$recentlyViewedProducts$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$RecentlyViewedproducts$recentlyViewedProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$RecentlyViewedproducts$recentlyViewedProducts$size
+    on Query$RecentlyViewedproducts$recentlyViewedProducts$size {
+  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+          Query$RecentlyViewedproducts$recentlyViewedProducts$size>
+      get copyWith =>
+          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+    TRes> {
+  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
+    Query$RecentlyViewedproducts$recentlyViewedProducts$size instance,
+    TRes Function(Query$RecentlyViewedproducts$recentlyViewedProducts$size)
+        then,
+  ) = _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size;
+
+  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+        TRes>
+    implements
+        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+            TRes> {
+  _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$RecentlyViewedproducts$recentlyViewedProducts$size _instance;
+
+  final TRes Function(Query$RecentlyViewedproducts$recentlyViewedProducts$size)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() =>
+      _then(Query$RecentlyViewedproducts$recentlyViewedProducts$size());
+}
+
+class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+        TRes>
+    implements
+        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
+            TRes> {
+  _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
+      this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$RecentlyViewedproducts$recentlyViewedProducts$materials {
@@ -8664,35 +8423,6 @@ const documentNodeQueryUserProducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -9041,7 +8771,6 @@ class Query$UserProducts$userProducts {
     required this.description,
     required this.isFeatured,
     this.category,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -9068,7 +8797,6 @@ class Query$UserProducts$userProducts {
     final l$description = json['description'];
     final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -9096,10 +8824,6 @@ class Query$UserProducts$userProducts {
           ? null
           : Query$UserProducts$userProducts$category.fromJson(
               (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$UserProducts$userProducts$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$UserProducts$userProducts$seller.fromJson(
@@ -9111,7 +8835,8 @@ class Query$UserProducts$userProducts {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$UserProducts$userProducts$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -9153,15 +8878,13 @@ class Query$UserProducts$userProducts {
 
   final Query$UserProducts$userProducts$category? category;
 
-  final Query$UserProducts$userProducts$subCategory? subCategory;
-
   final Query$UserProducts$userProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$UserProducts$userProducts$size? size;
 
   final double? price;
 
@@ -9203,8 +8926,6 @@ class Query$UserProducts$userProducts {
     _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -9214,8 +8935,7 @@ class Query$UserProducts$userProducts {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -9258,7 +8978,6 @@ class Query$UserProducts$userProducts {
     final l$description = description;
     final l$isFeatured = isFeatured;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -9283,7 +9002,6 @@ class Query$UserProducts$userProducts {
       l$description,
       l$isFeatured,
       l$category,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -9337,11 +9055,6 @@ class Query$UserProducts$userProducts {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -9487,11 +9200,10 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     String? description,
     bool? isFeatured,
     Query$UserProducts$userProducts$category? category,
-    Query$UserProducts$userProducts$subCategory? subCategory,
     Query$UserProducts$userProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$UserProducts$userProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -9508,8 +9220,8 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
     String? $__typename,
   });
   CopyWith$Query$UserProducts$userProducts$category<TRes> get category;
-  CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory;
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller;
+  CopyWith$Query$UserProducts$userProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$UserProducts$userProducts$materials?>? Function(
               Iterable<
@@ -9538,7 +9250,6 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
     Object? description = _undefined,
     Object? isFeatured = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -9572,9 +9283,6 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
         category: category == _undefined
             ? _instance.category
             : (category as Query$UserProducts$userProducts$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory as Query$UserProducts$userProducts$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$UserProducts$userProducts$seller?),
@@ -9586,7 +9294,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$UserProducts$userProducts$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -9638,21 +9346,20 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$UserProducts$userProducts$subCategory.stub(
-            _then(_instance))
-        : CopyWith$Query$UserProducts$userProducts$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller {
     final local$seller = _instance.seller;
     return local$seller == null
         ? CopyWith$Query$UserProducts$userProducts$seller.stub(_then(_instance))
         : CopyWith$Query$UserProducts$userProducts$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$UserProducts$userProducts$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$UserProducts$userProducts$size.stub(_then(_instance))
+        : CopyWith$Query$UserProducts$userProducts$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -9690,11 +9397,10 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
     String? description,
     bool? isFeatured,
     Query$UserProducts$userProducts$category? category,
-    Query$UserProducts$userProducts$subCategory? subCategory,
     Query$UserProducts$userProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$UserProducts$userProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -9715,11 +9421,11 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
   CopyWith$Query$UserProducts$userProducts$category<TRes> get category =>
       CopyWith$Query$UserProducts$userProducts$category.stub(_res);
 
-  CopyWith$Query$UserProducts$userProducts$subCategory<TRes> get subCategory =>
-      CopyWith$Query$UserProducts$userProducts$subCategory.stub(_res);
-
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller =>
       CopyWith$Query$UserProducts$userProducts$seller.stub(_res);
+
+  CopyWith$Query$UserProducts$userProducts$size<TRes> get size =>
+      CopyWith$Query$UserProducts$userProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -9859,149 +9565,6 @@ class _CopyWithImpl$Query$UserProducts$userProducts$category<TRes>
 class _CopyWithStubImpl$Query$UserProducts$userProducts$category<TRes>
     implements CopyWith$Query$UserProducts$userProducts$category<TRes> {
   _CopyWithStubImpl$Query$UserProducts$userProducts$category(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$UserProducts$userProducts$subCategory {
-  Query$UserProducts$userProducts$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$UserProducts$userProducts$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$UserProducts$userProducts$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$UserProducts$userProducts$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$UserProducts$userProducts$subCategory
-    on Query$UserProducts$userProducts$subCategory {
-  CopyWith$Query$UserProducts$userProducts$subCategory<
-          Query$UserProducts$userProducts$subCategory>
-      get copyWith => CopyWith$Query$UserProducts$userProducts$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$UserProducts$userProducts$subCategory<TRes> {
-  factory CopyWith$Query$UserProducts$userProducts$subCategory(
-    Query$UserProducts$userProducts$subCategory instance,
-    TRes Function(Query$UserProducts$userProducts$subCategory) then,
-  ) = _CopyWithImpl$Query$UserProducts$userProducts$subCategory;
-
-  factory CopyWith$Query$UserProducts$userProducts$subCategory.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserProducts$userProducts$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$UserProducts$userProducts$subCategory<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$subCategory<TRes> {
-  _CopyWithImpl$Query$UserProducts$userProducts$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$UserProducts$userProducts$subCategory _instance;
-
-  final TRes Function(Query$UserProducts$userProducts$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$UserProducts$userProducts$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$UserProducts$userProducts$subCategory<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$subCategory<TRes> {
-  _CopyWithStubImpl$Query$UserProducts$userProducts$subCategory(this._res);
 
   TRes _res;
 
@@ -10155,6 +9718,84 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts$seller<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$UserProducts$userProducts$size {
+  Query$UserProducts$userProducts$size();
+
+  factory Query$UserProducts$userProducts$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$UserProducts$userProducts$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserProducts$userProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserProducts$userProducts$size
+    on Query$UserProducts$userProducts$size {
+  CopyWith$Query$UserProducts$userProducts$size<
+          Query$UserProducts$userProducts$size>
+      get copyWith => CopyWith$Query$UserProducts$userProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  factory CopyWith$Query$UserProducts$userProducts$size(
+    Query$UserProducts$userProducts$size instance,
+    TRes Function(Query$UserProducts$userProducts$size) then,
+  ) = _CopyWithImpl$Query$UserProducts$userProducts$size;
+
+  factory CopyWith$Query$UserProducts$userProducts$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProducts$userProducts$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  _CopyWithImpl$Query$UserProducts$userProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserProducts$userProducts$size _instance;
+
+  final TRes Function(Query$UserProducts$userProducts$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Query$UserProducts$userProducts$size());
+}
+
+class _CopyWithStubImpl$Query$UserProducts$userProducts$size<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  _CopyWithStubImpl$Query$UserProducts$userProducts$size(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$UserProducts$userProducts$materials {
@@ -10945,35 +10586,6 @@ const documentNodeQueryAllProducts = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -11349,7 +10961,6 @@ class Query$AllProducts$allProducts {
     required this.name,
     required this.description,
     this.category,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -11376,7 +10987,6 @@ class Query$AllProducts$allProducts {
     final l$name = json['name'];
     final l$description = json['description'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -11404,10 +11014,6 @@ class Query$AllProducts$allProducts {
           ? null
           : Query$AllProducts$allProducts$category.fromJson(
               (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$AllProducts$allProducts$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$AllProducts$allProducts$seller.fromJson(
@@ -11419,7 +11025,8 @@ class Query$AllProducts$allProducts {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$AllProducts$allProducts$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -11460,15 +11067,13 @@ class Query$AllProducts$allProducts {
 
   final Query$AllProducts$allProducts$category? category;
 
-  final Query$AllProducts$allProducts$subCategory? subCategory;
-
   final Query$AllProducts$allProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$AllProducts$allProducts$size? size;
 
   final double? price;
 
@@ -11510,8 +11115,6 @@ class Query$AllProducts$allProducts {
     _resultData['description'] = l$description;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -11521,8 +11124,7 @@ class Query$AllProducts$allProducts {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -11566,7 +11168,6 @@ class Query$AllProducts$allProducts {
     final l$name = name;
     final l$description = description;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -11591,7 +11192,6 @@ class Query$AllProducts$allProducts {
       l$name,
       l$description,
       l$category,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -11641,11 +11241,6 @@ class Query$AllProducts$allProducts {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -11795,11 +11390,10 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     String? name,
     String? description,
     Query$AllProducts$allProducts$category? category,
-    Query$AllProducts$allProducts$subCategory? subCategory,
     Query$AllProducts$allProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$AllProducts$allProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -11817,8 +11411,8 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
     String? $__typename,
   });
   CopyWith$Query$AllProducts$allProducts$category<TRes> get category;
-  CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory;
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller;
+  CopyWith$Query$AllProducts$allProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$AllProducts$allProducts$materials?>? Function(
               Iterable<
@@ -11846,7 +11440,6 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
     Object? name = _undefined,
     Object? description = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -11878,9 +11471,6 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
         category: category == _undefined
             ? _instance.category
             : (category as Query$AllProducts$allProducts$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory as Query$AllProducts$allProducts$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$AllProducts$allProducts$seller?),
@@ -11892,7 +11482,7 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$AllProducts$allProducts$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -11946,21 +11536,20 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$AllProducts$allProducts$subCategory.stub(
-            _then(_instance))
-        : CopyWith$Query$AllProducts$allProducts$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller {
     final local$seller = _instance.seller;
     return local$seller == null
         ? CopyWith$Query$AllProducts$allProducts$seller.stub(_then(_instance))
         : CopyWith$Query$AllProducts$allProducts$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$AllProducts$allProducts$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$AllProducts$allProducts$size.stub(_then(_instance))
+        : CopyWith$Query$AllProducts$allProducts$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -11997,11 +11586,10 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
     String? name,
     String? description,
     Query$AllProducts$allProducts$category? category,
-    Query$AllProducts$allProducts$subCategory? subCategory,
     Query$AllProducts$allProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$AllProducts$allProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -12023,11 +11611,11 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
   CopyWith$Query$AllProducts$allProducts$category<TRes> get category =>
       CopyWith$Query$AllProducts$allProducts$category.stub(_res);
 
-  CopyWith$Query$AllProducts$allProducts$subCategory<TRes> get subCategory =>
-      CopyWith$Query$AllProducts$allProducts$subCategory.stub(_res);
-
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller =>
       CopyWith$Query$AllProducts$allProducts$seller.stub(_res);
+
+  CopyWith$Query$AllProducts$allProducts$size<TRes> get size =>
+      CopyWith$Query$AllProducts$allProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -12167,149 +11755,6 @@ class _CopyWithImpl$Query$AllProducts$allProducts$category<TRes>
 class _CopyWithStubImpl$Query$AllProducts$allProducts$category<TRes>
     implements CopyWith$Query$AllProducts$allProducts$category<TRes> {
   _CopyWithStubImpl$Query$AllProducts$allProducts$category(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$AllProducts$allProducts$subCategory {
-  Query$AllProducts$allProducts$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$AllProducts$allProducts$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$AllProducts$allProducts$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$AllProducts$allProducts$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$AllProducts$allProducts$subCategory
-    on Query$AllProducts$allProducts$subCategory {
-  CopyWith$Query$AllProducts$allProducts$subCategory<
-          Query$AllProducts$allProducts$subCategory>
-      get copyWith => CopyWith$Query$AllProducts$allProducts$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$AllProducts$allProducts$subCategory<TRes> {
-  factory CopyWith$Query$AllProducts$allProducts$subCategory(
-    Query$AllProducts$allProducts$subCategory instance,
-    TRes Function(Query$AllProducts$allProducts$subCategory) then,
-  ) = _CopyWithImpl$Query$AllProducts$allProducts$subCategory;
-
-  factory CopyWith$Query$AllProducts$allProducts$subCategory.stub(TRes res) =
-      _CopyWithStubImpl$Query$AllProducts$allProducts$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$AllProducts$allProducts$subCategory<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$subCategory<TRes> {
-  _CopyWithImpl$Query$AllProducts$allProducts$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$AllProducts$allProducts$subCategory _instance;
-
-  final TRes Function(Query$AllProducts$allProducts$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$AllProducts$allProducts$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$AllProducts$allProducts$subCategory<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$subCategory<TRes> {
-  _CopyWithStubImpl$Query$AllProducts$allProducts$subCategory(this._res);
 
   TRes _res;
 
@@ -12483,6 +11928,84 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts$seller<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$AllProducts$allProducts$size {
+  Query$AllProducts$allProducts$size();
+
+  factory Query$AllProducts$allProducts$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$AllProducts$allProducts$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$AllProducts$allProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$AllProducts$allProducts$size
+    on Query$AllProducts$allProducts$size {
+  CopyWith$Query$AllProducts$allProducts$size<
+          Query$AllProducts$allProducts$size>
+      get copyWith => CopyWith$Query$AllProducts$allProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$AllProducts$allProducts$size<TRes> {
+  factory CopyWith$Query$AllProducts$allProducts$size(
+    Query$AllProducts$allProducts$size instance,
+    TRes Function(Query$AllProducts$allProducts$size) then,
+  ) = _CopyWithImpl$Query$AllProducts$allProducts$size;
+
+  factory CopyWith$Query$AllProducts$allProducts$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$AllProducts$allProducts$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$AllProducts$allProducts$size<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$size<TRes> {
+  _CopyWithImpl$Query$AllProducts$allProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$AllProducts$allProducts$size _instance;
+
+  final TRes Function(Query$AllProducts$allProducts$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Query$AllProducts$allProducts$size());
+}
+
+class _CopyWithStubImpl$Query$AllProducts$allProducts$size<TRes>
+    implements CopyWith$Query$AllProducts$allProducts$size<TRes> {
+  _CopyWithStubImpl$Query$AllProducts$allProducts$size(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$AllProducts$allProducts$materials {
@@ -12960,20 +12483,27 @@ const documentNodeQueryCategories = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
+            name: NameNode(value: 'hasChildren'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'fullPath'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'parent'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
                 name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -13127,872 +12657,27 @@ class Query$Categories$categories {
   Query$Categories$categories({
     required this.id,
     required this.name,
-    this.subCategory,
+    this.hasChildren,
+    this.fullPath,
+    this.parent,
     this.$__typename = 'CategoryTypes',
   });
 
   factory Query$Categories$categories.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
-    final l$subCategory = json['subCategory'];
-    final l$$__typename = json['__typename'];
-    return Query$Categories$categories(
-      id: (l$id as String),
-      name: (l$name as String),
-      subCategory: (l$subCategory as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$Categories$categories$subCategory.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String name;
-
-  final List<Query$Categories$categories$subCategory?>? subCategory;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] =
-        l$subCategory?.map((e) => e?.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$subCategory = subCategory;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$subCategory == null
-          ? null
-          : Object.hashAll(l$subCategory.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Categories$categories ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != null && lOther$subCategory != null) {
-      if (l$subCategory.length != lOther$subCategory.length) {
-        return false;
-      }
-      for (int i = 0; i < l$subCategory.length; i++) {
-        final l$subCategory$entry = l$subCategory[i];
-        final lOther$subCategory$entry = lOther$subCategory[i];
-        if (l$subCategory$entry != lOther$subCategory$entry) {
-          return false;
-        }
-      }
-    } else if (l$subCategory != lOther$subCategory) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Categories$categories
-    on Query$Categories$categories {
-  CopyWith$Query$Categories$categories<Query$Categories$categories>
-      get copyWith => CopyWith$Query$Categories$categories(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Categories$categories<TRes> {
-  factory CopyWith$Query$Categories$categories(
-    Query$Categories$categories instance,
-    TRes Function(Query$Categories$categories) then,
-  ) = _CopyWithImpl$Query$Categories$categories;
-
-  factory CopyWith$Query$Categories$categories.stub(TRes res) =
-      _CopyWithStubImpl$Query$Categories$categories;
-
-  TRes call({
-    String? id,
-    String? name,
-    List<Query$Categories$categories$subCategory?>? subCategory,
-    String? $__typename,
-  });
-  TRes subCategory(
-      Iterable<Query$Categories$categories$subCategory?>? Function(
-              Iterable<
-                  CopyWith$Query$Categories$categories$subCategory<
-                      Query$Categories$categories$subCategory>?>?)
-          _fn);
-}
-
-class _CopyWithImpl$Query$Categories$categories<TRes>
-    implements CopyWith$Query$Categories$categories<TRes> {
-  _CopyWithImpl$Query$Categories$categories(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Categories$categories _instance;
-
-  final TRes Function(Query$Categories$categories) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? subCategory = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Categories$categories(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory as List<Query$Categories$categories$subCategory?>?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  TRes subCategory(
-          Iterable<Query$Categories$categories$subCategory?>? Function(
-                  Iterable<
-                      CopyWith$Query$Categories$categories$subCategory<
-                          Query$Categories$categories$subCategory>?>?)
-              _fn) =>
-      call(
-          subCategory: _fn(_instance.subCategory?.map((e) => e == null
-              ? null
-              : CopyWith$Query$Categories$categories$subCategory(
-                  e,
-                  (i) => i,
-                )))?.toList());
-}
-
-class _CopyWithStubImpl$Query$Categories$categories<TRes>
-    implements CopyWith$Query$Categories$categories<TRes> {
-  _CopyWithStubImpl$Query$Categories$categories(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? name,
-    List<Query$Categories$categories$subCategory?>? subCategory,
-    String? $__typename,
-  }) =>
-      _res;
-
-  subCategory(_fn) => _res;
-}
-
-class Query$Categories$categories$subCategory {
-  Query$Categories$categories$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$Categories$categories$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$Categories$categories$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Categories$categories$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Categories$categories$subCategory
-    on Query$Categories$categories$subCategory {
-  CopyWith$Query$Categories$categories$subCategory<
-          Query$Categories$categories$subCategory>
-      get copyWith => CopyWith$Query$Categories$categories$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Categories$categories$subCategory<TRes> {
-  factory CopyWith$Query$Categories$categories$subCategory(
-    Query$Categories$categories$subCategory instance,
-    TRes Function(Query$Categories$categories$subCategory) then,
-  ) = _CopyWithImpl$Query$Categories$categories$subCategory;
-
-  factory CopyWith$Query$Categories$categories$subCategory.stub(TRes res) =
-      _CopyWithStubImpl$Query$Categories$categories$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Categories$categories$subCategory<TRes>
-    implements CopyWith$Query$Categories$categories$subCategory<TRes> {
-  _CopyWithImpl$Query$Categories$categories$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Categories$categories$subCategory _instance;
-
-  final TRes Function(Query$Categories$categories$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Categories$categories$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Categories$categories$subCategory<TRes>
-    implements CopyWith$Query$Categories$categories$subCategory<TRes> {
-  _CopyWithStubImpl$Query$Categories$categories$subCategory(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Variables$Query$Categoriess {
-  factory Variables$Query$Categoriess({int? parentId}) =>
-      Variables$Query$Categoriess._({
-        if (parentId != null) r'parentId': parentId,
-      });
-
-  Variables$Query$Categoriess._(this._$data);
-
-  factory Variables$Query$Categoriess.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    if (data.containsKey('parentId')) {
-      final l$parentId = data['parentId'];
-      result$data['parentId'] = (l$parentId as int?);
-    }
-    return Variables$Query$Categoriess._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  int? get parentId => (_$data['parentId'] as int?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    if (_$data.containsKey('parentId')) {
-      final l$parentId = parentId;
-      result$data['parentId'] = l$parentId;
-    }
-    return result$data;
-  }
-
-  CopyWith$Variables$Query$Categoriess<Variables$Query$Categoriess>
-      get copyWith => CopyWith$Variables$Query$Categoriess(
-            this,
-            (i) => i,
-          );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Variables$Query$Categoriess ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$parentId = parentId;
-    final lOther$parentId = other.parentId;
-    if (_$data.containsKey('parentId') !=
-        other._$data.containsKey('parentId')) {
-      return false;
-    }
-    if (l$parentId != lOther$parentId) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$parentId = parentId;
-    return Object.hashAll(
-        [_$data.containsKey('parentId') ? l$parentId : const {}]);
-  }
-}
-
-abstract class CopyWith$Variables$Query$Categoriess<TRes> {
-  factory CopyWith$Variables$Query$Categoriess(
-    Variables$Query$Categoriess instance,
-    TRes Function(Variables$Query$Categoriess) then,
-  ) = _CopyWithImpl$Variables$Query$Categoriess;
-
-  factory CopyWith$Variables$Query$Categoriess.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Query$Categoriess;
-
-  TRes call({int? parentId});
-}
-
-class _CopyWithImpl$Variables$Query$Categoriess<TRes>
-    implements CopyWith$Variables$Query$Categoriess<TRes> {
-  _CopyWithImpl$Variables$Query$Categoriess(
-    this._instance,
-    this._then,
-  );
-
-  final Variables$Query$Categoriess _instance;
-
-  final TRes Function(Variables$Query$Categoriess) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? parentId = _undefined}) =>
-      _then(Variables$Query$Categoriess._({
-        ..._instance._$data,
-        if (parentId != _undefined) 'parentId': (parentId as int?),
-      }));
-}
-
-class _CopyWithStubImpl$Variables$Query$Categoriess<TRes>
-    implements CopyWith$Variables$Query$Categoriess<TRes> {
-  _CopyWithStubImpl$Variables$Query$Categoriess(this._res);
-
-  TRes _res;
-
-  call({int? parentId}) => _res;
-}
-
-class Query$Categoriess {
-  Query$Categoriess({
-    this.categoriess,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$Categoriess.fromJson(Map<String, dynamic> json) {
-    final l$categoriess = json['categoriess'];
-    final l$$__typename = json['__typename'];
-    return Query$Categoriess(
-      categoriess: (l$categoriess as List<dynamic>?)
-          ?.map((e) => e == null
-              ? null
-              : Query$Categoriess$categoriess.fromJson(
-                  (e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$Categoriess$categoriess?>? categoriess;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$categoriess = categoriess;
-    _resultData['categoriess'] =
-        l$categoriess?.map((e) => e?.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$categoriess = categoriess;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$categoriess == null
-          ? null
-          : Object.hashAll(l$categoriess.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Categoriess || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$categoriess = categoriess;
-    final lOther$categoriess = other.categoriess;
-    if (l$categoriess != null && lOther$categoriess != null) {
-      if (l$categoriess.length != lOther$categoriess.length) {
-        return false;
-      }
-      for (int i = 0; i < l$categoriess.length; i++) {
-        final l$categoriess$entry = l$categoriess[i];
-        final lOther$categoriess$entry = lOther$categoriess[i];
-        if (l$categoriess$entry != lOther$categoriess$entry) {
-          return false;
-        }
-      }
-    } else if (l$categoriess != lOther$categoriess) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Categoriess on Query$Categoriess {
-  CopyWith$Query$Categoriess<Query$Categoriess> get copyWith =>
-      CopyWith$Query$Categoriess(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Query$Categoriess<TRes> {
-  factory CopyWith$Query$Categoriess(
-    Query$Categoriess instance,
-    TRes Function(Query$Categoriess) then,
-  ) = _CopyWithImpl$Query$Categoriess;
-
-  factory CopyWith$Query$Categoriess.stub(TRes res) =
-      _CopyWithStubImpl$Query$Categoriess;
-
-  TRes call({
-    List<Query$Categoriess$categoriess?>? categoriess,
-    String? $__typename,
-  });
-  TRes categoriess(
-      Iterable<Query$Categoriess$categoriess?>? Function(
-              Iterable<
-                  CopyWith$Query$Categoriess$categoriess<
-                      Query$Categoriess$categoriess>?>?)
-          _fn);
-}
-
-class _CopyWithImpl$Query$Categoriess<TRes>
-    implements CopyWith$Query$Categoriess<TRes> {
-  _CopyWithImpl$Query$Categoriess(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Categoriess _instance;
-
-  final TRes Function(Query$Categoriess) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? categoriess = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Categoriess(
-        categoriess: categoriess == _undefined
-            ? _instance.categoriess
-            : (categoriess as List<Query$Categoriess$categoriess?>?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  TRes categoriess(
-          Iterable<Query$Categoriess$categoriess?>? Function(
-                  Iterable<
-                      CopyWith$Query$Categoriess$categoriess<
-                          Query$Categoriess$categoriess>?>?)
-              _fn) =>
-      call(
-          categoriess: _fn(_instance.categoriess?.map((e) => e == null
-              ? null
-              : CopyWith$Query$Categoriess$categoriess(
-                  e,
-                  (i) => i,
-                )))?.toList());
-}
-
-class _CopyWithStubImpl$Query$Categoriess<TRes>
-    implements CopyWith$Query$Categoriess<TRes> {
-  _CopyWithStubImpl$Query$Categoriess(this._res);
-
-  TRes _res;
-
-  call({
-    List<Query$Categoriess$categoriess?>? categoriess,
-    String? $__typename,
-  }) =>
-      _res;
-
-  categoriess(_fn) => _res;
-}
-
-const documentNodeQueryCategoriess = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'Categoriess'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'parentId')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      )
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'categoriess'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'parentId'),
-            value: VariableNode(name: NameNode(value: 'parentId')),
-          )
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'name'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'hasChildren'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'fullPath'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'parent'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$Categoriess _parserFn$Query$Categoriess(Map<String, dynamic> data) =>
-    Query$Categoriess.fromJson(data);
-typedef OnQueryComplete$Query$Categoriess = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$Categoriess?,
-);
-
-class Options$Query$Categoriess
-    extends graphql.QueryOptions<Query$Categoriess> {
-  Options$Query$Categoriess({
-    String? operationName,
-    Variables$Query$Categoriess? variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$Categoriess? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$Categoriess? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$Categoriess(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryCategoriess,
-          parserFn: _parserFn$Query$Categoriess,
-        );
-
-  final OnQueryComplete$Query$Categoriess? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$Categoriess
-    extends graphql.WatchQueryOptions<Query$Categoriess> {
-  WatchOptions$Query$Categoriess({
-    String? operationName,
-    Variables$Query$Categoriess? variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$Categoriess? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          variables: variables?.toJson() ?? {},
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryCategoriess,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$Categoriess,
-        );
-}
-
-class FetchMoreOptions$Query$Categoriess extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$Categoriess({
-    required graphql.UpdateQuery updateQuery,
-    Variables$Query$Categoriess? variables,
-  }) : super(
-          updateQuery: updateQuery,
-          variables: variables?.toJson() ?? {},
-          document: documentNodeQueryCategoriess,
-        );
-}
-
-extension ClientExtension$Query$Categoriess on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$Categoriess>> query$Categoriess(
-          [Options$Query$Categoriess? options]) async =>
-      await this.query(options ?? Options$Query$Categoriess());
-  graphql.ObservableQuery<Query$Categoriess> watchQuery$Categoriess(
-          [WatchOptions$Query$Categoriess? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$Categoriess());
-  void writeQuery$Categoriess({
-    required Query$Categoriess data,
-    Variables$Query$Categoriess? variables,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryCategoriess),
-          variables: variables?.toJson() ?? const {},
-        ),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-  Query$Categoriess? readQuery$Categoriess({
-    Variables$Query$Categoriess? variables,
-    bool optimistic = true,
-  }) {
-    final result = this.readQuery(
-      graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryCategoriess),
-        variables: variables?.toJson() ?? const {},
-      ),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$Categoriess.fromJson(result);
-  }
-}
-
-class Query$Categoriess$categoriess {
-  Query$Categoriess$categoriess({
-    required this.id,
-    required this.name,
-    this.hasChildren,
-    this.fullPath,
-    this.parent,
-    this.$__typename = 'CategoryTypess',
-  });
-
-  factory Query$Categoriess$categoriess.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
     final l$hasChildren = json['hasChildren'];
     final l$fullPath = json['fullPath'];
     final l$parent = json['parent'];
     final l$$__typename = json['__typename'];
-    return Query$Categoriess$categoriess(
+    return Query$Categories$categories(
       id: (l$id as String),
       name: (l$name as String),
       hasChildren: (l$hasChildren as bool?),
       fullPath: (l$fullPath as String?),
       parent: l$parent == null
           ? null
-          : Query$Categoriess$categoriess$parent.fromJson(
+          : Query$Categories$categories$parent.fromJson(
               (l$parent as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
@@ -14006,7 +12691,7 @@ class Query$Categoriess$categoriess {
 
   final String? fullPath;
 
-  final Query$Categoriess$categoriess$parent? parent;
+  final Query$Categories$categories$parent? parent;
 
   final String $__typename;
 
@@ -14050,7 +12735,7 @@ class Query$Categoriess$categoriess {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$Categoriess$categoriess ||
+    if (other is! Query$Categories$categories ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -14088,45 +12773,45 @@ class Query$Categoriess$categoriess {
   }
 }
 
-extension UtilityExtension$Query$Categoriess$categoriess
-    on Query$Categoriess$categoriess {
-  CopyWith$Query$Categoriess$categoriess<Query$Categoriess$categoriess>
-      get copyWith => CopyWith$Query$Categoriess$categoriess(
+extension UtilityExtension$Query$Categories$categories
+    on Query$Categories$categories {
+  CopyWith$Query$Categories$categories<Query$Categories$categories>
+      get copyWith => CopyWith$Query$Categories$categories(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$Categoriess$categoriess<TRes> {
-  factory CopyWith$Query$Categoriess$categoriess(
-    Query$Categoriess$categoriess instance,
-    TRes Function(Query$Categoriess$categoriess) then,
-  ) = _CopyWithImpl$Query$Categoriess$categoriess;
+abstract class CopyWith$Query$Categories$categories<TRes> {
+  factory CopyWith$Query$Categories$categories(
+    Query$Categories$categories instance,
+    TRes Function(Query$Categories$categories) then,
+  ) = _CopyWithImpl$Query$Categories$categories;
 
-  factory CopyWith$Query$Categoriess$categoriess.stub(TRes res) =
-      _CopyWithStubImpl$Query$Categoriess$categoriess;
+  factory CopyWith$Query$Categories$categories.stub(TRes res) =
+      _CopyWithStubImpl$Query$Categories$categories;
 
   TRes call({
     String? id,
     String? name,
     bool? hasChildren,
     String? fullPath,
-    Query$Categoriess$categoriess$parent? parent,
+    Query$Categories$categories$parent? parent,
     String? $__typename,
   });
-  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent;
+  CopyWith$Query$Categories$categories$parent<TRes> get parent;
 }
 
-class _CopyWithImpl$Query$Categoriess$categoriess<TRes>
-    implements CopyWith$Query$Categoriess$categoriess<TRes> {
-  _CopyWithImpl$Query$Categoriess$categoriess(
+class _CopyWithImpl$Query$Categories$categories<TRes>
+    implements CopyWith$Query$Categories$categories<TRes> {
+  _CopyWithImpl$Query$Categories$categories(
     this._instance,
     this._then,
   );
 
-  final Query$Categoriess$categoriess _instance;
+  final Query$Categories$categories _instance;
 
-  final TRes Function(Query$Categoriess$categoriess) _then;
+  final TRes Function(Query$Categories$categories) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -14138,7 +12823,7 @@ class _CopyWithImpl$Query$Categoriess$categoriess<TRes>
     Object? parent = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$Categoriess$categoriess(
+      _then(Query$Categories$categories(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
@@ -14150,24 +12835,24 @@ class _CopyWithImpl$Query$Categoriess$categoriess<TRes>
             fullPath == _undefined ? _instance.fullPath : (fullPath as String?),
         parent: parent == _undefined
             ? _instance.parent
-            : (parent as Query$Categoriess$categoriess$parent?),
+            : (parent as Query$Categories$categories$parent?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent {
+  CopyWith$Query$Categories$categories$parent<TRes> get parent {
     final local$parent = _instance.parent;
     return local$parent == null
-        ? CopyWith$Query$Categoriess$categoriess$parent.stub(_then(_instance))
-        : CopyWith$Query$Categoriess$categoriess$parent(
+        ? CopyWith$Query$Categories$categories$parent.stub(_then(_instance))
+        : CopyWith$Query$Categories$categories$parent(
             local$parent, (e) => call(parent: e));
   }
 }
 
-class _CopyWithStubImpl$Query$Categoriess$categoriess<TRes>
-    implements CopyWith$Query$Categoriess$categoriess<TRes> {
-  _CopyWithStubImpl$Query$Categoriess$categoriess(this._res);
+class _CopyWithStubImpl$Query$Categories$categories<TRes>
+    implements CopyWith$Query$Categories$categories<TRes> {
+  _CopyWithStubImpl$Query$Categories$categories(this._res);
 
   TRes _res;
 
@@ -14176,26 +12861,26 @@ class _CopyWithStubImpl$Query$Categoriess$categoriess<TRes>
     String? name,
     bool? hasChildren,
     String? fullPath,
-    Query$Categoriess$categoriess$parent? parent,
+    Query$Categories$categories$parent? parent,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Query$Categoriess$categoriess$parent<TRes> get parent =>
-      CopyWith$Query$Categoriess$categoriess$parent.stub(_res);
+  CopyWith$Query$Categories$categories$parent<TRes> get parent =>
+      CopyWith$Query$Categories$categories$parent.stub(_res);
 }
 
-class Query$Categoriess$categoriess$parent {
-  Query$Categoriess$categoriess$parent({
+class Query$Categories$categories$parent {
+  Query$Categories$categories$parent({
     required this.id,
-    this.$__typename = 'CategoryTypess',
+    this.$__typename = 'CategoryTypes',
   });
 
-  factory Query$Categoriess$categoriess$parent.fromJson(
+  factory Query$Categories$categories$parent.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return Query$Categoriess$categoriess$parent(
+    return Query$Categories$categories$parent(
       id: (l$id as String),
       $__typename: (l$$__typename as String),
     );
@@ -14229,7 +12914,7 @@ class Query$Categoriess$categoriess$parent {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$Categoriess$categoriess$parent ||
+    if (other is! Query$Categories$categories$parent ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -14247,24 +12932,24 @@ class Query$Categoriess$categoriess$parent {
   }
 }
 
-extension UtilityExtension$Query$Categoriess$categoriess$parent
-    on Query$Categoriess$categoriess$parent {
-  CopyWith$Query$Categoriess$categoriess$parent<
-          Query$Categoriess$categoriess$parent>
-      get copyWith => CopyWith$Query$Categoriess$categoriess$parent(
+extension UtilityExtension$Query$Categories$categories$parent
+    on Query$Categories$categories$parent {
+  CopyWith$Query$Categories$categories$parent<
+          Query$Categories$categories$parent>
+      get copyWith => CopyWith$Query$Categories$categories$parent(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$Categoriess$categoriess$parent<TRes> {
-  factory CopyWith$Query$Categoriess$categoriess$parent(
-    Query$Categoriess$categoriess$parent instance,
-    TRes Function(Query$Categoriess$categoriess$parent) then,
-  ) = _CopyWithImpl$Query$Categoriess$categoriess$parent;
+abstract class CopyWith$Query$Categories$categories$parent<TRes> {
+  factory CopyWith$Query$Categories$categories$parent(
+    Query$Categories$categories$parent instance,
+    TRes Function(Query$Categories$categories$parent) then,
+  ) = _CopyWithImpl$Query$Categories$categories$parent;
 
-  factory CopyWith$Query$Categoriess$categoriess$parent.stub(TRes res) =
-      _CopyWithStubImpl$Query$Categoriess$categoriess$parent;
+  factory CopyWith$Query$Categories$categories$parent.stub(TRes res) =
+      _CopyWithStubImpl$Query$Categories$categories$parent;
 
   TRes call({
     String? id,
@@ -14272,16 +12957,16 @@ abstract class CopyWith$Query$Categoriess$categoriess$parent<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$Categoriess$categoriess$parent<TRes>
-    implements CopyWith$Query$Categoriess$categoriess$parent<TRes> {
-  _CopyWithImpl$Query$Categoriess$categoriess$parent(
+class _CopyWithImpl$Query$Categories$categories$parent<TRes>
+    implements CopyWith$Query$Categories$categories$parent<TRes> {
+  _CopyWithImpl$Query$Categories$categories$parent(
     this._instance,
     this._then,
   );
 
-  final Query$Categoriess$categoriess$parent _instance;
+  final Query$Categories$categories$parent _instance;
 
-  final TRes Function(Query$Categoriess$categoriess$parent) _then;
+  final TRes Function(Query$Categories$categories$parent) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -14289,7 +12974,7 @@ class _CopyWithImpl$Query$Categoriess$categoriess$parent<TRes>
     Object? id = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$Categoriess$categoriess$parent(
+      _then(Query$Categories$categories$parent(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
@@ -14297,9 +12982,9 @@ class _CopyWithImpl$Query$Categoriess$categoriess$parent<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$Categoriess$categoriess$parent<TRes>
-    implements CopyWith$Query$Categoriess$categoriess$parent<TRes> {
-  _CopyWithStubImpl$Query$Categoriess$categoriess$parent(this._res);
+class _CopyWithStubImpl$Query$Categories$categories$parent<TRes>
+    implements CopyWith$Query$Categories$categories$parent<TRes> {
+  _CopyWithStubImpl$Query$Categories$categories$parent(this._res);
 
   TRes _res;
 
@@ -15292,35 +13977,6 @@ const documentNodeQuerylikedProducts = DocumentNode(definitions: [
                 ]),
               ),
               FieldNode(
-                name: NameNode(value: 'subCategory'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
                 name: NameNode(value: 'seller'),
                 alias: null,
                 arguments: [],
@@ -15827,7 +14483,6 @@ class Query$likedProducts$likedProducts$product {
     required this.name,
     required this.description,
     this.category,
-    this.subCategory,
     this.seller,
     required this.isFeatured,
     this.condition,
@@ -15854,7 +14509,6 @@ class Query$likedProducts$likedProducts$product {
     final l$name = json['name'];
     final l$description = json['description'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$isFeatured = json['isFeatured'];
     final l$condition = json['condition'];
@@ -15881,10 +14535,6 @@ class Query$likedProducts$likedProducts$product {
           ? null
           : Query$likedProducts$likedProducts$product$category.fromJson(
               (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$likedProducts$likedProducts$product$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$likedProducts$likedProducts$product$seller.fromJson(
@@ -15897,7 +14547,8 @@ class Query$likedProducts$likedProducts$product {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$likedProducts$likedProducts$product$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -15936,8 +14587,6 @@ class Query$likedProducts$likedProducts$product {
 
   final Query$likedProducts$likedProducts$product$category? category;
 
-  final Query$likedProducts$likedProducts$product$subCategory? subCategory;
-
   final Query$likedProducts$likedProducts$product$seller? seller;
 
   final bool isFeatured;
@@ -15946,7 +14595,7 @@ class Query$likedProducts$likedProducts$product {
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$likedProducts$likedProducts$product$size? size;
 
   final double? price;
 
@@ -15984,8 +14633,6 @@ class Query$likedProducts$likedProducts$product {
     _resultData['description'] = l$description;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$isFeatured = isFeatured;
@@ -15997,8 +14644,7 @@ class Query$likedProducts$likedProducts$product {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -16038,7 +14684,6 @@ class Query$likedProducts$likedProducts$product {
     final l$name = name;
     final l$description = description;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$isFeatured = isFeatured;
     final l$condition = condition;
@@ -16062,7 +14707,6 @@ class Query$likedProducts$likedProducts$product {
       l$name,
       l$description,
       l$category,
-      l$subCategory,
       l$seller,
       l$isFeatured,
       l$condition,
@@ -16111,11 +14755,6 @@ class Query$likedProducts$likedProducts$product {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -16261,12 +14900,11 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
     String? name,
     String? description,
     Query$likedProducts$likedProducts$product$category? category,
-    Query$likedProducts$likedProducts$product$subCategory? subCategory,
     Query$likedProducts$likedProducts$product$seller? seller,
     bool? isFeatured,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$likedProducts$likedProducts$product$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -16283,9 +14921,8 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
   });
   CopyWith$Query$likedProducts$likedProducts$product$category<TRes>
       get category;
-  CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes>
-      get subCategory;
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller;
+  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size;
   TRes materials(
       Iterable<Query$likedProducts$likedProducts$product$materials?>? Function(
               Iterable<
@@ -16313,7 +14950,6 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
     Object? name = _undefined,
     Object? description = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? isFeatured = _undefined,
     Object? condition = _undefined,
@@ -16344,10 +14980,6 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
         category: category == _undefined
             ? _instance.category
             : (category as Query$likedProducts$likedProducts$product$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory
-                as Query$likedProducts$likedProducts$product$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$likedProducts$likedProducts$product$seller?),
@@ -16362,7 +14994,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$likedProducts$likedProducts$product$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -16413,16 +15045,6 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes>
-      get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$likedProducts$likedProducts$product$subCategory.stub(
-            _then(_instance))
-        : CopyWith$Query$likedProducts$likedProducts$product$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller {
     final local$seller = _instance.seller;
     return local$seller == null
@@ -16430,6 +15052,15 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
             _then(_instance))
         : CopyWith$Query$likedProducts$likedProducts$product$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$likedProducts$likedProducts$product$size.stub(
+            _then(_instance))
+        : CopyWith$Query$likedProducts$likedProducts$product$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -16467,12 +15098,11 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
     String? name,
     String? description,
     Query$likedProducts$likedProducts$product$category? category,
-    Query$likedProducts$likedProducts$product$subCategory? subCategory,
     Query$likedProducts$likedProducts$product$seller? seller,
     bool? isFeatured,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$likedProducts$likedProducts$product$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -16494,13 +15124,11 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
           CopyWith$Query$likedProducts$likedProducts$product$category.stub(
               _res);
 
-  CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes>
-      get subCategory =>
-          CopyWith$Query$likedProducts$likedProducts$product$subCategory.stub(
-              _res);
-
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller =>
       CopyWith$Query$likedProducts$likedProducts$product$seller.stub(_res);
+
+  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size =>
+      CopyWith$Query$likedProducts$likedProducts$product$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -16657,157 +15285,6 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$category<TRes>
       _res;
 }
 
-class Query$likedProducts$likedProducts$product$subCategory {
-  Query$likedProducts$likedProducts$product$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$likedProducts$likedProducts$product$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$likedProducts$likedProducts$product$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$likedProducts$likedProducts$product$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$likedProducts$likedProducts$product$subCategory
-    on Query$likedProducts$likedProducts$product$subCategory {
-  CopyWith$Query$likedProducts$likedProducts$product$subCategory<
-          Query$likedProducts$likedProducts$product$subCategory>
-      get copyWith =>
-          CopyWith$Query$likedProducts$likedProducts$product$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$likedProducts$likedProducts$product$subCategory<
-    TRes> {
-  factory CopyWith$Query$likedProducts$likedProducts$product$subCategory(
-    Query$likedProducts$likedProducts$product$subCategory instance,
-    TRes Function(Query$likedProducts$likedProducts$product$subCategory) then,
-  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$subCategory;
-
-  factory CopyWith$Query$likedProducts$likedProducts$product$subCategory.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$likedProducts$likedProducts$product$subCategory<TRes>
-    implements
-        CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes> {
-  _CopyWithImpl$Query$likedProducts$likedProducts$product$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$likedProducts$likedProducts$product$subCategory _instance;
-
-  final TRes Function(Query$likedProducts$likedProducts$product$subCategory)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$likedProducts$likedProducts$product$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$subCategory<
-        TRes>
-    implements
-        CopyWith$Query$likedProducts$likedProducts$product$subCategory<TRes> {
-  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$subCategory(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
 class Query$likedProducts$likedProducts$product$seller {
   Query$likedProducts$likedProducts$product$seller({
     this.id,
@@ -16951,6 +15428,85 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$likedProducts$likedProducts$product$size {
+  Query$likedProducts$likedProducts$product$size();
+
+  factory Query$likedProducts$likedProducts$product$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$likedProducts$likedProducts$product$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts$product$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts$product$size
+    on Query$likedProducts$likedProducts$product$size {
+  CopyWith$Query$likedProducts$likedProducts$product$size<
+          Query$likedProducts$likedProducts$product$size>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product$size(
+    Query$likedProducts$likedProducts$product$size instance,
+    TRes Function(Query$likedProducts$likedProducts$product$size) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$size;
+
+  factory CopyWith$Query$likedProducts$likedProducts$product$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts$product$size _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts$product$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Query$likedProducts$likedProducts$product$size());
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$likedProducts$likedProducts$product$materials {
@@ -19153,35 +17709,6 @@ const documentNodeQuerySimilarProducts = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -19533,7 +18060,6 @@ class Query$SimilarProducts$similarProducts {
     required this.description,
     this.category,
     required this.isFeatured,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -19560,7 +18086,6 @@ class Query$SimilarProducts$similarProducts {
     final l$description = json['description'];
     final l$category = json['category'];
     final l$isFeatured = json['isFeatured'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -19587,10 +18112,6 @@ class Query$SimilarProducts$similarProducts {
           : Query$SimilarProducts$similarProducts$category.fromJson(
               (l$category as Map<String, dynamic>)),
       isFeatured: (l$isFeatured as bool),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$SimilarProducts$similarProducts$subCategory.fromJson(
-              (l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$SimilarProducts$similarProducts$seller.fromJson(
@@ -19602,7 +18123,8 @@ class Query$SimilarProducts$similarProducts {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$SimilarProducts$similarProducts$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -19643,15 +18165,13 @@ class Query$SimilarProducts$similarProducts {
 
   final bool isFeatured;
 
-  final Query$SimilarProducts$similarProducts$subCategory? subCategory;
-
   final Query$SimilarProducts$similarProducts$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$SimilarProducts$similarProducts$size? size;
 
   final double? price;
 
@@ -19691,8 +18211,6 @@ class Query$SimilarProducts$similarProducts {
     _resultData['category'] = l$category?.toJson();
     final l$isFeatured = isFeatured;
     _resultData['isFeatured'] = l$isFeatured;
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -19702,8 +18220,7 @@ class Query$SimilarProducts$similarProducts {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -19744,7 +18261,6 @@ class Query$SimilarProducts$similarProducts {
     final l$description = description;
     final l$category = category;
     final l$isFeatured = isFeatured;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -19768,7 +18284,6 @@ class Query$SimilarProducts$similarProducts {
       l$description,
       l$category,
       l$isFeatured,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -19821,11 +18336,6 @@ class Query$SimilarProducts$similarProducts {
     final l$isFeatured = isFeatured;
     final lOther$isFeatured = other.isFeatured;
     if (l$isFeatured != lOther$isFeatured) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -19967,11 +18477,10 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     String? description,
     Query$SimilarProducts$similarProducts$category? category,
     bool? isFeatured,
-    Query$SimilarProducts$similarProducts$subCategory? subCategory,
     Query$SimilarProducts$similarProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$SimilarProducts$similarProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -19987,9 +18496,8 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
     String? $__typename,
   });
   CopyWith$Query$SimilarProducts$similarProducts$category<TRes> get category;
-  CopyWith$Query$SimilarProducts$similarProducts$subCategory<TRes>
-      get subCategory;
   CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> get seller;
+  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$SimilarProducts$similarProducts$materials?>? Function(
               Iterable<
@@ -20018,7 +18526,6 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
     Object? description = _undefined,
     Object? category = _undefined,
     Object? isFeatured = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -20051,10 +18558,6 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
         isFeatured: isFeatured == _undefined || isFeatured == null
             ? _instance.isFeatured
             : (isFeatured as bool),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory
-                as Query$SimilarProducts$similarProducts$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller as Query$SimilarProducts$similarProducts$seller?),
@@ -20066,7 +18569,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$SimilarProducts$similarProducts$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -20116,16 +18619,6 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$SimilarProducts$similarProducts$subCategory<TRes>
-      get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$SimilarProducts$similarProducts$subCategory.stub(
-            _then(_instance))
-        : CopyWith$Query$SimilarProducts$similarProducts$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> get seller {
     final local$seller = _instance.seller;
     return local$seller == null
@@ -20133,6 +18626,15 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
             _then(_instance))
         : CopyWith$Query$SimilarProducts$similarProducts$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$SimilarProducts$similarProducts$size.stub(
+            _then(_instance))
+        : CopyWith$Query$SimilarProducts$similarProducts$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -20171,11 +18673,10 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
     String? description,
     Query$SimilarProducts$similarProducts$category? category,
     bool? isFeatured,
-    Query$SimilarProducts$similarProducts$subCategory? subCategory,
     Query$SimilarProducts$similarProducts$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$SimilarProducts$similarProducts$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -20195,12 +18696,11 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
   CopyWith$Query$SimilarProducts$similarProducts$category<TRes> get category =>
       CopyWith$Query$SimilarProducts$similarProducts$category.stub(_res);
 
-  CopyWith$Query$SimilarProducts$similarProducts$subCategory<TRes>
-      get subCategory =>
-          CopyWith$Query$SimilarProducts$similarProducts$subCategory.stub(_res);
-
   CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> get seller =>
       CopyWith$Query$SimilarProducts$similarProducts$seller.stub(_res);
+
+  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size =>
+      CopyWith$Query$SimilarProducts$similarProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -20341,155 +18841,6 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts$category<TRes>
 class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$category<TRes>
     implements CopyWith$Query$SimilarProducts$similarProducts$category<TRes> {
   _CopyWithStubImpl$Query$SimilarProducts$similarProducts$category(this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$SimilarProducts$similarProducts$subCategory {
-  Query$SimilarProducts$similarProducts$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$SimilarProducts$similarProducts$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$SimilarProducts$similarProducts$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$SimilarProducts$similarProducts$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$SimilarProducts$similarProducts$subCategory
-    on Query$SimilarProducts$similarProducts$subCategory {
-  CopyWith$Query$SimilarProducts$similarProducts$subCategory<
-          Query$SimilarProducts$similarProducts$subCategory>
-      get copyWith =>
-          CopyWith$Query$SimilarProducts$similarProducts$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$SimilarProducts$similarProducts$subCategory<
-    TRes> {
-  factory CopyWith$Query$SimilarProducts$similarProducts$subCategory(
-    Query$SimilarProducts$similarProducts$subCategory instance,
-    TRes Function(Query$SimilarProducts$similarProducts$subCategory) then,
-  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$subCategory;
-
-  factory CopyWith$Query$SimilarProducts$similarProducts$subCategory.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$SimilarProducts$similarProducts$subCategory<TRes>
-    implements
-        CopyWith$Query$SimilarProducts$similarProducts$subCategory<TRes> {
-  _CopyWithImpl$Query$SimilarProducts$similarProducts$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$SimilarProducts$similarProducts$subCategory _instance;
-
-  final TRes Function(Query$SimilarProducts$similarProducts$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$SimilarProducts$similarProducts$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$subCategory<TRes>
-    implements
-        CopyWith$Query$SimilarProducts$similarProducts$subCategory<TRes> {
-  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$subCategory(
-      this._res);
 
   TRes _res;
 
@@ -20643,6 +18994,84 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$seller<TRes>
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$SimilarProducts$similarProducts$size {
+  Query$SimilarProducts$similarProducts$size();
+
+  factory Query$SimilarProducts$similarProducts$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$SimilarProducts$similarProducts$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SimilarProducts$similarProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SimilarProducts$similarProducts$size
+    on Query$SimilarProducts$similarProducts$size {
+  CopyWith$Query$SimilarProducts$similarProducts$size<
+          Query$SimilarProducts$similarProducts$size>
+      get copyWith => CopyWith$Query$SimilarProducts$similarProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  factory CopyWith$Query$SimilarProducts$similarProducts$size(
+    Query$SimilarProducts$similarProducts$size instance,
+    TRes Function(Query$SimilarProducts$similarProducts$size) then,
+  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$size;
+
+  factory CopyWith$Query$SimilarProducts$similarProducts$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  _CopyWithImpl$Query$SimilarProducts$similarProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SimilarProducts$similarProducts$size _instance;
+
+  final TRes Function(Query$SimilarProducts$similarProducts$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() => _then(Query$SimilarProducts$similarProducts$size());
+}
+
+class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size(this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$SimilarProducts$similarProducts$materials {
@@ -24592,35 +23021,6 @@ const documentNodeQueryFilterProductsByPrice = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'subCategory'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: 'seller'),
             alias: null,
             arguments: [],
@@ -24984,7 +23384,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     required this.description,
     required this.isFeatured,
     this.category,
-    this.subCategory,
     this.seller,
     this.condition,
     this.discountPrice,
@@ -25010,7 +23409,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$description = json['description'];
     final l$isFeatured = json['isFeatured'];
     final l$category = json['category'];
-    final l$subCategory = json['subCategory'];
     final l$seller = json['seller'];
     final l$condition = json['condition'];
     final l$discountPrice = json['discountPrice'];
@@ -25036,10 +23434,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
           ? null
           : Query$FilterProductsByPrice$filterProductsByPrice$category.fromJson(
               (l$category as Map<String, dynamic>)),
-      subCategory: l$subCategory == null
-          ? null
-          : Query$FilterProductsByPrice$filterProductsByPrice$subCategory
-              .fromJson((l$subCategory as Map<String, dynamic>)),
       seller: l$seller == null
           ? null
           : Query$FilterProductsByPrice$filterProductsByPrice$seller.fromJson(
@@ -25051,7 +23445,8 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       discountPrice: (l$discountPrice as String?),
       size: l$size == null
           ? null
-          : fromJson$Enum$ProductsProductSizeChoices((l$size as String)),
+          : Query$FilterProductsByPrice$filterProductsByPrice$size.fromJson(
+              (l$size as Map<String, dynamic>)),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -25089,16 +23484,13 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
 
   final Query$FilterProductsByPrice$filterProductsByPrice$category? category;
 
-  final Query$FilterProductsByPrice$filterProductsByPrice$subCategory?
-      subCategory;
-
   final Query$FilterProductsByPrice$filterProductsByPrice$seller? seller;
 
   final Enum$ProductsProductConditionChoices? condition;
 
   final String? discountPrice;
 
-  final Enum$ProductsProductSizeChoices? size;
+  final Query$FilterProductsByPrice$filterProductsByPrice$size? size;
 
   final double? price;
 
@@ -25137,8 +23529,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     _resultData['isFeatured'] = l$isFeatured;
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
-    final l$subCategory = subCategory;
-    _resultData['subCategory'] = l$subCategory?.toJson();
     final l$seller = seller;
     _resultData['seller'] = l$seller?.toJson();
     final l$condition = condition;
@@ -25148,8 +23538,7 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$discountPrice = discountPrice;
     _resultData['discountPrice'] = l$discountPrice;
     final l$size = size;
-    _resultData['size'] =
-        l$size == null ? null : toJson$Enum$ProductsProductSizeChoices(l$size);
+    _resultData['size'] = l$size?.toJson();
     final l$price = price;
     _resultData['price'] = l$price;
     final l$parcelSize = parcelSize;
@@ -25186,7 +23575,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$description = description;
     final l$isFeatured = isFeatured;
     final l$category = category;
-    final l$subCategory = subCategory;
     final l$seller = seller;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -25209,7 +23597,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
       l$description,
       l$isFeatured,
       l$category,
-      l$subCategory,
       l$seller,
       l$condition,
       l$discountPrice,
@@ -25261,11 +23648,6 @@ class Query$FilterProductsByPrice$filterProductsByPrice {
     final l$category = category;
     final lOther$category = other.category;
     if (l$category != lOther$category) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$seller = seller;
@@ -25405,11 +23787,10 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
     String? description,
     bool? isFeatured,
     Query$FilterProductsByPrice$filterProductsByPrice$category? category,
-    Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
     Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$FilterProductsByPrice$filterProductsByPrice$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -25426,10 +23807,10 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
   });
   CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<TRes>
       get category;
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
-      get subCategory;
   CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
       get seller;
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
+      get size;
   TRes materials(
       Iterable<Query$FilterProductsByPrice$filterProductsByPrice$materials?>? Function(
               Iterable<
@@ -25460,7 +23841,6 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     Object? description = _undefined,
     Object? isFeatured = _undefined,
     Object? category = _undefined,
-    Object? subCategory = _undefined,
     Object? seller = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -25493,10 +23873,6 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
             ? _instance.category
             : (category
                 as Query$FilterProductsByPrice$filterProductsByPrice$category?),
-        subCategory: subCategory == _undefined
-            ? _instance.subCategory
-            : (subCategory
-                as Query$FilterProductsByPrice$filterProductsByPrice$subCategory?),
         seller: seller == _undefined
             ? _instance.seller
             : (seller
@@ -25509,7 +23885,7 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
             : (discountPrice as String?),
         size: size == _undefined
             ? _instance.size
-            : (size as Enum$ProductsProductSizeChoices?),
+            : (size as Query$FilterProductsByPrice$filterProductsByPrice$size?),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -25558,16 +23934,6 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
             local$category, (e) => call(category: e));
   }
 
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
-      get subCategory {
-    final local$subCategory = _instance.subCategory;
-    return local$subCategory == null
-        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
-            .stub(_then(_instance))
-        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-            local$subCategory, (e) => call(subCategory: e));
-  }
-
   CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
       get seller {
     final local$seller = _instance.seller;
@@ -25576,6 +23942,16 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
             .stub(_then(_instance))
         : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller(
             local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
+      get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
+            _then(_instance))
+        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
+            local$size, (e) => call(size: e));
   }
 
   TRes materials(
@@ -25617,11 +23993,10 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
     String? description,
     bool? isFeatured,
     Query$FilterProductsByPrice$filterProductsByPrice$category? category,
-    Query$FilterProductsByPrice$filterProductsByPrice$subCategory? subCategory,
     Query$FilterProductsByPrice$filterProductsByPrice$seller? seller,
     Enum$ProductsProductConditionChoices? condition,
     String? discountPrice,
-    Enum$ProductsProductSizeChoices? size,
+    Query$FilterProductsByPrice$filterProductsByPrice$size? size,
     double? price,
     Enum$ProductsProductParcelSizeChoices? parcelSize,
     int? views,
@@ -25643,15 +24018,15 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
           CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category
               .stub(_res);
 
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<TRes>
-      get subCategory =>
-          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
-              .stub(_res);
-
   CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
       get seller =>
           CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller
               .stub(_res);
+
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
+      get size =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
+              _res);
 
   materials(_fn) => _res;
 
@@ -25804,162 +24179,6 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$catego
         CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$category<
             TRes> {
   _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$category(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$FilterProductsByPrice$filterProductsByPrice$subCategory {
-  Query$FilterProductsByPrice$filterProductsByPrice$subCategory({
-    this.id,
-    this.name,
-    this.$__typename = 'SubCategoryType',
-  });
-
-  factory Query$FilterProductsByPrice$filterProductsByPrice$subCategory.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other
-            is! Query$FilterProductsByPrice$filterProductsByPrice$subCategory ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$subCategory
-    on Query$FilterProductsByPrice$filterProductsByPrice$subCategory {
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-          Query$FilterProductsByPrice$filterProductsByPrice$subCategory>
-      get copyWith =>
-          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-    TRes> {
-  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-    Query$FilterProductsByPrice$filterProductsByPrice$subCategory instance,
-    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$subCategory)
-        then,
-  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory;
-
-  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-        TRes>
-    implements
-        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-            TRes> {
-  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FilterProductsByPrice$filterProductsByPrice$subCategory _instance;
-
-  final TRes Function(
-      Query$FilterProductsByPrice$filterProductsByPrice$subCategory) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-        TRes>
-    implements
-        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$subCategory<
-            TRes> {
-  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$subCategory(
       this._res);
 
   TRes _res;
@@ -26146,6 +24365,93 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller
     String? $__typename,
   }) =>
       _res;
+}
+
+class Query$FilterProductsByPrice$filterProductsByPrice$size {
+  Query$FilterProductsByPrice$filterProductsByPrice$size();
+
+  factory Query$FilterProductsByPrice$filterProductsByPrice$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$FilterProductsByPrice$filterProductsByPrice$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$size
+    on Query$FilterProductsByPrice$filterProductsByPrice$size {
+  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<
+          Query$FilterProductsByPrice$filterProductsByPrice$size>
+      get copyWith =>
+          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<
+    TRes> {
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
+    Query$FilterProductsByPrice$filterProductsByPrice$size instance,
+    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$size) then,
+  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size;
+
+  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes> {
+  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FilterProductsByPrice$filterProductsByPrice$size _instance;
+
+  final TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$size)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() =>
+      _then(Query$FilterProductsByPrice$filterProductsByPrice$size());
+}
+
+class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size<
+        TRes>
+    implements
+        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes> {
+  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size(
+      this._res);
+
+  TRes _res;
+
+  call() => _res;
 }
 
 class Query$FilterProductsByPrice$filterProductsByPrice$materials {
@@ -39720,6 +38026,2108 @@ class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller$phone
   call({
     String? number,
     String? countryCode,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$FavoriteBrandProducts {
+  factory Variables$Query$FavoriteBrandProducts({int? topCount}) =>
+      Variables$Query$FavoriteBrandProducts._({
+        if (topCount != null) r'topCount': topCount,
+      });
+
+  Variables$Query$FavoriteBrandProducts._(this._$data);
+
+  factory Variables$Query$FavoriteBrandProducts.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('topCount')) {
+      final l$topCount = data['topCount'];
+      result$data['topCount'] = (l$topCount as int?);
+    }
+    return Variables$Query$FavoriteBrandProducts._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get topCount => (_$data['topCount'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('topCount')) {
+      final l$topCount = topCount;
+      result$data['topCount'] = l$topCount;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$FavoriteBrandProducts<
+          Variables$Query$FavoriteBrandProducts>
+      get copyWith => CopyWith$Variables$Query$FavoriteBrandProducts(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$FavoriteBrandProducts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$topCount = topCount;
+    final lOther$topCount = other.topCount;
+    if (_$data.containsKey('topCount') !=
+        other._$data.containsKey('topCount')) {
+      return false;
+    }
+    if (l$topCount != lOther$topCount) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$topCount = topCount;
+    return Object.hashAll(
+        [_$data.containsKey('topCount') ? l$topCount : const {}]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$FavoriteBrandProducts<TRes> {
+  factory CopyWith$Variables$Query$FavoriteBrandProducts(
+    Variables$Query$FavoriteBrandProducts instance,
+    TRes Function(Variables$Query$FavoriteBrandProducts) then,
+  ) = _CopyWithImpl$Variables$Query$FavoriteBrandProducts;
+
+  factory CopyWith$Variables$Query$FavoriteBrandProducts.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$FavoriteBrandProducts;
+
+  TRes call({int? topCount});
+}
+
+class _CopyWithImpl$Variables$Query$FavoriteBrandProducts<TRes>
+    implements CopyWith$Variables$Query$FavoriteBrandProducts<TRes> {
+  _CopyWithImpl$Variables$Query$FavoriteBrandProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$FavoriteBrandProducts _instance;
+
+  final TRes Function(Variables$Query$FavoriteBrandProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? topCount = _undefined}) =>
+      _then(Variables$Query$FavoriteBrandProducts._({
+        ..._instance._$data,
+        if (topCount != _undefined) 'topCount': (topCount as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$FavoriteBrandProducts<TRes>
+    implements CopyWith$Variables$Query$FavoriteBrandProducts<TRes> {
+  _CopyWithStubImpl$Variables$Query$FavoriteBrandProducts(this._res);
+
+  TRes _res;
+
+  call({int? topCount}) => _res;
+}
+
+class Query$FavoriteBrandProducts {
+  Query$FavoriteBrandProducts({
+    this.favoriteBrandProducts,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$FavoriteBrandProducts.fromJson(Map<String, dynamic> json) {
+    final l$favoriteBrandProducts = json['favoriteBrandProducts'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts(
+      favoriteBrandProducts: (l$favoriteBrandProducts as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$FavoriteBrandProducts$favoriteBrandProducts.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$FavoriteBrandProducts$favoriteBrandProducts?>?
+      favoriteBrandProducts;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$favoriteBrandProducts = favoriteBrandProducts;
+    _resultData['favoriteBrandProducts'] =
+        l$favoriteBrandProducts?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$favoriteBrandProducts = favoriteBrandProducts;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$favoriteBrandProducts == null
+          ? null
+          : Object.hashAll(l$favoriteBrandProducts.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$favoriteBrandProducts = favoriteBrandProducts;
+    final lOther$favoriteBrandProducts = other.favoriteBrandProducts;
+    if (l$favoriteBrandProducts != null &&
+        lOther$favoriteBrandProducts != null) {
+      if (l$favoriteBrandProducts.length !=
+          lOther$favoriteBrandProducts.length) {
+        return false;
+      }
+      for (int i = 0; i < l$favoriteBrandProducts.length; i++) {
+        final l$favoriteBrandProducts$entry = l$favoriteBrandProducts[i];
+        final lOther$favoriteBrandProducts$entry =
+            lOther$favoriteBrandProducts[i];
+        if (l$favoriteBrandProducts$entry !=
+            lOther$favoriteBrandProducts$entry) {
+          return false;
+        }
+      }
+    } else if (l$favoriteBrandProducts != lOther$favoriteBrandProducts) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts
+    on Query$FavoriteBrandProducts {
+  CopyWith$Query$FavoriteBrandProducts<Query$FavoriteBrandProducts>
+      get copyWith => CopyWith$Query$FavoriteBrandProducts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts<TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts(
+    Query$FavoriteBrandProducts instance,
+    TRes Function(Query$FavoriteBrandProducts) then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts;
+
+  factory CopyWith$Query$FavoriteBrandProducts.stub(TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts;
+
+  TRes call({
+    List<Query$FavoriteBrandProducts$favoriteBrandProducts?>?
+        favoriteBrandProducts,
+    String? $__typename,
+  });
+  TRes favoriteBrandProducts(
+      Iterable<Query$FavoriteBrandProducts$favoriteBrandProducts?>? Function(
+              Iterable<
+                  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<
+                      Query$FavoriteBrandProducts$favoriteBrandProducts>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts<TRes>
+    implements CopyWith$Query$FavoriteBrandProducts<TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts _instance;
+
+  final TRes Function(Query$FavoriteBrandProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? favoriteBrandProducts = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts(
+        favoriteBrandProducts: favoriteBrandProducts == _undefined
+            ? _instance.favoriteBrandProducts
+            : (favoriteBrandProducts
+                as List<Query$FavoriteBrandProducts$favoriteBrandProducts?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes favoriteBrandProducts(
+          Iterable<Query$FavoriteBrandProducts$favoriteBrandProducts?>? Function(
+                  Iterable<
+                      CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<
+                          Query$FavoriteBrandProducts$favoriteBrandProducts>?>?)
+              _fn) =>
+      call(
+          favoriteBrandProducts:
+              _fn(_instance.favoriteBrandProducts?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts<TRes>
+    implements CopyWith$Query$FavoriteBrandProducts<TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$FavoriteBrandProducts$favoriteBrandProducts?>?
+        favoriteBrandProducts,
+    String? $__typename,
+  }) =>
+      _res;
+
+  favoriteBrandProducts(_fn) => _res;
+}
+
+const documentNodeQueryFavoriteBrandProducts = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'FavoriteBrandProducts'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'topCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'favoriteBrandProducts'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'top'),
+            value: VariableNode(name: NameNode(value: 'topCount')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'name'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'description'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isFeatured'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'category'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'seller'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'size'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'condition'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'price'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'parcelSize'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'views'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'likes'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'userLiked'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'imagesUrl'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'likes'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'color'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'materials'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'brand'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$FavoriteBrandProducts _parserFn$Query$FavoriteBrandProducts(
+        Map<String, dynamic> data) =>
+    Query$FavoriteBrandProducts.fromJson(data);
+typedef OnQueryComplete$Query$FavoriteBrandProducts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$FavoriteBrandProducts?,
+);
+
+class Options$Query$FavoriteBrandProducts
+    extends graphql.QueryOptions<Query$FavoriteBrandProducts> {
+  Options$Query$FavoriteBrandProducts({
+    String? operationName,
+    Variables$Query$FavoriteBrandProducts? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$FavoriteBrandProducts? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$FavoriteBrandProducts? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$FavoriteBrandProducts(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryFavoriteBrandProducts,
+          parserFn: _parserFn$Query$FavoriteBrandProducts,
+        );
+
+  final OnQueryComplete$Query$FavoriteBrandProducts? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$FavoriteBrandProducts
+    extends graphql.WatchQueryOptions<Query$FavoriteBrandProducts> {
+  WatchOptions$Query$FavoriteBrandProducts({
+    String? operationName,
+    Variables$Query$FavoriteBrandProducts? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$FavoriteBrandProducts? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryFavoriteBrandProducts,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$FavoriteBrandProducts,
+        );
+}
+
+class FetchMoreOptions$Query$FavoriteBrandProducts
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$FavoriteBrandProducts({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$FavoriteBrandProducts? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryFavoriteBrandProducts,
+        );
+}
+
+extension ClientExtension$Query$FavoriteBrandProducts on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$FavoriteBrandProducts>>
+      query$FavoriteBrandProducts(
+              [Options$Query$FavoriteBrandProducts? options]) async =>
+          await this.query(options ?? Options$Query$FavoriteBrandProducts());
+  graphql.ObservableQuery<
+      Query$FavoriteBrandProducts> watchQuery$FavoriteBrandProducts(
+          [WatchOptions$Query$FavoriteBrandProducts? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$FavoriteBrandProducts());
+  void writeQuery$FavoriteBrandProducts({
+    required Query$FavoriteBrandProducts data,
+    Variables$Query$FavoriteBrandProducts? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryFavoriteBrandProducts),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$FavoriteBrandProducts? readQuery$FavoriteBrandProducts({
+    Variables$Query$FavoriteBrandProducts? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation:
+            graphql.Operation(document: documentNodeQueryFavoriteBrandProducts),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$FavoriteBrandProducts.fromJson(result);
+  }
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts {
+  Query$FavoriteBrandProducts$favoriteBrandProducts({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.isFeatured,
+    this.category,
+    this.seller,
+    this.condition,
+    this.discountPrice,
+    this.size,
+    this.price,
+    this.parcelSize,
+    required this.views,
+    required this.likes,
+    this.userLiked,
+    required this.imagesUrl,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.color,
+    this.materials,
+    this.brand,
+    this.$__typename = 'ProductType',
+  });
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$description = json['description'];
+    final l$isFeatured = json['isFeatured'];
+    final l$category = json['category'];
+    final l$seller = json['seller'];
+    final l$condition = json['condition'];
+    final l$discountPrice = json['discountPrice'];
+    final l$size = json['size'];
+    final l$price = json['price'];
+    final l$parcelSize = json['parcelSize'];
+    final l$views = json['views'];
+    final l$likes = json['likes'];
+    final l$userLiked = json['userLiked'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$createdAt = json['createdAt'];
+    final l$updatedAt = json['updatedAt'];
+    final l$color = json['color'];
+    final l$materials = json['materials'];
+    final l$brand = json['brand'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts(
+      id: (l$id as String),
+      name: (l$name as String),
+      description: (l$description as String),
+      isFeatured: (l$isFeatured as bool),
+      category: l$category == null
+          ? null
+          : Query$FavoriteBrandProducts$favoriteBrandProducts$category.fromJson(
+              (l$category as Map<String, dynamic>)),
+      seller: l$seller == null
+          ? null
+          : Query$FavoriteBrandProducts$favoriteBrandProducts$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      condition: l$condition == null
+          ? null
+          : fromJson$Enum$ProductsProductConditionChoices(
+              (l$condition as String)),
+      discountPrice: (l$discountPrice as String?),
+      size: l$size == null
+          ? null
+          : Query$FavoriteBrandProducts$favoriteBrandProducts$size.fromJson(
+              (l$size as Map<String, dynamic>)),
+      price: (l$price as num?)?.toDouble(),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
+      views: (l$views as int),
+      likes: (l$likes as int),
+      userLiked: (l$userLiked as bool?),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      materials: (l$materials as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$FavoriteBrandProducts$favoriteBrandProducts$materials
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      brand: l$brand == null
+          ? null
+          : Query$FavoriteBrandProducts$favoriteBrandProducts$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String name;
+
+  final String description;
+
+  final bool isFeatured;
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$category? category;
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$seller? seller;
+
+  final Enum$ProductsProductConditionChoices? condition;
+
+  final String? discountPrice;
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$size? size;
+
+  final double? price;
+
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
+
+  final int views;
+
+  final int likes;
+
+  final bool? userLiked;
+
+  final List<String> imagesUrl;
+
+  final DateTime createdAt;
+
+  final DateTime updatedAt;
+
+  final List<String> color;
+
+  final List<Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>?
+      materials;
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$brand? brand;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
+    final l$category = category;
+    _resultData['category'] = l$category?.toJson();
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$condition = condition;
+    _resultData['condition'] = l$condition == null
+        ? null
+        : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$size = size;
+    _resultData['size'] = l$size?.toJson();
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
+    final l$views = views;
+    _resultData['views'] = l$views;
+    final l$likes = likes;
+    _resultData['likes'] = l$likes;
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$materials = materials;
+    _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$description = description;
+    final l$isFeatured = isFeatured;
+    final l$category = category;
+    final l$seller = seller;
+    final l$condition = condition;
+    final l$discountPrice = discountPrice;
+    final l$size = size;
+    final l$price = price;
+    final l$parcelSize = parcelSize;
+    final l$views = views;
+    final l$likes = likes;
+    final l$userLiked = userLiked;
+    final l$imagesUrl = imagesUrl;
+    final l$createdAt = createdAt;
+    final l$updatedAt = updatedAt;
+    final l$color = color;
+    final l$materials = materials;
+    final l$brand = brand;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$description,
+      l$isFeatured,
+      l$category,
+      l$seller,
+      l$condition,
+      l$discountPrice,
+      l$size,
+      l$price,
+      l$parcelSize,
+      l$views,
+      l$likes,
+      l$userLiked,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$createdAt,
+      l$updatedAt,
+      Object.hashAll(l$color.map((v) => v)),
+      l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
+      l$brand,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (l$condition != lOther$condition) {
+      return false;
+    }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
+      return false;
+    }
+    final l$views = views;
+    final lOther$views = other.views;
+    if (l$views != lOther$views) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts
+    on Query$FavoriteBrandProducts$favoriteBrandProducts {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<
+          Query$FavoriteBrandProducts$favoriteBrandProducts>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts(
+    Query$FavoriteBrandProducts$favoriteBrandProducts instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts) then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts;
+
+  TRes call({
+    String? id,
+    String? name,
+    String? description,
+    bool? isFeatured,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$category? category,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$seller? seller,
+    Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$size? size,
+    double? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    int? likes,
+    bool? userLiked,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<String>? color,
+    List<Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>?
+        materials,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$brand? brand,
+    String? $__typename,
+  });
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<TRes>
+      get category;
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<TRes>
+      get seller;
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
+      get size;
+  TRes materials(
+      Iterable<Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>? Function(
+              Iterable<
+                  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+                      Query$FavoriteBrandProducts$favoriteBrandProducts$materials>?>?)
+          _fn);
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<TRes>
+      get brand;
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts<TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts _instance;
+
+  final TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? description = _undefined,
+    Object? isFeatured = _undefined,
+    Object? category = _undefined,
+    Object? seller = _undefined,
+    Object? condition = _undefined,
+    Object? discountPrice = _undefined,
+    Object? size = _undefined,
+    Object? price = _undefined,
+    Object? parcelSize = _undefined,
+    Object? views = _undefined,
+    Object? likes = _undefined,
+    Object? userLiked = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? createdAt = _undefined,
+    Object? updatedAt = _undefined,
+    Object? color = _undefined,
+    Object? materials = _undefined,
+    Object? brand = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
+        category: category == _undefined
+            ? _instance.category
+            : (category
+                as Query$FavoriteBrandProducts$favoriteBrandProducts$category?),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller
+                as Query$FavoriteBrandProducts$favoriteBrandProducts$seller?),
+        condition: condition == _undefined
+            ? _instance.condition
+            : (condition as Enum$ProductsProductConditionChoices?),
+        discountPrice: discountPrice == _undefined
+            ? _instance.discountPrice
+            : (discountPrice as String?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Query$FavoriteBrandProducts$favoriteBrandProducts$size?),
+        price: price == _undefined ? _instance.price : (price as double?),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
+        views: views == _undefined || views == null
+            ? _instance.views
+            : (views as int),
+        likes: likes == _undefined || likes == null
+            ? _instance.likes
+            : (likes as int),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        materials: materials == _undefined
+            ? _instance.materials
+            : (materials as List<
+                Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>?),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand
+                as Query$FavoriteBrandProducts$favoriteBrandProducts$brand?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<TRes>
+      get category {
+    final local$category = _instance.category;
+    return local$category == null
+        ? CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category
+            .stub(_then(_instance))
+        : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+            local$category, (e) => call(category: e));
+  }
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<TRes>
+      get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller
+            .stub(_then(_instance))
+        : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+            local$seller, (e) => call(seller: e));
+  }
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
+      get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size.stub(
+            _then(_instance))
+        : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+            local$size, (e) => call(size: e));
+  }
+
+  TRes materials(
+          Iterable<Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>? Function(
+                  Iterable<
+                      CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+                          Query$FavoriteBrandProducts$favoriteBrandProducts$materials>?>?)
+              _fn) =>
+      call(
+          materials: _fn(_instance.materials?.map((e) => e == null
+              ? null
+              : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+                  e,
+                  (i) => i,
+                )))?.toList());
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<TRes>
+      get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand.stub(
+            _then(_instance))
+        : CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+            local$brand, (e) => call(brand: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts<TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts<TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? name,
+    String? description,
+    bool? isFeatured,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$category? category,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$seller? seller,
+    Enum$ProductsProductConditionChoices? condition,
+    String? discountPrice,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$size? size,
+    double? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    int? likes,
+    bool? userLiked,
+    List<String>? imagesUrl,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<String>? color,
+    List<Query$FavoriteBrandProducts$favoriteBrandProducts$materials?>?
+        materials,
+    Query$FavoriteBrandProducts$favoriteBrandProducts$brand? brand,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<TRes>
+      get category =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category
+              .stub(_res);
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<TRes>
+      get seller =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller
+              .stub(_res);
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
+      get size =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size.stub(
+              _res);
+
+  materials(_fn) => _res;
+
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<TRes>
+      get brand =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand.stub(
+              _res);
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts$category {
+  Query$FavoriteBrandProducts$favoriteBrandProducts$category({
+    this.id,
+    this.name,
+    this.$__typename = 'CategoryType',
+  });
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts$category.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$category ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts$category
+    on Query$FavoriteBrandProducts$favoriteBrandProducts$category {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+          Query$FavoriteBrandProducts$favoriteBrandProducts$category>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+    Query$FavoriteBrandProducts$favoriteBrandProducts$category instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$category)
+        then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+            TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$category _instance;
+
+  final TRes Function(
+      Query$FavoriteBrandProducts$favoriteBrandProducts$category) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$category<
+            TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$category(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts$seller {
+  Query$FavoriteBrandProducts$favoriteBrandProducts$seller({
+    this.id,
+    this.username,
+    this.profilePictureUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? profilePictureUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts$seller
+    on Query$FavoriteBrandProducts$favoriteBrandProducts$seller {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+          Query$FavoriteBrandProducts$favoriteBrandProducts$seller>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+    Query$FavoriteBrandProducts$favoriteBrandProducts$seller instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$seller)
+        then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+            TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$seller _instance;
+
+  final TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$seller)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$seller<
+            TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$seller(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts$size {
+  Query$FavoriteBrandProducts$favoriteBrandProducts$size();
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts$size.fromJson(
+      Map<String, dynamic> json) {
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$size();
+  }
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    return Object.hashAll([]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts$size
+    on Query$FavoriteBrandProducts$favoriteBrandProducts$size {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
+          Query$FavoriteBrandProducts$favoriteBrandProducts$size>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+    Query$FavoriteBrandProducts$favoriteBrandProducts$size instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$size) then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size;
+
+  TRes call();
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$size _instance;
+
+  final TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$size)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call() =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$size());
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$size<TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$size(
+      this._res);
+
+  TRes _res;
+
+  call() => _res;
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts$materials {
+  Query$FavoriteBrandProducts$favoriteBrandProducts$materials({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts$materials.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$materials ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts$materials
+    on Query$FavoriteBrandProducts$favoriteBrandProducts$materials {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+          Query$FavoriteBrandProducts$favoriteBrandProducts$materials>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+    Query$FavoriteBrandProducts$favoriteBrandProducts$materials instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$materials)
+        then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+            TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$materials _instance;
+
+  final TRes Function(
+      Query$FavoriteBrandProducts$favoriteBrandProducts$materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$materials<
+            TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$materials(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$FavoriteBrandProducts$favoriteBrandProducts$brand {
+  Query$FavoriteBrandProducts$favoriteBrandProducts$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$FavoriteBrandProducts$favoriteBrandProducts$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$FavoriteBrandProducts$favoriteBrandProducts$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$FavoriteBrandProducts$favoriteBrandProducts$brand
+    on Query$FavoriteBrandProducts$favoriteBrandProducts$brand {
+  CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
+          Query$FavoriteBrandProducts$favoriteBrandProducts$brand>
+      get copyWith =>
+          CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
+    TRes> {
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+    Query$FavoriteBrandProducts$favoriteBrandProducts$brand instance,
+    TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$brand) then,
+  ) = _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand;
+
+  factory CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<TRes> {
+  _CopyWithImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$FavoriteBrandProducts$favoriteBrandProducts$brand _instance;
+
+  final TRes Function(Query$FavoriteBrandProducts$favoriteBrandProducts$brand)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
+        TRes>
+    implements
+        CopyWith$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<TRes> {
+  _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;

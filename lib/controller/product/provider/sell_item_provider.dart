@@ -21,12 +21,11 @@ class SellItemState with _$SellItemState {
     required String title,
     required String description,
     CategoryModel? category,
-    CategoryModel? subCategory,
     Enum$ParcelSizeEnum? parcel,
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
-    String? size,
+    SizeType? size,
     // Enum$SizeEnum? size,
     String? price,
     String? discount,
@@ -192,13 +191,13 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(category: category);
   }
 
-  void updateSubCategory(CategoryModel subCategory) {
-    state = state.copyWith(subCategory: subCategory);
-  }
+  // void updateSubCategory(CategoryModel subCategory) {
+  //   state = state.copyWith(subCategory: subCategory);
+  // }
 
   void selectSize(String size) {
     // void selectSize(Enum$SizeEnum size) {
-    state = state.copyWith(size: size);
+    // state = state.copyWith(size: size);
   }
 
   void updatePrice(String? price) {
@@ -232,11 +231,11 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       title: product.name,
       description: product.description,
       category: product.category,
-      subCategory: product.subCategory,
+      // subCategory: product.subCategory,
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,
-      size: product.size?.name,
+      size: product.size,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,

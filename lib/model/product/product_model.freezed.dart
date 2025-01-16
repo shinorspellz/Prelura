@@ -24,11 +24,9 @@ mixin _$ProductModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
-  CategoryModel? get subCategory => throw _privateConstructorUsedError;
   UserModel get seller => throw _privateConstructorUsedError;
   String? get discountPrice => throw _privateConstructorUsedError;
-  Enum$ProductsProductSizeChoices? get size =>
-      throw _privateConstructorUsedError;
+  SizeType? get size => throw _privateConstructorUsedError;
   Enum$ProductsProductParcelSizeChoices? get parcelSize =>
       throw _privateConstructorUsedError;
   ConditionsEnum? get condition => throw _privateConstructorUsedError;
@@ -47,6 +45,7 @@ mixin _$ProductModel {
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
   String? get customBrand => throw _privateConstructorUsedError;
   bool? get isFeatured => throw _privateConstructorUsedError;
+  OfferType? get offers => throw _privateConstructorUsedError;
 
   /// Serializes this ProductModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,10 +68,9 @@ abstract class $ProductModelCopyWith<$Res> {
       String name,
       String description,
       CategoryModel? category,
-      CategoryModel? subCategory,
       UserModel seller,
       String? discountPrice,
-      Enum$ProductsProductSizeChoices? size,
+      SizeType? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
       double price,
@@ -88,12 +86,14 @@ abstract class $ProductModelCopyWith<$Res> {
       List<MaterialModel>? materials,
       Enum$StyleEnum? style,
       String? customBrand,
-      bool? isFeatured});
+      bool? isFeatured,
+      OfferType? offers});
 
   $CategoryModelCopyWith<$Res>? get category;
-  $CategoryModelCopyWith<$Res>? get subCategory;
   $UserModelCopyWith<$Res> get seller;
+  $SizeTypeCopyWith<$Res>? get size;
   $BrandCopyWith<$Res>? get brand;
+  $OfferTypeCopyWith<$Res>? get offers;
 }
 
 /// @nodoc
@@ -115,7 +115,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? name = null,
     Object? description = null,
     Object? category = freezed,
-    Object? subCategory = freezed,
     Object? seller = null,
     Object? discountPrice = freezed,
     Object? size = freezed,
@@ -135,6 +134,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? style = freezed,
     Object? customBrand = freezed,
     Object? isFeatured = freezed,
+    Object? offers = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -153,10 +153,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      subCategory: freezed == subCategory
-          ? _value.subCategory
-          : subCategory // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
       seller: null == seller
           ? _value.seller
           : seller // ignore: cast_nullable_to_non_nullable
@@ -168,7 +164,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsProductSizeChoices?,
+              as SizeType?,
       parcelSize: freezed == parcelSize
           ? _value.parcelSize
           : parcelSize // ignore: cast_nullable_to_non_nullable
@@ -233,6 +229,10 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool?,
+      offers: freezed == offers
+          ? _value.offers
+          : offers // ignore: cast_nullable_to_non_nullable
+              as OfferType?,
     ) as $Val);
   }
 
@@ -254,13 +254,9 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CategoryModelCopyWith<$Res>? get subCategory {
-    if (_value.subCategory == null) {
-      return null;
-    }
-
-    return $CategoryModelCopyWith<$Res>(_value.subCategory!, (value) {
-      return _then(_value.copyWith(subCategory: value) as $Val);
+  $UserModelCopyWith<$Res> get seller {
+    return $UserModelCopyWith<$Res>(_value.seller, (value) {
+      return _then(_value.copyWith(seller: value) as $Val);
     });
   }
 
@@ -268,9 +264,13 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get seller {
-    return $UserModelCopyWith<$Res>(_value.seller, (value) {
-      return _then(_value.copyWith(seller: value) as $Val);
+  $SizeTypeCopyWith<$Res>? get size {
+    if (_value.size == null) {
+      return null;
+    }
+
+    return $SizeTypeCopyWith<$Res>(_value.size!, (value) {
+      return _then(_value.copyWith(size: value) as $Val);
     });
   }
 
@@ -285,6 +285,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
 
     return $BrandCopyWith<$Res>(_value.brand!, (value) {
       return _then(_value.copyWith(brand: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ProductModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OfferTypeCopyWith<$Res>? get offers {
+    if (_value.offers == null) {
+      return null;
+    }
+
+    return $OfferTypeCopyWith<$Res>(_value.offers!, (value) {
+      return _then(_value.copyWith(offers: value) as $Val);
     });
   }
 }
@@ -302,10 +316,9 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       String name,
       String description,
       CategoryModel? category,
-      CategoryModel? subCategory,
       UserModel seller,
       String? discountPrice,
-      Enum$ProductsProductSizeChoices? size,
+      SizeType? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
       double price,
@@ -321,16 +334,19 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       List<MaterialModel>? materials,
       Enum$StyleEnum? style,
       String? customBrand,
-      bool? isFeatured});
+      bool? isFeatured,
+      OfferType? offers});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
   @override
-  $CategoryModelCopyWith<$Res>? get subCategory;
-  @override
   $UserModelCopyWith<$Res> get seller;
   @override
+  $SizeTypeCopyWith<$Res>? get size;
+  @override
   $BrandCopyWith<$Res>? get brand;
+  @override
+  $OfferTypeCopyWith<$Res>? get offers;
 }
 
 /// @nodoc
@@ -350,7 +366,6 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? category = freezed,
-    Object? subCategory = freezed,
     Object? seller = null,
     Object? discountPrice = freezed,
     Object? size = freezed,
@@ -370,6 +385,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? style = freezed,
     Object? customBrand = freezed,
     Object? isFeatured = freezed,
+    Object? offers = freezed,
   }) {
     return _then(_$ProductModelImpl(
       id: null == id
@@ -388,10 +404,6 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      subCategory: freezed == subCategory
-          ? _value.subCategory
-          : subCategory // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
       seller: null == seller
           ? _value.seller
           : seller // ignore: cast_nullable_to_non_nullable
@@ -403,7 +415,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsProductSizeChoices?,
+              as SizeType?,
       parcelSize: freezed == parcelSize
           ? _value.parcelSize
           : parcelSize // ignore: cast_nullable_to_non_nullable
@@ -468,6 +480,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool?,
+      offers: freezed == offers
+          ? _value.offers
+          : offers // ignore: cast_nullable_to_non_nullable
+              as OfferType?,
     ));
   }
 }
@@ -480,7 +496,6 @@ class _$ProductModelImpl implements _ProductModel {
       required this.name,
       required this.description,
       this.category,
-      this.subCategory,
       required this.seller,
       this.discountPrice,
       this.size,
@@ -499,7 +514,8 @@ class _$ProductModelImpl implements _ProductModel {
       final List<MaterialModel>? materials,
       this.style,
       this.customBrand,
-      this.isFeatured})
+      this.isFeatured,
+      this.offers})
       : _imagesUrl = imagesUrl,
         _color = color,
         _materials = materials;
@@ -516,13 +532,11 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final CategoryModel? category;
   @override
-  final CategoryModel? subCategory;
-  @override
   final UserModel seller;
   @override
   final String? discountPrice;
   @override
-  final Enum$ProductsProductSizeChoices? size;
+  final SizeType? size;
   @override
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
   @override
@@ -578,10 +592,12 @@ class _$ProductModelImpl implements _ProductModel {
   final String? customBrand;
   @override
   final bool? isFeatured;
+  @override
+  final OfferType? offers;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, description: $description, category: $category, subCategory: $subCategory, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
+    return 'ProductModel(id: $id, name: $name, description: $description, category: $category, seller: $seller, discountPrice: $discountPrice, size: $size, parcelSize: $parcelSize, condition: $condition, price: $price, postagePrice: $postagePrice, views: $views, likes: $likes, userLiked: $userLiked, imagesUrl: $imagesUrl, createdAt: $createdAt, updatedAt: $updatedAt, color: $color, brand: $brand, materials: $materials, style: $style, customBrand: $customBrand, isFeatured: $isFeatured, offers: $offers)';
   }
 
   @override
@@ -595,8 +611,6 @@ class _$ProductModelImpl implements _ProductModel {
                 other.description == description) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.subCategory, subCategory) ||
-                other.subCategory == subCategory) &&
             (identical(other.seller, seller) || other.seller == seller) &&
             (identical(other.discountPrice, discountPrice) ||
                 other.discountPrice == discountPrice) &&
@@ -626,7 +640,8 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.customBrand, customBrand) ||
                 other.customBrand == customBrand) &&
             (identical(other.isFeatured, isFeatured) ||
-                other.isFeatured == isFeatured));
+                other.isFeatured == isFeatured) &&
+            (identical(other.offers, offers) || other.offers == offers));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -637,7 +652,6 @@ class _$ProductModelImpl implements _ProductModel {
         name,
         description,
         category,
-        subCategory,
         seller,
         discountPrice,
         size,
@@ -656,7 +670,8 @@ class _$ProductModelImpl implements _ProductModel {
         const DeepCollectionEquality().hash(_materials),
         style,
         customBrand,
-        isFeatured
+        isFeatured,
+        offers
       ]);
 
   /// Create a copy of ProductModel
@@ -681,10 +696,9 @@ abstract class _ProductModel implements ProductModel {
       required final String name,
       required final String description,
       final CategoryModel? category,
-      final CategoryModel? subCategory,
       required final UserModel seller,
       final String? discountPrice,
-      final Enum$ProductsProductSizeChoices? size,
+      final SizeType? size,
       final Enum$ProductsProductParcelSizeChoices? parcelSize,
       final ConditionsEnum? condition,
       required final double price,
@@ -700,7 +714,8 @@ abstract class _ProductModel implements ProductModel {
       final List<MaterialModel>? materials,
       final Enum$StyleEnum? style,
       final String? customBrand,
-      final bool? isFeatured}) = _$ProductModelImpl;
+      final bool? isFeatured,
+      final OfferType? offers}) = _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
@@ -714,13 +729,11 @@ abstract class _ProductModel implements ProductModel {
   @override
   CategoryModel? get category;
   @override
-  CategoryModel? get subCategory;
-  @override
   UserModel get seller;
   @override
   String? get discountPrice;
   @override
-  Enum$ProductsProductSizeChoices? get size;
+  SizeType? get size;
   @override
   Enum$ProductsProductParcelSizeChoices? get parcelSize;
   @override
@@ -754,6 +767,8 @@ abstract class _ProductModel implements ProductModel {
   String? get customBrand;
   @override
   bool? get isFeatured;
+  @override
+  OfferType? get offers;
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1091,5 +1106,170 @@ abstract class _Brand implements Brand {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SizeType _$SizeTypeFromJson(Map<String, dynamic> json) {
+  return _SizeType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SizeType {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this SizeType to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SizeTypeCopyWith<SizeType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SizeTypeCopyWith<$Res> {
+  factory $SizeTypeCopyWith(SizeType value, $Res Function(SizeType) then) =
+      _$SizeTypeCopyWithImpl<$Res, SizeType>;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$SizeTypeCopyWithImpl<$Res, $Val extends SizeType>
+    implements $SizeTypeCopyWith<$Res> {
+  _$SizeTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SizeTypeImplCopyWith<$Res>
+    implements $SizeTypeCopyWith<$Res> {
+  factory _$$SizeTypeImplCopyWith(
+          _$SizeTypeImpl value, $Res Function(_$SizeTypeImpl) then) =
+      __$$SizeTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class __$$SizeTypeImplCopyWithImpl<$Res>
+    extends _$SizeTypeCopyWithImpl<$Res, _$SizeTypeImpl>
+    implements _$$SizeTypeImplCopyWith<$Res> {
+  __$$SizeTypeImplCopyWithImpl(
+      _$SizeTypeImpl _value, $Res Function(_$SizeTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_$SizeTypeImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SizeTypeImpl implements _SizeType {
+  const _$SizeTypeImpl({required this.id, required this.name});
+
+  factory _$SizeTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SizeTypeImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'SizeType(id: $id, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SizeTypeImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name);
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SizeTypeImplCopyWith<_$SizeTypeImpl> get copyWith =>
+      __$$SizeTypeImplCopyWithImpl<_$SizeTypeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SizeTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SizeType implements SizeType {
+  const factory _SizeType({required final int id, required final String name}) =
+      _$SizeTypeImpl;
+
+  factory _SizeType.fromJson(Map<String, dynamic> json) =
+      _$SizeTypeImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SizeTypeImplCopyWith<_$SizeTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
