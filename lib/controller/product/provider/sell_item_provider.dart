@@ -25,7 +25,7 @@ class SellItemState with _$SellItemState {
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
-    int size,
+    int? size,
     // Enum$SizeEnum? size,
     String? price,
     String? discount,
@@ -159,7 +159,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,
-      size: product.size,
+      size: product.size?.id,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,

@@ -30,8 +30,7 @@ mixin _$SellItemState {
   List<MaterialModel> get selectedMaterials =>
       throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
-  SizeType? get size =>
-      throw _privateConstructorUsedError; // Enum$SizeEnum? size,
+  int? get size => throw _privateConstructorUsedError; // Enum$SizeEnum? size,
   String? get price => throw _privateConstructorUsedError;
   String? get discount => throw _privateConstructorUsedError;
   ConditionsEnum? get selectedCondition => throw _privateConstructorUsedError;
@@ -64,7 +63,7 @@ abstract class $SellItemStateCopyWith<$Res> {
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      SizeType? size,
+      int? size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -74,7 +73,6 @@ abstract class $SellItemStateCopyWith<$Res> {
 
   $CategoryModelCopyWith<$Res>? get category;
   $BrandCopyWith<$Res>? get brand;
-  $SizeTypeCopyWith<$Res>? get size;
 }
 
 /// @nodoc
@@ -144,7 +142,7 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as SizeType?,
+              as int?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -199,20 +197,6 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
       return _then(_value.copyWith(brand: value) as $Val);
     });
   }
-
-  /// Create a copy of SellItemState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SizeTypeCopyWith<$Res>? get size {
-    if (_value.size == null) {
-      return null;
-    }
-
-    return $SizeTypeCopyWith<$Res>(_value.size!, (value) {
-      return _then(_value.copyWith(size: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -232,7 +216,7 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      SizeType? size,
+      int? size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -244,8 +228,6 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
   $CategoryModelCopyWith<$Res>? get category;
   @override
   $BrandCopyWith<$Res>? get brand;
-  @override
-  $SizeTypeCopyWith<$Res>? get size;
 }
 
 /// @nodoc
@@ -313,7 +295,7 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as SizeType?,
+              as int?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -408,7 +390,7 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   final Brand? brand;
   @override
-  final SizeType? size;
+  final int? size;
 // Enum$SizeEnum? size,
   @override
   final String? price;
@@ -505,7 +487,7 @@ abstract class _SellItemState implements SellItemState {
       final List<String> selectedColors,
       final List<MaterialModel> selectedMaterials,
       final Brand? brand,
-      final SizeType? size,
+      final int? size,
       final String? price,
       final String? discount,
       final ConditionsEnum? selectedCondition,
@@ -534,7 +516,7 @@ abstract class _SellItemState implements SellItemState {
   @override
   Brand? get brand;
   @override
-  SizeType? get size; // Enum$SizeEnum? size,
+  int? get size; // Enum$SizeEnum? size,
   @override
   String? get price;
   @override
