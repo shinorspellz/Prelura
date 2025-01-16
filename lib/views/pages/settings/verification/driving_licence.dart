@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
@@ -107,6 +108,12 @@ class _UploadIdentityDocumentState extends State<UploadIdentityDocument> {
                             setState(() {});
                             // ignore: use_build_context_synchronously
                             // navigateTo
+                            context.router.push(
+                              DisplayCapturedDocument(
+                                image: pictureFile!,
+                                pageTitle: widget.pageTitle,
+                              ),
+                            );
                           },
                           child: Container(
                             height: 60,

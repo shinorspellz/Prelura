@@ -59,9 +59,9 @@ class _CountryRegionsViewState extends ConsumerState<CountryRegionsView> {
               padding: EdgeInsets.zero,
               obscureText: false,
               shouldReadOnly: false,
-              hintText: "Search country",
+              hintText: "Search country here",
               enabled: true,
-              // controller: ref.read(searchTextController),
+              controller: typingTextController,
               showInputBorder: true,
               autofocus: false,
               cancelButton: true,
@@ -71,20 +71,8 @@ class _CountryRegionsViewState extends ConsumerState<CountryRegionsView> {
               },
               onChanged: (val) {
                 changeTypingState(val);
-                // // searchQuery = val;
-                // ref
-                //     .read(searchHistoryQueryProvider.notifier)
-                //     .state = val;
-                // setState(() {});
               },
             ),
-            // VWidgetsPrimaryTextFieldWithTitle(
-            //   hintText: "Search country here",
-            //   onChanged: (val) {
-            //     changeTypingState(val);
-            //   },
-            //   controller: typingTextController,
-            // ),
             addVerticalSpacing(10),
             Expanded(
               child: ListView.builder(

@@ -206,6 +206,10 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
+          page: DisplayCapturedDocument.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: VerifyYourIdentity.page,
           guards: [AuthGuard(_ref)],
         ),
