@@ -3,28 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
+import 'package:prelura_app/views/widgets/error_placeholder.dart';
 
-import '../../../../controller/product/product_provider.dart';
-import '../../../shimmers/grid_shimmer.dart';
-import '../../../widgets/SearchWidget.dart';
-import '../../../widgets/empty_screen_placeholder.dart';
-import '../../../widgets/error_placeholder.dart';
-import '../../../widgets/gap.dart';
-import '../../sell_item/brand_view.dart';
+import '../../../controller/product/product_provider.dart';
+import '../../shimmers/grid_shimmer.dart';
+import '../../widgets/SearchWidget.dart';
+import '../../widgets/empty_screen_placeholder.dart';
+import '../../widgets/gap.dart';
 
 @RoutePage()
-class PartyFilteredProductScreen extends ConsumerStatefulWidget {
-  const PartyFilteredProductScreen({super.key});
+class FavouriteBrandsProductsScreen extends ConsumerStatefulWidget {
+  const FavouriteBrandsProductsScreen(
+      {super.key, required this.title, required this.id, this.customBrand});
+  final String? title;
+  final int? id;
+  final String? customBrand;
 
   static final ScrollController scrollController = ScrollController();
 
   @override
-  _ProductFilterPageState createState() => _ProductFilterPageState();
+  _ProductsByBrandPageState createState() => _ProductsByBrandPageState();
 }
 
-class _ProductFilterPageState
-    extends ConsumerState<PartyFilteredProductScreen> {
-  final controller = PartyFilteredProductScreen.scrollController;
+class _ProductsByBrandPageState
+    extends ConsumerState<FavouriteBrandsProductsScreen> {
+  final controller = FavouriteBrandsProductsScreen.scrollController;
 
   @override
   void initState() {
@@ -35,9 +38,7 @@ class _ProductFilterPageState
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
-      if (maxScroll - currentScroll <= delta) {
-        ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
-      }
+      if (maxScroll - currentScroll <= delta) {}
     });
   }
 
@@ -59,11 +60,11 @@ class _ProductFilterPageState
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
-        appbarTitle: "Party",
+        appbarTitle: "On Sale",
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(allProductProvider(searchQuery).future);
+          await ref.refresh(favoriteBrandProductsProvider.future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -87,7 +88,7 @@ class _ProductFilterPageState
                           padding: EdgeInsets.zero,
                           obscureText: false,
                           shouldReadOnly: false,
-                          hintText: "Search for items",
+                          hintText: "Search for items and members",
                           enabled: true,
                           showInputBorder: true,
                           autofocus: false,
@@ -102,64 +103,55 @@ class _ProductFilterPageState
                     ),
                   )),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
-                  sliver: ref.watch(allProductProvider(searchQuery)).when(
+                ref.watch(discountedProductsProvider).maybeWhen(
+                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
-                        final filteredProducts = products
-                            .where((product) =>
-                                product.style?.name
-                                    ?.toLowerCase()
-                                    .contains("party") ??
-                                false) // Safely check for "party"
-                            .toList();
-
-                        if (filteredProducts.isEmpty) {
-                          ref
-                              .read(allProductProvider(searchQuery).notifier)
-                              .fetchMoreData();
+                        if (products.isEmpty) {
                           return SliverToBoxAdapter(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.7,
-                              child: EmptyScreenPlaceholder(
-                                  text: "No products found"),
-                            ),
+                            child: EmptyScreenPlaceholder(
+                                text: "No products found"),
                           );
                         }
-                        return SliverGrid.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.50,
-                          ),
-                          itemCount: filteredProducts.length,
-                          itemBuilder: (context, index) {
-                            return ProductCard(
-                                product: filteredProducts[index]);
-                          },
-                        );
-                      },
-                      error: (e, _) {
-                        return SliverFillRemaining(
-                          child: ErrorPlaceholder(
-                            error: "Error fetching items",
-                            onTap: () {
-                              ref.refresh(allProductProvider(searchQuery));
+                        return SliverPadding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          sliver: SliverGrid.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.50,
+                            ),
+                            itemCount: products.length,
+                            itemBuilder: (context, index) {
+                              return ProductCard(product: products[index]);
                             },
                           ),
                         );
                       },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
-                ),
-                if (ref
-                    .watch(allProductProvider(searchQuery).notifier)
-                    .canLoadMore())
-                  if (!ref.watch(allProductProvider(searchQuery)).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                      error: (e, _) {
+                        return SliverToBoxAdapter(
+                          child: ErrorPlaceholder(
+                              error: "An error occured",
+                              onTap: () {
+                                ref.refresh(discountedProductsProvider.future);
+                              }),
+                        );
+                      },
+                      loading: () => SliverToBoxAdapter(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: GridShimmer(),
+                      )),
+                      orElse: () => SliverToBoxAdapter(child: Container()),
+                    ),
+                // if (ref
+                //     .watch(discountedProductsProvider.notifier)
+                //     .canLoadMore())
+                //   if (!ref.watch(discountedProductsProvider).isLoading)
+                //     const SliverToBoxAdapter(
+                //       child: PaginationLoadingIndicator(),
+                //     )
               ],
             ),
           ),

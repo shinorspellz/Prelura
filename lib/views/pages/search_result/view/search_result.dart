@@ -34,8 +34,8 @@ enum FilterTypes {
   brand('Brand'),
   condition('Condition'),
   category('Category'),
-  style('Style');
-  // color('Color');
+  style('Style'),
+  color('Color');
 
   const FilterTypes(this.simpleName);
 
@@ -278,7 +278,6 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                     8.verticalSpacing,
                                 itemBuilder: (_, index) => GestureDetector(
                                   onTap: () {
-                                   
                                     if (user?.username ==
                                         users[index].username) {
                                       final tabRouter =
@@ -294,6 +293,8 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                   child: AnimatedGridItem(
                                     child: ProfileCardWidget(
                                       user: users[index],
+                                      height: 40,
+                                      width: 40,
                                     ),
                                   ),
                                 ),

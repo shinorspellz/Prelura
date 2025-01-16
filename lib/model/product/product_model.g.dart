@@ -14,9 +14,6 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       category: json['category'] == null
           ? null
           : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      subCategory: json['subCategory'] == null
-          ? null
-          : CategoryModel.fromJson(json['subCategory'] as Map<String, dynamic>),
       seller: UserModel.fromJson(json['seller'] as Map<String, dynamic>),
       discountPrice: json['discountPrice'] as String?,
       size: json['size'] == null
@@ -50,6 +47,9 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           : Enum$StyleEnum.fromJson(json['style'] as String),
       customBrand: json['customBrand'] as String?,
       isFeatured: json['isFeatured'] as bool?,
+      offers: json['offers'] == null
+          ? null
+          : OfferType.fromJson(json['offers'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
@@ -58,7 +58,6 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'category': instance.category,
-      'subCategory': instance.subCategory,
       'seller': instance.seller,
       'discountPrice': instance.discountPrice,
       'size': instance.size,
@@ -78,6 +77,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'style': instance.style,
       'customBrand': instance.customBrand,
       'isFeatured': instance.isFeatured,
+      'offers': instance.offers,
     };
 
 const _$ConditionsEnumEnumMap = {

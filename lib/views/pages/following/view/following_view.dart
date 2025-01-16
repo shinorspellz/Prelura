@@ -9,6 +9,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
+import '../../../widgets/error_placeholder.dart';
 import '../../followers/widget/follower_tile.dart';
 
 final followingqueryProvider = StateProvider<FollowerQuery>(
@@ -116,7 +117,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
           child: following.when(
             data: (followersList) {
               if (followersList.isEmpty) {
-                return EmptyScreenPlaceholder(text: "No followers found");
+                return EmptyScreenPlaceholder(text: "No followings");
               }
               return Column(
                 children: [
@@ -147,7 +148,11 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
             },
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, stackTrace) {
-              return Center(child: Text("Error loading this page"));
+              return ErrorPlaceholder(
+                  error: "An error occured",
+                  onTap: () {
+                    ref.refresh(followingProvider(queryParams).future);
+                  });
             },
           ),
         ),

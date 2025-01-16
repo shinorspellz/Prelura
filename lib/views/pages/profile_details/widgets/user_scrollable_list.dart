@@ -5,6 +5,7 @@ import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/main.dart';
 import 'package:prelura_app/model/user/user_model.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
@@ -22,56 +23,52 @@ class UserScrollableList extends ConsumerWidget {
     return Container(
       margin: EdgeInsets.only(top: 16),
       padding: EdgeInsets.only(top: 8, right: 8, bottom: 8),
-      decoration: BoxDecoration(
-          border: Border(
-        // bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
-        top: listingCount == 0
-            ? BorderSide.none
-            : BorderSide(color: Theme.of(context).dividerColor, width: 1),
-        bottom: listingCount == 0
-            ? BorderSide(color: Theme.of(context).dividerColor, width: 1)
-            : BorderSide.none,
-        // bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1),
-      )),
-      child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.zero,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              _buildItem(context,
-                  title: listingCount == 1 ? "Listing" : "Listings",
-                  numbers: user?.listing?.toString(),
-                  onTap: () {}),
-              16.horizontalSpacing,
-              _buildItem(context,
-                  title: 'Following',
-                  numbers: user?.noOfFollowing.toString(), onTap: () {
-                context.router
-                    .push(FollowingRoute(username: user?.username ?? ""));
-              }),
-              16.horizontalSpacing,
-              _buildItem(context,
-                  title: (user?.noOfFollowers != null &&
-                          (noOfFollowing > 1 ||
-                              user?.noOfFollowers?.toInt() == 0))
-                      ? " Followers"
-                      : " Follower",
-                  numbers: user?.noOfFollowers.toString(), onTap: () {
-                context.router
-                    .push(FollowersRoute(username: user?.username ?? ""));
-              }),
-              16.horizontalSpacing,
-              _buildItem(context, title: 'Reviews', numbers: "300", onTap: () {
-                context.router.push(ReviewRoute());
-              }),
-              16.horizontalSpacing,
-              _buildItem(context,
-                  title: "Ratings", numbers: "4.95", onTap: () {})
-            ],
-          )),
+      child: Column(
+        children: [
+          buildDivider(context),
+          SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  _buildItem(context,
+                      title: listingCount == 1 ? "Listing" : "Listings",
+                      numbers: user?.listing?.toString(),
+                      onTap: () {}),
+                  16.horizontalSpacing,
+                  _buildItem(context,
+                      title: 'Following',
+                      numbers: user?.noOfFollowing.toString(), onTap: () {
+                    context.router
+                        .push(FollowingRoute(username: user?.username ?? ""));
+                  }),
+                  16.horizontalSpacing,
+                  _buildItem(context,
+                      title: (user?.noOfFollowers != null &&
+                              (noOfFollowing > 1 ||
+                                  user?.noOfFollowers?.toInt() == 0))
+                          ? " Followers"
+                          : " Follower",
+                      numbers: user?.noOfFollowers.toString(), onTap: () {
+                    context.router
+                        .push(FollowersRoute(username: user?.username ?? ""));
+                  }),
+                  16.horizontalSpacing,
+                  _buildItem(context, title: 'Reviews', numbers: "300",
+                      onTap: () {
+                    context.router.push(ReviewRoute());
+                  }),
+                  16.horizontalSpacing,
+                  _buildItem(context,
+                      title: "Ratings", numbers: "4.95", onTap: () {})
+                ],
+              )),
+          if (listingCount == 0) buildDivider(context),
+        ],
+      ),
     );
   }
 }

@@ -268,15 +268,14 @@ void ShowFilteredProductFilterModal(
             FilterTypes.category: ref
                     .watch(categoryProvider)
                     .valueOrNull
-                    ?.where((e) =>
-                        e.name == "Kids" ||
-                        e.name == "Women" ||
-                        e.name == "Men")
-                    .map((e) => e.name)
+                    ?.map((e) => e.name)
                     .toList() ??
                 [],
             FilterTypes.condition:
                 ConditionsEnum.values.map((e) => e.simpleName).toList(),
+            FilterTypes.color:
+                ref.read(colorsProvider).entries.map((e) => e.key).toList() ??
+                    [],
           };
 
           String? selectedOptions = ref.read(productFilterProvider)[filterType];

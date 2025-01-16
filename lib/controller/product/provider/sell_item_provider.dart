@@ -11,6 +11,8 @@ import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
+import '../../../model/product/categories/size_model.dart';
+
 part 'sell_item_provider.freezed.dart';
 part 'sell_item_provider.g.dart';
 
@@ -24,8 +26,9 @@ class SellItemState with _$SellItemState {
     Enum$ParcelSizeEnum? parcel,
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
+    SizeType? size,
     Brand? brand,
-    dynamic size,
+    // Enum$SizeEnum? size,
     String? price,
     String? discount,
     ConditionsEnum? selectedCondition,
@@ -114,7 +117,11 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(category: category);
   }
 
-  void selectSize(String size) {
+  // void updateSubCategory(CategoryModel subCategory) {
+  //   state = state.copyWith(subCategory: subCategory);
+  // }
+
+  void selectSize(SizeType size) {
     // void selectSize(Enum$SizeEnum size) {
     state = state.copyWith(size: size);
   }
@@ -150,10 +157,11 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       title: product.name,
       description: product.description,
       category: product.category,
+      // subCategory: product.subCategory,
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,
-      size: product.size?.name,
+      size: product.size,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,

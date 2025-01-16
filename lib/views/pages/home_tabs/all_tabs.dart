@@ -18,6 +18,7 @@ import '../../../shared/mock_data.dart';
 import '../../shimmers/custom_shimmer.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
+import '../../widgets/error_placeholder.dart';
 import '../../widgets/popular_brands.dart';
 
 class HomeAllTab extends ConsumerWidget {
@@ -57,26 +58,16 @@ class HomeAllTab extends ConsumerWidget {
               error: (e, _) {
                 print(e);
                 log("$_");
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("An error occurred"),
-                      TextButton.icon(
-                        onPressed: () {
-                          // log(e.toString(), stackTrace: _);
-                          ref.invalidate(allProductProvider(searchQuery));
-                        },
-                        label: const Text('Retry'),
-                        icon: const Icon(Icons.refresh_rounded),
-                      ),
-                    ],
-                  ),
+                return ErrorPlaceholder(
+                  error: "An error occured",
+                  onTap: () {
+                    ref.invalidate(allProductProvider(searchQuery));
+                  },
                 );
               },
               loading: () => GridShimmer()),
         ] else ...[
+          _buildBrandsYouLove(context, ref),
           ref.watch(recommendedSellersProvider).when(
             data: (users) {
               return Column(
@@ -130,7 +121,12 @@ class HomeAllTab extends ConsumerWidget {
             },
             error: (error, stackTrace) {
               // Handle error state
-              return Center();
+              return ErrorPlaceholder(
+                error: "An error occured",
+                onTap: () {
+                  ref.invalidate(recommendedSellersProvider);
+                },
+              );
             },
             loading: () {
               // Handle loading state
@@ -292,22 +288,11 @@ class HomeAllTab extends ConsumerWidget {
                 error: (e, _) {
                   print(e);
                   log("$_");
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("An error occurred"),
-                        TextButton.icon(
-                          onPressed: () {
-                            // log(e.toString(), stackTrace: _);
-                            ref.invalidate(allProductProvider(null));
-                          },
-                          label: const Text('Retry'),
-                          icon: const Icon(Icons.refresh_rounded),
-                        ),
-                      ],
-                    ),
+                  return ErrorPlaceholder(
+                    error: "An error occured",
+                    onTap: () {
+                      ref.refresh(allProductProvider(searchQuery));
+                    },
                   );
                 },
                 data: (products) => Padding(
@@ -405,7 +390,7 @@ class HomeAllTab extends ConsumerWidget {
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 10,
-                                mainAxisSpacing: 10,
+                                mainAxisSpacing: 20,
                                 childAspectRatio: 0.50,
                               ),
                               itemCount: chunkedProducts[chunkIndex].length,
@@ -427,21 +412,11 @@ class HomeAllTab extends ConsumerWidget {
                     );
                   },
                   error: (e, _) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text("An error occurred"),
-                          TextButton.icon(
-                            onPressed: () {
-                              ref.invalidate(allProductProvider);
-                            },
-                            label: const Text('Retry'),
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
-                        ],
-                      ),
+                    return ErrorPlaceholder(
+                      error: "An error occurred",
+                      onTap: () {
+                        ref.invalidate(allProductProvider(null));
+                      },
                     );
                   },
                   loading: () => GridShimmer(),
@@ -498,6 +473,176 @@ Widget _buildSectionTitle(
       ],
     ),
   );
+}
+
+Widget _buildBrandsYouLove(BuildContext context, WidgetRef ref) {
+  return ref.watch(favoriteBrandProductsProvider).maybeWhen(
+      data: (products) {
+        log(products.length.toString());
+        return products.isEmpty
+            ? SizedBox.shrink()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 8),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Brands You Love",
+                            textAlign: TextAlign.left,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: getDefaultSize(size: 16),
+                            ),
+                          ),
+                          6.verticalSpacing,
+                          Text(
+                            "Products from your favorite brands",
+                            textAlign: TextAlign.left,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: PreluraColors.grey,
+                              fontSize: getDefaultSize(),
+                            ),
+                          ),
+                          8.verticalSpacing,
+                        ]),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 1.1,
+                    // height: 320,
+                    // width: MediaQuery.sizeOf(context).width,
+                    child: ListView.separated(
+                      padding: EdgeInsets.only(left: 15),
+                      scrollDirection: Axis.horizontal,
+                      separatorBuilder: (context, index) =>
+                          10.horizontalSpacing,
+                      itemBuilder: (context, index) => SizedBox(
+                        width: 180,
+                        child: ProductCard(product: products[index]),
+                      ),
+                      itemCount: products.length,
+                    ),
+                  ),
+                  16.verticalSpacing,
+                ],
+              );
+      },
+      loading: () => Column(
+            children: [
+              16.verticalSpacing,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                child: CustomShimmer(
+                    child: Container(
+                        height: 40,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            16.horizontalSpacing,
+                            Container(
+                              height: 40,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ],
+                        ))),
+              ),
+              16.verticalSpacing,
+              AspectRatio(
+                aspectRatio: 1.1,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    mockData.length,
+                    (_) => Container(
+                      // height: 220,
+                      width: 180,
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      child:
+                          const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+      orElse: () => Column(
+            children: [
+              16.verticalSpacing,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                child: CustomShimmer(
+                    child: Container(
+                        height: 40,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          // color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 50,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            16.horizontalSpacing,
+                            Container(
+                              height: 40,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ],
+                        ))),
+              ),
+              16.verticalSpacing,
+              AspectRatio(
+                aspectRatio: 1.1,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    mockData.length,
+                    (_) => Container(
+                      // height: 220,
+                      width: 180,
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      child:
+                          const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ));
 }
 
 Widget sectionTitle(String MainTitle, String subtitle, BuildContext context,

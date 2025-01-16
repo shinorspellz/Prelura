@@ -105,15 +105,6 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
                 controller: controller,
                 onChanged: (value) {
                   ref.read(sellItemProvider.notifier).updatePrice(value);
-                  ref.read(selectedFilteredProductProvider.notifier).state =
-                      Input$ProductFiltersInput(
-                    category: state.category != null
-                        ? int.parse(state.category!.id.toString())
-                        : null,
-                    brand: state.brand != null
-                        ? int.parse(state.brand!.id.toString())
-                        : null,
-                  );
                 },
                 onSaved: (value) {
                   ref.read(sellItemProvider.notifier).updatePrice(value);
@@ -128,34 +119,42 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
 
               // Similar Sold Items Section
               if (state.category != null || state.brand != null)
-                Text(
-                  "Similar sold items",
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                ),
-              const SizedBox(height: 16),
-              if (state.category != null || state.brand != null)
                 ref.watch(filteredProductProvider("")).when(
                     data: (products) {
-                      return Stack(
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          DisplaySection(
-                            products: products.take(10).toList(),
-                            isSelectable: false,
+                          if (products.isNotEmpty)
+                            Text(
+                              "Similar sold items",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                            ),
+                          const SizedBox(height: 16),
+                          Stack(
+                            children: [
+                              DisplaySection(
+                                products: products.take(10).toList(),
+                                isSelectable: false,
+                              ),
+                              Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  child: GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: double.infinity,
+                                    ),
+                                  ))
+                            ],
                           ),
-                          Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              bottom: 0,
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  width: double.infinity,
-                                ),
-                              ))
                         ],
                       );
                     },

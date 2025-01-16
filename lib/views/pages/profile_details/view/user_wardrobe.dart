@@ -33,6 +33,7 @@ import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
+import '../../../widgets/error_placeholder.dart';
 import '../widgets/user_popular_brand.dart';
 
 class UserWardrobe extends ConsumerStatefulWidget {
@@ -58,7 +59,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         .read((widget.username != null
             ? otherUserProfile(widget.username!)
             : userProvider))
-        .value;
+        .valueOrNull;
 
     ref.read(userProductGroupingByBrandProvider(
         (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
@@ -134,11 +135,21 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         ? otherUserProfile(widget.username!)
         : userProvider));
 
-    final productLength = user?.value?.listing;
+    final productLength = user.valueOrNull?.listing;
     log(productLength.toString(), name: "Profile details");
 
     return user.maybeWhen(
         orElse: () => LoadingWidget(),
+        error: (error, stackTrace) {
+          return ErrorPlaceholder(
+            error: "An error occured",
+            onTap: () {
+              ref.invalidate(widget.username != null
+                  ? otherUserProfile(widget.username!)
+                  : userProvider);
+            },
+          );
+        },
         data: (user) {
           final value = ref
               .watch(userProductGroupingByCategoryProvider(user.id))

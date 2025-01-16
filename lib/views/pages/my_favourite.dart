@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +8,6 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/shared/mock_data.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
@@ -16,46 +17,38 @@ import '../widgets/SearchWidget.dart';
 import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/error_placeholder.dart';
 import '../widgets/gap.dart';
+import 'sell_item/brand_view.dart';
 
 @RoutePage()
 class MyFavouriteScreen extends ConsumerStatefulWidget {
   const MyFavouriteScreen({super.key});
 
+  static final ScrollController scrollController = ScrollController();
   @override
   _MyFavouriteScreenState createState() => _MyFavouriteScreenState();
 }
 
 class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
-  final RefreshController _refreshController = RefreshController();
+  final controller = MyFavouriteScreen.scrollController;
   bool isSearching = false;
   List<ProductModel> filter = [];
-  // This function refreshes data from the provider
-  Future<void> _onRefresh() async {
-    try {
-      await ref.refresh(userFavouriteProduct.future); // Re-trigger the provider
-      _refreshController.refreshCompleted(); // Notify SmartRefresher of success
-    } catch (e) {
-      _refreshController.refreshFailed(); // Notify SmartRefresher of failure
-    }
-  }
 
-  void _onLoading() async {
-    try {
-      // Fetch more products from the repository
-      await ref.refresh(userFavouriteProduct.future); // Re-trigger the provider
+  void initState() {
+    super.initState();
 
-      // await ref.read(productRepo).fetchMoreFavouriteProducts();
-      _refreshController.loadComplete();
-    } catch (e) {
-      _refreshController.loadFailed();
-    }
+    controller.addListener(() {
+      if (!mounted) return; // Guard against unmounted state
+      final maxScroll = controller.position.maxScrollExtent;
+      final currentScroll = controller.position.pixels;
+      final delta = MediaQuery.of(context).size.height * 0.2;
+      if (maxScroll - currentScroll <= delta) {
+        ref.read(userFavouriteProductProvider.notifier).fetchMoreData();
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final asyncFavouriteProducts = ref.watch(userFavouriteProduct);
-
-    print("asyncFavouriteProducts: $asyncFavouriteProducts");
     return Scaffold(
         appBar: PreluraAppBar(
           appbarTitle: "Favourite items",
@@ -66,87 +59,102 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
           ),
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: SmartRefresher(
-          controller: _refreshController,
-          onRefresh: _onRefresh,
-          onLoading: _onLoading,
-          enablePullDown: true,
-          enablePullUp: false,
-          child: asyncFavouriteProducts.when(
-            data: (products) {
-              return products.isEmpty
-                  ? SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      child: EmptyScreenPlaceholder(text: "No items"),
-                    )
-                  : CustomScrollView(slivers: [
-                      SliverPersistentHeader(
-                        pinned: true,
-                        delegate: StaticSliverDelegate(
-                            child: Container(
-                          padding: const EdgeInsets.only(top: 16),
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Searchwidget(
-                                padding: EdgeInsets.symmetric(horizontal: 12),
-                                obscureText: false,
-                                shouldReadOnly: false,
-                                hintText: "Search for items",
-                                enabled: true,
-                                showInputBorder: true,
-                                autofocus: false,
-                                cancelButton: true,
-                                onChanged: (val) {
-                                  isSearching = val.isNotEmpty;
-                                  filter = products
-                                      .where((e) => e.name
-                                          .toLowerCase()
-                                          .contains(val.toLowerCase()))
-                                      .toList();
-                                  setState(() {});
-                                },
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await ref.refresh(userFavouriteProductProvider.future);
+            if (!mounted) return; // Prevent state updates after unmounting
+            setState(() {});
+          },
+          child: ref.watch(userFavouriteProductProvider).when(
+                data: (products) {
+                  return products.isEmpty
+                      ? SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: EmptyScreenPlaceholder(text: "No items"),
+                        )
+                      : CustomScrollView(controller: controller, slivers: [
+                          SliverPersistentHeader(
+                            pinned: true,
+                            delegate: StaticSliverDelegate(
+                                child: Container(
+                              padding: const EdgeInsets.only(top: 16),
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Searchwidget(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 12),
+                                    obscureText: false,
+                                    shouldReadOnly: false,
+                                    hintText: "Search for items",
+                                    enabled: true,
+                                    showInputBorder: true,
+                                    autofocus: false,
+                                    cancelButton: true,
+                                    onChanged: (val) {
+                                      isSearching = val.isNotEmpty;
+                                      filter = products
+                                          .where((e) => e.name
+                                              .toLowerCase()
+                                              .contains(val.toLowerCase()))
+                                          .toList();
+                                      setState(() {});
+                                    },
+                                  ),
+                                  addVerticalSpacing(12),
+                                ],
                               ),
-                              addVerticalSpacing(12),
-                            ],
+                            )),
                           ),
-                        )),
-                      ),
-                      SliverPadding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        sliver: SliverGrid(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
-                            childAspectRatio: 0.50,
+                          SliverPadding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            sliver: SliverGrid(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                childAspectRatio: 0.50,
+                              ),
+                              delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                                  return ProductCard(
+                                    product: isSearching
+                                        ? filter[index]
+                                        : products[index],
+                                    isSimilar: true,
+                                  );
+                                },
+                                childCount: isSearching
+                                    ? filter.length
+                                    : products.length,
+                              ),
+                            ),
                           ),
-                          delegate: SliverChildBuilderDelegate(
-                            (BuildContext context, int index) {
-                              return ProductCard(
-                                product: isSearching
-                                    ? filter[index]
-                                    : products[index],
-                                isSimilar: true,
-                              );
-                            },
-                            childCount:
-                                isSearching ? filter.length : products.length,
-                          ),
-                        ),
-                      ),
-                    ]);
-            },
-            loading: () => MyFavoriteShimmer(),
-            error: (error, stack) => ErrorPlaceholder(
-              error: "Error fetching items",
-              onTap: () {
-                ref.invalidate(userFavouriteProduct);
-              },
-            ),
-          ),
+                          if (ref
+                              .watch(userFavouriteProductProvider.notifier)
+                              .canLoadMore())
+                            if (!ref
+                                .watch(userFavouriteProductProvider)
+                                .isLoading)
+                              const SliverToBoxAdapter(
+                                child: PaginationLoadingIndicator(),
+                              )
+                        ]);
+                },
+                loading: () => MyFavoriteShimmer(),
+                error: (error, stack) {
+                  log(error.toString(), name: "  favourite error");
+                  log(stack.toString(), name: "  favourite error");
+                  return ErrorPlaceholder(
+                    error: "Error fetching items",
+                    onTap: () {
+                      ref.invalidate(userFavouriteProductProvider);
+                    },
+                  );
+                },
+              ),
         ));
   }
 }

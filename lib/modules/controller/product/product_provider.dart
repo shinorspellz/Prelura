@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -174,14 +175,6 @@ final getProductProvider =
   return result;
 });
 
-final userFavouriteProduct = FutureProvider.autoDispose((ref) async {
-  final repo = ref.watch(productRepo);
-
-  final result = await repo.getMyFavouriteProduct(0);
-
-  return result.reversed.toList();
-});
-
 final categoryProvider = FutureProvider((ref) async {
   final repo = ref.watch(productRepo);
 
@@ -336,7 +329,7 @@ class _ProductProvider extends AsyncNotifier<void> {
 
     ref.invalidate(getProductProvider(productId));
     // ref.invalidate(allProductProvider);
-    ref.invalidate(userFavouriteProduct);
+    ref.invalidate(userFavouriteProductProvider);
   }
 }
 

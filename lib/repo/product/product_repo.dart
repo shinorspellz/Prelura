@@ -256,12 +256,12 @@ class ProductRepo {
     return response.parsedData!;
   }
 
-  Future<List<ProductModel>> getMyFavouriteProduct(int? pageCount) async {
+  Future<Query$likedProducts> getMyFavouriteProduct(
+      {int? pageCount, int? pageNumber}) async {
     final response = await _client.query$likedProducts(
       Options$Query$likedProducts(
           variables: Variables$Query$likedProducts(
-        pageCount: 100 + pageCount!,
-      )),
+              pageCount: pageCount, pageNumber: pageNumber)),
     );
 
     if (response.hasException) {
@@ -278,9 +278,7 @@ class ProductRepo {
       throw 'An error occured here';
     }
 
-    return response.parsedData!.likedProducts!
-        .map((x) => ProductModel.fromJson((x!.product)!.toJson()))
-        .toList();
+    return response.parsedData!;
   }
 
   Future<bool?> toggleLikeProduct(int productId) async {
@@ -461,6 +459,7 @@ class ProductRepo {
         log(error, name: "UserProductGrouping Error");
       }
       log(response.exception.toString(), name: 'grouping error');
+      throw response.exception.toString();
       response.data?.keys.forEach((element) {
         log(element, name: "UserProductGrouping Error");
       });
@@ -473,6 +472,34 @@ class ProductRepo {
 
     return response.parsedData!.userProductGrouping!
         .map((x) => CategoryGroupType.fromJson((x!).toJson()))
+        .toList();
+  }
+
+  Future<List<ProductModel>> getFavoriteBrandProducts({
+    int? count,
+  }) async {
+    final response = await _client.query$FavoriteBrandProducts(
+      Options$Query$FavoriteBrandProducts(
+          variables:
+              Variables$Query$FavoriteBrandProducts(topCount: count ?? 20)),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    return response.parsedData!.favoriteBrandProducts!
+        .map((x) => ProductModel.fromJson(x!.toJson()))
         .toList();
   }
 }
