@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/notification_card.dart';
+
 import '../../../../controller/notification_provider.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
 
@@ -86,7 +87,7 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(e.toString()),
+                              Text("An error occurred"),
                               TextButton.icon(
                                 onPressed: () {
                                   // log(e.toString(), stackTrace: _);

@@ -19,7 +19,9 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           : CategoryModel.fromJson(json['subCategory'] as Map<String, dynamic>),
       seller: UserModel.fromJson(json['seller'] as Map<String, dynamic>),
       discountPrice: json['discountPrice'] as String?,
-      size: json['size'],
+      size: json['size'] == null
+          ? null
+          : SizeType.fromJson(json['size'] as Map<String, dynamic>),
       parcelSize: json['parcelSize'] == null
           ? null
           : Enum$ProductsProductParcelSizeChoices.fromJson(
@@ -104,6 +106,18 @@ _$BrandImpl _$$BrandImplFromJson(Map<String, dynamic> json) => _$BrandImpl(
     );
 
 Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_$SizeTypeImpl _$$SizeTypeImplFromJson(Map<String, dynamic> json) =>
+    _$SizeTypeImpl(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$SizeTypeImplToJson(_$SizeTypeImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -166,7 +166,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(e.toString()),
+                                Text("An error occurred"),
                                 TextButton.icon(
                                   onPressed: () {
                                     // log(e.toString(), stackTrace: _);

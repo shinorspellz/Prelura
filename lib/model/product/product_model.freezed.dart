@@ -27,7 +27,7 @@ mixin _$ProductModel {
   CategoryModel? get subCategory => throw _privateConstructorUsedError;
   UserModel get seller => throw _privateConstructorUsedError;
   String? get discountPrice => throw _privateConstructorUsedError;
-  dynamic get size => throw _privateConstructorUsedError;
+  SizeType? get size => throw _privateConstructorUsedError;
   Enum$ProductsProductParcelSizeChoices? get parcelSize =>
       throw _privateConstructorUsedError;
   ConditionsEnum? get condition => throw _privateConstructorUsedError;
@@ -71,7 +71,7 @@ abstract class $ProductModelCopyWith<$Res> {
       CategoryModel? subCategory,
       UserModel seller,
       String? discountPrice,
-      dynamic size,
+      SizeType? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
       double price,
@@ -92,6 +92,7 @@ abstract class $ProductModelCopyWith<$Res> {
   $CategoryModelCopyWith<$Res>? get category;
   $CategoryModelCopyWith<$Res>? get subCategory;
   $UserModelCopyWith<$Res> get seller;
+  $SizeTypeCopyWith<$Res>? get size;
   $BrandCopyWith<$Res>? get brand;
 }
 
@@ -167,7 +168,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as SizeType?,
       parcelSize: freezed == parcelSize
           ? _value.parcelSize
           : parcelSize // ignore: cast_nullable_to_non_nullable
@@ -277,6 +278,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $SizeTypeCopyWith<$Res>? get size {
+    if (_value.size == null) {
+      return null;
+    }
+
+    return $SizeTypeCopyWith<$Res>(_value.size!, (value) {
+      return _then(_value.copyWith(size: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ProductModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $BrandCopyWith<$Res>? get brand {
     if (_value.brand == null) {
       return null;
@@ -304,7 +319,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       CategoryModel? subCategory,
       UserModel seller,
       String? discountPrice,
-      dynamic size,
+      SizeType? size,
       Enum$ProductsProductParcelSizeChoices? parcelSize,
       ConditionsEnum? condition,
       double price,
@@ -328,6 +343,8 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   $CategoryModelCopyWith<$Res>? get subCategory;
   @override
   $UserModelCopyWith<$Res> get seller;
+  @override
+  $SizeTypeCopyWith<$Res>? get size;
   @override
   $BrandCopyWith<$Res>? get brand;
 }
@@ -402,7 +419,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as SizeType?,
       parcelSize: freezed == parcelSize
           ? _value.parcelSize
           : parcelSize // ignore: cast_nullable_to_non_nullable
@@ -521,7 +538,7 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final String? discountPrice;
   @override
-  final dynamic size;
+  final SizeType? size;
   @override
   final Enum$ProductsProductParcelSizeChoices? parcelSize;
   @override
@@ -599,7 +616,7 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.seller, seller) || other.seller == seller) &&
             (identical(other.discountPrice, discountPrice) ||
                 other.discountPrice == discountPrice) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
+            (identical(other.size, size) || other.size == size) &&
             (identical(other.parcelSize, parcelSize) ||
                 other.parcelSize == parcelSize) &&
             (identical(other.condition, condition) ||
@@ -639,7 +656,7 @@ class _$ProductModelImpl implements _ProductModel {
         subCategory,
         seller,
         discountPrice,
-        const DeepCollectionEquality().hash(size),
+        size,
         parcelSize,
         condition,
         price,
@@ -683,7 +700,7 @@ abstract class _ProductModel implements ProductModel {
       final CategoryModel? subCategory,
       required final UserModel seller,
       final String? discountPrice,
-      final dynamic size,
+      final SizeType? size,
       final Enum$ProductsProductParcelSizeChoices? parcelSize,
       final ConditionsEnum? condition,
       required final double price,
@@ -719,7 +736,7 @@ abstract class _ProductModel implements ProductModel {
   @override
   String? get discountPrice;
   @override
-  dynamic get size;
+  SizeType? get size;
   @override
   Enum$ProductsProductParcelSizeChoices? get parcelSize;
   @override
@@ -1090,5 +1107,170 @@ abstract class _Brand implements Brand {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SizeType _$SizeTypeFromJson(Map<String, dynamic> json) {
+  return _SizeType.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SizeType {
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this SizeType to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SizeTypeCopyWith<SizeType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SizeTypeCopyWith<$Res> {
+  factory $SizeTypeCopyWith(SizeType value, $Res Function(SizeType) then) =
+      _$SizeTypeCopyWithImpl<$Res, SizeType>;
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$SizeTypeCopyWithImpl<$Res, $Val extends SizeType>
+    implements $SizeTypeCopyWith<$Res> {
+  _$SizeTypeCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SizeTypeImplCopyWith<$Res>
+    implements $SizeTypeCopyWith<$Res> {
+  factory _$$SizeTypeImplCopyWith(
+          _$SizeTypeImpl value, $Res Function(_$SizeTypeImpl) then) =
+      __$$SizeTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class __$$SizeTypeImplCopyWithImpl<$Res>
+    extends _$SizeTypeCopyWithImpl<$Res, _$SizeTypeImpl>
+    implements _$$SizeTypeImplCopyWith<$Res> {
+  __$$SizeTypeImplCopyWithImpl(
+      _$SizeTypeImpl _value, $Res Function(_$SizeTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? name = null,
+  }) {
+    return _then(_$SizeTypeImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SizeTypeImpl implements _SizeType {
+  const _$SizeTypeImpl({required this.id, required this.name});
+
+  factory _$SizeTypeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SizeTypeImplFromJson(json);
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'SizeType(id: $id, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SizeTypeImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, name);
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SizeTypeImplCopyWith<_$SizeTypeImpl> get copyWith =>
+      __$$SizeTypeImplCopyWithImpl<_$SizeTypeImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SizeTypeImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SizeType implements SizeType {
+  const factory _SizeType({required final int id, required final String name}) =
+      _$SizeTypeImpl;
+
+  factory _SizeType.fromJson(Map<String, dynamic> json) =
+      _$SizeTypeImpl.fromJson;
+
+  @override
+  int get id;
+  @override
+  String get name;
+
+  /// Create a copy of SizeType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SizeTypeImplCopyWith<_$SizeTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

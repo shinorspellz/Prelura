@@ -560,7 +560,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(e.toString()),
+                      Text("An error occurred"),
                       TextButton.icon(
                         onPressed: () {
                           // log(e.toString(), stackTrace: _);
@@ -647,7 +647,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(e.toString()),
+                      Text("An error occurred"),
                       TextButton.icon(
                         onPressed: () {
                           // log(e.toString(), stackTrace: _);
@@ -694,7 +694,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(e.toString()),
+                  Text("An error occurred"),
                   TextButton.icon(
                     onPressed: () {
                       // log(e.toString(), stackTrace: _);
