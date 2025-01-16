@@ -39,11 +39,11 @@ class SettingScreen extends StatelessWidget {
           onTap: () {
             context.router.push(SecurityMenuRoute());
           }),
-      // MenuCard(
-      //     title: "Currency settings",
-      //     onTap: () {
-      //       context.router.push(CurrencySettingRoute());
-      //     }),
+      MenuCard(
+          title: "Identity verification",
+          onTap: () {
+            context.router.push(VerifyYourIdentity());
+          }),
     ];
 
     List menuItem2 = [

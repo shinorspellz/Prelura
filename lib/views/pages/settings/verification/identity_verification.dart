@@ -1,7 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/settings/verification/text_option.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
@@ -16,12 +18,12 @@ class VerifyYourIdentity extends StatelessWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         appbarTitle: "Verifying your identity",
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
       ),
-      // appBar: const VWidgetsAppBar(
-      //   appbarTitle: "Verifying your identity",
-      //   appBarHeight: 50,
-      //   leadingIcon: VWidgetsBackButton(),
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -39,18 +41,17 @@ class VerifyYourIdentity extends StatelessWidget {
                         "assets/icons/user3.svg",
                         width: 55,
                         height: 55,
-                        color: Theme.of(context).primaryColor,
+                        // color: Theme.of(context).primaryColor,
                       ),
                       addVerticalSpacing(15),
                       Text(
                         "Take a picture of a valid photo ID",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: Theme.of(context).primaryColor),
+                        style:
+                            Theme.of(context).textTheme.displayMedium?.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  // color: Theme.of(context).primaryColor
+                                ),
                       ),
                       addVerticalSpacing(20),
                       Padding(
@@ -61,9 +62,10 @@ class VerifyYourIdentity extends StatelessWidget {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: Theme.of(context).primaryColor),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                // color: Theme.of(context).primaryColor
+                              ),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -90,10 +92,11 @@ class VerifyYourIdentity extends StatelessWidget {
                 addVerticalSpacing(50),
                 AppButton(
                   text: "I'm ready",
+                  width: double.infinity,
                   onTap: () {
                     showCupertinoModalPopup(
                       context: context,
-                      builder: (BuildContext context) => Padding(
+                      builder: (BuildContext cxt) => Padding(
                         padding: const EdgeInsets.only(bottom: 30.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -124,46 +127,57 @@ class VerifyYourIdentity extends StatelessWidget {
                                           .textTheme
                                           .displayMedium
                                           ?.copyWith(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 13,
-                                              color: Theme.of(context)
-                                                  .primaryColor),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                            // color: Theme.of(context)
+                                            //     .primaryColor
+                                          ),
                                       maxLines: 2,
                                     ),
+                                    buildDivider(context),
                                     TextOption(
                                       title: "Passport",
                                       onTap: () {
-                                        // navigateToRoute(context,
-                                        //     VWidgetsCountryRegions(
-                                        //       onTap: () {
-                                        //         navigateToRoute(context,
-                                        //             const UploadIdentityDocument());
-                                        //       },
-                                        //     ));
+                                        Navigator.pop(cxt);
+                                        context.router.push(
+                                          CountryRegionsView(onTap: () {
+                                            context.router
+                                                .replace(UploadIdentityDocument(
+                                              pageTitle: "Passport",
+                                            ));
+                                          }),
+                                        );
                                       },
                                     ),
+                                    buildDivider(context),
                                     TextOption(
                                       title: "Driving licence",
                                       onTap: () {
-                                        // navigateToRoute(context,
-                                        //     VWidgetsCountryRegions(
-                                        //   onTap: () {
-                                        //     navigateToRoute(context,
-                                        //         const UploadIdentityDocument());
-                                        //   },
-                                        // ));
+                                        Navigator.pop(cxt);
+                                        context.router.push(
+                                          CountryRegionsView(onTap: () {
+                                            context.router
+                                                .replace(UploadIdentityDocument(
+                                              pageTitle: "Driving licence",
+                                            ));
+                                          }),
+                                        );
                                       },
                                     ),
+                                    buildDivider(context),
                                     TextOption(
                                       title: "National identity card",
                                       onTap: () {
-                                        // navigateToRoute(context,
-                                        //     VWidgetsCountryRegions(
-                                        //       onTap: () {
-                                        //         navigateToRoute(context,
-                                        //             const UploadIdentityDocument());
-                                        //       },
-                                        //     ));
+                                        Navigator.pop(cxt);
+                                        context.router.push(
+                                          CountryRegionsView(onTap: () {
+                                            context.router
+                                                .replace(UploadIdentityDocument(
+                                              pageTitle:
+                                                  "National identity card",
+                                            ));
+                                          }),
+                                        );
                                       },
                                     ),
                                   ],
@@ -203,7 +217,7 @@ class VerifyYourIdentity extends StatelessWidget {
                                           ?.copyWith(
                                             fontWeight: FontWeight.w400,
                                             fontSize: 18,
-                                            // color: VmodelColors.blueTextColor,
+                                            color: PreluraColors.blueTextColor,
                                           )),
                                 ),
                               ),

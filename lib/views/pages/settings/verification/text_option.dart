@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 class TextOption extends StatelessWidget {
@@ -9,24 +10,21 @@ class TextOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Divider(
-          height: 30,
+    return Container(
+      alignment: Alignment.center,
+      height: 40,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                fontWeight: FontWeight.w400,
+                fontSize: 18,
+                color: PreluraColors.blueTextColor,
+              ),
+          maxLines: 2,
         ),
-        GestureDetector(
-          onTap: onTap,
-          child: Text(
-            title,
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                  // color: VmodelColors.blueTextColor
-                ),
-            maxLines: 2,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -44,7 +42,7 @@ class BulletItem extends StatelessWidget {
             height: 8.0,
             width: 8.0,
             decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).iconTheme.color,
               shape: BoxShape.circle,
             )),
         addHorizontalSpacing(10),
@@ -52,9 +50,10 @@ class BulletItem extends StatelessWidget {
           child: Text(
             text,
             style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-                color: Theme.of(context).primaryColor),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  // color: Theme.of(context).primaryColor
+                ),
             maxLines: 2,
           ),
         ),
