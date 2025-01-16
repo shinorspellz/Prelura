@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +6,6 @@ import 'package:prelura_app/controller/search_history_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/utils.dart';
-import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/shimmers/grid_view_animation.dart';
 import 'package:prelura_app/views/shimmers/users_shimer.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
@@ -22,7 +17,6 @@ import 'package:prelura_app/views/widgets/profile_card.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../controller/user/user_controller.dart';
 import '../../../widgets/app_checkbox.dart';
-import '../../../widgets/card.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
 import '../provider/search_provider.dart';
 
@@ -33,6 +27,7 @@ enum FilterTypes {
   size('Size'),
   brand('Brand'),
   condition('Condition'),
+  gender('Gender'),
   category('Category'),
   style('Style');
   // color('Color');
@@ -278,7 +273,6 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                                     8.verticalSpacing,
                                 itemBuilder: (_, index) => GestureDetector(
                                   onTap: () {
-                                   
                                     if (user?.username ==
                                         users[index].username) {
                                       final tabRouter =
@@ -329,6 +323,7 @@ void ShowFilterModal(
     FilterTypes.category:
         ref.watch(categoryProvider).valueOrNull?.map((e) => e.name).toList() ??
             [],
+    FilterTypes.gender: ["Men", "Women"],
     FilterTypes.condition:
         ConditionsEnum.values.map((e) => e.simpleName).toList(),
     // FilterTypes.color: ref.watch(colorsProvider).keys.toList(),
