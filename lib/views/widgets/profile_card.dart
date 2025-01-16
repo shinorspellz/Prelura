@@ -23,9 +23,17 @@ import '../../res/render_svg.dart';
 import 'rating.dart';
 
 class ProfileCardWidget extends ConsumerWidget {
-  const ProfileCardWidget({super.key, this.user, this.fontWeight});
+  const ProfileCardWidget({
+    super.key,
+    this.user,
+    this.fontWeight,
+    this.height,
+    this.width,
+  });
   final UserModel? user;
   final FontWeight? fontWeight;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -112,8 +120,8 @@ class ProfileCardWidget extends ConsumerWidget {
                 clipBehavior: Clip.none,
                 children: [
                   ProfilePictureWidget(
-                    height: 55,
-                    width: 55,
+                    height: height ?? 55,
+                    width: width ?? 55,
                     profilePicture: user != null
                         ? user?.profilePictureUrl
                         : ref

@@ -27,12 +27,12 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => MaterialModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      brand: json['brand'] == null
-          ? null
-          : Brand.fromJson(json['brand'] as Map<String, dynamic>),
       size: json['size'] == null
           ? null
           : SizeType.fromJson(json['size'] as Map<String, dynamic>),
+      brand: json['brand'] == null
+          ? null
+          : Brand.fromJson(json['brand'] as Map<String, dynamic>),
       price: json['price'] as String?,
       discount: json['discount'] as String?,
       selectedCondition: $enumDecodeNullable(
@@ -53,8 +53,8 @@ Map<String, dynamic> _$$SellItemStateImplToJson(_$SellItemStateImpl instance) =>
       'parcel': instance.parcel,
       'selectedColors': instance.selectedColors,
       'selectedMaterials': instance.selectedMaterials,
-      'brand': instance.brand,
       'size': instance.size,
+      'brand': instance.brand,
       'price': instance.price,
       'discount': instance.discount,
       'selectedCondition': _$ConditionsEnumEnumMap[instance.selectedCondition],

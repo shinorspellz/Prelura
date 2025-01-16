@@ -117,7 +117,7 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
           child: following.when(
             data: (followersList) {
               if (followersList.isEmpty) {
-                return EmptyScreenPlaceholder(text: "No following");
+                return EmptyScreenPlaceholder(text: "No followings");
               }
               return Column(
                 children: [

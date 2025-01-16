@@ -94,7 +94,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                 slivers: [
                   SliverPersistentHeader(
                     pinned: true, // Keeps it static
-                    delegate: FilteredProductStaticSliverDelegate(
+                    delegate: BrandedProductStaticSliverDelegate(
                         child: Container(
                       padding:
                           const EdgeInsets.only(top: 10, left: 15, right: 15),
@@ -102,20 +102,6 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Searchwidget(
-                            padding: EdgeInsets.zero,
-                            obscureText: false,
-                            shouldReadOnly: false,
-                            hintText: "Search for items",
-                            enabled: true,
-                            showInputBorder: true,
-                            autofocus: false,
-                            cancelButton: true,
-                            onChanged: (val) {
-                              searchQuery = val;
-                              setState(() {});
-                            },
-                          ),
                           FiltersOptions(
                             excludedFilterTypes: [FilterTypes.brand],
                           ),
@@ -233,5 +219,29 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         );
       }),
     );
+  }
+}
+
+class BrandedProductStaticSliverDelegate
+    extends SliverPersistentHeaderDelegate {
+  final Widget child;
+
+  BrandedProductStaticSliverDelegate({required this.child});
+
+  @override
+  double get minExtent => 68.8;
+
+  @override
+  double get maxExtent => 68.8;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/categories_provider.dart';
+import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:sizer/sizer.dart';
@@ -76,11 +77,11 @@ class SizeSelectionPage extends ConsumerWidget {
                 // if (value == Enum$SizeEnum.$unknown) return Container();
                 return PreluraCheckBox(
                     title: value.name!.replaceAll('_', ' '),
-                    isChecked: value.name == ref.watch(sellItemProvider).size,
+                    isChecked:
+                        value.name == ref.watch(sellItemProvider).size?.name,
                     onChanged: (size) => {
-                          ref
-                              .read(sellItemProvider.notifier)
-                              .selectSize(value),
+                          ref.read(sellItemProvider.notifier).selectSize(
+                              SizeType(id: value.id!, name: value.name!)),
                           context.router.popForced(),
                           ref
                               .read(categoryNotifierProvider.notifier)

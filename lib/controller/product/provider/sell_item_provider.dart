@@ -26,8 +26,8 @@ class SellItemState with _$SellItemState {
     Enum$ParcelSizeEnum? parcel,
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
-    Brand? brand,
     SizeType? size,
+    Brand? brand,
     // Enum$SizeEnum? size,
     String? price,
     String? discount,
@@ -121,9 +121,9 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   //   state = state.copyWith(subCategory: subCategory);
   // }
 
-  void selectSize(Size size) {
+  void selectSize(SizeType size) {
     // void selectSize(Enum$SizeEnum size) {
-    // state = state.copyWith(size: size);
+    state = state.copyWith(size: size);
   }
 
   void updatePrice(String? price) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/utils.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 
 class EmptyScreenPlaceholder extends ConsumerWidget {
   const EmptyScreenPlaceholder({super.key, required this.text});
@@ -10,6 +9,10 @@ class EmptyScreenPlaceholder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return NoProductWidget();
+    return Center(
+        child: Text(text,
+            style: context.theme.textTheme.bodyMedium?.copyWith(
+                fontSize: getDefaultSize(size: 16),
+                fontWeight: FontWeight.w600)));
   }
 }
