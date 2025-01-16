@@ -130,7 +130,7 @@ class HomeAllTab extends ConsumerWidget {
             },
             error: (error, stackTrace) {
               // Handle error state
-              return Center(child: Text('An error occurred'));
+              return Center();
             },
             loading: () {
               // Handle loading state
