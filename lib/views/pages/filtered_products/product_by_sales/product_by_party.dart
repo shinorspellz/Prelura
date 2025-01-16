@@ -142,7 +142,7 @@ class _ProductFilterPageState
                         );
                       },
                       error: (e, _) {
-                        return SliverToBoxAdapter(
+                        return SliverFillRemaining(
                           child: ErrorPlaceholder(
                             error: "Error fetching items",
                             onTap: () {

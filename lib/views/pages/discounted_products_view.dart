@@ -108,7 +108,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {
-                          return SliverFillRemaining(
+                          return SliverToBoxAdapter(
                             child: EmptyScreenPlaceholder(
                                 text: "No products found"),
                           );

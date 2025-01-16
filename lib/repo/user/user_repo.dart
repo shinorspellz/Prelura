@@ -51,14 +51,15 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
+        log(error.toString());
         throw error;
       }
-      log(response.exception.toString(), name: 'UserRepo');
+      log(response.exception.toString(), name: 'getUser in UserRepo');
       throw 'An error occured';
     }
 
     if (response.parsedData == null) {
-      log('Mising response', name: 'UserRepo');
+      log('Mising response', name: 'getUser in UserRepo');
       throw 'An error occured';
     }
 
@@ -76,21 +77,22 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-        throw Exception(error); // Wrap the error in an Exception
+        throw error; // Wrap the error in an Exception
       }
       log(response.exception.toString(), name: 'UserRepo');
-      throw Exception('An error occurred while performing the search.');
+      throw ('An error occurred while performing the search.');
     }
 
     // Handle missing parsed data
     if (response.parsedData == null ||
         response.parsedData!.searchUsers == null) {
       log('Missing response data', name: 'UserRepo');
-      throw Exception('No users found.');
+      throw ('No users found.');
     }
 
     try {
       // Assuming `searchUsers` is a list in the GraphQL response
+
       final usersJsonList = response.parsedData!.searchUsers!;
       return usersJsonList
           .map((userJson) => UserModel.fromJson(userJson!.toJson()))
@@ -101,7 +103,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw Exception('Failed to parse user data.');
+      throw e;
     }
   }
 
@@ -118,16 +120,16 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-        throw Exception(error); // Wrap the error in an Exception
+        throw error; // Wrap the error in an Exception
       }
       log(response.exception.toString(), name: 'UserRepo');
-      throw Exception('An error occurred while performing the search.');
+      throw ('An error occurred while performing the search.');
     }
 
     // Handle missing parsed data
     if (response.parsedData == null) {
       log('Missing response data', name: 'UserRepo');
-      throw Exception('No Recommended users found.');
+      throw 'No Recommended users found.';
     }
 
     try {
@@ -143,7 +145,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw Exception('Failed to parse data.');
+      throw ('Failed to parse data.');
     }
   }
 
@@ -156,16 +158,16 @@ class UserRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
-        throw Exception(error); // Wrap the error in an Exception
+        throw (error); // Wrap the error in an Exception
       }
       log(response.exception.toString(), name: 'UserRepo');
-      throw Exception('An error occurred while performing the search.');
+      throw ('An error occurred while performing the search.');
     }
 
     // Handle missing parsed data
     if (response.parsedData == null) {
       log('Missing response data', name: 'UserRepo');
-      throw Exception('No users found.');
+      throw ('No users found.');
     }
 
     try {
@@ -177,7 +179,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw Exception('Failed to parse data.');
+      throw ('Failed to parse data.');
     }
   }
 

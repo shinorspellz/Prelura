@@ -461,6 +461,7 @@ class ProductRepo {
         log(error, name: "UserProductGrouping Error");
       }
       log(response.exception.toString(), name: 'grouping error');
+      throw response.exception.toString();
       response.data?.keys.forEach((element) {
         log(element, name: "UserProductGrouping Error");
       });

@@ -693,7 +693,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   price: double.parse(state.price!),
                                   condition: state.selectedCondition!,
                                   parcelSize: state.parcel,
-                                  size: state.size.id,
+                                  size: state.size?.id,
                                   category:
                                       int.parse(state.category!.id.toString()),
                                   brandId: state.brand?.id,

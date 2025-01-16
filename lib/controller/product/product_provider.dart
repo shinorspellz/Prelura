@@ -552,34 +552,6 @@ class _AllProductController
   }
 }
 
-class ScreenState {
-  final String id;
-  final dynamic data;
-  final bool isLoading;
-  final String? error;
-
-  ScreenState({
-    required this.id,
-    this.data,
-    this.isLoading = false,
-    this.error,
-  });
-
-  ScreenState copyWith({
-    String? id,
-    dynamic data,
-    bool? isLoading,
-    String? error,
-  }) {
-    return ScreenState(
-      id: id ?? this.id,
-      data: data ?? this.data,
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-    );
-  }
-}
-
 final selectedFilteredProductProvider =
     StateProvider<Input$ProductFiltersInput>(
         (ref) => Input$ProductFiltersInput());

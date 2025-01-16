@@ -25,7 +25,7 @@ class SellItemState with _$SellItemState {
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
-    int size,
+    SizeType? size,
     // Enum$SizeEnum? size,
     String? price,
     String? discount,

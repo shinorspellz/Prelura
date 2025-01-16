@@ -564,7 +564,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                       TextButton.icon(
                         onPressed: () {
                           // log(e.toString(), stackTrace: _);
-                          ref.invalidate(allProductProvider);
+                          ref.invalidate(getProductProvider(widget.productId));
                         },
                         label: const Text('Retry'),
                         icon: const Icon(Icons.refresh_rounded),
