@@ -36,7 +36,9 @@ class _ProductFilterPageState
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
-        ref.read(allProductProvider(searchQuery).notifier).fetchMoreData();
+        ref
+            .read(allProductProvider(searchQuery).notifier)
+            .fetchMoreData(context);
       }
     });
   }
@@ -117,7 +119,7 @@ class _ProductFilterPageState
                         if (filteredProducts.isEmpty) {
                           ref
                               .read(allProductProvider(searchQuery).notifier)
-                              .fetchMoreData();
+                              .fetchMoreData(context);
                           return SliverToBoxAdapter(
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.7,
