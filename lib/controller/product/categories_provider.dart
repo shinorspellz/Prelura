@@ -88,7 +88,7 @@ class CategoryNotifier extends StateNotifier<CategoriesState> {
     try {
       updateState({"isLoading": true});
 
-      final List<Query$Categoriess$categoriess?>? categories =
+      final List<Query$Categories$categories?>? categories =
           await categoriesRepo.fetchCategories(
         parentId: parentId,
       );

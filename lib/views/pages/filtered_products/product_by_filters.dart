@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -11,8 +12,6 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
-import '../../widgets/empty_screen_placeholder.dart';
-import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
@@ -147,7 +146,7 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                           padding: EdgeInsets.zero,
                           obscureText: false,
                           shouldReadOnly: false,
-                          hintText: "Search for items",
+                          hintText: "Search for items and members",
                           enabled: true,
                           showInputBorder: true,
                           autofocus: false,
@@ -164,49 +163,93 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider(searchQuery)).when(
-                    // skipLoadingOnRefresh: !ref.watch(refreshingHome),
-                    data: (products) {
-                      return products.isEmpty
-                          ? SliverPadding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              sliver: SliverToBoxAdapter(
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.7,
-                                  child: EmptyScreenPlaceholder(
-                                      text: "No products found"),
+                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
+                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                      data: (products) {
+                        return products.isEmpty
+                            ? SliverPadding(
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                sliver: SliverToBoxAdapter(
+                                  child: NoProductWidget(),
+
+                                  // Container(
+                                  //   height: MediaQuery.of(context).size.height *
+                                  //       0.7,
+                                  //   child: Center(
+                                  //     child: Text(
+                                  //       "No products found",
+                                  //       style: Theme.of(context)
+                                  //           .textTheme
+                                  //           .bodyLarge,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ))
+                            : SliverPadding(
+                                padding: EdgeInsets.symmetric(horizontal: 15),
+                                sliver: SliverGrid.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 10,
+                                    mainAxisSpacing: 10,
+                                    childAspectRatio: 0.50,
+                                  ),
+                                  itemCount: products.take(6).length,
+                                  itemBuilder: (context, index) {
+                                    return ProductCard(
+                                        product:
+                                            products.take(6).toList()[index]);
+                                  },
                                 ),
-                              ))
-                          : SliverPadding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              sliver: SliverGrid.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
+                              );
+                      },
+                      orElse: () => SliverToBoxAdapter(child: Container()),
+                    ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                  sliver: ref.watch(filteredProductProvider(searchQuery)).when(
+                      data: (products) {
+                        if (products.length < 6)
+                          return SliverToBoxAdapter(child: Container());
+                        final clippedProducts = products.sublist(6);
+                        return SliverGrid.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.50,
+                          ),
+                          itemCount: clippedProducts.length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(product: clippedProducts[index]);
+                          },
+                        );
+                      },
+                      error: (e, _) {
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(filteredProductProvider);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
                                 ),
-                                itemCount: products.take(6).length,
-                                itemBuilder: (context, index) {
-                                  return ProductCard(
-                                      product:
-                                          products.take(6).toList()[index]);
-                                },
-                              ),
-                            );
-                    },
-                    error: (e, _) {
-                      return SliverFillRemaining(
-                          child: ErrorPlaceholder(
-                        error: "Error fetching items",
-                        onTap: () {
-                          ref.refresh(filteredProductProvider(searchQuery));
-                        },
-                      ));
-                    },
-                    loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                ),
                 if (ref
                     .watch(filteredProductProvider(searchQuery).notifier)
                     .canLoadMore())

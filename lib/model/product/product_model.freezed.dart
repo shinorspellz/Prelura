@@ -614,7 +614,7 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.seller, seller) || other.seller == seller) &&
             (identical(other.discountPrice, discountPrice) ||
                 other.discountPrice == discountPrice) &&
-            (identical(other.size, size) || other.size == size) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
             (identical(other.parcelSize, parcelSize) ||
                 other.parcelSize == parcelSize) &&
             (identical(other.condition, condition) ||
@@ -654,7 +654,7 @@ class _$ProductModelImpl implements _ProductModel {
         category,
         seller,
         discountPrice,
-        size,
+        const DeepCollectionEquality().hash(size),
         parcelSize,
         condition,
         price,

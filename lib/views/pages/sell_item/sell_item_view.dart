@@ -472,7 +472,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     // const SizedBox(height: 8),
                     MenuCard(
                       title: "Category",
-                      subtitle: state.subCategory?.name ?? state.category?.name,
+                      subtitle: state.category?.name,
                       rightArrow: false,
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
@@ -495,12 +495,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       },
                     ),
 
-                    if (state.subCategory?.name != 'Accessories' &&
-                        (ref
-                                .watch(categoryNotifierProvider)
-                                .categorySize
-                                ?.isNotEmpty ??
-                            false))
+                    if (ref
+                            .watch(categoryNotifierProvider)
+                            .categorySize
+                            ?.isNotEmpty ??
+                        false)
                       MenuCard(
                         title: 'Size',
                         rightArrow: false,
@@ -634,16 +633,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                 'Both title and description of product are requuired');
                             return;
                           }
-                          // if (state.category == null) {
-                          //   context
-                          //       .alert('Select an item category to proceed.');
-                          //   return;
-                          // }
-                          if (state.subCategory == null) {
-                            context.alert(
-                                'Select an item sub category to proceed.');
+                          if (state.category == null) {
+                            context
+                                .alert('Select an item category to proceed.');
                             return;
                           }
+                          // if (state.subCategory == null) {
+                          //   context.alert(
+                          //       'Select an item sub category to proceed.');
+                          //   return;
+                          // }
                           if (state.brand == null &&
                               state.customBrand == null) {
                             context.alert(
@@ -697,9 +696,6 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   size: state.size,
                                   category:
                                       int.parse(state.category!.id.toString()),
-                                  subCategory: int.parse(
-                                      state.subCategory!.id.toString()),
-                                  color: state.selectedColors,
                                   brandId: state.brand?.id,
                                   materials: state.selectedMaterials
                                       .map((e) => e.id)
@@ -738,12 +734,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                         .read(categoryNotifierProvider)
                                         .selectedSize!
                                         .id
-                                        .toString()
                                     : null,
                                 category:
-                                    int.parse(state.subCategory!.id.toString()),
-                                subCategory:
-                                    int.parse(state.subCategory!.id.toString()),
+                                    int.parse(state.category!.id.toString()),
                                 brandId: state.brand?.id,
                                 color: state.selectedColors,
                                 materials: state.selectedMaterials

@@ -2,18 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 
-import '../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../../controller/product/brands_provider.dart';
 import '../../../../controller/product/product_provider.dart';
-import '../../../../model/product/product_model.dart';
+import '../../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../widgets/bottom_sheet.dart';
-import '../view/user_wardrobe.dart';
 
 class FilterModal extends ConsumerStatefulWidget {
   final FilterTypes filterType;
@@ -61,10 +58,10 @@ class _FilterModalState extends ConsumerState<FilterModal> {
   Widget build(BuildContext context) {
     final filterNotifier = ref.watch(filterUserProductProvider.notifier);
     final filterOptions = {
-      FilterTypes.size: Enum$SizeEnum.values
-          .where((e) => e != Enum$SizeEnum.$unknown)
-          .map((e) => e.name)
-          .toList(),
+      // FilterTypes.size: Enum$SizeEnum.values
+      //     .where((e) => e != Enum$SizeEnum.$unknown)
+      //     .map((e) => e.name)
+      //     .toList(),
       FilterTypes.style: Enum$StyleEnum.values
           .where((e) => e != Enum$StyleEnum.$unknown)
           .map((e) => e.name)

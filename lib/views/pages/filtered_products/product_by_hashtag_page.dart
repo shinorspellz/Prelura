@@ -1,24 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
-
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 
-import '../../../res/helper_function.dart';
-import '../../widgets/empty_screen_placeholder.dart';
-import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
-
+import '../recently_viewed_product.dart';
 import '../sell_item/brand_view.dart' as brands_view;
-import 'product_by_sales/product_by_christmas.dart';
 
 @RoutePage()
 class ProductByHashtagPage extends ConsumerStatefulWidget {
@@ -37,12 +30,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(hashtags: [widget.hashtag]);
 
-      ref.refresh(filteredProductProvider(searchQuery));
-    });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -57,11 +45,6 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
 
   @override
   void dispose() {
-    Future.microtask(() {
-      HelperFunction.genRef!
-          .read(selectedFilteredProductProvider.notifier)
-          .state = previousState;
-    });
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -91,10 +74,10 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
               slivers: [
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
-                  delegate: FilteredProductStaticSliverDelegate(
+                  delegate: StaticSliverDelegate(
                       child: Container(
                     padding:
-                        const EdgeInsets.only(top: 10, left: 15, right: 15),
+                        const EdgeInsets.only(top: 16, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,6 +101,27 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                     ),
                   )),
                 ),
+                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
+                      // skipLoadingOnRefresh: !ref.watch(refreshingHome),
+                      data: (products) => SliverPadding(
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        sliver: SliverGrid.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.50,
+                          ),
+                          itemCount: products.take(6).length,
+                          itemBuilder: (context, index) {
+                            return ProductCard(
+                                product: products.take(6).toList()[index]);
+                          },
+                        ),
+                      ),
+                      orElse: () => SliverToBoxAdapter(child: Container()),
+                    ),
                 SliverPadding(
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
                   sliver: ref.watch(filteredProductProvider(searchQuery)).when(
@@ -126,12 +130,20 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             ? SliverPadding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 sliver: SliverToBoxAdapter(
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.8,
-                                    child: EmptyScreenPlaceholder(
-                                        text: "No products found"),
-                                  ),
+                                  child: NoProductWidget(),
+
+                                  // Container(
+                                  //   height: MediaQuery.of(context).size.height *
+                                  //       0.7,
+                                  //   child: Center(
+                                  //     child: Text(
+                                  //       "No products found",
+                                  //       style: Theme.of(context)
+                                  //           .textTheme
+                                  //           .bodyLarge,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ))
                             : SliverGrid.builder(
                                 gridDelegate:
@@ -148,13 +160,25 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                               );
                       },
                       error: (e, _) {
-                        return SliverFillRemaining(
-                            child: ErrorPlaceholder(
-                          error: "Error fetching items",
-                          onTap: () {
-                            ref.refresh(filteredProductProvider(searchQuery));
-                          },
-                        ));
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(e.toString()),
+                                TextButton.icon(
+                                  onPressed: () {
+                                    // log(e.toString(), stackTrace: _);
+                                    ref.invalidate(filteredProductProvider);
+                                  },
+                                  label: const Text('Retry'),
+                                  icon: const Icon(Icons.refresh_rounded),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),

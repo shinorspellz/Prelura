@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
-import '../../../../res/logs.dart';
-import 'package:prelura_app/res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -147,11 +144,11 @@ class _ProductFilterPageState
                       error: (e, _) {
                         return SliverToBoxAdapter(
                           child: ErrorPlaceholder(
-                          error: "Error fetching items",
-                          onTap: () {
-                            ref.refresh(allProductProvider(searchQuery));
-                          },
-                        ),
+                            error: "Error fetching items",
+                            onTap: () {
+                              ref.refresh(allProductProvider(searchQuery));
+                            },
+                          ),
                         );
                       },
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),

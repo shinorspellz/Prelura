@@ -92,6 +92,7 @@ query Product($id: Int!) {
       id
       name
     }
+
     seller {
       id
       username
@@ -99,7 +100,10 @@ query Product($id: Int!) {
     }
     condition
     discountPrice
-    size
+    size{
+      id
+      name
+    }
     condition
     price
     parcelSize
@@ -133,6 +137,10 @@ query RecentlyViewedproducts {
       id
       name
     }
+    size {
+      id
+      name
+    }
     seller {
       id
       username
@@ -140,7 +148,7 @@ query RecentlyViewedproducts {
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -190,13 +198,17 @@ query UserProducts(
       id
       name
     }
+    size {
+      id
+      name
+    }
     seller {
       id
       username
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -238,6 +250,10 @@ query AllProducts(
       id
       name
     }
+    size {
+      id
+      name
+    }
     seller {
       id
       username
@@ -245,7 +261,7 @@ query AllProducts(
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -272,8 +288,10 @@ query AllProducts(
   allProductsTotalNumber
 }
 
-query Categories {
-  categories {
+
+
+query Categories($parentId: Int) {
+  categories (parentId: $parentId){
     id
     name
         hasChildren
@@ -313,6 +331,10 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
         id
         name
       }
+      size {
+        id
+        name
+      }
       seller {
         id
         username
@@ -320,7 +342,6 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       isFeatured
       condition
       discountPrice
-      size
       condition
       price
       parcelSize
@@ -381,13 +402,17 @@ query SimilarProducts(
       name
     }
     isFeatured
+    size {
+      id
+      name
+    }
     seller {
       id
       username
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -499,6 +524,10 @@ query FilterProductsByPrice(
       id
       name
     }
+    size {
+      id
+      name
+    }
     seller {
       id
       username
@@ -506,7 +535,6 @@ query FilterProductsByPrice(
     }
     condition
     discountPrice
-    size
     condition
     price
     parcelSize

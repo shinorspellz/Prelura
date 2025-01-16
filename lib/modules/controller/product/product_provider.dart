@@ -60,8 +60,8 @@ final searchProductProvider =
       .valueOrNull
       ?.where((e) => e.name == categoryFilter)
       .firstOrNull;
-  final size =
-      Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
+  // final size =
+  //     Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style =
@@ -71,7 +71,7 @@ final searchProductProvider =
     search: query,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
-      size: size,
+      // size: size,
       condition: condition,
       style: style,
       category: category?.id == null ? null : int.tryParse(category?.id),
@@ -137,8 +137,8 @@ final userProduct =
       ?.where((e) => e.name == categoryFilter)
       .firstOrNull;
 
-  final size =
-      Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
+  // final size =
+  //     Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style =
@@ -152,7 +152,7 @@ final userProduct =
     pageCount: 1000,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
-      size: size,
+      // size: size,
       condition: condition,
       style: style,
       category: category?.id == null ? null : int.tryParse(category?.id),
@@ -227,7 +227,7 @@ class _ProductProvider extends AsyncNotifier<void> {
     required String desc,
     required double price,
     required List<File> images,
-    required String size,
+    int? size,
     ConditionsEnum? condition,
     required int category,
     required int subCategory,
@@ -247,7 +247,6 @@ class _ProductProvider extends AsyncNotifier<void> {
       await _productRepo.createProduct(
         Variables$Mutation$CreateProduct(
           category: category,
-          subCategory: subCategory,
           condition: condition,
           description: desc,
           imageUrl: files,
@@ -274,10 +273,9 @@ class _ProductProvider extends AsyncNotifier<void> {
     String? title,
     String? desc,
     double? price,
-    String? size,
+    int? size,
     ConditionsEnum? condition,
     int? category,
-    int? subCategory,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
     int? brandId,
@@ -297,7 +295,6 @@ class _ProductProvider extends AsyncNotifier<void> {
         Variables$Mutation$UpdateProduct(
           productId: productId,
           category: category,
-          subCategory: subCategory,
           condition: condition,
           description: desc,
           price: price,
@@ -1044,7 +1041,9 @@ final userProductGroupingBySubCategoryProvider =
     FutureProvider.family((ref, int userId) async {
   final repo = ref.watch(productRepo);
   final result = await repo.getUserProductGrouping(
-      userId: userId, groupBy: Enum$ProductGroupingEnum.SUB_CATEGORY);
+    userId: userId,
+    groupBy: Enum$ProductGroupingEnum.CATEGORY,
+  );
 
   return result;
 });
