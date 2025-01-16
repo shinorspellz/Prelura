@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
@@ -85,11 +86,11 @@ class _VerifyVideoState extends State<VerifyVideo> {
                   text: "I'm ready",
                   width: double.infinity,
                   onTap: () {
-                    // navigateToRoute(
-                    //     context,
-                    //     RecordVideo(
-                    //       image: widget.image,
-                    //     ));
+                    context.router.push(
+                      RecordVideo(
+                        image: widget.image,
+                      ),
+                    );
                   },
                   isDisabled: false,
                 ),

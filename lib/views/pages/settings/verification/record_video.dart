@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 List<CameraDescription> cameras = [];
 
+@RoutePage()
 class RecordVideo extends StatefulWidget {
   final XFile image;
   const RecordVideo({super.key, required this.image});
@@ -50,18 +54,20 @@ class _RecordVideoState extends State<RecordVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const VWidgetsAppBar(
+      appBar: PreluraAppBar(
         appbarTitle: "Record a short video of yourself",
-        appBarHeight: 50,
-        elevation: 0.0,
-        leadingIcon: VWidgetsBackButton(),
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
       ),
       body: controller?.value != null
           ? controller!.value.isInitialized
               ? SingleChildScrollView(
                   child: Padding(
-                    padding: const VWidgetsPagePadding.horizontalSymmetric(
-                      20,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,9 +79,10 @@ class _RecordVideoState extends State<RecordVideo> {
                               .textTheme
                               .displayMedium
                               ?.copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: VmodelColors.primaryColor),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                // color: VmodelColors.primaryColor
+                              ),
                           textAlign: TextAlign.center,
                         ),
                         addVerticalSpacing(60),
@@ -93,10 +100,11 @@ class _RecordVideoState extends State<RecordVideo> {
                                         .textTheme
                                         .displayMedium
                                         ?.copyWith(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 30,
-                                            color:
-                                                VmodelColors.yellowTextColor),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 30,
+                                          // color:
+                                          // VmodelColors.yellowTextColor,
+                                        ),
                                     textAlign: TextAlign.center,
                                   )),
                                 )),
@@ -114,12 +122,15 @@ class _RecordVideoState extends State<RecordVideo> {
                                     });
                                   });
                                   // ignore: use_build_context_synchronously
-                                  navigateAndReplaceRoute(
-                                      context,
-                                      SubmitVideo(
-                                        videoFile: videoFile!,
-                                        image: widget.image,
-                                      ));
+                                  // navigateAndReplaceRoute(
+                                  //     context,
+                                  //     SubmitVideo(
+                                  //       videoFile: videoFile!,
+                                  //       image: widget.image,
+                                  //     ));
+                                  ///
+                                  ///
+                                  ///
                                   // await controller!.pauseVideoRecording();
                                 },
                                 child: Container(
@@ -129,11 +140,12 @@ class _RecordVideoState extends State<RecordVideo> {
                                       shape: BoxShape.circle,
                                       color: Colors.white,
                                       border: Border.all(
-                                          width: 2.5,
-                                          color: VmodelColors.primaryColor)),
+                                        width: 2.5,
+                                        // color: VmodelColors.primaryColor,
+                                      )),
                                   child: Center(
                                       child: SvgPicture.asset(
-                                    VIcons.pauseIcon,
+                                    "assets/icons/pause.svg",
                                     width: 30,
                                     height: 30,
                                   )),
@@ -153,19 +165,21 @@ class _RecordVideoState extends State<RecordVideo> {
                                       shape: BoxShape.circle,
                                       color: Colors.white,
                                       border: Border.all(
-                                          width: 2.5,
-                                          color: VmodelColors.primaryColor)),
+                                        width: 2.5,
+                                        // color: VmodelColors.primaryColor,
+                                      )),
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
                                       height: 60,
                                       width: 60,
                                       decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: VmodelColors.primaryColor),
+                                        shape: BoxShape.circle,
+                                        // color: VmodelColors.primaryColor,
+                                      ),
                                       child: Center(
                                           child: SvgPicture.asset(
-                                        VIcons.micIcon,
+                                        "assets/icons/mic.svg",
                                         height: 40,
                                         width: 40,
                                       )),
