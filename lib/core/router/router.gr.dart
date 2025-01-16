@@ -9,8 +9,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i66;
-import 'package:flutter/cupertino.dart' as _i72;
-import 'package:flutter/foundation.dart' as _i71;
+import 'package:flutter/cupertino.dart' as _i71;
+import 'package:flutter/foundation.dart' as _i73;
 import 'package:flutter/material.dart' as _i67;
 import 'package:prelura_app/controller/product/provider/sell_item_provider.dart'
     as _i69;
@@ -18,7 +18,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart'
     as _i68;
 import 'package:prelura_app/core/router/app_startup.dart' as _i3;
 import 'package:prelura_app/model/product/categories/category_model.dart'
-    as _i73;
+    as _i72;
 import 'package:prelura_app/model/product/product_model.dart' as _i70;
 import 'package:prelura_app/views/pages/about_prelura_menu.dart' as _i1;
 import 'package:prelura_app/views/pages/auth_page.dart' as _i5;
@@ -1230,7 +1230,7 @@ class PriceRoute extends _i66.PageRouteInfo<void> {
 class ProductByHashtagRoute
     extends _i66.PageRouteInfo<ProductByHashtagRouteArgs> {
   ProductByHashtagRoute({
-    _i71.Key? key,
+    _i67.Key? key,
     required String hashtag,
     List<_i66.PageRouteInfo>? children,
   }) : super(
@@ -1262,7 +1262,7 @@ class ProductByHashtagRouteArgs {
     required this.hashtag,
   });
 
-  final _i71.Key? key;
+  final _i67.Key? key;
 
   final String hashtag;
 
@@ -1447,7 +1447,7 @@ class ProductsByBrandRouteArgs {
 /// [_i45.ProfileDetailsScreen]
 class ProfileDetailsRoute extends _i66.PageRouteInfo<ProfileDetailsRouteArgs> {
   ProfileDetailsRoute({
-    _i72.Key? key,
+    _i71.Key? key,
     required String username,
     List<_i66.PageRouteInfo>? children,
   }) : super(
@@ -1479,7 +1479,7 @@ class ProfileDetailsRouteArgs {
     required this.username,
   });
 
-  final _i72.Key? key;
+  final _i71.Key? key;
 
   final String username;
 
@@ -1893,7 +1893,7 @@ class SubCategoryProductRoute extends _i66.PageRouteInfo<void> {
 class SubCategoryRoute extends _i66.PageRouteInfo<SubCategoryRouteArgs> {
   SubCategoryRoute({
     _i67.Key? key,
-    required List<_i73.CategoryModel> subCategories,
+    required List<_i72.CategoryModel> subCategories,
     required String categoryName,
     List<_i66.PageRouteInfo>? children,
   }) : super(
@@ -1930,7 +1930,7 @@ class SubCategoryRouteArgs {
 
   final _i67.Key? key;
 
-  final List<_i73.CategoryModel> subCategories;
+  final List<_i72.CategoryModel> subCategories;
 
   final String categoryName;
 
@@ -1945,7 +1945,7 @@ class SubCategoryRouteArgs {
 class UserProfileDetailsRoute
     extends _i66.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
-    _i72.Key? key,
+    _i71.Key? key,
     String? username,
     List<_i66.PageRouteInfo>? children,
   }) : super(
@@ -1978,7 +1978,7 @@ class UserProfileDetailsRouteArgs {
     this.username,
   });
 
-  final _i72.Key? key;
+  final _i71.Key? key;
 
   final String? username;
 
@@ -1992,7 +1992,7 @@ class UserProfileDetailsRouteArgs {
 /// [_i64.VerifyEmailPage]
 class VerifyEmailRoute extends _i66.PageRouteInfo<VerifyEmailRouteArgs> {
   VerifyEmailRoute({
-    _i71.Key? key,
+    _i73.Key? key,
     required String email,
     List<_i66.PageRouteInfo>? children,
   }) : super(
@@ -2024,7 +2024,7 @@ class VerifyEmailRouteArgs {
     required this.email,
   });
 
-  final _i71.Key? key;
+  final _i73.Key? key;
 
   final String email;
 

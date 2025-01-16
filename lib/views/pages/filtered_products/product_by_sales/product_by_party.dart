@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
-import '../../../../res/logs.dart';
-import 'package:prelura_app/res/utils.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
@@ -120,20 +118,22 @@ class _ProductFilterPageState
                               .read(allProductProvider(searchQuery).notifier)
                               .fetchMoreData();
                           return SliverToBoxAdapter(
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * 0.7,
-                              child: Center(
-                                child: Text(
-                                  "No products found",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                        fontSize: getDefaultSize(),
-                                      ),
-                                ),
-                              ),
-                            ),
+                            child: NoProductWidget(),
+
+                            // Container(
+                            //   height: MediaQuery.of(context).size.height * 0.7,
+                            //   child: Center(
+                            //     child: Text(
+                            //       "No products found",
+                            //       style: Theme.of(context)
+                            //           .textTheme
+                            //           .bodyMedium
+                            //           ?.copyWith(
+                            //             fontSize: getDefaultSize(),
+                            //           ),
+                            //     ),
+                            //   ),
+                            // ),
                           );
                         }
                         return SliverGrid.builder(

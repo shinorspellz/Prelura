@@ -10,10 +10,9 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/user_product_grouping/user_product_grouping.dart';
-import 'package:prelura_app/res/images.dart';
-import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/filter_and_sort.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
@@ -808,26 +807,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                             ),
                       )
                     ] else ...[
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.4,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RenderSvg(
-                              svgPath: PreluraIcons.empty_box_svg,
-                              svgHeight: 60,
-                              svgWidth: 60,
-                            ),
-                            Text(
-                              "No Products",
-                              style: context.theme.textTheme.bodyMedium
-                                  ?.copyWith(
-                                      fontSize: getDefaultSize(size: 16),
-                                      fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                      )
+                      NoProductWidget(),
                     ]
                   ]),
                 ],

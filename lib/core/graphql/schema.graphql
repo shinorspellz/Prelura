@@ -129,14 +129,8 @@ type CategoryType {
 type CategoryTypes {
   id: ID!
   name: String!
-  subCategory: [SubCategoryType]
-}
-
-type CategoryTypess {
-  id: ID!
-  name: String!
-  parent: CategoryTypess
-  children: [CategoryTypess!]!
+  parent: CategoryTypes
+  children: [CategoryTypes!]!
   hasChildren: Boolean
   fullPath: String
 }
@@ -426,8 +420,8 @@ type Mutation {
 
   """update user notification preferences"""
   updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
-  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, isFeatured: Boolean, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: SizeEnum, style: StyleEnum, subCategory: Int!): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: SizeEnum, style: StyleEnum, subCategory: Int): UpdateProduct
+  createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, isFeatured: Boolean, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: Int, style: StyleEnum): CreateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: Int, style: StyleEnum): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   createOrder(productId: Int!, quantity: Int): CreateOrder
@@ -659,9 +653,11 @@ type OfferType {
   status: ProductsOfferStatusChoices!
   message: String
   expiresAt: DateTime
+  parent: OfferType
   createdAt: DateTime!
   updatedAt: DateTime!
   deleted: Boolean!
+  children: [OfferType!]!
   conversation: [ConversationType!]!
 }
 
@@ -791,11 +787,10 @@ input ProductFiltersInput {
   name: String
   brand: Int
   category: Int
+  size: Int
   customBrand: String
-  subCategory: Int
   price: Float
   status: ProductStatusEnum
-  size: SizeEnum
   style: StyleEnum
   condition: ConditionEnum
   discountPrice: Boolean
@@ -805,7 +800,6 @@ input ProductFiltersInput {
 enum ProductGroupingEnum {
   BRAND
   CATEGORY
-  SUB_CATEGORY
   TOP_BRAND
 }
 
@@ -820,11 +814,14 @@ enum ProductsOfferStatusChoices {
   """Rejected"""
   REJECTED
 
-  """Counter"""
-  COUNTER
+  """Counterd"""
+  COUNTERED
 
   """Expired"""
   EXPIRED
+
+  """Cancelled"""
+  CANCELLED
 }
 
 """An enumeration."""
@@ -873,93 +870,6 @@ enum ProductsProductParcelSizeChoices {
 
   """Large"""
   LARGE
-}
-
-"""An enumeration."""
-enum ProductsProductSizeChoices {
-  """XS"""
-  XS
-
-  """S"""
-  S
-
-  """M"""
-  M
-
-  """L"""
-  L
-
-  """XL"""
-  XL
-
-  """XXL"""
-  XXL
-
-  """UK4"""
-  UK4
-
-  """UK6"""
-  UK6
-
-  """UK8"""
-  UK8
-
-  """UK10"""
-  UK10
-
-  """UK12"""
-  UK12
-
-  """UK14"""
-  UK14
-
-  """UK16"""
-  UK16
-
-  """US4"""
-  US4
-
-  """US6"""
-  US6
-
-  """US8"""
-  US8
-
-  """US10"""
-  US10
-
-  """US12"""
-  US12
-
-  """US14"""
-  US14
-
-  """US16"""
-  US16
-
-  """EU34"""
-  EU34
-
-  """EU36"""
-  EU36
-
-  """EU38"""
-  EU38
-
-  """EU40"""
-  EU40
-
-  """EU42"""
-  EU42
-
-  """EU44"""
-  EU44
-
-  """EU46"""
-  EU46
-
-  """One size"""
-  ONE_SIZE
 }
 
 """An enumeration."""
@@ -1148,8 +1058,7 @@ type ProductType {
   seller: UserType
   description: String!
   category: CategoryType
-  subCategory: SubCategoryType
-  size: ProductsProductSizeChoices
+  size: SizeType
   style: ProductsProductStyleChoices
   parcelSize: ProductsProductParcelSizeChoices
   condition: ProductsProductConditionChoices
@@ -1316,8 +1225,7 @@ type Query {
   """
   product(id: Int!): ProductType
   likedProducts(pageCount: Int, pageNumber: Int): [LikedProductType]
-  categories: [CategoryTypes]
-  categoriess(parentId: Int): [CategoryTypess]
+  categories(parentId: Int): [CategoryTypes]
   sizes(path: String!): [SizeType]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   popularBrands(top: Int!): [BrandType]
@@ -1326,6 +1234,7 @@ type Query {
   recommendProducts(pageCount: Int, pageNumber: Int): [ProductType]
   recentlyViewedProducts: [ProductType]
   filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
+  favoriteBrandProducts(top: Int!): [ProductType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
   filterProductsByPriceTotalNumber: Int
@@ -1435,37 +1344,6 @@ type SenderType {
   username: String
   thumbnailUrl: String
   profilePictureUrl: String
-}
-
-enum SizeEnum {
-  XS
-  S
-  M
-  L
-  XL
-  XXL
-  UK4
-  UK6
-  UK8
-  UK10
-  UK12
-  UK14
-  UK16
-  US4
-  US6
-  US8
-  US10
-  US12
-  US14
-  US16
-  EU34
-  EU36
-  EU38
-  EU40
-  EU42
-  EU44
-  EU46
-  ONE_SIZE
 }
 
 type SizeType {
@@ -1578,11 +1456,6 @@ enum StyleEnum {
   RELAXED_FIT
   CHRISTMAS
   SCHOOL_UNIFORMS
-}
-
-type SubCategoryType {
-  id: Int
-  name: String
 }
 
 type UnarchiveConversation {

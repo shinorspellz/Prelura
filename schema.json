@@ -556,22 +556,6 @@
           {
             "name": "categories",
             "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "CategoryTypes",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "categoriess",
-            "description": null,
             "args": [
               {
                 "name": "parentId",
@@ -589,7 +573,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CategoryTypess",
+                "name": "CategoryTypes",
                 "ofType": null
               }
             },
@@ -897,6 +881,37 @@
                   "kind": "SCALAR",
                   "name": "Int",
                   "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ProductType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "favoriteBrandProducts",
+            "description": null,
+            "args": [
+              {
+                "name": "top",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               }
@@ -3702,24 +3717,12 @@
             "deprecationReason": null
           },
           {
-            "name": "subCategory",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SubCategoryType",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "size",
             "description": null,
             "args": [],
             "type": {
-              "kind": "ENUM",
-              "name": "ProductsProductSizeChoices",
+              "kind": "OBJECT",
+              "name": "SizeType",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4368,7 +4371,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "SubCategoryType",
+        "name": "SizeType",
         "description": null,
         "fields": [
           {
@@ -4399,185 +4402,6 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ProductsProductSizeChoices",
-        "description": "An enumeration.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "XS",
-            "description": "XS",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "S",
-            "description": "S",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "M",
-            "description": "M",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "L",
-            "description": "L",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "XL",
-            "description": "XL",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "XXL",
-            "description": "XXL",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK4",
-            "description": "UK4",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK6",
-            "description": "UK6",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK8",
-            "description": "UK8",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK10",
-            "description": "UK10",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK12",
-            "description": "UK12",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK14",
-            "description": "UK14",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK16",
-            "description": "UK16",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US4",
-            "description": "US4",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US6",
-            "description": "US6",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US8",
-            "description": "US8",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US10",
-            "description": "US10",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US12",
-            "description": "US12",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US14",
-            "description": "US14",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US16",
-            "description": "US16",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU34",
-            "description": "EU34",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU36",
-            "description": "EU36",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU38",
-            "description": "EU38",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU40",
-            "description": "EU40",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU42",
-            "description": "EU42",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU44",
-            "description": "EU44",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU46",
-            "description": "EU46",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ONE_SIZE",
-            "description": "One size",
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -5167,6 +4991,18 @@
             "deprecationReason": null
           },
           {
+            "name": "parent",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "OfferType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt",
             "description": null,
             "args": [],
@@ -5209,6 +5045,30 @@
                 "kind": "SCALAR",
                 "name": "Boolean",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "children",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "OfferType",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -5271,14 +5131,20 @@
             "deprecationReason": null
           },
           {
-            "name": "COUNTER",
-            "description": "Counter",
+            "name": "COUNTERED",
+            "description": "Counterd",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "EXPIRED",
             "description": "Expired",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CANCELLED",
+            "description": "Cancelled",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -6343,21 +6209,21 @@
             "defaultValue": null
           },
           {
-            "name": "customBrand",
+            "name": "size",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Int",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "subCategory",
+            "name": "customBrand",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null
@@ -6378,16 +6244,6 @@
             "type": {
               "kind": "ENUM",
               "name": "ProductStatusEnum",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "size",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "SizeEnum",
               "ofType": null
             },
             "defaultValue": null
@@ -6463,185 +6319,6 @@
           },
           {
             "name": "SOLD",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "SizeEnum",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "XS",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "S",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "M",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "L",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "XL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "XXL",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK4",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK6",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK8",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK10",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK12",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK14",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UK16",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US4",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US6",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US8",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US10",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US12",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US14",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "US16",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU34",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU36",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU38",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU40",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU42",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU44",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EU46",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ONE_SIZE",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7221,12 +6898,6 @@
             "deprecationReason": null
           },
           {
-            "name": "SUB_CATEGORY",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "TOP_BRAND",
             "description": null,
             "isDeprecated": false,
@@ -7343,71 +7014,12 @@
             "deprecationReason": null
           },
           {
-            "name": "subCategory",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SubCategoryType",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "CategoryTypess",
-        "description": null,
-        "fields": [
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "parent",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CategoryTypess",
+              "name": "CategoryTypes",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7428,7 +7040,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CategoryTypess",
+                    "name": "CategoryTypes",
                     "ofType": null
                   }
                 }
@@ -7451,41 +7063,6 @@
           },
           {
             "name": "fullPath",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SizeType",
-        "description": null,
-        "fields": [
-          {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -8484,8 +8061,8 @@
                 "name": "size",
                 "description": null,
                 "type": {
-                  "kind": "ENUM",
-                  "name": "SizeEnum",
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -8497,20 +8074,6 @@
                   "kind": "ENUM",
                   "name": "StyleEnum",
                   "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "subCategory",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  }
                 },
                 "defaultValue": null
               }
@@ -8673,8 +8236,8 @@
                 "name": "size",
                 "description": null,
                 "type": {
-                  "kind": "ENUM",
-                  "name": "SizeEnum",
+                  "kind": "SCALAR",
+                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -8685,16 +8248,6 @@
                 "type": {
                   "kind": "ENUM",
                   "name": "StyleEnum",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "subCategory",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
                   "ofType": null
                 },
                 "defaultValue": null

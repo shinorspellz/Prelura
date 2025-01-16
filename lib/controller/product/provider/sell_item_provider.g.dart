@@ -16,9 +16,6 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
       category: json['category'] == null
           ? null
           : CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      subCategory: json['subCategory'] == null
-          ? null
-          : CategoryModel.fromJson(json['subCategory'] as Map<String, dynamic>),
       parcel: json['parcel'] == null
           ? null
           : Enum$ParcelSizeEnum.fromJson(json['parcel'] as String),
@@ -33,7 +30,7 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
       brand: json['brand'] == null
           ? null
           : Brand.fromJson(json['brand'] as Map<String, dynamic>),
-      size: json['size'] as String?,
+      size: json['size'],
       price: json['price'] as String?,
       discount: json['discount'] as String?,
       selectedCondition: $enumDecodeNullable(
@@ -51,7 +48,6 @@ Map<String, dynamic> _$$SellItemStateImplToJson(_$SellItemStateImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'category': instance.category,
-      'subCategory': instance.subCategory,
       'parcel': instance.parcel,
       'selectedColors': instance.selectedColors,
       'selectedMaterials': instance.selectedMaterials,

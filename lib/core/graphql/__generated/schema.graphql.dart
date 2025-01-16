@@ -786,11 +786,10 @@ class Input$ProductFiltersInput {
     String? name,
     int? brand,
     int? category,
+    int? size,
     String? customBrand,
-    int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
-    Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
@@ -800,11 +799,10 @@ class Input$ProductFiltersInput {
         if (name != null) r'name': name,
         if (brand != null) r'brand': brand,
         if (category != null) r'category': category,
+        if (size != null) r'size': size,
         if (customBrand != null) r'customBrand': customBrand,
-        if (subCategory != null) r'subCategory': subCategory,
         if (price != null) r'price': price,
         if (status != null) r'status': status,
-        if (size != null) r'size': size,
         if (style != null) r'style': style,
         if (condition != null) r'condition': condition,
         if (discountPrice != null) r'discountPrice': discountPrice,
@@ -827,13 +825,13 @@ class Input$ProductFiltersInput {
       final l$category = data['category'];
       result$data['category'] = (l$category as int?);
     }
+    if (data.containsKey('size')) {
+      final l$size = data['size'];
+      result$data['size'] = (l$size as int?);
+    }
     if (data.containsKey('customBrand')) {
       final l$customBrand = data['customBrand'];
       result$data['customBrand'] = (l$customBrand as String?);
-    }
-    if (data.containsKey('subCategory')) {
-      final l$subCategory = data['subCategory'];
-      result$data['subCategory'] = (l$subCategory as int?);
     }
     if (data.containsKey('price')) {
       final l$price = data['price'];
@@ -844,11 +842,6 @@ class Input$ProductFiltersInput {
       result$data['status'] = l$status == null
           ? null
           : fromJson$Enum$ProductStatusEnum((l$status as String));
-    }
-    if (data.containsKey('size')) {
-      final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
     }
     if (data.containsKey('style')) {
       final l$style = data['style'];
@@ -882,16 +875,14 @@ class Input$ProductFiltersInput {
 
   int? get category => (_$data['category'] as int?);
 
-  String? get customBrand => (_$data['customBrand'] as String?);
+  int? get size => (_$data['size'] as int?);
 
-  int? get subCategory => (_$data['subCategory'] as int?);
+  String? get customBrand => (_$data['customBrand'] as String?);
 
   double? get price => (_$data['price'] as double?);
 
   Enum$ProductStatusEnum? get status =>
       (_$data['status'] as Enum$ProductStatusEnum?);
-
-  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
 
   Enum$StyleEnum? get style => (_$data['style'] as Enum$StyleEnum?);
 
@@ -916,13 +907,13 @@ class Input$ProductFiltersInput {
       final l$category = category;
       result$data['category'] = l$category;
     }
+    if (_$data.containsKey('size')) {
+      final l$size = size;
+      result$data['size'] = l$size;
+    }
     if (_$data.containsKey('customBrand')) {
       final l$customBrand = customBrand;
       result$data['customBrand'] = l$customBrand;
-    }
-    if (_$data.containsKey('subCategory')) {
-      final l$subCategory = subCategory;
-      result$data['subCategory'] = l$subCategory;
     }
     if (_$data.containsKey('price')) {
       final l$price = price;
@@ -932,11 +923,6 @@ class Input$ProductFiltersInput {
       final l$status = status;
       result$data['status'] =
           l$status == null ? null : toJson$Enum$ProductStatusEnum(l$status);
-    }
-    if (_$data.containsKey('size')) {
-      final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
     }
     if (_$data.containsKey('style')) {
       final l$style = style;
@@ -1001,6 +987,14 @@ class Input$ProductFiltersInput {
     if (l$category != lOther$category) {
       return false;
     }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (_$data.containsKey('size') != other._$data.containsKey('size')) {
+      return false;
+    }
+    if (l$size != lOther$size) {
+      return false;
+    }
     final l$customBrand = customBrand;
     final lOther$customBrand = other.customBrand;
     if (_$data.containsKey('customBrand') !=
@@ -1008,15 +1002,6 @@ class Input$ProductFiltersInput {
       return false;
     }
     if (l$customBrand != lOther$customBrand) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') !=
-        other._$data.containsKey('subCategory')) {
-      return false;
-    }
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$price = price;
@@ -1033,14 +1018,6 @@ class Input$ProductFiltersInput {
       return false;
     }
     if (l$status != lOther$status) {
-      return false;
-    }
-    final l$size = size;
-    final lOther$size = other.size;
-    if (_$data.containsKey('size') != other._$data.containsKey('size')) {
-      return false;
-    }
-    if (l$size != lOther$size) {
       return false;
     }
     final l$style = style;
@@ -1097,11 +1074,10 @@ class Input$ProductFiltersInput {
     final l$name = name;
     final l$brand = brand;
     final l$category = category;
+    final l$size = size;
     final l$customBrand = customBrand;
-    final l$subCategory = subCategory;
     final l$price = price;
     final l$status = status;
-    final l$size = size;
     final l$style = style;
     final l$condition = condition;
     final l$discountPrice = discountPrice;
@@ -1110,11 +1086,10 @@ class Input$ProductFiltersInput {
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('brand') ? l$brand : const {},
       _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('customBrand') ? l$customBrand : const {},
-      _$data.containsKey('subCategory') ? l$subCategory : const {},
       _$data.containsKey('price') ? l$price : const {},
       _$data.containsKey('status') ? l$status : const {},
-      _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('style') ? l$style : const {},
       _$data.containsKey('condition') ? l$condition : const {},
       _$data.containsKey('discountPrice') ? l$discountPrice : const {},
@@ -1140,11 +1115,10 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     String? name,
     int? brand,
     int? category,
+    int? size,
     String? customBrand,
-    int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
-    Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
@@ -1169,11 +1143,10 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
     Object? name = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
+    Object? size = _undefined,
     Object? customBrand = _undefined,
-    Object? subCategory = _undefined,
     Object? price = _undefined,
     Object? status = _undefined,
-    Object? size = _undefined,
     Object? style = _undefined,
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
@@ -1184,11 +1157,10 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (name != _undefined) 'name': (name as String?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (category != _undefined) 'category': (category as int?),
+        if (size != _undefined) 'size': (size as int?),
         if (customBrand != _undefined) 'customBrand': (customBrand as String?),
-        if (subCategory != _undefined) 'subCategory': (subCategory as int?),
         if (price != _undefined) 'price': (price as double?),
         if (status != _undefined) 'status': (status as Enum$ProductStatusEnum?),
-        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
         if (condition != _undefined)
           'condition': (condition as EnumImport$ConditionEnum.ConditionsEnum?),
@@ -1208,11 +1180,10 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
     String? name,
     int? brand,
     int? category,
+    int? size,
     String? customBrand,
-    int? subCategory,
     double? price,
     Enum$ProductStatusEnum? status,
-    Enum$SizeEnum? size,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
@@ -1826,7 +1797,6 @@ Enum$PaymentsPaymentPaymentStatusChoices
 enum Enum$ProductGroupingEnum {
   BRAND,
   CATEGORY,
-  SUB_CATEGORY,
   TOP_BRAND,
   $unknown;
 
@@ -1842,8 +1812,6 @@ String toJson$Enum$ProductGroupingEnum(Enum$ProductGroupingEnum e) {
       return r'BRAND';
     case Enum$ProductGroupingEnum.CATEGORY:
       return r'CATEGORY';
-    case Enum$ProductGroupingEnum.SUB_CATEGORY:
-      return r'SUB_CATEGORY';
     case Enum$ProductGroupingEnum.TOP_BRAND:
       return r'TOP_BRAND';
     case Enum$ProductGroupingEnum.$unknown:
@@ -1857,8 +1825,6 @@ Enum$ProductGroupingEnum fromJson$Enum$ProductGroupingEnum(String value) {
       return Enum$ProductGroupingEnum.BRAND;
     case r'CATEGORY':
       return Enum$ProductGroupingEnum.CATEGORY;
-    case r'SUB_CATEGORY':
-      return Enum$ProductGroupingEnum.SUB_CATEGORY;
     case r'TOP_BRAND':
       return Enum$ProductGroupingEnum.TOP_BRAND;
     default:
@@ -1870,8 +1836,9 @@ enum Enum$ProductsOfferStatusChoices {
   PENDING,
   ACCEPTED,
   REJECTED,
-  COUNTER,
+  COUNTERED,
   EXPIRED,
+  CANCELLED,
   $unknown;
 
   factory Enum$ProductsOfferStatusChoices.fromJson(String value) =>
@@ -1889,10 +1856,12 @@ String toJson$Enum$ProductsOfferStatusChoices(
       return r'ACCEPTED';
     case Enum$ProductsOfferStatusChoices.REJECTED:
       return r'REJECTED';
-    case Enum$ProductsOfferStatusChoices.COUNTER:
-      return r'COUNTER';
+    case Enum$ProductsOfferStatusChoices.COUNTERED:
+      return r'COUNTERED';
     case Enum$ProductsOfferStatusChoices.EXPIRED:
       return r'EXPIRED';
+    case Enum$ProductsOfferStatusChoices.CANCELLED:
+      return r'CANCELLED';
     case Enum$ProductsOfferStatusChoices.$unknown:
       return r'$unknown';
   }
@@ -1907,10 +1876,12 @@ Enum$ProductsOfferStatusChoices fromJson$Enum$ProductsOfferStatusChoices(
       return Enum$ProductsOfferStatusChoices.ACCEPTED;
     case r'REJECTED':
       return Enum$ProductsOfferStatusChoices.REJECTED;
-    case r'COUNTER':
-      return Enum$ProductsOfferStatusChoices.COUNTER;
+    case r'COUNTERED':
+      return Enum$ProductsOfferStatusChoices.COUNTERED;
     case r'EXPIRED':
       return Enum$ProductsOfferStatusChoices.EXPIRED;
+    case r'CANCELLED':
+      return Enum$ProductsOfferStatusChoices.CANCELLED;
     default:
       return Enum$ProductsOfferStatusChoices.$unknown;
   }
@@ -2053,171 +2024,6 @@ Enum$ProductsProductParcelSizeChoices
       return Enum$ProductsProductParcelSizeChoices.LARGE;
     default:
       return Enum$ProductsProductParcelSizeChoices.$unknown;
-  }
-}
-
-enum Enum$ProductsProductSizeChoices {
-  XS,
-  S,
-  M,
-  L,
-  XL,
-  XXL,
-  UK4,
-  UK6,
-  UK8,
-  UK10,
-  UK12,
-  UK14,
-  UK16,
-  US4,
-  US6,
-  US8,
-  US10,
-  US12,
-  US14,
-  US16,
-  EU34,
-  EU36,
-  EU38,
-  EU40,
-  EU42,
-  EU44,
-  EU46,
-  ONE_SIZE,
-  $unknown;
-
-  factory Enum$ProductsProductSizeChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsProductSizeChoices(value);
-
-  String toJson() => toJson$Enum$ProductsProductSizeChoices(this);
-}
-
-String toJson$Enum$ProductsProductSizeChoices(
-    Enum$ProductsProductSizeChoices e) {
-  switch (e) {
-    case Enum$ProductsProductSizeChoices.XS:
-      return r'XS';
-    case Enum$ProductsProductSizeChoices.S:
-      return r'S';
-    case Enum$ProductsProductSizeChoices.M:
-      return r'M';
-    case Enum$ProductsProductSizeChoices.L:
-      return r'L';
-    case Enum$ProductsProductSizeChoices.XL:
-      return r'XL';
-    case Enum$ProductsProductSizeChoices.XXL:
-      return r'XXL';
-    case Enum$ProductsProductSizeChoices.UK4:
-      return r'UK4';
-    case Enum$ProductsProductSizeChoices.UK6:
-      return r'UK6';
-    case Enum$ProductsProductSizeChoices.UK8:
-      return r'UK8';
-    case Enum$ProductsProductSizeChoices.UK10:
-      return r'UK10';
-    case Enum$ProductsProductSizeChoices.UK12:
-      return r'UK12';
-    case Enum$ProductsProductSizeChoices.UK14:
-      return r'UK14';
-    case Enum$ProductsProductSizeChoices.UK16:
-      return r'UK16';
-    case Enum$ProductsProductSizeChoices.US4:
-      return r'US4';
-    case Enum$ProductsProductSizeChoices.US6:
-      return r'US6';
-    case Enum$ProductsProductSizeChoices.US8:
-      return r'US8';
-    case Enum$ProductsProductSizeChoices.US10:
-      return r'US10';
-    case Enum$ProductsProductSizeChoices.US12:
-      return r'US12';
-    case Enum$ProductsProductSizeChoices.US14:
-      return r'US14';
-    case Enum$ProductsProductSizeChoices.US16:
-      return r'US16';
-    case Enum$ProductsProductSizeChoices.EU34:
-      return r'EU34';
-    case Enum$ProductsProductSizeChoices.EU36:
-      return r'EU36';
-    case Enum$ProductsProductSizeChoices.EU38:
-      return r'EU38';
-    case Enum$ProductsProductSizeChoices.EU40:
-      return r'EU40';
-    case Enum$ProductsProductSizeChoices.EU42:
-      return r'EU42';
-    case Enum$ProductsProductSizeChoices.EU44:
-      return r'EU44';
-    case Enum$ProductsProductSizeChoices.EU46:
-      return r'EU46';
-    case Enum$ProductsProductSizeChoices.ONE_SIZE:
-      return r'ONE_SIZE';
-    case Enum$ProductsProductSizeChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsProductSizeChoices fromJson$Enum$ProductsProductSizeChoices(
-    String value) {
-  switch (value) {
-    case r'XS':
-      return Enum$ProductsProductSizeChoices.XS;
-    case r'S':
-      return Enum$ProductsProductSizeChoices.S;
-    case r'M':
-      return Enum$ProductsProductSizeChoices.M;
-    case r'L':
-      return Enum$ProductsProductSizeChoices.L;
-    case r'XL':
-      return Enum$ProductsProductSizeChoices.XL;
-    case r'XXL':
-      return Enum$ProductsProductSizeChoices.XXL;
-    case r'UK4':
-      return Enum$ProductsProductSizeChoices.UK4;
-    case r'UK6':
-      return Enum$ProductsProductSizeChoices.UK6;
-    case r'UK8':
-      return Enum$ProductsProductSizeChoices.UK8;
-    case r'UK10':
-      return Enum$ProductsProductSizeChoices.UK10;
-    case r'UK12':
-      return Enum$ProductsProductSizeChoices.UK12;
-    case r'UK14':
-      return Enum$ProductsProductSizeChoices.UK14;
-    case r'UK16':
-      return Enum$ProductsProductSizeChoices.UK16;
-    case r'US4':
-      return Enum$ProductsProductSizeChoices.US4;
-    case r'US6':
-      return Enum$ProductsProductSizeChoices.US6;
-    case r'US8':
-      return Enum$ProductsProductSizeChoices.US8;
-    case r'US10':
-      return Enum$ProductsProductSizeChoices.US10;
-    case r'US12':
-      return Enum$ProductsProductSizeChoices.US12;
-    case r'US14':
-      return Enum$ProductsProductSizeChoices.US14;
-    case r'US16':
-      return Enum$ProductsProductSizeChoices.US16;
-    case r'EU34':
-      return Enum$ProductsProductSizeChoices.EU34;
-    case r'EU36':
-      return Enum$ProductsProductSizeChoices.EU36;
-    case r'EU38':
-      return Enum$ProductsProductSizeChoices.EU38;
-    case r'EU40':
-      return Enum$ProductsProductSizeChoices.EU40;
-    case r'EU42':
-      return Enum$ProductsProductSizeChoices.EU42;
-    case r'EU44':
-      return Enum$ProductsProductSizeChoices.EU44;
-    case r'EU46':
-      return Enum$ProductsProductSizeChoices.EU46;
-    case r'ONE_SIZE':
-      return Enum$ProductsProductSizeChoices.ONE_SIZE;
-    default:
-      return Enum$ProductsProductSizeChoices.$unknown;
   }
 }
 
@@ -2682,168 +2488,6 @@ Enum$SeasonEnum fromJson$Enum$SeasonEnum(String value) {
       return Enum$SeasonEnum.EASTER;
     default:
       return Enum$SeasonEnum.$unknown;
-  }
-}
-
-enum Enum$SizeEnum {
-  XS,
-  S,
-  M,
-  L,
-  XL,
-  XXL,
-  UK4,
-  UK6,
-  UK8,
-  UK10,
-  UK12,
-  UK14,
-  UK16,
-  US4,
-  US6,
-  US8,
-  US10,
-  US12,
-  US14,
-  US16,
-  EU34,
-  EU36,
-  EU38,
-  EU40,
-  EU42,
-  EU44,
-  EU46,
-  ONE_SIZE,
-  $unknown;
-
-  factory Enum$SizeEnum.fromJson(String value) => fromJson$Enum$SizeEnum(value);
-
-  String toJson() => toJson$Enum$SizeEnum(this);
-}
-
-String toJson$Enum$SizeEnum(Enum$SizeEnum e) {
-  switch (e) {
-    case Enum$SizeEnum.XS:
-      return r'XS';
-    case Enum$SizeEnum.S:
-      return r'S';
-    case Enum$SizeEnum.M:
-      return r'M';
-    case Enum$SizeEnum.L:
-      return r'L';
-    case Enum$SizeEnum.XL:
-      return r'XL';
-    case Enum$SizeEnum.XXL:
-      return r'XXL';
-    case Enum$SizeEnum.UK4:
-      return r'UK4';
-    case Enum$SizeEnum.UK6:
-      return r'UK6';
-    case Enum$SizeEnum.UK8:
-      return r'UK8';
-    case Enum$SizeEnum.UK10:
-      return r'UK10';
-    case Enum$SizeEnum.UK12:
-      return r'UK12';
-    case Enum$SizeEnum.UK14:
-      return r'UK14';
-    case Enum$SizeEnum.UK16:
-      return r'UK16';
-    case Enum$SizeEnum.US4:
-      return r'US4';
-    case Enum$SizeEnum.US6:
-      return r'US6';
-    case Enum$SizeEnum.US8:
-      return r'US8';
-    case Enum$SizeEnum.US10:
-      return r'US10';
-    case Enum$SizeEnum.US12:
-      return r'US12';
-    case Enum$SizeEnum.US14:
-      return r'US14';
-    case Enum$SizeEnum.US16:
-      return r'US16';
-    case Enum$SizeEnum.EU34:
-      return r'EU34';
-    case Enum$SizeEnum.EU36:
-      return r'EU36';
-    case Enum$SizeEnum.EU38:
-      return r'EU38';
-    case Enum$SizeEnum.EU40:
-      return r'EU40';
-    case Enum$SizeEnum.EU42:
-      return r'EU42';
-    case Enum$SizeEnum.EU44:
-      return r'EU44';
-    case Enum$SizeEnum.EU46:
-      return r'EU46';
-    case Enum$SizeEnum.ONE_SIZE:
-      return r'ONE_SIZE';
-    case Enum$SizeEnum.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$SizeEnum fromJson$Enum$SizeEnum(String value) {
-  switch (value) {
-    case r'XS':
-      return Enum$SizeEnum.XS;
-    case r'S':
-      return Enum$SizeEnum.S;
-    case r'M':
-      return Enum$SizeEnum.M;
-    case r'L':
-      return Enum$SizeEnum.L;
-    case r'XL':
-      return Enum$SizeEnum.XL;
-    case r'XXL':
-      return Enum$SizeEnum.XXL;
-    case r'UK4':
-      return Enum$SizeEnum.UK4;
-    case r'UK6':
-      return Enum$SizeEnum.UK6;
-    case r'UK8':
-      return Enum$SizeEnum.UK8;
-    case r'UK10':
-      return Enum$SizeEnum.UK10;
-    case r'UK12':
-      return Enum$SizeEnum.UK12;
-    case r'UK14':
-      return Enum$SizeEnum.UK14;
-    case r'UK16':
-      return Enum$SizeEnum.UK16;
-    case r'US4':
-      return Enum$SizeEnum.US4;
-    case r'US6':
-      return Enum$SizeEnum.US6;
-    case r'US8':
-      return Enum$SizeEnum.US8;
-    case r'US10':
-      return Enum$SizeEnum.US10;
-    case r'US12':
-      return Enum$SizeEnum.US12;
-    case r'US14':
-      return Enum$SizeEnum.US14;
-    case r'US16':
-      return Enum$SizeEnum.US16;
-    case r'EU34':
-      return Enum$SizeEnum.EU34;
-    case r'EU36':
-      return Enum$SizeEnum.EU36;
-    case r'EU38':
-      return Enum$SizeEnum.EU38;
-    case r'EU40':
-      return Enum$SizeEnum.EU40;
-    case r'EU42':
-      return Enum$SizeEnum.EU42;
-    case r'EU44':
-      return Enum$SizeEnum.EU44;
-    case r'EU46':
-      return Enum$SizeEnum.EU46;
-    case r'ONE_SIZE':
-      return Enum$SizeEnum.ONE_SIZE;
-    default:
-      return Enum$SizeEnum.$unknown;
   }
 }
 

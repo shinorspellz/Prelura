@@ -1,20 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
-
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../widgets/filters_options.dart';
-import 'product_by_filters.dart';
 import '../sell_item/brand_view.dart' as brands_view;
+import 'product_by_filters.dart';
 
 @RoutePage()
 class ProductByHashtagPage extends ConsumerStatefulWidget {
@@ -99,7 +95,6 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                           },
                         ),
                         FiltersOptions(),
-                       
                       ],
                     ),
                   )),
@@ -133,18 +128,20 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             ? SliverPadding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 sliver: SliverToBoxAdapter(
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.7,
-                                    child: Center(
-                                      child: Text(
-                                        "No products found",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                    ),
-                                  ),
+                                  child: NoProductWidget(),
+
+                                  // Container(
+                                  //   height: MediaQuery.of(context).size.height *
+                                  //       0.7,
+                                  //   child: Center(
+                                  //     child: Text(
+                                  //       "No products found",
+                                  //       style: Theme.of(context)
+                                  //           .textTheme
+                                  //           .bodyLarge,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ))
                             : SliverGrid.builder(
                                 gridDelegate:

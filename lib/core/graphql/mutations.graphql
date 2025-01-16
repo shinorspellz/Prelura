@@ -54,8 +54,7 @@ mutation CreateProduct(
   $description: String!
   $imageUrl: [ImagesInputType]!
   $price: Float!
-  $size: SizeEnum
-  $subCategory: Int!
+  $size: Int
   $name: String!
   $parcelSize: ParcelSizeEnum
   $discount: Float
@@ -73,7 +72,6 @@ mutation CreateProduct(
     imagesUrl: $imageUrl
     price: $price
     size: $size
-    subCategory: $subCategory
     name: $name
     parcelSize: $parcelSize
     discount: $discount
@@ -104,8 +102,7 @@ mutation UpdateProduct(
   $parcelSize: ParcelSizeEnum
   $price: Float
   $productId: Int!
-  $size: SizeEnum
-  $subCategory: Int
+  $size: Int
   $color: [String]
   $brand: Int
   $materials: [Int]
@@ -123,7 +120,6 @@ mutation UpdateProduct(
     price: $price
     productId: $productId
     size: $size
-    subCategory: $subCategory
     color: $color
     brand: $brand
     materials: $materials

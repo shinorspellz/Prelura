@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -169,18 +170,20 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                             ? SliverPadding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 sliver: SliverToBoxAdapter(
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.7,
-                                    child: Center(
-                                      child: Text(
-                                        "No products found",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge,
-                                      ),
-                                    ),
-                                  ),
+                                  child: NoProductWidget(),
+
+                                  // Container(
+                                  //   height: MediaQuery.of(context).size.height *
+                                  //       0.7,
+                                  //   child: Center(
+                                  //     child: Text(
+                                  //       "No products found",
+                                  //       style: Theme.of(context)
+                                  //           .textTheme
+                                  //           .bodyLarge,
+                                  //     ),
+                                  //   ),
+                                  // ),
                                 ))
                             : SliverPadding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
