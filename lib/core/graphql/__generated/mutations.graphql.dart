@@ -1,12 +1,10 @@
 // ignore_for_file: type=lint
 import 'dart:async';
-
 import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:prelura_app/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
-
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -2621,8 +2619,7 @@ class Variables$Mutation$CreateProduct {
     required String description,
     required List<Input$ImagesInputType?> imageUrl,
     required double price,
-    String? size,
-    required int subCategory,
+    int? size,
     required String name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
@@ -2640,7 +2637,6 @@ class Variables$Mutation$CreateProduct {
         r'imageUrl': imageUrl,
         r'price': price,
         if (size != null) r'size': size,
-        r'subCategory': subCategory,
         r'name': name,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (discount != null) r'discount': discount,
@@ -2677,11 +2673,8 @@ class Variables$Mutation$CreateProduct {
     result$data['price'] = (l$price as num).toDouble();
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] =
-          l$size == null ? null : fromJson$Enum$SizeEnum((l$size as String));
+      result$data['size'] = (l$size as int?);
     }
-    final l$subCategory = data['subCategory'];
-    result$data['subCategory'] = (l$subCategory as int);
     final l$name = data['name'];
     result$data['name'] = (l$name as String);
     if (data.containsKey('parcelSize')) {
@@ -2738,9 +2731,7 @@ class Variables$Mutation$CreateProduct {
 
   double get price => (_$data['price'] as double);
 
-  String? get size => (_$data['size'] as String?);
-
-  int get subCategory => (_$data['subCategory'] as int);
+  int? get size => (_$data['size'] as int?);
 
   String get name => (_$data['name'] as String);
 
@@ -2780,11 +2771,8 @@ class Variables$Mutation$CreateProduct {
     result$data['price'] = l$price;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : size;
+      result$data['size'] = l$size;
     }
-    final l$subCategory = subCategory;
-    result$data['subCategory'] = l$subCategory;
     final l$name = name;
     result$data['name'] = l$name;
     if (_$data.containsKey('parcelSize')) {
@@ -2882,11 +2870,6 @@ class Variables$Mutation$CreateProduct {
       return false;
     }
     if (l$size != lOther$size) {
-      return false;
-    }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (l$subCategory != lOther$subCategory) {
       return false;
     }
     final l$name = name;
@@ -2996,7 +2979,6 @@ class Variables$Mutation$CreateProduct {
     final l$imageUrl = imageUrl;
     final l$price = price;
     final l$size = size;
-    final l$subCategory = subCategory;
     final l$name = name;
     final l$parcelSize = parcelSize;
     final l$discount = discount;
@@ -3013,7 +2995,6 @@ class Variables$Mutation$CreateProduct {
       Object.hashAll(l$imageUrl.map((v) => v)),
       l$price,
       _$data.containsKey('size') ? l$size : const {},
-      l$subCategory,
       l$name,
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('discount') ? l$discount : const {},
@@ -3050,8 +3031,7 @@ abstract class CopyWith$Variables$Mutation$CreateProduct<TRes> {
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
     double? price,
-    Enum$SizeEnum? size,
-    int? subCategory,
+    int? size,
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
@@ -3084,7 +3064,6 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
     Object? imageUrl = _undefined,
     Object? price = _undefined,
     Object? size = _undefined,
-    Object? subCategory = _undefined,
     Object? name = _undefined,
     Object? parcelSize = _undefined,
     Object? discount = _undefined,
@@ -3106,9 +3085,7 @@ class _CopyWithImpl$Variables$Mutation$CreateProduct<TRes>
         if (imageUrl != _undefined && imageUrl != null)
           'imageUrl': (imageUrl as List<Input$ImagesInputType?>),
         if (price != _undefined && price != null) 'price': (price as double),
-        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
-        if (subCategory != _undefined && subCategory != null)
-          'subCategory': (subCategory as int),
+        if (size != _undefined) 'size': (size as int?),
         if (name != _undefined && name != null) 'name': (name as String),
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
@@ -3134,8 +3111,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateProduct<TRes>
     String? description,
     List<Input$ImagesInputType?>? imageUrl,
     double? price,
-    Enum$SizeEnum? size,
-    int? subCategory,
+    int? size,
     String? name,
     Enum$ParcelSizeEnum? parcelSize,
     double? discount,
@@ -3343,17 +3319,8 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'size')),
         type: NamedTypeNode(
-          name: NameNode(value: 'SizeEnum'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'subCategory')),
-        type: NamedTypeNode(
           name: NameNode(value: 'Int'),
-          isNonNull: true,
+          isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
@@ -3475,10 +3442,6 @@ const documentNodeMutationCreateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'size'),
             value: VariableNode(name: NameNode(value: 'size')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'subCategory'),
-            value: VariableNode(name: NameNode(value: 'subCategory')),
           ),
           ArgumentNode(
             name: NameNode(value: 'name'),
@@ -4311,8 +4274,7 @@ class Variables$Mutation$UpdateProduct {
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     required int productId,
-    String? size,
-    int? subCategory,
+    int? size,
     List<String?>? color,
     int? brand,
     List<int?>? materials,
@@ -4330,7 +4292,6 @@ class Variables$Mutation$UpdateProduct {
         if (price != null) r'price': price,
         r'productId': productId,
         if (size != null) r'size': size,
-        if (subCategory != null) r'subCategory': subCategory,
         if (color != null) r'color': color,
         if (brand != null) r'brand': brand,
         if (materials != null) r'materials': materials,
@@ -4380,11 +4341,7 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = (l$productId as int);
     if (data.containsKey('size')) {
       final l$size = data['size'];
-      result$data['size'] = l$size == null ? null : data['size'];
-    }
-    if (data.containsKey('subCategory')) {
-      final l$subCategory = data['subCategory'];
-      result$data['subCategory'] = (l$subCategory as int?);
+      result$data['size'] = (l$size as int?);
     }
     if (data.containsKey('color')) {
       final l$color = data['color'];
@@ -4436,9 +4393,7 @@ class Variables$Mutation$UpdateProduct {
 
   int get productId => (_$data['productId'] as int);
 
-  Enum$SizeEnum? get size => (_$data['size'] as Enum$SizeEnum?);
-
-  int? get subCategory => (_$data['subCategory'] as int?);
+  int? get size => (_$data['size'] as int?);
 
   List<String?>? get color => (_$data['color'] as List<String?>?);
 
@@ -4491,12 +4446,7 @@ class Variables$Mutation$UpdateProduct {
     result$data['productId'] = l$productId;
     if (_$data.containsKey('size')) {
       final l$size = size;
-      result$data['size'] =
-          l$size == null ? null : toJson$Enum$SizeEnum(l$size);
-    }
-    if (_$data.containsKey('subCategory')) {
-      final l$subCategory = subCategory;
-      result$data['subCategory'] = l$subCategory;
+      result$data['size'] = l$size;
     }
     if (_$data.containsKey('color')) {
       final l$color = color;
@@ -4615,15 +4565,6 @@ class Variables$Mutation$UpdateProduct {
     if (l$size != lOther$size) {
       return false;
     }
-    final l$subCategory = subCategory;
-    final lOther$subCategory = other.subCategory;
-    if (_$data.containsKey('subCategory') !=
-        other._$data.containsKey('subCategory')) {
-      return false;
-    }
-    if (l$subCategory != lOther$subCategory) {
-      return false;
-    }
     final l$color = color;
     final lOther$color = other.color;
     if (_$data.containsKey('color') != other._$data.containsKey('color')) {
@@ -4711,7 +4652,6 @@ class Variables$Mutation$UpdateProduct {
     final l$price = price;
     final l$productId = productId;
     final l$size = size;
-    final l$subCategory = subCategory;
     final l$color = color;
     final l$brand = brand;
     final l$materials = materials;
@@ -4728,7 +4668,6 @@ class Variables$Mutation$UpdateProduct {
       _$data.containsKey('price') ? l$price : const {},
       l$productId,
       _$data.containsKey('size') ? l$size : const {},
-      _$data.containsKey('subCategory') ? l$subCategory : const {},
       _$data.containsKey('color')
           ? l$color == null
               ? null
@@ -4765,8 +4704,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     int? productId,
-    Enum$SizeEnum? size,
-    int? subCategory,
+    int? size,
     List<String?>? color,
     int? brand,
     List<int?>? materials,
@@ -4799,7 +4737,6 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? price = _undefined,
     Object? productId = _undefined,
     Object? size = _undefined,
-    Object? subCategory = _undefined,
     Object? color = _undefined,
     Object? brand = _undefined,
     Object? materials = _undefined,
@@ -4820,8 +4757,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (price != _undefined) 'price': (price as double?),
         if (productId != _undefined && productId != null)
           'productId': (productId as int),
-        if (size != _undefined) 'size': (size as Enum$SizeEnum?),
-        if (subCategory != _undefined) 'subCategory': (subCategory as int?),
+        if (size != _undefined) 'size': (size as int?),
         if (color != _undefined) 'color': (color as List<String?>?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (materials != _undefined) 'materials': (materials as List<int?>?),
@@ -4846,8 +4782,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     int? productId,
-    Enum$SizeEnum? size,
-    int? subCategory,
+    int? size,
     List<String?>? color,
     int? brand,
     List<int?>? materials,
@@ -5076,15 +5011,6 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'size')),
         type: NamedTypeNode(
-          name: NameNode(value: 'SizeEnum'),
-          isNonNull: false,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      ),
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'subCategory')),
-        type: NamedTypeNode(
           name: NameNode(value: 'Int'),
           isNonNull: false,
         ),
@@ -5193,10 +5119,6 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'size'),
             value: VariableNode(name: NameNode(value: 'size')),
-          ),
-          ArgumentNode(
-            name: NameNode(value: 'subCategory'),
-            value: VariableNode(name: NameNode(value: 'subCategory')),
           ),
           ArgumentNode(
             name: NameNode(value: 'color'),

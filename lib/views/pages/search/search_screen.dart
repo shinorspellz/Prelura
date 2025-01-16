@@ -113,56 +113,61 @@ class SearchScreen extends ConsumerWidget {
                       children: [
                         ...ref.watch(popularBrandsProvider).maybeWhen(
                             orElse: () {
-                              return List.generate(
-                                  10,
-                                  (_) => Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 6.0),
-                                        child: ShimmerBox(
-                                          height: 28,
-                                          width: 100,
-                                          radius: 5,
-                                        ),
-                                      ));
-                            },
-                            data: (data) => data.sublist(6).take(10).map(
-                                  (brand) => Padding(
+                          return List.generate(
+                              10,
+                              (_) => Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 6.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        ref
-                                                .read(
-                                                    selectedFilteredProductProvider
-                                                        .notifier)
-                                                .state =
-                                            Input$ProductFiltersInput(
-                                                brand: (brand.id).toInt());
-                                        context.pushRoute(ProductsByBrandRoute(
-                                            title: brand.name,
-                                            id: (brand.id).toInt()));
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 10),
-                                        decoration: BoxDecoration(
-                                            color: PreluraColors.activeColor,
-                                            borderRadius:
-                                                BorderRadius.circular(6)),
-                                        child: Text(
-                                          brand.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                  fontSize: getDefaultSize(),
-                                                  color: PreluraColors.white,
-                                                  fontWeight: FontWeight.w700),
-                                        ),
+                                    child: ShimmerBox(
+                                      height: 28,
+                                      width: 100,
+                                      radius: 5,
+                                    ),
+                                  ));
+                        }, data: (data) {
+                          if (data.isEmpty) {
+                            return [SizedBox.shrink()];
+                          }
+
+                          return data.sublist(6).take(10).map(
+                                (brand) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 6.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      ref
+                                              .read(
+                                                  selectedFilteredProductProvider
+                                                      .notifier)
+                                              .state =
+                                          Input$ProductFiltersInput(
+                                              brand: (brand.id).toInt());
+                                      context.pushRoute(ProductsByBrandRoute(
+                                          title: brand.name,
+                                          id: (brand.id).toInt()));
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16, vertical: 10),
+                                      decoration: BoxDecoration(
+                                          color: PreluraColors.activeColor,
+                                          borderRadius:
+                                              BorderRadius.circular(6)),
+                                      child: Text(
+                                        brand.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                                fontSize: getDefaultSize(),
+                                                color: PreluraColors.white,
+                                                fontWeight: FontWeight.w700),
                                       ),
                                     ),
                                   ),
-                                ))
+                                ),
+                              );
+                        })
                       ],
                     ),
                   ),

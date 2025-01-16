@@ -92,10 +92,7 @@ query Product($id: Int!) {
       id
       name
     }
-    subCategory {
-      id
-      name
-    }
+
     seller {
       id
       username
@@ -103,7 +100,10 @@ query Product($id: Int!) {
     }
     condition
     discountPrice
-    size
+    size{
+      id
+      name
+    }
     condition
     price
     parcelSize
@@ -137,7 +137,7 @@ query RecentlyViewedproducts {
       id
       name
     }
-    subCategory {
+    size {
       id
       name
     }
@@ -148,7 +148,7 @@ query RecentlyViewedproducts {
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -198,7 +198,7 @@ query UserProducts(
       id
       name
     }
-    subCategory {
+    size {
       id
       name
     }
@@ -208,7 +208,7 @@ query UserProducts(
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -250,7 +250,7 @@ query AllProducts(
       id
       name
     }
-    subCategory {
+    size {
       id
       name
     }
@@ -261,7 +261,7 @@ query AllProducts(
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -288,19 +288,10 @@ query AllProducts(
   allProductsTotalNumber
 }
 
-query Categories {
-  categories {
-    id
-    name
-    subCategory {
-      id
-      name
-    }
-  }
-}
 
-query Categoriess($parentId: Int) {
-  categoriess (parentId: $parentId){
+
+query Categories($parentId: Int) {
+  categories (parentId: $parentId){
     id
     name
     hasChildren
@@ -328,7 +319,7 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
         id
         name
       }
-      subCategory {
+      size {
         id
         name
       }
@@ -339,7 +330,6 @@ query likedProducts($pageCount: Int, $pageNumber: Int) {
       isFeatured
       condition
       discountPrice
-      size
       condition
       price
       parcelSize
@@ -400,7 +390,7 @@ query SimilarProducts(
       name
     }
     isFeatured
-    subCategory {
+    size {
       id
       name
     }
@@ -410,7 +400,7 @@ query SimilarProducts(
     }
     condition
     discountPrice
-    size
+
     condition
     price
     parcelSize
@@ -522,7 +512,7 @@ query FilterProductsByPrice(
       id
       name
     }
-    subCategory {
+    size {
       id
       name
     }
@@ -533,7 +523,6 @@ query FilterProductsByPrice(
     }
     condition
     discountPrice
-    size
     condition
     price
     parcelSize

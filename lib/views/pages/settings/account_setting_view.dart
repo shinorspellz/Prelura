@@ -1,29 +1,19 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/date_picker.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
-import 'package:prelura_app/res/utils.dart';
-import 'package:sizer/sizer.dart';
-
-import '../../../core/graphql/__generated/schema.graphql.dart';
-import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
-import '../../../res/helper_function.dart';
 import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/app_checkbox.dart';
 import 'profile_setting_view.dart';
@@ -58,7 +48,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   final bio = TextEditingController();
   final int MaxDescription = 300;
   Gender? gender;
-  Enum$SizeEnum? selectedSize;
+  dynamic selectedSize;
   bool isExpanded = false;
   bool isStyleExpanded = false;
   final ExpansionTileController controller = ExpansionTileController();
@@ -359,9 +349,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text:
-                          " :  ${selectedSize?.name == null ? "" : selectedSize?.name}" ??
-                              "",
+                      text: " :  ${selectedSize?.name ?? ""}" ?? "",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             color: PreluraColors.grey,
@@ -377,14 +365,14 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                   expansionAnimationStyle: AnimationStyle(
                     duration: Duration(milliseconds: 300),
                   ),
-                  children: Enum$SizeEnum.values.map((x) {
-                    if (x == Enum$SizeEnum.$unknown) return Container();
+                  children: ["X"].map((x) {
+                    // if (x == Enum$SizeEnum.$unknown) return Container();
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: PreluraCheckBox(
                           sideText: " ",
                           sideTextColor: PreluraColors.grey,
-                          isChecked: gender?.name == x.name,
+                          isChecked: gender?.name == x,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontSize: getDefaultSize(),
@@ -394,7 +382,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                             setState(() {});
                             styleController.collapse();
                           },
-                          title: x.name.replaceAll("_", " ")),
+                          title: x.replaceAll("_", " ")),
                     );
                   }).toList()),
             )

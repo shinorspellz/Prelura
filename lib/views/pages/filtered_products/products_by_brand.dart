@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -12,9 +13,7 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
-import '../../widgets/empty_screen_placeholder.dart';
 import '../../widgets/filters_options.dart';
-import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 import 'product_by_sales/product_by_christmas.dart';
 
@@ -34,12 +33,10 @@ class ProductsByBrandPage extends ConsumerStatefulWidget {
 
 class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   final controller = ProductsByBrandPage.scrollController;
-  Input$ProductFiltersInput previousState = Input$ProductFiltersInput();
 
   @override
   void initState() {
     super.initState();
-    previousState = ref.read(selectedFilteredProductProvider);
 
     Future.microtask(() {
       if (!mounted) return;
@@ -63,17 +60,7 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   @override
   void dispose() {
     log(":::: I ran  from here");
-    log(HelperFunction.genRef!
-        .read(selectedFilteredProductProvider.notifier)
-        .state
-        .toJson()
-        .toString());
-    log(previousState.toJson().toString());
-    Future.microtask(() {
-      HelperFunction.genRef!
-          .read(selectedFilteredProductProvider.notifier)
-          .state = previousState;
-    });
+    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -109,25 +96,26 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                     pinned: true, // Keeps it static
                     delegate: FilteredProductStaticSliverDelegate(
                         child: Container(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 15, right: 15),
                       color: Theme.of(context).scaffoldBackgroundColor,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Searchwidget(
-                          //   padding: EdgeInsets.zero,
-                          //   obscureText: false,
-                          //   shouldReadOnly: false,
-                          //   hintText: "Search for items",
-                          //   enabled: true,
-                          //   showInputBorder: true,
-                          //   autofocus: false,
-                          //   cancelButton: true,
-                          //   onChanged: (val) {
-                          //     searchQuery = val;
-                          //     setState(() {});
-                          //   },
-                          // ),
+                          Searchwidget(
+                            padding: EdgeInsets.zero,
+                            obscureText: false,
+                            shouldReadOnly: false,
+                            hintText: "Search for items",
+                            enabled: true,
+                            showInputBorder: true,
+                            autofocus: false,
+                            cancelButton: true,
+                            onChanged: (val) {
+                              searchQuery = val;
+                              setState(() {});
+                            },
+                          ),
                           FiltersOptions(
                             excludedFilterTypes: [FilterTypes.brand],
                           ),
@@ -142,13 +130,21 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                               ? SliverPadding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   sliver: SliverToBoxAdapter(
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.7,
-                                      child:EmptyScreenPlaceholder(
-                                  text: "No products found"),
-                                    ),
+                                    child: NoProductWidget(),
+
+                                    // Container(
+                                    //   height:
+                                    //       MediaQuery.of(context).size.height *
+                                    //           0.7,
+                                    //   child: Center(
+                                    //     child: Text(
+                                    //       "No products found",
+                                    //       style: Theme.of(context)
+                                    //           .textTheme
+                                    //           .bodyLarge,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ))
                               : SliverPadding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
@@ -237,29 +233,5 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
         );
       }),
     );
-  }
-}
-
-class FilteredProductStaticSliverDelegate
-    extends SliverPersistentHeaderDelegate {
-  final Widget child;
-
-  FilteredProductStaticSliverDelegate({required this.child});
-
-  @override
-  double get minExtent => 56.0;
-
-  @override
-  double get maxExtent => 56.0;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return child;
-  }
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
   }
 }

@@ -315,10 +315,10 @@ void ShowFilterModal(
   // print(tempSelections);
 
   final filterOptions = {
-    FilterTypes.size: Enum$SizeEnum.values
-        .where((e) => e != Enum$SizeEnum.$unknown)
-        .map((e) => e.name)
-        .toList(),
+    // FilterTypes.size: Enum$SizeEnum.values
+    //     .where((e) => e != Enum$SizeEnum.$unknown)
+    //     .map((e) => e.name)
+    //     .toList(),
     FilterTypes.style: Enum$StyleEnum.values
         .where((e) => e != Enum$StyleEnum.$unknown)
         .map((e) => e.name)

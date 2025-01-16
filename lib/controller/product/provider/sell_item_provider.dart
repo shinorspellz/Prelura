@@ -21,13 +21,11 @@ class SellItemState with _$SellItemState {
     required String title,
     required String description,
     CategoryModel? category,
-    CategoryModel? subCategory,
     Enum$ParcelSizeEnum? parcel,
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     Brand? brand,
-    String? size,
-    // Enum$SizeEnum? size,
+    dynamic size,
     String? price,
     String? discount,
     ConditionsEnum? selectedCondition,
@@ -38,82 +36,6 @@ class SellItemState with _$SellItemState {
 
   factory SellItemState.fromJson(Map<String, dynamic> json) =>
       _$SellItemStateFromJson(json);
-
-  // SellItemState(
-  //     {this.images = const [],
-  //     this.title = '',
-  //     this.description = '',
-  //     this.category,
-  //     this.subCategory,
-  //     this.parcel,
-  //     this.brand,
-  //     this.size,
-  //     this.selectedCondition,
-  //     this.price,
-  //     this.selectedColors = const [],
-  //     this.selectedMaterials = const [],
-  //     this.style,
-  //     this.discount,
-  //     this.customBrand,
-  //     this.isFeatured = false});
-
-  // SellItemState copyWith({
-  //   List<XFile>? images,
-  //   String? title,
-  //   String? description,
-  //   CategoryModel? category,
-  //   CategoryModel? subCategory,
-  //   Enum$ParcelSizeEnum? parcel,
-  //   List<String>? selectedColors,
-  //   List<MaterialModel>? selectedMaterials,
-  //   Brand? brand,
-  //   Enum$SizeEnum? size,
-  //   String? price,
-  //   String? discount,
-  //   Enum$StyleEnum? style,
-  //   ConditionsEnum? selectedCondition,
-  //   String? customBrand,
-  //   bool? isFeatured,
-  // }) {
-  //   return SellItemState(
-  //     images: images ?? this.images,
-  //     title: title ?? this.title,
-  //     description: description ?? this.description,
-  //     category: category ?? this.category,
-  //     subCategory: subCategory ?? this.subCategory,
-  //     parcel: parcel ?? this.parcel,
-  //     size: size ?? this.size,
-  //     brand: brand ?? this.brand,
-  //     price: price ?? this.price,
-  //     selectedColors: selectedColors ?? this.selectedColors,
-  //     selectedCondition: selectedCondition ?? this.selectedCondition,
-  //     selectedMaterials: selectedMaterials ?? this.selectedMaterials,
-  //     style: style ?? this.style,
-  //     discount: discount ?? this.discount,
-  //     customBrand: customBrand ?? this.customBrand,
-  //     isFeatured: isFeatured ?? this.isFeatured,
-  //   );
-  // }
-
-  // @override
-  // bool operator ==(Object other) {
-  //   if (identical(this, other)) return true;
-  //   if (other is! SellItemState) return false;
-  //   return images.length == other.images.length &&
-  //       title == other.title &&
-  //       description == other.description &&
-  //       category == other.category &&
-  //       price == other.price &&
-  //       parcel == other.parcel &&
-  //       brand == other.brand &&
-  //       size == other.size &&
-  //       selectedColors == other.selectedColors &&
-  //       selectedCondition == other.selectedCondition &&
-  //       selectedMaterials == other.selectedMaterials;
-  // }
-
-  // @override
-  // int get hashCode => Object.hash(title, description, category, images.length, selectedColors.length, selectedCondition, selectedMaterials.length, parcel, price, size, brand);
 }
 
 class XFileConverter implements JsonConverter<List<XFile>, List<dynamic>> {
@@ -192,10 +114,6 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(category: category);
   }
 
-  void updateSubCategory(CategoryModel subCategory) {
-    state = state.copyWith(subCategory: subCategory);
-  }
-
   void selectSize(String size) {
     // void selectSize(Enum$SizeEnum size) {
     state = state.copyWith(size: size);
@@ -232,7 +150,6 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
       title: product.name,
       description: product.description,
       category: product.category,
-      subCategory: product.subCategory,
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,

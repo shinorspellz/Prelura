@@ -11,11 +11,11 @@ class CategoriesRepo {
 
   CategoriesRepo(this._client);
 
-  Future<List<Query$Categoriess$categoriess?>?> fetchCategories({
+  Future<List<Query$Categories$categories?>?> fetchCategories({
     int? parentId,
   }) async {
-    final response = await _client.query$Categoriess(Options$Query$Categoriess(
-      variables: Variables$Query$Categoriess(
+    final response = await _client.query$Categories(Options$Query$Categories(
+      variables: Variables$Query$Categories(
         parentId: parentId,
       ),
     ));
@@ -36,7 +36,7 @@ class CategoriesRepo {
 
     log("::::::The categories response :: ${jsonEncode(response.parsedData)}");
 
-    return response.parsedData?.categoriess;
+    return response.parsedData?.categories;
   }
 
   Future<List<Query$Sizes$sizes?>?> fetchSizes(

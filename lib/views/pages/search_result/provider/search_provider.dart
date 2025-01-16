@@ -163,15 +163,15 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
       return;
     }
 
-    if (filterType == FilterTypes.size) {
-      final updatedFilter = providerFilter.currentFilter?.copyWith(
-        size: filterType == FilterTypes.size
-            ? Enum$SizeEnum.values.firstWhere((e) => e.name == value)
-            : providerFilter.currentFilter?.size,
-      );
-
-      providerFilter.updateFilter(updatedFilter!);
-    }
+    // if (filterType == FilterTypes.size) {
+    //   final updatedFilter = providerFilter.currentFilter?.copyWith(
+    //     size: filterType == FilterTypes.size
+    //         ? Enum$SizeEnum.values.firstWhere((e) => e.name == value)
+    //         : providerFilter.currentFilter?.size,
+    //   );
+    //
+    //   providerFilter.updateFilter(updatedFilter!);
+    // }
 
     if (filterType == FilterTypes.style) {
       final updatedFilter = providerFilter.currentFilter?.copyWith(
@@ -251,10 +251,10 @@ void ShowFilteredProductFilterModal(
         builder: (context, ref, _) {
           // Recompute `filterOptions` inside the `Consumer`
           final filterOptions = {
-            FilterTypes.size: Enum$SizeEnum.values
-                .where((e) => e != Enum$SizeEnum.$unknown)
-                .map((e) => e.name)
-                .toList(),
+            // FilterTypes.size: Enum$SizeEnum.values
+            //     .where((e) => e != Enum$SizeEnum.$unknown)
+            //     .map((e) => e.name)
+            //     .toList(),
             FilterTypes.style: Enum$StyleEnum.values
                 .where((e) => e != Enum$StyleEnum.$unknown)
                 .map((e) => e.name)

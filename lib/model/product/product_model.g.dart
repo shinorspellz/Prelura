@@ -19,9 +19,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
           : CategoryModel.fromJson(json['subCategory'] as Map<String, dynamic>),
       seller: UserModel.fromJson(json['seller'] as Map<String, dynamic>),
       discountPrice: json['discountPrice'] as String?,
-      size: json['size'] == null
-          ? null
-          : Enum$ProductsProductSizeChoices.fromJson(json['size'] as String),
+      size: json['size'],
       parcelSize: json['parcelSize'] == null
           ? null
           : Enum$ProductsProductParcelSizeChoices.fromJson(

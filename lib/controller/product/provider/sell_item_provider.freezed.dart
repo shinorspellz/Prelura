@@ -25,14 +25,12 @@ mixin _$SellItemState {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
-  CategoryModel? get subCategory => throw _privateConstructorUsedError;
   Enum$ParcelSizeEnum? get parcel => throw _privateConstructorUsedError;
   List<String> get selectedColors => throw _privateConstructorUsedError;
   List<MaterialModel> get selectedMaterials =>
       throw _privateConstructorUsedError;
   Brand? get brand => throw _privateConstructorUsedError;
-  String? get size =>
-      throw _privateConstructorUsedError; // Enum$SizeEnum? size,
+  dynamic get size => throw _privateConstructorUsedError;
   String? get price => throw _privateConstructorUsedError;
   String? get discount => throw _privateConstructorUsedError;
   ConditionsEnum? get selectedCondition => throw _privateConstructorUsedError;
@@ -61,12 +59,11 @@ abstract class $SellItemStateCopyWith<$Res> {
       String title,
       String description,
       CategoryModel? category,
-      CategoryModel? subCategory,
       Enum$ParcelSizeEnum? parcel,
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      String? size,
+      dynamic size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -75,7 +72,6 @@ abstract class $SellItemStateCopyWith<$Res> {
       bool isFeatured});
 
   $CategoryModelCopyWith<$Res>? get category;
-  $CategoryModelCopyWith<$Res>? get subCategory;
   $BrandCopyWith<$Res>? get brand;
 }
 
@@ -98,7 +94,6 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
     Object? title = null,
     Object? description = null,
     Object? category = freezed,
-    Object? subCategory = freezed,
     Object? parcel = freezed,
     Object? selectedColors = null,
     Object? selectedMaterials = null,
@@ -128,10 +123,6 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      subCategory: freezed == subCategory
-          ? _value.subCategory
-          : subCategory // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
       parcel: freezed == parcel
           ? _value.parcel
           : parcel // ignore: cast_nullable_to_non_nullable
@@ -151,7 +142,7 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -197,20 +188,6 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CategoryModelCopyWith<$Res>? get subCategory {
-    if (_value.subCategory == null) {
-      return null;
-    }
-
-    return $CategoryModelCopyWith<$Res>(_value.subCategory!, (value) {
-      return _then(_value.copyWith(subCategory: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SellItemState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $BrandCopyWith<$Res>? get brand {
     if (_value.brand == null) {
       return null;
@@ -235,12 +212,11 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
       String title,
       String description,
       CategoryModel? category,
-      CategoryModel? subCategory,
       Enum$ParcelSizeEnum? parcel,
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       Brand? brand,
-      String? size,
+      dynamic size,
       String? price,
       String? discount,
       ConditionsEnum? selectedCondition,
@@ -250,8 +226,6 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
-  @override
-  $CategoryModelCopyWith<$Res>? get subCategory;
   @override
   $BrandCopyWith<$Res>? get brand;
 }
@@ -273,7 +247,6 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? category = freezed,
-    Object? subCategory = freezed,
     Object? parcel = freezed,
     Object? selectedColors = null,
     Object? selectedMaterials = null,
@@ -303,10 +276,6 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel?,
-      subCategory: freezed == subCategory
-          ? _value.subCategory
-          : subCategory // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
       parcel: freezed == parcel
           ? _value.parcel
           : parcel // ignore: cast_nullable_to_non_nullable
@@ -326,7 +295,7 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
       size: freezed == size
           ? _value.size
           : size // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -363,7 +332,6 @@ class _$SellItemStateImpl implements _SellItemState {
       required this.title,
       required this.description,
       this.category,
-      this.subCategory,
       this.parcel,
       final List<String> selectedColors = const [],
       final List<MaterialModel> selectedMaterials = const [],
@@ -399,8 +367,6 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   final CategoryModel? category;
   @override
-  final CategoryModel? subCategory;
-  @override
   final Enum$ParcelSizeEnum? parcel;
   final List<String> _selectedColors;
   @override
@@ -424,8 +390,7 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   final Brand? brand;
   @override
-  final String? size;
-// Enum$SizeEnum? size,
+  final dynamic size;
   @override
   final String? price;
   @override
@@ -442,7 +407,7 @@ class _$SellItemStateImpl implements _SellItemState {
 
   @override
   String toString() {
-    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, subCategory: $subCategory, parcel: $parcel, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, brand: $brand, size: $size, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
+    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, brand: $brand, size: $size, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
   }
 
   @override
@@ -456,15 +421,13 @@ class _$SellItemStateImpl implements _SellItemState {
                 other.description == description) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.subCategory, subCategory) ||
-                other.subCategory == subCategory) &&
             (identical(other.parcel, parcel) || other.parcel == parcel) &&
             const DeepCollectionEquality()
                 .equals(other._selectedColors, _selectedColors) &&
             const DeepCollectionEquality()
                 .equals(other._selectedMaterials, _selectedMaterials) &&
             (identical(other.brand, brand) || other.brand == brand) &&
-            (identical(other.size, size) || other.size == size) &&
+            const DeepCollectionEquality().equals(other.size, size) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
@@ -485,12 +448,11 @@ class _$SellItemStateImpl implements _SellItemState {
       title,
       description,
       category,
-      subCategory,
       parcel,
       const DeepCollectionEquality().hash(_selectedColors),
       const DeepCollectionEquality().hash(_selectedMaterials),
       brand,
-      size,
+      const DeepCollectionEquality().hash(size),
       price,
       discount,
       selectedCondition,
@@ -520,12 +482,11 @@ abstract class _SellItemState implements SellItemState {
       required final String title,
       required final String description,
       final CategoryModel? category,
-      final CategoryModel? subCategory,
       final Enum$ParcelSizeEnum? parcel,
       final List<String> selectedColors,
       final List<MaterialModel> selectedMaterials,
       final Brand? brand,
-      final String? size,
+      final dynamic size,
       final String? price,
       final String? discount,
       final ConditionsEnum? selectedCondition,
@@ -546,8 +507,6 @@ abstract class _SellItemState implements SellItemState {
   @override
   CategoryModel? get category;
   @override
-  CategoryModel? get subCategory;
-  @override
   Enum$ParcelSizeEnum? get parcel;
   @override
   List<String> get selectedColors;
@@ -556,7 +515,7 @@ abstract class _SellItemState implements SellItemState {
   @override
   Brand? get brand;
   @override
-  String? get size; // Enum$SizeEnum? size,
+  dynamic get size;
   @override
   String? get price;
   @override
