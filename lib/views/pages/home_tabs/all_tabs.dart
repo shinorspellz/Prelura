@@ -62,7 +62,7 @@ class HomeAllTab extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(e.toString()),
+                      Text("An error occurred"),
                       TextButton.icon(
                         onPressed: () {
                           // log(e.toString(), stackTrace: _);
@@ -87,34 +87,31 @@ class HomeAllTab extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15.0, vertical: 8),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Top Shops",
-                          textAlign: TextAlign.left,
-                          style: context.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: getDefaultSize(size: 16),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Top Shops",
+                            textAlign: TextAlign.left,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: getDefaultSize(size: 16),
+                            ),
                           ),
-                        ),
-                        6.verticalSpacing,
-                        Text(
-                          "Buy from trusted and popular vendors",
-                          textAlign: TextAlign.left,
-                          style: context.textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w400,
-                            color: PreluraColors.grey,
-                            fontSize: getDefaultSize(),
+                          6.verticalSpacing,
+                          Text(
+                            "Buy from trusted and popular vendors",
+                            textAlign: TextAlign.left,
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w400,
+                              color: PreluraColors.grey,
+                              fontSize: getDefaultSize(),
+                            ),
                           ),
-                        ),
-                        8.verticalSpacing,
-                      ],
-                    ),
+                          8.verticalSpacing,
+                        ]),
                   ),
                   AspectRatio(
                     aspectRatio: 1.65,
-                    // height: 320,
-                    // width: MediaQuery.sizeOf(context).width,
                     child: ListView.separated(
                       padding: EdgeInsets.only(left: 15),
                       scrollDirection: Axis.horizontal,
@@ -133,7 +130,7 @@ class HomeAllTab extends ConsumerWidget {
             },
             error: (error, stackTrace) {
               // Handle error state
-              return Center(child: Text('Error: $error'));
+              return Center();
             },
             loading: () {
               // Handle loading state
@@ -300,7 +297,7 @@ class HomeAllTab extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(e.toString()),
+                        Text("An error occurred"),
                         TextButton.icon(
                           onPressed: () {
                             // log(e.toString(), stackTrace: _);
@@ -435,7 +432,7 @@ class HomeAllTab extends ConsumerWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(e.toString()),
+                          Text("An error occurred"),
                           TextButton.icon(
                             onPressed: () {
                               ref.invalidate(allProductProvider);

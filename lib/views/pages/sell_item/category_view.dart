@@ -154,7 +154,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(e.toString()),
+                          Text("An error occurred"),
                           TextButton.icon(
                             onPressed: () => ref.invalidate(categoryProvider),
                             label: const Text('Retry'),

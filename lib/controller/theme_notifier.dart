@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:prelura_app/res/theme.dart';
 
 final themeNotifierProvider = StateNotifierProvider<ThemeNotifier, ThemeMode>(
   (ref) {
@@ -20,7 +19,7 @@ class ThemeNotifier extends StateNotifier<ThemeMode> {
         );
 
   static ThemeMode _loadThemeModeFromHive(Box box) {
-    final themeIndex = box.get(_themeKey, defaultValue: ThemeMode.light);
+    final themeIndex = box.get(_themeKey, defaultValue: ThemeMode.light.index);
     return ThemeMode.values[themeIndex];
   }
 

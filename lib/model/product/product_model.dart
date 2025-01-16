@@ -19,7 +19,7 @@ class ProductModel with _$ProductModel {
     final CategoryModel? subCategory,
     required final UserModel seller,
     final String? discountPrice,
-    final dynamic size,
+    final SizeType? size,
     final Enum$ProductsProductParcelSizeChoices? parcelSize,
     final ConditionsEnum? condition,
     required final double price,
@@ -126,4 +126,15 @@ class Brand with _$Brand {
   }) = _Brand;
 
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
+}
+
+@freezed
+class SizeType with _$SizeType {
+  const factory SizeType({
+    required int id,
+    required String name,
+  }) = _SizeType;
+
+  factory SizeType.fromJson(Map<String, dynamic> json) =>
+      _$SizeTypeFromJson(json);
 }

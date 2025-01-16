@@ -1,18 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/res/colors.dart';
+
+import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../res/utils.dart';
 import '../../shimmers/grid_menu_card_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
-import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
 class BrandSelectionPage extends ConsumerStatefulWidget {
@@ -181,7 +182,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text(e.toString()),
+                                  Text("An error occurred"),
                                   TextButton.icon(
                                     onPressed: () =>
                                         ref.invalidate(brandsProvider),
@@ -253,7 +254,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(e.toString()),
+                  Text("An error occurred"),
                   TextButton.icon(
                     onPressed: () => ref.invalidate(brandsProvider),
                     label: const Text('Retry'),
