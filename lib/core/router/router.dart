@@ -222,6 +222,10 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
+          page: NewCategoryRoute.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: VerifyYourIdentity.page,
           guards: [AuthGuard(_ref)],
         ),
