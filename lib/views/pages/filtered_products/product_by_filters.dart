@@ -8,6 +8,7 @@ import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widge
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
+import 'package:prelura_app/views/widgets/error_placeholder.dart';
 
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
@@ -167,23 +168,12 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       error: (e, _) {
                         return SliverToBoxAdapter(
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("An error occurred"),
-                                TextButton.icon(
-                                  onPressed: () {
-                                    // log(e.toString(), stackTrace: _);
-                                    ref.refresh(
-                                        filteredProductProvider(searchQuery));
-                                  },
-                                  label: const Text('Retry'),
-                                  icon: const Icon(Icons.refresh_rounded),
-                                ),
-                              ],
-                            ),
+                          child: ErrorPlaceholder(
+                            error: "An error occurred",
+                            onTap: () {
+                              // log(e.toString(), stackTrace: _);
+                              ref.refresh(filteredProductProvider(searchQuery));
+                            },
                           ),
                         );
                       },
@@ -191,7 +181,10 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                       data: (products) {
                         return products.isEmpty
                             ? SliverToBoxAdapter(
-                                child: Expanded(child: NoProductWidget()),
+                                child: NoProductWidget(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.65,
+                                ),
 
                                 // Container(
                                 //   height: MediaQuery.of(context).size.height *
@@ -228,14 +221,19 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
                 if (ref
-                    .watch(filteredProductProvider(searchQuery).notifier)
-                    .canLoadMore())
-                  if (!ref
-                      .watch(filteredProductProvider(searchQuery))
-                      .isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                        .watch(filteredProductProvider(searchQuery))
+                        .valueOrNull
+                        ?.isNotEmpty ==
+                    true)
+                  if (ref
+                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .canLoadMore())
+                    if (!ref
+                        .watch(filteredProductProvider(searchQuery))
+                        .isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ],
             ),
           ),

@@ -13,6 +13,7 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
+import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../search_result/view/search_result.dart';
 import 'product_by_sales/product_by_christmas.dart';
@@ -116,7 +117,11 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                               ? SliverPadding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   sliver: SliverToBoxAdapter(
-                                    child: NoProductWidget(),
+                                    child: NoProductWidget(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.75,
+                                    ),
 
                                     // Container(
                                     //   height:
@@ -180,38 +185,31 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                             },
                             error: (e, _) {
                               return SliverToBoxAdapter(
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text("An error occurred"),
-                                      TextButton.icon(
-                                        onPressed: () {
-                                          // log(e.toString(), stackTrace: _);
-                                          ref.invalidate(
-                                              filteredProductProvider);
-                                        },
-                                        label: const Text('Retry'),
-                                        icon: const Icon(Icons.refresh_rounded),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                                  child: ErrorPlaceholder(
+                                error: "An error occurred",
+                                onTap: () {
+                                  // log(e.toString(), stackTrace: _);
+                                  ref.invalidate(filteredProductProvider);
+                                },
+                              ));
                             },
                             loading: () =>
                                 SliverToBoxAdapter(child: GridShimmer())),
                   ),
                   if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
-                      .canLoadMore())
-                    if (!ref
-                        .watch(filteredProductProvider(searchQuery))
-                        .isLoading)
-                      const SliverToBoxAdapter(
-                        child: PaginationLoadingIndicator(),
-                      )
+                          .watch(filteredProductProvider(searchQuery))
+                          .valueOrNull
+                          ?.isNotEmpty ==
+                      true)
+                    if (ref
+                        .watch(filteredProductProvider(searchQuery).notifier)
+                        .canLoadMore())
+                      if (!ref
+                          .watch(filteredProductProvider(searchQuery))
+                          .isLoading)
+                        const SliverToBoxAdapter(
+                          child: PaginationLoadingIndicator(),
+                        )
                 ],
               ),
             ),
