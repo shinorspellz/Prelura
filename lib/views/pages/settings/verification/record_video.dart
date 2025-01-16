@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
@@ -122,16 +123,15 @@ class _RecordVideoState extends State<RecordVideo> {
                                     });
                                   });
                                   // ignore: use_build_context_synchronously
-                                  // navigateAndReplaceRoute(
-                                  //     context,
-                                  //     SubmitVideo(
-                                  //       videoFile: videoFile!,
-                                  //       image: widget.image,
-                                  //     ));
+                                  context.router.push(SubmitVideo(
+                                    videoFile: videoFile!,
+                                    image: widget.image,
+                                  ));
+
                                   ///
                                   ///
                                   ///
-                                  // await controller!.pauseVideoRecording();
+                                  //  controller!.pauseVideoRecording();
                                 },
                                 child: Container(
                                   height: 60,

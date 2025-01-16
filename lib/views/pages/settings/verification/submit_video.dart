@@ -1,19 +1,17 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:video_player/video_player.dart';
-import 'package:vmodel/src/core/routing/navigator_1.0.dart';
-import 'package:vmodel/src/core/utils/shared.dart';
-import 'package:vmodel/src/features/jobs/job_market/views/job_market_offer_accepted.dart';
-import 'package:vmodel/src/res/res.dart';
-import 'package:vmodel/src/shared/appbar/appbar.dart';
-import 'package:vmodel/src/shared/buttons/primary_button.dart';
 
+@RoutePage()
 class SubmitVideo extends StatefulWidget {
   final XFile image;
-  const SubmitVideo({Key? key, required this.image, required this.videoFile})
-      : super(key: key);
+  const SubmitVideo({super.key, required this.image, required this.videoFile});
 
   final XFile videoFile;
   @override
@@ -48,16 +46,18 @@ class _SubmitVideoState extends State<SubmitVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const VWidgetsAppBar(
+      appBar: PreluraAppBar(
         appbarTitle: "Selfie Video",
-        appBarHeight: 50,
-        elevation: 0.0,
-        leadingIcon: VWidgetsBackButton(),
+        leadingIcon: IconButton(
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          onPressed: () => context.router.popForced(),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const VWidgetsPagePadding.horizontalSymmetric(
-            20,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,9 +66,10 @@ class _SubmitVideoState extends State<SubmitVideo> {
               Text(
                 "Great! Check your video is easy to see and hear before you press send.",
                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: VmodelColors.primaryColor),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      // color: VmodelColors.primaryColor,
+                    ),
                 textAlign: TextAlign.center,
               ),
               addVerticalSpacing(60),
@@ -92,28 +93,29 @@ class _SubmitVideoState extends State<SubmitVideo> {
                 ),
               ),
               addVerticalSpacing(60),
-              VWidgetsPrimaryButton(
-                onPressed: () {
-                  navigateAndReplaceRoute(
-                      context,
-                      VerifyNationalID(
-                        image: widget.image,
-                      ));
+              AppButton(
+                onTap: () {
+                  // navigateAndReplaceRoute(
+                  //     context,
+                  //     VerifyNationalID(
+                  //       image: widget.image,
+                  //     ));
                 },
-                buttonTitle: "Submit video",
-                enableButton: true,
+                text: "Submit video",
+                isDisabled: false,
               ),
               addVerticalSpacing(20),
               GestureDetector(
                 onTap: () {
-                  goBack(context);
+                  // goBack(context);
                 },
                 child: Text(
                   "Retake video",
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14,
-                      color: VmodelColors.primaryColor),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        // color: VmodelColors.primaryColor,
+                      ),
                   textAlign: TextAlign.center,
                 ),
               ),
