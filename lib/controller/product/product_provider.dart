@@ -58,6 +58,7 @@ final searchProductProvider =
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
+
   final category = ref
       .watch(categoryProvider)
       .valueOrNull

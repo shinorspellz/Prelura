@@ -278,6 +278,20 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
+  $SizeTypeCopyWith<$Res>? get size {
+    if (_value.size == null) {
+      return null;
+    }
+
+    return $SizeTypeCopyWith<$Res>(_value.size!, (value) {
+      return _then(_value.copyWith(size: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ProductModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
   $BrandCopyWith<$Res>? get brand {
     if (_value.brand == null) {
       return null;
@@ -614,7 +628,7 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.seller, seller) || other.seller == seller) &&
             (identical(other.discountPrice, discountPrice) ||
                 other.discountPrice == discountPrice) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
+            (identical(other.size, size) || other.size == size) &&
             (identical(other.parcelSize, parcelSize) ||
                 other.parcelSize == parcelSize) &&
             (identical(other.condition, condition) ||
@@ -654,7 +668,7 @@ class _$ProductModelImpl implements _ProductModel {
         category,
         seller,
         discountPrice,
-        const DeepCollectionEquality().hash(size),
+        size,
         parcelSize,
         condition,
         price,

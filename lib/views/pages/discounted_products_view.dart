@@ -1,11 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 
-import '../../res/colors.dart';
 import '../../controller/product/product_provider.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
@@ -139,7 +137,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(e.toString()),
+                                Text("an error occurred"),
                                 TextButton.icon(
                                   onPressed: () {
                                     // log(e.toString(), stackTrace: _);

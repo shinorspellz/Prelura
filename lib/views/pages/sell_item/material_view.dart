@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/main.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
-import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -12,22 +10,22 @@ import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../res/colors.dart';
 import '../../../controller/product/materials_provider.dart';
+import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../shimmers/grid_menu_card_shimmer.dart';
 import '../../widgets/gap.dart';
-import '../../widgets/gesture_navigator.dart';
-import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
 class MaterialSelectionScreen extends ConsumerStatefulWidget {
   const MaterialSelectionScreen({super.key});
 
   @override
-  ConsumerState<MaterialSelectionScreen> createState() => _MaterialSelectionScreenState();
+  ConsumerState<MaterialSelectionScreen> createState() =>
+      _MaterialSelectionScreenState();
 }
 
-class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScreen> {
+class _MaterialSelectionScreenState
+    extends ConsumerState<MaterialSelectionScreen> {
   final controller = ScrollController();
 
   List<MaterialModel> selectedMaterials = [];
@@ -64,8 +62,10 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
     final notifier = ref.read(sellItemProvider.notifier);
 
     double getBottomInsets() {
-      if (MediaQuery.of(context).viewInsets.bottom > MediaQuery.of(context).viewPadding.bottom) {
-        return MediaQuery.of(context).viewInsets.bottom - MediaQuery.of(context).viewPadding.bottom;
+      if (MediaQuery.of(context).viewInsets.bottom >
+          MediaQuery.of(context).viewPadding.bottom) {
+        return MediaQuery.of(context).viewInsets.bottom -
+            MediaQuery.of(context).viewPadding.bottom;
       }
       return 0;
     }
@@ -73,7 +73,8 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
         centerTitle: true,
@@ -88,48 +89,57 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                     delegate: StaticSliverDelegate(
                       child: Container(
                           margin: EdgeInsets.zero,
-                          padding: const EdgeInsets.only(top: 16, left: 15, right: 15),
+                          padding: const EdgeInsets.only(
+                              top: 16, left: 15, right: 15),
                           color: Theme.of(context).scaffoldBackgroundColor,
-                          child: Column(mainAxisSize: MainAxisSize.max, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Searchwidget(
-                              padding: EdgeInsets.zero,
-                              hintText: "Find a brand",
-                              obscureText: false,
-                              shouldReadOnly: false,
-                              enabled: true,
-                              showInputBorder: true,
-                              autofocus: false,
-                              cancelButton: true,
-                              onChanged: (val) {
-                                searchQuery = val;
-                                setState(() {});
-                              },
-                            ),
-                            addVerticalSpacing(15),
-                          ])),
+                          child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Searchwidget(
+                                  padding: EdgeInsets.zero,
+                                  hintText: "Find a brand",
+                                  obscureText: false,
+                                  shouldReadOnly: false,
+                                  enabled: true,
+                                  showInputBorder: true,
+                                  autofocus: false,
+                                  cancelButton: true,
+                                  onChanged: (val) {
+                                    searchQuery = val;
+                                    setState(() {});
+                                  },
+                                ),
+                                addVerticalSpacing(15),
+                              ])),
                     )),
                 if (searchQuery.isNotEmpty) ...[
                   ref.watch(searchMaterial(searchQuery)).when(
                         data: (searchMaterials) => SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                              final isSelected = selectedMaterials.contains(searchMaterials[index]);
+                              final isSelected = selectedMaterials
+                                  .contains(searchMaterials[index]);
                               return PreluraCheckBox(
                                 isChecked: isSelected,
                                 onChanged: (isChecked) {
                                   setState(() {
                                     if (selectedMaterials.length < 3) {
                                       if (isChecked == true) {
-                                        selectedMaterials.add(searchMaterials[index]);
+                                        selectedMaterials
+                                            .add(searchMaterials[index]);
                                       } else {
-                                        selectedMaterials.remove(searchMaterials[index]);
+                                        selectedMaterials
+                                            .remove(searchMaterials[index]);
                                       }
                                     } else {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         const SnackBar(
                                           content: Text(
                                             "You can only select up to 2 colours.",
-                                            style: TextStyle(color: Colors.white),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
                                           backgroundColor: Colors.red,
                                         ),
@@ -149,7 +159,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(e.toString()),
+                                Text("An error occurred"),
                                 TextButton.icon(
                                   onPressed: () {},
                                   label: const Text('Retry'),
@@ -167,7 +177,8 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
-                        final isSelected = selectedMaterials.contains(materials[index]);
+                        final isSelected =
+                            selectedMaterials.contains(materials[index]);
                         return PreluraCheckBox(
                           isChecked: isSelected,
                           onChanged: (isChecked) {
@@ -183,7 +194,8 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                                   ),
                                 );
                               }
-                              if (isChecked == true && selectedMaterials.length < 3) {
+                              if (isChecked == true &&
+                                  selectedMaterials.length < 3) {
                                 selectedMaterials.add(materials[index]);
                               }
                               if (!isChecked) {
@@ -210,7 +222,7 @@ class _MaterialSelectionScreenState extends ConsumerState<MaterialSelectionScree
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(e.toString()),
+                  Text("An error occurred"),
                   TextButton.icon(
                     onPressed: () => ref.invalidate(materialsProvider),
                     label: const Text('Retry'),

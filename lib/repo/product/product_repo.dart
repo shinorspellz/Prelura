@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
@@ -130,6 +131,7 @@ class ProductRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+    log(":::::The product info is:: ${jsonEncode(response.parsedData!.product!.toJson())}");
 
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }

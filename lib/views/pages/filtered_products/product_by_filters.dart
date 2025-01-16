@@ -234,7 +234,7 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(e.toString()),
+                                Text("An error occurred"),
                                 TextButton.icon(
                                   onPressed: () {
                                     // log(e.toString(), stackTrace: _);
