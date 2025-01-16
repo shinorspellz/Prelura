@@ -85,6 +85,9 @@ class MenuCard extends StatelessWidget {
                         svgPath: svgPath ?? "",
                         color: PreluraColors.primaryColor,
                       ),
+                      const SizedBox(
+                        width: 10,
+                      ),
                     ] else if (icon != null) ...[
                       icon!,
                       const SizedBox(
