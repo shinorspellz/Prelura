@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -69,11 +70,9 @@ class _DisplayCapturedDocumentState extends State<DisplayCapturedDocument> {
               AppButton(
                 width: double.infinity,
                 onTap: () {
-                  // navigateToRoute(
-                  //     context,
-                  //     VerifyVideo(
-                  //       image: widget.image,
-                  //     ));
+                  context.router.push(VerifyVideo(
+                    image: widget.image,
+                  ));
                 },
                 text: "Use this picture",
                 isDisabled: false,

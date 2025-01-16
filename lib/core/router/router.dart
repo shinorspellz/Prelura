@@ -210,6 +210,10 @@ class AppRouter extends RootStackRouter {
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
+          page: VerifyVideo.page,
+          guards: [AuthGuard(_ref)],
+        ),
+        AutoRoute(
           page: VerifyYourIdentity.page,
           guards: [AuthGuard(_ref)],
         ),
