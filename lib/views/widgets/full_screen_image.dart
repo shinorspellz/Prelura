@@ -1,13 +1,12 @@
 import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/helper_function.dart';
-import 'package:prelura_app/res/ui_constants.dart';
 
 import '../../../res/colors.dart';
 
@@ -38,8 +37,9 @@ class _FullScreenImageState extends State<FullScreenImage> {
       body: Column(
         children: [
           SafeArea(
+            bottom: false,
             child: Container(
-              padding: EdgeInsets.only(left: 16, top: 20),
+              padding: EdgeInsets.only(top: 20),
               alignment: Alignment.topLeft,
               child: IconButton(
                   icon: Icon(
@@ -53,26 +53,34 @@ class _FullScreenImageState extends State<FullScreenImage> {
           ),
           // Spacer(),
           Expanded(
-            flex: 5,
+            // flex: 5,
             child: PageView.builder(
               onPageChanged: (index) => setState(() => currentIndex = index),
               controller: PageController(initialPage: widget.initialIndex),
-              itemCount: widget.isLocal ? widget.imagePath.length : widget.imageUrl.length,
+              itemCount: widget.isLocal
+                  ? widget.imagePath.length
+                  : widget.imageUrl.length,
+              padEnds: false,
               itemBuilder: (context, index) {
-                return Center(
+                return Container(
+                  color: Colors.red,
+                  width: double.infinity,
                   child: widget.isLocal
                       ? InteractiveViewer(
                           child: Image.file(
-                            File(widget.imagePath[index].path), // Local image file
-                            fit: BoxFit.contain,
+                            File(widget
+                                .imagePath[index].path), // Local image file
+                            fit: BoxFit.cover,
                           ),
                         )
                       : InteractiveViewer(
                           child: CachedNetworkImage(
-                            imageUrl: widget.imageUrl[index].url, // Network image URL
-                            fit: BoxFit.contain,
+                            imageUrl:
+                                widget.imageUrl[index].url, // Network image URL
+                            fit: BoxFit.cover,
                             placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(), // Loading indicator
+                              child:
+                                  CircularProgressIndicator(), // Loading indicator
                             ),
                             errorWidget: (context, url, error) => const Icon(
                               Icons.error, // Error icon for failed loading
