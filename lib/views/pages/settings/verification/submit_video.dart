@@ -94,6 +94,7 @@ class _SubmitVideoState extends State<SubmitVideo> {
               ),
               addVerticalSpacing(60),
               AppButton(
+                width: double.infinity,
                 onTap: () {
                   // navigateAndReplaceRoute(
                   //     context,
