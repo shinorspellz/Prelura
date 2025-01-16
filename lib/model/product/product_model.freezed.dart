@@ -278,20 +278,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SizeTypeCopyWith<$Res>? get size {
-    if (_value.size == null) {
-      return null;
-    }
-
-    return $SizeTypeCopyWith<$Res>(_value.size!, (value) {
-      return _then(_value.copyWith(size: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ProductModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $BrandCopyWith<$Res>? get brand {
     if (_value.brand == null) {
       return null;

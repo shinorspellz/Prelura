@@ -503,7 +503,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       MenuCard(
                         title: 'Size',
                         rightArrow: false,
-                        subtitle: state.size?.replaceAll('_', ' '),
+                        subtitle: state.size?.name.replaceAll('_', ' '),
                         subtitleColor: PreluraColors.greyColor,
                         onTap: () {
                           dismissKeyboard();
@@ -693,7 +693,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   price: double.parse(state.price!),
                                   condition: state.selectedCondition!,
                                   parcelSize: state.parcel,
-                                  size: state.size,
+                                  size: state.size.id,
                                   category:
                                       int.parse(state.category!.id.toString()),
                                   brandId: state.brand?.id,

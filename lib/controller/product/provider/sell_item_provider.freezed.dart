@@ -427,7 +427,6 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   String toString() {
     return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, brand: $brand, size: $size, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
-    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, brand: $brand, size: $size, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
   }
 
   @override
@@ -447,7 +446,7 @@ class _$SellItemStateImpl implements _SellItemState {
             const DeepCollectionEquality()
                 .equals(other._selectedMaterials, _selectedMaterials) &&
             (identical(other.brand, brand) || other.brand == brand) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
+            (identical(other.size, size) || other.size == size) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
@@ -472,7 +471,7 @@ class _$SellItemStateImpl implements _SellItemState {
       const DeepCollectionEquality().hash(_selectedColors),
       const DeepCollectionEquality().hash(_selectedMaterials),
       brand,
-      const DeepCollectionEquality().hash(size),
+      size,
       price,
       discount,
       selectedCondition,

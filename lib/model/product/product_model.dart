@@ -137,10 +137,6 @@ class SizeType with _$SizeType {
     required String name,
   }) = _SizeType;
 
-<<<<<<< HEAD
   factory SizeType.fromJson(Map<String, dynamic> json) => _$SizeTypeFromJson(json);
-=======
-  factory SizeType.fromJson(Map<String, dynamic> json) =>
-      _$SizeTypeFromJson(json);
->>>>>>> dedff3eead8ff2b3661b1d9e9b769c16d3a67824
+
 }

@@ -5592,82 +5592,6 @@ class _CopyWithStubImpl$Query$Product$product$size<TRes>
       _res;
 }
 
-class Query$Product$product$size {
-  Query$Product$product$size();
-
-  factory Query$Product$product$size.fromJson(Map<String, dynamic> json) {
-    return Query$Product$product$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Product$product$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Product$product$size
-    on Query$Product$product$size {
-  CopyWith$Query$Product$product$size<Query$Product$product$size>
-      get copyWith => CopyWith$Query$Product$product$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Product$product$size<TRes> {
-  factory CopyWith$Query$Product$product$size(
-    Query$Product$product$size instance,
-    TRes Function(Query$Product$product$size) then,
-  ) = _CopyWithImpl$Query$Product$product$size;
-
-  factory CopyWith$Query$Product$product$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$Product$product$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$Product$product$size<TRes>
-    implements CopyWith$Query$Product$product$size<TRes> {
-  _CopyWithImpl$Query$Product$product$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Product$product$size _instance;
-
-  final TRes Function(Query$Product$product$size) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Query$Product$product$size());
-}
-
-class _CopyWithStubImpl$Query$Product$product$size<TRes>
-    implements CopyWith$Query$Product$product$size<TRes> {
-  _CopyWithStubImpl$Query$Product$product$size(this._res);
-
-  TRes _res;
-
-  call() => _res;
-}
-
 class Query$Product$product$materials {
   Query$Product$product$materials({
     this.id,
@@ -7061,8 +6985,6 @@ abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts<
       get size;
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller<TRes>
       get seller;
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
-      get size;
   TRes materials(
       Iterable<Query$RecentlyViewedproducts$recentlyViewedProducts$materials?>? Function(
               Iterable<
@@ -7220,16 +7142,6 @@ class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
-      get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size
-            .stub(_then(_instance))
-        : CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$RecentlyViewedproducts$recentlyViewedProducts$materials?>? Function(
                   Iterable<
@@ -7306,11 +7218,6 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts<
   CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller<TRes>
       get seller =>
           CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$seller
-              .stub(_res);
-
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<TRes>
-      get size =>
-          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size
               .stub(_res);
 
   materials(_fn) => _res;
@@ -7806,97 +7713,6 @@ class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$sell
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$RecentlyViewedproducts$recentlyViewedProducts$size {
-  Query$RecentlyViewedproducts$recentlyViewedProducts$size();
-
-  factory Query$RecentlyViewedproducts$recentlyViewedProducts$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$RecentlyViewedproducts$recentlyViewedProducts$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$RecentlyViewedproducts$recentlyViewedProducts$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$RecentlyViewedproducts$recentlyViewedProducts$size
-    on Query$RecentlyViewedproducts$recentlyViewedProducts$size {
-  CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-          Query$RecentlyViewedproducts$recentlyViewedProducts$size>
-      get copyWith =>
-          CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-    TRes> {
-  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
-    Query$RecentlyViewedproducts$recentlyViewedProducts$size instance,
-    TRes Function(Query$RecentlyViewedproducts$recentlyViewedProducts$size)
-        then,
-  ) = _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size;
-
-  factory CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-        TRes>
-    implements
-        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-            TRes> {
-  _CopyWithImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$RecentlyViewedproducts$recentlyViewedProducts$size _instance;
-
-  final TRes Function(Query$RecentlyViewedproducts$recentlyViewedProducts$size)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() =>
-      _then(Query$RecentlyViewedproducts$recentlyViewedProducts$size());
-}
-
-class _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-        TRes>
-    implements
-        CopyWith$Query$RecentlyViewedproducts$recentlyViewedProducts$size<
-            TRes> {
-  _CopyWithStubImpl$Query$RecentlyViewedproducts$recentlyViewedProducts$size(
-      this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$RecentlyViewedproducts$recentlyViewedProducts$materials {
@@ -9601,7 +9417,6 @@ abstract class CopyWith$Query$UserProducts$userProducts<TRes> {
   CopyWith$Query$UserProducts$userProducts$category<TRes> get category;
   CopyWith$Query$UserProducts$userProducts$size<TRes> get size;
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller;
-  CopyWith$Query$UserProducts$userProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$UserProducts$userProducts$materials?>? Function(
               Iterable<
@@ -9742,14 +9557,6 @@ class _CopyWithImpl$Query$UserProducts$userProducts<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$UserProducts$userProducts$size<TRes> get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$UserProducts$userProducts$size.stub(_then(_instance))
-        : CopyWith$Query$UserProducts$userProducts$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$UserProducts$userProducts$materials?>? Function(
                   Iterable<
@@ -9814,9 +9621,6 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts<TRes>
 
   CopyWith$Query$UserProducts$userProducts$seller<TRes> get seller =>
       CopyWith$Query$UserProducts$userProducts$seller.stub(_res);
-
-  CopyWith$Query$UserProducts$userProducts$size<TRes> get size =>
-      CopyWith$Query$UserProducts$userProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -9977,9 +9781,152 @@ class Query$UserProducts$userProducts$size {
   factory Query$UserProducts$userProducts$size.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$username = json['username'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
     return Query$UserProducts$userProducts$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserProducts$userProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserProducts$userProducts$size
+    on Query$UserProducts$userProducts$size {
+  CopyWith$Query$UserProducts$userProducts$size<
+          Query$UserProducts$userProducts$size>
+      get copyWith => CopyWith$Query$UserProducts$userProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  factory CopyWith$Query$UserProducts$userProducts$size(
+    Query$UserProducts$userProducts$size instance,
+    TRes Function(Query$UserProducts$userProducts$size) then,
+  ) = _CopyWithImpl$Query$UserProducts$userProducts$size;
+
+  factory CopyWith$Query$UserProducts$userProducts$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProducts$userProducts$size;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  _CopyWithImpl$Query$UserProducts$userProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserProducts$userProducts$size _instance;
+
+  final TRes Function(Query$UserProducts$userProducts$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserProducts$userProducts$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserProducts$userProducts$size<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
+  _CopyWithStubImpl$Query$UserProducts$userProducts$size(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserProducts$userProducts$seller {
+  Query$UserProducts$userProducts$seller({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$UserProducts$userProducts$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Query$UserProducts$userProducts$seller(
       id: (l$id as int?),
       username: (l$username as String?),
       $__typename: (l$$__typename as String),
@@ -10020,7 +9967,7 @@ class Query$UserProducts$userProducts$size {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$UserProducts$userProducts$size ||
+    if (other is! Query$UserProducts$userProducts$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -10043,24 +9990,24 @@ class Query$UserProducts$userProducts$size {
   }
 }
 
-extension UtilityExtension$Query$UserProducts$userProducts$size
-    on Query$UserProducts$userProducts$size {
-  CopyWith$Query$UserProducts$userProducts$size<
-          Query$UserProducts$userProducts$size>
-      get copyWith => CopyWith$Query$UserProducts$userProducts$size(
+extension UtilityExtension$Query$UserProducts$userProducts$seller
+    on Query$UserProducts$userProducts$seller {
+  CopyWith$Query$UserProducts$userProducts$seller<
+          Query$UserProducts$userProducts$seller>
+      get copyWith => CopyWith$Query$UserProducts$userProducts$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  factory CopyWith$Query$UserProducts$userProducts$size(
-    Query$UserProducts$userProducts$size instance,
-    TRes Function(Query$UserProducts$userProducts$size) then,
-  ) = _CopyWithImpl$Query$UserProducts$userProducts$size;
+abstract class CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  factory CopyWith$Query$UserProducts$userProducts$seller(
+    Query$UserProducts$userProducts$seller instance,
+    TRes Function(Query$UserProducts$userProducts$seller) then,
+  ) = _CopyWithImpl$Query$UserProducts$userProducts$seller;
 
-  factory CopyWith$Query$UserProducts$userProducts$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserProducts$userProducts$size;
+  factory CopyWith$Query$UserProducts$userProducts$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserProducts$userProducts$seller;
 
   TRes call({
     int? id,
@@ -10069,16 +10016,16 @@ abstract class CopyWith$Query$UserProducts$userProducts$size<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  _CopyWithImpl$Query$UserProducts$userProducts$size(
+class _CopyWithImpl$Query$UserProducts$userProducts$seller<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  _CopyWithImpl$Query$UserProducts$userProducts$seller(
     this._instance,
     this._then,
   );
 
-  final Query$UserProducts$userProducts$size _instance;
+  final Query$UserProducts$userProducts$seller _instance;
 
-  final TRes Function(Query$UserProducts$userProducts$size) _then;
+  final TRes Function(Query$UserProducts$userProducts$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -10087,7 +10034,7 @@ class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
     Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$UserProducts$userProducts$size(
+      _then(Query$UserProducts$userProducts$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
@@ -10097,9 +10044,9 @@ class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$UserProducts$userProducts$size<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  _CopyWithStubImpl$Query$UserProducts$userProducts$size(this._res);
+class _CopyWithStubImpl$Query$UserProducts$userProducts$seller<TRes>
+    implements CopyWith$Query$UserProducts$userProducts$seller<TRes> {
+  _CopyWithStubImpl$Query$UserProducts$userProducts$seller(this._res);
 
   TRes _res;
 
@@ -10109,84 +10056,6 @@ class _CopyWithStubImpl$Query$UserProducts$userProducts$size<TRes>
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$UserProducts$userProducts$size {
-  Query$UserProducts$userProducts$size();
-
-  factory Query$UserProducts$userProducts$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$UserProducts$userProducts$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$UserProducts$userProducts$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$UserProducts$userProducts$size
-    on Query$UserProducts$userProducts$size {
-  CopyWith$Query$UserProducts$userProducts$size<
-          Query$UserProducts$userProducts$size>
-      get copyWith => CopyWith$Query$UserProducts$userProducts$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  factory CopyWith$Query$UserProducts$userProducts$size(
-    Query$UserProducts$userProducts$size instance,
-    TRes Function(Query$UserProducts$userProducts$size) then,
-  ) = _CopyWithImpl$Query$UserProducts$userProducts$size;
-
-  factory CopyWith$Query$UserProducts$userProducts$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserProducts$userProducts$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$UserProducts$userProducts$size<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  _CopyWithImpl$Query$UserProducts$userProducts$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$UserProducts$userProducts$size _instance;
-
-  final TRes Function(Query$UserProducts$userProducts$size) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Query$UserProducts$userProducts$size());
-}
-
-class _CopyWithStubImpl$Query$UserProducts$userProducts$size<TRes>
-    implements CopyWith$Query$UserProducts$userProducts$size<TRes> {
-  _CopyWithStubImpl$Query$UserProducts$userProducts$size(this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$UserProducts$userProducts$materials {
@@ -11826,7 +11695,6 @@ abstract class CopyWith$Query$AllProducts$allProducts<TRes> {
   CopyWith$Query$AllProducts$allProducts$category<TRes> get category;
   CopyWith$Query$AllProducts$allProducts$size<TRes> get size;
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller;
-  CopyWith$Query$AllProducts$allProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$AllProducts$allProducts$materials?>? Function(
               Iterable<
@@ -11966,14 +11834,6 @@ class _CopyWithImpl$Query$AllProducts$allProducts<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$AllProducts$allProducts$size<TRes> get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$AllProducts$allProducts$size.stub(_then(_instance))
-        : CopyWith$Query$AllProducts$allProducts$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$AllProducts$allProducts$materials?>? Function(
                   Iterable<
@@ -12038,9 +11898,6 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts<TRes>
 
   CopyWith$Query$AllProducts$allProducts$seller<TRes> get seller =>
       CopyWith$Query$AllProducts$allProducts$seller.stub(_res);
-
-  CopyWith$Query$AllProducts$allProducts$size<TRes> get size =>
-      CopyWith$Query$AllProducts$allProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -12496,84 +12353,6 @@ class _CopyWithStubImpl$Query$AllProducts$allProducts$seller<TRes>
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$AllProducts$allProducts$size {
-  Query$AllProducts$allProducts$size();
-
-  factory Query$AllProducts$allProducts$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$AllProducts$allProducts$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$AllProducts$allProducts$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$AllProducts$allProducts$size
-    on Query$AllProducts$allProducts$size {
-  CopyWith$Query$AllProducts$allProducts$size<
-          Query$AllProducts$allProducts$size>
-      get copyWith => CopyWith$Query$AllProducts$allProducts$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$AllProducts$allProducts$size<TRes> {
-  factory CopyWith$Query$AllProducts$allProducts$size(
-    Query$AllProducts$allProducts$size instance,
-    TRes Function(Query$AllProducts$allProducts$size) then,
-  ) = _CopyWithImpl$Query$AllProducts$allProducts$size;
-
-  factory CopyWith$Query$AllProducts$allProducts$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$AllProducts$allProducts$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$AllProducts$allProducts$size<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$size<TRes> {
-  _CopyWithImpl$Query$AllProducts$allProducts$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$AllProducts$allProducts$size _instance;
-
-  final TRes Function(Query$AllProducts$allProducts$size) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Query$AllProducts$allProducts$size());
-}
-
-class _CopyWithStubImpl$Query$AllProducts$allProducts$size<TRes>
-    implements CopyWith$Query$AllProducts$allProducts$size<TRes> {
-  _CopyWithStubImpl$Query$AllProducts$allProducts$size(this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$AllProducts$allProducts$materials {
@@ -15648,7 +15427,6 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product<TRes> {
       get category;
   CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size;
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller;
-  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size;
   TRes materials(
       Iterable<Query$likedProducts$likedProducts$product$materials?>? Function(
               Iterable<
@@ -15789,15 +15567,6 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$likedProducts$likedProducts$product$size.stub(
-            _then(_instance))
-        : CopyWith$Query$likedProducts$likedProducts$product$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$likedProducts$likedProducts$product$materials?>? Function(
                   Iterable<
@@ -15864,9 +15633,6 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product<TRes>
 
   CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> get seller =>
       CopyWith$Query$likedProducts$likedProducts$product$seller.stub(_res);
-
-  CopyWith$Query$likedProducts$likedProducts$product$size<TRes> get size =>
-      CopyWith$Query$likedProducts$likedProducts$product$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -16033,9 +15799,153 @@ class Query$likedProducts$likedProducts$product$size {
   factory Query$likedProducts$likedProducts$product$size.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$username = json['username'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
     return Query$likedProducts$likedProducts$product$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$likedProducts$likedProducts$product$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$likedProducts$likedProducts$product$size
+    on Query$likedProducts$likedProducts$product$size {
+  CopyWith$Query$likedProducts$likedProducts$product$size<
+          Query$likedProducts$likedProducts$product$size>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product$size(
+    Query$likedProducts$likedProducts$product$size instance,
+    TRes Function(Query$likedProducts$likedProducts$product$size) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$size;
+
+  factory CopyWith$Query$likedProducts$likedProducts$product$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$likedProducts$likedProducts$product$size _instance;
+
+  final TRes Function(Query$likedProducts$likedProducts$product$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$likedProducts$likedProducts$product$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$likedProducts$likedProducts$product$seller {
+  Query$likedProducts$likedProducts$product$seller({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$likedProducts$likedProducts$product$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Query$likedProducts$likedProducts$product$seller(
       id: (l$id as int?),
       username: (l$username as String?),
       $__typename: (l$$__typename as String),
@@ -16076,7 +15986,7 @@ class Query$likedProducts$likedProducts$product$size {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$likedProducts$likedProducts$product$size ||
+    if (other is! Query$likedProducts$likedProducts$product$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -16099,25 +16009,25 @@ class Query$likedProducts$likedProducts$product$size {
   }
 }
 
-extension UtilityExtension$Query$likedProducts$likedProducts$product$size
-    on Query$likedProducts$likedProducts$product$size {
-  CopyWith$Query$likedProducts$likedProducts$product$size<
-          Query$likedProducts$likedProducts$product$size>
-      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$size(
+extension UtilityExtension$Query$likedProducts$likedProducts$product$seller
+    on Query$likedProducts$likedProducts$product$seller {
+  CopyWith$Query$likedProducts$likedProducts$product$seller<
+          Query$likedProducts$likedProducts$product$seller>
+      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  factory CopyWith$Query$likedProducts$likedProducts$product$size(
-    Query$likedProducts$likedProducts$product$size instance,
-    TRes Function(Query$likedProducts$likedProducts$product$size) then,
-  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$size;
+abstract class CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  factory CopyWith$Query$likedProducts$likedProducts$product$seller(
+    Query$likedProducts$likedProducts$product$seller instance,
+    TRes Function(Query$likedProducts$likedProducts$product$seller) then,
+  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$seller;
 
-  factory CopyWith$Query$likedProducts$likedProducts$product$size.stub(
+  factory CopyWith$Query$likedProducts$likedProducts$product$seller.stub(
           TRes res) =
-      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size;
+      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller;
 
   TRes call({
     int? id,
@@ -16126,16 +16036,16 @@ abstract class CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
-    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  _CopyWithImpl$Query$likedProducts$likedProducts$product$size(
+class _CopyWithImpl$Query$likedProducts$likedProducts$product$seller<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  _CopyWithImpl$Query$likedProducts$likedProducts$product$seller(
     this._instance,
     this._then,
   );
 
-  final Query$likedProducts$likedProducts$product$size _instance;
+  final Query$likedProducts$likedProducts$product$seller _instance;
 
-  final TRes Function(Query$likedProducts$likedProducts$product$size) _then;
+  final TRes Function(Query$likedProducts$likedProducts$product$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -16144,7 +16054,7 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
     Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$likedProducts$likedProducts$product$size(
+      _then(Query$likedProducts$likedProducts$product$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
@@ -16154,9 +16064,9 @@ class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size<TRes>
-    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size(this._res);
+class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller<TRes>
+    implements CopyWith$Query$likedProducts$likedProducts$product$seller<TRes> {
+  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$seller(this._res);
 
   TRes _res;
 
@@ -16166,85 +16076,6 @@ class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size<TRes>
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$likedProducts$likedProducts$product$size {
-  Query$likedProducts$likedProducts$product$size();
-
-  factory Query$likedProducts$likedProducts$product$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$likedProducts$likedProducts$product$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$likedProducts$likedProducts$product$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$likedProducts$likedProducts$product$size
-    on Query$likedProducts$likedProducts$product$size {
-  CopyWith$Query$likedProducts$likedProducts$product$size<
-          Query$likedProducts$likedProducts$product$size>
-      get copyWith => CopyWith$Query$likedProducts$likedProducts$product$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  factory CopyWith$Query$likedProducts$likedProducts$product$size(
-    Query$likedProducts$likedProducts$product$size instance,
-    TRes Function(Query$likedProducts$likedProducts$product$size) then,
-  ) = _CopyWithImpl$Query$likedProducts$likedProducts$product$size;
-
-  factory CopyWith$Query$likedProducts$likedProducts$product$size.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$likedProducts$likedProducts$product$size<TRes>
-    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  _CopyWithImpl$Query$likedProducts$likedProducts$product$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$likedProducts$likedProducts$product$size _instance;
-
-  final TRes Function(Query$likedProducts$likedProducts$product$size) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Query$likedProducts$likedProducts$product$size());
-}
-
-class _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size<TRes>
-    implements CopyWith$Query$likedProducts$likedProducts$product$size<TRes> {
-  _CopyWithStubImpl$Query$likedProducts$likedProducts$product$size(this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$likedProducts$likedProducts$product$materials {
@@ -19258,7 +19089,6 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts<TRes> {
   CopyWith$Query$SimilarProducts$similarProducts$category<TRes> get category;
   CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size;
   CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> get seller;
-  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size;
   TRes materials(
       Iterable<Query$SimilarProducts$similarProducts$materials?>? Function(
               Iterable<
@@ -19398,15 +19228,6 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$SimilarProducts$similarProducts$size.stub(
-            _then(_instance))
-        : CopyWith$Query$SimilarProducts$similarProducts$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$SimilarProducts$similarProducts$materials?>? Function(
                   Iterable<
@@ -19471,9 +19292,6 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts<TRes>
 
   CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> get seller =>
       CopyWith$Query$SimilarProducts$similarProducts$seller.stub(_res);
-
-  CopyWith$Query$SimilarProducts$similarProducts$size<TRes> get size =>
-      CopyWith$Query$SimilarProducts$similarProducts$size.stub(_res);
 
   materials(_fn) => _res;
 
@@ -19635,9 +19453,152 @@ class Query$SimilarProducts$similarProducts$size {
   factory Query$SimilarProducts$similarProducts$size.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$username = json['username'];
+    final l$name = json['name'];
     final l$$__typename = json['__typename'];
     return Query$SimilarProducts$similarProducts$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$SimilarProducts$similarProducts$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$SimilarProducts$similarProducts$size
+    on Query$SimilarProducts$similarProducts$size {
+  CopyWith$Query$SimilarProducts$similarProducts$size<
+          Query$SimilarProducts$similarProducts$size>
+      get copyWith => CopyWith$Query$SimilarProducts$similarProducts$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  factory CopyWith$Query$SimilarProducts$similarProducts$size(
+    Query$SimilarProducts$similarProducts$size instance,
+    TRes Function(Query$SimilarProducts$similarProducts$size) then,
+  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$size;
+
+  factory CopyWith$Query$SimilarProducts$similarProducts$size.stub(TRes res) =
+      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  _CopyWithImpl$Query$SimilarProducts$similarProducts$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$SimilarProducts$similarProducts$size _instance;
+
+  final TRes Function(Query$SimilarProducts$similarProducts$size) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$SimilarProducts$similarProducts$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
+  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$SimilarProducts$similarProducts$seller {
+  Query$SimilarProducts$similarProducts$seller({
+    this.id,
+    this.username,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$SimilarProducts$similarProducts$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$$__typename = json['__typename'];
+    return Query$SimilarProducts$similarProducts$seller(
       id: (l$id as int?),
       username: (l$username as String?),
       $__typename: (l$$__typename as String),
@@ -19678,7 +19639,7 @@ class Query$SimilarProducts$similarProducts$size {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$SimilarProducts$similarProducts$size ||
+    if (other is! Query$SimilarProducts$similarProducts$seller ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -19701,24 +19662,24 @@ class Query$SimilarProducts$similarProducts$size {
   }
 }
 
-extension UtilityExtension$Query$SimilarProducts$similarProducts$size
-    on Query$SimilarProducts$similarProducts$size {
-  CopyWith$Query$SimilarProducts$similarProducts$size<
-          Query$SimilarProducts$similarProducts$size>
-      get copyWith => CopyWith$Query$SimilarProducts$similarProducts$size(
+extension UtilityExtension$Query$SimilarProducts$similarProducts$seller
+    on Query$SimilarProducts$similarProducts$seller {
+  CopyWith$Query$SimilarProducts$similarProducts$seller<
+          Query$SimilarProducts$similarProducts$seller>
+      get copyWith => CopyWith$Query$SimilarProducts$similarProducts$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  factory CopyWith$Query$SimilarProducts$similarProducts$size(
-    Query$SimilarProducts$similarProducts$size instance,
-    TRes Function(Query$SimilarProducts$similarProducts$size) then,
-  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$size;
+abstract class CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> {
+  factory CopyWith$Query$SimilarProducts$similarProducts$seller(
+    Query$SimilarProducts$similarProducts$seller instance,
+    TRes Function(Query$SimilarProducts$similarProducts$seller) then,
+  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$seller;
 
-  factory CopyWith$Query$SimilarProducts$similarProducts$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size;
+  factory CopyWith$Query$SimilarProducts$similarProducts$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$seller;
 
   TRes call({
     int? id,
@@ -19727,16 +19688,16 @@ abstract class CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
-    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  _CopyWithImpl$Query$SimilarProducts$similarProducts$size(
+class _CopyWithImpl$Query$SimilarProducts$similarProducts$seller<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> {
+  _CopyWithImpl$Query$SimilarProducts$similarProducts$seller(
     this._instance,
     this._then,
   );
 
-  final Query$SimilarProducts$similarProducts$size _instance;
+  final Query$SimilarProducts$similarProducts$seller _instance;
 
-  final TRes Function(Query$SimilarProducts$similarProducts$size) _then;
+  final TRes Function(Query$SimilarProducts$similarProducts$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -19745,7 +19706,7 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
     Object? username = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$SimilarProducts$similarProducts$size(
+      _then(Query$SimilarProducts$similarProducts$seller(
         id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
@@ -19755,9 +19716,9 @@ class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size<TRes>
-    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size(this._res);
+class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$seller<TRes>
+    implements CopyWith$Query$SimilarProducts$similarProducts$seller<TRes> {
+  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$seller(this._res);
 
   TRes _res;
 
@@ -19767,84 +19728,6 @@ class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size<TRes>
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$SimilarProducts$similarProducts$size {
-  Query$SimilarProducts$similarProducts$size();
-
-  factory Query$SimilarProducts$similarProducts$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$SimilarProducts$similarProducts$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$SimilarProducts$similarProducts$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$SimilarProducts$similarProducts$size
-    on Query$SimilarProducts$similarProducts$size {
-  CopyWith$Query$SimilarProducts$similarProducts$size<
-          Query$SimilarProducts$similarProducts$size>
-      get copyWith => CopyWith$Query$SimilarProducts$similarProducts$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  factory CopyWith$Query$SimilarProducts$similarProducts$size(
-    Query$SimilarProducts$similarProducts$size instance,
-    TRes Function(Query$SimilarProducts$similarProducts$size) then,
-  ) = _CopyWithImpl$Query$SimilarProducts$similarProducts$size;
-
-  factory CopyWith$Query$SimilarProducts$similarProducts$size.stub(TRes res) =
-      _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$SimilarProducts$similarProducts$size<TRes>
-    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  _CopyWithImpl$Query$SimilarProducts$similarProducts$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$SimilarProducts$similarProducts$size _instance;
-
-  final TRes Function(Query$SimilarProducts$similarProducts$size) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() => _then(Query$SimilarProducts$similarProducts$size());
-}
-
-class _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size<TRes>
-    implements CopyWith$Query$SimilarProducts$similarProducts$size<TRes> {
-  _CopyWithStubImpl$Query$SimilarProducts$similarProducts$size(this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$SimilarProducts$similarProducts$materials {
@@ -24606,8 +24489,6 @@ abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice<
       get size;
   CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller<TRes>
       get seller;
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
-      get size;
   TRes materials(
       Iterable<Query$FilterProductsByPrice$filterProductsByPrice$materials?>? Function(
               Iterable<
@@ -24751,16 +24632,6 @@ class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
             local$seller, (e) => call(seller: e));
   }
 
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
-      get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
-            _then(_instance))
-        : CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
-            local$size, (e) => call(size: e));
-  }
-
   TRes materials(
           Iterable<Query$FilterProductsByPrice$filterProductsByPrice$materials?>? Function(
                   Iterable<
@@ -24834,11 +24705,6 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice<TRes>
       get seller =>
           CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$seller
               .stub(_res);
-
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
-      get size =>
-          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
-              _res);
 
   materials(_fn) => _res;
 
@@ -25328,93 +25194,6 @@ class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$seller
     String? $__typename,
   }) =>
       _res;
-}
-
-class Query$FilterProductsByPrice$filterProductsByPrice$size {
-  Query$FilterProductsByPrice$filterProductsByPrice$size();
-
-  factory Query$FilterProductsByPrice$filterProductsByPrice$size.fromJson(
-      Map<String, dynamic> json) {
-    return Query$FilterProductsByPrice$filterProductsByPrice$size();
-  }
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    return Object.hashAll([]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$FilterProductsByPrice$filterProductsByPrice$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$FilterProductsByPrice$filterProductsByPrice$size
-    on Query$FilterProductsByPrice$filterProductsByPrice$size {
-  CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<
-          Query$FilterProductsByPrice$filterProductsByPrice$size>
-      get copyWith =>
-          CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<
-    TRes> {
-  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size(
-    Query$FilterProductsByPrice$filterProductsByPrice$size instance,
-    TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$size) then,
-  ) = _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size;
-
-  factory CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size;
-
-  TRes call();
-}
-
-class _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes>
-    implements
-        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes> {
-  _CopyWithImpl$Query$FilterProductsByPrice$filterProductsByPrice$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$FilterProductsByPrice$filterProductsByPrice$size _instance;
-
-  final TRes Function(Query$FilterProductsByPrice$filterProductsByPrice$size)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call() =>
-      _then(Query$FilterProductsByPrice$filterProductsByPrice$size());
-}
-
-class _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size<
-        TRes>
-    implements
-        CopyWith$Query$FilterProductsByPrice$filterProductsByPrice$size<TRes> {
-  _CopyWithStubImpl$Query$FilterProductsByPrice$filterProductsByPrice$size(
-      this._res);
-
-  TRes _res;
-
-  call() => _res;
 }
 
 class Query$FilterProductsByPrice$filterProductsByPrice$materials {
