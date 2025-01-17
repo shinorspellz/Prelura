@@ -30,7 +30,8 @@ enum FilterTypes {
   gender('Gender'),
   category('Category'),
   style('Style'),
-  color('Color');
+  color('Color'),
+  price('Price');
 
   const FilterTypes(this.simpleName);
 

@@ -7,9 +7,11 @@ import '../../res/utils.dart';
 import 'auth_text_field.dart';
 
 class PriceFieldWidget extends ConsumerWidget {
-  const PriceFieldWidget({super.key, required this.textController, this.width});
+  const PriceFieldWidget(
+      {super.key, required this.textController, this.width, this.label});
   final TextEditingController textController;
   final double? width;
+  final String? label;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,7 +45,7 @@ class PriceFieldWidget extends ConsumerWidget {
               ),
               border: Border.all(width: 1, color: PreluraColors.primaryColor)),
           child: PreluraAuthTextField(
-            hintText: "Price",
+            hintText: label ?? "Price",
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             controller: textController,

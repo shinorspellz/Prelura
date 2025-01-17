@@ -38,10 +38,10 @@ class _RecentlyViewedProductScreenState
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
       final delta = MediaQuery.of(context).size.height * 0.2;
-      if (maxScroll - currentScroll <= delta) {
-        if (ref.read(paginatingHome)) return;
-        ref.read(discountedProductsProvider.notifier).fetchMoreProducts();
-      }
+      // if (maxScroll - currentScroll <= delta) {
+      //   if (ref.read(paginatingHome)) return;
+      //   ref.read(recentlyViewedProductsProvider.notifier).fetchMoreProducts();
+      // }
     });
   }
 

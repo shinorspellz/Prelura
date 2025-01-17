@@ -148,6 +148,8 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     log(filterType.toString());
     log(value);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
+    final discountedProviderFilter =
+        ref.read(discountedProductsProvider('').notifier);
     log(providerFilter.currentFilter!.toJson().toString(),
         name: ' filteredProducts filter in search provider ');
 
@@ -162,8 +164,20 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
                 .toString()) // Convert int? to String
             : providerFilter.currentFilter?.brand,
       );
+      final updateddiscountedFilter =
+          discountedProviderFilter.currentFilter?.copyWith(
+        brand: filterType == FilterTypes.brand
+            ? int.parse(ref
+                .watch(brandsProvider)
+                .valueOrNull!
+                .firstWhere((e) => e.name == value)
+                .id
+                .toString()) // Convert int? to String
+            : providerFilter.currentFilter?.brand,
+      );
 
       providerFilter.updateFilter(updatedFilter!);
+      discountedProviderFilter.updateFilter(updateddiscountedFilter!);
       log(updatedFilter.toJson().toString(), name: ' filteredProducts filter');
       return;
     }
@@ -185,6 +199,13 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
             : providerFilter.currentFilter?.style,
       );
       providerFilter.updateFilter(updatedFilter!);
+      final updatedDiscountFilter = providerFilter.currentFilter?.copyWith(
+        style: filterType == FilterTypes.style
+            ? Enum$StyleEnum.values.where((e) => e.name == value).firstOrNull
+            : providerFilter.currentFilter?.style,
+      );
+      discountedProviderFilter.updateFilter(updatedDiscountFilter!);
+      return;
     }
 
     if (FilterTypes.condition == filterType) {
@@ -196,7 +217,18 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
             : providerFilter.currentFilter?.condition,
       );
 
+      final updatedDiscountFilter = providerFilter.currentFilter?.copyWith(
+        condition: filterType == FilterTypes.condition
+            ? ConditionsEnum.values
+                .where((e) => e.simpleName == value)
+                .firstOrNull
+            : providerFilter.currentFilter?.condition,
+      );
+
       providerFilter.updateFilter(updatedFilter!);
+      discountedProviderFilter.updateFilter(updatedDiscountFilter!);
+
+      return;
     }
 
     if (FilterTypes.category == filterType) {
@@ -207,23 +239,49 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
                   .firstOrNull
               : providerFilter.currentFilter?.parentCategory);
 
+      final updatedDiscountFilter = providerFilter.currentFilter?.copyWith(
+          parentCategory: filterType == FilterTypes.category
+              ? Enum$ParentCategoryEnum.values
+                  .where((e) => e.name.toLowerCase() == value.toLowerCase())
+                  .firstOrNull
+              : providerFilter.currentFilter?.parentCategory);
+
       providerFilter.updateFilter(updatedFilter!);
+      discountedProviderFilter.updateFilter(updatedDiscountFilter!);
+
+      return;
     }
 
     if (FilterTypes.color == filterType) {
-      // final updatedFilter = providerFilter.currentFilter?.copyWith(
-      //     color: filterType == FilterTypes.color
-      //         ? int.tryParse(ref
-      //             .watch(colorProvider)
-      //             .valueOrNull
-      //             ?.where((e) => e.name == value)
-      //             .firstOrNull
-      //             ?.key)
-      //         : providerFilter.currentFilter?.color)
+      final updatedFilter = providerFilter.currentFilter?.copyWith(
+          colors: filterType == FilterTypes.color
+              ? [
+                  ref
+                      .watch(colorsProvider)
+                      .entries
+                      ?.where((e) => e.key == value)
+                      .firstOrNull
+                      ?.key
+                ]
+              : providerFilter.currentFilter?.colors);
 
-      ref.refresh(filteredProductProvider("").future);
+      final updatedDiscountFilter = discountedProviderFilter.currentFilter
+          ?.copyWith(
+              colors: filterType == FilterTypes.color
+                  ? [
+                      ref
+                          .watch(colorsProvider)
+                          .entries
+                          ?.where((e) => e.key == value)
+                          .firstOrNull
+                          ?.key
+                    ]
+                  : providerFilter.currentFilter?.colors);
 
-      // providerFilter.updateFilter(updatedFilter!);
+      providerFilter.updateFilter(updatedFilter!);
+      discountedProviderFilter.updateFilter(updatedDiscountFilter!);
+
+      return;
     }
 
     // Invalidate the provider to trigger a rebuild
@@ -235,12 +293,18 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
   void removeFilter(FilterTypes filterType) {
     state.remove(filterType);
+        final providerFilter = ref.read(filteredProductProvider('').notifier);
+    final discountedProviderFilter =
+        ref.read(discountedProductsProvider('').notifier);
+
     ref.refresh(filteredProductProvider("").future);
+    ref.refresh(discountedProductsProvider("").future);
   }
 
   void clearFilter() {
     state = {};
     ref.invalidate(filteredProductProvider);
+    ref.invalidate(discountedProductsProvider);
   }
 }
 

@@ -668,7 +668,7 @@ type OfferReturnType {
 type OfferType {
   id: ID!
   product: ProductType!
-  buyer: UserNode!
+  buyer: UserType
   offerPrice: Decimal!
   status: ProductsOfferStatusChoices!
   message: String
@@ -825,6 +825,7 @@ input ProductFiltersInput {
   condition: ConditionEnum
   discountPrice: Boolean
   hashtags: [String]
+  colors: [String]
 }
 
 enum ProductGroupingEnum {

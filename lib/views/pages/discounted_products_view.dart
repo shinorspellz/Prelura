@@ -1,15 +1,20 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_christmas.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/error_placeholder.dart';
+import 'package:prelura_app/views/widgets/filters_options.dart';
 
 import '../../controller/product/product_provider.dart';
+import '../../core/graphql/__generated/schema.graphql.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/gap.dart';
+import 'sell_item/brand_view.dart';
 
 @RoutePage()
 class DiscountedProductsView extends ConsumerStatefulWidget {
@@ -32,6 +37,12 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
   void initState() {
     super.initState();
 
+    Future.microtask(() {
+      if (!mounted) return;
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(discountPrice: true);
+    });
+
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -39,7 +50,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(discountedProductsProvider.notifier).fetchMoreProducts();
+        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
       }
     });
   }
@@ -66,7 +77,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          await ref.refresh(discountedProductsProvider.future);
+          await ref.refresh(filteredProductProvider(searchQuery).future);
           if (!mounted) return; // Prevent state updates after unmounting
           setState(() {});
         },
@@ -78,10 +89,10 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
               slivers: [
                 SliverPersistentHeader(
                   pinned: true, // Keeps it static
-                  delegate: StaticSliverDelegate(
+                  delegate: FilteredProductStaticSliverDelegate(
                       child: Container(
                     padding:
-                        const EdgeInsets.only(top: 16, left: 15, right: 15),
+                        const EdgeInsets.only(top: 10, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,22 +111,24 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                             setState(() {});
                           },
                         ),
-                        addVerticalSpacing(12),
+                        FiltersOptions(),
                       ],
                     ),
                   )),
                 ),
-                ref.watch(discountedProductsProvider).maybeWhen(
+                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {
                           return SliverToBoxAdapter(
-                            child: EmptyScreenPlaceholder(
-                                text: "No products found"),
+                            child: NoProductWidget(
+                              height: MediaQuery.of(context).size.height * 0.75,
+                            ),
                           );
                         }
                         return SliverPadding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 10),
                           sliver: SliverGrid.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
@@ -136,7 +149,9 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                           child: ErrorPlaceholder(
                               error: "An error occured",
                               onTap: () {
-                                ref.refresh(discountedProductsProvider.future);
+                                ref.refresh(
+                                    discountedProductsProvider(searchQuery)
+                                        .future);
                               }),
                         );
                       },
@@ -147,13 +162,20 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                       )),
                       orElse: () => SliverToBoxAdapter(child: Container()),
                     ),
-                // if (ref
-                //     .watch(discountedProductsProvider.notifier)
-                //     .canLoadMore())
-                //   if (!ref.watch(discountedProductsProvider).isLoading)
-                //     const SliverToBoxAdapter(
-                //       child: PaginationLoadingIndicator(),
-                //     )
+                if (ref
+                        .watch(filteredProductProvider(searchQuery))
+                        .valueOrNull
+                        ?.isNotEmpty ==
+                    true)
+                  if (ref
+                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .canLoadMore())
+                    if (!ref
+                        .watch(filteredProductProvider(searchQuery))
+                        .isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ],
             ),
           ),

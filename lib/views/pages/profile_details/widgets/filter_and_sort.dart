@@ -88,22 +88,6 @@ class FilterAndSort extends ConsumerWidget {
                   }),
                   VBottomSheetItem(
                     onTap: (context) {},
-                    title: "Colour",
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: color,
-                      fontWeight: fontWeight,
-                    ),
-                  ),
-                  VBottomSheetItem(
-                    onTap: (context) {},
-                    title: "Price",
-                    style: context.textTheme.bodyLarge?.copyWith(
-                      color: color,
-                      fontWeight: fontWeight,
-                    ),
-                  ),
-                  VBottomSheetItem(
-                    onTap: (context) {},
                     title: "Material",
                     style: context.textTheme.bodyLarge?.copyWith(
                       color: color,

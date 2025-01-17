@@ -156,46 +156,19 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                                   ),
                                 );
                         },
+                        error: (e, _) {
+                          return SliverToBoxAdapter(
+                              child: ErrorPlaceholder(
+                            error: "An error occurred",
+                            onTap: () {
+                              // log(e.toString(), stackTrace: _);
+                              ref.invalidate(filteredProductProvider);
+                            },
+                          ));
+                        },
+                        loading: () => SliverToBoxAdapter(child: GridShimmer()),
                         orElse: () => SliverToBoxAdapter(child: Container()),
                       ),
-                  SliverPadding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 15, right: 15),
-                    sliver: ref
-                        .watch(filteredProductProvider(searchQuery))
-                        .when(
-                            data: (products) {
-                              if (products.length < 6)
-                                return SliverToBoxAdapter(child: Container());
-                              final clippedProducts = products.sublist(6);
-                              return SliverGrid.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
-                                ),
-                                itemCount: clippedProducts.length,
-                                itemBuilder: (context, index) {
-                                  return ProductCard(
-                                      product: clippedProducts[index]);
-                                },
-                              );
-                            },
-                            error: (e, _) {
-                              return SliverToBoxAdapter(
-                                  child: ErrorPlaceholder(
-                                error: "An error occurred",
-                                onTap: () {
-                                  // log(e.toString(), stackTrace: _);
-                                  ref.invalidate(filteredProductProvider);
-                                },
-                              ));
-                            },
-                            loading: () =>
-                                SliverToBoxAdapter(child: GridShimmer())),
-                  ),
                   if (ref
                           .watch(filteredProductProvider(searchQuery))
                           .valueOrNull

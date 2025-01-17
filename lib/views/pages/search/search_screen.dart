@@ -176,6 +176,8 @@ class SearchScreen extends ConsumerWidget {
                   ),
                   GestureDetector(
                     onTap: () {
+                      ref.read(selectedFilteredProductProvider.notifier).state =
+                          Input$ProductFiltersInput(discountPrice: true);
                       context.router
                           .push(DiscountedProductsView(title: "", id: 0));
                     },

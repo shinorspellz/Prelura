@@ -2,15 +2,21 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../controller/product/brands_provider.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../widgets/app_button.dart';
 import '../../../widgets/bottom_sheet.dart';
+import '../../../widgets/custom_widget.dart';
+import '../../../widgets/price_field.dart';
 
 class FilterModal extends ConsumerStatefulWidget {
   final FilterTypes filterType;
@@ -54,9 +60,24 @@ class _FilterModalState extends ConsumerState<FilterModal> {
     super.dispose();
   }
 
+  void updateSelectedOption(String option) {
+    setState(() {
+      selectedOption = option;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final filterNotifier = ref.watch(filterUserProductProvider.notifier);
+    if (widget.filterType == FilterTypes.price) {
+      Navigator.pop(context);
+      Future.microtask(() {
+        if (mounted) {
+          showPriceDialog(context, ref, filterNotifier);
+        }
+      });
+      return const SizedBox.shrink();
+    }
     final filterOptions = {
       // FilterTypes.size: Enum$SizeEnum.values
       //     .where((e) => e != Enum$SizeEnum.$unknown)
@@ -87,7 +108,10 @@ class _FilterModalState extends ConsumerState<FilterModal> {
       FilterTypes.gender: Enum$ParentCategoryEnum.values
           .where((category) =>
               {"men", "women"}.contains(category.name.toLowerCase()))
-          .map((category) => category.name)
+          .map((category) => category.name),
+
+      FilterTypes.color:
+          ref.read(colorsProvider).entries.map((e) => e.key).toList() ?? [],
     };
 
     return ConstrainedBox(
@@ -98,6 +122,14 @@ class _FilterModalState extends ConsumerState<FilterModal> {
         children: filterOptions[widget.filterType]!
             .map(
               (e) => PreluraCheckBox(
+                colorName: widget.filterType == FilterTypes.color
+                    ? ref
+                        .read(colorsProvider)
+                        .entries
+                        .where((color) => color.key == e)
+                        .firstOrNull
+                        ?.value
+                    : null,
                 title: e.replaceAll("_", " "),
                 isChecked: selectedOption == e,
                 onChanged: (value) {
@@ -134,4 +166,58 @@ void showFilterModal(BuildContext context, FilterTypes filterType,
     child:
         FilterModal(filterType: filterType, userId: userId, username: username),
   );
+}
+
+Widget showPriceDialog(
+  BuildContext context,
+  WidgetRef ref,
+  filterNotifier,
+) {
+  final minPriceController = TextEditingController();
+  final maxPriceController = TextEditingController();
+  return showCustomDialog(context,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 26),
+        margin: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+            color: context.theme.scaffoldBackgroundColor,
+            borderRadius: BorderRadius.circular(16)),
+        child: Column(
+          children: [
+            PriceFieldWidget(
+              width: 65.6.w,
+              label: "Min. Price",
+              textController: minPriceController,
+            ),
+            12.verticalSpacing,
+            PriceFieldWidget(
+              width: 65.6.w,
+              label: "Max. Price",
+              textController: maxPriceController,
+            ),
+            24.verticalSpacing,
+            AppButton(
+              onTap: () {
+                final minPrice = minPriceController.text;
+                final maxPrice = maxPriceController.text;
+
+                if (minPrice.isNotEmpty || maxPrice.isNotEmpty) {
+                  filterNotifier.updateFilter(
+                    FilterTypes.price,
+                    [minPrice, maxPrice],
+                    "",
+                  );
+                }
+                // updateSelectedOption("price");
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
+              },
+              text: "Filter",
+              width: 130,
+              height: 45,
+            )
+          ],
+        ),
+      ));
 }
