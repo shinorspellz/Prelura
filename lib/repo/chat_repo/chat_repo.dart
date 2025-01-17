@@ -18,9 +18,9 @@ class ChatRepo {
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
+        log(response.exception.toString(), name: 'ProductRepo');
         throw error;
       }
-      log(response.exception.toString(), name: 'ProductRepo');
       throw 'An error occured';
     }
 
@@ -28,7 +28,7 @@ class ChatRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
-
+    log(":::THE GEN MESSAGES ARE :::::: ${jsonEncode(response.parsedData!.toJson())}");
     return response.parsedData!.conversations!
         .map((x) => ConversationModel.fromJson(x!.toJson()))
         .toList();

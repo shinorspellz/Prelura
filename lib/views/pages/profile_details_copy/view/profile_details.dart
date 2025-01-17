@@ -1,35 +1,32 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/views/pages/profile_details/view/about_profile.dart';
-import 'package:prelura_app/views/pages/profile_details/view/review_tab.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/views/widgets/gesture_navigator.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
-import '../../../../res/colors.dart';
 import '../../../../res/images.dart';
 import '../../../../res/render_svg.dart';
-import '../../../widgets/profile_picture.dart';
 import '../provider/tab_controller.dart';
 
 @RoutePage()
 class UserProfileDetailsScreen extends ConsumerStatefulWidget {
-  const UserProfileDetailsScreen({super.key, this.username});
+  const UserProfileDetailsScreen({
+    super.key,
+    @PathParam('username') this.username,
+  });
   final String? username;
 
   @override
-  ConsumerState<UserProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
+  ConsumerState<UserProfileDetailsScreen> createState() =>
+      _ProfileDetailsScreenState();
 }
 
-class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen> with SingleTickerProviderStateMixin {
+class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -47,7 +44,8 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
 
     // Listen for tab index changes
     _tabController.addListener(() {
-      if (_tabController.index != ref.read(tabControllerProvider).currentIndex) {
+      if (_tabController.index !=
+          ref.read(tabControllerProvider).currentIndex) {
         ref.read(tabControllerProvider).setTabIndex(_tabController.index);
       }
     });
@@ -62,10 +60,15 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref.watch((widget.username != null ? otherUserProfile(widget.username!) : userProvider)).valueOrNull;
+    final user = ref
+        .watch((widget.username != null
+            ? otherUserProfile(widget.username!)
+            : userProvider))
+        .valueOrNull;
 
     if (_tabController.index != currentIndex) {
-      _tabController.index = currentIndex; // Sync tab index if changed externally
+      _tabController.index =
+          currentIndex; // Sync tab index if changed externally
     }
 
     return Scaffold(

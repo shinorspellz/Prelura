@@ -27,6 +27,7 @@ mixin _$ConversationModel {
   DateTime get lastModified => throw _privateConstructorUsedError;
   int get unreadMessagesCount => throw _privateConstructorUsedError;
   UserModel get recipient => throw _privateConstructorUsedError;
+  OfferType? get offer => throw _privateConstructorUsedError;
   MessageModel? get lastMessage => throw _privateConstructorUsedError;
 
   /// Serializes this ConversationModel to a JSON map.
@@ -53,9 +54,11 @@ abstract class $ConversationModelCopyWith<$Res> {
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
+      OfferType? offer,
       MessageModel? lastMessage});
 
   $UserModelCopyWith<$Res> get recipient;
+  $OfferTypeCopyWith<$Res>? get offer;
   $MessageModelCopyWith<$Res>? get lastMessage;
 }
 
@@ -81,6 +84,7 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
     Object? lastModified = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
+    Object? offer = freezed,
     Object? lastMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -112,6 +116,10 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      offer: freezed == offer
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as OfferType?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
@@ -126,6 +134,20 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
   $UserModelCopyWith<$Res> get recipient {
     return $UserModelCopyWith<$Res>(_value.recipient, (value) {
       return _then(_value.copyWith(recipient: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ConversationModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OfferTypeCopyWith<$Res>? get offer {
+    if (_value.offer == null) {
+      return null;
+    }
+
+    return $OfferTypeCopyWith<$Res>(_value.offer!, (value) {
+      return _then(_value.copyWith(offer: value) as $Val);
     });
   }
 
@@ -160,10 +182,13 @@ abstract class _$$ConversationModelImplCopyWith<$Res>
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
+      OfferType? offer,
       MessageModel? lastMessage});
 
   @override
   $UserModelCopyWith<$Res> get recipient;
+  @override
+  $OfferTypeCopyWith<$Res>? get offer;
   @override
   $MessageModelCopyWith<$Res>? get lastMessage;
 }
@@ -188,6 +213,7 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
     Object? lastModified = null,
     Object? unreadMessagesCount = null,
     Object? recipient = null,
+    Object? offer = freezed,
     Object? lastMessage = freezed,
   }) {
     return _then(_$ConversationModelImpl(
@@ -219,6 +245,10 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
           ? _value.recipient
           : recipient // ignore: cast_nullable_to_non_nullable
               as UserModel,
+      offer: freezed == offer
+          ? _value.offer
+          : offer // ignore: cast_nullable_to_non_nullable
+              as OfferType?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
@@ -238,6 +268,7 @@ class _$ConversationModelImpl implements _ConversationModel {
       required this.lastModified,
       required this.unreadMessagesCount,
       required this.recipient,
+      this.offer,
       required this.lastMessage});
 
   factory _$ConversationModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -258,11 +289,13 @@ class _$ConversationModelImpl implements _ConversationModel {
   @override
   final UserModel recipient;
   @override
+  final OfferType? offer;
+  @override
   final MessageModel? lastMessage;
 
   @override
   String toString() {
-    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, lastMessage: $lastMessage)';
+    return 'ConversationModel(id: $id, name: $name, disableResponse: $disableResponse, createdAt: $createdAt, lastModified: $lastModified, unreadMessagesCount: $unreadMessagesCount, recipient: $recipient, offer: $offer, lastMessage: $lastMessage)';
   }
 
   @override
@@ -282,14 +315,24 @@ class _$ConversationModelImpl implements _ConversationModel {
                 other.unreadMessagesCount == unreadMessagesCount) &&
             (identical(other.recipient, recipient) ||
                 other.recipient == recipient) &&
+            (identical(other.offer, offer) || other.offer == offer) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, disableResponse,
-      createdAt, lastModified, unreadMessagesCount, recipient, lastMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      disableResponse,
+      createdAt,
+      lastModified,
+      unreadMessagesCount,
+      recipient,
+      offer,
+      lastMessage);
 
   /// Create a copy of ConversationModel
   /// with the given fields replaced by the non-null parameter values.
@@ -317,6 +360,7 @@ abstract class _ConversationModel implements ConversationModel {
       required final DateTime lastModified,
       required final int unreadMessagesCount,
       required final UserModel recipient,
+      final OfferType? offer,
       required final MessageModel? lastMessage}) = _$ConversationModelImpl;
 
   factory _ConversationModel.fromJson(Map<String, dynamic> json) =
@@ -336,6 +380,8 @@ abstract class _ConversationModel implements ConversationModel {
   int get unreadMessagesCount;
   @override
   UserModel get recipient;
+  @override
+  OfferType? get offer;
   @override
   MessageModel? get lastMessage;
 

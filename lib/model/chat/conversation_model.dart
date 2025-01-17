@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
+import 'package:prelura_app/model/product/offers/offers_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 
 part 'conversation_model.freezed.dart';
@@ -15,6 +16,7 @@ class ConversationModel with _$ConversationModel {
     required DateTime lastModified,
     required int unreadMessagesCount,
     required UserModel recipient,
+    OfferType? offer,
     required MessageModel? lastMessage,
   }) = _ConversationModel;
 

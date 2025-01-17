@@ -21,8 +21,7 @@ class MessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log("The last message::: ${model.lastMessage?.toJson()}");
-    bool isLastMessageAnOffer =
-        model.lastMessage?.text.contains("buyer") ?? false;
+    bool isLastMessageAnOffer = model.offer != null;
     log("The last message an offer::: $isLastMessageAnOffer");
 
     return GestureDetector(

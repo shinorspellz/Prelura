@@ -154,10 +154,10 @@ class MyApp extends ConsumerWidget {
           darkTheme: PreluraTheme.darkTheme.copyWith(textTheme: TextTheme()),
           themeMode: themeMode,
           routerConfig: ref.watch(router).config(
-                deepLinkBuilder: (deepLink) {
-                  debugPrint('Received deep link: ${deepLink.path}');
-                  return deepLink;
-                },
+                // deepLinkBuilder: (deepLink) {
+                //   debugPrint('Received deep link: ${deepLink.path}');
+                //   return deepLink;
+                // },
                 //this line of code listens to the authstate provider
                 // and anytime the authstate changes the AutoRoute Guard is reevaluted
                 // and refreshed to update the route to an authenticated or unauthenicated state

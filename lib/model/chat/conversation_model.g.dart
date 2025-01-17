@@ -16,6 +16,9 @@ _$ConversationModelImpl _$$ConversationModelImplFromJson(
       lastModified: DateTime.parse(json['lastModified'] as String),
       unreadMessagesCount: (json['unreadMessagesCount'] as num).toInt(),
       recipient: UserModel.fromJson(json['recipient'] as Map<String, dynamic>),
+      offer: json['offer'] == null
+          ? null
+          : OfferType.fromJson(json['offer'] as Map<String, dynamic>),
       lastMessage: json['lastMessage'] == null
           ? null
           : MessageModel.fromJson(json['lastMessage'] as Map<String, dynamic>),
@@ -31,5 +34,6 @@ Map<String, dynamic> _$$ConversationModelImplToJson(
       'lastModified': instance.lastModified.toIso8601String(),
       'unreadMessagesCount': instance.unreadMessagesCount,
       'recipient': instance.recipient,
+      'offer': instance.offer,
       'lastMessage': instance.lastMessage,
     };

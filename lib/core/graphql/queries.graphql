@@ -617,13 +617,54 @@ query Conversations {
       profilePictureUrl
       thumbnailUrl
     }
+    offer {
+      id
+      message
+      offerPrice
+      createdAt
+      updatedAt
+      expiresAt
+      deleted
+      buyer {
+        id
+        username
+        profilePictureUrl
+        thumbnailUrl
+        displayName
+      }
+      product {
+        id
+        name
+        description
+        isFeatured
+        category {
+          id
+          name
+        }
+        size {
+          id
+          name
+        }
+        seller {
+          id
+          username
+          profilePictureUrl
+        }
+        condition
+        discountPrice
+        condition
+        price
+        parcelSize
+        views
+        likes
+      }
+    }
     lastMessage {
       id
       text
       attachment
       attachmentType
       read
-
       isItem
       sender {
         id
