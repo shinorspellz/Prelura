@@ -24,13 +24,14 @@ final dialogFilterStateProvider =
     StateProvider<Map<String, List<String>>>((ref) => {});
 
 enum FilterTypes {
-  size('Size'),
+  // size('Size'),
   brand('Brand'),
   condition('Condition'),
   gender('Gender'),
   category('Category'),
   style('Style'),
-  color('Color');
+  color('Color'),
+  price('Price');
 
   const FilterTypes(this.simpleName);
 

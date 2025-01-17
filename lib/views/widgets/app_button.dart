@@ -126,10 +126,10 @@ class AppButton extends StatelessWidget {
   }
 }
 
-Divider buildDivider(BuildContext context) {
+Divider buildDivider(BuildContext context, {Color? color}) {
   return Divider(
     thickness: 1,
-    color: Theme.of(context).dividerColor,
+    color: color ?? Theme.of(context).dividerColor,
     // height: 0,
   );
 }

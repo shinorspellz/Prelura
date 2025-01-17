@@ -123,7 +123,9 @@ class _ProductFilterPageState
                       data: (products) {
                         if (products.isEmpty) {
                           return SliverToBoxAdapter(
-                            child: NoProductWidget(),
+                            child: NoProductWidget(
+                              height: MediaQuery.of(context).size.height * 0.65,
+                            ),
 
                             // SizedBox(
                             //   height: MediaQuery.of(context).size.height * 0.7,
@@ -174,14 +176,19 @@ class _ProductFilterPageState
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
-                    .watch(filteredProductProvider(searchQuery).notifier)
-                    .canLoadMore())
-                  if (!ref
-                      .watch(filteredProductProvider(searchQuery))
-                      .isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                        .watch(filteredProductProvider(searchQuery))
+                        .valueOrNull
+                        ?.isNotEmpty ==
+                    true)
+                  if (ref
+                      .watch(filteredProductProvider(searchQuery).notifier)
+                      .canLoadMore())
+                    if (!ref
+                        .watch(filteredProductProvider(searchQuery))
+                        .isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ],
             ),
           ),

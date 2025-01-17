@@ -156,12 +156,17 @@ class _ProductFilterPageState
                       loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
-                    .watch(allProductProvider(searchQuery).notifier)
-                    .canLoadMore())
-                  if (!ref.watch(allProductProvider(searchQuery)).isLoading)
-                    const SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                        .watch(allProductProvider(searchQuery))
+                        .valueOrNull
+                        ?.isNotEmpty ==
+                    true)
+                  if (ref
+                      .watch(allProductProvider(searchQuery).notifier)
+                      .canLoadMore())
+                    if (!ref.watch(allProductProvider(searchQuery)).isLoading)
+                      const SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ],
             ),
           ),

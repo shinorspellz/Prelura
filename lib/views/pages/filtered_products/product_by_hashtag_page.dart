@@ -130,7 +130,9 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                             ? SliverPadding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 sliver: SliverToBoxAdapter(
-                                  child: NoProductWidget(),
+                                  child: NoProductWidget(
+                                  height:  MediaQuery.of(context).size.height * 0.65,
+                                  ),
 
                                   // Container(
                                   //   height: MediaQuery.of(context).size.height *

@@ -176,6 +176,8 @@ class SearchScreen extends ConsumerWidget {
                   ),
                   GestureDetector(
                     onTap: () {
+                      ref.read(selectedFilteredProductProvider.notifier).state =
+                          Input$ProductFiltersInput(discountPrice: true);
                       context.router
                           .push(DiscountedProductsView(title: "", id: 0));
                     },
@@ -203,61 +205,15 @@ class SearchScreen extends ConsumerWidget {
                         _categoriesSection(
                             "Women", PreluraIcons.webp_women, context,
                             onTap: () {
-                          final category = ref
-                              .watch(categoryProvider)
-                              .valueOrNull
-                              ?.firstWhere((category) =>
-                                  category.name.toLowerCase() == "women");
-
-                          if (category != null) {
-                            final int categoryId =
-                                int.tryParse(category.id.toString()) ?? -1;
-                            log(categoryId.toString());
-                            ref
-                                    .read(selectedFilteredProductProvider.notifier)
-                                    .state =
-                                Input$ProductFiltersInput(category: categoryId);
-                            context.router.push(FilterProductRoute(
-                                title: "Women", id: categoryId));
-                          } else {
-                            log('Category not found or id is invalid.');
-                          }
+                          assignCategory("Women", context, ref);
                         }),
                         _categoriesSection(
                             "Men", PreluraIcons.webp_men, context, onTap: () {
-                          final category = ref
-                              .watch(categoryProvider)
-                              .valueOrNull
-                              ?.firstWhere((category) =>
-                                  category.name.toLowerCase() == "men");
-
-                          if (category != null) {
-                            final int categoryId =
-                                int.tryParse(category.id.toString()) ?? -1;
-                            ref
-                                    .read(selectedFilteredProductProvider.notifier)
-                                    .state =
-                                Input$ProductFiltersInput(category: categoryId);
-                            context.router.push(FilterProductRoute(
-                                title: "Men", id: categoryId));
-                            log(categoryId.toString());
-                          } else {
-                            log('Category not found or id is invalid.');
-                          }
+                          assignCategory("Men", context, ref);
                         }),
                         _categoriesSection("Kids", PreluraIcons.kids, context,
                             onTap: () {
-                          final categoryId = ref
-                              .watch(categoryProvider)
-                              .valueOrNull
-                              ?.firstWhere((category) =>
-                                  category.name.toLowerCase() == "women")
-                              .id;
-                          ref
-                              .read(selectedFilteredProductProvider.notifier)
-                              .state = Input$ProductFiltersInput(category: 4);
-                          context.router
-                              .push(FilterProductRoute(title: "Kids", id: 4));
+                          assignCategory("Kids", context, ref);
                         }),
                         // _categoriesSection("Electronics", PreluraIcons.electronics, context),
                         // _categoriesSection("Home", PreluraIcons.home, context),
@@ -496,6 +452,21 @@ class SearchScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void assignCategory(
+      String categoryName, BuildContext context, WidgetRef ref) {
+    final category = Enum$ParentCategoryEnum.values.firstWhere((category) =>
+        category.name.toLowerCase() == categoryName.toLowerCase());
+
+    if (category != null) {
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(parentCategory: category);
+      context.router.push(
+          FilterProductRoute(title: categoryName, parentCategory: category));
+    } else {
+      log('Category not found or id is invalid.');
+    }
   }
 
   // Widget _brandButtons(String title, context) {

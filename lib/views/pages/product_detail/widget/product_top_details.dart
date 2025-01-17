@@ -235,13 +235,13 @@ class ProductTopDetails extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InkWell(
+                      GestureDetector(
                         onTap: () {
                           context.router.push(ProfileDetailsRoute(
                               username: product.seller.username));
                         },
                         child: Text(
-                          product.seller.username,
+                          "${product.seller.username}",
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     fontWeight: FontWeight.bold,
@@ -249,20 +249,23 @@ class ProductTopDetails extends ConsumerWidget {
                                   ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          const Ratings(),
-                          Text(
-                            "(250)",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: getDefaultSize(),
-                                ),
-                          ),
-                        ],
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          children: [
+                            const Ratings(),
+                            Text(
+                              "(250)",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: getDefaultSize(),
+                                  ),
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   )

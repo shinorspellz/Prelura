@@ -14,6 +14,7 @@ class UserModel with _$UserModel {
       String? email,
       String? bio,
       String? profilePictureUrl,
+      String? thumbnailUrl,
       String? gender,
       String? displayName,
       DateTime? dob,

@@ -8,32 +8,37 @@ import 'package:prelura_app/views/widgets/gap.dart';
 import '../../../../res/colors.dart';
 
 class NoProductWidget extends StatelessWidget {
-  const NoProductWidget({
-    super.key,
-  });
+  const NoProductWidget({super.key, this.height});
+
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          RenderSvg(
-            svgPath: PreluraIcons.empty_box_svg,
-            color: PreluraColors.grey,
-            svgHeight: 60,
-            svgWidth: 60,
-          ),
-          12.verticalSpacing,
-          Text(
-            "No Products",
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-                fontSize: getDefaultSize(size: 16),
-                color: PreluraColors.grey,
-                fontWeight: FontWeight.w600),
-          )
-        ],
+      constraints: BoxConstraints(
+        minHeight: height ?? MediaQuery.of(context).size.height * 0.45,
+      ),
+      alignment: Alignment.center,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RenderSvg(
+              svgPath: PreluraIcons.empty_box_svg,
+              color: PreluraColors.grey,
+              svgHeight: 60,
+              svgWidth: 60,
+            ),
+            12.verticalSpacing,
+            Text(
+              "No Products",
+              style: context.theme.textTheme.bodyMedium?.copyWith(
+                  fontSize: getDefaultSize(size: 16),
+                  color: PreluraColors.grey,
+                  fontWeight: FontWeight.w600),
+            )
+          ],
+        ),
       ),
     );
   }

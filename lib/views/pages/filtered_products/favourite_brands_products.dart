@@ -103,7 +103,7 @@ class _ProductsByBrandPageState
                     ),
                   )),
                 ),
-                ref.watch(discountedProductsProvider).maybeWhen(
+                ref.watch(favoriteBrandProductsProvider).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {
@@ -134,7 +134,8 @@ class _ProductsByBrandPageState
                           child: ErrorPlaceholder(
                               error: "An error occured",
                               onTap: () {
-                                ref.refresh(discountedProductsProvider.future);
+                                ref.refresh(
+                                    favoriteBrandProductsProvider.future);
                               }),
                         );
                       },

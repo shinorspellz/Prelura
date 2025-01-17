@@ -35,7 +35,7 @@ final searchProductProvider =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = FilterTypes.size.simpleName;
+  // final sizeFilter = FilterTypes.size.simpleName;
   // filters.entries
   // .where((e) => e.key == FilterTypes.size)
   // .firstOrNull
@@ -60,12 +60,10 @@ final searchProductProvider =
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
 
-  final category = ref
-      .watch(categoryProvider)
-      .valueOrNull
-      ?.where((e) => e.name == categoryFilter)
+  final category = Enum$ParentCategoryEnum.values
+      .where((e) => e.name == categoryFilter)
       .firstOrNull;
-  final size = sizeFilter;
+  // final size = sizeFilter;
   // Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
@@ -78,10 +76,10 @@ final searchProductProvider =
     search: query,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
+      parentCategory: category,
       // size: size,
       condition: condition,
       style: style,
-      category: category?.id == null ? null : int.tryParse(category?.id),
     ),
   );
 
@@ -118,10 +116,10 @@ final userProduct =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = filters.entries
-      .where((e) => e.key == FilterTypes.size)
-      .firstOrNull
-      ?.value;
+  // final sizeFilter = filters.entries
+  //     .where((e) => e.key == FilterTypes.size)
+  //     .firstOrNull
+  //     ?.value;
   final conditionFilter = filters.entries
       .where((e) => e.key == FilterTypes.condition)
       .firstOrNull
@@ -134,7 +132,14 @@ final userProduct =
       .where((e) => e.key == FilterTypes.category)
       .firstOrNull
       ?.value;
-
+  final parentCategoryFilter = filters.entries
+      .where((e) => e.key == FilterTypes.gender)
+      .firstOrNull
+      ?.value;
+  final colorFilter = filters.entries
+      .where((e) => e.key == FilterTypes.color)
+      .firstOrNull
+      ?.value;
   log(brandFilter.toString(), name: 'brandFilter');
 
   final brand = ref
@@ -143,17 +148,26 @@ final userProduct =
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
-  final category = ref
-      .watch(categoryProvider)
-      .valueOrNull
-      ?.where((e) => e.name == categoryFilter)
-      .firstOrNull;
+  // final category = ref
+  //     .watch(categoryProvider)
+  //     .valueOrNull
+  //     ?.where((e) => e.name == categoryFilter)
+  //     .firstOrNull;
   // final size =
   //     Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style =
       Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
+  final parentCategory = Enum$ParentCategoryEnum.values
+      .where((e) => e.name == parentCategoryFilter)
+      .firstOrNull;
+  final color = ref
+      .watch(colorsProvider)
+      .entries
+      ?.where((e) => e.key == colorFilter)
+      .firstOrNull
+      ?.key;
 
   final searchQuery = ref.watch(userProductSearchQuery);
   final sort = ref.watch(userProductSort);
@@ -162,12 +176,14 @@ final userProduct =
     username: username,
     pageCount: 1000,
     filters: Input$ProductFiltersInput(
-      brand: brand?.id,
-      // size: size,
-      condition: condition,
-      style: style,
-      category: category?.id == null ? null : int.tryParse(category?.id),
-    ),
+        brand: brand?.id,
+        // size: size,
+        
+        parentCategory: parentCategory,
+        condition: condition,
+        style: style,
+        category: categoryFilter == null ? null : int.tryParse(categoryFilter),
+        colors: color != null ? [color] : []),
     search: searchQuery,
     sort: sort,
   );
@@ -623,16 +639,24 @@ class FilteredProductController
     }
   }
 
+  void removeFilter() async {
+    try {
+      await _getProducts(
+        filter: _filter,
+        pageNumber: _currentPage,
+        query: _query,
+      );
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+    }
+  }
+
   Future<List<ProductModel>> _getProducts({
     required Input$ProductFiltersInput? filter,
     required int pageNumber,
     String? query,
   }) async {
     try {
-      log(_filter!.toJson().toString(),
-          name: ' filteredProducts _filter in get function');
-      log(filter!.toJson().toString(),
-          name: ' filteredProducts filter in get function');
       final result = await _repository.getAllProducts(
         pageCount: _pageCount,
         pageNumber: pageNumber,
@@ -687,28 +711,46 @@ class FilteredProductController
   }
 }
 
-final discountedProductsProvider =
-    AsyncNotifierProvider<DiscountProductsController, List<ProductModel>>(
-        DiscountProductsController.new);
+final discounteddFilteredProductProvider =
+    StateProvider<Input$ProductFiltersInput>(
+        (ref) => Input$ProductFiltersInput(discountPrice: true));
 
-class DiscountProductsController extends AsyncNotifier<List<ProductModel>> {
+final discountedProductsProvider = AsyncNotifierProvider.family<
+    DiscountProductsController,
+    List<ProductModel>,
+    String?>(DiscountProductsController.new);
+
+class DiscountProductsController
+    extends FamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
 
   static const int _pageSize = 15;
   int _currentPage = 1;
   int _totalItems = 0;
+  Input$ProductFiltersInput _filter =
+      Input$ProductFiltersInput(discountPrice: true);
+  String? _query;
+
+  Input$ProductFiltersInput? get currentFilter => _filter;
 
   @override
-  Future<List<ProductModel>> build() async {
-    return _fetchProducts(page: 1);
+  Future<List<ProductModel>> build(String? query) async {
+    state = const AsyncLoading();
+    _query = query;
+    return _fetchProducts(page: 1, filter: _filter, query: _query);
   }
 
-  Future<List<ProductModel>> _fetchProducts({required int page}) async {
+  Future<List<ProductModel>> _fetchProducts({
+    required int page,
+    required Input$ProductFiltersInput? filter,
+    String? query,
+  }) async {
     try {
       final response = await _repository.getAllProducts(
         pageCount: _pageSize,
         pageNumber: page,
-        filters: Input$ProductFiltersInput(discountPrice: true),
+        filters: filter,
+        search: query,
       );
 
       _totalItems = response.allProductsTotalNumber ?? 0;
@@ -730,9 +772,27 @@ class DiscountProductsController extends AsyncNotifier<List<ProductModel>> {
     }
   }
 
+  void updateFilter(Input$ProductFiltersInput updatedFilter) async {
+    _filter = updatedFilter;
+    log(_filter!.toJson().toString(),
+        name: ' filteredProducts filter in update ');
+    log(updatedFilter.toJson().toString(),
+        name: ' filteredProducts updated filter');
+    try {
+      await _fetchProducts(
+        filter: _filter,
+        page: _currentPage,
+        query: _query,
+      );
+    } catch (e, stack) {
+      state = AsyncError(e, stack);
+    }
+  }
+
   Future<void> fetchMoreProducts() async {
     if (canLoadMore()) {
-      await _fetchProducts(page: _currentPage + 1);
+      await _fetchProducts(
+          page: _currentPage + 1, filter: _filter, query: _query);
     }
   }
 

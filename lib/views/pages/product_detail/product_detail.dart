@@ -509,7 +509,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                               ],
                             ),
                             ContentSizeTabBarView(
-                                physics: const ClampingScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 controller: _tabController,
                                 children: [
                                   _buildMemberItemsTab(context, product),

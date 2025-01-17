@@ -38,9 +38,9 @@ class ProductDescription extends ConsumerWidget {
               Text(
                 "Description",
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w500,
-                      fontSize: getDefaultSize(),
-                    ),
+                    fontWeight: FontWeight.w500,
+                    fontSize: getDefaultSize(),
+                    color: PreluraColors.primaryColor),
               ),
               const SizedBox(
                 height: 12,
@@ -91,7 +91,7 @@ class ProductDescription extends ConsumerWidget {
         if (product.category != null)
           _buildInfoRow("Category", product.category!.name, context),
         // if (product.subCategory != null)
-          // _buildInfoRow("Sub Category", product.subCategory!.name, context),
+        // _buildInfoRow("Sub Category", product.subCategory!.name, context),
         // if (product.style != null)
         //   _buildInfoRow(
         //       "Style",

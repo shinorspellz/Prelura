@@ -37388,6 +37388,13 @@ const documentNodeQueryRecommendedSellers = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'gender'),
                 alias: null,
                 arguments: [],
@@ -37971,6 +37978,7 @@ class Query$RecommendedSellers$recommendedSellers$seller {
     this.email,
     this.bio,
     this.profilePictureUrl,
+    this.thumbnailUrl,
     this.gender,
     this.displayName,
     this.dob,
@@ -37994,6 +38002,7 @@ class Query$RecommendedSellers$recommendedSellers$seller {
     final l$email = json['email'];
     final l$bio = json['bio'];
     final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
     final l$gender = json['gender'];
     final l$displayName = json['displayName'];
     final l$dob = json['dob'];
@@ -38014,6 +38023,7 @@ class Query$RecommendedSellers$recommendedSellers$seller {
       email: (l$email as String?),
       bio: (l$bio as String?),
       profilePictureUrl: (l$profilePictureUrl as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
       gender: (l$gender as String?),
       displayName: (l$displayName as String?),
       dob: l$dob == null ? null : DateTime.parse((l$dob as String)),
@@ -38051,6 +38061,8 @@ class Query$RecommendedSellers$recommendedSellers$seller {
   final String? bio;
 
   final String? profilePictureUrl;
+
+  final String? thumbnailUrl;
 
   final String? gender;
 
@@ -38092,6 +38104,8 @@ class Query$RecommendedSellers$recommendedSellers$seller {
     _resultData['bio'] = l$bio;
     final l$profilePictureUrl = profilePictureUrl;
     _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
     final l$gender = gender;
     _resultData['gender'] = l$gender;
     final l$displayName = displayName;
@@ -38128,6 +38142,7 @@ class Query$RecommendedSellers$recommendedSellers$seller {
     final l$email = email;
     final l$bio = bio;
     final l$profilePictureUrl = profilePictureUrl;
+    final l$thumbnailUrl = thumbnailUrl;
     final l$gender = gender;
     final l$displayName = displayName;
     final l$dob = dob;
@@ -38148,6 +38163,7 @@ class Query$RecommendedSellers$recommendedSellers$seller {
       l$email,
       l$bio,
       l$profilePictureUrl,
+      l$thumbnailUrl,
       l$gender,
       l$displayName,
       l$dob,
@@ -38205,6 +38221,11 @@ class Query$RecommendedSellers$recommendedSellers$seller {
     final l$profilePictureUrl = profilePictureUrl;
     final lOther$profilePictureUrl = other.profilePictureUrl;
     if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
       return false;
     }
     final l$gender = gender;
@@ -38301,6 +38322,7 @@ abstract class CopyWith$Query$RecommendedSellers$recommendedSellers$seller<
     String? email,
     String? bio,
     String? profilePictureUrl,
+    String? thumbnailUrl,
     String? gender,
     String? displayName,
     DateTime? dob,
@@ -38342,6 +38364,7 @@ class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller<TRes>
     Object? email = _undefined,
     Object? bio = _undefined,
     Object? profilePictureUrl = _undefined,
+    Object? thumbnailUrl = _undefined,
     Object? gender = _undefined,
     Object? displayName = _undefined,
     Object? dob = _undefined,
@@ -38369,6 +38392,9 @@ class _CopyWithImpl$Query$RecommendedSellers$recommendedSellers$seller<TRes>
         profilePictureUrl: profilePictureUrl == _undefined
             ? _instance.profilePictureUrl
             : (profilePictureUrl as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
         gender: gender == _undefined ? _instance.gender : (gender as String?),
         displayName: displayName == _undefined
             ? _instance.displayName
@@ -38439,6 +38465,7 @@ class _CopyWithStubImpl$Query$RecommendedSellers$recommendedSellers$seller<TRes>
     String? email,
     String? bio,
     String? profilePictureUrl,
+    String? thumbnailUrl,
     String? gender,
     String? displayName,
     DateTime? dob,

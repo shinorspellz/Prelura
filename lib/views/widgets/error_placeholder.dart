@@ -14,7 +14,7 @@ class ErrorPlaceholder extends ConsumerWidget {
     return Container(
       padding: EdgeInsets.all(16),
       alignment: Alignment.center,
-      // height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height * 0.7,
       child: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
