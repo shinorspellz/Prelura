@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +8,6 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../../../res/images.dart';
 import '../../../../res/render_svg.dart';
@@ -59,6 +60,7 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
+    log("::::The username is ::: ${widget.username}");
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
     final user = ref
         .watch((widget.username != null
@@ -169,13 +171,16 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
       //   ],
       // ),
 
-      body: user == null
-          ? LoadingWidget(
-              height: 50,
-            )
-          : UserWardrobe(
-              username: widget.username,
-            ),
+      body:
+          // user != null
+          //     ? LoadingWidget(
+          //         height: 50,
+          //       )
+          //     :
+          UserWardrobe(
+        username:
+            widget.username?.trim() == ":username" ? null : widget.username,
+      ),
     );
   }
 }

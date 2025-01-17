@@ -3,10 +3,10 @@ import 'dart:convert';
 class OfferInfo {
   String? id;
   dynamic message;
-  String? offerPrice;
+  dynamic offerPrice;
   DateTime? createdAt;
   DateTime? updatedAt;
-  String? status;
+  dynamic status;
   dynamic expiresAt;
   bool? deleted;
   Recipient? buyer;
@@ -30,8 +30,8 @@ class OfferInfo {
   factory OfferInfo.fromJson(Map<String, dynamic> json) => OfferInfo(
         id: json["id"],
         message: json["message"],
-        offerPrice: json["offerPrice"],
-        status: json["status"],
+        offerPrice: json["offer_price"] ?? json["offerPrice"],
+        status: json["offer_status"] ?? json["status"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),

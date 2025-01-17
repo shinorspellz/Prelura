@@ -20,7 +20,7 @@ class MessageCard extends StatelessWidget {
   final ConversationModel model;
   @override
   Widget build(BuildContext context) {
-    log("The last message::: ${model.lastMessage?.toJson()}");
+    // log("The last message::: ${model.lastMessage?.toJson()}");
     bool isLastMessageAnOffer = model.offer != null;
     log("The last message an offer::: $isLastMessageAnOffer");
 
@@ -129,7 +129,7 @@ class BuildOfferRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    OfferInfo offerInfo = offerInfoFromJson(text);
+    OfferInfo offerInfo = offerInfoFromJson(text.replaceAll("'", "\""));
     bool isSender = recipient == offerInfo.buyer?.username;
     return Row(children: [
       RenderSvg(
