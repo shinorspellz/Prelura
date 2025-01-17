@@ -20,9 +20,12 @@ import '../search_result/view/search_result.dart';
 @RoutePage()
 class FilterProductPage extends StatefulHookConsumerWidget {
   const FilterProductPage(
-      {super.key, required this.title, required this.id, this.customBrand});
+      {super.key,
+      required this.title,
+      required this.parentCategory,
+      this.customBrand});
   final String? title;
-  final int? id;
+  final Enum$ParentCategoryEnum? parentCategory;
   final String? customBrand;
 
   static final ScrollController scrollController = ScrollController();
@@ -42,7 +45,7 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
       log("here in the microstask");
       // Ensure the widget is still mounted
       ref.read(selectedFilteredProductProvider.notifier).state =
-          Input$ProductFiltersInput(category: widget.id);
+          Input$ProductFiltersInput(parentCategory: widget.parentCategory);
 
       ref.refresh(filteredProductProvider(searchQuery));
     });
@@ -209,11 +212,10 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                                     mainAxisSpacing: 10,
                                     childAspectRatio: 0.50,
                                   ),
-                                  itemCount: products.take(6).length,
+                                  itemCount: products.length,
                                   itemBuilder: (context, index) {
                                     return ProductCard(
-                                        product:
-                                            products.take(6).toList()[index]);
+                                        product: products[index]);
                                   },
                                 ),
                               );

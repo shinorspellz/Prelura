@@ -35,7 +35,7 @@ final searchProductProvider =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = FilterTypes.size.simpleName;
+  // final sizeFilter = FilterTypes.size.simpleName;
   // filters.entries
   // .where((e) => e.key == FilterTypes.size)
   // .firstOrNull
@@ -60,12 +60,10 @@ final searchProductProvider =
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
 
-  final category = ref
-      .watch(categoryProvider)
-      .valueOrNull
-      ?.where((e) => e.name == categoryFilter)
+  final category = Enum$ParentCategoryEnum.values
+      .where((e) => e.name == categoryFilter)
       .firstOrNull;
-  final size = sizeFilter;
+  // final size = sizeFilter;
   // Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
@@ -78,10 +76,10 @@ final searchProductProvider =
     search: query,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
+      parentCategory: category,
       // size: size,
       condition: condition,
       style: style,
-      category: category?.id == null ? null : int.tryParse(category?.id),
     ),
   );
 
@@ -118,10 +116,10 @@ final userProduct =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = filters.entries
-      .where((e) => e.key == FilterTypes.size)
-      .firstOrNull
-      ?.value;
+  // final sizeFilter = filters.entries
+  //     .where((e) => e.key == FilterTypes.size)
+  //     .firstOrNull
+  //     ?.value;
   final conditionFilter = filters.entries
       .where((e) => e.key == FilterTypes.condition)
       .firstOrNull
@@ -134,6 +132,10 @@ final userProduct =
       .where((e) => e.key == FilterTypes.category)
       .firstOrNull
       ?.value;
+  final parentCategoryFilter = filters.entries
+      .where((e) => e.key == FilterTypes.gender)
+      .firstOrNull
+      ?.value;
 
   log(brandFilter.toString(), name: 'brandFilter');
 
@@ -143,17 +145,20 @@ final userProduct =
       .valueOrNull
       ?.where((e) => e.name == brandFilter)
       .firstOrNull;
-  final category = ref
-      .watch(categoryProvider)
-      .valueOrNull
-      ?.where((e) => e.name == categoryFilter)
-      .firstOrNull;
+  // final category = ref
+  //     .watch(categoryProvider)
+  //     .valueOrNull
+  //     ?.where((e) => e.name == categoryFilter)
+  //     .firstOrNull;
   // final size =
   //     Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
   final condition =
       ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
   final style =
       Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
+  final parentCategory = Enum$ParentCategoryEnum.values
+      .where((e) => e.name == parentCategoryFilter)
+      .firstOrNull;
 
   final searchQuery = ref.watch(userProductSearchQuery);
   final sort = ref.watch(userProductSort);
@@ -164,9 +169,10 @@ final userProduct =
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
       // size: size,
+      parentCategory: parentCategory,
       condition: condition,
       style: style,
-      category: category?.id == null ? null : int.tryParse(category?.id),
+      category: categoryFilter == null ? null : int.tryParse(categoryFilter),
     ),
     search: searchQuery,
     sort: sort,

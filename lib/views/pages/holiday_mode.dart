@@ -23,7 +23,8 @@ class HolidayModeScreen extends ConsumerWidget {
         centerTitle: true,
         appbarTitle: "Vacation Mode",
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
       ),
@@ -41,7 +42,8 @@ class HolidayModeScreen extends ConsumerWidget {
                     children: [
                       Text(
                         "Vacation Mode",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w600, fontSize: 12.sp),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontWeight: FontWeight.w600, fontSize: 12.sp),
                       ),
                     ],
                   ),
@@ -49,14 +51,17 @@ class HolidayModeScreen extends ConsumerWidget {
                 PreluraSwitch(
                     swicthValue: isVacationMode ?? false,
                     onChanged: (value) async {
-                      await ref.read(userNotfierProvider.notifier).updateProfile(isVacationMode: value);
+                      await ref
+                          .read(userNotfierProvider.notifier)
+                          .updateProfile(isVacationMode: value);
                       ref.read(userNotfierProvider).whenOrNull(
-                            error: (e, _) => context.alert('An error occured while updating'),
+                            error: (e, _) => context
+                                .alert('An error occured while updating'),
                             data: (_) {
                               ref.invalidate(userProvider);
                               ref.refresh(userProvider.future);
                               HelperFunction.context = context;
-                              HelperFunction.showToast(message: 'Vacation Mode updated!');
+                              context.alert('Vacation Mode updated!');
                             },
                           );
                     }),
@@ -72,8 +77,12 @@ class HolidayModeScreen extends ConsumerWidget {
                     width: 1,
                   ),
                   borderRadius: BorderRadius.circular(8)),
-              child: Text("Note: Turning on vacation will hide your items from all catalogues",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: getDefaultSize(), fontWeight: FontWeight.w600, color: PreluraColors.grey))),
+              child: Text(
+                  "Note: Turning on vacation will hide your items from all catalogues",
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontSize: getDefaultSize(),
+                      fontWeight: FontWeight.w600,
+                      color: PreluraColors.grey))),
         ]),
       ),
     );

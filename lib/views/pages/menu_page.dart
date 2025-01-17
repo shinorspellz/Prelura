@@ -4,19 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
-import 'package:prelura_app/views/widgets/primary_switch.dart';
-import 'package:prelura_app/views/widgets/profile_picture.dart';
-import 'package:prelura_app/views/widgets/profile_stats_card.dart';
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/helper_function.dart';
 
 import '../../res/images.dart';
 import '../../res/render_svg.dart';
-import '../../res/utils.dart';
-import '../../controller/theme_notifier.dart';
-import 'profile_details/provider/tab_controller.dart';
 import 'settings/multi_buy_discount.dart';
 
 @RoutePage()
@@ -133,6 +125,9 @@ class MenuPage extends ConsumerWidget {
           MenuCard(
               title: "Vacation Mode",
               rightArrow: false,
+              subtitle: ref.watch(userProvider).value?.isVacationMode == true
+                  ? "on"
+                  : "off",
               icon: RenderSvg(
                 svgPath: PreluraIcons.vacation_mode_svg,
                 color: PreluraColors.grey,

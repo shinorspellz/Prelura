@@ -73,23 +73,37 @@ class SellerProfileCard extends ConsumerWidget {
             ] else ...[
               Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: CachedNetworkImage(
-                      imageUrl: user.profilePictureUrl ?? "",
-                      height: 130,
-                      width: 130,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) {
-                        return ShimmerBox(
-                          height: 16.h,
-                          width: double.infinity,
-                        );
-                      },
-                      fadeInDuration: Duration.zero,
-                      fadeOutDuration: Duration.zero,
+                  if (user.profilePictureUrl != null)
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: CachedNetworkImage(
+                        errorWidget: (context, url, error) => Container(
+                          color: PreluraColors.grey,
+                          child: Center(
+                            child: Text(
+                              user.username?.split('').first.toUpperCase() ??
+                                  '--',
+                              style: context.textTheme.titleLarge?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                  fontSize: 44),
+                            ),
+                          ),
+                        ),
+                        imageUrl: user.thumbnailUrl ?? "",
+                        height: 130,
+                        width: 130,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) {
+                          return ShimmerBox(
+                            height: 16.h,
+                            width: double.infinity,
+                          );
+                        },
+                        fadeInDuration: Duration.zero,
+                        fadeOutDuration: Duration.zero,
+                      ),
                     ),
-                  ),
                   Positioned(
                       bottom: -2,
                       right: 0,

@@ -34,10 +34,10 @@ final searchProductProvider =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = filters.entries
-      .where((e) => e.key == FilterTypes.size)
-      .firstOrNull
-      ?.value;
+  // final sizeFilter = filters.entries
+  //     .where((e) => e.key == FilterTypes.size)
+  //     .firstOrNull
+  //     ?.value;
   final conditionFilter = filters.entries
       .where((e) => e.key == FilterTypes.condition)
       .firstOrNull
@@ -110,10 +110,10 @@ final userProduct =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
-  final sizeFilter = filters.entries
-      .where((e) => e.key == FilterTypes.size)
-      .firstOrNull
-      ?.value;
+  // final sizeFilter = filters.entries
+  //     .where((e) => e.key == FilterTypes.size)
+  //     .firstOrNull
+  //     ?.value;
   final conditionFilter = filters.entries
       .where((e) => e.key == FilterTypes.condition)
       .firstOrNull

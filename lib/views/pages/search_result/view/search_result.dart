@@ -24,7 +24,7 @@ final dialogFilterStateProvider =
     StateProvider<Map<String, List<String>>>((ref) => {});
 
 enum FilterTypes {
-  size('Size'),
+  // size('Size'),
   brand('Brand'),
   condition('Condition'),
   gender('Gender'),

@@ -81,6 +81,11 @@ class FilterUserProductNotifier
     ref.invalidate(userProduct);
   }
 
+  void removeFilter(FilterTypes filterType, String value) {
+    state.remove(filterType);
+    ref.invalidate(userProduct);
+  }
+
   // Clear filter (reset state to empty)
   void clearFilter() {
     state = {};
@@ -196,16 +201,29 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
     if (FilterTypes.category == filterType) {
       final updatedFilter = providerFilter.currentFilter?.copyWith(
-          category: filterType == FilterTypes.category
-              ? int.tryParse(ref
-                  .watch(categoryProvider)
-                  .valueOrNull
-                  ?.where((e) => e.name == value)
+          parentCategory: filterType == FilterTypes.category
+              ? Enum$ParentCategoryEnum.values
+                  .where((e) => e.name.toLowerCase() == value.toLowerCase())
                   .firstOrNull
-                  ?.id)
-              : providerFilter.currentFilter?.category);
+              : providerFilter.currentFilter?.parentCategory);
 
       providerFilter.updateFilter(updatedFilter!);
+    }
+
+    if (FilterTypes.color == filterType) {
+      // final updatedFilter = providerFilter.currentFilter?.copyWith(
+      //     color: filterType == FilterTypes.color
+      //         ? int.tryParse(ref
+      //             .watch(colorProvider)
+      //             .valueOrNull
+      //             ?.where((e) => e.name == value)
+      //             .firstOrNull
+      //             ?.key)
+      //         : providerFilter.currentFilter?.color)
+
+      ref.refresh(filteredProductProvider("").future);
+
+      // providerFilter.updateFilter(updatedFilter!);
     }
 
     // Invalidate the provider to trigger a rebuild
@@ -289,13 +307,21 @@ void ShowFilteredProductFilterModal(
                   controller: controller,
                   children: filterOptions[filterType]!
                       .map((e) => PreluraCheckBox(
+                            colorName: filterType == FilterTypes.color
+                                ? ref
+                                    .read(colorsProvider)
+                                    .entries
+                                    .where((color) => color.key == e)
+                                    .firstOrNull
+                                    ?.value
+                                : null,
                             isChecked: selectedOptions == e,
                             onChanged: (value) {
                               log("value : $value",
                                   name: "Search product provider");
                               if (selectedOptions == e) {
                                 filterNotifier.removeFilter(filterType);
-                                selectedOptions = null;
+                                selectedOptions = "";
                               } else {
                                 filterNotifier.updateFilter(filterType, e);
                                 setState(() {
@@ -316,6 +342,7 @@ void ShowFilteredProductFilterModal(
                     text: "Clear",
                     fontWeight: FontWeight.w600,
                     width: double.infinity,
+                    isDisabled: selectedOptions == null,
                     onTap: () {
                       filterNotifier.removeFilter(filterType);
                       Navigator.pop(context);

@@ -395,6 +395,26 @@ type MessageType {
 }
 
 type Mutation {
+  sendSmsOtp(
+    """
+    Specifies the purpose of the OTP. The action determines the context for the
+    OTP message, such as verifying an account, logging in, resetting a password,
+    or two-factor authentication (2FA). The OTP message content will change
+    based on the selected action.
+    """
+    action: SmsActionChoicesEnum
+    channel: SmsChannelChoicesEnum
+
+    """
+    If the user does not have a phone number on file, this field allows them to
+    provide a new phone number for verification. In this case, an OTP will be
+    sent to the provided phone number, and the user will be prompted to enter
+    the OTP to complete verification. If the user already has a phone number,
+    leave this field empty to send an OTP to the existing phone number. The OTP
+    can then be used to verify and update to a new number.
+    """
+    phoneNumber: String
+  ): SendSmsOtp
   upload(files: [Upload]!, filetype: FileTypeEnum!): UploadPictures
   deleteMediaFiles(fileUrls: [String], filetype: FileTypeEnum!): DeleteMediaFiles
   adminLogin(password: String!, username: String!): AdminLogin
@@ -696,6 +716,14 @@ enum ParcelSizeEnum {
   LARGE
 }
 
+enum ParentCategoryEnum {
+  MEN
+  WOMEN
+  BOYS
+  GIRLS
+  TODDLERS
+}
+
 """
 Change account password when user knows the old password.
 
@@ -787,9 +815,11 @@ input ProductFiltersInput {
   name: String
   brand: Int
   category: Int
+  parentCategory: ParentCategoryEnum
   size: Int
   customBrand: String
-  price: Float
+  minPrice: Float
+  maxPrice: Float
   status: ProductStatusEnum
   style: StyleEnum
   condition: ConditionEnum
@@ -1116,9 +1146,10 @@ type Query {
         Possible keys in the `filters` dictionary include:
         - `name`: Filter products by name.
         - `brand`: Filter products by brand ID.
-        - `category`: Filter products by category ID.
+        - `category`: Filter products by a specific category ID.
+        - "parent_category" (enum): Filters products based on the slug of parent category, 
+              finding all child categories that match [MEN, WOMEN, BOYS, GIRLS, TODDLERS] prefix.
         - `custom_brand`: Filter products by custom brand.
-        - `sub_category`: Filter products by sub-category ID.
         - `price`: Filter products by price (less than or equal to the provided price).
         - `condition`: Filter products by condition (e.g., "new", "used").
         - `size`: Filter products by size.
@@ -1346,9 +1377,26 @@ type SenderType {
   profilePictureUrl: String
 }
 
+type SendSmsOtp {
+  success: Boolean
+  message: String
+}
+
 type SizeType {
   id: Int
   name: String
+}
+
+enum SmsActionChoicesEnum {
+  VERIFY
+  LOGIN
+  RESET
+  TWOFACTOR
+}
+
+enum SmsChannelChoicesEnum {
+  SMS
+  WHATSAPP
 }
 
 """Social Auth Mutation"""

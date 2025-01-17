@@ -52,15 +52,22 @@ class FilterAndSort extends ConsumerWidget {
                 ),
                 customFooter: (context) => AppButton(
                   width: MediaQuery.sizeOf(context).width,
-                  onTap: () {
-                    ref.read(filterUserProductProvider.notifier).clearFilter();
-                    Navigator.pop(context);
-                  },
+                  isDisabled: ref.watch(filterUserProductProvider).isEmpty,
+                  onTap: ref.watch(filterUserProductProvider).isNotEmpty
+                      ? () {
+                          ref
+                              .read(filterUserProductProvider.notifier)
+                              .clearFilter();
+                          Navigator.pop(context);
+                        }
+                      : null,
                   text: 'Clear',
                 ),
                 context: context,
                 actions: [
-                  ...FilterTypes.values.map((e) {
+                  ...FilterTypes.values
+                      .where((e) => e.simpleName.toLowerCase() != "category")
+                      .map((e) {
                     return VBottomSheetItem(
                       onTap: (context) {
                         Navigator.pop(context);

@@ -86,7 +86,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     if (ref.watch(selectedTabProvider) != 0 &&
         ref.watch(selectedTabProvider) != 1) {
-      final selectedId = ref.watch(selectedIdProvider);
       log("i am here");
       paginationIndicator = buildPaginationIndicator(
           canLoadMore: ref
@@ -313,14 +312,20 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
                 curve: Curves.easeInOut,
               );
               if (category != null) {
-                final matchingCategory =
-                    category.where((e) => e.name == tabs[index]).firstOrNull;
+                final matchingCategory = Enum$ParentCategoryEnum.values
+                    .where((e) =>
+                        e.name.toLowerCase() == tabs[index].toLowerCase())
+                    .firstOrNull;
+                final categoryId = category
+                    .where((e) =>
+                        e.name.toLowerCase() == tabs[index].toLowerCase())
+                    .firstOrNull;
                 if (matchingCategory != null) {
                   ref.read(selectedFilteredProductProvider.notifier).state =
                       Input$ProductFiltersInput(
-                          category: int.parse(matchingCategory.id));
+                          parentCategory: matchingCategory);
                   ref.read(selectedIdProvider.notifier).state =
-                      int.parse(matchingCategory.id);
+                      int.parse(categoryId?.id);
                 }
               }
             },

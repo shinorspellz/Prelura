@@ -80,8 +80,14 @@ class _FilterModalState extends ConsumerState<FilterModal> {
               ?.map((e) => e.name)
               .toList() ??
           [],
+
       FilterTypes.condition:
           ConditionsEnum.values.map((e) => e.simpleName).toList(),
+
+      FilterTypes.gender: Enum$ParentCategoryEnum.values
+          .where((category) =>
+              {"men", "women"}.contains(category.name.toLowerCase()))
+          .map((category) => category.name)
     };
 
     return ConstrainedBox(
@@ -95,6 +101,16 @@ class _FilterModalState extends ConsumerState<FilterModal> {
                 title: e.replaceAll("_", " "),
                 isChecked: selectedOption == e,
                 onChanged: (value) {
+                  if (selectedOption == e) {
+                    log(e, name: "profile filter");
+                    filterNotifier.removeFilter(widget.filterType, e);
+                    setState(() {
+                      selectedOption = null;
+                    });
+                    Navigator.pop(context);
+                    return;
+                  }
+
                   filterNotifier.updateFilter(
                       widget.filterType, e, widget.username);
                   setState(() {

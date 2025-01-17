@@ -786,6 +786,7 @@ query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
     email
     bio
     profilePictureUrl
+    thumbnailUrl
     gender
     displayName
     dob
