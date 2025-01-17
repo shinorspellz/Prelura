@@ -211,6 +211,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: VerifyVideo.page,
+          path: "/details",
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
