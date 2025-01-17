@@ -10,11 +10,9 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/user/user_model.dart';
-import 'package:prelura_app/res/username.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/price_field.dart';
-import 'package:prelura_app/views/widgets/profile_picture.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../res/colors.dart';
@@ -131,26 +129,6 @@ class _OfferCardState extends ConsumerState<OfferCard> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            if (offerInfo.status?.toLowerCase() == "pending")
-              Row(
-                children: [
-                  ProfilePictureWidget(
-                    height: 60,
-                    width: 60,
-                    profilePicture: "${offerInfo.buyer?.thumbnailUrl}",
-                    username: "${offerInfo.buyer?.username}",
-                  ),
-                  16.horizontalSpacing,
-                  HighlightUserName(
-                    isRead: false,
-                    highlightColor: PreluraColors.primaryColor,
-                    message:
-                        "${!amTheSeller ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
-                    username: "offered",
-                  ),
-                ],
-              ),
-            12.verticalSpacing,
             OfferProductCard(
               offerInfo: offerInfo,
               amTheSeller: amTheSeller,

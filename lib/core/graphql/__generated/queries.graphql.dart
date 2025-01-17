@@ -28164,6 +28164,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'status'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'createdAt'),
                 alias: null,
                 arguments: [],
@@ -29309,6 +29316,7 @@ class Query$Conversations$conversations$offer {
     required this.id,
     this.message,
     required this.offerPrice,
+    required this.status,
     required this.createdAt,
     required this.updatedAt,
     this.expiresAt,
@@ -29323,6 +29331,7 @@ class Query$Conversations$conversations$offer {
     final l$id = json['id'];
     final l$message = json['message'];
     final l$offerPrice = json['offerPrice'];
+    final l$status = json['status'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
     final l$expiresAt = json['expiresAt'];
@@ -29334,6 +29343,7 @@ class Query$Conversations$conversations$offer {
       id: (l$id as String),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
+      status: fromJson$Enum$ProductsOfferStatusChoices((l$status as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       expiresAt:
@@ -29354,6 +29364,8 @@ class Query$Conversations$conversations$offer {
   final String? message;
 
   final String offerPrice;
+
+  final Enum$ProductsOfferStatusChoices status;
 
   final DateTime createdAt;
 
@@ -29377,6 +29389,8 @@ class Query$Conversations$conversations$offer {
     _resultData['message'] = l$message;
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsOfferStatusChoices(l$status);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
@@ -29399,6 +29413,7 @@ class Query$Conversations$conversations$offer {
     final l$id = id;
     final l$message = message;
     final l$offerPrice = offerPrice;
+    final l$status = status;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
     final l$expiresAt = expiresAt;
@@ -29410,6 +29425,7 @@ class Query$Conversations$conversations$offer {
       l$id,
       l$message,
       l$offerPrice,
+      l$status,
       l$createdAt,
       l$updatedAt,
       l$expiresAt,
@@ -29442,6 +29458,11 @@ class Query$Conversations$conversations$offer {
     final l$offerPrice = offerPrice;
     final lOther$offerPrice = other.offerPrice;
     if (l$offerPrice != lOther$offerPrice) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
       return false;
     }
     final l$createdAt = createdAt;
@@ -29506,6 +29527,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
     String? id,
     String? message,
     String? offerPrice,
+    Enum$ProductsOfferStatusChoices? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,
@@ -29535,6 +29557,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
     Object? id = _undefined,
     Object? message = _undefined,
     Object? offerPrice = _undefined,
+    Object? status = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
     Object? expiresAt = _undefined,
@@ -29550,6 +29573,9 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
         offerPrice: offerPrice == _undefined || offerPrice == null
             ? _instance.offerPrice
             : (offerPrice as String),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsOfferStatusChoices),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -29599,6 +29625,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
     String? id,
     String? message,
     String? offerPrice,
+    Enum$ProductsOfferStatusChoices? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,

@@ -621,6 +621,7 @@ query Conversations {
       id
       message
       offerPrice
+      status
       createdAt
       updatedAt
       expiresAt
