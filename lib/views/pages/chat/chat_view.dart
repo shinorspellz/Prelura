@@ -9,6 +9,7 @@ import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/chat/widgets/chat_card_box.dart';
+import 'package:prelura_app/views/pages/chat/widgets/offer_conversation_builder.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../widgets/app_bar.dart';
@@ -51,11 +52,13 @@ class ChatScreen extends ConsumerWidget {
   const ChatScreen({
     super.key,
     required this.id,
+    required this.isOffer,
     required this.username,
     required this.avatarUrl,
   });
 
   final String id;
+  final bool isOffer;
   final String username;
   final String? avatarUrl;
 
@@ -135,79 +138,85 @@ class ChatScreen extends ConsumerWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        controller: ref.watch(chatScrollController),
-        reverse: true,
-        child: Column(
-          children: [
-            // Static content at the top
-            // ProductCard(image: avatarUrl),
-            ref.watch(messagesProvider(id)).maybeWhen(
-                  data: (messages) {
-                    final lastOtherSenderMessage = messages.firstWhere(
-                      (message) => message.sender.username == username,
-                      orElse: () => MessageModel(
-                          // deleted: false,
-                          id: 0,
-                          sender: UserModel(id: 0, username: ''),
-                          text: '',
-                          isItem: false,
-                          read: false),
-                    );
-                    // log(lastOtherSenderMessage.toJson().toString(),
-                    //     name: 'lastOtherSenderMessage');
-                    // log(messages.toString(), name: 'messages');
-                    // log(username, name: 'username');
+      body: isOffer
+          ? OfferConversationBuilder(
+              conversationId: id,
+              username: username,
+              avatar: avatarUrl ?? "",
+            )
+          : SingleChildScrollView(
+              controller: ref.watch(chatScrollController),
+              reverse: true,
+              child: Column(
+                children: [
+                  // Static content at the top
+                  // ProductCard(image: avatarUrl),
+                  ref.watch(messagesProvider(id)).maybeWhen(
+                        data: (messages) {
+                          final lastOtherSenderMessage = messages.firstWhere(
+                            (message) => message.sender.username == username,
+                            orElse: () => MessageModel(
+                                // deleted: false,
+                                id: 0,
+                                sender: UserModel(id: 0, username: ''),
+                                text: '',
+                                isItem: false,
+                                read: false),
+                          );
+                          // log(lastOtherSenderMessage.toJson().toString(),
+                          //     name: 'lastOtherSenderMessage');
+                          // log(messages.toString(), name: 'messages');
+                          // log(username, name: 'username');
 
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics:
-                          const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
-                      itemCount: messages.length,
-                      reverse: true,
-                      itemBuilder: (context, index) {
-                        final chat = messages[index];
-                        final isSender = chat.sender.username != username;
-                        final showAvatar = index == 0 ||
-                            messages[index - 1].sender.username !=
-                                chat.sender.username;
-                        return Align(
-                            alignment: isSender
-                                ? Alignment.bottomRight
-                                : Alignment.bottomLeft,
-                            child: Column(
-                              children: [
-                                ChatTextWidget(
-                                  chat: chat,
-                                  isSender: isSender,
-                                  id: id,
-                                  lastMessage: showAvatar,
-                                ),
-                                // isSender
-                                //     ? SenderTextWidget(chat: chat, id: id)
-                                //     : RecieverTextWidget(
-                                //         chat: chat, lastMessage: showAvatar),
-                              ],
-                            ));
-                      },
-                    );
-                  },
-                  orElse: () => Center(
-                    child: LoadingWidget(),
-                  ),
-                  error: (e, _) {
-                    log(e.toString(), stackTrace: _);
-                    return Center(
-                      child: LoadingWidget(),
-                    );
-                  },
-                )
-            // Scrollable chat messages list
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            physics:
+                                const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+                            itemCount: messages.length,
+                            reverse: true,
+                            itemBuilder: (context, index) {
+                              final chat = messages[index];
+                              final isSender = chat.sender.username != username;
+                              final showAvatar = index == 0 ||
+                                  messages[index - 1].sender.username !=
+                                      chat.sender.username;
+                              return Align(
+                                  alignment: isSender
+                                      ? Alignment.bottomRight
+                                      : Alignment.bottomLeft,
+                                  child: Column(
+                                    children: [
+                                      ChatTextWidget(
+                                        chat: chat,
+                                        isSender: isSender,
+                                        id: id,
+                                        lastMessage: showAvatar,
+                                      ),
+                                      // isSender
+                                      //     ? SenderTextWidget(chat: chat, id: id)
+                                      //     : RecieverTextWidget(
+                                      //         chat: chat, lastMessage: showAvatar),
+                                    ],
+                                  ));
+                            },
+                          );
+                        },
+                        orElse: () => Center(
+                          child: LoadingWidget(),
+                        ),
+                        error: (e, _) {
+                          log(e.toString(), stackTrace: _);
+                          return Center(
+                            child: LoadingWidget(),
+                          );
+                        },
+                      )
+                  // Scrollable chat messages list
 
-            // Input field for sending messages
-          ],
-        ),
-      ),
+                  // Input field for sending messages
+                ],
+              ),
+            ),
     );
   }
 }

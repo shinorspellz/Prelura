@@ -8,7 +8,6 @@ import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/username.dart';
@@ -23,13 +22,11 @@ import '../../../widgets/custom_widget.dart';
 import 'offer_product_card.dart';
 
 class OfferCard extends ConsumerStatefulWidget {
-  final MessageModel chatInfo;
   final bool isSender;
   final String conversationId;
 
   const OfferCard({
     super.key,
-    required this.chatInfo,
     required this.conversationId,
     required this.isSender,
   });
@@ -107,9 +104,9 @@ class _OfferCardState extends ConsumerState<OfferCard> {
 
   @override
   void initState() {
-    offerInfo = offerInfoFromJson(widget.chatInfo.text);
     appUserInfo = ref.read(userProvider).value;
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      offerInfo = ref.read(offerProvider).activeOffer!.offer!;
       isAccepted = offerInfo.status?.toLowerCase() == "accepted";
       isDeclined = offerInfo.status?.toLowerCase() == "rejected";
       amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;

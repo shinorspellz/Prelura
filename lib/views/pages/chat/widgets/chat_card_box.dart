@@ -10,8 +10,6 @@ import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
-import 'offer_card.dart';
-
 class ChatTextWidget extends ConsumerWidget {
   const ChatTextWidget({
     super.key,
@@ -63,47 +61,38 @@ class ChatTextWidget extends ConsumerWidget {
 
   Widget _buildMessageContainer(BuildContext context,
       {required Alignment alignment}) {
-    bool isOffer = chat.itemType == "OFFER";
     bool isSeller = chat.itemType == "";
 
-    return isOffer
-        ? OfferCard(
-            chatInfo: chat,
-            conversationId: id!,
-            isSender: isSender,
-          )
-        // BuyerOfferCard(),
-        : Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const SizedBox(width: 16),
-              if (lastMessage)
-                ProfilePictureWidget(
-                  profilePicture: chat.sender.profilePictureUrl,
-                  username: chat.sender.username,
-                ),
-              Align(
-                alignment: alignment,
-                child: Container(
-                  margin: const EdgeInsets.all(8.0),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.sizeOf(context).width / 1.4,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(width: 16),
+        if (lastMessage)
+          ProfilePictureWidget(
+            profilePicture: chat.sender.profilePictureUrl,
+            username: chat.sender.username,
+          ),
+        Align(
+          alignment: alignment,
+          child: Container(
+            margin: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.sizeOf(context).width / 1.4,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(color: PreluraColors.grey, width: 1),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            child: Text(
+              chat.text,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(size: 16),
                   ),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: PreluraColors.grey, width: 1),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Text(
-                    chat.text,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: getDefaultSize(size: 16),
-                        ),
-                  ),
-                ),
-              ),
-            ],
-          );
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

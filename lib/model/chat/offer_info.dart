@@ -107,12 +107,13 @@ class Product {
         isFeatured: json["isFeatured"],
         userLiked: json["userLiked"],
         brand: json["brand"],
-        imagesUrl: json["images_url"] == null
+        imagesUrl: json["imagesUrl"] == null
             ? []
-            : json["images_url"].runtimeType == String
-                ? [ImagesUrl(url: json["images_url"])]
-                : List<ImagesUrl>.from(
-                    json["images_url"]!.map((x) => ImagesUrl.fromJson(x))),
+            : List<ImagesUrl>.from(json["imagesUrl"]!.map(
+                (x) => ImagesUrl.fromJson(
+                  jsonDecode(x),
+                ),
+              )),
         category: json["category"] == null
             ? null
             : Category.fromJson(json["category"]),

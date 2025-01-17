@@ -8,6 +8,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
 class OfferNotifier extends StateNotifier<OfferState> {
@@ -43,6 +44,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
     state = state.copyWith(
       isProcessing: data['isProcessing'] ?? state.isProcessing,
       offerState: data['offerState'] ?? state.offerState,
+      activeOffer: data['activeOffer'] ?? state.activeOffer,
       processingTypes: updatedProcessingType,
     );
     log('After Update: ${state.processingTypes}');
@@ -73,6 +75,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
           id: res.data!.conversationId.toString(),
           username: userInfo?.username ?? "",
           avatarUrl: userInfo?.thumbnailUrl ?? "",
+          isOffer: true,
         ));
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
@@ -145,20 +148,27 @@ final offerProvider = StateNotifierProvider<OfferNotifier, OfferState>((ref) {
 class OfferState {
   final bool isProcessing;
   final String? offerState;
+  final ConversationModel? activeOffer;
   final Set<String> processingTypes;
 
   OfferState({
     required this.isProcessing,
     required this.processingTypes,
     this.offerState,
+    this.activeOffer,
   });
 
-  OfferState copyWith(
-      {bool? isProcessing, Set<String>? processingTypes, String? offerState}) {
+  OfferState copyWith({
+    bool? isProcessing,
+    Set<String>? processingTypes,
+    String? offerState,
+    ConversationModel? activeOffer,
+  }) {
     return OfferState(
       isProcessing: isProcessing ?? this.isProcessing,
       processingTypes: processingTypes ?? this.processingTypes,
       offerState: offerState ?? this.offerState,
+      activeOffer: activeOffer ?? this.activeOffer,
     );
   }
 }

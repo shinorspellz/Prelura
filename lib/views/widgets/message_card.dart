@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
@@ -11,7 +12,7 @@ import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
-class MessageCard extends StatelessWidget {
+class MessageCard extends ConsumerWidget {
   const MessageCard({
     super.key,
     required this.model,
@@ -19,17 +20,27 @@ class MessageCard extends StatelessWidget {
 
   final ConversationModel model;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // log("The last message::: ${model.lastMessage?.toJson()}");
     bool isLastMessageAnOffer = model.offer != null;
     log("The last message an offer::: $isLastMessageAnOffer");
 
     return GestureDetector(
       onTap: () {
+        if (isLastMessageAnOffer) {
+          ref
+              .read(
+            offerProvider.notifier,
+          )
+              .updateOfferState(
+            {"activeOffer": model},
+          );
+        }
         context.router.push(ChatRoute(
           id: model.id,
           username: model.recipient.username,
           avatarUrl: model.recipient.profilePictureUrl,
+          isOffer: true,
         ));
       },
       child: Container(

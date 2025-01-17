@@ -289,6 +289,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
     _i75.Key? key,
     required String id,
+    required bool isOffer,
     required String username,
     required String? avatarUrl,
     List<_i74.PageRouteInfo>? children,
@@ -297,6 +298,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
           args: ChatRouteArgs(
             key: key,
             id: id,
+            isOffer: isOffer,
             username: username,
             avatarUrl: avatarUrl,
           ),
@@ -312,6 +314,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
       return _i9.ChatScreen(
         key: args.key,
         id: args.id,
+        isOffer: args.isOffer,
         username: args.username,
         avatarUrl: args.avatarUrl,
       );
@@ -323,6 +326,7 @@ class ChatRouteArgs {
   const ChatRouteArgs({
     this.key,
     required this.id,
+    required this.isOffer,
     required this.username,
     required this.avatarUrl,
   });
@@ -331,13 +335,15 @@ class ChatRouteArgs {
 
   final String id;
 
+  final bool isOffer;
+
   final String username;
 
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'ChatRouteArgs{key: $key, id: $id, username: $username, avatarUrl: $avatarUrl}';
+    return 'ChatRouteArgs{key: $key, id: $id, isOffer: $isOffer, username: $username, avatarUrl: $avatarUrl}';
   }
 }
 

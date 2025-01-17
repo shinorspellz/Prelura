@@ -26,16 +26,7 @@ class OfferProductCard extends ConsumerWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child:
-
-            // Image.asset(
-            //   PreluraIcons.Image,
-            //   height: 190,
-            //   width: 150,
-            //   fit: BoxFit.cover,
-            // ),
-
-            SizedBox(
+        child: SizedBox(
           height: (!isPending && !amTheSeller) ? 190 : 100,
           width: (!isPending && !amTheSeller) ? 150 : 90,
           child: CachedNetworkImage(
@@ -82,7 +73,7 @@ class OfferProductCard extends ConsumerWidget {
               if ((!isPending && !amTheSeller)) ...[
                 15.verticalSpacing,
                 Text(
-                  "Size ${offerInfo.product?.size}",
+                  "Size ${offerInfo.product?.size?.name}",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: PreluraColors.grey,
                         fontWeight: FontWeight.w500,
@@ -102,7 +93,7 @@ class OfferProductCard extends ConsumerWidget {
                         ),
                   ),
                 ],
-              ],
+              ]
             ]),
       ),
     ]);

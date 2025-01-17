@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/notification/notification_model.dart';
-import 'package:prelura_app/views/pages/product_detail/provider/product_detail_provider.dart';
 import 'package:prelura_app/res/date_time_extension.dart';
 import 'package:prelura_app/res/username.dart';
 
@@ -22,7 +21,9 @@ class NotificationCard extends ConsumerWidget {
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {
-          await ref.read(readNotificationProvider.notifier).readNotification(int.parse(notification.id));
+          await ref
+              .read(readNotificationProvider.notifier)
+              .readNotification(int.parse(notification.id));
 
           ref.invalidate(notificationProvider);
         }
@@ -31,6 +32,7 @@ class NotificationCard extends ConsumerWidget {
             id: notification.meta["conversation_id"],
             username: notification.meta["sender"],
             avatarUrl: notification.sender.profilePictureUrl,
+            isOffer: false,
           ));
         }
         if (notification.modelGroup == "UserProfile") {
@@ -69,7 +71,11 @@ class NotificationCard extends ConsumerWidget {
                 ),
                 child: CircleAvatar(
                   radius: 20,
-                  child: Text(notification.sender.username.split('').first.toUpperCase() ?? '--'),
+                  child: Text(notification.sender.username
+                          .split('')
+                          .first
+                          .toUpperCase() ??
+                      '--'),
                 ),
               )
             ],
@@ -105,7 +111,11 @@ class NotificationCard extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Expanded(child: HighlightUserName(isRead: notification.isRead ?? false, username: notification.sender.username, message: notification.message)
+                      Expanded(
+                          child: HighlightUserName(
+                              isRead: notification.isRead ?? false,
+                              username: notification.sender.username,
+                              message: notification.message)
 
                           // Row(
                           //   children: [
@@ -142,7 +152,10 @@ class NotificationCard extends ConsumerWidget {
                       // Time
                       Text(
                         notification.createdAt!.timeAgo(),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.grey),
                       ),
                     ],
                   ),
