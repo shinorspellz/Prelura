@@ -253,7 +253,7 @@
           },
           {
             "name": "allProducts",
-            "description": "\n    This method is responsible for retrieving a paginated list of products based on optional filtering and search criteria. \n    The results can be filtered by various product attributes such as name, category, brand, price, condition, and more.\n\n    Parameters:\n    - `page_count`: The number of products to return per page (optional).\n    - `page_number`: The page number for pagination (optional).\n    - `filters`: A dictionary of optional filters that can be applied to the product search. \n      Possible keys in the `filters` dictionary include:\n      - `name`: Filter products by name.\n      - `brand`: Filter products by brand ID.\n      - `category`: Filter products by category ID.\n      - `custom_brand`: Filter products by custom brand.\n      - `sub_category`: Filter products by sub-category ID.\n      - `price`: Filter products by price (less than or equal to the provided price).\n      - `condition`: Filter products by condition (e.g., \"new\", \"used\").\n      - `size`: Filter products by size.\n      - `style`: Filter products by style.\n      - `status`: Filter products by status (e.g., \"available\", \"out of stock\").\n      - `discount_price`: Filter products with a discount price.\n      - `hashtags`: Filter products that contain specific hashtags.\n    - `search`: A string to search for in the product name.\n\n    Returns:\n    - A paginated list of products matching the filters and search criteria.\n    - `pagination_result`: A tuple containing:\n      - `result`: A list of products for the current page.\n      - `total_pages`: Total number of pages based on the current `page_count`.\n      - `total_items`: Total number of products matching the filters and search criteria.\n\n    This method also handles pagination of the results to ensure efficient retrieval of large datasets.\n    ",
+            "description": "\n    This method is responsible for retrieving a paginated list of products based on optional filtering and search criteria. \n    The results can be filtered by various product attributes such as name, category, brand, price, condition, and more.\n\n    Parameters:\n    - `page_count`: The number of products to return per page (optional).\n    - `page_number`: The page number for pagination (optional).\n    - `filters`: A dictionary of optional filters that can be applied to the product search. \n      Possible keys in the `filters` dictionary include:\n      - `name`: Filter products by name.\n      - `brand`: Filter products by brand ID.\n      - `category`: Filter products by a specific category ID.\n      - \"parent_category\" (enum): Filters products based on the slug of parent category, \n            finding all child categories that match [MEN, WOMEN, BOYS, GIRLS, TODDLERS] prefix.\n      - `custom_brand`: Filter products by custom brand.\n      - `price`: Filter products by price (less than or equal to the provided price).\n      - `condition`: Filter products by condition (e.g., \"new\", \"used\").\n      - `size`: Filter products by size.\n      - `style`: Filter products by style.\n      - `status`: Filter products by status (e.g., \"available\", \"out of stock\").\n      - `discount_price`: Filter products with a discount price.\n      - `hashtags`: Filter products that contain specific hashtags.\n    - `search`: A string to search for in the product name.\n\n    Returns:\n    - A paginated list of products matching the filters and search criteria.\n    - `pagination_result`: A tuple containing:\n      - `result`: A list of products for the current page.\n      - `total_pages`: Total number of pages based on the current `page_count`.\n      - `total_items`: Total number of products matching the filters and search criteria.\n\n    This method also handles pagination of the results to ensure efficient retrieval of large datasets.\n    ",
             "args": [
               {
                 "name": "filters",
@@ -4923,13 +4923,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "UserNode",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "UserType",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6209,6 +6205,16 @@
             "defaultValue": null
           },
           {
+            "name": "parentCategory",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ParentCategoryEnum",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "size",
             "description": null,
             "type": {
@@ -6229,7 +6235,17 @@
             "defaultValue": null
           },
           {
-            "name": "price",
+            "name": "minPrice",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "maxPrice",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -6295,6 +6311,47 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ParentCategoryEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "MEN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "WOMEN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "BOYS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GIRLS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TODDLERS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -7238,6 +7295,49 @@
         "name": "Mutation",
         "description": null,
         "fields": [
+          {
+            "name": "sendSmsOtp",
+            "description": null,
+            "args": [
+              {
+                "name": "action",
+                "description": "Specifies the purpose of the OTP. The action determines the context for the OTP message, such as verifying an account, logging in, resetting a password, or two-factor authentication (2FA). The OTP message content will change based on the selected action.",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SmsActionChoicesEnum",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "channel",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "SmsChannelChoicesEnum",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "phoneNumber",
+                "description": "If the user does not have a phone number on file, this field allows them to provide a new phone number for verification. In this case, an OTP will be sent to the provided phone number, and the user will be prompted to enter the OTP to complete verification. If the user already has a phone number, leave this field empty to send an OTP to the existing phone number. The OTP can then be used to verify and update to a new number.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SendSmsOtp",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "upload",
             "description": null,
@@ -9380,6 +9480,99 @@
             "type": {
               "kind": "OBJECT",
               "name": "SocialAuth",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SmsActionChoicesEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "VERIFY",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "LOGIN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "RESET",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TWOFACTOR",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SmsChannelChoicesEnum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "SMS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "WHATSAPP",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SendSmsOtp",
+        "description": null,
+        "fields": [
+          {
+            "name": "success",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,

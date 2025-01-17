@@ -20,7 +20,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get lastName => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
@@ -59,7 +59,7 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {int id,
+      {dynamic id,
       String? firstName,
       String? lastName,
       String username,
@@ -100,7 +100,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? username = null,
@@ -123,10 +123,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? noOfFollowing = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -248,7 +248,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {dynamic id,
       String? firstName,
       String? lastName,
       String username,
@@ -289,7 +289,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? firstName = freezed,
     Object? lastName = freezed,
     Object? username = null,
@@ -312,10 +312,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? noOfFollowing = freezed,
   }) {
     return _then(_$UserModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as dynamic,
       firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -430,7 +430,7 @@ class _$UserModelImpl implements _UserModel {
       _$$UserModelImplFromJson(json);
 
   @override
-  final int id;
+  final dynamic id;
   @override
   final String? firstName;
   @override
@@ -482,7 +482,7 @@ class _$UserModelImpl implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -523,7 +523,7 @@ class _$UserModelImpl implements _UserModel {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
+        const DeepCollectionEquality().hash(id),
         firstName,
         lastName,
         username,
@@ -564,7 +564,7 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final int id,
+      {required final dynamic id,
       final String? firstName,
       final String? lastName,
       required final String username,
@@ -590,7 +590,7 @@ abstract class _UserModel implements UserModel {
       _$UserModelImpl.fromJson;
 
   @override
-  int get id;
+  dynamic get id;
   @override
   String? get firstName;
   @override

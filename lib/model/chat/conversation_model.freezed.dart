@@ -27,7 +27,7 @@ mixin _$ConversationModel {
   DateTime get lastModified => throw _privateConstructorUsedError;
   int get unreadMessagesCount => throw _privateConstructorUsedError;
   UserModel get recipient => throw _privateConstructorUsedError;
-  OfferType? get offer => throw _privateConstructorUsedError;
+  OfferInfo? get offer => throw _privateConstructorUsedError;
   MessageModel? get lastMessage => throw _privateConstructorUsedError;
 
   /// Serializes this ConversationModel to a JSON map.
@@ -54,11 +54,10 @@ abstract class $ConversationModelCopyWith<$Res> {
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
-      OfferType? offer,
+      OfferInfo? offer,
       MessageModel? lastMessage});
 
   $UserModelCopyWith<$Res> get recipient;
-  $OfferTypeCopyWith<$Res>? get offer;
   $MessageModelCopyWith<$Res>? get lastMessage;
 }
 
@@ -119,7 +118,7 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
       offer: freezed == offer
           ? _value.offer
           : offer // ignore: cast_nullable_to_non_nullable
-              as OfferType?,
+              as OfferInfo?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
@@ -134,20 +133,6 @@ class _$ConversationModelCopyWithImpl<$Res, $Val extends ConversationModel>
   $UserModelCopyWith<$Res> get recipient {
     return $UserModelCopyWith<$Res>(_value.recipient, (value) {
       return _then(_value.copyWith(recipient: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ConversationModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $OfferTypeCopyWith<$Res>? get offer {
-    if (_value.offer == null) {
-      return null;
-    }
-
-    return $OfferTypeCopyWith<$Res>(_value.offer!, (value) {
-      return _then(_value.copyWith(offer: value) as $Val);
     });
   }
 
@@ -182,13 +167,11 @@ abstract class _$$ConversationModelImplCopyWith<$Res>
       DateTime lastModified,
       int unreadMessagesCount,
       UserModel recipient,
-      OfferType? offer,
+      OfferInfo? offer,
       MessageModel? lastMessage});
 
   @override
   $UserModelCopyWith<$Res> get recipient;
-  @override
-  $OfferTypeCopyWith<$Res>? get offer;
   @override
   $MessageModelCopyWith<$Res>? get lastMessage;
 }
@@ -248,7 +231,7 @@ class __$$ConversationModelImplCopyWithImpl<$Res>
       offer: freezed == offer
           ? _value.offer
           : offer // ignore: cast_nullable_to_non_nullable
-              as OfferType?,
+              as OfferInfo?,
       lastMessage: freezed == lastMessage
           ? _value.lastMessage
           : lastMessage // ignore: cast_nullable_to_non_nullable
@@ -289,7 +272,7 @@ class _$ConversationModelImpl implements _ConversationModel {
   @override
   final UserModel recipient;
   @override
-  final OfferType? offer;
+  final OfferInfo? offer;
   @override
   final MessageModel? lastMessage;
 
@@ -360,7 +343,7 @@ abstract class _ConversationModel implements ConversationModel {
       required final DateTime lastModified,
       required final int unreadMessagesCount,
       required final UserModel recipient,
-      final OfferType? offer,
+      final OfferInfo? offer,
       required final MessageModel? lastMessage}) = _$ConversationModelImpl;
 
   factory _ConversationModel.fromJson(Map<String, dynamic> json) =
@@ -381,7 +364,7 @@ abstract class _ConversationModel implements ConversationModel {
   @override
   UserModel get recipient;
   @override
-  OfferType? get offer;
+  OfferInfo? get offer;
   @override
   MessageModel? get lastMessage;
 

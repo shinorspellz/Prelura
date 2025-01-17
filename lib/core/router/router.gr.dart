@@ -2265,7 +2265,7 @@ class UploadIdentityDocumentArgs {
 class UserProfileDetailsRoute
     extends _i74.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
-    _i80.Key? key,
+    _i75.Key? key,
     String? username,
     List<_i74.PageRouteInfo>? children,
   }) : super(
@@ -2274,6 +2274,7 @@ class UserProfileDetailsRoute
             key: key,
             username: username,
           ),
+          rawPathParams: {'username': username},
           initialChildren: children,
         );
 
@@ -2282,8 +2283,10 @@ class UserProfileDetailsRoute
   static _i74.PageInfo page = _i74.PageInfo(
     name,
     builder: (data) {
+      final pathParams = data.inheritedPathParams;
       final args = data.argsAs<UserProfileDetailsRouteArgs>(
-          orElse: () => const UserProfileDetailsRouteArgs());
+          orElse: () => UserProfileDetailsRouteArgs(
+              username: pathParams.optString('username')));
       return _i69.UserProfileDetailsScreen(
         key: args.key,
         username: args.username,
@@ -2298,7 +2301,7 @@ class UserProfileDetailsRouteArgs {
     this.username,
   });
 
-  final _i80.Key? key;
+  final _i75.Key? key;
 
   final String? username;
 

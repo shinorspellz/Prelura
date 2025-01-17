@@ -18,7 +18,7 @@ _$ConversationModelImpl _$$ConversationModelImplFromJson(
       recipient: UserModel.fromJson(json['recipient'] as Map<String, dynamic>),
       offer: json['offer'] == null
           ? null
-          : OfferType.fromJson(json['offer'] as Map<String, dynamic>),
+          : OfferInfo.fromJson(json['offer'] as Map<String, dynamic>),
       lastMessage: json['lastMessage'] == null
           ? null
           : MessageModel.fromJson(json['lastMessage'] as Map<String, dynamic>),

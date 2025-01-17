@@ -786,9 +786,11 @@ class Input$ProductFiltersInput {
     String? name,
     int? brand,
     int? category,
+    Enum$ParentCategoryEnum? parentCategory,
     int? size,
     String? customBrand,
-    double? price,
+    double? minPrice,
+    double? maxPrice,
     Enum$ProductStatusEnum? status,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
@@ -799,9 +801,11 @@ class Input$ProductFiltersInput {
         if (name != null) r'name': name,
         if (brand != null) r'brand': brand,
         if (category != null) r'category': category,
+        if (parentCategory != null) r'parentCategory': parentCategory,
         if (size != null) r'size': size,
         if (customBrand != null) r'customBrand': customBrand,
-        if (price != null) r'price': price,
+        if (minPrice != null) r'minPrice': minPrice,
+        if (maxPrice != null) r'maxPrice': maxPrice,
         if (status != null) r'status': status,
         if (style != null) r'style': style,
         if (condition != null) r'condition': condition,
@@ -825,6 +829,12 @@ class Input$ProductFiltersInput {
       final l$category = data['category'];
       result$data['category'] = (l$category as int?);
     }
+    if (data.containsKey('parentCategory')) {
+      final l$parentCategory = data['parentCategory'];
+      result$data['parentCategory'] = l$parentCategory == null
+          ? null
+          : fromJson$Enum$ParentCategoryEnum((l$parentCategory as String));
+    }
     if (data.containsKey('size')) {
       final l$size = data['size'];
       result$data['size'] = (l$size as int?);
@@ -833,9 +843,13 @@ class Input$ProductFiltersInput {
       final l$customBrand = data['customBrand'];
       result$data['customBrand'] = (l$customBrand as String?);
     }
-    if (data.containsKey('price')) {
-      final l$price = data['price'];
-      result$data['price'] = (l$price as num?)?.toDouble();
+    if (data.containsKey('minPrice')) {
+      final l$minPrice = data['minPrice'];
+      result$data['minPrice'] = (l$minPrice as num?)?.toDouble();
+    }
+    if (data.containsKey('maxPrice')) {
+      final l$maxPrice = data['maxPrice'];
+      result$data['maxPrice'] = (l$maxPrice as num?)?.toDouble();
     }
     if (data.containsKey('status')) {
       final l$status = data['status'];
@@ -875,11 +889,16 @@ class Input$ProductFiltersInput {
 
   int? get category => (_$data['category'] as int?);
 
+  Enum$ParentCategoryEnum? get parentCategory =>
+      (_$data['parentCategory'] as Enum$ParentCategoryEnum?);
+
   int? get size => (_$data['size'] as int?);
 
   String? get customBrand => (_$data['customBrand'] as String?);
 
-  double? get price => (_$data['price'] as double?);
+  double? get minPrice => (_$data['minPrice'] as double?);
+
+  double? get maxPrice => (_$data['maxPrice'] as double?);
 
   Enum$ProductStatusEnum? get status =>
       (_$data['status'] as Enum$ProductStatusEnum?);
@@ -907,6 +926,12 @@ class Input$ProductFiltersInput {
       final l$category = category;
       result$data['category'] = l$category;
     }
+    if (_$data.containsKey('parentCategory')) {
+      final l$parentCategory = parentCategory;
+      result$data['parentCategory'] = l$parentCategory == null
+          ? null
+          : toJson$Enum$ParentCategoryEnum(l$parentCategory);
+    }
     if (_$data.containsKey('size')) {
       final l$size = size;
       result$data['size'] = l$size;
@@ -915,9 +940,13 @@ class Input$ProductFiltersInput {
       final l$customBrand = customBrand;
       result$data['customBrand'] = l$customBrand;
     }
-    if (_$data.containsKey('price')) {
-      final l$price = price;
-      result$data['price'] = l$price;
+    if (_$data.containsKey('minPrice')) {
+      final l$minPrice = minPrice;
+      result$data['minPrice'] = l$minPrice;
+    }
+    if (_$data.containsKey('maxPrice')) {
+      final l$maxPrice = maxPrice;
+      result$data['maxPrice'] = l$maxPrice;
     }
     if (_$data.containsKey('status')) {
       final l$status = status;
@@ -987,6 +1016,15 @@ class Input$ProductFiltersInput {
     if (l$category != lOther$category) {
       return false;
     }
+    final l$parentCategory = parentCategory;
+    final lOther$parentCategory = other.parentCategory;
+    if (_$data.containsKey('parentCategory') !=
+        other._$data.containsKey('parentCategory')) {
+      return false;
+    }
+    if (l$parentCategory != lOther$parentCategory) {
+      return false;
+    }
     final l$size = size;
     final lOther$size = other.size;
     if (_$data.containsKey('size') != other._$data.containsKey('size')) {
@@ -1004,12 +1042,22 @@ class Input$ProductFiltersInput {
     if (l$customBrand != lOther$customBrand) {
       return false;
     }
-    final l$price = price;
-    final lOther$price = other.price;
-    if (_$data.containsKey('price') != other._$data.containsKey('price')) {
+    final l$minPrice = minPrice;
+    final lOther$minPrice = other.minPrice;
+    if (_$data.containsKey('minPrice') !=
+        other._$data.containsKey('minPrice')) {
       return false;
     }
-    if (l$price != lOther$price) {
+    if (l$minPrice != lOther$minPrice) {
+      return false;
+    }
+    final l$maxPrice = maxPrice;
+    final lOther$maxPrice = other.maxPrice;
+    if (_$data.containsKey('maxPrice') !=
+        other._$data.containsKey('maxPrice')) {
+      return false;
+    }
+    if (l$maxPrice != lOther$maxPrice) {
       return false;
     }
     final l$status = status;
@@ -1074,9 +1122,11 @@ class Input$ProductFiltersInput {
     final l$name = name;
     final l$brand = brand;
     final l$category = category;
+    final l$parentCategory = parentCategory;
     final l$size = size;
     final l$customBrand = customBrand;
-    final l$price = price;
+    final l$minPrice = minPrice;
+    final l$maxPrice = maxPrice;
     final l$status = status;
     final l$style = style;
     final l$condition = condition;
@@ -1086,9 +1136,11 @@ class Input$ProductFiltersInput {
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('brand') ? l$brand : const {},
       _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('parentCategory') ? l$parentCategory : const {},
       _$data.containsKey('size') ? l$size : const {},
       _$data.containsKey('customBrand') ? l$customBrand : const {},
-      _$data.containsKey('price') ? l$price : const {},
+      _$data.containsKey('minPrice') ? l$minPrice : const {},
+      _$data.containsKey('maxPrice') ? l$maxPrice : const {},
       _$data.containsKey('status') ? l$status : const {},
       _$data.containsKey('style') ? l$style : const {},
       _$data.containsKey('condition') ? l$condition : const {},
@@ -1115,9 +1167,11 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     String? name,
     int? brand,
     int? category,
+    Enum$ParentCategoryEnum? parentCategory,
     int? size,
     String? customBrand,
-    double? price,
+    double? minPrice,
+    double? maxPrice,
     Enum$ProductStatusEnum? status,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
@@ -1143,9 +1197,11 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
     Object? name = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
+    Object? parentCategory = _undefined,
     Object? size = _undefined,
     Object? customBrand = _undefined,
-    Object? price = _undefined,
+    Object? minPrice = _undefined,
+    Object? maxPrice = _undefined,
     Object? status = _undefined,
     Object? style = _undefined,
     Object? condition = _undefined,
@@ -1157,9 +1213,12 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (name != _undefined) 'name': (name as String?),
         if (brand != _undefined) 'brand': (brand as int?),
         if (category != _undefined) 'category': (category as int?),
+        if (parentCategory != _undefined)
+          'parentCategory': (parentCategory as Enum$ParentCategoryEnum?),
         if (size != _undefined) 'size': (size as int?),
         if (customBrand != _undefined) 'customBrand': (customBrand as String?),
-        if (price != _undefined) 'price': (price as double?),
+        if (minPrice != _undefined) 'minPrice': (minPrice as double?),
+        if (maxPrice != _undefined) 'maxPrice': (maxPrice as double?),
         if (status != _undefined) 'status': (status as Enum$ProductStatusEnum?),
         if (style != _undefined) 'style': (style as Enum$StyleEnum?),
         if (condition != _undefined)
@@ -1180,9 +1239,11 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
     String? name,
     int? brand,
     int? category,
+    Enum$ParentCategoryEnum? parentCategory,
     int? size,
     String? customBrand,
-    double? price,
+    double? minPrice,
+    double? maxPrice,
     Enum$ProductStatusEnum? status,
     Enum$StyleEnum? style,
     EnumImport$ConditionEnum.ConditionsEnum? condition,
@@ -1643,6 +1704,54 @@ Enum$ParcelSizeEnum fromJson$Enum$ParcelSizeEnum(String value) {
       return Enum$ParcelSizeEnum.LARGE;
     default:
       return Enum$ParcelSizeEnum.$unknown;
+  }
+}
+
+enum Enum$ParentCategoryEnum {
+  MEN,
+  WOMEN,
+  BOYS,
+  GIRLS,
+  TODDLERS,
+  $unknown;
+
+  factory Enum$ParentCategoryEnum.fromJson(String value) =>
+      fromJson$Enum$ParentCategoryEnum(value);
+
+  String toJson() => toJson$Enum$ParentCategoryEnum(this);
+}
+
+String toJson$Enum$ParentCategoryEnum(Enum$ParentCategoryEnum e) {
+  switch (e) {
+    case Enum$ParentCategoryEnum.MEN:
+      return r'MEN';
+    case Enum$ParentCategoryEnum.WOMEN:
+      return r'WOMEN';
+    case Enum$ParentCategoryEnum.BOYS:
+      return r'BOYS';
+    case Enum$ParentCategoryEnum.GIRLS:
+      return r'GIRLS';
+    case Enum$ParentCategoryEnum.TODDLERS:
+      return r'TODDLERS';
+    case Enum$ParentCategoryEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ParentCategoryEnum fromJson$Enum$ParentCategoryEnum(String value) {
+  switch (value) {
+    case r'MEN':
+      return Enum$ParentCategoryEnum.MEN;
+    case r'WOMEN':
+      return Enum$ParentCategoryEnum.WOMEN;
+    case r'BOYS':
+      return Enum$ParentCategoryEnum.BOYS;
+    case r'GIRLS':
+      return Enum$ParentCategoryEnum.GIRLS;
+    case r'TODDLERS':
+      return Enum$ParentCategoryEnum.TODDLERS;
+    default:
+      return Enum$ParentCategoryEnum.$unknown;
   }
 }
 
@@ -2488,6 +2597,82 @@ Enum$SeasonEnum fromJson$Enum$SeasonEnum(String value) {
       return Enum$SeasonEnum.EASTER;
     default:
       return Enum$SeasonEnum.$unknown;
+  }
+}
+
+enum Enum$SmsActionChoicesEnum {
+  VERIFY,
+  LOGIN,
+  RESET,
+  TWOFACTOR,
+  $unknown;
+
+  factory Enum$SmsActionChoicesEnum.fromJson(String value) =>
+      fromJson$Enum$SmsActionChoicesEnum(value);
+
+  String toJson() => toJson$Enum$SmsActionChoicesEnum(this);
+}
+
+String toJson$Enum$SmsActionChoicesEnum(Enum$SmsActionChoicesEnum e) {
+  switch (e) {
+    case Enum$SmsActionChoicesEnum.VERIFY:
+      return r'VERIFY';
+    case Enum$SmsActionChoicesEnum.LOGIN:
+      return r'LOGIN';
+    case Enum$SmsActionChoicesEnum.RESET:
+      return r'RESET';
+    case Enum$SmsActionChoicesEnum.TWOFACTOR:
+      return r'TWOFACTOR';
+    case Enum$SmsActionChoicesEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SmsActionChoicesEnum fromJson$Enum$SmsActionChoicesEnum(String value) {
+  switch (value) {
+    case r'VERIFY':
+      return Enum$SmsActionChoicesEnum.VERIFY;
+    case r'LOGIN':
+      return Enum$SmsActionChoicesEnum.LOGIN;
+    case r'RESET':
+      return Enum$SmsActionChoicesEnum.RESET;
+    case r'TWOFACTOR':
+      return Enum$SmsActionChoicesEnum.TWOFACTOR;
+    default:
+      return Enum$SmsActionChoicesEnum.$unknown;
+  }
+}
+
+enum Enum$SmsChannelChoicesEnum {
+  SMS,
+  WHATSAPP,
+  $unknown;
+
+  factory Enum$SmsChannelChoicesEnum.fromJson(String value) =>
+      fromJson$Enum$SmsChannelChoicesEnum(value);
+
+  String toJson() => toJson$Enum$SmsChannelChoicesEnum(this);
+}
+
+String toJson$Enum$SmsChannelChoicesEnum(Enum$SmsChannelChoicesEnum e) {
+  switch (e) {
+    case Enum$SmsChannelChoicesEnum.SMS:
+      return r'SMS';
+    case Enum$SmsChannelChoicesEnum.WHATSAPP:
+      return r'WHATSAPP';
+    case Enum$SmsChannelChoicesEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$SmsChannelChoicesEnum fromJson$Enum$SmsChannelChoicesEnum(String value) {
+  switch (value) {
+    case r'SMS':
+      return Enum$SmsChannelChoicesEnum.SMS;
+    case r'WHATSAPP':
+      return Enum$SmsChannelChoicesEnum.WHATSAPP;
+    default:
+      return Enum$SmsChannelChoicesEnum.$unknown;
   }
 }
 

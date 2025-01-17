@@ -637,6 +637,12 @@ query Conversations {
         name
         description
         isFeatured
+        userLiked
+        imagesUrl
+        brand {
+          id
+          name
+        }
         category {
           id
           name

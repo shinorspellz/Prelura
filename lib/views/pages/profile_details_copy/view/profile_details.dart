@@ -74,7 +74,7 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: user?.username ?? "--",
+        appbarTitle: user?.username ?? "",
         // leadingIcon: IconButton(
         //   icon:
         //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
@@ -173,7 +173,9 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
           ? LoadingWidget(
               height: 50,
             )
-          : UserWardrobe(),
+          : UserWardrobe(
+              username: widget.username,
+            ),
     );
   }
 }
