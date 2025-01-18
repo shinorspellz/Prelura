@@ -272,6 +272,82 @@ mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: 
   respondToOffer(action: $action, offerId: $offerId, offerPrice: $offerPrice) {
     message
     success
+    data{
+      conversationId
+      offer {
+        id
+        message
+        offerPrice
+        status
+        createdAt
+        updatedAt
+        expiresAt
+        deleted
+        children {
+          id
+          updatedBy
+          updatedAt
+          message
+          offerPrice
+          status
+          buyer {
+            id
+            username
+            profilePictureUrl
+            thumbnailUrl
+            displayName
+          }
+          product {
+            seller {
+              id
+              username
+              profilePictureUrl
+              thumbnailUrl
+              displayName
+            }
+          }
+        }
+        buyer {
+          id
+          username
+          profilePictureUrl
+          thumbnailUrl
+          displayName
+        }
+        product {
+          id
+          name
+          description
+          isFeatured
+          userLiked
+          imagesUrl
+          brand {
+            id
+            name
+          }
+          category {
+            id
+            name
+          }
+          size {
+            id
+            name
+          }
+          seller {
+            id
+            username
+            profilePictureUrl
+          }
+          condition
+          discountPrice
+          condition
+          price
+          parcelSize
+          views
+          likes
+        }
+      }
+    }
   }
 }
 

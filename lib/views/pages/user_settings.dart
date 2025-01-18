@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/res/colors.dart';
@@ -155,6 +156,9 @@ class SettingScreen extends StatelessWidget {
                                     await ref
                                         .read(authProvider.notifier)
                                         .logout();
+                                    ref
+                                        .read(categoryNotifierProvider.notifier)
+                                        .clearCache();
                                     ref.read(authProvider).whenOrNull(
                                           error: (e, _) =>
                                               context.alert(e.toString()),

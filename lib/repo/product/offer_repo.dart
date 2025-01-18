@@ -86,7 +86,7 @@ class OfferRepo {
         offerPrice: offerPrice,
       )),
     );
-
+    log("::::The payload is :::    'action:' $actionType ::: 'offerId:' $offerId ::: 'offerPrice:' $offerPrice,");
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;

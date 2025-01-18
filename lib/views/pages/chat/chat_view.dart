@@ -139,11 +139,7 @@ class ChatScreen extends ConsumerWidget {
         ),
       ),
       body: isOffer
-          ? OfferConversationBuilder(
-              conversationId: id,
-              username: username,
-              avatar: avatarUrl ?? "",
-            )
+          ? OfferConversationBuilder()
           : SingleChildScrollView(
               controller: ref.watch(chatScrollController),
               reverse: true,

@@ -55,10 +55,9 @@ class _OfferCardState extends ConsumerState<OfferCard> {
         )
         .respondToOffer(
           context,
-          offerId: int.parse(offerInfo.id!),
           actionType: Enum$OfferActionEnum.ACCEPT,
         );
-    ref.invalidate(messagesProvider(widget.conversationId));
+    ref.refresh(messagesProvider(widget.conversationId));
     isAccepting = false;
     setState(() {});
   }
@@ -73,11 +72,10 @@ class _OfferCardState extends ConsumerState<OfferCard> {
         )
         .respondToOffer(
           context,
-          offerId: int.parse(offerInfo.id!),
           actionType: Enum$OfferActionEnum.REJECT,
         );
     isDeclining = false;
-    ref.invalidate(messagesProvider(widget.conversationId));
+    ref.refresh(messagesProvider(widget.conversationId));
     setState(() {});
   }
 
@@ -91,12 +89,11 @@ class _OfferCardState extends ConsumerState<OfferCard> {
         )
         .respondToOffer(
           context,
-          offerId: int.parse(offerInfo.id!),
           offerPrice: double.parse(_offerController.text),
           actionType: Enum$OfferActionEnum.COUNTER,
         );
     isSendingOffer = false;
-    ref.invalidate(messagesProvider(widget.conversationId));
+    ref.refresh(messagesProvider(widget.conversationId));
     setState(() {});
   }
 

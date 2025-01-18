@@ -626,6 +626,30 @@ query Conversations {
       updatedAt
       expiresAt
       deleted
+      children {
+        id
+        updatedBy
+        updatedAt
+        message
+        offerPrice
+        status
+        buyer {
+          id
+          username
+          profilePictureUrl
+          thumbnailUrl
+          displayName
+        }
+        product {
+          seller {
+            id
+            username
+            profilePictureUrl
+            thumbnailUrl
+            displayName
+          }
+        }
+      }
       buyer {
         id
         username

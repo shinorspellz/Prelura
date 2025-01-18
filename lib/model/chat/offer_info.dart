@@ -6,6 +6,7 @@ class OfferInfo {
   dynamic offerPrice;
   DateTime? createdAt;
   DateTime? updatedAt;
+  List<OfferSubStateInfo>? children;
   dynamic status;
   dynamic expiresAt;
   bool? deleted;
@@ -20,6 +21,7 @@ class OfferInfo {
     this.createdAt,
     this.updatedAt,
     this.status,
+    this.children,
     this.expiresAt,
     this.deleted,
     this.buyer,
@@ -44,6 +46,10 @@ class OfferInfo {
         product:
             json["product"] == null ? null : Product.fromJson(json["product"]),
         typename: json["__typename"],
+        children: json["children"] == null
+            ? []
+            : List<OfferSubStateInfo>.from(
+                json["children"]!.map((x) => OfferSubStateInfo.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,6 +63,9 @@ class OfferInfo {
         "deleted": deleted,
         "buyer": buyer?.toJson(),
         "product": product?.toJson(),
+        "children": children == null
+            ? []
+            : List<dynamic>.from(children!.map((x) => x.toJson())),
         "__typename": typename,
       };
 }
@@ -204,6 +213,74 @@ class Recipient {
         "profilePictureUrl": profilePictureUrl,
         "thumbnailUrl": thumbnailUrl,
         "displayName": displayName,
+        "__typename": typename,
+      };
+}
+
+class OfferSubStateInfo {
+  String? id;
+  dynamic message;
+  String? offerPrice;
+  String? updatedBy;
+  String? status;
+  Recipient? buyer;
+  ChildProduct? product;
+  String? typename;
+
+  OfferSubStateInfo({
+    this.id,
+    this.message,
+    this.offerPrice,
+    this.status,
+    this.updatedBy,
+    this.buyer,
+    this.product,
+    this.typename,
+  });
+
+  factory OfferSubStateInfo.fromJson(Map<String, dynamic> json) =>
+      OfferSubStateInfo(
+        id: json["id"],
+        message: json["message"],
+        offerPrice: json["offerPrice"],
+        updatedBy: json["updatedBy"],
+        status: json["status"],
+        buyer: json["buyer"] == null ? null : Recipient.fromJson(json["buyer"]),
+        product: json["product"] == null
+            ? null
+            : ChildProduct.fromJson(json["product"]),
+        typename: json["__typename"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "message": message,
+        "offerPrice": offerPrice,
+        "updatedBy": updatedBy,
+        "status": status,
+        "buyer": buyer?.toJson(),
+        "product": product?.toJson(),
+        "__typename": typename,
+      };
+}
+
+class ChildProduct {
+  Recipient? seller;
+  String? typename;
+
+  ChildProduct({
+    this.seller,
+    this.typename,
+  });
+
+  factory ChildProduct.fromJson(Map<String, dynamic> json) => ChildProduct(
+        seller:
+            json["seller"] == null ? null : Recipient.fromJson(json["seller"]),
+        typename: json["__typename"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "seller": seller?.toJson(),
         "__typename": typename,
       };
 }

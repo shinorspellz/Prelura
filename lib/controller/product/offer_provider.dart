@@ -9,6 +9,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
+import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
 class OfferNotifier extends StateNotifier<OfferState> {
@@ -100,7 +101,6 @@ class OfferNotifier extends StateNotifier<OfferState> {
 
   respondToOffer(
     BuildContext context, {
-    required int offerId,
     double? offerPrice,
     required Enum$OfferActionEnum actionType,
   }) async {
@@ -109,15 +109,23 @@ class OfferNotifier extends StateNotifier<OfferState> {
         "processingType": "respondToOffer",
         "isProcessing": true,
       });
+      String? offerId = state.activeOffer?.offer?.children?.firstOrNull?.id ??
+          state.activeOffer?.offer?.id;
       final Mutation$RespondToOffer$respondToOffer? res =
           await offerRepo.respondToOffer(
-        offerId: offerId,
+        offerId: int.parse(offerId!),
         offerPrice: offerPrice,
         actionType: actionType,
       );
       if (res != null && res.success!) {
         context.alert('Offer ${actionType.name} successfully');
-        updateOfferState({"offerState": actionType.name});
+        OfferInfo offerInfo = OfferInfo.fromJson(res.data!.offer!.toJson());
+        ConversationModel? newConversation = state.activeOffer;
+        newConversation = newConversation?.copyWith(offer: offerInfo);
+        updateOfferState({
+          "offerState": actionType.name,
+          "activeOffer": newConversation,
+        });
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }

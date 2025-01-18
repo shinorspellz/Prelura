@@ -796,6 +796,7 @@ class Input$ProductFiltersInput {
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
     List<String?>? hashtags,
+    List<String?>? colors,
   }) =>
       Input$ProductFiltersInput._({
         if (name != null) r'name': name,
@@ -811,6 +812,7 @@ class Input$ProductFiltersInput {
         if (condition != null) r'condition': condition,
         if (discountPrice != null) r'discountPrice': discountPrice,
         if (hashtags != null) r'hashtags': hashtags,
+        if (colors != null) r'colors': colors,
       });
 
   Input$ProductFiltersInput._(this._$data);
@@ -878,6 +880,11 @@ class Input$ProductFiltersInput {
       result$data['hashtags'] =
           (l$hashtags as List<dynamic>?)?.map((e) => (e as String?)).toList();
     }
+    if (data.containsKey('colors')) {
+      final l$colors = data['colors'];
+      result$data['colors'] =
+          (l$colors as List<dynamic>?)?.map((e) => (e as String?)).toList();
+    }
     return Input$ProductFiltersInput._(result$data);
   }
 
@@ -911,6 +918,8 @@ class Input$ProductFiltersInput {
   bool? get discountPrice => (_$data['discountPrice'] as bool?);
 
   List<String?>? get hashtags => (_$data['hashtags'] as List<String?>?);
+
+  List<String?>? get colors => (_$data['colors'] as List<String?>?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -972,6 +981,10 @@ class Input$ProductFiltersInput {
     if (_$data.containsKey('hashtags')) {
       final l$hashtags = hashtags;
       result$data['hashtags'] = l$hashtags?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('colors')) {
+      final l$colors = colors;
+      result$data['colors'] = l$colors?.map((e) => e).toList();
     }
     return result$data;
   }
@@ -1114,6 +1127,25 @@ class Input$ProductFiltersInput {
     } else if (l$hashtags != lOther$hashtags) {
       return false;
     }
+    final l$colors = colors;
+    final lOther$colors = other.colors;
+    if (_$data.containsKey('colors') != other._$data.containsKey('colors')) {
+      return false;
+    }
+    if (l$colors != null && lOther$colors != null) {
+      if (l$colors.length != lOther$colors.length) {
+        return false;
+      }
+      for (int i = 0; i < l$colors.length; i++) {
+        final l$colors$entry = l$colors[i];
+        final lOther$colors$entry = lOther$colors[i];
+        if (l$colors$entry != lOther$colors$entry) {
+          return false;
+        }
+      }
+    } else if (l$colors != lOther$colors) {
+      return false;
+    }
     return true;
   }
 
@@ -1132,6 +1164,7 @@ class Input$ProductFiltersInput {
     final l$condition = condition;
     final l$discountPrice = discountPrice;
     final l$hashtags = hashtags;
+    final l$colors = colors;
     return Object.hashAll([
       _$data.containsKey('name') ? l$name : const {},
       _$data.containsKey('brand') ? l$brand : const {},
@@ -1149,6 +1182,11 @@ class Input$ProductFiltersInput {
           ? l$hashtags == null
               ? null
               : Object.hashAll(l$hashtags.map((v) => v))
+          : const {},
+      _$data.containsKey('colors')
+          ? l$colors == null
+              ? null
+              : Object.hashAll(l$colors.map((v) => v))
           : const {},
     ]);
   }
@@ -1177,6 +1215,7 @@ abstract class CopyWith$Input$ProductFiltersInput<TRes> {
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
     List<String?>? hashtags,
+    List<String?>? colors,
   });
 }
 
@@ -1207,6 +1246,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
     Object? condition = _undefined,
     Object? discountPrice = _undefined,
     Object? hashtags = _undefined,
+    Object? colors = _undefined,
   }) =>
       _then(Input$ProductFiltersInput._({
         ..._instance._$data,
@@ -1226,6 +1266,7 @@ class _CopyWithImpl$Input$ProductFiltersInput<TRes>
         if (discountPrice != _undefined)
           'discountPrice': (discountPrice as bool?),
         if (hashtags != _undefined) 'hashtags': (hashtags as List<String?>?),
+        if (colors != _undefined) 'colors': (colors as List<String?>?),
       }));
 }
 
@@ -1249,6 +1290,7 @@ class _CopyWithStubImpl$Input$ProductFiltersInput<TRes>
     EnumImport$ConditionEnum.ConditionsEnum? condition,
     bool? discountPrice,
     List<String?>? hashtags,
+    List<String?>? colors,
   }) =>
       _res;
 }
