@@ -47,11 +47,10 @@ class HighlightUserName extends StatelessWidget {
       spans.add(TextSpan(
         text: message.substring(match.start, match.end),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: highlightColor != null
-                ? highlightColor
-                : context.isDarkMode
+            color: highlightColor ??
+                (context.isDarkMode
                     ? PreluraColors.white
-                    : PreluraColors.black,
+                    : PreluraColors.black),
             fontWeight: FontWeight.w700),
       ));
 

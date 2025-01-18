@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
@@ -100,7 +101,7 @@ class OfferRepo {
       log('Missing response', name: 'OfferRepo respond to offer');
       throw OfferException('An error occurred');
     }
-
+    log("::::The updated offer returned data :::  ${jsonEncode(response.parsedData?.respondToOffer?.toJson())}");
     return response.parsedData?.respondToOffer;
   }
 }
