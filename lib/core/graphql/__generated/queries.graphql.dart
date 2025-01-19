@@ -29488,7 +29488,7 @@ class Query$Conversations$conversations$offer {
     required this.id,
     this.message,
     required this.offerPrice,
-    required this.status,
+    this.status,
     required this.createdAt,
     required this.updatedAt,
     this.expiresAt,
@@ -29517,7 +29517,7 @@ class Query$Conversations$conversations$offer {
       id: (l$id as String),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
-      status: fromJson$Enum$ProductsOfferStatusChoices((l$status as String)),
+      status: (l$status as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       expiresAt:
@@ -29543,7 +29543,7 @@ class Query$Conversations$conversations$offer {
 
   final String offerPrice;
 
-  final Enum$ProductsOfferStatusChoices status;
+  final String? status;
 
   final DateTime createdAt;
 
@@ -29570,7 +29570,7 @@ class Query$Conversations$conversations$offer {
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsOfferStatusChoices(l$status);
+    _resultData['status'] = l$status;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
@@ -29723,7 +29723,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
     String? id,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,
@@ -29777,9 +29777,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
         offerPrice: offerPrice == _undefined || offerPrice == null
             ? _instance.offerPrice
             : (offerPrice as String),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsOfferStatusChoices),
+        status: status == _undefined ? _instance.status : (status as String?),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -29846,7 +29844,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
     String? id,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,
@@ -29874,7 +29872,7 @@ class Query$Conversations$conversations$offer$children {
     required this.updatedAt,
     this.message,
     required this.offerPrice,
-    required this.status,
+    this.status,
     this.buyer,
     required this.product,
     this.$__typename = 'OfferType',
@@ -29897,7 +29895,7 @@ class Query$Conversations$conversations$offer$children {
       updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
-      status: fromJson$Enum$ProductsOfferStatusChoices((l$status as String)),
+      status: (l$status as String?),
       buyer: l$buyer == null
           ? null
           : Query$Conversations$conversations$offer$children$buyer.fromJson(
@@ -29919,7 +29917,7 @@ class Query$Conversations$conversations$offer$children {
 
   final String offerPrice;
 
-  final Enum$ProductsOfferStatusChoices status;
+  final String? status;
 
   final Query$Conversations$conversations$offer$children$buyer? buyer;
 
@@ -29940,7 +29938,7 @@ class Query$Conversations$conversations$offer$children {
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsOfferStatusChoices(l$status);
+    _resultData['status'] = l$status;
     final l$buyer = buyer;
     _resultData['buyer'] = l$buyer?.toJson();
     final l$product = product;
@@ -30058,7 +30056,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer$children<TRes> {
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     Query$Conversations$conversations$offer$children$buyer? buyer,
     Query$Conversations$conversations$offer$children$product? product,
     String? $__typename,
@@ -30106,9 +30104,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
         offerPrice: offerPrice == _undefined || offerPrice == null
             ? _instance.offerPrice
             : (offerPrice as String),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsOfferStatusChoices),
+        status: status == _undefined ? _instance.status : (status as String?),
         buyer: buyer == _undefined
             ? _instance.buyer
             : (buyer
@@ -30152,7 +30148,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     Query$Conversations$conversations$offer$children$buyer? buyer,
     Query$Conversations$conversations$offer$children$product? product,
     String? $__typename,

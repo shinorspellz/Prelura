@@ -35,24 +35,26 @@ class OfferConversationBuilder extends ConsumerWidget {
       /// OFFER LISTING SESSION
       ///
       if (offerChildren != null && offerChildren.isNotEmpty)
-        ListView.separated(
-          shrinkWrap: true,
-          physics:
-              const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
-          itemCount: offerChildren.length,
-          reverse: true,
-          itemBuilder: (context, index) {
-            final OfferSubStateInfo chat = offerChildren[index];
-            // final isSender = chat.updatedBy != appUserInfo?.username;
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            // physics:
+            //     const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+            itemCount: offerChildren.length,
+            reverse: true,
+            itemBuilder: (context, index) {
+              final OfferSubStateInfo chat = offerChildren[index];
+              // final isSender = chat.updatedBy != appUserInfo?.username;
 
-            return OfferSubCardBox(
-              eventInfo: chat,
-              appUserInfo: appUserInfo!,
-            );
-          },
-          separatorBuilder: (_, __) {
-            return addVerticalSpacing(10);
-          },
+              return OfferSubCardBox(
+                eventInfo: chat,
+                appUserInfo: appUserInfo!,
+              );
+            },
+            separatorBuilder: (_, __) {
+              return addVerticalSpacing(10);
+            },
+          ),
         )
 
       ///

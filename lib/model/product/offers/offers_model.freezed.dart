@@ -23,8 +23,7 @@ mixin _$OfferType {
   ProductModel get product => throw _privateConstructorUsedError;
   UserModel get buyer => throw _privateConstructorUsedError;
   double get offerPrice => throw _privateConstructorUsedError;
-  Enum$ProductsOfferStatusChoices get status =>
-      throw _privateConstructorUsedError;
+  Enum$OfferActionEnum get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -53,7 +52,7 @@ abstract class $OfferTypeCopyWith<$Res> {
       {ProductModel product,
       UserModel buyer,
       double offerPrice,
-      Enum$ProductsOfferStatusChoices status,
+      Enum$OfferActionEnum status,
       String message,
       DateTime expiresAt,
       DateTime createdAt,
@@ -114,7 +113,7 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsOfferStatusChoices,
+              as Enum$OfferActionEnum,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -225,7 +224,7 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
       {ProductModel product,
       UserModel buyer,
       double offerPrice,
-      Enum$ProductsOfferStatusChoices status,
+      Enum$OfferActionEnum status,
       String message,
       DateTime expiresAt,
       DateTime createdAt,
@@ -289,7 +288,7 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsOfferStatusChoices,
+              as Enum$OfferActionEnum,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -353,7 +352,7 @@ class _$OfferTypeImpl implements _OfferType {
   @override
   final double offerPrice;
   @override
-  final Enum$ProductsOfferStatusChoices status;
+  final Enum$OfferActionEnum status;
   @override
   final String message;
   @override
@@ -439,7 +438,7 @@ abstract class _OfferType implements OfferType {
       {required final ProductModel product,
       required final UserModel buyer,
       required final double offerPrice,
-      required final Enum$ProductsOfferStatusChoices status,
+      required final Enum$OfferActionEnum status,
       required final String message,
       required final DateTime expiresAt,
       required final DateTime createdAt,
@@ -459,7 +458,7 @@ abstract class _OfferType implements OfferType {
   @override
   double get offerPrice;
   @override
-  Enum$ProductsOfferStatusChoices get status;
+  Enum$OfferActionEnum get status;
   @override
   String get message;
   @override

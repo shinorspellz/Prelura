@@ -11,8 +11,6 @@ import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
-import 'offer_conversation_builder.dart';
-
 class OfferSubCardBox extends ConsumerStatefulWidget {
   final OfferSubStateInfo eventInfo;
   final UserModel appUserInfo;
@@ -59,16 +57,17 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     required String text,
     required bool isDisabled,
   }) {
-    return Expanded(
-      child: AppButton(
-        onTap: onTap,
-        loading: isLoading,
-        text: text,
-        textColor: Colors.white,
-        bgColor: isDisabled
-            ? PreluraColors.primaryColor.withOpacity(0.7)
-            : PreluraColors.primaryColor,
-      ),
+    return AppButton(
+      onTap: onTap,
+      loading: isLoading,
+      text: text,
+      fontSize: 13,
+      height: 35,
+      width: 120,
+      textColor: Colors.white,
+      bgColor: isDisabled
+          ? PreluraColors.primaryColor.withOpacity(0.7)
+          : PreluraColors.primaryColor,
     );
   }
 
@@ -99,32 +98,49 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 username: widget.eventInfo.updatedBy,
               ),
             8.horizontalSpacing,
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.grey[300]!.withOpacity(0.5),
-                  width: 1,
+            Stack(children: [
+              Container(
+                height: 50,
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: Colors.grey[300]!.withOpacity(0.5),
+                    width: 1,
+                  ),
+                ),
+                child: HighlightUserName(
+                  isRead: false,
+                  highlightColor: PreluraColors.primaryColor,
+                  message:
+                      "${isSender ? "You" : widget.eventInfo.updatedBy} offered £$offeredPrice",
+                  username: "offered",
                 ),
               ),
-              child: HighlightUserName(
-                isRead: false,
-                highlightColor: PreluraColors.primaryColor,
-                message: offerType2.contains(status)
-                    ? amTheSeller
-                        ? "You $status the offer"
-                        : ""
-                    : "${isSender ? "You" : widget.eventInfo.updatedBy} Offered £$offeredPrice",
-                username: offerType2.contains(status) ? status : "offered",
-              ),
-            ),
+              if (status != "pending" && status != "countered")
+                Positioned(
+                  bottom: 0,
+                  left: isSender ? null : 0,
+                  right: isSender ? 0 : null,
+                  child: HighlightUserName(
+                    isRead: false,
+                    highlightColor: status == "cancelled"
+                        ? Colors.red
+                        : status == "accepted"
+                            ? Colors.green
+                            : PreluraColors.primaryColor,
+                    weight: FontWeight.w400,
+                    message: status,
+                    textSize: 12,
+                    username: status,
+                  ),
+                )
+            ]),
             addHorizontalSpacing(15),
           ],
         ),
-        if (!amTheSeller && status == "countered") ...[
+        if (!amTheSeller && status == "countered" && !isSender) ...[
           10.verticalSpacing,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -136,13 +152,37 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                   text: isAccepting ? "Accepted" : "Accept",
                   isDisabled: isAccepting || isDeclining,
                 ),
-                18.horizontalSpacing,
+                // 18.horizontalSpacing,
+                // buildActionButton(
+                //   onTap: () => handleOfferResponse(Enum$OfferActionEnum.REJECT),
+                //   isLoading: isDeclining,
+                //   text: isDeclining ? "Declined" : "Decline",
+                //   isDisabled: isAccepting || isDeclining,
+                // ),
+              ],
+            ),
+          ),
+        ],
+        if (!amTheSeller && status == "accepted") ...[
+          10.verticalSpacing,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
                 buildActionButton(
-                  onTap: () => handleOfferResponse(Enum$OfferActionEnum.REJECT),
-                  isLoading: isDeclining,
-                  text: isDeclining ? "Declined" : "Decline",
+                  onTap: () {},
+                  isLoading: isAccepting,
+                  text: "Make payment",
                   isDisabled: isAccepting || isDeclining,
                 ),
+                // 18.horizontalSpacing,
+                // buildActionButton(
+                //   onTap: () => handleOfferResponse(Enum$OfferActionEnum.REJECT),
+                //   isLoading: isDeclining,
+                //   text: isDeclining ? "Declined" : "Decline",
+                //   isDisabled: isAccepting || isDeclining,
+                // ),
               ],
             ),
           ),

@@ -41,6 +41,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   bool isAccepting = false;
   bool isSendingOffer = false;
   bool isDeclined = false;
+  bool isCancelled = false;
   bool isDeclining = false;
   UserModel? appUserInfo;
   final TextEditingController _offerController = TextEditingController();
@@ -103,8 +104,8 @@ class _OfferCardState extends ConsumerState<OfferCard> {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       offerInfo = ref.read(offerProvider).activeOffer!.offer!;
       isAccepted = offerInfo.status?.toLowerCase() == "accepted";
-      isDeclined = offerInfo.status?.toLowerCase() == "rejected" ||
-          offerInfo.status?.toLowerCase() == "cancelled";
+      isDeclined = offerInfo.status?.toLowerCase() == "rejected";
+      isCancelled = offerInfo.status?.toLowerCase() == "cancelled";
       amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;
       setState(() {});
     });
@@ -132,25 +133,32 @@ class _OfferCardState extends ConsumerState<OfferCard> {
               amTheSeller: amTheSeller,
             ),
             10.verticalSpacing,
-            if (isAccepted) ...[
+            if (offerInfo.children?.firstOrNull?.status?.toLowerCase() ==
+                    "accepted" ||
+                offerInfo.children?.firstOrNull?.status?.toLowerCase() ==
+                    "rejected") ...[
               10.verticalSpacing,
               AppButton(
                 width: double.infinity,
                 onTap: () {},
                 height: 45,
                 bgColor: PreluraColors.primaryColor.withOpacity(0.7),
-                text: "Accepted",
+                text: isAccepted ? "Accepted" : "Declined",
               ),
-              10.verticalSpacing,
-              Text(
-                "Please wait for buyer to make a payment",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: PreluraColors.grey),
-              )
+              if (amTheSeller) ...[
+                10.verticalSpacing,
+                Text(
+                  "Please wait for buyer to make a payment",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: PreluraColors.grey),
+                )
+              ],
             ] else ...[
-              if ((isDeclined || isAccepted) || !widget.isSender) ...[
+              if (amTheSeller &&
+                  offerInfo.children?.firstOrNull?.updatedBy !=
+                      appUserInfo?.username) ...[
                 10.verticalSpacing,
                 Row(
                   children: [
@@ -158,12 +166,8 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                       child: AppButton(
                         onTap: handleAccept,
                         loading: isAccepting,
-                        text: isAccepted ? "Accepted" : "Accept",
+                        text: "Accept",
                         textColor: Colors.white,
-                        bgColor: isAccepted || isDeclined
-                            ? PreluraColors.primaryColor.withOpacity(0.7)
-                            : PreluraColors.primaryColor,
-                        // isDisabled: isAccepted || isDeclined,
                       ),
                     ),
                     18.horizontalSpacing,
@@ -171,17 +175,22 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                       child: AppButton(
                         onTap: handleDecline,
                         loading: isDeclining,
-                        text: isDeclined ? "Declined" : "Decline",
+                        text: "Decline",
                         textColor: Colors.white,
-                        bgColor: isDeclined || isAccepted
-                            ? PreluraColors.primaryColor.withOpacity(0.7)
-                            : PreluraColors.primaryColor,
-                        // isDisabled: isAccepted || isDeclined,
                       ),
                     ),
                   ],
                 )
-              ] else
+              ] else if (offerInfo.children?.firstOrNull?.updatedBy ==
+                  appUserInfo?.username)
+                Text(
+                  "Offer sent, please wait for the Buyer's decision",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: PreluraColors.grey),
+                )
+              else
                 Text(
                   "Offer sent, please wait for the Seller's decision",
                   style: Theme.of(context)
@@ -190,8 +199,11 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                       .copyWith(color: PreluraColors.grey),
                 )
             ],
-            if (isDeclined && amTheSeller) ...[
-              24.verticalSpacing,
+            if (offerInfo.children?.firstOrNull?.status?.toLowerCase() ==
+                    "pending" ||
+                offerInfo.children?.firstOrNull?.status?.toLowerCase() ==
+                    "countered") ...[
+              10.verticalSpacing,
               AppButton(
                 height: 45,
                 width: double.infinity,

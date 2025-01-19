@@ -71,7 +71,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
         context.alert('Offer created successfully');
         //Navigating to the chat room
         final Mutation$createOffer$createOffer$data$offer$product$seller?
-            userInfo = res.data!.offer!.product.seller;
+            userInfo = res.data!.offer!.first!.product.seller;
         context.router.replace(ChatRoute(
           id: res.data!.conversationId.toString(),
           username: userInfo?.username ?? "",
@@ -119,7 +119,8 @@ class OfferNotifier extends StateNotifier<OfferState> {
       );
       if (res != null && res.success!) {
         context.alert('Offer ${actionType.name} successfully');
-        OfferInfo offerInfo = OfferInfo.fromJson(res.data!.offer!.toJson());
+        OfferInfo offerInfo =
+            OfferInfo.fromJson(res.data!.offer!.first!.toJson());
         ConversationModel? newConversation = state.activeOffer;
         newConversation = newConversation?.copyWith(offer: offerInfo);
         updateOfferState({

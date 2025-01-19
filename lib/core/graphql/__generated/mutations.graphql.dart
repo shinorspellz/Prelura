@@ -12340,17 +12340,19 @@ class Mutation$createOffer$createOffer$data {
     final l$$__typename = json['__typename'];
     return Mutation$createOffer$createOffer$data(
       conversationId: (l$conversationId as int?),
-      offer: l$offer == null
-          ? null
-          : Mutation$createOffer$createOffer$data$offer.fromJson(
-              (l$offer as Map<String, dynamic>)),
+      offer: (l$offer as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Mutation$createOffer$createOffer$data$offer.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? conversationId;
 
-  final Mutation$createOffer$createOffer$data$offer? offer;
+  final List<Mutation$createOffer$createOffer$data$offer?>? offer;
 
   final String $__typename;
 
@@ -12359,7 +12361,7 @@ class Mutation$createOffer$createOffer$data {
     final l$conversationId = conversationId;
     _resultData['conversationId'] = l$conversationId;
     final l$offer = offer;
-    _resultData['offer'] = l$offer?.toJson();
+    _resultData['offer'] = l$offer?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -12372,7 +12374,7 @@ class Mutation$createOffer$createOffer$data {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$conversationId,
-      l$offer,
+      l$offer == null ? null : Object.hashAll(l$offer.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -12393,7 +12395,18 @@ class Mutation$createOffer$createOffer$data {
     }
     final l$offer = offer;
     final lOther$offer = other.offer;
-    if (l$offer != lOther$offer) {
+    if (l$offer != null && lOther$offer != null) {
+      if (l$offer.length != lOther$offer.length) {
+        return false;
+      }
+      for (int i = 0; i < l$offer.length; i++) {
+        final l$offer$entry = l$offer[i];
+        final lOther$offer$entry = lOther$offer[i];
+        if (l$offer$entry != lOther$offer$entry) {
+          return false;
+        }
+      }
+    } else if (l$offer != lOther$offer) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -12426,10 +12439,15 @@ abstract class CopyWith$Mutation$createOffer$createOffer$data<TRes> {
 
   TRes call({
     int? conversationId,
-    Mutation$createOffer$createOffer$data$offer? offer,
+    List<Mutation$createOffer$createOffer$data$offer?>? offer,
     String? $__typename,
   });
-  CopyWith$Mutation$createOffer$createOffer$data$offer<TRes> get offer;
+  TRes offer(
+      Iterable<Mutation$createOffer$createOffer$data$offer?>? Function(
+              Iterable<
+                  CopyWith$Mutation$createOffer$createOffer$data$offer<
+                      Mutation$createOffer$createOffer$data$offer>?>?)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$createOffer$createOffer$data<TRes>
@@ -12456,20 +12474,25 @@ class _CopyWithImpl$Mutation$createOffer$createOffer$data<TRes>
             : (conversationId as int?),
         offer: offer == _undefined
             ? _instance.offer
-            : (offer as Mutation$createOffer$createOffer$data$offer?),
+            : (offer as List<Mutation$createOffer$createOffer$data$offer?>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$createOffer$createOffer$data$offer<TRes> get offer {
-    final local$offer = _instance.offer;
-    return local$offer == null
-        ? CopyWith$Mutation$createOffer$createOffer$data$offer.stub(
-            _then(_instance))
-        : CopyWith$Mutation$createOffer$createOffer$data$offer(
-            local$offer, (e) => call(offer: e));
-  }
+  TRes offer(
+          Iterable<Mutation$createOffer$createOffer$data$offer?>? Function(
+                  Iterable<
+                      CopyWith$Mutation$createOffer$createOffer$data$offer<
+                          Mutation$createOffer$createOffer$data$offer>?>?)
+              _fn) =>
+      call(
+          offer: _fn(_instance.offer?.map((e) => e == null
+              ? null
+              : CopyWith$Mutation$createOffer$createOffer$data$offer(
+                  e,
+                  (i) => i,
+                )))?.toList());
 }
 
 class _CopyWithStubImpl$Mutation$createOffer$createOffer$data<TRes>
@@ -12480,13 +12503,12 @@ class _CopyWithStubImpl$Mutation$createOffer$createOffer$data<TRes>
 
   call({
     int? conversationId,
-    Mutation$createOffer$createOffer$data$offer? offer,
+    List<Mutation$createOffer$createOffer$data$offer?>? offer,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$createOffer$createOffer$data$offer<TRes> get offer =>
-      CopyWith$Mutation$createOffer$createOffer$data$offer.stub(_res);
+  offer(_fn) => _res;
 }
 
 class Mutation$createOffer$createOffer$data$offer {
@@ -13473,6 +13495,20 @@ const documentNodeMutationRespondToOffer = DocumentNode(definitions: [
                         selectionSet: null,
                       ),
                       FieldNode(
+                        name: NameNode(value: 'updatedBy'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'updatedAt'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
                         name: NameNode(value: 'message'),
                         alias: null,
                         arguments: [],
@@ -14224,17 +14260,19 @@ class Mutation$RespondToOffer$respondToOffer$data {
     final l$$__typename = json['__typename'];
     return Mutation$RespondToOffer$respondToOffer$data(
       conversationId: (l$conversationId as int?),
-      offer: l$offer == null
-          ? null
-          : Mutation$RespondToOffer$respondToOffer$data$offer.fromJson(
-              (l$offer as Map<String, dynamic>)),
+      offer: (l$offer as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Mutation$RespondToOffer$respondToOffer$data$offer.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
   final int? conversationId;
 
-  final Mutation$RespondToOffer$respondToOffer$data$offer? offer;
+  final List<Mutation$RespondToOffer$respondToOffer$data$offer?>? offer;
 
   final String $__typename;
 
@@ -14243,7 +14281,7 @@ class Mutation$RespondToOffer$respondToOffer$data {
     final l$conversationId = conversationId;
     _resultData['conversationId'] = l$conversationId;
     final l$offer = offer;
-    _resultData['offer'] = l$offer?.toJson();
+    _resultData['offer'] = l$offer?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -14256,7 +14294,7 @@ class Mutation$RespondToOffer$respondToOffer$data {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$conversationId,
-      l$offer,
+      l$offer == null ? null : Object.hashAll(l$offer.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -14277,7 +14315,18 @@ class Mutation$RespondToOffer$respondToOffer$data {
     }
     final l$offer = offer;
     final lOther$offer = other.offer;
-    if (l$offer != lOther$offer) {
+    if (l$offer != null && lOther$offer != null) {
+      if (l$offer.length != lOther$offer.length) {
+        return false;
+      }
+      for (int i = 0; i < l$offer.length; i++) {
+        final l$offer$entry = l$offer[i];
+        final lOther$offer$entry = lOther$offer[i];
+        if (l$offer$entry != lOther$offer$entry) {
+          return false;
+        }
+      }
+    } else if (l$offer != lOther$offer) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -14310,10 +14359,15 @@ abstract class CopyWith$Mutation$RespondToOffer$respondToOffer$data<TRes> {
 
   TRes call({
     int? conversationId,
-    Mutation$RespondToOffer$respondToOffer$data$offer? offer,
+    List<Mutation$RespondToOffer$respondToOffer$data$offer?>? offer,
     String? $__typename,
   });
-  CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<TRes> get offer;
+  TRes offer(
+      Iterable<Mutation$RespondToOffer$respondToOffer$data$offer?>? Function(
+              Iterable<
+                  CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<
+                      Mutation$RespondToOffer$respondToOffer$data$offer>?>?)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data<TRes>
@@ -14340,20 +14394,26 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data<TRes>
             : (conversationId as int?),
         offer: offer == _undefined
             ? _instance.offer
-            : (offer as Mutation$RespondToOffer$respondToOffer$data$offer?),
+            : (offer
+                as List<Mutation$RespondToOffer$respondToOffer$data$offer?>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<TRes> get offer {
-    final local$offer = _instance.offer;
-    return local$offer == null
-        ? CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer.stub(
-            _then(_instance))
-        : CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer(
-            local$offer, (e) => call(offer: e));
-  }
+  TRes offer(
+          Iterable<Mutation$RespondToOffer$respondToOffer$data$offer?>? Function(
+                  Iterable<
+                      CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<
+                          Mutation$RespondToOffer$respondToOffer$data$offer>?>?)
+              _fn) =>
+      call(
+          offer: _fn(_instance.offer?.map((e) => e == null
+              ? null
+              : CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer(
+                  e,
+                  (i) => i,
+                )))?.toList());
 }
 
 class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data<TRes>
@@ -14364,13 +14424,12 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data<TRes>
 
   call({
     int? conversationId,
-    Mutation$RespondToOffer$respondToOffer$data$offer? offer,
+    List<Mutation$RespondToOffer$respondToOffer$data$offer?>? offer,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<TRes> get offer =>
-      CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer.stub(_res);
+  offer(_fn) => _res;
 }
 
 class Mutation$RespondToOffer$respondToOffer$data$offer {
@@ -14378,7 +14437,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     required this.id,
     this.message,
     required this.offerPrice,
-    required this.status,
+    this.status,
     required this.createdAt,
     required this.updatedAt,
     this.expiresAt,
@@ -14407,7 +14466,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
       id: (l$id as String),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
-      status: fromJson$Enum$ProductsOfferStatusChoices((l$status as String)),
+      status: (l$status as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       expiresAt:
@@ -14434,7 +14493,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
 
   final String offerPrice;
 
-  final Enum$ProductsOfferStatusChoices status;
+  final String? status;
 
   final DateTime createdAt;
 
@@ -14462,7 +14521,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsOfferStatusChoices(l$status);
+    _resultData['status'] = l$status;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
@@ -14618,7 +14677,7 @@ abstract class CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<
     String? id,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,
@@ -14675,9 +14734,7 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
         offerPrice: offerPrice == _undefined || offerPrice == null
             ? _instance.offerPrice
             : (offerPrice as String),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsOfferStatusChoices),
+        status: status == _undefined ? _instance.status : (status as String?),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -14750,7 +14807,7 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
     String? id,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     DateTime? expiresAt,
@@ -14778,9 +14835,11 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
 class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   Mutation$RespondToOffer$respondToOffer$data$offer$children({
     required this.id,
+    this.updatedBy,
+    required this.updatedAt,
     this.message,
     required this.offerPrice,
-    required this.status,
+    this.status,
     this.buyer,
     required this.product,
     this.$__typename = 'OfferType',
@@ -14789,6 +14848,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   factory Mutation$RespondToOffer$respondToOffer$data$offer$children.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$updatedBy = json['updatedBy'];
+    final l$updatedAt = json['updatedAt'];
     final l$message = json['message'];
     final l$offerPrice = json['offerPrice'];
     final l$status = json['status'];
@@ -14797,9 +14858,11 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$$__typename = json['__typename'];
     return Mutation$RespondToOffer$respondToOffer$data$offer$children(
       id: (l$id as String),
+      updatedBy: (l$updatedBy as String?),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
-      status: fromJson$Enum$ProductsOfferStatusChoices((l$status as String)),
+      status: (l$status as String?),
       buyer: l$buyer == null
           ? null
           : Mutation$RespondToOffer$respondToOffer$data$offer$children$buyer
@@ -14813,11 +14876,15 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
 
   final String id;
 
+  final String? updatedBy;
+
+  final DateTime updatedAt;
+
   final String? message;
 
   final String offerPrice;
 
-  final Enum$ProductsOfferStatusChoices status;
+  final String? status;
 
   final Mutation$RespondToOffer$respondToOffer$data$offer$children$buyer? buyer;
 
@@ -14830,12 +14897,16 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$updatedBy = updatedBy;
+    _resultData['updatedBy'] = l$updatedBy;
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$message = message;
     _resultData['message'] = l$message;
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsOfferStatusChoices(l$status);
+    _resultData['status'] = l$status;
     final l$buyer = buyer;
     _resultData['buyer'] = l$buyer?.toJson();
     final l$product = product;
@@ -14848,6 +14919,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   @override
   int get hashCode {
     final l$id = id;
+    final l$updatedBy = updatedBy;
+    final l$updatedAt = updatedAt;
     final l$message = message;
     final l$offerPrice = offerPrice;
     final l$status = status;
@@ -14856,6 +14929,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$updatedBy,
+      l$updatedAt,
       l$message,
       l$offerPrice,
       l$status,
@@ -14877,6 +14952,16 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$updatedBy = updatedBy;
+    final lOther$updatedBy = other.updatedBy;
+    if (l$updatedBy != lOther$updatedBy) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
     final l$message = message;
@@ -14938,9 +15023,11 @@ abstract class CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer$childr
 
   TRes call({
     String? id,
+    String? updatedBy,
+    DateTime? updatedAt,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     Mutation$RespondToOffer$respondToOffer$data$offer$children$buyer? buyer,
     Mutation$RespondToOffer$respondToOffer$data$offer$children$product? product,
     String? $__typename,
@@ -14970,6 +15057,8 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer$children<
 
   TRes call({
     Object? id = _undefined,
+    Object? updatedBy = _undefined,
+    Object? updatedAt = _undefined,
     Object? message = _undefined,
     Object? offerPrice = _undefined,
     Object? status = _undefined,
@@ -14979,14 +15068,18 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer$children<
   }) =>
       _then(Mutation$RespondToOffer$respondToOffer$data$offer$children(
         id: id == _undefined || id == null ? _instance.id : (id as String),
+        updatedBy: updatedBy == _undefined
+            ? _instance.updatedBy
+            : (updatedBy as String?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
         message:
             message == _undefined ? _instance.message : (message as String?),
         offerPrice: offerPrice == _undefined || offerPrice == null
             ? _instance.offerPrice
             : (offerPrice as String),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsOfferStatusChoices),
+        status: status == _undefined ? _instance.status : (status as String?),
         buyer: buyer == _undefined
             ? _instance.buyer
             : (buyer
@@ -15030,9 +15123,11 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer$childr
 
   call({
     String? id,
+    String? updatedBy,
+    DateTime? updatedAt,
     String? message,
     String? offerPrice,
-    Enum$ProductsOfferStatusChoices? status,
+    String? status,
     Mutation$RespondToOffer$respondToOffer$data$offer$children$buyer? buyer,
     Mutation$RespondToOffer$respondToOffer$data$offer$children$product? product,
     String? $__typename,
