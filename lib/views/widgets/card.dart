@@ -253,6 +253,9 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                 borderRadius: BorderRadius.circular(6),
                 child: Stack(children: [
                   CachedNetworkImage(
+                    errorWidget: (context, url, error) => Container(
+                      color: PreluraColors.grey,
+                    ),
                     imageUrl: widget.product.imagesUrl.first.thumbnail,
                     height: 27.h,
                     width: double.infinity,

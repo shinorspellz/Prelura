@@ -111,7 +111,7 @@ class _ProductFilterPageState
                         final filteredProducts = products
                             .where((product) =>
                                 product.style?.name
-                                    ?.toLowerCase()
+                                    .toLowerCase()
                                     .contains("party") ??
                                 false) // Safely check for "party"
                             .toList();

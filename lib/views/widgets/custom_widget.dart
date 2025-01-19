@@ -40,9 +40,10 @@ showCustomDialog(
   );
 }
 
-class CustomDialogParentBox extends StatelessWidget {
+class CustomDialogParentBox extends StatefulWidget {
   final Widget child;
   final bool allowDismissal;
+
   const CustomDialogParentBox({
     super.key,
     required this.child,
@@ -50,33 +51,46 @@ class CustomDialogParentBox extends StatelessWidget {
   });
 
   @override
+  State<CustomDialogParentBox> createState() => _CustomDialogParentBoxState();
+}
+
+class _CustomDialogParentBoxState extends State<CustomDialogParentBox> {
+  bool _isDismissing = false;
+
+  @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
+
     return Scaffold(
-        backgroundColor: Colors.transparent,
-        body: GestureDetector(
-          onTap: () {
-            if (allowDismissal) {
-              Navigator.pop(context);
-            }
-          },
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 5.0,
-              sigmaY: 5.0,
-            ),
-            child: Container(
-              color: Colors.transparent,
-              height: deviceSize.height,
-              width: deviceSize.width,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    child,
-                  ]),
+      backgroundColor: Colors.transparent,
+      body: GestureDetector(
+        onTap: () {
+          if (widget.allowDismissal && !_isDismissing) {
+            setState(() {
+              _isDismissing = true;
+            });
+            Navigator.pop(context);
+          }
+        },
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 5.0,
+            sigmaY: 5.0,
+          ),
+          child: Container(
+            color: Colors.transparent,
+            height: deviceSize.height,
+            width: deviceSize.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.child,
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

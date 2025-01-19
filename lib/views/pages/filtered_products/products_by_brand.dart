@@ -34,6 +34,7 @@ class ProductsByBrandPage extends ConsumerStatefulWidget {
 
 class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   final controller = ProductsByBrandPage.scrollController;
+  Input$ProductFiltersInput previousState = Input$ProductFiltersInput();
 
   @override
   void initState() {
@@ -41,6 +42,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
     Future.microtask(() {
       if (!mounted) return;
+
+      previousState = ref.read(selectedFilteredProductProvider);
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(
               brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
@@ -62,6 +65,12 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   void dispose() {
     log(":::: I ran  from here");
     HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
+    Future.microtask(() {
+      HelperFunction.genRef!
+          .read(selectedFilteredProductProvider.notifier)
+          .state = previousState;
+    });
+
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -70,6 +79,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredProducts =
+        ref.watch(filteredProductProvider(searchQuery)).valueOrNull;
+    final totalLength =
+        ref.watch(filteredProductProvider(searchQuery).notifier).totalLength;
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -104,8 +117,16 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FiltersOptions(
-                            excludedFilterTypes: [FilterTypes.brand],
-                          ),
+                              excludedFilterTypes: [FilterTypes.brand],
+                              onTap: () {
+                                ref
+                                        .read(selectedFilteredProductProvider
+                                            .notifier)
+                                        .state =
+                                    Input$ProductFiltersInput(
+                                        brand: widget.id,
+                                        customBrand: widget.customBrand);
+                              }),
                         ],
                       ),
                     )),
@@ -147,11 +168,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                                       mainAxisSpacing: 10,
                                       childAspectRatio: 0.50,
                                     ),
-                                    itemCount: products.take(6).length,
+                                    itemCount: products.length,
                                     itemBuilder: (context, index) {
                                       return ProductCard(
-                                          product:
-                                              products.take(6).toList()[index]);
+                                          product: products[index]);
                                     },
                                   ),
                                 );
@@ -169,11 +189,8 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                         loading: () => SliverToBoxAdapter(child: GridShimmer()),
                         orElse: () => SliverToBoxAdapter(child: Container()),
                       ),
-                  if (ref
-                          .watch(filteredProductProvider(searchQuery))
-                          .valueOrNull
-                          ?.isNotEmpty ==
-                      true)
+                  if ((filteredProducts?.isNotEmpty ?? false) ||
+                      totalLength! > (filteredProducts?.length ?? 0))
                     if (ref
                         .watch(filteredProductProvider(searchQuery).notifier)
                         .canLoadMore())

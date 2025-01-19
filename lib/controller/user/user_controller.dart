@@ -173,9 +173,13 @@ final followersProvider =
   final username = params.username;
 
   // Fetch followers based on parameters
-  final result = await repo.getFollowers(query!, latestFirst, username);
+  final result = await repo.getFollowers(
+      query: query!, latestFirst: latestFirst, username: username);
 
-  return result;
+  return result.followers!
+      .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+      .toList();
+  ;
 });
 
 final followingProvider =
@@ -188,9 +192,13 @@ final followingProvider =
   final username = params.username;
 
   // Fetch followers based on parameters
-  final result = await repo.getFollowing(query, latestFirst, username);
+  final result = await repo.getFollowing(
+      query: query, latestFirst: latestFirst, username: username);
 
-  return Future.value(result);
+  return result.following!
+      .map((userJson) => UserModel.fromJson(userJson!.toJson()))
+      .toList();
+  ;
 });
 
 class FollowerUserNotifier extends AsyncNotifier<bool> {
@@ -244,21 +252,23 @@ final unFollowUserProvider = AsyncNotifierProvider<UnFollowUserNotifier, bool>(
 // Define the provider
 
 /// Exposes total numbers for followers
-final followersTotalProvider = FutureProvider((ref) async {
+final followersTotalProvider =
+    FutureProvider.family<int, String>((ref, username) async {
   final repo = ref.watch(networkRepo);
 
-  final result = await repo.followerTotalNumber();
+  final result = await repo.getFollowers(username: username);
 
-  return result;
+  return result.followersTotalNumber!;
 });
 
 /// Exposes total numbers of users you're following
-final followingTotalProvider = FutureProvider((ref) async {
+final followingTotalProvider =
+    FutureProvider.family<int, String>((ref, username) async {
   final repo = ref.watch(networkRepo);
 
-  final result = await repo.followingTotalNumber();
+  final result = await repo.getFollowing(username: username);
 
-  return result;
+  return result.followingTotalNumber!;
 });
 
 final recommendedSellersProvider = AsyncNotifierProvider<

@@ -112,6 +112,14 @@ class _ProductFilterPageState
                         ),
                         FiltersOptions(
                           excludedFilterTypes: [FilterTypes.style],
+                          onTap: () {
+                              ref
+                                      .read(selectedFilteredProductProvider
+                                          .notifier)
+                                      .state =
+                                  Input$ProductFiltersInput(
+                                      style: widget.style);
+                            }
                         ),
                       ],
                     ),

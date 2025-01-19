@@ -111,7 +111,12 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                             setState(() {});
                           },
                         ),
-                        FiltersOptions(),
+                        FiltersOptions(onTap: () {
+                          ref
+                                  .read(selectedFilteredProductProvider.notifier)
+                                  .state =
+                              Input$ProductFiltersInput(discountPrice: true);
+                        }),
                       ],
                     ),
                   )),

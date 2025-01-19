@@ -98,7 +98,6 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
                                             .updateFilter(
                                               FilterTypes.brand,
                                               brand?.name ?? "",
-                                              widget.username,
                                             );
                                         Future.delayed(
                                             const Duration(seconds: 1), () {
@@ -203,7 +202,6 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
                                 .updateFilter(
                                   FilterTypes.brand,
                                   brand.name,
-                                  widget.username,
                                 );
                           },
                           child: Container(
