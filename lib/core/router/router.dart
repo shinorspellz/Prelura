@@ -37,7 +37,7 @@ class AppRouter extends RootStackRouter {
               AutoRoute(
                 guards: [AuthGuard(_ref)],
                 page: HomeRoute.page,
-                initial: true,
+                // initial: true,
               ),
 
               AutoRoute(guards: [AuthGuard(_ref)], page: SearchRoute.page),
@@ -50,6 +50,7 @@ class AppRouter extends RootStackRouter {
                     AutoRoute(
                       page: UserProfileDetailsRoute.page,
                       initial: true,
+                      path: "user/:username",
                       guards: [AuthGuard(_ref)],
                     ),
                     AutoRoute(
@@ -213,6 +214,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: VerifyVideo.page,
+          path: "/details",
           guards: [AuthGuard(_ref)],
         ),
         AutoRoute(
@@ -265,17 +267,27 @@ class AuthGuard extends AutoRouteGuard {
 
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-    if (_ref.read(authStateProvider).requireValue) {
-      resolver.next(true);
+    final isAuthenticated = _ref.read(authStateProvider).requireValue;
+    if (isAuthenticated) {
+      resolver.next(); // Allow navigation
     } else {
-      resolver.redirect(LoginRoute(
-        // this callbak is only called when using deeplik
-        onLoginResult: (success) {
-          resolver.next(success);
-        },
-      ));
+      router.push(LoginRoute()); // Redirect to login if not authenticated
     }
   }
+
+  // @override
+  // void onNavigation(NavigationResolver resolver, StackRouter router) {
+  //   if (_ref.read(authStateProvider).requireValue) {
+  //     resolver.next(true);
+  //   } else {
+  //     resolver.redirect(LoginRoute(
+  //       // this callbak is only called when using deeplik
+  //       onLoginResult: (success) {
+  //         resolver.next(success);
+  //       },
+  //     ));
+  //   }
+  // }
 }
 
 /// Route Observer for ADrop [AppRouter] to log events for [didPush]

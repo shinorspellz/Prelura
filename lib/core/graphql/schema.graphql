@@ -447,6 +447,45 @@ type Mutation {
   createOrder(productId: Int!, quantity: Int): CreateOrder
   cancelOrder(orderId: Int!): CancelOrder
   createOffer(message: String, offerPrice: Float!, productId: Int!): CreateOffer
+
+  """
+  
+      This class encapsulates the business logic related to 
+      offers and ensures consistency in actions such as accepting, rejecting, and countering offers.
+  
+      Functionality Overview:
+      -----------------------
+      - **Accept Offer**: Handles the logic for accepting an offer made by a buyer. This changes 
+        the status of the offer to "ACCEPTED", sets an expiry time, and notifies the relevant 
+        parties of the acceptance.
+  
+      - **Reject Offer**: Allows either the buyer or seller to reject an offer, changing the 
+        status to "REJECTED", and notifying the opposite party about the rejection.
+  
+      - **Counter Offer**: Enables both buyers and sellers to counter an existing offer. The 
+        counter action cancels the current offer and creates a new child offer linked to the 
+        original (root) offer, allowing for a back-and-forth negotiation process.
+  
+      - **Offer History Management**: When an offer is accepted, rejected, or countered, the 
+        entire chain of offers (parent and children) related to the original offer is retrieved 
+        and included in the response to provide a full context of the negotiation.
+  
+      - **Notification System**: Automatically triggers notifications to the relevant users 
+        (seller or buyer) when an offer is accepted, rejected, or countered, ensuring that 
+        both parties stay informed about the status of their offers.
+  
+      Key Rules:
+      -------------------
+      - An offer is created by the buyer with a status of "PENDING".
+      - The seller can then accept, reject, or counter the offer.
+      - If countered, the current offer is cancelled, and a new offer is created as a child of 
+        the original offer, forming a hierarchical negotiation structure.
+      - Both buyer and seller can continue to counter offers until either party accepts or rejects.
+      - No modifications can be made to an offer with a "CANCELLED" status.
+      - The entire chain of offers (root and children) is retrieved to maintain a record of 
+        the negotiation process.
+      
+  """
   respondToOffer(action: OfferActionEnum!, offerId: Int!, offerPrice: Float): RespondToOffer
   login(password: String!, username: String): LoginMutation
   logout: LogoutMutation
@@ -661,7 +700,7 @@ enum OfferActionEnum {
 }
 
 type OfferReturnType {
-  offer: OfferType
+  offer: [OfferType]
   conversationId: Int
 }
 
@@ -670,10 +709,11 @@ type OfferType {
   product: ProductType!
   buyer: UserType
   offerPrice: Decimal!
-  status: ProductsOfferStatusChoices!
+  status: String
   message: String
   expiresAt: DateTime
   parent: OfferType
+  updatedBy: String
   createdAt: DateTime!
   updatedAt: DateTime!
   deleted: Boolean!
@@ -832,27 +872,6 @@ enum ProductGroupingEnum {
   BRAND
   CATEGORY
   TOP_BRAND
-}
-
-"""An enumeration."""
-enum ProductsOfferStatusChoices {
-  """Pending"""
-  PENDING
-
-  """Accepted"""
-  ACCEPTED
-
-  """Rejected"""
-  REJECTED
-
-  """Counterd"""
-  COUNTERED
-
-  """Expired"""
-  EXPIRED
-
-  """Cancelled"""
-  CANCELLED
 }
 
 """An enumeration."""
@@ -1616,6 +1635,7 @@ type UserNode implements Node {
   products: [ProductType!]!
   orderSet: [OrderType!]!
   madeOffers: [OfferType!]!
+  updatedOffers: [OfferType!]!
   sentNotifications: [NotificationType!]!
   notificationPreferences: NotificationPreferenceType
   participant1: [ConversationType!]!

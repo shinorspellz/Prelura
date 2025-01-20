@@ -1983,61 +1983,6 @@ Enum$ProductGroupingEnum fromJson$Enum$ProductGroupingEnum(String value) {
   }
 }
 
-enum Enum$ProductsOfferStatusChoices {
-  PENDING,
-  ACCEPTED,
-  REJECTED,
-  COUNTERED,
-  EXPIRED,
-  CANCELLED,
-  $unknown;
-
-  factory Enum$ProductsOfferStatusChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsOfferStatusChoices(value);
-
-  String toJson() => toJson$Enum$ProductsOfferStatusChoices(this);
-}
-
-String toJson$Enum$ProductsOfferStatusChoices(
-    Enum$ProductsOfferStatusChoices e) {
-  switch (e) {
-    case Enum$ProductsOfferStatusChoices.PENDING:
-      return r'PENDING';
-    case Enum$ProductsOfferStatusChoices.ACCEPTED:
-      return r'ACCEPTED';
-    case Enum$ProductsOfferStatusChoices.REJECTED:
-      return r'REJECTED';
-    case Enum$ProductsOfferStatusChoices.COUNTERED:
-      return r'COUNTERED';
-    case Enum$ProductsOfferStatusChoices.EXPIRED:
-      return r'EXPIRED';
-    case Enum$ProductsOfferStatusChoices.CANCELLED:
-      return r'CANCELLED';
-    case Enum$ProductsOfferStatusChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsOfferStatusChoices fromJson$Enum$ProductsOfferStatusChoices(
-    String value) {
-  switch (value) {
-    case r'PENDING':
-      return Enum$ProductsOfferStatusChoices.PENDING;
-    case r'ACCEPTED':
-      return Enum$ProductsOfferStatusChoices.ACCEPTED;
-    case r'REJECTED':
-      return Enum$ProductsOfferStatusChoices.REJECTED;
-    case r'COUNTERED':
-      return Enum$ProductsOfferStatusChoices.COUNTERED;
-    case r'EXPIRED':
-      return Enum$ProductsOfferStatusChoices.EXPIRED;
-    case r'CANCELLED':
-      return Enum$ProductsOfferStatusChoices.CANCELLED;
-    default:
-      return Enum$ProductsOfferStatusChoices.$unknown;
-  }
-}
-
 enum Enum$ProductsOrderStatusChoices {
   PENDING,
   CONFIRMED,

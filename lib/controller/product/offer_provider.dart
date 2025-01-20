@@ -8,6 +8,9 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
+import 'package:prelura_app/model/chat/conversation_model.dart';
+import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
 class OfferNotifier extends StateNotifier<OfferState> {
@@ -43,6 +46,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
     state = state.copyWith(
       isProcessing: data['isProcessing'] ?? state.isProcessing,
       offerState: data['offerState'] ?? state.offerState,
+      activeOffer: data['activeOffer'] ?? state.activeOffer,
       processingTypes: updatedProcessingType,
     );
     log('After Update: ${state.processingTypes}');
@@ -67,13 +71,30 @@ class OfferNotifier extends StateNotifier<OfferState> {
       if (res != null && res.success!) {
         context.alert('Offer created successfully');
         //Navigating to the chat room
+        OfferInfo theOffer =
+            OfferInfo.fromJson(res.data!.offer!.first!.toJson());
+        ConversationModel conversationModel = ConversationModel(
+          id: res.data!.conversationId.toString(),
+          name: "",
+          disableResponse: false,
+          lastModified: DateTime.now(),
+          createdAt: DateTime.now(),
+          unreadMessagesCount: 0,
+          recipient: UserModel.fromJson(theOffer.product!.seller!.toJson()),
+          offer: theOffer,
+        );
+
         final Mutation$createOffer$createOffer$data$offer$product$seller?
-            userInfo = res.data!.offer!.product.seller;
+            userInfo = res.data!.offer!.first!.product.seller;
         context.router.replace(ChatRoute(
           id: res.data!.conversationId.toString(),
           username: userInfo?.username ?? "",
-          avatarUrl: userInfo?.thumbnailUrl ?? "",
+          avatarUrl: userInfo?.profilePictureUrl ?? "",
+          isOffer: true,
         ));
+        updateOfferState({
+          "activeOffer": conversationModel,
+        });
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }
@@ -97,7 +118,6 @@ class OfferNotifier extends StateNotifier<OfferState> {
 
   respondToOffer(
     BuildContext context, {
-    required int offerId,
     double? offerPrice,
     required Enum$OfferActionEnum actionType,
   }) async {
@@ -106,15 +126,24 @@ class OfferNotifier extends StateNotifier<OfferState> {
         "processingType": "respondToOffer",
         "isProcessing": true,
       });
+      String? offerId = state.activeOffer?.offer?.children?.firstOrNull?.id ??
+          state.activeOffer?.offer?.id;
       final Mutation$RespondToOffer$respondToOffer? res =
           await offerRepo.respondToOffer(
-        offerId: offerId,
+        offerId: int.parse(offerId!),
         offerPrice: offerPrice,
         actionType: actionType,
       );
       if (res != null && res.success!) {
         context.alert('Offer ${actionType.name} successfully');
-        updateOfferState({"offerState": actionType.name});
+        OfferInfo offerInfo =
+            OfferInfo.fromJson(res.data!.offer!.first!.toJson());
+        ConversationModel? newConversation = state.activeOffer;
+        newConversation = newConversation?.copyWith(offer: offerInfo);
+        updateOfferState({
+          "offerState": actionType.name,
+          "activeOffer": newConversation,
+        });
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }
@@ -145,20 +174,27 @@ final offerProvider = StateNotifierProvider<OfferNotifier, OfferState>((ref) {
 class OfferState {
   final bool isProcessing;
   final String? offerState;
+  final ConversationModel? activeOffer;
   final Set<String> processingTypes;
 
   OfferState({
     required this.isProcessing,
     required this.processingTypes,
     this.offerState,
+    this.activeOffer,
   });
 
-  OfferState copyWith(
-      {bool? isProcessing, Set<String>? processingTypes, String? offerState}) {
+  OfferState copyWith({
+    bool? isProcessing,
+    Set<String>? processingTypes,
+    String? offerState,
+    ConversationModel? activeOffer,
+  }) {
     return OfferState(
       isProcessing: isProcessing ?? this.isProcessing,
       processingTypes: processingTypes ?? this.processingTypes,
       offerState: offerState ?? this.offerState,
+      activeOffer: activeOffer ?? this.activeOffer,
     );
   }
 }

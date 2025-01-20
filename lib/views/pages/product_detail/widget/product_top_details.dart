@@ -289,6 +289,7 @@ class ProductTopDetails extends ConsumerWidget {
                             id: currentConv.id,
                             username: currentConv.recipient.username,
                             avatarUrl: currentConv.recipient.profilePictureUrl,
+                            isOffer: false,
                           ),
                         );
                       });

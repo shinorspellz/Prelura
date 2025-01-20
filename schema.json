@@ -2941,6 +2941,30 @@
             "deprecationReason": null
           },
           {
+            "name": "updatedOffers",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "OfferType",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sentNotifications",
             "description": null,
             "args": [],
@@ -4951,13 +4975,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ProductsOfferStatusChoices",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4993,6 +5013,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "OfferType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedBy",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5098,53 +5130,6 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ProductsOfferStatusChoices",
-        "description": "An enumeration.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PENDING",
-            "description": "Pending",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "ACCEPTED",
-            "description": "Accepted",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "REJECTED",
-            "description": "Rejected",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "COUNTERED",
-            "description": "Counterd",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "EXPIRED",
-            "description": "Expired",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CANCELLED",
-            "description": "Cancelled",
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
         "possibleTypes": null
       },
       {
@@ -8546,7 +8531,7 @@
           },
           {
             "name": "respondToOffer",
-            "description": null,
+            "description": "\n    This class encapsulates the business logic related to \n    offers and ensures consistency in actions such as accepting, rejecting, and countering offers.\n\n    Functionality Overview:\n    -----------------------\n    - **Accept Offer**: Handles the logic for accepting an offer made by a buyer. This changes \n      the status of the offer to \"ACCEPTED\", sets an expiry time, and notifies the relevant \n      parties of the acceptance.\n\n    - **Reject Offer**: Allows either the buyer or seller to reject an offer, changing the \n      status to \"REJECTED\", and notifying the opposite party about the rejection.\n\n    - **Counter Offer**: Enables both buyers and sellers to counter an existing offer. The \n      counter action cancels the current offer and creates a new child offer linked to the \n      original (root) offer, allowing for a back-and-forth negotiation process.\n\n    - **Offer History Management**: When an offer is accepted, rejected, or countered, the \n      entire chain of offers (parent and children) related to the original offer is retrieved \n      and included in the response to provide a full context of the negotiation.\n\n    - **Notification System**: Automatically triggers notifications to the relevant users \n      (seller or buyer) when an offer is accepted, rejected, or countered, ensuring that \n      both parties stay informed about the status of their offers.\n\n    Key Rules:\n    -------------------\n    - An offer is created by the buyer with a status of \"PENDING\".\n    - The seller can then accept, reject, or counter the offer.\n    - If countered, the current offer is cancelled, and a new offer is created as a child of \n      the original offer, forming a hierarchical negotiation structure.\n    - Both buyer and seller can continue to counter offers until either party accepts or rejects.\n    - No modifications can be made to an offer with a \"CANCELLED\" status.\n    - The entire chain of offers (root and children) is retrieved to maintain a record of \n      the negotiation process.\n    ",
             "args": [
               {
                 "name": "action",
@@ -10700,9 +10685,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "OfferType",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "OfferType",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

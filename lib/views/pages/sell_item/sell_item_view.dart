@@ -757,7 +757,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           ref.read(productProvider).whenOrNull(
                             error: (e, _) {
                               log(e.toString(), stackTrace: _);
-                              context.alert(e.toString());
+                              context.alert("An error occurred");
                             },
                             data: (_) {
                               context.alert('Product created successfully');
