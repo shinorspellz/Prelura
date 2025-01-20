@@ -1,16 +1,13 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/errors/failures.dart';
+import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:graphql/client.dart';
-import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
-
-import '../../controller/notification_provider.dart';
 
 /// Authentication Repository for all auth operation like [login], [register] & [login]
 /// and depends on the [GraphQLClient] via dependency injection.
@@ -59,9 +56,10 @@ class AuthRepo {
   /// variables for query. Lookup [AuthRepo] for explanation
   Future<void> register(Variables$Mutation$Register params) async {
     final response = await _client.executeGraphQL(
-      operation: ClientOperation((cl) => cl.mutate$Register(Options$Mutation$Register(
-            variables: params,
-          ))),
+      operation:
+          ClientOperation((cl) => cl.mutate$Register(Options$Mutation$Register(
+                variables: params,
+              ))),
     );
 
     // if (response.parsedData != null) {
@@ -93,17 +91,8 @@ class AuthRepo {
     ));
 
     await _remove();
+    _ref.invalidateSelf();
     log('${response.logout?.message}', name: 'AuthMutation');
-
-    // if (response.hasException) {
-    //   if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-    //     final error = response.exception!.graphqlErrors.first.message;
-    //     throw error;
-    //   }
-    //   log(response.exception.toString(), name: 'AuthMutation');
-    //   throw 'An error occured';
-    // }
-    // _ref.invalidate(notificationProvider);
   }
 
   String? get getToken => _cacheBox.get('AUTH_TOKEN');
@@ -151,7 +140,8 @@ class AuthRepo {
     return response.resetPassword?.message;
   }
 
-  Future<String> resetPassword(String newPassword, String token, String email) async {
+  Future<String> resetPassword(
+      String newPassword, String token, String email) async {
     log('newPassword: $newPassword, token: $token, email: $email');
     final response = await _client.executeGraphQL(
         operation: ClientOperation((cl) => cl.mutate$PasswordReset(
