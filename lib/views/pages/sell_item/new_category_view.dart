@@ -62,7 +62,6 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
       child: ListView.builder(
         itemCount: categories.length,
         physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.only(top: 20),
         itemBuilder: (_, index) {
           final cat = categories[index];
           final svgPath =
@@ -162,41 +161,57 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                         color: PreluraColors.grey))),
           ] else if (!isSearching && actualList.isNotEmpty) ...[
             buildCategoryList(actualList),
-            40.verticalSpacing,
-            Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-                margin: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: PreluraColors.grey,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  children: [
-                    Text("Selected:",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: getDefaultSize(),
-                            fontWeight: FontWeight.w600,
-                            color: context.isDarkMode
-                                ? PreluraColors.white
-                                : PreluraColors.black)),
-                    12.horizontalSpacing,
-                    Text(
-                        "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: getDefaultSize(),
-                            fontWeight: FontWeight.w500,
-                            color: PreluraColors.grey)),
-                    Spacer(),
-                    Text("${state.category?.name ?? ""}",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontSize: getDefaultSize(),
-                            fontWeight: FontWeight.w600,
-                            color: PreluraColors.primaryColor)),
-                  ],
-                )),
-            Spacer()
+            02.verticalSpacing,
+            Expanded(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                    margin: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: PreluraColors.grey,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      children: [
+                        Text("Selected:",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                    fontWeight: FontWeight.w600,
+                                    color: context.isDarkMode
+                                        ? PreluraColors.white
+                                        : PreluraColors.black)),
+                        12.horizontalSpacing,
+                        Text(
+                            "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                    fontWeight: FontWeight.w500,
+                                    color: PreluraColors.grey)),
+                        Spacer(),
+                        Text("${state.category?.name ?? ""}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    fontSize: getDefaultSize(),
+                                    fontWeight: FontWeight.w600,
+                                    color: PreluraColors.primaryColor)),
+                      ],
+                    )),
+              ),
+            ),
+            // Spacer()
           ] else if (!categoryState.isLoading)
             const Expanded(child: Center(child: Text("No Categories Found"))),
         ],

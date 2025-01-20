@@ -257,6 +257,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AppearanceMenuRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: SendAnOfferRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: DraftsRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: PrivacySettingRoute.page, guards: [AuthGuard(_ref)])
       ];
 }
 

@@ -205,7 +205,7 @@ final userProduct =
     sort: sort,
   );
 
-  return result.reversed.toList();
+  return result.toList();
 });
 final getProductProvider =
     FutureProvider.family<ProductModel, int>((ref, id) async {
@@ -345,6 +345,18 @@ class _ProductProvider extends AsyncNotifier<void> {
     state = const AsyncLoading();
 
     log('Discount $discount');
+    log('Price $price');
+    log('Size $size');
+    log('category $category');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
 
     state = await AsyncValue.guard(() async {
       // final files = await _uploadMedia(images);
@@ -364,7 +376,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           materials: materials,
           style: style,
           customBrand: customBrand,
-          isFeatured: isFeatured,
+          // isFeatured: isFeatured,
         ),
       );
       ref.invalidate(userProduct);
