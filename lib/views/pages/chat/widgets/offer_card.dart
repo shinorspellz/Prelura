@@ -103,7 +103,8 @@ class _OfferCardState extends ConsumerState<OfferCard> {
     appUserInfo = ref.read(userProvider).value;
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       offerInfo = ref.read(offerProvider).activeOffer!.offer!;
-      isAccepted = offerInfo.status?.toLowerCase() == "accepted";
+      isAccepted =
+          offerInfo.children?.firstOrNull?.status?.toLowerCase() == "accepted";
       isDeclined = offerInfo.status?.toLowerCase() == "rejected";
       isCancelled = offerInfo.status?.toLowerCase() == "cancelled";
       amTheSeller = appUserInfo?.username != offerInfo.buyer?.username;
