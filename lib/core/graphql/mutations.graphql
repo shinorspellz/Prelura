@@ -256,6 +256,13 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
         id
         message
         offerPrice
+        createdBy {
+          id
+          username
+          profilePictureUrl
+          thumbnailUrl
+          displayName
+        }
         status
         createdAt
         updatedAt
