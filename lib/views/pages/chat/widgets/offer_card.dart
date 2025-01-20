@@ -131,6 +131,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
             OfferProductCard(
               offerInfo: offerInfo,
               amTheSeller: amTheSeller,
+              isSender: widget.isSender,
             ),
             10.verticalSpacing,
             if (offerInfo.children?.firstOrNull?.status?.toLowerCase() ==

@@ -252,7 +252,7 @@ class _$ConversationModelImpl implements _ConversationModel {
       required this.unreadMessagesCount,
       required this.recipient,
       this.offer,
-      required this.lastMessage});
+      this.lastMessage});
 
   factory _$ConversationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConversationModelImplFromJson(json);
@@ -344,7 +344,7 @@ abstract class _ConversationModel implements ConversationModel {
       required final int unreadMessagesCount,
       required final UserModel recipient,
       final OfferInfo? offer,
-      required final MessageModel? lastMessage}) = _$ConversationModelImpl;
+      final MessageModel? lastMessage}) = _$ConversationModelImpl;
 
   factory _ConversationModel.fromJson(Map<String, dynamic> json) =
       _$ConversationModelImpl.fromJson;

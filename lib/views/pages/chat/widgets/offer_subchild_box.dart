@@ -168,7 +168,8 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment:
+                  isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
               children: [
                 buildActionButton(
                   onTap: () {},

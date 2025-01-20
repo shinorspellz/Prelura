@@ -15,11 +15,12 @@ import '../../../widgets/brand_text_widget.dart';
 
 class OfferProductCard extends ConsumerWidget {
   final OfferInfo offerInfo;
-  final bool amTheSeller;
+  final bool amTheSeller, isSender;
   const OfferProductCard({
     super.key,
     required this.offerInfo,
     required this.amTheSeller,
+    required this.isSender,
   });
 
   @override
@@ -39,7 +40,7 @@ class OfferProductCard extends ConsumerWidget {
             isRead: false,
             highlightColor: PreluraColors.primaryColor,
             message:
-                "${offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
+                "${isSender ? "you" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
             username: "offered",
           ),
         ]),

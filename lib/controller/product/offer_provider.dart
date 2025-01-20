@@ -10,6 +10,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
 class OfferNotifier extends StateNotifier<OfferState> {
@@ -70,14 +71,30 @@ class OfferNotifier extends StateNotifier<OfferState> {
       if (res != null && res.success!) {
         context.alert('Offer created successfully');
         //Navigating to the chat room
+        OfferInfo theOffer =
+            OfferInfo.fromJson(res.data!.offer!.first!.toJson());
+        ConversationModel conversationModel = ConversationModel(
+          id: res.data!.conversationId.toString(),
+          name: "",
+          disableResponse: false,
+          lastModified: DateTime.now(),
+          createdAt: DateTime.now(),
+          unreadMessagesCount: 0,
+          recipient: UserModel.fromJson(theOffer.product!.seller!.toJson()),
+          offer: theOffer,
+        );
+
         final Mutation$createOffer$createOffer$data$offer$product$seller?
             userInfo = res.data!.offer!.first!.product.seller;
         context.router.replace(ChatRoute(
           id: res.data!.conversationId.toString(),
           username: userInfo?.username ?? "",
-          avatarUrl: userInfo?.thumbnailUrl ?? "",
+          avatarUrl: userInfo?.profilePictureUrl ?? "",
           isOffer: true,
         ));
+        updateOfferState({
+          "activeOffer": conversationModel,
+        });
       } else {
         context.alert(res?.message ?? "Failed to create offer.");
       }

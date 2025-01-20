@@ -25,7 +25,7 @@ class OfferConversationBuilder extends ConsumerWidget {
     List<OfferSubStateInfo>? offerChildren = conversationInfo.offer?.children;
     final isSender = conversationInfo.offer?.buyer?.username !=
         conversationInfo.recipient.username;
-    return Column(children: [
+    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       OfferCard(
         conversationId: conversationInfo.id,
         isSender: isSender,
@@ -35,7 +35,7 @@ class OfferConversationBuilder extends ConsumerWidget {
       /// OFFER LISTING SESSION
       ///
       if (offerChildren != null && offerChildren.isNotEmpty)
-        Expanded(
+        Flexible(
           child: ListView.separated(
             shrinkWrap: true,
             // physics:

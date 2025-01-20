@@ -252,16 +252,77 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
     success
     data{
       conversationId
-      offer{
+      offer {
         id
+        message
+        offerPrice
+        status
+        createdAt
+        updatedAt
+        expiresAt
+        deleted
+        children {
+          id
+          updatedBy
+          updatedAt
+          message
+          offerPrice
+          status
+          buyer {
+            id
+            username
+            profilePictureUrl
+            thumbnailUrl
+            displayName
+          }
+          product {
+            seller {
+              id
+              username
+              profilePictureUrl
+              thumbnailUrl
+              displayName
+            }
+          }
+        }
+        buyer {
+          id
+          username
+          profilePictureUrl
+          thumbnailUrl
+          displayName
+        }
         product {
+          id
+          name
+          description
+          isFeatured
+          userLiked
+          imagesUrl
+          brand {
+            id
+            name
+          }
+          category {
+            id
+            name
+          }
+          size {
+            id
+            name
+          }
           seller {
             id
             username
-            displayName
             profilePictureUrl
-            thumbnailUrl
           }
+          condition
+          discountPrice
+          condition
+          price
+          parcelSize
+          views
+          likes
         }
       }
     }
