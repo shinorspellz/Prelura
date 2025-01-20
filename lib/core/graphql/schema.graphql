@@ -713,6 +713,7 @@ type OfferType {
   message: String
   expiresAt: DateTime
   parent: OfferType
+  createdBy: UserNode
   updatedBy: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -1635,6 +1636,7 @@ type UserNode implements Node {
   products: [ProductType!]!
   orderSet: [OrderType!]!
   madeOffers: [OfferType!]!
+  createdOffers: [OfferType!]!
   updatedOffers: [OfferType!]!
   sentNotifications: [NotificationType!]!
   notificationPreferences: NotificationPreferenceType
