@@ -28222,50 +28222,7 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                 alias: null,
                 arguments: [],
                 directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'username'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'profilePictureUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'thumbnailUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'displayName'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
+                selectionSet: null,
               ),
               FieldNode(
                 name: NameNode(value: 'status'),
@@ -28317,6 +28274,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                   ),
                   FieldNode(
                     name: NameNode(value: 'updatedBy'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'createdBy'),
                     alias: null,
                     arguments: [],
                     directives: [],
@@ -29623,10 +29587,7 @@ class Query$Conversations$conversations$offer {
       id: (l$id as String),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
-      createdBy: l$createdBy == null
-          ? null
-          : Query$Conversations$conversations$offer$createdBy.fromJson(
-              (l$createdBy as Map<String, dynamic>)),
+      createdBy: (l$createdBy as String?),
       status: (l$status as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
@@ -29653,7 +29614,7 @@ class Query$Conversations$conversations$offer {
 
   final String offerPrice;
 
-  final Query$Conversations$conversations$offer$createdBy? createdBy;
+  final String? createdBy;
 
   final String? status;
 
@@ -29682,7 +29643,7 @@ class Query$Conversations$conversations$offer {
     final l$offerPrice = offerPrice;
     _resultData['offerPrice'] = l$offerPrice;
     final l$createdBy = createdBy;
-    _resultData['createdBy'] = l$createdBy?.toJson();
+    _resultData['createdBy'] = l$createdBy;
     final l$status = status;
     _resultData['status'] = l$status;
     final l$createdAt = createdAt;
@@ -29844,7 +29805,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
     String? id,
     String? message,
     String? offerPrice,
-    Query$Conversations$conversations$offer$createdBy? createdBy,
+    String? createdBy,
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -29855,8 +29816,6 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
     Query$Conversations$conversations$offer$product? product,
     String? $__typename,
   });
-  CopyWith$Query$Conversations$conversations$offer$createdBy<TRes>
-      get createdBy;
   TRes children(
       Iterable<Query$Conversations$conversations$offer$children> Function(
               Iterable<
@@ -29904,7 +29863,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
             : (offerPrice as String),
         createdBy: createdBy == _undefined
             ? _instance.createdBy
-            : (createdBy as Query$Conversations$conversations$offer$createdBy?),
+            : (createdBy as String?),
         status: status == _undefined ? _instance.status : (status as String?),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
@@ -29932,16 +29891,6 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Query$Conversations$conversations$offer$createdBy<TRes>
-      get createdBy {
-    final local$createdBy = _instance.createdBy;
-    return local$createdBy == null
-        ? CopyWith$Query$Conversations$conversations$offer$createdBy.stub(
-            _then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$createdBy(
-            local$createdBy, (e) => call(createdBy: e));
-  }
 
   TRes children(
           Iterable<Query$Conversations$conversations$offer$children> Function(
@@ -29982,7 +29931,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
     String? id,
     String? message,
     String? offerPrice,
-    Query$Conversations$conversations$offer$createdBy? createdBy,
+    String? createdBy,
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -29995,10 +29944,6 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
   }) =>
       _res;
 
-  CopyWith$Query$Conversations$conversations$offer$createdBy<TRes>
-      get createdBy =>
-          CopyWith$Query$Conversations$conversations$offer$createdBy.stub(_res);
-
   children(_fn) => _res;
 
   CopyWith$Query$Conversations$conversations$offer$buyer<TRes> get buyer =>
@@ -30008,221 +29953,11 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
       CopyWith$Query$Conversations$conversations$offer$product.stub(_res);
 }
 
-class Query$Conversations$conversations$offer$createdBy {
-  Query$Conversations$conversations$offer$createdBy({
-    required this.id,
-    required this.username,
-    this.profilePictureUrl,
-    this.thumbnailUrl,
-    this.displayName,
-    this.$__typename = 'UserNode',
-  });
-
-  factory Query$Conversations$conversations$offer$createdBy.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$username = json['username'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
-    final l$thumbnailUrl = json['thumbnailUrl'];
-    final l$displayName = json['displayName'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$createdBy(
-      id: (l$id as String),
-      username: (l$username as String),
-      profilePictureUrl: (l$profilePictureUrl as String?),
-      thumbnailUrl: (l$thumbnailUrl as String?),
-      displayName: (l$displayName as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String username;
-
-  final String? profilePictureUrl;
-
-  final String? thumbnailUrl;
-
-  final String? displayName;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
-    final l$thumbnailUrl = thumbnailUrl;
-    _resultData['thumbnailUrl'] = l$thumbnailUrl;
-    final l$displayName = displayName;
-    _resultData['displayName'] = l$displayName;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$username = username;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$thumbnailUrl = thumbnailUrl;
-    final l$displayName = displayName;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$username,
-      l$profilePictureUrl,
-      l$thumbnailUrl,
-      l$displayName,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$createdBy ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
-      return false;
-    }
-    final l$thumbnailUrl = thumbnailUrl;
-    final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (l$thumbnailUrl != lOther$thumbnailUrl) {
-      return false;
-    }
-    final l$displayName = displayName;
-    final lOther$displayName = other.displayName;
-    if (l$displayName != lOther$displayName) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$createdBy
-    on Query$Conversations$conversations$offer$createdBy {
-  CopyWith$Query$Conversations$conversations$offer$createdBy<
-          Query$Conversations$conversations$offer$createdBy>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$createdBy(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$createdBy<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$createdBy(
-    Query$Conversations$conversations$offer$createdBy instance,
-    TRes Function(Query$Conversations$conversations$offer$createdBy) then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$createdBy;
-
-  factory CopyWith$Query$Conversations$conversations$offer$createdBy.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$createdBy;
-
-  TRes call({
-    String? id,
-    String? username,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
-    String? displayName,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$createdBy<TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$createdBy<TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$createdBy(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$createdBy _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$createdBy) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? username = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? thumbnailUrl = _undefined,
-    Object? displayName = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$createdBy(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        displayName: displayName == _undefined
-            ? _instance.displayName
-            : (displayName as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$createdBy<TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$createdBy<TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$createdBy(
-      this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? username,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
-    String? displayName,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
 class Query$Conversations$conversations$offer$children {
   Query$Conversations$conversations$offer$children({
     required this.id,
     this.updatedBy,
+    this.createdBy,
     required this.updatedAt,
     this.message,
     required this.offerPrice,
@@ -30236,6 +29971,7 @@ class Query$Conversations$conversations$offer$children {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$updatedBy = json['updatedBy'];
+    final l$createdBy = json['createdBy'];
     final l$updatedAt = json['updatedAt'];
     final l$message = json['message'];
     final l$offerPrice = json['offerPrice'];
@@ -30246,6 +29982,7 @@ class Query$Conversations$conversations$offer$children {
     return Query$Conversations$conversations$offer$children(
       id: (l$id as String),
       updatedBy: (l$updatedBy as String?),
+      createdBy: (l$createdBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
@@ -30264,6 +30001,8 @@ class Query$Conversations$conversations$offer$children {
   final String id;
 
   final String? updatedBy;
+
+  final String? createdBy;
 
   final DateTime updatedAt;
 
@@ -30285,6 +30024,8 @@ class Query$Conversations$conversations$offer$children {
     _resultData['id'] = l$id;
     final l$updatedBy = updatedBy;
     _resultData['updatedBy'] = l$updatedBy;
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$message = message;
@@ -30306,6 +30047,7 @@ class Query$Conversations$conversations$offer$children {
   int get hashCode {
     final l$id = id;
     final l$updatedBy = updatedBy;
+    final l$createdBy = createdBy;
     final l$updatedAt = updatedAt;
     final l$message = message;
     final l$offerPrice = offerPrice;
@@ -30316,6 +30058,7 @@ class Query$Conversations$conversations$offer$children {
     return Object.hashAll([
       l$id,
       l$updatedBy,
+      l$createdBy,
       l$updatedAt,
       l$message,
       l$offerPrice,
@@ -30343,6 +30086,11 @@ class Query$Conversations$conversations$offer$children {
     final l$updatedBy = updatedBy;
     final lOther$updatedBy = other.updatedBy;
     if (l$updatedBy != lOther$updatedBy) {
+      return false;
+    }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
       return false;
     }
     final l$updatedAt = updatedAt;
@@ -30407,6 +30155,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer$children<TRes> {
   TRes call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
@@ -30437,6 +30186,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
   TRes call({
     Object? id = _undefined,
     Object? updatedBy = _undefined,
+    Object? createdBy = _undefined,
     Object? updatedAt = _undefined,
     Object? message = _undefined,
     Object? offerPrice = _undefined,
@@ -30450,6 +30200,9 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
         updatedBy: updatedBy == _undefined
             ? _instance.updatedBy
             : (updatedBy as String?),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
@@ -30499,6 +30252,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
   call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,

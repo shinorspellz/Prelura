@@ -256,13 +256,7 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
         id
         message
         offerPrice
-        createdBy {
-          id
-          username
-          profilePictureUrl
-          thumbnailUrl
-          displayName
-        }
+        createdBy
         status
         createdAt
         updatedAt
@@ -271,6 +265,7 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
         children {
           id
           updatedBy
+          createdBy
           updatedAt
           message
           offerPrice
@@ -348,11 +343,13 @@ mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: 
         offerPrice
         status
         createdAt
+        createdBy
         updatedAt
         expiresAt
         deleted
         children {
           id
+          createdBy
           updatedBy
           updatedAt
           message

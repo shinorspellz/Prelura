@@ -115,7 +115,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [ChatsTab(), NotificationsTab()],
+                  children: [ChatsTab(), NotificationsTab(),],
                 ),
               ),
             ],
