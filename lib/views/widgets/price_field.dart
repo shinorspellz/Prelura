@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sizer/sizer.dart';
 
@@ -56,7 +57,11 @@ class PriceFieldWidget extends ConsumerWidget {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             controller: textController,
-            formatter: DecimalTextInputFormatter(decimalRange: 2),
+            formatter: [
+              DecimalTextInputFormatter(decimalRange: 2),
+              FilteringTextInputFormatter.digitsOnly,
+              MaxValueTextInputFormatter(99999),
+            ],
             onChanged: onChanged,
             onSaved: onSaved,
             minWidth: width,

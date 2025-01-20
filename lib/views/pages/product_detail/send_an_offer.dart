@@ -294,7 +294,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.done,
           controller: textController,
-          formatter: DecimalTextInputFormatter(decimalRange: 2),
+          formatter: [DecimalTextInputFormatter(decimalRange: 2)],
           onChanged: (newValue) {
             errorMessage = null;
             canCreateOffer = newValue.isNotEmpty;

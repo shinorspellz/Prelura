@@ -62,11 +62,9 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
   Widget build(BuildContext context) {
     log("::::The username is ::: ${widget.username}");
     final currentIndex = ref.watch(tabControllerProvider).currentIndex;
-    final user = ref
-        .watch((widget.username != null
-            ? otherUserProfile(widget.username!)
-            : userProvider))
-        .valueOrNull;
+    final user = ref.watch(userProvider).valueOrNull;
+
+    log(user?.username.toString() ?? "");
 
     if (_tabController.index != currentIndex) {
       _tabController.index =
@@ -76,7 +74,7 @@ class _ProfileDetailsScreenState extends ConsumerState<UserProfileDetailsScreen>
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: user?.username ?? "",
+        appbarTitle: user?.username ?? "--",
         // leadingIcon: IconButton(
         //   icon:
         //       Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),

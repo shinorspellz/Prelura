@@ -14,7 +14,7 @@ class PreluraAuthTextField extends ConsumerStatefulWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final String? hintText;
-  final TextInputFormatter? formatter;
+  final List<TextInputFormatter>? formatter;
   final TextCapitalization? textCapitalization;
   final Function(String)? onChanged;
   final Function(String?)? onSaved;
@@ -183,8 +183,8 @@ class _VWidgetsLoginTextFieldState extends ConsumerState<PreluraAuthTextField> {
               obscuringCharacter: '*',
               inputFormatters: widget.isDescription
                   ? []
-                  : [
-                      widget.formatter ??
+                  :  widget.formatter ?? [
+                     
                           FilteringTextInputFormatter.singleLineFormatter
                     ],
               // onFieldSubmitted: (value) {

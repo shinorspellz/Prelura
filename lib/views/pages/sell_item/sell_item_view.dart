@@ -442,7 +442,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               label: 'Title',
                               showSuggestions: true,
                               textCapitalization: TextCapitalization.words,
-                              formatter: UpperCaseTextFormatter(),
+                              formatter: [UpperCaseTextFormatter()],
                               labelStyle: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -587,8 +587,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     MenuCard(
                       title: 'Style (Optional)',
                       subtitleColor: PreluraColors.greyColor,
-                      subtitle:
-                          state.style?.name.replaceAll("_", " ").toLowerCase(),
+                      subtitle: state.style?.name
+                          .replaceAll("_", " ")
+                          .toLowerCase()
+                          .capitalize(),
                       onTap: () {
                         dismissKeyboard();
 

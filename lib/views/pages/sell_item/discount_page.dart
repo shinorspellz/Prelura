@@ -65,7 +65,7 @@ class DiscountPage extends ConsumerWidget {
               keyboardType: TextInputType.number,
               label: "Discount",
               hintText: "Enter discount amount",
-              formatter: LengthLimitingTextInputFormatter(3),
+              formatter:[ LengthLimitingTextInputFormatter(3)],
               maxLength: 2,
               controller: ref.watch(discountController),
               onChanged: (value) {
