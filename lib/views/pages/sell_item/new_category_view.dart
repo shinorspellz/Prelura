@@ -15,6 +15,7 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import '../../../res/colors.dart';
 import '../../../res/images.dart';
 // import '../../shimmers/category_shimmer.dart';
+import '../../widgets/app_checkbox.dart';
 import '../../widgets/menu_card.dart';
 
 @RoutePage()
@@ -59,27 +60,40 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
               PreluraIcons.getConstant(keyword: cat.name!, category: null);
           final hasSvg = svgPath?.isNotEmpty ?? false;
 
-          return MenuCard(
-              title: cat.name!,
-              svgPath: hasSvg ? svgPath : null,
-              icon: hasSvg
-                  ? null
-                  : const Icon(Icons.settings,
-                      color: PreluraColors.activeColor),
-              trailingIcon: cat.hasChildren == true
-                  ? null
-                  : const Icon(
-                      Icons.radio_button_off,
-                      size: 18,
-                    ),
-              onTap: () {
-                if (cat.hasChildren ?? false) {
-                  context.router.push(NewSubCategoryRoute(
-                    parentId: cat.id!,
-                    parentName: cat.name!,
-                  ));
-                } else {}
-              });
+          return cat.hasChildren == false
+              ? PreluraCheckBox(
+                  title: cat.name!,
+                  isChecked: false,
+                  onChanged: (value) {
+                    if (cat.hasChildren ?? false) {
+                      context.router.push(NewSubCategoryRoute(
+                        parentId: cat.id!,
+                        parentName: cat.name!,
+                      ));
+                    } else {}
+                  },
+                )
+              : MenuCard(
+                  title: cat.name!,
+                  svgPath: hasSvg ? svgPath : null,
+                  icon: hasSvg
+                      ? null
+                      : const Icon(Icons.settings,
+                          color: PreluraColors.activeColor),
+                  trailingIcon: cat.hasChildren == true
+                      ? null
+                      : const Icon(
+                          Icons.radio_button_off,
+                          size: 18,
+                        ),
+                  onTap: () {
+                    if (cat.hasChildren ?? false) {
+                      context.router.push(NewSubCategoryRoute(
+                        parentId: cat.id!,
+                        parentName: cat.name!,
+                      ));
+                    } else {}
+                  });
         },
       ),
     );
@@ -102,21 +116,21 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Searchwidget(
-              padding: EdgeInsets.zero,
-              obscureText: false,
-              shouldReadOnly: false,
-              hintText: "Search Categories",
-              enabled: true,
-              showInputBorder: true,
-              autofocus: false,
-              cancelButton: true,
-              onChanged: (val) => onSearch(val, actualList),
-            ),
-          ),
+          // const SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 15),
+          //   child: Searchwidget(
+          //     padding: EdgeInsets.zero,
+          //     obscureText: false,
+          //     shouldReadOnly: false,
+          //     hintText: "Search Categories",
+          //     enabled: true,
+          //     showInputBorder: true,
+          //     autofocus: false,
+          //     cancelButton: true,
+          //     onChanged: (val) => onSearch(val, actualList),
+          //   ),
+          // ),
           if (categoryState.isLoading)
             const Center(child: CircularProgressIndicator.adaptive()),
           if (isSearching && filter.isNotEmpty)

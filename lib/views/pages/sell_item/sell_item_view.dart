@@ -358,6 +358,29 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                         ),
                                                       ),
                                                       Positioned(
+                                                          top: 5,
+                                                          right: 5,
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .topRight,
+                                                            child: CircleAvatar(
+                                                              radius: 10,
+                                                              backgroundColor:
+                                                                  PreluraColors
+                                                                      .blueTextColor,
+                                                              child: Text(
+                                                                "${image.key + 1}",
+                                                                style: context
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodySmall
+                                                                    ?.copyWith(
+                                                                        color: PreluraColors
+                                                                            .white),
+                                                              ),
+                                                            ),
+                                                          )),
+                                                      Positioned(
                                                         bottom: 5,
                                                         right: 5,
                                                         child: Align(

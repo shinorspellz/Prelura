@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -12,11 +11,9 @@ import 'package:prelura_app/views/widgets/card.dart';
 
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
-import '../../widgets/SearchWidget.dart';
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../search_result/view/search_result.dart';
-import 'product_by_sales/product_by_christmas.dart';
 
 @RoutePage()
 class ProductsByBrandPage extends ConsumerStatefulWidget {
