@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
@@ -29,12 +30,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-    UncontrolledProviderScope(
-      container: await initializeDependencies(),
-      child: const MyApp(),
-    ),
-  );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) async {
+    runApp(
+      UncontrolledProviderScope(
+        container: await initializeDependencies(),
+        child: const MyApp(),
+      ),
+    );
+  });
 }
 
 class MyApp extends ConsumerWidget {
@@ -59,12 +65,14 @@ class MyApp extends ConsumerWidget {
           darkTheme: PreluraTheme.darkTheme.copyWith(textTheme: TextTheme()),
           themeMode: themeMode,
           routerConfig: ref.watch(router).config(
+                // deepLinkBuilder: (deepLink) {
+                //   debugPrint('Received deep link: ${deepLink.path}');
+                //   return deepLink;
+                // },
                 //this line of code listens to the authstate provider
                 // and anytime the authstate changes the AutoRoute Guard is reevaluted
                 // and refreshed to update the route to an authenticated or unauthenicated state
                 reevaluateListenable: ReevaluateListenable.stream(
-                  // still trying to figure out a way to listen to the provider instead of the
-                  // stream since its deprecated.
                   ref.watch(authStateProvider.stream),
                 ),
                 navigatorObservers: () => [

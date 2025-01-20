@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:graphql/client.dart';
@@ -86,7 +87,7 @@ class OfferRepo {
         offerPrice: offerPrice,
       )),
     );
-
+    log("::::The payload is :::    'action:' $actionType ::: 'offerId:' $offerId ::: 'offerPrice:' $offerPrice,");
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;
@@ -100,7 +101,7 @@ class OfferRepo {
       log('Missing response', name: 'OfferRepo respond to offer');
       throw OfferException('An error occurred');
     }
-
+    log("::::The updated offer returned data :::  ${jsonEncode(response.parsedData?.respondToOffer?.toJson())}");
     return response.parsedData?.respondToOffer;
   }
 }

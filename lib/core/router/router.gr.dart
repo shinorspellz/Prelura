@@ -289,6 +289,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
     _i75.Key? key,
     required String id,
+    required bool isOffer,
     required String username,
     required String? avatarUrl,
     List<_i74.PageRouteInfo>? children,
@@ -297,6 +298,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
           args: ChatRouteArgs(
             key: key,
             id: id,
+            isOffer: isOffer,
             username: username,
             avatarUrl: avatarUrl,
           ),
@@ -312,6 +314,7 @@ class ChatRoute extends _i74.PageRouteInfo<ChatRouteArgs> {
       return _i9.ChatScreen(
         key: args.key,
         id: args.id,
+        isOffer: args.isOffer,
         username: args.username,
         avatarUrl: args.avatarUrl,
       );
@@ -323,6 +326,7 @@ class ChatRouteArgs {
   const ChatRouteArgs({
     this.key,
     required this.id,
+    required this.isOffer,
     required this.username,
     required this.avatarUrl,
   });
@@ -331,13 +335,15 @@ class ChatRouteArgs {
 
   final String id;
 
+  final bool isOffer;
+
   final String username;
 
   final String? avatarUrl;
 
   @override
   String toString() {
-    return 'ChatRouteArgs{key: $key, id: $id, username: $username, avatarUrl: $avatarUrl}';
+    return 'ChatRouteArgs{key: $key, id: $id, isOffer: $isOffer, username: $username, avatarUrl: $avatarUrl}';
   }
 }
 
@@ -2265,7 +2271,7 @@ class UploadIdentityDocumentArgs {
 class UserProfileDetailsRoute
     extends _i74.PageRouteInfo<UserProfileDetailsRouteArgs> {
   UserProfileDetailsRoute({
-    _i80.Key? key,
+    _i75.Key? key,
     String? username,
     List<_i74.PageRouteInfo>? children,
   }) : super(
@@ -2274,6 +2280,7 @@ class UserProfileDetailsRoute
             key: key,
             username: username,
           ),
+          rawPathParams: {'username': username},
           initialChildren: children,
         );
 
@@ -2282,8 +2289,10 @@ class UserProfileDetailsRoute
   static _i74.PageInfo page = _i74.PageInfo(
     name,
     builder: (data) {
+      final pathParams = data.inheritedPathParams;
       final args = data.argsAs<UserProfileDetailsRouteArgs>(
-          orElse: () => const UserProfileDetailsRouteArgs());
+          orElse: () => UserProfileDetailsRouteArgs(
+              username: pathParams.optString('username')));
       return _i69.UserProfileDetailsScreen(
         key: args.key,
         username: args.username,
@@ -2298,7 +2307,7 @@ class UserProfileDetailsRouteArgs {
     this.username,
   });
 
-  final _i80.Key? key;
+  final _i75.Key? key;
 
   final String? username;
 

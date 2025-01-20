@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
@@ -25,7 +24,7 @@ class ProfilePictureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (profilePicture == null) {
+    if (profilePicture == null || (profilePicture == "null")) {
       return Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,

@@ -233,37 +233,35 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                       : Padding(
                           padding: const EdgeInsets.only(
                               left: 16.0, bottom: 32, right: 16, top: 16),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: AppButton(
-                                  onTap: () {
-                                    context.router.push(
-                                        SendAnOfferRoute(product: product));
-                                  },
-                                  text: "Send an Offer",
-                                  fontWeight: FontWeight.w500,
-                                  bgColor:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                  borderColor: Colors.purple,
-                                  textColor: Colors.purple,
-                                ),
+                          child: Row(children: [
+                            Expanded(
+                              child: AppButton(
+                                onTap: () {
+                                  context.router
+                                      .push(SendAnOfferRoute(product: product));
+                                },
+                                text: "Send an Offer",
+                                fontWeight: FontWeight.w500,
+                                bgColor:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                borderColor: Colors.purple,
+                                textColor: Colors.purple,
                               ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: AppButton(
-                                  onTap: () {
-                                    context.router
-                                        .push(PaymentRoute(product: product));
-                                  },
-                                  text: "Buy now",
-                                  textColor: PreluraColors.white,
-                                  borderColor: Colors.purple,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: AppButton(
+                                onTap: () {
+                                  context.router
+                                      .push(PaymentRoute(product: product));
+                                },
+                                text: "Buy now",
+                                textColor: PreluraColors.white,
+                                borderColor: Colors.purple,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ],
-                          ),
+                            ),
+                          ]),
                         ),
                   body: Stack(
                     children: [
@@ -469,24 +467,6 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                                     product: product,
                                   ),
                                   const SizedBox(height: 8.0),
-                                  // Container(
-                                  //   padding: EdgeInsets.symmetric(horizontal: 18),
-                                  //   child: Text(
-                                  //     "Consumer protection laws do not apply to your purchases from other consumers. "
-                                  //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                                  //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                                  //     "For more details, please review the full legal disclaimer."
-                                  //     "Consumer protection laws do not apply to your purchases from other consumers. "
-                                  //     "More specifically, the right to reject (section 20 of the Consumer Rights Act) does not apply. "
-                                  //     "Buyer's rights are significantly reduced when a sale is carried out between two individuals. "
-                                  //     "For more details, please review the full legal disclaimer.",
-                                  //     style: Theme.of(context)
-                                  //         .textTheme
-                                  //         .bodyMedium
-                                  //         ?.copyWith(fontWeight: FontWeight.w300),
-                                  //   ),
-                                  // // ),
-                                  // SizedBox(height: 24.0),
                                 ],
                               ),
                             ),

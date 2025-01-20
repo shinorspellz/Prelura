@@ -7,12 +7,16 @@ class HighlightUserName extends StatelessWidget {
   final String username;
   final String message;
   final bool isRead;
+  final double? textSize;
+  final FontWeight? weight;
   final Color? highlightColor;
 
   HighlightUserName(
       {required this.username,
       required this.message,
       required this.isRead,
+      this.textSize,
+      this.weight,
       this.highlightColor});
 
   @override
@@ -21,18 +25,25 @@ class HighlightUserName extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w500,
-              color: !isRead
-                  ? Theme.of(context).textTheme.bodyMedium?.color
-                  : PreluraColors.grey,
-            ),
-        children: _highlightUsernameInMessage(username, message, context),
+            fontWeight: weight ?? FontWeight.w500,
+            color: !isRead
+                ? Theme.of(context).textTheme.bodyMedium?.color
+                : PreluraColors.grey,
+            fontSize: textSize),
+        children: _highlightUsernameInMessage(
+          username,
+          message,
+          context,
+          textSize: textSize,
+          weight: weight,
+        ),
       ),
     );
   }
 
   List<TextSpan> _highlightUsernameInMessage(
-      String username, String message, BuildContext context) {
+      String username, String message, BuildContext context,
+      {double? textSize, FontWeight? weight}) {
     final List<TextSpan> spans = [];
     final pattern = RegExp(username, caseSensitive: false);
 
@@ -47,12 +58,12 @@ class HighlightUserName extends StatelessWidget {
       spans.add(TextSpan(
         text: message.substring(match.start, match.end),
         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-            color: highlightColor != null
-                ? highlightColor
-                : context.isDarkMode
+            fontSize: textSize,
+            color: highlightColor ??
+                (context.isDarkMode
                     ? PreluraColors.white
-                    : PreluraColors.black,
-            fontWeight: FontWeight.w700),
+                    : PreluraColors.black),
+            fontWeight: weight ?? FontWeight.w700),
       ));
 
       start = match.end;
