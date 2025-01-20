@@ -626,17 +626,19 @@ class FilteredProductController
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in build');
 
+    log(query!, name: ' query filter in build');
+
     // updateFilter(filter);
 
     try {
       return await _getProducts(
-        filter: ref.watch(selectedFilteredProductProvider),
+        filter: ref.read(selectedFilteredProductProvider),
         pageNumber: _currentPage,
         query: query,
       );
     } catch (e, stack) {
       state = AsyncError(e, stack);
-      return [];
+      return state.value!;
     }
   }
 

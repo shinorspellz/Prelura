@@ -37,21 +37,9 @@ class FilterProductPage extends StatefulHookConsumerWidget {
 class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     with AutoRouteAware {
   final controller = FilterProductPage.scrollController;
-  late AutoRouteObserver _observer;
-
-  @override
-  void didPopNext() {
-    // Called when navigating back to this screen
-    log("Navigated back to FilterProductPage");
-    ref.read(selectedFilteredProductProvider.notifier).state =
-        Input$ProductFiltersInput(parentCategory: widget.parentCategory);
-    ref.refresh(filteredProductProvider(searchQuery));
-  }
 
   @override
   void dispose() {
-    // Unsubscribe to avoid memory leaks
-    _observer.unsubscribe(this);
     super.dispose();
   }
 
@@ -136,6 +124,10 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                           cancelButton: true,
                           onChanged: (val) {
                             searchQuery = val;
+                            log(ref
+                                .read(selectedFilteredProductProvider)
+                                .toJson()
+                                .toString());
                             setState(() {});
                           },
                         ),

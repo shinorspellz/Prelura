@@ -146,12 +146,6 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     // Update the local filter state
     state = state..[filterType] = value;
 
-
-
-
-
-
-
     log(filterType.toString());
     log(value);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
@@ -219,7 +213,7 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
           maxPrice: maxPrice != null && maxPrice.isNotEmpty
               ? double.parse(maxPrice ?? "0")
               : providerFilter.currentFilter?.maxPrice ?? 0,
-              minPrice: 0,
+          minPrice: 0,
         );
         providerFilter.updateFilter(updatedFilter!);
         return;

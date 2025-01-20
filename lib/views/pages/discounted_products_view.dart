@@ -121,7 +121,7 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
                     ),
                   )),
                 ),
-                ref.watch(filteredProductProvider(searchQuery)).maybeWhen(
+                ref.watch(filteredProductProvider((searchQuery))).maybeWhen(
                       // skipLoadingOnRefresh: !ref.watch(refreshingHome),
                       data: (products) {
                         if (products.isEmpty) {

@@ -40,14 +40,14 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    Future.microtask(() async {
       if (!mounted) return;
 
       previousState = ref.read(selectedFilteredProductProvider);
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(
               brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
-      ref.invalidate(filteredProductProvider(searchQuery));
+      await ref.refresh(filteredProductProvider((searchQuery)).future);
     });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -64,12 +64,12 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   @override
   void dispose() {
     log(":::: I ran  from here");
-    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
-    Future.microtask(() {
-      HelperFunction.genRef!
-          .read(selectedFilteredProductProvider.notifier)
-          .state = previousState;
-    });
+    // HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
+    // Future.microtask(() {
+    //   HelperFunction.genRef!
+    //       .read(selectedFilteredProductProvider.notifier)
+    //       .state = previousState;
+    // });
 
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();

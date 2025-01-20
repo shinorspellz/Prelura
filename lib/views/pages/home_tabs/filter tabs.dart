@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -20,18 +21,18 @@ class FilterTab extends ConsumerWidget {
   const FilterTab(
       {super.key,
       required this.searchQuery,
-      required this.id,
+      required this.category,
       required this.title,
       required this.products});
   final String searchQuery;
   final String title;
-  final int id;
+  final Enum$ParentCategoryEnum category;
   final List<ProductModel> products;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<int>(
-      selectedIdProvider,
+    ref.listen<Enum$ParentCategoryEnum?>(
+      selectedCategoryProvider,
       (previous, next) {
         if (previous != next) {
           ref.invalidate(filteredProductProvider(searchQuery));
