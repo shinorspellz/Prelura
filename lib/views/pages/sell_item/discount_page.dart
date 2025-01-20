@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +11,13 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
-final discountController = StateProvider.autoDispose(
-    (ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
+final discountController =
+    StateProvider.autoDispose<TextEditingController>((ref) {
+  final discount = ref.read(sellItemProvider).discount;
+  log(discount ?? "");
+  return TextEditingController(
+      text: discount != "null" && discount != null ? discount : "");
+});
 
 @RoutePage()
 class DiscountPage extends ConsumerWidget {
@@ -18,6 +25,8 @@ class DiscountPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final discount = ref.watch(discountController).text;
+    log("discount' :'$discount");
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(

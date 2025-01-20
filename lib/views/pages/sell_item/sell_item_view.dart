@@ -607,7 +607,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Discount Price (Optional)',
-                      subtitle: '${state.discount ?? 0}%',
+                      subtitle:
+                          '${state.discount != null && state.discount != "null" ? state.discount : 0}%',
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -682,6 +683,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         state.parcel == null ||
                         state.title.isEmpty ||
                         state.price == null ||
+                        state.selectedColors.isEmpty ||
                         state.price == "0" ||
                         (state.brand == null && state.customBrand == null) ||
                         state.selectedCondition == null)
@@ -689,6 +691,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         state.description.isEmpty ||
                         state.parcel == null ||
                         state.title.isEmpty ||
+                        state.selectedColors.isEmpty ||
                         (state.brand == null && state.customBrand == null) ||
                         state.price == null ||
                         state.price == "0" ||
@@ -758,6 +761,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
 
                   log(state.toJson().toString());
                   if (widget.product != null) {
+                    log(state.discount!.isEmpty.toString());
                     await ref.read(productProvider.notifier).updateProduct(
                           productId: int.parse(widget.product!.id),
                           title: state.title,
@@ -771,11 +775,13 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           materials:
                               state.selectedMaterials.map((e) => e.id).toList(),
                           style: state.style,
-                          discount: state.discount == null
+                          color: state.selectedColors,
+                          discount: state.discount == null ||
+                                  state.discount == "null" ||
+                                  state.discount == "0" ||
+                                  state.discount!.isEmpty
                               ? null
-                              : state.discount!.isEmpty
-                                  ? null
-                                  : double.parse(state.discount!),
+                              : double.parse(state.discount!),
                           customBrand: state.customBrand,
                           isFeatured: state.isFeatured,
                         );
@@ -806,7 +812,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                         materials:
                             state.selectedMaterials.map((e) => e.id).toList(),
                         style: state.style,
-                        discount: state.discount == null
+                        discount: state.discount == null ||
+                                state.discount == "null" ||
+                                state.discount == "0" ||
+                                state.discount!.isEmpty
                             ? null
                             : double.parse(state.discount!),
                         customBrand: state.customBrand,

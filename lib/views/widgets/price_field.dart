@@ -56,6 +56,7 @@ class PriceFieldWidget extends ConsumerWidget {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             controller: textController,
+            formatter: DecimalTextInputFormatter(decimalRange: 2),
             onChanged: onChanged,
             onSaved: onSaved,
             minWidth: width,
