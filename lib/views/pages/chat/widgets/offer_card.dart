@@ -71,13 +71,13 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   Future<void> _handleAccept() async {
     if (isAccepted || isDeclined) return;
     await _updateOfferStatus(
-        Enum$OfferActionEnum.ACCEPT, () => isAccepting = true);
+        Enum$OfferActionEnum.ACCEPT, () => isAccepting = !isAccepting);
   }
 
   Future<void> _handleDecline() async {
     if (isAccepted || isDeclined) return;
     await _updateOfferStatus(
-        Enum$OfferActionEnum.REJECT, () => isDeclining = true);
+        Enum$OfferActionEnum.REJECT, () => isDeclining = !isDeclining);
   }
 
   Future<void> _sendCustomOffer() async {

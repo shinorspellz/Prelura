@@ -8,6 +8,7 @@ class OfferInfo {
   DateTime? updatedAt;
   List<OfferSubStateInfo>? children;
   dynamic status;
+  String? createdBy;
   dynamic expiresAt;
   bool? deleted;
   Recipient? buyer;
@@ -22,6 +23,7 @@ class OfferInfo {
     this.updatedAt,
     this.status,
     this.children,
+    this.createdBy,
     this.expiresAt,
     this.deleted,
     this.buyer,
@@ -32,6 +34,7 @@ class OfferInfo {
   factory OfferInfo.fromJson(Map<String, dynamic> json) => OfferInfo(
         id: json["id"],
         message: json["message"],
+        createdBy: json["createdBy"],
         offerPrice: json["offer_price"] ?? json["offerPrice"],
         status: json["offer_status"] ?? json["status"],
         createdAt: json["createdAt"] == null
@@ -57,6 +60,7 @@ class OfferInfo {
         "message": message,
         "offerPrice": offerPrice,
         "status": status,
+        "createdBy": createdBy,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "expiresAt": expiresAt,

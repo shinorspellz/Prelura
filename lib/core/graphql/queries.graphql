@@ -623,13 +623,7 @@ query Conversations {
       id
       message
       offerPrice
-      createdBy {
-        id
-        username
-        profilePictureUrl
-        thumbnailUrl
-        displayName
-      }
+      createdBy
       status
       createdAt
       updatedAt
