@@ -632,6 +632,7 @@ query Conversations {
       children {
         id
         updatedBy
+        createdBy
         updatedAt
         message
         offerPrice

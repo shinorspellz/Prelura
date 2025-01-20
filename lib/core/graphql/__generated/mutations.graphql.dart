@@ -11971,50 +11971,7 @@ const documentNodeMutationcreateOffer = DocumentNode(definitions: [
                     alias: null,
                     arguments: [],
                     directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'username'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'profilePictureUrl'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'thumbnailUrl'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'displayName'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
+                    selectionSet: null,
                   ),
                   FieldNode(
                     name: NameNode(value: 'status'),
@@ -12066,6 +12023,13 @@ const documentNodeMutationcreateOffer = DocumentNode(definitions: [
                       ),
                       FieldNode(
                         name: NameNode(value: 'updatedBy'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'createdBy'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -13407,6 +13371,7 @@ class Mutation$createOffer$createOffer$data$offer$children {
   Mutation$createOffer$createOffer$data$offer$children({
     required this.id,
     this.updatedBy,
+    this.createdBy,
     required this.updatedAt,
     this.message,
     required this.offerPrice,
@@ -13420,6 +13385,7 @@ class Mutation$createOffer$createOffer$data$offer$children {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$updatedBy = json['updatedBy'];
+    final l$createdBy = json['createdBy'];
     final l$updatedAt = json['updatedAt'];
     final l$message = json['message'];
     final l$offerPrice = json['offerPrice'];
@@ -13430,6 +13396,7 @@ class Mutation$createOffer$createOffer$data$offer$children {
     return Mutation$createOffer$createOffer$data$offer$children(
       id: (l$id as String),
       updatedBy: (l$updatedBy as String?),
+      createdBy: (l$createdBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
@@ -13448,6 +13415,8 @@ class Mutation$createOffer$createOffer$data$offer$children {
   final String id;
 
   final String? updatedBy;
+
+  final String? createdBy;
 
   final DateTime updatedAt;
 
@@ -13469,6 +13438,8 @@ class Mutation$createOffer$createOffer$data$offer$children {
     _resultData['id'] = l$id;
     final l$updatedBy = updatedBy;
     _resultData['updatedBy'] = l$updatedBy;
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$message = message;
@@ -13490,6 +13461,7 @@ class Mutation$createOffer$createOffer$data$offer$children {
   int get hashCode {
     final l$id = id;
     final l$updatedBy = updatedBy;
+    final l$createdBy = createdBy;
     final l$updatedAt = updatedAt;
     final l$message = message;
     final l$offerPrice = offerPrice;
@@ -13500,6 +13472,7 @@ class Mutation$createOffer$createOffer$data$offer$children {
     return Object.hashAll([
       l$id,
       l$updatedBy,
+      l$createdBy,
       l$updatedAt,
       l$message,
       l$offerPrice,
@@ -13527,6 +13500,11 @@ class Mutation$createOffer$createOffer$data$offer$children {
     final l$updatedBy = updatedBy;
     final lOther$updatedBy = other.updatedBy;
     if (l$updatedBy != lOther$updatedBy) {
+      return false;
+    }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
       return false;
     }
     final l$updatedAt = updatedAt;
@@ -13593,6 +13571,7 @@ abstract class CopyWith$Mutation$createOffer$createOffer$data$offer$children<
   TRes call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
@@ -13625,6 +13604,7 @@ class _CopyWithImpl$Mutation$createOffer$createOffer$data$offer$children<TRes>
   TRes call({
     Object? id = _undefined,
     Object? updatedBy = _undefined,
+    Object? createdBy = _undefined,
     Object? updatedAt = _undefined,
     Object? message = _undefined,
     Object? offerPrice = _undefined,
@@ -13638,6 +13618,9 @@ class _CopyWithImpl$Mutation$createOffer$createOffer$data$offer$children<TRes>
         updatedBy: updatedBy == _undefined
             ? _instance.updatedBy
             : (updatedBy as String?),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
@@ -13690,6 +13673,7 @@ class _CopyWithStubImpl$Mutation$createOffer$createOffer$data$offer$children<
   call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
@@ -16114,6 +16098,13 @@ const documentNodeMutationRespondToOffer = DocumentNode(definitions: [
                     selectionSet: null,
                   ),
                   FieldNode(
+                    name: NameNode(value: 'createdBy'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: 'updatedAt'),
                     alias: null,
                     arguments: [],
@@ -16142,6 +16133,13 @@ const documentNodeMutationRespondToOffer = DocumentNode(definitions: [
                     selectionSet: SelectionSetNode(selections: [
                       FieldNode(
                         name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'createdBy'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -17092,6 +17090,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     required this.offerPrice,
     this.status,
     required this.createdAt,
+    this.createdBy,
     required this.updatedAt,
     this.expiresAt,
     required this.deleted,
@@ -17108,6 +17107,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     final l$offerPrice = json['offerPrice'];
     final l$status = json['status'];
     final l$createdAt = json['createdAt'];
+    final l$createdBy = json['createdBy'];
     final l$updatedAt = json['updatedAt'];
     final l$expiresAt = json['expiresAt'];
     final l$deleted = json['deleted'];
@@ -17121,6 +17121,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
       offerPrice: (l$offerPrice as String),
       status: (l$status as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
+      createdBy: (l$createdBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       expiresAt:
           l$expiresAt == null ? null : DateTime.parse((l$expiresAt as String)),
@@ -17150,6 +17151,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
 
   final DateTime createdAt;
 
+  final String? createdBy;
+
   final DateTime updatedAt;
 
   final DateTime? expiresAt;
@@ -17177,6 +17180,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     _resultData['status'] = l$status;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$expiresAt = expiresAt;
@@ -17201,6 +17206,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     final l$offerPrice = offerPrice;
     final l$status = status;
     final l$createdAt = createdAt;
+    final l$createdBy = createdBy;
     final l$updatedAt = updatedAt;
     final l$expiresAt = expiresAt;
     final l$deleted = deleted;
@@ -17214,6 +17220,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
       l$offerPrice,
       l$status,
       l$createdAt,
+      l$createdBy,
       l$updatedAt,
       l$expiresAt,
       l$deleted,
@@ -17256,6 +17263,11 @@ class Mutation$RespondToOffer$respondToOffer$data$offer {
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
       return false;
     }
     final l$updatedAt = updatedAt;
@@ -17332,6 +17344,7 @@ abstract class CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer<
     String? offerPrice,
     String? status,
     DateTime? createdAt,
+    String? createdBy,
     DateTime? updatedAt,
     DateTime? expiresAt,
     bool? deleted,
@@ -17372,6 +17385,7 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
     Object? offerPrice = _undefined,
     Object? status = _undefined,
     Object? createdAt = _undefined,
+    Object? createdBy = _undefined,
     Object? updatedAt = _undefined,
     Object? expiresAt = _undefined,
     Object? deleted = _undefined,
@@ -17391,6 +17405,9 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
@@ -17462,6 +17479,7 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
     String? offerPrice,
     String? status,
     DateTime? createdAt,
+    String? createdBy,
     DateTime? updatedAt,
     DateTime? expiresAt,
     bool? deleted,
@@ -17488,6 +17506,7 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer<TRes>
 class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   Mutation$RespondToOffer$respondToOffer$data$offer$children({
     required this.id,
+    this.createdBy,
     this.updatedBy,
     required this.updatedAt,
     this.message,
@@ -17501,6 +17520,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   factory Mutation$RespondToOffer$respondToOffer$data$offer$children.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
+    final l$createdBy = json['createdBy'];
     final l$updatedBy = json['updatedBy'];
     final l$updatedAt = json['updatedAt'];
     final l$message = json['message'];
@@ -17511,6 +17531,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$$__typename = json['__typename'];
     return Mutation$RespondToOffer$respondToOffer$data$offer$children(
       id: (l$id as String),
+      createdBy: (l$createdBy as String?),
       updatedBy: (l$updatedBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
@@ -17528,6 +17549,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   }
 
   final String id;
+
+  final String? createdBy;
 
   final String? updatedBy;
 
@@ -17550,6 +17573,8 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
     final l$updatedBy = updatedBy;
     _resultData['updatedBy'] = l$updatedBy;
     final l$updatedAt = updatedAt;
@@ -17572,6 +17597,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
   @override
   int get hashCode {
     final l$id = id;
+    final l$createdBy = createdBy;
     final l$updatedBy = updatedBy;
     final l$updatedAt = updatedAt;
     final l$message = message;
@@ -17582,6 +17608,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
+      l$createdBy,
       l$updatedBy,
       l$updatedAt,
       l$message,
@@ -17605,6 +17632,11 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$children {
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
+      return false;
+    }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
       return false;
     }
     final l$updatedBy = updatedBy;
@@ -17676,6 +17708,7 @@ abstract class CopyWith$Mutation$RespondToOffer$respondToOffer$data$offer$childr
 
   TRes call({
     String? id,
+    String? createdBy,
     String? updatedBy,
     DateTime? updatedAt,
     String? message,
@@ -17710,6 +17743,7 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer$children<
 
   TRes call({
     Object? id = _undefined,
+    Object? createdBy = _undefined,
     Object? updatedBy = _undefined,
     Object? updatedAt = _undefined,
     Object? message = _undefined,
@@ -17721,6 +17755,9 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer$children<
   }) =>
       _then(Mutation$RespondToOffer$respondToOffer$data$offer$children(
         id: id == _undefined || id == null ? _instance.id : (id as String),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
         updatedBy: updatedBy == _undefined
             ? _instance.updatedBy
             : (updatedBy as String?),
@@ -17776,6 +17813,7 @@ class _CopyWithStubImpl$Mutation$RespondToOffer$respondToOffer$data$offer$childr
 
   call({
     String? id,
+    String? createdBy,
     String? updatedBy,
     DateTime? updatedAt,
     String? message,

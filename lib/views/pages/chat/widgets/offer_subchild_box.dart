@@ -77,7 +77,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     final bool amTheSeller = widget.appUserInfo.username ==
         offerInfo.offer?.product?.seller?.username;
     final bool isSender =
-        widget.appUserInfo.username == widget.eventInfo.updatedBy;
+        widget.appUserInfo.username == widget.eventInfo.createdBy;
     final String? offeredPrice = widget.eventInfo.offerPrice;
     final String status = widget.eventInfo.status?.toLowerCase() ?? "";
 
@@ -95,7 +95,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 width: 55,
                 profilePicture:
                     "${!amTheSeller ? offerInfo.offer?.product?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
-                username: widget.eventInfo.updatedBy,
+                username: widget.eventInfo.createdBy,
               ),
             8.horizontalSpacing,
             Stack(children: [
@@ -114,7 +114,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                   isRead: false,
                   highlightColor: PreluraColors.primaryColor,
                   message:
-                      "${isSender ? "You" : widget.eventInfo.updatedBy} offered £$offeredPrice",
+                      "${isSender ? "You" : widget.eventInfo.createdBy} offered £$offeredPrice",
                   username: "offered",
                 ),
               ),
@@ -144,23 +144,14 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           10.verticalSpacing,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                buildActionButton(
-                  onTap: () => handleOfferResponse(Enum$OfferActionEnum.ACCEPT),
-                  isLoading: isAccepting,
-                  text: isAccepting ? "Accepted" : "Accept",
-                  isDisabled: isAccepting || isDeclining,
-                ),
-                // 18.horizontalSpacing,
-                // buildActionButton(
-                //   onTap: () => handleOfferResponse(Enum$OfferActionEnum.REJECT),
-                //   isLoading: isDeclining,
-                //   text: isDeclining ? "Declined" : "Decline",
-                //   isDisabled: isAccepting || isDeclining,
-                // ),
-              ],
-            ),
+            child: Row(children: [
+              buildActionButton(
+                onTap: () => handleOfferResponse(Enum$OfferActionEnum.ACCEPT),
+                isLoading: isAccepting,
+                text: isAccepting ? "Accepted" : "Accept",
+                isDisabled: isAccepting || isDeclining,
+              ),
+            ]),
           ),
         ],
         if (!amTheSeller && status == "accepted") ...[
@@ -168,26 +159,18 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
-              mainAxisAlignment:
-                  isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
-              children: [
-                buildActionButton(
-                  onTap: () {},
-                  isLoading: isAccepting,
-                  text: "Make payment",
-                  isDisabled: isAccepting || isDeclining,
-                ),
-                // 18.horizontalSpacing,
-                // buildActionButton(
-                //   onTap: () => handleOfferResponse(Enum$OfferActionEnum.REJECT),
-                //   isLoading: isDeclining,
-                //   text: isDeclining ? "Declined" : "Decline",
-                //   isDisabled: isAccepting || isDeclining,
-                // ),
-              ],
-            ),
+                mainAxisAlignment:
+                    isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+                children: [
+                  buildActionButton(
+                    onTap: () {},
+                    isLoading: isAccepting,
+                    text: "Make payment",
+                    isDisabled: isAccepting || isDeclining,
+                  ),
+                ]),
           ),
-        ],
+        ]
       ],
     );
   }

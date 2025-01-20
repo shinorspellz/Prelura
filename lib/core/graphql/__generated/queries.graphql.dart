@@ -28280,6 +28280,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                     selectionSet: null,
                   ),
                   FieldNode(
+                    name: NameNode(value: 'createdBy'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: 'updatedAt'),
                     alias: null,
                     arguments: [],
@@ -29950,6 +29957,7 @@ class Query$Conversations$conversations$offer$children {
   Query$Conversations$conversations$offer$children({
     required this.id,
     this.updatedBy,
+    this.createdBy,
     required this.updatedAt,
     this.message,
     required this.offerPrice,
@@ -29963,6 +29971,7 @@ class Query$Conversations$conversations$offer$children {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$updatedBy = json['updatedBy'];
+    final l$createdBy = json['createdBy'];
     final l$updatedAt = json['updatedAt'];
     final l$message = json['message'];
     final l$offerPrice = json['offerPrice'];
@@ -29973,6 +29982,7 @@ class Query$Conversations$conversations$offer$children {
     return Query$Conversations$conversations$offer$children(
       id: (l$id as String),
       updatedBy: (l$updatedBy as String?),
+      createdBy: (l$createdBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       message: (l$message as String?),
       offerPrice: (l$offerPrice as String),
@@ -29991,6 +30001,8 @@ class Query$Conversations$conversations$offer$children {
   final String id;
 
   final String? updatedBy;
+
+  final String? createdBy;
 
   final DateTime updatedAt;
 
@@ -30012,6 +30024,8 @@ class Query$Conversations$conversations$offer$children {
     _resultData['id'] = l$id;
     final l$updatedBy = updatedBy;
     _resultData['updatedBy'] = l$updatedBy;
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$message = message;
@@ -30033,6 +30047,7 @@ class Query$Conversations$conversations$offer$children {
   int get hashCode {
     final l$id = id;
     final l$updatedBy = updatedBy;
+    final l$createdBy = createdBy;
     final l$updatedAt = updatedAt;
     final l$message = message;
     final l$offerPrice = offerPrice;
@@ -30043,6 +30058,7 @@ class Query$Conversations$conversations$offer$children {
     return Object.hashAll([
       l$id,
       l$updatedBy,
+      l$createdBy,
       l$updatedAt,
       l$message,
       l$offerPrice,
@@ -30070,6 +30086,11 @@ class Query$Conversations$conversations$offer$children {
     final l$updatedBy = updatedBy;
     final lOther$updatedBy = other.updatedBy;
     if (l$updatedBy != lOther$updatedBy) {
+      return false;
+    }
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
       return false;
     }
     final l$updatedAt = updatedAt;
@@ -30134,6 +30155,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer$children<TRes> {
   TRes call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
@@ -30164,6 +30186,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
   TRes call({
     Object? id = _undefined,
     Object? updatedBy = _undefined,
+    Object? createdBy = _undefined,
     Object? updatedAt = _undefined,
     Object? message = _undefined,
     Object? offerPrice = _undefined,
@@ -30177,6 +30200,9 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
         updatedBy: updatedBy == _undefined
             ? _instance.updatedBy
             : (updatedBy as String?),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
@@ -30226,6 +30252,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
   call({
     String? id,
     String? updatedBy,
+    String? createdBy,
     DateTime? updatedAt,
     String? message,
     String? offerPrice,
