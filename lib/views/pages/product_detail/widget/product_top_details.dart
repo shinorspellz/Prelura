@@ -240,13 +240,18 @@ class ProductTopDetails extends ConsumerWidget {
                           context.router.push(ProfileDetailsRoute(
                               username: product.seller.username));
                         },
-                        child: Text(
-                          "${product.seller.username}",
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: getDefaultSize(),
-                                  ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Text(
+                            product.seller.username,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: getDefaultSize(),
+                                ),
+                          ),
                         ),
                       ),
                       Align(

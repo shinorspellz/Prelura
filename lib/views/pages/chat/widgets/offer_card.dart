@@ -119,9 +119,6 @@ class _OfferCardState extends ConsumerState<OfferCard> {
     log("::::The offer info:::: $isAccepted");
     log("::::The offer info:::: $isDeclined");
 
-    // final offerState = ref.watch(offerProvider);
-    // isAccepted = offerState.offerState == "Accepted";
-    // isDeclined = offerState.offerState == "Declined";
     return Card(
       color: Colors.transparent,
       shadowColor: Colors.transparent,

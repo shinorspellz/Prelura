@@ -43,7 +43,7 @@ class ProductDescription extends ConsumerWidget {
                     color: PreluraColors.primaryColor),
               ),
               const SizedBox(
-                height: 12,
+                height: 8,
               ),
               GestureDetector(
                 onTap: () {
@@ -57,7 +57,10 @@ class ProductDescription extends ConsumerWidget {
                         isDescriptionExpanded
                             ? product.description
                             : truncatedDescription,
-                        Theme.of(context).textTheme.bodyMedium,
+                        Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: PreluraColors.greyColor,
+                              height: 1.3,
+                            ),
                         Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontSize: getDefaultSize(),
                             color: PreluraColors.activeColor,
