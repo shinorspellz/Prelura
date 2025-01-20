@@ -18,7 +18,6 @@ Widget ProductDetailsShimmer() {
             width: 100.w,
             decoration: BoxDecoration(
               color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),
@@ -28,101 +27,123 @@ Widget ProductDetailsShimmer() {
         //product name
         Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               CustomShimmer(
                   child: Container(
-                height: 5.h,
+                height: 32,
                 width: 75.w,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
               )),
-              addVerticalSpacing(12),
-              //product brand
-              CustomShimmer(
-                  child: Container(
-                height: 3.h,
-                width: 130,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              )),
-              addVerticalSpacing(5),
-              //product size
-              CustomShimmer(
-                  child: Container(
-                height: 3.h,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              )),
-              addVerticalSpacing(5),
-
+              // addVerticalSpacing(12),
+              // //product brand
+              // CustomShimmer(
+              //     child: Container(
+              //   height: 16,
+              //   width: 130,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              // )),
+              addVerticalSpacing(6),
+              //product size and brand
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomShimmer(
                       child: Container(
-                    height: 3.h,
-                    width: 100,
+                    height: 16,
+                    width: 45,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                     ),
                   )),
-                  addHorizontalSpacing(5),
+                  CustomShimmer(
+                      child: Container(
+                    height: 16,
+                    width: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  )),
+                ],
+              ),
+              addVerticalSpacing(10),
+
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomShimmer(
+                      child: Container(
+                    height: 11,
+                    width: 65,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  )),
+                  Spacer(),
                   CustomShimmer(
                     child: Container(
-                      height: 3.h,
-                      width: 100,
+                      height: 16,
+                      width: 25,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                  )
+                  ),
+                  10.horizontalSpacing,
+                  CustomShimmer(
+                    child: Container(
+                      height: 16,
+                      width: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              addVerticalSpacing(15),
-
-              // ListView.builder(
-              //   shrinkWrap: true,
-              //   scrollDirection: Axis.horizontal,
-              //   physics: NeverScrollableScrollPhysics(),
-              //   itemCount: 3,
-              //   itemBuilder: (context, index) {
-              //     return Row(
-              //       children: [
-              //         Shimmer.fromColors(
-              //             baseColor: Colors.grey[200]!,
-              //             highlightColor: Colors.grey[300]!,
-              //             child: Container(
-              //               height: 16,
-              //               width: 16,
-              //               decoration: BoxDecoration(
-              //                 color: Colors.white,
-              //                 borderRadius: BorderRadius.circular(8),
-              //               ),
-              //             )),
-              //         addHorizontalSpacing(4),
-              //         Shimmer.fromColors(
-              //             baseColor: Colors.grey[200]!,
-              //             highlightColor: Colors.grey[300]!,
-              //             child: Container(
-              //               height: 40,
-              //               width: 90,
-              //               decoration: BoxDecoration(
-              //                 color: Colors.white,
-              //               ),
-              //             )),
-              //       ],
-              //     );
-              //   },
-              // ),
+              addVerticalSpacing(12),
+              Row(children: [
+                ...[1, 2, 3].map((element) {
+                  return Row(
+                    children: [
+                      CustomShimmer(
+                        child: Container(
+                          height: 16,
+                          width: 15,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                      CustomShimmer(
+                        child: Container(
+                          height: 16,
+                          width: 45,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      8.horizontalSpacing
+                    ],
+                  );
+                }).toList(),
+              ]),
+              16.verticalSpacing,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -131,9 +152,11 @@ Widget ProductDetailsShimmer() {
                     children: [
                       CustomShimmer(
                           child: Container(
-                        height: 65,
-                        width: 65,
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(32.5)),
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25)),
                       )),
                       const SizedBox(
                         width: 10,
@@ -143,24 +166,30 @@ Widget ProductDetailsShimmer() {
                         children: [
                           CustomShimmer(
                               child: Container(
-                            height: 25,
+                            height: 16,
                             width: 125,
-                            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
                           )),
                           addVerticalSpacing(5),
                           Row(children: [
                             CustomShimmer(
                                 child: Container(
-                              height: 25,
-                              width: 35,
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                              height: 16,
+                              width: 65,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
                             )),
                             addHorizontalSpacing(10),
                             CustomShimmer(
                                 child: Container(
-                              height: 25,
+                              height: 16,
                               width: 45,
-                              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
                             )),
                           ])
                         ],
@@ -169,110 +198,63 @@ Widget ProductDetailsShimmer() {
                   ),
                   CustomShimmer(
                       child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                    height: 24,
+                    width: 24,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(4)),
                   )),
                 ],
               ),
-              addVerticalSpacing(3),
+              addVerticalSpacing(20),
               CustomShimmer(
                   child: Container(
                 height: 75,
                 width: 100.w,
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
               )),
 
-              addVerticalSpacing(16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 100,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 70,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                ],
-              ),
-              addVerticalSpacing(10),
+              addVerticalSpacing(20),
+              ...[1, 2, 3, 4, 5, 6, 7, 8].map((element) {
+                return Column(
+                  children: [
+                    10.verticalSpacing,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomShimmer(
+                            child: Container(
+                          height: 16,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(17.5)),
+                        )),
+                        CustomShimmer(
+                            child: Container(
+                          height: 16,
+                          width: 70,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(17.5)),
+                        )),
+                      ],
+                    ),
+                    10.verticalSpacing,
+                    CustomShimmer(
+                        child: Container(
+                      height: 1,
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                    )),
+                  ],
+                );
+              }),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 100,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 70,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                ],
-              ),
-              addVerticalSpacing(10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 100,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                  CustomShimmer(
-                      child: Container(
-                    height: 35,
-                    width: 70,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
-                  )),
-                ],
-              ),
-              // ListView.builder(
-              //     shrinkWrap: true,
-              //     itemCount: 5,
-              //     itemBuilder: (context, index) {
-              //       return Column(
-              //         children: [
-              //           addVerticalSpacing(3),
-              //           Row(
-              //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //             children: [
-              //               Shimmer.fromColors(
-              //                   baseColor: Colors.grey[200]!,
-              //                   highlightColor: Colors.grey[300]!,
-              //                   child: Container(
-              //                     height: 35,
-              //                     width: 100,
-              //                     decoration: BoxDecoration(
-              //                         color: Colors.white,
-              //                         borderRadius: BorderRadius.circular(17.5)),
-              //                   )),
-              //               Shimmer.fromColors(
-              //                   baseColor: Colors.grey[200]!,
-              //                   highlightColor: Colors.grey[300]!,
-              //                   child: Container(
-              //                     height: 35,
-              //                     width: 70,
-              //                     decoration: BoxDecoration(
-              //                         color: Colors.white,
-              //                         borderRadius: BorderRadius.circular(17.5)),
-              //                   )),
-              //             ],
-              //           ),
-              //         ],
-              //       );
-              //     }),
               addVerticalSpacing(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,13 +263,17 @@ Widget ProductDetailsShimmer() {
                       child: Container(
                     height: 45,
                     width: 45.w,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(17.5)),
                   )),
                   CustomShimmer(
                       child: Container(
                     height: 45,
                     width: 45.w,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(17.5)),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(17.5)),
                   )),
                 ],
               ),
