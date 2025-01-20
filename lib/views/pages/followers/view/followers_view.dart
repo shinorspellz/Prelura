@@ -94,6 +94,8 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
 
     // Watch the followersProvider with current query parameters
     final followers = ref.watch(followersProvider(queryParams));
+    final followersTotalNumber =
+        ref.watch(followersTotalProvider(queryParams.username));
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -111,26 +113,27 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
         onLoading: _onLoading,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: followers.when(
-            data: (followersList) {
-              if (followersList.isEmpty) {
-                return const EmptyScreenPlaceholder(
-                    text: "No followers found.");
-              }
-              return Column(
-                children: [
-                  Searchwidget(
-                    controller: _searchController,
-                    obscureText: false,
-                    shouldReadOnly: false,
-                    enabled: true,
-                    showInputBorder: true,
-                    autofocus: false,
-                    cancelButton: true,
-                    hintText: "search for members",
-                  ),
-                  const SizedBox(height: 16),
-                  Expanded(
+          child: Column(
+            children: [
+              if ((followersTotalNumber.valueOrNull ?? 0) > 0)
+                Searchwidget(
+                  controller: _searchController,
+                  obscureText: false,
+                  shouldReadOnly: false,
+                  enabled: true,
+                  showInputBorder: true,
+                  autofocus: false,
+                  cancelButton: true,
+                  hintText: "search for members",
+                ),
+              const SizedBox(height: 16),
+              followers.when(
+                data: (followersList) {
+                  if (followersList.isEmpty) {
+                    return const EmptyScreenPlaceholder(
+                        text: "No followers found.");
+                  }
+                  return Expanded(
                     child: ListView.builder(
                       itemCount: followersList.length,
                       itemBuilder: (context, index) {
@@ -140,14 +143,14 @@ class _FollowersScreenState extends ConsumerState<FollowersScreen> {
                         );
                       },
                     ),
-                  ),
-                ],
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stackTrace) {
-              return Center(child: Text("Error: ${error.toString()}"));
-            },
+                  );
+                },
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stackTrace) {
+                  return Center(child: Text("Error: ${error.toString()}"));
+                },
+              ),
+            ],
           ),
         ),
       ),

@@ -13,6 +13,7 @@ import 'package:prelura_app/views/widgets/card.dart';
 import '../../../controller/product/product_provider.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
+import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
 import '../search_result/view/search_result.dart';
 import 'product_by_sales/product_by_christmas.dart';
@@ -33,17 +34,20 @@ class ProductsByBrandPage extends ConsumerStatefulWidget {
 
 class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   final controller = ProductsByBrandPage.scrollController;
+  Input$ProductFiltersInput previousState = Input$ProductFiltersInput();
 
   @override
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    Future.microtask(() async {
       if (!mounted) return;
+
+      previousState = ref.read(selectedFilteredProductProvider);
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(
               brand: (widget.id)?.toInt(), customBrand: widget.customBrand);
-      ref.invalidate(filteredProductProvider(searchQuery));
+      await ref.refresh(filteredProductProvider((searchQuery)).future);
     });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
@@ -60,7 +64,13 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
   @override
   void dispose() {
     log(":::: I ran  from here");
-    HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
+    // HelperFunction.genRef!.refresh(selectedFilteredProductProvider);
+    // Future.microtask(() {
+    //   HelperFunction.genRef!
+    //       .read(selectedFilteredProductProvider.notifier)
+    //       .state = previousState;
+    // });
+
     controller.removeListener(() {}); // Ensure listener is removed
     super.dispose();
   }
@@ -69,6 +79,10 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredProducts =
+        ref.watch(filteredProductProvider(searchQuery)).valueOrNull;
+    final totalLength =
+        ref.watch(filteredProductProvider(searchQuery).notifier).totalLength;
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -103,8 +117,16 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           FiltersOptions(
-                            excludedFilterTypes: [FilterTypes.brand],
-                          ),
+                              excludedFilterTypes: [FilterTypes.brand],
+                              onTap: () {
+                                ref
+                                        .read(selectedFilteredProductProvider
+                                            .notifier)
+                                        .state =
+                                    Input$ProductFiltersInput(
+                                        brand: widget.id,
+                                        customBrand: widget.customBrand);
+                              }),
                         ],
                       ),
                     )),
@@ -116,7 +138,11 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                               ? SliverPadding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   sliver: SliverToBoxAdapter(
-                                    child: NoProductWidget(),
+                                    child: NoProductWidget(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.75,
+                                    ),
 
                                     // Container(
                                     //   height:
@@ -142,76 +168,38 @@ class _ProductsByBrandPageState extends ConsumerState<ProductsByBrandPage> {
                                       mainAxisSpacing: 10,
                                       childAspectRatio: 0.50,
                                     ),
-                                    itemCount: products.take(6).length,
+                                    itemCount: products.length,
                                     itemBuilder: (context, index) {
                                       return ProductCard(
-                                          product:
-                                              products.take(6).toList()[index]);
+                                          product: products[index]);
                                     },
                                   ),
                                 );
                         },
+                        error: (e, _) {
+                          return SliverToBoxAdapter(
+                              child: ErrorPlaceholder(
+                            error: "An error occurred",
+                            onTap: () {
+                              // log(e.toString(), stackTrace: _);
+                              ref.invalidate(filteredProductProvider);
+                            },
+                          ));
+                        },
+                        loading: () => SliverToBoxAdapter(child: GridShimmer()),
                         orElse: () => SliverToBoxAdapter(child: Container()),
                       ),
-                  SliverPadding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 15, right: 15),
-                    sliver: ref
-                        .watch(filteredProductProvider(searchQuery))
-                        .when(
-                            data: (products) {
-                              if (products.length < 6)
-                                return SliverToBoxAdapter(child: Container());
-                              final clippedProducts = products.sublist(6);
-                              return SliverGrid.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10,
-                                  childAspectRatio: 0.50,
-                                ),
-                                itemCount: clippedProducts.length,
-                                itemBuilder: (context, index) {
-                                  return ProductCard(
-                                      product: clippedProducts[index]);
-                                },
-                              );
-                            },
-                            error: (e, _) {
-                              return SliverToBoxAdapter(
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text("An error occurred"),
-                                      TextButton.icon(
-                                        onPressed: () {
-                                          // log(e.toString(), stackTrace: _);
-                                          ref.invalidate(
-                                              filteredProductProvider);
-                                        },
-                                        label: const Text('Retry'),
-                                        icon: const Icon(Icons.refresh_rounded),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                            loading: () =>
-                                SliverToBoxAdapter(child: GridShimmer())),
-                  ),
-                  if (ref
-                      .watch(filteredProductProvider(searchQuery).notifier)
-                      .canLoadMore())
-                    if (!ref
-                        .watch(filteredProductProvider(searchQuery))
-                        .isLoading)
-                      const SliverToBoxAdapter(
-                        child: PaginationLoadingIndicator(),
-                      )
+                  if ((filteredProducts?.isNotEmpty ?? false) ||
+                      totalLength! > (filteredProducts?.length ?? 0))
+                    if (ref
+                        .watch(filteredProductProvider(searchQuery).notifier)
+                        .canLoadMore())
+                      if (!ref
+                          .watch(filteredProductProvider(searchQuery))
+                          .isLoading)
+                        const SliverToBoxAdapter(
+                          child: PaginationLoadingIndicator(),
+                        )
                 ],
               ),
             ),

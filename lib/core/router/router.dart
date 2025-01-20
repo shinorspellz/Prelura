@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 
 @AutoRouterConfig()
@@ -337,36 +339,65 @@ class AppRouterObserver extends AutoRouterObserver {
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     if (route.settings.name == null) return;
     log('Popped ${route.settings.name}', name: 'RouteObserver');
+    log('Popped ${previousRoute?.settings.name}', name: 'RouteObserver');
+    final args = previousRoute?.settings.arguments;
 
-    final hiddenRoutes = [
-      'ProfileDetailsRoute',
-      'ProductDetailRoute',
-      SellItemRoute.name,
-      CategoryRoute.name,
-      ProductListRoute.name,
-      SubCategoryRoute.name,
-      BrandSelectionRoute.name,
-      SizeSelectionRoute.name,
-      BrandSelectionRoute.name,
-      PriceRoute.name,
-      ConditionRoute.name,
-      MaterialSelectionRoute.name,
-      ParcelRoute.name,
-      ColorSelectorRoute.name,
-      SubCategoryProductRoute.name,
-      AccountSettingRoute.name,
-      "/profile/prodile-details"
-    ];
-    final parentRoutes = [
-      SellNavigationRoute.name,
-      ProfileNavigationRoute.name,
-    ];
+    if (previousRoute?.settings.arguments != null) {
+      final args = previousRoute?.settings.arguments;
 
-    Future.microtask(() {
-      ref.read(showBottomNavBarProvider.notifier).state =
-          previousRoute == null ||
-              !_isHidden(previousRoute, parentRoutes, hiddenRoutes);
-    });
+      // If arguments are passed as a specific type, cast them
+
+      print(
+          'Navigated to ${previousRoute?.settings.name} with argument: ${args}');
+    }
+
+    if (previousRoute?.settings.name == ProductByHashtagRoute.name) {
+      if (args is ProductByHashtagRouteArgs) {
+        Future.microtask(() async {
+          ref.read(selectedFilteredProductProvider.notifier).state =
+              Input$ProductFiltersInput(
+            hashtags: [args.hashtag],
+          );
+          await ref.refresh(filteredProductProvider("").future);
+        });
+      }
+    }
+
+    if (previousRoute?.settings.name == FilterProductRoute.name) {
+      if (args is FilterProductRouteArgs) {
+        // Example with a specific argument class
+        log('parentCategory: ${args.parentCategory}');
+        log('customBrand: ${args.customBrand}');
+        Future.microtask(() async {
+          ref.read(selectedFilteredProductProvider.notifier).state =
+              Input$ProductFiltersInput(
+            parentCategory: args.parentCategory,
+          );
+          await ref.refresh(filteredProductProvider("").future);
+        });
+      }
+    }
+
+    if (previousRoute?.settings.name == ProductsByBrandRoute.name) {
+      if (args is ProductsByBrandRouteArgs) {
+        Future.microtask(() async {
+          ref.read(selectedFilteredProductProvider.notifier).state =
+              Input$ProductFiltersInput(
+                  brand: args.id, customBrand: args.customBrand);
+          await ref.refresh(filteredProductProvider("").future);
+        });
+      }
+    }
+
+    if (previousRoute?.settings.name == ChristmasFilteredProductRoute.name) {
+      if (args is ChristmasFilteredProductRouteArgs) {
+        Future.microtask(() async {
+          ref.read(selectedFilteredProductProvider.notifier).state =
+              Input$ProductFiltersInput(style: args.style);
+          await ref.refresh(filteredProductProvider("").future);
+        });
+      }
+    }
   }
 
   @override

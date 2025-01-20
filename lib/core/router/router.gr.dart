@@ -739,7 +739,7 @@ class FilterProductRoute extends _i74.PageRouteInfo<FilterProductRouteArgs> {
   FilterProductRoute({
     _i75.Key? key,
     required String? title,
-    required int? id,
+    required _i76.Enum$ParentCategoryEnum? parentCategory,
     String? customBrand,
     List<_i74.PageRouteInfo>? children,
   }) : super(
@@ -747,7 +747,7 @@ class FilterProductRoute extends _i74.PageRouteInfo<FilterProductRouteArgs> {
           args: FilterProductRouteArgs(
             key: key,
             title: title,
-            id: id,
+            parentCategory: parentCategory,
             customBrand: customBrand,
           ),
           initialChildren: children,
@@ -762,7 +762,7 @@ class FilterProductRoute extends _i74.PageRouteInfo<FilterProductRouteArgs> {
       return _i20.FilterProductPage(
         key: args.key,
         title: args.title,
-        id: args.id,
+        parentCategory: args.parentCategory,
         customBrand: args.customBrand,
       );
     },
@@ -773,7 +773,7 @@ class FilterProductRouteArgs {
   const FilterProductRouteArgs({
     this.key,
     required this.title,
-    required this.id,
+    required this.parentCategory,
     this.customBrand,
   });
 
@@ -781,13 +781,13 @@ class FilterProductRouteArgs {
 
   final String? title;
 
-  final int? id;
+  final _i76.Enum$ParentCategoryEnum? parentCategory;
 
   final String? customBrand;
 
   @override
   String toString() {
-    return 'FilterProductRouteArgs{key: $key, title: $title, id: $id, customBrand: $customBrand}';
+    return 'FilterProductRouteArgs{key: $key, title: $title, parentCategory: $parentCategory, customBrand: $customBrand}';
   }
 }
 

@@ -8,6 +8,7 @@ import 'package:prelura_app/views/widgets/notification_card.dart';
 
 import '../../../../controller/notification_provider.dart';
 import '../../../widgets/empty_screen_placeholder.dart';
+import '../../../widgets/error_placeholder.dart';
 
 class NotificationsTab extends ConsumerStatefulWidget {
   static final ScrollController scrollController = ScrollController();
@@ -81,23 +82,13 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                             );
                     },
                     error: (e, _) {
-                      return SliverToBoxAdapter(
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text("An error occurred"),
-                              TextButton.icon(
-                                onPressed: () {
-                                  // log(e.toString(), stackTrace: _);
-                                  ref.invalidate(notificationProvider);
-                                },
-                                label: const Text('Retry'),
-                                icon: const Icon(Icons.refresh_rounded),
-                              ),
-                            ],
-                          ),
+                      return SliverFillRemaining(
+                        child: ErrorPlaceholder(
+                          error: "An error occurred",
+                          onTap: () {
+                            // log(e.toString(), stackTrace: _);
+                            ref.invalidate(notificationProvider);
+                          },
                         ),
                       );
                     },
@@ -109,11 +100,13 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                             LoadingWidget(),
                           ],
                         )))),
-                if (ref.watch(notificationProvider.notifier).canLoadMore())
-                  if (!ref.watch(notificationProvider).isLoading)
-                    SliverToBoxAdapter(
-                      child: PaginationLoadingIndicator(),
-                    )
+                if (ref.watch(notificationProvider).valueOrNull?.isNotEmpty ==
+                    true)
+                  if (ref.watch(notificationProvider.notifier).canLoadMore())
+                    if (!ref.watch(notificationProvider).isLoading)
+                      SliverToBoxAdapter(
+                        child: PaginationLoadingIndicator(),
+                      )
               ]),
         ),
       ),

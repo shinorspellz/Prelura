@@ -27,6 +27,7 @@ mixin _$UserModel {
   String? get email => throw _privateConstructorUsedError;
   String? get bio => throw _privateConstructorUsedError;
   String? get profilePictureUrl => throw _privateConstructorUsedError;
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   String? get displayName => throw _privateConstructorUsedError;
   DateTime? get dob => throw _privateConstructorUsedError;
@@ -66,6 +67,7 @@ abstract class $UserModelCopyWith<$Res> {
       String? email,
       String? bio,
       String? profilePictureUrl,
+      String? thumbnailUrl,
       String? gender,
       String? displayName,
       DateTime? dob,
@@ -107,6 +109,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? email = freezed,
     Object? bio = freezed,
     Object? profilePictureUrl = freezed,
+    Object? thumbnailUrl = freezed,
     Object? gender = freezed,
     Object? displayName = freezed,
     Object? dob = freezed,
@@ -150,6 +153,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       profilePictureUrl: freezed == profilePictureUrl
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       gender: freezed == gender
           ? _value.gender
@@ -255,6 +262,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       String? email,
       String? bio,
       String? profilePictureUrl,
+      String? thumbnailUrl,
       String? gender,
       String? displayName,
       DateTime? dob,
@@ -296,6 +304,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? bio = freezed,
     Object? profilePictureUrl = freezed,
+    Object? thumbnailUrl = freezed,
     Object? gender = freezed,
     Object? displayName = freezed,
     Object? dob = freezed,
@@ -339,6 +348,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
       profilePictureUrl: freezed == profilePictureUrl
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       gender: freezed == gender
           ? _value.gender
@@ -411,6 +424,7 @@ class _$UserModelImpl implements _UserModel {
       this.email,
       this.bio,
       this.profilePictureUrl,
+      this.thumbnailUrl,
       this.gender,
       this.displayName,
       this.dob,
@@ -444,6 +458,8 @@ class _$UserModelImpl implements _UserModel {
   @override
   final String? profilePictureUrl;
   @override
+  final String? thumbnailUrl;
+  @override
   final String? gender;
   @override
   final String? displayName;
@@ -474,7 +490,7 @@ class _$UserModelImpl implements _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -493,6 +509,8 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.bio, bio) || other.bio == bio) &&
             (identical(other.profilePictureUrl, profilePictureUrl) ||
                 other.profilePictureUrl == profilePictureUrl) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
@@ -530,6 +548,7 @@ class _$UserModelImpl implements _UserModel {
         email,
         bio,
         profilePictureUrl,
+        thumbnailUrl,
         gender,
         displayName,
         dob,
@@ -571,6 +590,7 @@ abstract class _UserModel implements UserModel {
       final String? email,
       final String? bio,
       final String? profilePictureUrl,
+      final String? thumbnailUrl,
       final String? gender,
       final String? displayName,
       final DateTime? dob,
@@ -603,6 +623,8 @@ abstract class _UserModel implements UserModel {
   String? get bio;
   @override
   String? get profilePictureUrl;
+  @override
+  String? get thumbnailUrl;
   @override
   String? get gender;
   @override

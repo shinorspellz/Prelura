@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,6 +38,8 @@ import '../../../widgets/bottom_sheet.dart';
 import '../../../widgets/error_placeholder.dart';
 import '../widgets/user_popular_brand.dart';
 
+final isBrandActiveProvider = AutoDisposeStateProvider((ref) => false);
+
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
   final String? username;
@@ -71,8 +74,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
       if (widget.username != null) {
         ref.refresh(otherUserProfile(widget.username!));
         await ref.refresh(userProduct(widget.username!).future);
-        await ref.refresh(followersTotalProvider.future);
-        await ref.refresh(followingTotalProvider.future);
       } else {
         final user = ref.refresh(userProvider).valueOrNull;
 
@@ -254,69 +255,74 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               isSelected = !isSelected;
                               selectedItem = "";
                               expandedCategories = false;
-                              isBrandActive = false;
-                              setState(() {});
+                              ref.read(isBrandActiveProvider.notifier).state =
+                                  false;
+                              setState(() {
+                                isBrandActive = false;
+                              });
+                              log('selectedItem: $isBrandActive');
                               ref.invalidate(filterUserProductProvider);
                               ref.invalidate(userSubCategoryProvider);
                             })
                       ] else
                         ExpansionTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15.0),
-                                child: Text(
-                                  widget.username != null
-                                      ? 'Categories from this seller'
-                                      : "Categories",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        fontSize: getDefaultSize(),
-                                        fontWeight: FontWeight.w600,
-                                        color: PreluraColors.grey,
-                                      ),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15.0),
+                                  child: Text(
+                                    widget.username != null
+                                        ? 'Categories from this seller'
+                                        : "Categories",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          fontSize: getDefaultSize(),
+                                          fontWeight: FontWeight.w600,
+                                          color: PreluraColors.grey,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 19.0),
-                                child: Icon(
-                                    expandedCategories
-                                        ? Icons.keyboard_arrow_up_rounded
-                                        : Icons.keyboard_arrow_down_rounded,
-                                    weight: 500,
-                                    color: PreluraColors.primaryColor,
-                                    size: 26),
-                              )
-                            ],
-                          ),
-                          tilePadding: EdgeInsets.only(top: 10),
-                          childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                          minTileHeight: 40,
-                          showTrailingIcon: false,
-                          onExpansionChanged: (expanded) =>
-                              setState(() => expandedCategories = expanded),
-                          controller: controller,
-                          collapsedShape: Border(
-                            bottom: BorderSide(
-                                width: 1, color: context.theme.dividerColor),
-                            top: BorderSide(
-                                width: 1, color: context.theme.dividerColor),
-                          ),
-                          expansionAnimationStyle: AnimationStyle(
-                            duration: Duration(milliseconds: 300),
-                          ),
-                          children: categories
-                              .map((e) => ExpansionTile(
-                                  iconColor: PreluraColors.primaryColor,
-                                  collapsedIconColor:
-                                      PreluraColors.primaryColor,
-                                  title: RichText(
-                                      text: TextSpan(children: [
-                                    TextSpan(
-                                      text: e.name,
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 19.0),
+                                  child: Icon(
+                                      expandedCategories
+                                          ? Icons.keyboard_arrow_up_rounded
+                                          : Icons.keyboard_arrow_down_rounded,
+                                      weight: 500,
+                                      color: PreluraColors.primaryColor,
+                                      size: 26),
+                                )
+                              ],
+                            ),
+                            tilePadding: EdgeInsets.only(top: 10),
+                            childrenPadding:
+                                EdgeInsets.symmetric(horizontal: 5),
+                            minTileHeight: 40,
+                            showTrailingIcon: false,
+                            onExpansionChanged: (expanded) =>
+                                setState(() => expandedCategories = expanded),
+                            controller: controller,
+                            collapsedShape: Border(
+                              bottom: BorderSide(
+                                  width: 1, color: context.theme.dividerColor),
+                              top: BorderSide(
+                                  width: 1, color: context.theme.dividerColor),
+                            ),
+                            expansionAnimationStyle: AnimationStyle(
+                              duration: Duration(milliseconds: 300),
+                            ),
+                            children: categories
+                                .map(
+                                  (x) => PreluraCheckBox(
+                                      icon: Icon(Icons.remove_sharp,
+                                          size: 16, color: PreluraColors.grey),
+                                      sideText:
+                                          " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
+                                      sideTextColor: PreluraColors.grey,
+                                      isChecked: selectedItem == x.name,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
@@ -324,99 +330,41 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                             fontSize: getDefaultSize(),
                                             fontWeight: FontWeight.w600,
                                           ),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          " (${e.count} ${(e.count > 1 || e.count == 0) ? "items" : "item"})",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                            fontSize: getDefaultSize(),
-                                            fontWeight: FontWeight.w400,
-                                            color: PreluraColors.grey,
-                                          ),
-                                    )
-                                  ])),
-                                  collapsedShape: Border(
-                                    top: BorderSide(
-                                        width: 1,
-                                        color: context.theme.dividerColor),
-                                    bottom: BorderSide.none,
-                                  ),
-                                  tilePadding: EdgeInsets.only(
-                                      right: 15, left: 15, top: 8, bottom: 8),
-                                  // childrenPadding: EdgeInsets.symmetric(horizontal: 5),
-                                  minTileHeight: 38,
-                                  // onExpansionChanged: (expanded) => setState(() => expandedCategories = expanded),
-                                  // controller: controller,
-                                  expansionAnimationStyle: AnimationStyle(
-                                    duration: Duration(milliseconds: 300),
-                                  ),
-                                  children:
-                                      // ref
-                                      //         .watch(categoryProvider)
-                                      //         .valueOrNull
-                                      //         ?.where((x) => x.name.toLowerCase() == e.name.toLowerCase())
-                                      //         .firstOrNull
-                                      //         ?.subCategory
-                                      //         ?.map((e) => CategoryGroupType(id: int.tryParse(e.id.toString()), name: e.name, count: 0))
-                                      //         .toSet()
-                                      //         .intersection((userSubCategories ?? []).toSet())
-                                      subCategoriesIntersection(e, user.id)
-                                          .map(
-                                            (x) => PreluraCheckBox(
-                                                icon: Icon(Icons.remove_sharp,
-                                                    size: 16,
-                                                    color: PreluraColors.grey),
-                                                sideText:
-                                                    " (${x.count} ${(x.count > 1 || x.count == 0) ? "items" : "item"})",
-                                                sideTextColor:
-                                                    PreluraColors.grey,
-                                                isChecked:
-                                                    selectedItem == x.name,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodyMedium!
-                                                    .copyWith(
-                                                      fontSize:
-                                                          getDefaultSize(),
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                onChanged: (value) {
-                                                  selectedItem = x.name;
-                                                  isSelected = false;
+                                      onChanged: (value) {
+                                        selectedItem = x.name;
+                                        isSelected = false;
 
-                                                  Future.delayed(
-                                                      Duration(
-                                                          milliseconds: 1900),
-                                                      () {
-                                                    isBrandActive = true;
-                                                    setState(() {});
-                                                  });
-                                                  setState(() {});
-                                                  ref
-                                                      .read(
-                                                          filterUserProductProvider
-                                                              .notifier)
-                                                      .updateFilter(
-                                                          FilterTypes.category,
-                                                          e.name,
-                                                          user.username);
-                                                  ref
-                                                      .read(
-                                                          userSubCategoryProvider
-                                                              .notifier)
-                                                      .state = x.id;
+                                        ref
+                                            .read(
+                                                isBrandActiveProvider.notifier)
+                                            .state = true;
+                                        Future.delayed(
+                                            Duration(milliseconds: 1900), () {
+                                          isBrandActive = true;
+                                          setState(() {});
+                                        });
+                                        // setState(() {});
+                                        ref
+                                            .read(filterUserProductProvider
+                                                .notifier)
+                                            .removeFilter(
+                                                FilterTypes.brand, "");
+                                        ref
+                                            .read(filterUserProductProvider
+                                                .notifier)
+                                            .updateFilter(FilterTypes.category,
+                                                x.id.toString());
+                                        ref
+                                            .read(userSubCategoryProvider
+                                                .notifier)
+                                            .state = x.id;
 
-                                                  controller.collapse();
-                                                },
-                                                title: x.name),
-                                          )
-                                          .toList()))
-                              .toList(),
-                        ),
+                                        controller.collapse();
+                                      },
+                                      title: x.name),
+                                )
+                                .toList()),
+
                       // if (!expandedCategories && selectedItem.isEmpty)
                       //   Divider(
                       //     thickness: 1,
@@ -444,87 +392,96 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                       //     },
                       //   )
                       // ],
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 6),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.username != null
-                                    ? "Brands from this seller"
-                                    : "Top Brands",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        fontSize: getDefaultSize(),
-                                        fontWeight: FontWeight.w600,
-                                        color: PreluraColors.grey),
-                              ),
-                              // RenderSvgWithColor2(
-                              //     svgPath: PreluraIcons.search_glass_svg),
-                              // ],
-                              if (!isActive)
-                                GestureDetector(
-                                    onTap: () {
-                                      isActive = true;
-                                      setState(() {});
-                                    },
-                                    child: Icon(Icons.search,
-                                        color: PreluraColors.primaryColor)),
-                              if (isActive)
-                                AnimatedContainer(
-                                  width: 54.5.w,
-                                  color: Colors.transparent,
-                                  alignment: Alignment.centerRight,
-                                  duration: const Duration(milliseconds: 150),
-                                  child: Searchwidget(
-                                    obscureText: false,
-                                    shouldReadOnly: false,
-                                    enabled: true,
-                                    showInputBorder: true,
-                                    autofocus: true,
-                                    cancelButton: true,
-                                    minWidth: 50.w,
-                                    hidePrefix: true,
-                                    onChanged: (value) {
-                                      ref
-                                          .read(userProductSearchQuery.notifier)
-                                          .state = value;
-                                    },
-                                    onCancel: () {
-                                      isActive = false;
-                                      setState(() {});
-                                      ref.invalidate(userProductSearchQuery);
-                                    },
-                                  ),
-                                )
-                            ]),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: UserPopularBrand(
-                            onCancel: () {
-                              isSelected = !isSelected;
-                              selectedItem = "";
-                              ref.read(userIdProvider.notifier).state = null;
-                              isBrandActive = false;
-                              expandedCategories = false;
-                              setState(() {});
-                            },
-                            onTap: () {
-                              ref.read(userIdProvider.notifier).state = user.id;
-                              Future.delayed(Duration(seconds: 1), () {
-                                isBrandActive = true;
+                      if (selectedItem.isEmpty) ...[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 6),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  widget.username != null
+                                      ? "Brands from this seller"
+                                      : "Top Brands",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          fontSize: getDefaultSize(),
+                                          fontWeight: FontWeight.w600,
+                                          color: PreluraColors.grey),
+                                ),
+                                // RenderSvgWithColor2(
+                                //     svgPath: PreluraIcons.search_glass_svg),
+                                // ],
+                                if (!isActive)
+                                  GestureDetector(
+                                      onTap: () {
+                                        isActive = true;
+                                        setState(() {});
+                                      },
+                                      child: Icon(Icons.search,
+                                          color: PreluraColors.primaryColor)),
+                                if (isActive)
+                                  AnimatedContainer(
+                                    width: 54.5.w,
+                                    color: Colors.transparent,
+                                    alignment: Alignment.centerRight,
+                                    duration: const Duration(milliseconds: 150),
+                                    child: Searchwidget(
+                                      obscureText: false,
+                                      shouldReadOnly: false,
+                                      enabled: true,
+                                      showInputBorder: true,
+                                      autofocus: true,
+                                      cancelButton: true,
+                                      minWidth: 50.w,
+                                      hidePrefix: true,
+                                      onChanged: (value) {
+                                        ref
+                                            .read(
+                                                userProductSearchQuery.notifier)
+                                            .state = value;
+                                      },
+                                      onCancel: () {
+                                        isActive = false;
+                                        setState(() {});
+                                        ref.invalidate(userProductSearchQuery);
+                                      },
+                                    ),
+                                  )
+                              ]),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: UserPopularBrand(
+                              onCancel: () {
+                                isSelected = !isSelected;
+                                selectedItem = "";
+                                ref.read(userIdProvider.notifier).state = null;
+                                isBrandActive = false;
+                                ref.read(isBrandActiveProvider.notifier).state =
+                                    false;
+                                expandedCategories = false;
                                 setState(() {});
-                              });
-                            },
-                            userId: user.id,
-                            username: user.username,
-                            isSelected: isBrandActive),
-                      ),
-
+                              },
+                              onTap: () {
+                                ref.read(userIdProvider.notifier).state =
+                                    user.id;
+                                Future.delayed(Duration(seconds: 1), () {
+                                  isBrandActive = true;
+                                  ref
+                                      .read(isBrandActiveProvider.notifier)
+                                      .state = true;
+                                  setState(() {});
+                                });
+                              },
+                              userId: user.id,
+                              username: user.username,
+                              isSelected: ref.watch(isBrandActiveProvider)),
+                        ),
+                      ],
+                      10.verticalSpacing,
                       FilterAndSort(userId: user.id, username: user.username),
 
                       20.verticalSpacing,
@@ -587,10 +544,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: ref.watch(userProduct(user.username)).when(
                               skipLoadingOnRefresh: false,
-                              data: (products) => DisplaySection(
-                                products: products,
-                                isInProduct: false,
-                              ),
+                              data: (products) {
+                                if (products.isEmpty) {
+                                  return NoProductWidget();
+                                }
+                                return DisplaySection(
+                                  products: products,
+                                  isInProduct: false,
+                                );
+                              },
                               error: (e, _) {
                                 return Center(
                                   child: Column(

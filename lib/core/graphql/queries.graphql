@@ -463,6 +463,7 @@ query following(
     }
     isFollowing
   }
+  followingTotalNumber
 }
 
 query followers(
@@ -491,6 +492,7 @@ query followers(
     }
     isFollowing
   }
+  followersTotalNumber
 }
 
 query followersTotalNumber {
@@ -858,6 +860,7 @@ query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
     email
     bio
     profilePictureUrl
+    thumbnailUrl
     gender
     displayName
     dob

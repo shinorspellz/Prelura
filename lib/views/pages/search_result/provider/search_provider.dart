@@ -11,6 +11,7 @@ import '../../../../model/product/product_model.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/bottom_sheet.dart';
+import '../../profile_details/widgets/show_filter_modal.dart';
 
 final searchFilterProvider =
     StateNotifierProvider<SearchFilterNotifier, Map<FilterTypes, String>>(
@@ -73,11 +74,16 @@ class FilterUserProductNotifier
   FilterUserProductNotifier(this.ref) : super({});
 
   // Update filter to only allow one entry in the state
-  void updateFilter(FilterTypes filterType, String value, String? username) {
+  void updateFilter(FilterTypes filterType, String value) {
     // state = {filterType: value}; // Replace state with a single entry
     // log(state.toString());
     // _updateProductFiltersInput(filterType, value, userId);
     state = state..[filterType] = value;
+    ref.invalidate(userProduct);
+  }
+
+  void removeFilter(FilterTypes filterType, String value) {
+    state.remove(filterType);
     ref.invalidate(userProduct);
   }
 
@@ -143,6 +149,8 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     log(filterType.toString());
     log(value);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
+    final discountedProviderFilter =
+        ref.read(discountedProductsProvider('').notifier);
     log(providerFilter.currentFilter!.toJson().toString(),
         name: ' filteredProducts filter in search provider ');
 
@@ -180,6 +188,7 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
             : providerFilter.currentFilter?.style,
       );
       providerFilter.updateFilter(updatedFilter!);
+      return;
     }
 
     if (FilterTypes.condition == filterType) {
@@ -192,20 +201,74 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
       );
 
       providerFilter.updateFilter(updatedFilter!);
+
+      return;
+    }
+
+    if (FilterTypes.price == filterType) {
+      final maxPrice = value?.split(' ').last;
+      final minPrice = value?.split(' ').first;
+      if (minPrice == null || minPrice.isEmpty) {
+        final updatedFilter = providerFilter.currentFilter?.copyWith(
+          maxPrice: maxPrice != null && maxPrice.isNotEmpty
+              ? double.parse(maxPrice ?? "0")
+              : providerFilter.currentFilter?.maxPrice ?? 0,
+          minPrice: 0,
+        );
+        providerFilter.updateFilter(updatedFilter!);
+        return;
+      }
+      if (maxPrice == null || maxPrice.isEmpty) {
+        final updatedFilter = providerFilter.currentFilter?.copyWith(
+          minPrice: minPrice != null && minPrice.isNotEmpty
+              ? double.parse(minPrice)
+              : providerFilter.currentFilter?.minPrice ?? 0,
+        );
+        providerFilter.updateFilter(updatedFilter!);
+        return;
+      }
+
+      log(value, name: 'price in search provider');
+      final updatedFilter = providerFilter.currentFilter?.copyWith(
+        maxPrice: maxPrice != null && maxPrice.isNotEmpty
+            ? double.parse(maxPrice ?? "0")
+            : providerFilter.currentFilter?.maxPrice ?? null,
+        minPrice: minPrice != null && minPrice.isNotEmpty
+            ? double.parse(minPrice ?? "0")
+            : providerFilter.currentFilter?.minPrice ?? 0,
+      );
+      providerFilter.updateFilter(updatedFilter!);
+      return;
     }
 
     if (FilterTypes.category == filterType) {
       final updatedFilter = providerFilter.currentFilter?.copyWith(
-          category: filterType == FilterTypes.category
-              ? int.tryParse(ref
-                  .watch(categoryProvider)
-                  .valueOrNull
-                  ?.where((e) => e.name == value)
+          parentCategory: filterType == FilterTypes.category
+              ? Enum$ParentCategoryEnum.values
+                  .where((e) => e.name.toLowerCase() == value.toLowerCase())
                   .firstOrNull
-                  ?.id)
-              : providerFilter.currentFilter?.category);
+              : providerFilter.currentFilter?.parentCategory);
 
       providerFilter.updateFilter(updatedFilter!);
+      return;
+    }
+
+    if (FilterTypes.color == filterType) {
+      final updatedFilter = providerFilter.currentFilter?.copyWith(
+          colors: filterType == FilterTypes.color
+              ? [
+                  ref
+                      .watch(colorsProvider)
+                      .entries
+                      ?.where((e) => e.key == value)
+                      .firstOrNull
+                      ?.key
+                ]
+              : providerFilter.currentFilter?.colors);
+
+      providerFilter.updateFilter(updatedFilter!);
+
+      return;
     }
 
     // Invalidate the provider to trigger a rebuild
@@ -217,12 +280,16 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
   void removeFilter(FilterTypes filterType) {
     state.remove(filterType);
+    final providerFilter = ref.read(filteredProductProvider('').notifier);
+
     ref.refresh(filteredProductProvider("").future);
+    ref.refresh(discountedProductsProvider("").future);
   }
 
   void clearFilter() {
     state = {};
     ref.invalidate(filteredProductProvider);
+    ref.invalidate(discountedProductsProvider);
   }
 }
 
@@ -247,6 +314,14 @@ void ShowFilteredProductFilterModal(
     removeSidePadding: true,
     context: context,
     child: StatefulBuilder(builder: (context, setState) {
+      if (filterType == FilterTypes.price) {
+        Navigator.pop(context);
+        Future.microtask(() {
+          showPriceDialog(context, ref, filterNotifier, context.mounted);
+        });
+
+        return SizedBox.shrink();
+      }
       return Consumer(
         builder: (context, ref, _) {
           // Recompute `filterOptions` inside the `Consumer`
@@ -289,13 +364,21 @@ void ShowFilteredProductFilterModal(
                   controller: controller,
                   children: filterOptions[filterType]!
                       .map((e) => PreluraCheckBox(
+                            colorName: filterType == FilterTypes.color
+                                ? ref
+                                    .read(colorsProvider)
+                                    .entries
+                                    .where((color) => color.key == e)
+                                    .firstOrNull
+                                    ?.value
+                                : null,
                             isChecked: selectedOptions == e,
                             onChanged: (value) {
                               log("value : $value",
                                   name: "Search product provider");
                               if (selectedOptions == e) {
                                 filterNotifier.removeFilter(filterType);
-                                selectedOptions = null;
+                                selectedOptions = "";
                               } else {
                                 filterNotifier.updateFilter(filterType, e);
                                 setState(() {
@@ -316,6 +399,7 @@ void ShowFilteredProductFilterModal(
                     text: "Clear",
                     fontWeight: FontWeight.w600,
                     width: double.infinity,
+                    isDisabled: selectedOptions == null,
                     onTap: () {
                       filterNotifier.removeFilter(filterType);
                       Navigator.pop(context);
