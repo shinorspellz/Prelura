@@ -245,7 +245,7 @@ class ProfileCardWidget extends ConsumerWidget {
                     HapticFeedback.lightImpact();
 
                     Share.shareUri(Uri.parse(
-                        'https://prelura.com/profile/user/${user?.username}'));
+                        'https://www.prelura.com/profile/user/${user?.username}'));
                   },
                   child: RenderSvg(
                       svgPath: PreluraIcons.forward_icon_svg,
