@@ -60,14 +60,14 @@ class SellerProfileCard extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  Positioned(
-                      bottom: -2,
-                      right: 0,
-                      child: RenderSvgWithoutColor(
-                        svgPath: PreluraIcons.trusted_svg,
-                        svgHeight: 18,
-                        svgWidth: 18,
-                      ))
+                  // Positioned(
+                  //     bottom: -2,
+                  //     right: 0,
+                  //     child: RenderSvgWithoutColor(
+                  //       svgPath: PreluraIcons.trusted_svg,
+                  //       svgHeight: 18,
+                  //       svgWidth: 18,
+                  //     ))
                 ],
               )
             ] else ...[
@@ -104,14 +104,14 @@ class SellerProfileCard extends ConsumerWidget {
                         fadeOutDuration: Duration.zero,
                       ),
                     ),
-                  Positioned(
-                      bottom: -2,
-                      right: 0,
-                      child: RenderSvgWithoutColor(
-                        svgPath: PreluraIcons.trusted_svg,
-                        svgHeight: 18,
-                        svgWidth: 18,
-                      ))
+                  // Positioned(
+                  //     bottom: -2,
+                  //     right: 0,
+                  //     child: RenderSvgWithoutColor(
+                  //       svgPath: PreluraIcons.trusted_svg,
+                  //       svgHeight: 18,
+                  //       svgWidth: 18,
+                  //     ))
                 ],
               ),
             ],

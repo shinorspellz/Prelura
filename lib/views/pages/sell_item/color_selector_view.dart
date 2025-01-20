@@ -169,7 +169,7 @@ class _ColorSelectorScreenState extends ConsumerState<ColorSelectorScreen> {
         style: ElevatedButton.styleFrom(
           backgroundColor: PreluraColors.activeColor,
           padding: const EdgeInsets.symmetric(vertical: 16),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         child: Center(
           child: Text(

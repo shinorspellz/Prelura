@@ -8,10 +8,17 @@ import 'auth_text_field.dart';
 
 class PriceFieldWidget extends ConsumerWidget {
   const PriceFieldWidget(
-      {super.key, required this.textController, this.width, this.label});
+      {super.key,
+      required this.textController,
+      this.width,
+      this.label,
+      this.onSaved,
+      this.onChanged});
   final TextEditingController textController;
   final double? width;
   final String? label;
+  final Function(String)? onChanged;
+  final Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,18 +56,8 @@ class PriceFieldWidget extends ConsumerWidget {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             controller: textController,
-            onChanged: (newValue) {
-              // String numericValue =
-              //     newValue.replaceAll(RegExp(r'[^0-9]'), '');
-              // log(numericValue);
-              // if (numericValue.isEmpty) {
-              //   textController.text = "0";
-              // } else {
-              //   textController.text = numericValue.length > 1
-              //       ? numericValue.replaceFirst(RegExp(r'^0+'), '')
-              //       : numericValue;
-              // }
-            },
+            onChanged: onChanged,
+            onSaved: onSaved,
             minWidth: width,
             padding: EdgeInsets.symmetric(vertical: 13, horizontal: 16),
             showPrimaryBorder: true,

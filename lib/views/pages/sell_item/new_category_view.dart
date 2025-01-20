@@ -2,20 +2,28 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/categories_provider.dart';
+import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 // import 'package:prelura_app/controller/product/product_provider.dart';
 // import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 // import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/categories/new_categories.dart';
+import 'package:prelura_app/res/context_entension.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 // import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../../model/product/categories/category_model.dart';
 import '../../../res/colors.dart';
 import '../../../res/images.dart';
 // import '../../shimmers/category_shimmer.dart';
+import '../../../res/utils.dart';
+import '../../widgets/app_checkbox.dart';
 import '../../widgets/menu_card.dart';
+
+final selectedParentCategory = StateProvider<String?>((ref) => null);
 
 @RoutePage()
 class NewCategoryScreen extends ConsumerStatefulWidget {
@@ -53,33 +61,47 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
     return Expanded(
       child: ListView.builder(
         itemCount: categories.length,
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.only(top: 20),
         itemBuilder: (_, index) {
           final cat = categories[index];
           final svgPath =
               PreluraIcons.getConstant(keyword: cat.name!, category: null);
           final hasSvg = svgPath?.isNotEmpty ?? false;
 
-          return MenuCard(
-              title: cat.name!,
-              svgPath: hasSvg ? svgPath : null,
-              icon: hasSvg
-                  ? null
-                  : const Icon(Icons.settings,
-                      color: PreluraColors.activeColor),
-              trailingIcon: cat.hasChildren == true
-                  ? null
-                  : const Icon(
-                      Icons.radio_button_off,
-                      size: 18,
-                    ),
-              onTap: () {
-                if (cat.hasChildren ?? false) {
-                  context.router.push(NewSubCategoryRoute(
-                    parentId: cat.id!,
-                    parentName: cat.name!,
-                  ));
-                } else {}
-              });
+          return cat.hasChildren == false
+              ? PreluraCheckBox(
+                  title: cat.name!,
+                  isChecked: false,
+                  onChanged: (value) {
+                    if (cat.hasChildren ?? false) {
+                      ref.read(selectedParentCategory.notifier).state =
+                          cat.name!;
+                      context.router.push(NewSubCategoryRoute(
+                        parentId: cat.id!,
+                        parentName: cat.name!,
+                      ));
+                    } else {}
+                  },
+                )
+              : MenuCard(
+                  title: cat.name!,
+                  svgPath: hasSvg ? svgPath : null,
+                  icon: hasSvg
+                      ? null
+                      : const Icon(Icons.settings,
+                          color: PreluraColors.activeColor),
+                  onTap: () {
+                    if (cat.hasChildren ?? false) {
+                      ref.read(selectedParentCategory.notifier).state =
+                          cat.name!;
+                      ref.read(sellItemProvider.notifier).removeCategory();
+                      context.router.push(NewSubCategoryRoute(
+                        parentId: cat.id!,
+                        parentName: cat.name!,
+                      ));
+                    } else {}
+                  });
         },
       ),
     );
@@ -88,6 +110,8 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
   @override
   Widget build(BuildContext context) {
     final categoryState = ref.watch(categoryNotifierProvider);
+    final state = ref.watch(sellItemProvider);
+
     actualList = categoryState.categoriesLog["10000"] ?? [];
 
     return Scaffold(
@@ -102,28 +126,78 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
       ),
       body: Column(
         children: [
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Searchwidget(
-              padding: EdgeInsets.zero,
-              obscureText: false,
-              shouldReadOnly: false,
-              hintText: "Search Categories",
-              enabled: true,
-              showInputBorder: true,
-              autofocus: false,
-              cancelButton: true,
-              onChanged: (val) => onSearch(val, actualList),
-            ),
-          ),
+          // const SizedBox(height: 10),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 15),
+          //   child: Searchwidget(
+          //     padding: EdgeInsets.zero,
+          //     obscureText: false,
+          //     shouldReadOnly: false,
+          //     hintText: "Search Categories",
+          //     enabled: true,
+          //     showInputBorder: true,
+          //     autofocus: false,
+          //     cancelButton: true,
+          //     onChanged: (val) => onSearch(val, actualList),
+          //   ),
+          // ),
           if (categoryState.isLoading)
             const Center(child: CircularProgressIndicator.adaptive()),
-          if (isSearching && filter.isNotEmpty)
-            buildCategoryList(filter)
-          else if (!isSearching && actualList.isNotEmpty)
-            buildCategoryList(actualList)
-          else if (!categoryState.isLoading)
+          if (isSearching && filter.isNotEmpty) ...[
+            buildCategoryList(filter),
+            Container(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                margin: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: PreluraColors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Text(
+                    "Note: Turning on vacation will hide your items from all catalogues",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: getDefaultSize(),
+                        fontWeight: FontWeight.w600,
+                        color: PreluraColors.grey))),
+          ] else if (!isSearching && actualList.isNotEmpty) ...[
+            buildCategoryList(actualList),
+            40.verticalSpacing,
+            Container(
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                margin: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: PreluraColors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  children: [
+                    Text("Selected:",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: getDefaultSize(),
+                            fontWeight: FontWeight.w600,
+                            color: context.isDarkMode
+                                ? PreluraColors.white
+                                : PreluraColors.black)),
+                    12.horizontalSpacing,
+                    Text(
+                        "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: getDefaultSize(),
+                            fontWeight: FontWeight.w500,
+                            color: PreluraColors.grey)),
+                    Spacer(),
+                    Text("${state.category?.name ?? ""}",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontSize: getDefaultSize(),
+                            fontWeight: FontWeight.w600,
+                            color: PreluraColors.primaryColor)),
+                  ],
+                )),
+            Spacer()
+          ] else if (!categoryState.isLoading)
             const Expanded(child: Center(child: Text("No Categories Found"))),
         ],
       ),

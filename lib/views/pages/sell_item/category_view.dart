@@ -44,31 +44,31 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
 
       body: Column(
         children: [
-          10.verticalSpacing,
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Searchwidget(
-              padding: EdgeInsets.zero,
-              obscureText: false,
-              shouldReadOnly: false,
-              hintText: "Search Categories",
-              enabled: true,
-              showInputBorder: true,
-              autofocus: false,
-              cancelButton: true,
-              onChanged: (val) {
-                if (ref.read(categoryProvider).valueOrNull == null) return;
-                isSearching = val.isNotEmpty;
-                filter = ref
-                    .read(categoryProvider)
-                    .valueOrNull!
-                    .where(
-                        (e) => e.name.toLowerCase().contains(val.toLowerCase()))
-                    .toList();
-                setState(() {});
-              },
-            ),
-          ),
+          // 10.verticalSpacing,
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 15),
+          //   child: Searchwidget(
+          //     padding: EdgeInsets.zero,
+          //     obscureText: false,
+          //     shouldReadOnly: false,
+          //     hintText: "Search Categories",
+          //     enabled: true,
+          //     showInputBorder: true,
+          //     autofocus: false,
+          //     cancelButton: true,
+          //     onChanged: (val) {
+          //       if (ref.read(categoryProvider).valueOrNull == null) return;
+          //       isSearching = val.isNotEmpty;
+          //       filter = ref
+          //           .read(categoryProvider)
+          //           .valueOrNull!
+          //           .where(
+          //               (e) => e.name.toLowerCase().contains(val.toLowerCase()))
+          //           .toList();
+          //       setState(() {});
+          //     },
+          //   ),
+          // ),
           if (isSearching) ...[
             Expanded(
               child: ListView.builder(
