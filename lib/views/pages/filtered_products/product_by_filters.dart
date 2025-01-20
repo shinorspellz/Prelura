@@ -19,7 +19,7 @@ import '../search_result/view/search_result.dart';
 
 @RoutePage()
 class FilterProductPage extends StatefulHookConsumerWidget {
-  const FilterProductPage(
+  FilterProductPage(
       {super.key,
       required this.title,
       required this.parentCategory,
@@ -37,6 +37,11 @@ class FilterProductPage extends StatefulHookConsumerWidget {
 class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     with AutoRouteAware {
   final controller = FilterProductPage.scrollController;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -77,8 +82,6 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
     //   },
     // );
 
-    final filters = ref.watch(productFilterProvider);
-    final state = ref.watch(productFilterProvider.notifier);
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
@@ -88,42 +91,6 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
           ),
           centerTitle: true,
           appbarTitle: widget.title),
-      //   body: productProvider.when(
-      //     data: (products) => GridView.builder(
-      //       padding: const EdgeInsets.all(10),
-      //       controller: scrollController,
-      //       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //         crossAxisCount: 2,
-      //         crossAxisSpacing: 10,
-      //         mainAxisSpacing: 10,
-      //         childAspectRatio: 0.52,
-      //       ),
-      //       itemCount: products.length,
-      //       itemBuilder: (context, index) {
-      //         if (index < products.length) {
-      //           return ProductCard(
-      //             product: products[index],
-      //             isSimilar: true,
-      //           );
-      //         } else {
-      //           if (productNotifier.canLoadMore()) {
-      //             if (productProvider.isLoading) {
-      //               return const PaginationLoadingIndicator();
-      //             }
-      //           }
-      //         }
-      //       },
-      //     ),
-      //     loading: () => GridShimmer(),
-      //     error: (err, stack) => Center(
-      //       child: Text(
-      //         'Failed to load products: $err',
-      //         style: Theme.of(context).textTheme.bodyMedium,
-      //       ),
-      //     ),
-      //   ),
-      // );
-
       body: RefreshIndicator(
         onRefresh: () async {
           await ref.refresh(filteredProductProvider(searchQuery).future);
@@ -157,12 +124,25 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
                           cancelButton: true,
                           onChanged: (val) {
                             searchQuery = val;
+                            log(ref
+                                .read(selectedFilteredProductProvider)
+                                .toJson()
+                                .toString());
                             setState(() {});
                           },
                         ),
-                        FiltersOptions(excludedFilterTypes: [
-                          FilterTypes.category,
-                        ]),
+                        FiltersOptions(
+                            excludedFilterTypes: [
+                              FilterTypes.category,
+                            ],
+                            onTap: () {
+                              ref
+                                      .read(selectedFilteredProductProvider
+                                          .notifier)
+                                      .state =
+                                  Input$ProductFiltersInput(
+                                      parentCategory: widget.parentCategory);
+                            }),
                       ],
                     ),
                   )),

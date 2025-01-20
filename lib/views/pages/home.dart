@@ -22,7 +22,8 @@ import 'home_tabs/filter tabs.dart';
 
 final selectedTabProvider = StateProvider<int>((ref) => 0);
 final selectedNameProvider = StateProvider<String>((ref) => "");
-final selectedIdProvider = StateProvider<int>((ref) => 0);
+final selectedCategoryProvider = StateProvider<Enum$ParentCategoryEnum>(
+    (ref) => Enum$ParentCategoryEnum.WOMEN);
 final requestedProduct = StateProvider<List<ProductModel>>((ref) => []);
 
 @RoutePage()
@@ -47,7 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
         ref.read(allProductProvider(null).notifier).fetchMoreData(context);
-        final selectedId = ref.watch(selectedIdProvider);
+        final selectedCategory = ref.watch(selectedCategoryProvider);
 
         if (ref.watch(selectedTabProvider) != 0 &&
             ref.watch(selectedTabProvider) != 1) {
@@ -87,6 +88,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (ref.watch(selectedTabProvider) != 0 &&
         ref.watch(selectedTabProvider) != 1) {
       log("i am here");
+      final selectedCategory = ref.watch(selectedCategoryProvider);
       paginationIndicator = buildPaginationIndicator(
           canLoadMore: ref
               .read(filteredProductProvider(searchQuery).notifier)
@@ -238,7 +240,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 2:
         return FilterTab(
           searchQuery: searchQuery,
-          id: ref.read(selectedIdProvider),
+          category: ref.read(selectedCategoryProvider),
           title: ref.read(selectedNameProvider),
           products: ref.read(requestedProduct),
         );
@@ -246,7 +248,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 3:
         return FilterTab(
           searchQuery: searchQuery,
-          id: ref.read(selectedIdProvider),
+          category: ref.read(selectedCategoryProvider),
           title: ref.read(selectedNameProvider),
           products: ref.read(requestedProduct),
         ); // Replace with your actual widget for "All"
@@ -254,7 +256,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       case 4:
         return FilterTab(
           searchQuery: searchQuery,
-          id: ref.read(selectedIdProvider),
+          category: ref.read(selectedCategoryProvider),
           title: ref.read(selectedNameProvider),
           products: ref.read(requestedProduct),
         ); // Replace with your actual widget for "All"
@@ -324,8 +326,8 @@ Widget _buildTabs(WidgetRef ref, int selectedTab, context, String searchQuery,
                   ref.read(selectedFilteredProductProvider.notifier).state =
                       Input$ProductFiltersInput(
                           parentCategory: matchingCategory);
-                  ref.read(selectedIdProvider.notifier).state =
-                      int.parse(categoryId?.id);
+                  ref.read(selectedCategoryProvider.notifier).state =
+                      matchingCategory;
                 }
               }
             },

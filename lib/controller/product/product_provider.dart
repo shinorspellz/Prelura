@@ -116,6 +116,12 @@ final userProduct =
       .where((e) => e.key == FilterTypes.brand)
       .firstOrNull
       ?.value;
+
+  final priceFilter = filters.entries
+      .where((e) => e.key == FilterTypes.price)
+      .firstOrNull
+      ?.value;
+
   // final sizeFilter = filters.entries
   //     .where((e) => e.key == FilterTypes.size)
   //     .firstOrNull
@@ -169,6 +175,11 @@ final userProduct =
       .firstOrNull
       ?.key;
 
+  final maxPrice = priceFilter?.split(' ').last;
+  final minPrice = priceFilter?.split(' ').first;
+  log(maxPrice.toString(), name: 'maxPrice');
+  log(minPrice.toString(), name: 'minPrice');
+
   final searchQuery = ref.watch(userProductSearchQuery);
   final sort = ref.watch(userProductSort);
 
@@ -178,10 +189,16 @@ final userProduct =
     filters: Input$ProductFiltersInput(
         brand: brand?.id,
         // size: size,
-        
+
         parentCategory: parentCategory,
         condition: condition,
         style: style,
+        maxPrice: maxPrice != null && maxPrice.isNotEmpty
+            ? double.parse(maxPrice ?? "0")
+            : null,
+        minPrice: minPrice != null && minPrice.isNotEmpty
+            ? double.parse(minPrice ?? "0")
+            : 0,
         category: categoryFilter == null ? null : int.tryParse(categoryFilter),
         colors: color != null ? [color] : []),
     search: searchQuery,
@@ -598,6 +615,7 @@ class FilteredProductController
   String? _query;
 
   Input$ProductFiltersInput? get currentFilter => _filter;
+  int? get totalLength => _brandTotalItems;
 
   @override
   Future<List<ProductModel>> build(String? query) async {
@@ -608,22 +626,25 @@ class FilteredProductController
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in build');
 
+    log(query!, name: ' query filter in build');
+
     // updateFilter(filter);
 
     try {
       return await _getProducts(
-        filter: ref.watch(selectedFilteredProductProvider),
+        filter: ref.read(selectedFilteredProductProvider),
         pageNumber: _currentPage,
         query: query,
       );
     } catch (e, stack) {
       state = AsyncError(e, stack);
-      return [];
+      return state.value!;
     }
   }
 
   void updateFilter(Input$ProductFiltersInput updatedFilter) async {
     _filter = updatedFilter;
+    ref.read(selectedFilteredProductProvider.notifier).state = updatedFilter;
     log(_filter!.toJson().toString(),
         name: ' filteredProducts filter in update ');
     log(updatedFilter.toJson().toString(),

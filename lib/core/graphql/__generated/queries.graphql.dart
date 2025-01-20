@@ -20270,11 +20270,13 @@ class _CopyWithStubImpl$Variables$Query$following<TRes>
 class Query$following {
   Query$following({
     this.following,
+    this.followingTotalNumber,
     this.$__typename = 'Query',
   });
 
   factory Query$following.fromJson(Map<String, dynamic> json) {
     final l$following = json['following'];
+    final l$followingTotalNumber = json['followingTotalNumber'];
     final l$$__typename = json['__typename'];
     return Query$following(
       following: (l$following as List<dynamic>?)
@@ -20282,11 +20284,14 @@ class Query$following {
               ? null
               : Query$following$following.fromJson((e as Map<String, dynamic>)))
           .toList(),
+      followingTotalNumber: (l$followingTotalNumber as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<Query$following$following?>? following;
+
+  final int? followingTotalNumber;
 
   final String $__typename;
 
@@ -20294,6 +20299,8 @@ class Query$following {
     final _resultData = <String, dynamic>{};
     final l$following = following;
     _resultData['following'] = l$following?.map((e) => e?.toJson()).toList();
+    final l$followingTotalNumber = followingTotalNumber;
+    _resultData['followingTotalNumber'] = l$followingTotalNumber;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -20302,9 +20309,11 @@ class Query$following {
   @override
   int get hashCode {
     final l$following = following;
+    final l$followingTotalNumber = followingTotalNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$following == null ? null : Object.hashAll(l$following.map((v) => v)),
+      l$followingTotalNumber,
       l$$__typename,
     ]);
   }
@@ -20331,6 +20340,11 @@ class Query$following {
         }
       }
     } else if (l$following != lOther$following) {
+      return false;
+    }
+    final l$followingTotalNumber = followingTotalNumber;
+    final lOther$followingTotalNumber = other.followingTotalNumber;
+    if (l$followingTotalNumber != lOther$followingTotalNumber) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -20361,6 +20375,7 @@ abstract class CopyWith$Query$following<TRes> {
 
   TRes call({
     List<Query$following$following?>? following,
+    int? followingTotalNumber,
     String? $__typename,
   });
   TRes following(
@@ -20386,12 +20401,16 @@ class _CopyWithImpl$Query$following<TRes>
 
   TRes call({
     Object? following = _undefined,
+    Object? followingTotalNumber = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$following(
         following: following == _undefined
             ? _instance.following
             : (following as List<Query$following$following?>?),
+        followingTotalNumber: followingTotalNumber == _undefined
+            ? _instance.followingTotalNumber
+            : (followingTotalNumber as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -20420,6 +20439,7 @@ class _CopyWithStubImpl$Query$following<TRes>
 
   call({
     List<Query$following$following?>? following,
+    int? followingTotalNumber,
     String? $__typename,
   }) =>
       _res;
@@ -20593,6 +20613,13 @@ const documentNodeQueryfollowing = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'followingTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -21380,11 +21407,13 @@ class _CopyWithStubImpl$Variables$Query$followers<TRes>
 class Query$followers {
   Query$followers({
     this.followers,
+    this.followersTotalNumber,
     this.$__typename = 'Query',
   });
 
   factory Query$followers.fromJson(Map<String, dynamic> json) {
     final l$followers = json['followers'];
+    final l$followersTotalNumber = json['followersTotalNumber'];
     final l$$__typename = json['__typename'];
     return Query$followers(
       followers: (l$followers as List<dynamic>?)
@@ -21392,11 +21421,14 @@ class Query$followers {
               ? null
               : Query$followers$followers.fromJson((e as Map<String, dynamic>)))
           .toList(),
+      followersTotalNumber: (l$followersTotalNumber as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final List<Query$followers$followers?>? followers;
+
+  final int? followersTotalNumber;
 
   final String $__typename;
 
@@ -21404,6 +21436,8 @@ class Query$followers {
     final _resultData = <String, dynamic>{};
     final l$followers = followers;
     _resultData['followers'] = l$followers?.map((e) => e?.toJson()).toList();
+    final l$followersTotalNumber = followersTotalNumber;
+    _resultData['followersTotalNumber'] = l$followersTotalNumber;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -21412,9 +21446,11 @@ class Query$followers {
   @override
   int get hashCode {
     final l$followers = followers;
+    final l$followersTotalNumber = followersTotalNumber;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
+      l$followersTotalNumber,
       l$$__typename,
     ]);
   }
@@ -21441,6 +21477,11 @@ class Query$followers {
         }
       }
     } else if (l$followers != lOther$followers) {
+      return false;
+    }
+    final l$followersTotalNumber = followersTotalNumber;
+    final lOther$followersTotalNumber = other.followersTotalNumber;
+    if (l$followersTotalNumber != lOther$followersTotalNumber) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -21471,6 +21512,7 @@ abstract class CopyWith$Query$followers<TRes> {
 
   TRes call({
     List<Query$followers$followers?>? followers,
+    int? followersTotalNumber,
     String? $__typename,
   });
   TRes followers(
@@ -21496,12 +21538,16 @@ class _CopyWithImpl$Query$followers<TRes>
 
   TRes call({
     Object? followers = _undefined,
+    Object? followersTotalNumber = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$followers(
         followers: followers == _undefined
             ? _instance.followers
             : (followers as List<Query$followers$followers?>?),
+        followersTotalNumber: followersTotalNumber == _undefined
+            ? _instance.followersTotalNumber
+            : (followersTotalNumber as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -21530,6 +21576,7 @@ class _CopyWithStubImpl$Query$followers<TRes>
 
   call({
     List<Query$followers$followers?>? followers,
+    int? followersTotalNumber,
     String? $__typename,
   }) =>
       _res;
@@ -21703,6 +21750,13 @@ const documentNodeQueryfollowers = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'followersTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),

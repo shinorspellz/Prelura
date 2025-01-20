@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -96,6 +97,9 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
 
     // Watch the followersProvider with current query parameters
     final following = ref.watch(followingProvider(queryParams));
+    final followingTotalNumber =
+        ref.watch(followingTotalProvider(queryParams.username));
+    log(followingTotalNumber.valueOrNull.toString());
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -114,25 +118,26 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
         header: null,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: following.when(
-            data: (followersList) {
-              if (followersList.isEmpty) {
-                return EmptyScreenPlaceholder(text: "No followings");
-              }
-              return Column(
-                children: [
-                  Searchwidget(
-                    controller: _searchController,
-                    obscureText: false,
-                    shouldReadOnly: false,
-                    enabled: true,
-                    showInputBorder: true,
-                    autofocus: false,
-                    cancelButton: true,
-                    hintText: "search for members",
-                  ),
-                  const SizedBox(height: 16),
-                  Expanded(
+          child: Column(
+            children: [
+              if ((followingTotalNumber.valueOrNull ?? 0) > 0)
+                Searchwidget(
+                  controller: _searchController,
+                  obscureText: false,
+                  shouldReadOnly: false,
+                  enabled: true,
+                  showInputBorder: true,
+                  autofocus: false,
+                  cancelButton: true,
+                  hintText: "search for members",
+                ),
+              const SizedBox(height: 16),
+              following.when(
+                data: (followersList) {
+                  if (followersList.isEmpty) {
+                    return EmptyScreenPlaceholder(text: "No followings");
+                  }
+                  return Expanded(
                     child: ListView.builder(
                       itemCount: followersList.length,
                       itemBuilder: (context, index) {
@@ -142,18 +147,18 @@ class _FollowingScreenState extends ConsumerState<FollowingScreen> {
                         );
                       },
                     ),
-                  ),
-                ],
-              );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stackTrace) {
-              return ErrorPlaceholder(
-                  error: "An error occured",
-                  onTap: () {
-                    ref.refresh(followingProvider(queryParams).future);
-                  });
-            },
+                  );
+                },
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stackTrace) {
+                  return ErrorPlaceholder(
+                      error: "An error occured",
+                      onTap: () {
+                        ref.refresh(followingProvider(queryParams).future);
+                      });
+                },
+              ),
+            ],
           ),
         ),
       ),

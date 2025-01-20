@@ -44,7 +44,9 @@ class _ProductFilterPageState
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
+        ref
+            .read(filteredProductProvider((searchQuery)).notifier)
+            .fetchMoreData();
       }
     });
   }
@@ -111,8 +113,15 @@ class _ProductFilterPageState
                           },
                         ),
                         FiltersOptions(
-                          excludedFilterTypes: [FilterTypes.style],
-                        ),
+                            excludedFilterTypes: [FilterTypes.style],
+                            onTap: () {
+                              ref
+                                      .read(selectedFilteredProductProvider
+                                          .notifier)
+                                      .state =
+                                  Input$ProductFiltersInput(
+                                      style: widget.style);
+                            }),
                       ],
                     ),
                   )),

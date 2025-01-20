@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -72,8 +73,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
       if (widget.username != null) {
         ref.refresh(otherUserProfile(widget.username!));
         await ref.refresh(userProduct(widget.username!).future);
-        await ref.refresh(followersTotalProvider.future);
-        await ref.refresh(followingTotalProvider.future);
       } else {
         final user = ref.refresh(userProvider).valueOrNull;
 
@@ -558,7 +557,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                             .read(filterUserProductProvider
                                                 .notifier)
                                             .updateFilter(FilterTypes.category,
-                                                x.id.toString(), user.username);
+                                                x.id.toString());
                                         ref
                                             .read(userSubCategoryProvider
                                                 .notifier)
@@ -749,10 +748,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: ref.watch(userProduct(user.username)).when(
                               skipLoadingOnRefresh: false,
-                              data: (products) => DisplaySection(
-                                products: products,
-                                isInProduct: false,
-                              ),
+                              data: (products) {
+                                if (products.isEmpty) {
+                                  return NoProductWidget();
+                                }
+                                return DisplaySection(
+                                  products: products,
+                                  isInProduct: false,
+                                );
+                              },
                               error: (e, _) {
                                 return Center(
                                   child: Column(
