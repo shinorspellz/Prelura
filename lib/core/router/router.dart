@@ -20,8 +20,11 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-            page: LoginRoute.page,
+            page: OnboardingRoute.page,
             initial: !_ref.read(authStateProvider).requireValue),
+        AutoRoute(
+          page: LoginRoute.page,
+        ),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: ForgotPasswordRoute.page),
         AutoRoute(page: NewPasswordRoute.page),
