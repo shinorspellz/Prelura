@@ -74,8 +74,6 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                   isChecked: false,
                   onChanged: (value) {
                     if (cat.hasChildren ?? false) {
-                      ref.read(selectedParentCategory.notifier).state =
-                          cat.name!;
                       context.router.push(NewSubCategoryRoute(
                         parentId: cat.id!,
                         parentName: cat.name!,
@@ -92,9 +90,6 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                           color: PreluraColors.activeColor),
                   onTap: () {
                     if (cat.hasChildren ?? false) {
-                      ref.read(selectedParentCategory.notifier).state =
-                          cat.name!;
-                      ref.read(sellItemProvider.notifier).removeCategory();
                       context.router.push(NewSubCategoryRoute(
                         parentId: cat.id!,
                         parentName: cat.name!,
@@ -144,73 +139,60 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
             const Center(child: CircularProgressIndicator.adaptive()),
           if (isSearching && filter.isNotEmpty) ...[
             buildCategoryList(filter),
-            Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-                margin: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: PreluraColors.grey,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Text(
-                    "Note: Turning on vacation will hide your items from all catalogues",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontSize: getDefaultSize(),
-                        fontWeight: FontWeight.w600,
-                        color: PreluraColors.grey))),
           ] else if (!isSearching && actualList.isNotEmpty) ...[
             buildCategoryList(actualList),
             02.verticalSpacing,
-            Expanded(
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                    height: 50,
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-                    margin: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: PreluraColors.grey,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      children: [
-                        Text("Selected:",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: getDefaultSize(),
-                                    fontWeight: FontWeight.w600,
-                                    color: context.isDarkMode
-                                        ? PreluraColors.white
-                                        : PreluraColors.black)),
-                        12.horizontalSpacing,
-                        Text(
-                            "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: getDefaultSize(),
-                                    fontWeight: FontWeight.w500,
-                                    color: PreluraColors.grey)),
-                        Spacer(),
-                        Text("${state.category?.name ?? ""}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
-                                    fontSize: getDefaultSize(),
-                                    fontWeight: FontWeight.w600,
-                                    color: PreluraColors.primaryColor)),
-                      ],
-                    )),
+            if (state.category != null)
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                      height: 50,
+                      alignment: Alignment.center,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                      margin: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: PreluraColors.grey,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Row(
+                        children: [
+                          Text("Selected:",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontSize: getDefaultSize(),
+                                      fontWeight: FontWeight.w600,
+                                      color: context.isDarkMode
+                                          ? PreluraColors.white
+                                          : PreluraColors.black)),
+                          12.horizontalSpacing,
+                          Text(
+                              "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontSize: getDefaultSize(),
+                                      fontWeight: FontWeight.w500,
+                                      color: PreluraColors.grey)),
+                          Spacer(),
+                          Text("${state.category?.name ?? ""}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontSize: getDefaultSize(),
+                                      fontWeight: FontWeight.w600,
+                                      color: PreluraColors.primaryColor)),
+                        ],
+                      )),
+                ),
               ),
-            ),
             // Spacer()
           ] else if (!categoryState.isLoading)
             const Expanded(child: Center(child: Text("No Categories Found"))),

@@ -500,7 +500,7 @@ Widget _buildBrandsYouLove(BuildContext context, WidgetRef ref) {
                           ),
                           6.verticalSpacing,
                           Text(
-                            "Products from your favorite brands",
+                            "Recommended from your favorite brands",
                             textAlign: TextAlign.left,
                             style: context.textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.w400,

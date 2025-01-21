@@ -127,7 +127,7 @@ class SellerProfileCard extends ConsumerWidget {
             ),
             3.verticalSpacing,
             Text(
-              "${user.noOfFollowers} ${(user?.noOfFollowers != null && (user.noOfFollowing! > 1 || user?.noOfFollowers?.toInt() == 0)) ? " followers" : " follower"}",
+              "${user.noOfFollowers} ${(user?.noOfFollowers != null && (user.noOfFollowers!.toInt() > 1 || user?.noOfFollowers?.toInt() == 0)) ? " followers" : " follower"}",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                     color: PreluraColors.grey,

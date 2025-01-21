@@ -13,10 +13,12 @@ class PriceFieldWidget extends ConsumerWidget {
       required this.textController,
       this.width,
       this.label,
+      this.maxLength,
       this.onSaved,
       this.onChanged});
   final TextEditingController textController;
   final double? width;
+  final int? maxLength;
   final String? label;
   final Function(String)? onChanged;
   final Function(String?)? onSaved;
@@ -57,6 +59,7 @@ class PriceFieldWidget extends ConsumerWidget {
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             controller: textController,
+            maxLength: maxLength,
             formatter: [
               DecimalTextInputFormatter(decimalRange: 2),
               FilteringTextInputFormatter.digitsOnly,

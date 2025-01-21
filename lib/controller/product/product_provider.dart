@@ -376,7 +376,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           materials: materials,
           style: style,
           customBrand: customBrand,
-          // isFeatured: isFeatured,
+          isFeatured: isFeatured,
         ),
       );
       ref.invalidate(userProduct);
@@ -673,6 +673,10 @@ class FilteredProductController
   }
 
   void removeFilter() async {
+    final updatedFilter = ref.read(productFilterProvider);
+
+    _filter = Input$ProductFiltersInput();
+
     try {
       await _getProducts(
         filter: _filter,

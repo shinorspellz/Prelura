@@ -13,6 +13,10 @@ import '../../../widgets/app_checkbox.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../../profile_details/widgets/show_filter_modal.dart';
 
+final Map<FilterTypes, Input$ProductFiltersInput> filterServerMapping = {
+  FilterTypes.brand: Input$ProductFiltersInput()
+};
+
 final searchFilterProvider =
     StateNotifierProvider<SearchFilterNotifier, Map<FilterTypes, String>>(
         (ref) {
@@ -158,7 +162,7 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
       final updatedFilter = providerFilter.currentFilter?.copyWith(
         brand: filterType == FilterTypes.brand
             ? int.parse(ref
-                .watch(brandsProvider)
+                .read(brandsProvider)
                 .valueOrNull!
                 .firstWhere((e) => e.name == value)
                 .id
@@ -258,7 +262,7 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
           colors: filterType == FilterTypes.color
               ? [
                   ref
-                      .watch(colorsProvider)
+                      .read(colorsProvider)
                       .entries
                       ?.where((e) => e.key == value)
                       .firstOrNull
@@ -270,17 +274,12 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
       return;
     }
-
-    // Invalidate the provider to trigger a rebuild
-    // ref.invalidate(filteredProductProvider);
-    // ref.refresh(filteredProductProvider("").future);
-
-    // ref.invalidate(filteredProductProvider);
   }
 
   void removeFilter(FilterTypes filterType) {
     state.remove(filterType);
     final providerFilter = ref.read(filteredProductProvider('').notifier);
+    // providerFilter.removeFilter();
 
     ref.refresh(filteredProductProvider("").future);
     ref.refresh(discountedProductsProvider("").future);
