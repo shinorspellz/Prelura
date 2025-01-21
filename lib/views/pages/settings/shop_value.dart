@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/user/user_earnings_controller.dart';
 import 'package:prelura_app/core/utils/currency_format.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/animated_counter.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -70,56 +71,63 @@ class _ShopValueScreenState extends ConsumerState<ShopValueScreen> {
           child: Column(
             children: [
               Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  padding: EdgeInsets.fromLTRB(16, 20, 16, 10),
+                  child: Column(
                     children: [
-                      Text("Current Shop value",
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Current Shop value",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w500,
                                   )),
-                      16.horizontalSpacing,
-                      AnimatedCount(
-                        count: userEarinings?.networth.toInt() ??
-                            0, //currentShopValue,
-                        formatToCurrency: true,
-                        duration: Duration(milliseconds: 900),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge
-                            ?.copyWith(color: PreluraColors.grey),
+                          16.horizontalSpacing,
+                          AnimatedCount(
+                            count: userEarinings?.networth.toInt() ??
+                                0, //currentShopValue,
+                            formatToCurrency: true,
+                            duration: Duration(milliseconds: 900),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    color: PreluraColors.grey,
+                                    fontWeight: FontWeight.w600),
+                          ),
+                          // Text(
+                          //   "10000".formatToPounds,
+                          //   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
+                          // ),
+                        ],
                       ),
-                      // Text(
-                      //   "10000".formatToPounds,
-                      //   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
-                      // ),
-                    ],
-                  )),
-              buildDivider(context),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("Total Listings",
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                  )),
-                      16.horizontalSpacing,
-                      AnimatedCount(
-                        count: user?.listing?.toInt() ?? 0, //currentShopValue,
-                        duration: Duration(milliseconds: 900),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: PreluraColors.grey),
+                      2.verticalSpacing,
+                      Row(
+                        children: [
+                          AnimatedCount(
+                            count:
+                                user?.listing?.toInt() ?? 0, //currentShopValue,
+                            duration: Duration(milliseconds: 900),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                    color: PreluraColors.grey,
+                                    fontWeight: FontWeight.w600),
+                          ),
+                          3.horizontalSpacing,
+                          Text("active listings",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: PreluraColors.grey,
+                                      fontSize: getDefaultSize(),
+                                      fontWeight: FontWeight.w600))
+                        ],
                       ),
-                      // Text(
-                      //   "10000".formatToPounds,
-                      //   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: PreluraColors.grey),
-                      // ),
                     ],
                   )),
               buildDivider(context),

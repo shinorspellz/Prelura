@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/res/context_entension.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
+import '../../res/ui_constants.dart';
 import '../../res/utils.dart';
 import 'auth_text_field.dart';
 
@@ -48,30 +50,53 @@ class PriceFieldWidget extends ConsumerWidget {
                   ?.copyWith(fontSize: getDefaultSize(size: 16))),
         ),
         Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-              border: Border.all(width: 1, color: PreluraColors.primaryColor)),
-          child: PreluraAuthTextField(
-            hintText: label ?? "Price",
-            keyboardType: TextInputType.number,
-            textInputAction: TextInputAction.done,
-            controller: textController,
-            maxLength: maxLength,
-            formatter: [
-              DecimalTextInputFormatter(decimalRange: 2),
-              FilteringTextInputFormatter.digitsOnly,
-              MaxValueTextInputFormatter(99999),
-            ],
-            onChanged: onChanged,
-            onSaved: onSaved,
-            minWidth: width,
-            padding: EdgeInsets.symmetric(vertical: 13, horizontal: 16),
-            showPrimaryBorder: true,
-            showBorder: false,
-          ),
+          width: width,
+          decoration: BoxDecoration(),
+          child: TextFormField(
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.done,
+              controller: textController,
+              maxLength: maxLength,
+              cursorColor: Theme.of(context).primaryColor,
+              inputFormatters: [
+                DecimalTextInputFormatter(decimalRange: 2),
+                FilteringTextInputFormatter.digitsOnly,
+                MaxValueTextInputFormatter(99999),
+              ],
+              onChanged: onChanged,
+              onSaved: onSaved,
+              decoration: UIConstants.instance
+                  .inputDecoration(
+                    labelText: label ?? "Price",
+                    context,
+                    hintText: "Price",
+                    showBorder: true,
+                    showPrimaryBorder: false,
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 13, horizontal: 16),
+                  )
+                  .copyWith(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: context.isDarkMode
+                              ? PreluraColors.white.withOpacity(0.5)
+                              : Theme.of(context)
+                                  .dividerColor, //Theme.of(context).primaryColor,
+                          width: 1.25,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                        borderSide: BorderSide(
+                            color: PreluraColors.primaryColor, width: 1.25),
+                      ))),
         ),
       ],
     );

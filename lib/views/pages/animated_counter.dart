@@ -29,8 +29,7 @@ class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
   Widget build(BuildContext context) {
     if (widget.formatToCurrency) {
       return Text(
-        formatDynamicString(
-            (_count?.evaluate(animation) ?? '0').toString().formatToPounds),
+        (_count?.evaluate(animation) ?? '0').toString().formatToPounds,
         style: widget.style,
       );
     }
