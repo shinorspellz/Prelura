@@ -12,6 +12,7 @@ class AppButton extends StatelessWidget {
       this.fontSize,
       this.textColor,
       this.bgColor,
+      this.padding,
       this.isDisabled = false,
       this.borderColor = PreluraColors.activeColor,
       this.textWidget,
@@ -25,6 +26,7 @@ class AppButton extends StatelessWidget {
     required this.onTap,
     this.height,
     this.fontSize,
+    this.padding,
     this.textColor = PreluraColors.activeColor,
     this.isDisabled = false,
     this.bgColor,
@@ -42,6 +44,7 @@ class AppButton extends StatelessWidget {
   final double? width;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final EdgeInsets? padding;
   final double? height;
   final void Function()? onTap;
   final bool isDisabled;
@@ -58,7 +61,7 @@ class AppButton extends StatelessWidget {
               ? null
               : onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: padding ?? const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           border: Border.all(
             width: bgColor != null ? 1 : 0,

@@ -26,7 +26,7 @@ class OnboardingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size deviceSize = MediaQuery.of(context).size;
-    bool isDarkMode = !context.isDarkMode;
+    bool isDarkMode = context.isDarkMode;
     int activeIndex = ref.watch(activeOnboardingIndex);
     Color itemColor = isDarkMode ? Colors.white : Colors.black;
     return Container(
@@ -88,49 +88,54 @@ class OnboardingScreen extends ConsumerWidget {
                         ///
                         ///
                         ///
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              if (activeIndex == 4) {
-                                context.router.push(
-                                  LoginRoute(),
-                                );
-                              }
-                              ref.read(activeOnboardingIndex.notifier).state =
-                                  activeIndex == 4 ? 1 : activeIndex + 1;
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 62,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3),
-                                color: Hex("#F1F1F1"),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                if (activeIndex == 4) {
+                                  context.router.push(
+                                    LoginRoute(),
+                                  );
+                                }
+                                ref.read(activeOnboardingIndex.notifier).state =
+                                    activeIndex == 4 ? 1 : activeIndex + 1;
+                              },
+                              child: Container(
+                                height: 40,
+                                // width: 62,
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Hex("#F1F1F1"),
+                                ),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        activeIndex == 4 ? "Enter" : "Next",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge!
+                                            .copyWith(
+                                              fontSize: 15,
+                                              letterSpacing: -1,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                      ),
+                                      addHorizontalSpacing(3),
+                                      SvgPicture.asset(
+                                        "assets/svgs/next.svg",
+                                        height: 11.19,
+                                      )
+                                    ]),
                               ),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      activeIndex == 4 ? "Enter" : "Next",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge!
-                                          .copyWith(
-                                            fontSize: 15,
-                                            letterSpacing: -1,
-                                            fontWeight: FontWeight.w600,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
-                                    ),
-                                    addHorizontalSpacing(3),
-                                    SvgPicture.asset(
-                                      "assets/svgs/next.svg",
-                                      height: 11.19,
-                                    )
-                                  ]),
                             ),
-                          ),
+                          ],
                         )
                       ]),
                 ),

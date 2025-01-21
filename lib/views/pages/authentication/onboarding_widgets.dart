@@ -166,7 +166,7 @@ class OnboardingFirstPart extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size deviceSize = MediaQuery.of(context).size;
-    bool isDarkMode = !context.isDarkMode;
+    bool isDarkMode = context.isDarkMode;
     int activeIndex = ref.watch(activeOnboardingIndex);
 
     return AnimatedContainer(
