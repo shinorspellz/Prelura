@@ -48,7 +48,8 @@ class UserScrollableList extends ConsumerWidget {
                   16.horizontalSpacing,
                   _buildItem(context,
                       title: (user?.noOfFollowers != null &&
-                              (noOfFollowing > 1 ||
+                              user != null &&
+                              (user!.noOfFollowers!.toInt() > 1 ||
                                   user?.noOfFollowers?.toInt() == 0))
                           ? " Followers"
                           : " Follower",

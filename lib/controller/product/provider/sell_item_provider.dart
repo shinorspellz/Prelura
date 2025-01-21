@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../model/product/categories/size_model.dart';
 
@@ -117,6 +120,9 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     state = state.copyWith(category: category);
   }
 
+  void removeCategory() {
+    state = state.copyWith(category: null);
+  }
   // void updateSubCategory(CategoryModel subCategory) {
   //   state = state.copyWith(subCategory: subCategory);
   // }
@@ -150,6 +156,31 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   void selectStyle(Enum$StyleEnum style) {
     state = state.copyWith(style: style);
+  }
+
+  Future<List<XFile>> convertImageUrlsToXFiles(List<String> imageUrls) async {
+    List<XFile> xFiles = [];
+    for (String imageUrl in imageUrls) {
+      try {
+        final response = await http.get(Uri.parse(imageUrl));
+        if (response.statusCode == 200) {
+          final tempDir = await getTemporaryDirectory();
+          final filePath =
+              '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+
+          final file = File(filePath);
+          await file.writeAsBytes(response.bodyBytes);
+
+          xFiles.add(XFile(file.path));
+        } else {
+          print(
+              'Failed to download image: $imageUrl, Status: ${response.statusCode}');
+        }
+      } catch (e) {
+        print('Error downloading image: $imageUrl, Error: $e');
+      }
+    }
+    return xFiles;
   }
 
   void productToItem(ProductModel product) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/utils/currency_format.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/settings/shop_value.dart';
 
 class AnimatedCount extends ImplicitlyAnimatedWidget {
@@ -17,7 +18,8 @@ class AnimatedCount extends ImplicitlyAnimatedWidget {
   });
 
   @override
-  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() => _AnimatedCountState();
+  ImplicitlyAnimatedWidgetState<ImplicitlyAnimatedWidget> createState() =>
+      _AnimatedCountState();
 }
 
 class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
@@ -33,13 +35,14 @@ class _AnimatedCountState extends AnimatedWidgetBaseState<AnimatedCount> {
     }
 
     return Text(
-      (_count?.evaluate(animation) ?? '0').toString(),
+      formatDynamicString((_count?.evaluate(animation) ?? '0').toString()),
       style: widget.style,
     );
   }
 
   @override
   void forEachTween(visitor) {
-    _count = visitor(_count, widget.count, (value) => IntTween(begin: value)) as IntTween;
+    _count = visitor(_count, widget.count, (value) => IntTween(begin: value))
+        as IntTween;
   }
 }

@@ -358,6 +358,29 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                                         ),
                                                       ),
                                                       Positioned(
+                                                          top: 5,
+                                                          right: 5,
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .topRight,
+                                                            child: CircleAvatar(
+                                                              radius: 10,
+                                                              backgroundColor:
+                                                                  PreluraColors
+                                                                      .blueTextColor,
+                                                              child: Text(
+                                                                "${image.key + 1}",
+                                                                style: context
+                                                                    .theme
+                                                                    .textTheme
+                                                                    .bodySmall
+                                                                    ?.copyWith(
+                                                                        color: PreluraColors
+                                                                            .white),
+                                                              ),
+                                                            ),
+                                                          )),
+                                                      Positioned(
                                                         bottom: 5,
                                                         right: 5,
                                                         child: Align(
@@ -419,7 +442,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               label: 'Title',
                               showSuggestions: true,
                               textCapitalization: TextCapitalization.words,
-                              formatter: UpperCaseTextFormatter(),
+                              formatter: [UpperCaseTextFormatter()],
                               labelStyle: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -564,8 +587,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     MenuCard(
                       title: 'Style (Optional)',
                       subtitleColor: PreluraColors.greyColor,
-                      subtitle:
-                          state.style?.name.replaceAll("_", " ").toLowerCase(),
+                      subtitle: state.style?.name
+                          .replaceAll("_", " ")
+                          .toLowerCase()
+                          .capitalize(),
                       onTap: () {
                         dismissKeyboard();
 
@@ -574,7 +599,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Price',
-                      subtitle: state.price,
+                      subtitle: "£ ${state.price ?? 0}",
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -584,7 +609,8 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Discount Price (Optional)',
-                      subtitle: '${state.discount ?? 0}%',
+                      subtitle:
+                          '${state.discount != null && state.discount != "null" && state.discount!.isNotEmpty ? double.parse(state.discount!).toInt() : 0}%',
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -622,189 +648,206 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     // ),
 
                     const SizedBox(height: 32),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          dismissKeyboard();
+                    const SizedBox(
+                      height: 70,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                color: context.theme.scaffoldBackgroundColor,
+                height: 90,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                  child: AppButton(
+                      isDisabled: widget.product == null
+                          ? (state.category == null ||
+                              state.description.isEmpty ||
+                              state.images.isEmpty ||
+                              state.parcel == null ||
+                              state.title.isEmpty ||
+                              state.price == null ||
+                              state.selectedColors.isEmpty ||
+                              state.price == "0" ||
+                              (state.brand == null &&
+                                  state.customBrand == null) ||
+                              state.selectedCondition == null)
+                          : (state.category == null ||
+                              state.description.isEmpty ||
+                              state.parcel == null ||
+                              state.title.isEmpty ||
+                              state.selectedColors.isEmpty ||
+                              (state.brand == null &&
+                                  state.customBrand == null) ||
+                              state.price == null ||
+                              state.price == "0" ||
+                              state.price!.isEmpty ||
+                              state.selectedCondition == null),
+                      width: double.infinity,
+                      onTap: () async {
+                        dismissKeyboard();
+                        HelperFunction.context = context;
+                        final files =
+                            state.images.map((x) => File(x.path)).toList();
+                        if (files.isEmpty && widget.product == null) {
+                          // HelperFunction.showToast(
+                          context.alert('Images are required to sell product');
+                          return;
+                        }
+
+                        if (!notifier.validateInputs()) {
+                          context.alert(
+                              'Both title and description of product are requuired');
+                          return;
+                        }
+                        if (state.category == null) {
+                          context.alert('Select an item category to proceed.');
+                          return;
+                        }
+                        // if (state.subCategory == null) {
+                        //   context.alert(
+                        //       'Select an item sub category to proceed.');
+                        //   return;
+                        // }
+                        if (state.brand == null && state.customBrand == null) {
+                          context.alert(
+                              'A `brand` or `Custom brand` is required for product.');
+                          return;
+                        }
+                        // if (state.size == null && widget.product == null) {
+                        //   context.alert('Select an size to proceed.');
+                        //   return;
+                        // }
+                        if (state.selectedCondition == null) {
+                          context.alert('Condition is required for product.');
+                          return;
+                        }
+                        if (state.selectedColors.isEmpty) {
+                          context.alert('Colors are required for product.');
+                          return;
+                        }
+                        log(state.price.toString(),
+                            name: 'price in sell item view');
+                        if (state.price == null || state.price == '0') {
                           HelperFunction.context = context;
-                          final files =
-                              state.images.map((x) => File(x.path)).toList();
-                          if (files.isEmpty && widget.product == null) {
-                            // HelperFunction.showToast(
-                            context
-                                .alert('Images are required to sell product');
-                            return;
-                          }
+                          context.alert('Price is required for product.');
+                          return;
+                        }
+                        if (state.parcel == null) {
+                          context.alert('Parcel size is required for product.');
+                          return;
+                        }
+                        // if (state.selectedMaterials.isEmpty) {
+                        //   HelperFunction.showToast(message: 'Materials are required for product.');
+                        //   return;
+                        // }
 
-                          if (!notifier.validateInputs()) {
-                            context.alert(
-                                'Both title and description of product are requuired');
-                            return;
-                          }
-                          if (state.category == null) {
-                            context
-                                .alert('Select an item category to proceed.');
-                            return;
-                          }
-                          // if (state.subCategory == null) {
-                          //   context.alert(
-                          //       'Select an item sub category to proceed.');
-                          //   return;
-                          // }
-                          if (state.brand == null &&
-                              state.customBrand == null) {
-                            context.alert(
-                                'A `brand` or `Custom brand` is required for product.');
-                            return;
-                          }
-                          // if (state.size == null && widget.product == null) {
-                          //   context.alert('Select an size to proceed.');
-                          //   return;
-                          // }
-                          if (state.selectedCondition == null) {
-                            context.alert('Condition is required for product.');
-                            return;
-                          }
-                          if (state.selectedColors.isEmpty) {
-                            context.alert('Colors are required for product.');
-                            return;
-                          }
-                          log(state.price.toString(),
-                              name: 'price in sell item view');
-                          if (state.price == null || state.price == '0') {
-                            HelperFunction.context = context;
-                            context.alert('Price is required for product.');
-                            return;
-                          }
-                          if (state.parcel == null) {
-                            context
-                                .alert('Parcel size is required for product.');
-                            return;
-                          }
-                          // if (state.selectedMaterials.isEmpty) {
-                          //   HelperFunction.showToast(message: 'Materials are required for product.');
-                          //   return;
-                          // }
+                        // if (state.selectedColors.) {
+                        //   context.alert('Parcel size is required for product.');
+                        //   return;
+                        // }
 
-                          // if (state.selectedColors.) {
-                          //   context.alert('Parcel size is required for product.');
-                          //   return;
-                          // }
-
-                          log(state.toJson().toString());
-                          if (widget.product != null) {
-                            await ref
-                                .read(productProvider.notifier)
-                                .updateProduct(
-                                  productId: int.parse(widget.product!.id),
-                                  title: state.title,
-                                  desc: state.description,
-                                  price: double.parse(state.price!),
-                                  condition: state.selectedCondition!,
-                                  parcelSize: state.parcel,
-                                  size: state.size?.id,
-                                  category:
-                                      int.parse(state.category!.id.toString()),
-                                  brandId: state.brand?.id,
-                                  materials: state.selectedMaterials
-                                      .map((e) => e.id)
-                                      .toList(),
-                                  style: state.style,
-                                  discount: state.discount == null
-                                      ? null
-                                      : double.parse(state.discount!),
-                                  customBrand: state.customBrand,
-                                  isFeatured: state.isFeatured,
-                                );
-                            ref.read(productProvider).whenOrNull(
-                                  error: (e, _) => context.alert(e.toString()),
-                                  data: (_) {
-                                    context.alert('Upload Complete!');
-                                    Navigator.pop(context);
-                                    // final tabRouter = AutoTabsRouter.of(context);
-                                    // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
-                                  },
-                                );
-
-                            return;
-                          }
-
+                        log(state.toJson().toString());
+                        if (widget.product != null) {
+                          log(state.discount!.isEmpty.toString());
                           await ref
                               .read(productProvider.notifier)
-                              .createProduct(
+                              .updateProduct(
+                                productId: int.parse(widget.product!.id),
                                 title: state.title,
                                 desc: state.description,
                                 price: double.parse(state.price!),
                                 condition: state.selectedCondition!,
                                 parcelSize: state.parcel,
-                                images: files,
                                 size: state.size?.id,
                                 category:
                                     int.parse(state.category!.id.toString()),
                                 brandId: state.brand?.id,
-                                color: state.selectedColors,
                                 materials: state.selectedMaterials
                                     .map((e) => e.id)
                                     .toList(),
                                 style: state.style,
-                                discount: state.discount == null
-                                    ? null
+                                color: state.selectedColors,
+                                discount: state.discount == null ||
+                                        state.discount == "null" ||
+                                        state.discount == "0" ||
+                                        state.discount!.isEmpty
+                                    ? 0
                                     : double.parse(state.discount!),
                                 customBrand: state.customBrand,
                                 isFeatured: state.isFeatured,
                               );
                           ref.read(productProvider).whenOrNull(
-                            error: (e, _) {
-                              log(e.toString(), stackTrace: _);
-                              context.alert("An error occurred");
-                            },
-                            data: (_) {
-                              context.alert('Product created successfully');
-                              Navigator.pop(context);
-                              // final tabRouter = AutoTabsRouter.of(context);
-                              // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
-                            },
-                          );
+                                error: (e, _) => context.alert(e.toString()),
+                                data: (data) {
+                                  context.alert('Product updated!');
+                                  ref.refresh(getProductProvider(
+                                      int.parse(widget.product!.id)));
+                                  Navigator.pop(context);
+                                  // final tabRouter = AutoTabsRouter.of(context);
+                                  // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                                },
+                              );
 
-                          //   await notifier.uploadItem();
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(content: Text('Item uploaded successfully!')),
-                          //   );
-                          // } else {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(content: Text('Please fill in all required fields')),
-                          //   );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: PreluraColors.primaryColor,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: Center(
-                          child: ref.watch(productProvider).isLoading
-                              ? SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: LoadingWidget(
-                                    height: 20,
-                                    color: PreluraColors.white,
-                                  ),
-                                )
-                              : Text(
-                                  widget.product == null ? 'Upload' : "Update",
-                                  style: TextStyle(
-                                      fontSize: 16, color: PreluraColors.white),
-                                ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    )
-                  ],
+                          return;
+                        }
+
+                        await ref.read(productProvider.notifier).createProduct(
+                              title: state.title,
+                              desc: state.description,
+                              price: double.parse(state.price!),
+                              condition: state.selectedCondition!,
+                              parcelSize: state.parcel,
+                              images: files,
+                              size: state.size?.id,
+                              category:
+                                  int.parse(state.category!.id.toString()),
+                              brandId: state.brand?.id,
+                              color: state.selectedColors,
+                              materials: state.selectedMaterials
+                                  .map((e) => e.id)
+                                  .toList(),
+                              style: state.style,
+                              discount: state.discount == null ||
+                                      state.discount == "null" ||
+                                      state.discount == "0" ||
+                                      state.discount!.isEmpty
+                                  ? 0
+                                  : double.parse(state.discount!),
+                              customBrand: state.customBrand,
+                              isFeatured: state.isFeatured,
+                            );
+                        ref.read(productProvider).whenOrNull(
+                          error: (e, _) {
+                            log(e.toString(), stackTrace: _);
+                            context.alert("An error occurred");
+                          },
+                          data: (_) {
+                            context.alert('Product created successfully');
+                            // Navigator.pop(context);
+                            // final tabRouter = AutoTabsRouter.of(context);
+                            // tabRouter.setActiveIndex(2);
+
+                            context.router.replace(UserProfileDetailsRoute());
+                          },
+                        );
+
+                        //   await notifier.uploadItem();
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(content: Text('Item uploaded successfully!')),
+                        //   );
+                        // } else {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(content: Text('Please fill in all required fields')),
+                        //   );
+                      },
+                      loading: ref.watch(productProvider).isLoading,
+                      text: widget.product == null ? "Upload" : "Update"),
                 ),
               ),
             ),

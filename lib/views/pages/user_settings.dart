@@ -36,6 +36,11 @@ class SettingScreen extends StatelessWidget {
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
       MenuCard(
+          title: "Privacy Settings",
+          onTap: () {
+            context.router.push(PrivacySettingRoute());
+          }),
+      MenuCard(
           title: "Security",
           onTap: () {
             context.router.push(SecurityMenuRoute());

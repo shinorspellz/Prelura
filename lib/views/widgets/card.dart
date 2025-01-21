@@ -380,10 +380,14 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     "£ ${formatDynamicString(widget.product.price.toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: getDefaultSize(),
-                          decoration: widget.product.discountPrice != null
+                          decoration: widget.product.discountPrice != null &&
+                                  double.parse(widget.product.discountPrice!) !=
+                                      0.00
                               ? TextDecoration.lineThrough
                               : null,
-                          color: widget.product.discountPrice != null
+                          color: widget.product.discountPrice != null &&
+                                  double.parse(widget.product.discountPrice!) !=
+                                      0.00
                               ? !context.isDarkMode
                                   ? Colors.grey
                                   : Colors.white30
@@ -391,7 +395,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                           fontWeight: FontWeight.w600,
                         ),
                   ),
-                  if (widget.product.discountPrice != null) ...[
+                  if (widget.product.discountPrice != null &&
+                      double.parse(widget.product.discountPrice!) != 0.00) ...[
                     10.horizontalSpacing,
                     Text(
                       "£ ${formatDynamicString(calculateDiscountedAmount(
@@ -406,7 +411,8 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                     ),
                   ],
                   Spacer(),
-                  if (widget.product.discountPrice != null)
+                  if (widget.product.discountPrice != null &&
+                      double.parse(widget.product.discountPrice!) != 0.00)
                     Container(
                       // height: 30,
                       // width: 50,

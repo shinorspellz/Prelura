@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +11,18 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
-final discountController = StateProvider.autoDispose(
-    (ref) => TextEditingController(text: ref.read(sellItemProvider).discount));
+final discountController =
+    StateProvider.autoDispose<TextEditingController>((ref) {
+  final discount = ref.read(sellItemProvider).discount;
+  log(discount ?? "");
+  log(discount?.isNotEmpty.toString() ?? "");
+  final initialText =
+      (discount != null && discount != "null" && discount.isNotEmpty)
+          ? "${double.parse(discount).toInt()}%"
+          : "0%";
+
+  return TextEditingController(text: initialText);
+});
 
 @RoutePage()
 class DiscountPage extends ConsumerWidget {
@@ -18,6 +30,48 @@ class DiscountPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _controller = ref.watch(discountController);
+
+    void _updateTextController(String value) {
+      // Ensure only numeric values are allowed
+      final numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+      numericValue.replaceFirst(RegExp(r'^0+'), '');
+      final discount = int.tryParse(numericValue) ?? 0;
+      log("discount : $discount%");
+
+      if (discount > 95) {
+        _controller.value = TextEditingValue(
+          text: "95%",
+          selection: TextSelection.collapsed(offset: "95".length),
+        );
+        ref.read(sellItemProvider.notifier).updateDiscount('95');
+      } else {
+        _controller.value = TextEditingValue(
+          text: "$discount%",
+          selection: TextSelection.collapsed(offset: "$discount".length),
+        );
+        ref.read(sellItemProvider.notifier).updateDiscount(discount.toString());
+      }
+    }
+
+    _controller.addListener(() {
+      final text = _controller.text;
+      if (!text.endsWith("%")) {
+        _updateTextController(text);
+      }
+
+      final cursorPosition = _controller.text.length - 1;
+      _controller.selection = TextSelection.collapsed(offset: cursorPosition);
+    });
+
+    int calculateCursorPosition(String text) {
+      if (text.isEmpty) {
+        return 0; // Start at the beginning if text is empty
+      }
+      // Example: Set cursor to the middle of the text
+      return text.length - 1.floor();
+    }
+
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
@@ -51,35 +105,30 @@ class DiscountPage extends ConsumerWidget {
         child: Column(
           children: [
             15.verticalSpacing,
-            // Price Section
             PreluraAuthTextField(
               keyboardType: TextInputType.number,
               label: "Discount",
-              hintText: "Enter discount amount",
-              formatter: LengthLimitingTextInputFormatter(3),
-              maxLength: 2,
-              controller: ref.watch(discountController),
-              onChanged: (value) {
-                // Parse the input and clamp it to a maximum of 95
-                final discount = int.tryParse(value) ?? 0;
-                if (discount > 95) {
-                  // Adjust the controller's value if the input exceeds the limit
-                  ref.read(discountController).text = '95';
-                  ref.read(sellItemProvider.notifier).updateDiscount('95');
-                } else {
-                  ref.read(sellItemProvider.notifier).updateDiscount(value);
-                }
+              hintText: "Enter discount",
+              formatter: [LengthLimitingTextInputFormatter(3)],
+              maxLength: 3,
+              controller: _controller,
+              onChanged: _updateTextController,
+              onFieldTap: () {
+                int cursorPosition = calculateCursorPosition(_controller.text);
+
+                _controller.selection = TextSelection.fromPosition(
+                  TextPosition(offset: cursorPosition),
+                );
               },
               onSaved: (value) {
                 if (value == null || value.isEmpty) {
                   ref.read(sellItemProvider.notifier).updateDiscount('0');
                 } else {
-                  final discount = int.tryParse(value) ?? 0;
-                  if (discount > 95) {
-                    ref.read(sellItemProvider.notifier).updateDiscount('95');
-                  } else {
-                    ref.read(sellItemProvider.notifier).updateDiscount(value);
-                  }
+                  final numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+                  final discount = int.tryParse(numericValue) ?? 0;
+                  ref
+                      .read(sellItemProvider.notifier)
+                      .updateDiscount(discount > 95 ? '95' : numericValue);
                 }
               },
             ),

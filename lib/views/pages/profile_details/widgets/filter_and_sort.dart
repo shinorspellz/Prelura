@@ -166,26 +166,26 @@ class FilterAndSort extends ConsumerWidget {
                         Navigator.pop(context);
 
                         ref.read(userProductSort.notifier).state =
-                            Enum$SortEnum.PRICE_DESC;
+                            Enum$SortEnum.PRICE_ASC;
                       },
                       title: "Price Ascending",
-                      textColor: sortValue == Enum$SortEnum.PRICE_DESC.name
+                      textColor: sortValue == Enum$SortEnum.PRICE_ASC.name
                           ? selectedColor
                           : color,
-                      textWeight: sortValue == Enum$SortEnum.PRICE_DESC.name
+                      textWeight: sortValue == Enum$SortEnum.PRICE_ASC.name
                           ? selectedFontWeight
                           : fontWeight),
                   VBottomSheetItem(
                       onTap: (context) {
                         Navigator.pop(context);
                         ref.read(userProductSort.notifier).state =
-                            Enum$SortEnum.PRICE_ASC;
+                            Enum$SortEnum.PRICE_DESC;
                       },
                       title: "Price Descending",
-                      textColor: sortValue == Enum$SortEnum.PRICE_ASC.name
+                      textColor: sortValue == Enum$SortEnum.PRICE_DESC.name
                           ? selectedColor
                           : color,
-                      textWeight: sortValue == Enum$SortEnum.PRICE_ASC.name
+                      textWeight: sortValue == Enum$SortEnum.PRICE_DESC.name
                           ? selectedFontWeight
                           : fontWeight),
 
@@ -218,9 +218,9 @@ class FilterAndSort extends ConsumerWidget {
       return "Newest First";
     }
     if (sortValue.name == Enum$SortEnum.PRICE_DESC.name) {
-      return "Price Ascending";
+      return "Price Descending";
     }
 
-    return "Price Descending";
+    return "Price Ascending";
   }
 }

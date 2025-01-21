@@ -67,7 +67,7 @@ class AppButton extends StatelessWidget {
             width: bgColor != null ? 1 : 0,
             color: bgColor == null ? borderColor : borderColor,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(4),
           color: isDisabled
               ? PreluraColors.activeColor.withOpacity(0.2)
               : bgColor ?? PreluraColors.activeColor,

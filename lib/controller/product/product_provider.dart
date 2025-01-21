@@ -205,7 +205,7 @@ final userProduct =
     sort: sort,
   );
 
-  return result.reversed.toList();
+  return result.toList();
 });
 final getProductProvider =
     FutureProvider.family<ProductModel, int>((ref, id) async {
@@ -344,6 +344,18 @@ class _ProductProvider extends AsyncNotifier<void> {
   }) async {
     state = const AsyncLoading();
 
+    log('Discount $discount');
+    log('Price $price');
+    log('Size $size');
+    log('category $category');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
+    log('Discount $discount');
     log('Discount $discount');
 
     state = await AsyncValue.guard(() async {
@@ -661,6 +673,10 @@ class FilteredProductController
   }
 
   void removeFilter() async {
+    final updatedFilter = ref.read(productFilterProvider);
+
+    _filter = Input$ProductFiltersInput();
+
     try {
       await _getProducts(
         filter: _filter,

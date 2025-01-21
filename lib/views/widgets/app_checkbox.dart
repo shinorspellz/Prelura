@@ -45,7 +45,7 @@ class PreluraCheckBox extends StatelessWidget {
       onTap: () => onChanged(!isChecked), // Toggle the state when tapped
       child: Container(
         padding:
-            const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 26),
+            const EdgeInsets.only(top: 16.0, bottom: 16, left: 16, right: 16),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(

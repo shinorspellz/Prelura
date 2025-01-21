@@ -438,7 +438,7 @@ class SearchScreen extends ConsumerWidget {
                   color: isDarkMode
                       ? PreluraColors.activeColor.withOpacity(0.4)
                       : PreluraColors.activeColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(4),
                 ),
                 child: Text(
                   title,

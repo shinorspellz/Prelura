@@ -132,3 +132,31 @@ class DecimalTextInputFormatter extends TextInputFormatter {
     return oldValue;
   }
 }
+
+class MaxValueTextInputFormatter extends TextInputFormatter {
+  final int maxValue;
+
+  MaxValueTextInputFormatter(this.maxValue);
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.text.isEmpty) {
+      return newValue;
+    }
+    final newIntValue = int.tryParse(newValue.text.replaceAll(',', ''));
+    if (newIntValue == null || newIntValue > maxValue) {
+      return oldValue;
+    }
+    return newValue;
+  }
+}
+
+
+extension StringExtension on String {
+  String capitalize() {
+    if (isEmpty) return this;
+    log('${this[0].toUpperCase()}${substring(1)}');
+    return '${this[0].toUpperCase()}${substring(1)}';
+  }
+}

@@ -10,6 +10,7 @@ import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+import 'package:prelura_app/views/widgets/price_field.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../widgets/app_button.dart';
@@ -69,11 +70,11 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
       ),
       bottomSheet: Container(
         // width: 90.w,
-        height: 82,
+        height: 90,
         color: Theme.of(context).scaffoldBackgroundColor,
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+              const EdgeInsets.only(top: 16, bottom: 32, left: 16, right: 16),
           child: AppButton(
             width: double.infinity,
             onTap: priceState != null && priceState.isNotEmpty
@@ -98,11 +99,10 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Price Section
-              PreluraAuthTextField(
-                keyboardType: TextInputType.number,
-                label: "Price",
-                hintText: "Enter price",
-                controller: controller,
+              PriceFieldWidget(
+                width: 80.w,
+                label: "Enter price",
+                textController: controller,
                 onChanged: (value) {
                   ref.read(sellItemProvider.notifier).updatePrice(value);
                 },

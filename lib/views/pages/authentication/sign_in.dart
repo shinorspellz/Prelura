@@ -64,7 +64,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     onSaved: (value) => username = value,
                     validator: (p0) {
                       if (p0!.isEmpty) {
-                        return "Username is required";
+                        return " Username is required";
                       }
                       return null;
                     },
@@ -80,7 +80,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     // onChanged: (val) {},
                     validator: (p0) {
                       if (p0!.isEmpty) {
-                        return "Password is required";
+                        return " Password is required";
                       }
                       return null;
                     },
