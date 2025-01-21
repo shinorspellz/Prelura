@@ -40,7 +40,7 @@ class MessageCard extends ConsumerWidget {
           id: model.id,
           username: model.recipient.username,
           avatarUrl: model.recipient.profilePictureUrl,
-          isOffer: true,
+          isOffer: isLastMessageAnOffer,
         ));
       },
       child: Container(

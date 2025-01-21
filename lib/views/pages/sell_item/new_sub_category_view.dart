@@ -71,7 +71,8 @@ class _SubCategoryScreenState extends ConsumerState<NewSubCategoryScreen> {
 
           return category.hasChildren == false
               ? PreluraCheckBox(
-                  isChecked: false,
+                  isChecked: ref.watch(sellItemProvider).category?.name ==
+                      category.name,
                   onChanged: (value) {
                     if (category.hasChildren ?? false) {
                       context.router.push(NewSubCategoryRoute(
