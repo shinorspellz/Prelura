@@ -1,13 +1,23 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import 'onboarding_widgets.dart';
+
 final activeOnboardingIndex = StateProvider<int>((_) => 1);
+
+List<Widget> _widgets = const [
+  FirstIndexInfo(),
+  SecondIndexBox(),
+  ThirdIndexBox(),
+  FourthIndexBox(),
+];
 
 @RoutePage()
 class OnboardingScreen extends ConsumerWidget {
@@ -16,7 +26,7 @@ class OnboardingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size deviceSize = MediaQuery.of(context).size;
-    bool isDarkMode = context.isDarkMode;
+    bool isDarkMode = !context.isDarkMode;
     int activeIndex = ref.watch(activeOnboardingIndex);
     Color itemColor = isDarkMode ? Colors.white : Colors.black;
     return Container(
@@ -57,26 +67,36 @@ class OnboardingScreen extends ConsumerWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 50),
-                          child: Text(
-                            "Discover a world of preloved fashion,\nbuy and sell quality clothing with ease while giving your wardrobe a sustainable touch.",
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displayLarge!
-                                .copyWith(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Hex("#FBFBFB"),
-                                    height: 1.7,
-                                    letterSpacing: -1),
-                          ),
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(1, 0), // Start off-screen
+                                end: Offset.zero, // Slide into view
+                              ).animate(animation),
+                              child: FadeTransition(
+                                  opacity: animation, child: child),
+                            );
+                            // return FadeTransition(
+                            //     opacity: animation, child: child);
+                          },
+                          child: _widgets[activeIndex - 1],
                         ),
+
+                        ///
+                        ///
+                        ///
                         Align(
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
                             onTap: () {
+                              if (activeIndex == 4) {
+                                context.router.push(
+                                  LoginRoute(),
+                                );
+                              }
                               ref.read(activeOnboardingIndex.notifier).state =
                                   activeIndex == 4 ? 1 : activeIndex + 1;
                             },
@@ -91,7 +111,7 @@ class OnboardingScreen extends ConsumerWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "Next",
+                                      activeIndex == 4 ? "Enter" : "Next",
                                       style: Theme.of(context)
                                           .textTheme
                                           .displayLarge!
@@ -134,53 +154,6 @@ class OnboardingScreen extends ConsumerWidget {
           ]),
         ),
       ),
-    );
-  }
-}
-
-class OnboardingFirstPart extends ConsumerWidget {
-  const OnboardingFirstPart({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    Size deviceSize = MediaQuery.of(context).size;
-    bool isDarkMode = context.isDarkMode;
-    int activeIndex = ref.watch(activeOnboardingIndex);
-
-    return AnimatedContainer(
-      height: deviceSize.height * (activeIndex > 1 ? 0.34 : 0.38),
-      width: double.infinity,
-      duration: const Duration(milliseconds: 360),
-      curve: Curves.linear,
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
-        Text(
-          "Welcome to",
-          style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: activeIndex > 1
-                    ? Hex("#979797")
-                    : isDarkMode
-                        ? Colors.white
-                        : Colors.black,
-              ),
-        ),
-        SvgPicture.asset(
-          "assets/images/Prelura.svg",
-          height: 85,
-        )
-      ]),
     );
   }
 }

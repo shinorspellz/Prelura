@@ -9,6 +9,7 @@ class AssetsRes {
   static const String PLUGIN_NAME = 'prelura_app';
   static const String PLUGIN_VERSION = '1.0.0+1';
   static const String OFFER = 'assets/icons/offer.svg';
+  static const String RECYCLING = 'assets/icons/recycling.svg';
   static const String TRUSTED = 'assets/icons/trusted.svg';
   static const String BLACKBG = 'assets/images/blackBg.png';
   static const String LOGO = 'assets/images/logo.png';

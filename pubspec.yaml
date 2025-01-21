@@ -116,6 +116,7 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/icons/offer.svg
+    - assets/icons/recycling.svg
     - assets/icons/trusted.svg
     - assets/images/
     - assets/images/blackBg.png
