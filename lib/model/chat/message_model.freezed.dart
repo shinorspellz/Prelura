@@ -24,8 +24,8 @@ mixin _$MessageModel {
   String get text => throw _privateConstructorUsedError;
   String? get attachment => throw _privateConstructorUsedError;
   dynamic get itemType => throw _privateConstructorUsedError;
-  bool get read => throw _privateConstructorUsedError;
-  bool get isItem => throw _privateConstructorUsedError;
+  bool? get read => throw _privateConstructorUsedError;
+  bool? get isItem => throw _privateConstructorUsedError;
   int? get itemId => throw _privateConstructorUsedError;
   MessageModel? get replyTo => throw _privateConstructorUsedError;
   UserModel get sender => throw _privateConstructorUsedError;
@@ -51,8 +51,8 @@ abstract class $MessageModelCopyWith<$Res> {
       String text,
       String? attachment,
       dynamic itemType,
-      bool read,
-      bool isItem,
+      bool? read,
+      bool? isItem,
       int? itemId,
       MessageModel? replyTo,
       UserModel sender});
@@ -80,8 +80,8 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
     Object? text = null,
     Object? attachment = freezed,
     Object? itemType = freezed,
-    Object? read = null,
-    Object? isItem = null,
+    Object? read = freezed,
+    Object? isItem = freezed,
     Object? itemId = freezed,
     Object? replyTo = freezed,
     Object? sender = null,
@@ -103,14 +103,14 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
           ? _value.itemType
           : itemType // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      read: null == read
+      read: freezed == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isItem: null == isItem
+              as bool?,
+      isItem: freezed == isItem
           ? _value.isItem
           : isItem // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       itemId: freezed == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
@@ -164,8 +164,8 @@ abstract class _$$MessageModelImplCopyWith<$Res>
       String text,
       String? attachment,
       dynamic itemType,
-      bool read,
-      bool isItem,
+      bool? read,
+      bool? isItem,
       int? itemId,
       MessageModel? replyTo,
       UserModel sender});
@@ -193,8 +193,8 @@ class __$$MessageModelImplCopyWithImpl<$Res>
     Object? text = null,
     Object? attachment = freezed,
     Object? itemType = freezed,
-    Object? read = null,
-    Object? isItem = null,
+    Object? read = freezed,
+    Object? isItem = freezed,
     Object? itemId = freezed,
     Object? replyTo = freezed,
     Object? sender = null,
@@ -213,14 +213,14 @@ class __$$MessageModelImplCopyWithImpl<$Res>
           : attachment // ignore: cast_nullable_to_non_nullable
               as String?,
       itemType: freezed == itemType ? _value.itemType! : itemType,
-      read: null == read
+      read: freezed == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isItem: null == isItem
+              as bool?,
+      isItem: freezed == isItem
           ? _value.isItem
           : isItem // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       itemId: freezed == itemId
           ? _value.itemId
           : itemId // ignore: cast_nullable_to_non_nullable
@@ -245,8 +245,8 @@ class _$MessageModelImpl implements _MessageModel {
       required this.text,
       this.attachment,
       this.itemType,
-      required this.read,
-      required this.isItem,
+      this.read,
+      this.isItem,
       this.itemId,
       this.replyTo,
       required this.sender});
@@ -263,9 +263,9 @@ class _$MessageModelImpl implements _MessageModel {
   @override
   final dynamic itemType;
   @override
-  final bool read;
+  final bool? read;
   @override
-  final bool isItem;
+  final bool? isItem;
   @override
   final int? itemId;
   @override
@@ -331,8 +331,8 @@ abstract class _MessageModel implements MessageModel {
       required final String text,
       final String? attachment,
       final dynamic itemType,
-      required final bool read,
-      required final bool isItem,
+      final bool? read,
+      final bool? isItem,
       final int? itemId,
       final MessageModel? replyTo,
       required final UserModel sender}) = _$MessageModelImpl;
@@ -349,9 +349,9 @@ abstract class _MessageModel implements MessageModel {
   @override
   dynamic get itemType;
   @override
-  bool get read;
+  bool? get read;
   @override
-  bool get isItem;
+  bool? get isItem;
   @override
   int? get itemId;
   @override

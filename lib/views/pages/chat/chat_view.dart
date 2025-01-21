@@ -4,11 +4,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
-import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/chat/widgets/chat_card_box.dart';
+import 'package:prelura_app/views/pages/chat/widgets/message_text_field.dart';
 import 'package:prelura_app/views/pages/chat/widgets/offer_conversation_builder.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 
@@ -69,75 +68,77 @@ class ChatScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: PreluraAppBar(
-        leadingIcon: IconButton(
-          icon:
-              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
-          onPressed: () => context.router.popForced(),
-        ),
-        appbarTitle: username,
-        trailingIcon: [
-          IconButton(
-            icon: Icon(Icons.info_outline,
+          leadingIcon: IconButton(
+            icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).iconTheme.color),
-            onPressed: () {},
+            onPressed: () => context.router.popForced(),
           ),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        padding: EdgeInsets.only(
-            bottom: MediaQuery.viewInsetsOf(context).bottom + 20,
-            left: 16,
-            right: 16,
-            top: 10),
-        child: Row(
-          children: [
-            // 16.horizontalSpacing,
-            // InkWell(
-            //   onTap: () {},
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(4.0),
-            //     child: Icon(Icons.camera_alt),
-            //   ),
-            // ),
-            // addHorizontalSpacing(4),
-            Expanded(
-              child: TextField(
-                controller: textController,
-                decoration: InputDecoration(
-                    fillColor: context.theme.scaffoldBackgroundColor,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: PreluraColors.primaryColor),
-                    )),
-                onSubmitted: (value) {
-                  final message = textController.text.trim();
-                  if (message.isNotEmpty) {
-                    ref
-                        .read(messagesProvider(id).notifier)
-                        .sendMessage(message);
-                    // ref.read(chatProvider.notifier).sendMessage(message);
-                    textController.clear();
-                  }
-                  ;
-                },
+          appbarTitle: username,
+          trailingIcon: [
+            IconButton(
+              icon: Icon(
+                Icons.info_outline,
+                color: Theme.of(context).iconTheme.color,
               ),
+              onPressed: () {},
             ),
-            // 16.horizontalSpacing
-            // IconButton(
-            //   icon: const Icon(Icons.send),
-            //   onPressed: () {
-            //     final message = textController.text.trim();
-            //     if (message.isNotEmpty) {
-            //       ref.read(messagesProvider(id).notifier).sendMessage(message);
-            //       // ref.read(chatProvider.notifier).sendMessage(message);
-            //       textController.clear();
-            //     }
-            //   },
-            // ),
-          ],
-        ),
+          ]),
+      bottomNavigationBar: MessageTextField(
+        id: id,
+        textController: textController,
       ),
+
+      // Container(
+      //   color: Theme.of(context).scaffoldBackgroundColor,
+      //   padding: EdgeInsets.only(
+      //       bottom: MediaQuery.viewInsetsOf(context).bottom + 20,
+      //       left: 16,
+      //       right: 16,
+      //       top: 10),
+      //   child: Row(children: [
+      //     // 16.horizontalSpacing,
+      //     // InkWell(
+      //     //   onTap: () {},
+      //     //   child: Padding(
+      //     //     padding: const EdgeInsets.all(4.0),
+      //     //     child: Icon(Icons.camera_alt),
+      //     //   ),
+      //     // ),
+      //     // addHorizontalSpacing(4),
+      //     Expanded(
+      //       child: TextField(
+      //         controller: textController,
+      //         decoration: InputDecoration(
+      //             fillColor: context.theme.scaffoldBackgroundColor,
+      //             enabledBorder: OutlineInputBorder(
+      //               borderRadius: BorderRadius.circular(10),
+      //               borderSide: BorderSide(color: PreluraColors.primaryColor),
+      //             )),
+      //         onSubmitted: (value) {
+      //           final message = textController.text.trim();
+      //           if (message.isNotEmpty) {
+      //             ref.read(messagesProvider(id).notifier).sendMessage(message);
+      //             // ref.read(chatProvider.notifier).sendMessage(message);
+      //             textController.clear();
+      //           }
+      //           ;
+      //         },
+      //       ),
+      //     ),
+      //     // 16.horizontalSpacing
+      //     // IconButton(
+      //     //   icon: const Icon(Icons.send),
+      //     //   onPressed: () {
+      //     //     final message = textController.text.trim();
+      //     //     if (message.isNotEmpty) {
+      //     //       ref.read(messagesProvider(id).notifier).sendMessage(message);
+      //     //       // ref.read(chatProvider.notifier).sendMessage(message);
+      //     //       textController.clear();
+      //     //     }
+      //     //   },
+      //     // ),
+      //   ]),
+      // ),
       body: isOffer
           ? OfferConversationBuilder()
           : SingleChildScrollView(

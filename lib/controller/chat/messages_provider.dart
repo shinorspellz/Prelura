@@ -14,6 +14,14 @@ final chatScrollController = Provider.autoDispose((ref) => ScrollController());
 final chatAnimationListState =
     Provider.autoDispose((ref) => GlobalKey<AnimatedListState>());
 
+final showEmojiProvider = StateProvider<bool>(
+  (_) => false,
+);
+
+final showSendButtonProvider = StateProvider<bool>(
+  (_) => false,
+);
+
 final messagesProvider = StreamNotifierProvider.family
     .autoDispose<_MessagesNotifier, List<MessageModel>, String>(
         _MessagesNotifier.new);

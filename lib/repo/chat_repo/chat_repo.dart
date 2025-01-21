@@ -82,6 +82,7 @@ class ChatRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+    log("::::The conversion response is ::::: ${jsonEncode(response.parsedData!.createChat!.chat!.toJson())}");
 
     return ConversationModel.fromJson(
         response.parsedData!.createChat!.chat!.toJson());

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +8,6 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
-import 'package:prelura_app/repo/user/user_repo.dart';
 
 import '../../repo/network_repo.dart';
 
