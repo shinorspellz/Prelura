@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,6 +31,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
   @override
   void initState() {
     controller.addListener(() {
+      if (mounted) return;
       // setState(() => autoScroll = false);
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
@@ -54,6 +57,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
   Widget build(BuildContext context) {
     final selectedBrand = ref.watch(sellItemProvider).brand;
     final title = ref.watch(sellItemProvider).title.trim();
+    final description = ref.watch(sellItemProvider).description;
     print(title);
 
     return Scaffold(
@@ -167,7 +171,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                                       ref
                                           .read(sellItemProvider.notifier)
                                           .selectBrand(brands[index]);
-                                      context.back();
+                                      context.router.popForced();
                                     },
                                   );
                                 },
@@ -202,7 +206,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (title.isNotEmpty) ...[
+                          if (title.isNotEmpty || description.isNotEmpty) ...[
                             _buildSuggestedBrands(title, selectedBrand),
                           ],
                           addVerticalSpacing(16),
@@ -270,48 +274,96 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
 
   @override
   Widget _buildSuggestedBrands(String title, Brand? selectedBrand) {
-    return ref.watch(searchBrand(title.split(" ")[0])).maybeWhen(
-          data: (brands) {
-            print(brands);
-            return brands.isNotEmpty
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: Text(
-                          "Suggested Brands",
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: PreluraColors.primaryColor,
-                                    fontSize: getDefaultSize(),
-                                  ),
-                        ),
-                      ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: brands.take(8).length,
-                        itemBuilder: (context, index) {
-                          return PreluraCheckBox(
-                            title: brands[index].name,
-                            isChecked:
-                                brands[index].name == selectedBrand?.name,
-                            onChanged: (_) {
-                              ref
-                                  .read(sellItemProvider.notifier)
-                                  .selectBrand(brands[index]);
-                              context.router.popForced();
-                            },
-                          );
+    final description =
+        ref.watch(sellItemProvider).description.trim().toLowerCase();
+    final searchKey = title.isNotEmpty ? title.split(" ")[0].toLowerCase() : "";
+    final words =
+        description.split(' ').where((word) => word.isNotEmpty).toList();
+
+    // Function to search brands by word
+    Future<List<Brand>> _fetchAndFilterBrands() async {
+      final Set<Brand> filteredBrands = {};
+
+      for (final word in words) {
+        // Fetch results for each word
+        final List<Brand> searchResults =
+            await ref.watch(searchBrand(word)).maybeWhen(
+                  data: (brands) => brands,
+                  orElse: () => [],
+                );
+
+        // Filter results that contain or match the word
+        final List<Brand> matchedBrands = searchResults
+            .where((brand) => brand.name.toLowerCase() == word.toLowerCase())
+            .toList();
+
+        // Add to the set to avoid duplicates
+        filteredBrands.addAll(matchedBrands);
+      }
+
+      return filteredBrands.toList();
+    }
+
+    return FutureBuilder<List<Brand>>(
+      future: _fetchAndFilterBrands(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const SizedBox.shrink();
+        }
+
+        final suggestedBrands = snapshot.data ?? [];
+
+        // Combine with searchKey-based results
+        final searchKeyResults = searchKey.isNotEmpty
+            ? ref.watch(searchBrand(searchKey)).maybeWhen(
+                  data: (brands) => brands,
+                  orElse: () => [],
+                )
+            : [];
+
+        // Merge results and remove duplicates
+        final combinedBrands = [
+          ...searchKeyResults,
+          ...suggestedBrands,
+        ].toSet().toList();
+
+        return combinedBrands.isNotEmpty
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      "Suggested Brands",
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: PreluraColors.primaryColor,
+                            fontSize: getDefaultSize(),
+                          ),
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: combinedBrands.length,
+                    itemBuilder: (context, index) {
+                      return PreluraCheckBox(
+                        title: combinedBrands[index].name,
+                        isChecked:
+                            combinedBrands[index].name == selectedBrand?.name,
+                        onChanged: (_) {
+                          ref
+                              .read(sellItemProvider.notifier)
+                              .selectBrand(combinedBrands[index]);
+                          context.router.popForced();
                         },
-                      ),
-                    ],
-                  )
-                : SizedBox.shrink();
-          },
-          orElse: () => Container(),
-        );
+                      );
+                    },
+                  ),
+                ],
+              )
+            : const SizedBox.shrink();
+      },
+    );
   }
 }
 
