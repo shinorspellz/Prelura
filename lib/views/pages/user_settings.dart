@@ -165,8 +165,8 @@ class SettingScreen extends StatelessWidget {
                                         .read(categoryNotifierProvider.notifier)
                                         .clearCache();
                                     ref.read(authProvider).whenOrNull(
-                                          error: (e, _) =>
-                                              context.alert(e.toString()),
+                                          error: (e, _) => context
+                                              .alert("An error occurred"),
                                         );
                                   },
                                   child: const Text('Logout')),

@@ -524,7 +524,7 @@ class _AllProductController
     extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 10;
   int _currentPage = 1;
   int _brandTotalItems = 900;
   String? _query;

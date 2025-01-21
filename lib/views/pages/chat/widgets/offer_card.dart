@@ -65,19 +65,20 @@ class _OfferCardState extends ConsumerState<OfferCard> {
   }
 
   bool _checkOfferStatus(String status) {
+    log(":::::The status iss::: ${offerInfo.children?.firstOrNull?.status?.toLowerCase()}");
     return offerInfo.children?.firstOrNull?.status?.toLowerCase() == status;
   }
 
   Future<void> _handleAccept() async {
     if (isAccepted || isDeclined) return;
     await _updateOfferStatus(
-        Enum$OfferActionEnum.ACCEPT, () => isAccepting = true);
+        Enum$OfferActionEnum.ACCEPT, () => isAccepting = !isAccepting);
   }
 
   Future<void> _handleDecline() async {
     if (isAccepted || isDeclined) return;
     await _updateOfferStatus(
-        Enum$OfferActionEnum.REJECT, () => isDeclining = true);
+        Enum$OfferActionEnum.REJECT, () => isDeclining = !isDeclining);
   }
 
   Future<void> _sendCustomOffer() async {
@@ -197,7 +198,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                 ],
               )
             else if (amTheSeller &&
-                offerInfo.children?.firstOrNull?.updatedBy !=
+                offerInfo.children?.firstOrNull?.createdBy !=
                     appUserInfo?.username)
               Row(
                 children: [
@@ -208,7 +209,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
               )
             else
               Text(
-                offerInfo.children?.firstOrNull?.updatedBy ==
+                offerInfo.children?.firstOrNull?.createdBy ==
                         appUserInfo?.username
                     ? "Offer sent, please wait for the Buyer's decision"
                     : "Offer sent, please wait for the Seller's decision",
@@ -220,8 +221,7 @@ class _OfferCardState extends ConsumerState<OfferCard> {
             if (offerInfo.status?.toLowerCase() == "pending" ||
                 _checkOfferStatus("pending") ||
                 _checkOfferStatus("countered"))
-              const SizedBox(height: 10),
-            _buildCustomOfferButton(),
+              _buildCustomOfferButton(),
           ],
         ),
       ),
