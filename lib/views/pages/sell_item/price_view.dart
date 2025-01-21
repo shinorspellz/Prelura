@@ -70,11 +70,11 @@ class _PriceScreenState extends ConsumerState<PriceScreen> {
       ),
       bottomSheet: Container(
         // width: 90.w,
-        height: 82,
+        height: 90,
         color: Theme.of(context).scaffoldBackgroundColor,
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+              const EdgeInsets.only(top: 16, bottom: 32, left: 16, right: 16),
           child: AppButton(
             width: double.infinity,
             onTap: priceState != null && priceState.isNotEmpty

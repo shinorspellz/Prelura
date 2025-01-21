@@ -610,7 +610,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     MenuCard(
                       title: 'Discount Price (Optional)',
                       subtitle:
-                          '${state.discount != null && state.discount != "null" && state.discount!.isNotEmpty ? state.discount : 0}%',
+                          '${state.discount != null && state.discount != "null" && state.discount!.isNotEmpty ? double.parse(state.discount!).toInt() : 0}%',
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -784,8 +784,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               );
                           ref.read(productProvider).whenOrNull(
                                 error: (e, _) => context.alert(e.toString()),
-                                data: (_) {
-                                  context.alert('Upload Complete!');
+                                data: (data) {
+                                  context.alert('Product updated!');
+                                  ref.refresh(getProductProvider(
+                                      int.parse(widget.product!.id)));
                                   Navigator.pop(context);
                                   // final tabRouter = AutoTabsRouter.of(context);
                                   // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);

@@ -102,7 +102,8 @@ class ProductTopDetails extends ConsumerWidget {
                           fontSize: getDefaultSize(),
                         ),
                   ),
-                  if (product.discountPrice != null) ...[
+                  if (product.discountPrice != null &&
+                      double.parse(product.discountPrice!) != 0.00) ...[
                     10.horizontalSpacing,
                     Text(
                       "£ ${formatDynamicString(calculateDiscountedAmount(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:prelura_app/res/colors.dart';
@@ -115,6 +116,7 @@ class MenuPage extends ConsumerWidget {
           MenuCard(
               title: "Multi-buy discounts",
               subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
+              subtitleColor: PreluraColors.primaryColor,
               rightArrow: false,
               icon: RenderSvg(
                   svgPath: PreluraIcons.discount_svg,
@@ -128,6 +130,7 @@ class MenuPage extends ConsumerWidget {
               subtitle: ref.watch(userProvider).value?.isVacationMode == true
                   ? "on"
                   : "off",
+              subtitleColor: PreluraColors.primaryColor,
               icon: RenderSvg(
                 svgPath: PreluraIcons.vacation_mode_svg,
                 color: PreluraColors.grey,
@@ -170,12 +173,15 @@ class MenuPage extends ConsumerWidget {
               onTap: () {
                 context.router.push(const AboutPreluraMenuRoute());
               }),
-          const SizedBox(
-            height: 20,
-          ),
 
           const SizedBox(
             height: 30,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text('\u00A9 Prelura 2025',
+                style: context.theme.textTheme.bodySmall
+                    ?.copyWith(color: PreluraColors.grey)),
           ),
         ]),
       ),
