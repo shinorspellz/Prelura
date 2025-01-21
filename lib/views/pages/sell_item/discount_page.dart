@@ -18,7 +18,7 @@ final discountController =
   log(discount?.isNotEmpty.toString() ?? "");
   final initialText =
       (discount != null && discount != "null" && discount.isNotEmpty)
-          ? "${int.parse(discount)}%"
+          ? "${double.parse(discount).toInt()}%"
           : "0%";
 
   return TextEditingController(text: initialText);
@@ -35,6 +35,7 @@ class DiscountPage extends ConsumerWidget {
     void _updateTextController(String value) {
       // Ensure only numeric values are allowed
       final numericValue = value.replaceAll(RegExp(r'[^0-9]'), '');
+      numericValue.replaceFirst(RegExp(r'^0+'), '');
       final discount = int.tryParse(numericValue) ?? 0;
       log("discount : $discount%");
 
@@ -49,7 +50,7 @@ class DiscountPage extends ConsumerWidget {
           text: "$discount%",
           selection: TextSelection.collapsed(offset: "$discount".length),
         );
-        ref.read(sellItemProvider.notifier).updateDiscount(numericValue);
+        ref.read(sellItemProvider.notifier).updateDiscount(discount.toString());
       }
     }
 
