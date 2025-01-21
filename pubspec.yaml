@@ -127,6 +127,7 @@ flutter:
     - assets/svgs/empty-box-icon.svg
     - assets/svgs/kids/
     - assets/svgs/men/
+    - assets/svgs/next.svg
     - assets/svgs/pin.svg
     - assets/svgs/women/
 
