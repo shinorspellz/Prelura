@@ -12,8 +12,8 @@ _$MessageModelImpl _$$MessageModelImplFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       attachment: json['attachment'] as String?,
       itemType: json['itemType'],
-      read: json['read'] as bool,
-      isItem: json['isItem'] as bool,
+      read: json['read'] as bool?,
+      isItem: json['isItem'] as bool?,
       itemId: (json['itemId'] as num?)?.toInt(),
       replyTo: json['replyTo'] == null
           ? null

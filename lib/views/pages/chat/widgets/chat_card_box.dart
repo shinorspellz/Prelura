@@ -44,7 +44,7 @@ class ChatTextWidget extends ConsumerWidget {
                   if (id != null) {
                     ref
                         .read(messagesProvider(id!).notifier)
-                        .deleteMessage(chat.id);
+                        .deleteMessage(chat.id.toString());
                   }
                   Navigator.pop(context);
                 },
