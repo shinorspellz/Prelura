@@ -84,6 +84,7 @@ class ChatScreen extends ConsumerWidget {
             ),
           ]),
       bottomNavigationBar: MessageTextField(
+        id: id,
         textController: textController,
       ),
 

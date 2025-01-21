@@ -9,9 +9,11 @@ import 'emoji_handler_box.dart';
 
 class MessageTextField extends ConsumerStatefulWidget {
   final TextEditingController textController;
+  final String id;
   const MessageTextField({
     super.key,
     required this.textController,
+    required this.id,
   });
 
   @override
@@ -38,7 +40,7 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
   addListenerToFocusNode() {
     if (chatFocusNode!.hasFocus) {
       bottomSpacing = 5;
-      // reff?.read(showEmojiProvider.notifier).state = false;
+      ref.read(showEmojiProvider.notifier).state = false;
     } else {
       bottomSpacing = 20;
     }
@@ -201,16 +203,11 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                         if (showSend || ref.watch(showSendButtonProvider))
                           GestureDetector(
                             onTap: () async {
-                              // await ref
-                              //     .read(
-                              //       chatRoomProvider.notifier,
-                              //     )
-                              //     .sendMessage(
-                              //       widget.textController.text,
-                              //     );
-                              // widget.textController.clear();
-                              // showSend = false;
-                              // setState(() {});
+                              ref
+                                  .read(messagesProvider(widget.id).notifier)
+                                  .sendMessage(
+                                      widget.textController.text.trim());
+                              widget.textController.clear();
                             },
                             child: CircleAvatar(
                                 radius: 20,
