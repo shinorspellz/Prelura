@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -682,6 +681,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       children: [
                                         PreluraAuthTextField(
                                           label: 'Bio',
+                                          minLines: 6,
                                           labelStyle: Theme.of(context)
                                               .textTheme
                                               .bodyMedium

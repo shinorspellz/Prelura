@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -5,8 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/pages/settings/widget/custom_location_field.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
@@ -31,19 +38,20 @@ class AccountSettingScreen extends ConsumerStatefulWidget {
 
 class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   DateTime? selectedDate;
+  UserModel? userInfo;
   TextEditingController get fullName =>
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+      TextEditingController(text: userInfo?.fullName);
   String? selectedGender;
   final String? apiKey = dotenv.env["LOCATION_API_KEY"];
   List<AutocompletePrediction> placePredictions = [];
-  late TextEditingController locationController = TextEditingController(
-      text: ref.read(userProvider).valueOrNull?.location?.locationName);
+  late TextEditingController locationController =
+      TextEditingController(text: userInfo?.location?.locationName);
   late TextEditingController name =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.fullName);
+      TextEditingController(text: userInfo?.fullName);
   late TextEditingController username =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.username);
+      TextEditingController(text: userInfo?.username);
   late TextEditingController email =
-      TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
+      TextEditingController(text: userInfo?.email);
   late TextEditingController dob = TextEditingController();
   final bio = TextEditingController();
   final int MaxDescription = 300;
@@ -57,6 +65,12 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
   @override
   void initState() {
     getLongLat(showDialog: true);
+    userInfo = ref.read(userProvider).valueOrNull;
+    gender = userInfo?.gender?.toLowerCase() == "male"
+        ? Gender.Male
+        : userInfo?.gender?.toLowerCase() == "female"
+            ? Gender.Female
+            : null;
     bio.text = ref.read(userProvider).valueOrNull?.bio ?? "";
     email.addListener(() => setState(() {}));
     super.initState();
@@ -172,6 +186,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                   context: context,
                   onSelect: (date) {
                     if (date == null) return;
+                    selectedDate = date;
                     dob.text =
                         DateFormat(DateFormat.YEAR_ABBR_MONTH_WEEKDAY_DAY)
                             .format(date);
@@ -236,32 +251,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
             //   },
             // ),
 
-            buildAuthTextField(
-              context,
-              label: 'Location',
-              hintText: 'e.g. Exter, United Kingdom',
-              controller: locationController,
-              onChanged: (value) {
-                placeAutoComplete(value);
-              },
+            CustomLocationField(
+              locationController: locationController,
             ),
-            if (placePredictions.isNotEmpty) ...[
-              Expanded(
-                child: ListView.builder(
-                  itemCount: placePredictions.length,
-                  itemBuilder: (context, index) => LocationListTile(
-                    press: () {
-                      setState(() {
-                        locationController.text =
-                            placePredictions[index].description!;
-                        placePredictions = [];
-                      });
-                    },
-                    location: placePredictions[index].description!,
-                  ),
-                ),
-              ),
-            ],
             addVerticalSpacing(16),
 
             Container(
@@ -285,8 +277,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                           ),
                     ),
                     TextSpan(
-                      text: " :  ${gender?.name == null ? "" : gender?.name}" ??
-                          " ",
+                      text: " :  ${gender?.name ?? ""}" ?? " ",
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: getDefaultSize(),
                             color: PreluraColors.grey,
@@ -395,6 +386,54 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
         child: PreluraButtonWithLoader(
           showLoadingIndicator: isLoading,
           onPressed: () async {
+            try {
+              // email: (email.text!= user?.email)  ? email.text : null,
+              setState(() {
+                isLoading = true;
+              });
+
+              log("::::From dob:: ${selectedDate != user?.dob}");
+              log("::::From dob:: ${selectedDate}");
+              await ref.read(userNotfierProvider.notifier).updateProfile(
+                    displayName:
+                        (name.text != user?.displayName) ? name.text : null,
+                    gender: gender?.name,
+                    dob: selectedDate != user?.dob ? selectedDate : null,
+                    location:
+                        locationController.text != user?.location?.locationName
+                            ? Input$LocationInputType.fromJson({
+                                "locationName": locationController.text,
+                                "latitude": lat.toString(),
+                                "longitude": long.toString(),
+                              })
+                            : null,
+                    username:
+                        username.text != user?.username ? username.text : null,
+                  );
+              if (modifiedEmail) {
+                await ref
+                    .read(userNotfierProvider.notifier)
+                    .changeEmail(email.text);
+                ref.read(userNotfierProvider).whenOrNull(
+                      error: (e, _) => context.alert(e.toString()),
+                      data: (_) => context
+                          .pushRoute(VerifyEmailRoute(email: email.text)),
+                    );
+                setState(() => isLoading = false);
+                return;
+              }
+              context.alert(
+                'Profile updated successfully',
+              );
+            } catch (e) {
+              log(":::Error from profile update::::: ${e.toString()}");
+              context.alert(
+                'An error occurred. Please try again.',
+              );
+            }
+            setState(() {
+              isLoading = false;
+            });
             // try {
             //   if (locationController.text.isEmpty) {
             //     context.alert('Location cannot be empty');

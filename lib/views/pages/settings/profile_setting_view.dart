@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +13,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/pages/settings/widget/custom_location_field.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
@@ -44,8 +44,6 @@ class ProfileSettingScreen extends ConsumerStatefulWidget {
 }
 
 class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
-  final String? apiKey = dotenv.env["LOCATION_API_KEY"];
-  List<AutocompletePrediction> placePredictions = [];
   late TextEditingController locationController = TextEditingController(
       text: ref.read(userProvider).valueOrNull?.location?.locationName);
   late TextEditingController name =
@@ -72,26 +70,6 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
     username.dispose();
     email.dispose();
     super.dispose();
-  }
-
-  void placeAutoComplete(String query) async {
-    Uri uri =
-        Uri.https("maps.googleapis.com", "maps/api/place/autocomplete/json", {
-      "input": query,
-      "key": apiKey,
-    });
-    String? response = await NetworkUtility.fetchUrl(uri);
-
-    if (response != null) {
-      PlaceAutocompleteResponse result =
-          PlaceAutocompleteResponse.parseAutocompleteResult(response);
-
-      if (result.predictions != null) {
-        setState(() {
-          placePredictions = result.predictions!;
-        });
-      }
-    }
   }
 
   double long = 0.0;
@@ -152,114 +130,93 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0), // Optional padding for better UI
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buildAuthTextField(
-                context,
-                label: 'Name',
-                hintText: 'e.g. Prelura App',
-                controller: name,
-              ),
-              addVerticalSpacing(16),
-              buildAuthTextField(
-                context,
-                label: 'Username',
-                hintText: 'e.g. prelura_app',
-                controller: username,
-                enabled: false,
-              ),
-              addVerticalSpacing(16),
-              Column(children: [
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 buildAuthTextField(
                   context,
-                  label: 'About',
-                  hintText: 'About me ...',
-                  controller: bio,
-                  enabled: true,
-                  minLines: 5,
-                  maxLines: null,
-                  isDescription: true,
-                  maxLength: MaxDescription,
-                  onChanged: (value) {
-                    setState(
-                        () {}); // Rebuild the widget to show updated counter
-                  },
-                  textInputAction: TextInputAction.newline,
-                  // formatter: FilteringTextInputFormatter.allow(
-                  //     RegExp(r'[^\n]+')),
-                  keyboardType: TextInputType.multiline,
+                  label: 'Name',
+                  hintText: 'e.g. Prelura App',
+                  controller: name,
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    "${MaxDescription - bio.text.length} characters remaining",
-                    maxLines: 1,
-                    textAlign: TextAlign.right,
-                    style: Theme.of(context).textTheme.bodySmall,
+                addVerticalSpacing(16),
+                buildAuthTextField(
+                  context,
+                  label: 'Username',
+                  hintText: 'e.g. prelura_app',
+                  controller: username,
+                  enabled: false,
+                ),
+                addVerticalSpacing(16),
+                Column(children: [
+                  buildAuthTextField(
+                    context,
+                    label: 'About',
+                    hintText: 'About me ...',
+                    controller: bio,
+                    enabled: true,
+                    minLines: 5,
+                    maxLines: null,
+                    isDescription: true,
+                    maxLength: MaxDescription,
+                    onChanged: (value) {
+                      setState(
+                          () {}); // Rebuild the widget to show updated counter
+                    },
+                    textInputAction: TextInputAction.newline,
+                    // formatter: FilteringTextInputFormatter.allow(
+                    //     RegExp(r'[^\n]+')),
+                    keyboardType: TextInputType.multiline,
                   ),
-                )
-              ]),
-              addVerticalSpacing(16),
-              buildAuthTextField(
-                context,
-                label: 'Email',
-                hintText: 'e.g. app@prelura.com',
-                controller: email,
-              ),
-              addVerticalSpacing(16),
-              // PreluraAuthTextField(
-              //   label: 'Password',
-              //   labelStyle: _labelStyle(context),
-              //   hintText: '*********',
-              //   hintStyle: _hintStyle(context),
-              //   obscureText: obscureText,
-              //   onChanged: (value) {},
-              //   isPassword: true,
-              // ),
-              // addVerticalSpacing(16),
-              // PlacesAutocompletionField(
-              //   label: 'Location',
-              //   hintText: 'e.g. Exter, United Kingdom',
-              //   controller: locationController,
-              //   postOnChanged: (value) {
-              //     placeAutoComplete(value ?? '');
-              //   },
-              //   onItemSelected: (value) {
-              //     if (!mounted) return;
-              //     setState(() {
-              //       locationController.text = value["description"];
-              //     });
-              //   },
-              // ),
-
-              buildAuthTextField(
-                context,
-                label: 'Location',
-                hintText: 'e.g. Exter, United Kingdom',
-                controller: locationController,
-                onChanged: (value) {
-                  placeAutoComplete(value);
-                },
-              ),
-              if (placePredictions.isNotEmpty) ...[
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: placePredictions.length,
-                    itemBuilder: (context, index) => LocationListTile(
-                      press: () {
-                        setState(() {
-                          locationController.text =
-                              placePredictions[index].description!;
-                          placePredictions = [];
-                        });
-                      },
-                      location: placePredictions[index].description!,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      "${MaxDescription - bio.text.length} characters remaining",
+                      maxLines: 1,
+                      textAlign: TextAlign.right,
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
-                  ),
+                  )
+                ]),
+                addVerticalSpacing(16),
+                buildAuthTextField(
+                  context,
+                  label: 'Email',
+                  hintText: 'e.g. app@prelura.com',
+                  controller: email,
+                ),
+                addVerticalSpacing(16),
+                // PreluraAuthTextField(
+                //   label: 'Password',
+                //   labelStyle: _labelStyle(context),
+                //   hintText: '*********',
+                //   hintStyle: _hintStyle(context),
+                //   obscureText: obscureText,
+                //   onChanged: (value) {},
+                //   isPassword: true,
+                // ),
+                // addVerticalSpacing(16),
+                // PlacesAutocompletionField(
+                //   label: 'Location',
+                //   hintText: 'e.g. Exter, United Kingdom',
+                //   controller: locationController,
+                //   postOnChanged: (value) {
+                //     placeAutoComplete(value ?? '');
+                //   },
+                //   onItemSelected: (value) {
+                //     if (!mounted) return;
+                //     setState(() {
+                //       locationController.text = value["description"];
+                //     });
+                //   },
+                // ),
+
+                CustomLocationField(
+                  locationController: locationController,
                 ),
               ],
-            ],
+            ),
           ),
         ),
         bottomNavigationBar: Container(
