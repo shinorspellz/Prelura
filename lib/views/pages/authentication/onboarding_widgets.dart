@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -96,44 +98,207 @@ class ThirdIndexBox extends StatelessWidget {
   }
 }
 
-class FourthIndexBox extends StatelessWidget {
-  const FourthIndexBox({
-    super.key,
-  });
+class FourthIndexBox extends StatefulWidget {
+  const FourthIndexBox({super.key});
+
+  @override
+  State<FourthIndexBox> createState() => _FourthIndexBoxState();
+}
+
+class _FourthIndexBoxState extends State<FourthIndexBox> {
+  List<String> words = ["wear", "like", "need", "want"];
+  int wordIndex = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    wordIndex = 0;
+    _startTimer();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 50),
-      child: Column(children: [
-        Text(
-          "Dont wear/like/need/want it?",
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                color: Hex("#FBFBFB"),
-                height: 1.7,
-                letterSpacing: -1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Dont",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      height: 1.7,
+                      letterSpacing: -1,
+                    ),
               ),
-        ),
-        addVerticalSpacing(40),
-        Text(
-          "Sell it!",
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: Hex("#FBFBFB"),
-                height: 1.7,
-                letterSpacing: -1,
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, 1), // Start from below
+                      end: Offset.zero, // End at original position
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+                child: Text(
+                  " ${words[wordIndex]}",
+                  key: ValueKey<int>(wordIndex),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                        height: 1.7,
+                        letterSpacing: -1,
+                      ),
+                ),
               ),
-        ),
-        addVerticalSpacing(0),
-      ]),
+              Text(
+                " it?",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      height: 1.7,
+                      letterSpacing: -1,
+                    ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
+          Text(
+            "Sell it!",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  height: 1.7,
+                  letterSpacing: -1,
+                ),
+          ),
+        ],
+      ),
     );
   }
+
+  _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      setState(() {
+        wordIndex = (wordIndex + 1) % words.length;
+      });
+    });
+  }
 }
+
+// class FourthIndexBox extends StatefulWidget {
+//   const FourthIndexBox({
+//     super.key,
+//   });
+//
+//   @override
+//   State<FourthIndexBox> createState() => _FourthIndexBoxState();
+// }
+//
+// class _FourthIndexBoxState extends State<FourthIndexBox> {
+//   List<String> words = ["wear", "like", "need", "want"];
+//   int wordIndex = 0;
+//   Timer? _timer;
+//
+//   @override
+//   void initState() {
+//     wordIndex = 0;
+//     _startTimer();
+//     super.initState();
+//   }
+//
+//   @override
+//   void dispose() {
+//     _timer?.cancel();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.only(bottom: 50),
+//       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+//         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+//           Text(
+//             "Don`t",
+//             textAlign: TextAlign.center,
+//             style: Theme.of(context).textTheme.displayLarge!.copyWith(
+//                   fontSize: 15,
+//                   fontWeight: FontWeight.w600,
+//                   color: Hex("#FBFBFB"),
+//                   height: 1.7,
+//                   letterSpacing: -1,
+//                 ),
+//           ),
+//           Text(
+//             " ${words[wordIndex]}",
+//             textAlign: TextAlign.center,
+//             style: Theme.of(context).textTheme.displayLarge!.copyWith(
+//                   fontSize: 16,
+//                   fontWeight: FontWeight.w800,
+//                   color: Hex("#FBFBFB"),
+//                   height: 1.7,
+//                   letterSpacing: -1,
+//                 ),
+//           ),
+//           Text(
+//             " it?",
+//             textAlign: TextAlign.center,
+//             style: Theme.of(context).textTheme.displayLarge!.copyWith(
+//                   fontSize: 15,
+//                   fontWeight: FontWeight.w600,
+//                   color: Hex("#FBFBFB"),
+//                   height: 1.7,
+//                   letterSpacing: -1,
+//                 ),
+//           ),
+//         ]),
+//         addVerticalSpacing(40),
+//         Text(
+//           "Sell it!",
+//           textAlign: TextAlign.center,
+//           style: Theme.of(context).textTheme.displayLarge!.copyWith(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.w700,
+//                 color: Hex("#FBFBFB"),
+//                 height: 1.7,
+//                 letterSpacing: -1,
+//               ),
+//         ),
+//         addVerticalSpacing(0),
+//       ]),
+//     );
+//   }
+//
+//   _startTimer() {
+//     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+//       setState(() {
+//         wordIndex = (wordIndex + 1) % words.length;
+//       });
+//     });
+//   }
+// }
 
 class FirstIndexInfo extends StatelessWidget {
   const FirstIndexInfo({
