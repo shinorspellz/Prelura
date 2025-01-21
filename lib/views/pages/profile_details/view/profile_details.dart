@@ -75,7 +75,7 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
     return Scaffold(
       appBar: PreluraAppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appbarTitle: user?.username ?? "--",
+        appbarTitle: "Collection",
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),

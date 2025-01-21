@@ -599,7 +599,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     ),
                     MenuCard(
                       title: 'Price',
-                      subtitle: state.price,
+                      subtitle: "£ ${state.price ?? 0}",
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -610,7 +610,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                     MenuCard(
                       title: 'Discount Price (Optional)',
                       subtitle:
-                          '${state.discount != null && state.discount != "null" ? state.discount : 0}%',
+                          '${state.discount != null && state.discount != "null" && state.discount!.isNotEmpty ? state.discount : 0}%',
                       subtitleColor: PreluraColors.greyColor,
                       onTap: () {
                         dismissKeyboard();
@@ -661,9 +661,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
               right: 0,
               child: Container(
                 color: context.theme.scaffoldBackgroundColor,
-                height: 75,
+                height: 90,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
                   child: AppButton(
                       isDisabled: widget.product == null
                           ? (state.category == null ||
@@ -777,7 +777,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                         state.discount == "null" ||
                                         state.discount == "0" ||
                                         state.discount!.isEmpty
-                                    ? null
+                                    ? 0
                                     : double.parse(state.discount!),
                                 customBrand: state.customBrand,
                                 isFeatured: state.isFeatured,
@@ -815,7 +815,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                       state.discount == "null" ||
                                       state.discount == "0" ||
                                       state.discount!.isEmpty
-                                  ? null
+                                  ? 0
                                   : double.parse(state.discount!),
                               customBrand: state.customBrand,
                               isFeatured: state.isFeatured,
@@ -827,9 +827,11 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           },
                           data: (_) {
                             context.alert('Product created successfully');
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             // final tabRouter = AutoTabsRouter.of(context);
-                            // tabRouter.setActiveIndex(ref.read(routePathProvider.notifier).state);
+                            // tabRouter.setActiveIndex(2);
+
+                            context.router.replace(UserProfileDetailsRoute());
                           },
                         );
 
