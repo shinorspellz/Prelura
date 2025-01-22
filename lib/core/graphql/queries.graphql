@@ -75,6 +75,7 @@ query GetUser($username: String!) {
     noOfFollowing
     noOfFollowers
     isFollowing
+    isVacationMode
     phone {
       number
       countryCode

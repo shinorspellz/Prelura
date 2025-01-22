@@ -974,6 +974,53 @@
             "deprecationReason": null
           },
           {
+            "name": "userOrders",
+            "description": null,
+            "args": [
+              {
+                "name": "filters",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "OrderFiltersInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "pageCount",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "pageNumber",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "OrderType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "allProductsTotalNumber",
             "description": null,
             "args": [],
@@ -1059,6 +1106,18 @@
           },
           {
             "name": "recommendProductsTotalNumber",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userOrdersTotalNumber",
             "description": null,
             "args": [],
             "type": {
@@ -2172,13 +2231,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ProductType",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "ProductType",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2236,13 +2291,9 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ProductsOrderStatusChoices",
-                "ofType": null
-              }
+              "kind": "ENUM",
+              "name": "OrderStatusEnum",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2274,6 +2325,30 @@
                 "kind": "SCALAR",
                 "name": "DateTime",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "paymentSet",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "PaymentType",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -4868,26 +4943,32 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "NEW_WITH_TAGS",
-            "description": "New with tags",
+            "name": "BRAND_NEW_WITH_TAGS",
+            "description": "Brand New with Tags",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "LIKE_NEW",
-            "description": "Like new",
+            "name": "BRAND_NEW_WITHOUT_TAGS",
+            "description": "Brand New without Tags",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "USED",
-            "description": "Used",
+            "name": "EXCELLENT_CONDITION",
+            "description": "Excellent Condition",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOOD_CONDITION",
+            "description": "Good Condition",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "HEAVILY_USED",
-            "description": "Heavily used",
+            "description": "Heavily Used",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -6005,45 +6086,45 @@
       },
       {
         "kind": "ENUM",
-        "name": "ProductsOrderStatusChoices",
-        "description": "An enumeration.",
+        "name": "OrderStatusEnum",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "PENDING",
-            "description": "PENDING",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "CONFIRMED",
-            "description": "CONFIRMED",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "SHIPPED",
-            "description": "SHIPPED",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "DELIVERED",
-            "description": "DELIVERED",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "CANCELLED",
-            "description": "CANCELLED",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "REFUNDED",
-            "description": "REFUNDED",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -6805,19 +6886,25 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "NEW_WITH_TAGS",
+            "name": "BRAND_NEW_WITH_TAGS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "LIKE_NEW",
+            "name": "BRAND_NEW_WITHOUT_TAGS",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "USED",
+            "name": "EXCELLENT_CONDITION",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GOOD_CONDITION",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -7217,6 +7304,27 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "OrderFiltersInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderStatusEnum",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },

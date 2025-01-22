@@ -788,6 +788,112 @@ class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
       _res;
 }
 
+class Input$OrderFiltersInput {
+  factory Input$OrderFiltersInput({Enum$OrderStatusEnum? status}) =>
+      Input$OrderFiltersInput._({
+        if (status != null) r'status': status,
+      });
+
+  Input$OrderFiltersInput._(this._$data);
+
+  factory Input$OrderFiltersInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('status')) {
+      final l$status = data['status'];
+      result$data['status'] = l$status == null
+          ? null
+          : fromJson$Enum$OrderStatusEnum((l$status as String));
+    }
+    return Input$OrderFiltersInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Enum$OrderStatusEnum? get status =>
+      (_$data['status'] as Enum$OrderStatusEnum?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('status')) {
+      final l$status = status;
+      result$data['status'] =
+          l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$OrderFiltersInput<Input$OrderFiltersInput> get copyWith =>
+      CopyWith$Input$OrderFiltersInput(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$OrderFiltersInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (_$data.containsKey('status') != other._$data.containsKey('status')) {
+      return false;
+    }
+    if (l$status != lOther$status) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$status = status;
+    return Object.hashAll([_$data.containsKey('status') ? l$status : const {}]);
+  }
+}
+
+abstract class CopyWith$Input$OrderFiltersInput<TRes> {
+  factory CopyWith$Input$OrderFiltersInput(
+    Input$OrderFiltersInput instance,
+    TRes Function(Input$OrderFiltersInput) then,
+  ) = _CopyWithImpl$Input$OrderFiltersInput;
+
+  factory CopyWith$Input$OrderFiltersInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$OrderFiltersInput;
+
+  TRes call({Enum$OrderStatusEnum? status});
+}
+
+class _CopyWithImpl$Input$OrderFiltersInput<TRes>
+    implements CopyWith$Input$OrderFiltersInput<TRes> {
+  _CopyWithImpl$Input$OrderFiltersInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$OrderFiltersInput _instance;
+
+  final TRes Function(Input$OrderFiltersInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? status = _undefined}) => _then(Input$OrderFiltersInput._({
+        ..._instance._$data,
+        if (status != _undefined) 'status': (status as Enum$OrderStatusEnum?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$OrderFiltersInput<TRes>
+    implements CopyWith$Input$OrderFiltersInput<TRes> {
+  _CopyWithStubImpl$Input$OrderFiltersInput(this._res);
+
+  TRes _res;
+
+  call({Enum$OrderStatusEnum? status}) => _res;
+}
+
 class Input$PhoneInputType {
   factory Input$PhoneInputType({
     required String countryCode,
@@ -1873,6 +1979,59 @@ Enum$OfferActionEnum fromJson$Enum$OfferActionEnum(String value) {
   }
 }
 
+enum Enum$OrderStatusEnum {
+  PENDING,
+  CONFIRMED,
+  SHIPPED,
+  DELIVERED,
+  CANCELLED,
+  REFUNDED,
+  $unknown;
+
+  factory Enum$OrderStatusEnum.fromJson(String value) =>
+      fromJson$Enum$OrderStatusEnum(value);
+
+  String toJson() => toJson$Enum$OrderStatusEnum(this);
+}
+
+String toJson$Enum$OrderStatusEnum(Enum$OrderStatusEnum e) {
+  switch (e) {
+    case Enum$OrderStatusEnum.PENDING:
+      return r'PENDING';
+    case Enum$OrderStatusEnum.CONFIRMED:
+      return r'CONFIRMED';
+    case Enum$OrderStatusEnum.SHIPPED:
+      return r'SHIPPED';
+    case Enum$OrderStatusEnum.DELIVERED:
+      return r'DELIVERED';
+    case Enum$OrderStatusEnum.CANCELLED:
+      return r'CANCELLED';
+    case Enum$OrderStatusEnum.REFUNDED:
+      return r'REFUNDED';
+    case Enum$OrderStatusEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$OrderStatusEnum fromJson$Enum$OrderStatusEnum(String value) {
+  switch (value) {
+    case r'PENDING':
+      return Enum$OrderStatusEnum.PENDING;
+    case r'CONFIRMED':
+      return Enum$OrderStatusEnum.CONFIRMED;
+    case r'SHIPPED':
+      return Enum$OrderStatusEnum.SHIPPED;
+    case r'DELIVERED':
+      return Enum$OrderStatusEnum.DELIVERED;
+    case r'CANCELLED':
+      return Enum$OrderStatusEnum.CANCELLED;
+    case r'REFUNDED':
+      return Enum$OrderStatusEnum.REFUNDED;
+    default:
+      return Enum$OrderStatusEnum.$unknown;
+  }
+}
+
 enum Enum$ParcelSizeEnum {
   SMALL,
   MEDIUM,
@@ -2145,65 +2304,11 @@ Enum$ProductGroupingEnum fromJson$Enum$ProductGroupingEnum(String value) {
   }
 }
 
-enum Enum$ProductsOrderStatusChoices {
-  PENDING,
-  CONFIRMED,
-  SHIPPED,
-  DELIVERED,
-  CANCELLED,
-  REFUNDED,
-  $unknown;
-
-  factory Enum$ProductsOrderStatusChoices.fromJson(String value) =>
-      fromJson$Enum$ProductsOrderStatusChoices(value);
-
-  String toJson() => toJson$Enum$ProductsOrderStatusChoices(this);
-}
-
-String toJson$Enum$ProductsOrderStatusChoices(
-    Enum$ProductsOrderStatusChoices e) {
-  switch (e) {
-    case Enum$ProductsOrderStatusChoices.PENDING:
-      return r'PENDING';
-    case Enum$ProductsOrderStatusChoices.CONFIRMED:
-      return r'CONFIRMED';
-    case Enum$ProductsOrderStatusChoices.SHIPPED:
-      return r'SHIPPED';
-    case Enum$ProductsOrderStatusChoices.DELIVERED:
-      return r'DELIVERED';
-    case Enum$ProductsOrderStatusChoices.CANCELLED:
-      return r'CANCELLED';
-    case Enum$ProductsOrderStatusChoices.REFUNDED:
-      return r'REFUNDED';
-    case Enum$ProductsOrderStatusChoices.$unknown:
-      return r'$unknown';
-  }
-}
-
-Enum$ProductsOrderStatusChoices fromJson$Enum$ProductsOrderStatusChoices(
-    String value) {
-  switch (value) {
-    case r'PENDING':
-      return Enum$ProductsOrderStatusChoices.PENDING;
-    case r'CONFIRMED':
-      return Enum$ProductsOrderStatusChoices.CONFIRMED;
-    case r'SHIPPED':
-      return Enum$ProductsOrderStatusChoices.SHIPPED;
-    case r'DELIVERED':
-      return Enum$ProductsOrderStatusChoices.DELIVERED;
-    case r'CANCELLED':
-      return Enum$ProductsOrderStatusChoices.CANCELLED;
-    case r'REFUNDED':
-      return Enum$ProductsOrderStatusChoices.REFUNDED;
-    default:
-      return Enum$ProductsOrderStatusChoices.$unknown;
-  }
-}
-
 enum Enum$ProductsProductConditionChoices {
-  NEW_WITH_TAGS,
-  LIKE_NEW,
-  USED,
+  BRAND_NEW_WITH_TAGS,
+  BRAND_NEW_WITHOUT_TAGS,
+  EXCELLENT_CONDITION,
+  GOOD_CONDITION,
   HEAVILY_USED,
   $unknown;
 
@@ -2216,12 +2321,14 @@ enum Enum$ProductsProductConditionChoices {
 String toJson$Enum$ProductsProductConditionChoices(
     Enum$ProductsProductConditionChoices e) {
   switch (e) {
-    case Enum$ProductsProductConditionChoices.NEW_WITH_TAGS:
-      return r'NEW_WITH_TAGS';
-    case Enum$ProductsProductConditionChoices.LIKE_NEW:
-      return r'LIKE_NEW';
-    case Enum$ProductsProductConditionChoices.USED:
-      return r'USED';
+    case Enum$ProductsProductConditionChoices.BRAND_NEW_WITH_TAGS:
+      return r'BRAND_NEW_WITH_TAGS';
+    case Enum$ProductsProductConditionChoices.BRAND_NEW_WITHOUT_TAGS:
+      return r'BRAND_NEW_WITHOUT_TAGS';
+    case Enum$ProductsProductConditionChoices.EXCELLENT_CONDITION:
+      return r'EXCELLENT_CONDITION';
+    case Enum$ProductsProductConditionChoices.GOOD_CONDITION:
+      return r'GOOD_CONDITION';
     case Enum$ProductsProductConditionChoices.HEAVILY_USED:
       return r'HEAVILY_USED';
     case Enum$ProductsProductConditionChoices.$unknown:
@@ -2232,12 +2339,14 @@ String toJson$Enum$ProductsProductConditionChoices(
 Enum$ProductsProductConditionChoices
     fromJson$Enum$ProductsProductConditionChoices(String value) {
   switch (value) {
-    case r'NEW_WITH_TAGS':
-      return Enum$ProductsProductConditionChoices.NEW_WITH_TAGS;
-    case r'LIKE_NEW':
-      return Enum$ProductsProductConditionChoices.LIKE_NEW;
-    case r'USED':
-      return Enum$ProductsProductConditionChoices.USED;
+    case r'BRAND_NEW_WITH_TAGS':
+      return Enum$ProductsProductConditionChoices.BRAND_NEW_WITH_TAGS;
+    case r'BRAND_NEW_WITHOUT_TAGS':
+      return Enum$ProductsProductConditionChoices.BRAND_NEW_WITHOUT_TAGS;
+    case r'EXCELLENT_CONDITION':
+      return Enum$ProductsProductConditionChoices.EXCELLENT_CONDITION;
+    case r'GOOD_CONDITION':
+      return Enum$ProductsProductConditionChoices.GOOD_CONDITION;
     case r'HEAVILY_USED':
       return Enum$ProductsProductConditionChoices.HEAVILY_USED;
     default:

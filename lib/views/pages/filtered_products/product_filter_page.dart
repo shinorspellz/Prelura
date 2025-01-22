@@ -102,8 +102,16 @@ class _ProductPriceFilterPageState
                     ref.invalidate(filterProductByPriceProvider(15));
                   },
                 )),
-                loading: () => SliverToBoxAdapter(child: GridShimmer()),
-                orElse: () => SliverToBoxAdapter(child: GridShimmer()),
+                loading: () => SliverToBoxAdapter(
+                    child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GridShimmer(),
+                )),
+                orElse: () => SliverToBoxAdapter(
+                    child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GridShimmer(),
+                )),
               ),
         ),
       ]),

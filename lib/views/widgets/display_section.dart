@@ -41,7 +41,7 @@ class DisplaySection extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 0.54),
+                    childAspectRatio: 0.50),
                 itemCount: mockData.length,
                 itemBuilder: (context, index) {
                   return DisplayCard(itemData: mockData[index]);

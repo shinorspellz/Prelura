@@ -155,9 +155,10 @@ enum ChatsMessageAttachmentTypeChoices {
 }
 
 enum ConditionEnum {
-  NEW_WITH_TAGS
-  LIKE_NEW
-  USED
+  BRAND_NEW_WITH_TAGS
+  BRAND_NEW_WITHOUT_TAGS
+  EXCELLENT_CONDITION
+  GOOD_CONDITION
   HEAVILY_USED
 }
 
@@ -727,16 +728,30 @@ type OfferType {
   conversation: [ConversationType!]!
 }
 
+input OrderFiltersInput {
+  status: OrderStatusEnum
+}
+
+enum OrderStatusEnum {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
 type OrderType {
   id: ID!
   user: UserNode
-  product: ProductType!
+  product: ProductType
   quantity: Int!
   priceTotal: Decimal!
   shippingFee: Decimal!
-  status: ProductsOrderStatusChoices!
+  status: OrderStatusEnum
   createdAt: DateTime!
   updatedAt: DateTime!
+  paymentSet: [PaymentType!]!
 }
 
 """
@@ -881,38 +896,20 @@ enum ProductGroupingEnum {
 }
 
 """An enumeration."""
-enum ProductsOrderStatusChoices {
-  """PENDING"""
-  PENDING
-
-  """CONFIRMED"""
-  CONFIRMED
-
-  """SHIPPED"""
-  SHIPPED
-
-  """DELIVERED"""
-  DELIVERED
-
-  """CANCELLED"""
-  CANCELLED
-
-  """REFUNDED"""
-  REFUNDED
-}
-
-"""An enumeration."""
 enum ProductsProductConditionChoices {
-  """New with tags"""
-  NEW_WITH_TAGS
+  """Brand New with Tags"""
+  BRAND_NEW_WITH_TAGS
 
-  """Like new"""
-  LIKE_NEW
+  """Brand New without Tags"""
+  BRAND_NEW_WITHOUT_TAGS
 
-  """Used"""
-  USED
+  """Excellent Condition"""
+  EXCELLENT_CONDITION
 
-  """Heavily used"""
+  """Good Condition"""
+  GOOD_CONDITION
+
+  """Heavily Used"""
   HEAVILY_USED
 }
 
@@ -1293,6 +1290,7 @@ type Query {
   recentlyViewedProducts: [ProductType]
   filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
   favoriteBrandProducts(top: Int!): [ProductType]
+  userOrders(filters: OrderFiltersInput, pageCount: Int, pageNumber: Int): [OrderType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
   filterProductsByPriceTotalNumber: Int
@@ -1301,6 +1299,7 @@ type Query {
   similarProductsTotalNumber: Int
   recommendedSellersTotalNumber: Int
   recommendProductsTotalNumber: Int
+  userOrdersTotalNumber: Int
   viewMe: UserType
   getUser(username: String!): UserType
   searchUsers(search: String!): [UserType]
