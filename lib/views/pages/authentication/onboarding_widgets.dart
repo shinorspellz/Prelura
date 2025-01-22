@@ -134,7 +134,7 @@ class _FourthIndexBoxState extends State<FourthIndexBox> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Dont",
+                "Don't",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       fontSize: 15,
@@ -145,27 +145,27 @@ class _FourthIndexBoxState extends State<FourthIndexBox> {
                     ),
               ),
               AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 700),
                 transitionBuilder: (Widget child, Animation<double> animation) {
-                  return SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(0, 1), // Start from below
-                      end: Offset.zero, // End at original position
-                    ).animate(animation),
+                  return FadeTransition(
+                    opacity: animation,
                     child: child,
                   );
                 },
-                child: Text(
-                  " ${words[wordIndex]}",
-                  key: ValueKey<int>(wordIndex),
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white,
-                        height: 1.7,
-                        letterSpacing: -1,
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: Text(
+                    " ${words[wordIndex]}",
+                    key: ValueKey<int>(wordIndex),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                          height: 1.7,
+                          letterSpacing: -1,
+                        ),
+                  ),
                 ),
               ),
               Text(
