@@ -97,7 +97,7 @@ class OnboardingScreen extends ConsumerWidget {
                               onTap: () {
                                 if (activeIndex == 4) {
                                   context.router.push(
-                                    LoginRoute(),
+                                    SignUpRoute(),
                                   );
                                 }
                                 ref.read(activeOnboardingIndex.notifier).state =

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -49,7 +50,6 @@ class SecondIndexBox extends StatelessWidget {
                 letterSpacing: -1,
               ),
         ),
-        addVerticalSpacing(50),
       ]),
     );
   }
@@ -93,7 +93,6 @@ class ThirdIndexBox extends StatelessWidget {
                 letterSpacing: -1,
               ),
         ),
-        addVerticalSpacing(50),
       ]),
     );
   }
@@ -345,9 +344,18 @@ class OnboardingFirstPart extends ConsumerWidget {
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: PreluraColors.primaryColor,
+          child: GestureDetector(
+            onTap: () {
+              context.router.popForced();
+            },
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.transparent,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: PreluraColors.primaryColor,
+              ),
+            ),
           ),
         ),
         Text(
