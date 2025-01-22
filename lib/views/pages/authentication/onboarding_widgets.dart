@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'onboarding.dart';
@@ -346,7 +347,7 @@ class OnboardingFirstPart extends ConsumerWidget {
           alignment: Alignment.centerLeft,
           child: Icon(
             Icons.arrow_back_ios,
-            color: Theme.of(context).primaryColor,
+            color: PreluraColors.primaryColor,
           ),
         ),
         Text(
