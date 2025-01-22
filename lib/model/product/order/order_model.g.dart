@@ -15,8 +15,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
       quantity: (json['quantity'] as num).toInt(),
       priceTotal: json['priceTotal'] as String,
       shippingFee: json['shippingFee'] as String,
-      status:
-          Enum$ProductsOrderStatusChoices.fromJson(json['status'] as String),
+      status: Enum$OrderStatusEnum.fromJson(json['status'] as String),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

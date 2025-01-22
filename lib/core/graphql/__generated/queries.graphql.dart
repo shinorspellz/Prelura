@@ -2812,6 +2812,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isVacationMode'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -3009,6 +3016,7 @@ class Query$GetUser$getUser {
     this.noOfFollowing,
     this.noOfFollowers,
     this.isFollowing,
+    this.isVacationMode,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -3032,6 +3040,7 @@ class Query$GetUser$getUser {
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
     final l$isFollowing = json['isFollowing'];
+    final l$isVacationMode = json['isVacationMode'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
@@ -3059,6 +3068,7 @@ class Query$GetUser$getUser {
       noOfFollowing: (l$noOfFollowing as int?),
       noOfFollowers: (l$noOfFollowers as int?),
       isFollowing: (l$isFollowing as bool?),
+      isVacationMode: (l$isVacationMode as bool?),
       phone: l$phone == null
           ? null
           : Query$GetUser$getUser$phone.fromJson(
@@ -3103,6 +3113,8 @@ class Query$GetUser$getUser {
 
   final bool? isFollowing;
 
+  final bool? isVacationMode;
+
   final Query$GetUser$getUser$phone? phone;
 
   final String $__typename;
@@ -3145,6 +3157,8 @@ class Query$GetUser$getUser {
     _resultData['noOfFollowers'] = l$noOfFollowers;
     final l$isFollowing = isFollowing;
     _resultData['isFollowing'] = l$isFollowing;
+    final l$isVacationMode = isVacationMode;
+    _resultData['isVacationMode'] = l$isVacationMode;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -3172,6 +3186,7 @@ class Query$GetUser$getUser {
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
     final l$isFollowing = isFollowing;
+    final l$isVacationMode = isVacationMode;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -3193,6 +3208,7 @@ class Query$GetUser$getUser {
       l$noOfFollowing,
       l$noOfFollowers,
       l$isFollowing,
+      l$isVacationMode,
       l$phone,
       l$$__typename,
     ]);
@@ -3296,6 +3312,11 @@ class Query$GetUser$getUser {
     if (l$isFollowing != lOther$isFollowing) {
       return false;
     }
+    final l$isVacationMode = isVacationMode;
+    final lOther$isVacationMode = other.isVacationMode;
+    if (l$isVacationMode != lOther$isVacationMode) {
+      return false;
+    }
     final l$phone = phone;
     final lOther$phone = other.phone;
     if (l$phone != lOther$phone) {
@@ -3346,6 +3367,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     int? noOfFollowing,
     int? noOfFollowers,
     bool? isFollowing,
+    bool? isVacationMode,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
@@ -3385,6 +3407,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
     Object? isFollowing = _undefined,
+    Object? isVacationMode = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -3428,6 +3451,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         isFollowing: isFollowing == _undefined
             ? _instance.isFollowing
             : (isFollowing as bool?),
+        isVacationMode: isVacationMode == _undefined
+            ? _instance.isVacationMode
+            : (isVacationMode as bool?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$GetUser$getUser$phone?),
@@ -3478,6 +3504,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     int? noOfFollowing,
     int? noOfFollowers,
     bool? isFollowing,
+    bool? isVacationMode,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   }) =>

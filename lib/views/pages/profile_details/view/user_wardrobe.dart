@@ -231,7 +231,11 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                     UserScrollableList(
                       user: user,
                     ),
-                    if (productLength! > 0) ...[
+                    if (user?.isVacationMode == true) ...[
+                      HolidayModeWidget(
+                        isLoggedInUser: isCurrentUser,
+                      )
+                    ] else if (productLength! > 0) ...[
                       if (selectedItem.isNotEmpty) ...[
                         buildDivider(context),
                         MenuCard(
@@ -552,9 +556,6 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               skipLoadingOnRefresh: false,
                               data: (products) {
                                 if (products.isEmpty) {
-                                  if(user.isVacationMode == true){
-                                    return HolidayModeWidget();
-                                  }
                                   return NoProductWidget();
                                 }
                                 return DisplaySection(

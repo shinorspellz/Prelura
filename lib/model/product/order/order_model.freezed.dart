@@ -25,8 +25,7 @@ mixin _$OrderModel {
   int get quantity => throw _privateConstructorUsedError;
   String get priceTotal => throw _privateConstructorUsedError;
   String get shippingFee => throw _privateConstructorUsedError;
-  Enum$ProductsOrderStatusChoices get status =>
-      throw _privateConstructorUsedError;
+  Enum$OrderStatusEnum get status => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
@@ -52,7 +51,7 @@ abstract class $OrderModelCopyWith<$Res> {
       int quantity,
       String priceTotal,
       String shippingFee,
-      Enum$ProductsOrderStatusChoices status,
+      Enum$OrderStatusEnum status,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -107,7 +106,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsOrderStatusChoices,
+              as Enum$OrderStatusEnum,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -148,7 +147,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       int quantity,
       String priceTotal,
       String shippingFee,
-      Enum$ProductsOrderStatusChoices status,
+      Enum$OrderStatusEnum status,
       DateTime? createdAt,
       DateTime? updatedAt});
 
@@ -202,7 +201,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as Enum$ProductsOrderStatusChoices,
+              as Enum$OrderStatusEnum,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -242,7 +241,7 @@ class _$OrderModelImpl implements _OrderModel {
   @override
   final String shippingFee;
   @override
-  final Enum$ProductsOrderStatusChoices status;
+  final Enum$OrderStatusEnum status;
   @override
   final DateTime? createdAt;
   @override
@@ -301,7 +300,7 @@ abstract class _OrderModel implements OrderModel {
       required final int quantity,
       required final String priceTotal,
       required final String shippingFee,
-      required final Enum$ProductsOrderStatusChoices status,
+      required final Enum$OrderStatusEnum status,
       required final DateTime? createdAt,
       required final DateTime? updatedAt}) = _$OrderModelImpl;
 
@@ -319,7 +318,7 @@ abstract class _OrderModel implements OrderModel {
   @override
   String get shippingFee;
   @override
-  Enum$ProductsOrderStatusChoices get status;
+  Enum$OrderStatusEnum get status;
   @override
   DateTime? get createdAt;
   @override

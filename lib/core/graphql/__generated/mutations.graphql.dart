@@ -24939,7 +24939,7 @@ class Mutation$CreateOrder$createOrder$order {
     required this.quantity,
     required this.priceTotal,
     required this.shippingFee,
-    required this.status,
+    this.status,
     required this.createdAt,
     required this.updatedAt,
     this.$__typename = 'OrderType',
@@ -24960,7 +24960,9 @@ class Mutation$CreateOrder$createOrder$order {
       quantity: (l$quantity as int),
       priceTotal: (l$priceTotal as String),
       shippingFee: (l$shippingFee as String),
-      status: fromJson$Enum$ProductsOrderStatusChoices((l$status as String)),
+      status: l$status == null
+          ? null
+          : fromJson$Enum$OrderStatusEnum((l$status as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
       $__typename: (l$$__typename as String),
@@ -24975,7 +24977,7 @@ class Mutation$CreateOrder$createOrder$order {
 
   final String shippingFee;
 
-  final Enum$ProductsOrderStatusChoices status;
+  final Enum$OrderStatusEnum? status;
 
   final DateTime createdAt;
 
@@ -24994,7 +24996,8 @@ class Mutation$CreateOrder$createOrder$order {
     final l$shippingFee = shippingFee;
     _resultData['shippingFee'] = l$shippingFee;
     final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsOrderStatusChoices(l$status);
+    _resultData['status'] =
+        l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
@@ -25103,7 +25106,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
     int? quantity,
     String? priceTotal,
     String? shippingFee,
-    Enum$ProductsOrderStatusChoices? status,
+    Enum$OrderStatusEnum? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? $__typename,
@@ -25144,9 +25147,9 @@ class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
         shippingFee: shippingFee == _undefined || shippingFee == null
             ? _instance.shippingFee
             : (shippingFee as String),
-        status: status == _undefined || status == null
+        status: status == _undefined
             ? _instance.status
-            : (status as Enum$ProductsOrderStatusChoices),
+            : (status as Enum$OrderStatusEnum?),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
@@ -25170,7 +25173,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
     int? quantity,
     String? priceTotal,
     String? shippingFee,
-    Enum$ProductsOrderStatusChoices? status,
+    Enum$OrderStatusEnum? status,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? $__typename,

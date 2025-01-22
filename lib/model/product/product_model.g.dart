@@ -81,9 +81,10 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
     };
 
 const _$ConditionsEnumEnumMap = {
-  ConditionsEnum.NEW_WITH_TAGS: 'NEW_WITH_TAGS',
-  ConditionsEnum.LIKE_NEW: 'LIKE_NEW',
-  ConditionsEnum.USED: 'USED',
+  ConditionsEnum.BRAND_NEW_WITH_TAGS: 'BRAND_NEW_WITH_TAGS',
+  ConditionsEnum.BRAND_NEW_WITHOUT_TAGS: 'BRAND_NEW_WITHOUT_TAGS',
+  ConditionsEnum.EXCELLENT_CONDITION: 'EXCELLENT_CONDITION',
+  ConditionsEnum.GOOD_CONDITION: 'GOOD_CONDITION',
   ConditionsEnum.HEAVILY_USED: 'HEAVILY_USED',
 };
 
