@@ -85,7 +85,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
           sellItemProvider.notifier,
         )
             .updateImageStateChanging(
-          {"add": image.path},
+          {"add_${DateTime.now().microsecondsSinceEpoch}": image.path},
         );
       }
     }
@@ -138,7 +138,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   }
 
   void updateImageStateChanging(Map<String, String> data) {
-    Map<String, String> imageActions = state.imageUrlToAction;
+    Map<String, String> imageActions = Map.from(state.imageUrlToAction);
     imageActions.addAll(data);
     state = state.copyWith(imageUrlToAction: imageActions);
   }

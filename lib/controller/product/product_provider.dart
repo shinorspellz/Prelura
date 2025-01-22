@@ -359,14 +359,15 @@ class _ProductProvider extends AsyncNotifier<void> {
       List<File> toRemove = [];
       Input$ImageUpdateInputType? files;
       if (imageMapping.isNotEmpty) {
-        for (String action in imageMapping.keys) {
-          if (action == "add") {
-            toUpload.add(File(imageMapping[action]!));
+        imageMapping.forEach((action, value) {
+          if (action.startsWith("add")) {
+            toUpload.add(File(value));
+          } else if (action.startsWith("remove")) {
+            toRemove.add(File(value));
           }
-          if (action == "remove") {
-            toRemove.add(File(imageMapping[action]!));
-          }
-        }
+        });
+        log("::::TO remove length::: ${toRemove.length}");
+        log("::::TO add length::: ${toUpload.length}");
         if (toRemove.isNotEmpty) {
           for (var file in toRemove) {
             ProductBanners fileInfo = productInfo.imagesUrl.firstWhere(
