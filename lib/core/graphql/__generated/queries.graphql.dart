@@ -26637,6 +26637,13 @@ const documentNodeQueryConversation = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'replyTo'),
             alias: null,
             arguments: [],
@@ -26651,6 +26658,13 @@ const documentNodeQueryConversation = DocumentNode(definitions: [
               ),
               FieldNode(
                 name: NameNode(value: 'text'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -26946,6 +26960,7 @@ class Query$Conversation$conversation {
     required this.isItem,
     this.itemId,
     this.itemType,
+    required this.createdAt,
     this.replyTo,
     this.sender,
     this.$__typename = 'MessageType',
@@ -26960,6 +26975,7 @@ class Query$Conversation$conversation {
     final l$isItem = json['isItem'];
     final l$itemId = json['itemId'];
     final l$itemType = json['itemType'];
+    final l$createdAt = json['createdAt'];
     final l$replyTo = json['replyTo'];
     final l$sender = json['sender'];
     final l$$__typename = json['__typename'];
@@ -26975,6 +26991,7 @@ class Query$Conversation$conversation {
       isItem: (l$isItem as bool),
       itemId: (l$itemId as int?),
       itemType: (l$itemType as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
       replyTo: l$replyTo == null
           ? null
           : Query$Conversation$conversation$replyTo.fromJson(
@@ -27003,6 +27020,8 @@ class Query$Conversation$conversation {
 
   final String? itemType;
 
+  final DateTime createdAt;
+
   final Query$Conversation$conversation$replyTo? replyTo;
 
   final Query$Conversation$conversation$sender? sender;
@@ -27029,6 +27048,8 @@ class Query$Conversation$conversation {
     _resultData['itemId'] = l$itemId;
     final l$itemType = itemType;
     _resultData['itemType'] = l$itemType;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$replyTo = replyTo;
     _resultData['replyTo'] = l$replyTo?.toJson();
     final l$sender = sender;
@@ -27048,6 +27069,7 @@ class Query$Conversation$conversation {
     final l$isItem = isItem;
     final l$itemId = itemId;
     final l$itemType = itemType;
+    final l$createdAt = createdAt;
     final l$replyTo = replyTo;
     final l$sender = sender;
     final l$$__typename = $__typename;
@@ -27060,6 +27082,7 @@ class Query$Conversation$conversation {
       l$isItem,
       l$itemId,
       l$itemType,
+      l$createdAt,
       l$replyTo,
       l$sender,
       l$$__typename,
@@ -27115,6 +27138,11 @@ class Query$Conversation$conversation {
     if (l$itemType != lOther$itemType) {
       return false;
     }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
     final l$replyTo = replyTo;
     final lOther$replyTo = other.replyTo;
     if (l$replyTo != lOther$replyTo) {
@@ -27161,6 +27189,7 @@ abstract class CopyWith$Query$Conversation$conversation<TRes> {
     bool? isItem,
     int? itemId,
     String? itemType,
+    DateTime? createdAt,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,
@@ -27191,6 +27220,7 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
     Object? isItem = _undefined,
     Object? itemId = _undefined,
     Object? itemType = _undefined,
+    Object? createdAt = _undefined,
     Object? replyTo = _undefined,
     Object? sender = _undefined,
     Object? $__typename = _undefined,
@@ -27215,6 +27245,9 @@ class _CopyWithImpl$Query$Conversation$conversation<TRes>
         itemId: itemId == _undefined ? _instance.itemId : (itemId as int?),
         itemType:
             itemType == _undefined ? _instance.itemType : (itemType as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
         replyTo: replyTo == _undefined
             ? _instance.replyTo
             : (replyTo as Query$Conversation$conversation$replyTo?),
@@ -27259,6 +27292,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation<TRes>
     bool? isItem,
     int? itemId,
     String? itemType,
+    DateTime? createdAt,
     Query$Conversation$conversation$replyTo? replyTo,
     Query$Conversation$conversation$sender? sender,
     String? $__typename,
@@ -27276,6 +27310,7 @@ class Query$Conversation$conversation$replyTo {
   Query$Conversation$conversation$replyTo({
     required this.id,
     required this.text,
+    required this.createdAt,
     this.attachment,
     this.attachmentType,
     this.sender,
@@ -27286,6 +27321,7 @@ class Query$Conversation$conversation$replyTo {
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$text = json['text'];
+    final l$createdAt = json['createdAt'];
     final l$attachment = json['attachment'];
     final l$attachmentType = json['attachmentType'];
     final l$sender = json['sender'];
@@ -27293,6 +27329,7 @@ class Query$Conversation$conversation$replyTo {
     return Query$Conversation$conversation$replyTo(
       id: (l$id as String),
       text: (l$text as String),
+      createdAt: DateTime.parse((l$createdAt as String)),
       attachment: (l$attachment as String?),
       attachmentType: l$attachmentType == null
           ? null
@@ -27310,6 +27347,8 @@ class Query$Conversation$conversation$replyTo {
 
   final String text;
 
+  final DateTime createdAt;
+
   final String? attachment;
 
   final Enum$ChatsMessageAttachmentTypeChoices? attachmentType;
@@ -27324,6 +27363,8 @@ class Query$Conversation$conversation$replyTo {
     _resultData['id'] = l$id;
     final l$text = text;
     _resultData['text'] = l$text;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$attachment = attachment;
     _resultData['attachment'] = l$attachment;
     final l$attachmentType = attachmentType;
@@ -27341,6 +27382,7 @@ class Query$Conversation$conversation$replyTo {
   int get hashCode {
     final l$id = id;
     final l$text = text;
+    final l$createdAt = createdAt;
     final l$attachment = attachment;
     final l$attachmentType = attachmentType;
     final l$sender = sender;
@@ -27348,6 +27390,7 @@ class Query$Conversation$conversation$replyTo {
     return Object.hashAll([
       l$id,
       l$text,
+      l$createdAt,
       l$attachment,
       l$attachmentType,
       l$sender,
@@ -27372,6 +27415,11 @@ class Query$Conversation$conversation$replyTo {
     final l$text = text;
     final lOther$text = other.text;
     if (l$text != lOther$text) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
       return false;
     }
     final l$attachment = attachment;
@@ -27420,6 +27468,7 @@ abstract class CopyWith$Query$Conversation$conversation$replyTo<TRes> {
   TRes call({
     String? id,
     String? text,
+    DateTime? createdAt,
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     Query$Conversation$conversation$replyTo$sender? sender,
@@ -27444,6 +27493,7 @@ class _CopyWithImpl$Query$Conversation$conversation$replyTo<TRes>
   TRes call({
     Object? id = _undefined,
     Object? text = _undefined,
+    Object? createdAt = _undefined,
     Object? attachment = _undefined,
     Object? attachmentType = _undefined,
     Object? sender = _undefined,
@@ -27454,6 +27504,9 @@ class _CopyWithImpl$Query$Conversation$conversation$replyTo<TRes>
         text: text == _undefined || text == null
             ? _instance.text
             : (text as String),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
         attachment: attachment == _undefined
             ? _instance.attachment
             : (attachment as String?),
@@ -27487,6 +27540,7 @@ class _CopyWithStubImpl$Query$Conversation$conversation$replyTo<TRes>
   call({
     String? id,
     String? text,
+    DateTime? createdAt,
     String? attachment,
     Enum$ChatsMessageAttachmentTypeChoices? attachmentType,
     Query$Conversation$conversation$replyTo$sender? sender,

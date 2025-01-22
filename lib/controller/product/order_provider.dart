@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/model/product/order/order_model.dart';
 
-final orderProvider = AsyncNotifierProvider<OrderProvider, OrderModel?>(OrderProvider.new);
+final orderProvider =
+    AsyncNotifierProvider<OrderProvider, OrderModel?>(OrderProvider.new);
 
 class OrderProvider extends AsyncNotifier<OrderModel?> {
   late final _repo = ref.read(productRepo);
@@ -23,7 +24,7 @@ class OrderProvider extends AsyncNotifier<OrderModel?> {
     );
   }
 
-  Future<void> cancelorder(int orderId) async {
+  Future<void> cancelOrder(int orderId) async {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(

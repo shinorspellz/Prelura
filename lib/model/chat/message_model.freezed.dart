@@ -28,6 +28,7 @@ mixin _$MessageModel {
   bool? get isItem => throw _privateConstructorUsedError;
   int? get itemId => throw _privateConstructorUsedError;
   MessageModel? get replyTo => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   UserModel get sender => throw _privateConstructorUsedError;
 
   /// Serializes this MessageModel to a JSON map.
@@ -55,6 +56,7 @@ abstract class $MessageModelCopyWith<$Res> {
       bool? isItem,
       int? itemId,
       MessageModel? replyTo,
+      DateTime? createdAt,
       UserModel sender});
 
   $MessageModelCopyWith<$Res>? get replyTo;
@@ -84,6 +86,7 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
     Object? isItem = freezed,
     Object? itemId = freezed,
     Object? replyTo = freezed,
+    Object? createdAt = freezed,
     Object? sender = null,
   }) {
     return _then(_value.copyWith(
@@ -119,6 +122,10 @@ class _$MessageModelCopyWithImpl<$Res, $Val extends MessageModel>
           ? _value.replyTo
           : replyTo // ignore: cast_nullable_to_non_nullable
               as MessageModel?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
@@ -168,6 +175,7 @@ abstract class _$$MessageModelImplCopyWith<$Res>
       bool? isItem,
       int? itemId,
       MessageModel? replyTo,
+      DateTime? createdAt,
       UserModel sender});
 
   @override
@@ -197,6 +205,7 @@ class __$$MessageModelImplCopyWithImpl<$Res>
     Object? isItem = freezed,
     Object? itemId = freezed,
     Object? replyTo = freezed,
+    Object? createdAt = freezed,
     Object? sender = null,
   }) {
     return _then(_$MessageModelImpl(
@@ -229,6 +238,10 @@ class __$$MessageModelImplCopyWithImpl<$Res>
           ? _value.replyTo
           : replyTo // ignore: cast_nullable_to_non_nullable
               as MessageModel?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
@@ -249,6 +262,7 @@ class _$MessageModelImpl implements _MessageModel {
       this.isItem,
       this.itemId,
       this.replyTo,
+      this.createdAt,
       required this.sender});
 
   factory _$MessageModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -271,11 +285,13 @@ class _$MessageModelImpl implements _MessageModel {
   @override
   final MessageModel? replyTo;
   @override
+  final DateTime? createdAt;
+  @override
   final UserModel sender;
 
   @override
   String toString() {
-    return 'MessageModel(id: $id, text: $text, attachment: $attachment, itemType: $itemType, read: $read, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, sender: $sender)';
+    return 'MessageModel(id: $id, text: $text, attachment: $attachment, itemType: $itemType, read: $read, isItem: $isItem, itemId: $itemId, replyTo: $replyTo, createdAt: $createdAt, sender: $sender)';
   }
 
   @override
@@ -292,6 +308,8 @@ class _$MessageModelImpl implements _MessageModel {
             (identical(other.isItem, isItem) || other.isItem == isItem) &&
             (identical(other.itemId, itemId) || other.itemId == itemId) &&
             (identical(other.replyTo, replyTo) || other.replyTo == replyTo) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.sender, sender) || other.sender == sender));
   }
 
@@ -307,6 +325,7 @@ class _$MessageModelImpl implements _MessageModel {
       isItem,
       itemId,
       replyTo,
+      createdAt,
       sender);
 
   /// Create a copy of MessageModel
@@ -335,6 +354,7 @@ abstract class _MessageModel implements MessageModel {
       final bool? isItem,
       final int? itemId,
       final MessageModel? replyTo,
+      final DateTime? createdAt,
       required final UserModel sender}) = _$MessageModelImpl;
 
   factory _MessageModel.fromJson(Map<String, dynamic> json) =
@@ -356,6 +376,8 @@ abstract class _MessageModel implements MessageModel {
   int? get itemId;
   @override
   MessageModel? get replyTo;
+  @override
+  DateTime? get createdAt;
   @override
   UserModel get sender;
 

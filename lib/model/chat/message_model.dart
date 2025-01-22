@@ -15,6 +15,7 @@ class MessageModel with _$MessageModel {
     bool? isItem,
     int? itemId,
     MessageModel? replyTo,
+    DateTime? createdAt,
     required UserModel sender,
   }) = _MessageModel;
 
@@ -31,6 +32,7 @@ class MessageModel with _$MessageModel {
         read: json["read"],
 
         isItem: json["is_item"],
+        createdAt: json["createdAt"],
         itemId: json["item_id"],
         // itemType: json["item_type"],
         sender: UserModel(id: json["sender"], username: json['senderName']),
