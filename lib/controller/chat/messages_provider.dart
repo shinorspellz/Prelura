@@ -10,6 +10,15 @@ import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:uuid/uuid.dart';
 
+enum ChatRoomActivity {
+  idle,
+  typing,
+  loadingMoreMessages,
+  sendingMessage,
+  receivingMessage,
+  error,
+}
+
 final chatScrollController = Provider.autoDispose((ref) => ScrollController());
 final chatAnimationListState =
     Provider.autoDispose((ref) => GlobalKey<AnimatedListState>());
@@ -21,6 +30,11 @@ final showEmojiProvider = StateProvider<bool>(
 final showSendButtonProvider = StateProvider<bool>(
   (_) => false,
 );
+
+// Chat room state provider
+final chatRoomStateProvider = StateProvider<ChatRoomActivity>((ref) {
+  return ChatRoomActivity.idle; // Initial state is idle
+});
 
 final messagesProvider = StreamNotifierProvider.family
     .autoDispose<_MessagesNotifier, List<MessageModel>, String>(

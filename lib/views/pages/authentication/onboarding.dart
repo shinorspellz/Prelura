@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/hex_color.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'onboarding_widgets.dart';
@@ -123,8 +124,7 @@ class OnboardingScreen extends ConsumerWidget {
                                               fontSize: 15,
                                               letterSpacing: -1,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color: PreluraColors.primaryColor,
                                             ),
                                       ),
                                       addHorizontalSpacing(3),

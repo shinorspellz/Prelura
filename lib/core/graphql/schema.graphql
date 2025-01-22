@@ -337,6 +337,11 @@ input ImagesInputType {
   thumbnail: String!
 }
 
+input ImageUpdateInputType {
+  images: [ImagesInputType]!
+  action: BannerActionInputEnum!
+}
+
 """
 Allows use of a JSON String for input / output from the GraphQL schema.
 
@@ -441,7 +446,7 @@ type Mutation {
   """update user notification preferences"""
   updateNotificationPreference(emailNotifications: NotificationsPreferenceInputType, inappNotifications: NotificationsPreferenceInputType, isEmailNotification: Boolean!, isPushNotification: Boolean!, isSilentModeOn: Boolean!): UpdateNotificationPreference
   createProduct(brand: Int, category: Int!, color: [String], condition: ConditionEnum, customBrand: String, description: String!, discount: Float, imagesUrl: [ImagesInputType]!, isFeatured: Boolean, materials: [Int], name: String!, parcelSize: ParcelSizeEnum, price: Float!, size: Int, style: StyleEnum): CreateProduct
-  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: Int, style: StyleEnum): UpdateProduct
+  updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, imagesUrl: ImageUpdateInputType, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: Int, style: StyleEnum): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
   createOrder(productId: Int!, quantity: Int): CreateOrder
@@ -493,7 +498,7 @@ type Mutation {
     bio: String
     country: String
     displayName: String
-    dob: Date
+    dob: String
     fcmToken: String
     firstName: String
     gender: String
@@ -1116,7 +1121,7 @@ type ProductType {
   price: Float
   views: Int!
   likes: Int!
-  discountPrice: Decimal
+  discountPrice: Decimal!
   imagesUrl: [JSONString!]!
   status: ProductsProductStatusChoices!
   materials: [BrandType]
@@ -1280,6 +1285,7 @@ type Query {
   categories(parentId: Int): [CategoryTypes]
   sizes(path: String!): [SizeType]
   brands(search: String, pageCount: Int, pageNumber: Int): [BrandType]
+  recommendBrands(productName: String!, productDescription: String!): [BrandType]
   popularBrands(top: Int!): [BrandType]
   materials(search: String, pageCount: Int, pageNumber: Int): [BrandType]
   similarProducts(productId: Int, categoryId: Int, pageCount: Int, pageNumber: Int): [ProductType]

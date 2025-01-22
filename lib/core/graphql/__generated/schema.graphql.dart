@@ -258,6 +258,168 @@ class _CopyWithStubImpl$Input$ImagesInputType<TRes>
       _res;
 }
 
+class Input$ImageUpdateInputType {
+  factory Input$ImageUpdateInputType({
+    required List<Input$ImagesInputType?> images,
+    required Enum$BannerActionInputEnum action,
+  }) =>
+      Input$ImageUpdateInputType._({
+        r'images': images,
+        r'action': action,
+      });
+
+  Input$ImageUpdateInputType._(this._$data);
+
+  factory Input$ImageUpdateInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$images = data['images'];
+    result$data['images'] = (l$images as List<dynamic>)
+        .map((e) => e == null
+            ? null
+            : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
+        .toList();
+    final l$action = data['action'];
+    result$data['action'] =
+        fromJson$Enum$BannerActionInputEnum((l$action as String));
+    return Input$ImageUpdateInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$ImagesInputType?> get images =>
+      (_$data['images'] as List<Input$ImagesInputType?>);
+
+  Enum$BannerActionInputEnum get action =>
+      (_$data['action'] as Enum$BannerActionInputEnum);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$images = images;
+    result$data['images'] = l$images.map((e) => e?.toJson()).toList();
+    final l$action = action;
+    result$data['action'] = toJson$Enum$BannerActionInputEnum(l$action);
+    return result$data;
+  }
+
+  CopyWith$Input$ImageUpdateInputType<Input$ImageUpdateInputType>
+      get copyWith => CopyWith$Input$ImageUpdateInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ImageUpdateInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$images = images;
+    final lOther$images = other.images;
+    if (l$images.length != lOther$images.length) {
+      return false;
+    }
+    for (int i = 0; i < l$images.length; i++) {
+      final l$images$entry = l$images[i];
+      final lOther$images$entry = lOther$images[i];
+      if (l$images$entry != lOther$images$entry) {
+        return false;
+      }
+    }
+    final l$action = action;
+    final lOther$action = other.action;
+    if (l$action != lOther$action) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$images = images;
+    final l$action = action;
+    return Object.hashAll([
+      Object.hashAll(l$images.map((v) => v)),
+      l$action,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ImageUpdateInputType<TRes> {
+  factory CopyWith$Input$ImageUpdateInputType(
+    Input$ImageUpdateInputType instance,
+    TRes Function(Input$ImageUpdateInputType) then,
+  ) = _CopyWithImpl$Input$ImageUpdateInputType;
+
+  factory CopyWith$Input$ImageUpdateInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$ImageUpdateInputType;
+
+  TRes call({
+    List<Input$ImagesInputType?>? images,
+    Enum$BannerActionInputEnum? action,
+  });
+  TRes images(
+      Iterable<Input$ImagesInputType?> Function(
+              Iterable<CopyWith$Input$ImagesInputType<Input$ImagesInputType>?>)
+          _fn);
+}
+
+class _CopyWithImpl$Input$ImageUpdateInputType<TRes>
+    implements CopyWith$Input$ImageUpdateInputType<TRes> {
+  _CopyWithImpl$Input$ImageUpdateInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ImageUpdateInputType _instance;
+
+  final TRes Function(Input$ImageUpdateInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? images = _undefined,
+    Object? action = _undefined,
+  }) =>
+      _then(Input$ImageUpdateInputType._({
+        ..._instance._$data,
+        if (images != _undefined && images != null)
+          'images': (images as List<Input$ImagesInputType?>),
+        if (action != _undefined && action != null)
+          'action': (action as Enum$BannerActionInputEnum),
+      }));
+
+  TRes images(
+          Iterable<Input$ImagesInputType?> Function(
+                  Iterable<
+                      CopyWith$Input$ImagesInputType<Input$ImagesInputType>?>)
+              _fn) =>
+      call(
+          images: _fn(_instance.images.map((e) => e == null
+              ? null
+              : CopyWith$Input$ImagesInputType(
+                  e,
+                  (i) => i,
+                ))).toList());
+}
+
+class _CopyWithStubImpl$Input$ImageUpdateInputType<TRes>
+    implements CopyWith$Input$ImageUpdateInputType<TRes> {
+  _CopyWithStubImpl$Input$ImageUpdateInputType(this._res);
+
+  TRes _res;
+
+  call({
+    List<Input$ImagesInputType?>? images,
+    Enum$BannerActionInputEnum? action,
+  }) =>
+      _res;
+
+  images(_fn) => _res;
+}
+
 class Input$LocationInputType {
   factory Input$LocationInputType({
     String? latitude,

@@ -27,6 +27,21 @@ extension DateTimeExtension on DateTime {
       return '1s';
     }
   }
+
+  String get getChatHeader {
+    final now = DateTime.now();
+    final difference = now.difference(this);
+    if (difference.inHours < 24 && (now.day == this.day)) {
+      return 'Today';
+    } else if (difference.inHours < 30 && (now.day > this.day)) {
+      return 'Yesterday';
+    } else if (difference.inDays < 365) {
+      return DateFormat("EEE, MMM dd")
+          .format(this); // Day of the week (e.g., Monday, Tuesday)
+    } else {
+      return DateFormat.yMMMd().format(this); // Full date (e.g., Oct 3, 2024)
+    }
+  }
 }
 
 final formatter = DateFormat('MMM dd, y');

@@ -16,7 +16,6 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
@@ -234,7 +233,7 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                       buildDivider(context),
                     ],
 
-                    if (widget.product == null && state.images.isEmpty) ...[
+                    if (state.images.isEmpty) ...[
                       Container(
                         margin: const EdgeInsets.all(16),
                         decoration: BoxDecoration(

@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:prelura_app/core/di.dart';
@@ -12,9 +13,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-import 'package:http/http.dart' as http;
-
-import '../../../model/product/categories/size_model.dart';
+import 'package:prelura_app/shared/image_service.dart';
 
 part 'sell_item_provider.freezed.dart';
 part 'sell_item_provider.g.dart';
@@ -183,16 +182,19 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     return xFiles;
   }
 
-  void productToItem(ProductModel product) {
+  void productToItem(ProductModel product) async {
+    List<String> imageUrls =
+        product.imagesUrl.map((imageInfo) => imageInfo.url).toList();
+    List<XFile> images = await ImageService.downloadImages(imageUrls);
     state = state.copyWith(
       title: product.name,
       description: product.description,
       category: product.category,
-      // subCategory: product.subCategory,
       parcel: product.parcelSize != null
           ? Enum$ParcelSizeEnum.fromJson(product.parcelSize!.toJson())
           : null,
       size: product.size,
+      images: images,
       price: product.price.toString(),
       selectedCondition: product.condition,
       brand: product.brand,

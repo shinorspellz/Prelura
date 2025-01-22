@@ -72,6 +72,10 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
             ? Gender.Female
             : null;
     bio.text = ref.read(userProvider).valueOrNull?.bio ?? "";
+    selectedDate = ref.read(userProvider).valueOrNull?.dob;
+    if (selectedDate != null) {
+      dob.text = DateFormat("dd-MM-y").format(selectedDate!);
+    }
     email.addListener(() => setState(() {}));
     super.initState();
   }
@@ -393,14 +397,14 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
               });
 
               log("::::From dob:: ${selectedDate != user?.dob}");
-              log("::::From dob:: ${selectedDate}");
-              log("::::From user dob:: ${user?.dob}");
-              log("::::From user dob:: ${dob.text}");
+              log("::::From dob:: $selectedDate");
               await ref.read(userNotfierProvider.notifier).updateProfile(
                     displayName:
                         (name.text != user?.displayName) ? name.text : null,
                     gender: gender?.name,
-                    dob: selectedDate != user?.dob ? selectedDate : null,
+                    dob: selectedDate != user?.dob
+                        ? DateFormat("y-MM-dd").format(selectedDate!)
+                        : null,
                     location:
                         locationController.text != user?.location?.locationName
                             ? Input$LocationInputType.fromJson({
