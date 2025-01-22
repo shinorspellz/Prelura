@@ -726,6 +726,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
   _updatePinnedStatus(bool toPin, ProductModel product) async {
     await ref.read(productProvider.notifier).updateProduct(
           productId: int.parse(product.id),
+          productInfo: product,
           isFeatured: toPin,
         );
     context.alert(

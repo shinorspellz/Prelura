@@ -4271,6 +4271,7 @@ class Variables$Mutation$UpdateProduct {
     String? description,
     double? discount,
     String? name,
+    Input$ImageUpdateInputType? imageUrl,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     required int productId,
@@ -4288,6 +4289,7 @@ class Variables$Mutation$UpdateProduct {
         if (description != null) r'description': description,
         if (discount != null) r'discount': discount,
         if (name != null) r'name': name,
+        if (imageUrl != null) r'imageUrl': imageUrl,
         if (parcelSize != null) r'parcelSize': parcelSize,
         if (price != null) r'price': price,
         r'productId': productId,
@@ -4326,6 +4328,13 @@ class Variables$Mutation$UpdateProduct {
     if (data.containsKey('name')) {
       final l$name = data['name'];
       result$data['name'] = (l$name as String?);
+    }
+    if (data.containsKey('imageUrl')) {
+      final l$imageUrl = data['imageUrl'];
+      result$data['imageUrl'] = l$imageUrl == null
+          ? null
+          : Input$ImageUpdateInputType.fromJson(
+              (l$imageUrl as Map<String, dynamic>));
     }
     if (data.containsKey('parcelSize')) {
       final l$parcelSize = data['parcelSize'];
@@ -4386,6 +4395,9 @@ class Variables$Mutation$UpdateProduct {
 
   String? get name => (_$data['name'] as String?);
 
+  Input$ImageUpdateInputType? get imageUrl =>
+      (_$data['imageUrl'] as Input$ImageUpdateInputType?);
+
   Enum$ParcelSizeEnum? get parcelSize =>
       (_$data['parcelSize'] as Enum$ParcelSizeEnum?);
 
@@ -4431,6 +4443,10 @@ class Variables$Mutation$UpdateProduct {
     if (_$data.containsKey('name')) {
       final l$name = name;
       result$data['name'] = l$name;
+    }
+    if (_$data.containsKey('imageUrl')) {
+      final l$imageUrl = imageUrl;
+      result$data['imageUrl'] = l$imageUrl?.toJson();
     }
     if (_$data.containsKey('parcelSize')) {
       final l$parcelSize = parcelSize;
@@ -4533,6 +4549,15 @@ class Variables$Mutation$UpdateProduct {
       return false;
     }
     if (l$name != lOther$name) {
+      return false;
+    }
+    final l$imageUrl = imageUrl;
+    final lOther$imageUrl = other.imageUrl;
+    if (_$data.containsKey('imageUrl') !=
+        other._$data.containsKey('imageUrl')) {
+      return false;
+    }
+    if (l$imageUrl != lOther$imageUrl) {
       return false;
     }
     final l$parcelSize = parcelSize;
@@ -4648,6 +4673,7 @@ class Variables$Mutation$UpdateProduct {
     final l$description = description;
     final l$discount = discount;
     final l$name = name;
+    final l$imageUrl = imageUrl;
     final l$parcelSize = parcelSize;
     final l$price = price;
     final l$productId = productId;
@@ -4664,6 +4690,7 @@ class Variables$Mutation$UpdateProduct {
       _$data.containsKey('description') ? l$description : const {},
       _$data.containsKey('discount') ? l$discount : const {},
       _$data.containsKey('name') ? l$name : const {},
+      _$data.containsKey('imageUrl') ? l$imageUrl : const {},
       _$data.containsKey('parcelSize') ? l$parcelSize : const {},
       _$data.containsKey('price') ? l$price : const {},
       l$productId,
@@ -4701,6 +4728,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProduct<TRes> {
     String? description,
     double? discount,
     String? name,
+    Input$ImageUpdateInputType? imageUrl,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     int? productId,
@@ -4733,6 +4761,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
     Object? description = _undefined,
     Object? discount = _undefined,
     Object? name = _undefined,
+    Object? imageUrl = _undefined,
     Object? parcelSize = _undefined,
     Object? price = _undefined,
     Object? productId = _undefined,
@@ -4752,6 +4781,8 @@ class _CopyWithImpl$Variables$Mutation$UpdateProduct<TRes>
         if (description != _undefined) 'description': (description as String?),
         if (discount != _undefined) 'discount': (discount as double?),
         if (name != _undefined) 'name': (name as String?),
+        if (imageUrl != _undefined)
+          'imageUrl': (imageUrl as Input$ImageUpdateInputType?),
         if (parcelSize != _undefined)
           'parcelSize': (parcelSize as Enum$ParcelSizeEnum?),
         if (price != _undefined) 'price': (price as double?),
@@ -4779,6 +4810,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProduct<TRes>
     String? description,
     double? discount,
     String? name,
+    Input$ImageUpdateInputType? imageUrl,
     Enum$ParcelSizeEnum? parcelSize,
     double? price,
     int? productId,
@@ -4982,6 +5014,15 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'imageUrl')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ImageUpdateInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'parcelSize')),
         type: NamedTypeNode(
           name: NameNode(value: 'ParcelSizeEnum'),
@@ -5111,6 +5152,10 @@ const documentNodeMutationUpdateProduct = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'price'),
             value: VariableNode(name: NameNode(value: 'price')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'imagesUrl'),
+            value: VariableNode(name: NameNode(value: 'imageUrl')),
           ),
           ArgumentNode(
             name: NameNode(value: 'productId'),

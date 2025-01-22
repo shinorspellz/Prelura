@@ -26,6 +26,8 @@ mixin _$SellItemState {
   String get description => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
   Enum$ParcelSizeEnum? get parcel => throw _privateConstructorUsedError;
+  Map<String, String> get imageUrlToAction =>
+      throw _privateConstructorUsedError;
   List<String> get selectedColors => throw _privateConstructorUsedError;
   List<MaterialModel> get selectedMaterials =>
       throw _privateConstructorUsedError;
@@ -61,6 +63,7 @@ abstract class $SellItemStateCopyWith<$Res> {
       String description,
       CategoryModel? category,
       Enum$ParcelSizeEnum? parcel,
+      Map<String, String> imageUrlToAction,
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       SizeType? size,
@@ -97,6 +100,7 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
     Object? description = null,
     Object? category = freezed,
     Object? parcel = freezed,
+    Object? imageUrlToAction = null,
     Object? selectedColors = null,
     Object? selectedMaterials = null,
     Object? size = freezed,
@@ -129,6 +133,10 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
           ? _value.parcel
           : parcel // ignore: cast_nullable_to_non_nullable
               as Enum$ParcelSizeEnum?,
+      imageUrlToAction: null == imageUrlToAction
+          ? _value.imageUrlToAction
+          : imageUrlToAction // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
       selectedColors: null == selectedColors
           ? _value.selectedColors
           : selectedColors // ignore: cast_nullable_to_non_nullable
@@ -229,6 +237,7 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
       String description,
       CategoryModel? category,
       Enum$ParcelSizeEnum? parcel,
+      Map<String, String> imageUrlToAction,
       List<String> selectedColors,
       List<MaterialModel> selectedMaterials,
       SizeType? size,
@@ -266,6 +275,7 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
     Object? description = null,
     Object? category = freezed,
     Object? parcel = freezed,
+    Object? imageUrlToAction = null,
     Object? selectedColors = null,
     Object? selectedMaterials = null,
     Object? size = freezed,
@@ -298,6 +308,10 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
           ? _value.parcel
           : parcel // ignore: cast_nullable_to_non_nullable
               as Enum$ParcelSizeEnum?,
+      imageUrlToAction: null == imageUrlToAction
+          ? _value._imageUrlToAction
+          : imageUrlToAction // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
       selectedColors: null == selectedColors
           ? _value._selectedColors
           : selectedColors // ignore: cast_nullable_to_non_nullable
@@ -351,6 +365,7 @@ class _$SellItemStateImpl implements _SellItemState {
       required this.description,
       this.category,
       this.parcel,
+      final Map<String, String> imageUrlToAction = const {},
       final List<String> selectedColors = const [],
       final List<MaterialModel> selectedMaterials = const [],
       this.size,
@@ -362,6 +377,7 @@ class _$SellItemStateImpl implements _SellItemState {
       this.customBrand,
       this.isFeatured = false})
       : _images = images,
+        _imageUrlToAction = imageUrlToAction,
         _selectedColors = selectedColors,
         _selectedMaterials = selectedMaterials;
 
@@ -386,6 +402,15 @@ class _$SellItemStateImpl implements _SellItemState {
   final CategoryModel? category;
   @override
   final Enum$ParcelSizeEnum? parcel;
+  final Map<String, String> _imageUrlToAction;
+  @override
+  @JsonKey()
+  Map<String, String> get imageUrlToAction {
+    if (_imageUrlToAction is EqualUnmodifiableMapView) return _imageUrlToAction;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_imageUrlToAction);
+  }
+
   final List<String> _selectedColors;
   @override
   @JsonKey()
@@ -426,7 +451,7 @@ class _$SellItemStateImpl implements _SellItemState {
 
   @override
   String toString() {
-    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, size: $size, brand: $brand, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
+    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, imageUrlToAction: $imageUrlToAction, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, size: $size, brand: $brand, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
   }
 
   @override
@@ -441,6 +466,8 @@ class _$SellItemStateImpl implements _SellItemState {
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.parcel, parcel) || other.parcel == parcel) &&
+            const DeepCollectionEquality()
+                .equals(other._imageUrlToAction, _imageUrlToAction) &&
             const DeepCollectionEquality()
                 .equals(other._selectedColors, _selectedColors) &&
             const DeepCollectionEquality()
@@ -468,6 +495,7 @@ class _$SellItemStateImpl implements _SellItemState {
       description,
       category,
       parcel,
+      const DeepCollectionEquality().hash(_imageUrlToAction),
       const DeepCollectionEquality().hash(_selectedColors),
       const DeepCollectionEquality().hash(_selectedMaterials),
       size,
@@ -502,6 +530,7 @@ abstract class _SellItemState implements SellItemState {
       required final String description,
       final CategoryModel? category,
       final Enum$ParcelSizeEnum? parcel,
+      final Map<String, String> imageUrlToAction,
       final List<String> selectedColors,
       final List<MaterialModel> selectedMaterials,
       final SizeType? size,
@@ -527,6 +556,8 @@ abstract class _SellItemState implements SellItemState {
   CategoryModel? get category;
   @override
   Enum$ParcelSizeEnum? get parcel;
+  @override
+  Map<String, String> get imageUrlToAction;
   @override
   List<String> get selectedColors;
   @override

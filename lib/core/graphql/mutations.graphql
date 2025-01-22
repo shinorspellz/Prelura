@@ -99,6 +99,7 @@ mutation UpdateProduct(
   $description: String
   $discount: Float
   $name: String
+  $imageUrl: ImageUpdateInputType
   $parcelSize: ParcelSizeEnum
   $price: Float
   $productId: Int!
@@ -118,6 +119,7 @@ mutation UpdateProduct(
     name: $name
     parcelSize: $parcelSize
     price: $price
+    imagesUrl: $imageUrl
     productId: $productId
     size: $size
     color: $color
