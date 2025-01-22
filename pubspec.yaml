@@ -110,39 +110,46 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-assets:
-  # To add assets to your application, add an assets section, li- .env
-  - assets/animation/
-  - assets/fonts/
-  - assets/icons/
-  - assets/images/
-  - assets/svgs/
-  - .env
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - .env
+    - assets/animation/
+    - assets/fonts/
+    - assets/icons/
+    - assets/icons/offer.svg
+    - assets/images/
+    - assets/images/logo.png
+    - assets/images/splash.png
+    - assets/svgs/
+    - assets/svgs/kids/
+    - assets/svgs/men/
+    - assets/svgs/women/
 
-  - assets/svgs/women/   - assets/svg- family: CourierPrime-Regular
-    fonts:
-      - asset: assets/fonts/CourierPrime-Regular.ttf
-  - family: Inter_18pt-Black
-    fonts:
-      - asset: assets/fonts/Inter_18pt-Black.ttf
-  - family: Inter_18pt-Bold
-    fonts:
-      - asset: assets/fonts/Inter_18pt-Bold.ttf
-  - family: Inter_18pt-ExtraBold
-    fonts:
-      - asset: assets/fonts/Inter_18pt-ExtraBold.ttf
-  - family: Inter_18pt-Light
-    fonts:
-      - asset: assets/fonts/Inter_18pt-Light.ttf
-  - family: Inter_18pt-Medium
-    fonts:
-      - asset: assets/fonts/Inter_18pt-Medium.ttf
-  - family: Inter_18pt-Regular
-    fonts:
-      - asset: assets/fonts/Inter_18pt-Regular.ttf
-  - family: Inter_18pt-SemiBold
-    fonts:
-      - asset: assets/fonts/Inter_18pt-SemiBold.ttfInter_18pt-SemiBold.ttf
-    #
-    # For details regarding fonts from package dependencies,
-    # see https://flutter.dev/to/font-from-package
+  fonts:
+    - family: CourierPrime-Regular
+      fonts:
+        - asset: assets/fonts/CourierPrime-Regular.ttf
+    - family: Inter_18pt-Black
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Black.ttf
+    - family: Inter_18pt-Bold
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Bold.ttf
+    - family: Inter_18pt-ExtraBold
+      fonts:
+        - asset: assets/fonts/Inter_18pt-ExtraBold.ttf
+    - family: Inter_18pt-Light
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Light.ttf
+    - family: Inter_18pt-Medium
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Medium.ttf
+    - family: Inter_18pt-Regular
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Regular.ttf
+    - family: Inter_18pt-SemiBold
+      fonts:
+        - asset: assets/fonts/Inter_18pt-SemiBold.ttf
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package
