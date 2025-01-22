@@ -88,7 +88,7 @@ class _UserController extends AsyncNotifier<void> {
       {String? bio,
       String? country,
       String? displayName,
-      DateTime? dob,
+      String? dob,
       String? firstName,
       String? gender,
       String? lastName,

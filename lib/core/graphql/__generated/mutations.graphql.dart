@@ -5964,7 +5964,7 @@ class Variables$Mutation$UpdateProfile {
     String? bio,
     String? country,
     String? displayName,
-    DateTime? dob,
+    String? dob,
     String? firstName,
     String? gender,
     String? lastName,
@@ -6015,8 +6015,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (data.containsKey('dob')) {
       final l$dob = data['dob'];
-      result$data['dob'] =
-          l$dob == null ? null : DateTime.parse((l$dob as String));
+      result$data['dob'] = (l$dob as String?);
     }
     if (data.containsKey('firstName')) {
       final l$firstName = data['firstName'];
@@ -6086,7 +6085,7 @@ class Variables$Mutation$UpdateProfile {
 
   String? get displayName => (_$data['displayName'] as String?);
 
-  DateTime? get dob => (_$data['dob'] as DateTime?);
+  String? get dob => (_$data['dob'] as String?);
 
   String? get firstName => (_$data['firstName'] as String?);
 
@@ -6131,7 +6130,7 @@ class Variables$Mutation$UpdateProfile {
     }
     if (_$data.containsKey('dob')) {
       final l$dob = dob;
-      result$data['dob'] = l$dob?.toIso8601String();
+      result$data['dob'] = l$dob;
     }
     if (_$data.containsKey('firstName')) {
       final l$firstName = firstName;
@@ -6392,7 +6391,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     String? bio,
     String? country,
     String? displayName,
-    DateTime? dob,
+    String? dob,
     String? firstName,
     String? gender,
     String? lastName,
@@ -6444,7 +6443,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (bio != _undefined) 'bio': (bio as String?),
         if (country != _undefined) 'country': (country as String?),
         if (displayName != _undefined) 'displayName': (displayName as String?),
-        if (dob != _undefined) 'dob': (dob as DateTime?),
+        if (dob != _undefined) 'dob': (dob as String?),
         if (firstName != _undefined) 'firstName': (firstName as String?),
         if (gender != _undefined) 'gender': (gender as String?),
         if (lastName != _undefined) 'lastName': (lastName as String?),
@@ -6474,7 +6473,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     String? bio,
     String? country,
     String? displayName,
-    DateTime? dob,
+    String? dob,
     String? firstName,
     String? gender,
     String? lastName,
@@ -6664,7 +6663,7 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'dob')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Date'),
+          name: NameNode(value: 'String'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -14518,7 +14517,7 @@ class Mutation$createOffer$createOffer$data$offer$product {
     this.size,
     this.seller,
     this.condition,
-    this.discountPrice,
+    required this.discountPrice,
     this.price,
     this.parcelSize,
     required this.views,
@@ -14573,7 +14572,7 @@ class Mutation$createOffer$createOffer$data$offer$product {
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
-      discountPrice: (l$discountPrice as String?),
+      discountPrice: (l$discountPrice as String),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -14607,7 +14606,7 @@ class Mutation$createOffer$createOffer$data$offer$product {
 
   final Enum$ProductsProductConditionChoices? condition;
 
-  final String? discountPrice;
+  final String discountPrice;
 
   final double? price;
 
@@ -14928,9 +14927,9 @@ class _CopyWithImpl$Mutation$createOffer$createOffer$data$offer$product<TRes>
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
-        discountPrice: discountPrice == _undefined
+        discountPrice: discountPrice == _undefined || discountPrice == null
             ? _instance.discountPrice
-            : (discountPrice as String?),
+            : (discountPrice as String),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
@@ -18672,7 +18671,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$product {
     this.size,
     this.seller,
     this.condition,
-    this.discountPrice,
+    required this.discountPrice,
     this.price,
     this.parcelSize,
     required this.views,
@@ -18727,7 +18726,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$product {
           ? null
           : fromJson$Enum$ProductsProductConditionChoices(
               (l$condition as String)),
-      discountPrice: (l$discountPrice as String?),
+      discountPrice: (l$discountPrice as String),
       price: (l$price as num?)?.toDouble(),
       parcelSize: l$parcelSize == null
           ? null
@@ -18763,7 +18762,7 @@ class Mutation$RespondToOffer$respondToOffer$data$offer$product {
 
   final Enum$ProductsProductConditionChoices? condition;
 
-  final String? discountPrice;
+  final String discountPrice;
 
   final double? price;
 
@@ -19088,9 +19087,9 @@ class _CopyWithImpl$Mutation$RespondToOffer$respondToOffer$data$offer$product<
         condition: condition == _undefined
             ? _instance.condition
             : (condition as Enum$ProductsProductConditionChoices?),
-        discountPrice: discountPrice == _undefined
+        discountPrice: discountPrice == _undefined || discountPrice == null
             ? _instance.discountPrice
-            : (discountPrice as String?),
+            : (discountPrice as String),
         price: price == _undefined ? _instance.price : (price as double?),
         parcelSize: parcelSize == _undefined
             ? _instance.parcelSize
