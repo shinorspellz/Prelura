@@ -578,9 +578,11 @@ query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
     isItem
     itemId
     itemType
+    createdAt
     replyTo {
       id
       text
+      createdAt
       attachment
       attachmentType
       sender {

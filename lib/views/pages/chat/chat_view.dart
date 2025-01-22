@@ -4,8 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
-import 'package:prelura_app/model/chat/message_model.dart';
-import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/views/pages/chat/widgets/chat_card_box.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_text_field.dart';
 import 'package:prelura_app/views/pages/chat/widgets/offer_conversation_builder.dart';
@@ -144,170 +142,50 @@ class ChatScreen extends ConsumerWidget {
           : SingleChildScrollView(
               controller: ref.watch(chatScrollController),
               reverse: true,
-              child: Column(
-                children: [
-                  // Static content at the top
-                  // ProductCard(image: avatarUrl),
-                  ref.watch(messagesProvider(id)).maybeWhen(
-                        data: (messages) {
-                          final lastOtherSenderMessage = messages.firstWhere(
-                            (message) => message.sender.username == username,
-                            orElse: () => MessageModel(
-                                // deleted: false,
-                                id: 0,
-                                sender: UserModel(id: 0, username: ''),
-                                text: '',
-                                isItem: false,
-                                read: false),
-                          );
-                          // log(lastOtherSenderMessage.toJson().toString(),
-                          //     name: 'lastOtherSenderMessage');
-                          // log(messages.toString(), name: 'messages');
-                          // log(username, name: 'username');
-
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            physics:
-                                const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
-                            itemCount: messages.length,
-                            reverse: true,
-                            itemBuilder: (context, index) {
-                              final chat = messages[index];
-                              final isSender = chat.sender.username != username;
-                              final showAvatar = index == 0 ||
-                                  messages[index - 1].sender.username !=
-                                      chat.sender.username;
-                              return Align(
-                                  alignment: isSender
-                                      ? Alignment.bottomRight
-                                      : Alignment.bottomLeft,
-                                  child: Column(
-                                    children: [
-                                      ChatTextWidget(
-                                        chat: chat,
-                                        isSender: isSender,
-                                        id: id,
-                                        lastMessage: showAvatar,
-                                      ),
-                                      // isSender
-                                      //     ? SenderTextWidget(chat: chat, id: id)
-                                      //     : RecieverTextWidget(
-                                      //         chat: chat, lastMessage: showAvatar),
-                                    ],
-                                  ));
-                            },
-                          );
-                        },
-                        orElse: () => Center(
+              child: Column(children: [
+                ref.watch(messagesProvider(id)).maybeWhen(
+                      data: (messages) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics:
+                              const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+                          itemCount: messages.length,
+                          reverse: true,
+                          itemBuilder: (context, index) {
+                            final chat = messages[index];
+                            final isSender = chat.sender.username != username;
+                            final showAvatar = index == 0 ||
+                                messages[index - 1].sender.username !=
+                                    chat.sender.username;
+                            return Align(
+                                alignment: isSender
+                                    ? Alignment.bottomRight
+                                    : Alignment.bottomLeft,
+                                child: Column(
+                                  children: [
+                                    ChatTextWidget(
+                                      chat: chat,
+                                      isSender: isSender,
+                                      id: id,
+                                      lastMessage: showAvatar,
+                                    ),
+                                  ],
+                                ));
+                          },
+                        );
+                      },
+                      orElse: () => Center(
+                        child: LoadingWidget(),
+                      ),
+                      error: (e, _) {
+                        log(e.toString(), stackTrace: _);
+                        return Center(
                           child: LoadingWidget(),
-                        ),
-                        error: (e, _) {
-                          log(e.toString(), stackTrace: _);
-                          return Center(
-                            child: LoadingWidget(),
-                          );
-                        },
-                      )
-                  // Scrollable chat messages list
-
-                  // Input field for sending messages
-                ],
-              ),
+                        );
+                      },
+                    )
+              ]),
             ),
     );
   }
 }
-
-///
-///
-///
-// class RecieverTextWidget extends StatelessWidget {
-//   const RecieverTextWidget(
-//       {super.key, required this.chat, required this.lastMessage});
-//   final MessageModel chat;
-//   final bool lastMessage;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       children: [
-//         16.horizontalSpacing,
-//         if (lastMessage)
-//           ProfilePictureWidget(
-//             profilePicture: chat.sender.profilePictureUrl,
-//             username: chat.sender.username,
-//           ),
-//         Container(
-//           margin: const EdgeInsets.all(8.0),
-//           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-//           constraints: BoxConstraints(
-//             maxWidth: MediaQuery.sizeOf(context).width / 1.4,
-//           ),
-//           decoration: BoxDecoration(
-//             border: Border.all(color: PreluraColors.grey, width: 1),
-//             borderRadius: BorderRadius.circular(8.0),
-//           ),
-//           child: Text(
-//             chat.text,
-//             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//                   fontSize: getDefaultSize(size: 16),
-//                 ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-//
-// class SenderTextWidget extends ConsumerWidget {
-//   const SenderTextWidget({super.key, required this.chat, required this.id});
-//   final MessageModel chat;
-//   final String id;
-//
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return CupertinoContextMenu.builder(
-//       enableHapticFeedback: true,
-//       actions: [
-//         CupertinoContextMenuAction(
-//           onPressed: () {
-//             Clipboard.setData(ClipboardData(text: chat.text));
-//             Navigator.pop(context);
-//           },
-//           // isDefaultAction: true,
-//           trailingIcon: CupertinoIcons.doc_on_clipboard_fill,
-//           child: const Text('Copy'),
-//         ),
-//         CupertinoContextMenuAction(
-//           onPressed: () {
-//             ref.read(messagesProvider(id).notifier).deleteMessage(chat.id);
-//             Navigator.pop(context);
-//           },
-//           isDestructiveAction: true,
-//           trailingIcon: CupertinoIcons.delete,
-//           child: const Text('Delete'),
-//         ),
-//       ],
-//       builder: (context, animation) => Align(
-//         alignment: Alignment.bottomRight,
-//         child: Container(
-//           margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-//           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-//           constraints: BoxConstraints(
-//             maxWidth: MediaQuery.sizeOf(context).width / 1.4,
-//           ),
-//           decoration: BoxDecoration(
-//             border: Border.all(color: PreluraColors.grey, width: 1),
-//             borderRadius: BorderRadius.circular(8.0),
-//           ),
-//           child: Text(
-//             chat.text,
-//             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-//                   fontSize: getDefaultSize(size: 16),
-//                 ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

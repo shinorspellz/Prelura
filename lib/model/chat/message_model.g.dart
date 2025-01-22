@@ -18,6 +18,9 @@ _$MessageModelImpl _$$MessageModelImplFromJson(Map<String, dynamic> json) =>
       replyTo: json['replyTo'] == null
           ? null
           : MessageModel.fromJson(json['replyTo'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
       sender: UserModel.fromJson(json['sender'] as Map<String, dynamic>),
     );
 
@@ -31,5 +34,6 @@ Map<String, dynamic> _$$MessageModelImplToJson(_$MessageModelImpl instance) =>
       'isItem': instance.isItem,
       'itemId': instance.itemId,
       'replyTo': instance.replyTo,
+      'createdAt': instance.createdAt?.toIso8601String(),
       'sender': instance.sender,
     };
