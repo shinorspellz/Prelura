@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_christmas.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/SearchWidget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -12,6 +12,7 @@ import 'package:prelura_app/views/widgets/card.dart';
 
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/filters_options.dart';
+import '../profile_details/widgets/no_product_widget.dart';
 import '../recently_viewed_product.dart';
 import '../sell_item/brand_view.dart' as brands_view;
 
@@ -164,7 +165,11 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                                           .future);
                                 }));
                       },
-                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
+                      loading: () => SliverToBoxAdapter(
+                              child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: GridShimmer(),
+                          ))),
                 ),
                 if ((filteredProducts?.isNotEmpty ?? false) ||
                     totalLength! > (filteredProducts?.length ?? 0))

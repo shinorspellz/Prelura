@@ -13,10 +13,11 @@ class OrderModel with _$OrderModel {
     required int quantity,
     required String priceTotal,
     required String shippingFee,
-    required Enum$ProductsOrderStatusChoices status,
+    required Enum$OrderStatusEnum status,
     required DateTime? createdAt,
     required DateTime? updatedAt,
   }) = _OrderModel;
 
-  factory OrderModel.fromJson(Map<String, dynamic> json) => _$OrderModelFromJson(json);
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
 }

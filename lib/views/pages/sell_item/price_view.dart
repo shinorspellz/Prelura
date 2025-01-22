@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
@@ -28,7 +29,7 @@ class PriceScreen extends ConsumerStatefulWidget {
 
 class _PriceScreenState extends ConsumerState<PriceScreen> {
   late final controller = TextEditingController(
-    text: ref.read(sellItemProvider).price,
+    text: formatDynamicString(ref.read(sellItemProvider).price),
   );
 
   @override

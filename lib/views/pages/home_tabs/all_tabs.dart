@@ -141,7 +141,7 @@ class HomeAllTab extends ConsumerWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
               child: Text(
-                "What's New ?",
+                "Home Feed",
                 textAlign: TextAlign.left,
                 style: context.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w500,

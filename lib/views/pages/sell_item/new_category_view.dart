@@ -58,46 +58,45 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
   }
 
   Widget buildCategoryList(List<Categoriess> categories) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: categories.length,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (_, index) {
-          final cat = categories[index];
-          final svgPath =
-              PreluraIcons.getConstant(keyword: cat.name!, category: null);
-          final hasSvg = svgPath?.isNotEmpty ?? false;
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: categories.length,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (_, index) {
+        final cat = categories[index];
+        final svgPath =
+            PreluraIcons.getConstant(keyword: cat.name!, category: null);
+        final hasSvg = svgPath?.isNotEmpty ?? false;
 
-          return cat.hasChildren == false
-              ? PreluraCheckBox(
-                  title: cat.name!,
-                  isChecked: false,
-                  onChanged: (value) {
-                    if (cat.hasChildren ?? false) {
-                      context.router.push(NewSubCategoryRoute(
-                        parentId: cat.id!,
-                        parentName: cat.name!,
-                      ));
-                    } else {}
-                  },
-                )
-              : MenuCard(
-                  title: cat.name!,
-                  svgPath: hasSvg ? svgPath : null,
-                  icon: hasSvg
-                      ? null
-                      : const Icon(Icons.settings,
-                          color: PreluraColors.activeColor),
-                  onTap: () {
-                    if (cat.hasChildren ?? false) {
-                      context.router.push(NewSubCategoryRoute(
-                        parentId: cat.id!,
-                        parentName: cat.name!,
-                      ));
-                    } else {}
-                  });
-        },
-      ),
+        return cat.hasChildren == false
+            ? PreluraCheckBox(
+                title: cat.name!,
+                isChecked: false,
+                onChanged: (value) {
+                  if (cat.hasChildren ?? false) {
+                    context.router.push(NewSubCategoryRoute(
+                      parentId: cat.id!,
+                      parentName: cat.name!,
+                    ));
+                  } else {}
+                },
+              )
+            : MenuCard(
+                title: cat.name!,
+                svgPath: hasSvg ? svgPath : null,
+                icon: hasSvg
+                    ? null
+                    : const Icon(Icons.settings,
+                        color: PreluraColors.activeColor),
+                onTap: () {
+                  if (cat.hasChildren ?? false) {
+                    context.router.push(NewSubCategoryRoute(
+                      parentId: cat.id!,
+                      parentName: cat.name!,
+                    ));
+                  } else {}
+                });
+      },
     );
   }
 
@@ -141,23 +140,30 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
             buildCategoryList(filter),
           ] else if (!isSearching && actualList.isNotEmpty) ...[
             buildCategoryList(actualList),
-            02.verticalSpacing,
+            22.verticalSpacing,
             if (state.category != null)
-              Expanded(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-                      margin: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: PreluraColors.grey,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(8)),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                    height: 50,
+                    alignment: Alignment.topCenter,
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+                    margin: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: PreluraColors.grey,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: GestureDetector(
+                      onTap: () {
+                        final selectedCategory =
+                            ref.read(categoryNotifierProvider).selectedCategory;
+                        context.router.push(NewSubCategoryRoute(
+                          parentId: selectedCategory!.parent!.id!,
+                          parentName: selectedCategory.name!,
+                        ));
+                      },
                       child: Row(
                         children: [
                           Text("Selected:",
@@ -190,8 +196,8 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                                       fontWeight: FontWeight.w600,
                                       color: PreluraColors.primaryColor)),
                         ],
-                      )),
-                ),
+                      ),
+                    )),
               ),
             // Spacer()
           ] else if (!categoryState.isLoading)

@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_christmas.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/error_placeholder.dart';
@@ -14,6 +14,7 @@ import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
 import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/gap.dart';
+import 'profile_details/widgets/no_product_widget.dart';
 import 'sell_item/brand_view.dart';
 
 @RoutePage()
@@ -37,10 +38,11 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    Future.microtask(() async {
       if (!mounted) return;
       ref.read(selectedFilteredProductProvider.notifier).state =
           Input$ProductFiltersInput(discountPrice: true);
+      await ref.refresh(filteredProductProvider((searchQuery)).future);
     });
 
     controller.addListener(() {

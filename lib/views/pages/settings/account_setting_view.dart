@@ -54,7 +54,7 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
       TextEditingController(text: userInfo?.email);
   late TextEditingController dob = TextEditingController();
   final bio = TextEditingController();
-  final int MaxDescription = 300;
+  final int MaxDescription = 500;
   Gender? gender;
   dynamic selectedSize;
   bool isExpanded = false;
@@ -428,9 +428,9 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
                 setState(() => isLoading = false);
                 return;
               }
-              context.alert(
-                'Profile updated successfully',
-              );
+              // context.alert(
+              //   'Profile updated successfully',
+              // );
             } catch (e) {
               log(":::Error from profile update::::: ${e.toString()}");
               context.alert(

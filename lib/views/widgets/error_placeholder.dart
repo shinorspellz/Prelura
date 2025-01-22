@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 
+import '../../res/colors.dart';
 import '../../res/utils.dart';
 
 class ErrorPlaceholder extends ConsumerWidget {
@@ -22,6 +23,7 @@ class ErrorPlaceholder extends ConsumerWidget {
           Text(error,
               style: context.theme.textTheme.bodyMedium?.copyWith(
                   fontSize: getDefaultSize(size: 16),
+                  color: PreluraColors.grey,
                   fontWeight: FontWeight.w600)),
           TextButton.icon(
             onPressed: onTap,

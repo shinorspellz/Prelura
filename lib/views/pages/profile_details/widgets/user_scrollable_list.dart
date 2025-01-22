@@ -67,7 +67,8 @@ class UserScrollableList extends ConsumerWidget {
                       title: "Ratings", numbers: "4.95", onTap: () {})
                 ],
               )),
-          if (listingCount == 0) buildDivider(context),
+          if (listingCount == 0 || user?.isVacationMode == true)
+            buildDivider(context),
         ],
       ),
     );

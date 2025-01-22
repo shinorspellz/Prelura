@@ -90,10 +90,12 @@ class ProductTopDetails extends ConsumerWidget {
                   Text(
                     "£ ${formatDynamicString(product.price.toString())}",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          decoration: product.discountPrice != null
+                          decoration: product.discountPrice != null &&
+                                  double.parse(product.discountPrice!) != 0.00
                               ? TextDecoration.lineThrough
                               : null,
-                          color: product.discountPrice != null
+                          color: product.discountPrice != null &&
+                                  double.parse(product.discountPrice!) != 0.00
                               ? !context.isDarkMode
                                   ? Colors.grey
                                   : Colors.white30

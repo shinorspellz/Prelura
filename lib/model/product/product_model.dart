@@ -71,24 +71,28 @@ class BannerConverter
 }
 
 enum ConditionsEnum {
-  NEW_WITH_TAGS(
-    simpleName: 'New with tags',
-    subtitle: 'A brand new , unused item with tags or original packaging',
-  ),
-  LIKE_NEW(
-    simpleName: 'Like New',
+  BRAND_NEW_WITH_TAGS(
+    simpleName: 'Brand New with tags',
     subtitle:
-        'A lightly used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+        'Items that have never been worn and still have the original tags attached.',
   ),
-  USED(
-    simpleName: 'Used',
+  BRAND_NEW_WITHOUT_TAGS(
+    simpleName: 'Brand new without tags',
+    subtitle: 'Items that have never been worn but do not have tags.',
+  ),
+  EXCELLENT_CONDITION(
+    simpleName: 'Excellent Condition',
+    subtitle: 'Items that have been lightly used and show no signs of wear.',
+  ),
+  GOOD_CONDITION(
+    simpleName: 'Good Condition',
     subtitle:
-        'A used item that may show imperfections and sign of wear. but still looks great. Includes photo and descriptions of any flaws in your listing.',
+        'Items with minimal signs of wear but still very presentable and functional.',
   ),
   HEAVILY_USED(
     simpleName: 'Heavily Used',
     subtitle:
-        'A fequently used item that may have slight imperfections but still looks great. Includes photo and descriptions of any flaws in your listing.',
+        'Items with significant signs of wear, such as noticeable stains, fading, or damage, but may still hold value for parts or repurposing.',
   );
 
   const ConditionsEnum({
@@ -101,21 +105,23 @@ enum ConditionsEnum {
   static ConditionsEnum conditionByApiValue(String apiValue) {
     return ConditionsEnum.values.firstWhere(
         (value) => value.name.toLowerCase() == apiValue.toLowerCase(),
-        orElse: () => ConditionsEnum.USED);
+        orElse: () => ConditionsEnum.HEAVILY_USED);
   }
 
   static String conditionToApiValue(ConditionsEnum condition) {
     switch (condition) {
-      case ConditionsEnum.NEW_WITH_TAGS:
-        return r'NEW_WITH_TAGS';
-      case ConditionsEnum.LIKE_NEW:
-        return r'LIKE_NEW';
-      case ConditionsEnum.USED:
-        return r'USED';
+      case ConditionsEnum.BRAND_NEW_WITH_TAGS:
+        return r'BRAND_NEW_WITH_TAGS';
+      case ConditionsEnum.BRAND_NEW_WITHOUT_TAGS:
+        return r'BRAND_NEW_WITHOUT_TAGS';
+      case ConditionsEnum.EXCELLENT_CONDITION:
+        return r'EXCELLENT_CONDITION';
+      case ConditionsEnum.GOOD_CONDITION:
+        return r'GOOD_CONDITION';
       case ConditionsEnum.HEAVILY_USED:
         return r'HEAVILY_USED';
       default:
-        return r'USED';
+        return r'BRAND_NEW_WITH_TAGS';
     }
   }
 }
@@ -137,6 +143,6 @@ class SizeType with _$SizeType {
     required String name,
   }) = _SizeType;
 
-  factory SizeType.fromJson(Map<String, dynamic> json) => _$SizeTypeFromJson(json);
-
+  factory SizeType.fromJson(Map<String, dynamic> json) =>
+      _$SizeTypeFromJson(json);
 }
