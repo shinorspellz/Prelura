@@ -187,7 +187,9 @@ class _MessageConversationBuilderState
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
     currentUser = ref.watch(userProvider).valueOrNull;
-    final chats = ref.watch(chatRoomProvider);
+    final chats = ref.watch(messagesProvider(
+      widget.conversationId.toString(),
+    ));
     final chatState = ref.watch(
       chatRoomStateProvider.notifier,
     );
