@@ -88,7 +88,8 @@ Future<Position> determinePosition() async {
 String formatDynamicString(String? input) {
   final doubleValue = double.tryParse(input ?? "");
   if (doubleValue == null) {
-    throw ArgumentError("Invalid input string: $input");
+    return "";
+    // throw "Invalid input string: $input";
   }
 
   // If the number is effectively an integer
@@ -151,7 +152,6 @@ class MaxValueTextInputFormatter extends TextInputFormatter {
     return newValue;
   }
 }
-
 
 extension StringExtension on String {
   String capitalize() {

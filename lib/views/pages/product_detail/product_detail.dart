@@ -675,6 +675,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
               }
               return DisplaySection(
                 products: data,
+                isInProduct: false,
               );
             },
             error: (e, _) => Center(

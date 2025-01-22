@@ -53,7 +53,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
   late TextEditingController email =
       TextEditingController(text: ref.read(userProvider).valueOrNull?.email);
   final bio = TextEditingController();
-  final int MaxDescription = 300;
+  final int MaxDescription = 500;
   @override
   void initState() {
     getLongLat(showDialog: true);

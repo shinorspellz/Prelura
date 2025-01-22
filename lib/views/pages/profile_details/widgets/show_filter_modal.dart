@@ -13,6 +13,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../controller/product/brands_provider.dart';
 import '../../../../controller/product/product_provider.dart';
 import '../../../../core/graphql/__generated/schema.graphql.dart';
+import '../../../../res/colors.dart';
 import '../../../widgets/app_button.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../../../widgets/custom_widget.dart';
@@ -229,7 +230,7 @@ Future<dynamic> showPriceDialog(
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(errorMessage ?? "Invalid input."),
-            backgroundColor: Colors.red,
+            backgroundColor: PreluraColors.primaryColor,
           ),
         );
       }

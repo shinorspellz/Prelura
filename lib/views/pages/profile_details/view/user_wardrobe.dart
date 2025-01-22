@@ -13,7 +13,7 @@ import 'package:prelura_app/model/product/user_product_grouping/user_product_gro
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/filter_and_sort.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/no_product_widget.dart';
+import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
 import 'package:prelura_app/views/pages/profile_details/widgets/user_scrollable_list.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
@@ -34,7 +34,9 @@ import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button_with_loader.dart';
 import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
+import '../../../widgets/custom_widget.dart';
 import '../../../widgets/error_placeholder.dart';
+import '../widgets/no_product_widget.dart';
 import '../widgets/user_popular_brand.dart';
 
 final isBrandActiveProvider = AutoDisposeStateProvider((ref) => false);
@@ -136,6 +138,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         ? otherUserProfile(widget.username!)
         : userProvider));
 
+    final isCurrentUser = widget.username == null;
+
     final productLength = user.valueOrNull?.listing;
     log(productLength.toString(), name: "Profile details");
 
@@ -150,6 +154,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   : userProvider);
             },
           );
+        },
+        loading: () {
+          return Center(child: CircularProgressIndicator.adaptive());
         },
         data: (user) {
           final value = ref
@@ -184,7 +191,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    buildeditProfileBox(context, user),
+                    if (isCurrentUser) buildeditProfileBox(context, user),
                   ]),
 
                   ///
@@ -545,6 +552,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                               skipLoadingOnRefresh: false,
                               data: (products) {
                                 if (products.isEmpty) {
+                                  if(user.isVacationMode == true){
+                                    return HolidayModeWidget();
+                                  }
                                   return NoProductWidget();
                                 }
                                 return DisplaySection(
@@ -667,17 +677,36 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         VBottomSheetItem(
                             onTap: (context) {
                               Navigator.pop(context);
-                              showDialog(
-                                context: context,
-                                builder: (context) {
+                              showCustomDialog(
+                                context,
+                                child: Builder(builder: (context) {
                                   final controller =
                                       TextEditingController(text: user.bio);
-                                  return AlertDialog(
-                                    title: const Text('Update Bio'),
-                                    content: Column(
+                                  final int MaxDescription = 500;
+
+                                  ValueNotifier<int>
+                                      remainingCharactersNotifier =
+                                      ValueNotifier(MaxDescription -
+                                          controller.text.length);
+
+                                  controller.addListener(() {
+                                    remainingCharactersNotifier.value =
+                                        MaxDescription - controller.text.length;
+                                  });
+
+                                  return Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 14, vertical: 20),
+                                    margin: EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color:
+                                          context.theme.scaffoldBackgroundColor,
+                                    ),
+                                    child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         PreluraAuthTextField(
                                           label: 'Bio',
@@ -697,7 +726,25 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                           controller: controller,
                                           maxLines: null,
                                         ),
-                                        10.verticalSpacing,
+                                        Align(
+                                          alignment: Alignment.bottomRight,
+                                          child: ValueListenableBuilder<int>(
+                                            valueListenable:
+                                                remainingCharactersNotifier,
+                                            builder: (context,
+                                                remainingCharacters, _) {
+                                              return Text(
+                                                "$remainingCharacters characters remaining",
+                                                maxLines: 1,
+                                                textAlign: TextAlign.right,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        20.verticalSpacing,
                                         Consumer(builder: (context, ref, _) {
                                           return PreluraButtonWithLoader(
                                             showLoadingIndicator: ref
@@ -731,7 +778,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                       ],
                                     ),
                                   );
-                                },
+                                }),
                               );
                             },
                             title: 'Update Bio')
