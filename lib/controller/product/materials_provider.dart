@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/model/product/material/material_model.dart';
-import 'package:prelura_app/model/product/product_model.dart';
 
-final materialsProvider = AsyncNotifierProvider<_MaterialsProvider, List<MaterialModel>>(_MaterialsProvider.new);
+final materialsProvider =
+    AsyncNotifierProvider<_MaterialsProvider, List<MaterialModel>>(
+        _MaterialsProvider.new);
 
 class _MaterialsProvider extends AsyncNotifier<List<MaterialModel>> {
   late final _repository = ref.read(productRepo);
@@ -30,12 +30,14 @@ class _MaterialsProvider extends AsyncNotifier<List<MaterialModel>> {
 
     _brandTotalItems = result.materialsTotalNumber!;
 
-    final newState = result.materials!.map((e) => MaterialModel.fromJson(e!.toJson()));
+    final newState =
+        result.materials!.map((e) => MaterialModel.fromJson(e!.toJson()));
     final currentState = state.valueOrNull ?? [];
     if (pageNumber == 1) {
       state = AsyncData(newState.toList());
     } else {
-      if (currentState.isNotEmpty && newState.any((element) => currentState.last.id == element.id)) {
+      if (currentState.isNotEmpty &&
+          newState.any((element) => currentState.last.id == element.id)) {
         return;
       }
 
@@ -66,12 +68,15 @@ class _MaterialsProvider extends AsyncNotifier<List<MaterialModel>> {
   }
 }
 
-final searchMaterial = FutureProvider.family.autoDispose<List<MaterialModel>, String>(
+final searchMaterial =
+    FutureProvider.family.autoDispose<List<MaterialModel>, String>(
   (ref, query) async {
     final repo = ref.watch(productRepo);
 
     final result = await repo.getMaterial(search: query);
 
-    return result.materials!.map((e) => MaterialModel.fromJson(e!.toJson())).toList();
+    return result.materials!
+        .map((e) => MaterialModel.fromJson(e!.toJson()))
+        .toList();
   },
 );

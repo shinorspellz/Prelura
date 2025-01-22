@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
+
 import '../model/order_model.dart';
 
 class OrderCard extends StatelessWidget {
   final Order order;
 
-  const OrderCard({required this.order});
+  const OrderCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,10 @@ class OrderCard extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     "£ ${order.price}",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(height: 5),
                   Text(

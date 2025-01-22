@@ -195,7 +195,7 @@ class FilterAndSort extends ConsumerWidget {
             },
             child: Row(children: [
               Text(
-                "${getActiveSortName(ref.read(userProductSort.notifier).state)}",
+                getActiveSortName(ref.read(userProductSort.notifier).state),
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: PreluraColors.grey,
                       fontWeight: FontWeight.w600,

@@ -38,7 +38,7 @@ class UIConstants {
       int? minLines}) {
     return InputDecoration(
       constraints: BoxConstraints(
-        minHeight: minLines != null ? minLines! * 24.0 : 48.0,
+        minHeight: minLines != null ? minLines * 24.0 : 48.0,
         maxHeight: minLines != null ? double.infinity : 48.0,
       ),
       label: labelText != null

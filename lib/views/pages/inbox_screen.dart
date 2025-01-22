@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
-import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 

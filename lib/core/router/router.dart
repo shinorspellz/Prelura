@@ -352,7 +352,7 @@ class AppRouterObserver extends AutoRouterObserver {
       // If arguments are passed as a specific type, cast them
 
       print(
-          'Navigated to ${previousRoute?.settings.name} with argument: ${args}');
+          'Navigated to ${previousRoute?.settings.name} with argument: $args');
     }
 
     if (previousRoute?.settings.name == ProductByHashtagRoute.name) {

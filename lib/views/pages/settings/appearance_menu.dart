@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/views/widgets/menu_card.dart';
 
 import '../../../controller/theme_notifier.dart';
 import '../../../res/utils.dart';

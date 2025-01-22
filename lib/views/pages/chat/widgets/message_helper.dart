@@ -179,8 +179,8 @@ class MessageHelper {
   }
 
   static String getMessageType(MessageModel chatInfo) {
-    if (!chatInfo.text!.contains("message_type")) return "text";
-    var jsonData = jsonDecode(chatInfo.text!);
+    if (!chatInfo.text.contains("message_type")) return "text";
+    var jsonData = jsonDecode(chatInfo.text);
     if (jsonData["message_type"] != null) {
       return jsonData["message_type"].toString().toLowerCase();
     } else {

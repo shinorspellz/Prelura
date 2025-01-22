@@ -5,7 +5,6 @@ import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
-import '../../../../model/user/user_model.dart';
 import '../../../../res/colors.dart';
 
 class HolidayModeWidget extends StatelessWidget {

@@ -1005,7 +1005,7 @@ class RecentlyViewedProductNotifier extends AsyncNotifier<List<ProductModel>> {
     try {
       final response = await _repository.getRecentlyViewedProducts();
 
-      final products = await response.recentlyViewedProducts!
+      final products = response.recentlyViewedProducts!
           .map((e) => ProductModel.fromJson(e!.toJson()))
           .toList();
 

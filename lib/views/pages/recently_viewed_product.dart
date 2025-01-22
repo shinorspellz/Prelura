@@ -110,7 +110,7 @@ class _RecentlyViewedProductScreenState
                       final filteredProducts = products
                           .where((product) =>
                               product.name
-                                  ?.toLowerCase()
+                                  .toLowerCase()
                                   .contains(searchQuery) ??
                               false) // Safely check for "party"
                           .toList();

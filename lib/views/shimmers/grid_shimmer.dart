@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/views/shimmers/custom_shimmer.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 Widget GridShimmer({Axis? scrollDirection}) {
@@ -91,7 +90,8 @@ class ProductShimmer extends StatelessWidget {
 }
 
 class ShimmerBox extends StatelessWidget {
-  const ShimmerBox({super.key, required this.height, required this.width, this.radius});
+  const ShimmerBox(
+      {super.key, required this.height, required this.width, this.radius});
   final double height;
   final double width;
   final double? radius;

@@ -6,8 +6,6 @@ import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/model/notification/notification_model.dart';
 import 'package:prelura_app/repo/notifications_repo.dart';
 
-import '../model/product/product_model.dart';
-
 final notificationTotalNumber = FutureProvider<int>((ref) async {
   final repo = ref.read(notificationRepo);
   final response = await repo.getNotificationsTotalNumbers(15, 1);

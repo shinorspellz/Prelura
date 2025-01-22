@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/pages/menu_page.dart';
 import 'package:prelura_app/views/shimmers/custom_shimmer.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 import 'package:prelura_app/views/widgets/gap.dart';

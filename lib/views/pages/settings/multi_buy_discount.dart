@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/settings/widget/discountItem.dart';
@@ -12,7 +11,6 @@ import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/app_bar.dart';
 import '../../widgets/app_button.dart';
-import '../../widgets/app_button_with_loader.dart';
 import '../../widgets/switch_with_text.dart';
 
 final isSelectedProvider = StateProvider((ref) => false);

@@ -210,11 +210,11 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
     }
 
     if (FilterTypes.price == filterType) {
-      final maxPrice = value?.split(' ').last;
-      final minPrice = value?.split(' ').first;
-      if (minPrice == null || minPrice.isEmpty) {
+      final maxPrice = value.split(' ').last;
+      final minPrice = value.split(' ').first;
+      if (minPrice.isEmpty) {
         final updatedFilter = providerFilter.currentFilter?.copyWith(
-          maxPrice: maxPrice != null && maxPrice.isNotEmpty
+          maxPrice: maxPrice.isNotEmpty
               ? double.parse(maxPrice ?? "0")
               : providerFilter.currentFilter?.maxPrice ?? 0,
           minPrice: 0,
@@ -222,9 +222,9 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
         providerFilter.updateFilter(updatedFilter!);
         return;
       }
-      if (maxPrice == null || maxPrice.isEmpty) {
+      if (maxPrice.isEmpty) {
         final updatedFilter = providerFilter.currentFilter?.copyWith(
-          minPrice: minPrice != null && minPrice.isNotEmpty
+          minPrice: minPrice.isNotEmpty
               ? double.parse(minPrice)
               : providerFilter.currentFilter?.minPrice ?? 0,
         );
@@ -234,10 +234,10 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
 
       log(value, name: 'price in search provider');
       final updatedFilter = providerFilter.currentFilter?.copyWith(
-        maxPrice: maxPrice != null && maxPrice.isNotEmpty
+        maxPrice: maxPrice.isNotEmpty
             ? double.parse(maxPrice ?? "0")
-            : providerFilter.currentFilter?.maxPrice ?? null,
-        minPrice: minPrice != null && minPrice.isNotEmpty
+            : providerFilter.currentFilter?.maxPrice,
+        minPrice: minPrice.isNotEmpty
             ? double.parse(minPrice ?? "0")
             : providerFilter.currentFilter?.minPrice ?? 0,
       );
@@ -264,7 +264,7 @@ class ProductFilterNotifier extends StateNotifier<Map<FilterTypes, String>> {
                   ref
                       .read(colorsProvider)
                       .entries
-                      ?.where((e) => e.key == value)
+                      .where((e) => e.key == value)
                       .firstOrNull
                       ?.key
                 ]

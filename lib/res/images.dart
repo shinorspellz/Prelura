@@ -392,7 +392,7 @@ class PreluraIcons {
 
     if (category == null) {
       final String? mainCategorySvg =
-          mainCategoryConstants[keyword?.toLowerCase() ?? ''];
+          mainCategoryConstants[keyword.toLowerCase() ?? ''];
 
       // If the category is found in the main categories, return that SVG
       if (mainCategorySvg != null) {
@@ -418,5 +418,6 @@ class PreluraIcons {
           )
           .value;
     }
+    return null;
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_stats_card.dart';
-import 'package:prelura_app/res/helper_function.dart';
 
 @RoutePage()
 class BalancePage extends StatelessWidget {
@@ -15,7 +14,8 @@ class BalancePage extends StatelessWidget {
       appBar: PreluraAppBar(
         appbarTitle: 'Balance',
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
       ),

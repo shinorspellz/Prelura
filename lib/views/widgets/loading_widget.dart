@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 class LoadingWidget extends StatelessWidget {

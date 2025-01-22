@@ -80,9 +80,7 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          ...data
-                              .take(6)
-                              .map(
+                          ...data.take(6).map(
                                 (brand) => Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 6.0),
@@ -144,8 +142,7 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
                                     ),
                                   ),
                                 ),
-                              )
-                              .toList(),
+                              ),
                         ],
                       ),
                     ),

@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/res/context_entension.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
 import '../../res/ui_constants.dart';
 import '../../res/utils.dart';
-import 'auth_text_field.dart';
 
 class PriceFieldWidget extends ConsumerWidget {
   const PriceFieldWidget(

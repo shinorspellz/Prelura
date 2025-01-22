@@ -1,10 +1,12 @@
 // ignore_for_file: type=lint
 import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:prelura_app/model/product/product_model.dart'
     as EnumImport$ConditionEnum;
+
 import 'schema.graphql.dart';
 
 class Variables$Mutation$Login {
@@ -2463,7 +2465,7 @@ class Mutation$TokenAuth$tokenAuth {
     final l$$__typename = json['__typename'];
     return Mutation$TokenAuth$tokenAuth(
       token: (l$token as String),
-      payload: (l$payload as dynamic?),
+      payload: (l$payload as dynamic),
       refreshExpiresIn: (l$refreshExpiresIn as int?),
       $__typename: (l$$__typename as String),
     );
@@ -2471,7 +2473,7 @@ class Mutation$TokenAuth$tokenAuth {
 
   final String token;
 
-  final dynamic? payload;
+  final dynamic payload;
 
   final int? refreshExpiresIn;
 
@@ -2557,7 +2559,7 @@ abstract class CopyWith$Mutation$TokenAuth$tokenAuth<TRes> {
 
   TRes call({
     String? token,
-    dynamic? payload,
+    dynamic payload,
     int? refreshExpiresIn,
     String? $__typename,
   });
@@ -2587,7 +2589,7 @@ class _CopyWithImpl$Mutation$TokenAuth$tokenAuth<TRes>
             ? _instance.token
             : (token as String),
         payload:
-            payload == _undefined ? _instance.payload : (payload as dynamic?),
+            payload == _undefined ? _instance.payload : (payload as dynamic),
         refreshExpiresIn: refreshExpiresIn == _undefined
             ? _instance.refreshExpiresIn
             : (refreshExpiresIn as int?),
@@ -2605,7 +2607,7 @@ class _CopyWithStubImpl$Mutation$TokenAuth$tokenAuth<TRes>
 
   call({
     String? token,
-    dynamic? payload,
+    dynamic payload,
     int? refreshExpiresIn,
     String? $__typename,
   }) =>

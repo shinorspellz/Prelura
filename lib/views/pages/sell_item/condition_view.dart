@@ -1,13 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 
-import '../../widgets/app_radio.dart';
-import '../../../controller/product/provider/condition_provider.dart';
 import '../../../controller/product/provider/sell_item_provider.dart';
 
 @RoutePage()
@@ -23,7 +20,8 @@ class ConditionScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           centerTitle: true,

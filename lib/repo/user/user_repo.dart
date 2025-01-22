@@ -4,7 +4,6 @@ import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
-import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/model/user/earnings/earnings_model.dart';
 import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
@@ -103,7 +102,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw e;
+      rethrow;
     }
   }
 
