@@ -49,7 +49,6 @@ class SecondIndexBox extends StatelessWidget {
                 letterSpacing: -1,
               ),
         ),
-        addVerticalSpacing(50),
       ]),
     );
   }
@@ -93,7 +92,6 @@ class ThirdIndexBox extends StatelessWidget {
                 letterSpacing: -1,
               ),
         ),
-        addVerticalSpacing(50),
       ]),
     );
   }

@@ -220,28 +220,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Don't have an account?",
-              style: mcontext.textTheme.bodyLarge!.copyWith(
-                fontWeight: FontWeight.w500,
-                color: Theme.of(context).primaryColor.withOpacity(0.5),
-              ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(
+            "Don't have an account?",
+            style: mcontext.textTheme.bodyLarge!.copyWith(
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).primaryColor.withOpacity(0.5),
             ),
-            PreluraTextButton(
-              text: "Sign Up",
-              onPressed: () {
-                context.router.push(const SignUpRoute());
-              },
-              textStyle: mcontext.textTheme.bodyLarge!.copyWith(
-                fontWeight: FontWeight.w600,
-                color: Colors.blue,
-              ),
+          ),
+          PreluraTextButton(
+            text: "Sign Up",
+            onPressed: () {
+              context.router.push(const OnboardingRoute());
+            },
+            textStyle: mcontext.textTheme.bodyLarge!.copyWith(
+              fontWeight: FontWeight.w600,
+              color: Colors.blue,
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }
