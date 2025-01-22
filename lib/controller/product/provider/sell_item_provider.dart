@@ -26,6 +26,7 @@ class SellItemState with _$SellItemState {
     required String description,
     CategoryModel? category,
     Enum$ParcelSizeEnum? parcel,
+    @Default({}) Map<String, String> imageUrlToAction,
     @Default([]) List<String> selectedColors,
     @Default([]) List<MaterialModel> selectedMaterials,
     SizeType? size,
@@ -57,7 +58,9 @@ class XFileConverter implements JsonConverter<List<XFile>, List<dynamic>> {
 }
 
 class SellItemNotifier extends StateNotifier<SellItemState> {
-  SellItemNotifier() : super(SellItemState(title: '', description: '')) {
+  final Ref ref;
+  SellItemNotifier(this.ref)
+      : super(SellItemState(title: '', description: '')) {
     _initialState = state;
   }
 
@@ -75,6 +78,17 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
     final pickedImages = await _picker.pickMultiImage(
       limit: 20,
     );
+    if (pickedImages.isNotEmpty) {
+      for (final image in pickedImages) {
+        ref
+            .read(
+          sellItemProvider.notifier,
+        )
+            .updateImageStateChanging(
+          {"add": image.path},
+        );
+      }
+    }
     state = state.copyWith(images: [...state.images, ...pickedImages]);
   }
 
@@ -122,9 +136,12 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   void removeCategory() {
     state = state.copyWith(category: null);
   }
-  // void updateSubCategory(CategoryModel subCategory) {
-  //   state = state.copyWith(subCategory: subCategory);
-  // }
+
+  void updateImageStateChanging(Map<String, String> data) {
+    Map<String, String> imageActions = state.imageUrlToAction;
+    imageActions.addAll(data);
+    state = state.copyWith(imageUrlToAction: imageActions);
+  }
 
   void selectSize(SizeType size) {
     // void selectSize(Enum$SizeEnum size) {
@@ -183,6 +200,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
   }
 
   void productToItem(ProductModel product) async {
+    state.copyWith(imageUrlToAction: {});
     List<String> imageUrls =
         product.imagesUrl.map((imageInfo) => imageInfo.url).toList();
     List<XFile> images = await ImageService.downloadImages(imageUrls);
@@ -279,7 +297,7 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 }
 
 final sellItemProvider = StateNotifierProvider<SellItemNotifier, SellItemState>(
-  (ref) => SellItemNotifier(),
+  (ref) => SellItemNotifier(ref),
 );
 
 final sellItemDraftProvider =
