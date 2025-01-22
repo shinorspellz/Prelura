@@ -162,8 +162,10 @@ final userProduct =
   //     .firstOrNull;
   // final size =
   //     Enum$SizeEnum.values.where((e) => e.name == sizeFilter).firstOrNull;
-  final condition =
-      ConditionsEnum.values.where((e) => e.name == conditionFilter).firstOrNull;
+  final condition = ConditionsEnum.values
+      .where(
+          (e) => e.simpleName.toLowerCase() == conditionFilter?.toLowerCase())
+      .firstOrNull;
   final style =
       Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
   final parentCategory = Enum$ParentCategoryEnum.values
@@ -178,8 +180,8 @@ final userProduct =
 
   final maxPrice = priceFilter?.split(' ').last;
   final minPrice = priceFilter?.split(' ').first;
-  log(maxPrice.toString(), name: 'maxPrice');
-  log(minPrice.toString(), name: 'minPrice');
+  log(condition.toString(), name: 'condition');
+  log(conditionFilter.toString(), name: 'condition Filter');
 
   final searchQuery = ref.watch(userProductSearchQuery);
   final sort = ref.watch(userProductSort);

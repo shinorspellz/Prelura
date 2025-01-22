@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
@@ -18,6 +19,7 @@ class HolidayModeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isVacationMode = ref.watch(userProvider).value?.isVacationMode;
+    final username = ref.watch(userProvider).value?.username;
     return Scaffold(
       appBar: PreluraAppBar(
         centerTitle: true,
@@ -60,6 +62,7 @@ class HolidayModeScreen extends ConsumerWidget {
                             data: (_) {
                               ref.invalidate(userProvider);
                               ref.refresh(userProvider.future);
+                              ref.invalidate(userProduct(username));
                               HelperFunction.context = context;
                               context.alert('Vacation Mode updated!');
                             },
