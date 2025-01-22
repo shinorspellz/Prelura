@@ -315,100 +315,110 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                   children: state.images
                                       .asMap()
                                       .entries
-                                      .map((image) => Row(
-                                            key: ValueKey(image),
-                                            children: [
-                                              GestureDetector(
-                                                key: ValueKey(image),
-                                                onTap: () {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (_) =>
-                                                          FullScreenImage(
-                                                        imagePath: state.images,
-                                                        isLocal: true,
-                                                        initialIndex: image.key,
-                                                      ),
+                                      .map((image) =>
+                                          Row(key: ValueKey(image), children: [
+                                            GestureDetector(
+                                              key: ValueKey(image),
+                                              onTap: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        FullScreenImage(
+                                                      imagePath: state.images,
+                                                      isLocal: true,
+                                                      initialIndex: image.key,
                                                     ),
-                                                  );
-                                                },
-                                                child: Container(
-                                                  key: ValueKey(image),
-                                                  margin: EdgeInsets.symmetric(
-                                                      horizontal: 5),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
-                                                      color: Colors.transparent
-                                                          .withOpacity(0.1)),
-                                                  child: Stack(
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                8), // Match the Container's border radius
-                                                        child: Image.file(
-                                                          File(
-                                                              image.value.path),
-                                                          fit: BoxFit.cover,
-                                                          height: 142,
-                                                          width: 100,
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                key: ValueKey(image),
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 5),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    color: Colors.transparent
+                                                        .withOpacity(0.1)),
+                                                child: Stack(children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8), // Match the Container's border radius
+                                                    child: Image.file(
+                                                      File(image.value.path),
+                                                      fit: BoxFit.cover,
+                                                      height: 142,
+                                                      width: 100,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                      top: 5,
+                                                      right: 5,
+                                                      child: Align(
+                                                        alignment:
+                                                            Alignment.topRight,
+                                                        child: CircleAvatar(
+                                                          radius: 10,
+                                                          backgroundColor:
+                                                              PreluraColors
+                                                                  .blueTextColor,
+                                                          child: Text(
+                                                            "${image.key + 1}",
+                                                            style: context
+                                                                .theme
+                                                                .textTheme
+                                                                .bodySmall
+                                                                ?.copyWith(
+                                                                    color: PreluraColors
+                                                                        .white),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      Positioned(
-                                                          top: 5,
-                                                          right: 5,
-                                                          child: Align(
-                                                            alignment: Alignment
-                                                                .topRight,
-                                                            child: CircleAvatar(
-                                                              radius: 10,
-                                                              backgroundColor:
-                                                                  PreluraColors
-                                                                      .blueTextColor,
-                                                              child: Text(
-                                                                "${image.key + 1}",
-                                                                style: context
-                                                                    .theme
-                                                                    .textTheme
-                                                                    .bodySmall
-                                                                    ?.copyWith(
-                                                                        color: PreluraColors
-                                                                            .white),
-                                                              ),
-                                                            ),
-                                                          )),
-                                                      Positioned(
-                                                        bottom: 5,
-                                                        right: 5,
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .bottomRight,
-                                                          child: InkWell(
-                                                              child: Icon(
-                                                                Icons
-                                                                    .cancel_rounded,
-                                                                color: PreluraColors
-                                                                    .greyColor,
-                                                                fill: 1,
-                                                              ),
-                                                              onTap: () {
-                                                                notifier.deleteImage(
+                                                      )),
+                                                  Positioned(
+                                                    bottom: 5,
+                                                    right: 5,
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.bottomRight,
+                                                      child: InkWell(
+                                                          child: Icon(
+                                                            Icons
+                                                                .cancel_rounded,
+                                                            color: PreluraColors
+                                                                .greyColor,
+                                                            fill: 1,
+                                                          ),
+                                                          onTap: () {
+                                                            if (widget
+                                                                    .product !=
+                                                                null) {
+                                                              ref
+                                                                  .read(
+                                                                sellItemProvider
+                                                                    .notifier,
+                                                              )
+                                                                  .updateImageStateChanging(
+                                                                {
+                                                                  "remove_${DateTime.now().microsecondsSinceEpoch}":
+                                                                      image
+                                                                          .value
+                                                                          .path
+                                                                },
+                                                              );
+                                                            }
+                                                            notifier
+                                                                .deleteImage(
                                                                     image
                                                                         .value);
-                                                              }),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                          }),
+                                                    ),
                                                   ),
-                                                ),
+                                                ]),
                                               ),
-                                              // SizedBox(
-                                              //   width: 6,
-                                              // ),
-                                            ],
-                                          ))
+                                            ),
+                                          ]))
                                       .toList(),
                                 ),
                                 GestureDetector(
@@ -758,8 +768,10 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                               .read(productProvider.notifier)
                               .updateProduct(
                                 productId: int.parse(widget.product!.id),
+                                productInfo: widget.product!,
                                 title: state.title,
                                 desc: state.description,
+                                images: files,
                                 price: double.parse(state.price!),
                                 condition: state.selectedCondition!,
                                 parcelSize: state.parcel,
@@ -828,22 +840,9 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                           },
                           data: (_) {
                             context.alert('Product created successfully');
-                            // Navigator.pop(context);
-                            // final tabRouter = AutoTabsRouter.of(context);
-                            // tabRouter.setActiveIndex(2);
-
                             context.router.replace(UserProfileDetailsRoute());
                           },
                         );
-
-                        //   await notifier.uploadItem();
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     const SnackBar(content: Text('Item uploaded successfully!')),
-                        //   );
-                        // } else {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     const SnackBar(content: Text('Please fill in all required fields')),
-                        //   );
                       },
                       loading: ref.watch(productProvider).isLoading,
                       text: widget.product == null ? "Upload" : "Update"),

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
+import 'package:prelura_app/controller/product/provider/sell_item_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -328,8 +329,10 @@ class _ProductProvider extends AsyncNotifier<void> {
     required int productId,
     String? title,
     String? desc,
+    required ProductModel productInfo,
     double? price,
     int? size,
+    List<File>? images,
     ConditionsEnum? condition,
     int? category,
     int? subCategory,
@@ -347,19 +350,53 @@ class _ProductProvider extends AsyncNotifier<void> {
     log('Discount $discount');
     log('Price $price');
     log('Size $size');
-    log('category $category');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
-    log('Discount $discount');
 
     state = await AsyncValue.guard(() async {
-      // final files = await _uploadMedia(images);
+      Map<String, String> imageMapping =
+          ref.read(sellItemProvider).imageUrlToAction;
+
+      List<File> toUpload = [];
+      List<File> toRemove = [];
+      Input$ImageUpdateInputType? files;
+      if (imageMapping.isNotEmpty) {
+        imageMapping.forEach((action, value) {
+          if (action.startsWith("add")) {
+            toUpload.add(File(value));
+          } else if (action.startsWith("remove")) {
+            toRemove.add(File(value));
+          }
+        });
+        log("::::TO remove length::: ${toRemove.length}");
+        log("::::TO add length::: ${toUpload.length}");
+        if (toRemove.isNotEmpty) {
+          for (var file in toRemove) {
+            ProductBanners fileInfo = productInfo.imagesUrl.firstWhere(
+                (imageInfo) =>
+                    imageInfo.url.contains(file.path.split("/").last));
+            await _productRepo.updateProduct(Variables$Mutation$UpdateProduct(
+              productId: productId,
+              imageUrl: Input$ImageUpdateInputType(
+                images: [
+                  Input$ImagesInputType(
+                    url: fileInfo.url,
+                    thumbnail: fileInfo.thumbnail,
+                  ),
+                ],
+                action: Enum$BannerActionInputEnum.REMOVE,
+              ),
+            ));
+          }
+        }
+
+        if (toUpload.isNotEmpty) {
+          final images = await _uploadMedia(toUpload);
+
+          files = Input$ImageUpdateInputType(
+            images: images,
+            action: Enum$BannerActionInputEnum.ADD,
+          );
+        }
+      }
       await _productRepo.updateProduct(
         Variables$Mutation$UpdateProduct(
           productId: productId,
@@ -369,6 +406,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           price: price,
           size: size,
           name: title,
+          imageUrl: files,
           parcelSize: parcelSize,
           discount: discount,
           brand: brandId,

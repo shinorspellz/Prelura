@@ -19,6 +19,11 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
       parcel: json['parcel'] == null
           ? null
           : Enum$ParcelSizeEnum.fromJson(json['parcel'] as String),
+      imageUrlToAction:
+          (json['imageUrlToAction'] as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(k, e as String),
+              ) ??
+              const {},
       selectedColors: (json['selectedColors'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -51,6 +56,7 @@ Map<String, dynamic> _$$SellItemStateImplToJson(_$SellItemStateImpl instance) =>
       'description': instance.description,
       'category': instance.category,
       'parcel': instance.parcel,
+      'imageUrlToAction': instance.imageUrlToAction,
       'selectedColors': instance.selectedColors,
       'selectedMaterials': instance.selectedMaterials,
       'size': instance.size,
