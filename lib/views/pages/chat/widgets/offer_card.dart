@@ -421,7 +421,9 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
               ),
               const SizedBox(width: 18),
               _buildActionButton(
-                status == "rejected" ? "Declined" : "Decline",
+                (status == "rejected" || status == "cancelled")
+                    ? "Declined"
+                    : "Decline",
                 status != "pending" ? null : _handleDecline,
                 isDeclining,
               ),
@@ -435,7 +437,9 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
               child: Text(
                 status == "pending"
                     ? "please wait for seller to respond"
-                    : status.replaceFirst("rejected", "Declined"),
+                    : status
+                        .replaceFirst("rejected", "Declined")
+                        .replaceFirst("cancelled", "Declined"),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: PreluraColors.grey,
                       fontSize: 12,
