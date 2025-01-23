@@ -175,52 +175,52 @@ class _OfferCardState extends ConsumerState<OfferCard> {
               amTheSeller: amTheSeller,
               isSender: widget.isSender,
             ),
-            const SizedBox(height: 10),
-            if (isAccepted || isDeclined)
-              Column(
-                children: [
-                  const SizedBox(height: 10),
-                  AppButton(
-                    width: double.infinity,
-                    onTap: () {},
-                    height: 45,
-                    bgColor: PreluraColors.primaryColor.withOpacity(0.7),
-                    text: isAccepted ? "Accepted" : "Declined",
-                  ),
-                  if (amTheSeller) const SizedBox(height: 10),
-                  Text(
-                    "Please wait for buyer to make a payment",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: PreluraColors.grey),
-                  ),
-                ],
-              )
-            else if (amTheSeller &&
-                offerInfo.children?.firstOrNull?.createdBy !=
-                    appUserInfo?.username)
-              Row(
-                children: [
-                  _buildActionButton("Accept", _handleAccept, isAccepting),
-                  const SizedBox(width: 18),
-                  _buildActionButton("Decline", _handleDecline, isDeclining),
-                ],
-              )
-            else
-              Text(
-                offerInfo.children?.firstOrNull?.createdBy ==
-                        appUserInfo?.username
-                    ? "Offer sent, please wait for the Buyer's decision"
-                    : "Offer sent, please wait for the Seller's decision",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: PreluraColors.grey),
-              ),
-            if (amTheSeller && _checkOfferStatus("accepted") ||
-                _checkOfferStatus("rejected"))
-              _buildCustomOfferButton(),
+            // const SizedBox(height: 10),
+            // if (isAccepted || isDeclined)
+            //   Column(
+            //     children: [
+            //       const SizedBox(height: 10),
+            //       AppButton(
+            //         width: double.infinity,
+            //         onTap: () {},
+            //         height: 45,
+            //         bgColor: PreluraColors.primaryColor.withOpacity(0.7),
+            //         text: isAccepted ? "Accepted" : "Declined",
+            //       ),
+            //       if (amTheSeller) const SizedBox(height: 10),
+            //       Text(
+            //         "Please wait for buyer to make a payment",
+            //         style: Theme.of(context)
+            //             .textTheme
+            //             .bodyMedium
+            //             ?.copyWith(color: PreluraColors.grey),
+            //       ),
+            //     ],
+            //   )
+            // else if (amTheSeller &&
+            //     offerInfo.children?.firstOrNull?.createdBy !=
+            //         appUserInfo?.username)
+            //   Row(
+            //     children: [
+            //       _buildActionButton("Accept", _handleAccept, isAccepting),
+            //       const SizedBox(width: 18),
+            //       _buildActionButton("Decline", _handleDecline, isDeclining),
+            //     ],
+            //   )
+            // else
+            //   Text(
+            //     offerInfo.children?.firstOrNull?.createdBy ==
+            //             appUserInfo?.username
+            //         ? "Offer sent, please wait for the Buyer's decision"
+            //         : "Offer sent, please wait for the Seller's decision",
+            //     style: Theme.of(context)
+            //         .textTheme
+            //         .bodyMedium
+            //         ?.copyWith(color: PreluraColors.grey),
+            //   ),
+            // if (amTheSeller && _checkOfferStatus("accepted") ||
+            //     _checkOfferStatus("rejected"))
+            //   _buildCustomOfferButton(),
           ],
         ),
       ),
