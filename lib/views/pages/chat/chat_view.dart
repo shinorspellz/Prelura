@@ -136,13 +136,14 @@ class ChatScreen extends ConsumerWidget {
       // ),
       body: isOffer
           ? OfferConversationBuilder()
-          : MessageConversationBuilder(
-              conversationId: int.parse(id),
-              // recipientInfo: ,
-              scrollController: ref.watch(chatScrollController),
-              // chatMessages: chatMessages,
-              textController: textController,
-            ),
+          : ListView(controller: ref.watch(chatScrollController), children: [
+              MessageConversationBuilder(
+                conversationId: int.parse(id),
+                avatar: avatarUrl,
+                scrollController: ref.watch(chatScrollController),
+                textController: textController,
+              ),
+            ]),
 
       // SingleChildScrollView(
       //         controller: ref.watch(chatScrollController),
