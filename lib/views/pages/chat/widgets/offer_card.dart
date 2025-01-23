@@ -433,7 +433,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
           Padding(
             padding: EdgeInsets.only(
                 top: widget.amTheSeller ? 0 : 10,
-                left: widget.amTheSeller ? 55 : 0),
+                left: widget.amTheSeller ? 58 : 0),
             child: Align(
               alignment: widget.amTheSeller
                   ? Alignment.centerLeft
