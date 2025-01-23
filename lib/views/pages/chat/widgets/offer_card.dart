@@ -410,7 +410,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
                 username: "offered",
               ),
             ]),
-        if (widget.amTheSeller)
+        if (widget.amTheSeller && status == "pending")
           Padding(
             padding: EdgeInsets.only(top: 12),
             child: Row(children: [
@@ -431,9 +431,13 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
           )
         else
           Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(
+                top: widget.amTheSeller ? 0 : 10,
+                left: widget.amTheSeller ? 55 : 0),
             child: Align(
-              alignment: Alignment.centerRight,
+              alignment: widget.amTheSeller
+                  ? Alignment.centerLeft
+                  : Alignment.centerRight,
               child: Text(
                 status == "pending"
                     ? "please wait for seller to respond"
