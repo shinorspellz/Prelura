@@ -115,11 +115,17 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
   }
 
   Widget _buildCustomOfferButton({String? text}) {
+    bool isSold = text == "Sold!";
     return AppButton(
-      height: 45,
+      height: isSold ? 70 : 45,
+      radius: 0,
       width: double.infinity,
       loading: isSendingOffer,
-      onTap: () {
+      onTap:
+          // isSold
+          //     ? null
+          //     :
+          () {
         showCustomDialog(
           context,
           child: Container(
@@ -202,18 +208,18 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 username: "offered",
               ),
             ),
-            if (status != "pending" && status != "countered")
+            if (status != "pending" &&
+                status != "countered" &&
+                !(status == "accepted" && amTheSeller))
               Positioned(
                 bottom: 0,
                 left: isSender ? null : 0,
                 right: isSender ? 0 : null,
                 child: Text(
-                  (status == "accepted" && amTheSeller)
-                      ? "Sold"
-                      : status
-                          .replaceFirst("rejected", "Declined")
-                          .replaceFirst("cancelled", "Declined")
-                          .capitalize(),
+                  status
+                      .replaceFirst("rejected", "Declined")
+                      .replaceFirst("cancelled", "Declined")
+                      .capitalize(),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: PreluraColors.grey,
                         fontSize: 12,
@@ -303,6 +309,18 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           child: _buildCustomOfferButton(
               text: amTheSeller ? null : "Send new offer"),
         ),
+      ],
+      if (status == "accepted" && amTheSeller) ...[
+        addVerticalSpacing(20),
+        Text(
+          "Please wait for buyer to make payment",
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: PreluraColors.grey,
+                fontSize: 12,
+              ),
+        ),
+        addVerticalSpacing(20),
+        _buildCustomOfferButton(text: "Sold!"),
       ],
     ]);
   }
