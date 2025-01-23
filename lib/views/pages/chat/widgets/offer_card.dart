@@ -218,9 +218,8 @@ class _OfferCardState extends ConsumerState<OfferCard> {
                     .bodyMedium
                     ?.copyWith(color: PreluraColors.grey),
               ),
-            if (offerInfo.status?.toLowerCase() == "pending" ||
-                _checkOfferStatus("pending") ||
-                _checkOfferStatus("countered"))
+            if (amTheSeller && _checkOfferStatus("accepted") ||
+                _checkOfferStatus("rejected"))
               _buildCustomOfferButton(),
           ],
         ),

@@ -1,13 +1,10 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
-import 'package:prelura_app/views/pages/chat/widgets/chat_card_box.dart';
+import 'package:prelura_app/views/pages/chat/widgets/message_conversation_builder.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_text_field.dart';
 import 'package:prelura_app/views/pages/chat/widgets/offer_conversation_builder.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
 
 import '../../widgets/app_bar.dart';
 
@@ -139,53 +136,61 @@ class ChatScreen extends ConsumerWidget {
       // ),
       body: isOffer
           ? OfferConversationBuilder()
-          : SingleChildScrollView(
-              controller: ref.watch(chatScrollController),
-              reverse: true,
-              child: Column(children: [
-                ref.watch(messagesProvider(id)).maybeWhen(
-                      data: (messages) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics:
-                              const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
-                          itemCount: messages.length,
-                          reverse: true,
-                          itemBuilder: (context, index) {
-                            final chat = messages[index];
-                            final isSender = chat.sender.username != username;
-                            final showAvatar = index == 0 ||
-                                messages[index - 1].sender.username !=
-                                    chat.sender.username;
-                            return Align(
-                                alignment: isSender
-                                    ? Alignment.bottomRight
-                                    : Alignment.bottomLeft,
-                                child: Column(
-                                  children: [
-                                    ChatTextWidget(
-                                      chat: chat,
-                                      isSender: isSender,
-                                      id: id,
-                                      lastMessage: showAvatar,
-                                    ),
-                                  ],
-                                ));
-                          },
-                        );
-                      },
-                      orElse: () => Center(
-                        child: LoadingWidget(),
-                      ),
-                      error: (e, _) {
-                        log(e.toString(), stackTrace: _);
-                        return Center(
-                          child: LoadingWidget(),
-                        );
-                      },
-                    )
-              ]),
+          : MessageConversationBuilder(
+              conversationId: int.parse(id),
+              // recipientInfo: ,
+              scrollController: ref.watch(chatScrollController),
+              // chatMessages: chatMessages,
+              textController: textController,
             ),
+
+      // SingleChildScrollView(
+      //         controller: ref.watch(chatScrollController),
+      //         reverse: true,
+      //         child: Column(children: [
+      //           ref.watch(messagesProvider(id)).maybeWhen(
+      //                 data: (messages) {
+      //                   return ListView.builder(
+      //                     shrinkWrap: true,
+      //                     physics:
+      //                         const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
+      //                     itemCount: messages.length,
+      //                     reverse: true,
+      //                     itemBuilder: (context, index) {
+      //                       final chat = messages[index];
+      //                       final isSender = chat.sender.username != username;
+      //                       final showAvatar = index == 0 ||
+      //                           messages[index - 1].sender.username !=
+      //                               chat.sender.username;
+      //                       return Align(
+      //                           alignment: isSender
+      //                               ? Alignment.bottomRight
+      //                               : Alignment.bottomLeft,
+      //                           child: Column(
+      //                             children: [
+      //                               ChatTextWidget(
+      //                                 chat: chat,
+      //                                 isSender: isSender,
+      //                                 id: id,
+      //                                 lastMessage: showAvatar,
+      //                               ),
+      //                             ],
+      //                           ));
+      //                     },
+      //                   );
+      //                 },
+      //                 orElse: () => Center(
+      //                   child: LoadingWidget(),
+      //                 ),
+      //                 error: (e, _) {
+      //                   log(e.toString(), stackTrace: _);
+      //                   return Center(
+      //                     child: LoadingWidget(),
+      //                   );
+      //                 },
+      //               )
+      //         ]),
+      //       ),
     );
   }
 }
