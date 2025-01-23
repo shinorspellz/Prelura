@@ -90,7 +90,7 @@ class SellerProfileCard extends ConsumerWidget {
                             ),
                           ),
                         ),
-                        imageUrl: user.thumbnailUrl ?? "",
+                        imageUrl: user.profilePictureUrl ?? "",
                         height: 130,
                         width: 130,
                         fit: BoxFit.cover,
