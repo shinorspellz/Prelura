@@ -21,7 +21,7 @@ class UserScrollableList extends ConsumerWidget {
     final listingCount = user?.listing ?? 0;
     final noOfFollowing = user?.noOfFollowing ?? 0;
     return Container(
-      margin: EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: 0),
       padding: EdgeInsets.only(top: 8, right: 8, bottom: 8),
       child: Column(
         children: [

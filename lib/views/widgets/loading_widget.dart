@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
+
+import '../../res/colors.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({
@@ -27,9 +30,8 @@ class LoadingWidget extends StatelessWidget {
           SizedBox(
             height: height,
             width: height,
-            child: CircularProgressIndicator.adaptive(
-              // backgroundColor: color ?? Colors.white,
-              strokeWidth: strokeWidth ?? 2.5,
+            child: CupertinoActivityIndicator(
+              color: PreluraColors.primaryColor,
             ),
           ),
           if (text != null) ...[

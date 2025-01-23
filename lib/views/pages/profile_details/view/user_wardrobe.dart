@@ -204,7 +204,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 12),
+                                horizontal: 16.0, vertical: 5),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -220,7 +220,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                             fontWeight: FontWeight.w500),
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                // const SizedBox(height: 16),
                               ],
                             ),
                           ),
@@ -598,7 +598,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
 
   Positioned buildeditProfileBox(BuildContext context, UserModel user) {
     return Positioned(
-      bottom: -28,
+      bottom: -22,
       right: 0,
       child: Container(
         margin: EdgeInsets.all(16),

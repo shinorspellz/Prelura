@@ -47,6 +47,7 @@ _$SellItemStateImpl _$$SellItemStateImplFromJson(Map<String, dynamic> json) =>
           : Enum$StyleEnum.fromJson(json['style'] as String),
       customBrand: json['customBrand'] as String?,
       isFeatured: json['isFeatured'] as bool? ?? false,
+      isReplaced: json['isReplaced'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$SellItemStateImplToJson(_$SellItemStateImpl instance) =>
@@ -67,6 +68,7 @@ Map<String, dynamic> _$$SellItemStateImplToJson(_$SellItemStateImpl instance) =>
       'style': instance.style,
       'customBrand': instance.customBrand,
       'isFeatured': instance.isFeatured,
+      'isReplaced': instance.isReplaced,
     };
 
 const _$ConditionsEnumEnumMap = {

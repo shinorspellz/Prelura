@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -307,9 +308,16 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                                       final item =
                                           mutableImages.removeAt(oldIndex);
                                       mutableImages.insert(newIndex, item);
+
                                       ref
                                           .read(sellItemProvider.notifier)
                                           .updateImage(mutableImages);
+
+                                      if (widget.product != null) {
+                                        ref
+                                            .read(sellItemProvider.notifier)
+                                            .updateIsRpelaced();
+                                      }
                                     });
                                   },
                                   children: state.images
@@ -855,13 +863,31 @@ class _SellItemScreenState extends ConsumerState<SellItemScreen> {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  child: Container(
-                    color: Colors.black.withOpacity(0.5),
-                    child: Center(
-                      child: Lottie.asset(
-                        AnimationAssets.laundry,
-                        height: 80,
-                        width: 80,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 2.0,
+                      sigmaY: 2.0,
+                    ),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.3),
+                      child: Center(
+                        child: Lottie.asset(
+                          AnimationAssets.laundry,
+                          height: 80,
+                          width: 80,
+                          delegates: LottieDelegates(
+                            values: [
+                              ValueDelegate.color(
+                                const [
+                                  '**'
+                                ], // Target all elements or specify layer names
+                                value: context.isDarkMode
+                                    ? PreluraColors.primaryColor
+                                    : PreluraColors.white,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ))

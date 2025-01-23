@@ -352,10 +352,42 @@ class _ProductProvider extends AsyncNotifier<void> {
     log('Discount $discount');
     log('Price $price');
     log('Size $size');
+    log('title $title');
 
     state = await AsyncValue.guard(() async {
       Map<String, String> imageMapping =
           ref.read(sellItemProvider).imageUrlToAction;
+      final isImageReplaced = ref.read(sellItemProvider).isReplaced;
+
+      List<ProductBanners> syncImageLists({
+        required List<File> previousImages,
+        required List<ProductBanners> currentImages,
+      }) {
+        // Extract file names from the `previousImages`
+        List<String> previousFileNames =
+            previousImages.map((file) => file.path.split('/').last).toList();
+
+        // Reorder `currentImages` to match `previousFileNames`
+        List<ProductBanners> reorderedList = [];
+        for (int i = 0; i < previousFileNames.length; i++) {
+          String fileName = previousFileNames[i];
+          try {
+            // Try to find the matching banner in the current images
+            ProductBanners matchedBanner = currentImages.firstWhere(
+              (banner) => banner.url.contains(fileName),
+            );
+            reorderedList.add(matchedBanner);
+          } catch (e) {
+            // If no match is found, use the image at the same index from the current images
+            print('No matching image found for: $fileName at index $i');
+            if (i < currentImages.length) {
+              reorderedList.add(currentImages[i]);
+            }
+          }
+        }
+
+        return reorderedList;
+      }
 
       List<File> toUpload = [];
       List<File> toRemove = [];
@@ -384,7 +416,7 @@ class _ProductProvider extends AsyncNotifier<void> {
                     thumbnail: fileInfo.thumbnail,
                   ),
                 ],
-                action: Enum$BannerActionInputEnum.REMOVE,
+                action: Enum$ImageActionEnum.REMOVE,
               ),
             ));
           }
@@ -395,10 +427,70 @@ class _ProductProvider extends AsyncNotifier<void> {
 
           files = Input$ImageUpdateInputType(
             images: images,
-            action: Enum$BannerActionInputEnum.ADD,
+            action: Enum$ImageActionEnum.ADD,
           );
+          await _productRepo.updateProduct(Variables$Mutation$UpdateProduct(
+              productId: productId, imageUrl: files));
+
+          await ref.refresh(getProductProvider(productId).future);
+        }
+        if (isImageReplaced && images != null) {
+          List<Input$ImagesInputType> reOrderedList = [];
+          if (toUpload.isEmpty) {
+            for (var file in images) {
+              ProductBanners fileInfo = productInfo.imagesUrl.firstWhere(
+                  (imageInfo) =>
+                      imageInfo.url.contains(file.path.split("/").last));
+              reOrderedList.add(Input$ImagesInputType(
+                url: fileInfo.url,
+                thumbnail: fileInfo.thumbnail,
+              ));
+            }
+            await _productRepo.updateProduct(Variables$Mutation$UpdateProduct(
+              productId: productId,
+              imageUrl: Input$ImageUpdateInputType(
+                images: reOrderedList,
+                action: Enum$ImageActionEnum.UPDATE_INDEX,
+              ),
+            ));
+          } else {
+            ref.invalidate(getProductProvider(productId));
+            final productInfo =
+                ref.read(getProductProvider(productId)).valueOrNull;
+            if (productInfo != null) {
+              log("toAdd list is not empty");
+              log(images.toString(), name: "previous images list");
+              log(images.length.toString(),
+                  name: "previous images list length");
+              log(productInfo.imagesUrl.toString(),
+                  name: "current images list");
+              log(productInfo.imagesUrl.length.toString(),
+                  name: "current images list length");
+
+              List<ProductBanners> reorderedList = syncImageLists(
+                previousImages: images,
+                currentImages: productInfo.imagesUrl,
+              );
+              List<Input$ImagesInputType> updatedList =
+                  reorderedList.map((banner) {
+                return Input$ImagesInputType(
+                  url: banner.url,
+                  thumbnail: banner.thumbnail,
+                );
+              }).toList();
+
+              await _productRepo.updateProduct(Variables$Mutation$UpdateProduct(
+                productId: productId,
+                imageUrl: Input$ImageUpdateInputType(
+                  images: updatedList,
+                  action: Enum$ImageActionEnum.UPDATE_INDEX,
+                ),
+              ));
+            }
+          }
         }
       }
+      log("got here");
       await _productRepo.updateProduct(
         Variables$Mutation$UpdateProduct(
           productId: productId,
@@ -408,7 +500,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           price: price,
           size: size,
           name: title,
-          imageUrl: files,
+          // imageUrl: files,
           parcelSize: parcelSize,
           discount: discount,
           brand: brandId,
@@ -419,6 +511,7 @@ class _ProductProvider extends AsyncNotifier<void> {
           isFeatured: isFeatured,
         ),
       );
+      if (isImageReplaced) {}
       ref.invalidate(userProduct);
       ref.invalidate(allProductProvider);
       ref.invalidate(getProductProvider(productId));

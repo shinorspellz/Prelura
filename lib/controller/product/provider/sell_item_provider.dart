@@ -38,6 +38,7 @@ class SellItemState with _$SellItemState {
     Enum$StyleEnum? style,
     String? customBrand,
     @Default(false) bool isFeatured,
+    @Default(false) bool isReplaced,
   }) = _SellItemState;
 
   factory SellItemState.fromJson(Map<String, dynamic> json) =>
@@ -94,6 +95,10 @@ class SellItemNotifier extends StateNotifier<SellItemState> {
 
   void updateImage(List<XFile> images) {
     state = state.copyWith(images: [...images]);
+  }
+
+  void updateIsRpelaced() {
+    state = state.copyWith(isReplaced: true);
   }
 
   void deleteImage(XFile id) {

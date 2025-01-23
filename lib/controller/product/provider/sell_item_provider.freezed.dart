@@ -40,6 +40,7 @@ mixin _$SellItemState {
   Enum$StyleEnum? get style => throw _privateConstructorUsedError;
   String? get customBrand => throw _privateConstructorUsedError;
   bool get isFeatured => throw _privateConstructorUsedError;
+  bool get isReplaced => throw _privateConstructorUsedError;
 
   /// Serializes this SellItemState to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -73,7 +74,8 @@ abstract class $SellItemStateCopyWith<$Res> {
       ConditionsEnum? selectedCondition,
       Enum$StyleEnum? style,
       String? customBrand,
-      bool isFeatured});
+      bool isFeatured,
+      bool isReplaced});
 
   $CategoryModelCopyWith<$Res>? get category;
   $SizeTypeCopyWith<$Res>? get size;
@@ -111,6 +113,7 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
     Object? style = freezed,
     Object? customBrand = freezed,
     Object? isFeatured = null,
+    Object? isReplaced = null,
   }) {
     return _then(_value.copyWith(
       images: null == images
@@ -176,6 +179,10 @@ class _$SellItemStateCopyWithImpl<$Res, $Val extends SellItemState>
       isFeatured: null == isFeatured
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isReplaced: null == isReplaced
+          ? _value.isReplaced
+          : isReplaced // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -247,7 +254,8 @@ abstract class _$$SellItemStateImplCopyWith<$Res>
       ConditionsEnum? selectedCondition,
       Enum$StyleEnum? style,
       String? customBrand,
-      bool isFeatured});
+      bool isFeatured,
+      bool isReplaced});
 
   @override
   $CategoryModelCopyWith<$Res>? get category;
@@ -286,6 +294,7 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
     Object? style = freezed,
     Object? customBrand = freezed,
     Object? isFeatured = null,
+    Object? isReplaced = null,
   }) {
     return _then(_$SellItemStateImpl(
       images: null == images
@@ -352,6 +361,10 @@ class __$$SellItemStateImplCopyWithImpl<$Res>
           ? _value.isFeatured
           : isFeatured // ignore: cast_nullable_to_non_nullable
               as bool,
+      isReplaced: null == isReplaced
+          ? _value.isReplaced
+          : isReplaced // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -375,7 +388,8 @@ class _$SellItemStateImpl implements _SellItemState {
       this.selectedCondition,
       this.style,
       this.customBrand,
-      this.isFeatured = false})
+      this.isFeatured = false,
+      this.isReplaced = false})
       : _images = images,
         _imageUrlToAction = imageUrlToAction,
         _selectedColors = selectedColors,
@@ -448,10 +462,13 @@ class _$SellItemStateImpl implements _SellItemState {
   @override
   @JsonKey()
   final bool isFeatured;
+  @override
+  @JsonKey()
+  final bool isReplaced;
 
   @override
   String toString() {
-    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, imageUrlToAction: $imageUrlToAction, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, size: $size, brand: $brand, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured)';
+    return 'SellItemState(images: $images, title: $title, description: $description, category: $category, parcel: $parcel, imageUrlToAction: $imageUrlToAction, selectedColors: $selectedColors, selectedMaterials: $selectedMaterials, size: $size, brand: $brand, price: $price, discount: $discount, selectedCondition: $selectedCondition, style: $style, customBrand: $customBrand, isFeatured: $isFeatured, isReplaced: $isReplaced)';
   }
 
   @override
@@ -483,7 +500,9 @@ class _$SellItemStateImpl implements _SellItemState {
             (identical(other.customBrand, customBrand) ||
                 other.customBrand == customBrand) &&
             (identical(other.isFeatured, isFeatured) ||
-                other.isFeatured == isFeatured));
+                other.isFeatured == isFeatured) &&
+            (identical(other.isReplaced, isReplaced) ||
+                other.isReplaced == isReplaced));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -505,7 +524,8 @@ class _$SellItemStateImpl implements _SellItemState {
       selectedCondition,
       style,
       customBrand,
-      isFeatured);
+      isFeatured,
+      isReplaced);
 
   /// Create a copy of SellItemState
   /// with the given fields replaced by the non-null parameter values.
@@ -540,7 +560,8 @@ abstract class _SellItemState implements SellItemState {
       final ConditionsEnum? selectedCondition,
       final Enum$StyleEnum? style,
       final String? customBrand,
-      final bool isFeatured}) = _$SellItemStateImpl;
+      final bool isFeatured,
+      final bool isReplaced}) = _$SellItemStateImpl;
 
   factory _SellItemState.fromJson(Map<String, dynamic> json) =
       _$SellItemStateImpl.fromJson;
@@ -578,6 +599,8 @@ abstract class _SellItemState implements SellItemState {
   String? get customBrand;
   @override
   bool get isFeatured;
+  @override
+  bool get isReplaced;
 
   /// Create a copy of SellItemState
   /// with the given fields replaced by the non-null parameter values.
