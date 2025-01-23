@@ -326,18 +326,20 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
     setState(() {});
   }
 
-  Widget _buildActionButton(String text, VoidCallback onTap, bool isLoading) {
+  Widget _buildActionButton(String text, VoidCallback? onTap, bool isLoading) {
     return Expanded(
       child: AppButton(
         onTap: onTap,
         loading: isLoading,
         text: text,
+        bgColor: PreluraColors.primaryColor,
+        // isDisabled: onTap == null,
         textColor: Colors.white,
       ),
     );
   }
 
-  Widget _buildCustomOfferButton() {
+  Widget _buildCustomOfferButton({String? text}) {
     return AppButton(
       height: 45,
       width: double.infinity,
@@ -375,13 +377,14 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
       },
       textColor: Colors.white,
       bgColor: PreluraColors.primaryColor,
-      text: "Send a custom offer...",
+      text: text ?? "Send a custom offer...",
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final OfferInfo offerInfo = widget.conversationInfo.offer!;
+    String status = offerInfo.status!.toString().toLowerCase();
     Size deviceSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -407,17 +410,22 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
                 username: "offered",
               ),
             ]),
-        if (widget.amTheSeller &&
-            offerInfo.status?.toString().toLowerCase() == "pending")
+        if (widget.amTheSeller)
           Padding(
             padding: EdgeInsets.only(top: 12),
-            child: Row(
-              children: [
-                _buildActionButton("Accept", _handleAccept, isAccepting),
-                const SizedBox(width: 18),
-                _buildActionButton("Decline", _handleDecline, isDeclining),
-              ],
-            ),
+            child: Row(children: [
+              _buildActionButton(
+                status == "accepted" ? "Accepted" : "Accept",
+                status != "pending" ? null : _handleAccept,
+                isAccepting,
+              ),
+              const SizedBox(width: 18),
+              _buildActionButton(
+                status == "rejected" ? "Declined" : "Decline",
+                status != "pending" ? null : _handleDecline,
+                isDeclining,
+              ),
+            ]),
           )
         else
           Padding(
@@ -425,7 +433,9 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
             child: Align(
               alignment: Alignment.centerRight,
               child: Text(
-                "please wait for seller to respond",
+                status == "pending"
+                    ? "please wait for seller to respond"
+                    : status.replaceFirst("rejected", "Declined"),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: PreluraColors.grey,
                       fontSize: 12,
@@ -433,6 +443,10 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
               ),
             ),
           ),
+        if (status == "rejected") ...[
+          addVerticalSpacing(!amTheSeller ? 30 : 10),
+          _buildCustomOfferButton(text: amTheSeller ? null : "Send new offer"),
+        ],
       ]),
     );
   }
