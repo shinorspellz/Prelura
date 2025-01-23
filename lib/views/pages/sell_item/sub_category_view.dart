@@ -124,7 +124,7 @@ class _SubCategoryScreenState extends ConsumerState<SubCategoryScreen> {
                         });
                   }),
             ),
-        ],
+        ]
       ),
     );
   }

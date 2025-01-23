@@ -32,7 +32,9 @@ class MessageModel with _$MessageModel {
         read: json["read"],
 
         isItem: json["is_item"],
-        createdAt: json["createdAt"],
+        createdAt: json["createdAt"].runtimeType == String
+            ? DateTime.parse(json["createdAt"])
+            : json["createdAt"],
         itemId: json["item_id"],
         // itemType: json["item_type"],
         sender: UserModel(id: json["sender"], username: json['senderName']),
