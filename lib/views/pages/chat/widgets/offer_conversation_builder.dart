@@ -5,9 +5,11 @@ import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/user/user_model.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import 'offer_card.dart';
+import 'offer_product_card.dart';
 import 'offer_subchild_box.dart';
 
 List<String> offerType2 = ["rejected"];
@@ -21,13 +23,30 @@ class OfferConversationBuilder extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final offerState = ref.watch(offerProvider);
     ConversationModel conversationInfo = offerState.activeOffer!;
+    final OfferInfo offerInfo = conversationInfo.offer!;
     UserModel? appUserInfo = ref.read(userProvider).value;
     List<OfferSubStateInfo>? offerChildren = conversationInfo.offer?.children;
     final isSender = conversationInfo.offer?.buyer?.username !=
         conversationInfo.recipient.username;
+    bool amTheSeller =
+        appUserInfo?.username != conversationInfo.offer?.buyer?.username;
     return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-      OfferCard(
-        conversationId: conversationInfo.id,
+      // OfferCard(
+      //   conversationId: conversationInfo.id,
+      //   isSender: isSender,
+      // ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: OfferProductCard(
+          offerInfo: conversationInfo.offer!,
+          amTheSeller: amTheSeller,
+          isSender: isSender,
+        ),
+      ),
+      buildDivider(context),
+      OfferFirstCard(
+        conversationInfo: conversationInfo,
+        amTheSeller: amTheSeller,
         isSender: isSender,
       ),
 

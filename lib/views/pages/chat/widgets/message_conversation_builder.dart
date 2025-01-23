@@ -22,14 +22,14 @@ import 'chat_text_box.dart';
 import 'message_helper.dart';
 
 class MessageConversationBuilder extends ConsumerStatefulWidget {
-  final UserModel? recipientInfo;
+  final String? avatar;
   final ScrollController scrollController;
   final TextEditingController textController;
   final int conversationId;
 
   const MessageConversationBuilder({
     super.key,
-    this.recipientInfo,
+    this.avatar,
     required this.conversationId,
     required this.scrollController,
     required this.textController,
@@ -116,7 +116,7 @@ class _MessageConversationBuilderState
                       left: 10,
                     ),
                     child: ProfilePictureWidget(
-                      profilePicture: widget.recipientInfo?.profilePictureUrl,
+                      profilePicture: widget.avatar,
                       height: 25,
                       width: 25,
                     ))
