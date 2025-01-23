@@ -17,6 +17,8 @@ import 'package:prelura_app/views/widgets/price_field.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 import 'package:sizer/sizer.dart';
 
+import 'offer_product_card.dart';
+
 class OfferSubCardBox extends ConsumerStatefulWidget {
   final OfferSubStateInfo eventInfo;
   final UserModel appUserInfo;
@@ -116,6 +118,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
 
   Widget _buildCustomOfferButton({String? text}) {
     bool isSold = text == "Sold!";
+    final OfferInfo offerInfo = ref.read(offerProvider).activeOffer!.offer!;
     return AppButton(
       height: isSold ? 70 : 45,
       radius: 0,
@@ -137,6 +140,11 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             ),
             child: Column(
               children: [
+                OfferProductCard(
+                  offerInfo: offerInfo,
+                  showPrice: true,
+                ),
+                addVerticalSpacing(10),
                 PriceFieldWidget(
                   textController: _offerController,
                   width: 65.6.w,
@@ -192,13 +200,13 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             Container(
               height: 50,
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              // padding: EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.grey[300]!.withOpacity(0.5),
-                  width: 1,
-                ),
+                // border: Border.all(
+                //   color: Colors.grey[300]!.withOpacity(0.5),
+                //   width: 1,
+                // ),
               ),
               child: HighlightUserName(
                 isRead: false,
@@ -212,9 +220,9 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 status != "countered" &&
                 !(status == "accepted" && amTheSeller))
               Positioned(
-                bottom: 0,
-                left: isSender ? null : 0,
-                right: isSender ? 0 : null,
+                bottom: -2,
+                left: isSender ? null : 1,
+                right: isSender ? 1 : null,
                 child: Text(
                   status
                       .replaceFirst("rejected", "Declined")
