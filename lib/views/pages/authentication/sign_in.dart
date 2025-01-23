@@ -122,7 +122,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             password!.trim(),
                           );
                       ref.read(authProvider).whenOrNull(
-                            error: (e, _) => context.alert("An error occurred"),
+                            error: (e, _) => context.alert(e.toString()),
                             data: (_) {
                               if (widget.onLoginResult == null) {
                                 context.router.replaceAll([const AuthRoute()]);
