@@ -74,8 +74,8 @@ class _CustomDialogParentBoxState extends State<CustomDialogParentBox> {
         },
         child: BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 5.0,
-            sigmaY: 5.0,
+            sigmaX: 2.0,
+            sigmaY: 2.0,
           ),
           child: Container(
             color: Colors.transparent,

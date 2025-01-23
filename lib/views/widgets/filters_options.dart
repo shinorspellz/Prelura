@@ -57,8 +57,11 @@ class FiltersOptions extends ConsumerWidget {
               ),
             ),
             ...FilterTypes.values
-                .where((filter) => ![...excludedFilterTypes, FilterTypes.gender]
-                    .contains(filter))
+                .where((filter) => ![
+                      ...excludedFilterTypes,
+                      FilterTypes.gender,
+                      FilterTypes.brand
+                    ].contains(filter))
                 .map((filter) {
               return Padding(
                 padding: const EdgeInsets.only(left: 8.0),

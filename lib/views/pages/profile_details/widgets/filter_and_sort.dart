@@ -66,7 +66,9 @@ class FilterAndSort extends ConsumerWidget {
                 context: context,
                 actions: [
                   ...FilterTypes.values
-                      .where((e) => e.simpleName.toLowerCase() != "category")
+                      .where((e) =>
+                          e.simpleName.toLowerCase() != "category" &&
+                          e.simpleName.toLowerCase() != "brand")
                       .map((e) {
                     return VBottomSheetItem(
                       onTap: (context) {
