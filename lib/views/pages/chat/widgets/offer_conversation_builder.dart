@@ -39,8 +39,6 @@ class OfferConversationBuilder extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: OfferProductCard(
           offerInfo: conversationInfo.offer!,
-          amTheSeller: amTheSeller,
-          isSender: isSender,
         ),
       ),
       buildDivider(context),

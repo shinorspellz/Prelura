@@ -12,6 +12,7 @@ class AppButton extends StatelessWidget {
       this.fontSize,
       this.textColor,
       this.bgColor,
+      this.radius,
       this.padding,
       this.isDisabled = false,
       this.borderColor = PreluraColors.activeColor,
@@ -27,6 +28,7 @@ class AppButton extends StatelessWidget {
     this.height,
     this.fontSize,
     this.padding,
+    this.radius,
     this.textColor = PreluraColors.activeColor,
     this.isDisabled = false,
     this.bgColor,
@@ -42,7 +44,7 @@ class AppButton extends StatelessWidget {
   final String? text;
   final Widget? textWidget;
   final double? width;
-  final double? fontSize;
+  final double? fontSize, radius;
   final FontWeight? fontWeight;
   final EdgeInsets? padding;
   final double? height;
@@ -67,7 +69,7 @@ class AppButton extends StatelessWidget {
             width: bgColor != null ? 1 : 0,
             color: bgColor == null ? borderColor : borderColor,
           ),
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(radius ?? 4),
           color: isDisabled
               ? PreluraColors.activeColor.withOpacity(0.2)
               : bgColor ?? PreluraColors.activeColor,
