@@ -304,6 +304,14 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           ),
         ),
       ],
+      if (status == "rejected") ...[
+        addVerticalSpacing(!amTheSeller ? 30 : 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: _buildCustomOfferButton(
+              text: amTheSeller ? null : "Send new offer"),
+        ),
+      ],
     ]);
   }
 }
