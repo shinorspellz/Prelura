@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
@@ -131,7 +132,12 @@ class HomeAllTab extends ConsumerWidget {
             },
             loading: () {
               // Handle loading state
-              return Center(child: CircularProgressIndicator());
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                    child: CupertinoActivityIndicator(
+                        color: PreluraColors.primaryColor)),
+              );
             },
           ),
           RecentlyViewedProductsHome(),

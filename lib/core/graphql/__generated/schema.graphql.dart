@@ -261,7 +261,7 @@ class _CopyWithStubImpl$Input$ImagesInputType<TRes>
 class Input$ImageUpdateInputType {
   factory Input$ImageUpdateInputType({
     required List<Input$ImagesInputType?> images,
-    required Enum$BannerActionInputEnum action,
+    required Enum$ImageActionEnum action,
   }) =>
       Input$ImageUpdateInputType._({
         r'images': images,
@@ -279,8 +279,7 @@ class Input$ImageUpdateInputType {
             : Input$ImagesInputType.fromJson((e as Map<String, dynamic>)))
         .toList();
     final l$action = data['action'];
-    result$data['action'] =
-        fromJson$Enum$BannerActionInputEnum((l$action as String));
+    result$data['action'] = fromJson$Enum$ImageActionEnum((l$action as String));
     return Input$ImageUpdateInputType._(result$data);
   }
 
@@ -289,15 +288,14 @@ class Input$ImageUpdateInputType {
   List<Input$ImagesInputType?> get images =>
       (_$data['images'] as List<Input$ImagesInputType?>);
 
-  Enum$BannerActionInputEnum get action =>
-      (_$data['action'] as Enum$BannerActionInputEnum);
+  Enum$ImageActionEnum get action => (_$data['action'] as Enum$ImageActionEnum);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$images = images;
     result$data['images'] = l$images.map((e) => e?.toJson()).toList();
     final l$action = action;
-    result$data['action'] = toJson$Enum$BannerActionInputEnum(l$action);
+    result$data['action'] = toJson$Enum$ImageActionEnum(l$action);
     return result$data;
   }
 
@@ -358,7 +356,7 @@ abstract class CopyWith$Input$ImageUpdateInputType<TRes> {
 
   TRes call({
     List<Input$ImagesInputType?>? images,
-    Enum$BannerActionInputEnum? action,
+    Enum$ImageActionEnum? action,
   });
   TRes images(
       Iterable<Input$ImagesInputType?> Function(
@@ -388,7 +386,7 @@ class _CopyWithImpl$Input$ImageUpdateInputType<TRes>
         if (images != _undefined && images != null)
           'images': (images as List<Input$ImagesInputType?>),
         if (action != _undefined && action != null)
-          'action': (action as Enum$BannerActionInputEnum),
+          'action': (action as Enum$ImageActionEnum),
       }));
 
   TRes images(
@@ -413,7 +411,7 @@ class _CopyWithStubImpl$Input$ImageUpdateInputType<TRes>
 
   call({
     List<Input$ImagesInputType?>? images,
-    Enum$BannerActionInputEnum? action,
+    Enum$ImageActionEnum? action,
   }) =>
       _res;
 
@@ -1938,6 +1936,44 @@ Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
       return Enum$FileTypeEnum.PROFILE_PICTURE;
     default:
       return Enum$FileTypeEnum.$unknown;
+  }
+}
+
+enum Enum$ImageActionEnum {
+  ADD,
+  REMOVE,
+  UPDATE_INDEX,
+  $unknown;
+
+  factory Enum$ImageActionEnum.fromJson(String value) =>
+      fromJson$Enum$ImageActionEnum(value);
+
+  String toJson() => toJson$Enum$ImageActionEnum(this);
+}
+
+String toJson$Enum$ImageActionEnum(Enum$ImageActionEnum e) {
+  switch (e) {
+    case Enum$ImageActionEnum.ADD:
+      return r'ADD';
+    case Enum$ImageActionEnum.REMOVE:
+      return r'REMOVE';
+    case Enum$ImageActionEnum.UPDATE_INDEX:
+      return r'UPDATE_INDEX';
+    case Enum$ImageActionEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ImageActionEnum fromJson$Enum$ImageActionEnum(String value) {
+  switch (value) {
+    case r'ADD':
+      return Enum$ImageActionEnum.ADD;
+    case r'REMOVE':
+      return Enum$ImageActionEnum.REMOVE;
+    case r'UPDATE_INDEX':
+      return Enum$ImageActionEnum.UPDATE_INDEX;
+    default:
+      return Enum$ImageActionEnum.$unknown;
   }
 }
 

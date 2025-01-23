@@ -72,12 +72,12 @@ class BannerConverter
 
 enum ConditionsEnum {
   BRAND_NEW_WITH_TAGS(
-    simpleName: 'Brand New with tags',
+    simpleName: 'Brand New With Tags',
     subtitle:
         'Items that have never been worn and still have the original tags attached.',
   ),
   BRAND_NEW_WITHOUT_TAGS(
-    simpleName: 'Brand new without tags',
+    simpleName: 'Brand new Without Tags',
     subtitle: 'Items that have never been worn but do not have tags.',
   ),
   EXCELLENT_CONDITION(
