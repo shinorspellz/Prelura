@@ -377,7 +377,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
       },
       textColor: Colors.white,
       bgColor: PreluraColors.primaryColor,
-      text: text ?? "Send a custom offer...",
+      text: text ?? "Send a counter offer...",
     );
   }
 
