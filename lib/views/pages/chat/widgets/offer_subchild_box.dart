@@ -124,46 +124,45 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
       radius: 0,
       width: double.infinity,
       loading: isSendingOffer,
-      onTap:
-          // isSold
-          //     ? null
-          //     :
-          () {
-        showCustomDialog(
-          context,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 26),
-            margin: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: context.theme.scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              children: [
-                OfferProductCard(
-                  offerInfo: offerInfo,
-                  showPrice: true,
+      onTap: isSold
+          ? null
+          : () {
+              showCustomDialog(
+                context,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 26),
+                  margin: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: context.theme.scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Column(
+                    children: [
+                      OfferProductCard(
+                        offerInfo: offerInfo,
+                        showPrice: true,
+                      ),
+                      addVerticalSpacing(10),
+                      PriceFieldWidget(
+                        textController: _offerController,
+                        width: 65.6.w,
+                      ),
+                      const SizedBox(height: 24),
+                      AppButton(
+                        onTap: () {
+                          Navigator.pop(context);
+                          _sendCustomOffer();
+                        },
+                        text: "Send",
+                        width: 130,
+                        height: 45,
+                      ),
+                    ],
+                  ),
                 ),
-                addVerticalSpacing(10),
-                PriceFieldWidget(
-                  textController: _offerController,
-                  width: 65.6.w,
-                ),
-                const SizedBox(height: 24),
-                AppButton(
-                  onTap: () {
-                    Navigator.pop(context);
-                    _sendCustomOffer();
-                  },
-                  text: "Send",
-                  width: 130,
-                  height: 45,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+              );
+            },
       textColor: Colors.white,
       bgColor: PreluraColors.primaryColor,
       text: text ?? "Send a counter offer...",
@@ -319,14 +318,14 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
         ),
       ],
       if (status == "accepted" && amTheSeller) ...[
-        addVerticalSpacing(20),
-        Text(
-          "Please wait for buyer to make payment",
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: PreluraColors.grey,
-                fontSize: 12,
-              ),
-        ),
+        // addVerticalSpacing(20),
+        // Text(
+        //   "Please wait for buyer to make payment",
+        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //         color: PreluraColors.grey,
+        //         fontSize: 12,
+        //       ),
+        // ),
         addVerticalSpacing(20),
         _buildCustomOfferButton(text: "Sold!"),
       ],
