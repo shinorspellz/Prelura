@@ -6,6 +6,7 @@ import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 
+import '../../../res/colors.dart';
 import '../../widgets/app_radio.dart';
 import '../../../controller/product/provider/condition_provider.dart';
 import '../../../controller/product/provider/sell_item_provider.dart';
@@ -23,7 +24,8 @@ class ConditionScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
           leadingIcon: IconButton(
-            icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+            icon: Icon(Icons.arrow_back,
+                color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.back(),
           ),
           centerTitle: true,
@@ -38,6 +40,7 @@ class ConditionScreen extends ConsumerWidget {
             title: e.simpleName,
             isChecked: e.simpleName == selectedCondition?.simpleName,
             subtitle: e.subtitle,
+            subTitleColor: PreluraColors.grey,
             onChanged: (value) {
               // Update the selected condition in the provider
               ref.read(sellItemProvider.notifier).selectCondition(e);

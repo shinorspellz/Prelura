@@ -15,6 +15,7 @@ import 'package:prelura_app/views/pages/search_result/provider/search_provider.d
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 
 import '../../model/product/user_product_grouping/user_product_grouping.dart';
+import '../../res/utils.dart';
 
 // final allProductProvider = FutureProvider((ref) async {
 //   log('Triggered All Product Provider Getting Product.....');
@@ -74,11 +75,12 @@ final searchProductProvider =
   log(category.toString(), name: 'categoryFilter');
 
   final result = await repo.getAllProducts(
-    search: query,
+    // search: query,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
       parentCategory: category,
       // size: size,
+      hashtags: [ensureStartsWithHash(query?.capitalize() ?? '')],
       condition: condition,
       style: style,
     ),

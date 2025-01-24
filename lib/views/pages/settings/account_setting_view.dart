@@ -156,21 +156,12 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
 
     return Scaffold(
       appBar: PreluraAppBar(
-        appbarTitle: 'Account settings',
+        appbarTitle: 'Account Settings',
         leadingIcon: IconButton(
           icon:
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.popForced(),
         ),
-        trailingIcon: [
-          TextButton(
-            onPressed: () {
-              // final updatedUser = ref.read(userProvider);
-              // Save functionality
-            },
-            child: const Text('Save', style: TextStyle(color: Colors.blue)),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0), // Optional padding for better UI

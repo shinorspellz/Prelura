@@ -29,33 +29,33 @@ class FiltersOptions extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
         child: Row(
           children: [
-            FilterChip(
-              label: const Row(
-                children: [
-                  Icon(Icons.filter_list),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text('Filter'),
-                ],
-              ),
-              onSelected: (_) {
-                state.clearFilter();
-                onTap?.call();
-              },
-              selected: false,
-              checkmarkColor: Theme.of(context).iconTheme.color,
-              backgroundColor: Colors.transparent, // Transparent background
-              selectedColor:
-                  Colors.blue.withOpacity(0.1), // Light blue when selected
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8), // Rounded corners
-                side: BorderSide(
-                  color: Theme.of(context).dividerColor, // Border color
-                  width: 1.5, // Border width
-                ),
-              ),
-            ),
+            // FilterChip(
+            //   label: const Row(
+            //     children: [
+            //       Icon(Icons.filter_list),
+            //       SizedBox(
+            //         width: 5,
+            //       ),
+            //       Text('Filter'),
+            //     ],
+            //   ),
+            //   onSelected: (_) {
+            //     state.clearFilter();
+            //     onTap?.call();
+            //   },
+            //   selected: false,
+            //   checkmarkColor: Theme.of(context).iconTheme.color,
+            //   backgroundColor: Colors.transparent, // Transparent background
+            //   selectedColor:
+            //       Colors.blue.withOpacity(0.1), // Light blue when selected
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(8), // Rounded corners
+            //     side: BorderSide(
+            //       color: Theme.of(context).dividerColor, // Border color
+            //       width: 1.5, // Border width
+            //     ),
+            //   ),
+            // ),
             ...FilterTypes.values
                 .where((filter) => ![
                       ...excludedFilterTypes,

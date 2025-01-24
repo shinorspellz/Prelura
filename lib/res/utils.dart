@@ -85,6 +85,13 @@ Future<Position> determinePosition() async {
       desiredAccuracy: LocationAccuracy.high);
 }
 
+String ensureStartsWithHash(String input) {
+  if (!input.startsWith('#')) {
+    return '#$input';
+  }
+  return input;
+}
+
 String formatDynamicString(String? input) {
   final doubleValue = double.tryParse(input ?? "");
   if (doubleValue == null) {

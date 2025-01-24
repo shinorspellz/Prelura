@@ -183,11 +183,7 @@ class _ProductFilterPageState
                           ),
                         );
                       },
-                      loading: () => SliverToBoxAdapter(
-                              child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: GridShimmer(),
-                          ))),
+                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if (ref
                         .watch(filteredProductProvider(searchQuery))

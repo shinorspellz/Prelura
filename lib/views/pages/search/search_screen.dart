@@ -192,7 +192,8 @@ class SearchScreen extends ConsumerWidget {
                             image: AssetImage(PreluraIcons.webp_xmas),
                             fit: BoxFit.cover,
                             alignment: Alignment.topLeft),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(getDefaultBorderRadius())),
                       ),
                     ),
                   ),
@@ -242,7 +243,8 @@ class SearchScreen extends ConsumerWidget {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius:
+                              BorderRadius.circular(getDefaultBorderRadius()),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -261,8 +263,8 @@ class SearchScreen extends ConsumerWidget {
                             ),
                             addHorizontalSpacing(20),
                             ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(getDefaultBorderRadius())),
                               child: Image.asset(
                                 PreluraIcons.mugShot,
                                 height: 70,
@@ -304,7 +306,8 @@ class SearchScreen extends ConsumerWidget {
                             image: AssetImage(PreluraIcons.webp_vintage),
                             fit: BoxFit.cover,
                             alignment: Alignment.topLeft),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(getDefaultBorderRadius())),
                       ),
                     ),
                   ),
@@ -312,6 +315,7 @@ class SearchScreen extends ConsumerWidget {
                     shrinkWrap: true,
                     crossAxisCount: 2,
                     physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(horizontal: 8),
                     children: [
                       _buildPromoBanner(
                           "Christmas Jumpers", PreluraIcons.webp_season,
@@ -367,7 +371,7 @@ class SearchScreen extends ConsumerWidget {
                   padding: EdgeInsets.only(top: 10, bottom: 6),
                   color: Theme.of(context).scaffoldBackgroundColor,
                   child: Searchwidget(
-                      hintText: "Search for members",
+                      hintText: "Search for members and hashtags",
                       obscureText: false,
                       shouldReadOnly: false,
                       controller: ref.read(searchTextController),
@@ -438,7 +442,7 @@ class SearchScreen extends ConsumerWidget {
                   color: isDarkMode
                       ? PreluraColors.activeColor.withOpacity(0.4)
                       : PreluraColors.activeColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(getDefaultBorderRadius()),
                 ),
                 child: Text(
                   title,
@@ -505,7 +509,7 @@ class SearchScreen extends ConsumerWidget {
                   image: AssetImage(imagePath),
                   fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(getDefaultBorderRadius()),
               ),
             ),
           ],
@@ -513,6 +517,10 @@ class SearchScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+double getDefaultBorderRadius() {
+  return 4;
 }
 
 // Widget _buildSectionTitle(
