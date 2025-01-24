@@ -194,8 +194,8 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           addHorizontalSpacing(15),
           if (!isSender)
             ProfilePictureWidget(
-              height: 55,
-              width: 55,
+              height: 40,
+              width: 40,
               profilePicture:
                   "${!amTheSeller ? offerInfo.offer?.product?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
               username: widget.eventInfo.createdBy,
@@ -272,7 +272,9 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           ]),
         ),
       ],
-      if (amTheSeller && status == "countered" && !isSender)
+      if (amTheSeller &&
+          (status == "countered" || status == "pending") &&
+          !isSender)
         Padding(
           padding: EdgeInsets.only(
             top: 12,

@@ -8,7 +8,6 @@ import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
-import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
@@ -88,6 +87,7 @@ class MessageCard extends ConsumerWidget {
                       BuildOfferRow(
                         text: model.lastMessage!.text,
                         recipient: model.recipient.username,
+                        offerInfo: model.offer!,
                       )
                     ] else
                       Text(
@@ -131,31 +131,34 @@ class MessageCard extends ConsumerWidget {
 
 class BuildOfferRow extends ConsumerWidget {
   final String text;
+  final OfferInfo offerInfo;
   final String recipient;
   const BuildOfferRow({
     super.key,
     required this.text,
     required this.recipient,
+    required this.offerInfo,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (text.contains("offer_id")) {
-      OfferInfo offerInfo = offerInfoFromJson(text.replaceAll("'", "\""));
       bool isSender = recipient == offerInfo.buyer?.username;
+      OfferSubStateInfo? subInfo = offerInfo.children?.firstOrNull;
+      String offerMessage = offerInfo.status?.toLowerCase() == "pending"
+          ? "${!isSender ? "You" : recipient} made an offer."
+          : isSender
+              ? "You ${(subInfo?.status ?? offerInfo.status)?.toLowerCase()} $recipient offer."
+              : "$recipient ${(subInfo?.status ?? offerInfo.status)?.toLowerCase()} your offer.";
       return Row(children: [
-        RenderSvg(
-          svgPath: 'assets/icons/offer.svg',
-          svgWidth: 16,
-          svgHeight: 16,
-        ),
-        addHorizontalSpacing(5),
+        // RenderSvg(
+        //   svgPath: 'assets/icons/offer.svg',
+        //   svgWidth: 16,
+        //   svgHeight: 16,
+        // ),
+        // addHorizontalSpacing(5),
         Text(
-          offerInfo.status?.toLowerCase() == "pending"
-              ? "${!isSender ? "You" : recipient} made an offer."
-              : isSender
-                  ? "You ${offerInfo.status?.toLowerCase()} $recipient offer."
-                  : "$recipient ${offerInfo.status?.toLowerCase()} your offer.",
+          offerMessage,
           style: Theme.of(context)
               .textTheme
               .bodySmall

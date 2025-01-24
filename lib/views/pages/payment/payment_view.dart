@@ -313,7 +313,7 @@ class PaymentScreen extends ConsumerWidget {
                       .createOrder(int.parse(product.id));
                   ref.read(orderProvider).whenOrNull(
                         error: (e, _) => context
-                            .alert('An error occured while creating order'),
+                            .alert('An error occurred while creating order'),
                         data: (order) async {
                           if (order == null) return;
                           await ref
@@ -326,8 +326,8 @@ class PaymentScreen extends ConsumerWidget {
                           ref.read(paymentProvider).whenOrNull(
                                 error: (e, _) => context.alert(
                                     'An error occured while creating order'),
-                                data: (_) =>
-                                    context.alert('Product ordered complete'),
+                                data: (_) => context.router.popForced(),
+                                // context.alert('Product ordered complete'),
                               );
                         },
                       );
@@ -341,8 +341,8 @@ class PaymentScreen extends ConsumerWidget {
             addVerticalSpacing(5),
             AppButton(
                 height: 50,
-                loading: ref.watch(orderProvider).isLoading ||
-                    ref.watch(paymentProvider).isLoading,
+                // loading: ref.watch(orderProvider).isLoading ||
+                //     ref.watch(paymentProvider).isLoading,
                 width: double.infinity,
                 onTap: () async {},
                 centerText: true,
