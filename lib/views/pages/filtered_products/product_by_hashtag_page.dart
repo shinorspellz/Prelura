@@ -31,7 +31,11 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
   @override
   void initState() {
     super.initState();
-
+    Future.microtask(() async {
+      ref.read(selectedFilteredProductProvider.notifier).state =
+          Input$ProductFiltersInput(hashtags: [widget.hashtag]);
+      await ref.refresh(filteredProductProvider((searchQuery)).future);
+    });
     controller.addListener(() {
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
@@ -165,11 +169,7 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                                           .future);
                                 }));
                       },
-                      loading: () => SliverToBoxAdapter(
-                              child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: GridShimmer(),
-                          ))),
+                      loading: () => SliverToBoxAdapter(child: GridShimmer())),
                 ),
                 if ((filteredProducts?.isNotEmpty ?? false) ||
                     totalLength! > (filteredProducts?.length ?? 0))

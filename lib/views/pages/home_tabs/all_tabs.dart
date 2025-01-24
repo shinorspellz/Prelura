@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/views/pages/home_tabs/shop_bargains_widget.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/seller_profile_card.dart';
@@ -193,46 +194,7 @@ class HomeAllTab extends ConsumerWidget {
                 ),
                 orElse: () => Container(),
               ),
-          buildDivider(context),
-          _buildSectionTitle(
-            'Shop Bargains',
-            "Steals under £15",
-            context,
-            onTap: () => context.pushRoute(
-              ProductPriceFilterRoute(title: 'Steals under £15'),
-            ),
-          ),
-          AspectRatio(
-            aspectRatio: 1.1,
-            // height: 320,
-            // width: MediaQuery.sizeOf(context).width,
-            child: ref.watch(filterProductByPriceProvider(15)).maybeWhen(
-                  data: (products) => ListView.separated(
-                    padding: EdgeInsets.only(left: 15),
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => 10.horizontalSpacing,
-                    itemBuilder: (context, index) => SizedBox(
-                      width: 180,
-                      child: ProductCard(product: products[index]),
-                    ),
-                    itemCount: products.length,
-                  ),
-                  orElse: () => ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(
-                      mockData.length,
-                      (_) => Container(
-                        // height: 220,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: 5),
-                        child:
-                            const ProductShimmer(), //DisplayCard(itemData: mockData[_]),
-                      ),
-                    ),
-                  ),
-                ),
-          ),
-          buildDivider(context),
+          ShopBargains(context, ref),
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 15),
             child: ref.watch(allProductProvider(null)).when(
@@ -300,7 +262,7 @@ class HomeAllTab extends ConsumerWidget {
   }
 }
 
-Widget _buildSectionTitle(
+Widget buildSectionTitle(
     String MainTitle, String subtitle, BuildContext context,
     {VoidCallback? onTap}) {
   return Padding(

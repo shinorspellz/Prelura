@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/utils.dart';
@@ -66,6 +68,11 @@ class ProductDescription extends ConsumerWidget {
                             color: PreluraColors.activeColor,
                             fontWeight: FontWeight.bold),
                         (hashtag) {
+                          ref
+                              .read(selectedFilteredProductProvider.notifier)
+                              .state = Input$ProductFiltersInput(hashtags: [
+                            hashtag
+                          ]);
                           context.pushRoute(
                               ProductByHashtagRoute(hashtag: hashtag));
                         },

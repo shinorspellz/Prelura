@@ -15,10 +15,11 @@ class SecurityMenuScreen extends ConsumerWidget {
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
-        appbarTitle: "Security",
+        appbarTitle: "Security & Privacy Settings",
         centerTitle: true,
       ),
       body: Column(
@@ -27,7 +28,9 @@ class SecurityMenuScreen extends ConsumerWidget {
               title: "Reset Password",
               onTap: () {
                 context.router.push(ResetPasswordRoute());
-              })
+              }),
+          MenuCard(title: "Delete Account", onTap: () {}),
+          MenuCard(title: "Pause Account", onTap: () {})
         ],
       ),
     );

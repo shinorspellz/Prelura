@@ -11,6 +11,7 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../res/utils.dart';
@@ -274,8 +275,12 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
 
   @override
   Widget _buildSuggestedBrands(String title, Brand? selectedBrand) {
-    final description =
-        ref.watch(sellItemProvider).description.trim().toLowerCase();
+    final description = ref
+        .watch(sellItemProvider)
+        .description
+        .replaceAll(RegExp(r'[^\w\s&]'), '')
+        .trim()
+        .toLowerCase();
     final searchKey = title.isNotEmpty ? title.split(" ")[0].toLowerCase() : "";
     final words =
         description.split(' ').where((word) => word.isNotEmpty).toList();
@@ -313,7 +318,6 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
 
         final suggestedBrands = snapshot.data ?? [];
 
-        // Combine with searchKey-based results
         final searchKeyResults = searchKey.isNotEmpty
             ? ref.watch(searchBrand(searchKey)).maybeWhen(
                   data: (brands) => brands,
@@ -321,10 +325,21 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 )
             : [];
 
-        // Merge results and remove duplicates
+        List<Map<String, dynamic>> matches = searchKeyResults
+            .map((brand) => {
+                  'brand': brand,
+                  'similarity': StringSimilarity.compareTwoStrings(
+                      brand.name.toLowerCase(), title.toLowerCase())
+                })
+            .toList();
+
+        matches.sort((a, b) => b['similarity'].compareTo(a['similarity']));
+        final List<Brand> result =
+            matches.map((result) => result['brand'] as Brand).toList();
+
         final combinedBrands = [
-          ...searchKeyResults,
-          ...suggestedBrands,
+          ...result.take(3),
+          ...suggestedBrands.take(2),
         ].toSet().toList();
 
         return combinedBrands.isNotEmpty
@@ -344,7 +359,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: combinedBrands.length,
+                    itemCount: combinedBrands.take(10).length,
                     itemBuilder: (context, index) {
                       return PreluraCheckBox(
                         title: combinedBrands[index].name,

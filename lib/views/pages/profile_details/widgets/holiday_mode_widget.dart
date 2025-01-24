@@ -18,9 +18,7 @@ class HolidayModeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        minHeight: height ?? MediaQuery.of(context).size.height * 0.45,
-      ),
+      constraints: BoxConstraints(),
       child: Column(
         // mainAxisAlignment: MainAxisAlignme,
         mainAxisSize: MainAxisSize.max,

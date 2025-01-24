@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
@@ -59,6 +60,22 @@ class AppearanceMenuScreen extends ConsumerWidget {
               ],
             ),
           ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            width: double.infinity,
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Text("Your app's language",
+                textAlign: TextAlign.left,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 12,
+                    )),
+          ),
+          MenuCard(
+              title: "Language",
+              icon: const Icon(CupertinoIcons.globe),
+              subtitle: "English (EN)",
+              onTap: () {}),
         ],
       ),
     );

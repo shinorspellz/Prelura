@@ -85,6 +85,13 @@ Future<Position> determinePosition() async {
       desiredAccuracy: LocationAccuracy.high);
 }
 
+String ensureStartsWithHash(String input) {
+  if (!input.startsWith('#')) {
+    return '#$input';
+  }
+  return input;
+}
+
 String formatDynamicString(String? input) {
   final doubleValue = double.tryParse(input ?? "");
   if (doubleValue == null) {
@@ -158,6 +165,12 @@ extension StringExtension on String {
     if (isEmpty) return this;
     log('${this[0].toUpperCase()}${substring(1)}');
     return '${this[0].toUpperCase()}${substring(1)}';
+  }
+
+  String capitalizeAndLowercase() {
+    if (isEmpty) return this;
+    log('${this[0].toUpperCase()}${substring(1)}');
+    return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
 
   formatCurrency() {
