@@ -277,7 +277,7 @@ class _RecommendedSellersController
     extends AsyncNotifier<List<RecommendedSellerModel>> {
   late final _repository = ref.read(userRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _totalItems = 0;
 

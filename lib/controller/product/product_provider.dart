@@ -75,6 +75,7 @@ final searchProductProvider =
 
   final result = await repo.getAllProducts(
     search: query,
+    pageCount: 100,
     filters: Input$ProductFiltersInput(
       brand: brand?.id,
       parentCategory: category,
@@ -570,7 +571,7 @@ class _FilteredProductController
     extends FamilyAsyncNotifier<List<ProductModel>, double> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -752,7 +753,7 @@ class FilteredProductController
     extends FamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -894,7 +895,7 @@ class DiscountProductsController
     extends FamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
 
-  static const int _pageSize = 15;
+  static const int _pageSize = 20;
   int _currentPage = 1;
   int _totalItems = 0;
   Input$ProductFiltersInput _filter =
@@ -980,7 +981,7 @@ class WomenProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -1079,7 +1080,7 @@ class menProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -1176,7 +1177,7 @@ class KidsProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -1356,7 +1357,7 @@ class _userFavouriteProductController
     extends AsyncNotifier<List<ProductModel>> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
