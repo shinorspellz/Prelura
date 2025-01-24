@@ -99,7 +99,9 @@ class _InboxScreenState extends ConsumerState<LiveSearchPage>
                   (entry) => Expanded(
                     child: GestureDetector(
                       onTap: () {
-                        _tabController.animateTo(entry.key);
+                        _tabController.animateTo(entry.key,
+                            duration: Duration(milliseconds: 0),
+                            curve: Curves.linear);
                       },
                       child: Container(
                         padding: const EdgeInsets.only(

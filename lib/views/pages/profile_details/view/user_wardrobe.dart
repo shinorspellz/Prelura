@@ -513,13 +513,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   onTap: () {
                                     ref.read(userIdProvider.notifier).state =
                                         user.id;
-                                    Future.delayed(Duration(seconds: 1), () {
-                                      isBrandActive = true;
-                                      ref
-                                          .read(isBrandActiveProvider.notifier)
-                                          .state = true;
-                                      setState(() {});
-                                    });
+
+                                    ref
+                                        .read(isBrandActiveProvider.notifier)
+                                        .state = true;
                                   },
                                   userId: user.id,
                                   username: user.username,

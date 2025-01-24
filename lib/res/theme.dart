@@ -251,6 +251,7 @@ class PreluraTheme {
           unselectedLabelColor:
               PreluraColors.darkPrimaryColorWhite.withOpacity(.5),
           labelColor: PreluraColors.white,
+          dividerColor: PreluraColors.darkOnSurfaceColor.withOpacity(0.3),
           // indicatorColor: PreluraColors.darkSecondaryButtonColor,
           indicatorColor: PreluraColors.primaryColor,
           splashFactory: NoSplash.splashFactory,
