@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/time_formatter.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
@@ -116,7 +116,7 @@ class MessageCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  DateFormat(DateFormat.HOUR_MINUTE).format(model.lastModified),
+                  formatChatTime(model.lastModified),
                   style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
                 const SizedBox(height: 5),
