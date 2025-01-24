@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:prelura_app/core/utils/debouncer.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/context_entension.dart';
+import 'package:prelura_app/views/pages/search/search_screen.dart';
 import 'package:sizer/sizer.dart';
 
 class Searchwidget extends StatefulWidget {
@@ -213,7 +214,9 @@ class _SearchwidgetState extends State<Searchwidget> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: widget.validator,
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: Theme.of(context).primaryColor.withOpacity(1),
+                      color: context.isDarkMode
+                          ? PreluraColors.white
+                          : PreluraColors.black,
                     ),
                 readOnly: widget.shouldReadOnly,
                 onFieldSubmitted: (val) {
@@ -222,7 +225,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius:
+                        BorderRadius.circular(getDefaultBorderRadius()),
                     borderSide: BorderSide(
                       color: context.isDarkMode
                           ? PreluraColors.white.withOpacity(0.5)
@@ -231,7 +235,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                     ),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius:
+                        BorderRadius.circular(getDefaultBorderRadius()),
                     borderSide: const BorderSide(
                       color: PreluraColors.activeColor,
                       width: 2.0,

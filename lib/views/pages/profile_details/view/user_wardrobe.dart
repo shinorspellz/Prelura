@@ -156,7 +156,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
           );
         },
         loading: () {
-          return Center(child: CircularProgressIndicator.adaptive());
+          return Center(child: LoadingWidget());
         },
         data: (user) {
           final value = ref
@@ -200,7 +200,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (user.bio == null)
+                        if (user.bio == null && isCurrentUser)
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 2),

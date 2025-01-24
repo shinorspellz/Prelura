@@ -19,25 +19,26 @@ class PreluraCheckBox extends StatelessWidget {
   final Icon? icon;
   final TextStyle? style;
   final Color? sideTextColor;
+  final Color? subTitleColor;
   final String? sideText;
 
-  const PreluraCheckBox({
-    super.key,
-    required this.isChecked,
-    required this.onChanged,
-    this.size = 20.0,
-    this.activeColor = PreluraColors.primaryColor,
-    this.inactiveColor = Colors.grey,
-    this.borderRadius = BorderRadius.zero,
-    required this.title,
-    this.subtitle,
-    this.icon,
-    this.colorName,
-    this.titleWidget,
-    this.style,
-    this.sideTextColor,
-    this.sideText,
-  });
+  const PreluraCheckBox(
+      {super.key,
+      required this.isChecked,
+      required this.onChanged,
+      this.size = 20.0,
+      this.activeColor = PreluraColors.primaryColor,
+      this.inactiveColor = Colors.grey,
+      this.borderRadius = BorderRadius.zero,
+      required this.title,
+      this.subtitle,
+      this.icon,
+      this.colorName,
+      this.titleWidget,
+      this.style,
+      this.sideTextColor,
+      this.sideText,
+      this.subTitleColor});
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +126,11 @@ class PreluraCheckBox extends StatelessWidget {
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     fontWeight: FontWeight.w500,
+                                    color: subTitleColor ??
+                                        Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.color,
                                     fontSize: getDefaultSize(),
                                   ),
                           overflow: TextOverflow.ellipsis, // Handle overflow

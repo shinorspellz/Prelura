@@ -29,19 +29,19 @@ class SettingScreen extends StatelessWidget {
             context.router.push(const ProfileSettingRoute());
           }),
       MenuCard(
-          title: "Account Setting",
+          title: "Account Settings",
           onTap: () {
             context.router.push(const AccountSettingRoute());
           }),
       MenuCard(title: "Payments", onTap: () {}),
       MenuCard(title: "Postage", onTap: () {}),
+      // MenuCard(
+      //     title: "Privacy Settings",
+      //     onTap: () {
+      //       context.router.push(PrivacySettingRoute());
+      //     }),
       MenuCard(
-          title: "Privacy Settings",
-          onTap: () {
-            context.router.push(PrivacySettingRoute());
-          }),
-      MenuCard(
-          title: "Security",
+          title: "Security & Privacy Settings",
           onTap: () {
             context.router.push(SecurityMenuRoute());
           }),
@@ -114,22 +114,7 @@ class SettingScreen extends StatelessWidget {
               return menuItem2[index];
             },
           ),
-          Container(
-            padding: const EdgeInsets.all(16),
-            width: double.infinity,
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: Text("Your app's language",
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                    )),
-          ),
-          MenuCard(
-              title: "Language",
-              icon: const Icon(CupertinoIcons.globe),
-              subtitle: "English (EN)",
-              onTap: () {}),
+
           const SizedBox(
             height: 20,
           ),
