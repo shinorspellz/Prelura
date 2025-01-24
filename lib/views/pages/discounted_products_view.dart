@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/views/pages/filtered_products/product_by_sales/product_by_christmas.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/error_placeholder.dart';
@@ -12,8 +11,6 @@ import '../../controller/product/product_provider.dart';
 import '../../core/graphql/__generated/schema.graphql.dart';
 import '../shimmers/grid_shimmer.dart';
 import '../widgets/SearchWidget.dart';
-import '../widgets/empty_screen_placeholder.dart';
-import '../widgets/gap.dart';
 import 'profile_details/widgets/no_product_widget.dart';
 import 'sell_item/brand_view.dart';
 
@@ -52,7 +49,9 @@ class _ProductsByBrandPageState extends ConsumerState<DiscountedProductsView> {
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
+        ref
+            .read(filteredProductProvider(searchQuery).notifier)
+            .fetchMoreData(context);
       }
     });
   }

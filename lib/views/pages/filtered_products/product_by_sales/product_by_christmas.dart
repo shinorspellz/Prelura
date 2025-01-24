@@ -10,7 +10,6 @@ import '../../../../controller/product/product_provider.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/SearchWidget.dart';
 import '../../../widgets/filters_options.dart';
-import '../../profile_details/widgets/holiday_mode_widget.dart';
 import '../../profile_details/widgets/no_product_widget.dart';
 import '../../sell_item/brand_view.dart';
 
@@ -47,7 +46,7 @@ class _ProductFilterPageState
         if (ref.read(paginatingHome)) return;
         ref
             .read(filteredProductProvider((searchQuery)).notifier)
-            .fetchMoreData();
+            .fetchMoreData(context);
       }
     });
   }
