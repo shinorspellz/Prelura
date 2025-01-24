@@ -847,7 +847,7 @@ class FilteredProductController
       final currentProducts = state.valueOrNull ?? [];
       state = pageNumber == 1
           ? AsyncData(newProducts)
-          : AsyncData([...currentProducts, ...newProducts]);
+          : AsyncData({...currentProducts, ...newProducts}.toList());
 
       _currentPage = pageNumber;
       return state.value!;
@@ -857,7 +857,21 @@ class FilteredProductController
     }
   }
 
-  Future<void> fetchMoreData() async {
+  int index = 0;
+
+  resetIndex() {
+    index = 0;
+  }
+
+  Future<void> fetchMoreData(BuildContext context) async {
+    log(":::The brand total ::: $_brandTotalItems");
+    if ((state.valueOrNull?.length ?? 0) == _brandTotalItems) {
+      index == 0 ? context.alert("End of products") : 1;
+      index = 1;
+      return;
+    } else {
+      index = 0;
+    }
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
     if (!canLoadMore) return;
 
@@ -872,10 +886,14 @@ class FilteredProductController
     }
   }
 
-  Future<void> fetchMoreHandler(int brandId, String query) async {
+  Future<void> fetchMoreHandler(
+      BuildContext context, int brandId, String query) async {
+    int index = 0;
     final canLoadMore = (state.valueOrNull?.length ?? 0) < _brandTotalItems;
     if (canLoadMore) {
-      await fetchMoreData();
+      index == 0 ? await fetchMoreData(context) : null;
+    } else {
+      index = 0;
     }
   }
 

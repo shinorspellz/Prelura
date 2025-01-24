@@ -4,7 +4,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/views/pages/profile_details/widgets/holiday_mode_widget.dart';
 import 'package:prelura_app/views/pages/sell_item/brand_view.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
@@ -15,7 +14,6 @@ import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/SearchWidget.dart';
 import '../../widgets/filters_options.dart';
 import '../profile_details/widgets/no_product_widget.dart';
-import '../search_result/provider/search_provider.dart';
 import '../search_result/view/search_result.dart';
 
 @RoutePage()
@@ -62,7 +60,9 @@ class _ProductFilterPageState extends ConsumerState<FilterProductPage>
       final delta = MediaQuery.of(context).size.height * 0.2;
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(paginatingHome)) return;
-        ref.read(filteredProductProvider(searchQuery).notifier).fetchMoreData();
+        ref
+            .read(filteredProductProvider(searchQuery).notifier)
+            .fetchMoreData(context);
       }
     });
   }

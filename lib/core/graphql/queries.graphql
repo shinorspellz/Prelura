@@ -574,6 +574,17 @@ query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,
     createdAt
     id
     priceTotal
+    user {
+      username
+      thumbnailUrl
+      bio
+      displayName
+      email
+      firstName
+      gender
+      isVerified
+      lastName
+    }
     paymentSet {
       createdAt
       id

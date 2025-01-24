@@ -54,7 +54,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ref.watch(selectedTabProvider) != 1) {
           ref
               .read(filteredProductProvider(searchQuery).notifier)
-              .fetchMoreData();
+              .fetchMoreData(context);
         }
       }
     });

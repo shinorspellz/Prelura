@@ -3,12 +3,11 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/core/utils/time_formatter.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
-import 'package:prelura_app/res/render_svg.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
 
@@ -88,6 +87,7 @@ class MessageCard extends ConsumerWidget {
                       BuildOfferRow(
                         text: model.lastMessage!.text,
                         recipient: model.recipient.username,
+                        offerInfo: model.offer!,
                       )
                     ] else
                       Text(
@@ -116,7 +116,7 @@ class MessageCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  DateFormat(DateFormat.HOUR_MINUTE).format(model.lastModified),
+                  formatChatTime(model.lastModified),
                   style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
                 const SizedBox(height: 5),
@@ -131,44 +131,43 @@ class MessageCard extends ConsumerWidget {
 
 class BuildOfferRow extends ConsumerWidget {
   final String text;
+  final OfferInfo offerInfo;
   final String recipient;
+
   const BuildOfferRow({
     super.key,
     required this.text,
     required this.recipient,
+    required this.offerInfo,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (text.contains("offer_id")) {
-      OfferInfo offerInfo = offerInfoFromJson(text.replaceAll("'", "\""));
-      bool isSender = recipient == offerInfo.buyer?.username;
-      return Row(children: [
-        RenderSvg(
-          svgPath: 'assets/icons/offer.svg',
-          svgWidth: 16,
-          svgHeight: 16,
-        ),
-        addHorizontalSpacing(5),
-        Text(
-          offerInfo.status?.toLowerCase() == "pending"
-              ? "${!isSender ? "You" : recipient} made an offer."
-              : isSender
-                  ? "You ${offerInfo.status?.toLowerCase()} $recipient offer."
-                  : "$recipient ${offerInfo.status?.toLowerCase()} your offer.",
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall
-              ?.copyWith(fontWeight: FontWeight.w400),
-        ),
-      ]);
-    }
     return Text(
-      text,
+      _buildOfferMessage(),
       style: Theme.of(context)
           .textTheme
           .bodySmall
           ?.copyWith(fontWeight: FontWeight.w400),
     );
+  }
+
+  String _buildOfferMessage() {
+    if (!text.contains("offer_id")) {
+      return text;
+    }
+
+    final bool isSender = recipient == offerInfo.buyer?.username;
+    final OfferSubStateInfo? subInfo = offerInfo.children?.firstOrNull;
+    final String offerStatus =
+        (subInfo?.status ?? offerInfo.status)?.toLowerCase() ?? "unknown";
+
+    if (offerInfo.status?.toLowerCase() == "pending") {
+      return "${!isSender ? "You" : recipient} made an offer.";
+    }
+
+    return isSender
+        ? "You $offerStatus $recipient offer."
+        : "$recipient $offerStatus your offer.";
   }
 }
