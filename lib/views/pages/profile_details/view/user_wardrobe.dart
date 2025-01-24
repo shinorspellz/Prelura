@@ -247,7 +247,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                         UserScrollableList(
                           user: user,
                         ),
-                        if (user?.isVacationMode == true) ...[
+                        if (user.isVacationMode == true) ...[
                           HolidayModeWidget(
                             isLoggedInUser: isCurrentUser,
                           )
