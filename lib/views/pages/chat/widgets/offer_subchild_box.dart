@@ -1,9 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
@@ -36,6 +39,7 @@ class OfferSubCardBox extends ConsumerStatefulWidget {
 
 class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
   bool isAccepting = false;
+  bool isBuying = false;
   bool isDeclining = false;
   bool isSendingOffer = false;
   final TextEditingController _offerController = TextEditingController();
@@ -256,7 +260,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(children: [
             buildActionButton(
-              onTap: () => handleOfferResponse(Enum$OfferActionEnum.ACCEPT),
+              onTap: handleOfferBuying,
               isLoading: isAccepting,
               text: "Buy now",
               isDisabled: isAccepting || isDeclining,
@@ -386,10 +390,10 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             //   child: Text(""),
             // ),
             buildActionButton(
-              onTap: () {},
-              isLoading: isAccepting,
+              onTap: handleOfferBuying,
+              isLoading: isBuying,
               text: "Buy now",
-              isDisabled: isAccepting || isDeclining,
+              isDisabled: isBuying,
             ),
             // Expanded(
             //   child: Text(""),
@@ -398,5 +402,23 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
         ),
       ],
     ]);
+  }
+
+  handleOfferBuying() async {
+    isBuying = true;
+    setState(() {});
+    try {
+      int productId =
+          int.parse(ref.read(offerProvider).activeOffer!.offer!.product!.id!);
+      final repo = ref.read(productRepo);
+
+      final productInfo = await repo.getProduct(productId);
+      context.router.push(PaymentRoute(product: productInfo));
+    } catch (e) {
+      print("Error in handleOfferBuying: $e");
+    } finally {
+      isBuying = false;
+      setState(() {});
+    }
   }
 }
