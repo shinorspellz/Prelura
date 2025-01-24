@@ -166,4 +166,10 @@ extension StringExtension on String {
     log('${this[0].toUpperCase()}${substring(1)}');
     return '${this[0].toUpperCase()}${substring(1)}';
   }
+
+  String capitalizeAndLowercase() {
+    if (isEmpty) return this;
+    log('${this[0].toUpperCase()}${substring(1)}');
+    return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  }
 }

@@ -80,7 +80,7 @@ final searchProductProvider =
       brand: brand?.id,
       parentCategory: category,
       // size: size,
-      hashtags: [ensureStartsWithHash(query?.capitalize() ?? '')],
+      hashtags: [ensureStartsWithHash(query?.capitalizeAndLowercase() ?? '')],
       condition: condition,
       style: style,
     ),
