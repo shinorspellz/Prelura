@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
@@ -23,6 +24,9 @@ class OfferConversationBuilder extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final offerState = ref.watch(offerProvider);
     ConversationModel conversationInfo = offerState.activeOffer!;
+    final chats = ref.watch(messagesProvider(
+      conversationInfo.id.toString(),
+    ));
     final OfferInfo offerInfo = conversationInfo.offer!;
     UserModel? appUserInfo = ref.read(userProvider).value;
     List<OfferSubStateInfo>? offerChildren = conversationInfo.offer?.children;
@@ -36,7 +40,12 @@ class OfferConversationBuilder extends ConsumerWidget {
       //   isSender: isSender,
       // ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: 4,
+          top: 10,
+        ),
         child: OfferProductCard(
           offerInfo: conversationInfo.offer!,
         ),

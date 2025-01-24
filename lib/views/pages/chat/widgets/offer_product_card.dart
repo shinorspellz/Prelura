@@ -14,20 +14,22 @@ import '../../../widgets/brand_text_widget.dart';
 class OfferProductCard extends ConsumerWidget {
   final OfferInfo offerInfo;
   final bool showPrice;
+  final double? boxWidth;
   const OfferProductCard({
     super.key,
     required this.offerInfo,
     this.showPrice = false,
+    this.boxWidth,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(2),
         child: SizedBox(
-          height: 90,
-          width: 80,
+          height: 70,
+          width: 60,
           child: CachedNetworkImage(
             errorWidget: (context, url, error) => Container(
               color: PreluraColors.grey,
@@ -36,8 +38,8 @@ class OfferProductCard extends ConsumerWidget {
             fit: BoxFit.cover,
             placeholder: (context, url) {
               return ShimmerBox(
-                height: 90,
-                width: 80,
+                height: 70,
+                width: 70,
               );
             },
             fadeInDuration: Duration.zero,
@@ -47,42 +49,46 @@ class OfferProductCard extends ConsumerWidget {
       ),
       10.horizontalSpacing,
       SizedBox(
-        width: 48.w,
-        height: 90,
-        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          Expanded(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    capitalizeEachWord("${offerInfo.product?.name}"),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis, // Truncate text
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.w600,
+        width: boxWidth ?? 74.w,
+        height: 70,
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        capitalizeEachWord("${offerInfo.product?.name}"),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis, // Truncate text
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              // fontSize: 1,
+                            ),
+                      ),
+                      10.verticalSpacing,
+                      if (offerInfo.product?.brand != null)
+                        BrandTextWidget(
+                          brand: Brand(
+                              name:
+                                  "${offerInfo.product?.brand["name"] ?? "NIL"}",
+                              id: 0),
+                          customBrand: null,
                           fontSize: 16,
                         ),
-                  ),
-                  10.verticalSpacing,
-                  if (offerInfo.product?.brand != null)
-                    BrandTextWidget(
-                      brand: Brand(
-                          name: "${offerInfo.product?.brand["name"] ?? "NIL"}",
-                          id: 0),
-                      customBrand: null,
+                    ]),
+              ),
+              Text(
+                " £${offerInfo.product?.price.toString().formatCurrency()}",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
-                ]),
-          ),
-          Text(
-            " £${offerInfo.product?.price}",
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-          ),
-        ]),
+              ),
+            ]),
       ),
     ]);
   }
