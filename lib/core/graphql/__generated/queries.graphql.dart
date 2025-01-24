@@ -26638,6 +26638,84 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'bio'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'displayName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'email'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'firstName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'gender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'isVerified'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'lastName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: 'paymentSet'),
             alias: null,
             arguments: [],
@@ -27246,6 +27324,7 @@ class Query$UserOrders$userOrders {
     required this.createdAt,
     required this.id,
     required this.priceTotal,
+    this.user,
     required this.paymentSet,
     required this.updatedAt,
     this.status,
@@ -27258,6 +27337,7 @@ class Query$UserOrders$userOrders {
     final l$createdAt = json['createdAt'];
     final l$id = json['id'];
     final l$priceTotal = json['priceTotal'];
+    final l$user = json['user'];
     final l$paymentSet = json['paymentSet'];
     final l$updatedAt = json['updatedAt'];
     final l$status = json['status'];
@@ -27268,6 +27348,10 @@ class Query$UserOrders$userOrders {
       createdAt: DateTime.parse((l$createdAt as String)),
       id: (l$id as String),
       priceTotal: (l$priceTotal as String),
+      user: l$user == null
+          ? null
+          : Query$UserOrders$userOrders$user.fromJson(
+              (l$user as Map<String, dynamic>)),
       paymentSet: (l$paymentSet as List<dynamic>)
           .map((e) => Query$UserOrders$userOrders$paymentSet.fromJson(
               (e as Map<String, dynamic>)))
@@ -27287,6 +27371,8 @@ class Query$UserOrders$userOrders {
   final String id;
 
   final String priceTotal;
+
+  final Query$UserOrders$userOrders$user? user;
 
   final List<Query$UserOrders$userOrders$paymentSet> paymentSet;
 
@@ -27308,6 +27394,8 @@ class Query$UserOrders$userOrders {
     _resultData['id'] = l$id;
     final l$priceTotal = priceTotal;
     _resultData['priceTotal'] = l$priceTotal;
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
     final l$paymentSet = paymentSet;
     _resultData['paymentSet'] = l$paymentSet.map((e) => e.toJson()).toList();
     final l$updatedAt = updatedAt;
@@ -27329,6 +27417,7 @@ class Query$UserOrders$userOrders {
     final l$createdAt = createdAt;
     final l$id = id;
     final l$priceTotal = priceTotal;
+    final l$user = user;
     final l$paymentSet = paymentSet;
     final l$updatedAt = updatedAt;
     final l$status = status;
@@ -27339,6 +27428,7 @@ class Query$UserOrders$userOrders {
       l$createdAt,
       l$id,
       l$priceTotal,
+      l$user,
       Object.hashAll(l$paymentSet.map((v) => v)),
       l$updatedAt,
       l$status,
@@ -27370,6 +27460,11 @@ class Query$UserOrders$userOrders {
     final l$priceTotal = priceTotal;
     final lOther$priceTotal = other.priceTotal;
     if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
       return false;
     }
     final l$paymentSet = paymentSet;
@@ -27435,6 +27530,7 @@ abstract class CopyWith$Query$UserOrders$userOrders<TRes> {
     DateTime? createdAt,
     String? id,
     String? priceTotal,
+    Query$UserOrders$userOrders$user? user,
     List<Query$UserOrders$userOrders$paymentSet>? paymentSet,
     DateTime? updatedAt,
     Enum$OrderStatusEnum? status,
@@ -27442,6 +27538,7 @@ abstract class CopyWith$Query$UserOrders$userOrders<TRes> {
     int? quantity,
     String? $__typename,
   });
+  CopyWith$Query$UserOrders$userOrders$user<TRes> get user;
   TRes paymentSet(
       Iterable<Query$UserOrders$userOrders$paymentSet> Function(
               Iterable<
@@ -27467,6 +27564,7 @@ class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
     Object? createdAt = _undefined,
     Object? id = _undefined,
     Object? priceTotal = _undefined,
+    Object? user = _undefined,
     Object? paymentSet = _undefined,
     Object? updatedAt = _undefined,
     Object? status = _undefined,
@@ -27482,6 +27580,9 @@ class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
         priceTotal: priceTotal == _undefined || priceTotal == null
             ? _instance.priceTotal
             : (priceTotal as String),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Query$UserOrders$userOrders$user?),
         paymentSet: paymentSet == _undefined || paymentSet == null
             ? _instance.paymentSet
             : (paymentSet as List<Query$UserOrders$userOrders$paymentSet>),
@@ -27501,6 +27602,14 @@ class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$UserOrders$userOrders$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Query$UserOrders$userOrders$user.stub(_then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$user(
+            local$user, (e) => call(user: e));
+  }
 
   TRes paymentSet(
           Iterable<Query$UserOrders$userOrders$paymentSet> Function(
@@ -27526,6 +27635,7 @@ class _CopyWithStubImpl$Query$UserOrders$userOrders<TRes>
     DateTime? createdAt,
     String? id,
     String? priceTotal,
+    Query$UserOrders$userOrders$user? user,
     List<Query$UserOrders$userOrders$paymentSet>? paymentSet,
     DateTime? updatedAt,
     Enum$OrderStatusEnum? status,
@@ -27535,7 +27645,294 @@ class _CopyWithStubImpl$Query$UserOrders$userOrders<TRes>
   }) =>
       _res;
 
+  CopyWith$Query$UserOrders$userOrders$user<TRes> get user =>
+      CopyWith$Query$UserOrders$userOrders$user.stub(_res);
+
   paymentSet(_fn) => _res;
+}
+
+class Query$UserOrders$userOrders$user {
+  Query$UserOrders$userOrders$user({
+    required this.username,
+    this.thumbnailUrl,
+    this.bio,
+    this.displayName,
+    this.email,
+    required this.firstName,
+    this.gender,
+    required this.isVerified,
+    this.lastName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$UserOrders$userOrders$user.fromJson(Map<String, dynamic> json) {
+    final l$username = json['username'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$bio = json['bio'];
+    final l$displayName = json['displayName'];
+    final l$email = json['email'];
+    final l$firstName = json['firstName'];
+    final l$gender = json['gender'];
+    final l$isVerified = json['isVerified'];
+    final l$lastName = json['lastName'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$user(
+      username: (l$username as String),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      bio: (l$bio as String?),
+      displayName: (l$displayName as String?),
+      email: (l$email as String?),
+      firstName: (l$firstName as String),
+      gender: l$gender == null
+          ? null
+          : fromJson$Enum$AccountsUserGenderChoices((l$gender as String)),
+      isVerified: (l$isVerified as bool),
+      lastName: (l$lastName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String username;
+
+  final String? thumbnailUrl;
+
+  final String? bio;
+
+  final String? displayName;
+
+  final String? email;
+
+  final String firstName;
+
+  final Enum$AccountsUserGenderChoices? gender;
+
+  final bool isVerified;
+
+  final String? lastName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$bio = bio;
+    _resultData['bio'] = l$bio;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$firstName = firstName;
+    _resultData['firstName'] = l$firstName;
+    final l$gender = gender;
+    _resultData['gender'] = l$gender == null
+        ? null
+        : toJson$Enum$AccountsUserGenderChoices(l$gender);
+    final l$isVerified = isVerified;
+    _resultData['isVerified'] = l$isVerified;
+    final l$lastName = lastName;
+    _resultData['lastName'] = l$lastName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$username = username;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$bio = bio;
+    final l$displayName = displayName;
+    final l$email = email;
+    final l$firstName = firstName;
+    final l$gender = gender;
+    final l$isVerified = isVerified;
+    final l$lastName = lastName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$username,
+      l$thumbnailUrl,
+      l$bio,
+      l$displayName,
+      l$email,
+      l$firstName,
+      l$gender,
+      l$isVerified,
+      l$lastName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$bio = bio;
+    final lOther$bio = other.bio;
+    if (l$bio != lOther$bio) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$isVerified = isVerified;
+    final lOther$isVerified = other.isVerified;
+    if (l$isVerified != lOther$isVerified) {
+      return false;
+    }
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$user
+    on Query$UserOrders$userOrders$user {
+  CopyWith$Query$UserOrders$userOrders$user<Query$UserOrders$userOrders$user>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$user(
+    Query$UserOrders$userOrders$user instance,
+    TRes Function(Query$UserOrders$userOrders$user) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$user;
+
+  factory CopyWith$Query$UserOrders$userOrders$user.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$user;
+
+  TRes call({
+    String? username,
+    String? thumbnailUrl,
+    String? bio,
+    String? displayName,
+    String? email,
+    String? firstName,
+    Enum$AccountsUserGenderChoices? gender,
+    bool? isVerified,
+    String? lastName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$user<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$user(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$user _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$user) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? username = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? bio = _undefined,
+    Object? displayName = _undefined,
+    Object? email = _undefined,
+    Object? firstName = _undefined,
+    Object? gender = _undefined,
+    Object? isVerified = _undefined,
+    Object? lastName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$user(
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        bio: bio == _undefined ? _instance.bio : (bio as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        email: email == _undefined ? _instance.email : (email as String?),
+        firstName: firstName == _undefined || firstName == null
+            ? _instance.firstName
+            : (firstName as String),
+        gender: gender == _undefined
+            ? _instance.gender
+            : (gender as Enum$AccountsUserGenderChoices?),
+        isVerified: isVerified == _undefined || isVerified == null
+            ? _instance.isVerified
+            : (isVerified as bool),
+        lastName:
+            lastName == _undefined ? _instance.lastName : (lastName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$user<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$user(this._res);
+
+  TRes _res;
+
+  call({
+    String? username,
+    String? thumbnailUrl,
+    String? bio,
+    String? displayName,
+    String? email,
+    String? firstName,
+    Enum$AccountsUserGenderChoices? gender,
+    bool? isVerified,
+    String? lastName,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$UserOrders$userOrders$paymentSet {

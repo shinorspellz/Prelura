@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/controller/product/order_provider.dart';
+import 'package:prelura_app/controller/product/user_order.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 
 import '../../../../res/colors.dart';
@@ -23,7 +23,7 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-      ref.read(orderProvider.notifier).getOrders();
+      ref.read(userOrderProvider.notifier).getOrders();
     });
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {
