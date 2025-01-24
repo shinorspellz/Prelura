@@ -136,6 +136,40 @@ class ProductRepo {
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }
 
+  getUserOrders({
+    int? pageCount,
+    int? pageNumber,
+    Input$OrderFiltersInput? filters,
+  }) async {
+    final response = await _client.query$UserOrders(
+      Options$Query$UserOrders(
+          variables: Variables$Query$UserOrders(
+        pageCount: pageCount,
+        pageNumber: pageNumber,
+        filters: filters,
+      )),
+    );
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'ProductRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      log('Mising response', name: 'ProductRepo');
+      throw 'An error occured';
+    }
+    log(":::::The user orders info is:: ${jsonEncode(response.parsedData!.toJson())}");
+
+    return response.parsedData!;
+    // .map((x) => ProductModel.fromJson(x!.toJson()))
+    // .toList();
+  }
+
   Future<List<ProductModel>> getUserProduct(
       {String? username,
       String? search,
