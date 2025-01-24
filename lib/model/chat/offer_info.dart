@@ -79,6 +79,7 @@ class Product {
   String? name;
   String? description;
   bool? isFeatured;
+  dynamic status;
   bool? userLiked;
   Category? category;
   List<ImagesUrl>? imagesUrl;
@@ -101,6 +102,7 @@ class Product {
     this.userLiked,
     this.imagesUrl,
     this.category,
+    this.status,
     this.size,
     this.seller,
     this.condition,
@@ -119,6 +121,7 @@ class Product {
         description: json["description"],
         isFeatured: json["isFeatured"],
         userLiked: json["userLiked"],
+        status: json["status"],
         brand: json["brand"],
         imagesUrl: json["imagesUrl"] == null
             ? []
@@ -147,6 +150,7 @@ class Product {
         "name": name,
         "description": description,
         "isFeatured": isFeatured,
+        "status": status,
         "userLiked": userLiked,
         "category": category?.toJson(),
         "size": size?.toJson(),

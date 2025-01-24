@@ -28618,6 +28618,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                     selectionSet: null,
                   ),
                   FieldNode(
+                    name: NameNode(value: 'status'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: 'brand'),
                     alias: null,
                     arguments: [],
@@ -31159,6 +31166,7 @@ class Query$Conversations$conversations$offer$product {
     required this.isFeatured,
     this.userLiked,
     required this.imagesUrl,
+    required this.status,
     this.brand,
     this.category,
     this.size,
@@ -31180,6 +31188,7 @@ class Query$Conversations$conversations$offer$product {
     final l$isFeatured = json['isFeatured'];
     final l$userLiked = json['userLiked'];
     final l$imagesUrl = json['imagesUrl'];
+    final l$status = json['status'];
     final l$brand = json['brand'];
     final l$category = json['category'];
     final l$size = json['size'];
@@ -31199,6 +31208,7 @@ class Query$Conversations$conversations$offer$product {
       userLiked: (l$userLiked as bool?),
       imagesUrl:
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
       brand: l$brand == null
           ? null
           : Query$Conversations$conversations$offer$product$brand.fromJson(
@@ -31243,6 +31253,8 @@ class Query$Conversations$conversations$offer$product {
 
   final List<String> imagesUrl;
 
+  final Enum$ProductsProductStatusChoices status;
+
   final Query$Conversations$conversations$offer$product$brand? brand;
 
   final Query$Conversations$conversations$offer$product$category? category;
@@ -31279,6 +31291,8 @@ class Query$Conversations$conversations$offer$product {
     _resultData['userLiked'] = l$userLiked;
     final l$imagesUrl = imagesUrl;
     _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
     final l$brand = brand;
     _resultData['brand'] = l$brand?.toJson();
     final l$category = category;
@@ -31316,6 +31330,7 @@ class Query$Conversations$conversations$offer$product {
     final l$isFeatured = isFeatured;
     final l$userLiked = userLiked;
     final l$imagesUrl = imagesUrl;
+    final l$status = status;
     final l$brand = brand;
     final l$category = category;
     final l$size = size;
@@ -31334,6 +31349,7 @@ class Query$Conversations$conversations$offer$product {
       l$isFeatured,
       l$userLiked,
       Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$status,
       l$brand,
       l$category,
       l$size,
@@ -31393,6 +31409,11 @@ class Query$Conversations$conversations$offer$product {
       if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
         return false;
       }
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
     }
     final l$brand = brand;
     final lOther$brand = other.brand;
@@ -31480,6 +31501,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer$product<TRes> {
     bool? isFeatured,
     bool? userLiked,
     List<String>? imagesUrl,
+    Enum$ProductsProductStatusChoices? status,
     Query$Conversations$conversations$offer$product$brand? brand,
     Query$Conversations$conversations$offer$product$category? category,
     Query$Conversations$conversations$offer$product$size? size,
@@ -31521,6 +31543,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$product<TRes>
     Object? isFeatured = _undefined,
     Object? userLiked = _undefined,
     Object? imagesUrl = _undefined,
+    Object? status = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
     Object? size = _undefined,
@@ -31550,6 +31573,9 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$product<TRes>
         imagesUrl: imagesUrl == _undefined || imagesUrl == null
             ? _instance.imagesUrl
             : (imagesUrl as List<String>),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsProductStatusChoices),
         brand: brand == _undefined
             ? _instance.brand
             : (brand as Query$Conversations$conversations$offer$product$brand?),
@@ -31638,6 +31664,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$product<TRes>
     bool? isFeatured,
     bool? userLiked,
     List<String>? imagesUrl,
+    Enum$ProductsProductStatusChoices? status,
     Query$Conversations$conversations$offer$product$brand? brand,
     Query$Conversations$conversations$offer$product$category? category,
     Query$Conversations$conversations$offer$product$size? size,

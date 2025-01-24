@@ -221,9 +221,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 username: "offered",
               ),
             ),
-            if (status != "pending" &&
-                status != "countered" &&
-                !(status == "accepted" && amTheSeller))
+            if (status != "pending" && status != "countered")
               Positioned(
                 bottom: -2,
                 left: isSender ? null : 1,
@@ -322,7 +320,9 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
               text: amTheSeller ? null : "Send new offer"),
         ),
       ],
-      if (status == "accepted" && amTheSeller) ...[
+      if (status == "accepted" &&
+          amTheSeller &&
+          offerInfo.offer?.product?.status != "SOLD") ...[
         // addVerticalSpacing(20),
         // Text(
         //   "Please wait for buyer to make payment",
@@ -373,7 +373,59 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           ),
         ),
       ],
-      if (status == "accepted" && !amTheSeller) ...[
+      if (status == "accepted" &&
+          amTheSeller &&
+          offerInfo.offer?.product?.status == "SOLD") ...[
+        // addVerticalSpacing(20),
+        // Text(
+        //   "Please wait for buyer to make payment",
+        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //         color: PreluraColors.grey,
+        //         fontSize: 12,
+        //       ),
+        // ),
+        ///
+        ///
+        ///
+        addVerticalSpacing(20),
+        _buildCustomOfferButton(text: "Sold!"),
+
+        ///
+        ///
+        ///
+        // Padding(
+        //   padding: const EdgeInsets.only(
+        //     left: 20,
+        //     right: 20,
+        //     top: 20,
+        //   ),
+        //   child: Align(
+        //     alignment: Alignment.center,
+        //     child: RichText(
+        //         textAlign: TextAlign.center,
+        //         text: TextSpan(
+        //             text: "Payment made!",
+        //             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //                   color: PreluraColors.grey,
+        //                   fontSize: 12,
+        //                 ),
+        //             children: [
+        //               TextSpan(
+        //                 text: " Ship product.",
+        //                 style: TextStyle(
+        //                   decoration: TextDecoration.underline,
+        //                   color: PreluraColors.primaryColor,
+        //                   fontSize: 12,
+        //                 ),
+        //                 recognizer: TapGestureRecognizer()..onTap = () {},
+        //               )
+        //             ])),
+        //   ),
+        // ),
+      ],
+      if (status == "accepted" &&
+          offerInfo.offer?.product?.status == "SOLD" &&
+          !amTheSeller) ...[
         Padding(
           padding: const EdgeInsets.only(
             left: 20,
@@ -393,7 +445,9 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           ),
         ),
       ],
-      if (status == "accepted" && !amTheSeller) ...[
+      if (status == "accepted" &&
+          !amTheSeller &&
+          offerInfo.offer?.product?.status != "SOLD") ...[
         // addVerticalSpacing(20),
         // Text(
         //   "Please wait for buyer to make payment",

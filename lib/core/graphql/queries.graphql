@@ -671,6 +671,7 @@ query Conversations {
         isFeatured
         userLiked
         imagesUrl
+        status
         brand {
           id
           name
