@@ -50,7 +50,7 @@ class _ProductPriceFilterPageState
       if (maxScroll - currentScroll <= delta) {
         if (ref.read(filteredProductProvider("")).isLoading) return;
         // if (searchQuery.isNotEmpty) return;
-        ref.read(filteredProductProvider("").notifier).fetchMoreData();
+        ref.read(filteredProductProvider("").notifier).fetchMoreData(context);
       }
     });
   }

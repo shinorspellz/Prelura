@@ -357,6 +357,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
                 OfferProductCard(
                   offerInfo: offerInfo,
                   showPrice: true,
+                  boxWidth: 60.w,
                 ),
                 addVerticalSpacing(10),
                 PriceFieldWidget(
@@ -401,8 +402,8 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
             children: [
               if (widget.amTheSeller)
                 ProfilePictureWidget(
-                  height: 50,
-                  width: 50,
+                  height: 40,
+                  width: 40,
                   profilePicture: "${offerInfo.buyer?.profilePictureUrl}",
                   username: offerInfo.buyer?.username,
                 ),

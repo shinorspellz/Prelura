@@ -64,6 +64,7 @@ class OfferConversationBuilder extends ConsumerWidget {
         Flexible(
           child: ListView.separated(
             shrinkWrap: true,
+            padding: EdgeInsets.only(top: 10),
             // physics:
             //     const NeverScrollableScrollPhysics(), // Prevent nested scrolling conflicts
             itemCount: offerChildren.length,

@@ -135,7 +135,6 @@ class OfferNotifier extends StateNotifier<OfferState> {
         actionType: actionType,
       );
       if (res != null && res.success!) {
-        // context.alert('Offer ${actionType.name} successfully');
         OfferInfo offerInfo =
             OfferInfo.fromJson(res.data!.offer!.first!.toJson());
         ConversationModel? newConversation = state.activeOffer;

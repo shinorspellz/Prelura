@@ -7,6 +7,7 @@ import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
 import 'package:prelura_app/model/product/order/order_model.dart';
+import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
 import '../../model/product/user_product_grouping/user_product_grouping.dart';
@@ -136,7 +137,7 @@ class ProductRepo {
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
   }
 
-  getUserOrders({
+  Future<UserOrders> getUserOrders({
     int? pageCount,
     int? pageNumber,
     Input$OrderFiltersInput? filters,
@@ -165,7 +166,7 @@ class ProductRepo {
     }
     log(":::::The user orders info is:: ${jsonEncode(response.parsedData!.toJson())}");
 
-    return response.parsedData!;
+    return UserOrders.fromJson(response.parsedData!.toJson());
     // .map((x) => ProductModel.fromJson(x!.toJson()))
     // .toList();
   }
