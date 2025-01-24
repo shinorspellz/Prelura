@@ -172,4 +172,8 @@ extension StringExtension on String {
     log('${this[0].toUpperCase()}${substring(1)}');
     return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
+
+  formatCurrency() {
+    return replaceFirst(".00", "").replaceFirst(".0", "");
+  }
 }

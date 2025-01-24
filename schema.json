@@ -659,51 +659,6 @@
             "deprecationReason": null
           },
           {
-            "name": "recommendBrands",
-            "description": null,
-            "args": [
-              {
-                "name": "productName",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "productDescription",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BrandType",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "popularBrands",
             "description": null,
             "args": [
@@ -5018,6 +4973,12 @@
           {
             "name": "SOLD",
             "description": "SOLD",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FLAGGED",
+            "description": "FLAGGED",
             "isDeprecated": false,
             "deprecationReason": null
           }
