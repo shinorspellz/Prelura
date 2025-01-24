@@ -569,6 +569,79 @@ query PopularBrands($top: Int!) {
   }
 }
 
+query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,) {
+  userOrders(filters: $filters, pageCount: $pageCount, pageNumber: $pageNumber,) {
+    createdAt
+    id
+    priceTotal
+    paymentSet {
+      createdAt
+      id
+      order {
+        createdAt
+        id
+        priceTotal
+        user {
+          username
+          thumbnailUrl
+          bio
+          displayName
+          email
+          firstName
+          gender
+          isVerified
+          lastName
+        }
+        product {
+          color
+          condition
+          createdAt
+          customBrand
+          description
+          discountPrice
+          id
+          imagesUrl
+          name
+          status
+          brand {
+            id
+            name
+          }
+          category {
+            id
+            name
+          }
+          likes
+          isFeatured
+          materials {
+            id
+            name
+          }
+          price
+          parcelSize
+          views
+        }
+        quantity
+        shippingFee
+        status
+        updatedAt
+      }
+      paymentAmount
+      paymentIntentId
+      paymentMethod
+      paymentRef
+      paymentStatus
+      updatedAt
+    }
+    updatedAt
+    status
+    shippingFee
+    quantity
+  }
+  userOrdersTotalNumber
+  }
+
+
 query Conversation($id: ID!, $pageCount: Int, $pageNumber: Int) {
   conversation(id: $id, pageCount: $pageCount, pageNumber: $pageNumber) {
     id
@@ -671,6 +744,7 @@ query Conversations {
         isFeatured
         userLiked
         imagesUrl
+        status
         brand {
           id
           name

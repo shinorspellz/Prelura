@@ -2434,6 +2434,7 @@ enum Enum$ProductsProductStatusChoices {
   ACTIVE,
   INACTIVE,
   SOLD,
+  FLAGGED,
   $unknown;
 
   factory Enum$ProductsProductStatusChoices.fromJson(String value) =>
@@ -2451,6 +2452,8 @@ String toJson$Enum$ProductsProductStatusChoices(
       return r'INACTIVE';
     case Enum$ProductsProductStatusChoices.SOLD:
       return r'SOLD';
+    case Enum$ProductsProductStatusChoices.FLAGGED:
+      return r'FLAGGED';
     case Enum$ProductsProductStatusChoices.$unknown:
       return r'$unknown';
   }
@@ -2465,6 +2468,8 @@ Enum$ProductsProductStatusChoices fromJson$Enum$ProductsProductStatusChoices(
       return Enum$ProductsProductStatusChoices.INACTIVE;
     case r'SOLD':
       return Enum$ProductsProductStatusChoices.SOLD;
+    case r'FLAGGED':
+      return Enum$ProductsProductStatusChoices.FLAGGED;
     default:
       return Enum$ProductsProductStatusChoices.$unknown;
   }

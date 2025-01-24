@@ -26207,6 +26207,3303 @@ class _CopyWithStubImpl$Query$PopularBrands$popularBrands<TRes>
       _res;
 }
 
+class Variables$Query$UserOrders {
+  factory Variables$Query$UserOrders({
+    Input$OrderFiltersInput? filters,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      Variables$Query$UserOrders._({
+        if (filters != null) r'filters': filters,
+        if (pageCount != null) r'pageCount': pageCount,
+        if (pageNumber != null) r'pageNumber': pageNumber,
+      });
+
+  Variables$Query$UserOrders._(this._$data);
+
+  factory Variables$Query$UserOrders.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('filters')) {
+      final l$filters = data['filters'];
+      result$data['filters'] = l$filters == null
+          ? null
+          : Input$OrderFiltersInput.fromJson(
+              (l$filters as Map<String, dynamic>));
+    }
+    if (data.containsKey('pageCount')) {
+      final l$pageCount = data['pageCount'];
+      result$data['pageCount'] = (l$pageCount as int?);
+    }
+    if (data.containsKey('pageNumber')) {
+      final l$pageNumber = data['pageNumber'];
+      result$data['pageNumber'] = (l$pageNumber as int?);
+    }
+    return Variables$Query$UserOrders._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  Input$OrderFiltersInput? get filters =>
+      (_$data['filters'] as Input$OrderFiltersInput?);
+
+  int? get pageCount => (_$data['pageCount'] as int?);
+
+  int? get pageNumber => (_$data['pageNumber'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('filters')) {
+      final l$filters = filters;
+      result$data['filters'] = l$filters?.toJson();
+    }
+    if (_$data.containsKey('pageCount')) {
+      final l$pageCount = pageCount;
+      result$data['pageCount'] = l$pageCount;
+    }
+    if (_$data.containsKey('pageNumber')) {
+      final l$pageNumber = pageNumber;
+      result$data['pageNumber'] = l$pageNumber;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$UserOrders<Variables$Query$UserOrders>
+      get copyWith => CopyWith$Variables$Query$UserOrders(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$UserOrders ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$filters = filters;
+    final lOther$filters = other.filters;
+    if (_$data.containsKey('filters') != other._$data.containsKey('filters')) {
+      return false;
+    }
+    if (l$filters != lOther$filters) {
+      return false;
+    }
+    final l$pageCount = pageCount;
+    final lOther$pageCount = other.pageCount;
+    if (_$data.containsKey('pageCount') !=
+        other._$data.containsKey('pageCount')) {
+      return false;
+    }
+    if (l$pageCount != lOther$pageCount) {
+      return false;
+    }
+    final l$pageNumber = pageNumber;
+    final lOther$pageNumber = other.pageNumber;
+    if (_$data.containsKey('pageNumber') !=
+        other._$data.containsKey('pageNumber')) {
+      return false;
+    }
+    if (l$pageNumber != lOther$pageNumber) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$filters = filters;
+    final l$pageCount = pageCount;
+    final l$pageNumber = pageNumber;
+    return Object.hashAll([
+      _$data.containsKey('filters') ? l$filters : const {},
+      _$data.containsKey('pageCount') ? l$pageCount : const {},
+      _$data.containsKey('pageNumber') ? l$pageNumber : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$UserOrders<TRes> {
+  factory CopyWith$Variables$Query$UserOrders(
+    Variables$Query$UserOrders instance,
+    TRes Function(Variables$Query$UserOrders) then,
+  ) = _CopyWithImpl$Variables$Query$UserOrders;
+
+  factory CopyWith$Variables$Query$UserOrders.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$UserOrders;
+
+  TRes call({
+    Input$OrderFiltersInput? filters,
+    int? pageCount,
+    int? pageNumber,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$UserOrders<TRes>
+    implements CopyWith$Variables$Query$UserOrders<TRes> {
+  _CopyWithImpl$Variables$Query$UserOrders(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$UserOrders _instance;
+
+  final TRes Function(Variables$Query$UserOrders) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? filters = _undefined,
+    Object? pageCount = _undefined,
+    Object? pageNumber = _undefined,
+  }) =>
+      _then(Variables$Query$UserOrders._({
+        ..._instance._$data,
+        if (filters != _undefined)
+          'filters': (filters as Input$OrderFiltersInput?),
+        if (pageCount != _undefined) 'pageCount': (pageCount as int?),
+        if (pageNumber != _undefined) 'pageNumber': (pageNumber as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$UserOrders<TRes>
+    implements CopyWith$Variables$Query$UserOrders<TRes> {
+  _CopyWithStubImpl$Variables$Query$UserOrders(this._res);
+
+  TRes _res;
+
+  call({
+    Input$OrderFiltersInput? filters,
+    int? pageCount,
+    int? pageNumber,
+  }) =>
+      _res;
+}
+
+class Query$UserOrders {
+  Query$UserOrders({
+    this.userOrders,
+    this.userOrdersTotalNumber,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$UserOrders.fromJson(Map<String, dynamic> json) {
+    final l$userOrders = json['userOrders'];
+    final l$userOrdersTotalNumber = json['userOrdersTotalNumber'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders(
+      userOrders: (l$userOrders as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$UserOrders$userOrders.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      userOrdersTotalNumber: (l$userOrdersTotalNumber as int?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$UserOrders$userOrders?>? userOrders;
+
+  final int? userOrdersTotalNumber;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userOrders = userOrders;
+    _resultData['userOrders'] = l$userOrders?.map((e) => e?.toJson()).toList();
+    final l$userOrdersTotalNumber = userOrdersTotalNumber;
+    _resultData['userOrdersTotalNumber'] = l$userOrdersTotalNumber;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userOrders = userOrders;
+    final l$userOrdersTotalNumber = userOrdersTotalNumber;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userOrders == null ? null : Object.hashAll(l$userOrders.map((v) => v)),
+      l$userOrdersTotalNumber,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userOrders = userOrders;
+    final lOther$userOrders = other.userOrders;
+    if (l$userOrders != null && lOther$userOrders != null) {
+      if (l$userOrders.length != lOther$userOrders.length) {
+        return false;
+      }
+      for (int i = 0; i < l$userOrders.length; i++) {
+        final l$userOrders$entry = l$userOrders[i];
+        final lOther$userOrders$entry = lOther$userOrders[i];
+        if (l$userOrders$entry != lOther$userOrders$entry) {
+          return false;
+        }
+      }
+    } else if (l$userOrders != lOther$userOrders) {
+      return false;
+    }
+    final l$userOrdersTotalNumber = userOrdersTotalNumber;
+    final lOther$userOrdersTotalNumber = other.userOrdersTotalNumber;
+    if (l$userOrdersTotalNumber != lOther$userOrdersTotalNumber) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders on Query$UserOrders {
+  CopyWith$Query$UserOrders<Query$UserOrders> get copyWith =>
+      CopyWith$Query$UserOrders(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$UserOrders<TRes> {
+  factory CopyWith$Query$UserOrders(
+    Query$UserOrders instance,
+    TRes Function(Query$UserOrders) then,
+  ) = _CopyWithImpl$Query$UserOrders;
+
+  factory CopyWith$Query$UserOrders.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders;
+
+  TRes call({
+    List<Query$UserOrders$userOrders?>? userOrders,
+    int? userOrdersTotalNumber,
+    String? $__typename,
+  });
+  TRes userOrders(
+      Iterable<Query$UserOrders$userOrders?>? Function(
+              Iterable<
+                  CopyWith$Query$UserOrders$userOrders<
+                      Query$UserOrders$userOrders>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$UserOrders<TRes>
+    implements CopyWith$Query$UserOrders<TRes> {
+  _CopyWithImpl$Query$UserOrders(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders _instance;
+
+  final TRes Function(Query$UserOrders) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userOrders = _undefined,
+    Object? userOrdersTotalNumber = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders(
+        userOrders: userOrders == _undefined
+            ? _instance.userOrders
+            : (userOrders as List<Query$UserOrders$userOrders?>?),
+        userOrdersTotalNumber: userOrdersTotalNumber == _undefined
+            ? _instance.userOrdersTotalNumber
+            : (userOrdersTotalNumber as int?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes userOrders(
+          Iterable<Query$UserOrders$userOrders?>? Function(
+                  Iterable<
+                      CopyWith$Query$UserOrders$userOrders<
+                          Query$UserOrders$userOrders>?>?)
+              _fn) =>
+      call(
+          userOrders: _fn(_instance.userOrders?.map((e) => e == null
+              ? null
+              : CopyWith$Query$UserOrders$userOrders(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$UserOrders<TRes>
+    implements CopyWith$Query$UserOrders<TRes> {
+  _CopyWithStubImpl$Query$UserOrders(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$UserOrders$userOrders?>? userOrders,
+    int? userOrdersTotalNumber,
+    String? $__typename,
+  }) =>
+      _res;
+
+  userOrders(_fn) => _res;
+}
+
+const documentNodeQueryUserOrders = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'UserOrders'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'filters')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'OrderFiltersInput'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageCount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'pageNumber')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userOrders'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'filters'),
+            value: VariableNode(name: NameNode(value: 'filters')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageCount'),
+            value: VariableNode(name: NameNode(value: 'pageCount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'pageNumber'),
+            value: VariableNode(name: NameNode(value: 'pageNumber')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'priceTotal'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'paymentSet'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'order'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'createdAt'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'priceTotal'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'user'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'username'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'thumbnailUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'bio'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'displayName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'email'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'firstName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'gender'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'isVerified'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'lastName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'product'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'color'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'condition'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'createdAt'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'customBrand'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'description'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'discountPrice'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'imagesUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'status'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'brand'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                            name: NameNode(value: 'id'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: 'name'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                        ]),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'category'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                            name: NameNode(value: 'id'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: 'name'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                        ]),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'likes'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'isFeatured'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'materials'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                            name: NameNode(value: 'id'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: 'name'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                          FieldNode(
+                            name: NameNode(value: '__typename'),
+                            alias: null,
+                            arguments: [],
+                            directives: [],
+                            selectionSet: null,
+                          ),
+                        ]),
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'price'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'parcelSize'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'views'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'quantity'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'shippingFee'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'status'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'updatedAt'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'paymentAmount'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'paymentIntentId'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'paymentMethod'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'paymentRef'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'paymentStatus'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updatedAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'status'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'shippingFee'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'quantity'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'userOrdersTotalNumber'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$UserOrders _parserFn$Query$UserOrders(Map<String, dynamic> data) =>
+    Query$UserOrders.fromJson(data);
+typedef OnQueryComplete$Query$UserOrders = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$UserOrders?,
+);
+
+class Options$Query$UserOrders extends graphql.QueryOptions<Query$UserOrders> {
+  Options$Query$UserOrders({
+    String? operationName,
+    Variables$Query$UserOrders? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserOrders? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$UserOrders? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$UserOrders(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryUserOrders,
+          parserFn: _parserFn$Query$UserOrders,
+        );
+
+  final OnQueryComplete$Query$UserOrders? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$UserOrders
+    extends graphql.WatchQueryOptions<Query$UserOrders> {
+  WatchOptions$Query$UserOrders({
+    String? operationName,
+    Variables$Query$UserOrders? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$UserOrders? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryUserOrders,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$UserOrders,
+        );
+}
+
+class FetchMoreOptions$Query$UserOrders extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$UserOrders({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$UserOrders? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryUserOrders,
+        );
+}
+
+extension ClientExtension$Query$UserOrders on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$UserOrders>> query$UserOrders(
+          [Options$Query$UserOrders? options]) async =>
+      await this.query(options ?? Options$Query$UserOrders());
+  graphql.ObservableQuery<Query$UserOrders> watchQuery$UserOrders(
+          [WatchOptions$Query$UserOrders? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$UserOrders());
+  void writeQuery$UserOrders({
+    required Query$UserOrders data,
+    Variables$Query$UserOrders? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryUserOrders),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$UserOrders? readQuery$UserOrders({
+    Variables$Query$UserOrders? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryUserOrders),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$UserOrders.fromJson(result);
+  }
+}
+
+class Query$UserOrders$userOrders {
+  Query$UserOrders$userOrders({
+    required this.createdAt,
+    required this.id,
+    required this.priceTotal,
+    required this.paymentSet,
+    required this.updatedAt,
+    this.status,
+    required this.shippingFee,
+    required this.quantity,
+    this.$__typename = 'OrderType',
+  });
+
+  factory Query$UserOrders$userOrders.fromJson(Map<String, dynamic> json) {
+    final l$createdAt = json['createdAt'];
+    final l$id = json['id'];
+    final l$priceTotal = json['priceTotal'];
+    final l$paymentSet = json['paymentSet'];
+    final l$updatedAt = json['updatedAt'];
+    final l$status = json['status'];
+    final l$shippingFee = json['shippingFee'];
+    final l$quantity = json['quantity'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders(
+      createdAt: DateTime.parse((l$createdAt as String)),
+      id: (l$id as String),
+      priceTotal: (l$priceTotal as String),
+      paymentSet: (l$paymentSet as List<dynamic>)
+          .map((e) => Query$UserOrders$userOrders$paymentSet.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      status: l$status == null
+          ? null
+          : fromJson$Enum$OrderStatusEnum((l$status as String)),
+      shippingFee: (l$shippingFee as String),
+      quantity: (l$quantity as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final DateTime createdAt;
+
+  final String id;
+
+  final String priceTotal;
+
+  final List<Query$UserOrders$userOrders$paymentSet> paymentSet;
+
+  final DateTime updatedAt;
+
+  final Enum$OrderStatusEnum? status;
+
+  final String shippingFee;
+
+  final int quantity;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$priceTotal = priceTotal;
+    _resultData['priceTotal'] = l$priceTotal;
+    final l$paymentSet = paymentSet;
+    _resultData['paymentSet'] = l$paymentSet.map((e) => e.toJson()).toList();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$status = status;
+    _resultData['status'] =
+        l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+    final l$shippingFee = shippingFee;
+    _resultData['shippingFee'] = l$shippingFee;
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$priceTotal = priceTotal;
+    final l$paymentSet = paymentSet;
+    final l$updatedAt = updatedAt;
+    final l$status = status;
+    final l$shippingFee = shippingFee;
+    final l$quantity = quantity;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createdAt,
+      l$id,
+      l$priceTotal,
+      Object.hashAll(l$paymentSet.map((v) => v)),
+      l$updatedAt,
+      l$status,
+      l$shippingFee,
+      l$quantity,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$priceTotal = priceTotal;
+    final lOther$priceTotal = other.priceTotal;
+    if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$paymentSet = paymentSet;
+    final lOther$paymentSet = other.paymentSet;
+    if (l$paymentSet.length != lOther$paymentSet.length) {
+      return false;
+    }
+    for (int i = 0; i < l$paymentSet.length; i++) {
+      final l$paymentSet$entry = l$paymentSet[i];
+      final lOther$paymentSet$entry = lOther$paymentSet[i];
+      if (l$paymentSet$entry != lOther$paymentSet$entry) {
+        return false;
+      }
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$shippingFee = shippingFee;
+    final lOther$shippingFee = other.shippingFee;
+    if (l$shippingFee != lOther$shippingFee) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders
+    on Query$UserOrders$userOrders {
+  CopyWith$Query$UserOrders$userOrders<Query$UserOrders$userOrders>
+      get copyWith => CopyWith$Query$UserOrders$userOrders(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders(
+    Query$UserOrders$userOrders instance,
+    TRes Function(Query$UserOrders$userOrders) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders;
+
+  factory CopyWith$Query$UserOrders$userOrders.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders;
+
+  TRes call({
+    DateTime? createdAt,
+    String? id,
+    String? priceTotal,
+    List<Query$UserOrders$userOrders$paymentSet>? paymentSet,
+    DateTime? updatedAt,
+    Enum$OrderStatusEnum? status,
+    String? shippingFee,
+    int? quantity,
+    String? $__typename,
+  });
+  TRes paymentSet(
+      Iterable<Query$UserOrders$userOrders$paymentSet> Function(
+              Iterable<
+                  CopyWith$Query$UserOrders$userOrders$paymentSet<
+                      Query$UserOrders$userOrders$paymentSet>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
+    implements CopyWith$Query$UserOrders$userOrders<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders _instance;
+
+  final TRes Function(Query$UserOrders$userOrders) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createdAt = _undefined,
+    Object? id = _undefined,
+    Object? priceTotal = _undefined,
+    Object? paymentSet = _undefined,
+    Object? updatedAt = _undefined,
+    Object? status = _undefined,
+    Object? shippingFee = _undefined,
+    Object? quantity = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders(
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        priceTotal: priceTotal == _undefined || priceTotal == null
+            ? _instance.priceTotal
+            : (priceTotal as String),
+        paymentSet: paymentSet == _undefined || paymentSet == null
+            ? _instance.paymentSet
+            : (paymentSet as List<Query$UserOrders$userOrders$paymentSet>),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        status: status == _undefined
+            ? _instance.status
+            : (status as Enum$OrderStatusEnum?),
+        shippingFee: shippingFee == _undefined || shippingFee == null
+            ? _instance.shippingFee
+            : (shippingFee as String),
+        quantity: quantity == _undefined || quantity == null
+            ? _instance.quantity
+            : (quantity as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes paymentSet(
+          Iterable<Query$UserOrders$userOrders$paymentSet> Function(
+                  Iterable<
+                      CopyWith$Query$UserOrders$userOrders$paymentSet<
+                          Query$UserOrders$userOrders$paymentSet>>)
+              _fn) =>
+      call(
+          paymentSet: _fn(_instance.paymentSet
+              .map((e) => CopyWith$Query$UserOrders$userOrders$paymentSet(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders<TRes>
+    implements CopyWith$Query$UserOrders$userOrders<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders(this._res);
+
+  TRes _res;
+
+  call({
+    DateTime? createdAt,
+    String? id,
+    String? priceTotal,
+    List<Query$UserOrders$userOrders$paymentSet>? paymentSet,
+    DateTime? updatedAt,
+    Enum$OrderStatusEnum? status,
+    String? shippingFee,
+    int? quantity,
+    String? $__typename,
+  }) =>
+      _res;
+
+  paymentSet(_fn) => _res;
+}
+
+class Query$UserOrders$userOrders$paymentSet {
+  Query$UserOrders$userOrders$paymentSet({
+    required this.createdAt,
+    required this.id,
+    required this.order,
+    required this.paymentAmount,
+    this.paymentIntentId,
+    required this.paymentMethod,
+    this.paymentRef,
+    required this.paymentStatus,
+    required this.updatedAt,
+    this.$__typename = 'PaymentType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet.fromJson(
+      Map<String, dynamic> json) {
+    final l$createdAt = json['createdAt'];
+    final l$id = json['id'];
+    final l$order = json['order'];
+    final l$paymentAmount = json['paymentAmount'];
+    final l$paymentIntentId = json['paymentIntentId'];
+    final l$paymentMethod = json['paymentMethod'];
+    final l$paymentRef = json['paymentRef'];
+    final l$paymentStatus = json['paymentStatus'];
+    final l$updatedAt = json['updatedAt'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet(
+      createdAt: DateTime.parse((l$createdAt as String)),
+      id: (l$id as String),
+      order: Query$UserOrders$userOrders$paymentSet$order.fromJson(
+          (l$order as Map<String, dynamic>)),
+      paymentAmount: (l$paymentAmount as String),
+      paymentIntentId: (l$paymentIntentId as String?),
+      paymentMethod: fromJson$Enum$PaymentsPaymentPaymentMethodChoices(
+          (l$paymentMethod as String)),
+      paymentRef: (l$paymentRef as String?),
+      paymentStatus: fromJson$Enum$PaymentsPaymentPaymentStatusChoices(
+          (l$paymentStatus as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final DateTime createdAt;
+
+  final String id;
+
+  final Query$UserOrders$userOrders$paymentSet$order order;
+
+  final String paymentAmount;
+
+  final String? paymentIntentId;
+
+  final Enum$PaymentsPaymentPaymentMethodChoices paymentMethod;
+
+  final String? paymentRef;
+
+  final Enum$PaymentsPaymentPaymentStatusChoices paymentStatus;
+
+  final DateTime updatedAt;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$order = order;
+    _resultData['order'] = l$order.toJson();
+    final l$paymentAmount = paymentAmount;
+    _resultData['paymentAmount'] = l$paymentAmount;
+    final l$paymentIntentId = paymentIntentId;
+    _resultData['paymentIntentId'] = l$paymentIntentId;
+    final l$paymentMethod = paymentMethod;
+    _resultData['paymentMethod'] =
+        toJson$Enum$PaymentsPaymentPaymentMethodChoices(l$paymentMethod);
+    final l$paymentRef = paymentRef;
+    _resultData['paymentRef'] = l$paymentRef;
+    final l$paymentStatus = paymentStatus;
+    _resultData['paymentStatus'] =
+        toJson$Enum$PaymentsPaymentPaymentStatusChoices(l$paymentStatus);
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$order = order;
+    final l$paymentAmount = paymentAmount;
+    final l$paymentIntentId = paymentIntentId;
+    final l$paymentMethod = paymentMethod;
+    final l$paymentRef = paymentRef;
+    final l$paymentStatus = paymentStatus;
+    final l$updatedAt = updatedAt;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createdAt,
+      l$id,
+      l$order,
+      l$paymentAmount,
+      l$paymentIntentId,
+      l$paymentMethod,
+      l$paymentRef,
+      l$paymentStatus,
+      l$updatedAt,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$paymentSet ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$order = order;
+    final lOther$order = other.order;
+    if (l$order != lOther$order) {
+      return false;
+    }
+    final l$paymentAmount = paymentAmount;
+    final lOther$paymentAmount = other.paymentAmount;
+    if (l$paymentAmount != lOther$paymentAmount) {
+      return false;
+    }
+    final l$paymentIntentId = paymentIntentId;
+    final lOther$paymentIntentId = other.paymentIntentId;
+    if (l$paymentIntentId != lOther$paymentIntentId) {
+      return false;
+    }
+    final l$paymentMethod = paymentMethod;
+    final lOther$paymentMethod = other.paymentMethod;
+    if (l$paymentMethod != lOther$paymentMethod) {
+      return false;
+    }
+    final l$paymentRef = paymentRef;
+    final lOther$paymentRef = other.paymentRef;
+    if (l$paymentRef != lOther$paymentRef) {
+      return false;
+    }
+    final l$paymentStatus = paymentStatus;
+    final lOther$paymentStatus = other.paymentStatus;
+    if (l$paymentStatus != lOther$paymentStatus) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet
+    on Query$UserOrders$userOrders$paymentSet {
+  CopyWith$Query$UserOrders$userOrders$paymentSet<
+          Query$UserOrders$userOrders$paymentSet>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$paymentSet(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet(
+    Query$UserOrders$userOrders$paymentSet instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet;
+
+  TRes call({
+    DateTime? createdAt,
+    String? id,
+    Query$UserOrders$userOrders$paymentSet$order? order,
+    String? paymentAmount,
+    String? paymentIntentId,
+    Enum$PaymentsPaymentPaymentMethodChoices? paymentMethod,
+    String? paymentRef,
+    Enum$PaymentsPaymentPaymentStatusChoices? paymentStatus,
+    DateTime? updatedAt,
+    String? $__typename,
+  });
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> get order;
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$paymentSet<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$paymentSet) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createdAt = _undefined,
+    Object? id = _undefined,
+    Object? order = _undefined,
+    Object? paymentAmount = _undefined,
+    Object? paymentIntentId = _undefined,
+    Object? paymentMethod = _undefined,
+    Object? paymentRef = _undefined,
+    Object? paymentStatus = _undefined,
+    Object? updatedAt = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet(
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        order: order == _undefined || order == null
+            ? _instance.order
+            : (order as Query$UserOrders$userOrders$paymentSet$order),
+        paymentAmount: paymentAmount == _undefined || paymentAmount == null
+            ? _instance.paymentAmount
+            : (paymentAmount as String),
+        paymentIntentId: paymentIntentId == _undefined
+            ? _instance.paymentIntentId
+            : (paymentIntentId as String?),
+        paymentMethod: paymentMethod == _undefined || paymentMethod == null
+            ? _instance.paymentMethod
+            : (paymentMethod as Enum$PaymentsPaymentPaymentMethodChoices),
+        paymentRef: paymentRef == _undefined
+            ? _instance.paymentRef
+            : (paymentRef as String?),
+        paymentStatus: paymentStatus == _undefined || paymentStatus == null
+            ? _instance.paymentStatus
+            : (paymentStatus as Enum$PaymentsPaymentPaymentStatusChoices),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> get order {
+    final local$order = _instance.order;
+    return CopyWith$Query$UserOrders$userOrders$paymentSet$order(
+        local$order, (e) => call(order: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$paymentSet<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet(this._res);
+
+  TRes _res;
+
+  call({
+    DateTime? createdAt,
+    String? id,
+    Query$UserOrders$userOrders$paymentSet$order? order,
+    String? paymentAmount,
+    String? paymentIntentId,
+    Enum$PaymentsPaymentPaymentMethodChoices? paymentMethod,
+    String? paymentRef,
+    Enum$PaymentsPaymentPaymentStatusChoices? paymentStatus,
+    DateTime? updatedAt,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> get order =>
+      CopyWith$Query$UserOrders$userOrders$paymentSet$order.stub(_res);
+}
+
+class Query$UserOrders$userOrders$paymentSet$order {
+  Query$UserOrders$userOrders$paymentSet$order({
+    required this.createdAt,
+    required this.id,
+    required this.priceTotal,
+    this.user,
+    this.product,
+    required this.quantity,
+    required this.shippingFee,
+    this.status,
+    required this.updatedAt,
+    this.$__typename = 'OrderType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order.fromJson(
+      Map<String, dynamic> json) {
+    final l$createdAt = json['createdAt'];
+    final l$id = json['id'];
+    final l$priceTotal = json['priceTotal'];
+    final l$user = json['user'];
+    final l$product = json['product'];
+    final l$quantity = json['quantity'];
+    final l$shippingFee = json['shippingFee'];
+    final l$status = json['status'];
+    final l$updatedAt = json['updatedAt'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order(
+      createdAt: DateTime.parse((l$createdAt as String)),
+      id: (l$id as String),
+      priceTotal: (l$priceTotal as String),
+      user: l$user == null
+          ? null
+          : Query$UserOrders$userOrders$paymentSet$order$user.fromJson(
+              (l$user as Map<String, dynamic>)),
+      product: l$product == null
+          ? null
+          : Query$UserOrders$userOrders$paymentSet$order$product.fromJson(
+              (l$product as Map<String, dynamic>)),
+      quantity: (l$quantity as int),
+      shippingFee: (l$shippingFee as String),
+      status: l$status == null
+          ? null
+          : fromJson$Enum$OrderStatusEnum((l$status as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final DateTime createdAt;
+
+  final String id;
+
+  final String priceTotal;
+
+  final Query$UserOrders$userOrders$paymentSet$order$user? user;
+
+  final Query$UserOrders$userOrders$paymentSet$order$product? product;
+
+  final int quantity;
+
+  final String shippingFee;
+
+  final Enum$OrderStatusEnum? status;
+
+  final DateTime updatedAt;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$priceTotal = priceTotal;
+    _resultData['priceTotal'] = l$priceTotal;
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
+    final l$product = product;
+    _resultData['product'] = l$product?.toJson();
+    final l$quantity = quantity;
+    _resultData['quantity'] = l$quantity;
+    final l$shippingFee = shippingFee;
+    _resultData['shippingFee'] = l$shippingFee;
+    final l$status = status;
+    _resultData['status'] =
+        l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createdAt = createdAt;
+    final l$id = id;
+    final l$priceTotal = priceTotal;
+    final l$user = user;
+    final l$product = product;
+    final l$quantity = quantity;
+    final l$shippingFee = shippingFee;
+    final l$status = status;
+    final l$updatedAt = updatedAt;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createdAt,
+      l$id,
+      l$priceTotal,
+      l$user,
+      l$product,
+      l$quantity,
+      l$shippingFee,
+      l$status,
+      l$updatedAt,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$paymentSet$order ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$priceTotal = priceTotal;
+    final lOther$priceTotal = other.priceTotal;
+    if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
+      return false;
+    }
+    final l$product = product;
+    final lOther$product = other.product;
+    if (l$product != lOther$product) {
+      return false;
+    }
+    final l$quantity = quantity;
+    final lOther$quantity = other.quantity;
+    if (l$quantity != lOther$quantity) {
+      return false;
+    }
+    final l$shippingFee = shippingFee;
+    final lOther$shippingFee = other.shippingFee;
+    if (l$shippingFee != lOther$shippingFee) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order
+    on Query$UserOrders$userOrders$paymentSet$order {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order<
+          Query$UserOrders$userOrders$paymentSet$order>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$paymentSet$order(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order(
+    Query$UserOrders$userOrders$paymentSet$order instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet$order) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order;
+
+  TRes call({
+    DateTime? createdAt,
+    String? id,
+    String? priceTotal,
+    Query$UserOrders$userOrders$paymentSet$order$user? user,
+    Query$UserOrders$userOrders$paymentSet$order$product? product,
+    int? quantity,
+    String? shippingFee,
+    Enum$OrderStatusEnum? status,
+    DateTime? updatedAt,
+    String? $__typename,
+  });
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<TRes> get user;
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<TRes>
+      get product;
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$paymentSet$order) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createdAt = _undefined,
+    Object? id = _undefined,
+    Object? priceTotal = _undefined,
+    Object? user = _undefined,
+    Object? product = _undefined,
+    Object? quantity = _undefined,
+    Object? shippingFee = _undefined,
+    Object? status = _undefined,
+    Object? updatedAt = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order(
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        priceTotal: priceTotal == _undefined || priceTotal == null
+            ? _instance.priceTotal
+            : (priceTotal as String),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Query$UserOrders$userOrders$paymentSet$order$user?),
+        product: product == _undefined
+            ? _instance.product
+            : (product
+                as Query$UserOrders$userOrders$paymentSet$order$product?),
+        quantity: quantity == _undefined || quantity == null
+            ? _instance.quantity
+            : (quantity as int),
+        shippingFee: shippingFee == _undefined || shippingFee == null
+            ? _instance.shippingFee
+            : (shippingFee as String),
+        status: status == _undefined
+            ? _instance.status
+            : (status as Enum$OrderStatusEnum?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Query$UserOrders$userOrders$paymentSet$order$user.stub(
+            _then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$paymentSet$order$user(
+            local$user, (e) => call(user: e));
+  }
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<TRes>
+      get product {
+    final local$product = _instance.product;
+    return local$product == null
+        ? CopyWith$Query$UserOrders$userOrders$paymentSet$order$product.stub(
+            _then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$paymentSet$order$product(
+            local$product, (e) => call(product: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$paymentSet$order<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order(this._res);
+
+  TRes _res;
+
+  call({
+    DateTime? createdAt,
+    String? id,
+    String? priceTotal,
+    Query$UserOrders$userOrders$paymentSet$order$user? user,
+    Query$UserOrders$userOrders$paymentSet$order$product? product,
+    int? quantity,
+    String? shippingFee,
+    Enum$OrderStatusEnum? status,
+    DateTime? updatedAt,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<TRes> get user =>
+      CopyWith$Query$UserOrders$userOrders$paymentSet$order$user.stub(_res);
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<TRes>
+      get product =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product.stub(
+              _res);
+}
+
+class Query$UserOrders$userOrders$paymentSet$order$user {
+  Query$UserOrders$userOrders$paymentSet$order$user({
+    required this.username,
+    this.thumbnailUrl,
+    this.bio,
+    this.displayName,
+    this.email,
+    required this.firstName,
+    this.gender,
+    required this.isVerified,
+    this.lastName,
+    this.$__typename = 'UserNode',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order$user.fromJson(
+      Map<String, dynamic> json) {
+    final l$username = json['username'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$bio = json['bio'];
+    final l$displayName = json['displayName'];
+    final l$email = json['email'];
+    final l$firstName = json['firstName'];
+    final l$gender = json['gender'];
+    final l$isVerified = json['isVerified'];
+    final l$lastName = json['lastName'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order$user(
+      username: (l$username as String),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      bio: (l$bio as String?),
+      displayName: (l$displayName as String?),
+      email: (l$email as String?),
+      firstName: (l$firstName as String),
+      gender: l$gender == null
+          ? null
+          : fromJson$Enum$AccountsUserGenderChoices((l$gender as String)),
+      isVerified: (l$isVerified as bool),
+      lastName: (l$lastName as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String username;
+
+  final String? thumbnailUrl;
+
+  final String? bio;
+
+  final String? displayName;
+
+  final String? email;
+
+  final String firstName;
+
+  final Enum$AccountsUserGenderChoices? gender;
+
+  final bool isVerified;
+
+  final String? lastName;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$bio = bio;
+    _resultData['bio'] = l$bio;
+    final l$displayName = displayName;
+    _resultData['displayName'] = l$displayName;
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$firstName = firstName;
+    _resultData['firstName'] = l$firstName;
+    final l$gender = gender;
+    _resultData['gender'] = l$gender == null
+        ? null
+        : toJson$Enum$AccountsUserGenderChoices(l$gender);
+    final l$isVerified = isVerified;
+    _resultData['isVerified'] = l$isVerified;
+    final l$lastName = lastName;
+    _resultData['lastName'] = l$lastName;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$username = username;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$bio = bio;
+    final l$displayName = displayName;
+    final l$email = email;
+    final l$firstName = firstName;
+    final l$gender = gender;
+    final l$isVerified = isVerified;
+    final l$lastName = lastName;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$username,
+      l$thumbnailUrl,
+      l$bio,
+      l$displayName,
+      l$email,
+      l$firstName,
+      l$gender,
+      l$isVerified,
+      l$lastName,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$paymentSet$order$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$bio = bio;
+    final lOther$bio = other.bio;
+    if (l$bio != lOther$bio) {
+      return false;
+    }
+    final l$displayName = displayName;
+    final lOther$displayName = other.displayName;
+    if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$firstName = firstName;
+    final lOther$firstName = other.firstName;
+    if (l$firstName != lOther$firstName) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$isVerified = isVerified;
+    final lOther$isVerified = other.isVerified;
+    if (l$isVerified != lOther$isVerified) {
+      return false;
+    }
+    final l$lastName = lastName;
+    final lOther$lastName = other.lastName;
+    if (l$lastName != lOther$lastName) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order$user
+    on Query$UserOrders$userOrders$paymentSet$order$user {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<
+          Query$UserOrders$userOrders$paymentSet$order$user>
+      get copyWith =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<
+    TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$user(
+    Query$UserOrders$userOrders$paymentSet$order$user instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet$order$user) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$user;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$user.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$user;
+
+  TRes call({
+    String? username,
+    String? thumbnailUrl,
+    String? bio,
+    String? displayName,
+    String? email,
+    String? firstName,
+    Enum$AccountsUserGenderChoices? gender,
+    bool? isVerified,
+    String? lastName,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$user<TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$user(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order$user _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$paymentSet$order$user) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? username = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? bio = _undefined,
+    Object? displayName = _undefined,
+    Object? email = _undefined,
+    Object? firstName = _undefined,
+    Object? gender = _undefined,
+    Object? isVerified = _undefined,
+    Object? lastName = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order$user(
+        username: username == _undefined || username == null
+            ? _instance.username
+            : (username as String),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        bio: bio == _undefined ? _instance.bio : (bio as String?),
+        displayName: displayName == _undefined
+            ? _instance.displayName
+            : (displayName as String?),
+        email: email == _undefined ? _instance.email : (email as String?),
+        firstName: firstName == _undefined || firstName == null
+            ? _instance.firstName
+            : (firstName as String),
+        gender: gender == _undefined
+            ? _instance.gender
+            : (gender as Enum$AccountsUserGenderChoices?),
+        isVerified: isVerified == _undefined || isVerified == null
+            ? _instance.isVerified
+            : (isVerified as bool),
+        lastName:
+            lastName == _undefined ? _instance.lastName : (lastName as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$user<TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$user<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$user(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? username,
+    String? thumbnailUrl,
+    String? bio,
+    String? displayName,
+    String? email,
+    String? firstName,
+    Enum$AccountsUserGenderChoices? gender,
+    bool? isVerified,
+    String? lastName,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserOrders$userOrders$paymentSet$order$product {
+  Query$UserOrders$userOrders$paymentSet$order$product({
+    required this.color,
+    this.condition,
+    required this.createdAt,
+    this.customBrand,
+    required this.description,
+    required this.discountPrice,
+    required this.id,
+    required this.imagesUrl,
+    required this.name,
+    required this.status,
+    this.brand,
+    this.category,
+    required this.likes,
+    required this.isFeatured,
+    this.materials,
+    this.price,
+    this.parcelSize,
+    required this.views,
+    this.$__typename = 'ProductType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order$product.fromJson(
+      Map<String, dynamic> json) {
+    final l$color = json['color'];
+    final l$condition = json['condition'];
+    final l$createdAt = json['createdAt'];
+    final l$customBrand = json['customBrand'];
+    final l$description = json['description'];
+    final l$discountPrice = json['discountPrice'];
+    final l$id = json['id'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$name = json['name'];
+    final l$status = json['status'];
+    final l$brand = json['brand'];
+    final l$category = json['category'];
+    final l$likes = json['likes'];
+    final l$isFeatured = json['isFeatured'];
+    final l$materials = json['materials'];
+    final l$price = json['price'];
+    final l$parcelSize = json['parcelSize'];
+    final l$views = json['views'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order$product(
+      color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
+      condition: l$condition == null
+          ? null
+          : fromJson$Enum$ProductsProductConditionChoices(
+              (l$condition as String)),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      customBrand: (l$customBrand as String?),
+      description: (l$description as String),
+      discountPrice: (l$discountPrice as String),
+      id: (l$id as String),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      name: (l$name as String),
+      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
+      brand: l$brand == null
+          ? null
+          : Query$UserOrders$userOrders$paymentSet$order$product$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
+      category: l$category == null
+          ? null
+          : Query$UserOrders$userOrders$paymentSet$order$product$category
+              .fromJson((l$category as Map<String, dynamic>)),
+      likes: (l$likes as int),
+      isFeatured: (l$isFeatured as bool),
+      materials: (l$materials as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$UserOrders$userOrders$paymentSet$order$product$materials
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      price: (l$price as num?)?.toDouble(),
+      parcelSize: l$parcelSize == null
+          ? null
+          : fromJson$Enum$ProductsProductParcelSizeChoices(
+              (l$parcelSize as String)),
+      views: (l$views as int),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<String> color;
+
+  final Enum$ProductsProductConditionChoices? condition;
+
+  final DateTime createdAt;
+
+  final String? customBrand;
+
+  final String description;
+
+  final String discountPrice;
+
+  final String id;
+
+  final List<String> imagesUrl;
+
+  final String name;
+
+  final Enum$ProductsProductStatusChoices status;
+
+  final Query$UserOrders$userOrders$paymentSet$order$product$brand? brand;
+
+  final Query$UserOrders$userOrders$paymentSet$order$product$category? category;
+
+  final int likes;
+
+  final bool isFeatured;
+
+  final List<Query$UserOrders$userOrders$paymentSet$order$product$materials?>?
+      materials;
+
+  final double? price;
+
+  final Enum$ProductsProductParcelSizeChoices? parcelSize;
+
+  final int views;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$color = color;
+    _resultData['color'] = l$color.map((e) => e).toList();
+    final l$condition = condition;
+    _resultData['condition'] = l$condition == null
+        ? null
+        : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$customBrand = customBrand;
+    _resultData['customBrand'] = l$customBrand;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
+    final l$category = category;
+    _resultData['category'] = l$category?.toJson();
+    final l$likes = likes;
+    _resultData['likes'] = l$likes;
+    final l$isFeatured = isFeatured;
+    _resultData['isFeatured'] = l$isFeatured;
+    final l$materials = materials;
+    _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$parcelSize = parcelSize;
+    _resultData['parcelSize'] = l$parcelSize == null
+        ? null
+        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
+    final l$views = views;
+    _resultData['views'] = l$views;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$color = color;
+    final l$condition = condition;
+    final l$createdAt = createdAt;
+    final l$customBrand = customBrand;
+    final l$description = description;
+    final l$discountPrice = discountPrice;
+    final l$id = id;
+    final l$imagesUrl = imagesUrl;
+    final l$name = name;
+    final l$status = status;
+    final l$brand = brand;
+    final l$category = category;
+    final l$likes = likes;
+    final l$isFeatured = isFeatured;
+    final l$materials = materials;
+    final l$price = price;
+    final l$parcelSize = parcelSize;
+    final l$views = views;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$color.map((v) => v)),
+      l$condition,
+      l$createdAt,
+      l$customBrand,
+      l$description,
+      l$discountPrice,
+      l$id,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$name,
+      l$status,
+      l$brand,
+      l$category,
+      l$likes,
+      l$isFeatured,
+      l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
+      l$price,
+      l$parcelSize,
+      l$views,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$paymentSet$order$product ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$color = color;
+    final lOther$color = other.color;
+    if (l$color.length != lOther$color.length) {
+      return false;
+    }
+    for (int i = 0; i < l$color.length; i++) {
+      final l$color$entry = l$color[i];
+      final lOther$color$entry = lOther$color[i];
+      if (l$color$entry != lOther$color$entry) {
+        return false;
+      }
+    }
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (l$condition != lOther$condition) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$customBrand = customBrand;
+    final lOther$customBrand = other.customBrand;
+    if (l$customBrand != lOther$customBrand) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$isFeatured = isFeatured;
+    final lOther$isFeatured = other.isFeatured;
+    if (l$isFeatured != lOther$isFeatured) {
+      return false;
+    }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$parcelSize = parcelSize;
+    final lOther$parcelSize = other.parcelSize;
+    if (l$parcelSize != lOther$parcelSize) {
+      return false;
+    }
+    final l$views = views;
+    final lOther$views = other.views;
+    if (l$views != lOther$views) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order$product
+    on Query$UserOrders$userOrders$paymentSet$order$product {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<
+          Query$UserOrders$userOrders$paymentSet$order$product>
+      get copyWith =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<
+    TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product(
+    Query$UserOrders$userOrders$paymentSet$order$product instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet$order$product) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product;
+
+  TRes call({
+    List<String>? color,
+    Enum$ProductsProductConditionChoices? condition,
+    DateTime? createdAt,
+    String? customBrand,
+    String? description,
+    String? discountPrice,
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    Enum$ProductsProductStatusChoices? status,
+    Query$UserOrders$userOrders$paymentSet$order$product$brand? brand,
+    Query$UserOrders$userOrders$paymentSet$order$product$category? category,
+    int? likes,
+    bool? isFeatured,
+    List<Query$UserOrders$userOrders$paymentSet$order$product$materials?>?
+        materials,
+    double? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    String? $__typename,
+  });
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<TRes>
+      get brand;
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<TRes>
+      get category;
+  TRes materials(
+      Iterable<Query$UserOrders$userOrders$paymentSet$order$product$materials?>? Function(
+              Iterable<
+                  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+                      Query$UserOrders$userOrders$paymentSet$order$product$materials>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product<TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order$product _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$paymentSet$order$product)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? color = _undefined,
+    Object? condition = _undefined,
+    Object? createdAt = _undefined,
+    Object? customBrand = _undefined,
+    Object? description = _undefined,
+    Object? discountPrice = _undefined,
+    Object? id = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? name = _undefined,
+    Object? status = _undefined,
+    Object? brand = _undefined,
+    Object? category = _undefined,
+    Object? likes = _undefined,
+    Object? isFeatured = _undefined,
+    Object? materials = _undefined,
+    Object? price = _undefined,
+    Object? parcelSize = _undefined,
+    Object? views = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order$product(
+        color: color == _undefined || color == null
+            ? _instance.color
+            : (color as List<String>),
+        condition: condition == _undefined
+            ? _instance.condition
+            : (condition as Enum$ProductsProductConditionChoices?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        customBrand: customBrand == _undefined
+            ? _instance.customBrand
+            : (customBrand as String?),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        discountPrice: discountPrice == _undefined || discountPrice == null
+            ? _instance.discountPrice
+            : (discountPrice as String),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsProductStatusChoices),
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand
+                as Query$UserOrders$userOrders$paymentSet$order$product$brand?),
+        category: category == _undefined
+            ? _instance.category
+            : (category
+                as Query$UserOrders$userOrders$paymentSet$order$product$category?),
+        likes: likes == _undefined || likes == null
+            ? _instance.likes
+            : (likes as int),
+        isFeatured: isFeatured == _undefined || isFeatured == null
+            ? _instance.isFeatured
+            : (isFeatured as bool),
+        materials: materials == _undefined
+            ? _instance.materials
+            : (materials as List<
+                Query$UserOrders$userOrders$paymentSet$order$product$materials?>?),
+        price: price == _undefined ? _instance.price : (price as double?),
+        parcelSize: parcelSize == _undefined
+            ? _instance.parcelSize
+            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
+        views: views == _undefined || views == null
+            ? _instance.views
+            : (views as int),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<TRes>
+      get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand
+            .stub(_then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand(
+            local$brand, (e) => call(brand: e));
+  }
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<TRes>
+      get category {
+    final local$category = _instance.category;
+    return local$category == null
+        ? CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category
+            .stub(_then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category(
+            local$category, (e) => call(category: e));
+  }
+
+  TRes materials(
+          Iterable<Query$UserOrders$userOrders$paymentSet$order$product$materials?>? Function(
+                  Iterable<
+                      CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+                          Query$UserOrders$userOrders$paymentSet$order$product$materials>?>?)
+              _fn) =>
+      call(
+          materials: _fn(_instance.materials?.map((e) => e == null
+              ? null
+              : CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product(
+      this._res);
+
+  TRes _res;
+
+  call({
+    List<String>? color,
+    Enum$ProductsProductConditionChoices? condition,
+    DateTime? createdAt,
+    String? customBrand,
+    String? description,
+    String? discountPrice,
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    Enum$ProductsProductStatusChoices? status,
+    Query$UserOrders$userOrders$paymentSet$order$product$brand? brand,
+    Query$UserOrders$userOrders$paymentSet$order$product$category? category,
+    int? likes,
+    bool? isFeatured,
+    List<Query$UserOrders$userOrders$paymentSet$order$product$materials?>?
+        materials,
+    double? price,
+    Enum$ProductsProductParcelSizeChoices? parcelSize,
+    int? views,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<TRes>
+      get brand =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand
+              .stub(_res);
+
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<TRes>
+      get category =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category
+              .stub(_res);
+
+  materials(_fn) => _res;
+}
+
+class Query$UserOrders$userOrders$paymentSet$order$product$brand {
+  Query$UserOrders$userOrders$paymentSet$order$product$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order$product$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order$product$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$paymentSet$order$product$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order$product$brand
+    on Query$UserOrders$userOrders$paymentSet$order$product$brand {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+          Query$UserOrders$userOrders$paymentSet$order$product$brand>
+      get copyWith =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+    TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand(
+    Query$UserOrders$userOrders$paymentSet$order$product$brand instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet$order$product$brand)
+        then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+            TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order$product$brand _instance;
+
+  final TRes Function(
+      Query$UserOrders$userOrders$paymentSet$order$product$brand) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order$product$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$brand<
+            TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$brand(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserOrders$userOrders$paymentSet$order$product$category {
+  Query$UserOrders$userOrders$paymentSet$order$product$category({
+    this.id,
+    this.name,
+    this.$__typename = 'CategoryType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order$product$category.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order$product$category(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$UserOrders$userOrders$paymentSet$order$product$category ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order$product$category
+    on Query$UserOrders$userOrders$paymentSet$order$product$category {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<
+          Query$UserOrders$userOrders$paymentSet$order$product$category>
+      get copyWith =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<
+    TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category(
+    Query$UserOrders$userOrders$paymentSet$order$product$category instance,
+    TRes Function(Query$UserOrders$userOrders$paymentSet$order$product$category)
+        then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$category;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$category;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$category<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<
+            TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$category(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order$product$category _instance;
+
+  final TRes Function(
+      Query$UserOrders$userOrders$paymentSet$order$product$category) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order$product$category(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$category<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$category<
+            TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$category(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserOrders$userOrders$paymentSet$order$product$materials {
+  Query$UserOrders$userOrders$paymentSet$order$product$materials({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$UserOrders$userOrders$paymentSet$order$product$materials.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$paymentSet$order$product$materials(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Query$UserOrders$userOrders$paymentSet$order$product$materials ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$paymentSet$order$product$materials
+    on Query$UserOrders$userOrders$paymentSet$order$product$materials {
+  CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+          Query$UserOrders$userOrders$paymentSet$order$product$materials>
+      get copyWith =>
+          CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+    TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials(
+    Query$UserOrders$userOrders$paymentSet$order$product$materials instance,
+    TRes Function(
+            Query$UserOrders$userOrders$paymentSet$order$product$materials)
+        then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials;
+
+  factory CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+            TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$paymentSet$order$product$materials
+      _instance;
+
+  final TRes Function(
+      Query$UserOrders$userOrders$paymentSet$order$product$materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$paymentSet$order$product$materials(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+        TRes>
+    implements
+        CopyWith$Query$UserOrders$userOrders$paymentSet$order$product$materials<
+            TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$paymentSet$order$product$materials(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
 class Variables$Query$Conversation {
   factory Variables$Query$Conversation({
     required String id,
@@ -28612,6 +31909,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                   ),
                   FieldNode(
                     name: NameNode(value: 'imagesUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'status'),
                     alias: null,
                     arguments: [],
                     directives: [],
@@ -31159,6 +34463,7 @@ class Query$Conversations$conversations$offer$product {
     required this.isFeatured,
     this.userLiked,
     required this.imagesUrl,
+    required this.status,
     this.brand,
     this.category,
     this.size,
@@ -31180,6 +34485,7 @@ class Query$Conversations$conversations$offer$product {
     final l$isFeatured = json['isFeatured'];
     final l$userLiked = json['userLiked'];
     final l$imagesUrl = json['imagesUrl'];
+    final l$status = json['status'];
     final l$brand = json['brand'];
     final l$category = json['category'];
     final l$size = json['size'];
@@ -31199,6 +34505,7 @@ class Query$Conversations$conversations$offer$product {
       userLiked: (l$userLiked as bool?),
       imagesUrl:
           (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
       brand: l$brand == null
           ? null
           : Query$Conversations$conversations$offer$product$brand.fromJson(
@@ -31243,6 +34550,8 @@ class Query$Conversations$conversations$offer$product {
 
   final List<String> imagesUrl;
 
+  final Enum$ProductsProductStatusChoices status;
+
   final Query$Conversations$conversations$offer$product$brand? brand;
 
   final Query$Conversations$conversations$offer$product$category? category;
@@ -31279,6 +34588,8 @@ class Query$Conversations$conversations$offer$product {
     _resultData['userLiked'] = l$userLiked;
     final l$imagesUrl = imagesUrl;
     _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
     final l$brand = brand;
     _resultData['brand'] = l$brand?.toJson();
     final l$category = category;
@@ -31316,6 +34627,7 @@ class Query$Conversations$conversations$offer$product {
     final l$isFeatured = isFeatured;
     final l$userLiked = userLiked;
     final l$imagesUrl = imagesUrl;
+    final l$status = status;
     final l$brand = brand;
     final l$category = category;
     final l$size = size;
@@ -31334,6 +34646,7 @@ class Query$Conversations$conversations$offer$product {
       l$isFeatured,
       l$userLiked,
       Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$status,
       l$brand,
       l$category,
       l$size,
@@ -31393,6 +34706,11 @@ class Query$Conversations$conversations$offer$product {
       if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
         return false;
       }
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
     }
     final l$brand = brand;
     final lOther$brand = other.brand;
@@ -31480,6 +34798,7 @@ abstract class CopyWith$Query$Conversations$conversations$offer$product<TRes> {
     bool? isFeatured,
     bool? userLiked,
     List<String>? imagesUrl,
+    Enum$ProductsProductStatusChoices? status,
     Query$Conversations$conversations$offer$product$brand? brand,
     Query$Conversations$conversations$offer$product$category? category,
     Query$Conversations$conversations$offer$product$size? size,
@@ -31521,6 +34840,7 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$product<TRes>
     Object? isFeatured = _undefined,
     Object? userLiked = _undefined,
     Object? imagesUrl = _undefined,
+    Object? status = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
     Object? size = _undefined,
@@ -31550,6 +34870,9 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$product<TRes>
         imagesUrl: imagesUrl == _undefined || imagesUrl == null
             ? _instance.imagesUrl
             : (imagesUrl as List<String>),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsProductStatusChoices),
         brand: brand == _undefined
             ? _instance.brand
             : (brand as Query$Conversations$conversations$offer$product$brand?),
@@ -31638,6 +34961,7 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$product<TRes>
     bool? isFeatured,
     bool? userLiked,
     List<String>? imagesUrl,
+    Enum$ProductsProductStatusChoices? status,
     Query$Conversations$conversations$offer$product$brand? brand,
     Query$Conversations$conversations$offer$product$category? category,
     Query$Conversations$conversations$offer$product$size? size,

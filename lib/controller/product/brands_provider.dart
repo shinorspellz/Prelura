@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/di.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
@@ -12,7 +11,7 @@ final brandsProvider =
 class _BrandController extends AsyncNotifier<List<Brand>> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -97,7 +96,7 @@ class BrandFilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     List<ProductModel>, Input$ProductFiltersInput> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 

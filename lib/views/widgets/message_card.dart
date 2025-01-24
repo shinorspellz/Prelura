@@ -140,26 +140,35 @@ class BuildOfferRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    OfferInfo offerInfo = offerInfoFromJson(text.replaceAll("'", "\""));
-    bool isSender = recipient == offerInfo.buyer?.username;
-    return Row(children: [
-      RenderSvg(
-        svgPath: 'assets/icons/offer.svg',
-        svgWidth: 16,
-        svgHeight: 16,
-      ),
-      addHorizontalSpacing(5),
-      Text(
-        offerInfo.status?.toLowerCase() == "pending"
-            ? "${!isSender ? "You" : recipient} made an offer."
-            : isSender
-                ? "You ${offerInfo.status?.toLowerCase()} $recipient offer."
-                : "$recipient ${offerInfo.status?.toLowerCase()} your offer.",
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(fontWeight: FontWeight.w400),
-      ),
-    ]);
+    if (text.contains("offer_id")) {
+      OfferInfo offerInfo = offerInfoFromJson(text.replaceAll("'", "\""));
+      bool isSender = recipient == offerInfo.buyer?.username;
+      return Row(children: [
+        RenderSvg(
+          svgPath: 'assets/icons/offer.svg',
+          svgWidth: 16,
+          svgHeight: 16,
+        ),
+        addHorizontalSpacing(5),
+        Text(
+          offerInfo.status?.toLowerCase() == "pending"
+              ? "${!isSender ? "You" : recipient} made an offer."
+              : isSender
+                  ? "You ${offerInfo.status?.toLowerCase()} $recipient offer."
+                  : "$recipient ${offerInfo.status?.toLowerCase()} your offer.",
+          style: Theme.of(context)
+              .textTheme
+              .bodySmall
+              ?.copyWith(fontWeight: FontWeight.w400),
+        ),
+      ]);
+    }
+    return Text(
+      text,
+      style: Theme.of(context)
+          .textTheme
+          .bodySmall
+          ?.copyWith(fontWeight: FontWeight.w400),
+    );
   }
 }

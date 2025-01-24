@@ -8,9 +8,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/product_model.dart';
-
 import 'package:prelura_app/res/colors.dart';
-import 'package:prelura_app/res/images.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
@@ -19,7 +17,6 @@ import 'package:prelura_app/views/widgets/menu_card.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../res/utils.dart';
-import '../../../controller/payment_controller.dart';
 import '../../widgets/profile_picture.dart';
 
 // State provider from earlier
@@ -56,7 +53,8 @@ class PaymentScreen extends ConsumerWidget {
           children: [
             // Address Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
               child: Text("Address",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w300,
@@ -77,8 +75,10 @@ class PaymentScreen extends ConsumerWidget {
 
             // Delivery Options
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
-              child: Text("Delivery Option", style: TextStyle(color: Colors.white)),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+              child: Text("Delivery Option",
+                  style: TextStyle(color: Colors.white)),
             ),
             PreluraCheckBox(
               icon: const Icon(
@@ -109,7 +109,8 @@ class PaymentScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: Theme.of(context).dividerColor, // Use the theme's divider color
+                  color: Theme.of(context)
+                      .dividerColor, // Use the theme's divider color
                   width: 1.0,
                 ),
               ),
@@ -125,7 +126,8 @@ class PaymentScreen extends ConsumerWidget {
                         if (user?.username == product.seller.username) {
                           context.router.push(UserProfileDetailsRoute());
                         } else {
-                          context.router.push(ProfileDetailsRoute(username: product.seller.username));
+                          context.router.push(ProfileDetailsRoute(
+                              username: product.seller.username));
                         }
                       },
                       child: Row(
@@ -139,7 +141,16 @@ class PaymentScreen extends ConsumerWidget {
                           addHorizontalSpacing(8),
                           Text(
                             product.seller.username,
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600, fontSize: 17, color: Theme.of(context).textTheme.bodyMedium?.color),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 17,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.color),
                           ),
                         ],
                       ),
@@ -149,7 +160,10 @@ class PaymentScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("£2.29",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
                                 )),
                         GestureDetector(
@@ -173,7 +187,10 @@ class PaymentScreen extends ConsumerWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(user?.location?.locationName ?? "One Stop",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
                                 )),
                       ],
@@ -186,8 +203,13 @@ class PaymentScreen extends ConsumerWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(user?.location?.locationName ?? "30 New Bank Road, BB2 6JW, Blackburn",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        Text(
+                            user?.location?.locationName ??
+                                "30 New Bank Road, BB2 6JW, Blackburn",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
                                 )),
                       ],
@@ -200,8 +222,13 @@ class PaymentScreen extends ConsumerWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 8),
-                        Text(user?.location?.locationName ?? "At pick-up point in 3 - 5 business days",
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        Text(
+                            user?.location?.locationName ??
+                                "At pick-up point in 3 - 5 business days",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   fontSize: getDefaultSize(),
                                 )),
                       ],
@@ -214,7 +241,8 @@ class PaymentScreen extends ConsumerWidget {
 
             // Contact Details
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
               child: Text("Your Contact details",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w300,
@@ -234,7 +262,8 @@ class PaymentScreen extends ConsumerWidget {
 
             // Payment Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
               child: Text("Payment", style: TextStyle(color: Colors.white)),
             ),
             MenuCard(
@@ -251,58 +280,77 @@ class PaymentScreen extends ConsumerWidget {
           ],
         ),
       ),
-      bottomSheet: GestureDetector(
-        onTap: () {
-          // Handle Apple Pay logic
-        },
-        child: Container(
-          width: 100.w,
-          height: 130,
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.lock, color: PreluraColors.grey, size: 12),
-                  addHorizontalSpacing(12),
-                  Text("This is a secure encryption payment", style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w300, color: PreluraColors.grey)),
-                ],
-              ),
-              addVerticalSpacing(16),
-              AppButton(
-                  height: 50,
-                  loading: ref.watch(orderProvider).isLoading || ref.watch(paymentProvider).isLoading,
-                  width: double.infinity,
-                  onTap: () async {
-                    await ref.read(orderProvider.notifier).createOrder(int.parse(product.id));
-                    ref.read(orderProvider).whenOrNull(
-                          error: (e, _) => context.alert('An error occured while creating order'),
-                          data: (order) async {
-                            if (order == null) return;
-                            await ref.read(paymentProvider.notifier).createPaymentIntent(
-                                  int.parse(order.id),
-                                  Enum$PaymentMethodEnum.CARD,
-                                );
+      bottomNavigationBar: Container(
+        width: 100.w,
+        height: 150,
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: 20,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.lock, color: PreluraColors.grey, size: 12),
+                addHorizontalSpacing(12),
+                Text("This is a secure encryption payment",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w300,
+                        color: PreluraColors.grey)),
+              ],
+            ),
+            addVerticalSpacing(5),
+            AppButton(
+                height: 50,
+                loading: ref.watch(orderProvider).isLoading ||
+                    ref.watch(paymentProvider).isLoading,
+                width: double.infinity,
+                onTap: () async {
+                  await ref
+                      .read(orderProvider.notifier)
+                      .createOrder(int.parse(product.id));
+                  ref.read(orderProvider).whenOrNull(
+                        error: (e, _) => context
+                            .alert('An error occured while creating order'),
+                        data: (order) async {
+                          if (order == null) return;
+                          await ref
+                              .read(paymentProvider.notifier)
+                              .createPaymentIntent(
+                                int.parse(order.id),
+                                Enum$PaymentMethodEnum.CARD,
+                              );
 
-                            ref.read(paymentProvider).whenOrNull(
-                                  error: (e, _) => context.alert('An error occured while creating order'),
-                                  data: (_) => context.alert('Product ordered complete'),
-                                );
-                          },
-                        );
+                          ref.read(paymentProvider).whenOrNull(
+                                error: (e, _) => context.alert(
+                                    'An error occured while creating order'),
+                                data: (_) =>
+                                    context.alert('Product ordered complete'),
+                              );
+                        },
+                      );
 
-                    // await ref
-                    //     .read(bookingPaymentNotifierProvider.notifier)
-                    //     .makePayment(paymentIntent['clientSecret']);
-                  },
-                  centerText: true,
-                  bgColor: Colors.black,
-                  borderColor: Colors.transparent,
-                  textWidget: Icon(Icons.apple, color: Colors.white),
-                  text: "Pay"),
-            ],
-          ),
+                  // await ref
+                  //     .read(bookingPaymentNotifierProvider.notifier)
+                  //     .makePayment(paymentIntent['clientSecret']);
+                },
+                centerText: true,
+                text: "Pay by card"),
+            addVerticalSpacing(5),
+            AppButton(
+                height: 50,
+                loading: ref.watch(orderProvider).isLoading ||
+                    ref.watch(paymentProvider).isLoading,
+                width: double.infinity,
+                onTap: () async {},
+                centerText: true,
+                bgColor: Colors.black,
+                borderColor: Colors.transparent,
+                textWidget: Icon(Icons.apple, color: Colors.white),
+                text: "Pay"),
+          ],
         ),
       ), // Ensure proper contrast
     );

@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
+import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
@@ -35,6 +39,7 @@ class OfferSubCardBox extends ConsumerStatefulWidget {
 
 class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
   bool isAccepting = false;
+  bool isBuying = false;
   bool isDeclining = false;
   bool isSendingOffer = false;
   final TextEditingController _offerController = TextEditingController();
@@ -118,54 +123,55 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
 
   Widget _buildCustomOfferButton({String? text}) {
     bool isSold = text == "Sold!";
-    final OfferInfo offerInfo = ref.read(offerProvider).activeOffer!.offer!;
+
     return AppButton(
       height: isSold ? 70 : 45,
       radius: 0,
       width: double.infinity,
       loading: isSendingOffer,
-      onTap: isSold
-          ? null
-          : () {
-              showCustomDialog(
-                context,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16, horizontal: 26),
-                  margin: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: context.theme.scaffoldBackgroundColor,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    children: [
-                      OfferProductCard(
-                        offerInfo: offerInfo,
-                        showPrice: true,
-                      ),
-                      addVerticalSpacing(10),
-                      PriceFieldWidget(
-                        textController: _offerController,
-                        width: 65.6.w,
-                      ),
-                      const SizedBox(height: 24),
-                      AppButton(
-                        onTap: () {
-                          Navigator.pop(context);
-                          _sendCustomOffer();
-                        },
-                        text: "Send",
-                        width: 130,
-                        height: 45,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
+      onTap: isSold ? null : _showCustomOfferDialog,
       textColor: Colors.white,
       bgColor: PreluraColors.primaryColor,
       text: text ?? "Send a counter offer...",
+    );
+  }
+
+  _showCustomOfferDialog() {
+    final OfferInfo offerInfo = ref.read(offerProvider).activeOffer!.offer!;
+    showCustomDialog(
+      context,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 26),
+        margin: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: context.theme.scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          children: [
+            OfferProductCard(
+              offerInfo: offerInfo,
+              showPrice: true,
+              boxWidth: 60.w,
+            ),
+            addVerticalSpacing(10),
+            PriceFieldWidget(
+              textController: _offerController,
+              width: 65.6.w,
+            ),
+            const SizedBox(height: 24),
+            AppButton(
+              onTap: () {
+                Navigator.pop(context);
+                _sendCustomOffer();
+              },
+              text: "Send",
+              width: 130,
+              height: 45,
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -197,7 +203,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           8.horizontalSpacing,
           Stack(children: [
             Container(
-              height: 50,
+              height: 40,
               alignment: Alignment.center,
               // padding: EdgeInsets.symmetric(horizontal: 15),
               decoration: BoxDecoration(
@@ -211,13 +217,11 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 isRead: false,
                 highlightColor: PreluraColors.primaryColor,
                 message:
-                    "${isSender ? "You" : widget.eventInfo.createdBy} offered £$offeredPrice",
+                    "${isSender ? "You" : widget.eventInfo.createdBy} offered £${offeredPrice.toString().formatCurrency()}",
                 username: "offered",
               ),
             ),
-            if (status != "pending" &&
-                status != "countered" &&
-                !(status == "accepted" && amTheSeller))
+            if (status != "pending" && status != "countered")
               Positioned(
                 bottom: -2,
                 left: isSender ? null : 1,
@@ -254,7 +258,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(children: [
             buildActionButton(
-              onTap: () => handleOfferResponse(Enum$OfferActionEnum.ACCEPT),
+              onTap: handleOfferBuying,
               isLoading: isAccepting,
               text: "Buy now",
               isDisabled: isAccepting || isDeclining,
@@ -294,13 +298,12 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
       if (!amTheSeller && status == "countered" && isSender) ...[
         Padding(
           padding: const EdgeInsets.only(
-            top: 10,
             right: 20,
           ),
           child: Align(
             alignment: Alignment.centerRight,
             child: Text(
-              "please wait for seller to respond",
+              "Please wait for seller to respond",
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: PreluraColors.grey,
                     fontSize: 12,
@@ -317,7 +320,134 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
               text: amTheSeller ? null : "Send new offer"),
         ),
       ],
-      if (status == "accepted" && amTheSeller) ...[
+      if (status == "accepted" &&
+          amTheSeller &&
+          offerInfo.offer?.product?.status != "SOLD") ...[
+        // addVerticalSpacing(20),
+        // Text(
+        //   "Please wait for buyer to make payment",
+        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //         color: PreluraColors.grey,
+        //         fontSize: 12,
+        //       ),
+        // ),
+        ///
+        ///
+        ///
+        // addVerticalSpacing(20),
+        // _buildCustomOfferButton(text: "Sold!"),
+        ///
+        ///
+        ///
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    text:
+                        "Offer accepted! Please wait for the buyer to make a payment. Made a mistake? ",
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: PreluraColors.grey,
+                          fontSize: 12,
+                        ),
+                    children: [
+                      TextSpan(
+                        text: " Send a new offer",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: PreluraColors.primaryColor,
+                          fontSize: 12,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            _showCustomOfferDialog();
+                          },
+                      )
+                    ])),
+          ),
+        ),
+      ],
+      if (status == "accepted" &&
+          amTheSeller &&
+          offerInfo.offer?.product?.status == "SOLD") ...[
+        // addVerticalSpacing(20),
+        // Text(
+        //   "Please wait for buyer to make payment",
+        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //         color: PreluraColors.grey,
+        //         fontSize: 12,
+        //       ),
+        // ),
+        ///
+        ///
+        ///
+        addVerticalSpacing(20),
+        _buildCustomOfferButton(text: "Sold!"),
+
+        ///
+        ///
+        ///
+        // Padding(
+        //   padding: const EdgeInsets.only(
+        //     left: 20,
+        //     right: 20,
+        //     top: 20,
+        //   ),
+        //   child: Align(
+        //     alignment: Alignment.center,
+        //     child: RichText(
+        //         textAlign: TextAlign.center,
+        //         text: TextSpan(
+        //             text: "Payment made!",
+        //             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //                   color: PreluraColors.grey,
+        //                   fontSize: 12,
+        //                 ),
+        //             children: [
+        //               TextSpan(
+        //                 text: " Ship product.",
+        //                 style: TextStyle(
+        //                   decoration: TextDecoration.underline,
+        //                   color: PreluraColors.primaryColor,
+        //                   fontSize: 12,
+        //                 ),
+        //                 recognizer: TapGestureRecognizer()..onTap = () {},
+        //               )
+        //             ])),
+        //   ),
+        // ),
+      ],
+      if (status == "accepted" &&
+          offerInfo.offer?.product?.status == "SOLD" &&
+          !amTheSeller) ...[
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 20,
+          ),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Payment made, please wait for the seller to send the item.",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: PreluraColors.grey,
+                    fontSize: 12,
+                  ),
+            ),
+          ),
+        ),
+      ],
+      if (status == "accepted" &&
+          !amTheSeller &&
+          offerInfo.offer?.product?.status != "SOLD") ...[
         // addVerticalSpacing(20),
         // Text(
         //   "Please wait for buyer to make payment",
@@ -327,8 +457,42 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
         //       ),
         // ),
         addVerticalSpacing(20),
-        _buildCustomOfferButton(text: "Sold!"),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(children: [
+            // Expanded(
+            //   child: Text(""),
+            // ),
+            buildActionButton(
+              onTap: handleOfferBuying,
+              isLoading: isBuying,
+              text: "Buy now",
+              isDisabled: isBuying,
+            ),
+            // Expanded(
+            //   child: Text(""),
+            // ),
+          ]),
+        ),
       ],
     ]);
+  }
+
+  handleOfferBuying() async {
+    isBuying = true;
+    setState(() {});
+    try {
+      int productId =
+          int.parse(ref.read(offerProvider).activeOffer!.offer!.product!.id!);
+      final repo = ref.read(productRepo);
+
+      final productInfo = await repo.getProduct(productId);
+      context.router.push(PaymentRoute(product: productInfo));
+    } catch (e) {
+      print("Error in handleOfferBuying: $e");
+    } finally {
+      isBuying = false;
+      setState(() {});
+    }
   }
 }

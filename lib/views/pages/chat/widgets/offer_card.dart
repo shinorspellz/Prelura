@@ -390,7 +390,9 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
     String status = offerInfo.status!.toString().toLowerCase();
     Size deviceSize = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+      ),
       child: Column(children: [
         Row(
             mainAxisAlignment: widget.isSender
@@ -413,7 +415,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
                     isRead: false,
                     highlightColor: PreluraColors.primaryColor,
                     message:
-                        "${widget.isSender ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice}",
+                        "${widget.isSender ? "You" : offerInfo.buyer?.username} Offered £${offerInfo.offerPrice.toString().formatCurrency()}",
                     username: "offered",
                   ),
                 ),

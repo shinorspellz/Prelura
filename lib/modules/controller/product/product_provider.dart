@@ -361,7 +361,7 @@ class _FilteredProductController
     extends FamilyAsyncNotifier<List<ProductModel>, double> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -448,7 +448,7 @@ class _AllProductController
     extends AutoDisposeFamilyAsyncNotifier<List<ProductModel>, String?> {
   late final _repository = ref.read(productRepo);
   // List<ServicePackageModel>? services;
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
   String? _query;
@@ -524,7 +524,7 @@ class FilteredProductController extends AutoDisposeFamilyAsyncNotifier<
     List<ProductModel>, (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -675,7 +675,7 @@ class WomenProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -774,7 +774,7 @@ class menProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
@@ -871,7 +871,7 @@ class KidsProductController extends FamilyAsyncNotifier<List<ProductModel>,
     (Input$ProductFiltersInput, String)> {
   late final _repository = ref.read(productRepo);
 
-  final int _pageCount = 15;
+  final int _pageCount = 20;
   int _currentPage = 1;
   int _brandTotalItems = 0;
 
