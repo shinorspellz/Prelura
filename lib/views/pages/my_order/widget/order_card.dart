@@ -1,15 +1,22 @@
+import 'dart:convert';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
-import '../model/order_model.dart';
+import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 
 class OrderCard extends StatelessWidget {
-  final Order order;
+  final OrderInfo order;
 
-  const OrderCard({required this.order});
+  const OrderCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
+    String? imageUrl =
+        order.paymentSet?.firstOrNull?.order?.product?.imagesUrl?.firstOrNull;
+    String imageRealPath = imageUrl != null ? jsonDecode(imageUrl)["url"] : "";
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -29,15 +36,37 @@ class OrderCard extends StatelessWidget {
             // User Avatar
             Stack(clipBehavior: Clip.none, children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  order.imageUrl,
+                borderRadius: BorderRadius.circular(2),
+                child: SizedBox(
                   width: 40,
                   height: 40,
-                  fit: BoxFit.cover,
+                  child: CachedNetworkImage(
+                    errorWidget: (context, url, error) => Container(
+                      color: PreluraColors.grey,
+                    ),
+                    imageUrl: imageRealPath,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) {
+                      return ShimmerBox(
+                        width: 40,
+                        height: 40,
+                      );
+                    },
+                    fadeInDuration: Duration.zero,
+                    fadeOutDuration: Duration.zero,
+                  ),
                 ),
               ),
-              if (order.status.toLowerCase().contains("completed"))
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(10),
+              //   child: Image.asset(
+              //     order.product.imagesUrl,
+              //     width: 40,
+              //     height: 40,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
+              if (order.status!.toLowerCase().contains("completed"))
                 Positioned(
                     bottom: -6,
                     right: -2,
@@ -62,7 +91,7 @@ class OrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    order.title,
+                    order.paymentSet?.firstOrNull?.order?.product?.name ?? "",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: getDefaultSize(),
@@ -70,12 +99,15 @@ class OrderCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "£ ${order.price}",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400),
+                    "£ ${order.priceTotal.toString().formatCurrency()}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(fontWeight: FontWeight.w400),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    order.status,
+                    order.status ?? "",
                     style: const TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                 ],

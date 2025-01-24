@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final userOrders = userOrdersFromJson(jsonString);
+
 import 'dart:convert';
 
 import 'package:prelura_app/model/product/product_model.dart';
