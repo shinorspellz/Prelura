@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/pages/profile_details/view/user_wardrobe.dart';
 import 'package:prelura_app/views/pages/search_result/provider/search_provider.dart';
 import 'package:prelura_app/views/pages/search_result/view/search_result.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
@@ -55,6 +56,8 @@ class FilterAndSort extends ConsumerWidget {
                   isDisabled: ref.watch(filterUserProductProvider).isEmpty,
                   onTap: ref.watch(filterUserProductProvider).isNotEmpty
                       ? () {
+                          ref.read(isBrandActiveProvider.notifier).state =
+                              false;
                           ref
                               .read(filterUserProductProvider.notifier)
                               .clearFilter();

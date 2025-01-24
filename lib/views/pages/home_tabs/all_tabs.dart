@@ -23,6 +23,7 @@ import '../../widgets/card.dart';
 import '../../widgets/error_placeholder.dart';
 import '../../widgets/popular_brands.dart';
 import 'recently_viewed_products_home.dart';
+import 'top_shop_widget.dart';
 
 class HomeAllTab extends ConsumerWidget {
   const HomeAllTab(
@@ -71,76 +72,7 @@ class HomeAllTab extends ConsumerWidget {
               loading: () => GridShimmer()),
         ] else ...[
           _buildBrandsYouLove(context, ref),
-          ref.watch(recommendedSellersProvider).when(
-            data: (users) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  buildDivider(context),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 8),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Top Shops",
-                            textAlign: TextAlign.left,
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: getDefaultSize(size: 16),
-                            ),
-                          ),
-                          6.verticalSpacing,
-                          Text(
-                            "Buy from trusted and popular vendors",
-                            textAlign: TextAlign.left,
-                            style: context.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w400,
-                              color: PreluraColors.grey,
-                              fontSize: getDefaultSize(),
-                            ),
-                          ),
-                          8.verticalSpacing,
-                        ]),
-                  ),
-                  AspectRatio(
-                    aspectRatio: 1.65,
-                    child: ListView.separated(
-                      padding: EdgeInsets.only(left: 15),
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) =>
-                          20.horizontalSpacing,
-                      itemBuilder: (context, index) => SizedBox(
-                        width: 130,
-                        child: SellerProfileCard(user: users[index].seller),
-                      ),
-                      itemCount: users.length,
-                    ),
-                  ),
-                  buildDivider(context),
-                ],
-              );
-            },
-            error: (error, stackTrace) {
-              // Handle error state
-              return ErrorPlaceholder(
-                error: "An error occured",
-                onTap: () {
-                  ref.invalidate(recommendedSellersProvider);
-                },
-              );
-            },
-            loading: () {
-              // Handle loading state
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Center(
-                    child: CupertinoActivityIndicator(
-                        color: PreluraColors.primaryColor)),
-              );
-            },
-          ),
+          TopShop(context, ref),
           RecentlyViewedProductsHome(),
           Align(
             alignment: Alignment.centerLeft,

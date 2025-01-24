@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -8,7 +9,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
+import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
 import '../widgets/app_bar.dart';
@@ -65,6 +68,7 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
           appbarTitle: "Inbox",
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: ["Messages", "Notifications"]
@@ -74,7 +78,9 @@ class _InboxScreenState extends ConsumerState<InboxScreen>
                     (entry) => Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          _tabController.animateTo(entry.key);
+                          _tabController.animateTo(entry.key,
+                              duration: Duration(milliseconds: 0),
+                              curve: Curves.linear);
                         },
                         child: Container(
                           padding: const EdgeInsets.only(

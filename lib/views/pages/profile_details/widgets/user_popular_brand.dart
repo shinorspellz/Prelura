@@ -8,6 +8,7 @@ import 'package:prelura_app/res/context_entension.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import '../../../../controller/product/brands_provider.dart';
@@ -37,6 +38,7 @@ class UserPopularBrand extends ConsumerStatefulWidget {
 
 class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
   late bool showSorted;
+  Brand? selectedBrand = null;
 
   @override
   void initState() {
@@ -50,123 +52,193 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
 
     log(widget.isSelected.toString(), name: "sorted Brands");
     if (widget.isSelected) {
-      return sortedBrands.maybeWhen(
-        orElse: () {
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(
-                10,
-                (_) => const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6.0),
-                  child: ShimmerBox(
-                    height: 28,
-                    width: 100,
-                    radius: 5,
+      return
+          // sortedBrands.maybeWhen(
+          //   orElse: () {
+          //     return SingleChildScrollView(
+          //       scrollDirection: Axis.horizontal,
+          //       child: Row(
+          //         children: List.generate(
+          //           10,
+          //           (_) => const Padding(
+          //             padding: EdgeInsets.symmetric(horizontal: 6.0),
+          //             child: ShimmerBox(
+          //               height: 28,
+          //               width: 100,
+          //               radius: 5,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   data: (data) =>
+          //  data.isNotEmpty
+          // ? Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Expanded(
+          //         child: SingleChildScrollView(
+          //           padding: const EdgeInsets.symmetric(
+          //               horizontal: 10, vertical: 12),
+          //           scrollDirection: Axis.horizontal,
+          //           child: Row(
+          //             children: [
+          //               ...data
+          //                   .take(6)
+          //                   .map(
+          //                     (brand) => Padding(
+          //                       padding: const EdgeInsets.symmetric(
+          //                           horizontal: 6.0),
+          //                       child: GestureDetector(
+          //                         onTap: () {
+          //                           if (data.length > 1) {
+          //                             ref
+          //                                 .read(userIdProvider.notifier)
+          //                                 .state = widget.userId;
+          //                             ref
+          //                                 .read(filterUserProductProvider
+          //                                     .notifier)
+          //                                 .removeFilter(
+          //                                   FilterTypes.brand,
+          //                                   brand?.name ?? "",
+          //                                 );
+
+          //                             widget.onCancel();
+          //                             setState(() {
+          //                               selectedBrand = null;
+          //                             });
+          //                           }
+          //                         },
+          //                         child: Container(
+          //                           padding: const EdgeInsets.symmetric(
+          //                               horizontal: 10, vertical: 10),
+          //                           decoration: BoxDecoration(
+          //                             color: context.isDarkMode
+          //                                 ? PreluraColors.activeColor
+          //                                     .withOpacity(0.3)
+          //                                 : PreluraColors.activeColor
+          //                                     .withOpacity(0.7),
+          //                             borderRadius: BorderRadius.circular(6),
+          //                             border: Border.all(
+          //                               color: PreluraColors.activeColor,
+          //                               width: 1,
+          //                             ),
+          //                           ),
+          //                           child: Row(
+          //                             children: [
+          //                               Icon(
+          //                                 Icons.check,
+          //                                 size: 18,
+          //                                 color: PreluraColors.white,
+          //                               ),
+          //                               6.horizontalSpacing,
+          //                               Text(
+          //                                 brand?.name ?? "",
+          //                                 style: Theme.of(context)
+          //                                     .textTheme
+          //                                     .bodyMedium
+          //                                     ?.copyWith(
+          //                                       fontSize: getDefaultSize(),
+          //                                       color: PreluraColors.white,
+          //                                       fontWeight: FontWeight.w700,
+          //                                     ),
+          //                               ),
+          //                             ],
+          //                           ),
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   )
+          //                   .toList(),
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //       InkWell(
+          //         onTap: () {
+          //           setState(() {
+          //             selectedBrand = null;
+          //           });
+          //           widget.onCancel();
+          //           ref.invalidate(filterUserProductProvider);
+          //           ref.invalidate(userSubCategoryProvider);
+          //         },
+          //         child: Padding(
+          //           padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          //           child:
+          //               Icon(Icons.cancel_rounded, color: PreluraColors.grey),
+          //         ),
+          //       ),
+          //     ],
+          //   )
+          // :
+          Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6.0),
+              child: GestureDetector(
+                onTap: () {
+                  log("i am here in the selected brand");
+                  ref.read(userIdProvider.notifier).state = widget.userId;
+                  ref.read(filterUserProductProvider.notifier).updateFilter(
+                        FilterTypes.brand,
+                        selectedBrand?.name ?? "",
+                      );
+
+                  widget.onCancel();
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: context.isDarkMode
+                        ? PreluraColors.activeColor.withOpacity(0.3)
+                        : PreluraColors.activeColor.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(
+                      color: PreluraColors.activeColor,
+                      width: 1,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.check,
+                        size: 18,
+                        color: PreluraColors.white,
+                      ),
+                      6.horizontalSpacing,
+                      Text(
+                        selectedBrand?.name ?? "",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: getDefaultSize(),
+                              color: PreluraColors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          );
-        },
-        data: (data) => data.isNotEmpty
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 12),
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          ...data
-                              .take(6)
-                              .map(
-                                (brand) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 6.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      if (data.length > 1) {
-                                        ref
-                                            .read(userIdProvider.notifier)
-                                            .state = widget.userId;
-                                        ref
-                                            .read(filterUserProductProvider
-                                                .notifier)
-                                            .updateFilter(
-                                              FilterTypes.brand,
-                                              brand?.name ?? "",
-                                            );
-                                        Future.delayed(
-                                            const Duration(seconds: 1), () {
-                                          widget.onTap();
-                                        });
-                                      }
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10, vertical: 10),
-                                      decoration: BoxDecoration(
-                                        color: context.isDarkMode
-                                            ? PreluraColors.activeColor
-                                                .withOpacity(0.3)
-                                            : PreluraColors.activeColor
-                                                .withOpacity(0.7),
-                                        borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(
-                                          color: PreluraColors.activeColor,
-                                          width: 1,
-                                        ),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.check,
-                                            size: 18,
-                                            color: PreluraColors.white,
-                                          ),
-                                          6.horizontalSpacing,
-                                          Text(
-                                            brand?.name ?? "",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium
-                                                ?.copyWith(
-                                                  fontSize: getDefaultSize(),
-                                                  color: PreluraColors.white,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      widget.onCancel();
-                      ref.invalidate(filterUserProductProvider);
-                      ref.invalidate(userSubCategoryProvider);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child:
-                          Icon(Icons.cancel_rounded, color: PreluraColors.grey),
-                    ),
-                  ),
-                ],
-              )
-            : const SizedBox(
-                height: 60,
+            InkWell(
+              onTap: () {
+                widget.onCancel();
+                ref.invalidate(filterUserProductProvider);
+                ref.invalidate(userSubCategoryProvider);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Icon(Icons.cancel_rounded, color: PreluraColors.grey),
               ),
+            ),
+          ],
+        ),
+        // ),
       );
     }
     return SingleChildScrollView(
@@ -197,6 +269,10 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
                         child: GestureDetector(
                           onTap: () {
                             widget.onTap();
+                            setState(() {
+                              selectedBrand =
+                                  Brand(id: brand.id!, name: brand.name);
+                            });
                             ref
                                 .read(filterUserProductProvider.notifier)
                                 .updateFilter(

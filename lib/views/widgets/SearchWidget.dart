@@ -180,7 +180,8 @@ class _SearchwidgetState extends State<Searchwidget> {
                 color: Theme.of(
                   context,
                 ).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius:
+                    BorderRadius.circular(getDefaultBorderRadius(size: 8)),
               ),
               child: TextFormField(
                 autofocus: widget.autofocus,
@@ -226,7 +227,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
                     borderRadius:
-                        BorderRadius.circular(getDefaultBorderRadius()),
+                        BorderRadius.circular(getDefaultBorderRadius(size: 8)),
                     borderSide: BorderSide(
                       color: context.isDarkMode
                           ? PreluraColors.white.withOpacity(0.5)
@@ -236,7 +237,7 @@ class _SearchwidgetState extends State<Searchwidget> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius:
-                        BorderRadius.circular(getDefaultBorderRadius()),
+                        BorderRadius.circular(getDefaultBorderRadius(size: 8)),
                     borderSide: const BorderSide(
                       color: PreluraColors.activeColor,
                       width: 2.0,

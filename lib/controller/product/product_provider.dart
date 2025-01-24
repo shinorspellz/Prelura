@@ -73,6 +73,7 @@ final searchProductProvider =
       Enum$StyleEnum.values.where((e) => e.name == styleFilter).firstOrNull;
 
   log(category.toString(), name: 'categoryFilter');
+  log(ensureStartsWithHash(query?.capitalizeAndLowercase() ?? ''));
 
   final result = await repo.getAllProducts(
     pageCount: 100,

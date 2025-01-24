@@ -64,7 +64,10 @@ class UserScrollableList extends ConsumerWidget {
                   }),
                   16.horizontalSpacing,
                   _buildItem(context,
-                      title: "Ratings", numbers: "4.95", onTap: () {})
+                      title: "Ratings", numbers: "4.95", onTap: () {}),
+                  16.horizontalSpacing,
+                  _buildItem(context,
+                      title: "Level", numbers: "1", onTap: () {})
                 ],
               )),
           if (listingCount == 0 || user?.isVacationMode == true)

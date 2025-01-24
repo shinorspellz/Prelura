@@ -23,6 +23,7 @@ import '../../../core/graphql/__generated/schema.graphql.dart';
 import '../../../core/router/router.gr.dart';
 import '../../../res/colors.dart';
 import '../../../res/utils.dart';
+import '../home_tabs/top_shop_widget.dart';
 
 final activeSearchProvider = StateProvider<bool>((ref) => false);
 
@@ -46,6 +47,7 @@ class SearchScreen extends ConsumerWidget {
                 addVerticalSpacing(65),
                 if (state == false) ...[
                   addVerticalSpacing(9),
+                  // TopShop(context, ref),
                   SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     scrollDirection: Axis.horizontal,
@@ -519,8 +521,8 @@ class SearchScreen extends ConsumerWidget {
   }
 }
 
-double getDefaultBorderRadius() {
-  return 4;
+double getDefaultBorderRadius({double? size}) {
+  return size ?? 4;
 }
 
 // Widget _buildSectionTitle(
