@@ -133,6 +133,7 @@ class BuildOfferRow extends ConsumerWidget {
   final String text;
   final OfferInfo offerInfo;
   final String recipient;
+
   const BuildOfferRow({
     super.key,
     required this.text,
@@ -142,36 +143,31 @@ class BuildOfferRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (text.contains("offer_id")) {
-      bool isSender = recipient == offerInfo.buyer?.username;
-      OfferSubStateInfo? subInfo = offerInfo.children?.firstOrNull;
-      String offerMessage = offerInfo.status?.toLowerCase() == "pending"
-          ? "${!isSender ? "You" : recipient} made an offer."
-          : isSender
-              ? "You ${(subInfo?.status ?? offerInfo.status)?.toLowerCase()} $recipient offer."
-              : "$recipient ${(subInfo?.status ?? offerInfo.status)?.toLowerCase()} your offer.";
-      return Row(children: [
-        // RenderSvg(
-        //   svgPath: 'assets/icons/offer.svg',
-        //   svgWidth: 16,
-        //   svgHeight: 16,
-        // ),
-        // addHorizontalSpacing(5),
-        Text(
-          offerMessage,
-          style: Theme.of(context)
-              .textTheme
-              .bodySmall
-              ?.copyWith(fontWeight: FontWeight.w400),
-        ),
-      ]);
-    }
     return Text(
-      text,
+      _buildOfferMessage(),
       style: Theme.of(context)
           .textTheme
           .bodySmall
           ?.copyWith(fontWeight: FontWeight.w400),
     );
+  }
+
+  String _buildOfferMessage() {
+    if (!text.contains("offer_id")) {
+      return text;
+    }
+
+    final bool isSender = recipient == offerInfo.buyer?.username;
+    final OfferSubStateInfo? subInfo = offerInfo.children?.firstOrNull;
+    final String offerStatus =
+        (subInfo?.status ?? offerInfo.status)?.toLowerCase() ?? "unknown";
+
+    if (offerInfo.status?.toLowerCase() == "pending") {
+      return "${!isSender ? "You" : recipient} made an offer.";
+    }
+
+    return isSender
+        ? "You $offerStatus $recipient offer."
+        : "$recipient $offerStatus your offer.";
   }
 }
