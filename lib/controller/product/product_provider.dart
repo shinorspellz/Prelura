@@ -681,7 +681,9 @@ class _AllProductController
       pageNumber: pageNumber,
     );
 
-    _brandTotalItems = result.allProductsTotalNumber!;
+    _brandTotalItems = _brandTotalItems < result.allProductsTotalNumber!
+        ? result.allProductsTotalNumber!
+        : _brandTotalItems;
 
     final newState = result.allProducts!
         .map((e) => ProductModel.fromJson(e!.toJson()))
