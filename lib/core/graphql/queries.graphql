@@ -718,6 +718,7 @@ query Conversations {
       deleted
       children {
         id
+        createdAt
         updatedBy
         createdBy
         updatedAt

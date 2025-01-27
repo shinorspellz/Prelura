@@ -53,11 +53,11 @@ class PlainMessageBox extends StatelessWidget {
       child: isOnlyEmoji
           ? FittedBox(
               child: Text(
-                chatInfo.text!,
+                chatInfo.text,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontSize: chatInfo.text!.characters.length == 1
+                      fontSize: chatInfo.text.characters.length == 1
                           ? 80
-                          : chatInfo.text!.characters.length == 2
+                          : chatInfo.text.characters.length == 2
                               ? 50
                               : 30,
                       fontWeight: FontWeight.w500,
@@ -65,7 +65,7 @@ class PlainMessageBox extends StatelessWidget {
               ),
             )
           : Text(
-              chatInfo.text!,
+              chatInfo.text,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: isOnlyEmoji ? 90 : 13.sp,
                     fontWeight: FontWeight.w500,

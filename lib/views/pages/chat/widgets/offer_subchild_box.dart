@@ -185,299 +185,297 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     final String? offeredPrice = widget.eventInfo.offerPrice;
     final String status = widget.eventInfo.status?.toLowerCase() ?? "";
 
-    return Column(children: [
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment:
-            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          addHorizontalSpacing(15),
-          if (!isSender)
-            ProfilePictureWidget(
-              height: 40,
-              width: 40,
-              profilePicture:
-                  "${!amTheSeller ? offerInfo.offer?.product?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
-              username: widget.eventInfo.createdBy,
-            ),
-          8.horizontalSpacing,
-          Stack(children: [
-            Container(
-              height: 40,
-              alignment: Alignment.center,
-              // padding: EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                // border: Border.all(
-                //   color: Colors.grey[300]!.withOpacity(0.5),
-                //   width: 1,
-                // ),
-              ),
-              child: HighlightUserName(
-                isRead: false,
-                highlightColor: PreluraColors.primaryColor,
-                message:
-                    "${isSender ? "You" : widget.eventInfo.createdBy} offered £${offeredPrice.toString().formatCurrency()}",
-                username: "offered",
-              ),
-            ),
-            if (status != "pending" && status != "countered")
-              Positioned(
-                bottom: -2,
-                left: isSender ? null : 1,
-                right: isSender ? 1 : null,
-                child: Text(
-                  status
-                      .replaceFirst("rejected", "Declined")
-                      .replaceFirst("cancelled", "Declined")
-                      .capitalize(),
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: PreluraColors.grey,
-                        fontSize: 12,
-                      ),
-                ),
-
-                // HighlightUserName(
-                //   isRead: false,
-                //   highlightColor: PreluraColors.grey,
-                //   weight: FontWeight.w400,
-                //   message: status
-                //       .replaceFirst("rejected", "Declined")
-                //       .replaceFirst("cancelled", "Declined"),
-                //   textSize: 12,
-                //   username: "status",
-                // ),
-              )
-          ]),
-          addHorizontalSpacing(15),
-        ],
-      ),
-      if (!amTheSeller && status == "countered" && !isSender) ...[
-        10.verticalSpacing,
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(children: [
-            buildActionButton(
-              onTap: handleOfferBuying,
-              isLoading: isAccepting,
-              text: "Buy now",
-              isDisabled: isAccepting || isDeclining,
-            ),
-            const SizedBox(width: 18),
-            Expanded(
-              child: _buildCustomOfferButton(
-                text: "Custom Offer",
-              ),
-            ),
-          ]),
-        ),
-      ],
-      if (amTheSeller &&
-          (status == "countered" || status == "pending") &&
-          !isSender)
-        Padding(
-          padding: EdgeInsets.only(
-            top: 12,
-            left: 20,
-            right: 20,
-          ),
-          child: Row(children: [
-            buildActionButton(
-              text: "Accept",
-              onTap: _handleAccept,
-              isLoading: isAccepting,
-              isDisabled: false,
-            ),
-            const SizedBox(width: 18),
-            buildActionButton(
-              text: "Decline",
-              onTap: _handleDecline,
-              isLoading: isDeclining,
-              isDisabled: false,
-            ),
-          ]),
-        ),
-      if (!amTheSeller && status == "countered" && isSender) ...[
-        Padding(
-          padding: const EdgeInsets.only(
-            right: 20,
-          ),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              "Please wait for seller to respond",
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: PreluraColors.grey,
-                    fontSize: 12,
+    return status == "normal"
+        ? Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment:
+                isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+            children: [
+                addHorizontalSpacing(15),
+                if (!isSender)
+                  ProfilePictureWidget(
+                    height: 40,
+                    width: 40,
+                    profilePicture:
+                        "${widget.eventInfo.buyer?.profilePictureUrl}",
+                    username: widget.eventInfo.createdBy,
                   ),
-            ),
-          ),
-        ),
-      ],
-      if (status == "rejected") ...[
-        addVerticalSpacing(!amTheSeller ? 30 : 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: _buildCustomOfferButton(
-              text: amTheSeller ? null : "Send new offer"),
-        ),
-      ],
-      if (status == "accepted" &&
-          amTheSeller &&
-          offerInfo.offer?.product?.status != "SOLD") ...[
-        // addVerticalSpacing(20),
-        // Text(
-        //   "Please wait for buyer to make payment",
-        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //         color: PreluraColors.grey,
-        //         fontSize: 12,
-        //       ),
-        // ),
-        ///
-        ///
-        ///
-        // addVerticalSpacing(20),
-        // _buildCustomOfferButton(text: "Sold!"),
-        ///
-        ///
-        ///
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                    text:
-                        "Offer accepted! Please wait for the buyer to make a payment. Made a mistake? ",
+                8.horizontalSpacing,
+                Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6,
+                  ),
+                  padding: EdgeInsets.only(
+                    top: 10,
+                    bottom: 10,
+                    left: isSender ? 10 : 14,
+                    right: isSender ? 14 : 10,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                    color: Theme.of(context).dividerColor,
+                  ),
+                  child: Text(
+                    widget.eventInfo.message,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                ),
+                addHorizontalSpacing(15),
+              ])
+        : Column(children: [
+            Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment:
+                    isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+                children: [
+                  addHorizontalSpacing(15),
+                  if (!isSender)
+                    ProfilePictureWidget(
+                      height: 40,
+                      width: 40,
+                      profilePicture:
+                          "${!amTheSeller ? offerInfo.offer?.product?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
+                      username: widget.eventInfo.createdBy,
+                    ),
+                  8.horizontalSpacing,
+                  Stack(children: [
+                    Container(
+                      height: 40,
+                      alignment: Alignment.center,
+                      // padding: EdgeInsets.symmetric(horizontal: 15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: HighlightUserName(
+                        isRead: false,
+                        highlightColor: PreluraColors.primaryColor,
+                        message:
+                            "${isSender ? "You" : widget.eventInfo.createdBy} offered £${offeredPrice.toString().formatCurrency()}",
+                        username: "offered",
+                      ),
+                    ),
+                    if (status != "pending" && status != "countered")
+                      Positioned(
+                        bottom: -2,
+                        left: isSender ? null : 1,
+                        right: isSender ? 1 : null,
+                        child: Text(
+                          status
+                              .replaceFirst("rejected", "Declined")
+                              .replaceFirst("cancelled", "Declined")
+                              .capitalize(),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: PreluraColors.grey,
+                                    fontSize: 12,
+                                  ),
+                        ),
+                      )
+                  ]),
+                  addHorizontalSpacing(15),
+                ]),
+            if (!amTheSeller && status == "countered" && !isSender) ...[
+              10.verticalSpacing,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(children: [
+                  buildActionButton(
+                    onTap: handleOfferBuying,
+                    isLoading: isAccepting,
+                    text: "Buy now",
+                    isDisabled: isAccepting || isDeclining,
+                  ),
+                  const SizedBox(width: 18),
+                  Expanded(
+                    child: _buildCustomOfferButton(
+                      text: "Custom Offer",
+                    ),
+                  ),
+                ]),
+              ),
+            ],
+            if (amTheSeller &&
+                (status == "countered" || status == "pending") &&
+                !isSender)
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 12,
+                  left: 20,
+                  right: 20,
+                ),
+                child: Row(children: [
+                  buildActionButton(
+                    text: "Accept",
+                    onTap: _handleAccept,
+                    isLoading: isAccepting,
+                    isDisabled: false,
+                  ),
+                  const SizedBox(width: 18),
+                  buildActionButton(
+                    text: "Decline",
+                    onTap: _handleDecline,
+                    isLoading: isDeclining,
+                    isDisabled: false,
+                  ),
+                ]),
+              ),
+            if (!amTheSeller && status == "countered" && isSender) ...[
+              Padding(
+                padding: const EdgeInsets.only(
+                  right: 20,
+                ),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "Please wait for seller to respond",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: PreluraColors.grey,
                           fontSize: 12,
                         ),
-                    children: [
-                      TextSpan(
-                        text: " Send a new offer",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: PreluraColors.primaryColor,
+                  ),
+                ),
+              ),
+            ],
+            if (status == "rejected") ...[
+              addVerticalSpacing(!amTheSeller ? 30 : 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _buildCustomOfferButton(
+                    text: amTheSeller ? null : "Send new offer"),
+              ),
+            ],
+            if (status == "accepted" &&
+                amTheSeller &&
+                offerInfo.offer?.product?.status != "SOLD") ...[
+              // addVerticalSpacing(20),
+              // Text(
+              //   "Please wait for buyer to make payment",
+              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              //         color: PreluraColors.grey,
+              //         fontSize: 12,
+              //       ),
+              // ),
+              ///
+              ///
+              ///
+              // addVerticalSpacing(20),
+              // _buildCustomOfferButton(text: "Sold!"),
+              ///
+              ///
+              ///
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                          text:
+                              "Offer accepted! Please wait for the buyer to make a payment. Made a mistake? ",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: PreluraColors.grey,
+                                    fontSize: 12,
+                                  ),
+                          children: [
+                            TextSpan(
+                              text: " Send a new offer",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                color: PreluraColors.primaryColor,
+                                fontSize: 12,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  _showCustomOfferDialog();
+                                },
+                            )
+                          ])),
+                ),
+              ),
+            ],
+            if (status == "accepted" &&
+                amTheSeller &&
+                offerInfo.offer?.product?.status == "SOLD") ...[
+              // addVerticalSpacing(20),
+              // Text(
+              //   "Please wait for buyer to make payment",
+              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              //         color: PreluraColors.grey,
+              //         fontSize: 12,
+              //       ),
+              // ),
+              ///
+              ///
+              ///
+              addVerticalSpacing(20),
+              _buildCustomOfferButton(text: "Sold!"),
+            ],
+            if (status == "accepted" &&
+                offerInfo.offer?.product?.status == "SOLD" &&
+                !amTheSeller) ...[
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 20,
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Payment made, please wait for the seller to send the item.",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: PreluraColors.grey,
                           fontSize: 12,
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            _showCustomOfferDialog();
-                          },
-                      )
-                    ])),
-          ),
-        ),
-      ],
-      if (status == "accepted" &&
-          amTheSeller &&
-          offerInfo.offer?.product?.status == "SOLD") ...[
-        // addVerticalSpacing(20),
-        // Text(
-        //   "Please wait for buyer to make payment",
-        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //         color: PreluraColors.grey,
-        //         fontSize: 12,
-        //       ),
-        // ),
-        ///
-        ///
-        ///
-        addVerticalSpacing(20),
-        _buildCustomOfferButton(text: "Sold!"),
-
-        ///
-        ///
-        ///
-        // Padding(
-        //   padding: const EdgeInsets.only(
-        //     left: 20,
-        //     right: 20,
-        //     top: 20,
-        //   ),
-        //   child: Align(
-        //     alignment: Alignment.center,
-        //     child: RichText(
-        //         textAlign: TextAlign.center,
-        //         text: TextSpan(
-        //             text: "Payment made!",
-        //             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //                   color: PreluraColors.grey,
-        //                   fontSize: 12,
-        //                 ),
-        //             children: [
-        //               TextSpan(
-        //                 text: " Ship product.",
-        //                 style: TextStyle(
-        //                   decoration: TextDecoration.underline,
-        //                   color: PreluraColors.primaryColor,
-        //                   fontSize: 12,
-        //                 ),
-        //                 recognizer: TapGestureRecognizer()..onTap = () {},
-        //               )
-        //             ])),
-        //   ),
-        // ),
-      ],
-      if (status == "accepted" &&
-          offerInfo.offer?.product?.status == "SOLD" &&
-          !amTheSeller) ...[
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Payment made, please wait for the seller to send the item.",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: PreluraColors.grey,
-                    fontSize: 12,
                   ),
-            ),
-          ),
-        ),
-      ],
-      if (status == "accepted" &&
-          !amTheSeller &&
-          offerInfo.offer?.product?.status != "SOLD") ...[
-        // addVerticalSpacing(20),
-        // Text(
-        //   "Please wait for buyer to make payment",
-        //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //         color: PreluraColors.grey,
-        //         fontSize: 12,
-        //       ),
-        // ),
-        addVerticalSpacing(20),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(children: [
-            // Expanded(
-            //   child: Text(""),
-            // ),
-            buildActionButton(
-              onTap: handleOfferBuying,
-              isLoading: isBuying,
-              text: "Buy now",
-              isDisabled: isBuying,
-            ),
-            // Expanded(
-            //   child: Text(""),
-            // ),
-          ]),
-        ),
-      ],
-    ]);
+                ),
+              ),
+            ],
+            if (status == "accepted" &&
+                !amTheSeller &&
+                offerInfo.offer?.product?.status != "SOLD") ...[
+              // addVerticalSpacing(20),
+              // Text(
+              //   "Please wait for buyer to make payment",
+              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              //         color: PreluraColors.grey,
+              //         fontSize: 12,
+              //       ),
+              // ),
+              addVerticalSpacing(20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(children: [
+                  // Expanded(
+                  //   child: Text(""),
+                  // ),
+                  buildActionButton(
+                    onTap: handleOfferBuying,
+                    isLoading: isBuying,
+                    text: "Buy now",
+                    isDisabled: isBuying,
+                  ),
+                  // Expanded(
+                  //   child: Text(""),
+                  // ),
+                ]),
+              ),
+            ],
+          ]);
   }
 
   handleOfferBuying() async {
