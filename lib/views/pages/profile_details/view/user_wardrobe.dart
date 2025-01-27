@@ -84,8 +84,19 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
   final List<String> items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
 
   @override
+  void dispose() {
+    Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
+    });
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
+    Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
+    });
     final user = ref
         .read((widget.username != null
             ? otherUserProfile(widget.username!)
@@ -469,17 +480,18 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           //     },
                           //   )
                           // ],
-
-                          PreluraSwitchWithText(
-                              titleText: 'Multi-buy:',
-                              value: ref.read(buyerMultiBuyDiscount),
-                              textColor: PreluraColors.grey,
-                              disabled: false,
-                              onChanged: (value) {
-                                log("value is $value");
-                                ref.read(buyerMultiBuyDiscount.notifier).state =
-                                    value;
-                              }),
+                          if (!isCurrentUser)
+                            PreluraSwitchWithText(
+                                titleText: 'Multi-buy:',
+                                value: ref.read(buyerMultiBuyDiscount),
+                                textColor: PreluraColors.grey,
+                                disabled: false,
+                                onChanged: (value) {
+                                  log("value is $value");
+                                  ref
+                                      .read(buyerMultiBuyDiscount.notifier)
+                                      .state = value;
+                                }),
 
                           if (selectedItem.isEmpty) ...[
                             Padding(

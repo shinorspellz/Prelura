@@ -38,7 +38,9 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
   @override
   void initState() {
     super.initState();
-
+    Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
+    });
     // Get the initial index from the provider
     final initialIndex = ref.read(tabControllerProvider).currentIndex;
 
