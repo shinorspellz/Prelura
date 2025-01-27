@@ -148,7 +148,7 @@ class ChatsTab extends ConsumerWidget {
         data: (List<ConversationModel> conversations) {
           if (conversations.isEmpty) {
             return EmptyScreenPlaceholder(
-              text: "You haven't messaged any seller yet",
+              text: "No messages",
             );
           }
 

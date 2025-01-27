@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../../../res/colors.dart';
@@ -40,7 +41,7 @@ class MultiDiscountBottomView extends ConsumerWidget {
                     height: 140,
                     child: ListView.separated(
                       padding:
-                          const EdgeInsets.only(left: 15, top: 16, bottom: 24),
+                          const EdgeInsets.only(left: 15, top: 16, bottom: 20),
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (context, index) =>
                           16.horizontalSpacing,
@@ -108,11 +109,12 @@ class MultiDiscountBottomView extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: AppButton(
-                        text: "Buy now (£$total)",
+                        text:
+                            "Buy now (£${formatDynamicString(total.toString())})",
                         onTap: () {},
                       ),
                     ),
-                    22.horizontalSpacing,
+                    18.horizontalSpacing,
                     Expanded(
                       child: AppButton(
                         text: "Send an offer",
