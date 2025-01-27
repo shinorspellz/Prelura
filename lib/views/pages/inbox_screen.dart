@@ -1,17 +1,14 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
-import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/views/widgets/app_button.dart';
+import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
 import '../widgets/app_bar.dart';
@@ -147,7 +144,7 @@ class ChatsTab extends ConsumerWidget {
         orElse: () => Center(
               child: LoadingWidget(),
             ),
-        data: (conversations) {
+        data: (List<ConversationModel> conversations) {
           if (conversations.isEmpty) {
             return Center(
               child: Text(

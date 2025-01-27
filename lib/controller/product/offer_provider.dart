@@ -203,6 +203,20 @@ class OfferNotifier extends StateNotifier<OfferState> {
       });
     }
   }
+
+  saveConversation(
+      {required List<ConversationModel> conversationList,
+      required String activeId}) {
+    log("::::: we entered here oh::::::::; ${conversationList.length}");
+    for (var conversation in conversationList) {
+      log("::::: we entered here oh::::::::; ${conversation.id}");
+      if (conversation.id == activeId) {
+        updateOfferState({
+          "activeOffer": conversation,
+        });
+      }
+    }
+  }
 }
 
 final offerProvider = StateNotifierProvider<OfferNotifier, OfferState>((ref) {
