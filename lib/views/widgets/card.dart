@@ -20,7 +20,10 @@ import 'package:sizer/sizer.dart';
 import '../../controller/product/product_provider.dart';
 import '../../controller/user/user_controller.dart';
 import '../../res/utils.dart';
+import '../pages/profile_details/view/user_wardrobe.dart';
+import '../pages/profile_details/widgets/multi_discount_bottom_view.dart';
 import '../shimmers/grid_shimmer.dart';
+import 'app_checkbox_without_text.dart';
 import 'profile_picture.dart';
 
 class DisplayCard extends StatefulWidget {
@@ -151,10 +154,14 @@ class ProductCard extends ConsumerStatefulWidget {
       {super.key,
       required this.product,
       this.isSimilar = true,
+      this.isMultiSelect = false,
+      this.index,
       this.isSelectable = true});
   ProductModel product;
   bool isSimilar;
   bool isSelectable;
+  bool isMultiSelect;
+  int? index;
 
   @override
   ConsumerState<ProductCard> createState() => _ProductCardState();
@@ -311,6 +318,50 @@ class _ProductCardState extends ConsumerState<ProductCard> {
                   ///
                   ///
                   ///
+                  ///
+                  if (widget.isMultiSelect)
+                    Positioned(
+                        top: 5,
+                        right: 5,
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              if (ref
+                                  .read(multiProducts)
+                                  .contains(widget.product)) {
+                                ref
+                                    .read(multiProducts.notifier)
+                                    .removeProduct(widget.product);
+                              } else {
+                                ref
+                                    .read(multiProducts.notifier)
+                                    .addProduct(widget.product);
+                              }
+                              ;
+                            },
+                            child: PreluraCheckBoxWithoutText(
+                              title: "",
+                              isChecked: ref
+                                  .read(multiProducts)
+                                  .contains(widget.product),
+                              onChanged: (value) {
+                                if (ref
+                                    .read(multiProducts)
+                                    .contains(widget.product)) {
+                                  ref
+                                      .read(multiProducts.notifier)
+                                      .removeProduct(widget.product);
+                                } else {
+                                  ref
+                                      .read(multiProducts.notifier)
+                                      .addProduct(widget.product);
+                                }
+                                ;
+                              },
+                            ),
+                          ),
+                        )),
                   if (widget.product.isFeatured ?? false)
                     Positioned(
                       top: 5,

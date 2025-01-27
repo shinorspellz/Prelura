@@ -19,6 +19,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../../res/colors.dart';
 import '../../../widgets/profile_picture.dart';
 import '../provider/tab_controller.dart';
+import '../widgets/multi_discount_bottom_view.dart';
 
 @RoutePage()
 class ProfileDetailsScreen extends ConsumerStatefulWidget {
@@ -37,7 +38,9 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
   @override
   void initState() {
     super.initState();
-
+    Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
+    });
     // Get the initial index from the provider
     final initialIndex = ref.read(tabControllerProvider).currentIndex;
 
@@ -60,6 +63,9 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
   void dispose() {
     _tabController.dispose();
     super.dispose();
+    Future.microtask(() {
+      ref.read(multiProducts.notifier).clearProducts();
+    });
   }
 
   @override
@@ -117,6 +123,10 @@ class _ProfileDetailsScreenState extends ConsumerState<ProfileDetailsScreen>
           10.horizontalSpacing,
         ],
       ),
+      bottomSheet: Container(
+          constraints: BoxConstraints(maxHeight: 200),
+          child: MultiDiscountBottomView()),
+
       // body: Column(
       //   children: [
       //     Row(

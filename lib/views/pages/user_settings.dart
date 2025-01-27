@@ -41,7 +41,7 @@ class SettingScreen extends StatelessWidget {
       //       context.router.push(PrivacySettingRoute());
       //     }),
       MenuCard(
-          title: "Security & Privacy Settings",
+          title: "Security & Privacy",
           onTap: () {
             context.router.push(SecurityMenuRoute());
           }),

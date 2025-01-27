@@ -13,14 +13,15 @@ class LegalInformationScreen extends StatelessWidget {
     List menuItem1 = [
       MenuCard(title: "Terms & Conditions", onTap: () {}),
       MenuCard(title: "Privacy Policy", onTap: () {}),
-      MenuCard(title: "Acknowledgrments", onTap: () {}),
+      MenuCard(title: "Acknowledgements", onTap: () {}),
       MenuCard(title: "HMRC reporting centre", onTap: () {})
     ];
 
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "Legal Information",

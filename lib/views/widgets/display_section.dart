@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/shared/mock_data.dart';
 import 'package:prelura_app/views/shimmers/grid_view_animation.dart';
 import 'package:prelura_app/views/widgets/card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+import '../pages/profile_details/view/user_wardrobe.dart';
+import '../pages/profile_details/widgets/multi_discount_bottom_view.dart';
+
 typedef RefreshCallback = Future<void> Function();
 
-class DisplaySection extends StatelessWidget {
+class DisplaySection extends ConsumerWidget {
   const DisplaySection({
     super.key,
     this.products,
@@ -16,6 +20,7 @@ class DisplaySection extends StatelessWidget {
     this.controller,
     this.isInProduct = true,
     this.isSelectable = true,
+    this.isMultiSelect = false,
   });
   final List<ProductModel>? products;
   final RefreshCallback? onRefresh;
@@ -23,9 +28,10 @@ class DisplaySection extends StatelessWidget {
   final ScrollController? controller;
   final bool isInProduct;
   final bool isSelectable;
+  final bool isMultiSelect;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // Dynamically adjust grid column count or aspect ratio based on constraints
@@ -69,6 +75,8 @@ class DisplaySection extends StatelessWidget {
                   product: products![index],
                   isSimilar: isInProduct,
                   isSelectable: isSelectable,
+                  isMultiSelect: isMultiSelect,
+                  index: ref.watch(multiProducts).length + 1,
                 ),
               );
             },
