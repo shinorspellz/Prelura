@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_conversation_builder.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_text_field.dart';
@@ -79,6 +80,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   void dispose() {
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       HelperFunction.genRef!.read(inChatRoom.notifier).state = false;
+      HelperFunction.genRef!.invalidate(offerProvider);
     });
     super.dispose();
   }
@@ -162,7 +164,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
       //   ]),
       // ),
       body: widget.isOffer
-          ? OfferConversationBuilder()
+          ? OfferConversationBuilder(
+              conversationId: widget.id,
+            )
           : ListView(controller: ref.watch(chatScrollController), children: [
               MessageConversationBuilder(
                 conversationId: int.parse(widget.id),
