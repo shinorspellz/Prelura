@@ -27,7 +27,7 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
     super.initState();
 
     controller.addListener(() {
-      print(ref.read(notificationProvider.notifier).canLoadMore().toString());
+      // print(ref.read(notificationProvider.notifier).canLoadMore().toString());
       if (!mounted) return; // Guard against unmounted state
       final maxScroll = controller.position.maxScrollExtent;
       final currentScroll = controller.position.pixels;
