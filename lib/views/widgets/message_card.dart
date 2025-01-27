@@ -90,6 +90,8 @@ class MessageCard extends ConsumerWidget {
                     ] else
                       Text(
                         model.lastMessage!.text,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall
@@ -143,6 +145,8 @@ class BuildOfferRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Text(
       _buildOfferMessage(),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: Theme.of(context)
           .textTheme
           .bodySmall

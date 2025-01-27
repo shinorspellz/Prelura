@@ -28,7 +28,6 @@ class OfferConversationBuilder extends ConsumerWidget {
       next.when(
         data: (chatLog) {
           if (previous?.value != chatLog) {
-            // Only process if chatLog has changed
             ref.read(offerProvider.notifier).analysisChatLog(chatLog);
           }
         },
@@ -51,28 +50,36 @@ class OfferConversationBuilder extends ConsumerWidget {
           child: OfferProductCard(offerInfo: offerInfo),
         ),
         buildDivider(context),
-        OfferFirstCard(
-          conversationInfo: conversationInfo,
-          amTheSeller: amTheSeller,
-          isSender: isSender,
-        ),
-        if (offerChildren != null && offerChildren.isNotEmpty)
-          Flexible(
-            child: ListView.separated(
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10),
-              reverse: true,
-              itemCount: offerChildren.length,
-              itemBuilder: (context, index) {
-                final chat = offerChildren[index];
-                return OfferSubCardBox(
-                  eventInfo: chat,
-                  appUserInfo: appUserInfo!,
-                );
-              },
-              separatorBuilder: (_, __) => addVerticalSpacing(10),
+
+        // if (offerChildren != null && offerChildren.isNotEmpty)
+        Flexible(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                OfferFirstCard(
+                  conversationInfo: conversationInfo,
+                  amTheSeller: amTheSeller,
+                  isSender: isSender,
+                ),
+                ListView.separated(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 10),
+                  reverse: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: offerChildren?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final chat = offerChildren![index];
+                    return OfferSubCardBox(
+                      eventInfo: chat,
+                      appUserInfo: appUserInfo!,
+                    );
+                  },
+                  separatorBuilder: (_, __) => addVerticalSpacing(10),
+                ),
+              ],
             ),
           ),
+        ),
       ],
     );
   }

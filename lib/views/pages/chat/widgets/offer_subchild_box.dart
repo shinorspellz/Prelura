@@ -202,9 +202,23 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                   ),
                 8.horizontalSpacing,
                 Container(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * .6,
+                  ),
                   padding: EdgeInsets.only(
                     top: 10,
                     bottom: 10,
+                    left: isSender ? 10 : 14,
+                    right: isSender ? 14 : 10,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                    color: Theme.of(context).dividerColor,
                   ),
                   child: Text(
                     widget.eventInfo.message,

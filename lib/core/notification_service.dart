@@ -129,6 +129,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
     final appRouter = ref.read(router);
 
     final data = jsonDecode(message);
+    log("::::The notification data :::::: ${jsonEncode(data)}");
     final page = data['page'];
 
     switch (page) {
@@ -146,6 +147,16 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
             username: data['title'].toString().toLowerCase(),
             avatarUrl: null,
             isOffer: false,
+          ),
+        );
+        break;
+      case 'OFFER':
+        appRouter.push(
+          ChatRoute(
+            id: data['object_id'],
+            username: data['title'].toString().toLowerCase(),
+            avatarUrl: jsonDecode(data["media_thumbnail"])["thumbnail"],
+            isOffer: true,
           ),
         );
         break;

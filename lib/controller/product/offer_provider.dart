@@ -178,7 +178,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
           log("::::The message info is::: ${chatInfo.text}");
           OfferSubStateInfo dataInfo = OfferSubStateInfo(
             status: "Normal",
-            id: chatInfo.id,
+            id: chatInfo.id.toString(),
             message: chatInfo.text,
             createdBy: chatInfo.sender.username,
             createdAt: chatInfo.createdAt,
@@ -192,8 +192,9 @@ class OfferNotifier extends StateNotifier<OfferState> {
           messages.add(dataInfo);
         }
       }
+      messages.reversed;
       final updatedList = {...conversation, ...messages}.toList();
-      updatedList.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
+      updatedList.sort((b, a) => a.createdAt!.compareTo(b.createdAt!));
       var offerInfo = state.activeOffer?.offer?.copyWith(
         children: updatedList,
       );
