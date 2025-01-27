@@ -175,7 +175,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
       log("The message list is not equal to conversation list");
       for (MessageModel chatInfo in chatLog) {
         if (!(chatInfo.text.startsWith("{'offer_id"))) {
-          log("::::The message info is::: ${chatInfo.text}");
+          // log("::::The message info is::: ${chatInfo.text}");
           OfferSubStateInfo dataInfo = OfferSubStateInfo(
             status: "Normal",
             id: chatInfo.id.toString(),
@@ -207,9 +207,9 @@ class OfferNotifier extends StateNotifier<OfferState> {
   saveConversation(
       {required List<ConversationModel> conversationList,
       required String activeId}) {
-    log("::::: we entered here oh::::::::; ${conversationList.length}");
+    // log("::::: we entered here oh::::::::; ${conversationList.length}");
     for (var conversation in conversationList) {
-      log("::::: we entered here oh::::::::; ${conversation.id}");
+      // log("::::: we entered here oh::::::::; ${conversation.id}");
       if (conversation.id == activeId) {
         updateOfferState({
           "activeOffer": conversation,
