@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,7 +20,7 @@ class MessageCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // log("The last message::: ${model.lastMessage?.toJson()}");
     bool isLastMessageAnOffer = model.offer != null;
-    log("The last message an offer::: $isLastMessageAnOffer");
+    // log("The last message an offer::: $isLastMessageAnOffer");
 
     return GestureDetector(
       onTap: () {

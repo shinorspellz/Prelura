@@ -72,6 +72,37 @@ class OfferInfo {
             : List<dynamic>.from(children!.map((x) => x.toJson())),
         "__typename": typename,
       };
+
+  OfferInfo copyWith({
+    String? id,
+    dynamic message,
+    String? offerPrice,
+    String? createdBy,
+    String? status,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    dynamic expiresAt,
+    bool? deleted,
+    List<OfferSubStateInfo>? children,
+    Recipient? buyer,
+    Product? product,
+    String? typename,
+  }) =>
+      OfferInfo(
+        id: id ?? this.id,
+        message: message ?? this.message,
+        offerPrice: offerPrice ?? this.offerPrice,
+        createdBy: createdBy ?? this.createdBy,
+        status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        expiresAt: expiresAt ?? this.expiresAt,
+        deleted: deleted ?? this.deleted,
+        children: children ?? this.children,
+        buyer: buyer ?? this.buyer,
+        product: product ?? this.product,
+        typename: typename ?? this.typename,
+      );
 }
 
 class Product {
@@ -232,6 +263,8 @@ class OfferSubStateInfo {
   String? updatedBy, createdBy;
   String? status;
   Recipient? buyer;
+  DateTime? updatedAt;
+  DateTime? createdAt;
   ChildProduct? product;
   String? typename;
 
@@ -241,6 +274,8 @@ class OfferSubStateInfo {
     this.offerPrice,
     this.status,
     this.updatedBy,
+    this.updatedAt,
+    this.createdAt,
     this.createdBy,
     this.buyer,
     this.product,
@@ -255,6 +290,12 @@ class OfferSubStateInfo {
         updatedBy: json["updatedBy"],
         createdBy: json["createdBy"],
         status: json["status"],
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
         buyer: json["buyer"] == null ? null : Recipient.fromJson(json["buyer"]),
         product: json["product"] == null
             ? null
@@ -267,12 +308,47 @@ class OfferSubStateInfo {
         "message": message,
         "offerPrice": offerPrice,
         "updatedBy": updatedBy,
+        "updatedAt": updatedAt?.toIso8601String(),
+        "createdAt": updatedAt?.toIso8601String(),
         "createdBy": createdBy,
         "status": status,
         "buyer": buyer?.toJson(),
         "product": product?.toJson(),
         "__typename": typename,
       };
+
+  OfferSubStateInfo copyWith({
+    String? id,
+    DateTime? createdAt,
+    String? updatedBy,
+    String? createdBy,
+    DateTime? updatedAt,
+    dynamic message,
+    String? offerPrice,
+    String? status,
+    Recipient? buyer,
+    ChildProduct? product,
+    String? typename,
+  }) =>
+      OfferSubStateInfo(
+        id: id ?? this.id,
+        createdAt: createdAt ?? this.createdAt,
+        updatedBy: updatedBy ?? this.updatedBy,
+        createdBy: createdBy ?? this.createdBy,
+        updatedAt: updatedAt ?? this.updatedAt,
+        message: message ?? this.message,
+        offerPrice: offerPrice ?? this.offerPrice,
+        status: status ?? this.status,
+        buyer: buyer ?? this.buyer,
+        product: product ?? this.product,
+        typename: typename ?? this.typename,
+      );
+
+  @override
+  bool operator ==(covariant OfferSubStateInfo other) => id == other.id;
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 class ChildProduct {
