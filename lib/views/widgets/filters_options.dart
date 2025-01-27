@@ -26,7 +26,7 @@ class FiltersOptions extends ConsumerWidget {
       ],
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+        padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
           children: [
             // FilterChip(
@@ -64,7 +64,7 @@ class FiltersOptions extends ConsumerWidget {
                     ].contains(filter))
                 .map((filter) {
               return Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(right: 8.0),
                 child: FilterChip(
                   checkmarkColor: filters.containsKey(filter)
                       ? PreluraColors.activeColor

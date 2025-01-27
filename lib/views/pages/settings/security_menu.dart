@@ -19,7 +19,7 @@ class SecurityMenuScreen extends ConsumerWidget {
               Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
-        appbarTitle: "Security & Privacy Settings",
+        appbarTitle: "Security & Privacy",
         centerTitle: true,
       ),
       body: Column(

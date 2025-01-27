@@ -33,7 +33,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
 
   @override
   void initState() {
-    isEditing = ref.read(isSelectedProvider);
+    // isEditing = ref.read(isSelectedProvider);
     setState(() {});
     super.initState();
   }
@@ -86,17 +86,17 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
           if (ref.watch(isSelectedProvider)) ...[
             DiscountItem(
               title: "2-4 items",
-              isEditing: true,
+              isEditing: isEditing,
               percentageValue: fourItemDiscountValue,
             ),
             DiscountItem(
               title: "5-9 items",
-              isEditing: true,
+              isEditing: isEditing,
               percentageValue: nineItemDiscountValue,
             ),
             DiscountItem(
               title: "10+ items",
-              isEditing: true,
+              isEditing: isEditing,
               percentageValue: aboveTenItemDiscountValue,
             ),
             32.verticalSpacing,
@@ -113,8 +113,11 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                       isEditing) {
                     ref.read(isSelectedProvider.notifier).state = false;
                   }
+                  setState(() {
+                    isEditing = !isEditing;
+                  });
                 },
-                text: "Save",
+                text: isEditing ? "Save" : "Edit",
                 textColor: PreluraColors.white,
                 loading: false,
                 bgColor: PreluraColors.primaryColor,

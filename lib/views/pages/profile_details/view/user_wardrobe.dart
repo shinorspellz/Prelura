@@ -65,6 +65,15 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
             ? otherUserProfile(widget.username!)
             : userProvider))
         .valueOrNull;
+    Future.microtask(() {
+      ref.read(isBrandActiveProvider.notifier).state = false;
+      ref
+          .read(filterUserProductProvider.notifier)
+          .removeFilter(FilterTypes.brand, "");
+      ref
+          .read(filterUserProductProvider.notifier)
+          .removeFilter(FilterTypes.category, "");
+    });
 
     ref.read(userProductGroupingByBrandProvider(
         (user?.id ?? 0, Enum$ProductGroupingEnum.BRAND)));
@@ -514,6 +523,9 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     ref.read(userIdProvider.notifier).state =
                                         user.id;
 
+                                    setState(() {
+                                      isBrandActive = true;
+                                    });
                                     ref
                                         .read(isBrandActiveProvider.notifier)
                                         .state = true;
