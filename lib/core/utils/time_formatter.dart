@@ -20,7 +20,7 @@ String formatChatTime(DateTime dateTime) {
     // Older dates
     final day = DateFormat('d').format(dateTime);
     final suffix = _getDaySuffix(dateTime.day);
-    final monthYear = DateFormat('MMMM, yy').format(dateTime);
+    final monthYear = DateFormat('MMM, yy').format(dateTime);
     return "$day$suffix $monthYear";
   }
 }

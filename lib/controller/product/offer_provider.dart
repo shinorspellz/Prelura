@@ -9,6 +9,7 @@ import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
+import 'package:prelura_app/model/chat/message_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
@@ -161,6 +162,59 @@ class OfferNotifier extends StateNotifier<OfferState> {
         "processingType": "respondToOffer",
       });
       // return false;
+    }
+  }
+
+  analysisChatLog(List<MessageModel> chatLog) {
+    log("The message List:::: ${chatLog.length}");
+    List<OfferSubStateInfo> messages = [];
+    List<OfferSubStateInfo> conversation =
+        state.activeOffer?.offer?.children ?? [];
+
+    if (chatLog.length != conversation.length) {
+      log("The message list is not equal to conversation list");
+      for (MessageModel chatInfo in chatLog) {
+        if (!(chatInfo.text.startsWith("{'offer_id"))) {
+          // log("::::The message info is::: ${chatInfo.text}");
+          OfferSubStateInfo dataInfo = OfferSubStateInfo(
+            status: "Normal",
+            id: chatInfo.id.toString(),
+            message: chatInfo.text,
+            createdBy: chatInfo.sender.username,
+            createdAt: chatInfo.createdAt,
+            buyer: Recipient(
+              username: chatInfo.sender.username,
+              profilePictureUrl: chatInfo.sender.profilePictureUrl,
+              displayName: chatInfo.sender.displayName,
+              thumbnailUrl: chatInfo.sender.thumbnailUrl,
+            ),
+          );
+          messages.add(dataInfo);
+        }
+      }
+      messages.reversed;
+      final updatedList = {...conversation, ...messages}.toList();
+      updatedList.sort((b, a) => a.createdAt!.compareTo(b.createdAt!));
+      var offerInfo = state.activeOffer?.offer?.copyWith(
+        children: updatedList,
+      );
+      updateOfferState({
+        "activeOffer": state.activeOffer?.copyWith(offer: offerInfo),
+      });
+    }
+  }
+
+  saveConversation(
+      {required List<ConversationModel> conversationList,
+      required String activeId}) {
+    // log("::::: we entered here oh::::::::; ${conversationList.length}");
+    for (var conversation in conversationList) {
+      // log("::::: we entered here oh::::::::; ${conversation.id}");
+      if (conversation.id == activeId) {
+        updateOfferState({
+          "activeOffer": conversation,
+        });
+      }
     }
   }
 }

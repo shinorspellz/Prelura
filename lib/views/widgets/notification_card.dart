@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +20,13 @@ class NotificationCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    log(":::The notification info::: ${notification}");
     return GestureDetector(
       onTap: () async {
         if (!notification.isRead!) {
           await ref
               .read(readNotificationProvider.notifier)
               .readNotification(int.parse(notification.id));
-
           ref.invalidate(notificationProvider);
         }
         if (notification.modelGroup == "Chat") {
@@ -32,7 +34,15 @@ class NotificationCard extends ConsumerWidget {
             id: notification.meta["conversation_id"],
             username: notification.meta["sender"],
             avatarUrl: notification.sender.profilePictureUrl,
-            isOffer: false,
+            isOffer: notification.meta["is_offer"] ?? false,
+          ));
+        }
+        if (notification.modelGroup == "Offer") {
+          context.router.push(ChatRoute(
+            id: notification.meta["conversation_id"],
+            username: notification.meta["sender"],
+            avatarUrl: notification.sender.profilePictureUrl,
+            isOffer: true,
           ));
         }
         if (notification.modelGroup == "UserProfile") {

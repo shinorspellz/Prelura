@@ -49,7 +49,7 @@ class OfferProductCard extends ConsumerWidget {
       ),
       10.horizontalSpacing,
       SizedBox(
-        width: boxWidth ?? 74.w,
+        width: boxWidth ?? 73.5.w,
         height: 70,
         child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
