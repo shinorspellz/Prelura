@@ -94,6 +94,8 @@ class AppButton extends StatelessWidget {
                   textWidget != null
                       ? Text(
                           text!,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: fontSize ?? 16,
                             color: textColor ??
@@ -110,6 +112,8 @@ class AppButton extends StatelessWidget {
                       : Center(
                           child: Text(
                             text!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontSize: fontSize ?? 16,
                               color: textColor ??

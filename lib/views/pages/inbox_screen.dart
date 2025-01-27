@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
 import '../widgets/app_bar.dart';
+import '../widgets/empty_screen_placeholder.dart';
 import '../widgets/message_card.dart';
 import 'notifications/view/notification_view.dart';
 
@@ -149,13 +150,8 @@ class ChatsTab extends ConsumerWidget {
             ),
         data: (conversations) {
           if (conversations.isEmpty) {
-            return Center(
-              child: Text(
-                "You haven't messaged any seller yet",
-                style: context.textTheme.bodyLarge?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+            return EmptyScreenPlaceholder(
+              text: "You haven't messaged any seller yet",
             );
           }
 

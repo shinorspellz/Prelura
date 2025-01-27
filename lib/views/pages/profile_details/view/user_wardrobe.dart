@@ -28,6 +28,7 @@ import 'package:prelura_app/views/widgets/profile_card.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../model/product/product_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/helper_function.dart';
 import '../../../shimmers/grid_shimmer.dart';
@@ -36,10 +37,35 @@ import '../../../widgets/auth_text_field.dart';
 import '../../../widgets/bottom_sheet.dart';
 import '../../../widgets/custom_widget.dart';
 import '../../../widgets/error_placeholder.dart';
+import '../../../widgets/switch_with_text.dart';
 import '../widgets/no_product_widget.dart';
 import '../widgets/user_popular_brand.dart';
 
 final isBrandActiveProvider = AutoDisposeStateProvider((ref) => false);
+final buyerMultiBuyDiscount = AutoDisposeStateProvider<bool>((ref) => false);
+final multiProducts =
+    StateNotifierProvider<MultiProductsNotifier, Set<ProductModel>>(
+  (ref) => MultiProductsNotifier(),
+);
+
+class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
+  MultiProductsNotifier() : super({});
+
+  // Add a product to the set
+  void addProduct(ProductModel product) {
+    state = {...state, product}; // Create a new set with the added product
+  }
+
+  // Remove a product from the set
+  void removeProduct(ProductModel product) {
+    state = state.where((p) => p != product).toSet();
+  }
+
+  // Clear all products
+  void clearProducts() {
+    state = {};
+  }
+}
 
 class UserWardrobe extends ConsumerStatefulWidget {
   const UserWardrobe({super.key, this.username});
@@ -88,7 +114,10 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
         final user = ref.refresh(userProvider).valueOrNull;
 
         await ref.refresh(userProduct(user?.username).future);
-      } // Re-trigger the provider
+      }
+      ref.read(buyerMultiBuyDiscount.notifier).state =
+          ref.read(multiProducts).isNotEmpty;
+
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
       _refreshController.refreshFailed(); // Notify SmartRefresher of failure
@@ -311,7 +340,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 15.0),
+                                          const EdgeInsets.only(left: 16.0),
                                       child: Text(
                                         widget.username != null
                                             ? 'Categories from this seller'
@@ -440,6 +469,18 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           //     },
                           //   )
                           // ],
+
+                          PreluraSwitchWithText(
+                              titleText: 'Multi-buy:',
+                              value: ref.read(buyerMultiBuyDiscount),
+                              textColor: PreluraColors.grey,
+                              disabled: false,
+                              onChanged: (value) {
+                                log("value is $value");
+                                ref.read(buyerMultiBuyDiscount.notifier).state =
+                                    value;
+                              }),
+
                           if (selectedItem.isEmpty) ...[
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -610,6 +651,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                     return DisplaySection(
                                       products: products,
                                       isInProduct: false,
+                                      isMultiSelect:
+                                          ref.watch(buyerMultiBuyDiscount),
                                     );
                                   },
                                   error: (e, _) {
