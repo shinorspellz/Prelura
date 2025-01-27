@@ -6,9 +6,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/views/pages/chat/chat_view.dart';
 
 import '../controller/notification_provider.dart';
 
@@ -114,6 +117,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
   displayNotification(RemoteMessage message) {
     log(message.data.toString(), name: 'NotificationService');
+
     _flutterLocalNotificationsPlugin.show(0, message.notification?.title ?? '',
         message.notification?.body ?? '', _notificationDetails(),
         payload: jsonEncode(message.data));
@@ -146,20 +150,26 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
             id: data['object_id'],
             username: data['title'].toString().toLowerCase(),
             avatarUrl: null,
-            isOffer: false,
+            isOffer: data["is_offer"].toString().toLowerCase() == "true",
           ),
         );
         break;
       case 'OFFER':
-        appRouter.push(
-          ChatRoute(
-            id: data['object_id'],
-            username: data['title'].toString().toLowerCase(),
-            avatarUrl: jsonDecode(data["media_thumbnail"])["thumbnail"],
-            isOffer: true,
-          ),
-        );
-        break;
+        {
+          if (HelperFunction.genRef != null &&
+              HelperFunction.genRef!.read(inChatRoom)) {
+            HelperFunction.genRef!.refresh(conversationProvider);
+          }
+          appRouter.push(
+            ChatRoute(
+              id: data['object_id'],
+              username: data['title'].toString().toLowerCase(),
+              avatarUrl: jsonDecode(data["media_thumbnail"])["thumbnail"],
+              isOffer: true,
+            ),
+          );
+          break;
+        }
       default:
     }
   }

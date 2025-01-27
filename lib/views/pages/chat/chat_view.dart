@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/chat/messages_provider.dart';
+import 'package:prelura_app/res/helper_function.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_conversation_builder.dart';
 import 'package:prelura_app/views/pages/chat/widgets/message_text_field.dart';
 import 'package:prelura_app/views/pages/chat/widgets/offer_conversation_builder.dart';
@@ -41,8 +43,12 @@ import '../../widgets/app_bar.dart';
 //   }
 // }
 
+final inChatRoom = StateProvider(
+  (_) => false,
+);
+
 @RoutePage()
-class ChatScreen extends ConsumerWidget {
+class ChatScreen extends ConsumerStatefulWidget {
   const ChatScreen({
     super.key,
     required this.id,
@@ -57,7 +63,28 @@ class ChatScreen extends ConsumerWidget {
   final String? avatarUrl;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends ConsumerState<ChatScreen> {
+  @override
+  void initState() {
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      ref.read(inChatRoom.notifier).state = true;
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      HelperFunction.genRef!.read(inChatRoom.notifier).state = false;
+    });
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // final chatMessages = ref.watch(chatProvider);
     final textController = TextEditingController();
 
@@ -68,7 +95,7 @@ class ChatScreen extends ConsumerWidget {
                 color: Theme.of(context).iconTheme.color),
             onPressed: () => context.router.popForced(),
           ),
-          appbarTitle: username,
+          appbarTitle: widget.username,
           trailingIcon: [
             IconButton(
               icon: Icon(
@@ -79,7 +106,7 @@ class ChatScreen extends ConsumerWidget {
             ),
           ]),
       bottomNavigationBar: MessageTextField(
-        id: id,
+        id: widget.id,
         textController: textController,
       ),
 
@@ -134,12 +161,12 @@ class ChatScreen extends ConsumerWidget {
       //     // ),
       //   ]),
       // ),
-      body: isOffer
+      body: widget.isOffer
           ? OfferConversationBuilder()
           : ListView(controller: ref.watch(chatScrollController), children: [
               MessageConversationBuilder(
-                conversationId: int.parse(id),
-                avatar: avatarUrl,
+                conversationId: int.parse(widget.id),
+                avatar: widget.avatarUrl,
                 scrollController: ref.watch(chatScrollController),
                 textController: textController,
               ),
