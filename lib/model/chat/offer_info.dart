@@ -1,109 +1,217 @@
 import 'dart:convert';
 
 class OfferInfo {
-  String? id;
-  dynamic message;
-  dynamic offerPrice;
-  DateTime? createdAt;
+  List<Product>? products;
+  String? status;
+  dynamic updatedBy;
   DateTime? updatedAt;
-  List<OfferSubStateInfo>? children;
-  dynamic status;
-  String? createdBy;
+  String? id;
   dynamic expiresAt;
-  bool? deleted;
+  String? createdBy;
+  DateTime? createdAt;
+  dynamic offerPrice;
+  dynamic message;
+  List<OfferSubStateInfo>? children;
   Recipient? buyer;
-  Product? product;
   String? typename;
 
   OfferInfo({
-    this.id,
-    this.message,
-    this.offerPrice,
-    this.createdAt,
-    this.updatedAt,
+    this.products,
     this.status,
-    this.children,
-    this.createdBy,
+    this.updatedBy,
+    this.updatedAt,
+    this.id,
     this.expiresAt,
-    this.deleted,
+    this.createdBy,
+    this.createdAt,
+    this.offerPrice,
+    this.message,
+    this.children,
     this.buyer,
-    this.product,
     this.typename,
   });
 
   factory OfferInfo.fromJson(Map<String, dynamic> json) => OfferInfo(
-        id: json["id"],
-        message: json["message"],
-        createdBy: json["createdBy"],
-        offerPrice: json["offer_price"] ?? json["offerPrice"],
-        status: json["offer_status"] ?? json["status"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
+        products: json["products"] == null
+            ? []
+            : List<Product>.from(
+                json["products"]!.map((x) => Product.fromJson(x))),
+        status: json["status"],
+        updatedBy: json["updatedBy"],
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
+        id: json["id"],
         expiresAt: json["expiresAt"],
-        deleted: json["deleted"],
-        buyer: json["buyer"] == null ? null : Recipient.fromJson(json["buyer"]),
-        product:
-            json["product"] == null ? null : Product.fromJson(json["product"]),
-        typename: json["__typename"],
+        createdBy: json["createdBy"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        offerPrice: json["offerPrice"],
+        message: json["message"],
         children: json["children"] == null
             ? []
             : List<OfferSubStateInfo>.from(
                 json["children"]!.map((x) => OfferSubStateInfo.fromJson(x))),
+        buyer: json["buyer"] == null ? null : Recipient.fromJson(json["buyer"]),
+        typename: json["__typename"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "message": message,
-        "offerPrice": offerPrice,
+        "products": products == null
+            ? []
+            : List<dynamic>.from(products!.map((x) => x.toJson())),
         "status": status,
+        "updatedBy": updatedBy,
+        "updatedAt": updatedAt?.toIso8601String(),
+        "id": id,
+        "expiresAt": expiresAt,
         "createdBy": createdBy,
         "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "expiresAt": expiresAt,
-        "deleted": deleted,
+        "offerPrice": offerPrice,
+        "message": message,
+        "children":
+            children == null ? [] : List<dynamic>.from(children!.map((x) => x)),
         "buyer": buyer?.toJson(),
-        "product": product?.toJson(),
-        "children": children == null
-            ? []
-            : List<dynamic>.from(children!.map((x) => x.toJson())),
         "__typename": typename,
       };
 
   OfferInfo copyWith({
-    String? id,
-    dynamic message,
-    String? offerPrice,
-    String? createdBy,
+    List<Product>? products,
     String? status,
-    DateTime? createdAt,
+    dynamic updatedBy,
     DateTime? updatedAt,
+    String? id,
     dynamic expiresAt,
-    bool? deleted,
+    String? createdBy,
+    DateTime? createdAt,
+    dynamic offerPrice,
+    dynamic message,
     List<OfferSubStateInfo>? children,
     Recipient? buyer,
-    Product? product,
     String? typename,
   }) =>
       OfferInfo(
-        id: id ?? this.id,
-        message: message ?? this.message,
-        offerPrice: offerPrice ?? this.offerPrice,
-        createdBy: createdBy ?? this.createdBy,
+        products: products ?? this.products,
         status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
+        updatedBy: updatedBy ?? this.updatedBy,
         updatedAt: updatedAt ?? this.updatedAt,
+        id: id ?? this.id,
         expiresAt: expiresAt ?? this.expiresAt,
-        deleted: deleted ?? this.deleted,
+        createdBy: createdBy ?? this.createdBy,
+        createdAt: createdAt ?? this.createdAt,
+        offerPrice: offerPrice ?? this.offerPrice,
+        message: message ?? this.message,
         children: children ?? this.children,
         buyer: buyer ?? this.buyer,
-        product: product ?? this.product,
         typename: typename ?? this.typename,
       );
 }
+
+// class OfferInfo {
+//   String? id;
+//   dynamic message;
+//   dynamic offerPrice;
+//   DateTime? createdAt;
+//   DateTime? updatedAt;
+//   List<OfferSubStateInfo>? children;
+//   dynamic status;
+//   String? createdBy;
+//   dynamic expiresAt;
+//   bool? deleted;
+//   Recipient? buyer;
+//   Product? product;
+//   String? typename;
+//
+//   OfferInfo({
+//     this.id,
+//     this.message,
+//     this.offerPrice,
+//     this.createdAt,
+//     this.updatedAt,
+//     this.status,
+//     this.children,
+//     this.createdBy,
+//     this.expiresAt,
+//     this.deleted,
+//     this.buyer,
+//     this.product,
+//     this.typename,
+//   });
+//
+//   factory OfferInfo.fromJson(Map<String, dynamic> json) => OfferInfo(
+//         id: json["id"],
+//         message: json["message"],
+//         createdBy: json["createdBy"],
+//         offerPrice: json["offer_price"] ?? json["offerPrice"],
+//         status: json["offer_status"] ?? json["status"],
+//         createdAt: json["createdAt"] == null
+//             ? null
+//             : DateTime.parse(json["createdAt"]),
+//         updatedAt: json["updatedAt"] == null
+//             ? null
+//             : DateTime.parse(json["updatedAt"]),
+//         expiresAt: json["expiresAt"],
+//         deleted: json["deleted"],
+//         buyer: json["buyer"] == null ? null : Recipient.fromJson(json["buyer"]),
+//         product:
+//             json["product"] == null ? null : Product.fromJson(json["product"]),
+//         typename: json["__typename"],
+//         children: json["children"] == null
+//             ? []
+//             : List<OfferSubStateInfo>.from(
+//                 json["children"]!.map((x) => OfferSubStateInfo.fromJson(x))),
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "message": message,
+//         "offerPrice": offerPrice,
+//         "status": status,
+//         "createdBy": createdBy,
+//         "createdAt": createdAt?.toIso8601String(),
+//         "updatedAt": updatedAt?.toIso8601String(),
+//         "expiresAt": expiresAt,
+//         "deleted": deleted,
+//         "buyer": buyer?.toJson(),
+//         "product": product?.toJson(),
+//         "children": children == null
+//             ? []
+//             : List<dynamic>.from(children!.map((x) => x.toJson())),
+//         "__typename": typename,
+//       };
+//
+//   OfferInfo copyWith({
+//     String? id,
+//     dynamic message,
+//     String? offerPrice,
+//     String? createdBy,
+//     String? status,
+//     DateTime? createdAt,
+//     DateTime? updatedAt,
+//     dynamic expiresAt,
+//     bool? deleted,
+//     List<OfferSubStateInfo>? children,
+//     Recipient? buyer,
+//     Product? product,
+//     String? typename,
+//   }) =>
+//       OfferInfo(
+//         id: id ?? this.id,
+//         message: message ?? this.message,
+//         offerPrice: offerPrice ?? this.offerPrice,
+//         createdBy: createdBy ?? this.createdBy,
+//         status: status ?? this.status,
+//         createdAt: createdAt ?? this.createdAt,
+//         updatedAt: updatedAt ?? this.updatedAt,
+//         expiresAt: expiresAt ?? this.expiresAt,
+//         deleted: deleted ?? this.deleted,
+//         children: children ?? this.children,
+//         buyer: buyer ?? this.buyer,
+//         product: product ?? this.product,
+//         typename: typename ?? this.typename,
+//       );
+// }
 
 class Product {
   String? id;

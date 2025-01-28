@@ -273,6 +273,7 @@ class _OfferFirstCardState extends ConsumerState<OfferFirstCard> {
               ),
             ]),
           ),
+
         // else
         //   Padding(
         //     padding: EdgeInsets.only(
