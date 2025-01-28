@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/res/context_entension.dart';
 import 'package:prelura_app/views/widgets/auth_text_field.dart';
@@ -19,9 +19,12 @@ import '../../widgets/app_button.dart';
 import '../../widgets/brand_text_widget.dart';
 
 @RoutePage()
-class SendAnOfferScreen extends ConsumerStatefulWidget {
-  const SendAnOfferScreen({super.key, required this.product});
-  final ProductModel product;
+class SendAnOfferScreen extends StatefulHookConsumerWidget {
+  const SendAnOfferScreen({
+    super.key,
+    required this.products,
+  });
+  final List<ProductModel> products;
 
   @override
   ConsumerState<SendAnOfferScreen> createState() => _SendAnOfferScreenState();
@@ -31,6 +34,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
   final TextEditingController textController = TextEditingController();
   bool canCreateOffer = false;
   String? errorMessage;
+  int activeProductIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +70,32 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
   }
 
   double calculateMaxPrice() {
-    return widget.product.discountPrice != null
-        ? calculateDiscountedAmount(
-            price: widget.product.price,
-            discount: double.parse(widget.product.discountPrice!).toInt(),
-          )
-        : widget.product.price;
+    double maxPrice = 0;
+    if (widget.products
+        .any((productInfo) => productInfo.discountPrice != null)) {
+      for (var productInfo in widget.products) {
+        if (productInfo.discountPrice != null) {
+          maxPrice += calculateDiscountedAmount(
+            price: productInfo.price,
+            discount: double.parse(productInfo.discountPrice!).toInt(),
+          );
+        } else {
+          maxPrice += productInfo.price;
+        }
+      }
+    } else {
+      for (var productInfo in widget.products) {
+        maxPrice += productInfo.price;
+      }
+    }
+    return maxPrice;
+    // return widget.products
+    //         .any((productInfo) => productInfo.discountPrice != null)
+    //     ? calculateDiscountedAmount(
+    //         price: widget.product.price,
+    //         discount: double.parse(widget.product.discountPrice!).toInt(),
+    //       )
+    //     : widget.product.price;
   }
 
   void _handleTextChange(double maxPrice) {
@@ -98,104 +122,180 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
   }
 
   Widget _buildProductInfo() {
-    final product = widget.product;
+    final product = widget.products[activeProductIndex];
     final discountedPrice = product.discountPrice != null
         ? calculateDiscountedAmount(
             price: product.price,
             discount: double.parse(product.discountPrice!).toInt(),
           )
         : null;
+    bool dragRight = false;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: CachedNetworkImage(
-            imageUrl: product.imagesUrl.first.thumbnail,
-            height: 21.h,
-            width: 35.w,
-            fit: BoxFit.cover,
-            placeholder: (context, url) =>
-                ShimmerBox(height: 25.h, width: 30.w),
-          ),
-        ),
-        SizedBox(width: 16),
-        Expanded(
-          child: SizedBox(
-            height: 21.h,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  capitalizeEachWord(product.name),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
+    return Stack(children: [
+      GestureDetector(
+        onHorizontalDragUpdate: (details) {
+          if (widget.products.length == 1) return;
+          // Update drag direction
+          dragRight = details.delta.dx > 0;
+        },
+        onHorizontalDragEnd: (_) {
+          if (widget.products.length == 1) return;
+          // Calculate the new index based on the drag direction
+          final int newIndex = dragRight
+              ? activeProductIndex - 1 // Dragging right, move to previous index
+              : activeProductIndex + 1; // Dragging left, move to next index
+
+          // Ensure the index stays within bounds
+          activeProductIndex = newIndex.clamp(0, widget.products.length - 1);
+
+          // Update the UI
+          setState(() {});
+        },
+        child: Container(
+          color: Colors.transparent,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: CachedNetworkImage(
+                  imageUrl: product.imagesUrl.first.thumbnail,
+                  height: 21.h,
+                  width: 35.w,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      ShimmerBox(height: 25.h, width: 30.w),
                 ),
-                if (product.brand != null || product.customBrand != null) ...[
-                  SizedBox(height: 12),
-                  BrandTextWidget(
-                    brand: product.brand,
-                    customBrand: product.customBrand,
-                    fontSize: 16,
-                  ),
-                ],
-                if (product.size != null) ...[
-                  SizedBox(height: 12),
-                  Text(
-                    "Size ${product.size!.name}",
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: PreluraColors.grey,
-                          fontWeight: FontWeight.w600,
-                          fontSize: getDefaultSize(size: 16),
-                        ),
-                  ),
-                ],
-                Spacer(),
-                _buildPriceDetails(product, discountedPrice),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPriceDetails(ProductModel product, double? discountedPrice) {
-    return Row(
-      children: [
-        Text(
-          "£ ${formatDynamicString(product.price.toString())}",
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontSize: getDefaultSize(size: 16),
-                decoration: product.discountPrice != null
-                    ? TextDecoration.lineThrough
-                    : null,
-                color: product.discountPrice != null
-                    ? !context.isDarkMode
-                        ? Colors.grey
-                        : Colors.white30
-                    : null,
-                fontWeight: FontWeight.w600,
               ),
-        ),
-        if (discountedPrice != null) ...[
-          SizedBox(width: 4),
-          Text(
-            "£ ${formatDynamicString(discountedPrice.toString())}",
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  fontSize: getDefaultSize(size: 16),
+              SizedBox(width: 16),
+              Expanded(
+                child: SizedBox(
+                  height: 21.h,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        capitalizeEachWord(product.name),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                      ),
+                      if (product.brand != null ||
+                          product.customBrand != null) ...[
+                        SizedBox(height: 12),
+                        BrandTextWidget(
+                          brand: product.brand,
+                          customBrand: product.customBrand,
+                          fontSize: 16,
+                        ),
+                      ],
+                      if (product.size != null) ...[
+                        SizedBox(height: 12),
+                        Text(
+                          "Size ${product.size!.name}",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: PreluraColors.grey,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: getDefaultSize(size: 16),
+                                  ),
+                        ),
+                      ],
+                      Spacer(),
+                      _buildPriceDetails(product, discountedPrice),
+                    ],
+                  ),
                 ),
+              ),
+            ],
           ),
-        ],
-      ],
+        ),
+      ),
+      if (widget.products.length > 1)
+        Positioned(
+          top: 10,
+          right: 10,
+          child: Text("${activeProductIndex + 1}/${widget.products.length}"),
+        ),
+    ]);
+  }
+
+  ///
+  ///
+  ///
+  Widget _buildPriceDetails(ProductModel product, double? discountedPrice) {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return Row(
+          children: [
+            Text(
+              "£ ${formatDynamicString(product.price.toString())}",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    fontSize: getDefaultSize(size: 16),
+                    decoration: product.discountPrice != null
+                        ? TextDecoration.lineThrough
+                        : null,
+                    color: product.discountPrice != null
+                        ? !context.isDarkMode
+                            ? Colors.grey
+                            : Colors.white30
+                        : null,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            if (discountedPrice != null) ...[
+              SizedBox(width: 4),
+              Text(
+                "£ ${formatDynamicString(discountedPrice.toString())}",
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: getDefaultSize(size: 16),
+                    ),
+              ),
+            ],
+          ],
+        );
+      },
     );
   }
+
+  ///
+  ///
+  ///
+  // Widget _buildPriceDetails(ProductModel product, double? discountedPrice) {
+  //   return Row(
+  //     children: [
+  //       Text(
+  //         "£ ${formatDynamicString(product.price.toString())}",
+  //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+  //               fontSize: getDefaultSize(size: 16),
+  //               decoration: product.discountPrice != null
+  //                   ? TextDecoration.lineThrough
+  //                   : null,
+  //               color: product.discountPrice != null
+  //                   ? !context.isDarkMode
+  //                       ? Colors.grey
+  //                       : Colors.white30
+  //                   : null,
+  //               fontWeight: FontWeight.w600,
+  //             ),
+  //       ),
+  //       if (discountedPrice != null) ...[
+  //         SizedBox(width: 4),
+  //         Text(
+  //           "£ ${formatDynamicString(discountedPrice.toString())}",
+  //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+  //                 fontWeight: FontWeight.w600,
+  //                 fontSize: getDefaultSize(size: 16),
+  //               ),
+  //         ),
+  //       ],
+  //     ],
+  //   );
+  // }
 
   Widget _buildSuggestionButtons(double fivePercent, double tenPercent) {
     return Row(
@@ -341,7 +441,11 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
       onTap: () {
         ref.read(offerProvider.notifier).createOffer(
               context,
-              productId: int.parse(widget.product.id),
+              productIds: widget.products
+                  .map((productInfo) => int.parse(productInfo.id))
+                  .toList(),
+              // int.parse(widget.products.first.id),
+
               offerPrice: double.parse(textController.text),
             );
       },

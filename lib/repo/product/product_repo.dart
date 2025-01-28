@@ -56,8 +56,9 @@ class ProductRepo {
   Future<OrderModel> orderProduct({required int productId, int qty = 1}) async {
     final response = await _client.mutate$CreateOrder(
       Options$Mutation$CreateOrder(
-        variables:
-            Variables$Mutation$CreateOrder(productId: productId, quantity: qty),
+        variables: Variables$Mutation$CreateOrder(
+          productId: productId,
+        ),
       ),
     );
 

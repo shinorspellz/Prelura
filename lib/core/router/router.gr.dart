@@ -2000,13 +2000,13 @@ class SellNavigationRoute extends _i76.PageRouteInfo<void> {
 class SendAnOfferRoute extends _i76.PageRouteInfo<SendAnOfferRouteArgs> {
   SendAnOfferRoute({
     _i77.Key? key,
-    required _i81.ProductModel product,
+    required List<_i81.ProductModel> products,
     List<_i76.PageRouteInfo>? children,
   }) : super(
           SendAnOfferRoute.name,
           args: SendAnOfferRouteArgs(
             key: key,
-            product: product,
+            products: products,
           ),
           initialChildren: children,
         );
@@ -2019,7 +2019,7 @@ class SendAnOfferRoute extends _i76.PageRouteInfo<SendAnOfferRouteArgs> {
       final args = data.argsAs<SendAnOfferRouteArgs>();
       return _i61.SendAnOfferScreen(
         key: args.key,
-        product: args.product,
+        products: args.products,
       );
     },
   );
@@ -2028,16 +2028,16 @@ class SendAnOfferRoute extends _i76.PageRouteInfo<SendAnOfferRouteArgs> {
 class SendAnOfferRouteArgs {
   const SendAnOfferRouteArgs({
     this.key,
-    required this.product,
+    required this.products,
   });
 
   final _i77.Key? key;
 
-  final _i81.ProductModel product;
+  final List<_i81.ProductModel> products;
 
   @override
   String toString() {
-    return 'SendAnOfferRouteArgs{key: $key, product: $product}';
+    return 'SendAnOfferRouteArgs{key: $key, products: $products}';
   }
 }
 

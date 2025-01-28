@@ -1889,15 +1889,13 @@ class _CopyWithStubImpl$Input$ProfilePictureInputType<TRes>
 
 class Input$ShippingAddressInputType {
   factory Input$ShippingAddressInputType({
-    required String address1,
-    String? address2,
+    required String address,
     required String city,
     required String country,
     required String postcode,
   }) =>
       Input$ShippingAddressInputType._({
-        r'address1': address1,
-        if (address2 != null) r'address2': address2,
+        r'address': address,
         r'city': city,
         r'country': country,
         r'postcode': postcode,
@@ -1907,12 +1905,8 @@ class Input$ShippingAddressInputType {
 
   factory Input$ShippingAddressInputType.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$address1 = data['address1'];
-    result$data['address1'] = (l$address1 as String);
-    if (data.containsKey('address2')) {
-      final l$address2 = data['address2'];
-      result$data['address2'] = (l$address2 as String?);
-    }
+    final l$address = data['address'];
+    result$data['address'] = (l$address as String);
     final l$city = data['city'];
     result$data['city'] = (l$city as String);
     final l$country = data['country'];
@@ -1924,9 +1918,7 @@ class Input$ShippingAddressInputType {
 
   Map<String, dynamic> _$data;
 
-  String get address1 => (_$data['address1'] as String);
-
-  String? get address2 => (_$data['address2'] as String?);
+  String get address => (_$data['address'] as String);
 
   String get city => (_$data['city'] as String);
 
@@ -1936,12 +1928,8 @@ class Input$ShippingAddressInputType {
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$address1 = address1;
-    result$data['address1'] = l$address1;
-    if (_$data.containsKey('address2')) {
-      final l$address2 = address2;
-      result$data['address2'] = l$address2;
-    }
+    final l$address = address;
+    result$data['address'] = l$address;
     final l$city = city;
     result$data['city'] = l$city;
     final l$country = country;
@@ -1966,18 +1954,9 @@ class Input$ShippingAddressInputType {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$address1 = address1;
-    final lOther$address1 = other.address1;
-    if (l$address1 != lOther$address1) {
-      return false;
-    }
-    final l$address2 = address2;
-    final lOther$address2 = other.address2;
-    if (_$data.containsKey('address2') !=
-        other._$data.containsKey('address2')) {
-      return false;
-    }
-    if (l$address2 != lOther$address2) {
+    final l$address = address;
+    final lOther$address = other.address;
+    if (l$address != lOther$address) {
       return false;
     }
     final l$city = city;
@@ -2000,14 +1979,12 @@ class Input$ShippingAddressInputType {
 
   @override
   int get hashCode {
-    final l$address1 = address1;
-    final l$address2 = address2;
+    final l$address = address;
     final l$city = city;
     final l$country = country;
     final l$postcode = postcode;
     return Object.hashAll([
-      l$address1,
-      _$data.containsKey('address2') ? l$address2 : const {},
+      l$address,
       l$city,
       l$country,
       l$postcode,
@@ -2025,8 +2002,7 @@ abstract class CopyWith$Input$ShippingAddressInputType<TRes> {
       _CopyWithStubImpl$Input$ShippingAddressInputType;
 
   TRes call({
-    String? address1,
-    String? address2,
+    String? address,
     String? city,
     String? country,
     String? postcode,
@@ -2047,17 +2023,15 @@ class _CopyWithImpl$Input$ShippingAddressInputType<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? address1 = _undefined,
-    Object? address2 = _undefined,
+    Object? address = _undefined,
     Object? city = _undefined,
     Object? country = _undefined,
     Object? postcode = _undefined,
   }) =>
       _then(Input$ShippingAddressInputType._({
         ..._instance._$data,
-        if (address1 != _undefined && address1 != null)
-          'address1': (address1 as String),
-        if (address2 != _undefined) 'address2': (address2 as String?),
+        if (address != _undefined && address != null)
+          'address': (address as String),
         if (city != _undefined && city != null) 'city': (city as String),
         if (country != _undefined && country != null)
           'country': (country as String),
@@ -2073,8 +2047,7 @@ class _CopyWithStubImpl$Input$ShippingAddressInputType<TRes>
   TRes _res;
 
   call({
-    String? address1,
-    String? address2,
+    String? address,
     String? city,
     String? country,
     String? postcode,
