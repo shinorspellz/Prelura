@@ -227,7 +227,12 @@ class OfferConversationBuilderState
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 10,
+              bottom: 1,
+            ),
             child: OfferProductCard(offerInfo: offerInfo),
           ),
           buildDivider(context),
