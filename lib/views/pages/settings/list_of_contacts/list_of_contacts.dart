@@ -6,6 +6,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button_with_loader.dart';
 
@@ -107,6 +108,7 @@ class _ListOfContactsState extends State<ListOfContacts> {
       decoration: BoxDecoration(color: colorScheme.surface),
       child: PreluraButtonWithLoader(
         buttonTitle: "Invite",
+        buttonColor: PreluraColors.primaryColor,
         onPressed: selectedContacts.isEmpty
             ? null
             : () {
