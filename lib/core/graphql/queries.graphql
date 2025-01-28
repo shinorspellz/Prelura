@@ -924,6 +924,7 @@ query RecommendedSellers($pageCount: Int, $pageNumber: Int) {
   }
 }
 
+
 query FavoriteBrandProducts($topCount: Int!){
   favoriteBrandProducts(top: $topCount){
      id
@@ -963,6 +964,21 @@ query FavoriteBrandProducts($topCount: Int!){
     brand {
       id
       name
+    }
+  }
+}
+
+
+query userMultibuyDiscounts{
+  userMultibuyDiscounts{
+    discountValue
+    id
+    isActive
+    minItems
+    seller{
+      id
+      username
+      profilePictureUrl
     }
   }
 }

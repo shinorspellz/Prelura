@@ -20,7 +20,7 @@ OfferType _$OfferTypeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$OfferType {
-  ProductModel get product => throw _privateConstructorUsedError;
+  List<ProductModel> get products => throw _privateConstructorUsedError;
   UserModel get buyer => throw _privateConstructorUsedError;
   double get offerPrice => throw _privateConstructorUsedError;
   Enum$OfferActionEnum get status => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $OfferTypeCopyWith<$Res> {
       _$OfferTypeCopyWithImpl<$Res, OfferType>;
   @useResult
   $Res call(
-      {ProductModel product,
+      {List<ProductModel> products,
       UserModel buyer,
       double offerPrice,
       Enum$OfferActionEnum status,
@@ -62,7 +62,6 @@ abstract class $OfferTypeCopyWith<$Res> {
       OfferType? children,
       ConversationModel? conversation});
 
-  $ProductModelCopyWith<$Res> get product;
   $UserModelCopyWith<$Res> get buyer;
   $OfferTypeCopyWith<$Res>? get parent;
   $OfferTypeCopyWith<$Res>? get children;
@@ -84,7 +83,7 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? products = null,
     Object? buyer = null,
     Object? offerPrice = null,
     Object? status = null,
@@ -98,10 +97,10 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
     Object? conversation = freezed,
   }) {
     return _then(_value.copyWith(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
       buyer: null == buyer
           ? _value.buyer
           : buyer // ignore: cast_nullable_to_non_nullable
@@ -147,16 +146,6 @@ class _$OfferTypeCopyWithImpl<$Res, $Val extends OfferType>
           : conversation // ignore: cast_nullable_to_non_nullable
               as ConversationModel?,
     ) as $Val);
-  }
-
-  /// Create a copy of OfferType
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductModelCopyWith<$Res> get product {
-    return $ProductModelCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value) as $Val);
-    });
   }
 
   /// Create a copy of OfferType
@@ -221,7 +210,7 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ProductModel product,
+      {List<ProductModel> products,
       UserModel buyer,
       double offerPrice,
       Enum$OfferActionEnum status,
@@ -234,8 +223,6 @@ abstract class _$$OfferTypeImplCopyWith<$Res>
       OfferType? children,
       ConversationModel? conversation});
 
-  @override
-  $ProductModelCopyWith<$Res> get product;
   @override
   $UserModelCopyWith<$Res> get buyer;
   @override
@@ -259,7 +246,7 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? products = null,
     Object? buyer = null,
     Object? offerPrice = null,
     Object? status = null,
@@ -273,10 +260,10 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
     Object? conversation = freezed,
   }) {
     return _then(_$OfferTypeImpl(
-      product: null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductModel,
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductModel>,
       buyer: null == buyer
           ? _value.buyer
           : buyer // ignore: cast_nullable_to_non_nullable
@@ -329,7 +316,7 @@ class __$$OfferTypeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OfferTypeImpl implements _OfferType {
   const _$OfferTypeImpl(
-      {required this.product,
+      {required final List<ProductModel> products,
       required this.buyer,
       required this.offerPrice,
       required this.status,
@@ -340,13 +327,20 @@ class _$OfferTypeImpl implements _OfferType {
       this.parent,
       required this.deleted,
       this.children,
-      this.conversation});
+      this.conversation})
+      : _products = products;
 
   factory _$OfferTypeImpl.fromJson(Map<String, dynamic> json) =>
       _$$OfferTypeImplFromJson(json);
 
+  final List<ProductModel> _products;
   @override
-  final ProductModel product;
+  List<ProductModel> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
   @override
   final UserModel buyer;
   @override
@@ -372,7 +366,7 @@ class _$OfferTypeImpl implements _OfferType {
 
   @override
   String toString() {
-    return 'OfferType(product: $product, buyer: $buyer, offerPrice: $offerPrice, status: $status, message: $message, expiresAt: $expiresAt, createdAt: $createdAt, updatedAt: $updatedAt, parent: $parent, deleted: $deleted, children: $children, conversation: $conversation)';
+    return 'OfferType(products: $products, buyer: $buyer, offerPrice: $offerPrice, status: $status, message: $message, expiresAt: $expiresAt, createdAt: $createdAt, updatedAt: $updatedAt, parent: $parent, deleted: $deleted, children: $children, conversation: $conversation)';
   }
 
   @override
@@ -380,7 +374,7 @@ class _$OfferTypeImpl implements _OfferType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OfferTypeImpl &&
-            (identical(other.product, product) || other.product == product) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.buyer, buyer) || other.buyer == buyer) &&
             (identical(other.offerPrice, offerPrice) ||
                 other.offerPrice == offerPrice) &&
@@ -404,7 +398,7 @@ class _$OfferTypeImpl implements _OfferType {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      product,
+      const DeepCollectionEquality().hash(_products),
       buyer,
       offerPrice,
       status,
@@ -435,7 +429,7 @@ class _$OfferTypeImpl implements _OfferType {
 
 abstract class _OfferType implements OfferType {
   const factory _OfferType(
-      {required final ProductModel product,
+      {required final List<ProductModel> products,
       required final UserModel buyer,
       required final double offerPrice,
       required final Enum$OfferActionEnum status,
@@ -452,7 +446,7 @@ abstract class _OfferType implements OfferType {
       _$OfferTypeImpl.fromJson;
 
   @override
-  ProductModel get product;
+  List<ProductModel> get products;
   @override
   UserModel get buyer;
   @override

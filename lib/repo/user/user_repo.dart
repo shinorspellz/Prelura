@@ -5,7 +5,9 @@ import 'package:hive/hive.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/user/earnings/earnings_model.dart';
+import 'package:prelura_app/model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
 import 'package:prelura_app/model/user/recommended_seller.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 
@@ -245,6 +247,83 @@ class UserRepo {
     await _cacheBox.put('AUTH_TOKEN', token);
     await _cacheBox.put('REST_TOKEN', restToken);
     await _cacheBox.put('USERNAME', username);
+  }
+
+  Future<List<MultiBuyDiscountModel>> getUserMultiBuyDiscounts() async {
+    try {
+      final response = await _client
+          .query$userMultibuyDiscounts(Options$Query$userMultibuyDiscounts());
+      if (response.hasException) {
+        if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+          final error = response.exception!.graphqlErrors.first.message;
+          log('GraphQL Error: $error', name: 'getUserMultiBuyDiscounts');
+          throw error;
+        }
+        log(response.exception.toString(), name: 'getUserMultiBuyDiscounts');
+        throw 'An error occurred';
+      }
+
+      if (response.parsedData == null) {
+        throw 'Invalid response';
+      }
+
+      final discounts = response.parsedData!.userMultibuyDiscounts!
+          .map((e) => MultiBuyDiscountModel.fromJson(e!.toJson()))
+          .toList();
+      log('Parsed Discounts: $discounts', name: 'getUserMultiBuyDiscounts');
+      return discounts;
+    } catch (e, stack) {
+      log('Error fetching discounts: $e',
+          name: 'getUserMultiBuyDiscounts', stackTrace: stack);
+      throw 'Failed to fetch discounts';
+    }
+  }
+
+  Future<void> deactivateUserMultiBuyDiscounts() async {
+    final response = await _client.mutate$DeactivateMultibuyDiscounts();
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      throw 'Invalid response';
+    }
+  }
+
+  Future<bool> createOrUpdateUserMultiBuyDiscounts(
+      {required int minItems,
+      required String discountPercentage,
+      int? id,
+      bool? isActive}) async {
+    final response = await _client
+        .mutate$CreateMultibuyDiscount(Options$Mutation$CreateMultibuyDiscount(
+            variables: Variables$Mutation$CreateMultibuyDiscount(inputs: [
+      Input$MultibuyInputType(
+          minItems: minItems,
+          discountPercentage: discountPercentage,
+          isActive: isActive,
+          id: id)
+    ])));
+
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+
+    if (response.parsedData == null) {
+      throw 'Invalid response';
+    }
+
+    return response.parsedData!.createMultibuyDiscount!.success!;
   }
 }
 

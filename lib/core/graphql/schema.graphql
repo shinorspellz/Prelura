@@ -417,7 +417,7 @@ type MessageType {
 
 type MultibuyDiscountType {
   id: ID!
-  seller: UserNode!
+  seller: UserType
   minItems: Int!
   discountValue: Decimal!
   isActive: Boolean!

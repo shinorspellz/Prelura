@@ -11,7 +11,7 @@ part "offers_model.g.dart";
 @freezed
 class OfferType with _$OfferType {
   const factory OfferType({
-    required ProductModel product,
+    required List<ProductModel> products,
     required UserModel buyer,
     required double offerPrice,
     required Enum$OfferActionEnum status,

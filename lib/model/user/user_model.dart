@@ -28,6 +28,7 @@ class UserModel with _$UserModel {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      ShippingAddress? shippingAddress,
       int? noOfFollowing}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -54,4 +55,17 @@ class LocationInputType with _$LocationInputType {
 
   factory LocationInputType.fromJson(Map<String, dynamic> json) =>
       _$LocationInputTypeFromJson(json);
+}
+
+@freezed
+class ShippingAddress with _$ShippingAddress {
+  const factory ShippingAddress({
+    required String city,
+    required String address,
+    required String country,
+    required String postcode,
+  }) = _ShippingAddress;
+
+  factory ShippingAddress.fromJson(Map<String, dynamic> json) =>
+      _$ShippingAddressFromJson(json);
 }
