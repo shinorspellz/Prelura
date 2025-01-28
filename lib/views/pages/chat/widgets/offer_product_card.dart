@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
@@ -31,23 +33,30 @@ class OfferProductCard extends ConsumerWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (cxt, index) {
             return offerInfo.products!.length == index
-                ? Container(
-                    alignment: Alignment.center,
-                    width: 65,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(
-                        color: PreluraColors.primaryColor,
-                        width: 1,
+                ? GestureDetector(
+                    onTap: () {
+                      context.router.push(OfferMuiltibuyView(
+                        products: offerInfo.products!,
+                      ));
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 65,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                          color: PreluraColors.primaryColor,
+                          width: 1,
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      "View\nall",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 15,
-                          ),
+                      child: Text(
+                        "View\nall",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                            ),
+                      ),
                     ),
                   )
                 : ImageBuilder(
@@ -137,7 +146,7 @@ class ImageBuilder extends StatelessWidget {
           errorWidget: (context, url, error) => Container(
             color: PreluraColors.grey,
           ),
-          imageUrl: imageUrl ?? "",
+          imageUrl: imageUrl,
           fit: BoxFit.cover,
           placeholder: (context, url) {
             return ShimmerBox(

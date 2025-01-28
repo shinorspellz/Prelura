@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:prelura_app/model/product/order/user_order.dart';
@@ -14,9 +12,10 @@ class OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? imageUrl =
-        order.paymentSet?.firstOrNull?.order?.product?.imagesUrl?.firstOrNull;
-    String imageRealPath = imageUrl != null ? jsonDecode(imageUrl)["url"] : "";
+    // String? imageUrl =
+    //     order.paymentSet?.firstOrNull?.order?.product?.imagesUrl?.firstOrNull;
+    String imageRealPath = "";
+    // imageUrl != null ? jsonDecode(imageUrl)["url"] : "";
     return GestureDetector(
       onTap: () {},
       child: Container(
