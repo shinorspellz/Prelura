@@ -28598,3 +28598,1546 @@ class _CopyWithStubImpl$Mutation$VerifyEmail$verifyEmail$user<TRes>
   }) =>
       _res;
 }
+
+class Variables$Mutation$CreateMultibuyDiscount {
+  factory Variables$Mutation$CreateMultibuyDiscount(
+          {required List<Input$MultibuyInputType?> inputs}) =>
+      Variables$Mutation$CreateMultibuyDiscount._({
+        r'inputs': inputs,
+      });
+
+  Variables$Mutation$CreateMultibuyDiscount._(this._$data);
+
+  factory Variables$Mutation$CreateMultibuyDiscount.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$inputs = data['inputs'];
+    result$data['inputs'] = (l$inputs as List<dynamic>)
+        .map((e) => e == null
+            ? null
+            : Input$MultibuyInputType.fromJson((e as Map<String, dynamic>)))
+        .toList();
+    return Variables$Mutation$CreateMultibuyDiscount._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  List<Input$MultibuyInputType?> get inputs =>
+      (_$data['inputs'] as List<Input$MultibuyInputType?>);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$inputs = inputs;
+    result$data['inputs'] = l$inputs.map((e) => e?.toJson()).toList();
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$CreateMultibuyDiscount<
+          Variables$Mutation$CreateMultibuyDiscount>
+      get copyWith => CopyWith$Variables$Mutation$CreateMultibuyDiscount(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$CreateMultibuyDiscount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$inputs = inputs;
+    final lOther$inputs = other.inputs;
+    if (l$inputs.length != lOther$inputs.length) {
+      return false;
+    }
+    for (int i = 0; i < l$inputs.length; i++) {
+      final l$inputs$entry = l$inputs[i];
+      final lOther$inputs$entry = lOther$inputs[i];
+      if (l$inputs$entry != lOther$inputs$entry) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$inputs = inputs;
+    return Object.hashAll([Object.hashAll(l$inputs.map((v) => v))]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$CreateMultibuyDiscount<TRes> {
+  factory CopyWith$Variables$Mutation$CreateMultibuyDiscount(
+    Variables$Mutation$CreateMultibuyDiscount instance,
+    TRes Function(Variables$Mutation$CreateMultibuyDiscount) then,
+  ) = _CopyWithImpl$Variables$Mutation$CreateMultibuyDiscount;
+
+  factory CopyWith$Variables$Mutation$CreateMultibuyDiscount.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CreateMultibuyDiscount;
+
+  TRes call({List<Input$MultibuyInputType?>? inputs});
+}
+
+class _CopyWithImpl$Variables$Mutation$CreateMultibuyDiscount<TRes>
+    implements CopyWith$Variables$Mutation$CreateMultibuyDiscount<TRes> {
+  _CopyWithImpl$Variables$Mutation$CreateMultibuyDiscount(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$CreateMultibuyDiscount _instance;
+
+  final TRes Function(Variables$Mutation$CreateMultibuyDiscount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? inputs = _undefined}) =>
+      _then(Variables$Mutation$CreateMultibuyDiscount._({
+        ..._instance._$data,
+        if (inputs != _undefined && inputs != null)
+          'inputs': (inputs as List<Input$MultibuyInputType?>),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$CreateMultibuyDiscount<TRes>
+    implements CopyWith$Variables$Mutation$CreateMultibuyDiscount<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CreateMultibuyDiscount(this._res);
+
+  TRes _res;
+
+  call({List<Input$MultibuyInputType?>? inputs}) => _res;
+}
+
+class Mutation$CreateMultibuyDiscount {
+  Mutation$CreateMultibuyDiscount({
+    this.createMultibuyDiscount,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$CreateMultibuyDiscount.fromJson(Map<String, dynamic> json) {
+    final l$createMultibuyDiscount = json['createMultibuyDiscount'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateMultibuyDiscount(
+      createMultibuyDiscount: l$createMultibuyDiscount == null
+          ? null
+          : Mutation$CreateMultibuyDiscount$createMultibuyDiscount.fromJson(
+              (l$createMultibuyDiscount as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$CreateMultibuyDiscount$createMultibuyDiscount?
+      createMultibuyDiscount;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$createMultibuyDiscount = createMultibuyDiscount;
+    _resultData['createMultibuyDiscount'] = l$createMultibuyDiscount?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$createMultibuyDiscount = createMultibuyDiscount;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$createMultibuyDiscount,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateMultibuyDiscount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$createMultibuyDiscount = createMultibuyDiscount;
+    final lOther$createMultibuyDiscount = other.createMultibuyDiscount;
+    if (l$createMultibuyDiscount != lOther$createMultibuyDiscount) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateMultibuyDiscount
+    on Mutation$CreateMultibuyDiscount {
+  CopyWith$Mutation$CreateMultibuyDiscount<Mutation$CreateMultibuyDiscount>
+      get copyWith => CopyWith$Mutation$CreateMultibuyDiscount(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateMultibuyDiscount<TRes> {
+  factory CopyWith$Mutation$CreateMultibuyDiscount(
+    Mutation$CreateMultibuyDiscount instance,
+    TRes Function(Mutation$CreateMultibuyDiscount) then,
+  ) = _CopyWithImpl$Mutation$CreateMultibuyDiscount;
+
+  factory CopyWith$Mutation$CreateMultibuyDiscount.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CreateMultibuyDiscount;
+
+  TRes call({
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount?
+        createMultibuyDiscount,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes>
+      get createMultibuyDiscount;
+}
+
+class _CopyWithImpl$Mutation$CreateMultibuyDiscount<TRes>
+    implements CopyWith$Mutation$CreateMultibuyDiscount<TRes> {
+  _CopyWithImpl$Mutation$CreateMultibuyDiscount(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateMultibuyDiscount _instance;
+
+  final TRes Function(Mutation$CreateMultibuyDiscount) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? createMultibuyDiscount = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateMultibuyDiscount(
+        createMultibuyDiscount: createMultibuyDiscount == _undefined
+            ? _instance.createMultibuyDiscount
+            : (createMultibuyDiscount
+                as Mutation$CreateMultibuyDiscount$createMultibuyDiscount?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes>
+      get createMultibuyDiscount {
+    final local$createMultibuyDiscount = _instance.createMultibuyDiscount;
+    return local$createMultibuyDiscount == null
+        ? CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+            local$createMultibuyDiscount,
+            (e) => call(createMultibuyDiscount: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateMultibuyDiscount<TRes>
+    implements CopyWith$Mutation$CreateMultibuyDiscount<TRes> {
+  _CopyWithStubImpl$Mutation$CreateMultibuyDiscount(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount?
+        createMultibuyDiscount,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes>
+      get createMultibuyDiscount =>
+          CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount.stub(
+              _res);
+}
+
+const documentNodeMutationCreateMultibuyDiscount = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'CreateMultibuyDiscount'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'inputs')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'MultibuyInputType'),
+            isNonNull: false,
+          ),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'createMultibuyDiscount'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'inputs'),
+            value: VariableNode(name: NameNode(value: 'inputs')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'multibuyDiscounts'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'minItems'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'isActive'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'discountValue'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'seller'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'profilePictureUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$CreateMultibuyDiscount _parserFn$Mutation$CreateMultibuyDiscount(
+        Map<String, dynamic> data) =>
+    Mutation$CreateMultibuyDiscount.fromJson(data);
+typedef OnMutationCompleted$Mutation$CreateMultibuyDiscount = FutureOr<void>
+    Function(
+  Map<String, dynamic>?,
+  Mutation$CreateMultibuyDiscount?,
+);
+
+class Options$Mutation$CreateMultibuyDiscount
+    extends graphql.MutationOptions<Mutation$CreateMultibuyDiscount> {
+  Options$Mutation$CreateMultibuyDiscount({
+    String? operationName,
+    required Variables$Mutation$CreateMultibuyDiscount variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateMultibuyDiscount? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$CreateMultibuyDiscount? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CreateMultibuyDiscount>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$CreateMultibuyDiscount(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationCreateMultibuyDiscount,
+          parserFn: _parserFn$Mutation$CreateMultibuyDiscount,
+        );
+
+  final OnMutationCompleted$Mutation$CreateMultibuyDiscount?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$CreateMultibuyDiscount
+    extends graphql.WatchQueryOptions<Mutation$CreateMultibuyDiscount> {
+  WatchOptions$Mutation$CreateMultibuyDiscount({
+    String? operationName,
+    required Variables$Mutation$CreateMultibuyDiscount variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$CreateMultibuyDiscount? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationCreateMultibuyDiscount,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$CreateMultibuyDiscount,
+        );
+}
+
+extension ClientExtension$Mutation$CreateMultibuyDiscount
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CreateMultibuyDiscount>>
+      mutate$CreateMultibuyDiscount(
+              Options$Mutation$CreateMultibuyDiscount options) async =>
+          await this.mutate(options);
+  graphql.ObservableQuery<Mutation$CreateMultibuyDiscount>
+      watchMutation$CreateMultibuyDiscount(
+              WatchOptions$Mutation$CreateMultibuyDiscount options) =>
+          this.watchMutation(options);
+}
+
+class Mutation$CreateMultibuyDiscount$createMultibuyDiscount {
+  Mutation$CreateMultibuyDiscount$createMultibuyDiscount({
+    this.success,
+    this.multibuyDiscounts,
+    this.$__typename = 'CreateOrUpdateMultibuyDiscount',
+  });
+
+  factory Mutation$CreateMultibuyDiscount$createMultibuyDiscount.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$multibuyDiscounts = json['multibuyDiscounts'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+      success: (l$success as bool?),
+      multibuyDiscounts: (l$multibuyDiscounts as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts
+                  .fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final List<
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>?
+      multibuyDiscounts;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$multibuyDiscounts = multibuyDiscounts;
+    _resultData['multibuyDiscounts'] =
+        l$multibuyDiscounts?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$multibuyDiscounts = multibuyDiscounts;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$multibuyDiscounts == null
+          ? null
+          : Object.hashAll(l$multibuyDiscounts.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateMultibuyDiscount$createMultibuyDiscount ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$multibuyDiscounts = multibuyDiscounts;
+    final lOther$multibuyDiscounts = other.multibuyDiscounts;
+    if (l$multibuyDiscounts != null && lOther$multibuyDiscounts != null) {
+      if (l$multibuyDiscounts.length != lOther$multibuyDiscounts.length) {
+        return false;
+      }
+      for (int i = 0; i < l$multibuyDiscounts.length; i++) {
+        final l$multibuyDiscounts$entry = l$multibuyDiscounts[i];
+        final lOther$multibuyDiscounts$entry = lOther$multibuyDiscounts[i];
+        if (l$multibuyDiscounts$entry != lOther$multibuyDiscounts$entry) {
+          return false;
+        }
+      }
+    } else if (l$multibuyDiscounts != lOther$multibuyDiscounts) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateMultibuyDiscount$createMultibuyDiscount
+    on Mutation$CreateMultibuyDiscount$createMultibuyDiscount {
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount>
+      get copyWith =>
+          CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<
+    TRes> {
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount instance,
+    TRes Function(Mutation$CreateMultibuyDiscount$createMultibuyDiscount) then,
+  ) = _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount;
+
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount;
+
+  TRes call({
+    bool? success,
+    List<Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>?
+        multibuyDiscounts,
+    String? $__typename,
+  });
+  TRes multibuyDiscounts(
+      Iterable<Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>? Function(
+              Iterable<
+                  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+                      Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes> {
+  _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateMultibuyDiscount$createMultibuyDiscount _instance;
+
+  final TRes Function(Mutation$CreateMultibuyDiscount$createMultibuyDiscount)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? multibuyDiscounts = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        multibuyDiscounts: multibuyDiscounts == _undefined
+            ? _instance.multibuyDiscounts
+            : (multibuyDiscounts as List<
+                Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes multibuyDiscounts(
+          Iterable<Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>? Function(
+                  Iterable<
+                      CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+                          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts>?>?)
+              _fn) =>
+      call(
+          multibuyDiscounts: _fn(_instance.multibuyDiscounts?.map((e) => e ==
+                  null
+              ? null
+              : CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+                  e,
+                  (i) => i,
+                )))?.toList());
+}
+
+class _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount<TRes> {
+  _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount(
+      this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    List<Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts?>?
+        multibuyDiscounts,
+    String? $__typename,
+  }) =>
+      _res;
+
+  multibuyDiscounts(_fn) => _res;
+}
+
+class Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts {
+  Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts({
+    required this.id,
+    required this.minItems,
+    required this.isActive,
+    required this.discountValue,
+    this.seller,
+    this.$__typename = 'MultibuyDiscountType',
+  });
+
+  factory Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$minItems = json['minItems'];
+    final l$isActive = json['isActive'];
+    final l$discountValue = json['discountValue'];
+    final l$seller = json['seller'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+      id: (l$id as String),
+      minItems: (l$minItems as int),
+      isActive: (l$isActive as bool),
+      discountValue: (l$discountValue as String),
+      seller: l$seller == null
+          ? null
+          : Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+              .fromJson((l$seller as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final int minItems;
+
+  final bool isActive;
+
+  final String discountValue;
+
+  final Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller?
+      seller;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$minItems = minItems;
+    _resultData['minItems'] = l$minItems;
+    final l$isActive = isActive;
+    _resultData['isActive'] = l$isActive;
+    final l$discountValue = discountValue;
+    _resultData['discountValue'] = l$discountValue;
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$minItems = minItems;
+    final l$isActive = isActive;
+    final l$discountValue = discountValue;
+    final l$seller = seller;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$minItems,
+      l$isActive,
+      l$discountValue,
+      l$seller,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$minItems = minItems;
+    final lOther$minItems = other.minItems;
+    if (l$minItems != lOther$minItems) {
+      return false;
+    }
+    final l$isActive = isActive;
+    final lOther$isActive = other.isActive;
+    if (l$isActive != lOther$isActive) {
+      return false;
+    }
+    final l$discountValue = discountValue;
+    final lOther$discountValue = other.discountValue;
+    if (l$discountValue != lOther$discountValue) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts
+    on Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts {
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts>
+      get copyWith =>
+          CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+    TRes> {
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts
+        instance,
+    TRes Function(
+            Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts)
+        then,
+  ) = _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts;
+
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts;
+
+  TRes call({
+    String? id,
+    int? minItems,
+    bool? isActive,
+    String? discountValue,
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller?
+        seller,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+      TRes> get seller;
+}
+
+class _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+            TRes> {
+  _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts
+      _instance;
+
+  final TRes Function(
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? minItems = _undefined,
+    Object? isActive = _undefined,
+    Object? discountValue = _undefined,
+    Object? seller = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        minItems: minItems == _undefined || minItems == null
+            ? _instance.minItems
+            : (minItems as int),
+        isActive: isActive == _undefined || isActive == null
+            ? _instance.isActive
+            : (isActive as bool),
+        discountValue: discountValue == _undefined || discountValue == null
+            ? _instance.discountValue
+            : (discountValue as String),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller
+                as Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+      TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+            .stub(_then(_instance))
+        : CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+            local$seller, (e) => call(seller: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts<
+            TRes> {
+  _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    int? minItems,
+    bool? isActive,
+    String? discountValue,
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller?
+        seller,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+          TRes>
+      get seller =>
+          CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+              .stub(_res);
+}
+
+class Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller {
+  Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller({
+    this.username,
+    this.profilePictureUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+      username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? username;
+
+  final String? profilePictureUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$username,
+      l$profilePictureUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+    on Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller {
+  CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller>
+      get copyWith =>
+          CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+    TRes> {
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+    Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+        instance,
+    TRes Function(
+            Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller)
+        then,
+  ) = _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller;
+
+  factory CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller;
+
+  TRes call({
+    String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+            TRes> {
+  _CopyWithImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller
+      _instance;
+
+  final TRes Function(
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(
+          Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller<
+            TRes> {
+  _CopyWithStubImpl$Mutation$CreateMultibuyDiscount$createMultibuyDiscount$multibuyDiscounts$seller(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$DeactivateMultibuyDiscounts {
+  Mutation$DeactivateMultibuyDiscounts({
+    this.deactivateMultibuyDiscounts,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$DeactivateMultibuyDiscounts.fromJson(
+      Map<String, dynamic> json) {
+    final l$deactivateMultibuyDiscounts = json['deactivateMultibuyDiscounts'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeactivateMultibuyDiscounts(
+      deactivateMultibuyDiscounts: l$deactivateMultibuyDiscounts == null
+          ? null
+          : Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts
+              .fromJson(
+                  (l$deactivateMultibuyDiscounts as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts?
+      deactivateMultibuyDiscounts;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$deactivateMultibuyDiscounts = deactivateMultibuyDiscounts;
+    _resultData['deactivateMultibuyDiscounts'] =
+        l$deactivateMultibuyDiscounts?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$deactivateMultibuyDiscounts = deactivateMultibuyDiscounts;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$deactivateMultibuyDiscounts,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$DeactivateMultibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$deactivateMultibuyDiscounts = deactivateMultibuyDiscounts;
+    final lOther$deactivateMultibuyDiscounts =
+        other.deactivateMultibuyDiscounts;
+    if (l$deactivateMultibuyDiscounts != lOther$deactivateMultibuyDiscounts) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeactivateMultibuyDiscounts
+    on Mutation$DeactivateMultibuyDiscounts {
+  CopyWith$Mutation$DeactivateMultibuyDiscounts<
+          Mutation$DeactivateMultibuyDiscounts>
+      get copyWith => CopyWith$Mutation$DeactivateMultibuyDiscounts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeactivateMultibuyDiscounts<TRes> {
+  factory CopyWith$Mutation$DeactivateMultibuyDiscounts(
+    Mutation$DeactivateMultibuyDiscounts instance,
+    TRes Function(Mutation$DeactivateMultibuyDiscounts) then,
+  ) = _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts;
+
+  factory CopyWith$Mutation$DeactivateMultibuyDiscounts.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts;
+
+  TRes call({
+    Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts?
+        deactivateMultibuyDiscounts,
+    String? $__typename,
+  });
+  CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+      TRes> get deactivateMultibuyDiscounts;
+}
+
+class _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts<TRes>
+    implements CopyWith$Mutation$DeactivateMultibuyDiscounts<TRes> {
+  _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeactivateMultibuyDiscounts _instance;
+
+  final TRes Function(Mutation$DeactivateMultibuyDiscounts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? deactivateMultibuyDiscounts = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeactivateMultibuyDiscounts(
+        deactivateMultibuyDiscounts: deactivateMultibuyDiscounts == _undefined
+            ? _instance.deactivateMultibuyDiscounts
+            : (deactivateMultibuyDiscounts
+                as Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+      TRes> get deactivateMultibuyDiscounts {
+    final local$deactivateMultibuyDiscounts =
+        _instance.deactivateMultibuyDiscounts;
+    return local$deactivateMultibuyDiscounts == null
+        ? CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts
+            .stub(_then(_instance))
+        : CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+            local$deactivateMultibuyDiscounts,
+            (e) => call(deactivateMultibuyDiscounts: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts<TRes>
+    implements CopyWith$Mutation$DeactivateMultibuyDiscounts<TRes> {
+  _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts?
+        deactivateMultibuyDiscounts,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+          TRes>
+      get deactivateMultibuyDiscounts =>
+          CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts
+              .stub(_res);
+}
+
+const documentNodeMutationDeactivateMultibuyDiscounts =
+    DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'DeactivateMultibuyDiscounts'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'deactivateMultibuyDiscounts'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$DeactivateMultibuyDiscounts
+    _parserFn$Mutation$DeactivateMultibuyDiscounts(Map<String, dynamic> data) =>
+        Mutation$DeactivateMultibuyDiscounts.fromJson(data);
+typedef OnMutationCompleted$Mutation$DeactivateMultibuyDiscounts
+    = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$DeactivateMultibuyDiscounts?,
+);
+
+class Options$Mutation$DeactivateMultibuyDiscounts
+    extends graphql.MutationOptions<Mutation$DeactivateMultibuyDiscounts> {
+  Options$Mutation$DeactivateMultibuyDiscounts({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeactivateMultibuyDiscounts? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$DeactivateMultibuyDiscounts? onCompleted,
+    graphql.OnMutationUpdate<Mutation$DeactivateMultibuyDiscounts>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$DeactivateMultibuyDiscounts(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationDeactivateMultibuyDiscounts,
+          parserFn: _parserFn$Mutation$DeactivateMultibuyDiscounts,
+        );
+
+  final OnMutationCompleted$Mutation$DeactivateMultibuyDiscounts?
+      onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$DeactivateMultibuyDiscounts
+    extends graphql.WatchQueryOptions<Mutation$DeactivateMultibuyDiscounts> {
+  WatchOptions$Mutation$DeactivateMultibuyDiscounts({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$DeactivateMultibuyDiscounts? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationDeactivateMultibuyDiscounts,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$DeactivateMultibuyDiscounts,
+        );
+}
+
+extension ClientExtension$Mutation$DeactivateMultibuyDiscounts
+    on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$DeactivateMultibuyDiscounts>>
+      mutate$DeactivateMultibuyDiscounts(
+              [Options$Mutation$DeactivateMultibuyDiscounts? options]) async =>
+          await this.mutate(
+              options ?? Options$Mutation$DeactivateMultibuyDiscounts());
+  graphql.ObservableQuery<Mutation$DeactivateMultibuyDiscounts>
+      watchMutation$DeactivateMultibuyDiscounts(
+              [WatchOptions$Mutation$DeactivateMultibuyDiscounts? options]) =>
+          this.watchMutation(
+              options ?? WatchOptions$Mutation$DeactivateMultibuyDiscounts());
+}
+
+class Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts {
+  Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts({
+    this.success,
+    this.$__typename = 'DeactivateMultibuyDiscounts',
+  });
+
+  factory Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$$__typename = json['__typename'];
+    return Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+      success: (l$success as bool?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other
+            is! Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts
+    on Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts {
+  CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+          Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts>
+      get copyWith =>
+          CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+    TRes> {
+  factory CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+    Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts instance,
+    TRes Function(
+            Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts)
+        then,
+  ) = _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts;
+
+  factory CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts;
+
+  TRes call({
+    bool? success,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+        TRes>
+    implements
+        CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+            TRes> {
+  _CopyWithImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts
+      _instance;
+
+  final TRes Function(
+      Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+        TRes>
+    implements
+        CopyWith$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts<
+            TRes> {
+  _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyDiscounts(
+      this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    String? $__typename,
+  }) =>
+      _res;
+}
