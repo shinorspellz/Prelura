@@ -42,6 +42,7 @@ mixin _$UserModel {
   bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
+  ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
   int? get noOfFollowing => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
@@ -81,10 +82,12 @@ abstract class $UserModelCopyWith<$Res> {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      ShippingAddress? shippingAddress,
       int? noOfFollowing});
 
   $PhoneModelCopyWith<$Res>? get phone;
   $LocationInputTypeCopyWith<$Res>? get location;
+  $ShippingAddressCopyWith<$Res>? get shippingAddress;
 }
 
 /// @nodoc
@@ -123,6 +126,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? shippingAddress = freezed,
     Object? noOfFollowing = freezed,
   }) {
     return _then(_value.copyWith(
@@ -210,6 +214,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      shippingAddress: freezed == shippingAddress
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as ShippingAddress?,
       noOfFollowing: freezed == noOfFollowing
           ? _value.noOfFollowing
           : noOfFollowing // ignore: cast_nullable_to_non_nullable
@@ -244,6 +252,20 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
+
+  /// Create a copy of UserModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ShippingAddressCopyWith<$Res>? get shippingAddress {
+    if (_value.shippingAddress == null) {
+      return null;
+    }
+
+    return $ShippingAddressCopyWith<$Res>(_value.shippingAddress!, (value) {
+      return _then(_value.copyWith(shippingAddress: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -276,12 +298,15 @@ abstract class _$$UserModelImplCopyWith<$Res>
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      ShippingAddress? shippingAddress,
       int? noOfFollowing});
 
   @override
   $PhoneModelCopyWith<$Res>? get phone;
   @override
   $LocationInputTypeCopyWith<$Res>? get location;
+  @override
+  $ShippingAddressCopyWith<$Res>? get shippingAddress;
 }
 
 /// @nodoc
@@ -318,6 +343,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? isVacationMode = freezed,
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
+    Object? shippingAddress = freezed,
     Object? noOfFollowing = freezed,
   }) {
     return _then(_$UserModelImpl(
@@ -405,6 +431,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.noOfFollowers
           : noOfFollowers // ignore: cast_nullable_to_non_nullable
               as int?,
+      shippingAddress: freezed == shippingAddress
+          ? _value.shippingAddress
+          : shippingAddress // ignore: cast_nullable_to_non_nullable
+              as ShippingAddress?,
       noOfFollowing: freezed == noOfFollowing
           ? _value.noOfFollowing
           : noOfFollowing // ignore: cast_nullable_to_non_nullable
@@ -438,6 +468,7 @@ class _$UserModelImpl implements _UserModel {
       this.isVacationMode,
       this.isFollowing,
       this.noOfFollowers,
+      this.shippingAddress,
       this.noOfFollowing});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -486,11 +517,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   final int? noOfFollowers;
   @override
+  final ShippingAddress? shippingAddress;
+  @override
   final int? noOfFollowing;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, shippingAddress: $shippingAddress, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -533,6 +566,8 @@ class _$UserModelImpl implements _UserModel {
                 other.isFollowing == isFollowing) &&
             (identical(other.noOfFollowers, noOfFollowers) ||
                 other.noOfFollowers == noOfFollowers) &&
+            (identical(other.shippingAddress, shippingAddress) ||
+                other.shippingAddress == shippingAddress) &&
             (identical(other.noOfFollowing, noOfFollowing) ||
                 other.noOfFollowing == noOfFollowing));
   }
@@ -562,6 +597,7 @@ class _$UserModelImpl implements _UserModel {
         isVacationMode,
         isFollowing,
         noOfFollowers,
+        shippingAddress,
         noOfFollowing
       ]);
 
@@ -604,6 +640,7 @@ abstract class _UserModel implements UserModel {
       final bool? isVacationMode,
       final bool? isFollowing,
       final int? noOfFollowers,
+      final ShippingAddress? shippingAddress,
       final int? noOfFollowing}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -651,6 +688,8 @@ abstract class _UserModel implements UserModel {
   bool? get isFollowing;
   @override
   int? get noOfFollowers;
+  @override
+  ShippingAddress? get shippingAddress;
   @override
   int? get noOfFollowing;
 
@@ -1019,5 +1058,213 @@ abstract class _LocationInputType implements LocationInputType {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocationInputTypeImplCopyWith<_$LocationInputTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ShippingAddress _$ShippingAddressFromJson(Map<String, dynamic> json) {
+  return _ShippingAddress.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ShippingAddress {
+  String get city => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
+  String get postcode => throw _privateConstructorUsedError;
+
+  /// Serializes this ShippingAddress to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ShippingAddress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ShippingAddressCopyWith<ShippingAddress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ShippingAddressCopyWith<$Res> {
+  factory $ShippingAddressCopyWith(
+          ShippingAddress value, $Res Function(ShippingAddress) then) =
+      _$ShippingAddressCopyWithImpl<$Res, ShippingAddress>;
+  @useResult
+  $Res call({String city, String address, String country, String postcode});
+}
+
+/// @nodoc
+class _$ShippingAddressCopyWithImpl<$Res, $Val extends ShippingAddress>
+    implements $ShippingAddressCopyWith<$Res> {
+  _$ShippingAddressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ShippingAddress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? city = null,
+    Object? address = null,
+    Object? country = null,
+    Object? postcode = null,
+  }) {
+    return _then(_value.copyWith(
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      postcode: null == postcode
+          ? _value.postcode
+          : postcode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ShippingAddressImplCopyWith<$Res>
+    implements $ShippingAddressCopyWith<$Res> {
+  factory _$$ShippingAddressImplCopyWith(_$ShippingAddressImpl value,
+          $Res Function(_$ShippingAddressImpl) then) =
+      __$$ShippingAddressImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String city, String address, String country, String postcode});
+}
+
+/// @nodoc
+class __$$ShippingAddressImplCopyWithImpl<$Res>
+    extends _$ShippingAddressCopyWithImpl<$Res, _$ShippingAddressImpl>
+    implements _$$ShippingAddressImplCopyWith<$Res> {
+  __$$ShippingAddressImplCopyWithImpl(
+      _$ShippingAddressImpl _value, $Res Function(_$ShippingAddressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ShippingAddress
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? city = null,
+    Object? address = null,
+    Object? country = null,
+    Object? postcode = null,
+  }) {
+    return _then(_$ShippingAddressImpl(
+      city: null == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      address: null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      postcode: null == postcode
+          ? _value.postcode
+          : postcode // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ShippingAddressImpl implements _ShippingAddress {
+  const _$ShippingAddressImpl(
+      {required this.city,
+      required this.address,
+      required this.country,
+      required this.postcode});
+
+  factory _$ShippingAddressImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ShippingAddressImplFromJson(json);
+
+  @override
+  final String city;
+  @override
+  final String address;
+  @override
+  final String country;
+  @override
+  final String postcode;
+
+  @override
+  String toString() {
+    return 'ShippingAddress(city: $city, address: $address, country: $country, postcode: $postcode)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShippingAddressImpl &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.postcode, postcode) ||
+                other.postcode == postcode));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, city, address, country, postcode);
+
+  /// Create a copy of ShippingAddress
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShippingAddressImplCopyWith<_$ShippingAddressImpl> get copyWith =>
+      __$$ShippingAddressImplCopyWithImpl<_$ShippingAddressImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ShippingAddressImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ShippingAddress implements ShippingAddress {
+  const factory _ShippingAddress(
+      {required final String city,
+      required final String address,
+      required final String country,
+      required final String postcode}) = _$ShippingAddressImpl;
+
+  factory _ShippingAddress.fromJson(Map<String, dynamic> json) =
+      _$ShippingAddressImpl.fromJson;
+
+  @override
+  String get city;
+  @override
+  String get address;
+  @override
+  String get country;
+  @override
+  String get postcode;
+
+  /// Create a copy of ShippingAddress
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShippingAddressImplCopyWith<_$ShippingAddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

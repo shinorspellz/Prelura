@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:graphql/client.dart';
 import 'package:hive/hive.dart';
+import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/errors/failures.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
@@ -50,6 +51,7 @@ class AuthRepo {
 
     // invalidate graphql client to use the version with with a beare token
     _ref.invalidate(networkClient);
+    _ref.invalidate(notificationProvider);
   }
 
   /// Registration operation using generated [Variables$Mutation$Register] class as param for required

@@ -201,6 +201,11 @@ type CreateOrder {
   order: OrderType
 }
 
+type CreateOrUpdateMultibuyDiscount {
+  success: Boolean
+  multibuyDiscounts: [MultibuyDiscountType]
+}
+
 type CreatePaymentIntent {
   clientSecret: String
   paymentRef: String
@@ -231,6 +236,10 @@ value as specified by
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
 """
 scalar DateTime
+
+type DeactivateMultibuyDiscounts {
+  success: Boolean
+}
 
 """The `Decimal` scalar type represents a python Decimal."""
 scalar Decimal
@@ -406,6 +415,21 @@ type MessageType {
   receiverProfile: String
 }
 
+type MultibuyDiscountType {
+  id: ID!
+  seller: UserNode!
+  minItems: Int!
+  discountValue: Decimal!
+  isActive: Boolean!
+}
+
+input MultibuyInputType {
+  id: Int
+  minItems: Int!
+  discountPercentage: Decimal!
+  isActive: Boolean = true
+}
+
 type Mutation {
   sendSmsOtp(
     """
@@ -456,9 +480,11 @@ type Mutation {
   updateProduct(brand: Int, category: Int, color: [String], condition: ConditionEnum, customBrand: String, description: String, discountPrice: Float, imagesUrl: ImageUpdateInputType, isFeatured: Boolean, materials: [Int], name: String, parcelSize: ParcelSizeEnum, price: Float, productId: Int!, size: Int, style: StyleEnum): UpdateProduct
   deleteProduct(productId: Int!): DeleteProduct
   likeProduct(productId: Int!): LikeProduct
-  createOrder(productId: Int!, quantity: Int): CreateOrder
+  createOrder(productId: Int, productIds: [Int], shippingFee: Float): CreateOrder
   cancelOrder(orderId: Int!): CancelOrder
-  createOffer(message: String, offerPrice: Float!, productId: Int!): CreateOffer
+  createOffer(message: String, offerPrice: Float!, productIds: [Int]!): CreateOffer
+  createMultibuyDiscount(inputs: [MultibuyInputType]!): CreateOrUpdateMultibuyDiscount
+  deactivateMultibuyDiscounts: DeactivateMultibuyDiscounts
 
   """
   
@@ -524,6 +550,7 @@ type Mutation {
     postcode: String
     preferredCurrency: CurrencyEnum
     profilePicture: ProfilePictureInputType
+    shippingAddress: ShippingAddressInputType
     use2fa: Boolean
     username: String
   ): UpdateUserMutation
@@ -718,7 +745,7 @@ type OfferReturnType {
 
 type OfferType {
   id: ID!
-  product: ProductType!
+  products: [ProductType!]!
   buyer: UserType
   offerPrice: Decimal!
   status: String
@@ -749,15 +776,15 @@ enum OrderStatusEnum {
 
 type OrderType {
   id: ID!
-  user: UserNode
-  product: ProductType
-  quantity: Int!
+  user: UserType
   priceTotal: Decimal!
+  discountPrice: Decimal!
   shippingFee: Decimal!
+  shippingAddress: JSONString!
   status: OrderStatusEnum
   createdAt: DateTime!
   updatedAt: DateTime!
-  paymentSet: [PaymentType!]!
+  products: [ProductType]
 }
 
 """
@@ -1416,6 +1443,14 @@ type SendSmsOtp {
   message: String
 }
 
+input ShippingAddressInputType {
+  address1: String!
+  address2: String
+  city: String!
+  country: String!
+  postcode: String!
+}
+
 type SizeType {
   id: Int
   name: String
@@ -1643,11 +1678,13 @@ type UserNode implements Node {
   usernameLastUpdated: DateTime
   fcmTokens: [String!]!
   preferredCurrency: AccountsUserPreferredCurrencyChoices!
+  shippingAddress: JSONString!
   meta: JSONString!
   searchhistorySet: [SearchHistoryType!]!
   socialAuth(offset: Int, before: String, after: String, first: Int, last: Int, uid: String, uid_In: [String], provider: String, provider_In: [String]): SocialNodeConnection!
   products: [ProductType!]!
-  orderSet: [OrderType!]!
+  orders: [OrderType!]!
+  multibuyDiscounts: [MultibuyDiscountType!]!
   madeOffers: [OfferType!]!
   createdOffers: [OfferType!]!
   updatedOffers: [OfferType!]!
@@ -1686,6 +1723,7 @@ type UserType {
   noOfFollowing: Int
   noOfFollowers: Int
   preferredCurrency: CurrencyEnum
+  shippingAddress: JSONString
 }
 
 type VerifyEmail {

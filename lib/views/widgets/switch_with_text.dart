@@ -38,7 +38,7 @@ class PreluraSwitchWithText extends StatelessWidget {
     final color = disabled
         ? Theme.of(context).textTheme.displayMedium!.color?.withOpacity(0.2)
         : null;
-    log("$titleText is $disabled");
+    log("$titleText is $disabled", name: "PreluraSwitchWithText");
     return GestureDetector(
       onTap: () {
         onTap?.call();

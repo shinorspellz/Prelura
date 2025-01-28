@@ -8,6 +8,7 @@ import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
+import '../../../../core/utils/utils.dart';
 import '../../../../res/colors.dart';
 import '../../../shimmers/grid_shimmer.dart';
 import '../../../widgets/app_button.dart';
@@ -21,9 +22,16 @@ class MultiDiscountBottomView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final products = ref.watch(multiProducts).toList();
     final total = products.fold<double>(0, (sum, product) {
+      if (product.discountPrice != null &&
+          double.parse(product.discountPrice!) != 0.00) {
+        return sum +
+            calculateDiscountedAmount(
+              price: product.price,
+              discount: double.parse(product.discountPrice!).toInt(),
+            );
+      }
       return sum + product.price;
     });
-    log('Number of products: ${products.length}');
 
     if (products.isEmpty) {
       return const SizedBox.shrink();

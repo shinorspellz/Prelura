@@ -51,12 +51,12 @@ final multiProducts =
 class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
   MultiProductsNotifier() : super({});
 
-  // Add a product to the set
+  
   void addProduct(ProductModel product) {
-    state = {...state, product}; // Create a new set with the added product
+    state = {...state, product};
   }
 
-  // Remove a product from the set
+
   void removeProduct(ProductModel product) {
     state = state.where((p) => p != product).toSet();
   }
@@ -128,6 +128,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
       }
       ref.read(buyerMultiBuyDiscount.notifier).state =
           ref.read(multiProducts).isNotEmpty;
+      log(ref.read(buyerMultiBuyDiscount).toString());
+      log(ref.read(multiProducts).isNotEmpty.toString());
 
       _refreshController.refreshCompleted(); // Notify SmartRefresher of success
     } catch (e) {
@@ -483,7 +485,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           if (!isCurrentUser)
                             PreluraSwitchWithText(
                                 titleText: 'Multi-buy:',
-                                value: ref.read(buyerMultiBuyDiscount),
+                                value: ref.watch(buyerMultiBuyDiscount),
                                 textColor: PreluraColors.grey,
                                 disabled: false,
                                 onChanged: (value) {
