@@ -588,6 +588,187 @@ class _CopyWithStubImpl$Input$LocationInputType<TRes>
       _res;
 }
 
+class Input$MultibuyInputType {
+  factory Input$MultibuyInputType({
+    int? id,
+    required int minItems,
+    required String discountPercentage,
+    bool? isActive,
+  }) =>
+      Input$MultibuyInputType._({
+        if (id != null) r'id': id,
+        r'minItems': minItems,
+        r'discountPercentage': discountPercentage,
+        if (isActive != null) r'isActive': isActive,
+      });
+
+  Input$MultibuyInputType._(this._$data);
+
+  factory Input$MultibuyInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('id')) {
+      final l$id = data['id'];
+      result$data['id'] = (l$id as int?);
+    }
+    final l$minItems = data['minItems'];
+    result$data['minItems'] = (l$minItems as int);
+    final l$discountPercentage = data['discountPercentage'];
+    result$data['discountPercentage'] = (l$discountPercentage as String);
+    if (data.containsKey('isActive')) {
+      final l$isActive = data['isActive'];
+      result$data['isActive'] = (l$isActive as bool?);
+    }
+    return Input$MultibuyInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  int? get id => (_$data['id'] as int?);
+
+  int get minItems => (_$data['minItems'] as int);
+
+  String get discountPercentage => (_$data['discountPercentage'] as String);
+
+  bool? get isActive => (_$data['isActive'] as bool?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('id')) {
+      final l$id = id;
+      result$data['id'] = l$id;
+    }
+    final l$minItems = minItems;
+    result$data['minItems'] = l$minItems;
+    final l$discountPercentage = discountPercentage;
+    result$data['discountPercentage'] = l$discountPercentage;
+    if (_$data.containsKey('isActive')) {
+      final l$isActive = isActive;
+      result$data['isActive'] = l$isActive;
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$MultibuyInputType<Input$MultibuyInputType> get copyWith =>
+      CopyWith$Input$MultibuyInputType(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$MultibuyInputType || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (_$data.containsKey('id') != other._$data.containsKey('id')) {
+      return false;
+    }
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$minItems = minItems;
+    final lOther$minItems = other.minItems;
+    if (l$minItems != lOther$minItems) {
+      return false;
+    }
+    final l$discountPercentage = discountPercentage;
+    final lOther$discountPercentage = other.discountPercentage;
+    if (l$discountPercentage != lOther$discountPercentage) {
+      return false;
+    }
+    final l$isActive = isActive;
+    final lOther$isActive = other.isActive;
+    if (_$data.containsKey('isActive') !=
+        other._$data.containsKey('isActive')) {
+      return false;
+    }
+    if (l$isActive != lOther$isActive) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$minItems = minItems;
+    final l$discountPercentage = discountPercentage;
+    final l$isActive = isActive;
+    return Object.hashAll([
+      _$data.containsKey('id') ? l$id : const {},
+      l$minItems,
+      l$discountPercentage,
+      _$data.containsKey('isActive') ? l$isActive : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$MultibuyInputType<TRes> {
+  factory CopyWith$Input$MultibuyInputType(
+    Input$MultibuyInputType instance,
+    TRes Function(Input$MultibuyInputType) then,
+  ) = _CopyWithImpl$Input$MultibuyInputType;
+
+  factory CopyWith$Input$MultibuyInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$MultibuyInputType;
+
+  TRes call({
+    int? id,
+    int? minItems,
+    String? discountPercentage,
+    bool? isActive,
+  });
+}
+
+class _CopyWithImpl$Input$MultibuyInputType<TRes>
+    implements CopyWith$Input$MultibuyInputType<TRes> {
+  _CopyWithImpl$Input$MultibuyInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$MultibuyInputType _instance;
+
+  final TRes Function(Input$MultibuyInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? minItems = _undefined,
+    Object? discountPercentage = _undefined,
+    Object? isActive = _undefined,
+  }) =>
+      _then(Input$MultibuyInputType._({
+        ..._instance._$data,
+        if (id != _undefined) 'id': (id as int?),
+        if (minItems != _undefined && minItems != null)
+          'minItems': (minItems as int),
+        if (discountPercentage != _undefined && discountPercentage != null)
+          'discountPercentage': (discountPercentage as String),
+        if (isActive != _undefined) 'isActive': (isActive as bool?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$MultibuyInputType<TRes>
+    implements CopyWith$Input$MultibuyInputType<TRes> {
+  _CopyWithStubImpl$Input$MultibuyInputType(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    int? minItems,
+    String? discountPercentage,
+    bool? isActive,
+  }) =>
+      _res;
+}
+
 class Input$NotificationsPreferenceInputType {
   factory Input$NotificationsPreferenceInputType({
     bool? likes,
@@ -1702,6 +1883,174 @@ class _CopyWithStubImpl$Input$ProfilePictureInputType<TRes>
   call({
     String? profilePictureUrl,
     String? thumbnailUrl,
+  }) =>
+      _res;
+}
+
+class Input$ShippingAddressInputType {
+  factory Input$ShippingAddressInputType({
+    required String address,
+    required String city,
+    required String country,
+    required String postcode,
+  }) =>
+      Input$ShippingAddressInputType._({
+        r'address': address,
+        r'city': city,
+        r'country': country,
+        r'postcode': postcode,
+      });
+
+  Input$ShippingAddressInputType._(this._$data);
+
+  factory Input$ShippingAddressInputType.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$address = data['address'];
+    result$data['address'] = (l$address as String);
+    final l$city = data['city'];
+    result$data['city'] = (l$city as String);
+    final l$country = data['country'];
+    result$data['country'] = (l$country as String);
+    final l$postcode = data['postcode'];
+    result$data['postcode'] = (l$postcode as String);
+    return Input$ShippingAddressInputType._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get address => (_$data['address'] as String);
+
+  String get city => (_$data['city'] as String);
+
+  String get country => (_$data['country'] as String);
+
+  String get postcode => (_$data['postcode'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$address = address;
+    result$data['address'] = l$address;
+    final l$city = city;
+    result$data['city'] = l$city;
+    final l$country = country;
+    result$data['country'] = l$country;
+    final l$postcode = postcode;
+    result$data['postcode'] = l$postcode;
+    return result$data;
+  }
+
+  CopyWith$Input$ShippingAddressInputType<Input$ShippingAddressInputType>
+      get copyWith => CopyWith$Input$ShippingAddressInputType(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$ShippingAddressInputType ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$address = address;
+    final lOther$address = other.address;
+    if (l$address != lOther$address) {
+      return false;
+    }
+    final l$city = city;
+    final lOther$city = other.city;
+    if (l$city != lOther$city) {
+      return false;
+    }
+    final l$country = country;
+    final lOther$country = other.country;
+    if (l$country != lOther$country) {
+      return false;
+    }
+    final l$postcode = postcode;
+    final lOther$postcode = other.postcode;
+    if (l$postcode != lOther$postcode) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$address = address;
+    final l$city = city;
+    final l$country = country;
+    final l$postcode = postcode;
+    return Object.hashAll([
+      l$address,
+      l$city,
+      l$country,
+      l$postcode,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$ShippingAddressInputType<TRes> {
+  factory CopyWith$Input$ShippingAddressInputType(
+    Input$ShippingAddressInputType instance,
+    TRes Function(Input$ShippingAddressInputType) then,
+  ) = _CopyWithImpl$Input$ShippingAddressInputType;
+
+  factory CopyWith$Input$ShippingAddressInputType.stub(TRes res) =
+      _CopyWithStubImpl$Input$ShippingAddressInputType;
+
+  TRes call({
+    String? address,
+    String? city,
+    String? country,
+    String? postcode,
+  });
+}
+
+class _CopyWithImpl$Input$ShippingAddressInputType<TRes>
+    implements CopyWith$Input$ShippingAddressInputType<TRes> {
+  _CopyWithImpl$Input$ShippingAddressInputType(
+    this._instance,
+    this._then,
+  );
+
+  final Input$ShippingAddressInputType _instance;
+
+  final TRes Function(Input$ShippingAddressInputType) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? address = _undefined,
+    Object? city = _undefined,
+    Object? country = _undefined,
+    Object? postcode = _undefined,
+  }) =>
+      _then(Input$ShippingAddressInputType._({
+        ..._instance._$data,
+        if (address != _undefined && address != null)
+          'address': (address as String),
+        if (city != _undefined && city != null) 'city': (city as String),
+        if (country != _undefined && country != null)
+          'country': (country as String),
+        if (postcode != _undefined && postcode != null)
+          'postcode': (postcode as String),
+      }));
+}
+
+class _CopyWithStubImpl$Input$ShippingAddressInputType<TRes>
+    implements CopyWith$Input$ShippingAddressInputType<TRes> {
+  _CopyWithStubImpl$Input$ShippingAddressInputType(this._res);
+
+  TRes _res;
+
+  call({
+    String? address,
+    String? city,
+    String? country,
+    String? postcode,
   }) =>
       _res;
 }

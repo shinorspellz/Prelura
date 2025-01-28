@@ -1,10 +1,11 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
-import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
@@ -118,7 +119,10 @@ class MultiDiscountBottomView extends ConsumerWidget {
                     Expanded(
                       child: AppButton(
                         text: "Send an offer",
-                        onTap: () {},
+                        onTap: () {
+                          context.router
+                              .push(SendAnOfferRoute(products: products));
+                        },
                       ),
                     )
                   ],

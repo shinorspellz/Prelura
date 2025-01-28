@@ -236,6 +236,7 @@ class OfferConversationBuilderState
           Flexible(
             child: SingleChildScrollView(
               controller: _controller,
+              reverse: true,
               child: Column(
                 children: [
                   OfferFirstCard(
@@ -251,16 +252,16 @@ class OfferConversationBuilderState
                     itemCount: offerChildren?.length ?? 0,
                     itemBuilder: (context, index) {
                       final chat = offerChildren![index];
-                      // if (isFirstTime) {
-                      //   _controller.animateTo(
-                      //     _controller.positions.first.maxScrollExtent,
-                      //     curve: Curves.linear,
-                      //     duration: const Duration(
-                      //       milliseconds: 350,
-                      //     ),
-                      //   );
-                      //   // isFirstTime = false;
-                      // }
+                      if (isFirstTime) {
+                        _controller.animateTo(
+                          _controller.position.maxScrollExtent,
+                          curve: Curves.linear,
+                          duration: const Duration(
+                            milliseconds: 350,
+                          ),
+                        );
+                        // isFirstTime = false;
+                      }
                       return OfferSubCardBox(
                         eventInfo: chat,
                         appUserInfo: appUserInfo!,
