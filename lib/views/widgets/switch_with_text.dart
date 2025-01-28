@@ -17,6 +17,7 @@ class PreluraSwitchWithText extends StatelessWidget {
   final TextStyle? textStyle;
   final double verticalPadding;
   final bool? addPadding;
+  final Color? textColor;
 
   const PreluraSwitchWithText(
       {super.key,
@@ -29,11 +30,14 @@ class PreluraSwitchWithText extends StatelessWidget {
       this.textStyle,
       this.verticalPadding = 5,
       this.addPadding,
+      this.textColor,
       this.disabled = false});
 
   @override
   Widget build(BuildContext context) {
-    final color = disabled ? Theme.of(context).textTheme.displayMedium!.color?.withOpacity(0.2) : null;
+    final color = disabled
+        ? Theme.of(context).textTheme.displayMedium!.color?.withOpacity(0.2)
+        : null;
     log("$titleText is $disabled");
     return GestureDetector(
       onTap: () {
@@ -45,7 +49,8 @@ class PreluraSwitchWithText extends StatelessWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).dividerColor, // Use the theme's divider color
+              color: Theme.of(context)
+                  .dividerColor, // Use the theme's divider color
               width: 1.0,
             ),
           ),
@@ -64,24 +69,40 @@ class PreluraSwitchWithText extends StatelessWidget {
                     children: [
                       Container(
                         margin: (addPadding ?? true)
-                            ? !(trailingText != null && (subTitle ?? '').isNotEmpty)
+                            ? !(trailingText != null &&
+                                    (subTitle ?? '').isNotEmpty)
                                 ? EdgeInsets.only(bottom: 8)
                                 : null
                             : null,
                         child: Text(
                           titleText ?? "",
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: getDefaultSize(), fontWeight: FontWeight.w600, color: Theme.of(context).textTheme.bodyMedium?.color),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  fontSize: getDefaultSize(),
+                                  fontWeight: FontWeight.w600,
+                                  color: textColor ??
+                                      Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.color),
                         ),
                       ),
                       if (trailingText != null && (subTitle ?? '').isNotEmpty)
                         Text(
                           subTitle ?? '',
-                          style: Theme.of(context).textTheme.displayMedium!.copyWith(color: color, fontSize: 13),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium!
+                              .copyWith(color: color, fontSize: 13),
                         ),
                     ],
                   ),
                 ),
-                PreluraSwitch(swicthValue: disabled ? false : value ?? false, onChanged: disabled ? (value) {} : onChanged)
+                PreluraSwitch(
+                    swicthValue: disabled ? false : value ?? false,
+                    onChanged: disabled ? (value) {} : onChanged)
               ],
             ),
             SizedBox(

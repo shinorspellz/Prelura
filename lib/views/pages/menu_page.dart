@@ -187,7 +187,9 @@ class MenuPage extends ConsumerWidget {
               alignment: Alignment.bottomCenter,
               child: Text('\u00A9 Prelura 2025',
                   style: context.theme.textTheme.bodySmall?.copyWith(
-                      color: PreluraColors.grey, fontSize: getDefaultSize())),
+                      color: PreluraColors.grey,
+                      fontSize: getDefaultSize(),
+                      fontWeight: FontWeight.w600)),
             ),
           ],
         ),

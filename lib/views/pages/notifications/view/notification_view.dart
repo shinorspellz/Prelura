@@ -78,7 +78,7 @@ class _NotificationsTabState extends ConsumerState<NotificationsTab> {
                             )
                           : SliverFillRemaining(
                               child: EmptyScreenPlaceholder(
-                                  text: "No notification yet"),
+                                  text: "No notifications"),
                             );
                     },
                     error: (e, _) {

@@ -19,21 +19,15 @@ class AboutPreluraMenuScreen extends StatelessWidget {
           onTap: () {
             context.router.push(const LegalInformationRoute());
           }),
-      MenuCard(title: "Privacy Policy ", onTap: () {}),
-      MenuCard(title: "Terms & Conditions", onTap: () {}),
+      // MenuCard(title: "Privacy Policy ", onTap: () {}),
+      // MenuCard(title: "Terms & Conditions", onTap: () {}),
     ];
 
-    List menuItem2 = [
-      MenuCard(title: "Push notifications", icon: const Icon(Icons.settings), onTap: () {}),
-      MenuCard(title: "Email notifications", icon: const Icon(Icons.lock), onTap: () {}),
-    ];
-    List menuItem3 = [
-      MenuCard(title: "About Prelura", icon: const Icon(Icons.info_outlined), onTap: () {}),
-    ];
     return Scaffold(
       appBar: PreluraAppBar(
         leadingIcon: IconButton(
-          icon: Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
+          icon:
+              Icon(Icons.arrow_back, color: Theme.of(context).iconTheme.color),
           onPressed: () => context.router.back(),
         ),
         appbarTitle: "About Prelura",
