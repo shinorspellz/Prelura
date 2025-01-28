@@ -264,7 +264,12 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AppearanceMenuRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: SendAnOfferRoute.page, guards: [AuthGuard(_ref)]),
         AutoRoute(page: DraftsRoute.page, guards: [AuthGuard(_ref)]),
-        AutoRoute(page: PrivacySettingRoute.page, guards: [AuthGuard(_ref)])
+        AutoRoute(page: PrivacySettingRoute.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: AddPaymentCard.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: AddBankAccount.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: PostageSettings.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: InviteFriend.page, guards: [AuthGuard(_ref)]),
+        AutoRoute(page: ListOfContacts.page, guards: [AuthGuard(_ref)]),
       ];
 }
 
@@ -356,7 +361,7 @@ class AppRouterObserver extends AutoRouterObserver {
       // If arguments are passed as a specific type, cast them
 
       print(
-          'Navigated to ${previousRoute?.settings.name} with argument: ${args}');
+          'Navigated to ${previousRoute?.settings.name} with argument: $args');
     }
 
     if (previousRoute?.settings.name == ProductByHashtagRoute.name) {

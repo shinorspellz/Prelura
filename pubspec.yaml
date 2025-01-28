@@ -65,7 +65,7 @@ dependencies:
   emoji_picker_flutter: ^4.2.0
   grouped_list: ^6.0.0
   text_typewriter:
-  fast_contacts: ^4.0.0
+  fast_contacts:
   permission_handler:
 
 dev_dependencies:

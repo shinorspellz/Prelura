@@ -122,7 +122,7 @@ class _ListOfContactsState extends State<ListOfContacts> {
       centerTitle: true,
       backgroundColor: colorScheme.surface,
       elevation: 0,
-      appbarTitle: "Contact",
+      appbarTitle: "Contacts",
     );
   }
 

@@ -118,7 +118,7 @@ class _AddPaymentCardState extends State<AddPaymentCard> {
                       },
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: SvgPicture.asset(PreluraIcons.masterCardIcon),
+                        child: SvgPicture.asset(PreluraIcons.mastercardIcon),
                       ),
                       formatter: [
                         FilteringTextInputFormatter.digitsOnly,
