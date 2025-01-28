@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:prelura_app/model/product/product_model.dart';
+import '../../chat/offer_info.dart';
 
 UserOrders userOrdersFromJson(String str) =>
     UserOrders.fromJson(json.decode(str));
@@ -159,107 +159,5 @@ class OrderInfo {
         "quantity": quantity,
         "__typename": typename,
         "product": product?.toJson(),
-      };
-}
-
-class Product {
-  List<String>? color;
-  String? condition;
-  DateTime? createdAt;
-  dynamic customBrand;
-  String? description;
-  String? discountPrice;
-  String? id;
-  List<String>? imagesUrl;
-  String? name;
-  String? status;
-  Brand? brand;
-  Brand? category;
-  int? likes;
-  bool? isFeatured;
-  List<Brand>? materials;
-  dynamic price;
-  String? parcelSize;
-  int? views;
-  String? typename;
-
-  Product({
-    this.color,
-    this.condition,
-    this.createdAt,
-    this.customBrand,
-    this.description,
-    this.discountPrice,
-    this.id,
-    this.imagesUrl,
-    this.name,
-    this.status,
-    this.brand,
-    this.category,
-    this.likes,
-    this.isFeatured,
-    this.materials,
-    this.price,
-    this.parcelSize,
-    this.views,
-    this.typename,
-  });
-
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
-        color: json["color"] == null
-            ? []
-            : List<String>.from(json["color"]!.map((x) => x)),
-        condition: json["condition"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        customBrand: json["customBrand"],
-        description: json["description"],
-        discountPrice: json["discountPrice"],
-        id: json["id"],
-        imagesUrl: json["imagesUrl"] == null
-            ? []
-            : List<String>.from(json["imagesUrl"]!.map((x) => x)),
-        name: json["name"],
-        status: json["status"],
-        brand: json["brand"] == null ? null : Brand.fromJson(json["brand"]),
-        category:
-            json["category"] == null ? null : Brand.fromJson(json["category"]),
-        likes: json["likes"],
-        isFeatured: json["isFeatured"],
-        materials: json["materials"] == null
-            ? []
-            : List<Brand>.from(
-                json["materials"]!.map((x) => Brand.fromJson(x))),
-        price: json["price"],
-        parcelSize: json["parcelSize"],
-        views: json["views"],
-        typename: json["__typename"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "color": color == null ? [] : List<dynamic>.from(color!.map((x) => x)),
-        "condition": condition,
-        "createdAt": createdAt?.toIso8601String(),
-        "customBrand": customBrand,
-        "description": description,
-        "discountPrice": discountPrice,
-        "id": id,
-        "imagesUrl": imagesUrl == null
-            ? []
-            : List<dynamic>.from(imagesUrl!.map((x) => x)),
-        "name": name,
-        "status": status,
-        "brand": brand?.toJson(),
-        "category": category?.toJson(),
-        "likes": likes,
-        "isFeatured": isFeatured,
-        "materials": materials == null
-            ? []
-            : List<dynamic>.from(materials!.map((x) => x.toJson())),
-        "price": price,
-        "parcelSize": parcelSize,
-        "views": views,
-        "__typename": typename,
       };
 }

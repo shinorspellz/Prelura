@@ -169,6 +169,10 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           guards: [AuthGuard(_ref)],
+          page: OfferMuiltibuyView.page,
+        ),
+        AutoRoute(
+          guards: [AuthGuard(_ref)],
           page: FollowersRoute.page,
         ),
         AutoRoute(

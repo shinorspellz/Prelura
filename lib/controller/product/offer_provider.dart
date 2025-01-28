@@ -81,7 +81,8 @@ class OfferNotifier extends StateNotifier<OfferState> {
           lastModified: DateTime.now(),
           createdAt: DateTime.now(),
           unreadMessagesCount: 0,
-          recipient: UserModel.fromJson(theOffer.product!.seller!.toJson()),
+          recipient:
+              UserModel.fromJson(theOffer.products!.first.seller!.toJson()),
           offer: theOffer,
         );
 

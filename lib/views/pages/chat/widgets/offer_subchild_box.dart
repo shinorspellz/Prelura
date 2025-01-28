@@ -179,12 +179,12 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
   Widget build(BuildContext context) {
     final ConversationModel offerInfo = ref.read(offerProvider).activeOffer!;
     final bool amTheSeller = widget.appUserInfo.username ==
-        offerInfo.offer?.product?.seller?.username;
+        offerInfo.offer?.products?.first.seller?.username;
     final bool isSender =
         widget.appUserInfo.username == widget.eventInfo.createdBy;
     final String? offeredPrice = widget.eventInfo.offerPrice;
     final String status = widget.eventInfo.status?.toLowerCase() ?? "";
-
+    Product? productInfo = offerInfo.offer?.products?.first;
     return status == "normal"
         ? Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -242,7 +242,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                       height: 40,
                       width: 40,
                       profilePicture:
-                          "${!amTheSeller ? offerInfo.offer?.product?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
+                          "${!amTheSeller ? productInfo?.seller?.profilePictureUrl : offerInfo.offer?.buyer?.profilePictureUrl}",
                       username: widget.eventInfo.createdBy,
                     ),
                   8.horizontalSpacing,
@@ -354,7 +354,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             ],
             if (status == "accepted" &&
                 amTheSeller &&
-                offerInfo.offer?.product?.status != "SOLD") ...[
+                productInfo?.status != "SOLD") ...[
               // addVerticalSpacing(20),
               // Text(
               //   "Please wait for buyer to make payment",
@@ -408,7 +408,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             ],
             if (status == "accepted" &&
                 amTheSeller &&
-                offerInfo.offer?.product?.status == "SOLD") ...[
+                productInfo?.status == "SOLD") ...[
               // addVerticalSpacing(20),
               // Text(
               //   "Please wait for buyer to make payment",
@@ -424,7 +424,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
               _buildCustomOfferButton(text: "Sold!"),
             ],
             if (status == "accepted" &&
-                offerInfo.offer?.product?.status == "SOLD" &&
+                productInfo?.status == "SOLD" &&
                 !amTheSeller) ...[
               Padding(
                 padding: const EdgeInsets.only(
@@ -447,7 +447,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             ],
             if (status == "accepted" &&
                 !amTheSeller &&
-                offerInfo.offer?.product?.status != "SOLD") ...[
+                productInfo?.status != "SOLD") ...[
               // addVerticalSpacing(20),
               // Text(
               //   "Please wait for buyer to make payment",
@@ -482,8 +482,8 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     isBuying = true;
     setState(() {});
     try {
-      int productId =
-          int.parse(ref.read(offerProvider).activeOffer!.offer!.product!.id!);
+      int productId = int.parse(
+          ref.read(offerProvider).activeOffer!.offer!.products!.first.id!);
       final repo = ref.read(productRepo);
 
       final productInfo = await repo.getProduct(productId);
