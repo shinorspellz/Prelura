@@ -38,6 +38,7 @@ class OfferRepo {
       throw OfferException('An error occurred');
     }
 
+    log("::::Offer creationInfo::: ${jsonEncode(response.parsedData?.createOffer?.toJson())}");
     return response.parsedData?.createOffer;
   }
 

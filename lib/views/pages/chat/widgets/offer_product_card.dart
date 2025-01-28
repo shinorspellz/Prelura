@@ -24,6 +24,7 @@ class OfferProductCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var productInfo = offerInfo.products?.first;
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(2),
@@ -34,7 +35,7 @@ class OfferProductCard extends ConsumerWidget {
             errorWidget: (context, url, error) => Container(
               color: PreluraColors.grey,
             ),
-            imageUrl: offerInfo.product?.imagesUrl?.firstOrNull?.url ?? "",
+            imageUrl: productInfo?.imagesUrl?.firstOrNull?.url ?? "",
             fit: BoxFit.cover,
             placeholder: (context, url) {
               return ShimmerBox(
@@ -61,7 +62,7 @@ class OfferProductCard extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        capitalizeEachWord("${offerInfo.product?.name}"),
+                        capitalizeEachWord("${productInfo?.name}"),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis, // Truncate text
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -70,11 +71,10 @@ class OfferProductCard extends ConsumerWidget {
                             ),
                       ),
                       10.verticalSpacing,
-                      if (offerInfo.product?.brand != null)
+                      if (productInfo?.brand != null)
                         BrandTextWidget(
                           brand: Brand(
-                              name:
-                                  "${offerInfo.product?.brand["name"] ?? "NIL"}",
+                              name: "${productInfo?.brand["name"] ?? "NIL"}",
                               id: 0),
                           customBrand: null,
                           fontSize: 16,
@@ -82,7 +82,7 @@ class OfferProductCard extends ConsumerWidget {
                     ]),
               ),
               Text(
-                " £${offerInfo.product?.price.toString().formatCurrency()}",
+                " £${productInfo?.price.toString().formatCurrency()}",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
