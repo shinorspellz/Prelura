@@ -237,8 +237,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                             Expanded(
                               child: AppButton(
                                 onTap: () {
-                                  context.router
-                                      .push(SendAnOfferRoute(product: product));
+                                  context.router.push(
+                                      SendAnOfferRoute(products: [product]));
                                 },
                                 text: "Send an Offer",
                                 fontWeight: FontWeight.w500,
