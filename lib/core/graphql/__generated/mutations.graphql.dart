@@ -24348,11 +24348,13 @@ class _CopyWithStubImpl$Mutation$UpdateNotificationPreference$updateNotification
 class Variables$Mutation$CreateOrder {
   factory Variables$Mutation$CreateOrder({
     required int productId,
-    int? quantity,
+    List<int?>? productIds,
+    double? shippingFee,
   }) =>
       Variables$Mutation$CreateOrder._({
         r'productId': productId,
-        if (quantity != null) r'quantity': quantity,
+        if (productIds != null) r'productIds': productIds,
+        if (shippingFee != null) r'shippingFee': shippingFee,
       });
 
   Variables$Mutation$CreateOrder._(this._$data);
@@ -24361,9 +24363,14 @@ class Variables$Mutation$CreateOrder {
     final result$data = <String, dynamic>{};
     final l$productId = data['productId'];
     result$data['productId'] = (l$productId as int);
-    if (data.containsKey('quantity')) {
-      final l$quantity = data['quantity'];
-      result$data['quantity'] = (l$quantity as int?);
+    if (data.containsKey('productIds')) {
+      final l$productIds = data['productIds'];
+      result$data['productIds'] =
+          (l$productIds as List<dynamic>?)?.map((e) => (e as int?)).toList();
+    }
+    if (data.containsKey('shippingFee')) {
+      final l$shippingFee = data['shippingFee'];
+      result$data['shippingFee'] = (l$shippingFee as num?)?.toDouble();
     }
     return Variables$Mutation$CreateOrder._(result$data);
   }
@@ -24372,15 +24379,21 @@ class Variables$Mutation$CreateOrder {
 
   int get productId => (_$data['productId'] as int);
 
-  int? get quantity => (_$data['quantity'] as int?);
+  List<int?>? get productIds => (_$data['productIds'] as List<int?>?);
+
+  double? get shippingFee => (_$data['shippingFee'] as double?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$productId = productId;
     result$data['productId'] = l$productId;
-    if (_$data.containsKey('quantity')) {
-      final l$quantity = quantity;
-      result$data['quantity'] = l$quantity;
+    if (_$data.containsKey('productIds')) {
+      final l$productIds = productIds;
+      result$data['productIds'] = l$productIds?.map((e) => e).toList();
+    }
+    if (_$data.containsKey('shippingFee')) {
+      final l$shippingFee = shippingFee;
+      result$data['shippingFee'] = l$shippingFee;
     }
     return result$data;
   }
@@ -24405,13 +24418,33 @@ class Variables$Mutation$CreateOrder {
     if (l$productId != lOther$productId) {
       return false;
     }
-    final l$quantity = quantity;
-    final lOther$quantity = other.quantity;
-    if (_$data.containsKey('quantity') !=
-        other._$data.containsKey('quantity')) {
+    final l$productIds = productIds;
+    final lOther$productIds = other.productIds;
+    if (_$data.containsKey('productIds') !=
+        other._$data.containsKey('productIds')) {
       return false;
     }
-    if (l$quantity != lOther$quantity) {
+    if (l$productIds != null && lOther$productIds != null) {
+      if (l$productIds.length != lOther$productIds.length) {
+        return false;
+      }
+      for (int i = 0; i < l$productIds.length; i++) {
+        final l$productIds$entry = l$productIds[i];
+        final lOther$productIds$entry = lOther$productIds[i];
+        if (l$productIds$entry != lOther$productIds$entry) {
+          return false;
+        }
+      }
+    } else if (l$productIds != lOther$productIds) {
+      return false;
+    }
+    final l$shippingFee = shippingFee;
+    final lOther$shippingFee = other.shippingFee;
+    if (_$data.containsKey('shippingFee') !=
+        other._$data.containsKey('shippingFee')) {
+      return false;
+    }
+    if (l$shippingFee != lOther$shippingFee) {
       return false;
     }
     return true;
@@ -24420,10 +24453,16 @@ class Variables$Mutation$CreateOrder {
   @override
   int get hashCode {
     final l$productId = productId;
-    final l$quantity = quantity;
+    final l$productIds = productIds;
+    final l$shippingFee = shippingFee;
     return Object.hashAll([
       l$productId,
-      _$data.containsKey('quantity') ? l$quantity : const {},
+      _$data.containsKey('productIds')
+          ? l$productIds == null
+              ? null
+              : Object.hashAll(l$productIds.map((v) => v))
+          : const {},
+      _$data.containsKey('shippingFee') ? l$shippingFee : const {},
     ]);
   }
 }
@@ -24439,7 +24478,8 @@ abstract class CopyWith$Variables$Mutation$CreateOrder<TRes> {
 
   TRes call({
     int? productId,
-    int? quantity,
+    List<int?>? productIds,
+    double? shippingFee,
   });
 }
 
@@ -24458,13 +24498,15 @@ class _CopyWithImpl$Variables$Mutation$CreateOrder<TRes>
 
   TRes call({
     Object? productId = _undefined,
-    Object? quantity = _undefined,
+    Object? productIds = _undefined,
+    Object? shippingFee = _undefined,
   }) =>
       _then(Variables$Mutation$CreateOrder._({
         ..._instance._$data,
         if (productId != _undefined && productId != null)
           'productId': (productId as int),
-        if (quantity != _undefined) 'quantity': (quantity as int?),
+        if (productIds != _undefined) 'productIds': (productIds as List<int?>?),
+        if (shippingFee != _undefined) 'shippingFee': (shippingFee as double?),
       }));
 }
 
@@ -24476,7 +24518,8 @@ class _CopyWithStubImpl$Variables$Mutation$CreateOrder<TRes>
 
   call({
     int? productId,
-    int? quantity,
+    List<int?>? productIds,
+    double? shippingFee,
   }) =>
       _res;
 }
@@ -24634,9 +24677,21 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'quantity')),
+        variable: VariableNode(name: NameNode(value: 'productIds')),
+        type: ListTypeNode(
+          type: NamedTypeNode(
+            name: NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'shippingFee')),
         type: NamedTypeNode(
-          name: NameNode(value: 'Int'),
+          name: NameNode(value: 'Float'),
           isNonNull: false,
         ),
         defaultValue: DefaultValueNode(value: null),
@@ -24654,8 +24709,12 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
             value: VariableNode(name: NameNode(value: 'productId')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'quantity'),
-            value: VariableNode(name: NameNode(value: 'quantity')),
+            name: NameNode(value: 'productIds'),
+            value: VariableNode(name: NameNode(value: 'productIds')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'shippingFee'),
+            value: VariableNode(name: NameNode(value: 'shippingFee')),
           ),
         ],
         directives: [],
@@ -24667,6 +24726,20 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'discountPrice'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'id'),
                 alias: null,
                 arguments: [],
@@ -24674,14 +24747,14 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'quantity'),
+                name: NameNode(value: 'priceTotal'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'priceTotal'),
+                name: NameNode(value: 'shippingAddress'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -24702,18 +24775,76 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'createdAt'),
+                name: NameNode(value: 'updatedAt'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'updatedAt'),
+                name: NameNode(value: 'products'),
                 alias: null,
                 arguments: [],
                 directives: [],
-                selectionSet: null,
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'imagesUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'size'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
               ),
               FieldNode(
                 name: NameNode(value: '__typename'),
@@ -24723,6 +24854,13 @@ const documentNodeMutationCreateOrder = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -24841,22 +24979,27 @@ extension ClientExtension$Mutation$CreateOrder on graphql.GraphQLClient {
 class Mutation$CreateOrder$createOrder {
   Mutation$CreateOrder$createOrder({
     this.order,
+    this.success,
     this.$__typename = 'CreateOrder',
   });
 
   factory Mutation$CreateOrder$createOrder.fromJson(Map<String, dynamic> json) {
     final l$order = json['order'];
+    final l$success = json['success'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateOrder$createOrder(
       order: l$order == null
           ? null
           : Mutation$CreateOrder$createOrder$order.fromJson(
               (l$order as Map<String, dynamic>)),
+      success: (l$success as bool?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final Mutation$CreateOrder$createOrder$order? order;
+
+  final bool? success;
 
   final String $__typename;
 
@@ -24864,6 +25007,8 @@ class Mutation$CreateOrder$createOrder {
     final _resultData = <String, dynamic>{};
     final l$order = order;
     _resultData['order'] = l$order?.toJson();
+    final l$success = success;
+    _resultData['success'] = l$success;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -24872,9 +25017,11 @@ class Mutation$CreateOrder$createOrder {
   @override
   int get hashCode {
     final l$order = order;
+    final l$success = success;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$order,
+      l$success,
       l$$__typename,
     ]);
   }
@@ -24891,6 +25038,11 @@ class Mutation$CreateOrder$createOrder {
     final l$order = order;
     final lOther$order = other.order;
     if (l$order != lOther$order) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -24922,6 +25074,7 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder<TRes> {
 
   TRes call({
     Mutation$CreateOrder$createOrder$order? order,
+    bool? success,
     String? $__typename,
   });
   CopyWith$Mutation$CreateOrder$createOrder$order<TRes> get order;
@@ -24942,12 +25095,14 @@ class _CopyWithImpl$Mutation$CreateOrder$createOrder<TRes>
 
   TRes call({
     Object? order = _undefined,
+    Object? success = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateOrder$createOrder(
         order: order == _undefined
             ? _instance.order
             : (order as Mutation$CreateOrder$createOrder$order?),
+        success: success == _undefined ? _instance.success : (success as bool?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -24970,6 +25125,7 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes>
 
   call({
     Mutation$CreateOrder$createOrder$order? order,
+    bool? success,
     String? $__typename,
   }) =>
       _res;
@@ -24980,73 +25136,92 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder<TRes>
 
 class Mutation$CreateOrder$createOrder$order {
   Mutation$CreateOrder$createOrder$order({
+    required this.createdAt,
+    required this.discountPrice,
     required this.id,
-    required this.quantity,
     required this.priceTotal,
+    required this.shippingAddress,
     required this.shippingFee,
     this.status,
-    required this.createdAt,
     required this.updatedAt,
+    this.products,
     this.$__typename = 'OrderType',
   });
 
   factory Mutation$CreateOrder$createOrder$order.fromJson(
       Map<String, dynamic> json) {
+    final l$createdAt = json['createdAt'];
+    final l$discountPrice = json['discountPrice'];
     final l$id = json['id'];
-    final l$quantity = json['quantity'];
     final l$priceTotal = json['priceTotal'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$shippingFee = json['shippingFee'];
     final l$status = json['status'];
-    final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
+    final l$products = json['products'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateOrder$createOrder$order(
+      createdAt: DateTime.parse((l$createdAt as String)),
+      discountPrice: (l$discountPrice as String),
       id: (l$id as String),
-      quantity: (l$quantity as int),
       priceTotal: (l$priceTotal as String),
+      shippingAddress: (l$shippingAddress as String),
       shippingFee: (l$shippingFee as String),
       status: l$status == null
           ? null
           : fromJson$Enum$OrderStatusEnum((l$status as String)),
-      createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      products: (l$products as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Mutation$CreateOrder$createOrder$order$products.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
+  final DateTime createdAt;
+
+  final String discountPrice;
+
   final String id;
 
-  final int quantity;
-
   final String priceTotal;
+
+  final String shippingAddress;
 
   final String shippingFee;
 
   final Enum$OrderStatusEnum? status;
 
-  final DateTime createdAt;
-
   final DateTime updatedAt;
+
+  final List<Mutation$CreateOrder$createOrder$order$products?>? products;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$quantity = quantity;
-    _resultData['quantity'] = l$quantity;
     final l$priceTotal = priceTotal;
     _resultData['priceTotal'] = l$priceTotal;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
     final l$shippingFee = shippingFee;
     _resultData['shippingFee'] = l$shippingFee;
     final l$status = status;
     _resultData['status'] =
         l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$products = products;
+    _resultData['products'] = l$products?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -25054,22 +25229,26 @@ class Mutation$CreateOrder$createOrder$order {
 
   @override
   int get hashCode {
+    final l$createdAt = createdAt;
+    final l$discountPrice = discountPrice;
     final l$id = id;
-    final l$quantity = quantity;
     final l$priceTotal = priceTotal;
+    final l$shippingAddress = shippingAddress;
     final l$shippingFee = shippingFee;
     final l$status = status;
-    final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$products = products;
     final l$$__typename = $__typename;
     return Object.hashAll([
+      l$createdAt,
+      l$discountPrice,
       l$id,
-      l$quantity,
       l$priceTotal,
+      l$shippingAddress,
       l$shippingFee,
       l$status,
-      l$createdAt,
       l$updatedAt,
+      l$products == null ? null : Object.hashAll(l$products.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -25083,19 +25262,29 @@ class Mutation$CreateOrder$createOrder$order {
         runtimeType != other.runtimeType) {
       return false;
     }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
       return false;
     }
-    final l$quantity = quantity;
-    final lOther$quantity = other.quantity;
-    if (l$quantity != lOther$quantity) {
-      return false;
-    }
     final l$priceTotal = priceTotal;
     final lOther$priceTotal = other.priceTotal;
     if (l$priceTotal != lOther$priceTotal) {
+      return false;
+    }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
       return false;
     }
     final l$shippingFee = shippingFee;
@@ -25108,14 +25297,25 @@ class Mutation$CreateOrder$createOrder$order {
     if (l$status != lOther$status) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
     final l$updatedAt = updatedAt;
     final lOther$updatedAt = other.updatedAt;
     if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$products = products;
+    final lOther$products = other.products;
+    if (l$products != null && lOther$products != null) {
+      if (l$products.length != lOther$products.length) {
+        return false;
+      }
+      for (int i = 0; i < l$products.length; i++) {
+        final l$products$entry = l$products[i];
+        final lOther$products$entry = lOther$products[i];
+        if (l$products$entry != lOther$products$entry) {
+          return false;
+        }
+      }
+    } else if (l$products != lOther$products) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -25147,15 +25347,23 @@ abstract class CopyWith$Mutation$CreateOrder$createOrder$order<TRes> {
       _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order;
 
   TRes call({
+    DateTime? createdAt,
+    String? discountPrice,
     String? id,
-    int? quantity,
     String? priceTotal,
+    String? shippingAddress,
     String? shippingFee,
     Enum$OrderStatusEnum? status,
-    DateTime? createdAt,
     DateTime? updatedAt,
+    List<Mutation$CreateOrder$createOrder$order$products?>? products,
     String? $__typename,
   });
+  TRes products(
+      Iterable<Mutation$CreateOrder$createOrder$order$products?>? Function(
+              Iterable<
+                  CopyWith$Mutation$CreateOrder$createOrder$order$products<
+                      Mutation$CreateOrder$createOrder$order$products>?>?)
+          _fn);
 }
 
 class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
@@ -25172,39 +25380,63 @@ class _CopyWithImpl$Mutation$CreateOrder$createOrder$order<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? createdAt = _undefined,
+    Object? discountPrice = _undefined,
     Object? id = _undefined,
-    Object? quantity = _undefined,
     Object? priceTotal = _undefined,
+    Object? shippingAddress = _undefined,
     Object? shippingFee = _undefined,
     Object? status = _undefined,
-    Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
+    Object? products = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateOrder$createOrder$order(
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        discountPrice: discountPrice == _undefined || discountPrice == null
+            ? _instance.discountPrice
+            : (discountPrice as String),
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        quantity: quantity == _undefined || quantity == null
-            ? _instance.quantity
-            : (quantity as int),
         priceTotal: priceTotal == _undefined || priceTotal == null
             ? _instance.priceTotal
             : (priceTotal as String),
+        shippingAddress:
+            shippingAddress == _undefined || shippingAddress == null
+                ? _instance.shippingAddress
+                : (shippingAddress as String),
         shippingFee: shippingFee == _undefined || shippingFee == null
             ? _instance.shippingFee
             : (shippingFee as String),
         status: status == _undefined
             ? _instance.status
             : (status as Enum$OrderStatusEnum?),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        products: products == _undefined
+            ? _instance.products
+            : (products
+                as List<Mutation$CreateOrder$createOrder$order$products?>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  TRes products(
+          Iterable<Mutation$CreateOrder$createOrder$order$products?>? Function(
+                  Iterable<
+                      CopyWith$Mutation$CreateOrder$createOrder$order$products<
+                          Mutation$CreateOrder$createOrder$order$products>?>?)
+              _fn) =>
+      call(
+          products: _fn(_instance.products?.map((e) => e == null
+              ? null
+              : CopyWith$Mutation$CreateOrder$createOrder$order$products(
+                  e,
+                  (i) => i,
+                )))?.toList());
 }
 
 class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
@@ -25214,13 +25446,380 @@ class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order<TRes>
   TRes _res;
 
   call({
+    DateTime? createdAt,
+    String? discountPrice,
     String? id,
-    int? quantity,
     String? priceTotal,
+    String? shippingAddress,
     String? shippingFee,
     Enum$OrderStatusEnum? status,
-    DateTime? createdAt,
     DateTime? updatedAt,
+    List<Mutation$CreateOrder$createOrder$order$products?>? products,
+    String? $__typename,
+  }) =>
+      _res;
+
+  products(_fn) => _res;
+}
+
+class Mutation$CreateOrder$createOrder$order$products {
+  Mutation$CreateOrder$createOrder$order$products({
+    required this.id,
+    required this.imagesUrl,
+    required this.name,
+    this.size,
+    this.$__typename = 'ProductType',
+  });
+
+  factory Mutation$CreateOrder$createOrder$order$products.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$name = json['name'];
+    final l$size = json['size'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$createOrder$order$products(
+      id: (l$id as String),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      name: (l$name as String),
+      size: l$size == null
+          ? null
+          : Mutation$CreateOrder$createOrder$order$products$size.fromJson(
+              (l$size as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final List<String> imagesUrl;
+
+  final String name;
+
+  final Mutation$CreateOrder$createOrder$order$products$size? size;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$size = size;
+    _resultData['size'] = l$size?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$imagesUrl = imagesUrl;
+    final l$name = name;
+    final l$size = size;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$name,
+      l$size,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder$createOrder$order$products ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$createOrder$order$products
+    on Mutation$CreateOrder$createOrder$order$products {
+  CopyWith$Mutation$CreateOrder$createOrder$order$products<
+          Mutation$CreateOrder$createOrder$order$products>
+      get copyWith => CopyWith$Mutation$CreateOrder$createOrder$order$products(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$createOrder$order$products<TRes> {
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$products(
+    Mutation$CreateOrder$createOrder$order$products instance,
+    TRes Function(Mutation$CreateOrder$createOrder$order$products) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products;
+
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$products.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products;
+
+  TRes call({
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    Mutation$CreateOrder$createOrder$order$products$size? size,
+    String? $__typename,
+  });
+  CopyWith$Mutation$CreateOrder$createOrder$order$products$size<TRes> get size;
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order$products<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$createOrder$order$products _instance;
+
+  final TRes Function(Mutation$CreateOrder$createOrder$order$products) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? name = _undefined,
+    Object? size = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$createOrder$order$products(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Mutation$CreateOrder$createOrder$order$products$size?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$CreateOrder$createOrder$order$products$size<TRes> get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Mutation$CreateOrder$createOrder$order$products$size.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CreateOrder$createOrder$order$products$size(
+            local$size, (e) => call(size: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products<TRes>
+    implements CopyWith$Mutation$CreateOrder$createOrder$order$products<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    Mutation$CreateOrder$createOrder$order$products$size? size,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$CreateOrder$createOrder$order$products$size<TRes>
+      get size =>
+          CopyWith$Mutation$CreateOrder$createOrder$order$products$size.stub(
+              _res);
+}
+
+class Mutation$CreateOrder$createOrder$order$products$size {
+  Mutation$CreateOrder$createOrder$order$products$size({
+    this.id,
+    this.name,
+    this.$__typename = 'SizeType',
+  });
+
+  factory Mutation$CreateOrder$createOrder$order$products$size.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CreateOrder$createOrder$order$products$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CreateOrder$createOrder$order$products$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CreateOrder$createOrder$order$products$size
+    on Mutation$CreateOrder$createOrder$order$products$size {
+  CopyWith$Mutation$CreateOrder$createOrder$order$products$size<
+          Mutation$CreateOrder$createOrder$order$products$size>
+      get copyWith =>
+          CopyWith$Mutation$CreateOrder$createOrder$order$products$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CreateOrder$createOrder$order$products$size<
+    TRes> {
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$products$size(
+    Mutation$CreateOrder$createOrder$order$products$size instance,
+    TRes Function(Mutation$CreateOrder$createOrder$order$products$size) then,
+  ) = _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products$size;
+
+  factory CopyWith$Mutation$CreateOrder$createOrder$order$products$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products$size;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products$size<TRes>
+    implements
+        CopyWith$Mutation$CreateOrder$createOrder$order$products$size<TRes> {
+  _CopyWithImpl$Mutation$CreateOrder$createOrder$order$products$size(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CreateOrder$createOrder$order$products$size _instance;
+
+  final TRes Function(Mutation$CreateOrder$createOrder$order$products$size)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CreateOrder$createOrder$order$products$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products$size<
+        TRes>
+    implements
+        CopyWith$Mutation$CreateOrder$createOrder$order$products$size<TRes> {
+  _CopyWithStubImpl$Mutation$CreateOrder$createOrder$order$products$size(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;

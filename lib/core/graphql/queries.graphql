@@ -574,80 +574,42 @@ query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,
     createdAt
     id
     priceTotal
-    user {
-      username
-      thumbnailUrl
-      bio
-      displayName
-      email
-      firstName
-      gender
-      isVerified
-      lastName
-    }
-    paymentSet {
-      createdAt
-      id
-      order {
-        createdAt
-        id
-        priceTotal
-        user {
-          username
-          thumbnailUrl
-          bio
-          displayName
-          email
-          firstName
-          gender
-          isVerified
-          lastName
-        }
-        product {
-          color
-          condition
-          createdAt
-          customBrand
-          description
-          discountPrice
-          id
-          imagesUrl
-          name
-          status
-          brand {
-            id
-            name
-          }
-          category {
-            id
-            name
-          }
-          likes
-          isFeatured
-          materials {
-            id
-            name
-          }
-          price
-          parcelSize
-          views
-        }
-        quantity
-        shippingFee
-        status
-        updatedAt
-      }
-      paymentAmount
-      paymentIntentId
-      paymentMethod
-      paymentRef
-      paymentStatus
-      updatedAt
-    }
     updatedAt
     status
     shippingFee
-    quantity
+    discountPrice
+    products {
+      id
+      name
+      imagesUrl
+      price
+      status
+      updatedAt
+      seller {
+        username
+        thumbnailUrl
+      }
+      condition
+      brand {
+        id
+        name
+      }
+      category {
+        id
+        name
+      }
+      color
+      discountPrice
+      isFeatured
+    }
+    user {
+      email
+      username
+      thumbnailUrl
+      fullName
+      displayName
+      bio
+    }
   }
   userOrdersTotalNumber
   }
