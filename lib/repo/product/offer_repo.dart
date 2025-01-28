@@ -10,7 +10,7 @@ class OfferRepo {
   OfferRepo(this._client);
 
   Future<Mutation$createOffer$createOffer?> createOffer({
-    required int productId,
+    required List<int> productIds,
     required double offerPrice,
     String? message,
   }) async {
@@ -18,7 +18,7 @@ class OfferRepo {
       Options$Mutation$createOffer(
         variables: Variables$Mutation$createOffer(
           message: message,
-          productId: productId,
+          productIds: productIds,
           offerPrice: offerPrice,
         ),
       ),

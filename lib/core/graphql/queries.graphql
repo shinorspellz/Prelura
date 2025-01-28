@@ -669,56 +669,7 @@ query Conversations {
       thumbnailUrl
     }
     offer {
-      id
-      message
-      offerPrice
-      createdBy
-      status
-      createdAt
-      updatedAt
-      expiresAt
-      deleted
-      children {
-        id
-        createdAt
-        updatedBy
-        createdBy
-        updatedAt
-        message
-        offerPrice
-        status
-        buyer {
-          id
-          username
-          profilePictureUrl
-          thumbnailUrl
-          displayName
-        }
-        product {
-          seller {
-            id
-            username
-            profilePictureUrl
-            thumbnailUrl
-            displayName
-          }
-        }
-      }
-      buyer {
-        id
-        username
-        profilePictureUrl
-        thumbnailUrl
-        displayName
-      }
-      product {
-        id
-        name
-        description
-        isFeatured
-        userLiked
-        imagesUrl
-        status
+      products {
         brand {
           id
           name
@@ -727,22 +678,54 @@ query Conversations {
           id
           name
         }
+        id
+        imagesUrl
+        name
+        price
         size {
           id
           name
         }
+        updatedAt
+        status
         seller {
-          id
+          email
+          fullName
           username
+          thumbnailUrl
           profilePictureUrl
         }
-        condition
-        discountPrice
-        condition
-        price
-        parcelSize
-        views
-        likes
+      }
+      status
+      updatedBy
+      updatedAt
+      id
+      expiresAt
+      createdBy
+      createdAt
+      offerPrice
+      message
+      children {
+        buyer {
+          username
+          thumbnailUrl
+          profilePictureUrl
+          fullName
+        }
+        createdAt
+        createdBy
+        id
+        status
+        updatedAt
+        updatedBy
+        offerPrice
+        message
+      }
+      buyer {
+        username
+        thumbnailUrl
+        displayName
+        fullName
       }
     }
     lastMessage {

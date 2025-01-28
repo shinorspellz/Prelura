@@ -248,61 +248,12 @@ mutation DeleteSearchHistory($searchId: ID, $clearAll: Boolean) {
   }
 }
 
-mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
-  createOffer(offerPrice: $offerPrice, productId: $productId, message: $message) {
-    message
-    success
-    data{
+mutation createOffer($offerPrice: Float!, $productIds: [Int]!, $message: String) {
+  createOffer(offerPrice: $offerPrice, productIds: $productIds, message: $message) {
+    data {
       conversationId
       offer {
-        id
-        message
-        offerPrice
-        createdBy
-        status
-        createdAt
-        updatedAt
-        expiresAt
-        deleted
-        children {
-          id
-          updatedBy
-          createdBy
-          updatedAt
-          message
-          offerPrice
-          status
-          buyer {
-            id
-            username
-            profilePictureUrl
-            thumbnailUrl
-            displayName
-          }
-          product {
-            seller {
-              id
-              username
-              profilePictureUrl
-              thumbnailUrl
-              displayName
-            }
-          }
-        }
-        buyer {
-          id
-          username
-          profilePictureUrl
-          thumbnailUrl
-          displayName
-        }
-        product {
-          id
-          name
-          description
-          isFeatured
-          userLiked
-          imagesUrl
+        products {
           brand {
             id
             name
@@ -311,83 +262,68 @@ mutation createOffer($offerPrice: Float!, $productId: Int!, $message: String) {
             id
             name
           }
+          id
+          imagesUrl
+          name
+          price
           size {
             id
             name
           }
+          updatedAt
+          status
           seller {
-            id
+            email
+            fullName
             username
+            thumbnailUrl
             profilePictureUrl
           }
-          condition
-          discountPrice
-          condition
-          price
-          parcelSize
-          views
-          likes
+        }
+        status
+        updatedBy
+        updatedAt
+        id
+        expiresAt
+        createdBy
+        createdAt
+        offerPrice
+        message
+        children {
+          buyer {
+            username
+            thumbnailUrl
+            profilePictureUrl
+            fullName
+          }
+          createdAt
+          createdBy
+          id
+          status
+          updatedAt
+          updatedBy
+          offerPrice
+          message
+        }
+        buyer {
+          username
+          thumbnailUrl
+          displayName
+          fullName
         }
       }
     }
+    message
+    success
   }
 }
 
 mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: Float) {
   respondToOffer(action: $action, offerId: $offerId, offerPrice: $offerPrice) {
-    message
-    success
-    data{
+    data {
       conversationId
       offer {
-        id
-        message
-        offerPrice
-        status
-        createdAt
-        createdBy
-        updatedAt
-        expiresAt
-        deleted
-        children {
-          id
-          createdBy
-          updatedBy
-          updatedAt
-          message
-          offerPrice
-          status
-          buyer {
-            id
-            username
-            profilePictureUrl
-            thumbnailUrl
-            displayName
-          }
-          product {
-            seller {
-              id
-              username
-              profilePictureUrl
-              thumbnailUrl
-              displayName
-            }
-          }
-        }
-        buyer {
-          id
-          username
-          profilePictureUrl
-          thumbnailUrl
-          displayName
-        }
-        product {
-          id
-          name
-          description
-          isFeatured
-          userLiked
-          imagesUrl
+        products {
           brand {
             id
             name
@@ -396,25 +332,59 @@ mutation RespondToOffer($action: OfferActionEnum!, $offerId: Int!, $offerPrice: 
             id
             name
           }
+          id
+          imagesUrl
+          name
+          price
           size {
             id
             name
           }
+          updatedAt
+          status
           seller {
-            id
+            email
+            fullName
             username
+            thumbnailUrl
             profilePictureUrl
           }
-          condition
-          discountPrice
-          condition
-          price
-          parcelSize
-          views
-          likes
+        }
+        status
+        updatedBy
+        updatedAt
+        id
+        expiresAt
+        createdBy
+        createdAt
+        offerPrice
+        message
+        children {
+          buyer {
+            username
+            thumbnailUrl
+            profilePictureUrl
+            fullName
+          }
+          createdAt
+          createdBy
+          id
+          status
+          updatedAt
+          updatedBy
+          offerPrice
+          message
+        }
+        buyer {
+          username
+          thumbnailUrl
+          displayName
+          fullName
         }
       }
     }
+    message
+    success
   }
 }
 

@@ -30543,359 +30543,11 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'message'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'offerPrice'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'createdBy'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'status'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'createdAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'updatedAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'expiresAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'deleted'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'children'),
+                name: NameNode(value: 'products'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'createdAt'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'updatedBy'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'createdBy'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'updatedAt'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'message'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'offerPrice'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'status'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'buyer'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'username'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'profilePictureUrl'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'thumbnailUrl'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'displayName'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'product'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                        name: NameNode(value: 'seller'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                            name: NameNode(value: 'id'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                          FieldNode(
-                            name: NameNode(value: 'username'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                          FieldNode(
-                            name: NameNode(value: 'profilePictureUrl'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                          FieldNode(
-                            name: NameNode(value: 'thumbnailUrl'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                          FieldNode(
-                            name: NameNode(value: 'displayName'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                          FieldNode(
-                            name: NameNode(value: '__typename'),
-                            alias: null,
-                            arguments: [],
-                            directives: [],
-                            selectionSet: null,
-                          ),
-                        ]),
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ]),
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'buyer'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'username'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'profilePictureUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'thumbnailUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'displayName'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'product'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'name'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'description'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'isFeatured'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'userLiked'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'imagesUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'status'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
                   FieldNode(
                     name: NameNode(value: 'brand'),
                     alias: null,
@@ -30955,6 +30607,34 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                     ]),
                   ),
                   FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'imagesUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'price'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: 'size'),
                     alias: null,
                     arguments: [],
@@ -30984,13 +30664,34 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                     ]),
                   ),
                   FieldNode(
+                    name: NameNode(value: 'updatedAt'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'status'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: 'seller'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
                       FieldNode(
-                        name: NameNode(value: 'id'),
+                        name: NameNode(value: 'email'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'fullName'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -30998,6 +30699,13 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                       ),
                       FieldNode(
                         name: NameNode(value: 'username'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'thumbnailUrl'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -31020,49 +30728,220 @@ const documentNodeQueryConversations = DocumentNode(definitions: [
                     ]),
                   ),
                   FieldNode(
-                    name: NameNode(value: 'condition'),
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'status'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updatedBy'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'updatedAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'expiresAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdBy'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'offerPrice'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'message'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'children'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'buyer'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: SelectionSetNode(selections: [
+                      FieldNode(
+                        name: NameNode(value: 'username'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'thumbnailUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'profilePictureUrl'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: 'fullName'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                      FieldNode(
+                        name: NameNode(value: '__typename'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null,
+                      ),
+                    ]),
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'createdAt'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'discountPrice'),
+                    name: NameNode(value: 'createdBy'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'condition'),
+                    name: NameNode(value: 'id'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'price'),
+                    name: NameNode(value: 'status'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'parcelSize'),
+                    name: NameNode(value: 'updatedAt'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'views'),
+                    name: NameNode(value: 'updatedBy'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'likes'),
+                    name: NameNode(value: 'offerPrice'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'message'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'buyer'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'fullName'),
                     alias: null,
                     arguments: [],
                     directives: [],
@@ -31913,47 +31792,51 @@ class _CopyWithStubImpl$Query$Conversations$conversations$recipient<TRes>
 
 class Query$Conversations$conversations$offer {
   Query$Conversations$conversations$offer({
-    required this.id,
-    this.message,
-    required this.offerPrice,
-    this.createdBy,
+    required this.products,
     this.status,
-    required this.createdAt,
+    this.updatedBy,
     required this.updatedAt,
+    required this.id,
     this.expiresAt,
-    required this.deleted,
+    this.createdBy,
+    required this.createdAt,
+    required this.offerPrice,
+    this.message,
     required this.children,
     this.buyer,
-    required this.product,
     this.$__typename = 'OfferType',
   });
 
   factory Query$Conversations$conversations$offer.fromJson(
       Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$message = json['message'];
-    final l$offerPrice = json['offerPrice'];
-    final l$createdBy = json['createdBy'];
+    final l$products = json['products'];
     final l$status = json['status'];
-    final l$createdAt = json['createdAt'];
+    final l$updatedBy = json['updatedBy'];
     final l$updatedAt = json['updatedAt'];
+    final l$id = json['id'];
     final l$expiresAt = json['expiresAt'];
-    final l$deleted = json['deleted'];
+    final l$createdBy = json['createdBy'];
+    final l$createdAt = json['createdAt'];
+    final l$offerPrice = json['offerPrice'];
+    final l$message = json['message'];
     final l$children = json['children'];
     final l$buyer = json['buyer'];
-    final l$product = json['product'];
     final l$$__typename = json['__typename'];
     return Query$Conversations$conversations$offer(
-      id: (l$id as String),
-      message: (l$message as String?),
-      offerPrice: (l$offerPrice as String),
-      createdBy: (l$createdBy as String?),
+      products: (l$products as List<dynamic>)
+          .map((e) => Query$Conversations$conversations$offer$products.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
       status: (l$status as String?),
-      createdAt: DateTime.parse((l$createdAt as String)),
+      updatedBy: (l$updatedBy as String?),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      id: (l$id as String),
       expiresAt:
           l$expiresAt == null ? null : DateTime.parse((l$expiresAt as String)),
-      deleted: (l$deleted as bool),
+      createdBy: (l$createdBy as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      offerPrice: (l$offerPrice as String),
+      message: (l$message as String?),
       children: (l$children as List<dynamic>)
           .map((e) => Query$Conversations$conversations$offer$children.fromJson(
               (e as Map<String, dynamic>)))
@@ -31962,64 +31845,62 @@ class Query$Conversations$conversations$offer {
           ? null
           : Query$Conversations$conversations$offer$buyer.fromJson(
               (l$buyer as Map<String, dynamic>)),
-      product: Query$Conversations$conversations$offer$product.fromJson(
-          (l$product as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String id;
-
-  final String? message;
-
-  final String offerPrice;
-
-  final String? createdBy;
+  final List<Query$Conversations$conversations$offer$products> products;
 
   final String? status;
 
-  final DateTime createdAt;
+  final String? updatedBy;
 
   final DateTime updatedAt;
 
+  final String id;
+
   final DateTime? expiresAt;
 
-  final bool deleted;
+  final String? createdBy;
+
+  final DateTime createdAt;
+
+  final String offerPrice;
+
+  final String? message;
 
   final List<Query$Conversations$conversations$offer$children> children;
 
   final Query$Conversations$conversations$offer$buyer? buyer;
 
-  final Query$Conversations$conversations$offer$product product;
-
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$message = message;
-    _resultData['message'] = l$message;
-    final l$offerPrice = offerPrice;
-    _resultData['offerPrice'] = l$offerPrice;
-    final l$createdBy = createdBy;
-    _resultData['createdBy'] = l$createdBy;
+    final l$products = products;
+    _resultData['products'] = l$products.map((e) => e.toJson()).toList();
     final l$status = status;
     _resultData['status'] = l$status;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$updatedBy = updatedBy;
+    _resultData['updatedBy'] = l$updatedBy;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$expiresAt = expiresAt;
     _resultData['expiresAt'] = l$expiresAt?.toIso8601String();
-    final l$deleted = deleted;
-    _resultData['deleted'] = l$deleted;
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$offerPrice = offerPrice;
+    _resultData['offerPrice'] = l$offerPrice;
+    final l$message = message;
+    _resultData['message'] = l$message;
     final l$children = children;
     _resultData['children'] = l$children.map((e) => e.toJson()).toList();
     final l$buyer = buyer;
     _resultData['buyer'] = l$buyer?.toJson();
-    final l$product = product;
-    _resultData['product'] = l$product.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -32027,32 +31908,32 @@ class Query$Conversations$conversations$offer {
 
   @override
   int get hashCode {
-    final l$id = id;
-    final l$message = message;
-    final l$offerPrice = offerPrice;
-    final l$createdBy = createdBy;
+    final l$products = products;
     final l$status = status;
-    final l$createdAt = createdAt;
+    final l$updatedBy = updatedBy;
     final l$updatedAt = updatedAt;
+    final l$id = id;
     final l$expiresAt = expiresAt;
-    final l$deleted = deleted;
+    final l$createdBy = createdBy;
+    final l$createdAt = createdAt;
+    final l$offerPrice = offerPrice;
+    final l$message = message;
     final l$children = children;
     final l$buyer = buyer;
-    final l$product = product;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
-      l$message,
-      l$offerPrice,
-      l$createdBy,
+      Object.hashAll(l$products.map((v) => v)),
       l$status,
-      l$createdAt,
+      l$updatedBy,
       l$updatedAt,
+      l$id,
       l$expiresAt,
-      l$deleted,
+      l$createdBy,
+      l$createdAt,
+      l$offerPrice,
+      l$message,
       Object.hashAll(l$children.map((v) => v)),
       l$buyer,
-      l$product,
       l$$__typename,
     ]);
   }
@@ -32066,34 +31947,26 @@ class Query$Conversations$conversations$offer {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$products = products;
+    final lOther$products = other.products;
+    if (l$products.length != lOther$products.length) {
       return false;
     }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$offerPrice = offerPrice;
-    final lOther$offerPrice = other.offerPrice;
-    if (l$offerPrice != lOther$offerPrice) {
-      return false;
-    }
-    final l$createdBy = createdBy;
-    final lOther$createdBy = other.createdBy;
-    if (l$createdBy != lOther$createdBy) {
-      return false;
+    for (int i = 0; i < l$products.length; i++) {
+      final l$products$entry = l$products[i];
+      final lOther$products$entry = lOther$products[i];
+      if (l$products$entry != lOther$products$entry) {
+        return false;
+      }
     }
     final l$status = status;
     final lOther$status = other.status;
     if (l$status != lOther$status) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
+    final l$updatedBy = updatedBy;
+    final lOther$updatedBy = other.updatedBy;
+    if (l$updatedBy != lOther$updatedBy) {
       return false;
     }
     final l$updatedAt = updatedAt;
@@ -32101,14 +31974,34 @@ class Query$Conversations$conversations$offer {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
     final l$expiresAt = expiresAt;
     final lOther$expiresAt = other.expiresAt;
     if (l$expiresAt != lOther$expiresAt) {
       return false;
     }
-    final l$deleted = deleted;
-    final lOther$deleted = other.deleted;
-    if (l$deleted != lOther$deleted) {
+    final l$createdBy = createdBy;
+    final lOther$createdBy = other.createdBy;
+    if (l$createdBy != lOther$createdBy) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$offerPrice = offerPrice;
+    final lOther$offerPrice = other.offerPrice;
+    if (l$offerPrice != lOther$offerPrice) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
       return false;
     }
     final l$children = children;
@@ -32126,11 +32019,6 @@ class Query$Conversations$conversations$offer {
     final l$buyer = buyer;
     final lOther$buyer = other.buyer;
     if (l$buyer != lOther$buyer) {
-      return false;
-    }
-    final l$product = product;
-    final lOther$product = other.product;
-    if (l$product != lOther$product) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -32162,20 +32050,26 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
       _CopyWithStubImpl$Query$Conversations$conversations$offer;
 
   TRes call({
-    String? id,
-    String? message,
-    String? offerPrice,
-    String? createdBy,
+    List<Query$Conversations$conversations$offer$products>? products,
     String? status,
-    DateTime? createdAt,
+    String? updatedBy,
     DateTime? updatedAt,
+    String? id,
     DateTime? expiresAt,
-    bool? deleted,
+    String? createdBy,
+    DateTime? createdAt,
+    String? offerPrice,
+    String? message,
     List<Query$Conversations$conversations$offer$children>? children,
     Query$Conversations$conversations$offer$buyer? buyer,
-    Query$Conversations$conversations$offer$product? product,
     String? $__typename,
   });
+  TRes products(
+      Iterable<Query$Conversations$conversations$offer$products> Function(
+              Iterable<
+                  CopyWith$Query$Conversations$conversations$offer$products<
+                      Query$Conversations$conversations$offer$products>>)
+          _fn);
   TRes children(
       Iterable<Query$Conversations$conversations$offer$children> Function(
               Iterable<
@@ -32183,7 +32077,6 @@ abstract class CopyWith$Query$Conversations$conversations$offer<TRes> {
                       Query$Conversations$conversations$offer$children>>)
           _fn);
   CopyWith$Query$Conversations$conversations$offer$buyer<TRes> get buyer;
-  CopyWith$Query$Conversations$conversations$offer$product<TRes> get product;
 }
 
 class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
@@ -32200,43 +32093,47 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
-    Object? message = _undefined,
-    Object? offerPrice = _undefined,
-    Object? createdBy = _undefined,
+    Object? products = _undefined,
     Object? status = _undefined,
-    Object? createdAt = _undefined,
+    Object? updatedBy = _undefined,
     Object? updatedAt = _undefined,
+    Object? id = _undefined,
     Object? expiresAt = _undefined,
-    Object? deleted = _undefined,
+    Object? createdBy = _undefined,
+    Object? createdAt = _undefined,
+    Object? offerPrice = _undefined,
+    Object? message = _undefined,
     Object? children = _undefined,
     Object? buyer = _undefined,
-    Object? product = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversations$conversations$offer(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        offerPrice: offerPrice == _undefined || offerPrice == null
-            ? _instance.offerPrice
-            : (offerPrice as String),
-        createdBy: createdBy == _undefined
-            ? _instance.createdBy
-            : (createdBy as String?),
+        products: products == _undefined || products == null
+            ? _instance.products
+            : (products
+                as List<Query$Conversations$conversations$offer$products>),
         status: status == _undefined ? _instance.status : (status as String?),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
+        updatedBy: updatedBy == _undefined
+            ? _instance.updatedBy
+            : (updatedBy as String?),
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
         expiresAt: expiresAt == _undefined
             ? _instance.expiresAt
             : (expiresAt as DateTime?),
-        deleted: deleted == _undefined || deleted == null
-            ? _instance.deleted
-            : (deleted as bool),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        offerPrice: offerPrice == _undefined || offerPrice == null
+            ? _instance.offerPrice
+            : (offerPrice as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
         children: children == _undefined || children == null
             ? _instance.children
             : (children
@@ -32244,13 +32141,23 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
         buyer: buyer == _undefined
             ? _instance.buyer
             : (buyer as Query$Conversations$conversations$offer$buyer?),
-        product: product == _undefined || product == null
-            ? _instance.product
-            : (product as Query$Conversations$conversations$offer$product),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  TRes products(
+          Iterable<Query$Conversations$conversations$offer$products> Function(
+                  Iterable<
+                      CopyWith$Query$Conversations$conversations$offer$products<
+                          Query$Conversations$conversations$offer$products>>)
+              _fn) =>
+      call(
+          products: _fn(_instance.products.map(
+              (e) => CopyWith$Query$Conversations$conversations$offer$products(
+                    e,
+                    (i) => i,
+                  ))).toList());
 
   TRes children(
           Iterable<Query$Conversations$conversations$offer$children> Function(
@@ -32273,12 +32180,6 @@ class _CopyWithImpl$Query$Conversations$conversations$offer<TRes>
         : CopyWith$Query$Conversations$conversations$offer$buyer(
             local$buyer, (e) => call(buyer: e));
   }
-
-  CopyWith$Query$Conversations$conversations$offer$product<TRes> get product {
-    final local$product = _instance.product;
-    return CopyWith$Query$Conversations$conversations$offer$product(
-        local$product, (e) => call(product: e));
-  }
 }
 
 class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
@@ -32288,98 +32189,446 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer<TRes>
   TRes _res;
 
   call({
-    String? id,
-    String? message,
-    String? offerPrice,
-    String? createdBy,
+    List<Query$Conversations$conversations$offer$products>? products,
     String? status,
-    DateTime? createdAt,
+    String? updatedBy,
     DateTime? updatedAt,
+    String? id,
     DateTime? expiresAt,
-    bool? deleted,
+    String? createdBy,
+    DateTime? createdAt,
+    String? offerPrice,
+    String? message,
     List<Query$Conversations$conversations$offer$children>? children,
     Query$Conversations$conversations$offer$buyer? buyer,
-    Query$Conversations$conversations$offer$product? product,
     String? $__typename,
   }) =>
       _res;
+
+  products(_fn) => _res;
 
   children(_fn) => _res;
 
   CopyWith$Query$Conversations$conversations$offer$buyer<TRes> get buyer =>
       CopyWith$Query$Conversations$conversations$offer$buyer.stub(_res);
-
-  CopyWith$Query$Conversations$conversations$offer$product<TRes> get product =>
-      CopyWith$Query$Conversations$conversations$offer$product.stub(_res);
 }
 
-class Query$Conversations$conversations$offer$children {
-  Query$Conversations$conversations$offer$children({
+class Query$Conversations$conversations$offer$products {
+  Query$Conversations$conversations$offer$products({
+    this.brand,
+    this.category,
     required this.id,
-    required this.createdAt,
-    this.updatedBy,
-    this.createdBy,
+    required this.imagesUrl,
+    required this.name,
+    this.price,
+    this.size,
     required this.updatedAt,
-    this.message,
-    required this.offerPrice,
-    this.status,
-    this.buyer,
-    required this.product,
-    this.$__typename = 'OfferType',
+    required this.status,
+    this.seller,
+    this.$__typename = 'ProductType',
   });
 
-  factory Query$Conversations$conversations$offer$children.fromJson(
+  factory Query$Conversations$conversations$offer$products.fromJson(
       Map<String, dynamic> json) {
+    final l$brand = json['brand'];
+    final l$category = json['category'];
     final l$id = json['id'];
-    final l$createdAt = json['createdAt'];
-    final l$updatedBy = json['updatedBy'];
-    final l$createdBy = json['createdBy'];
+    final l$imagesUrl = json['imagesUrl'];
+    final l$name = json['name'];
+    final l$price = json['price'];
+    final l$size = json['size'];
     final l$updatedAt = json['updatedAt'];
-    final l$message = json['message'];
-    final l$offerPrice = json['offerPrice'];
     final l$status = json['status'];
-    final l$buyer = json['buyer'];
-    final l$product = json['product'];
+    final l$seller = json['seller'];
     final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$children(
-      id: (l$id as String),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      updatedBy: (l$updatedBy as String?),
-      createdBy: (l$createdBy as String?),
-      updatedAt: DateTime.parse((l$updatedAt as String)),
-      message: (l$message as String?),
-      offerPrice: (l$offerPrice as String),
-      status: (l$status as String?),
-      buyer: l$buyer == null
+    return Query$Conversations$conversations$offer$products(
+      brand: l$brand == null
           ? null
-          : Query$Conversations$conversations$offer$children$buyer.fromJson(
-              (l$buyer as Map<String, dynamic>)),
-      product:
-          Query$Conversations$conversations$offer$children$product.fromJson(
-              (l$product as Map<String, dynamic>)),
+          : Query$Conversations$conversations$offer$products$brand.fromJson(
+              (l$brand as Map<String, dynamic>)),
+      category: l$category == null
+          ? null
+          : Query$Conversations$conversations$offer$products$category.fromJson(
+              (l$category as Map<String, dynamic>)),
+      id: (l$id as String),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
+      name: (l$name as String),
+      price: (l$price as num?)?.toDouble(),
+      size: l$size == null
+          ? null
+          : Query$Conversations$conversations$offer$products$size.fromJson(
+              (l$size as Map<String, dynamic>)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
+      seller: l$seller == null
+          ? null
+          : Query$Conversations$conversations$offer$products$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
+  final Query$Conversations$conversations$offer$products$brand? brand;
+
+  final Query$Conversations$conversations$offer$products$category? category;
+
   final String id;
 
-  final DateTime createdAt;
+  final List<String> imagesUrl;
 
-  final String? updatedBy;
+  final String name;
 
-  final String? createdBy;
+  final double? price;
+
+  final Query$Conversations$conversations$offer$products$size? size;
 
   final DateTime updatedAt;
 
-  final String? message;
+  final Enum$ProductsProductStatusChoices status;
 
-  final String offerPrice;
+  final Query$Conversations$conversations$offer$products$seller? seller;
 
-  final String? status;
+  final String $__typename;
 
-  final Query$Conversations$conversations$offer$children$buyer? buyer;
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$brand = brand;
+    _resultData['brand'] = l$brand?.toJson();
+    final l$category = category;
+    _resultData['category'] = l$category?.toJson();
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$size = size;
+    _resultData['size'] = l$size?.toJson();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
 
-  final Query$Conversations$conversations$offer$children$product product;
+  @override
+  int get hashCode {
+    final l$brand = brand;
+    final l$category = category;
+    final l$id = id;
+    final l$imagesUrl = imagesUrl;
+    final l$name = name;
+    final l$price = price;
+    final l$size = size;
+    final l$updatedAt = updatedAt;
+    final l$status = status;
+    final l$seller = seller;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$brand,
+      l$category,
+      l$id,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
+      l$name,
+      l$price,
+      l$size,
+      l$updatedAt,
+      l$status,
+      l$seller,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$offer$products ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$brand = brand;
+    final lOther$brand = other.brand;
+    if (l$brand != lOther$brand) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$size = size;
+    final lOther$size = other.size;
+    if (l$size != lOther$size) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$offer$products
+    on Query$Conversations$conversations$offer$products {
+  CopyWith$Query$Conversations$conversations$offer$products<
+          Query$Conversations$conversations$offer$products>
+      get copyWith => CopyWith$Query$Conversations$conversations$offer$products(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$offer$products<TRes> {
+  factory CopyWith$Query$Conversations$conversations$offer$products(
+    Query$Conversations$conversations$offer$products instance,
+    TRes Function(Query$Conversations$conversations$offer$products) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$offer$products;
+
+  factory CopyWith$Query$Conversations$conversations$offer$products.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$offer$products;
+
+  TRes call({
+    Query$Conversations$conversations$offer$products$brand? brand,
+    Query$Conversations$conversations$offer$products$category? category,
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    double? price,
+    Query$Conversations$conversations$offer$products$size? size,
+    DateTime? updatedAt,
+    Enum$ProductsProductStatusChoices? status,
+    Query$Conversations$conversations$offer$products$seller? seller,
+    String? $__typename,
+  });
+  CopyWith$Query$Conversations$conversations$offer$products$brand<TRes>
+      get brand;
+  CopyWith$Query$Conversations$conversations$offer$products$category<TRes>
+      get category;
+  CopyWith$Query$Conversations$conversations$offer$products$size<TRes> get size;
+  CopyWith$Query$Conversations$conversations$offer$products$seller<TRes>
+      get seller;
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$offer$products<TRes>
+    implements CopyWith$Query$Conversations$conversations$offer$products<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$offer$products(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$offer$products _instance;
+
+  final TRes Function(Query$Conversations$conversations$offer$products) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? brand = _undefined,
+    Object? category = _undefined,
+    Object? id = _undefined,
+    Object? imagesUrl = _undefined,
+    Object? name = _undefined,
+    Object? price = _undefined,
+    Object? size = _undefined,
+    Object? updatedAt = _undefined,
+    Object? status = _undefined,
+    Object? seller = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$offer$products(
+        brand: brand == _undefined
+            ? _instance.brand
+            : (brand
+                as Query$Conversations$conversations$offer$products$brand?),
+        category: category == _undefined
+            ? _instance.category
+            : (category
+                as Query$Conversations$conversations$offer$products$category?),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        price: price == _undefined ? _instance.price : (price as double?),
+        size: size == _undefined
+            ? _instance.size
+            : (size as Query$Conversations$conversations$offer$products$size?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsProductStatusChoices),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller
+                as Query$Conversations$conversations$offer$products$seller?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$Conversations$conversations$offer$products$brand<TRes>
+      get brand {
+    final local$brand = _instance.brand;
+    return local$brand == null
+        ? CopyWith$Query$Conversations$conversations$offer$products$brand.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$offer$products$brand(
+            local$brand, (e) => call(brand: e));
+  }
+
+  CopyWith$Query$Conversations$conversations$offer$products$category<TRes>
+      get category {
+    final local$category = _instance.category;
+    return local$category == null
+        ? CopyWith$Query$Conversations$conversations$offer$products$category
+            .stub(_then(_instance))
+        : CopyWith$Query$Conversations$conversations$offer$products$category(
+            local$category, (e) => call(category: e));
+  }
+
+  CopyWith$Query$Conversations$conversations$offer$products$size<TRes>
+      get size {
+    final local$size = _instance.size;
+    return local$size == null
+        ? CopyWith$Query$Conversations$conversations$offer$products$size.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$offer$products$size(
+            local$size, (e) => call(size: e));
+  }
+
+  CopyWith$Query$Conversations$conversations$offer$products$seller<TRes>
+      get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$Conversations$conversations$offer$products$seller.stub(
+            _then(_instance))
+        : CopyWith$Query$Conversations$conversations$offer$products$seller(
+            local$seller, (e) => call(seller: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$offer$products<TRes>
+    implements CopyWith$Query$Conversations$conversations$offer$products<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$offer$products(this._res);
+
+  TRes _res;
+
+  call({
+    Query$Conversations$conversations$offer$products$brand? brand,
+    Query$Conversations$conversations$offer$products$category? category,
+    String? id,
+    List<String>? imagesUrl,
+    String? name,
+    double? price,
+    Query$Conversations$conversations$offer$products$size? size,
+    DateTime? updatedAt,
+    Enum$ProductsProductStatusChoices? status,
+    Query$Conversations$conversations$offer$products$seller? seller,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$Conversations$conversations$offer$products$brand<TRes>
+      get brand =>
+          CopyWith$Query$Conversations$conversations$offer$products$brand.stub(
+              _res);
+
+  CopyWith$Query$Conversations$conversations$offer$products$category<TRes>
+      get category =>
+          CopyWith$Query$Conversations$conversations$offer$products$category
+              .stub(_res);
+
+  CopyWith$Query$Conversations$conversations$offer$products$size<TRes>
+      get size =>
+          CopyWith$Query$Conversations$conversations$offer$products$size.stub(
+              _res);
+
+  CopyWith$Query$Conversations$conversations$offer$products$seller<TRes>
+      get seller =>
+          CopyWith$Query$Conversations$conversations$offer$products$seller.stub(
+              _res);
+}
+
+class Query$Conversations$conversations$offer$products$brand {
+  Query$Conversations$conversations$offer$products$brand({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$Conversations$conversations$offer$products$brand.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$offer$products$brand(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
 
   final String $__typename;
 
@@ -32387,24 +32636,8 @@ class Query$Conversations$conversations$offer$children {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$updatedBy = updatedBy;
-    _resultData['updatedBy'] = l$updatedBy;
-    final l$createdBy = createdBy;
-    _resultData['createdBy'] = l$createdBy;
-    final l$updatedAt = updatedAt;
-    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
-    final l$message = message;
-    _resultData['message'] = l$message;
-    final l$offerPrice = offerPrice;
-    _resultData['offerPrice'] = l$offerPrice;
-    final l$status = status;
-    _resultData['status'] = l$status;
-    final l$buyer = buyer;
-    _resultData['buyer'] = l$buyer?.toJson();
-    final l$product = product;
-    _resultData['product'] = l$product.toJson();
+    final l$name = name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -32413,27 +32646,746 @@ class Query$Conversations$conversations$offer$children {
   @override
   int get hashCode {
     final l$id = id;
-    final l$createdAt = createdAt;
-    final l$updatedBy = updatedBy;
-    final l$createdBy = createdBy;
-    final l$updatedAt = updatedAt;
-    final l$message = message;
-    final l$offerPrice = offerPrice;
-    final l$status = status;
-    final l$buyer = buyer;
-    final l$product = product;
+    final l$name = name;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$createdAt,
-      l$updatedBy,
-      l$createdBy,
-      l$updatedAt,
-      l$message,
-      l$offerPrice,
-      l$status,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$offer$products$brand ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$offer$products$brand
+    on Query$Conversations$conversations$offer$products$brand {
+  CopyWith$Query$Conversations$conversations$offer$products$brand<
+          Query$Conversations$conversations$offer$products$brand>
+      get copyWith =>
+          CopyWith$Query$Conversations$conversations$offer$products$brand(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$offer$products$brand<
+    TRes> {
+  factory CopyWith$Query$Conversations$conversations$offer$products$brand(
+    Query$Conversations$conversations$offer$products$brand instance,
+    TRes Function(Query$Conversations$conversations$offer$products$brand) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$offer$products$brand;
+
+  factory CopyWith$Query$Conversations$conversations$offer$products$brand.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$offer$products$brand;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$offer$products$brand<TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$brand<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$offer$products$brand(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$offer$products$brand _instance;
+
+  final TRes Function(Query$Conversations$conversations$offer$products$brand)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$offer$products$brand(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$offer$products$brand<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$brand<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$offer$products$brand(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations$conversations$offer$products$category {
+  Query$Conversations$conversations$offer$products$category({
+    this.id,
+    this.name,
+    this.$__typename = 'CategoryType',
+  });
+
+  factory Query$Conversations$conversations$offer$products$category.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$offer$products$category(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$offer$products$category ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$offer$products$category
+    on Query$Conversations$conversations$offer$products$category {
+  CopyWith$Query$Conversations$conversations$offer$products$category<
+          Query$Conversations$conversations$offer$products$category>
+      get copyWith =>
+          CopyWith$Query$Conversations$conversations$offer$products$category(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$offer$products$category<
+    TRes> {
+  factory CopyWith$Query$Conversations$conversations$offer$products$category(
+    Query$Conversations$conversations$offer$products$category instance,
+    TRes Function(Query$Conversations$conversations$offer$products$category)
+        then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$offer$products$category;
+
+  factory CopyWith$Query$Conversations$conversations$offer$products$category.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$offer$products$category;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$offer$products$category<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$category<
+            TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$offer$products$category(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$offer$products$category _instance;
+
+  final TRes Function(Query$Conversations$conversations$offer$products$category)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$offer$products$category(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$offer$products$category<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$category<
+            TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$offer$products$category(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations$conversations$offer$products$size {
+  Query$Conversations$conversations$offer$products$size({
+    this.id,
+    this.name,
+    this.$__typename = 'SizeType',
+  });
+
+  factory Query$Conversations$conversations$offer$products$size.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$offer$products$size(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$offer$products$size ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$offer$products$size
+    on Query$Conversations$conversations$offer$products$size {
+  CopyWith$Query$Conversations$conversations$offer$products$size<
+          Query$Conversations$conversations$offer$products$size>
+      get copyWith =>
+          CopyWith$Query$Conversations$conversations$offer$products$size(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$offer$products$size<
+    TRes> {
+  factory CopyWith$Query$Conversations$conversations$offer$products$size(
+    Query$Conversations$conversations$offer$products$size instance,
+    TRes Function(Query$Conversations$conversations$offer$products$size) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$offer$products$size;
+
+  factory CopyWith$Query$Conversations$conversations$offer$products$size.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$offer$products$size;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$offer$products$size<TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$size<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$offer$products$size(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$offer$products$size _instance;
+
+  final TRes Function(Query$Conversations$conversations$offer$products$size)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$offer$products$size(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$offer$products$size<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$size<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$offer$products$size(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations$conversations$offer$products$seller {
+  Query$Conversations$conversations$offer$products$seller({
+    this.email,
+    this.fullName,
+    this.username,
+    this.thumbnailUrl,
+    this.profilePictureUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$Conversations$conversations$offer$products$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$email = json['email'];
+    final l$fullName = json['fullName'];
+    final l$username = json['username'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$offer$products$seller(
+      email: (l$email as String?),
+      fullName: (l$fullName as String?),
+      username: (l$username as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? email;
+
+  final String? fullName;
+
+  final String? username;
+
+  final String? thumbnailUrl;
+
+  final String? profilePictureUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$email = email;
+    final l$fullName = fullName;
+    final l$username = username;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$email,
+      l$fullName,
+      l$username,
+      l$thumbnailUrl,
+      l$profilePictureUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$Conversations$conversations$offer$products$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$Conversations$conversations$offer$products$seller
+    on Query$Conversations$conversations$offer$products$seller {
+  CopyWith$Query$Conversations$conversations$offer$products$seller<
+          Query$Conversations$conversations$offer$products$seller>
+      get copyWith =>
+          CopyWith$Query$Conversations$conversations$offer$products$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$Conversations$conversations$offer$products$seller<
+    TRes> {
+  factory CopyWith$Query$Conversations$conversations$offer$products$seller(
+    Query$Conversations$conversations$offer$products$seller instance,
+    TRes Function(Query$Conversations$conversations$offer$products$seller) then,
+  ) = _CopyWithImpl$Query$Conversations$conversations$offer$products$seller;
+
+  factory CopyWith$Query$Conversations$conversations$offer$products$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$Conversations$conversations$offer$products$seller;
+
+  TRes call({
+    String? email,
+    String? fullName,
+    String? username,
+    String? thumbnailUrl,
+    String? profilePictureUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$Conversations$conversations$offer$products$seller<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$seller<TRes> {
+  _CopyWithImpl$Query$Conversations$conversations$offer$products$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Query$Conversations$conversations$offer$products$seller _instance;
+
+  final TRes Function(Query$Conversations$conversations$offer$products$seller)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? email = _undefined,
+    Object? fullName = _undefined,
+    Object? username = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$Conversations$conversations$offer$products$seller(
+        email: email == _undefined ? _instance.email : (email as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$Conversations$conversations$offer$products$seller<
+        TRes>
+    implements
+        CopyWith$Query$Conversations$conversations$offer$products$seller<TRes> {
+  _CopyWithStubImpl$Query$Conversations$conversations$offer$products$seller(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? email,
+    String? fullName,
+    String? username,
+    String? thumbnailUrl,
+    String? profilePictureUrl,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$Conversations$conversations$offer$children {
+  Query$Conversations$conversations$offer$children({
+    this.buyer,
+    required this.createdAt,
+    this.createdBy,
+    required this.id,
+    this.status,
+    required this.updatedAt,
+    this.updatedBy,
+    required this.offerPrice,
+    this.message,
+    this.$__typename = 'OfferType',
+  });
+
+  factory Query$Conversations$conversations$offer$children.fromJson(
+      Map<String, dynamic> json) {
+    final l$buyer = json['buyer'];
+    final l$createdAt = json['createdAt'];
+    final l$createdBy = json['createdBy'];
+    final l$id = json['id'];
+    final l$status = json['status'];
+    final l$updatedAt = json['updatedAt'];
+    final l$updatedBy = json['updatedBy'];
+    final l$offerPrice = json['offerPrice'];
+    final l$message = json['message'];
+    final l$$__typename = json['__typename'];
+    return Query$Conversations$conversations$offer$children(
+      buyer: l$buyer == null
+          ? null
+          : Query$Conversations$conversations$offer$children$buyer.fromJson(
+              (l$buyer as Map<String, dynamic>)),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      createdBy: (l$createdBy as String?),
+      id: (l$id as String),
+      status: (l$status as String?),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      updatedBy: (l$updatedBy as String?),
+      offerPrice: (l$offerPrice as String),
+      message: (l$message as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$Conversations$conversations$offer$children$buyer? buyer;
+
+  final DateTime createdAt;
+
+  final String? createdBy;
+
+  final String id;
+
+  final String? status;
+
+  final DateTime updatedAt;
+
+  final String? updatedBy;
+
+  final String offerPrice;
+
+  final String? message;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$buyer = buyer;
+    _resultData['buyer'] = l$buyer?.toJson();
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$createdBy = createdBy;
+    _resultData['createdBy'] = l$createdBy;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$status = status;
+    _resultData['status'] = l$status;
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$updatedBy = updatedBy;
+    _resultData['updatedBy'] = l$updatedBy;
+    final l$offerPrice = offerPrice;
+    _resultData['offerPrice'] = l$offerPrice;
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$buyer = buyer;
+    final l$createdAt = createdAt;
+    final l$createdBy = createdBy;
+    final l$id = id;
+    final l$status = status;
+    final l$updatedAt = updatedAt;
+    final l$updatedBy = updatedBy;
+    final l$offerPrice = offerPrice;
+    final l$message = message;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
       l$buyer,
-      l$product,
+      l$createdAt,
+      l$createdBy,
+      l$id,
+      l$status,
+      l$updatedAt,
+      l$updatedBy,
+      l$offerPrice,
+      l$message,
       l$$__typename,
     ]);
   }
@@ -32447,9 +33399,9 @@ class Query$Conversations$conversations$offer$children {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$buyer = buyer;
+    final lOther$buyer = other.buyer;
+    if (l$buyer != lOther$buyer) {
       return false;
     }
     final l$createdAt = createdAt;
@@ -32457,29 +33409,14 @@ class Query$Conversations$conversations$offer$children {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
-    final l$updatedBy = updatedBy;
-    final lOther$updatedBy = other.updatedBy;
-    if (l$updatedBy != lOther$updatedBy) {
-      return false;
-    }
     final l$createdBy = createdBy;
     final lOther$createdBy = other.createdBy;
     if (l$createdBy != lOther$createdBy) {
       return false;
     }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$offerPrice = offerPrice;
-    final lOther$offerPrice = other.offerPrice;
-    if (l$offerPrice != lOther$offerPrice) {
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$status = status;
@@ -32487,14 +33424,24 @@ class Query$Conversations$conversations$offer$children {
     if (l$status != lOther$status) {
       return false;
     }
-    final l$buyer = buyer;
-    final lOther$buyer = other.buyer;
-    if (l$buyer != lOther$buyer) {
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
-    final l$product = product;
-    final lOther$product = other.product;
-    if (l$product != lOther$product) {
+    final l$updatedBy = updatedBy;
+    final lOther$updatedBy = other.updatedBy;
+    if (l$updatedBy != lOther$updatedBy) {
+      return false;
+    }
+    final l$offerPrice = offerPrice;
+    final lOther$offerPrice = other.offerPrice;
+    if (l$offerPrice != lOther$offerPrice) {
+      return false;
+    }
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -32527,22 +33474,19 @@ abstract class CopyWith$Query$Conversations$conversations$offer$children<TRes> {
       _CopyWithStubImpl$Query$Conversations$conversations$offer$children;
 
   TRes call({
-    String? id,
-    DateTime? createdAt,
-    String? updatedBy,
-    String? createdBy,
-    DateTime? updatedAt,
-    String? message,
-    String? offerPrice,
-    String? status,
     Query$Conversations$conversations$offer$children$buyer? buyer,
-    Query$Conversations$conversations$offer$children$product? product,
+    DateTime? createdAt,
+    String? createdBy,
+    String? id,
+    String? status,
+    DateTime? updatedAt,
+    String? updatedBy,
+    String? offerPrice,
+    String? message,
     String? $__typename,
   });
   CopyWith$Query$Conversations$conversations$offer$children$buyer<TRes>
       get buyer;
-  CopyWith$Query$Conversations$conversations$offer$children$product<TRes>
-      get product;
 }
 
 class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
@@ -32559,46 +33503,41 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
-    Object? createdAt = _undefined,
-    Object? updatedBy = _undefined,
-    Object? createdBy = _undefined,
-    Object? updatedAt = _undefined,
-    Object? message = _undefined,
-    Object? offerPrice = _undefined,
-    Object? status = _undefined,
     Object? buyer = _undefined,
-    Object? product = _undefined,
+    Object? createdAt = _undefined,
+    Object? createdBy = _undefined,
+    Object? id = _undefined,
+    Object? status = _undefined,
+    Object? updatedAt = _undefined,
+    Object? updatedBy = _undefined,
+    Object? offerPrice = _undefined,
+    Object? message = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversations$conversations$offer$children(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        updatedBy: updatedBy == _undefined
-            ? _instance.updatedBy
-            : (updatedBy as String?),
-        createdBy: createdBy == _undefined
-            ? _instance.createdBy
-            : (createdBy as String?),
-        updatedAt: updatedAt == _undefined || updatedAt == null
-            ? _instance.updatedAt
-            : (updatedAt as DateTime),
-        message:
-            message == _undefined ? _instance.message : (message as String?),
-        offerPrice: offerPrice == _undefined || offerPrice == null
-            ? _instance.offerPrice
-            : (offerPrice as String),
-        status: status == _undefined ? _instance.status : (status as String?),
         buyer: buyer == _undefined
             ? _instance.buyer
             : (buyer
                 as Query$Conversations$conversations$offer$children$buyer?),
-        product: product == _undefined || product == null
-            ? _instance.product
-            : (product
-                as Query$Conversations$conversations$offer$children$product),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        createdBy: createdBy == _undefined
+            ? _instance.createdBy
+            : (createdBy as String?),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        status: status == _undefined ? _instance.status : (status as String?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        updatedBy: updatedBy == _undefined
+            ? _instance.updatedBy
+            : (updatedBy as String?),
+        offerPrice: offerPrice == _undefined || offerPrice == null
+            ? _instance.offerPrice
+            : (offerPrice as String),
+        message:
+            message == _undefined ? _instance.message : (message as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -32613,13 +33552,6 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children<TRes>
         : CopyWith$Query$Conversations$conversations$offer$children$buyer(
             local$buyer, (e) => call(buyer: e));
   }
-
-  CopyWith$Query$Conversations$conversations$offer$children$product<TRes>
-      get product {
-    final local$product = _instance.product;
-    return CopyWith$Query$Conversations$conversations$offer$children$product(
-        local$product, (e) => call(product: e));
-  }
 }
 
 class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
@@ -32629,16 +33561,15 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
   TRes _res;
 
   call({
-    String? id,
-    DateTime? createdAt,
-    String? updatedBy,
-    String? createdBy,
-    DateTime? updatedAt,
-    String? message,
-    String? offerPrice,
-    String? status,
     Query$Conversations$conversations$offer$children$buyer? buyer,
-    Query$Conversations$conversations$offer$children$product? product,
+    DateTime? createdAt,
+    String? createdBy,
+    String? id,
+    String? status,
+    DateTime? updatedAt,
+    String? updatedBy,
+    String? offerPrice,
+    String? message,
     String? $__typename,
   }) =>
       _res;
@@ -32647,65 +33578,53 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children<TRes>
       get buyer =>
           CopyWith$Query$Conversations$conversations$offer$children$buyer.stub(
               _res);
-
-  CopyWith$Query$Conversations$conversations$offer$children$product<TRes>
-      get product =>
-          CopyWith$Query$Conversations$conversations$offer$children$product
-              .stub(_res);
 }
 
 class Query$Conversations$conversations$offer$children$buyer {
   Query$Conversations$conversations$offer$children$buyer({
-    this.id,
     this.username,
-    this.profilePictureUrl,
     this.thumbnailUrl,
-    this.displayName,
+    this.profilePictureUrl,
+    this.fullName,
     this.$__typename = 'UserType',
   });
 
   factory Query$Conversations$conversations$offer$children$buyer.fromJson(
       Map<String, dynamic> json) {
-    final l$id = json['id'];
     final l$username = json['username'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
     final l$thumbnailUrl = json['thumbnailUrl'];
-    final l$displayName = json['displayName'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$fullName = json['fullName'];
     final l$$__typename = json['__typename'];
     return Query$Conversations$conversations$offer$children$buyer(
-      id: (l$id as int?),
       username: (l$username as String?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
-      displayName: (l$displayName as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      fullName: (l$fullName as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? id;
-
   final String? username;
-
-  final String? profilePictureUrl;
 
   final String? thumbnailUrl;
 
-  final String? displayName;
+  final String? profilePictureUrl;
+
+  final String? fullName;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$username = username;
     _resultData['username'] = l$username;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$thumbnailUrl = thumbnailUrl;
     _resultData['thumbnailUrl'] = l$thumbnailUrl;
-    final l$displayName = displayName;
-    _resultData['displayName'] = l$displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -32713,18 +33632,16 @@ class Query$Conversations$conversations$offer$children$buyer {
 
   @override
   int get hashCode {
-    final l$id = id;
     final l$username = username;
-    final l$profilePictureUrl = profilePictureUrl;
     final l$thumbnailUrl = thumbnailUrl;
-    final l$displayName = displayName;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$fullName = fullName;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
       l$username,
-      l$profilePictureUrl,
       l$thumbnailUrl,
-      l$displayName,
+      l$profilePictureUrl,
+      l$fullName,
       l$$__typename,
     ]);
   }
@@ -32738,19 +33655,9 @@ class Query$Conversations$conversations$offer$children$buyer {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
     final l$username = username;
     final lOther$username = other.username;
     if (l$username != lOther$username) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
       return false;
     }
     final l$thumbnailUrl = thumbnailUrl;
@@ -32758,9 +33665,14 @@ class Query$Conversations$conversations$offer$children$buyer {
     if (l$thumbnailUrl != lOther$thumbnailUrl) {
       return false;
     }
-    final l$displayName = displayName;
-    final lOther$displayName = other.displayName;
-    if (l$displayName != lOther$displayName) {
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -32795,11 +33707,10 @@ abstract class CopyWith$Query$Conversations$conversations$offer$children$buyer<
       _CopyWithStubImpl$Query$Conversations$conversations$offer$children$buyer;
 
   TRes call({
-    int? id,
     String? username,
-    String? profilePictureUrl,
     String? thumbnailUrl,
-    String? displayName,
+    String? profilePictureUrl,
+    String? fullName,
     String? $__typename,
   });
 }
@@ -32820,26 +33731,23 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$children$buyer<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
     Object? username = _undefined,
-    Object? profilePictureUrl = _undefined,
     Object? thumbnailUrl = _undefined,
-    Object? displayName = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? fullName = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversations$conversations$offer$children$buyer(
-        id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
         thumbnailUrl: thumbnailUrl == _undefined
             ? _instance.thumbnailUrl
             : (thumbnailUrl as String?),
-        displayName: displayName == _undefined
-            ? _instance.displayName
-            : (displayName as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -32856,390 +33764,10 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children$buyer<
   TRes _res;
 
   call({
-    int? id,
     String? username,
-    String? profilePictureUrl,
     String? thumbnailUrl,
-    String? displayName,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Conversations$conversations$offer$children$product {
-  Query$Conversations$conversations$offer$children$product({
-    this.seller,
-    this.$__typename = 'ProductType',
-  });
-
-  factory Query$Conversations$conversations$offer$children$product.fromJson(
-      Map<String, dynamic> json) {
-    final l$seller = json['seller'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$children$product(
-      seller: l$seller == null
-          ? null
-          : Query$Conversations$conversations$offer$children$product$seller
-              .fromJson((l$seller as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Query$Conversations$conversations$offer$children$product$seller? seller;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$seller = seller;
-    _resultData['seller'] = l$seller?.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$seller = seller;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$seller,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$children$product ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$seller = seller;
-    final lOther$seller = other.seller;
-    if (l$seller != lOther$seller) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$children$product
-    on Query$Conversations$conversations$offer$children$product {
-  CopyWith$Query$Conversations$conversations$offer$children$product<
-          Query$Conversations$conversations$offer$children$product>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$children$product(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$children$product<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$children$product(
-    Query$Conversations$conversations$offer$children$product instance,
-    TRes Function(Query$Conversations$conversations$offer$children$product)
-        then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$children$product;
-
-  factory CopyWith$Query$Conversations$conversations$offer$children$product.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product;
-
-  TRes call({
-    Query$Conversations$conversations$offer$children$product$seller? seller,
-    String? $__typename,
-  });
-  CopyWith$Query$Conversations$conversations$offer$children$product$seller<TRes>
-      get seller;
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$children$product<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$children$product<
-            TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$children$product(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$children$product _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$children$product)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? seller = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$children$product(
-        seller: seller == _undefined
-            ? _instance.seller
-            : (seller
-                as Query$Conversations$conversations$offer$children$product$seller?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Query$Conversations$conversations$offer$children$product$seller<TRes>
-      get seller {
-    final local$seller = _instance.seller;
-    return local$seller == null
-        ? CopyWith$Query$Conversations$conversations$offer$children$product$seller
-            .stub(_then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$children$product$seller(
-            local$seller, (e) => call(seller: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$children$product<
-            TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product(
-      this._res);
-
-  TRes _res;
-
-  call({
-    Query$Conversations$conversations$offer$children$product$seller? seller,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Query$Conversations$conversations$offer$children$product$seller<TRes>
-      get seller =>
-          CopyWith$Query$Conversations$conversations$offer$children$product$seller
-              .stub(_res);
-}
-
-class Query$Conversations$conversations$offer$children$product$seller {
-  Query$Conversations$conversations$offer$children$product$seller({
-    this.id,
-    this.username,
-    this.profilePictureUrl,
-    this.thumbnailUrl,
-    this.displayName,
-    this.$__typename = 'UserType',
-  });
-
-  factory Query$Conversations$conversations$offer$children$product$seller.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$username = json['username'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
-    final l$thumbnailUrl = json['thumbnailUrl'];
-    final l$displayName = json['displayName'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$children$product$seller(
-      id: (l$id as int?),
-      username: (l$username as String?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
-      thumbnailUrl: (l$thumbnailUrl as String?),
-      displayName: (l$displayName as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? username;
-
-  final String? profilePictureUrl;
-
-  final String? thumbnailUrl;
-
-  final String? displayName;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
-    final l$thumbnailUrl = thumbnailUrl;
-    _resultData['thumbnailUrl'] = l$thumbnailUrl;
-    final l$displayName = displayName;
-    _resultData['displayName'] = l$displayName;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$username = username;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$thumbnailUrl = thumbnailUrl;
-    final l$displayName = displayName;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$username,
-      l$profilePictureUrl,
-      l$thumbnailUrl,
-      l$displayName,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other
-            is! Query$Conversations$conversations$offer$children$product$seller ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
-      return false;
-    }
-    final l$thumbnailUrl = thumbnailUrl;
-    final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (l$thumbnailUrl != lOther$thumbnailUrl) {
-      return false;
-    }
-    final l$displayName = displayName;
-    final lOther$displayName = other.displayName;
-    if (l$displayName != lOther$displayName) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$children$product$seller
-    on Query$Conversations$conversations$offer$children$product$seller {
-  CopyWith$Query$Conversations$conversations$offer$children$product$seller<
-          Query$Conversations$conversations$offer$children$product$seller>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$children$product$seller(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$children$product$seller<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$children$product$seller(
-    Query$Conversations$conversations$offer$children$product$seller instance,
-    TRes Function(
-            Query$Conversations$conversations$offer$children$product$seller)
-        then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$children$product$seller;
-
-  factory CopyWith$Query$Conversations$conversations$offer$children$product$seller.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product$seller;
-
-  TRes call({
-    int? id,
-    String? username,
     String? profilePictureUrl,
-    String? thumbnailUrl,
-    String? displayName,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$children$product$seller<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$children$product$seller<
-            TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$children$product$seller(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$children$product$seller
-      _instance;
-
-  final TRes Function(
-      Query$Conversations$conversations$offer$children$product$seller) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? username = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? thumbnailUrl = _undefined,
-    Object? displayName = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$children$product$seller(
-        id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        displayName: displayName == _undefined
-            ? _instance.displayName
-            : (displayName as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product$seller<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$children$product$seller<
-            TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product$seller(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? username,
-    String? profilePictureUrl,
-    String? thumbnailUrl,
-    String? displayName,
+    String? fullName,
     String? $__typename,
   }) =>
       _res;
@@ -33247,56 +33775,49 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$children$product
 
 class Query$Conversations$conversations$offer$buyer {
   Query$Conversations$conversations$offer$buyer({
-    this.id,
     this.username,
-    this.profilePictureUrl,
     this.thumbnailUrl,
     this.displayName,
+    this.fullName,
     this.$__typename = 'UserType',
   });
 
   factory Query$Conversations$conversations$offer$buyer.fromJson(
       Map<String, dynamic> json) {
-    final l$id = json['id'];
     final l$username = json['username'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
     final l$thumbnailUrl = json['thumbnailUrl'];
     final l$displayName = json['displayName'];
+    final l$fullName = json['fullName'];
     final l$$__typename = json['__typename'];
     return Query$Conversations$conversations$offer$buyer(
-      id: (l$id as int?),
       username: (l$username as String?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
       thumbnailUrl: (l$thumbnailUrl as String?),
       displayName: (l$displayName as String?),
+      fullName: (l$fullName as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final int? id;
-
   final String? username;
-
-  final String? profilePictureUrl;
 
   final String? thumbnailUrl;
 
   final String? displayName;
 
+  final String? fullName;
+
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
     final l$username = username;
     _resultData['username'] = l$username;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
     final l$thumbnailUrl = thumbnailUrl;
     _resultData['thumbnailUrl'] = l$thumbnailUrl;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -33304,18 +33825,16 @@ class Query$Conversations$conversations$offer$buyer {
 
   @override
   int get hashCode {
-    final l$id = id;
     final l$username = username;
-    final l$profilePictureUrl = profilePictureUrl;
     final l$thumbnailUrl = thumbnailUrl;
     final l$displayName = displayName;
+    final l$fullName = fullName;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
       l$username,
-      l$profilePictureUrl,
       l$thumbnailUrl,
       l$displayName,
+      l$fullName,
       l$$__typename,
     ]);
   }
@@ -33329,19 +33848,9 @@ class Query$Conversations$conversations$offer$buyer {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
     final l$username = username;
     final lOther$username = other.username;
     if (l$username != lOther$username) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
       return false;
     }
     final l$thumbnailUrl = thumbnailUrl;
@@ -33352,6 +33861,11 @@ class Query$Conversations$conversations$offer$buyer {
     final l$displayName = displayName;
     final lOther$displayName = other.displayName;
     if (l$displayName != lOther$displayName) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -33384,11 +33898,10 @@ abstract class CopyWith$Query$Conversations$conversations$offer$buyer<TRes> {
       _CopyWithStubImpl$Query$Conversations$conversations$offer$buyer;
 
   TRes call({
-    int? id,
     String? username,
-    String? profilePictureUrl,
     String? thumbnailUrl,
     String? displayName,
+    String? fullName,
     String? $__typename,
   });
 }
@@ -33407,26 +33920,23 @@ class _CopyWithImpl$Query$Conversations$conversations$offer$buyer<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
     Object? username = _undefined,
-    Object? profilePictureUrl = _undefined,
     Object? thumbnailUrl = _undefined,
     Object? displayName = _undefined,
+    Object? fullName = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$Conversations$conversations$offer$buyer(
-        id: id == _undefined ? _instance.id : (id as int?),
         username:
             username == _undefined ? _instance.username : (username as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
         thumbnailUrl: thumbnailUrl == _undefined
             ? _instance.thumbnailUrl
             : (thumbnailUrl as String?),
         displayName: displayName == _undefined
             ? _instance.displayName
             : (displayName as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -33440,1182 +33950,10 @@ class _CopyWithStubImpl$Query$Conversations$conversations$offer$buyer<TRes>
   TRes _res;
 
   call({
-    int? id,
     String? username,
-    String? profilePictureUrl,
     String? thumbnailUrl,
     String? displayName,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Conversations$conversations$offer$product {
-  Query$Conversations$conversations$offer$product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.isFeatured,
-    this.userLiked,
-    required this.imagesUrl,
-    required this.status,
-    this.brand,
-    this.category,
-    this.size,
-    this.seller,
-    this.condition,
-    required this.discountPrice,
-    this.price,
-    this.parcelSize,
-    required this.views,
-    required this.likes,
-    this.$__typename = 'ProductType',
-  });
-
-  factory Query$Conversations$conversations$offer$product.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$description = json['description'];
-    final l$isFeatured = json['isFeatured'];
-    final l$userLiked = json['userLiked'];
-    final l$imagesUrl = json['imagesUrl'];
-    final l$status = json['status'];
-    final l$brand = json['brand'];
-    final l$category = json['category'];
-    final l$size = json['size'];
-    final l$seller = json['seller'];
-    final l$condition = json['condition'];
-    final l$discountPrice = json['discountPrice'];
-    final l$price = json['price'];
-    final l$parcelSize = json['parcelSize'];
-    final l$views = json['views'];
-    final l$likes = json['likes'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$product(
-      id: (l$id as String),
-      name: (l$name as String),
-      description: (l$description as String),
-      isFeatured: (l$isFeatured as bool),
-      userLiked: (l$userLiked as bool?),
-      imagesUrl:
-          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
-      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
-      brand: l$brand == null
-          ? null
-          : Query$Conversations$conversations$offer$product$brand.fromJson(
-              (l$brand as Map<String, dynamic>)),
-      category: l$category == null
-          ? null
-          : Query$Conversations$conversations$offer$product$category.fromJson(
-              (l$category as Map<String, dynamic>)),
-      size: l$size == null
-          ? null
-          : Query$Conversations$conversations$offer$product$size.fromJson(
-              (l$size as Map<String, dynamic>)),
-      seller: l$seller == null
-          ? null
-          : Query$Conversations$conversations$offer$product$seller.fromJson(
-              (l$seller as Map<String, dynamic>)),
-      condition: l$condition == null
-          ? null
-          : fromJson$Enum$ProductsProductConditionChoices(
-              (l$condition as String)),
-      discountPrice: (l$discountPrice as String),
-      price: (l$price as num?)?.toDouble(),
-      parcelSize: l$parcelSize == null
-          ? null
-          : fromJson$Enum$ProductsProductParcelSizeChoices(
-              (l$parcelSize as String)),
-      views: (l$views as int),
-      likes: (l$likes as int),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String name;
-
-  final String description;
-
-  final bool isFeatured;
-
-  final bool? userLiked;
-
-  final List<String> imagesUrl;
-
-  final Enum$ProductsProductStatusChoices status;
-
-  final Query$Conversations$conversations$offer$product$brand? brand;
-
-  final Query$Conversations$conversations$offer$product$category? category;
-
-  final Query$Conversations$conversations$offer$product$size? size;
-
-  final Query$Conversations$conversations$offer$product$seller? seller;
-
-  final Enum$ProductsProductConditionChoices? condition;
-
-  final String discountPrice;
-
-  final double? price;
-
-  final Enum$ProductsProductParcelSizeChoices? parcelSize;
-
-  final int views;
-
-  final int likes;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$description = description;
-    _resultData['description'] = l$description;
-    final l$isFeatured = isFeatured;
-    _resultData['isFeatured'] = l$isFeatured;
-    final l$userLiked = userLiked;
-    _resultData['userLiked'] = l$userLiked;
-    final l$imagesUrl = imagesUrl;
-    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
-    final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
-    final l$brand = brand;
-    _resultData['brand'] = l$brand?.toJson();
-    final l$category = category;
-    _resultData['category'] = l$category?.toJson();
-    final l$size = size;
-    _resultData['size'] = l$size?.toJson();
-    final l$seller = seller;
-    _resultData['seller'] = l$seller?.toJson();
-    final l$condition = condition;
-    _resultData['condition'] = l$condition == null
-        ? null
-        : toJson$Enum$ProductsProductConditionChoices(l$condition);
-    final l$discountPrice = discountPrice;
-    _resultData['discountPrice'] = l$discountPrice;
-    final l$price = price;
-    _resultData['price'] = l$price;
-    final l$parcelSize = parcelSize;
-    _resultData['parcelSize'] = l$parcelSize == null
-        ? null
-        : toJson$Enum$ProductsProductParcelSizeChoices(l$parcelSize);
-    final l$views = views;
-    _resultData['views'] = l$views;
-    final l$likes = likes;
-    _resultData['likes'] = l$likes;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$description = description;
-    final l$isFeatured = isFeatured;
-    final l$userLiked = userLiked;
-    final l$imagesUrl = imagesUrl;
-    final l$status = status;
-    final l$brand = brand;
-    final l$category = category;
-    final l$size = size;
-    final l$seller = seller;
-    final l$condition = condition;
-    final l$discountPrice = discountPrice;
-    final l$price = price;
-    final l$parcelSize = parcelSize;
-    final l$views = views;
-    final l$likes = likes;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$description,
-      l$isFeatured,
-      l$userLiked,
-      Object.hashAll(l$imagesUrl.map((v) => v)),
-      l$status,
-      l$brand,
-      l$category,
-      l$size,
-      l$seller,
-      l$condition,
-      l$discountPrice,
-      l$price,
-      l$parcelSize,
-      l$views,
-      l$likes,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$product ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
-      return false;
-    }
-    final l$isFeatured = isFeatured;
-    final lOther$isFeatured = other.isFeatured;
-    if (l$isFeatured != lOther$isFeatured) {
-      return false;
-    }
-    final l$userLiked = userLiked;
-    final lOther$userLiked = other.userLiked;
-    if (l$userLiked != lOther$userLiked) {
-      return false;
-    }
-    final l$imagesUrl = imagesUrl;
-    final lOther$imagesUrl = other.imagesUrl;
-    if (l$imagesUrl.length != lOther$imagesUrl.length) {
-      return false;
-    }
-    for (int i = 0; i < l$imagesUrl.length; i++) {
-      final l$imagesUrl$entry = l$imagesUrl[i];
-      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
-      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
-        return false;
-      }
-    }
-    final l$status = status;
-    final lOther$status = other.status;
-    if (l$status != lOther$status) {
-      return false;
-    }
-    final l$brand = brand;
-    final lOther$brand = other.brand;
-    if (l$brand != lOther$brand) {
-      return false;
-    }
-    final l$category = category;
-    final lOther$category = other.category;
-    if (l$category != lOther$category) {
-      return false;
-    }
-    final l$size = size;
-    final lOther$size = other.size;
-    if (l$size != lOther$size) {
-      return false;
-    }
-    final l$seller = seller;
-    final lOther$seller = other.seller;
-    if (l$seller != lOther$seller) {
-      return false;
-    }
-    final l$condition = condition;
-    final lOther$condition = other.condition;
-    if (l$condition != lOther$condition) {
-      return false;
-    }
-    final l$discountPrice = discountPrice;
-    final lOther$discountPrice = other.discountPrice;
-    if (l$discountPrice != lOther$discountPrice) {
-      return false;
-    }
-    final l$price = price;
-    final lOther$price = other.price;
-    if (l$price != lOther$price) {
-      return false;
-    }
-    final l$parcelSize = parcelSize;
-    final lOther$parcelSize = other.parcelSize;
-    if (l$parcelSize != lOther$parcelSize) {
-      return false;
-    }
-    final l$views = views;
-    final lOther$views = other.views;
-    if (l$views != lOther$views) {
-      return false;
-    }
-    final l$likes = likes;
-    final lOther$likes = other.likes;
-    if (l$likes != lOther$likes) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$product
-    on Query$Conversations$conversations$offer$product {
-  CopyWith$Query$Conversations$conversations$offer$product<
-          Query$Conversations$conversations$offer$product>
-      get copyWith => CopyWith$Query$Conversations$conversations$offer$product(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$product<TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$product(
-    Query$Conversations$conversations$offer$product instance,
-    TRes Function(Query$Conversations$conversations$offer$product) then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$product;
-
-  factory CopyWith$Query$Conversations$conversations$offer$product.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$product;
-
-  TRes call({
-    String? id,
-    String? name,
-    String? description,
-    bool? isFeatured,
-    bool? userLiked,
-    List<String>? imagesUrl,
-    Enum$ProductsProductStatusChoices? status,
-    Query$Conversations$conversations$offer$product$brand? brand,
-    Query$Conversations$conversations$offer$product$category? category,
-    Query$Conversations$conversations$offer$product$size? size,
-    Query$Conversations$conversations$offer$product$seller? seller,
-    Enum$ProductsProductConditionChoices? condition,
-    String? discountPrice,
-    double? price,
-    Enum$ProductsProductParcelSizeChoices? parcelSize,
-    int? views,
-    int? likes,
-    String? $__typename,
-  });
-  CopyWith$Query$Conversations$conversations$offer$product$brand<TRes>
-      get brand;
-  CopyWith$Query$Conversations$conversations$offer$product$category<TRes>
-      get category;
-  CopyWith$Query$Conversations$conversations$offer$product$size<TRes> get size;
-  CopyWith$Query$Conversations$conversations$offer$product$seller<TRes>
-      get seller;
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$product<TRes>
-    implements CopyWith$Query$Conversations$conversations$offer$product<TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$product(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$product _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$product) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? description = _undefined,
-    Object? isFeatured = _undefined,
-    Object? userLiked = _undefined,
-    Object? imagesUrl = _undefined,
-    Object? status = _undefined,
-    Object? brand = _undefined,
-    Object? category = _undefined,
-    Object? size = _undefined,
-    Object? seller = _undefined,
-    Object? condition = _undefined,
-    Object? discountPrice = _undefined,
-    Object? price = _undefined,
-    Object? parcelSize = _undefined,
-    Object? views = _undefined,
-    Object? likes = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$product(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        description: description == _undefined || description == null
-            ? _instance.description
-            : (description as String),
-        isFeatured: isFeatured == _undefined || isFeatured == null
-            ? _instance.isFeatured
-            : (isFeatured as bool),
-        userLiked: userLiked == _undefined
-            ? _instance.userLiked
-            : (userLiked as bool?),
-        imagesUrl: imagesUrl == _undefined || imagesUrl == null
-            ? _instance.imagesUrl
-            : (imagesUrl as List<String>),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsProductStatusChoices),
-        brand: brand == _undefined
-            ? _instance.brand
-            : (brand as Query$Conversations$conversations$offer$product$brand?),
-        category: category == _undefined
-            ? _instance.category
-            : (category
-                as Query$Conversations$conversations$offer$product$category?),
-        size: size == _undefined
-            ? _instance.size
-            : (size as Query$Conversations$conversations$offer$product$size?),
-        seller: seller == _undefined
-            ? _instance.seller
-            : (seller
-                as Query$Conversations$conversations$offer$product$seller?),
-        condition: condition == _undefined
-            ? _instance.condition
-            : (condition as Enum$ProductsProductConditionChoices?),
-        discountPrice: discountPrice == _undefined || discountPrice == null
-            ? _instance.discountPrice
-            : (discountPrice as String),
-        price: price == _undefined ? _instance.price : (price as double?),
-        parcelSize: parcelSize == _undefined
-            ? _instance.parcelSize
-            : (parcelSize as Enum$ProductsProductParcelSizeChoices?),
-        views: views == _undefined || views == null
-            ? _instance.views
-            : (views as int),
-        likes: likes == _undefined || likes == null
-            ? _instance.likes
-            : (likes as int),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Query$Conversations$conversations$offer$product$brand<TRes>
-      get brand {
-    final local$brand = _instance.brand;
-    return local$brand == null
-        ? CopyWith$Query$Conversations$conversations$offer$product$brand.stub(
-            _then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$product$brand(
-            local$brand, (e) => call(brand: e));
-  }
-
-  CopyWith$Query$Conversations$conversations$offer$product$category<TRes>
-      get category {
-    final local$category = _instance.category;
-    return local$category == null
-        ? CopyWith$Query$Conversations$conversations$offer$product$category
-            .stub(_then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$product$category(
-            local$category, (e) => call(category: e));
-  }
-
-  CopyWith$Query$Conversations$conversations$offer$product$size<TRes> get size {
-    final local$size = _instance.size;
-    return local$size == null
-        ? CopyWith$Query$Conversations$conversations$offer$product$size.stub(
-            _then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$product$size(
-            local$size, (e) => call(size: e));
-  }
-
-  CopyWith$Query$Conversations$conversations$offer$product$seller<TRes>
-      get seller {
-    final local$seller = _instance.seller;
-    return local$seller == null
-        ? CopyWith$Query$Conversations$conversations$offer$product$seller.stub(
-            _then(_instance))
-        : CopyWith$Query$Conversations$conversations$offer$product$seller(
-            local$seller, (e) => call(seller: e));
-  }
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$product<TRes>
-    implements CopyWith$Query$Conversations$conversations$offer$product<TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$product(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? name,
-    String? description,
-    bool? isFeatured,
-    bool? userLiked,
-    List<String>? imagesUrl,
-    Enum$ProductsProductStatusChoices? status,
-    Query$Conversations$conversations$offer$product$brand? brand,
-    Query$Conversations$conversations$offer$product$category? category,
-    Query$Conversations$conversations$offer$product$size? size,
-    Query$Conversations$conversations$offer$product$seller? seller,
-    Enum$ProductsProductConditionChoices? condition,
-    String? discountPrice,
-    double? price,
-    Enum$ProductsProductParcelSizeChoices? parcelSize,
-    int? views,
-    int? likes,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Query$Conversations$conversations$offer$product$brand<TRes>
-      get brand =>
-          CopyWith$Query$Conversations$conversations$offer$product$brand.stub(
-              _res);
-
-  CopyWith$Query$Conversations$conversations$offer$product$category<TRes>
-      get category =>
-          CopyWith$Query$Conversations$conversations$offer$product$category
-              .stub(_res);
-
-  CopyWith$Query$Conversations$conversations$offer$product$size<TRes>
-      get size =>
-          CopyWith$Query$Conversations$conversations$offer$product$size.stub(
-              _res);
-
-  CopyWith$Query$Conversations$conversations$offer$product$seller<TRes>
-      get seller =>
-          CopyWith$Query$Conversations$conversations$offer$product$seller.stub(
-              _res);
-}
-
-class Query$Conversations$conversations$offer$product$brand {
-  Query$Conversations$conversations$offer$product$brand({
-    this.id,
-    this.name,
-    this.$__typename = 'BrandType',
-  });
-
-  factory Query$Conversations$conversations$offer$product$brand.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$product$brand(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$product$brand ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$product$brand
-    on Query$Conversations$conversations$offer$product$brand {
-  CopyWith$Query$Conversations$conversations$offer$product$brand<
-          Query$Conversations$conversations$offer$product$brand>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$product$brand(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$product$brand<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$product$brand(
-    Query$Conversations$conversations$offer$product$brand instance,
-    TRes Function(Query$Conversations$conversations$offer$product$brand) then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$product$brand;
-
-  factory CopyWith$Query$Conversations$conversations$offer$product$brand.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$product$brand;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$product$brand<TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$brand<TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$product$brand(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$product$brand _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$product$brand)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$product$brand(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$product$brand<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$brand<TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$product$brand(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Conversations$conversations$offer$product$category {
-  Query$Conversations$conversations$offer$product$category({
-    this.id,
-    this.name,
-    this.$__typename = 'CategoryType',
-  });
-
-  factory Query$Conversations$conversations$offer$product$category.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$product$category(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$product$category ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$product$category
-    on Query$Conversations$conversations$offer$product$category {
-  CopyWith$Query$Conversations$conversations$offer$product$category<
-          Query$Conversations$conversations$offer$product$category>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$product$category(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$product$category<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$product$category(
-    Query$Conversations$conversations$offer$product$category instance,
-    TRes Function(Query$Conversations$conversations$offer$product$category)
-        then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$product$category;
-
-  factory CopyWith$Query$Conversations$conversations$offer$product$category.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$product$category;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$product$category<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$category<
-            TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$product$category(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$product$category _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$product$category)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$product$category(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$product$category<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$category<
-            TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$product$category(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Conversations$conversations$offer$product$size {
-  Query$Conversations$conversations$offer$product$size({
-    this.id,
-    this.name,
-    this.$__typename = 'SizeType',
-  });
-
-  factory Query$Conversations$conversations$offer$product$size.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$product$size(
-      id: (l$id as int?),
-      name: (l$name as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? name;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$product$size ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$product$size
-    on Query$Conversations$conversations$offer$product$size {
-  CopyWith$Query$Conversations$conversations$offer$product$size<
-          Query$Conversations$conversations$offer$product$size>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$product$size(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$product$size<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$product$size(
-    Query$Conversations$conversations$offer$product$size instance,
-    TRes Function(Query$Conversations$conversations$offer$product$size) then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$product$size;
-
-  factory CopyWith$Query$Conversations$conversations$offer$product$size.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$product$size;
-
-  TRes call({
-    int? id,
-    String? name,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$product$size<TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$size<TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$product$size(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$product$size _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$product$size)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$product$size(
-        id: id == _undefined ? _instance.id : (id as int?),
-        name: name == _undefined ? _instance.name : (name as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$product$size<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$size<TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$product$size(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? name,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Query$Conversations$conversations$offer$product$seller {
-  Query$Conversations$conversations$offer$product$seller({
-    this.id,
-    this.username,
-    this.profilePictureUrl,
-    this.$__typename = 'UserType',
-  });
-
-  factory Query$Conversations$conversations$offer$product$seller.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$username = json['username'];
-    final l$profilePictureUrl = json['profilePictureUrl'];
-    final l$$__typename = json['__typename'];
-    return Query$Conversations$conversations$offer$product$seller(
-      id: (l$id as int?),
-      username: (l$username as String?),
-      profilePictureUrl: (l$profilePictureUrl as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final int? id;
-
-  final String? username;
-
-  final String? profilePictureUrl;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$profilePictureUrl = profilePictureUrl;
-    _resultData['profilePictureUrl'] = l$profilePictureUrl;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$username = username;
-    final l$profilePictureUrl = profilePictureUrl;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$username,
-      l$profilePictureUrl,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$Conversations$conversations$offer$product$seller ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$profilePictureUrl = profilePictureUrl;
-    final lOther$profilePictureUrl = other.profilePictureUrl;
-    if (l$profilePictureUrl != lOther$profilePictureUrl) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$Conversations$conversations$offer$product$seller
-    on Query$Conversations$conversations$offer$product$seller {
-  CopyWith$Query$Conversations$conversations$offer$product$seller<
-          Query$Conversations$conversations$offer$product$seller>
-      get copyWith =>
-          CopyWith$Query$Conversations$conversations$offer$product$seller(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$Conversations$conversations$offer$product$seller<
-    TRes> {
-  factory CopyWith$Query$Conversations$conversations$offer$product$seller(
-    Query$Conversations$conversations$offer$product$seller instance,
-    TRes Function(Query$Conversations$conversations$offer$product$seller) then,
-  ) = _CopyWithImpl$Query$Conversations$conversations$offer$product$seller;
-
-  factory CopyWith$Query$Conversations$conversations$offer$product$seller.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$Conversations$conversations$offer$product$seller;
-
-  TRes call({
-    int? id,
-    String? username,
-    String? profilePictureUrl,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$Conversations$conversations$offer$product$seller<TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$seller<TRes> {
-  _CopyWithImpl$Query$Conversations$conversations$offer$product$seller(
-    this._instance,
-    this._then,
-  );
-
-  final Query$Conversations$conversations$offer$product$seller _instance;
-
-  final TRes Function(Query$Conversations$conversations$offer$product$seller)
-      _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? username = _undefined,
-    Object? profilePictureUrl = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$Conversations$conversations$offer$product$seller(
-        id: id == _undefined ? _instance.id : (id as int?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        profilePictureUrl: profilePictureUrl == _undefined
-            ? _instance.profilePictureUrl
-            : (profilePictureUrl as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$Conversations$conversations$offer$product$seller<
-        TRes>
-    implements
-        CopyWith$Query$Conversations$conversations$offer$product$seller<TRes> {
-  _CopyWithStubImpl$Query$Conversations$conversations$offer$product$seller(
-      this._res);
-
-  TRes _res;
-
-  call({
-    int? id,
-    String? username,
-    String? profilePictureUrl,
+    String? fullName,
     String? $__typename,
   }) =>
       _res;

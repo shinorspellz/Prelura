@@ -976,6 +976,22 @@
             "deprecationReason": null
           },
           {
+            "name": "userMultibuyDiscounts",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MultibuyDiscountType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "allProductsTotalNumber",
             "description": null,
             "args": [],
@@ -2579,6 +2595,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "shippingAddress",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSONString",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2617,8 +2645,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "Decimal",
-        "description": "The `Decimal` scalar type represents a python Decimal.",
+        "name": "JSONString",
+        "description": "Allows use of a JSON String for input / output from the GraphQL schema.\n\nUse of this type is *not recommended* as you lose the benefits of having a defined, static\nschema (one of the key benefits of GraphQL).",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -2627,8 +2655,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "JSONString",
-        "description": "Allows use of a JSON String for input / output from the GraphQL schema.\n\nUse of this type is *not recommended* as you lose the benefits of having a defined, static\nschema (one of the key benefits of GraphQL).",
+        "name": "Decimal",
+        "description": "The `Decimal` scalar type represents a python Decimal.",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -3648,16 +3676,24 @@
             "deprecationReason": null
           },
           {
-            "name": "product",
+            "name": "products",
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "ProductType",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ProductType",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
@@ -8808,15 +8844,19 @@
                 "defaultValue": null
               },
               {
-                "name": "productId",
+                "name": "productIds",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Int",
+                      "ofType": null
+                    }
                   }
                 },
                 "defaultValue": null
@@ -11535,7 +11575,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "address1",
+            "name": "address",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -11545,16 +11585,6 @@
                 "name": "String",
                 "ofType": null
               }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "address2",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
             },
             "defaultValue": null
           },

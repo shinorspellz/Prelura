@@ -439,11 +439,15 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           offerState.processingTypes.contains("createOffer"),
       isDisabled: !canCreateOffer,
       onTap: () {
-        // ref.read(offerProvider.notifier).createOffer(
-        //       context,
-        //       productId: int.parse(widget.products.first.id),
-        //       offerPrice: double.parse(textController.text),
-        //     );
+        ref.read(offerProvider.notifier).createOffer(
+              context,
+              productIds: widget.products
+                  .map((productInfo) => int.parse(productInfo.id))
+                  .toList(),
+              // int.parse(widget.products.first.id),
+
+              offerPrice: double.parse(textController.text),
+            );
       },
       text: "Send Offer",
     );

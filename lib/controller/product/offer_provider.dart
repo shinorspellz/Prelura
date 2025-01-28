@@ -55,7 +55,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
 
   createOffer(
     BuildContext context, {
-    required int productId,
+    required List<int> productIds,
     required double offerPrice,
     String? message,
   }) async {
@@ -65,7 +65,7 @@ class OfferNotifier extends StateNotifier<OfferState> {
         "isProcessing": true,
       });
       final Mutation$createOffer$createOffer? res = await offerRepo.createOffer(
-        productId: productId,
+        productIds: productIds,
         offerPrice: offerPrice,
         message: message,
       );
@@ -85,8 +85,8 @@ class OfferNotifier extends StateNotifier<OfferState> {
           offer: theOffer,
         );
 
-        final Mutation$createOffer$createOffer$data$offer$product$seller?
-            userInfo = res.data!.offer!.first!.product.seller;
+        final Mutation$createOffer$createOffer$data$offer$products$seller?
+            userInfo = res.data!.offer!.first!.products.first.seller;
         context.router.replace(ChatRoute(
           id: res.data!.conversationId.toString(),
           username: userInfo?.username ?? "",

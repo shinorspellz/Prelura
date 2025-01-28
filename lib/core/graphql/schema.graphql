@@ -482,7 +482,7 @@ type Mutation {
   likeProduct(productId: Int!): LikeProduct
   createOrder(productId: Int, productIds: [Int], shippingFee: Float): CreateOrder
   cancelOrder(orderId: Int!): CancelOrder
-  createOffer(message: String, offerPrice: Float!, productId: Int!): CreateOffer
+  createOffer(message: String, offerPrice: Float!, productIds: [Int]!): CreateOffer
   createMultibuyDiscount(inputs: [MultibuyInputType]!): CreateOrUpdateMultibuyDiscount
   deactivateMultibuyDiscounts: DeactivateMultibuyDiscounts
 
@@ -745,7 +745,7 @@ type OfferReturnType {
 
 type OfferType {
   id: ID!
-  product: ProductType!
+  products: [ProductType!]!
   buyer: UserType
   offerPrice: Decimal!
   status: String
@@ -1326,6 +1326,7 @@ type Query {
   filterProductsByPrice(priceLimit: Float!, pageCount: Int, pageNumber: Int): [ProductType]
   favoriteBrandProducts(top: Int!): [ProductType]
   userOrders(filters: OrderFiltersInput, pageCount: Int, pageNumber: Int): [OrderType]
+  userMultibuyDiscounts: [MultibuyDiscountType]
   allProductsTotalNumber: Int
   brandsTotalNumber: Int
   filterProductsByPriceTotalNumber: Int
@@ -1444,8 +1445,7 @@ type SendSmsOtp {
 }
 
 input ShippingAddressInputType {
-  address1: String!
-  address2: String
+  address: String!
   city: String!
   country: String!
   postcode: String!
@@ -1723,6 +1723,7 @@ type UserType {
   noOfFollowing: Int
   noOfFollowers: Int
   preferredCurrency: CurrencyEnum
+  shippingAddress: JSONString
 }
 
 type VerifyEmail {
