@@ -142,15 +142,14 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
             HelperFunction.showToast(message: "Pasword updated!");
             // context.alert("Pasword updated!");
 
+            await Future.delayed(const Duration(seconds: 2));
             //!==== Logout the user ====\\
-            // await Future.delayed(const Duration(seconds: 2), () async {
+
             await ref.read(authProvider.notifier).logout();
             ref.read(categoryNotifierProvider.notifier).clearCache();
             ref.read(authProvider).whenOrNull(
                   error: (e, _) => context.alert("An error occurred"),
                 );
-            // });
-            // }
           },
         );
       } catch (e, stackTrace) {

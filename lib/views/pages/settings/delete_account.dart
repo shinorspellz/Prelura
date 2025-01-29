@@ -114,6 +114,8 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
             HelperFunction.context = context;
             HelperFunction.showToast(message: "Account deleted!");
 
+            await Future.delayed(const Duration(seconds: 2));
+
             //!==== Logout the user ====\\
             await ref.read(authProvider.notifier).logout();
             ref.read(categoryNotifierProvider.notifier).clearCache();
