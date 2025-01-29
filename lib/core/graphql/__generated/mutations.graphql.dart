@@ -30141,3 +30141,591 @@ class _CopyWithStubImpl$Mutation$DeactivateMultibuyDiscounts$deactivateMultibuyD
   }) =>
       _res;
 }
+
+class Variables$Mutation$PasswordChange {
+  factory Variables$Mutation$PasswordChange({
+    required String password,
+    required String newPassword,
+  }) =>
+      Variables$Mutation$PasswordChange._({
+        r'password': password,
+        r'newPassword': newPassword,
+      });
+
+  Variables$Mutation$PasswordChange._(this._$data);
+
+  factory Variables$Mutation$PasswordChange.fromJson(
+      Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$password = data['password'];
+    result$data['password'] = (l$password as String);
+    final l$newPassword = data['newPassword'];
+    result$data['newPassword'] = (l$newPassword as String);
+    return Variables$Mutation$PasswordChange._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get password => (_$data['password'] as String);
+
+  String get newPassword => (_$data['newPassword'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$password = password;
+    result$data['password'] = l$password;
+    final l$newPassword = newPassword;
+    result$data['newPassword'] = l$newPassword;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$PasswordChange<Variables$Mutation$PasswordChange>
+      get copyWith => CopyWith$Variables$Mutation$PasswordChange(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$PasswordChange ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$password = password;
+    final lOther$password = other.password;
+    if (l$password != lOther$password) {
+      return false;
+    }
+    final l$newPassword = newPassword;
+    final lOther$newPassword = other.newPassword;
+    if (l$newPassword != lOther$newPassword) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$password = password;
+    final l$newPassword = newPassword;
+    return Object.hashAll([
+      l$password,
+      l$newPassword,
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$PasswordChange<TRes> {
+  factory CopyWith$Variables$Mutation$PasswordChange(
+    Variables$Mutation$PasswordChange instance,
+    TRes Function(Variables$Mutation$PasswordChange) then,
+  ) = _CopyWithImpl$Variables$Mutation$PasswordChange;
+
+  factory CopyWith$Variables$Mutation$PasswordChange.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$PasswordChange;
+
+  TRes call({
+    String? password,
+    String? newPassword,
+  });
+}
+
+class _CopyWithImpl$Variables$Mutation$PasswordChange<TRes>
+    implements CopyWith$Variables$Mutation$PasswordChange<TRes> {
+  _CopyWithImpl$Variables$Mutation$PasswordChange(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$PasswordChange _instance;
+
+  final TRes Function(Variables$Mutation$PasswordChange) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? password = _undefined,
+    Object? newPassword = _undefined,
+  }) =>
+      _then(Variables$Mutation$PasswordChange._({
+        ..._instance._$data,
+        if (password != _undefined && password != null)
+          'password': (password as String),
+        if (newPassword != _undefined && newPassword != null)
+          'newPassword': (newPassword as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$PasswordChange<TRes>
+    implements CopyWith$Variables$Mutation$PasswordChange<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$PasswordChange(this._res);
+
+  TRes _res;
+
+  call({
+    String? password,
+    String? newPassword,
+  }) =>
+      _res;
+}
+
+class Mutation$PasswordChange {
+  Mutation$PasswordChange({
+    this.passwordChange,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$PasswordChange.fromJson(Map<String, dynamic> json) {
+    final l$passwordChange = json['passwordChange'];
+    final l$$__typename = json['__typename'];
+    return Mutation$PasswordChange(
+      passwordChange: l$passwordChange == null
+          ? null
+          : Mutation$PasswordChange$passwordChange.fromJson(
+              (l$passwordChange as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Mutation$PasswordChange$passwordChange? passwordChange;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$passwordChange = passwordChange;
+    _resultData['passwordChange'] = l$passwordChange?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$passwordChange = passwordChange;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$passwordChange,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$PasswordChange || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$passwordChange = passwordChange;
+    final lOther$passwordChange = other.passwordChange;
+    if (l$passwordChange != lOther$passwordChange) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$PasswordChange on Mutation$PasswordChange {
+  CopyWith$Mutation$PasswordChange<Mutation$PasswordChange> get copyWith =>
+      CopyWith$Mutation$PasswordChange(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$PasswordChange<TRes> {
+  factory CopyWith$Mutation$PasswordChange(
+    Mutation$PasswordChange instance,
+    TRes Function(Mutation$PasswordChange) then,
+  ) = _CopyWithImpl$Mutation$PasswordChange;
+
+  factory CopyWith$Mutation$PasswordChange.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$PasswordChange;
+
+  TRes call({
+    Mutation$PasswordChange$passwordChange? passwordChange,
+    String? $__typename,
+  });
+  CopyWith$Mutation$PasswordChange$passwordChange<TRes> get passwordChange;
+}
+
+class _CopyWithImpl$Mutation$PasswordChange<TRes>
+    implements CopyWith$Mutation$PasswordChange<TRes> {
+  _CopyWithImpl$Mutation$PasswordChange(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$PasswordChange _instance;
+
+  final TRes Function(Mutation$PasswordChange) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? passwordChange = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$PasswordChange(
+        passwordChange: passwordChange == _undefined
+            ? _instance.passwordChange
+            : (passwordChange as Mutation$PasswordChange$passwordChange?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$PasswordChange$passwordChange<TRes> get passwordChange {
+    final local$passwordChange = _instance.passwordChange;
+    return local$passwordChange == null
+        ? CopyWith$Mutation$PasswordChange$passwordChange.stub(_then(_instance))
+        : CopyWith$Mutation$PasswordChange$passwordChange(
+            local$passwordChange, (e) => call(passwordChange: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$PasswordChange<TRes>
+    implements CopyWith$Mutation$PasswordChange<TRes> {
+  _CopyWithStubImpl$Mutation$PasswordChange(this._res);
+
+  TRes _res;
+
+  call({
+    Mutation$PasswordChange$passwordChange? passwordChange,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$PasswordChange$passwordChange<TRes> get passwordChange =>
+      CopyWith$Mutation$PasswordChange$passwordChange.stub(_res);
+}
+
+const documentNodeMutationPasswordChange = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'PasswordChange'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'password')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'newPassword')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'passwordChange'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'oldPassword'),
+            value: VariableNode(name: NameNode(value: 'password')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'newPassword1'),
+            value: VariableNode(name: NameNode(value: 'newPassword')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'newPassword2'),
+            value: VariableNode(name: NameNode(value: 'newPassword')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'success'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'errors'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$PasswordChange _parserFn$Mutation$PasswordChange(
+        Map<String, dynamic> data) =>
+    Mutation$PasswordChange.fromJson(data);
+typedef OnMutationCompleted$Mutation$PasswordChange = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$PasswordChange?,
+);
+
+class Options$Mutation$PasswordChange
+    extends graphql.MutationOptions<Mutation$PasswordChange> {
+  Options$Mutation$PasswordChange({
+    String? operationName,
+    required Variables$Mutation$PasswordChange variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$PasswordChange? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$PasswordChange? onCompleted,
+    graphql.OnMutationUpdate<Mutation$PasswordChange>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Mutation$PasswordChange(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationPasswordChange,
+          parserFn: _parserFn$Mutation$PasswordChange,
+        );
+
+  final OnMutationCompleted$Mutation$PasswordChange? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$PasswordChange
+    extends graphql.WatchQueryOptions<Mutation$PasswordChange> {
+  WatchOptions$Mutation$PasswordChange({
+    String? operationName,
+    required Variables$Mutation$PasswordChange variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$PasswordChange? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationPasswordChange,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$PasswordChange,
+        );
+}
+
+extension ClientExtension$Mutation$PasswordChange on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$PasswordChange>> mutate$PasswordChange(
+          Options$Mutation$PasswordChange options) async =>
+      await this.mutate(options);
+  graphql.ObservableQuery<Mutation$PasswordChange> watchMutation$PasswordChange(
+          WatchOptions$Mutation$PasswordChange options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$PasswordChange$passwordChange {
+  Mutation$PasswordChange$passwordChange({
+    this.success,
+    this.errors,
+    this.$__typename = 'PasswordChange',
+  });
+
+  factory Mutation$PasswordChange$passwordChange.fromJson(
+      Map<String, dynamic> json) {
+    final l$success = json['success'];
+    final l$errors = json['errors'];
+    final l$$__typename = json['__typename'];
+    return Mutation$PasswordChange$passwordChange(
+      success: (l$success as bool?),
+      errors: (l$errors as Map<String, dynamic>?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool? success;
+
+  final Map<String, dynamic>? errors;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$success = success;
+    _resultData['success'] = l$success;
+    final l$errors = errors;
+    _resultData['errors'] = l$errors;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$success = success;
+    final l$errors = errors;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$success,
+      l$errors,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$PasswordChange$passwordChange ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$success = success;
+    final lOther$success = other.success;
+    if (l$success != lOther$success) {
+      return false;
+    }
+    final l$errors = errors;
+    final lOther$errors = other.errors;
+    if (l$errors != lOther$errors) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$PasswordChange$passwordChange
+    on Mutation$PasswordChange$passwordChange {
+  CopyWith$Mutation$PasswordChange$passwordChange<
+          Mutation$PasswordChange$passwordChange>
+      get copyWith => CopyWith$Mutation$PasswordChange$passwordChange(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$PasswordChange$passwordChange<TRes> {
+  factory CopyWith$Mutation$PasswordChange$passwordChange(
+    Mutation$PasswordChange$passwordChange instance,
+    TRes Function(Mutation$PasswordChange$passwordChange) then,
+  ) = _CopyWithImpl$Mutation$PasswordChange$passwordChange;
+
+  factory CopyWith$Mutation$PasswordChange$passwordChange.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$PasswordChange$passwordChange;
+
+  TRes call({
+    bool? success,
+    Map<String, dynamic>? errors,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$PasswordChange$passwordChange<TRes>
+    implements CopyWith$Mutation$PasswordChange$passwordChange<TRes> {
+  _CopyWithImpl$Mutation$PasswordChange$passwordChange(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$PasswordChange$passwordChange _instance;
+
+  final TRes Function(Mutation$PasswordChange$passwordChange) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? success = _undefined,
+    Object? errors = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$PasswordChange$passwordChange(
+        success: success == _undefined ? _instance.success : (success as bool?),
+        errors: errors == _undefined
+            ? _instance.errors
+            : (errors as Map<String, dynamic>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$PasswordChange$passwordChange<TRes>
+    implements CopyWith$Mutation$PasswordChange$passwordChange<TRes> {
+  _CopyWithStubImpl$Mutation$PasswordChange$passwordChange(this._res);
+
+  TRes _res;
+
+  call({
+    bool? success,
+    Map<String, dynamic>? errors,
+    String? $__typename,
+  }) =>
+      _res;
+}
