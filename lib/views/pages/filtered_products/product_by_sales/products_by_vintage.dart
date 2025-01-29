@@ -129,8 +129,9 @@ class _ProductFilterPageState
                   padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
                   sliver: ref.watch(filteredProductProvider(searchQuery)).when(
                       data: (products) {
-                        if (products.length < 6)
+                        if (products.length < 6) {
                           return SliverToBoxAdapter(child: Container());
+                        }
                         final clippedProducts = products.sublist(6);
                         return SliverGrid.builder(
                           gridDelegate:

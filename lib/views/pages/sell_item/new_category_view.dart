@@ -178,7 +178,10 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                                           : PreluraColors.black)),
                           12.horizontalSpacing,
                           Text(
-                              "${state.category?.name != null ? "${ref.read(selectedParentCategory)} >" ?? "" : ""}",
+                              state.category?.name != null
+                                  ? "${ref.read(selectedParentCategory)} >" ??
+                                      ""
+                                  : "",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -187,7 +190,7 @@ class _CategoryScreenState extends ConsumerState<NewCategoryScreen> {
                                       fontWeight: FontWeight.w500,
                                       color: PreluraColors.grey)),
                           Spacer(),
-                          Text("${state.category?.name ?? ""}",
+                          Text(state.category?.name ?? "",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium

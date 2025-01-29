@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/core/utils/currency_format.dart';
 import 'package:prelura_app/res/utils.dart';
-import 'package:prelura_app/views/pages/settings/shop_value.dart';
 
 class AnimatedCount extends ImplicitlyAnimatedWidget {
   final num count;

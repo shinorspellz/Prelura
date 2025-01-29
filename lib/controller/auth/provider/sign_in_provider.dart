@@ -23,7 +23,7 @@ class LoginState {
     return LoginState(
       isLoading: isLoading ?? this.isLoading,
       obscureText: obscureText ?? this.obscureText,
-      usernameController: emailController ?? this.usernameController,
+      usernameController: emailController ?? usernameController,
       passwordController: passwordController ?? this.passwordController,
     );
   }

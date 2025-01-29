@@ -98,7 +98,9 @@ class _ListOfContactsState extends State<ListOfContacts> {
                 },
               ),
       ),
-      bottomNavigationBar: _buildBottomNav(colorScheme, context),
+      bottomNavigationBar: selectedContacts.isEmpty
+          ? Container()
+          : _buildBottomNav(colorScheme, context),
     );
   }
 

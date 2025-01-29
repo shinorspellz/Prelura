@@ -38,7 +38,7 @@ class UserPopularBrand extends ConsumerStatefulWidget {
 
 class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
   late bool showSorted;
-  Brand? selectedBrand = null;
+  Brand? selectedBrand;
 
   @override
   void initState() {

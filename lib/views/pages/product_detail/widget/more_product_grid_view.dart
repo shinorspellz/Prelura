@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/widgets/card.dart';
 import 'package:prelura_app/views/widgets/display_section.dart';
 
 import 'package:prelura_app/res/utils.dart';
@@ -11,7 +10,8 @@ class MoreProductGridView extends StatefulWidget {
   _MoreProductGridViewState createState() => _MoreProductGridViewState();
 }
 
-class _MoreProductGridViewState extends State<MoreProductGridView> with SingleTickerProviderStateMixin {
+class _MoreProductGridViewState extends State<MoreProductGridView>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override

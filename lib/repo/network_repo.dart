@@ -4,7 +4,6 @@ import 'package:graphql/client.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 
 import '../core/graphql/__generated/queries.graphql.dart';
-import '../model/user/user_model.dart';
 
 class NetworkRepo {
   final GraphQLClient _client;

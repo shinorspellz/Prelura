@@ -103,7 +103,7 @@ class UserRepo {
         name: 'UserRepo',
         stackTrace: stackTrace,
       );
-      throw e;
+      rethrow;
     }
   }
 

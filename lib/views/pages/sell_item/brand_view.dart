@@ -286,7 +286,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
         description.split(' ').where((word) => word.isNotEmpty).toList();
 
     // Function to search brands by word
-    Future<List<Brand>> _fetchAndFilterBrands() async {
+    Future<List<Brand>> fetchAndFilterBrands() async {
       final Set<Brand> filteredBrands = {};
 
       for (final word in words) {
@@ -310,7 +310,7 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
     }
 
     return FutureBuilder<List<Brand>>(
-      future: _fetchAndFilterBrands(),
+      future: fetchAndFilterBrands(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const SizedBox.shrink();
@@ -337,10 +337,10 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
         final List<Brand> result =
             matches.map((result) => result['brand'] as Brand).toList();
 
-        final combinedBrands = [
+        final combinedBrands = <dynamic>{
           ...result.take(3),
           ...suggestedBrands.take(2),
-        ].toSet().toList();
+        }.toList();
 
         return combinedBrands.isNotEmpty
             ? Column(

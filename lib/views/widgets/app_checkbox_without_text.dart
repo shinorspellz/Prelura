@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../res/colors.dart';
-import '../../res/utils.dart';
 
 class PreluraCheckBoxWithoutText extends StatelessWidget {
   final bool isChecked; // Current state of the checkbox

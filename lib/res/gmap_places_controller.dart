@@ -46,7 +46,7 @@ class SuggestedPlacesNotifier
   Future<dynamic> getPlacesDetail(String placeId) async {
     final String? apiKey = dotenv.env['LOCATION_API_KEY'];
     final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=${apiKey}');
+        'https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=$apiKey');
 
     final timeout = const Duration(milliseconds: 3000);
 
@@ -86,12 +86,10 @@ class PlaceAutocompleteResponse {
   factory PlaceAutocompleteResponse.fromJson(Map<String, dynamic> json) {
     return PlaceAutocompleteResponse(
       status: json['status'] as String?,
-      predictions: json['predictions'] != null
-          ? json['predictions']
-              .map<AutocompletePrediction>(
-                  (json) => AutocompletePrediction.fromJson(json))
-              .toList()
-          : null,
+      predictions: json['predictions']
+          ?.map<AutocompletePrediction>(
+              (json) => AutocompletePrediction.fromJson(json))
+          .toList(),
     );
   }
 

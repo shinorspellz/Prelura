@@ -12,7 +12,6 @@ import '../../../../core/router/router.gr.dart';
 import '../../../../res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import '../../Following/view/following_view.dart';
-import '../model/model.dart';
 import '../view/followers_view.dart';
 
 final _queryProvider = StateProvider<FollowerQuery>(

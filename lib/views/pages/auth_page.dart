@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,12 +7,10 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/controller/refresh_provider.dart';
 import 'package:prelura_app/views/pages/home.dart';
-import 'package:prelura_app/views/pages/menu_page.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/res/colors.dart';
 
 import '../../core/router/router.dart';
-import '../../res/images.dart';
 import '../../controller/user/user_controller.dart';
 import '../widgets/profile_picture.dart';
 
@@ -58,7 +54,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
           ],
           builder: (context, child) {
             final tabRouter = AutoTabsRouter.of(context);
-            final isSellItemRoute = tabRouter.current.name == SellNavigationRoute.name;
+            final isSellItemRoute =
+                tabRouter.current.name == SellNavigationRoute.name;
 
             return Scaffold(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -87,7 +84,9 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                               curve: Curves.easeInOut,
                             );
                             if (HomeScreen.homeScrollController.offset == 0.0) {
-                              ref.read(homeRefreshProvider.notifier).refreshHome("", "");
+                              ref
+                                  .read(homeRefreshProvider.notifier)
+                                  .refreshHome("", "");
                             }
                           }
 
@@ -139,7 +138,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.search,
                           size: 24,
                         ),
-                        activeIcon: const Icon(Icons.search, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: const Icon(Icons.search,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Search',
                       ),
                       const TabItem(
@@ -149,7 +149,8 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           Icons.add_circle_outline,
                           size: 24,
                         ),
-                        activeIcon: Icon(Icons.add_circle_outline, color: PreluraColors.activeColor, size: 24),
+                        activeIcon: Icon(Icons.add_circle_outline,
+                            color: PreluraColors.activeColor, size: 24),
                         label: 'Sell',
                       ),
                       TabItem(
@@ -171,12 +172,20 @@ class _AuthPageState extends ConsumerState<AuthPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ProfilePictureWidget(
-                              profilePicture: ref.watch(userProvider).valueOrNull?.profilePictureUrl,
-                              username: ref.watch(userProvider).valueOrNull?.username ?? '--',
+                              profilePicture: ref
+                                  .watch(userProvider)
+                                  .valueOrNull
+                                  ?.profilePictureUrl,
+                              username: ref
+                                      .watch(userProvider)
+                                      .valueOrNull
+                                      ?.username ??
+                                  '--',
                               height: 30,
                               width: 30,
                               borderColor: tabRouter.activeIndex == 3
-                                  ? PreluraColors.activeColor // Purple when active
+                                  ? PreluraColors
+                                      .activeColor // Purple when active
                                   : Colors.grey,
                             ),
                             8.verticalSpacing,

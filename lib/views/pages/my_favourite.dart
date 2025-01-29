@@ -33,6 +33,7 @@ class _MyFavouriteScreenState extends ConsumerState<MyFavouriteScreen> {
   bool isSearching = false;
   List<ProductModel> filter = [];
 
+  @override
   void initState() {
     super.initState();
 

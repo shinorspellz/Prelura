@@ -1,19 +1,14 @@
 import 'dart:developer';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/views/pages/home_tabs/shop_bargains_widget.dart';
-import 'package:prelura_app/views/widgets/app_button.dart';
-import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../../controller/product/product_provider.dart';
 import '../../../controller/refresh_provider.dart';
 import '../../../model/product/product_model.dart';
 import '../../../res/colors.dart';
-import '../../../shared/mock_data.dart';
 import '../../shimmers/grid_shimmer.dart';
 import '../../widgets/card.dart';
 import '../home.dart';

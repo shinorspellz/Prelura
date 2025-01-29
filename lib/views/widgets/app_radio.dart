@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../res/colors.dart';
@@ -62,7 +60,10 @@ class PreluraRadio extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis, // Handle overflow
                     maxLines: 1, // Limit the number of lines
                   ),
@@ -70,7 +71,10 @@ class PreluraRadio extends StatelessWidget {
                     const SizedBox(height: 6),
                     Text(
                       subtitle!,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w300),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(fontWeight: FontWeight.w300),
                       overflow: TextOverflow.ellipsis, // Handle overflow
                       maxLines: 4, // Limit the number of lines for the subtitle
                     ),
@@ -92,7 +96,9 @@ class PreluraRadio extends StatelessWidget {
               child: Center(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  width: isSelected ? size * 0.6 : size * 0.3, // Circle shrink/grow effect
+                  width: isSelected
+                      ? size * 0.6
+                      : size * 0.3, // Circle shrink/grow effect
                   height: isSelected ? size * 0.6 : size * 0.3,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
