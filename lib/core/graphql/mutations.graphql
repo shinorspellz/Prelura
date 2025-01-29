@@ -453,7 +453,7 @@ mutation UpdateNotificationPreference(
   }
 }
 
-mutation CreateOrder($productId: Int!, $productIds: [Int], $shippingFee: Float, ) {
+mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float, ) {
   createOrder(productId: $productId, productIds: $productIds, shippingFee: $shippingFee,) {
     order {
       createdAt
@@ -465,13 +465,46 @@ mutation CreateOrder($productId: Int!, $productIds: [Int], $shippingFee: Float, 
       status
       updatedAt
       products {
-        id
-        imagesUrl
-        name
-        size {
+        brand {
           id
           name
         }
+        category {
+          id
+          name
+        }
+        imagesUrl
+        id
+        hashtags
+        discountPrice
+        description
+        condition
+        createdAt
+        customBrand
+        price
+        name
+        likes
+        isFeatured
+        views
+        status
+        style
+        updatedAt
+        userLiked
+        parcelSize
+        materials {
+          id
+          name
+        }
+        color
+      }
+      user {
+        lastName
+        thumbnailUrl
+        username
+        profilePictureUrl
+        shippingAddress
+        fullName
+        displayName
       }
     }
     success

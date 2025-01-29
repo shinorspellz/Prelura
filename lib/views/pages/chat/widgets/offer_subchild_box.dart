@@ -10,6 +10,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/username.dart';
@@ -482,12 +483,23 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     isBuying = true;
     setState(() {});
     try {
-      int productId = int.parse(
-          ref.read(offerProvider).activeOffer!.offer!.products!.first.id!);
+      List<int> productIds = ref
+          .read(offerProvider)
+          .activeOffer!
+          .offer!
+          .products!
+          .map((productInfo) => int.parse(productInfo.id!))
+          .toList();
       final repo = ref.read(productRepo);
 
-      final productInfo = await repo.getProduct(productId);
-      context.router.push(PaymentRoute(product: productInfo));
+      List<ProductModel> products = [];
+
+      for (int id in productIds) {
+        ProductModel res = await repo.getProduct(id);
+        products.add(res);
+      }
+
+      context.router.push(PaymentRoute(products: products));
     } catch (e) {
       print("Error in handleOfferBuying: $e");
     } finally {
