@@ -164,7 +164,10 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                     showEmoji
                                         ? Icons.keyboard_alt_outlined
                                         : Icons.emoji_emotions,
-                                    color: Theme.of(context).primaryColor,
+                                    color: !showEmoji
+                                        ? PreluraColors.greyColor
+                                            .withOpacity(0.7)
+                                        : Theme.of(context).primaryColor,
                                     size: 26,
                                   ),
                                 ),
@@ -173,10 +176,12 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: (chatFocusNode?.hasFocus ?? false)
-                                        ? PreluraColors.primaryColor
-                                        : PreluraColors.greyColor
-                                            .withOpacity(.5),
+                                    color:
+                                        ((chatFocusNode?.hasFocus ?? false) ||
+                                                showEmoji)
+                                            ? PreluraColors.primaryColor
+                                            : PreluraColors.greyColor
+                                                .withOpacity(.5),
                                   ),
                                 )),
                           ),

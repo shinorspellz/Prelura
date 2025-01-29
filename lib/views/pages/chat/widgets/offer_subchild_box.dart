@@ -391,9 +391,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 ),
               ),
             ],
-            if (status == "accepted" &&
-                amTheSeller &&
-                productInfo?.status == "SOLD") ...[
+            if (status == "accepted" && productInfo?.status == "SOLD") ...[
               // addVerticalSpacing(20),
               // Text(
               //   "Please wait for buyer to make payment",
@@ -406,30 +404,30 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
               ///
               ///
               addVerticalSpacing(20),
-              _buildCustomOfferButton(text: "Sold!"),
+              _buildCustomOfferButton(text: amTheSeller ? "Sold!" : "Paid!"),
             ],
-            if (status == "accepted" &&
-                productInfo?.status == "SOLD" &&
-                !amTheSeller) ...[
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 20,
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Payment made, please wait for the seller to send the item.",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: PreluraColors.grey,
-                          fontSize: 12,
-                        ),
-                  ),
-                ),
-              ),
-            ],
+            // if (status == "accepted" &&
+            //     productInfo?.status == "SOLD" &&
+            //     !amTheSeller) ...[
+            //   Padding(
+            //     padding: const EdgeInsets.only(
+            //       left: 20,
+            //       right: 20,
+            //       top: 20,
+            //     ),
+            //     child: Align(
+            //       alignment: Alignment.center,
+            //       child: Text(
+            //         "Payment made, please wait for the seller to send the item.",
+            //         textAlign: TextAlign.center,
+            //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            //               color: PreluraColors.grey,
+            //               fontSize: 12,
+            //             ),
+            //       ),
+            //     ),
+            //   ),
+            // ],
             if (status == "accepted" &&
                 !amTheSeller &&
                 productInfo?.status != "SOLD") ...[
