@@ -224,7 +224,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                   child: Text(
                     widget.eventInfo.message,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontSize: 13.sp,
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
                   ),

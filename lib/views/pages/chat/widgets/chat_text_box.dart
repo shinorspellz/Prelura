@@ -54,7 +54,6 @@ class PlainMessageBox extends StatelessWidget {
               child: Text(
                 chatInfo.text,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontFamily: "CourierPrime-Regular",
                       fontSize: chatInfo.text.characters.length == 1
                           ? 80
                           : chatInfo.text.characters.length == 2
@@ -67,9 +66,8 @@ class PlainMessageBox extends StatelessWidget {
           : Text(
               chatInfo.text,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: isOnlyEmoji ? 90 : 13,
-                    fontFamily: "CourierPrime-Regular",
-                    // fontWeight: FontWeight.w500,
+                    fontSize: isOnlyEmoji ? 90 : 15,
+                    fontWeight: FontWeight.w500,
                   ),
             ),
     );
