@@ -1415,13 +1415,13 @@ class PartyFilteredProductRoute extends _i77.PageRouteInfo<void> {
 class PaymentRoute extends _i77.PageRouteInfo<PaymentRouteArgs> {
   PaymentRoute({
     _i78.Key? key,
-    required _i83.ProductModel product,
+    required List<_i83.ProductModel> products,
     List<_i77.PageRouteInfo>? children,
   }) : super(
           PaymentRoute.name,
           args: PaymentRouteArgs(
             key: key,
-            product: product,
+            products: products,
           ),
           initialChildren: children,
         );
@@ -1434,7 +1434,7 @@ class PaymentRoute extends _i77.PageRouteInfo<PaymentRouteArgs> {
       final args = data.argsAs<PaymentRouteArgs>();
       return _i43.PaymentScreen(
         key: args.key,
-        product: args.product,
+        products: args.products,
       );
     },
   );
@@ -1443,16 +1443,16 @@ class PaymentRoute extends _i77.PageRouteInfo<PaymentRouteArgs> {
 class PaymentRouteArgs {
   const PaymentRouteArgs({
     this.key,
-    required this.product,
+    required this.products,
   });
 
   final _i78.Key? key;
 
-  final _i83.ProductModel product;
+  final List<_i83.ProductModel> products;
 
   @override
   String toString() {
-    return 'PaymentRouteArgs{key: $key, product: $product}';
+    return 'PaymentRouteArgs{key: $key, products: $products}';
   }
 }
 

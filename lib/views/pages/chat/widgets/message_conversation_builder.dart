@@ -119,9 +119,10 @@ class _MessageConversationBuilderState
                       profilePicture: widget.avatar,
                       height: 25,
                       width: 25,
+                      username: chatInfo.sender.username,
                     ))
               else if (_listViewLeftPosition == 0)
-                addHorizontalSpacing(isMe ? 0 : 43)
+                addHorizontalSpacing(isMe ? 0 : 47)
               else
                 SizedBox.shrink(),
               Expanded(

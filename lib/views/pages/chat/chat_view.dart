@@ -70,6 +70,7 @@ class ChatScreen extends ConsumerStatefulWidget {
 class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void initState() {
+    HelperFunction.genRef = ref;
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       ref.read(inChatRoom.notifier).state = true;
     });
@@ -112,57 +113,6 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         textController: textController,
       ),
 
-      // Container(
-      //   color: Theme.of(context).scaffoldBackgroundColor,
-      //   padding: EdgeInsets.only(
-      //       bottom: MediaQuery.viewInsetsOf(context).bottom + 20,
-      //       left: 16,
-      //       right: 16,
-      //       top: 10),
-      //   child: Row(children: [
-      //     // 16.horizontalSpacing,
-      //     // InkWell(
-      //     //   onTap: () {},
-      //     //   child: Padding(
-      //     //     padding: const EdgeInsets.all(4.0),
-      //     //     child: Icon(Icons.camera_alt),
-      //     //   ),
-      //     // ),
-      //     // addHorizontalSpacing(4),
-      //     Expanded(
-      //       child: TextField(
-      //         controller: textController,
-      //         decoration: InputDecoration(
-      //             fillColor: context.theme.scaffoldBackgroundColor,
-      //             enabledBorder: OutlineInputBorder(
-      //               borderRadius: BorderRadius.circular(10),
-      //               borderSide: BorderSide(color: PreluraColors.primaryColor),
-      //             )),
-      //         onSubmitted: (value) {
-      //           final message = textController.text.trim();
-      //           if (message.isNotEmpty) {
-      //             ref.read(messagesProvider(id).notifier).sendMessage(message);
-      //             // ref.read(chatProvider.notifier).sendMessage(message);
-      //             textController.clear();
-      //           }
-      //           ;
-      //         },
-      //       ),
-      //     ),
-      //     // 16.horizontalSpacing
-      //     // IconButton(
-      //     //   icon: const Icon(Icons.send),
-      //     //   onPressed: () {
-      //     //     final message = textController.text.trim();
-      //     //     if (message.isNotEmpty) {
-      //     //       ref.read(messagesProvider(id).notifier).sendMessage(message);
-      //     //       // ref.read(chatProvider.notifier).sendMessage(message);
-      //     //       textController.clear();
-      //     //     }
-      //     //   },
-      //     // ),
-      //   ]),
-      // ),
       body: widget.isOffer
           ? OfferConversationBuilder(
               conversationId: widget.id,

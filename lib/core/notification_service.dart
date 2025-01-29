@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
+import 'package:prelura_app/controller/product/offer_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
@@ -112,6 +113,7 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       displayNotification(message);
+      _handleOnMessage(jsonEncode(message.data));
     });
   }
 
@@ -156,18 +158,49 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
         break;
       case 'OFFER':
         {
+          log(":::I entered the refresh room ::::: 0");
           if (HelperFunction.genRef != null &&
               HelperFunction.genRef!.read(inChatRoom)) {
+            log(":::I entered the refresh room ::::: 1");
             HelperFunction.genRef!.refresh(conversationProvider);
           }
+
           appRouter.push(
             ChatRoute(
               id: data['object_id'],
               username: data['title'].toString().toLowerCase(),
-              avatarUrl: jsonDecode(data["media_thumbnail"])["thumbnail"],
+              avatarUrl: data["media_thumbnail"] != null
+                  ? jsonDecode(data["media_thumbnail"])["thumbnail"]
+                  : "",
               isOffer: true,
             ),
           );
+          break;
+        }
+      default:
+    }
+  }
+
+  _handleOnMessage(String message) async {
+    final appRouter = ref.read(router);
+
+    final data = jsonDecode(message);
+    log("::::The notification data :::::: ${jsonEncode(data)}");
+    final page = data['page'];
+
+    switch (page) {
+      case 'OFFER':
+        {
+          log(":::I entered the refresh room ::::: 0");
+          if (HelperFunction.genRef != null &&
+              HelperFunction.genRef!.read(inChatRoom)) {
+            log(":::I entered the refresh room ::::: 1");
+            HelperFunction.genRef!
+                .read(
+                  offerProvider.notifier,
+                )
+                .refreshConversationInfo();
+          }
           break;
         }
       default:
