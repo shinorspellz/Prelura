@@ -16,7 +16,7 @@ class DiscountItem extends ConsumerStatefulWidget {
       required this.percentageValue});
   final String title;
   final bool isEditing;
-  StateProvider<String?> percentageValue;
+  StateProvider<String> percentageValue;
 
   @override
   _EditSaveExampleState createState() => _EditSaveExampleState();
@@ -45,6 +45,12 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
 
   @override
   Widget build(BuildContext context) {
+    final percentage = ref.watch(widget.percentageValue);
+
+    // Keep controller in sync with the latest percentageValue
+    if (_controller.text != percentage) {
+      _controller.text = percentage;
+    }
     return Center(
       // Wrap the Column with Center
       child: Column(

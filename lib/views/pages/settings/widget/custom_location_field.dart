@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:prelura_app/res/utils.dart';
@@ -5,7 +7,11 @@ import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 
 class CustomLocationField extends StatefulWidget {
   final TextEditingController locationController;
-  const CustomLocationField({super.key, required this.locationController});
+  const CustomLocationField(
+      {super.key,
+      required this.locationController,
+      required this.onDescriptionSelected});
+  final Function(String?) onDescriptionSelected;
 
   @override
   State<CustomLocationField> createState() => _CustomLocationFieldState();
@@ -49,20 +55,23 @@ class _CustomLocationFieldState extends State<CustomLocationField> {
       ),
       if (placePredictions.isNotEmpty) ...[
         ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: placePredictions.length,
-          itemBuilder: (context, index) => LocationListTile(
-            press: () {
-              setState(() {
-                widget.locationController.text =
-                    placePredictions[index].description!;
-                placePredictions = [];
-              });
-            },
-            location: placePredictions[index].description!,
-          ),
-        ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: placePredictions.length,
+            itemBuilder: (context, index) {
+              log(placePredictions[index].toString());
+              return LocationListTile(
+                press: () {
+                  widget.onDescriptionSelected(placePredictions[index].placeId);
+                  setState(() {
+                    widget.locationController.text =
+                        placePredictions[index].description!;
+                    placePredictions = [];
+                  });
+                },
+                location: placePredictions[index].description!,
+              );
+            }),
       ],
     ]);
   }

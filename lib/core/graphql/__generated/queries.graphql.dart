@@ -2782,6 +2782,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isVacationMode'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -3039,11 +3046,11 @@ class Query$GetUser$getUser {
     this.lastLogin,
     this.fullName,
     this.listing,
+    this.isVacationMode,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
     this.isFollowing,
-    this.isVacationMode,
     this.phone,
     this.$__typename = 'UserType',
   });
@@ -3063,11 +3070,11 @@ class Query$GetUser$getUser {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
+    final l$isVacationMode = json['isVacationMode'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
     final l$isFollowing = json['isFollowing'];
-    final l$isVacationMode = json['isVacationMode'];
     final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
     return Query$GetUser$getUser(
@@ -3088,6 +3095,7 @@ class Query$GetUser$getUser {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       listing: (l$listing as int?),
+      isVacationMode: (l$isVacationMode as bool?),
       location: l$location == null
           ? null
           : Query$GetUser$getUser$location.fromJson(
@@ -3095,7 +3103,6 @@ class Query$GetUser$getUser {
       noOfFollowing: (l$noOfFollowing as int?),
       noOfFollowers: (l$noOfFollowers as int?),
       isFollowing: (l$isFollowing as bool?),
-      isVacationMode: (l$isVacationMode as bool?),
       phone: l$phone == null
           ? null
           : Query$GetUser$getUser$phone.fromJson(
@@ -3132,6 +3139,8 @@ class Query$GetUser$getUser {
 
   final int? listing;
 
+  final bool? isVacationMode;
+
   final Query$GetUser$getUser$location? location;
 
   final int? noOfFollowing;
@@ -3139,8 +3148,6 @@ class Query$GetUser$getUser {
   final int? noOfFollowers;
 
   final bool? isFollowing;
-
-  final bool? isVacationMode;
 
   final Query$GetUser$getUser$phone? phone;
 
@@ -3176,6 +3183,8 @@ class Query$GetUser$getUser {
     _resultData['fullName'] = l$fullName;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
+    final l$isVacationMode = isVacationMode;
+    _resultData['isVacationMode'] = l$isVacationMode;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -3184,8 +3193,6 @@ class Query$GetUser$getUser {
     _resultData['noOfFollowers'] = l$noOfFollowers;
     final l$isFollowing = isFollowing;
     _resultData['isFollowing'] = l$isFollowing;
-    final l$isVacationMode = isVacationMode;
-    _resultData['isVacationMode'] = l$isVacationMode;
     final l$phone = phone;
     _resultData['phone'] = l$phone?.toJson();
     final l$$__typename = $__typename;
@@ -3209,11 +3216,11 @@ class Query$GetUser$getUser {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$listing = listing;
+    final l$isVacationMode = isVacationMode;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
     final l$isFollowing = isFollowing;
-    final l$isVacationMode = isVacationMode;
     final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -3231,11 +3238,11 @@ class Query$GetUser$getUser {
       l$lastLogin,
       l$fullName,
       l$listing,
+      l$isVacationMode,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
       l$isFollowing,
-      l$isVacationMode,
       l$phone,
       l$$__typename,
     ]);
@@ -3319,6 +3326,11 @@ class Query$GetUser$getUser {
     if (l$listing != lOther$listing) {
       return false;
     }
+    final l$isVacationMode = isVacationMode;
+    final lOther$isVacationMode = other.isVacationMode;
+    if (l$isVacationMode != lOther$isVacationMode) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -3337,11 +3349,6 @@ class Query$GetUser$getUser {
     final l$isFollowing = isFollowing;
     final lOther$isFollowing = other.isFollowing;
     if (l$isFollowing != lOther$isFollowing) {
-      return false;
-    }
-    final l$isVacationMode = isVacationMode;
-    final lOther$isVacationMode = other.isVacationMode;
-    if (l$isVacationMode != lOther$isVacationMode) {
       return false;
     }
     final l$phone = phone;
@@ -3390,11 +3397,11 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isVacationMode,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
     bool? isFollowing,
-    bool? isVacationMode,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   });
@@ -3430,11 +3437,11 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? listing = _undefined,
+    Object? isVacationMode = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
     Object? isFollowing = _undefined,
-    Object? isVacationMode = _undefined,
     Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -3466,6 +3473,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
+        isVacationMode: isVacationMode == _undefined
+            ? _instance.isVacationMode
+            : (isVacationMode as bool?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$GetUser$getUser$location?),
@@ -3478,9 +3488,6 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         isFollowing: isFollowing == _undefined
             ? _instance.isFollowing
             : (isFollowing as bool?),
-        isVacationMode: isVacationMode == _undefined
-            ? _instance.isVacationMode
-            : (isVacationMode as bool?),
         phone: phone == _undefined
             ? _instance.phone
             : (phone as Query$GetUser$getUser$phone?),
@@ -3527,11 +3534,11 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isVacationMode,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
     bool? isFollowing,
-    bool? isVacationMode,
     Query$GetUser$getUser$phone? phone,
     String? $__typename,
   }) =>

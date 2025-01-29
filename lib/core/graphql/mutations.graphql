@@ -157,7 +157,8 @@ mutation UpdateProfile(
   $username: String
   $location: LocationInputType
   $fcmToken: String
-  $isVacationMode: Boolean
+  $isVacationMode: Boolean,
+  $shippingAddress:ShippingAddressInputType
 ) {
   updateProfile(
     bio: $bio
@@ -176,6 +177,7 @@ mutation UpdateProfile(
     location: $location
     fcmToken: $fcmToken
     isVacationMode: $isVacationMode
+    shippingAddress: $shippingAddress
   ) {
     message
   }
