@@ -2,16 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/notification_service.dart';
-import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/notification_provider.dart';
 import 'package:prelura_app/controller/refresh_provider.dart';
+import 'package:prelura_app/core/notification_service.dart';
+import 'package:prelura_app/core/router/router.gr.dart';
+import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/pages/home.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
-import 'package:prelura_app/res/colors.dart';
 
-import '../../core/router/router.dart';
 import '../../controller/user/user_controller.dart';
+import '../../core/router/router.dart';
 import '../widgets/profile_picture.dart';
 
 final routePathProvider = StateProvider<int>(

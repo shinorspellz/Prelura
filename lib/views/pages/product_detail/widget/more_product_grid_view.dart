@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/widgets/display_section.dart';
-
 import 'package:prelura_app/res/utils.dart';
+import 'package:prelura_app/views/widgets/display_section.dart';
 
 class MoreProductGridView extends StatefulWidget {
   const MoreProductGridView({super.key});

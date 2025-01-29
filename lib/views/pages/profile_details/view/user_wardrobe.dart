@@ -51,11 +51,9 @@ final multiProducts =
 class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
   MultiProductsNotifier() : super({});
 
-  
   void addProduct(ProductModel product) {
     state = {...state, product};
   }
-
 
   void removeProduct(ProductModel product) {
     state = state.where((p) => p != product).toSet();
@@ -353,7 +351,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 16.0),
+                                          const EdgeInsets.only(left: 15.0),
                                       child: Text(
                                         widget.username != null
                                             ? 'Categories from this seller'

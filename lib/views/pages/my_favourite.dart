@@ -6,10 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/card.dart';
-import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:prelura_app/shared/mock_data.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../controller/product/product_provider.dart';
 import '../shimmers/my_favorite_shimmer.dart';

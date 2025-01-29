@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +9,6 @@ import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_checkbox.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
-import 'package:string_similarity/string_similarity.dart';
 
 import '../../../controller/product/provider/sell_item_provider.dart';
 import '../../../res/utils.dart';
@@ -325,21 +322,10 @@ class _BrandSelectionPageState extends ConsumerState<BrandSelectionPage> {
                 )
             : [];
 
-        List<Map<String, dynamic>> matches = searchKeyResults
-            .map((brand) => {
-                  'brand': brand,
-                  'similarity': StringSimilarity.compareTwoStrings(
-                      brand.name.toLowerCase(), title.toLowerCase())
-                })
-            .toList();
-
-        matches.sort((a, b) => b['similarity'].compareTo(a['similarity']));
-        final List<Brand> result =
-            matches.map((result) => result['brand'] as Brand).toList();
-
+        // Merge results and remove duplicates
         final combinedBrands = <dynamic>{
-          ...result.take(3),
-          ...suggestedBrands.take(2),
+          ...searchKeyResults,
+          ...suggestedBrands,
         }.toList();
 
         return combinedBrands.isNotEmpty

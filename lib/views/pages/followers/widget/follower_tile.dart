@@ -2,15 +2,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
+import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/user/user_model.dart';
+import 'package:prelura_app/res/helper_function.dart';
+import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
 import 'package:prelura_app/views/widgets/profile_picture.dart';
-import 'package:prelura_app/res/helper_function.dart';
+
 import '../../../../core/router/router.gr.dart';
 import '../../../../res/colors.dart';
-import 'package:prelura_app/res/utils.dart';
 import '../../Following/view/following_view.dart';
 import '../view/followers_view.dart';
 

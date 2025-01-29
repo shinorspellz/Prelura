@@ -98,7 +98,8 @@ class OrderCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "£ ${order.priceTotal.toString().formatCurrency()}",
+                    "£ ${order.priceTotal}",
+                    // "£ ${order.price}",
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall

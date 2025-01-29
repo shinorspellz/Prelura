@@ -280,79 +280,80 @@ class PaymentScreen extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        width: 100.w,
-        height: 150,
-        padding: EdgeInsets.only(
-          left: 16,
-          right: 16,
-          bottom: 20,
-        ),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.lock, color: PreluraColors.grey, size: 12),
-                addHorizontalSpacing(12),
-                Text("This is a secure encryption payment",
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w300,
-                        color: PreluraColors.grey)),
-              ],
-            ),
-            addVerticalSpacing(5),
-            AppButton(
-                height: 50,
-                loading: ref.watch(orderProvider).isLoading ||
-                    ref.watch(paymentProvider).isLoading,
-                width: double.infinity,
-                onTap: () async {
-                  await ref
-                      .read(orderProvider.notifier)
-                      .createOrder(int.parse(product.id));
-                  ref.read(orderProvider).whenOrNull(
-                        error: (e, _) => context
-                            .alert('An error occurred while creating order'),
-                        data: (order) async {
-                          if (order == null) return;
-                          await ref
-                              .read(paymentProvider.notifier)
-                              .createPaymentIntent(
-                                int.parse(order.id),
-                                Enum$PaymentMethodEnum.CARD,
-                              );
+      bottomSheet: GestureDetector(
+        onTap: () {
+          // Handle Apple Pay logic
+        },
+        child: Container(
+          width: 100.w,
+          height: 130,
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.lock, color: PreluraColors.grey, size: 12),
+                  addHorizontalSpacing(12),
+                  Text("This is a secure encryption payment",
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w300,
+                          color: PreluraColors.grey)),
+                ],
+              ),
+              addVerticalSpacing(16),
+              AppButton(
+                  height: 50,
+                  loading: ref.watch(orderProvider).isLoading ||
+                      ref.watch(paymentProvider).isLoading,
+                  width: double.infinity,
+                  onTap: () async {
+                    await ref
+                        .read(orderProvider.notifier)
+                        .createOrder(int.parse(product.id));
+                    ref.read(orderProvider).whenOrNull(
+                          error: (e, _) => context
+                              .alert('An error occured while creating order'),
+                          data: (order) async {
+                            if (order == null) return;
+                            await ref
+                                .read(paymentProvider.notifier)
+                                .createPaymentIntent(
+                                  int.parse(order.id),
+                                  Enum$PaymentMethodEnum.CARD,
+                                );
 
-                          ref.read(paymentProvider).whenOrNull(
-                                error: (e, _) => context.alert(
-                                    'An error occured while creating order'),
-                                data: (_) => context.router.popForced(),
-                                // context.alert('Product ordered complete'),
-                              );
-                        },
-                      );
+                            ref.read(paymentProvider).whenOrNull(
+                                  error: (e, _) => context.alert(
+                                      'An error occured while creating order'),
+                                  data: (_) =>
+                                      context.alert('Product ordered complete'),
+                                );
+                          },
+                        );
 
-                  // await ref
-                  //     .read(bookingPaymentNotifierProvider.notifier)
-                  //     .makePayment(paymentIntent['clientSecret']);
-                },
-                centerText: true,
-                text: "Pay by card"),
-            addVerticalSpacing(5),
-            AppButton(
-                height: 50,
-                // loading: ref.watch(orderProvider).isLoading ||
-                //     ref.watch(paymentProvider).isLoading,
-                width: double.infinity,
-                onTap: () async {},
-                centerText: true,
-                bgColor: Colors.black,
-                borderColor: Colors.transparent,
-                textWidget: Icon(Icons.apple, color: Colors.white),
-                text: "Pay"),
-          ],
-        ),
-      ), // Ensure proper contrast
+                    // await ref
+                    //     .read(bookingPaymentNotifierProvider.notifier)
+                    //     .makePayment(paymentIntent['clientSecret']);
+                  },
+                  centerText: true,
+                  text: "Pay by card"),
+              addVerticalSpacing(5),
+              AppButton(
+                  height: 50,
+                  // loading: ref.watch(orderProvider).isLoading ||
+                  //     ref.watch(paymentProvider).isLoading,
+                  width: double.infinity,
+                  onTap: () async {},
+                  centerText: true,
+                  bgColor: Colors.black,
+                  borderColor: Colors.transparent,
+                  textWidget: Icon(Icons.apple, color: Colors.white),
+                  text: "Pay"),
+            ],
+          ),
+        ), // Ensure proper contrast
+      ),
     );
   }
 }
