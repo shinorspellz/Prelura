@@ -41,6 +41,7 @@ class _AuthController extends AsyncNotifier<void> {
 
     state = await AsyncValue.guard(() async {
       await _repo.login(username, password);
+      ref.invalidate(notificationProvider);
     });
   }
 
@@ -66,6 +67,7 @@ class _AuthController extends AsyncNotifier<void> {
     state = await AsyncValue.guard(() async {
       ref.invalidate(notificationProvider);
       await _repo.logout();
+      ref.invalidate(notificationProvider);
     });
   }
 }

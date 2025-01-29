@@ -94,15 +94,12 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                           setState(() {
                             String numericValue =
                                 newValue.replaceAll(RegExp(r'[^0-9]'), '');
-                            log(numericValue);
-                            if (numericValue.isEmpty) {
-                              value = "0";
-                            } else {
-                              value = numericValue.length > 1
-                                  ? numericValue.replaceFirst(
-                                      RegExp(r'^0+'), '')
-                                  : numericValue;
-                            }
+                            log("numeric value is $numericValue");
+                            numericValue = numericValue.isEmpty
+                                ? "0"
+                                : int.parse(numericValue).toString();
+
+                            value = numericValue;
 
                             ref.read(widget.percentageValue.notifier).state =
                                 "$value%";

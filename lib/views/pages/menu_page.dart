@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/utils/theme.dart';
@@ -119,7 +120,11 @@ class MenuPage extends ConsumerWidget {
                   }),
               MenuCard(
                   title: "Multi-buy discounts",
-                  subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
+                  subtitle: ref.watch(userProvider).valueOrNull != null
+                      ? ref.watch(userProvider).valueOrNull!.isMultibuyEnabled!
+                          ? "on"
+                          : "off"
+                      : "off",
                   subtitleColor: PreluraColors.primaryColor,
                   rightArrow: false,
                   icon: RenderSvg(
