@@ -76,7 +76,8 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                         changePassword(context);
                       },
                       buttonTitle: "Reset Password",
-                      showLoadingIndicator: isLoading,
+                      showLoadingIndicator:
+                          ref.watch(accountNotifierProvider).isLoading,
                     ),
                     32.verticalSpacing
                   ],
@@ -104,7 +105,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   var confirmPassFN = FocusNode();
 
 //!========= Booleans =============\\
-  var isLoading = false;
+  // var isLoading = false;
 
 //!========= Functions =============\\
   Future<void> changePassword(BuildContext context) async {
@@ -123,33 +124,36 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         return;
       }
 
-      setState(() => isLoading = true);
-
       try {
-        ref.read(accountNotifierProvider.notifier).passwordChange(
+        await ref.read(accountNotifierProvider.notifier).passwordChange(
               currentPassword: currentPassEC.text,
               newPassword: confirmPassEC.text,
             );
 
         ref.read(accountNotifierProvider).whenOrNull(
           error: (e, _) {
-            setState(() => isLoading = false);
+            log("An error occured: $e");
+
             return context.alert('An error occurred: $e');
           },
           data: (_) async {
-            setState(() => isLoading = false);
-            if (context.mounted) {
-              HelperFunction.showToast(message: "Pasword updated!");
-              await ref.read(authProvider.notifier).logout();
-              ref.read(categoryNotifierProvider.notifier).clearCache();
-              ref.read(authProvider).whenOrNull(
-                    error: (e, _) => context.alert("An error occurred"),
-                  );
-            }
+            // if (context.mounted) {
+            HelperFunction.context = context;
+            HelperFunction.showToast(message: "Pasword updated!");
+            // context.alert("Pasword updated!");
+
+            //!==== Logout the user ====\\
+            // await Future.delayed(const Duration(seconds: 2), () async {
+            await ref.read(authProvider.notifier).logout();
+            ref.read(categoryNotifierProvider.notifier).clearCache();
+            ref.read(authProvider).whenOrNull(
+                  error: (e, _) => context.alert("An error occurred"),
+                );
+            // });
+            // }
           },
         );
       } catch (e, stackTrace) {
-        setState(() => isLoading = false);
         log("An error occured: $e", stackTrace: stackTrace);
         context.alert("Failed to update password: $e");
       }

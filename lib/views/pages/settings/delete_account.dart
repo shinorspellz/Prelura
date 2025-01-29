@@ -65,7 +65,8 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
                         deleteAccount(context);
                       },
                       buttonTitle: "Delete Account",
-                      showLoadingIndicator: isLoading,
+                      showLoadingIndicator:
+                          ref.watch(accountNotifierProvider).isLoading,
                     ),
                     32.verticalSpacing
                   ],
@@ -99,8 +100,6 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
         return;
       }
 
-      setState(() => isLoading = true);
-
       try {
         ref
             .read(accountNotifierProvider.notifier)
@@ -108,23 +107,23 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
 
         ref.read(accountNotifierProvider).whenOrNull(
           error: (e, _) {
-            setState(() => isLoading = false);
             return context.alert('An error occurred: $e');
           },
           data: (_) async {
-            setState(() => isLoading = false);
-            if (context.mounted) {
-              await ref.read(authProvider.notifier).logout();
-              ref.read(categoryNotifierProvider.notifier).clearCache();
-              ref.read(authProvider).whenOrNull(
-                    error: (e, _) => context.alert("An error occurred"),
-                  );
-              HelperFunction.showToast(message: "Account deleted!");
-            }
+            // if (context.mounted) {
+            HelperFunction.context = context;
+            HelperFunction.showToast(message: "Account deleted!");
+
+            //!==== Logout the user ====\\
+            await ref.read(authProvider.notifier).logout();
+            ref.read(categoryNotifierProvider.notifier).clearCache();
+            ref.read(authProvider).whenOrNull(
+                  error: (e, _) => context.alert("An error occurred"),
+                );
+            // }
           },
         );
       } catch (e, stackTrace) {
-        setState(() => isLoading = false);
         log("An error occured: $e", stackTrace: stackTrace);
         context.alert("Failed to delete account: $e");
       }
