@@ -10,6 +10,7 @@ import 'package:prelura_app/core/router/router.gr.dart';
 import 'package:prelura_app/core/utils/theme.dart';
 import 'package:prelura_app/model/chat/conversation_model.dart';
 import 'package:prelura_app/model/chat/offer_info.dart';
+import 'package:prelura_app/model/product/product_model.dart';
 import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/username.dart';
@@ -355,22 +356,6 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             if (status == "accepted" &&
                 amTheSeller &&
                 productInfo?.status != "SOLD") ...[
-              // addVerticalSpacing(20),
-              // Text(
-              //   "Please wait for buyer to make payment",
-              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //         color: PreluraColors.grey,
-              //         fontSize: 12,
-              //       ),
-              // ),
-              ///
-              ///
-              ///
-              // addVerticalSpacing(20),
-              // _buildCustomOfferButton(text: "Sold!"),
-              ///
-              ///
-              ///
               Padding(
                 padding: const EdgeInsets.only(
                   left: 20,
@@ -406,9 +391,7 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
                 ),
               ),
             ],
-            if (status == "accepted" &&
-                amTheSeller &&
-                productInfo?.status == "SOLD") ...[
+            if (status == "accepted" && productInfo?.status == "SOLD") ...[
               // addVerticalSpacing(20),
               // Text(
               //   "Please wait for buyer to make payment",
@@ -421,57 +404,43 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
               ///
               ///
               addVerticalSpacing(20),
-              _buildCustomOfferButton(text: "Sold!"),
+              _buildCustomOfferButton(text: amTheSeller ? "Sold!" : "Paid!"),
             ],
-            if (status == "accepted" &&
-                productInfo?.status == "SOLD" &&
-                !amTheSeller) ...[
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  top: 20,
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Payment made, please wait for the seller to send the item.",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: PreluraColors.grey,
-                          fontSize: 12,
-                        ),
-                  ),
-                ),
-              ),
-            ],
+            // if (status == "accepted" &&
+            //     productInfo?.status == "SOLD" &&
+            //     !amTheSeller) ...[
+            //   Padding(
+            //     padding: const EdgeInsets.only(
+            //       left: 20,
+            //       right: 20,
+            //       top: 20,
+            //     ),
+            //     child: Align(
+            //       alignment: Alignment.center,
+            //       child: Text(
+            //         "Payment made, please wait for the seller to send the item.",
+            //         textAlign: TextAlign.center,
+            //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            //               color: PreluraColors.grey,
+            //               fontSize: 12,
+            //             ),
+            //       ),
+            //     ),
+            //   ),
+            // ],
             if (status == "accepted" &&
                 !amTheSeller &&
                 productInfo?.status != "SOLD") ...[
-              // addVerticalSpacing(20),
-              // Text(
-              //   "Please wait for buyer to make payment",
-              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //         color: PreluraColors.grey,
-              //         fontSize: 12,
-              //       ),
-              // ),
               addVerticalSpacing(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(children: [
-                  // Expanded(
-                  //   child: Text(""),
-                  // ),
                   buildActionButton(
                     onTap: handleOfferBuying,
                     isLoading: isBuying,
                     text: "Buy now",
                     isDisabled: isBuying,
                   ),
-                  // Expanded(
-                  //   child: Text(""),
-                  // ),
                 ]),
               ),
             ],
@@ -482,12 +451,23 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
     isBuying = true;
     setState(() {});
     try {
-      int productId = int.parse(
-          ref.read(offerProvider).activeOffer!.offer!.products!.first.id!);
+      List<int> productIds = ref
+          .read(offerProvider)
+          .activeOffer!
+          .offer!
+          .products!
+          .map((productInfo) => int.parse(productInfo.id!))
+          .toList();
       final repo = ref.read(productRepo);
 
-      final productInfo = await repo.getProduct(productId);
-      context.router.push(PaymentRoute(product: productInfo));
+      List<ProductModel> products = [];
+
+      for (int id in productIds) {
+        ProductModel res = await repo.getProduct(id);
+        products.add(res);
+      }
+
+      context.router.push(PaymentRoute(products: products));
     } catch (e) {
       print("Error in handleOfferBuying: $e");
     } finally {

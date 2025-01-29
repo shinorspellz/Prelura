@@ -3,11 +3,8 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/controller/product/product_provider.dart';
 import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
-import 'package:prelura_app/core/router/app_startup.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/user/multi_buy_discounts/multi_buy_discounts_model.dart';
 import 'package:prelura_app/res/colors.dart';
@@ -17,10 +14,10 @@ import 'package:prelura_app/views/pages/settings/widget/discountItem.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:prelura_app/views/widgets/loading_widget.dart';
 import 'package:sizer/sizer.dart';
+
 import '../../../controller/user/user_controller.dart';
 import '../../widgets/app_bar.dart';
 import '../../widgets/app_button.dart';
-import '../../widgets/error_placeholder.dart';
 import '../../widgets/switch_with_text.dart';
 
 // Providers for discount values
@@ -111,7 +108,7 @@ class _MultiBuyDiscountScreenState
       ref.read(userMultiBuyerDiscountNotifierProvider).when(
           data: (result) {
             HelperFunction.context = context;
-            HelperFunction.showToast(message: "Created multi-buy discounts");
+            HelperFunction.showToast(message: "Saved");
             ref.refresh(userProvider.future);
 
             setState(() {

@@ -7677,6 +7677,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "isSeller",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,

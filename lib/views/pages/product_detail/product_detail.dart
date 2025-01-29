@@ -252,8 +252,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen>
                             Expanded(
                               child: AppButton(
                                 onTap: () {
-                                  context.router
-                                      .push(PaymentRoute(product: product));
+                                  context.router.push(PaymentRoute(
+                                    products: [product],
+                                  ));
                                 },
                                 text: "Buy now",
                                 textColor: PreluraColors.white,

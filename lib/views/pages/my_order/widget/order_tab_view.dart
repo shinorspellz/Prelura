@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prelura_app/controller/product/user_order.dart';
+import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/views/pages/my_order/widget/order_card.dart';
 
@@ -9,9 +9,10 @@ class OrdersTabView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userOrderState = ref.watch(userOrderProvider);
+    final userOrderState = ref.watch(orderProvider);
     bool isLoading = userOrderState.isLoading;
-    final List<OrderInfo> orders = userOrderState.userOrders ?? [];
+    final List<UserOrderInfo> orders = []; //HERE
+    // userOrderState.userOrders ?? [];
     if (isLoading) {
       return Center(
         child: CircularProgressIndicator.adaptive(),

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/chat/messages_provider.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
@@ -217,6 +218,17 @@ class OfferNotifier extends StateNotifier<OfferState> {
         });
       }
     }
+  }
+
+  refreshConversationInfo() async {
+    final List<ConversationModel> result =
+        await ref.read(chatRepo).getConversation();
+    updateOfferState({
+      "activeOffer": result.firstWhere(
+        (conversationInfo) => conversationInfo.id == state.activeOffer?.id,
+      ),
+    });
+    ref.invalidate(messagesProvider(state.activeOffer!.id.toString()));
   }
 }
 

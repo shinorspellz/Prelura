@@ -6,8 +6,6 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/queries.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/model/product/categories/category_model.dart';
-import 'package:prelura_app/model/product/order/order_model.dart';
-import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/model/product/product_model.dart';
 
 import '../../model/product/user_product_grouping/user_product_grouping.dart';
@@ -53,28 +51,28 @@ class ProductRepo {
     }
   }
 
-  Future<OrderModel> orderProduct({required int productId, int qty = 1}) async {
-    final response = await _client.mutate$CreateOrder(
-      Options$Mutation$CreateOrder(
-        variables: Variables$Mutation$CreateOrder(
-          productId: productId,
-        ),
-      ),
-    );
-
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        log(error, name: 'ProductRepo');
-        throw error;
-      }
-      log(response.exception.toString(), name: 'ProductRepo');
-      throw 'An error occured';
-    }
-
-    return OrderModel.fromJson(
-        response.parsedData!.createOrder!.order!.toJson());
-  }
+  // Future<OrderModel> orderProduct({required int productId, int qty = 1}) async {
+  //   final response = await _client.mutate$CreateOrder(
+  //     Options$Mutation$CreateOrder(
+  //       variables: Variables$Mutation$CreateOrder(
+  //         productId: productId,
+  //       ),
+  //     ),
+  //   );
+  //
+  //   if (response.hasException) {
+  //     if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+  //       final error = response.exception!.graphqlErrors.first.message;
+  //       log(error, name: 'ProductRepo');
+  //       throw error;
+  //     }
+  //     log(response.exception.toString(), name: 'ProductRepo');
+  //     throw 'An error occured';
+  //   }
+  //
+  //   return OrderModel.fromJson(
+  //       response.parsedData!.createOrder!.order!.toJson());
+  // }
 
   Future<void> updateProduct(Variables$Mutation$UpdateProduct params) async {
     final response = await _client.mutate$UpdateProduct(
@@ -136,40 +134,6 @@ class ProductRepo {
     log(":::::The product info is:: ${jsonEncode(response.parsedData!.product!.toJson())}");
 
     return ProductModel.fromJson(response.parsedData!.product!.toJson());
-  }
-
-  Future<UserOrders> getUserOrders({
-    int? pageCount,
-    int? pageNumber,
-    Input$OrderFiltersInput? filters,
-  }) async {
-    final response = await _client.query$UserOrders(
-      Options$Query$UserOrders(
-          variables: Variables$Query$UserOrders(
-        pageCount: pageCount,
-        pageNumber: pageNumber,
-        filters: filters,
-      )),
-    );
-
-    if (response.hasException) {
-      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
-        final error = response.exception!.graphqlErrors.first.message;
-        throw error;
-      }
-      log(response.exception.toString(), name: 'ProductRepo');
-      throw 'An error occured';
-    }
-
-    if (response.parsedData == null) {
-      log('Mising response', name: 'ProductRepo');
-      throw 'An error occured';
-    }
-    log(":::::The user orders info is:: ${jsonEncode(response.parsedData!.toJson())}");
-
-    return UserOrders.fromJson(response.parsedData!.toJson());
-    // .map((x) => ProductModel.fromJson(x!.toJson()))
-    // .toList();
   }
 
   Future<List<ProductModel>> getUserProduct(

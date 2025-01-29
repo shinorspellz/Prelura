@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prelura_app/views/pages/settings/profile_setting_view.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../res/colors.dart';
@@ -31,7 +30,7 @@ class LoadingWidget extends StatelessWidget {
             height: height,
             width: height,
             child: CupertinoActivityIndicator(
-              color: PreluraColors.primaryColor,
+              color: color ?? PreluraColors.primaryColor,
             ),
           ),
           if (text != null) ...[
