@@ -42,9 +42,10 @@ class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
 class _MultiBuyDiscountScreenState
     extends ConsumerState<MultiBuyDiscountScreen> {
   bool isEditing = false;
-  String fourItemDiscountValue = "0%";
-  String nineItemDiscountValue = "0%";
-  String aboveTenItemDiscountValue = "0%";
+  String fourItemDiscountValue = "5%";
+  String nineItemDiscountValue = "5%";
+  String aboveTenItemDiscountValue = "5%";
+  String? errorMessage;
 
   @override
   void initState() {
@@ -105,6 +106,24 @@ class _MultiBuyDiscountScreenState
       });
       return;
     }
+    final fourItemDiscountValue = int.parse(
+        removePercentageSymbol(ref.read(fourItemDiscountValueProvider)));
+    final nineItemDiscountValue = int.parse(
+        removePercentageSymbol(ref.read(nineItemDiscountValueProvider)));
+    final aboveTenItemDiscountValue = int.parse(
+        removePercentageSymbol(ref.read(aboveTenItemDiscountValueProvider)));
+    log(fourItemDiscountValue.toString());
+    log(ref.watch(nineItemDiscountValueProvider).toString());
+    log(ref.watch(aboveTenItemDiscountValueProvider).toString());
+
+    if (fourItemDiscountValue < 5 ||
+        nineItemDiscountValue < 5 ||
+        aboveTenItemDiscountValue < 5) {
+      setState(() {
+        errorMessage = "Minimum of 5% discount required";
+      });
+      return;
+    }
 
     if (multiBuyDiscounts == null || multiBuyDiscounts.isEmpty) {
       await _createDiscounts();
@@ -147,6 +166,34 @@ class _MultiBuyDiscountScreenState
 
       return;
     }
+  }
+
+  void clearErrorMessage() {
+    setState(() {
+      errorMessage = null;
+    });
+  }
+
+  Future<void> deActivateMultiBuy() async {
+    await ref
+        .read(userMultiBuyerDiscountNotifierProvider.notifier)
+        .deactivateMultiBuyDiscounts();
+    ref.read(userMultiBuyerDiscountNotifierProvider).when(
+        data: (result) {
+          HelperFunction.context = context;
+          HelperFunction.showToast(message: "Multi-buy discount off");
+          ref.refresh(userProvider.future);
+          ref.read(isSelectedProvider.notifier).state = false;
+          setState(() {
+            isEditing = !isEditing;
+          });
+        },
+        error: (e, _) {
+          context.alert("error occured $e");
+          log("error occured $e");
+        },
+        loading: () {});
+    ref.refresh(userMultiBuyDiscountProvider.future);
   }
 
   Future<void> _createDiscounts() async {
@@ -259,16 +306,19 @@ class _MultiBuyDiscountScreenState
                             title: "2-4 items",
                             isEditing: isEditing,
                             percentageValue: fourItemDiscountValueProvider,
+                            onChange: clearErrorMessage,
                           ),
                           DiscountItem(
                             title: "5-9 items",
                             isEditing: isEditing,
                             percentageValue: nineItemDiscountValueProvider,
+                            onChange: clearErrorMessage,
                           ),
                           DiscountItem(
                             title: "10+ items",
                             isEditing: isEditing,
                             percentageValue: aboveTenItemDiscountValueProvider,
+                            onChange: clearErrorMessage,
                           ),
                           32.verticalSpacing,
                           Padding(
@@ -286,6 +336,17 @@ class _MultiBuyDiscountScreenState
                               width: double.infinity,
                             ),
                           ),
+                          16.verticalSpacing,
+                          Text(
+                            errorMessage ?? "",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  fontSize: getDefaultSize(size: 12),
+                                  color: PreluraColors.error,
+                                ),
+                          )
                         ],
                       ),
             ],
