@@ -249,6 +249,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'shippingAddress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'listing'),
             alias: null,
             arguments: [],
@@ -491,6 +498,7 @@ class Query$ViewMe$viewMe {
     this.lastLogin,
     this.fullName,
     this.isMultibuyEnabled,
+    this.shippingAddress,
     this.listing,
     this.location,
     this.noOfFollowing,
@@ -515,6 +523,7 @@ class Query$ViewMe$viewMe {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$isMultibuyEnabled = json['isMultibuyEnabled'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$listing = json['listing'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
@@ -540,6 +549,7 @@ class Query$ViewMe$viewMe {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
+      shippingAddress: (l$shippingAddress as String?),
       listing: (l$listing as int?),
       location: l$location == null
           ? null
@@ -583,6 +593,8 @@ class Query$ViewMe$viewMe {
   final String? fullName;
 
   final bool? isMultibuyEnabled;
+
+  final String? shippingAddress;
 
   final int? listing;
 
@@ -628,6 +640,8 @@ class Query$ViewMe$viewMe {
     _resultData['fullName'] = l$fullName;
     final l$isMultibuyEnabled = isMultibuyEnabled;
     _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
     final l$location = location;
@@ -661,6 +675,7 @@ class Query$ViewMe$viewMe {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$isMultibuyEnabled = isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
     final l$listing = listing;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
@@ -683,6 +698,7 @@ class Query$ViewMe$viewMe {
       l$lastLogin,
       l$fullName,
       l$isMultibuyEnabled,
+      l$shippingAddress,
       l$listing,
       l$location,
       l$noOfFollowing,
@@ -771,6 +787,11 @@ class Query$ViewMe$viewMe {
     if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
       return false;
     }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
     final l$listing = listing;
     final lOther$listing = other.listing;
     if (l$listing != lOther$listing) {
@@ -842,6 +863,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? lastLogin,
     String? fullName,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -882,6 +904,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? isMultibuyEnabled = _undefined,
+    Object? shippingAddress = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
@@ -920,6 +943,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
         isMultibuyEnabled: isMultibuyEnabled == _undefined
             ? _instance.isMultibuyEnabled
             : (isMultibuyEnabled as bool?),
+        shippingAddress: shippingAddress == _undefined
+            ? _instance.shippingAddress
+            : (shippingAddress as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
         location: location == _undefined
             ? _instance.location
@@ -979,6 +1005,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? lastLogin,
     String? fullName,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -2789,6 +2816,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'shippingAddress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -3047,6 +3081,7 @@ class Query$GetUser$getUser {
     this.fullName,
     this.listing,
     this.isMultibuyEnabled,
+    this.shippingAddress,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
@@ -3072,6 +3107,7 @@ class Query$GetUser$getUser {
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
     final l$isMultibuyEnabled = json['isMultibuyEnabled'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
@@ -3098,6 +3134,7 @@ class Query$GetUser$getUser {
       fullName: (l$fullName as String?),
       listing: (l$listing as int?),
       isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
+      shippingAddress: (l$shippingAddress as String?),
       location: l$location == null
           ? null
           : Query$GetUser$getUser$location.fromJson(
@@ -3143,6 +3180,8 @@ class Query$GetUser$getUser {
   final int? listing;
 
   final bool? isMultibuyEnabled;
+
+  final String? shippingAddress;
 
   final Query$GetUser$getUser$location? location;
 
@@ -3190,6 +3229,8 @@ class Query$GetUser$getUser {
     _resultData['listing'] = l$listing;
     final l$isMultibuyEnabled = isMultibuyEnabled;
     _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -3224,6 +3265,7 @@ class Query$GetUser$getUser {
     final l$fullName = fullName;
     final l$listing = listing;
     final l$isMultibuyEnabled = isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
@@ -3247,6 +3289,7 @@ class Query$GetUser$getUser {
       l$fullName,
       l$listing,
       l$isMultibuyEnabled,
+      l$shippingAddress,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
@@ -3340,6 +3383,11 @@ class Query$GetUser$getUser {
     if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
       return false;
     }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -3412,6 +3460,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     String? fullName,
     int? listing,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -3453,6 +3502,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? fullName = _undefined,
     Object? listing = _undefined,
     Object? isMultibuyEnabled = _undefined,
+    Object? shippingAddress = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
@@ -3492,6 +3542,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         isMultibuyEnabled: isMultibuyEnabled == _undefined
             ? _instance.isMultibuyEnabled
             : (isMultibuyEnabled as bool?),
+        shippingAddress: shippingAddress == _undefined
+            ? _instance.shippingAddress
+            : (shippingAddress as String?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$GetUser$getUser$location?),
@@ -3554,6 +3607,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     String? fullName,
     int? listing,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,

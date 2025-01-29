@@ -588,3 +588,4 @@ mutation DeactivateMultibuyDiscounts{
     success
   }
 }
+
