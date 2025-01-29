@@ -164,7 +164,9 @@ class NotificationServiceProvider extends AsyncNotifier<void> {
             ChatRoute(
               id: data['object_id'],
               username: data['title'].toString().toLowerCase(),
-              avatarUrl: jsonDecode(data["media_thumbnail"])["thumbnail"],
+              avatarUrl: data["media_thumbnail"] != null
+                  ? jsonDecode(data["media_thumbnail"])["thumbnail"]
+                  : "",
               isOffer: true,
             ),
           );

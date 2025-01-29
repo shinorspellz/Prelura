@@ -33,6 +33,7 @@ class SendAnOfferScreen extends StatefulHookConsumerWidget {
 class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
   final TextEditingController textController = TextEditingController();
   bool canCreateOffer = false;
+  bool showErrorMessage = false;
   String? errorMessage;
   int activeProductIndex = 0;
 
@@ -57,12 +58,13 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
             _buildSuggestionButtons(fivePercentDiscount, tenPercentDiscount),
             SizedBox(height: 24),
             _buildPriceInputField(),
-            if (errorMessage != null) ...[
+            SizedBox(height: 32),
+            _buildSendOfferButton(),
+            if (showErrorMessage) ...[
+              // if (errorMessage != null) ...[
               SizedBox(height: 10),
               _buildErrorMessage(),
             ],
-            SizedBox(height: 32),
-            _buildSendOfferButton(),
           ],
         ),
       ),
@@ -397,6 +399,7 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           formatter: [DecimalTextInputFormatter(decimalRange: 2)],
           onChanged: (newValue) {
             errorMessage = null;
+            showErrorMessage = false;
             canCreateOffer = newValue.isNotEmpty;
             setState(() {});
 
@@ -439,6 +442,11 @@ class _SendAnOfferScreenState extends ConsumerState<SendAnOfferScreen> {
           offerState.processingTypes.contains("createOffer"),
       isDisabled: !canCreateOffer,
       onTap: () {
+        if (errorMessage != null) {
+          showErrorMessage = true;
+          setState(() {});
+          return;
+        }
         ref.read(offerProvider.notifier).createOffer(
               context,
               productIds: widget.products

@@ -356,22 +356,6 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             if (status == "accepted" &&
                 amTheSeller &&
                 productInfo?.status != "SOLD") ...[
-              // addVerticalSpacing(20),
-              // Text(
-              //   "Please wait for buyer to make payment",
-              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //         color: PreluraColors.grey,
-              //         fontSize: 12,
-              //       ),
-              // ),
-              ///
-              ///
-              ///
-              // addVerticalSpacing(20),
-              // _buildCustomOfferButton(text: "Sold!"),
-              ///
-              ///
-              ///
               Padding(
                 padding: const EdgeInsets.only(
                   left: 20,
@@ -449,30 +433,16 @@ class OfferSubCardBoxState extends ConsumerState<OfferSubCardBox> {
             if (status == "accepted" &&
                 !amTheSeller &&
                 productInfo?.status != "SOLD") ...[
-              // addVerticalSpacing(20),
-              // Text(
-              //   "Please wait for buyer to make payment",
-              //   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //         color: PreluraColors.grey,
-              //         fontSize: 12,
-              //       ),
-              // ),
               addVerticalSpacing(20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(children: [
-                  // Expanded(
-                  //   child: Text(""),
-                  // ),
                   buildActionButton(
                     onTap: handleOfferBuying,
                     isLoading: isBuying,
                     text: "Buy now",
                     isDisabled: isBuying,
                   ),
-                  // Expanded(
-                  //   child: Text(""),
-                  // ),
                 ]),
               ),
             ],
