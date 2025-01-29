@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/controller/auth/auth_controller.dart';
+import 'package:prelura_app/controller/product/categories_provider.dart';
 import 'package:prelura_app/controller/user/account_controller.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/res/helper_function.dart';
@@ -74,7 +76,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                         resetPassword(context);
                       },
                       buttonTitle: "Reset Password",
-                      // showLoadingIndicator: isLoading,
+                      showLoadingIndicator: isLoading,
                     ),
                     32.verticalSpacing
                   ],
@@ -134,12 +136,15 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
             setState(() => isLoading = false);
             return context.alert('An error occurred: $e');
           },
-          data: (_) {
+          data: (_) async {
             setState(() => isLoading = false);
             if (context.mounted) {
-              Navigator.pop(context);
-              HelperFunction.context = context;
               HelperFunction.showToast(message: "Pasword updated!");
+              await ref.read(authProvider.notifier).logout();
+              ref.read(categoryNotifierProvider.notifier).clearCache();
+              ref.read(authProvider).whenOrNull(
+                    error: (e, _) => context.alert("An error occurred"),
+                  );
             }
           },
         );
