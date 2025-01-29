@@ -64,7 +64,7 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
                     Spacer(),
                     PreluraButtonWithLoader(
                       onPressed: () async {
-                        resetPassword(context);
+                        deleteAccount(context);
                       },
                       buttonTitle: "Delete Account",
                       showLoadingIndicator: isLoading,
@@ -94,7 +94,7 @@ class _DeleteAccountState extends ConsumerState<DeleteAccount> {
   var isLoading = false;
 
 //!========= Functions =============\\
-  Future<void> resetPassword(BuildContext context) async {
+  Future<void> deleteAccount(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       if (currentPassEC.text.isEmpty) {
         context.alert('Current password cannot be empty');
