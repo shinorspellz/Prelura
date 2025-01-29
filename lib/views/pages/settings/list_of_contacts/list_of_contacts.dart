@@ -42,60 +42,65 @@ class _ListOfContactsState extends State<ListOfContacts> {
       body: SafeArea(
         child: isLoading
             ? const Center(child: CircularProgressIndicator.adaptive())
-            : ListView.separated(
-                controller: scrollController,
-                itemCount: displayedContacts.length + (hasMoreContacts ? 1 : 0),
-                separatorBuilder: (context, index) =>
-                    const Divider(thickness: 0.4),
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  // Show loading indicator at the bottom when loading more
-                  if (index >= displayedContacts.length) {
-                    return const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child:
-                          Center(child: CircularProgressIndicator.adaptive()),
-                    );
-                  }
+            : Scrollbar(
+                child: ListView.separated(
+                  controller: scrollController,
+                  itemCount:
+                      displayedContacts.length + (hasMoreContacts ? 1 : 0),
+                  separatorBuilder: (context, index) =>
+                      const Divider(thickness: 0.4),
+                  itemBuilder: (context, index) {
+                    // Show loading indicator at the bottom when loading more
+                    if (index >= displayedContacts.length) {
+                      return const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child:
+                            Center(child: CircularProgressIndicator.adaptive()),
+                      );
+                    }
 
-                  final contact = displayedContacts[index];
-                  final phoneNumber = contact.phones.isNotEmpty
-                      ? contact.phones.first.number
-                      : null;
-                  final isSelected = selectedContacts.contains(phoneNumber);
+                    final contact = displayedContacts[index];
+                    final phoneNumber = contact.phones.isNotEmpty
+                        ? contact.phones.first.number
+                        : null;
+                    final isSelected = selectedContacts.contains(phoneNumber);
 
-                  return ListTile(
-                    onTap: phoneNumber?.isNotEmpty == true
-                        ? () => toggleSelection(contact)
-                        : null,
-                    enabled: phoneNumber?.isNotEmpty == true,
-                    dense: true,
-                    trailing: Radio.adaptive(
-                      value: true,
-                      groupValue: isSelected,
-                      activeColor: colorScheme.primary,
-                      onChanged: phoneNumber?.isNotEmpty == true
-                          ? (value) => toggleSelection(contact)
+                    return ListTile(
+                      onTap: phoneNumber?.isNotEmpty == true
+                          ? () => toggleSelection(contact)
                           : null,
-                    ),
-                    title: Text(
-                      contact.structuredName?.displayName ??
-                          contact.displayName,
-                      textAlign: TextAlign.start,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: phoneNumber?.isNotEmpty == true
-                                ? Theme.of(context).textTheme.bodyMedium?.color
-                                : Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.color!
-                                    .withOpacity(0.5),
-                            fontSize: 14,
-                          ),
-                    ),
-                  );
-                },
+                      enabled: phoneNumber?.isNotEmpty == true,
+                      dense: true,
+                      trailing: Radio.adaptive(
+                        value: true,
+                        groupValue: isSelected,
+                        activeColor: colorScheme.primary,
+                        onChanged: phoneNumber?.isNotEmpty == true
+                            ? (value) => toggleSelection(contact)
+                            : null,
+                      ),
+                      title: Text(
+                        contact.structuredName?.displayName ??
+                            contact.displayName,
+                        textAlign: TextAlign.start,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: phoneNumber?.isNotEmpty == true
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.color
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.color!
+                                      .withOpacity(0.5),
+                              fontSize: 14,
+                            ),
+                      ),
+                    );
+                  },
+                ),
               ),
       ),
       bottomNavigationBar: selectedContacts.isEmpty
