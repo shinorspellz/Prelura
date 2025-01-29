@@ -28,6 +28,11 @@ enum AccountsUserPreferredCurrencyChoices {
   GBP
 }
 
+type AddPaymentMethod {
+  success: Boolean
+  paymentMethod: PaymentMethodType
+}
+
 type AdminBannerType {
   id: Int
   title: String
@@ -278,6 +283,11 @@ type DeleteNotification {
   success: Boolean
 }
 
+type DeletePaymentMethod {
+  success: Boolean
+  error: String
+}
+
 type DeleteProduct {
   success: Boolean
   message: String
@@ -329,6 +339,25 @@ enum FileTypeEnum {
   BANNER
   PRODUCT
   PROFILE_PICTURE
+}
+
+type FlagProduct {
+  message: String
+  success: Boolean
+}
+
+type FlagUser {
+  message: String
+  success: Boolean
+}
+
+enum FlagUserReasonEnum {
+  TERMS_VIOLATION
+  SPAM_ACTIVITY
+  INAPPROPRIATE_CONTENT
+  HARASSMENT
+  LEGAL_REQUEST
+  OTHER
 }
 
 type FollowUser {
@@ -457,10 +486,15 @@ type Mutation {
   createBanner(bannerUrl: [String]!, isActive: Boolean!, season: SeasonEnum!, title: String!): CreateBanner
   updateBanner(banner: BannerInputType, id: ID!, isActive: Boolean, season: SeasonEnum, title: String): UpdateBanner
   deleteBanner(id: ID!): DeleteBanner
+  flagProduct(flagType: ProductFlagTypeEnum!, id: ID!, notes: String, reason: ProductFlagReasonEnum!): FlagProduct
+  flagUser(id: ID!, notes: String, reason: FlagUserReasonEnum!): FlagUser
   createPaymentIntent(orderId: Int!, paymentMethod: PaymentMethodEnum!): CreatePaymentIntent
 
   """Confirm a payment"""
   confirmPayment(paymentRef: String!): ConfirmPayment
+  addPaymentMethod(paymentMethodId: String!): AddPaymentMethod
+  setDefaultPaymentMethod(paymentMethodId: String!): SetDefaultPaymentMethod
+  deletePaymentMethod(paymentMethodId: String!): DeletePaymentMethod
   createChat(recipient: String!): CreateChat
   deleteMessage(messageId: Int!): DeleteMessage
   deleteConversation(conversationId: Int!): DeleteConversation
@@ -844,6 +878,21 @@ enum PaymentMethodEnum {
   GOOGLE_PAY
 }
 
+type PaymentMethodType {
+  id: ID!
+  user: UserNode!
+  paymentType: String!
+  last4Digits: String!
+  cardBrand: String
+  expMonth: String
+  expYear: String
+  bankName: String
+  isDefault: Boolean!
+  deleted: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 """An enumeration."""
 enum PaymentsPaymentPaymentMethodChoices {
   """Bank Transfer"""
@@ -920,6 +969,21 @@ input ProductFiltersInput {
   discountPrice: Boolean
   hashtags: [String]
   colors: [String]
+}
+
+enum ProductFlagReasonEnum {
+  COMMUNITY_GUIDELINES
+  INAPPROPRIATE_CONTENT
+  COPYRIGHT_INFRINGEMENT
+  DUPLICATE_IMAGES
+  SPAM
+  OTHER
+}
+
+enum ProductFlagTypeEnum {
+  HIDDEN
+  REMOVED
+  FLAGGED
 }
 
 enum ProductGroupingEnum {
@@ -1444,6 +1508,11 @@ type SendSmsOtp {
   message: String
 }
 
+type SetDefaultPaymentMethod {
+  success: Boolean
+  error: String
+}
+
 input ShippingAddressInputType {
   address: String!
   city: String!
@@ -1678,6 +1747,7 @@ type UserNode implements Node {
   usernameLastUpdated: DateTime
   fcmTokens: [String!]!
   preferredCurrency: AccountsUserPreferredCurrencyChoices!
+  stripeCustomerId: String
   shippingAddress: JSONString!
   meta: JSONString!
   searchhistorySet: [SearchHistoryType!]!
@@ -1694,6 +1764,7 @@ type UserNode implements Node {
   participant2: [ConversationType!]!
   messageSender: [MessageType!]!
   paymentSet: [PaymentType!]!
+  paymentmethodSet: [PaymentMethodType!]!
   pk: Int
   archived: Boolean
   verified: Boolean
@@ -1724,6 +1795,7 @@ type UserType {
   noOfFollowers: Int
   preferredCurrency: CurrencyEnum
   shippingAddress: JSONString
+  isMultibuyEnabled: Boolean
 }
 
 type VerifyEmail {

@@ -29,6 +29,7 @@ class UserModel with _$UserModel {
       bool? isFollowing,
       int? noOfFollowers,
       ShippingAddress? shippingAddress,
+      bool? isMultibuyEnabled,
       int? noOfFollowing}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

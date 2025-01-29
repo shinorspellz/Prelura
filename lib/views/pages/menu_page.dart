@@ -120,16 +120,11 @@ class MenuPage extends ConsumerWidget {
                   }),
               MenuCard(
                   title: "Multi-buy discounts",
-                  subtitle:
-                      ref.watch(userMultiBuyDiscountProvider).valueOrNull !=
-                              null
-                          ? ref
-                                  .watch(userMultiBuyDiscountProvider)
-                                  .valueOrNull!
-                                  .isNotEmpty
-                              ? "on"
-                              : "off"
-                          : "off",
+                  subtitle: ref.watch(userProvider).valueOrNull != null
+                      ? ref.watch(userProvider).valueOrNull!.isMultibuyEnabled!
+                          ? "on"
+                          : "off"
+                      : "off",
                   subtitleColor: PreluraColors.primaryColor,
                   rightArrow: false,
                   icon: RenderSvg(

@@ -44,6 +44,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ShippingAddress.fromJson(
               json['shippingAddress'] as Map<String, dynamic>),
+      isMultibuyEnabled: json['isMultibuyEnabled'] as bool?,
       noOfFollowing: (json['noOfFollowing'] as num?)?.toInt(),
     );
 
@@ -71,6 +72,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'isFollowing': instance.isFollowing,
       'noOfFollowers': instance.noOfFollowers,
       'shippingAddress': instance.shippingAddress,
+      'isMultibuyEnabled': instance.isMultibuyEnabled,
       'noOfFollowing': instance.noOfFollowing,
     };
 
