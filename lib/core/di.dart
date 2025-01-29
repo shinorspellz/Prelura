@@ -10,6 +10,7 @@ import 'package:prelura_app/controller/auth/auth_controller.dart';
 import 'package:prelura_app/controller/chat/conversations_provider.dart';
 import 'package:prelura_app/controller/product/brands_provider.dart';
 import 'package:prelura_app/controller/product/product_provider.dart';
+import 'package:prelura_app/controller/user/multi_buy_discount_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
 import 'package:prelura_app/core/network/network.dart';
 import 'package:prelura_app/core/router/router.dart';
@@ -57,6 +58,7 @@ final appStartUpProvider = FutureProvider((ref) async {
       ref.read(brandsProvider.future),
       ref.read(categoryProvider.future),
       ref.read(notificationProvider.future),
+      ref.read(userMultiBuyDiscountProvider.future),
     ]);
     ref.read(conversationProvider.future);
 
