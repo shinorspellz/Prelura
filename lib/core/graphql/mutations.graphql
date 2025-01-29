@@ -158,6 +158,7 @@ mutation UpdateProfile(
   $location: LocationInputType
   $fcmToken: String
   $isVacationMode: Boolean
+  $shippingAddress: ShippingAddressInputType
 ) {
   updateProfile(
     bio: $bio
@@ -176,6 +177,7 @@ mutation UpdateProfile(
     location: $location
     fcmToken: $fcmToken
     isVacationMode: $isVacationMode
+    shippingAddress: $shippingAddress
   ) {
     message
   }
@@ -464,11 +466,7 @@ mutation UpdateNotificationPreference(
   }
 }
 
-mutation CreateOrder(
-  $productId: Int!
-  $productIds: [Int]
-  $shippingFee: Float
-) {
+mutation CreateOrder($productId: Int, $productIds: [Int], $shippingFee: Float) {
   createOrder(
     productId: $productId
     productIds: $productIds
@@ -484,13 +482,46 @@ mutation CreateOrder(
       status
       updatedAt
       products {
-        id
-        imagesUrl
-        name
-        size {
+        brand {
           id
           name
         }
+        category {
+          id
+          name
+        }
+        imagesUrl
+        id
+        hashtags
+        discountPrice
+        description
+        condition
+        createdAt
+        customBrand
+        price
+        name
+        likes
+        isFeatured
+        views
+        status
+        style
+        updatedAt
+        userLiked
+        parcelSize
+        materials {
+          id
+          name
+        }
+        color
+      }
+      user {
+        lastName
+        thumbnailUrl
+        username
+        profilePictureUrl
+        shippingAddress
+        fullName
+        displayName
       }
     }
     success
@@ -578,11 +609,10 @@ mutation PasswordChange($password: String!, $newPassword: String!) {
     newPassword1: $newPassword
     newPassword2: $newPassword
   ) {
-    success
     errors
+    success
   }
 }
-
 mutation DeleteAccount($password: String!) {
   deleteAccount(password: $password) {
     errors

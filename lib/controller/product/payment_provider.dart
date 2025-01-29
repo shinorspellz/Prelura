@@ -6,7 +6,8 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:prelura_app/core/di.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 
-final paymentProvider = AsyncNotifierProvider<PaymentProvider, String?>(PaymentProvider.new);
+final paymentProvider =
+    AsyncNotifierProvider<PaymentProvider, String?>(PaymentProvider.new);
 
 class PaymentProvider extends AsyncNotifier<String?> {
   late final _repo = ref.read(paymentRepo);
@@ -14,16 +15,18 @@ class PaymentProvider extends AsyncNotifier<String?> {
   @override
   FutureOr<String?> build() => null;
 
-  Future<void> createPaymentIntent(int orderId, Enum$PaymentMethodEnum paymentMethod) async {
+  Future<void> createPaymentIntent(
+      int orderId, Enum$PaymentMethodEnum paymentMethod) async {
     state = AsyncLoading();
 
     state = await AsyncValue.guard(
       () async {
-        final response = await _repo.createPaymentIntent(orderId, paymentMethod);
+        final response =
+            await _repo.createPaymentIntent(orderId, paymentMethod);
         final (clientSecret, paymentRef) = response;
+        log(paymentRef, name: 'PaymentProvider1');
         await _makePayment(clientSecret);
-
-        log(paymentRef, name: 'PaymentProvider');
+        log(paymentRef, name: 'PaymentProvider2');
 
         final confirmation = await _repo.confirmPayment(paymentRef);
         return confirmation;

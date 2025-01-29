@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 
@@ -28,12 +30,28 @@ class UserModel with _$UserModel {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      @JsonKey(
+          fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,
       bool? isMultibuyEnabled,
       int? noOfFollowing}) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+}
+
+ShippingAddress? _shippingAddressFromJson(dynamic jsonString) {
+  if (jsonString is String) {
+    final decodedJson = jsonDecode(jsonString);
+    return ShippingAddress.fromJson(decodedJson);
+  } else if (jsonString is Map<String, dynamic>) {
+    return ShippingAddress.fromJson(jsonString);
+  }
+  return null;
+}
+
+String? _shippingAddressToJson(ShippingAddress? address) {
+  return address != null ? jsonEncode(address.toJson()) : null;
 }
 
 @freezed
@@ -61,10 +79,10 @@ class LocationInputType with _$LocationInputType {
 @freezed
 class ShippingAddress with _$ShippingAddress {
   const factory ShippingAddress({
-    required String city,
-    required String address,
-    required String country,
-    required String postcode,
+    required dynamic city,
+    required dynamic address,
+    required dynamic country,
+    required dynamic postcode,
   }) = _ShippingAddress;
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) =>

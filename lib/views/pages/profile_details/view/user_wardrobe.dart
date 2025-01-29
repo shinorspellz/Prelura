@@ -195,6 +195,8 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
     return user.maybeWhen(
         orElse: () => LoadingWidget(),
         error: (error, stackTrace) {
+          log("$error");
+          log("$stackTrace");
           return ErrorPlaceholder(
             error: "An error occured",
             onTap: () {
@@ -480,7 +482,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           //     },
                           //   )
                           // ],
-                          if (!isCurrentUser)
+                          if (!isCurrentUser && user.isMultibuyEnabled == true)
                             PreluraSwitchWithText(
                                 titleText: 'Multi-buy:',
                                 value: ref.watch(buyerMultiBuyDiscount),

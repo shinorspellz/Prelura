@@ -214,6 +214,7 @@ class _ProfileSettingScreenState extends ConsumerState<ProfileSettingScreen> {
 
                 CustomLocationField(
                   locationController: locationController,
+                  onDescriptionSelected: (value) {},
                 ),
               ],
             ),
@@ -331,7 +332,7 @@ Widget buildAuthTextField(
     onChanged: onChanged,
     controller: controller,
     enabled: enabled,
-    minLines: minLines,
+    // minLines: minLines,
     maxLength: maxLength,
     maxLines: maxLines,
     textInputAction: textInputAction,

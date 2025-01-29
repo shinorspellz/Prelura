@@ -279,7 +279,8 @@ class UserRepo {
   }
 
   Future<void> deactivateUserMultiBuyDiscounts() async {
-    final response = await _client.mutate$DeactivateMultibuyDiscounts();
+    final response = await _client.mutate$DeactivateMultibuyDiscounts(
+        Options$Mutation$DeactivateMultibuyDiscounts());
     if (response.hasException) {
       if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
         final error = response.exception!.graphqlErrors.first.message;

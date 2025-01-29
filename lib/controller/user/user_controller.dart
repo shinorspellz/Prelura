@@ -97,6 +97,7 @@ class _UserController extends AsyncNotifier<void> {
       String? postCode,
       String? username,
       Input$LocationInputType? location,
+      Input$ShippingAddressInputType? shippingAddress,
       String? fcmToken,
       bool? isVacationMode}) async {
     state = const AsyncLoading();
@@ -119,6 +120,7 @@ class _UserController extends AsyncNotifier<void> {
             location: location,
             fcmToken: fcmToken,
             isVacationMode: isVacationMode,
+            shippingAddress: shippingAddress
           ),
         );
 

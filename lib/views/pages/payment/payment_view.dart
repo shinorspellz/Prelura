@@ -4,10 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prelura_app/controller/product/order_provider.dart';
 import 'package:prelura_app/controller/product/payment_provider.dart';
 import 'package:prelura_app/controller/user/user_controller.dart';
-import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/router/router.gr.dart';
-import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/product_model.dart';
+import 'package:prelura_app/model/user/user_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/views/widgets/app_bar.dart';
 import 'package:prelura_app/views/widgets/app_button.dart';
@@ -24,14 +23,18 @@ final selectedDeliveryOptionProvider = StateProvider<int>((ref) => 1);
 
 @RoutePage()
 class PaymentScreen extends ConsumerWidget {
-  const PaymentScreen({super.key, required this.product});
+  final List<ProductModel> products;
+  const PaymentScreen({
+    super.key,
+    required this.products,
+  });
 
-  final ProductModel product;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ProductModel productInfo = products.first;
     // Read the current delivery option
     final selectedDeliveryOption = ref.watch(selectedDeliveryOptionProvider);
-    final user = ref.watch(userProvider).value;
+    final UserModel? user = ref.watch(userProvider).value;
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -123,24 +126,25 @@ class PaymentScreen extends ConsumerWidget {
                       onTap: () {
                         final user = ref.read(userProvider).valueOrNull;
 
-                        if (user?.username == product.seller.username) {
+                        if (user?.username == productInfo.seller.username) {
                           context.router.push(UserProfileDetailsRoute());
                         } else {
                           context.router.push(ProfileDetailsRoute(
-                              username: product.seller.username));
+                              username: productInfo.seller.username));
                         }
                       },
                       child: Row(
                         children: [
                           ProfilePictureWidget(
-                            profilePicture: product.seller.profilePictureUrl,
-                            username: product.seller.username,
+                            profilePicture:
+                                productInfo.seller.profilePictureUrl,
+                            username: productInfo.seller.username,
                             width: 40,
                             height: 40,
                           ),
                           addHorizontalSpacing(8),
                           Text(
-                            product.seller.username,
+                            productInfo.seller.username,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -280,80 +284,100 @@ class PaymentScreen extends ConsumerWidget {
           ],
         ),
       ),
-      bottomSheet: GestureDetector(
-        onTap: () {
-          // Handle Apple Pay logic
-        },
-        child: Container(
-          width: 100.w,
-          height: 130,
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.lock, color: PreluraColors.grey, size: 12),
-                  addHorizontalSpacing(12),
-                  Text("This is a secure encryption payment",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.w300,
-                          color: PreluraColors.grey)),
-                ],
-              ),
-              addVerticalSpacing(16),
-              AppButton(
-                  height: 50,
-                  loading: ref.watch(orderProvider).isLoading ||
-                      ref.watch(paymentProvider).isLoading,
-                  width: double.infinity,
-                  onTap: () async {
-                    await ref
-                        .read(orderProvider.notifier)
-                        .createOrder(int.parse(product.id));
-                    ref.read(orderProvider).whenOrNull(
-                          error: (e, _) => context
-                              .alert('An error occured while creating order'),
-                          data: (order) async {
-                            if (order == null) return;
-                            await ref
-                                .read(paymentProvider.notifier)
-                                .createPaymentIntent(
-                                  int.parse(order.id),
-                                  Enum$PaymentMethodEnum.CARD,
-                                );
+      bottomNavigationBar: Container(
+        width: 100.w,
+        height: 150,
+        padding: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: 20,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.lock, color: PreluraColors.grey, size: 12),
+                addHorizontalSpacing(12),
+                Text("This is a secure encryption payment",
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w300,
+                        color: PreluraColors.grey)),
+              ],
+            ),
+            addVerticalSpacing(5),
+            AppButton(
+                height: 50,
+                loading: ref.watch(orderProvider).isLoading ||
+                    ref.watch(paymentProvider).isLoading,
+                width: double.infinity,
+                onTap: () async {
+                  await ref.read(orderProvider.notifier).createOrder(
+                        context,
+                        productId: products.length == 1
+                            ? int.parse(productInfo.id)
+                            : null,
+                        productIds: products.length == 1
+                            ? null
+                            : products
+                                .map((product) => int.parse(
+                                      product.id,
+                                    ))
+                                .toList(),
+                      );
 
-                            ref.read(paymentProvider).whenOrNull(
-                                  error: (e, _) => context.alert(
-                                      'An error occured while creating order'),
-                                  data: (_) =>
-                                      context.alert('Product ordered complete'),
-                                );
-                          },
-                        );
+                  ///
+                  ///
+                  ///
+                  // ref.read(orderProvider).whenOrNull(
+                  //       error: (e, _) => context
+                  //           .alert('An error occurred while creating order'),
+                  //       data: (order) async {
+                  //         if (order == null) return;
+                  //         await ref
+                  //             .read(paymentProvider.notifier)
+                  //             .createPaymentIntent(
+                  //               int.parse(order.id),
+                  //               Enum$PaymentMethodEnum.CARD,
+                  //             );
+                  //
+                  //         ref.read(paymentProvider).whenOrNull(
+                  //               error: (e, _) => context.alert(
+                  //                   'An error occured while creating order'),
+                  //               data: (_) => context.router.popForced(),
+                  //               // context.alert('Product ordered complete'),
+                  //             );
+                  //       },
+                  //     );
 
-                    // await ref
-                    //     .read(bookingPaymentNotifierProvider.notifier)
-                    //     .makePayment(paymentIntent['clientSecret']);
-                  },
-                  centerText: true,
-                  text: "Pay by card"),
-              addVerticalSpacing(5),
-              AppButton(
-                  height: 50,
-                  // loading: ref.watch(orderProvider).isLoading ||
-                  //     ref.watch(paymentProvider).isLoading,
-                  width: double.infinity,
-                  onTap: () async {},
-                  centerText: true,
-                  bgColor: Colors.black,
-                  borderColor: Colors.transparent,
-                  textWidget: Icon(Icons.apple, color: Colors.white),
-                  text: "Pay"),
-            ],
-          ),
-        ), // Ensure proper contrast
-      ),
+                  ///
+                  ///
+                  ///
+                  // await ref
+                  //     .read(bookingPaymentNotifierProvider.notifier)
+                  //     .makePayment(paymentIntent['clientSecret']);
+                },
+                centerText: true,
+                text: "Pay by card"),
+            addVerticalSpacing(5),
+            AppButton(
+                height: 50,
+                // loading: ref.watch(orderProvider).isLoading ||
+                //     ref.watch(paymentProvider).isLoading,
+                width: double.infinity,
+                onTap: () async {},
+                centerText: true,
+                bgColor: Colors.black,
+                textColor: Colors.white,
+                borderColor: Colors.transparent,
+                textWidget: Icon(
+                  Icons.apple,
+                  color: Colors.white,
+                ),
+                text: "Pay"),
+          ],
+        ),
+      ), // Ensure proper contrast
     );
   }
 }

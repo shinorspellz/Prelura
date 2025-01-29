@@ -40,10 +40,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       isVacationMode: json['isVacationMode'] as bool?,
       isFollowing: json['isFollowing'] as bool?,
       noOfFollowers: (json['noOfFollowers'] as num?)?.toInt(),
-      shippingAddress: json['shippingAddress'] == null
-          ? null
-          : ShippingAddress.fromJson(
-              json['shippingAddress'] as Map<String, dynamic>),
+      shippingAddress: _shippingAddressFromJson(json['shippingAddress']),
       isMultibuyEnabled: json['isMultibuyEnabled'] as bool?,
       noOfFollowing: (json['noOfFollowing'] as num?)?.toInt(),
     );
@@ -71,7 +68,7 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'isVacationMode': instance.isVacationMode,
       'isFollowing': instance.isFollowing,
       'noOfFollowers': instance.noOfFollowers,
-      'shippingAddress': instance.shippingAddress,
+      'shippingAddress': _shippingAddressToJson(instance.shippingAddress),
       'isMultibuyEnabled': instance.isMultibuyEnabled,
       'noOfFollowing': instance.noOfFollowing,
     };
@@ -107,10 +104,10 @@ Map<String, dynamic> _$$LocationInputTypeImplToJson(
 _$ShippingAddressImpl _$$ShippingAddressImplFromJson(
         Map<String, dynamic> json) =>
     _$ShippingAddressImpl(
-      city: json['city'] as String,
-      address: json['address'] as String,
-      country: json['country'] as String,
-      postcode: json['postcode'] as String,
+      city: json['city'],
+      address: json['address'],
+      country: json['country'],
+      postcode: json['postcode'],
     );
 
 Map<String, dynamic> _$$ShippingAddressImplToJson(

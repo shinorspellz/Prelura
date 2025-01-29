@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prelura_app/model/chat/message_model.dart';
-import 'package:sizer/sizer.dart';
 
 import 'message_helper.dart';
 
@@ -67,7 +66,7 @@ class PlainMessageBox extends StatelessWidget {
           : Text(
               chatInfo.text,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: isOnlyEmoji ? 90 : 13.sp,
+                    fontSize: isOnlyEmoji ? 90 : 15,
                     fontWeight: FontWeight.w500,
                   ),
             ),

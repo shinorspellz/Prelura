@@ -249,6 +249,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'shippingAddress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'listing'),
             alias: null,
             arguments: [],
@@ -491,6 +498,7 @@ class Query$ViewMe$viewMe {
     this.lastLogin,
     this.fullName,
     this.isMultibuyEnabled,
+    this.shippingAddress,
     this.listing,
     this.location,
     this.noOfFollowing,
@@ -515,6 +523,7 @@ class Query$ViewMe$viewMe {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$isMultibuyEnabled = json['isMultibuyEnabled'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$listing = json['listing'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
@@ -540,6 +549,7 @@ class Query$ViewMe$viewMe {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
+      shippingAddress: (l$shippingAddress as String?),
       listing: (l$listing as int?),
       location: l$location == null
           ? null
@@ -583,6 +593,8 @@ class Query$ViewMe$viewMe {
   final String? fullName;
 
   final bool? isMultibuyEnabled;
+
+  final String? shippingAddress;
 
   final int? listing;
 
@@ -628,6 +640,8 @@ class Query$ViewMe$viewMe {
     _resultData['fullName'] = l$fullName;
     final l$isMultibuyEnabled = isMultibuyEnabled;
     _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
     final l$location = location;
@@ -661,6 +675,7 @@ class Query$ViewMe$viewMe {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$isMultibuyEnabled = isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
     final l$listing = listing;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
@@ -683,6 +698,7 @@ class Query$ViewMe$viewMe {
       l$lastLogin,
       l$fullName,
       l$isMultibuyEnabled,
+      l$shippingAddress,
       l$listing,
       l$location,
       l$noOfFollowing,
@@ -771,6 +787,11 @@ class Query$ViewMe$viewMe {
     if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
       return false;
     }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
     final l$listing = listing;
     final lOther$listing = other.listing;
     if (l$listing != lOther$listing) {
@@ -842,6 +863,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? lastLogin,
     String? fullName,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -882,6 +904,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? isMultibuyEnabled = _undefined,
+    Object? shippingAddress = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
@@ -920,6 +943,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
         isMultibuyEnabled: isMultibuyEnabled == _undefined
             ? _instance.isMultibuyEnabled
             : (isMultibuyEnabled as bool?),
+        shippingAddress: shippingAddress == _undefined
+            ? _instance.shippingAddress
+            : (shippingAddress as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
         location: location == _undefined
             ? _instance.location
@@ -979,6 +1005,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? lastLogin,
     String? fullName,
     bool? isMultibuyEnabled,
+    String? shippingAddress,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -2782,6 +2809,20 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isMultibuyEnabled'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'shippingAddress'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -3039,6 +3080,8 @@ class Query$GetUser$getUser {
     this.lastLogin,
     this.fullName,
     this.listing,
+    this.isMultibuyEnabled,
+    this.shippingAddress,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
@@ -3063,6 +3106,8 @@ class Query$GetUser$getUser {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
@@ -3088,6 +3133,8 @@ class Query$GetUser$getUser {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       listing: (l$listing as int?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
+      shippingAddress: (l$shippingAddress as String?),
       location: l$location == null
           ? null
           : Query$GetUser$getUser$location.fromJson(
@@ -3131,6 +3178,10 @@ class Query$GetUser$getUser {
   final String? fullName;
 
   final int? listing;
+
+  final bool? isMultibuyEnabled;
+
+  final String? shippingAddress;
 
   final Query$GetUser$getUser$location? location;
 
@@ -3176,6 +3227,10 @@ class Query$GetUser$getUser {
     _resultData['fullName'] = l$fullName;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -3209,6 +3264,8 @@ class Query$GetUser$getUser {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$listing = listing;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final l$shippingAddress = shippingAddress;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
@@ -3231,6 +3288,8 @@ class Query$GetUser$getUser {
       l$lastLogin,
       l$fullName,
       l$listing,
+      l$isMultibuyEnabled,
+      l$shippingAddress,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
@@ -3319,6 +3378,16 @@ class Query$GetUser$getUser {
     if (l$listing != lOther$listing) {
       return false;
     }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
+      return false;
+    }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -3390,6 +3459,8 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isMultibuyEnabled,
+    String? shippingAddress,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -3430,6 +3501,8 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? listing = _undefined,
+    Object? isMultibuyEnabled = _undefined,
+    Object? shippingAddress = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
@@ -3466,6 +3539,12 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
+        shippingAddress: shippingAddress == _undefined
+            ? _instance.shippingAddress
+            : (shippingAddress as String?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$GetUser$getUser$location?),
@@ -3527,6 +3606,8 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isMultibuyEnabled,
+    String? shippingAddress,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -26651,6 +26732,13 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'discountPrice'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'id'),
             alias: null,
             arguments: [],
@@ -26665,14 +26753,7 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'updatedAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'status'),
+            name: NameNode(value: 'shippingAddress'),
             alias: null,
             arguments: [],
             directives: [],
@@ -26686,11 +26767,82 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'discountPrice'),
+            name: NameNode(value: 'status'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'updatedAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'email'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'fullName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'gender'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'thumbnailUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'shippingAddress'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
           ),
           FieldNode(
             name: NameNode(value: 'products'),
@@ -26698,84 +26850,6 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'imagesUrl'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'price'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'status'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'updatedAt'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'seller'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'username'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'thumbnailUrl'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: '__typename'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                ]),
-              ),
-              FieldNode(
-                name: NameNode(value: 'condition'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
               FieldNode(
                 name: NameNode(value: 'brand'),
                 alias: null,
@@ -26842,7 +26916,42 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'discountPrice'),
+                name: NameNode(value: 'condition'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'description'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'customBrand'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'imagesUrl'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -26856,57 +26965,142 @@ const documentNodeQueryUserOrders = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: 'user'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'email'),
+                name: NameNode(value: 'name'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'username'),
+                name: NameNode(value: 'price'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'thumbnailUrl'),
+                name: NameNode(value: 'status'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'fullName'),
+                name: NameNode(value: 'seller'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'displayName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'fullName'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'thumbnailUrl'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'username'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'style'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'displayName'),
+                name: NameNode(value: 'updatedAt'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'bio'),
+                name: NameNode(value: 'userLiked'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'views'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'likes'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'materials'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'discountPrice'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -27080,69 +27274,74 @@ extension ClientExtension$Query$UserOrders on graphql.GraphQLClient {
 class Query$UserOrders$userOrders {
   Query$UserOrders$userOrders({
     required this.createdAt,
+    required this.discountPrice,
     required this.id,
     required this.priceTotal,
-    required this.updatedAt,
-    this.status,
+    required this.shippingAddress,
     required this.shippingFee,
-    required this.discountPrice,
-    this.products,
+    this.status,
+    required this.updatedAt,
     this.user,
+    this.products,
     this.$__typename = 'OrderType',
   });
 
   factory Query$UserOrders$userOrders.fromJson(Map<String, dynamic> json) {
     final l$createdAt = json['createdAt'];
+    final l$discountPrice = json['discountPrice'];
     final l$id = json['id'];
     final l$priceTotal = json['priceTotal'];
-    final l$updatedAt = json['updatedAt'];
-    final l$status = json['status'];
+    final l$shippingAddress = json['shippingAddress'];
     final l$shippingFee = json['shippingFee'];
-    final l$discountPrice = json['discountPrice'];
-    final l$products = json['products'];
+    final l$status = json['status'];
+    final l$updatedAt = json['updatedAt'];
     final l$user = json['user'];
+    final l$products = json['products'];
     final l$$__typename = json['__typename'];
     return Query$UserOrders$userOrders(
       createdAt: DateTime.parse((l$createdAt as String)),
+      discountPrice: (l$discountPrice as String),
       id: (l$id as String),
       priceTotal: (l$priceTotal as String),
-      updatedAt: DateTime.parse((l$updatedAt as String)),
+      shippingAddress: (l$shippingAddress as String),
+      shippingFee: (l$shippingFee as String),
       status: l$status == null
           ? null
           : fromJson$Enum$OrderStatusEnum((l$status as String)),
-      shippingFee: (l$shippingFee as String),
-      discountPrice: (l$discountPrice as String),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      user: l$user == null
+          ? null
+          : Query$UserOrders$userOrders$user.fromJson(
+              (l$user as Map<String, dynamic>)),
       products: (l$products as List<dynamic>?)
           ?.map((e) => e == null
               ? null
               : Query$UserOrders$userOrders$products.fromJson(
                   (e as Map<String, dynamic>)))
           .toList(),
-      user: l$user == null
-          ? null
-          : Query$UserOrders$userOrders$user.fromJson(
-              (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final DateTime createdAt;
 
+  final String discountPrice;
+
   final String id;
 
   final String priceTotal;
 
-  final DateTime updatedAt;
-
-  final Enum$OrderStatusEnum? status;
+  final String shippingAddress;
 
   final String shippingFee;
 
-  final String discountPrice;
+  final Enum$OrderStatusEnum? status;
 
-  final List<Query$UserOrders$userOrders$products?>? products;
+  final DateTime updatedAt;
 
   final Query$UserOrders$userOrders$user? user;
+
+  final List<Query$UserOrders$userOrders$products?>? products;
 
   final String $__typename;
 
@@ -27150,23 +27349,25 @@ class Query$UserOrders$userOrders {
     final _resultData = <String, dynamic>{};
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
     final l$id = id;
     _resultData['id'] = l$id;
     final l$priceTotal = priceTotal;
     _resultData['priceTotal'] = l$priceTotal;
-    final l$updatedAt = updatedAt;
-    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
+    final l$shippingFee = shippingFee;
+    _resultData['shippingFee'] = l$shippingFee;
     final l$status = status;
     _resultData['status'] =
         l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
-    final l$shippingFee = shippingFee;
-    _resultData['shippingFee'] = l$shippingFee;
-    final l$discountPrice = discountPrice;
-    _resultData['discountPrice'] = l$discountPrice;
-    final l$products = products;
-    _resultData['products'] = l$products?.map((e) => e?.toJson()).toList();
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
     final l$user = user;
     _resultData['user'] = l$user?.toJson();
+    final l$products = products;
+    _resultData['products'] = l$products?.map((e) => e?.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -27175,25 +27376,27 @@ class Query$UserOrders$userOrders {
   @override
   int get hashCode {
     final l$createdAt = createdAt;
+    final l$discountPrice = discountPrice;
     final l$id = id;
     final l$priceTotal = priceTotal;
-    final l$updatedAt = updatedAt;
-    final l$status = status;
+    final l$shippingAddress = shippingAddress;
     final l$shippingFee = shippingFee;
-    final l$discountPrice = discountPrice;
-    final l$products = products;
+    final l$status = status;
+    final l$updatedAt = updatedAt;
     final l$user = user;
+    final l$products = products;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$createdAt,
+      l$discountPrice,
       l$id,
       l$priceTotal,
-      l$updatedAt,
-      l$status,
+      l$shippingAddress,
       l$shippingFee,
-      l$discountPrice,
-      l$products == null ? null : Object.hashAll(l$products.map((v) => v)),
+      l$status,
+      l$updatedAt,
       l$user,
+      l$products == null ? null : Object.hashAll(l$products.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -27212,6 +27415,11 @@ class Query$UserOrders$userOrders {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
+      return false;
+    }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
@@ -27222,14 +27430,9 @@ class Query$UserOrders$userOrders {
     if (l$priceTotal != lOther$priceTotal) {
       return false;
     }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    final l$status = status;
-    final lOther$status = other.status;
-    if (l$status != lOther$status) {
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
       return false;
     }
     final l$shippingFee = shippingFee;
@@ -27237,9 +27440,19 @@ class Query$UserOrders$userOrders {
     if (l$shippingFee != lOther$shippingFee) {
       return false;
     }
-    final l$discountPrice = discountPrice;
-    final lOther$discountPrice = other.discountPrice;
-    if (l$discountPrice != lOther$discountPrice) {
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
       return false;
     }
     final l$products = products;
@@ -27256,11 +27469,6 @@ class Query$UserOrders$userOrders {
         }
       }
     } else if (l$products != lOther$products) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -27292,23 +27500,24 @@ abstract class CopyWith$Query$UserOrders$userOrders<TRes> {
 
   TRes call({
     DateTime? createdAt,
+    String? discountPrice,
     String? id,
     String? priceTotal,
-    DateTime? updatedAt,
-    Enum$OrderStatusEnum? status,
+    String? shippingAddress,
     String? shippingFee,
-    String? discountPrice,
-    List<Query$UserOrders$userOrders$products?>? products,
+    Enum$OrderStatusEnum? status,
+    DateTime? updatedAt,
     Query$UserOrders$userOrders$user? user,
+    List<Query$UserOrders$userOrders$products?>? products,
     String? $__typename,
   });
+  CopyWith$Query$UserOrders$userOrders$user<TRes> get user;
   TRes products(
       Iterable<Query$UserOrders$userOrders$products?>? Function(
               Iterable<
                   CopyWith$Query$UserOrders$userOrders$products<
                       Query$UserOrders$userOrders$products>?>?)
           _fn);
-  CopyWith$Query$UserOrders$userOrders$user<TRes> get user;
 }
 
 class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
@@ -27326,46 +27535,59 @@ class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
 
   TRes call({
     Object? createdAt = _undefined,
+    Object? discountPrice = _undefined,
     Object? id = _undefined,
     Object? priceTotal = _undefined,
-    Object? updatedAt = _undefined,
-    Object? status = _undefined,
+    Object? shippingAddress = _undefined,
     Object? shippingFee = _undefined,
-    Object? discountPrice = _undefined,
-    Object? products = _undefined,
+    Object? status = _undefined,
+    Object? updatedAt = _undefined,
     Object? user = _undefined,
+    Object? products = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserOrders$userOrders(
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
+        discountPrice: discountPrice == _undefined || discountPrice == null
+            ? _instance.discountPrice
+            : (discountPrice as String),
         id: id == _undefined || id == null ? _instance.id : (id as String),
         priceTotal: priceTotal == _undefined || priceTotal == null
             ? _instance.priceTotal
             : (priceTotal as String),
-        updatedAt: updatedAt == _undefined || updatedAt == null
-            ? _instance.updatedAt
-            : (updatedAt as DateTime),
-        status: status == _undefined
-            ? _instance.status
-            : (status as Enum$OrderStatusEnum?),
+        shippingAddress:
+            shippingAddress == _undefined || shippingAddress == null
+                ? _instance.shippingAddress
+                : (shippingAddress as String),
         shippingFee: shippingFee == _undefined || shippingFee == null
             ? _instance.shippingFee
             : (shippingFee as String),
-        discountPrice: discountPrice == _undefined || discountPrice == null
-            ? _instance.discountPrice
-            : (discountPrice as String),
-        products: products == _undefined
-            ? _instance.products
-            : (products as List<Query$UserOrders$userOrders$products?>?),
+        status: status == _undefined
+            ? _instance.status
+            : (status as Enum$OrderStatusEnum?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
         user: user == _undefined
             ? _instance.user
             : (user as Query$UserOrders$userOrders$user?),
+        products: products == _undefined
+            ? _instance.products
+            : (products as List<Query$UserOrders$userOrders$products?>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  CopyWith$Query$UserOrders$userOrders$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Query$UserOrders$userOrders$user.stub(_then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$user(
+            local$user, (e) => call(user: e));
+  }
 
   TRes products(
           Iterable<Query$UserOrders$userOrders$products?>? Function(
@@ -27380,14 +27602,6 @@ class _CopyWithImpl$Query$UserOrders$userOrders<TRes>
                   e,
                   (i) => i,
                 )))?.toList());
-
-  CopyWith$Query$UserOrders$userOrders$user<TRes> get user {
-    final local$user = _instance.user;
-    return local$user == null
-        ? CopyWith$Query$UserOrders$userOrders$user.stub(_then(_instance))
-        : CopyWith$Query$UserOrders$userOrders$user(
-            local$user, (e) => call(user: e));
-  }
 }
 
 class _CopyWithStubImpl$Query$UserOrders$userOrders<TRes>
@@ -27398,74 +27612,315 @@ class _CopyWithStubImpl$Query$UserOrders$userOrders<TRes>
 
   call({
     DateTime? createdAt,
+    String? discountPrice,
     String? id,
     String? priceTotal,
-    DateTime? updatedAt,
-    Enum$OrderStatusEnum? status,
+    String? shippingAddress,
     String? shippingFee,
-    String? discountPrice,
-    List<Query$UserOrders$userOrders$products?>? products,
+    Enum$OrderStatusEnum? status,
+    DateTime? updatedAt,
     Query$UserOrders$userOrders$user? user,
+    List<Query$UserOrders$userOrders$products?>? products,
     String? $__typename,
   }) =>
       _res;
 
-  products(_fn) => _res;
-
   CopyWith$Query$UserOrders$userOrders$user<TRes> get user =>
       CopyWith$Query$UserOrders$userOrders$user.stub(_res);
+
+  products(_fn) => _res;
+}
+
+class Query$UserOrders$userOrders$user {
+  Query$UserOrders$userOrders$user({
+    this.email,
+    this.fullName,
+    this.gender,
+    this.username,
+    this.thumbnailUrl,
+    this.profilePictureUrl,
+    this.shippingAddress,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$UserOrders$userOrders$user.fromJson(Map<String, dynamic> json) {
+    final l$email = json['email'];
+    final l$fullName = json['fullName'];
+    final l$gender = json['gender'];
+    final l$username = json['username'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$shippingAddress = json['shippingAddress'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$user(
+      email: (l$email as String?),
+      fullName: (l$fullName as String?),
+      gender: (l$gender as String?),
+      username: (l$username as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      shippingAddress: (l$shippingAddress as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String? email;
+
+  final String? fullName;
+
+  final String? gender;
+
+  final String? username;
+
+  final String? thumbnailUrl;
+
+  final String? profilePictureUrl;
+
+  final String? shippingAddress;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$email = email;
+    _resultData['email'] = l$email;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$gender = gender;
+    _resultData['gender'] = l$gender;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$shippingAddress = shippingAddress;
+    _resultData['shippingAddress'] = l$shippingAddress;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$email = email;
+    final l$fullName = fullName;
+    final l$gender = gender;
+    final l$username = username;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$shippingAddress = shippingAddress;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$email,
+      l$fullName,
+      l$gender,
+      l$username,
+      l$thumbnailUrl,
+      l$profilePictureUrl,
+      l$shippingAddress,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$user ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$email = email;
+    final lOther$email = other.email;
+    if (l$email != lOther$email) {
+      return false;
+    }
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$gender = gender;
+    final lOther$gender = other.gender;
+    if (l$gender != lOther$gender) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$user
+    on Query$UserOrders$userOrders$user {
+  CopyWith$Query$UserOrders$userOrders$user<Query$UserOrders$userOrders$user>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$user(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$user(
+    Query$UserOrders$userOrders$user instance,
+    TRes Function(Query$UserOrders$userOrders$user) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$user;
+
+  factory CopyWith$Query$UserOrders$userOrders$user.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$user;
+
+  TRes call({
+    String? email,
+    String? fullName,
+    String? gender,
+    String? username,
+    String? thumbnailUrl,
+    String? profilePictureUrl,
+    String? shippingAddress,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$user<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$user(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$user _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$user) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? email = _undefined,
+    Object? fullName = _undefined,
+    Object? gender = _undefined,
+    Object? username = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? shippingAddress = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$user(
+        email: email == _undefined ? _instance.email : (email as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        gender: gender == _undefined ? _instance.gender : (gender as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        shippingAddress: shippingAddress == _undefined
+            ? _instance.shippingAddress
+            : (shippingAddress as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$user<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$user(this._res);
+
+  TRes _res;
+
+  call({
+    String? email,
+    String? fullName,
+    String? gender,
+    String? username,
+    String? thumbnailUrl,
+    String? profilePictureUrl,
+    String? shippingAddress,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$UserOrders$userOrders$products {
   Query$UserOrders$userOrders$products({
-    required this.id,
-    required this.name,
-    required this.imagesUrl,
-    this.price,
-    required this.status,
-    required this.updatedAt,
-    this.seller,
-    this.condition,
     this.brand,
     this.category,
     required this.color,
-    required this.discountPrice,
+    this.condition,
+    required this.createdAt,
+    required this.description,
+    this.customBrand,
+    required this.id,
+    required this.imagesUrl,
     required this.isFeatured,
+    required this.name,
+    this.price,
+    required this.status,
+    this.seller,
+    this.style,
+    required this.updatedAt,
+    this.userLiked,
+    required this.views,
+    required this.likes,
+    this.materials,
+    required this.discountPrice,
     this.$__typename = 'ProductType',
   });
 
   factory Query$UserOrders$userOrders$products.fromJson(
       Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$imagesUrl = json['imagesUrl'];
-    final l$price = json['price'];
-    final l$status = json['status'];
-    final l$updatedAt = json['updatedAt'];
-    final l$seller = json['seller'];
-    final l$condition = json['condition'];
     final l$brand = json['brand'];
     final l$category = json['category'];
     final l$color = json['color'];
-    final l$discountPrice = json['discountPrice'];
+    final l$condition = json['condition'];
+    final l$createdAt = json['createdAt'];
+    final l$description = json['description'];
+    final l$customBrand = json['customBrand'];
+    final l$id = json['id'];
+    final l$imagesUrl = json['imagesUrl'];
     final l$isFeatured = json['isFeatured'];
+    final l$name = json['name'];
+    final l$price = json['price'];
+    final l$status = json['status'];
+    final l$seller = json['seller'];
+    final l$style = json['style'];
+    final l$updatedAt = json['updatedAt'];
+    final l$userLiked = json['userLiked'];
+    final l$views = json['views'];
+    final l$likes = json['likes'];
+    final l$materials = json['materials'];
+    final l$discountPrice = json['discountPrice'];
     final l$$__typename = json['__typename'];
     return Query$UserOrders$userOrders$products(
-      id: (l$id as String),
-      name: (l$name as String),
-      imagesUrl:
-          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
-      price: (l$price as num?)?.toDouble(),
-      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
-      updatedAt: DateTime.parse((l$updatedAt as String)),
-      seller: l$seller == null
-          ? null
-          : Query$UserOrders$userOrders$products$seller.fromJson(
-              (l$seller as Map<String, dynamic>)),
-      condition: l$condition == null
-          ? null
-          : fromJson$Enum$ProductsProductConditionChoices(
-              (l$condition as String)),
       brand: l$brand == null
           ? null
           : Query$UserOrders$userOrders$products$brand.fromJson(
@@ -27475,27 +27930,41 @@ class Query$UserOrders$userOrders$products {
           : Query$UserOrders$userOrders$products$category.fromJson(
               (l$category as Map<String, dynamic>)),
       color: (l$color as List<dynamic>).map((e) => (e as String)).toList(),
-      discountPrice: (l$discountPrice as String),
+      condition: l$condition == null
+          ? null
+          : fromJson$Enum$ProductsProductConditionChoices(
+              (l$condition as String)),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      description: (l$description as String),
+      customBrand: (l$customBrand as String?),
+      id: (l$id as String),
+      imagesUrl:
+          (l$imagesUrl as List<dynamic>).map((e) => (e as String)).toList(),
       isFeatured: (l$isFeatured as bool),
+      name: (l$name as String),
+      price: (l$price as num?)?.toDouble(),
+      status: fromJson$Enum$ProductsProductStatusChoices((l$status as String)),
+      seller: l$seller == null
+          ? null
+          : Query$UserOrders$userOrders$products$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      style: l$style == null
+          ? null
+          : fromJson$Enum$ProductsProductStyleChoices((l$style as String)),
+      updatedAt: DateTime.parse((l$updatedAt as String)),
+      userLiked: (l$userLiked as bool?),
+      views: (l$views as int),
+      likes: (l$likes as int),
+      materials: (l$materials as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$UserOrders$userOrders$products$materials.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      discountPrice: (l$discountPrice as String),
       $__typename: (l$$__typename as String),
     );
   }
-
-  final String id;
-
-  final String name;
-
-  final List<String> imagesUrl;
-
-  final double? price;
-
-  final Enum$ProductsProductStatusChoices status;
-
-  final DateTime updatedAt;
-
-  final Query$UserOrders$userOrders$products$seller? seller;
-
-  final Enum$ProductsProductConditionChoices? condition;
 
   final Query$UserOrders$userOrders$products$brand? brand;
 
@@ -27503,42 +27972,92 @@ class Query$UserOrders$userOrders$products {
 
   final List<String> color;
 
-  final String discountPrice;
+  final Enum$ProductsProductConditionChoices? condition;
+
+  final DateTime createdAt;
+
+  final String description;
+
+  final String? customBrand;
+
+  final String id;
+
+  final List<String> imagesUrl;
 
   final bool isFeatured;
+
+  final String name;
+
+  final double? price;
+
+  final Enum$ProductsProductStatusChoices status;
+
+  final Query$UserOrders$userOrders$products$seller? seller;
+
+  final Enum$ProductsProductStyleChoices? style;
+
+  final DateTime updatedAt;
+
+  final bool? userLiked;
+
+  final int views;
+
+  final int likes;
+
+  final List<Query$UserOrders$userOrders$products$materials?>? materials;
+
+  final String discountPrice;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$imagesUrl = imagesUrl;
-    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
-    final l$price = price;
-    _resultData['price'] = l$price;
-    final l$status = status;
-    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
-    final l$updatedAt = updatedAt;
-    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
-    final l$seller = seller;
-    _resultData['seller'] = l$seller?.toJson();
-    final l$condition = condition;
-    _resultData['condition'] = l$condition == null
-        ? null
-        : toJson$Enum$ProductsProductConditionChoices(l$condition);
     final l$brand = brand;
     _resultData['brand'] = l$brand?.toJson();
     final l$category = category;
     _resultData['category'] = l$category?.toJson();
     final l$color = color;
     _resultData['color'] = l$color.map((e) => e).toList();
-    final l$discountPrice = discountPrice;
-    _resultData['discountPrice'] = l$discountPrice;
+    final l$condition = condition;
+    _resultData['condition'] = l$condition == null
+        ? null
+        : toJson$Enum$ProductsProductConditionChoices(l$condition);
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$customBrand = customBrand;
+    _resultData['customBrand'] = l$customBrand;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$imagesUrl = imagesUrl;
+    _resultData['imagesUrl'] = l$imagesUrl.map((e) => e).toList();
     final l$isFeatured = isFeatured;
     _resultData['isFeatured'] = l$isFeatured;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$status = status;
+    _resultData['status'] = toJson$Enum$ProductsProductStatusChoices(l$status);
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$style = style;
+    _resultData['style'] = l$style == null
+        ? null
+        : toJson$Enum$ProductsProductStyleChoices(l$style);
+    final l$updatedAt = updatedAt;
+    _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$userLiked = userLiked;
+    _resultData['userLiked'] = l$userLiked;
+    final l$views = views;
+    _resultData['views'] = l$views;
+    final l$likes = likes;
+    _resultData['likes'] = l$likes;
+    final l$materials = materials;
+    _resultData['materials'] = l$materials?.map((e) => e?.toJson()).toList();
+    final l$discountPrice = discountPrice;
+    _resultData['discountPrice'] = l$discountPrice;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -27546,34 +28065,50 @@ class Query$UserOrders$userOrders$products {
 
   @override
   int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$imagesUrl = imagesUrl;
-    final l$price = price;
-    final l$status = status;
-    final l$updatedAt = updatedAt;
-    final l$seller = seller;
-    final l$condition = condition;
     final l$brand = brand;
     final l$category = category;
     final l$color = color;
-    final l$discountPrice = discountPrice;
+    final l$condition = condition;
+    final l$createdAt = createdAt;
+    final l$description = description;
+    final l$customBrand = customBrand;
+    final l$id = id;
+    final l$imagesUrl = imagesUrl;
     final l$isFeatured = isFeatured;
+    final l$name = name;
+    final l$price = price;
+    final l$status = status;
+    final l$seller = seller;
+    final l$style = style;
+    final l$updatedAt = updatedAt;
+    final l$userLiked = userLiked;
+    final l$views = views;
+    final l$likes = likes;
+    final l$materials = materials;
+    final l$discountPrice = discountPrice;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
-      l$name,
-      Object.hashAll(l$imagesUrl.map((v) => v)),
-      l$price,
-      l$status,
-      l$updatedAt,
-      l$seller,
-      l$condition,
       l$brand,
       l$category,
       Object.hashAll(l$color.map((v) => v)),
-      l$discountPrice,
+      l$condition,
+      l$createdAt,
+      l$description,
+      l$customBrand,
+      l$id,
+      Object.hashAll(l$imagesUrl.map((v) => v)),
       l$isFeatured,
+      l$name,
+      l$price,
+      l$status,
+      l$seller,
+      l$style,
+      l$updatedAt,
+      l$userLiked,
+      l$views,
+      l$likes,
+      l$materials == null ? null : Object.hashAll(l$materials.map((v) => v)),
+      l$discountPrice,
       l$$__typename,
     ]);
   }
@@ -27585,53 +28120,6 @@ class Query$UserOrders$userOrders$products {
     }
     if (other is! Query$UserOrders$userOrders$products ||
         runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$imagesUrl = imagesUrl;
-    final lOther$imagesUrl = other.imagesUrl;
-    if (l$imagesUrl.length != lOther$imagesUrl.length) {
-      return false;
-    }
-    for (int i = 0; i < l$imagesUrl.length; i++) {
-      final l$imagesUrl$entry = l$imagesUrl[i];
-      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
-      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
-        return false;
-      }
-    }
-    final l$price = price;
-    final lOther$price = other.price;
-    if (l$price != lOther$price) {
-      return false;
-    }
-    final l$status = status;
-    final lOther$status = other.status;
-    if (l$status != lOther$status) {
-      return false;
-    }
-    final l$updatedAt = updatedAt;
-    final lOther$updatedAt = other.updatedAt;
-    if (l$updatedAt != lOther$updatedAt) {
-      return false;
-    }
-    final l$seller = seller;
-    final lOther$seller = other.seller;
-    if (l$seller != lOther$seller) {
-      return false;
-    }
-    final l$condition = condition;
-    final lOther$condition = other.condition;
-    if (l$condition != lOther$condition) {
       return false;
     }
     final l$brand = brand;
@@ -27656,14 +28144,112 @@ class Query$UserOrders$userOrders$products {
         return false;
       }
     }
-    final l$discountPrice = discountPrice;
-    final lOther$discountPrice = other.discountPrice;
-    if (l$discountPrice != lOther$discountPrice) {
+    final l$condition = condition;
+    final lOther$condition = other.condition;
+    if (l$condition != lOther$condition) {
       return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$customBrand = customBrand;
+    final lOther$customBrand = other.customBrand;
+    if (l$customBrand != lOther$customBrand) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$imagesUrl = imagesUrl;
+    final lOther$imagesUrl = other.imagesUrl;
+    if (l$imagesUrl.length != lOther$imagesUrl.length) {
+      return false;
+    }
+    for (int i = 0; i < l$imagesUrl.length; i++) {
+      final l$imagesUrl$entry = l$imagesUrl[i];
+      final lOther$imagesUrl$entry = lOther$imagesUrl[i];
+      if (l$imagesUrl$entry != lOther$imagesUrl$entry) {
+        return false;
+      }
     }
     final l$isFeatured = isFeatured;
     final lOther$isFeatured = other.isFeatured;
     if (l$isFeatured != lOther$isFeatured) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$status = status;
+    final lOther$status = other.status;
+    if (l$status != lOther$status) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$style = style;
+    final lOther$style = other.style;
+    if (l$style != lOther$style) {
+      return false;
+    }
+    final l$updatedAt = updatedAt;
+    final lOther$updatedAt = other.updatedAt;
+    if (l$updatedAt != lOther$updatedAt) {
+      return false;
+    }
+    final l$userLiked = userLiked;
+    final lOther$userLiked = other.userLiked;
+    if (l$userLiked != lOther$userLiked) {
+      return false;
+    }
+    final l$views = views;
+    final lOther$views = other.views;
+    if (l$views != lOther$views) {
+      return false;
+    }
+    final l$likes = likes;
+    final lOther$likes = other.likes;
+    if (l$likes != lOther$likes) {
+      return false;
+    }
+    final l$materials = materials;
+    final lOther$materials = other.materials;
+    if (l$materials != null && lOther$materials != null) {
+      if (l$materials.length != lOther$materials.length) {
+        return false;
+      }
+      for (int i = 0; i < l$materials.length; i++) {
+        final l$materials$entry = l$materials[i];
+        final lOther$materials$entry = lOther$materials[i];
+        if (l$materials$entry != lOther$materials$entry) {
+          return false;
+        }
+      }
+    } else if (l$materials != lOther$materials) {
+      return false;
+    }
+    final l$discountPrice = discountPrice;
+    final lOther$discountPrice = other.discountPrice;
+    if (l$discountPrice != lOther$discountPrice) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -27695,24 +28281,38 @@ abstract class CopyWith$Query$UserOrders$userOrders$products<TRes> {
       _CopyWithStubImpl$Query$UserOrders$userOrders$products;
 
   TRes call({
-    String? id,
-    String? name,
-    List<String>? imagesUrl,
-    double? price,
-    Enum$ProductsProductStatusChoices? status,
-    DateTime? updatedAt,
-    Query$UserOrders$userOrders$products$seller? seller,
-    Enum$ProductsProductConditionChoices? condition,
     Query$UserOrders$userOrders$products$brand? brand,
     Query$UserOrders$userOrders$products$category? category,
     List<String>? color,
-    String? discountPrice,
+    Enum$ProductsProductConditionChoices? condition,
+    DateTime? createdAt,
+    String? description,
+    String? customBrand,
+    String? id,
+    List<String>? imagesUrl,
     bool? isFeatured,
+    String? name,
+    double? price,
+    Enum$ProductsProductStatusChoices? status,
+    Query$UserOrders$userOrders$products$seller? seller,
+    Enum$ProductsProductStyleChoices? style,
+    DateTime? updatedAt,
+    bool? userLiked,
+    int? views,
+    int? likes,
+    List<Query$UserOrders$userOrders$products$materials?>? materials,
+    String? discountPrice,
     String? $__typename,
   });
-  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller;
   CopyWith$Query$UserOrders$userOrders$products$brand<TRes> get brand;
   CopyWith$Query$UserOrders$userOrders$products$category<TRes> get category;
+  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller;
+  TRes materials(
+      Iterable<Query$UserOrders$userOrders$products$materials?>? Function(
+              Iterable<
+                  CopyWith$Query$UserOrders$userOrders$products$materials<
+                      Query$UserOrders$userOrders$products$materials>?>?)
+          _fn);
 }
 
 class _CopyWithImpl$Query$UserOrders$userOrders$products<TRes>
@@ -27729,42 +28329,30 @@ class _CopyWithImpl$Query$UserOrders$userOrders$products<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? imagesUrl = _undefined,
-    Object? price = _undefined,
-    Object? status = _undefined,
-    Object? updatedAt = _undefined,
-    Object? seller = _undefined,
-    Object? condition = _undefined,
     Object? brand = _undefined,
     Object? category = _undefined,
     Object? color = _undefined,
-    Object? discountPrice = _undefined,
+    Object? condition = _undefined,
+    Object? createdAt = _undefined,
+    Object? description = _undefined,
+    Object? customBrand = _undefined,
+    Object? id = _undefined,
+    Object? imagesUrl = _undefined,
     Object? isFeatured = _undefined,
+    Object? name = _undefined,
+    Object? price = _undefined,
+    Object? status = _undefined,
+    Object? seller = _undefined,
+    Object? style = _undefined,
+    Object? updatedAt = _undefined,
+    Object? userLiked = _undefined,
+    Object? views = _undefined,
+    Object? likes = _undefined,
+    Object? materials = _undefined,
+    Object? discountPrice = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$UserOrders$userOrders$products(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        imagesUrl: imagesUrl == _undefined || imagesUrl == null
-            ? _instance.imagesUrl
-            : (imagesUrl as List<String>),
-        price: price == _undefined ? _instance.price : (price as double?),
-        status: status == _undefined || status == null
-            ? _instance.status
-            : (status as Enum$ProductsProductStatusChoices),
-        updatedAt: updatedAt == _undefined || updatedAt == null
-            ? _instance.updatedAt
-            : (updatedAt as DateTime),
-        seller: seller == _undefined
-            ? _instance.seller
-            : (seller as Query$UserOrders$userOrders$products$seller?),
-        condition: condition == _undefined
-            ? _instance.condition
-            : (condition as Enum$ProductsProductConditionChoices?),
         brand: brand == _undefined
             ? _instance.brand
             : (brand as Query$UserOrders$userOrders$products$brand?),
@@ -27774,25 +28362,61 @@ class _CopyWithImpl$Query$UserOrders$userOrders$products<TRes>
         color: color == _undefined || color == null
             ? _instance.color
             : (color as List<String>),
-        discountPrice: discountPrice == _undefined || discountPrice == null
-            ? _instance.discountPrice
-            : (discountPrice as String),
+        condition: condition == _undefined
+            ? _instance.condition
+            : (condition as Enum$ProductsProductConditionChoices?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        description: description == _undefined || description == null
+            ? _instance.description
+            : (description as String),
+        customBrand: customBrand == _undefined
+            ? _instance.customBrand
+            : (customBrand as String?),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        imagesUrl: imagesUrl == _undefined || imagesUrl == null
+            ? _instance.imagesUrl
+            : (imagesUrl as List<String>),
         isFeatured: isFeatured == _undefined || isFeatured == null
             ? _instance.isFeatured
             : (isFeatured as bool),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        price: price == _undefined ? _instance.price : (price as double?),
+        status: status == _undefined || status == null
+            ? _instance.status
+            : (status as Enum$ProductsProductStatusChoices),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller as Query$UserOrders$userOrders$products$seller?),
+        style: style == _undefined
+            ? _instance.style
+            : (style as Enum$ProductsProductStyleChoices?),
+        updatedAt: updatedAt == _undefined || updatedAt == null
+            ? _instance.updatedAt
+            : (updatedAt as DateTime),
+        userLiked: userLiked == _undefined
+            ? _instance.userLiked
+            : (userLiked as bool?),
+        views: views == _undefined || views == null
+            ? _instance.views
+            : (views as int),
+        likes: likes == _undefined || likes == null
+            ? _instance.likes
+            : (likes as int),
+        materials: materials == _undefined
+            ? _instance.materials
+            : (materials
+                as List<Query$UserOrders$userOrders$products$materials?>?),
+        discountPrice: discountPrice == _undefined || discountPrice == null
+            ? _instance.discountPrice
+            : (discountPrice as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller {
-    final local$seller = _instance.seller;
-    return local$seller == null
-        ? CopyWith$Query$UserOrders$userOrders$products$seller.stub(
-            _then(_instance))
-        : CopyWith$Query$UserOrders$userOrders$products$seller(
-            local$seller, (e) => call(seller: e));
-  }
 
   CopyWith$Query$UserOrders$userOrders$products$brand<TRes> get brand {
     final local$brand = _instance.brand;
@@ -27811,6 +28435,29 @@ class _CopyWithImpl$Query$UserOrders$userOrders$products<TRes>
         : CopyWith$Query$UserOrders$userOrders$products$category(
             local$category, (e) => call(category: e));
   }
+
+  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$UserOrders$userOrders$products$seller.stub(
+            _then(_instance))
+        : CopyWith$Query$UserOrders$userOrders$products$seller(
+            local$seller, (e) => call(seller: e));
+  }
+
+  TRes materials(
+          Iterable<Query$UserOrders$userOrders$products$materials?>? Function(
+                  Iterable<
+                      CopyWith$Query$UserOrders$userOrders$products$materials<
+                          Query$UserOrders$userOrders$products$materials>?>?)
+              _fn) =>
+      call(
+          materials: _fn(_instance.materials?.map((e) => e == null
+              ? null
+              : CopyWith$Query$UserOrders$userOrders$products$materials(
+                  e,
+                  (i) => i,
+                )))?.toList());
 }
 
 class _CopyWithStubImpl$Query$UserOrders$userOrders$products<TRes>
@@ -27820,177 +28467,41 @@ class _CopyWithStubImpl$Query$UserOrders$userOrders$products<TRes>
   TRes _res;
 
   call({
-    String? id,
-    String? name,
-    List<String>? imagesUrl,
-    double? price,
-    Enum$ProductsProductStatusChoices? status,
-    DateTime? updatedAt,
-    Query$UserOrders$userOrders$products$seller? seller,
-    Enum$ProductsProductConditionChoices? condition,
     Query$UserOrders$userOrders$products$brand? brand,
     Query$UserOrders$userOrders$products$category? category,
     List<String>? color,
-    String? discountPrice,
+    Enum$ProductsProductConditionChoices? condition,
+    DateTime? createdAt,
+    String? description,
+    String? customBrand,
+    String? id,
+    List<String>? imagesUrl,
     bool? isFeatured,
+    String? name,
+    double? price,
+    Enum$ProductsProductStatusChoices? status,
+    Query$UserOrders$userOrders$products$seller? seller,
+    Enum$ProductsProductStyleChoices? style,
+    DateTime? updatedAt,
+    bool? userLiked,
+    int? views,
+    int? likes,
+    List<Query$UserOrders$userOrders$products$materials?>? materials,
+    String? discountPrice,
     String? $__typename,
   }) =>
       _res;
-
-  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller =>
-      CopyWith$Query$UserOrders$userOrders$products$seller.stub(_res);
 
   CopyWith$Query$UserOrders$userOrders$products$brand<TRes> get brand =>
       CopyWith$Query$UserOrders$userOrders$products$brand.stub(_res);
 
   CopyWith$Query$UserOrders$userOrders$products$category<TRes> get category =>
       CopyWith$Query$UserOrders$userOrders$products$category.stub(_res);
-}
 
-class Query$UserOrders$userOrders$products$seller {
-  Query$UserOrders$userOrders$products$seller({
-    this.username,
-    this.thumbnailUrl,
-    this.$__typename = 'UserType',
-  });
+  CopyWith$Query$UserOrders$userOrders$products$seller<TRes> get seller =>
+      CopyWith$Query$UserOrders$userOrders$products$seller.stub(_res);
 
-  factory Query$UserOrders$userOrders$products$seller.fromJson(
-      Map<String, dynamic> json) {
-    final l$username = json['username'];
-    final l$thumbnailUrl = json['thumbnailUrl'];
-    final l$$__typename = json['__typename'];
-    return Query$UserOrders$userOrders$products$seller(
-      username: (l$username as String?),
-      thumbnailUrl: (l$thumbnailUrl as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String? username;
-
-  final String? thumbnailUrl;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$thumbnailUrl = thumbnailUrl;
-    _resultData['thumbnailUrl'] = l$thumbnailUrl;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$username = username;
-    final l$thumbnailUrl = thumbnailUrl;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$username,
-      l$thumbnailUrl,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$UserOrders$userOrders$products$seller ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$thumbnailUrl = thumbnailUrl;
-    final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (l$thumbnailUrl != lOther$thumbnailUrl) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$UserOrders$userOrders$products$seller
-    on Query$UserOrders$userOrders$products$seller {
-  CopyWith$Query$UserOrders$userOrders$products$seller<
-          Query$UserOrders$userOrders$products$seller>
-      get copyWith => CopyWith$Query$UserOrders$userOrders$products$seller(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
-  factory CopyWith$Query$UserOrders$userOrders$products$seller(
-    Query$UserOrders$userOrders$products$seller instance,
-    TRes Function(Query$UserOrders$userOrders$products$seller) then,
-  ) = _CopyWithImpl$Query$UserOrders$userOrders$products$seller;
-
-  factory CopyWith$Query$UserOrders$userOrders$products$seller.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller;
-
-  TRes call({
-    String? username,
-    String? thumbnailUrl,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$UserOrders$userOrders$products$seller<TRes>
-    implements CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
-  _CopyWithImpl$Query$UserOrders$userOrders$products$seller(
-    this._instance,
-    this._then,
-  );
-
-  final Query$UserOrders$userOrders$products$seller _instance;
-
-  final TRes Function(Query$UserOrders$userOrders$products$seller) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? username = _undefined,
-    Object? thumbnailUrl = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$UserOrders$userOrders$products$seller(
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller<TRes>
-    implements CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
-  _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller(this._res);
-
-  TRes _res;
-
-  call({
-    String? username,
-    String? thumbnailUrl,
-    String? $__typename,
-  }) =>
-      _res;
+  materials(_fn) => _res;
 }
 
 class Query$UserOrders$userOrders$products$brand {
@@ -28280,64 +28791,58 @@ class _CopyWithStubImpl$Query$UserOrders$userOrders$products$category<TRes>
       _res;
 }
 
-class Query$UserOrders$userOrders$user {
-  Query$UserOrders$userOrders$user({
-    this.email,
-    this.username,
-    this.thumbnailUrl,
-    this.fullName,
+class Query$UserOrders$userOrders$products$seller {
+  Query$UserOrders$userOrders$products$seller({
     this.displayName,
-    this.bio,
+    this.fullName,
+    this.thumbnailUrl,
+    this.username,
+    this.id,
     this.$__typename = 'UserType',
   });
 
-  factory Query$UserOrders$userOrders$user.fromJson(Map<String, dynamic> json) {
-    final l$email = json['email'];
-    final l$username = json['username'];
-    final l$thumbnailUrl = json['thumbnailUrl'];
-    final l$fullName = json['fullName'];
+  factory Query$UserOrders$userOrders$products$seller.fromJson(
+      Map<String, dynamic> json) {
     final l$displayName = json['displayName'];
-    final l$bio = json['bio'];
+    final l$fullName = json['fullName'];
+    final l$thumbnailUrl = json['thumbnailUrl'];
+    final l$username = json['username'];
+    final l$id = json['id'];
     final l$$__typename = json['__typename'];
-    return Query$UserOrders$userOrders$user(
-      email: (l$email as String?),
-      username: (l$username as String?),
-      thumbnailUrl: (l$thumbnailUrl as String?),
-      fullName: (l$fullName as String?),
+    return Query$UserOrders$userOrders$products$seller(
       displayName: (l$displayName as String?),
-      bio: (l$bio as String?),
+      fullName: (l$fullName as String?),
+      thumbnailUrl: (l$thumbnailUrl as String?),
+      username: (l$username as String?),
+      id: (l$id as int?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String? email;
-
-  final String? username;
-
-  final String? thumbnailUrl;
+  final String? displayName;
 
   final String? fullName;
 
-  final String? displayName;
+  final String? thumbnailUrl;
 
-  final String? bio;
+  final String? username;
+
+  final int? id;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$email = email;
-    _resultData['email'] = l$email;
-    final l$username = username;
-    _resultData['username'] = l$username;
-    final l$thumbnailUrl = thumbnailUrl;
-    _resultData['thumbnailUrl'] = l$thumbnailUrl;
-    final l$fullName = fullName;
-    _resultData['fullName'] = l$fullName;
     final l$displayName = displayName;
     _resultData['displayName'] = l$displayName;
-    final l$bio = bio;
-    _resultData['bio'] = l$bio;
+    final l$fullName = fullName;
+    _resultData['fullName'] = l$fullName;
+    final l$thumbnailUrl = thumbnailUrl;
+    _resultData['thumbnailUrl'] = l$thumbnailUrl;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$id = id;
+    _resultData['id'] = l$id;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -28345,20 +28850,18 @@ class Query$UserOrders$userOrders$user {
 
   @override
   int get hashCode {
-    final l$email = email;
-    final l$username = username;
-    final l$thumbnailUrl = thumbnailUrl;
-    final l$fullName = fullName;
     final l$displayName = displayName;
-    final l$bio = bio;
+    final l$fullName = fullName;
+    final l$thumbnailUrl = thumbnailUrl;
+    final l$username = username;
+    final l$id = id;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$email,
-      l$username,
-      l$thumbnailUrl,
-      l$fullName,
       l$displayName,
-      l$bio,
+      l$fullName,
+      l$thumbnailUrl,
+      l$username,
+      l$id,
       l$$__typename,
     ]);
   }
@@ -28368,28 +28871,8 @@ class Query$UserOrders$userOrders$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$UserOrders$userOrders$user ||
+    if (other is! Query$UserOrders$userOrders$products$seller ||
         runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$email = email;
-    final lOther$email = other.email;
-    if (l$email != lOther$email) {
-      return false;
-    }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
-      return false;
-    }
-    final l$thumbnailUrl = thumbnailUrl;
-    final lOther$thumbnailUrl = other.thumbnailUrl;
-    if (l$thumbnailUrl != lOther$thumbnailUrl) {
-      return false;
-    }
-    final l$fullName = fullName;
-    final lOther$fullName = other.fullName;
-    if (l$fullName != lOther$fullName) {
       return false;
     }
     final l$displayName = displayName;
@@ -28397,9 +28880,24 @@ class Query$UserOrders$userOrders$user {
     if (l$displayName != lOther$displayName) {
       return false;
     }
-    final l$bio = bio;
-    final lOther$bio = other.bio;
-    if (l$bio != lOther$bio) {
+    final l$fullName = fullName;
+    final lOther$fullName = other.fullName;
+    if (l$fullName != lOther$fullName) {
+      return false;
+    }
+    final l$thumbnailUrl = thumbnailUrl;
+    final lOther$thumbnailUrl = other.thumbnailUrl;
+    if (l$thumbnailUrl != lOther$thumbnailUrl) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -28411,89 +28909,230 @@ class Query$UserOrders$userOrders$user {
   }
 }
 
-extension UtilityExtension$Query$UserOrders$userOrders$user
-    on Query$UserOrders$userOrders$user {
-  CopyWith$Query$UserOrders$userOrders$user<Query$UserOrders$userOrders$user>
-      get copyWith => CopyWith$Query$UserOrders$userOrders$user(
+extension UtilityExtension$Query$UserOrders$userOrders$products$seller
+    on Query$UserOrders$userOrders$products$seller {
+  CopyWith$Query$UserOrders$userOrders$products$seller<
+          Query$UserOrders$userOrders$products$seller>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$products$seller(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$UserOrders$userOrders$user<TRes> {
-  factory CopyWith$Query$UserOrders$userOrders$user(
-    Query$UserOrders$userOrders$user instance,
-    TRes Function(Query$UserOrders$userOrders$user) then,
-  ) = _CopyWithImpl$Query$UserOrders$userOrders$user;
+abstract class CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$products$seller(
+    Query$UserOrders$userOrders$products$seller instance,
+    TRes Function(Query$UserOrders$userOrders$products$seller) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$products$seller;
 
-  factory CopyWith$Query$UserOrders$userOrders$user.stub(TRes res) =
-      _CopyWithStubImpl$Query$UserOrders$userOrders$user;
+  factory CopyWith$Query$UserOrders$userOrders$products$seller.stub(TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller;
 
   TRes call({
-    String? email,
-    String? username,
-    String? thumbnailUrl,
-    String? fullName,
     String? displayName,
-    String? bio,
+    String? fullName,
+    String? thumbnailUrl,
+    String? username,
+    int? id,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Query$UserOrders$userOrders$user<TRes>
-    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
-  _CopyWithImpl$Query$UserOrders$userOrders$user(
+class _CopyWithImpl$Query$UserOrders$userOrders$products$seller<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$products$seller(
     this._instance,
     this._then,
   );
 
-  final Query$UserOrders$userOrders$user _instance;
+  final Query$UserOrders$userOrders$products$seller _instance;
 
-  final TRes Function(Query$UserOrders$userOrders$user) _then;
+  final TRes Function(Query$UserOrders$userOrders$products$seller) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? email = _undefined,
-    Object? username = _undefined,
-    Object? thumbnailUrl = _undefined,
-    Object? fullName = _undefined,
     Object? displayName = _undefined,
-    Object? bio = _undefined,
+    Object? fullName = _undefined,
+    Object? thumbnailUrl = _undefined,
+    Object? username = _undefined,
+    Object? id = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$UserOrders$userOrders$user(
-        email: email == _undefined ? _instance.email : (email as String?),
-        username:
-            username == _undefined ? _instance.username : (username as String?),
-        thumbnailUrl: thumbnailUrl == _undefined
-            ? _instance.thumbnailUrl
-            : (thumbnailUrl as String?),
-        fullName:
-            fullName == _undefined ? _instance.fullName : (fullName as String?),
+      _then(Query$UserOrders$userOrders$products$seller(
         displayName: displayName == _undefined
             ? _instance.displayName
             : (displayName as String?),
-        bio: bio == _undefined ? _instance.bio : (bio as String?),
+        fullName:
+            fullName == _undefined ? _instance.fullName : (fullName as String?),
+        thumbnailUrl: thumbnailUrl == _undefined
+            ? _instance.thumbnailUrl
+            : (thumbnailUrl as String?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        id: id == _undefined ? _instance.id : (id as int?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Query$UserOrders$userOrders$user<TRes>
-    implements CopyWith$Query$UserOrders$userOrders$user<TRes> {
-  _CopyWithStubImpl$Query$UserOrders$userOrders$user(this._res);
+class _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$products$seller<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$products$seller(this._res);
 
   TRes _res;
 
   call({
-    String? email,
-    String? username,
-    String? thumbnailUrl,
-    String? fullName,
     String? displayName,
-    String? bio,
+    String? fullName,
+    String? thumbnailUrl,
+    String? username,
+    int? id,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$UserOrders$userOrders$products$materials {
+  Query$UserOrders$userOrders$products$materials({
+    this.id,
+    this.name,
+    this.$__typename = 'BrandType',
+  });
+
+  factory Query$UserOrders$userOrders$products$materials.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$$__typename = json['__typename'];
+    return Query$UserOrders$userOrders$products$materials(
+      id: (l$id as int?),
+      name: (l$name as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? name;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$UserOrders$userOrders$products$materials ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$UserOrders$userOrders$products$materials
+    on Query$UserOrders$userOrders$products$materials {
+  CopyWith$Query$UserOrders$userOrders$products$materials<
+          Query$UserOrders$userOrders$products$materials>
+      get copyWith => CopyWith$Query$UserOrders$userOrders$products$materials(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$UserOrders$userOrders$products$materials<TRes> {
+  factory CopyWith$Query$UserOrders$userOrders$products$materials(
+    Query$UserOrders$userOrders$products$materials instance,
+    TRes Function(Query$UserOrders$userOrders$products$materials) then,
+  ) = _CopyWithImpl$Query$UserOrders$userOrders$products$materials;
+
+  factory CopyWith$Query$UserOrders$userOrders$products$materials.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$UserOrders$userOrders$products$materials;
+
+  TRes call({
+    int? id,
+    String? name,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$UserOrders$userOrders$products$materials<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$products$materials<TRes> {
+  _CopyWithImpl$Query$UserOrders$userOrders$products$materials(
+    this._instance,
+    this._then,
+  );
+
+  final Query$UserOrders$userOrders$products$materials _instance;
+
+  final TRes Function(Query$UserOrders$userOrders$products$materials) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$UserOrders$userOrders$products$materials(
+        id: id == _undefined ? _instance.id : (id as int?),
+        name: name == _undefined ? _instance.name : (name as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$UserOrders$userOrders$products$materials<TRes>
+    implements CopyWith$Query$UserOrders$userOrders$products$materials<TRes> {
+  _CopyWithStubImpl$Query$UserOrders$userOrders$products$materials(this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? name,
     String? $__typename,
   }) =>
       _res;

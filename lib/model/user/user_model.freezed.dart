@@ -42,6 +42,7 @@ mixin _$UserModel {
   bool? get isVacationMode => throw _privateConstructorUsedError;
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
   bool? get isMultibuyEnabled => throw _privateConstructorUsedError;
   int? get noOfFollowing => throw _privateConstructorUsedError;
@@ -83,6 +84,8 @@ abstract class $UserModelCopyWith<$Res> {
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      @JsonKey(
+          fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,
       bool? isMultibuyEnabled,
       int? noOfFollowing});
@@ -305,6 +308,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       bool? isVacationMode,
       bool? isFollowing,
       int? noOfFollowers,
+      @JsonKey(
+          fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       ShippingAddress? shippingAddress,
       bool? isMultibuyEnabled,
       int? noOfFollowing});
@@ -481,6 +486,8 @@ class _$UserModelImpl implements _UserModel {
       this.isVacationMode,
       this.isFollowing,
       this.noOfFollowers,
+      @JsonKey(
+          fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       this.shippingAddress,
       this.isMultibuyEnabled,
       this.noOfFollowing});
@@ -531,6 +538,7 @@ class _$UserModelImpl implements _UserModel {
   @override
   final int? noOfFollowers;
   @override
+  @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   final ShippingAddress? shippingAddress;
   @override
   final bool? isMultibuyEnabled;
@@ -659,6 +667,8 @@ abstract class _UserModel implements UserModel {
       final bool? isVacationMode,
       final bool? isFollowing,
       final int? noOfFollowers,
+      @JsonKey(
+          fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
       final ShippingAddress? shippingAddress,
       final bool? isMultibuyEnabled,
       final int? noOfFollowing}) = _$UserModelImpl;
@@ -709,6 +719,7 @@ abstract class _UserModel implements UserModel {
   @override
   int? get noOfFollowers;
   @override
+  @JsonKey(fromJson: _shippingAddressFromJson, toJson: _shippingAddressToJson)
   ShippingAddress? get shippingAddress;
   @override
   bool? get isMultibuyEnabled;
@@ -1089,10 +1100,10 @@ ShippingAddress _$ShippingAddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShippingAddress {
-  String get city => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
-  String get postcode => throw _privateConstructorUsedError;
+  dynamic get city => throw _privateConstructorUsedError;
+  dynamic get address => throw _privateConstructorUsedError;
+  dynamic get country => throw _privateConstructorUsedError;
+  dynamic get postcode => throw _privateConstructorUsedError;
 
   /// Serializes this ShippingAddress to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1110,7 +1121,7 @@ abstract class $ShippingAddressCopyWith<$Res> {
           ShippingAddress value, $Res Function(ShippingAddress) then) =
       _$ShippingAddressCopyWithImpl<$Res, ShippingAddress>;
   @useResult
-  $Res call({String city, String address, String country, String postcode});
+  $Res call({dynamic city, dynamic address, dynamic country, dynamic postcode});
 }
 
 /// @nodoc
@@ -1128,28 +1139,28 @@ class _$ShippingAddressCopyWithImpl<$Res, $Val extends ShippingAddress>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
-    Object? address = null,
-    Object? country = null,
-    Object? postcode = null,
+    Object? city = freezed,
+    Object? address = freezed,
+    Object? country = freezed,
+    Object? postcode = freezed,
   }) {
     return _then(_value.copyWith(
-      city: null == city
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as dynamic,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as dynamic,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      postcode: null == postcode
+              as dynamic,
+      postcode: freezed == postcode
           ? _value.postcode
           : postcode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -1162,7 +1173,7 @@ abstract class _$$ShippingAddressImplCopyWith<$Res>
       __$$ShippingAddressImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String city, String address, String country, String postcode});
+  $Res call({dynamic city, dynamic address, dynamic country, dynamic postcode});
 }
 
 /// @nodoc
@@ -1178,28 +1189,28 @@ class __$$ShippingAddressImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? city = null,
-    Object? address = null,
-    Object? country = null,
-    Object? postcode = null,
+    Object? city = freezed,
+    Object? address = freezed,
+    Object? country = freezed,
+    Object? postcode = freezed,
   }) {
     return _then(_$ShippingAddressImpl(
-      city: null == city
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      address: null == address
+              as dynamic,
+      address: freezed == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as String,
-      country: null == country
+              as dynamic,
+      country: freezed == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
-              as String,
-      postcode: null == postcode
+              as dynamic,
+      postcode: freezed == postcode
           ? _value.postcode
           : postcode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
     ));
   }
 }
@@ -1217,13 +1228,13 @@ class _$ShippingAddressImpl implements _ShippingAddress {
       _$$ShippingAddressImplFromJson(json);
 
   @override
-  final String city;
+  final dynamic city;
   @override
-  final String address;
+  final dynamic address;
   @override
-  final String country;
+  final dynamic country;
   @override
-  final String postcode;
+  final dynamic postcode;
 
   @override
   String toString() {
@@ -1235,17 +1246,20 @@ class _$ShippingAddressImpl implements _ShippingAddress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ShippingAddressImpl &&
-            (identical(other.city, city) || other.city == city) &&
-            (identical(other.address, address) || other.address == address) &&
-            (identical(other.country, country) || other.country == country) &&
-            (identical(other.postcode, postcode) ||
-                other.postcode == postcode));
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
+            const DeepCollectionEquality().equals(other.postcode, postcode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, city, address, country, postcode);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(country),
+      const DeepCollectionEquality().hash(postcode));
 
   /// Create a copy of ShippingAddress
   /// with the given fields replaced by the non-null parameter values.
@@ -1266,22 +1280,22 @@ class _$ShippingAddressImpl implements _ShippingAddress {
 
 abstract class _ShippingAddress implements ShippingAddress {
   const factory _ShippingAddress(
-      {required final String city,
-      required final String address,
-      required final String country,
-      required final String postcode}) = _$ShippingAddressImpl;
+      {required final dynamic city,
+      required final dynamic address,
+      required final dynamic country,
+      required final dynamic postcode}) = _$ShippingAddressImpl;
 
   factory _ShippingAddress.fromJson(Map<String, dynamic> json) =
       _$ShippingAddressImpl.fromJson;
 
   @override
-  String get city;
+  dynamic get city;
   @override
-  String get address;
+  dynamic get address;
   @override
-  String get country;
+  dynamic get country;
   @override
-  String get postcode;
+  dynamic get postcode;
 
   /// Create a copy of ShippingAddress
   /// with the given fields replaced by the non-null parameter values.

@@ -13,10 +13,12 @@ class DiscountItem extends ConsumerStatefulWidget {
       {super.key,
       required this.title,
       required this.isEditing,
+      this.onChange,
       required this.percentageValue});
   final String title;
   final bool isEditing;
-  StateProvider<String?> percentageValue;
+  StateProvider<String> percentageValue;
+  final Function()? onChange;
 
   @override
   _EditSaveExampleState createState() => _EditSaveExampleState();
@@ -45,6 +47,12 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
 
   @override
   Widget build(BuildContext context) {
+    final percentage = ref.watch(widget.percentageValue);
+
+    // Keep controller in sync with the latest percentageValue
+    if (_controller.text != percentage) {
+      _controller.text = percentage;
+    }
     return Center(
       // Wrap the Column with Center
       child: Column(
@@ -90,7 +98,7 @@ class _EditSaveExampleState extends ConsumerState<DiscountItem> {
                         },
                         onChanged: (newValue) {
                           log(" new value : ${newValue.toString()}");
-
+                          widget.onChange?.call();
                           setState(() {
                             String numericValue =
                                 newValue.replaceAll(RegExp(r'[^0-9]'), '');

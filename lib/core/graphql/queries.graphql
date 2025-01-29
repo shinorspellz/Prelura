@@ -14,6 +14,7 @@ query ViewMe {
     lastLogin
     fullName
     isMultibuyEnabled
+    shippingAddress
     listing
     location {
       latitude
@@ -68,6 +69,8 @@ query GetUser($username: String!) {
     lastLogin
     fullName
     listing
+    isMultibuyEnabled
+    shippingAddress
     location {
       latitude
       longitude
@@ -570,27 +573,26 @@ query PopularBrands($top: Int!) {
   }
 }
 
-query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,) {
+query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int) {
   userOrders(filters: $filters, pageCount: $pageCount, pageNumber: $pageNumber,) {
     createdAt
+    discountPrice
     id
     priceTotal
-    updatedAt
-    status
+    shippingAddress
     shippingFee
-    discountPrice
+    status
+    updatedAt
+    user {
+      email
+      fullName
+      gender
+      username
+      thumbnailUrl
+      profilePictureUrl
+      shippingAddress
+    }
     products {
-      id
-      name
-      imagesUrl
-      price
-      status
-      updatedAt
-      seller {
-        username
-        thumbnailUrl
-      }
-      condition
       brand {
         id
         name
@@ -600,16 +602,33 @@ query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,
         name
       }
       color
-      discountPrice
+      condition
+      createdAt
+      description
+      customBrand
+      id
+      imagesUrl
       isFeatured
-    }
-    user {
-      email
-      username
-      thumbnailUrl
-      fullName
-      displayName
-      bio
+      name
+      price
+      status
+      seller {
+        displayName
+        fullName
+        thumbnailUrl
+        username
+        id
+      }
+      style
+      updatedAt
+      userLiked
+      views
+      likes
+      materials {
+        id
+        name
+      }
+      discountPrice
     }
   }
   userOrdersTotalNumber
@@ -983,3 +1002,4 @@ query userMultibuyDiscounts{
     }
   }
 }
+

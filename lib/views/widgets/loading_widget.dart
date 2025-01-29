@@ -30,7 +30,7 @@ class LoadingWidget extends StatelessWidget {
             height: height,
             width: height,
             child: CupertinoActivityIndicator(
-              color: PreluraColors.primaryColor,
+              color: color ?? PreluraColors.primaryColor,
             ),
           ),
           if (text != null) ...[

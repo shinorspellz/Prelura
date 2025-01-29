@@ -968,9 +968,13 @@ class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
 }
 
 class Input$OrderFiltersInput {
-  factory Input$OrderFiltersInput({Enum$OrderStatusEnum? status}) =>
+  factory Input$OrderFiltersInput({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  }) =>
       Input$OrderFiltersInput._({
         if (status != null) r'status': status,
+        if (isSeller != null) r'isSeller': isSeller,
       });
 
   Input$OrderFiltersInput._(this._$data);
@@ -983,6 +987,10 @@ class Input$OrderFiltersInput {
           ? null
           : fromJson$Enum$OrderStatusEnum((l$status as String));
     }
+    if (data.containsKey('isSeller')) {
+      final l$isSeller = data['isSeller'];
+      result$data['isSeller'] = (l$isSeller as bool?);
+    }
     return Input$OrderFiltersInput._(result$data);
   }
 
@@ -991,12 +999,18 @@ class Input$OrderFiltersInput {
   Enum$OrderStatusEnum? get status =>
       (_$data['status'] as Enum$OrderStatusEnum?);
 
+  bool? get isSeller => (_$data['isSeller'] as bool?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('status')) {
       final l$status = status;
       result$data['status'] =
           l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+    }
+    if (_$data.containsKey('isSeller')) {
+      final l$isSeller = isSeller;
+      result$data['isSeller'] = l$isSeller;
     }
     return result$data;
   }
@@ -1023,13 +1037,26 @@ class Input$OrderFiltersInput {
     if (l$status != lOther$status) {
       return false;
     }
+    final l$isSeller = isSeller;
+    final lOther$isSeller = other.isSeller;
+    if (_$data.containsKey('isSeller') !=
+        other._$data.containsKey('isSeller')) {
+      return false;
+    }
+    if (l$isSeller != lOther$isSeller) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$status = status;
-    return Object.hashAll([_$data.containsKey('status') ? l$status : const {}]);
+    final l$isSeller = isSeller;
+    return Object.hashAll([
+      _$data.containsKey('status') ? l$status : const {},
+      _$data.containsKey('isSeller') ? l$isSeller : const {},
+    ]);
   }
 }
 
@@ -1042,7 +1069,10 @@ abstract class CopyWith$Input$OrderFiltersInput<TRes> {
   factory CopyWith$Input$OrderFiltersInput.stub(TRes res) =
       _CopyWithStubImpl$Input$OrderFiltersInput;
 
-  TRes call({Enum$OrderStatusEnum? status});
+  TRes call({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  });
 }
 
 class _CopyWithImpl$Input$OrderFiltersInput<TRes>
@@ -1058,9 +1088,14 @@ class _CopyWithImpl$Input$OrderFiltersInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? status = _undefined}) => _then(Input$OrderFiltersInput._({
+  TRes call({
+    Object? status = _undefined,
+    Object? isSeller = _undefined,
+  }) =>
+      _then(Input$OrderFiltersInput._({
         ..._instance._$data,
         if (status != _undefined) 'status': (status as Enum$OrderStatusEnum?),
+        if (isSeller != _undefined) 'isSeller': (isSeller as bool?),
       }));
 }
 
@@ -1070,7 +1105,11 @@ class _CopyWithStubImpl$Input$OrderFiltersInput<TRes>
 
   TRes _res;
 
-  call({Enum$OrderStatusEnum? status}) => _res;
+  call({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  }) =>
+      _res;
 }
 
 class Input$PhoneInputType {

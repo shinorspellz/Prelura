@@ -80,7 +80,7 @@ class _ProductPriceFilterPageState
           pinned: true, // Keeps it static
           delegate: BrandedProductStaticSliverDelegate(
               child: Container(
-            padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 10),
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

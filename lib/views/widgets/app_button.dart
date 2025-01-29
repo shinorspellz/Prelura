@@ -78,9 +78,7 @@ class AppButton extends StatelessWidget {
         width: width,
         child: loading
             ? LoadingWidget(
-                color: bgColor != null
-                    ? PreluraColors.primaryColor
-                    : PreluraColors.white,
+                color: Colors.white,
               )
             : Row(
                 mainAxisSize: MainAxisSize.min,
