@@ -73,7 +73,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                     Spacer(),
                     PreluraButtonWithLoader(
                       onPressed: () async {
-                        resetPassword(context);
+                        changePassword(context);
                       },
                       buttonTitle: "Reset Password",
                       showLoadingIndicator: isLoading,
@@ -107,7 +107,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   var isLoading = false;
 
 //!========= Functions =============\\
-  Future<void> resetPassword(BuildContext context) async {
+  Future<void> changePassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       if (currentPassEC.text.isEmpty) {
         context.alert('Current password cannot be empty');
