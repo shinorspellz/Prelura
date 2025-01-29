@@ -26,9 +26,10 @@ import '../../widgets/switch_with_text.dart';
 // Providers for discount values
 final isSelectedProvider = StateProvider(
     (ref) => ref.read(userProvider).valueOrNull?.isMultibuyEnabled ?? false);
-final fourItemDiscountValue = StateProvider<String?>((ref) => "0%");
-final nineItemDiscountValue = StateProvider<String?>((ref) => "0%");
-final aboveTenItemDiscountValue = StateProvider<String?>((ref) => "0%");
+
+final fourItemDiscountValueProvider = StateProvider<String>((ref) => "0%");
+final nineItemDiscountValueProvider = StateProvider<String>((ref) => "0%");
+final aboveTenItemDiscountValueProvider = StateProvider<String>((ref) => "0%");
 
 @RoutePage()
 class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
@@ -41,6 +42,9 @@ class MultiBuyDiscountScreen extends ConsumerStatefulWidget {
 class _MultiBuyDiscountScreenState
     extends ConsumerState<MultiBuyDiscountScreen> {
   bool isEditing = false;
+  String fourItemDiscountValue = "0%";
+  String nineItemDiscountValue = "0%";
+  String aboveTenItemDiscountValue = "0%";
 
   @override
   void initState() {
@@ -49,23 +53,33 @@ class _MultiBuyDiscountScreenState
   }
 
   void _initializeDiscountValues() async {
+    log("Fetching discount values...");
+
     final multiBuyDiscounts =
-        await ref.read(userMultiBuyDiscountProvider).valueOrNull;
+        await ref.read(userMultiBuyDiscountProvider.future);
     if (multiBuyDiscounts == null) return;
 
-    void setDiscountValue(StateProvider<String?> provider, int minItems) {
-      final discount = multiBuyDiscounts.firstWhere(
-        (e) => e.minItems == minItems,
-        orElse: () => MultiBuyDiscountModel(
-            id: 0, minItems: minItems, discountValue: "0", isActive: false),
-      );
-      ref.read(provider.notifier).state =
-          "${double.parse(discount.discountValue).toInt()}%";
-    }
+    log("Fetched discounts: $multiBuyDiscounts");
 
-    setDiscountValue(fourItemDiscountValue, 2);
-    setDiscountValue(nineItemDiscountValue, 5);
-    setDiscountValue(aboveTenItemDiscountValue, 10);
+    ref.read(fourItemDiscountValueProvider.notifier).state =
+        _getDiscountValue(multiBuyDiscounts, 2);
+    ref.read(nineItemDiscountValueProvider.notifier).state =
+        _getDiscountValue(multiBuyDiscounts, 5);
+    ref.read(aboveTenItemDiscountValueProvider.notifier).state =
+        _getDiscountValue(multiBuyDiscounts, 10);
+  }
+
+  String _getDiscountValue(
+      List<MultiBuyDiscountModel> discounts, int minItems) {
+    final discount = discounts.firstWhere(
+      (e) => e.minItems == minItems,
+      orElse: () => MultiBuyDiscountModel(
+          id: 0, minItems: minItems, discountValue: "0", isActive: false),
+    );
+
+    log("Discount for $minItems items: ${discount.discountValue}%");
+
+    return "${double.parse(discount.discountValue).toInt()}%";
   }
 
   Future<void> _toggleMultiBuyDiscount(bool isEnabled) async {
@@ -119,6 +133,7 @@ class _MultiBuyDiscountScreenState
             HelperFunction.context = context;
             HelperFunction.showToast(message: "Updated multi-buy discounts");
             ref.refresh(userProvider.future);
+            ref.refresh(userMultiBuyDiscountProvider.future);
 
             setState(() {
               isEditing = !isEditing;
@@ -129,28 +144,27 @@ class _MultiBuyDiscountScreenState
             log("error occured $e");
           },
           loading: () {});
-      ref.refresh(userMultiBuyDiscountProvider.future);
 
       return;
     }
   }
 
   Future<void> _createDiscounts() async {
-    await _processDiscount(fourItemDiscountValue, 2);
-    await _processDiscount(nineItemDiscountValue, 5);
-    await _processDiscount(aboveTenItemDiscountValue, 10);
+    await _processDiscount(fourItemDiscountValueProvider, 2);
+    await _processDiscount(nineItemDiscountValueProvider, 5);
+    await _processDiscount(aboveTenItemDiscountValueProvider, 10);
   }
 
   Future<void> _updateDiscounts(
       List<MultiBuyDiscountModel> multiBuyDiscounts) async {
     Future<void> processExistingOrCreate(
-        StateProvider<String?> provider, int minItems) async {
+        StateProvider<String> provider, int minItems) async {
       final existing = multiBuyDiscounts.firstWhere(
         (e) => e.minItems == minItems,
         orElse: () => MultiBuyDiscountModel(
             id: 0, minItems: minItems, discountValue: "null", isActive: false),
       );
-      final discountValue = ref.read(provider.notifier).state ?? "0%";
+      final discountValue = ref.read(provider);
       final percentage = removePercentageSymbol(discountValue);
 
       if (existing.discountValue == "null" && discountValue != "0%") {
@@ -171,14 +185,14 @@ class _MultiBuyDiscountScreenState
       }
     }
 
-    await processExistingOrCreate(fourItemDiscountValue, 2);
-    await processExistingOrCreate(nineItemDiscountValue, 5);
-    await processExistingOrCreate(aboveTenItemDiscountValue, 10);
+    await processExistingOrCreate(fourItemDiscountValueProvider, 2);
+    await processExistingOrCreate(nineItemDiscountValueProvider, 5);
+    await processExistingOrCreate(aboveTenItemDiscountValueProvider, 10);
   }
 
   Future<void> _processDiscount(
-      StateProvider<String?> provider, int minItems) async {
-    final value = ref.read(provider.notifier).state;
+      StateProvider<String> provider, int minItems) async {
+    final value = ref.read(provider);
     if (value != "0%") {
       await ref
           .read(userMultiBuyerDiscountNotifierProvider.notifier)
@@ -194,39 +208,6 @@ class _MultiBuyDiscountScreenState
     final multiBuyDiscounts =
         ref.watch(userMultiBuyDiscountProvider).valueOrNull;
     final isEnabled = ref.watch(isSelectedProvider);
-
-    final fourItemDiscountValue = StateProvider<String?>((ref) {
-      final multiBuyDiscounts =
-          ref.watch(userMultiBuyDiscountProvider).valueOrNull;
-      final discount = multiBuyDiscounts?.firstWhere(
-        (e) => e.minItems == 2,
-        orElse: () => MultiBuyDiscountModel(
-            id: 0, minItems: 2, discountValue: "0", isActive: false),
-      );
-      return "${double.parse(discount?.discountValue ?? "0").toInt()}%";
-    });
-
-    final nineItemDiscountValue = StateProvider<String?>((ref) {
-      final multiBuyDiscounts =
-          ref.watch(userMultiBuyDiscountProvider).valueOrNull;
-      final discount = multiBuyDiscounts?.firstWhere(
-        (e) => e.minItems == 5,
-        orElse: () => MultiBuyDiscountModel(
-            id: 0, minItems: 5, discountValue: "0", isActive: false),
-      );
-      return "${double.parse(discount?.discountValue ?? "0").toInt()}%";
-    });
-
-    final aboveTenItemDiscountValue = StateProvider<String?>((ref) {
-      final multiBuyDiscounts =
-          ref.watch(userMultiBuyDiscountProvider).valueOrNull;
-      final discount = multiBuyDiscounts?.firstWhere(
-        (e) => e.minItems == 10,
-        orElse: () => MultiBuyDiscountModel(
-            id: 0, minItems: 10, discountValue: "0", isActive: false),
-      );
-      return "${double.parse(discount?.discountValue ?? "0").toInt()}%";
-    });
 
     return Scaffold(
       appBar: PreluraAppBar(
@@ -277,17 +258,17 @@ class _MultiBuyDiscountScreenState
                           DiscountItem(
                             title: "2-4 items",
                             isEditing: isEditing,
-                            percentageValue: fourItemDiscountValue,
+                            percentageValue: fourItemDiscountValueProvider,
                           ),
                           DiscountItem(
                             title: "5-9 items",
                             isEditing: isEditing,
-                            percentageValue: nineItemDiscountValue,
+                            percentageValue: nineItemDiscountValueProvider,
                           ),
                           DiscountItem(
                             title: "10+ items",
                             isEditing: isEditing,
-                            percentageValue: aboveTenItemDiscountValue,
+                            percentageValue: aboveTenItemDiscountValueProvider,
                           ),
                           32.verticalSpacing,
                           Padding(

@@ -6022,6 +6022,7 @@ class Variables$Mutation$UpdateProfile {
     Input$LocationInputType? location,
     String? fcmToken,
     bool? isVacationMode,
+    Input$ShippingAddressInputType? shippingAddress,
   }) =>
       Variables$Mutation$UpdateProfile._({
         if (bio != null) r'bio': bio,
@@ -6040,6 +6041,7 @@ class Variables$Mutation$UpdateProfile {
         if (location != null) r'location': location,
         if (fcmToken != null) r'fcmToken': fcmToken,
         if (isVacationMode != null) r'isVacationMode': isVacationMode,
+        if (shippingAddress != null) r'shippingAddress': shippingAddress,
       });
 
   Variables$Mutation$UpdateProfile._(this._$data);
@@ -6119,6 +6121,13 @@ class Variables$Mutation$UpdateProfile {
       final l$isVacationMode = data['isVacationMode'];
       result$data['isVacationMode'] = (l$isVacationMode as bool?);
     }
+    if (data.containsKey('shippingAddress')) {
+      final l$shippingAddress = data['shippingAddress'];
+      result$data['shippingAddress'] = l$shippingAddress == null
+          ? null
+          : Input$ShippingAddressInputType.fromJson(
+              (l$shippingAddress as Map<String, dynamic>));
+    }
     return Variables$Mutation$UpdateProfile._(result$data);
   }
 
@@ -6158,6 +6167,9 @@ class Variables$Mutation$UpdateProfile {
   String? get fcmToken => (_$data['fcmToken'] as String?);
 
   bool? get isVacationMode => (_$data['isVacationMode'] as bool?);
+
+  Input$ShippingAddressInputType? get shippingAddress =>
+      (_$data['shippingAddress'] as Input$ShippingAddressInputType?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -6224,6 +6236,10 @@ class Variables$Mutation$UpdateProfile {
     if (_$data.containsKey('isVacationMode')) {
       final l$isVacationMode = isVacationMode;
       result$data['isVacationMode'] = l$isVacationMode;
+    }
+    if (_$data.containsKey('shippingAddress')) {
+      final l$shippingAddress = shippingAddress;
+      result$data['shippingAddress'] = l$shippingAddress?.toJson();
     }
     return result$data;
   }
@@ -6381,6 +6397,15 @@ class Variables$Mutation$UpdateProfile {
     if (l$isVacationMode != lOther$isVacationMode) {
       return false;
     }
+    final l$shippingAddress = shippingAddress;
+    final lOther$shippingAddress = other.shippingAddress;
+    if (_$data.containsKey('shippingAddress') !=
+        other._$data.containsKey('shippingAddress')) {
+      return false;
+    }
+    if (l$shippingAddress != lOther$shippingAddress) {
+      return false;
+    }
     return true;
   }
 
@@ -6402,6 +6427,7 @@ class Variables$Mutation$UpdateProfile {
     final l$location = location;
     final l$fcmToken = fcmToken;
     final l$isVacationMode = isVacationMode;
+    final l$shippingAddress = shippingAddress;
     return Object.hashAll([
       _$data.containsKey('bio') ? l$bio : const {},
       _$data.containsKey('country') ? l$country : const {},
@@ -6419,6 +6445,7 @@ class Variables$Mutation$UpdateProfile {
       _$data.containsKey('location') ? l$location : const {},
       _$data.containsKey('fcmToken') ? l$fcmToken : const {},
       _$data.containsKey('isVacationMode') ? l$isVacationMode : const {},
+      _$data.containsKey('shippingAddress') ? l$shippingAddress : const {},
     ]);
   }
 }
@@ -6449,6 +6476,7 @@ abstract class CopyWith$Variables$Mutation$UpdateProfile<TRes> {
     Input$LocationInputType? location,
     String? fcmToken,
     bool? isVacationMode,
+    Input$ShippingAddressInputType? shippingAddress,
   });
 }
 
@@ -6482,6 +6510,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
     Object? location = _undefined,
     Object? fcmToken = _undefined,
     Object? isVacationMode = _undefined,
+    Object? shippingAddress = _undefined,
   }) =>
       _then(Variables$Mutation$UpdateProfile._({
         ..._instance._$data,
@@ -6505,6 +6534,9 @@ class _CopyWithImpl$Variables$Mutation$UpdateProfile<TRes>
         if (fcmToken != _undefined) 'fcmToken': (fcmToken as String?),
         if (isVacationMode != _undefined)
           'isVacationMode': (isVacationMode as bool?),
+        if (shippingAddress != _undefined)
+          'shippingAddress':
+              (shippingAddress as Input$ShippingAddressInputType?),
       }));
 }
 
@@ -6531,6 +6563,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateProfile<TRes>
     Input$LocationInputType? location,
     String? fcmToken,
     bool? isVacationMode,
+    Input$ShippingAddressInputType? shippingAddress,
   }) =>
       _res;
 }
@@ -6822,6 +6855,15 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
         defaultValue: DefaultValueNode(value: null),
         directives: [],
       ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'shippingAddress')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ShippingAddressInputType'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -6892,6 +6934,10 @@ const documentNodeMutationUpdateProfile = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'isVacationMode'),
             value: VariableNode(name: NameNode(value: 'isVacationMode')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'shippingAddress'),
+            value: VariableNode(name: NameNode(value: 'shippingAddress')),
           ),
         ],
         directives: [],
