@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:prelura_app/model/product/order/user_order.dart';
+import 'package:prelura_app/model/product/order/order_model.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
@@ -90,7 +90,7 @@ class OrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    order.paymentSet?.firstOrNull?.order?.product?.name ?? "",
+                    order.products?.firstOrNull?.name ?? "",
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                           fontSize: getDefaultSize(),

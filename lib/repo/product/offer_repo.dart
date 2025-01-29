@@ -111,7 +111,7 @@ class OfferRepo {
     return response.parsedData?.respondToOffer;
   }
 
-  Future<UserOrders> getUserOrders({
+  Future<UserOrderResponse> getUserOrders({
     int? pageCount,
     int? pageNumber,
     Input$OrderFiltersInput? filters,
@@ -138,11 +138,10 @@ class OfferRepo {
       log('Mising response', name: 'ProductRepo');
       throw 'An error occured';
     }
+
     log(":::::The user orders info is:: ${jsonEncode(response.parsedData!.toJson())}");
 
-    return UserOrders.fromJson(response.parsedData!.toJson());
-    // .map((x) => ProductModel.fromJson(x!.toJson()))
-    // .toList();
+    return UserOrderResponse.fromJson(response.parsedData!.toJson());
   }
 }
 

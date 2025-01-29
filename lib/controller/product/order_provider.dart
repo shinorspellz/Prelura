@@ -9,6 +9,7 @@ import 'package:prelura_app/core/graphql/__generated/mutations.graphql.dart';
 import 'package:prelura_app/core/graphql/__generated/schema.graphql.dart';
 import 'package:prelura_app/core/utils/alert.dart';
 import 'package:prelura_app/model/product/order/order_model.dart';
+import 'package:prelura_app/model/product/order/user_order.dart';
 // import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/repo/product/offer_repo.dart';
 
@@ -100,16 +101,15 @@ class OrderNotifier extends StateNotifier<OrderState> {
     int pageNumber = 1;
 
     try {
-      // UserOrders response = await orderRepo.getUserOrders(
-      //   pageCount: pageCount,
-      //   pageNumber: pageNumber,
-      //   filters: filterType,
-      // );
-      // updateOrderState({
-      //   "isLoading": false,
-      //   "totalOrders": response.userOrdersTotalNumber ?? 0,
-      //   "userOrders": response.userOrders,
-      // });
+      final UserOrderResponse response = await orderRepo.getUserOrders(
+        pageCount: pageCount,
+        pageNumber: pageNumber,
+        filters: filterType,
+      );
+      updateOrderState({
+        "totalOrders": response.userOrdersTotalNumber ?? 0,
+        "userOrders": response.userOrders,
+      });
     } catch (e) {
       log("User Orders Error: $e");
     } finally {
