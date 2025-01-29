@@ -20,6 +20,7 @@ class _HomeRefreshNotfier extends StateNotifier<bool> {
     ref.refresh(notificationProvider.future);
     ref.refresh(recommendedSellersProvider.future);
     ref.refresh(favoriteBrandProductsProvider.future);
+    
 
     final category = ref.watch(categoryProvider).valueOrNull;
     if (category != null) {

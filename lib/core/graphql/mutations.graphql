@@ -530,3 +530,26 @@ mutation VerifyEmail($code: String!, $email: String!) {
     }
   }
 }
+
+mutation CreateMultibuyDiscount($inputs: [MultibuyInputType]!) {
+  createMultibuyDiscount(inputs: $inputs) {
+    success
+    multibuyDiscounts {
+      # Replace the following fields with the actual fields in MultibuyDiscountType
+      id
+      minItems
+      isActive
+      discountValue
+      seller{
+        username
+        profilePictureUrl
+      }
+    
+    }
+  }
+}
+mutation DeactivateMultibuyDiscounts{
+  deactivateMultibuyDiscounts{
+    success
+  }
+}

@@ -50,7 +50,6 @@ class _UserPopularBrandState extends ConsumerState<UserPopularBrand> {
   Widget build(BuildContext context) {
     final sortedBrands = ref.watch(userBrandProvider(widget.username ?? " "));
 
-    log(widget.isSelected.toString(), name: "sorted Brands");
     if (widget.isSelected) {
       return
           // sortedBrands.maybeWhen(

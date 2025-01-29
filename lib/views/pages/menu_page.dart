@@ -11,7 +11,6 @@ import 'package:prelura_app/views/widgets/menu_card.dart';
 import '../../res/images.dart';
 import '../../res/render_svg.dart';
 import '../../res/utils.dart';
-import 'settings/multi_buy_discount.dart';
 
 @RoutePage()
 class MenuPage extends ConsumerWidget {
@@ -119,7 +118,11 @@ class MenuPage extends ConsumerWidget {
                   }),
               MenuCard(
                   title: "Multi-buy discounts",
-                  subtitle: ref.watch(isSelectedProvider) ? "on" : "off",
+                  subtitle: ref.watch(userProvider).valueOrNull != null
+                      ? ref.watch(userProvider).valueOrNull!.isMultibuyEnabled!
+                          ? "on"
+                          : "off"
+                      : "off",
                   subtitleColor: PreluraColors.primaryColor,
                   rightArrow: false,
                   icon: RenderSvg(
@@ -161,13 +164,14 @@ class MenuPage extends ConsumerWidget {
               //     }),
 
               MenuCard(
-                  title: "Help Centre",
-                  icon: Icon(
-                    Icons.question_mark_rounded,
-                    color: PreluraColors.grey,
-                  ),
-                  rightArrow: false,
-                  onTap: () {}),
+                title: "Help Centre",
+                icon: Icon(
+                  Icons.question_mark_rounded,
+                  color: PreluraColors.grey,
+                ),
+                rightArrow: false,
+                onTap: () {},
+              ),
               MenuCard(
                   title: "About Prelura",
                   icon: Icon(

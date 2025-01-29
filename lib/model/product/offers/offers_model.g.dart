@@ -8,7 +8,9 @@ part of 'offers_model.dart';
 
 _$OfferTypeImpl _$$OfferTypeImplFromJson(Map<String, dynamic> json) =>
     _$OfferTypeImpl(
-      product: ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+      products: (json['products'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       buyer: UserModel.fromJson(json['buyer'] as Map<String, dynamic>),
       offerPrice: (json['offerPrice'] as num).toDouble(),
       status: Enum$OfferActionEnum.fromJson(json['status'] as String),
@@ -31,7 +33,7 @@ _$OfferTypeImpl _$$OfferTypeImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$OfferTypeImplToJson(_$OfferTypeImpl instance) =>
     <String, dynamic>{
-      'product': instance.product,
+      'products': instance.products,
       'buyer': instance.buyer,
       'offerPrice': instance.offerPrice,
       'status': instance.status,

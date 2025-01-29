@@ -242,6 +242,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isMultibuyEnabled'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'listing'),
             alias: null,
             arguments: [],
@@ -483,6 +490,7 @@ class Query$ViewMe$viewMe {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.isMultibuyEnabled,
     this.listing,
     this.location,
     this.noOfFollowing,
@@ -506,6 +514,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$listing = json['listing'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
@@ -530,6 +539,7 @@ class Query$ViewMe$viewMe {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       listing: (l$listing as int?),
       location: l$location == null
           ? null
@@ -571,6 +581,8 @@ class Query$ViewMe$viewMe {
   final DateTime? lastLogin;
 
   final String? fullName;
+
+  final bool? isMultibuyEnabled;
 
   final int? listing;
 
@@ -614,6 +626,8 @@ class Query$ViewMe$viewMe {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
     final l$location = location;
@@ -646,6 +660,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$listing = listing;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
@@ -667,6 +682,7 @@ class Query$ViewMe$viewMe {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$isMultibuyEnabled,
       l$listing,
       l$location,
       l$noOfFollowing,
@@ -750,6 +766,11 @@ class Query$ViewMe$viewMe {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
+      return false;
+    }
     final l$listing = listing;
     final lOther$listing = other.listing;
     if (l$listing != lOther$listing) {
@@ -820,6 +841,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    bool? isMultibuyEnabled,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -859,6 +881,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? isMultibuyEnabled = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
@@ -894,6 +917,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
         location: location == _undefined
             ? _instance.location
@@ -952,6 +978,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    bool? isMultibuyEnabled,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -46036,6 +46063,811 @@ class _CopyWithStubImpl$Query$FavoriteBrandProducts$favoriteBrandProducts$brand<
   call({
     int? id,
     String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$userMultibuyDiscounts {
+  Query$userMultibuyDiscounts({
+    this.userMultibuyDiscounts,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$userMultibuyDiscounts.fromJson(Map<String, dynamic> json) {
+    final l$userMultibuyDiscounts = json['userMultibuyDiscounts'];
+    final l$$__typename = json['__typename'];
+    return Query$userMultibuyDiscounts(
+      userMultibuyDiscounts: (l$userMultibuyDiscounts as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Query$userMultibuyDiscounts$userMultibuyDiscounts.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$userMultibuyDiscounts$userMultibuyDiscounts?>?
+      userMultibuyDiscounts;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$userMultibuyDiscounts = userMultibuyDiscounts;
+    _resultData['userMultibuyDiscounts'] =
+        l$userMultibuyDiscounts?.map((e) => e?.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$userMultibuyDiscounts = userMultibuyDiscounts;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$userMultibuyDiscounts == null
+          ? null
+          : Object.hashAll(l$userMultibuyDiscounts.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$userMultibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$userMultibuyDiscounts = userMultibuyDiscounts;
+    final lOther$userMultibuyDiscounts = other.userMultibuyDiscounts;
+    if (l$userMultibuyDiscounts != null &&
+        lOther$userMultibuyDiscounts != null) {
+      if (l$userMultibuyDiscounts.length !=
+          lOther$userMultibuyDiscounts.length) {
+        return false;
+      }
+      for (int i = 0; i < l$userMultibuyDiscounts.length; i++) {
+        final l$userMultibuyDiscounts$entry = l$userMultibuyDiscounts[i];
+        final lOther$userMultibuyDiscounts$entry =
+            lOther$userMultibuyDiscounts[i];
+        if (l$userMultibuyDiscounts$entry !=
+            lOther$userMultibuyDiscounts$entry) {
+          return false;
+        }
+      }
+    } else if (l$userMultibuyDiscounts != lOther$userMultibuyDiscounts) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$userMultibuyDiscounts
+    on Query$userMultibuyDiscounts {
+  CopyWith$Query$userMultibuyDiscounts<Query$userMultibuyDiscounts>
+      get copyWith => CopyWith$Query$userMultibuyDiscounts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$userMultibuyDiscounts<TRes> {
+  factory CopyWith$Query$userMultibuyDiscounts(
+    Query$userMultibuyDiscounts instance,
+    TRes Function(Query$userMultibuyDiscounts) then,
+  ) = _CopyWithImpl$Query$userMultibuyDiscounts;
+
+  factory CopyWith$Query$userMultibuyDiscounts.stub(TRes res) =
+      _CopyWithStubImpl$Query$userMultibuyDiscounts;
+
+  TRes call({
+    List<Query$userMultibuyDiscounts$userMultibuyDiscounts?>?
+        userMultibuyDiscounts,
+    String? $__typename,
+  });
+  TRes userMultibuyDiscounts(
+      Iterable<Query$userMultibuyDiscounts$userMultibuyDiscounts?>? Function(
+              Iterable<
+                  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<
+                      Query$userMultibuyDiscounts$userMultibuyDiscounts>?>?)
+          _fn);
+}
+
+class _CopyWithImpl$Query$userMultibuyDiscounts<TRes>
+    implements CopyWith$Query$userMultibuyDiscounts<TRes> {
+  _CopyWithImpl$Query$userMultibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$userMultibuyDiscounts _instance;
+
+  final TRes Function(Query$userMultibuyDiscounts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? userMultibuyDiscounts = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userMultibuyDiscounts(
+        userMultibuyDiscounts: userMultibuyDiscounts == _undefined
+            ? _instance.userMultibuyDiscounts
+            : (userMultibuyDiscounts
+                as List<Query$userMultibuyDiscounts$userMultibuyDiscounts?>?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes userMultibuyDiscounts(
+          Iterable<Query$userMultibuyDiscounts$userMultibuyDiscounts?>? Function(
+                  Iterable<
+                      CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<
+                          Query$userMultibuyDiscounts$userMultibuyDiscounts>?>?)
+              _fn) =>
+      call(
+          userMultibuyDiscounts:
+              _fn(_instance.userMultibuyDiscounts?.map((e) => e == null
+                  ? null
+                  : CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts(
+                      e,
+                      (i) => i,
+                    )))?.toList());
+}
+
+class _CopyWithStubImpl$Query$userMultibuyDiscounts<TRes>
+    implements CopyWith$Query$userMultibuyDiscounts<TRes> {
+  _CopyWithStubImpl$Query$userMultibuyDiscounts(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$userMultibuyDiscounts$userMultibuyDiscounts?>?
+        userMultibuyDiscounts,
+    String? $__typename,
+  }) =>
+      _res;
+
+  userMultibuyDiscounts(_fn) => _res;
+}
+
+const documentNodeQueryuserMultibuyDiscounts = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'userMultibuyDiscounts'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userMultibuyDiscounts'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'discountValue'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'isActive'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'minItems'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'seller'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'username'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'profilePictureUrl'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$userMultibuyDiscounts _parserFn$Query$userMultibuyDiscounts(
+        Map<String, dynamic> data) =>
+    Query$userMultibuyDiscounts.fromJson(data);
+typedef OnQueryComplete$Query$userMultibuyDiscounts = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$userMultibuyDiscounts?,
+);
+
+class Options$Query$userMultibuyDiscounts
+    extends graphql.QueryOptions<Query$userMultibuyDiscounts> {
+  Options$Query$userMultibuyDiscounts({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$userMultibuyDiscounts? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$userMultibuyDiscounts? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$userMultibuyDiscounts(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryuserMultibuyDiscounts,
+          parserFn: _parserFn$Query$userMultibuyDiscounts,
+        );
+
+  final OnQueryComplete$Query$userMultibuyDiscounts? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$userMultibuyDiscounts
+    extends graphql.WatchQueryOptions<Query$userMultibuyDiscounts> {
+  WatchOptions$Query$userMultibuyDiscounts({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$userMultibuyDiscounts? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryuserMultibuyDiscounts,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$userMultibuyDiscounts,
+        );
+}
+
+class FetchMoreOptions$Query$userMultibuyDiscounts
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$userMultibuyDiscounts(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryuserMultibuyDiscounts,
+        );
+}
+
+extension ClientExtension$Query$userMultibuyDiscounts on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$userMultibuyDiscounts>>
+      query$userMultibuyDiscounts(
+              [Options$Query$userMultibuyDiscounts? options]) async =>
+          await this.query(options ?? Options$Query$userMultibuyDiscounts());
+  graphql.ObservableQuery<
+      Query$userMultibuyDiscounts> watchQuery$userMultibuyDiscounts(
+          [WatchOptions$Query$userMultibuyDiscounts? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$userMultibuyDiscounts());
+  void writeQuery$userMultibuyDiscounts({
+    required Query$userMultibuyDiscounts data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation: graphql.Operation(
+                document: documentNodeQueryuserMultibuyDiscounts)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+  Query$userMultibuyDiscounts? readQuery$userMultibuyDiscounts(
+      {bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation: graphql.Operation(
+              document: documentNodeQueryuserMultibuyDiscounts)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$userMultibuyDiscounts.fromJson(result);
+  }
+}
+
+class Query$userMultibuyDiscounts$userMultibuyDiscounts {
+  Query$userMultibuyDiscounts$userMultibuyDiscounts({
+    required this.discountValue,
+    required this.id,
+    required this.isActive,
+    required this.minItems,
+    this.seller,
+    this.$__typename = 'MultibuyDiscountType',
+  });
+
+  factory Query$userMultibuyDiscounts$userMultibuyDiscounts.fromJson(
+      Map<String, dynamic> json) {
+    final l$discountValue = json['discountValue'];
+    final l$id = json['id'];
+    final l$isActive = json['isActive'];
+    final l$minItems = json['minItems'];
+    final l$seller = json['seller'];
+    final l$$__typename = json['__typename'];
+    return Query$userMultibuyDiscounts$userMultibuyDiscounts(
+      discountValue: (l$discountValue as String),
+      id: (l$id as String),
+      isActive: (l$isActive as bool),
+      minItems: (l$minItems as int),
+      seller: l$seller == null
+          ? null
+          : Query$userMultibuyDiscounts$userMultibuyDiscounts$seller.fromJson(
+              (l$seller as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String discountValue;
+
+  final String id;
+
+  final bool isActive;
+
+  final int minItems;
+
+  final Query$userMultibuyDiscounts$userMultibuyDiscounts$seller? seller;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$discountValue = discountValue;
+    _resultData['discountValue'] = l$discountValue;
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$isActive = isActive;
+    _resultData['isActive'] = l$isActive;
+    final l$minItems = minItems;
+    _resultData['minItems'] = l$minItems;
+    final l$seller = seller;
+    _resultData['seller'] = l$seller?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$discountValue = discountValue;
+    final l$id = id;
+    final l$isActive = isActive;
+    final l$minItems = minItems;
+    final l$seller = seller;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$discountValue,
+      l$id,
+      l$isActive,
+      l$minItems,
+      l$seller,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$userMultibuyDiscounts$userMultibuyDiscounts ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$discountValue = discountValue;
+    final lOther$discountValue = other.discountValue;
+    if (l$discountValue != lOther$discountValue) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$isActive = isActive;
+    final lOther$isActive = other.isActive;
+    if (l$isActive != lOther$isActive) {
+      return false;
+    }
+    final l$minItems = minItems;
+    final lOther$minItems = other.minItems;
+    if (l$minItems != lOther$minItems) {
+      return false;
+    }
+    final l$seller = seller;
+    final lOther$seller = other.seller;
+    if (l$seller != lOther$seller) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$userMultibuyDiscounts$userMultibuyDiscounts
+    on Query$userMultibuyDiscounts$userMultibuyDiscounts {
+  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<
+          Query$userMultibuyDiscounts$userMultibuyDiscounts>
+      get copyWith =>
+          CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<
+    TRes> {
+  factory CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts(
+    Query$userMultibuyDiscounts$userMultibuyDiscounts instance,
+    TRes Function(Query$userMultibuyDiscounts$userMultibuyDiscounts) then,
+  ) = _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts;
+
+  factory CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts;
+
+  TRes call({
+    String? discountValue,
+    String? id,
+    bool? isActive,
+    int? minItems,
+    Query$userMultibuyDiscounts$userMultibuyDiscounts$seller? seller,
+    String? $__typename,
+  });
+  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<TRes>
+      get seller;
+}
+
+class _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts<TRes>
+    implements
+        CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<TRes> {
+  _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts(
+    this._instance,
+    this._then,
+  );
+
+  final Query$userMultibuyDiscounts$userMultibuyDiscounts _instance;
+
+  final TRes Function(Query$userMultibuyDiscounts$userMultibuyDiscounts) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? discountValue = _undefined,
+    Object? id = _undefined,
+    Object? isActive = _undefined,
+    Object? minItems = _undefined,
+    Object? seller = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userMultibuyDiscounts$userMultibuyDiscounts(
+        discountValue: discountValue == _undefined || discountValue == null
+            ? _instance.discountValue
+            : (discountValue as String),
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        isActive: isActive == _undefined || isActive == null
+            ? _instance.isActive
+            : (isActive as bool),
+        minItems: minItems == _undefined || minItems == null
+            ? _instance.minItems
+            : (minItems as int),
+        seller: seller == _undefined
+            ? _instance.seller
+            : (seller
+                as Query$userMultibuyDiscounts$userMultibuyDiscounts$seller?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<TRes>
+      get seller {
+    final local$seller = _instance.seller;
+    return local$seller == null
+        ? CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller
+            .stub(_then(_instance))
+        : CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+            local$seller, (e) => call(seller: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts<TRes>
+    implements
+        CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts<TRes> {
+  _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? discountValue,
+    String? id,
+    bool? isActive,
+    int? minItems,
+    Query$userMultibuyDiscounts$userMultibuyDiscounts$seller? seller,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<TRes>
+      get seller =>
+          CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller
+              .stub(_res);
+}
+
+class Query$userMultibuyDiscounts$userMultibuyDiscounts$seller {
+  Query$userMultibuyDiscounts$userMultibuyDiscounts$seller({
+    this.id,
+    this.username,
+    this.profilePictureUrl,
+    this.$__typename = 'UserType',
+  });
+
+  factory Query$userMultibuyDiscounts$userMultibuyDiscounts$seller.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$username = json['username'];
+    final l$profilePictureUrl = json['profilePictureUrl'];
+    final l$$__typename = json['__typename'];
+    return Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+      id: (l$id as int?),
+      username: (l$username as String?),
+      profilePictureUrl: (l$profilePictureUrl as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final int? id;
+
+  final String? username;
+
+  final String? profilePictureUrl;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$username = username;
+    _resultData['username'] = l$username;
+    final l$profilePictureUrl = profilePictureUrl;
+    _resultData['profilePictureUrl'] = l$profilePictureUrl;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$username = username;
+    final l$profilePictureUrl = profilePictureUrl;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$username,
+      l$profilePictureUrl,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$userMultibuyDiscounts$userMultibuyDiscounts$seller ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$username = username;
+    final lOther$username = other.username;
+    if (l$username != lOther$username) {
+      return false;
+    }
+    final l$profilePictureUrl = profilePictureUrl;
+    final lOther$profilePictureUrl = other.profilePictureUrl;
+    if (l$profilePictureUrl != lOther$profilePictureUrl) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller
+    on Query$userMultibuyDiscounts$userMultibuyDiscounts$seller {
+  CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+          Query$userMultibuyDiscounts$userMultibuyDiscounts$seller>
+      get copyWith =>
+          CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+    TRes> {
+  factory CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+    Query$userMultibuyDiscounts$userMultibuyDiscounts$seller instance,
+    TRes Function(Query$userMultibuyDiscounts$userMultibuyDiscounts$seller)
+        then,
+  ) = _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller;
+
+  factory CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller;
+
+  TRes call({
+    int? id,
+    String? username,
+    String? profilePictureUrl,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+        TRes>
+    implements
+        CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+            TRes> {
+  _CopyWithImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+    this._instance,
+    this._then,
+  );
+
+  final Query$userMultibuyDiscounts$userMultibuyDiscounts$seller _instance;
+
+  final TRes Function(Query$userMultibuyDiscounts$userMultibuyDiscounts$seller)
+      _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? username = _undefined,
+    Object? profilePictureUrl = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+        id: id == _undefined ? _instance.id : (id as int?),
+        username:
+            username == _undefined ? _instance.username : (username as String?),
+        profilePictureUrl: profilePictureUrl == _undefined
+            ? _instance.profilePictureUrl
+            : (profilePictureUrl as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+        TRes>
+    implements
+        CopyWith$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller<
+            TRes> {
+  _CopyWithStubImpl$Query$userMultibuyDiscounts$userMultibuyDiscounts$seller(
+      this._res);
+
+  TRes _res;
+
+  call({
+    int? id,
+    String? username,
+    String? profilePictureUrl,
     String? $__typename,
   }) =>
       _res;
