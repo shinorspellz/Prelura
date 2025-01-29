@@ -21,12 +21,6 @@ class PauseAccount extends ConsumerStatefulWidget {
 
 class _PauseAccountState extends ConsumerState<PauseAccount> {
   @override
-  void initState() {
-    super.initState();
-    // currentPass = ref.read(userProvider).valueOrNull?. ?? "";
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: dismissKeyboard,
@@ -49,14 +43,14 @@ class _PauseAccountState extends ConsumerState<PauseAccount> {
                 child: Column(
                   children: [
                     PreluraAuthTextField(
-                      hintText: "Enter current password",
-                      label: "Current Password",
+                      hintText: "Enter password",
+                      label: "Password",
                       isPassword: true,
-                      controller: currentPassEC,
-                      focusNode: currentPassFN,
+                      controller: passwordEC,
+                      focusNode: passwordFN,
                       // validator: (p0) {
                       //   if (p0!.isEmpty) {
-                      //     return "Current password is required";
+                      //     return "Password is required";
                       //   }
                       //   return null;
                       // },
@@ -84,11 +78,10 @@ class _PauseAccountState extends ConsumerState<PauseAccount> {
   final formKey = GlobalKey<FormState>();
 
 //!========= Controllers =============\\
-  var currentPass = "";
-  var currentPassEC = TextEditingController();
+  var passwordEC = TextEditingController();
 
 //!========= Focus Nodes =============\\
-  var currentPassFN = FocusNode();
+  var passwordFN = FocusNode();
 
 //!========= Booleans =============\\
   var isLoading = false;
@@ -96,11 +89,8 @@ class _PauseAccountState extends ConsumerState<PauseAccount> {
 //!========= Functions =============\\
   Future<void> pauseAccount(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      if (currentPassEC.text.isEmpty) {
-        context.alert('Current password cannot be empty');
-        return;
-      } else if (currentPassEC.text != currentPass) {
-        context.alert("Invalid password, please enter the correct password");
+      if (passwordEC.text.isEmpty) {
+        context.alert('Password cannot be empty');
         return;
       }
 

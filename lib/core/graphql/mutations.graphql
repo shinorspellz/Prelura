@@ -577,9 +577,15 @@ mutation PasswordChange($password: String!, $newPassword: String!) {
     oldPassword: $password
     newPassword1: $newPassword
     newPassword2: $newPassword
-  )
-  {
+  ) {
     success
     errors
+  }
+}
+
+mutation DeleteAccount($password: String!) {
+  deleteAccount(password: $password) {
+    errors
+    success
   }
 }

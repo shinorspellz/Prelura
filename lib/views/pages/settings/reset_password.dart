@@ -24,12 +24,6 @@ class ResetPasswordScreen extends ConsumerStatefulWidget {
 
 class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   @override
-  void initState() {
-    super.initState();
-    // currentPass = ref.read(userProvider).valueOrNull?. ?? "";
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: dismissKeyboard,
@@ -57,12 +51,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                       isPassword: true,
                       controller: currentPassEC,
                       focusNode: currentPassFN,
-                      // validator: (p0) {
-                      //   if (p0!.isEmpty) {
-                      //     return "Current password is required";
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     16.verticalSpacing,
                     PreluraAuthTextField(
@@ -71,12 +59,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                       isPassword: true,
                       controller: newPassEC,
                       focusNode: newPassFN,
-                      // validator: (p0) {
-                      //   if (p0!.isEmpty) {
-                      //     return "New password is required";
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     16.verticalSpacing,
                     PreluraAuthTextField(
@@ -85,12 +67,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                       isPassword: true,
                       controller: confirmPassEC,
                       focusNode: confirmPassFN,
-                      // validator: (p0) {
-                      //   if (p0!.isEmpty) {
-                      //     return "Confirm password is required";
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     Spacer(),
                     PreluraButtonWithLoader(
@@ -98,7 +74,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                         resetPassword(context);
                       },
                       buttonTitle: "Reset Password",
-                      showLoadingIndicator: isLoading,
+                      // showLoadingIndicator: isLoading,
                     ),
                     32.verticalSpacing
                   ],
@@ -144,10 +120,6 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         context.alert("Passwords do not match");
         return;
       }
-      if (currentPassEC.text != currentPass) {
-        context.alert("Invalid password, please enter the correct password");
-        return;
-      }
 
       setState(() => isLoading = true);
 
@@ -156,6 +128,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               currentPassword: currentPassEC.text,
               newPassword: confirmPassEC.text,
             );
+
         ref.read(accountNotifierProvider).whenOrNull(
           error: (e, _) {
             setState(() => isLoading = false);

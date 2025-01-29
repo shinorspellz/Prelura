@@ -25,13 +25,31 @@ class _AccountController extends AsyncNotifier<void> {
     state = const AsyncLoading();
 
     try {
-      final result = await _repo.passwordChange(
-        currentPassword: currentPassword,
-        newPassword: newPassword,
+      state = await AsyncValue.guard(
+        () async {
+          await _repo.passwordChange(
+            currentPassword: currentPassword,
+            newPassword: newPassword,
+          );
+        },
       );
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+      rethrow;
+    }
+  }
 
-      state = AsyncValue.data(result);
-      return result;
+  Future<void> deleteAccount({
+    required String password,
+  }) async {
+    state = const AsyncLoading();
+
+    try {
+      state = await AsyncValue.guard(
+        () async {
+          await _repo.deleteAccount(password: password);
+        },
+      );
     } catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
       rethrow;

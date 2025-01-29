@@ -346,6 +346,22 @@ class UserRepo {
       throw 'An error occured';
     }
   }
+
+  Future<void> deleteAccount({required String password}) async {
+    final response = await _client.mutate$DeleteAccount(
+      Options$Mutation$DeleteAccount(
+        variables: Variables$Mutation$DeleteAccount(password: password),
+      ),
+    );
+    if (response.hasException) {
+      if (response.exception?.graphqlErrors.isNotEmpty ?? false) {
+        final error = response.exception!.graphqlErrors.first.message;
+        throw error;
+      }
+      log(response.exception.toString(), name: 'UserRepo');
+      throw 'An error occured';
+    }
+  }
 }
 
 // followers repo

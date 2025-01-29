@@ -6,11 +6,15 @@ part 'failures.freezed.dart';
 class Failure with _$Failure implements Exception {
   const Failure._();
   const factory Failure.connectionFailure(String message) = ConnectionFailure;
-  const factory Failure.requestFailure(String message, [StackTrace? stackTrace]) = RequestFailure;
-  const factory Failure.cacheFailure({String? message, StackTrace? stackTrace}) = CacheFailure;
-  const factory Failure.jsonParseFailure([StackTrace? stackTrace]) = JsonParseFailure;
+  const factory Failure.requestFailure(String message,
+      [StackTrace? stackTrace]) = RequestFailure;
+  const factory Failure.cacheFailure(
+      {String? message, StackTrace? stackTrace}) = CacheFailure;
+  const factory Failure.jsonParseFailure([StackTrace? stackTrace]) =
+      JsonParseFailure;
 
-  const factory Failure.unknownFailure(String message, [StackTrace? stackTrace]) = UnknownFailure;
+  const factory Failure.unknownFailure(String message,
+      [StackTrace? stackTrace]) = UnknownFailure;
 
   @override
   String toString() {
