@@ -10,7 +10,6 @@ final userMultiBuyDiscountProvider =
   final repo = ref.watch(userRepo);
 
   final result = await repo.getUserMultiBuyDiscounts();
-  log('result $result', name: 'multi buy discount provider');
 
   return result;
 });

@@ -43,6 +43,7 @@ mixin _$UserModel {
   bool? get isFollowing => throw _privateConstructorUsedError;
   int? get noOfFollowers => throw _privateConstructorUsedError;
   ShippingAddress? get shippingAddress => throw _privateConstructorUsedError;
+  bool? get isMultibuyEnabled => throw _privateConstructorUsedError;
   int? get noOfFollowing => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
@@ -83,6 +84,7 @@ abstract class $UserModelCopyWith<$Res> {
       bool? isFollowing,
       int? noOfFollowers,
       ShippingAddress? shippingAddress,
+      bool? isMultibuyEnabled,
       int? noOfFollowing});
 
   $PhoneModelCopyWith<$Res>? get phone;
@@ -127,6 +129,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
     Object? shippingAddress = freezed,
+    Object? isMultibuyEnabled = freezed,
     Object? noOfFollowing = freezed,
   }) {
     return _then(_value.copyWith(
@@ -218,6 +221,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
               as ShippingAddress?,
+      isMultibuyEnabled: freezed == isMultibuyEnabled
+          ? _value.isMultibuyEnabled
+          : isMultibuyEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
       noOfFollowing: freezed == noOfFollowing
           ? _value.noOfFollowing
           : noOfFollowing // ignore: cast_nullable_to_non_nullable
@@ -299,6 +306,7 @@ abstract class _$$UserModelImplCopyWith<$Res>
       bool? isFollowing,
       int? noOfFollowers,
       ShippingAddress? shippingAddress,
+      bool? isMultibuyEnabled,
       int? noOfFollowing});
 
   @override
@@ -344,6 +352,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? isFollowing = freezed,
     Object? noOfFollowers = freezed,
     Object? shippingAddress = freezed,
+    Object? isMultibuyEnabled = freezed,
     Object? noOfFollowing = freezed,
   }) {
     return _then(_$UserModelImpl(
@@ -435,6 +444,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.shippingAddress
           : shippingAddress // ignore: cast_nullable_to_non_nullable
               as ShippingAddress?,
+      isMultibuyEnabled: freezed == isMultibuyEnabled
+          ? _value.isMultibuyEnabled
+          : isMultibuyEnabled // ignore: cast_nullable_to_non_nullable
+              as bool?,
       noOfFollowing: freezed == noOfFollowing
           ? _value.noOfFollowing
           : noOfFollowing // ignore: cast_nullable_to_non_nullable
@@ -469,6 +482,7 @@ class _$UserModelImpl implements _UserModel {
       this.isFollowing,
       this.noOfFollowers,
       this.shippingAddress,
+      this.isMultibuyEnabled,
       this.noOfFollowing});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -519,11 +533,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   final ShippingAddress? shippingAddress;
   @override
+  final bool? isMultibuyEnabled;
+  @override
   final int? noOfFollowing;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, shippingAddress: $shippingAddress, noOfFollowing: $noOfFollowing)';
+    return 'UserModel(id: $id, firstName: $firstName, lastName: $lastName, username: $username, email: $email, bio: $bio, profilePictureUrl: $profilePictureUrl, thumbnailUrl: $thumbnailUrl, gender: $gender, displayName: $displayName, dob: $dob, dateJoined: $dateJoined, lastLogin: $lastLogin, fullName: $fullName, listing: $listing, phone: $phone, preferredCurrency: $preferredCurrency, location: $location, isVacationMode: $isVacationMode, isFollowing: $isFollowing, noOfFollowers: $noOfFollowers, shippingAddress: $shippingAddress, isMultibuyEnabled: $isMultibuyEnabled, noOfFollowing: $noOfFollowing)';
   }
 
   @override
@@ -568,6 +584,8 @@ class _$UserModelImpl implements _UserModel {
                 other.noOfFollowers == noOfFollowers) &&
             (identical(other.shippingAddress, shippingAddress) ||
                 other.shippingAddress == shippingAddress) &&
+            (identical(other.isMultibuyEnabled, isMultibuyEnabled) ||
+                other.isMultibuyEnabled == isMultibuyEnabled) &&
             (identical(other.noOfFollowing, noOfFollowing) ||
                 other.noOfFollowing == noOfFollowing));
   }
@@ -598,6 +616,7 @@ class _$UserModelImpl implements _UserModel {
         isFollowing,
         noOfFollowers,
         shippingAddress,
+        isMultibuyEnabled,
         noOfFollowing
       ]);
 
@@ -641,6 +660,7 @@ abstract class _UserModel implements UserModel {
       final bool? isFollowing,
       final int? noOfFollowers,
       final ShippingAddress? shippingAddress,
+      final bool? isMultibuyEnabled,
       final int? noOfFollowing}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -690,6 +710,8 @@ abstract class _UserModel implements UserModel {
   int? get noOfFollowers;
   @override
   ShippingAddress? get shippingAddress;
+  @override
+  bool? get isMultibuyEnabled;
   @override
   int? get noOfFollowing;
 

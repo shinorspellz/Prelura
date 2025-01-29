@@ -242,6 +242,13 @@ const documentNodeQueryViewMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isMultibuyEnabled'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'listing'),
             alias: null,
             arguments: [],
@@ -483,6 +490,7 @@ class Query$ViewMe$viewMe {
     this.dateJoined,
     this.lastLogin,
     this.fullName,
+    this.isMultibuyEnabled,
     this.listing,
     this.location,
     this.noOfFollowing,
@@ -506,6 +514,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = json['dateJoined'];
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$listing = json['listing'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
@@ -530,6 +539,7 @@ class Query$ViewMe$viewMe {
       lastLogin:
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       listing: (l$listing as int?),
       location: l$location == null
           ? null
@@ -571,6 +581,8 @@ class Query$ViewMe$viewMe {
   final DateTime? lastLogin;
 
   final String? fullName;
+
+  final bool? isMultibuyEnabled;
 
   final int? listing;
 
@@ -614,6 +626,8 @@ class Query$ViewMe$viewMe {
     _resultData['lastLogin'] = l$lastLogin?.toIso8601String();
     final l$fullName = fullName;
     _resultData['fullName'] = l$fullName;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
     final l$location = location;
@@ -646,6 +660,7 @@ class Query$ViewMe$viewMe {
     final l$dateJoined = dateJoined;
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$listing = listing;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
@@ -667,6 +682,7 @@ class Query$ViewMe$viewMe {
       l$dateJoined,
       l$lastLogin,
       l$fullName,
+      l$isMultibuyEnabled,
       l$listing,
       l$location,
       l$noOfFollowing,
@@ -750,6 +766,11 @@ class Query$ViewMe$viewMe {
     if (l$fullName != lOther$fullName) {
       return false;
     }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
+      return false;
+    }
     final l$listing = listing;
     final lOther$listing = other.listing;
     if (l$listing != lOther$listing) {
@@ -820,6 +841,7 @@ abstract class CopyWith$Query$ViewMe$viewMe<TRes> {
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    bool? isMultibuyEnabled,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,
@@ -859,6 +881,7 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
     Object? dateJoined = _undefined,
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
+    Object? isMultibuyEnabled = _undefined,
     Object? listing = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
@@ -894,6 +917,9 @@ class _CopyWithImpl$Query$ViewMe$viewMe<TRes>
             : (lastLogin as DateTime?),
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
         location: location == _undefined
             ? _instance.location
@@ -952,6 +978,7 @@ class _CopyWithStubImpl$Query$ViewMe$viewMe<TRes>
     DateTime? dateJoined,
     DateTime? lastLogin,
     String? fullName,
+    bool? isMultibuyEnabled,
     int? listing,
     Query$ViewMe$viewMe$location? location,
     int? noOfFollowing,

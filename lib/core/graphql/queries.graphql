@@ -13,6 +13,7 @@ query ViewMe {
     dateJoined
     lastLogin
     fullName
+    isMultibuyEnabled
     listing
     location {
       latitude

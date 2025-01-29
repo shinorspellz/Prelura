@@ -270,7 +270,7 @@ class UserRepo {
       final discounts = response.parsedData!.userMultibuyDiscounts!
           .map((e) => MultiBuyDiscountModel.fromJson(e!.toJson()))
           .toList();
-      log('Parsed Discounts: $discounts', name: 'getUserMultiBuyDiscounts');
+
       return discounts;
     } catch (e, stack) {
       log('Error fetching discounts: $e',

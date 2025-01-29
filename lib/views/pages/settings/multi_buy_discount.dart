@@ -15,6 +15,7 @@ import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/pages/settings/widget/discountItem.dart';
 import 'package:prelura_app/views/widgets/gap.dart';
 import 'package:sizer/sizer.dart';
+import '../../../controller/user/user_controller.dart';
 import '../../widgets/app_bar.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_button_with_loader.dart';
@@ -42,6 +43,8 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
       final multiBuyDiscount =
           ref.read(userMultiBuyDiscountProvider).valueOrNull;
       if (multiBuyDiscount != null) {
+        ref.read(isSelectedProvider.notifier).state =
+            checkIfAnyActive(multiBuyDiscount);
         if (multiBuyDiscount.length > 0) {
           final fourItemDiscount = multiBuyDiscount.firstWhere(
             (e) => e.minItems == 2,
@@ -73,7 +76,6 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
               aboveTenDiscount != null
                   ? "${double.parse(aboveTenDiscount.discountValue).toInt()}%"
                   : "0%";
-          log("${double.parse(aboveTenDiscount.discountValue).toInt()}%");
         }
       }
     });
@@ -85,7 +87,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
   Widget build(BuildContext context) {
     final multibuyDiscounts =
         ref.watch(userMultiBuyDiscountProvider).valueOrNull;
-    log(multibuyDiscounts.toString(), name: "multibuyDiscounts screen");
+
     return Scaffold(
         appBar: PreluraAppBar(
           leadingIcon: IconButton(
@@ -107,14 +109,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                   .textTheme
                   .bodySmall
                   ?.copyWith(fontWeight: FontWeight.w600, fontSize: 12.sp),
-              value: ref.watch(userMultiBuyDiscountProvider).valueOrNull != null
-                  ? ref
-                          .watch(userMultiBuyDiscountProvider)
-                          .valueOrNull!
-                          .isNotEmpty
-                      ? true
-                      : false
-                  : isEditing,
+              value: ref.read(isSelectedProvider),
               disabled: false,
               onChanged: (value) async {
                 ref.read(isSelectedProvider.notifier).state = value;
@@ -123,12 +118,13 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                       .read(userMultiBuyerDiscountNotifierProvider.notifier)
                       .deactivateMultiBuyDiscounts();
                   ref.read(userMultiBuyerDiscountNotifierProvider).when(
-                      data: (result) {
+                      data: (result) async {
                         HelperFunction.context = context;
                         HelperFunction.showToast(
                             message: "Multi-buy idscount off");
-
-                        ref.refresh(userMultiBuyDiscountProvider.future);
+                        ref.read(isSelectedProvider.notifier).state = value;
+                        ref.refresh(userProvider.future);
+                        await ref.refresh(userMultiBuyDiscountProvider.future);
                       },
                       error: (e, _) {
                         log("error occured $e", name: "error");
@@ -136,6 +132,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                       loading: () {});
                   return;
                 }
+                ref.read(isSelectedProvider.notifier).state = value;
                 setState(() {
                   isSelected = value;
                   isEditing = value;
@@ -187,6 +184,8 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                       return;
                     }
                     if (multibuyDiscounts != null) {
+                      log(multibuyDiscounts.toString(),
+                          name: "multibuyDiscounts");
                       if (multibuyDiscounts.isEmpty) {
                         if (ref.watch(fourItemDiscountValue) != "0") {
                           await ref
@@ -227,6 +226,8 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                                   HelperFunction.context = context;
                                   HelperFunction.showToast(
                                       message: "Updated multi-buy discounts");
+                                  ref.refresh(userProvider.future);
+
                                   setState(() {
                                     isEditing = !isEditing;
                                   });
@@ -253,6 +254,8 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                                 HelperFunction.context = context;
                                 HelperFunction.showToast(
                                     message: "Multi-buy discounts off");
+                                ref.refresh(userProvider.future);
+
                                 setState(() {
                                   isEditing = !isEditing;
                                 });
@@ -268,7 +271,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                           orElse: () => MultiBuyDiscountModel(
                               id: 0,
                               minItems: 2,
-                              discountValue: "0",
+                              discountValue: "null",
                               isActive: false),
                         );
 
@@ -277,7 +280,7 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                           orElse: () => MultiBuyDiscountModel(
                               id: 0,
                               minItems: 10,
-                              discountValue: "0",
+                              discountValue: "null",
                               isActive:
                                   false), // Provide a fallback if no item is found.
                         );
@@ -286,24 +289,31 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                           orElse: () => MultiBuyDiscountModel(
                               id: 0,
                               minItems: 5,
-                              discountValue: "0",
+                              discountValue: "null",
                               isActive: false),
                         );
-                        if (fourItemDiscount.isActive != false) {
-                          if (ref.watch(fourItemDiscountValue) != "0") {
-                            await ref
-                                .read(userMultiBuyerDiscountNotifierProvider
-                                    .notifier)
-                                .updateMultiBuyDiscounts(
-                                    id: int.parse(fourItemDiscount.id),
-                                    minItems: 2,
-                                    discountPercentage: removePercentageSymbol(
-                                        ref
-                                            .read(fourItemDiscountValue)
-                                            .toString()));
-                          }
+                        if (fourItemDiscount.discountValue != "null") {
+                          await ref
+                              .read(userMultiBuyerDiscountNotifierProvider
+                                  .notifier)
+                              .updateMultiBuyDiscounts(
+                                  id: int.parse(fourItemDiscount.id),
+                                  minItems: 2,
+                                  discountPercentage: removePercentageSymbol(ref
+                                      .read(fourItemDiscountValue)
+                                      .toString()));
                         }
-                        if (nineItemDiscount.isActive != false) {
+                        if (fourItemDiscount.discountValue == "null") {
+                          await ref
+                              .read(userMultiBuyerDiscountNotifierProvider
+                                  .notifier)
+                              .createMultiBuyDiscounts(
+                                  minItems: 2,
+                                  discountPercentage: removePercentageSymbol(ref
+                                      .read(fourItemDiscountValue)
+                                      .toString()));
+                        }
+                        if (nineItemDiscount.discountValue != "null") {
                           if (ref.watch(nineItemDiscountValue) != "0") {
                             await ref
                                 .read(userMultiBuyerDiscountNotifierProvider
@@ -317,7 +327,17 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                                             .toString()));
                           }
                         }
-                        if (aboveTenDiscount.isActive != false) {
+                        if (nineItemDiscount.discountValue == "null") {
+                          await ref
+                              .read(userMultiBuyerDiscountNotifierProvider
+                                  .notifier)
+                              .createMultiBuyDiscounts(
+                                  minItems: 5,
+                                  discountPercentage: removePercentageSymbol(ref
+                                      .read(nineItemDiscountValue)
+                                      .toString()));
+                        }
+                        if (aboveTenDiscount.discountValue != "null") {
                           if (ref.watch(aboveTenItemDiscountValue) != "0") {
                             await ref
                                 .read(userMultiBuyerDiscountNotifierProvider
@@ -331,6 +351,16 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                                             .toString()));
                           }
                         }
+                        if (aboveTenDiscount.discountValue == "null") {
+                          await ref
+                              .read(userMultiBuyerDiscountNotifierProvider
+                                  .notifier)
+                              .createMultiBuyDiscounts(
+                                  minItems: 10,
+                                  discountPercentage: removePercentageSymbol(ref
+                                      .read(aboveTenItemDiscountValue)
+                                      .toString()));
+                        }
                         await ref
                             .read(userMultiBuyerDiscountNotifierProvider)
                             .when(
@@ -338,12 +368,15 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                                   HelperFunction.context = context;
                                   HelperFunction.showToast(
                                       message: "Updated multi-buy discounts");
+                                  ref.refresh(userProvider.future);
+
                                   setState(() {
                                     isEditing = !isEditing;
                                   });
                                 },
                                 error: (e, _) {
                                   context.alert("error occured $e");
+                                  log("error occured $e");
                                 },
                                 loading: () {});
                         ref.refresh(userMultiBuyDiscountProvider.future);
@@ -405,7 +438,9 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
                   },
                   text: isEditing ? "Save" : "Edit",
                   textColor: PreluraColors.white,
-                  loading: false,
+                  loading: ref
+                      .watch(userMultiBuyerDiscountNotifierProvider)
+                      .isLoading,
                   bgColor: PreluraColors.primaryColor,
                   height: 45,
                   width: double.infinity,
@@ -419,7 +454,17 @@ class _EditSaveExampleState extends ConsumerState<MultiBuyDiscountScreen> {
 
 String removePercentageSymbol(String input) {
   if (input.endsWith('%')) {
-    return input.substring(0, input.length - 1); // Remove the last character
+    return input.substring(0, input.length - 1);
   }
-  return input; // Return the string unchanged if it doesn't end with '%'
+  return input;
+}
+
+bool checkIfAnyActive(List<MultiBuyDiscountModel> discounts) {
+  for (var discount in discounts) {
+    log(discount.isActive.toString(), name: "is active");
+    if (discount.isActive) {
+      return true;
+    }
+  }
+  return false;
 }
