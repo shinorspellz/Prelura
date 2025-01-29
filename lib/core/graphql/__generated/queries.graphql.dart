@@ -2782,6 +2782,13 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'isMultibuyEnabled'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'location'),
             alias: null,
             arguments: [],
@@ -3039,6 +3046,7 @@ class Query$GetUser$getUser {
     this.lastLogin,
     this.fullName,
     this.listing,
+    this.isMultibuyEnabled,
     this.location,
     this.noOfFollowing,
     this.noOfFollowers,
@@ -3063,6 +3071,7 @@ class Query$GetUser$getUser {
     final l$lastLogin = json['lastLogin'];
     final l$fullName = json['fullName'];
     final l$listing = json['listing'];
+    final l$isMultibuyEnabled = json['isMultibuyEnabled'];
     final l$location = json['location'];
     final l$noOfFollowing = json['noOfFollowing'];
     final l$noOfFollowers = json['noOfFollowers'];
@@ -3088,6 +3097,7 @@ class Query$GetUser$getUser {
           l$lastLogin == null ? null : DateTime.parse((l$lastLogin as String)),
       fullName: (l$fullName as String?),
       listing: (l$listing as int?),
+      isMultibuyEnabled: (l$isMultibuyEnabled as bool?),
       location: l$location == null
           ? null
           : Query$GetUser$getUser$location.fromJson(
@@ -3131,6 +3141,8 @@ class Query$GetUser$getUser {
   final String? fullName;
 
   final int? listing;
+
+  final bool? isMultibuyEnabled;
 
   final Query$GetUser$getUser$location? location;
 
@@ -3176,6 +3188,8 @@ class Query$GetUser$getUser {
     _resultData['fullName'] = l$fullName;
     final l$listing = listing;
     _resultData['listing'] = l$listing;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    _resultData['isMultibuyEnabled'] = l$isMultibuyEnabled;
     final l$location = location;
     _resultData['location'] = l$location?.toJson();
     final l$noOfFollowing = noOfFollowing;
@@ -3209,6 +3223,7 @@ class Query$GetUser$getUser {
     final l$lastLogin = lastLogin;
     final l$fullName = fullName;
     final l$listing = listing;
+    final l$isMultibuyEnabled = isMultibuyEnabled;
     final l$location = location;
     final l$noOfFollowing = noOfFollowing;
     final l$noOfFollowers = noOfFollowers;
@@ -3231,6 +3246,7 @@ class Query$GetUser$getUser {
       l$lastLogin,
       l$fullName,
       l$listing,
+      l$isMultibuyEnabled,
       l$location,
       l$noOfFollowing,
       l$noOfFollowers,
@@ -3319,6 +3335,11 @@ class Query$GetUser$getUser {
     if (l$listing != lOther$listing) {
       return false;
     }
+    final l$isMultibuyEnabled = isMultibuyEnabled;
+    final lOther$isMultibuyEnabled = other.isMultibuyEnabled;
+    if (l$isMultibuyEnabled != lOther$isMultibuyEnabled) {
+      return false;
+    }
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
@@ -3390,6 +3411,7 @@ abstract class CopyWith$Query$GetUser$getUser<TRes> {
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isMultibuyEnabled,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,
@@ -3430,6 +3452,7 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
     Object? lastLogin = _undefined,
     Object? fullName = _undefined,
     Object? listing = _undefined,
+    Object? isMultibuyEnabled = _undefined,
     Object? location = _undefined,
     Object? noOfFollowing = _undefined,
     Object? noOfFollowers = _undefined,
@@ -3466,6 +3489,9 @@ class _CopyWithImpl$Query$GetUser$getUser<TRes>
         fullName:
             fullName == _undefined ? _instance.fullName : (fullName as String?),
         listing: listing == _undefined ? _instance.listing : (listing as int?),
+        isMultibuyEnabled: isMultibuyEnabled == _undefined
+            ? _instance.isMultibuyEnabled
+            : (isMultibuyEnabled as bool?),
         location: location == _undefined
             ? _instance.location
             : (location as Query$GetUser$getUser$location?),
@@ -3527,6 +3553,7 @@ class _CopyWithStubImpl$Query$GetUser$getUser<TRes>
     DateTime? lastLogin,
     String? fullName,
     int? listing,
+    bool? isMultibuyEnabled,
     Query$GetUser$getUser$location? location,
     int? noOfFollowing,
     int? noOfFollowers,

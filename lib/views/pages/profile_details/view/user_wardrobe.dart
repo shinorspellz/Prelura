@@ -51,11 +51,9 @@ final multiProducts =
 class MultiProductsNotifier extends StateNotifier<Set<ProductModel>> {
   MultiProductsNotifier() : super({});
 
-  
   void addProduct(ProductModel product) {
     state = {...state, product};
   }
-
 
   void removeProduct(ProductModel product) {
     state = state.where((p) => p != product).toSet();
@@ -482,7 +480,7 @@ class _UserWardrobeScreenState extends ConsumerState<UserWardrobe> {
                           //     },
                           //   )
                           // ],
-                          if (!isCurrentUser)
+                          if (!isCurrentUser && user.isMultibuyEnabled == true)
                             PreluraSwitchWithText(
                                 titleText: 'Multi-buy:',
                                 value: ref.watch(buyerMultiBuyDiscount),

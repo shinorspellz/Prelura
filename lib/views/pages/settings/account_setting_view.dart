@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
-
+import 'package:http/http.dart' as http;
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -88,6 +89,36 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
     username.dispose();
     email.dispose();
     super.dispose();
+  }
+
+  Future<Map<String, String>> getPlaceDetails(String placeId) async {
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&key=$apiKey'));
+
+    if (response.statusCode == 200) {
+      final result = jsonDecode(response.body)['result'];
+      List<dynamic> addressComponents = result['address_components'];
+
+      String city = '';
+      String country = '';
+      String postcode = '';
+
+      for (var component in addressComponents) {
+        log("component : $component");
+        if (component['types'].contains('locality') || component["types"].contains("administrative_area_level_3")) {
+          city = component['long_name'];
+        } else if (component['types'].contains('country')) {
+          country = component['long_name'];
+        } else if (component['types'].contains('postal_code')) {
+          postcode = component['long_name'];
+        }
+      }
+      log("${'city:  $city, country: $country, postcode: $postcode'}");
+
+      return {'city': city, 'country': country, 'postcode': postcode};
+    } else {
+      throw Exception('Failed to load place details');
+    }
   }
 
   void placeAutoComplete(String query) async {
@@ -248,6 +279,10 @@ class _AccountSettingScreenState extends ConsumerState<AccountSettingScreen> {
 
             CustomLocationField(
               locationController: locationController,
+              onDescriptionSelected: (value) {
+                final places = getPlaceDetails(value!);
+                log(places.toString());
+              },
             ),
             addVerticalSpacing(16),
 
