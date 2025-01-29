@@ -159,7 +159,7 @@ class OrderState {
   final Set<String> processingTypes;
   final int totalOrders;
   final Input$OrderFiltersInput? filterType;
-  final List<OrderInfo>? userOrders;
+  final List<UserOrderInfo>? userOrders;
 
   OrderState({
     required this.isLoading,
@@ -173,7 +173,7 @@ class OrderState {
     bool? isLoading,
     Set<String>? processingTypes,
     int? totalOrders,
-    List<OrderInfo>? userOrders,
+    List<UserOrderInfo>? userOrders,
     Input$OrderFiltersInput? filterType,
   }) {
     return OrderState(

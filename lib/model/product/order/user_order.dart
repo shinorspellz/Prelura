@@ -8,7 +8,7 @@ UserOrderResponse userOrderFromJson(String str) =>
 String userOrderToJson(UserOrderResponse data) => json.encode(data.toJson());
 
 class UserOrderResponse {
-  List<UserOrderinfo>? userOrders;
+  List<UserOrderInfo>? userOrders;
   int? userOrdersTotalNumber;
   String? typename;
 
@@ -19,7 +19,7 @@ class UserOrderResponse {
   });
 
   UserOrderResponse copyWith({
-    List<UserOrderinfo>? userOrders,
+    List<UserOrderInfo>? userOrders,
     int? userOrdersTotalNumber,
     String? typename,
   }) =>
@@ -34,8 +34,8 @@ class UserOrderResponse {
       UserOrderResponse(
         userOrders: json["userOrders"] == null
             ? []
-            : List<UserOrderinfo>.from(
-                json["userOrders"]!.map((x) => UserOrderinfo.fromJson(x))),
+            : List<UserOrderInfo>.from(
+                json["userOrders"]!.map((x) => UserOrderInfo.fromJson(x))),
         userOrdersTotalNumber: json["userOrdersTotalNumber"],
         typename: json["__typename"],
       );
@@ -49,7 +49,7 @@ class UserOrderResponse {
       };
 }
 
-class UserOrderinfo {
+class UserOrderInfo {
   DateTime? createdAt;
   String? discountPrice;
   String? id;
@@ -62,7 +62,7 @@ class UserOrderinfo {
   List<OrderProductInfo>? products;
   String? typename;
 
-  UserOrderinfo({
+  UserOrderInfo({
     this.createdAt,
     this.discountPrice,
     this.id,
@@ -76,20 +76,20 @@ class UserOrderinfo {
     this.typename,
   });
 
-  UserOrderinfo copyWith({
+  UserOrderInfo copyWith({
     DateTime? createdAt,
-    String? discountPrice,
+    dynamic discountPrice,
     String? id,
-    String? priceTotal,
+    dynamic priceTotal,
     ShippingAddress? shippingAddress,
-    String? shippingFee,
+    dynamic shippingFee,
     String? status,
     DateTime? updatedAt,
     User? user,
     List<OrderProductInfo>? products,
     String? typename,
   }) =>
-      UserOrderinfo(
+      UserOrderInfo(
         createdAt: createdAt ?? this.createdAt,
         discountPrice: discountPrice ?? this.discountPrice,
         id: id ?? this.id,
@@ -103,7 +103,7 @@ class UserOrderinfo {
         typename: typename ?? this.typename,
       );
 
-  factory UserOrderinfo.fromJson(Map<String, dynamic> json) => UserOrderinfo(
+  factory UserOrderInfo.fromJson(Map<String, dynamic> json) => UserOrderInfo(
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -112,7 +112,7 @@ class UserOrderinfo {
         priceTotal: json["priceTotal"],
         shippingAddress: json["shippingAddress"] == null
             ? null
-            : ShippingAddress.fromJson(json["shippingAddress"]),
+            : ShippingAddress.fromJson(jsonDecode(json["shippingAddress"])),
         shippingFee: json["shippingFee"],
         status: json["status"],
         updatedAt: json["updatedAt"] == null

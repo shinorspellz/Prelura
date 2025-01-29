@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:prelura_app/model/product/order/order_model.dart';
+import 'package:prelura_app/model/product/order/user_order.dart';
 import 'package:prelura_app/res/colors.dart';
 import 'package:prelura_app/res/utils.dart';
 import 'package:prelura_app/views/shimmers/grid_shimmer.dart';
 
 class OrderCard extends StatelessWidget {
-  final OrderInfo order;
+  final UserOrderInfo order;
 
   const OrderCard({super.key, required this.order});
 
@@ -14,7 +14,7 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // String? imageUrl =
     //     order.paymentSet?.firstOrNull?.order?.product?.imagesUrl?.firstOrNull;
-    String imageRealPath = "";
+    // String imageRealPath = "";
     // imageUrl != null ? jsonDecode(imageUrl)["url"] : "";
     return GestureDetector(
       onTap: () {},
@@ -35,15 +35,15 @@ class OrderCard extends StatelessWidget {
             // User Avatar
             Stack(clipBehavior: Clip.none, children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(2),
+                borderRadius: BorderRadius.circular(4),
                 child: SizedBox(
-                  width: 40,
-                  height: 40,
+                  width: 50,
+                  height: 60,
                   child: CachedNetworkImage(
                     errorWidget: (context, url, error) => Container(
                       color: PreluraColors.grey,
                     ),
-                    imageUrl: imageRealPath,
+                    imageUrl: order.products!.first.imagesUrl!.first.url!,
                     fit: BoxFit.cover,
                     placeholder: (context, url) {
                       return ShimmerBox(
