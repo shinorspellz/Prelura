@@ -99,7 +99,7 @@ class _ListOfContactsState extends State<ListOfContacts> {
               ),
       ),
       bottomNavigationBar: selectedContacts.isEmpty
-          ? Container()
+          ? Container(height: 0)
           : _buildBottomNav(colorScheme, context),
     );
   }
