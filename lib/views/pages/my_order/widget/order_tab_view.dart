@@ -11,7 +11,8 @@ class OrdersTabView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userOrderState = ref.watch(orderProvider);
     bool isLoading = userOrderState.isLoading;
-    final List<UserOrderInfo> orders = userOrderState.userOrders ?? [];
+    final List<UserOrderInfo> orders = []; //HERE
+    // userOrderState.userOrders ?? [];
     if (isLoading) {
       return Center(
         child: CircularProgressIndicator.adaptive(),

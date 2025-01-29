@@ -569,7 +569,7 @@ query PopularBrands($top: Int!) {
   }
 }
 
-query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int,) {
+query UserOrders($filters: OrderFiltersInput, $pageCount: Int, $pageNumber: Int) {
   userOrders(filters: $filters, pageCount: $pageCount, pageNumber: $pageNumber,) {
     createdAt
     discountPrice

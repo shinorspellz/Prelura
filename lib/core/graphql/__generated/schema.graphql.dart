@@ -968,9 +968,13 @@ class _CopyWithStubImpl$Input$NotificationsPreferenceInputType<TRes>
 }
 
 class Input$OrderFiltersInput {
-  factory Input$OrderFiltersInput({Enum$OrderStatusEnum? status}) =>
+  factory Input$OrderFiltersInput({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  }) =>
       Input$OrderFiltersInput._({
         if (status != null) r'status': status,
+        if (isSeller != null) r'isSeller': isSeller,
       });
 
   Input$OrderFiltersInput._(this._$data);
@@ -983,6 +987,10 @@ class Input$OrderFiltersInput {
           ? null
           : fromJson$Enum$OrderStatusEnum((l$status as String));
     }
+    if (data.containsKey('isSeller')) {
+      final l$isSeller = data['isSeller'];
+      result$data['isSeller'] = (l$isSeller as bool?);
+    }
     return Input$OrderFiltersInput._(result$data);
   }
 
@@ -991,12 +999,18 @@ class Input$OrderFiltersInput {
   Enum$OrderStatusEnum? get status =>
       (_$data['status'] as Enum$OrderStatusEnum?);
 
+  bool? get isSeller => (_$data['isSeller'] as bool?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     if (_$data.containsKey('status')) {
       final l$status = status;
       result$data['status'] =
           l$status == null ? null : toJson$Enum$OrderStatusEnum(l$status);
+    }
+    if (_$data.containsKey('isSeller')) {
+      final l$isSeller = isSeller;
+      result$data['isSeller'] = l$isSeller;
     }
     return result$data;
   }
@@ -1023,13 +1037,26 @@ class Input$OrderFiltersInput {
     if (l$status != lOther$status) {
       return false;
     }
+    final l$isSeller = isSeller;
+    final lOther$isSeller = other.isSeller;
+    if (_$data.containsKey('isSeller') !=
+        other._$data.containsKey('isSeller')) {
+      return false;
+    }
+    if (l$isSeller != lOther$isSeller) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$status = status;
-    return Object.hashAll([_$data.containsKey('status') ? l$status : const {}]);
+    final l$isSeller = isSeller;
+    return Object.hashAll([
+      _$data.containsKey('status') ? l$status : const {},
+      _$data.containsKey('isSeller') ? l$isSeller : const {},
+    ]);
   }
 }
 
@@ -1042,7 +1069,10 @@ abstract class CopyWith$Input$OrderFiltersInput<TRes> {
   factory CopyWith$Input$OrderFiltersInput.stub(TRes res) =
       _CopyWithStubImpl$Input$OrderFiltersInput;
 
-  TRes call({Enum$OrderStatusEnum? status});
+  TRes call({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  });
 }
 
 class _CopyWithImpl$Input$OrderFiltersInput<TRes>
@@ -1058,9 +1088,14 @@ class _CopyWithImpl$Input$OrderFiltersInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? status = _undefined}) => _then(Input$OrderFiltersInput._({
+  TRes call({
+    Object? status = _undefined,
+    Object? isSeller = _undefined,
+  }) =>
+      _then(Input$OrderFiltersInput._({
         ..._instance._$data,
         if (status != _undefined) 'status': (status as Enum$OrderStatusEnum?),
+        if (isSeller != _undefined) 'isSeller': (isSeller as bool?),
       }));
 }
 
@@ -1070,7 +1105,11 @@ class _CopyWithStubImpl$Input$OrderFiltersInput<TRes>
 
   TRes _res;
 
-  call({Enum$OrderStatusEnum? status}) => _res;
+  call({
+    Enum$OrderStatusEnum? status,
+    bool? isSeller,
+  }) =>
+      _res;
 }
 
 class Input$PhoneInputType {
@@ -2288,6 +2327,59 @@ Enum$FileTypeEnum fromJson$Enum$FileTypeEnum(String value) {
   }
 }
 
+enum Enum$FlagUserReasonEnum {
+  TERMS_VIOLATION,
+  SPAM_ACTIVITY,
+  INAPPROPRIATE_CONTENT,
+  HARASSMENT,
+  LEGAL_REQUEST,
+  OTHER,
+  $unknown;
+
+  factory Enum$FlagUserReasonEnum.fromJson(String value) =>
+      fromJson$Enum$FlagUserReasonEnum(value);
+
+  String toJson() => toJson$Enum$FlagUserReasonEnum(this);
+}
+
+String toJson$Enum$FlagUserReasonEnum(Enum$FlagUserReasonEnum e) {
+  switch (e) {
+    case Enum$FlagUserReasonEnum.TERMS_VIOLATION:
+      return r'TERMS_VIOLATION';
+    case Enum$FlagUserReasonEnum.SPAM_ACTIVITY:
+      return r'SPAM_ACTIVITY';
+    case Enum$FlagUserReasonEnum.INAPPROPRIATE_CONTENT:
+      return r'INAPPROPRIATE_CONTENT';
+    case Enum$FlagUserReasonEnum.HARASSMENT:
+      return r'HARASSMENT';
+    case Enum$FlagUserReasonEnum.LEGAL_REQUEST:
+      return r'LEGAL_REQUEST';
+    case Enum$FlagUserReasonEnum.OTHER:
+      return r'OTHER';
+    case Enum$FlagUserReasonEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$FlagUserReasonEnum fromJson$Enum$FlagUserReasonEnum(String value) {
+  switch (value) {
+    case r'TERMS_VIOLATION':
+      return Enum$FlagUserReasonEnum.TERMS_VIOLATION;
+    case r'SPAM_ACTIVITY':
+      return Enum$FlagUserReasonEnum.SPAM_ACTIVITY;
+    case r'INAPPROPRIATE_CONTENT':
+      return Enum$FlagUserReasonEnum.INAPPROPRIATE_CONTENT;
+    case r'HARASSMENT':
+      return Enum$FlagUserReasonEnum.HARASSMENT;
+    case r'LEGAL_REQUEST':
+      return Enum$FlagUserReasonEnum.LEGAL_REQUEST;
+    case r'OTHER':
+      return Enum$FlagUserReasonEnum.OTHER;
+    default:
+      return Enum$FlagUserReasonEnum.$unknown;
+  }
+}
+
 enum Enum$ImageActionEnum {
   ADD,
   REMOVE,
@@ -2648,6 +2740,97 @@ Enum$PaymentsPaymentPaymentStatusChoices
       return Enum$PaymentsPaymentPaymentStatusChoices.CANCELLED;
     default:
       return Enum$PaymentsPaymentPaymentStatusChoices.$unknown;
+  }
+}
+
+enum Enum$ProductFlagReasonEnum {
+  COMMUNITY_GUIDELINES,
+  INAPPROPRIATE_CONTENT,
+  COPYRIGHT_INFRINGEMENT,
+  DUPLICATE_IMAGES,
+  SPAM,
+  OTHER,
+  $unknown;
+
+  factory Enum$ProductFlagReasonEnum.fromJson(String value) =>
+      fromJson$Enum$ProductFlagReasonEnum(value);
+
+  String toJson() => toJson$Enum$ProductFlagReasonEnum(this);
+}
+
+String toJson$Enum$ProductFlagReasonEnum(Enum$ProductFlagReasonEnum e) {
+  switch (e) {
+    case Enum$ProductFlagReasonEnum.COMMUNITY_GUIDELINES:
+      return r'COMMUNITY_GUIDELINES';
+    case Enum$ProductFlagReasonEnum.INAPPROPRIATE_CONTENT:
+      return r'INAPPROPRIATE_CONTENT';
+    case Enum$ProductFlagReasonEnum.COPYRIGHT_INFRINGEMENT:
+      return r'COPYRIGHT_INFRINGEMENT';
+    case Enum$ProductFlagReasonEnum.DUPLICATE_IMAGES:
+      return r'DUPLICATE_IMAGES';
+    case Enum$ProductFlagReasonEnum.SPAM:
+      return r'SPAM';
+    case Enum$ProductFlagReasonEnum.OTHER:
+      return r'OTHER';
+    case Enum$ProductFlagReasonEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductFlagReasonEnum fromJson$Enum$ProductFlagReasonEnum(String value) {
+  switch (value) {
+    case r'COMMUNITY_GUIDELINES':
+      return Enum$ProductFlagReasonEnum.COMMUNITY_GUIDELINES;
+    case r'INAPPROPRIATE_CONTENT':
+      return Enum$ProductFlagReasonEnum.INAPPROPRIATE_CONTENT;
+    case r'COPYRIGHT_INFRINGEMENT':
+      return Enum$ProductFlagReasonEnum.COPYRIGHT_INFRINGEMENT;
+    case r'DUPLICATE_IMAGES':
+      return Enum$ProductFlagReasonEnum.DUPLICATE_IMAGES;
+    case r'SPAM':
+      return Enum$ProductFlagReasonEnum.SPAM;
+    case r'OTHER':
+      return Enum$ProductFlagReasonEnum.OTHER;
+    default:
+      return Enum$ProductFlagReasonEnum.$unknown;
+  }
+}
+
+enum Enum$ProductFlagTypeEnum {
+  HIDDEN,
+  REMOVED,
+  FLAGGED,
+  $unknown;
+
+  factory Enum$ProductFlagTypeEnum.fromJson(String value) =>
+      fromJson$Enum$ProductFlagTypeEnum(value);
+
+  String toJson() => toJson$Enum$ProductFlagTypeEnum(this);
+}
+
+String toJson$Enum$ProductFlagTypeEnum(Enum$ProductFlagTypeEnum e) {
+  switch (e) {
+    case Enum$ProductFlagTypeEnum.HIDDEN:
+      return r'HIDDEN';
+    case Enum$ProductFlagTypeEnum.REMOVED:
+      return r'REMOVED';
+    case Enum$ProductFlagTypeEnum.FLAGGED:
+      return r'FLAGGED';
+    case Enum$ProductFlagTypeEnum.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ProductFlagTypeEnum fromJson$Enum$ProductFlagTypeEnum(String value) {
+  switch (value) {
+    case r'HIDDEN':
+      return Enum$ProductFlagTypeEnum.HIDDEN;
+    case r'REMOVED':
+      return Enum$ProductFlagTypeEnum.REMOVED;
+    case r'FLAGGED':
+      return Enum$ProductFlagTypeEnum.FLAGGED;
+    default:
+      return Enum$ProductFlagTypeEnum.$unknown;
   }
 }
 

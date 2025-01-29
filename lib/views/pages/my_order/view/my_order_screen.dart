@@ -22,7 +22,7 @@ class _MyOrderScreenState extends ConsumerState<MyOrderScreen>
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-      ref.read(orderProvider.notifier).getOrders();
+      ref.read(orderProvider.notifier).fetchUserOrders();
     });
     _tabController = TabController(length: 2, vsync: this);
     _tabController.addListener(() {

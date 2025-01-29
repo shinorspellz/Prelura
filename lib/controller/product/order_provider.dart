@@ -96,7 +96,8 @@ class OrderNotifier extends StateNotifier<OrderState> {
     }
   }
 
-  Future<void> getOrders({Input$OrderFiltersInput? filterType}) async {
+  Future<UserOrderResponse?>? getOrders(
+      {Input$OrderFiltersInput? filterType}) async {
     int pageCount = 20;
     int pageNumber = 1;
 
@@ -106,10 +107,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
         pageNumber: pageNumber,
         filters: filterType,
       );
-      updateOrderState({
-        "totalOrders": response.userOrdersTotalNumber ?? 0,
-        "userOrders": response.userOrders,
-      });
+      return response;
     } catch (e) {
       log("User Orders Error: $e");
     } finally {
@@ -117,6 +115,7 @@ class OrderNotifier extends StateNotifier<OrderState> {
         "isLoading": false,
       });
     }
+    return null;
 
     // state = await AsyncValue.guard(
     //   () async {
@@ -124,6 +123,17 @@ class OrderNotifier extends StateNotifier<OrderState> {
     //     return null;
     //   },
     // );
+  }
+
+  fetchUserOrders() async {
+    UserOrderResponse? soldItems = await getOrders(
+        filterType: Input$OrderFiltersInput(
+      isSeller: true,
+    ));
+    // updateOrderState({
+    //   "totalOrders": response.userOrdersTotalNumber ?? 0,
+    //   "userOrders": response.userOrders,
+    // });
   }
 
   // late final _repo = ref.read(productRepo);
@@ -159,7 +169,7 @@ class OrderState {
   final Set<String> processingTypes;
   final int totalOrders;
   final Input$OrderFiltersInput? filterType;
-  final List<UserOrderInfo>? userOrders;
+  final Map<String, List<UserOrderInfo>>? userOrders;
 
   OrderState({
     required this.isLoading,
@@ -173,7 +183,7 @@ class OrderState {
     bool? isLoading,
     Set<String>? processingTypes,
     int? totalOrders,
-    List<UserOrderInfo>? userOrders,
+    Map<String, List<UserOrderInfo>>? userOrders,
     Input$OrderFiltersInput? filterType,
   }) {
     return OrderState(
