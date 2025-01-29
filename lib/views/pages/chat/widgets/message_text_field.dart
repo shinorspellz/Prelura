@@ -173,7 +173,11 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                      color: PreluraColors.primaryColor),
+                                    color: (chatFocusNode?.hasFocus ?? false)
+                                        ? PreluraColors.primaryColor
+                                        : PreluraColors.greyColor
+                                            .withOpacity(.5),
+                                  ),
                                 )),
 
                             // decoration: InputDecoration(
