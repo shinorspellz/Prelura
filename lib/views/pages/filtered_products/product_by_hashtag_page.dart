@@ -88,25 +88,27 @@ class _ProductByHashtagPageState extends ConsumerState<ProductByHashtagPage> {
                   pinned: true, // Keeps it static
                   delegate: FilteredProductStaticSliverDelegate(
                       child: Container(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 15, right: 15),
                     color: Theme.of(context).scaffoldBackgroundColor,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Searchwidget(
-                          padding: EdgeInsets.zero,
-                          obscureText: false,
-                          shouldReadOnly: false,
-                          hintText: "Search for items",
-                          enabled: true,
-                          showInputBorder: true,
-                          autofocus: false,
-                          cancelButton: true,
-                          onChanged: (val) {
-                            searchQuery = val;
-                            setState(() {});
-                          },
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, right: 15),
+                          child: Searchwidget(
+                            padding: EdgeInsets.zero,
+                            obscureText: false,
+                            shouldReadOnly: false,
+                            hintText: "Search for items",
+                            enabled: true,
+                            showInputBorder: true,
+                            autofocus: false,
+                            cancelButton: true,
+                            onChanged: (val) {
+                              searchQuery = val;
+                              setState(() {});
+                            },
+                          ),
                         ),
                         FiltersOptions(onTap: () {
                           ref

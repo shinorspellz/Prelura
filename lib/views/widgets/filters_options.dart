@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prelura_app/views/widgets/gap.dart';
 
 import '../../res/colors.dart';
 import '../pages/search_result/provider/search_provider.dart';
@@ -56,6 +57,7 @@ class FiltersOptions extends ConsumerWidget {
             //     ),
             //   ),
             // ),
+            8.horizontalSpacing,
             ...FilterTypes.values
                 .where((filter) => ![
                       ...excludedFilterTypes,
@@ -64,7 +66,7 @@ class FiltersOptions extends ConsumerWidget {
                     ].contains(filter))
                 .map((filter) {
               return Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(left: 8.0),
                 child: FilterChip(
                   checkmarkColor: filters.containsKey(filter)
                       ? PreluraColors.activeColor
@@ -89,6 +91,7 @@ class FiltersOptions extends ConsumerWidget {
                 ),
               );
             }),
+            16.horizontalSpacing,
           ],
         ),
       ),
