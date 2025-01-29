@@ -68,7 +68,7 @@ query GetUser($username: String!) {
     lastLogin
     fullName
     listing
-    isVacationMode
+    isMultibuyEnabled
     location {
       latitude
       longitude
