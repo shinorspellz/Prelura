@@ -179,29 +179,6 @@ class _MessageTextFieldState extends ConsumerState<MessageTextField> {
                                             .withOpacity(.5),
                                   ),
                                 )),
-
-                            // decoration: InputDecoration(
-                            //   filled: false,
-                            //   hintText: "Message...",
-                            //   hintStyle: Theme.of(context)
-                            //       .textTheme
-                            //       .displayMedium!
-                            //       .copyWith(
-                            //         color: Theme.of(context)
-                            //             .primaryColor
-                            //             .withOpacity(0.5),
-                            //         fontSize: 12.sp,
-                            //         height: 1.7,
-                            //       ),
-                            //   border: InputBorder.none,
-                            //   focusedBorder: InputBorder.none,
-                            //   focusedErrorBorder: InputBorder.none,
-                            //   errorBorder: InputBorder.none,
-                            //   enabledBorder: InputBorder.none,
-                            //   contentPadding: EdgeInsets.only(
-                            //     bottom: 3.5,
-                            //   ),
-                            // ),
                           ),
                         ),
                         if (showSend || ref.watch(showSendButtonProvider))
